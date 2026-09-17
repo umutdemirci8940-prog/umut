@@ -1,0 +1,14 @@
+{
+  "name": "ilacsizyasam-supplement-banners",
+  "version": "1.0.0",
+  "private": true,
+  "description": "İlaçsız Yaşam – gıda takviyeleri için animasyonlu, ürün slider'lı HTML5 banner serisi (300x250, 300x600, 970x250)",
+  "scripts": {
+    "build": "node build.js",
+    "capture": "NODE_PATH=$(npm root -g) node tools/capture.js",
+    "capture:video": "NODE_PATH=$(npm root -g) node tools/capture.js --video",
+    "test": "NODE_PATH=$(npm root -g) node tools/smoke.js",
+    "preview": "npx --yes serve -l 4173 ."
+  },
+  "license": "UNLICENSED"
+}
