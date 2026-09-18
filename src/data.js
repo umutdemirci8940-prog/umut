@@ -19,15 +19,32 @@ module.exports = {
     showPrice: false,
     // Ürün kartındayken tıklama ilgili ürün sayfasına gitsin mi? (clickTag tanımlıysa yine clickTag kullanılır)
     deepLink: true,
-    headline: 'Doğadan gelen günlük destek',
-    intro: 'Dr. Ümit Aktaş formülleriyle bitkisel gıda takviyeleri',
-    cta: 'Ürünleri İncele',
-    ctaFinal: 'Hemen Keşfet',
-    promo: 'Üyelere özel avantajlar',
+    // Slogan (referans çalışmadaki gibi): üst satır, başlık + yeşil vurgulu bölüm, alt satır
+    overline: "GDO'SUZ · GLUTENSİZ",
+    headline: 'Vitrini keşfet,',
+    headlineAccent: 'favorini seç!',
+    intro: 'Dr. Ümit Aktaş imzalı takviyeler',
+    cta: 'Alışverişe Başla',
+    ctaFinal: 'Alışverişe Başla',
+    promo: 'Yeni üyelere %10 indirim',
     // Türkiye reklam mevzuatı gereği takviye edici gıda reklamlarında yer alması gereken ibare.
     legal: 'Takviye edici gıdalar ilaç değildir. Hastalıkların önlenmesi veya tedavi edilmesi amacıyla kullanılmaz.',
     // 300x250 gibi dar alanlarda kullanılan kısa sürüm.
     legalShort: 'Takviye edici gıdalar ilaç değildir.',
+  },
+
+  // Yeni üye kuponu (referans çalışmadaki %10 indirim bölümü). enabled:false ile kaldırılır.
+  coupon: {
+    enabled: true,
+    over: 'Yeni üyelere özel',
+    pct: '10',
+    sub: 'İlk alışverişe indirim',
+    codeLabel: 'İndirim kodu',
+    code: 'YENİUYE10',
+    copied: 'Kopyalandı!',
+    cta: 'Alışverişe Başla',
+    color: '#e4162e',   // kupon kırmızısı
+    color2: '#b10d22',
   },
 
   // Süreler milisaniye cinsindendir.

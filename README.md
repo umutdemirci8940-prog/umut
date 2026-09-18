@@ -26,10 +26,14 @@ Tek dosyalık teslim: `release/index.html` (üç banner içine gömülü; açın
 
 ## Kurgu
 
-1. **Açılış (2,6 sn)** – Marka lockup'ı ortada büyür, başlık kelime kelime belirir, ardından lockup köşeye küçülür.
+1. **Açılış (2,6 sn)** – Logo ortada büyür, slogan ("GDO'SUZ · GLUTENSİZ / Vitrini keşfet, favorini seç! / Dr. Ümit Aktaş imzalı takviyeler") kelime kelime belirir, ardından logo köşeye küçülür.
 2. **Ürün slider'ı (5 × 3,2 sn)** – Her ürünün orijinal ambalaj fotoğrafı yükselerek girer, rozet / ürün adı / fayda cümlesi sırayla gelir, arka plan ışığı ürün rengine döner. 970×250'de komşu ürünler kenarlarda gölge olarak görünür (coverflow).
-3. **Kapanış (3,6 sn)** – Ürün ailesi tek karede sıralanır, "Üyelere özel avantajlar" rozeti ve nabız efektli CTA gösterilir.
+3. **Kapanış (3,6 sn)** – Ürün ailesi tek karede sıralanır, slogan ve nabız efektli CTA gösterilir; kupon görünür kalır.
 4. Döngü 30 saniyeye kadar sürer; sonra son karede (CTA) durur. Google Ads'in 30 sn animasyon kuralına uygundur.
+
+### Yeni üye kuponu (%10)
+
+Referans çalışmadaki indirim bölümü üç boyuta uyarlandı: 970×250'de sağda kırmızı kupon paneli, 300×600'de yatay kupon bileti, 300×250'de sağ üstte kompakt kupon çipi. Kod (`YENİUYE10`) tıklanınca panoya kopyalanır ve "Kopyalandı!" geri bildirimi verilir. Metinler, kod ve renkler `src/data.js` → `coupon` altında; `enabled: false` ile bölüm tamamen kaldırılır.
 
 ## Etkileşim
 
@@ -37,6 +41,7 @@ Tek dosyalık teslim: `release/index.html` (üç banner içine gömülü; açın
 - **Noktalar ve oklar:** Ürünler arasında serbest gezinme.
 - **Klavye:** Odaktayken ← → ile ürün değiştirme, Enter ile tıklama.
 - **Mobil:** Sağa/sola kaydırma ile ürün değiştirme.
+- **Kupon:** İndirim kodu tıklanınca panoya kopyalanır (Clipboard API, yoksa execCommand yedeği); kontrol tıklaması reklam çıkışını tetiklemez.
 - **Tıklama:** Bannerın tamamı tıklanabilir. `window.clickTag` tanımlıysa o kullanılır (Google Ads / DCM), `Enabler` varsa `Enabler.exit` çağrılır (Studio / DV360); ikisi de yoksa `src/data.js` içindeki UTM'li ürün sayfası açılır. Kontroller (nokta, ok) tıklamayı yutar.
 - `prefers-reduced-motion` açıksa animasyonlar kısaltılır.
 
@@ -80,7 +85,7 @@ node build.js                    # gerçek görsellerle derler; boyut 150 KB'ı 
 
 ## Özelleştirme
 
-Tüm metinler, ürünler, renkler ve süreler tek dosyadadır: **`src/data.js`**.
+Tüm metinler (slogan dahil), kupon, ürünler, renkler ve süreler tek dosyadadır: **`src/data.js`**.
 
 ```js
 products: [

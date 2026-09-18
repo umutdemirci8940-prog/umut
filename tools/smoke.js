@@ -75,6 +75,14 @@ const state = (page) => page.evaluate(() => {
     ok((await state(page)).idx === 4, 'sola kaydırma sonraki ürüne geçiyor');
 
     // Kontroller tıklamayı yutmalı, banner tıklaması hedef URL'yi açmalı
+    // Kupon kodu kopyalama (varsa): tıklama kopyalandı durumuna geçmeli ve sayfa açmamalı
+    if (await page.$('.c-code')) {
+      await page.evaluate(() => { window.__opened0 = null; window.open = (u) => { window.__opened0 = u; return null; }; });
+      await page.click('.c-code');
+      await page.waitForTimeout(200);
+      ok(await page.evaluate(() => document.querySelector('.c-code').classList.contains('is-copied')), 'kupon kodu tıklanınca "Kopyalandı" durumuna geçiyor');
+      ok((await page.evaluate(() => window.__opened0)) === null, 'kupon kodu tıklaması sayfa açmıyor');
+    }
     // window.open çağrısını yakala (dış adrese gerçek gezinme yapılmaz)
     await page.evaluate(() => { window.__opened = null; window.open = (u) => { window.__opened = u; return null; }; });
     const opened = () => page.evaluate(() => window.__opened);

@@ -89,6 +89,32 @@ body{font-family:'Manrope',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-
 .intro h1{font-family:'Playfair Display',Georgia,serif;font-weight:700;font-style:italic;color:var(--cream);line-height:1.12}
 .intro h1 span{display:inline-block;opacity:0;transform:translateY(14px);animation:rise .7s var(--ease) forwards}
 .intro p{color:var(--mint);font-weight:600;opacity:0;animation:rise .7s 1.1s var(--ease) forwards}
+.intro .over{display:block;color:var(--accent);font-weight:800;letter-spacing:.22em;text-transform:uppercase;font-size:var(--over-fs);margin-bottom:6px;opacity:0;animation:rise .6s .3s var(--ease) forwards}
+.intro h1 em,.headline em,.outro h2 em{font-style:inherit;color:var(--accent)}
+.overline{position:absolute;color:var(--accent);font-weight:800;letter-spacing:.22em;text-transform:uppercase;font-size:var(--over-fs);opacity:0;transform:translateY(6px);transition:opacity .5s,transform .5s var(--ease);z-index:5}
+.subline{position:absolute;color:var(--mint);font-weight:600;font-size:var(--sub-fs);opacity:0;transform:translateY(6px);transition:opacity .5s .1s,transform .5s .1s var(--ease);z-index:5}
+.ad[data-phase=slides] .overline,.ad[data-phase=slides] .subline{opacity:1;transform:none}
+/* Yeni üye kuponu */
+.coupon{position:absolute;z-index:6;color:#fff;background:linear-gradient(160deg,var(--cp),var(--cp2));border-radius:var(--cp-r);box-shadow:0 10px 26px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.25);overflow:hidden;opacity:0;transform:translateY(-14px) scale(.96);transition:opacity .6s,transform .7s var(--ease);pointer-events:none;text-align:center;font-weight:800}
+.ad[data-phase=slides] .coupon,.ad[data-phase=outro] .coupon{opacity:1;transform:none;pointer-events:auto;transition-delay:.25s}
+.coupon .shine{position:absolute;inset:-40%;background:linear-gradient(115deg,transparent 42%,rgba(255,255,255,.28) 50%,transparent 58%);transform:translateX(-70%);animation:shine 4.5s 1.6s ease-in-out infinite;pointer-events:none}
+.c-over{display:block;letter-spacing:.18em;text-transform:uppercase;opacity:.95;font-size:var(--cp-over)}
+.c-big{display:block;line-height:.95;font-size:var(--cp-big);letter-spacing:-.02em;text-shadow:0 3px 10px rgba(0,0,0,.25)}
+.c-big i{font-style:normal;font-size:.5em;vertical-align:.55em;margin-right:2px}
+.c-sub{display:block;letter-spacing:.12em;text-transform:uppercase;font-size:var(--cp-sub)}
+.c-perf{border-top:1.5px dashed rgba(255,255,255,.5);margin:var(--cp-perf-m)}
+.c-code{position:relative;display:block;width:100%;border:1.5px dashed rgba(255,255,255,.75);border-radius:10px;background:rgba(255,255,255,.1);color:#fff;font:inherit;font-weight:800;cursor:pointer;padding:var(--cp-code-p);transition:background .25s,transform .25s;text-align:center;line-height:1.1}
+.c-code:hover{background:rgba(255,255,255,.2);transform:translateY(-1px)}
+.c-lbl{display:block;font-size:var(--cp-lbl);letter-spacing:.2em;text-transform:uppercase;opacity:.9;margin-bottom:3px}
+.c-val{display:inline-flex;align-items:center;gap:5px;font-size:var(--cp-val);letter-spacing:.08em}
+.c-val svg{width:.85em;height:.85em;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;opacity:.9}
+.c-done{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:5px;background:#fff;color:var(--cp);border-radius:8px;font-size:var(--cp-val);opacity:0;transform:scale(.9);transition:opacity .25s,transform .25s;pointer-events:none}
+.c-done svg{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.c-code.is-copied .c-done{opacity:1;transform:none}
+.coupon .cta{position:relative;background:#fff;color:var(--cp);animation:none}
+.coupon .cta i svg{stroke:var(--cp)}
+.ad.has-coupon .outro .promo{display:none}
+@keyframes shine{0%,35%{transform:translateX(-70%)}65%,100%{transform:translateX(70%)}}
 .stage{position:absolute;opacity:0;transition:opacity .6s,transform .8s var(--ease);z-index:3}
 .ad[data-phase=slides] .stage,.ad[data-phase=outro] .stage{opacity:1}
 .slide{position:absolute;inset:0;display:flex;justify-content:center;align-items:flex-start;opacity:0;transform-origin:var(--ox) var(--oy);transition:transform .85s var(--ease),opacity .55s,filter .55s;will-change:transform,opacity;pointer-events:none}
@@ -176,6 +202,20 @@ const LAYOUT_CSS = {
 .ad{--mark:22px;--wm:13px;--ws:6.5px;--bg-gap:7px;--bw:82px;--bt:6px;--ox:57px;--oy:76px;--sx-prev:-150px;--sx-next:150px;--ghost-s:.7;--ghost-o:0;--ghost-b:2px;--badge-p:3px 7px;--badge-fs:7px;--name-fs:19px;--name-mt:6px;--claim-fs:10px;--claim-mt:5px;--legal-fs:6.6px;--arrow-x:6px;--arrow-y:118px;--promo-p:4px 9px;--promo-fs:7px;--h2-fs:17px;--h2-mt:6px;--cta2-mt:10px;--domain-fs:9px;--domain-mt:8px;--lx:93px;--ly:-46px;--lg:44px;--ls:.34;--mid:2;--logo-h:26px;--logo-w:150px;--plate-p:4px 7px}
 .ad-photo.ad-rect{--pw:104px;--ph:124px;--ox:68px;--oy:78px;--lx:82px;--ly:-46px;--lg:46px;--ls:.36}
 .ad-photo.ad-rect .info{left:126px;width:150px}
+.ad-rect{--over-fs:6.8px;--sub-fs:9px;--cp-r:9px;--cp-over:5.6px;--cp-big:17px;--cp-sub:5.6px;--cp-lbl:5.4px;--cp-val:8.6px;--cp-code-p:3px 6px;--cp-perf-m:0}
+.ad-rect .intro .over{font-size:6.8px;margin-bottom:5px}
+.ad-rect.has-coupon .brand{left:12px;top:10px}
+.ad-rect.has-coupon .coupon{right:10px;top:10px;height:34px;display:flex;align-items:center;gap:7px;padding:0 8px 0 9px;text-align:left}
+.ad-rect.has-coupon .coupon .c-big{font-size:17px}
+.ad-rect.has-coupon .coupon .c-side{display:flex;flex-direction:column;gap:2px}
+.ad-rect.has-coupon .coupon .c-sub{font-size:5.6px;letter-spacing:.1em}
+.ad-rect.has-coupon .coupon .c-code{padding:2px 6px;border-radius:6px;width:auto}
+.ad-rect.has-coupon .coupon .c-val{font-size:8.6px}
+.ad-rect.has-coupon .coupon .c-perf,.ad-rect.has-coupon .coupon .c-lbl{display:none}
+.ad-rect.has-coupon .coupon .c-code{line-height:1;border-width:1px}
+.ad-rect.has-coupon .coupon .c-side{gap:3px}
+.ad-rect.has-coupon .outro{top:110px}
+.ad-rect.has-coupon .pause{display:none}
 .glow{width:180px;height:180px;left:-30px;top:20px}
 .brand{left:14px;top:12px}
 .ad[data-phase=intro] .brand{transform:translate(64px,52px) scale(1.55)}
@@ -195,6 +235,25 @@ const LAYOUT_CSS = {
   tall: `
 .ad{--mark:34px;--wm:19px;--ws:8.5px;--bg-gap:9px;--bw:150px;--bt:10px;--ox:150px;--oy:135px;--sx-prev:-210px;--sx-next:210px;--ghost-s:.6;--ghost-o:0;--ghost-b:2px;--badge-p:5px 10px;--badge-fs:9px;--name-fs:27px;--name-mt:10px;--claim-fs:12.5px;--claim-mt:8px;--legal-fs:7.5px;--arrow-x:10px;--arrow-y:230px;--promo-p:6px 12px;--promo-fs:9px;--h2-fs:27px;--h2-mt:12px;--cta2-mt:18px;--domain-fs:11px;--domain-mt:12px;--lx:0px;--ly:6px;--lg:56px;--ls:.42;--mid:2;--logo-h:40px;--logo-w:200px;--plate-p:6px 10px}
 .ad-photo.ad-tall{--pw:220px;--ph:250px;--ox:150px;--oy:150px;--lg:54px;--ls:.34;--ly:4px}
+.ad-tall{--over-fs:9px;--sub-fs:12px;--cp-r:14px;--cp-over:7px;--cp-big:34px;--cp-sub:6.6px;--cp-lbl:6.4px;--cp-val:14px;--cp-code-p:6px 10px;--cp-perf-m:0}
+.ad-tall .intro .over{font-size:9px;margin-bottom:8px}
+.ad-tall.has-coupon .brand{top:20px}
+.ad-tall.has-coupon[data-phase=intro] .brand{transform:translate(-50%,140px) scale(1.3)}
+.ad-tall.has-coupon .intro{top:246px}
+.ad-tall.has-coupon .stage{top:76px;height:236px}
+.ad-tall.has-coupon.ad-photo{--pw:190px;--ph:200px;--oy:118px;--ls:.36;--ly:-10px}
+.ad-tall.has-coupon .glow{top:60px}
+.ad-tall.has-coupon .info{top:302px;height:100px;--name-fs:24px;--claim-fs:12px;--claim-mt:5px}
+.ad-tall.has-coupon .arrow{--arrow-y:194px}
+.ad-tall.has-coupon .coupon{left:25px;top:410px;width:250px;height:80px;display:flex;align-items:center;padding:0 12px;gap:12px;text-align:left}
+.ad-tall.has-coupon .coupon .c-top{flex:none;width:104px}
+.ad-tall.has-coupon .coupon .c-perf{border-top:0;border-left:1.5px dashed rgba(255,255,255,.5);align-self:stretch;margin:10px 0}
+.ad-tall.has-coupon .coupon .c-code{flex:1}
+.ad-tall.has-coupon .dots{bottom:95px}
+.ad-tall.has-coupon .cta.main{bottom:38px}
+.ad-tall.has-coupon[data-phase=outro] .coupon{transform:translateY(-150px)}
+.ad-tall.has-coupon .outro{top:352px}
+.ad-tall.has-coupon .outro h2{font-size:26px}
 .glow{width:280px;height:280px;left:10px;top:80px}
 .brand{left:50%;top:24px;transform:translateX(-50%);transform-origin:center}
 .ad[data-phase=intro] .brand{transform:translate(-50%,170px) scale(1.35)}
@@ -212,6 +271,35 @@ const LAYOUT_CSS = {
   wide: `
 .ad{--mark:30px;--wm:17px;--ws:7.5px;--bg-gap:9px;--bw:126px;--bt:20px;--ox:190px;--oy:125px;--sx-prev:-150px;--sx-next:150px;--ghost-s:.62;--ghost-o:.38;--ghost-b:1.2px;--badge-p:5px 10px;--badge-fs:8.5px;--name-fs:27px;--name-mt:12px;--claim-fs:13px;--claim-mt:9px;--legal-fs:7.5px;--arrow-x:10px;--arrow-y:125px;--promo-p:5px 11px;--promo-fs:8.5px;--h2-fs:24px;--h2-mt:10px;--cta2-mt:14px;--domain-fs:10px;--domain-mt:10px;--lx:0px;--ly:0px;--lg:96px;--ls:.78;--mid:2;--logo-h:42px;--logo-w:250px;--plate-p:6px 10px}
 .ad-photo.ad-wide{--pw:200px;--ph:200px;--ox:190px;--oy:125px;--sx-prev:-150px;--sx-next:150px;--ghost-s:.55;--lg:118px;--ls:.56}
+.ad-wide{--over-fs:8.5px;--sub-fs:11px;--cp-r:14px;--cp-over:7.5px;--cp-big:50px;--cp-sub:7.6px;--cp-lbl:6.6px;--cp-val:14px;--cp-code-p:6px 8px;--cp-perf-m:9px 0}
+.ad-wide .intro .over{font-size:8.5px;margin-bottom:7px}
+.ad-wide.has-coupon .brand{left:28px;top:22px}
+.ad-wide.has-coupon[data-phase=intro] .brand{transform:translate(30px,26px) scale(1.12)}
+.ad-wide.has-coupon .intro{left:28px;width:270px;top:118px}
+.ad-wide.has-coupon .intro h1{font-size:21px}
+.ad-wide.has-coupon .overline{left:28px;top:88px}
+.ad-wide.has-coupon .headline{left:28px;top:101px;width:250px;font-size:21px}
+.ad-wide.has-coupon .subline{left:28px;top:158px;width:250px}
+.ad-wide.has-coupon .cta.main{display:none}
+.ad-wide.has-coupon .glow{left:340px;top:-70px;width:280px;height:280px}
+.ad-wide.has-coupon .stage{left:280px;top:0;width:485px;height:172px}
+.ad-wide.has-coupon.ad-photo{--pw:148px;--ph:148px;--ox:242px;--oy:86px;--sx-prev:-135px;--sx-next:135px;--ghost-s:.56;--lg:96px;--ls:.6;--lx:0px;--ly:0px}
+.ad-wide.has-coupon .arrow{--arrow-y:86px}
+.ad-wide.has-coupon .arrow.prev{left:286px}.ad-wide.has-coupon .arrow.next{right:211px}
+.ad-wide.has-coupon .info{left:280px;top:178px;width:485px;height:56px}
+.ad-wide.has-coupon .info-item{display:flex;align-items:center;gap:10px;padding:0 74px 0 14px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:12px}
+.ad-wide.has-coupon .badge{padding:4px 8px;font-size:7.5px;flex:none}
+.ad-wide.has-coupon .name{font-size:15px;margin:0;white-space:nowrap;flex:none}
+.ad-wide.has-coupon .claim{font-size:10.5px;margin:0;line-height:1.3;flex:1;min-width:0}
+.ad-wide.has-coupon .dots{left:auto;right:222px;bottom:29px}
+.ad-wide.has-coupon .legal{left:280px;right:205px;bottom:3px;font-size:6.8px;text-align:left}
+.ad-wide.has-coupon .coupon{right:15px;top:16px;width:180px;height:218px;padding:11px 12px 12px}
+.ad-wide.has-coupon .coupon .c-code{margin-top:9px}
+.ad-wide.has-coupon .coupon .cta{margin-top:9px;font-size:11px;padding:8px 14px;width:100%}
+.ad-wide.has-coupon .outro{left:28px;width:250px;top:84px}
+.ad-wide.has-coupon .outro h2{font-size:21px;margin-top:0}
+.ad-wide.has-coupon[data-phase=outro] .stage{width:485px}
+.ad-wide.has-coupon[data-phase=outro] .slide{--ox:242px}
 .glow{width:300px;height:300px;left:360px;top:-30px}
 .brand{left:36px;top:36px}
 .ad[data-phase=intro] .brand{transform:translate(40px,30px) scale(1.15)}
@@ -286,6 +374,12 @@ D.products.forEach(function(p,i){
 });
 [].forEach.call(ad.querySelectorAll('.arrow'),function(a){a.addEventListener('click',function(e){e.stopPropagation();step(a.classList.contains('next')?1:-1)})});
 ad.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('.ctrl'))return;openLink()});
+[].forEach.call(ad.querySelectorAll('.c-code'),function(b){
+  var code=b.getAttribute('data-code');
+  function done(){b.classList.add('is-copied');setTimeout(function(){b.classList.remove('is-copied')},1800)}
+  function fallback(){try{var t=document.createElement('textarea');t.value=code;t.setAttribute('readonly','');t.style.cssText='position:fixed;opacity:0;top:0;left:0';document.body.appendChild(t);t.select();document.execCommand('copy');document.body.removeChild(t)}catch(err){}done()}
+  b.addEventListener('click',function(e){e.stopPropagation();if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(code).then(done,fallback)}else fallback()});
+});
 ad.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){e.preventDefault();step(1)}else if(e.key==='ArrowLeft'){e.preventDefault();step(-1)}else if(e.key==='Enter'){openLink()}});
 ad.addEventListener('mousemove',function(){hover=true});
 ad.addEventListener('mouseleave',function(){hover=false});
@@ -319,8 +413,25 @@ function render(key, data, assets) {
   const utm = B.url.includes('?') ? B.url.slice(B.url.indexOf('?')) : '';
   const fmtPrice = (v) => { const num = parseFloat(v); return isNaN(num) ? '' : new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY', maximumFractionDigits: num % 1 ? 2 : 0 }).format(num); };
 
-  const introWords = B.headline.split(' ')
-    .map((w, i) => `<span style="animation-delay:${(0.45 + i * 0.12).toFixed(2)}s">${esc(w)}</span>`).join(' ');
+  const accent = B.headlineAccent || '';
+  const words = B.headline.split(' ').filter(Boolean).map((w) => ({ w, em: false })).concat(accent.split(' ').filter(Boolean).map((w) => ({ w, em: true })));
+  const brk = s.layout === 'rect' ? ' ' : '<br>';
+  const introWords = words.map((x, i) => `${x.em && !words[i - 1]?.em ? brk : (i ? ' ' : '')}<span style="animation-delay:${(0.45 + i * 0.12).toFixed(2)}s">${x.em ? '<em>' + esc(x.w) + '</em>' : esc(x.w)}</span>`).join('');
+  const sloganHTML = `${esc(B.headline)}${accent ? brk + '<em>' + esc(accent) + '</em>' : ''}`.trim();
+  const C = data.coupon && data.coupon.enabled ? data.coupon : null;
+  const COPY_ICON = `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8.5" y="8.5" width="11" height="11" rx="2.2"/><path d="M15.5 5.5V5a1.9 1.9 0 0 0-1.9-1.9H6A1.9 1.9 0 0 0 4.1 5v7.6A1.9 1.9 0 0 0 6 14.5h.5"/></svg>`;
+  const DONE_ICON = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>`;
+  let couponHTML = '';
+  if (C) {
+    const codeBtn = `<button type="button" class="c-code ctrl" data-code="${esc(C.code)}" aria-label="İndirim kodunu kopyala: ${esc(C.code)}"><span class="c-lbl">${esc(C.codeLabel)}</span><span class="c-val">${esc(C.code)}${COPY_ICON}</span><span class="c-done">${DONE_ICON}${esc(C.copied)}</span></button>`;
+    if (s.layout === 'rect') {
+      couponHTML = `<div class="coupon" style="--cp:${C.color};--cp2:${C.color2}"><span class="shine"></span><span class="c-big"><i>%</i>${esc(C.pct)}</span><span class="c-side"><span class="c-sub">${esc(C.sub)}</span>${codeBtn}</span></div>`;
+    } else if (s.layout === 'tall') {
+      couponHTML = `<div class="coupon" style="--cp:${C.color};--cp2:${C.color2}"><span class="shine"></span><div class="c-top"><span class="c-over">${esc(C.over)}</span><span class="c-big"><i>%</i>${esc(C.pct)}</span><span class="c-sub">${esc(C.sub)}</span></div><div class="c-perf"></div>${codeBtn}</div>`;
+    } else {
+      couponHTML = `<div class="coupon" style="--cp:${C.color};--cp2:${C.color2}"><span class="shine"></span><span class="c-over">${esc(C.over)}</span><span class="c-big"><i>%</i>${esc(C.pct)}</span><span class="c-sub">${esc(C.sub)}</span><div class="c-perf"></div>${codeBtn}<span class="cta c-cta">${esc(C.cta)}${CTA_ICON}</span></div>`;
+    }
+  }
 
   const slides = data.products.map((p, i) => {
     const ph = A.products[p.key];
@@ -354,7 +465,9 @@ function render(key, data, assets) {
       ? LEAF('leaf-a', 110, '-30px', '330px', -20) + LEAF('leaf-b', 70, '230px', '60px', 140) + LEAF('leaf-c', 90, '220px', '470px', 30) + LEAF('leaf-d', 50, '10px', '110px', 210)
       : LEAF('leaf-a', 80, '-20px', '150px', -20) + LEAF('leaf-b', 54, '250px', '-10px', 140) + LEAF('leaf-c', 60, '236px', '180px', 30);
 
-  const headline = s.layout === 'wide' ? `<div class="headline">${esc(B.headline)}</div>` : '';
+  const headline = s.layout === 'wide'
+    ? `${B.overline ? `<div class="overline">${esc(B.overline)}</div>` : ''}<div class="headline">${sloganHTML}</div><div class="subline">${esc(B.intro)}</div>`
+    : '';
 
   const css = (BASE_CSS + LAYOUT_CSS[s.layout] + logoCss).replace(/__W__/g, s.w).replace(/__H__/g, s.h);
   const payload = JSON.stringify({ brand: { url: B.url, deepLink: B.deepLink !== false }, timing: data.timing, products: data.products.map(p => ({ name: p.name, color: p.color, accent: p.accent, url: A.products[p.key] && A.products[p.key].url ? A.products[p.key].url + utm : undefined })) });
@@ -372,12 +485,12 @@ function render(key, data, assets) {
 <style>${css}</style>
 </head>
 <body>
-<div id="ad" class="ad ad-${s.layout}${photoMode ? ' ad-photo' : ''}" data-phase="boot" role="link" tabindex="0" aria-label="${esc(B.name)} – ${esc(B.intro)}">
+<div id="ad" class="ad ad-${s.layout}${photoMode ? ' ad-photo' : ''}${C ? ' has-coupon' : ''}" data-phase="boot" role="link" tabindex="0" aria-label="${esc(B.name)} – ${esc(B.intro)}">
   <div class="bg"></div>
   <div class="glow"></div>
   <div class="leaves">${leaves}</div>
   <div class="${brandClass}">${brandInner}</div>
-  <div class="intro"><h1>${introWords}</h1><p>${esc(B.intro)}</p></div>
+  <div class="intro">${B.overline ? `<span class="over">${esc(B.overline)}</span>` : ''}<h1>${introWords}</h1><p>${esc(B.intro)}</p></div>
   ${headline}
   <div class="stage" style="--mid:${((n - 1) / 2).toFixed(2)}">
 ${slides}
@@ -391,10 +504,11 @@ ${items}
   <span class="cta main">${esc(B.cta)}${CTA_ICON}</span>
   <div class="outro">
     <span class="promo">${esc(B.promo)}</span>
-    <h2>${esc(B.headline)}</h2>
+    <h2>${sloganHTML}</h2>
     <span class="cta">${esc(B.ctaFinal)}${CTA_ICON}</span>
     <span class="domain">${esc(B.domain)}</span>
   </div>
+  ${couponHTML}
   <div class="legal">${esc(s.layout === 'rect' && B.legalShort ? B.legalShort : B.legal)}</div>
   <div class="pause" aria-hidden="true"></div>
   <div class="progress"><i></i></div>
