@@ -4,6 +4,7 @@
  * daikin.com.tr üzerinden GERÇEK marka varlıklarını (logo, ürün görselleri, sayfa ekran görüntüleri) indirir.
  *
  *   node tools/fetch-daikin.js [--base=https://www.daikin.com.tr] [--pages=8] [--max=900] [--urls=u1,u2,...]
+ *                              [--keywords=kombi,yogusmal,...] [--models=d2cnd,d2tnd] [--out=assets/daikin-kombi]
  *
  * Çıktı (assets/daikin/):
  *   report.json / report.md   – bulunan her şey: logo adayları, ürün sayfaları, görsel adayları, boyutlar, hatalar
@@ -26,10 +27,12 @@ const PAGES = +args.pages || 8;
 const MAXPX = +args.max || 900;
 const MANUAL = String(args.urls || '').split(',').map((s) => s.trim()).filter(Boolean);
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36';
-const KW = ['perfera', 'emura', 'stylish', 'comfora', 'sensira', 'siesta', 'shira', 'nepura', 'ururu', 'split', 'duvar', 'klima', 'inverter', 'multi', 'ftx', 'atx', 'ctx'];
+const KW = args.keywords ? String(args.keywords).split(',').map((s) => s.trim().toLowerCase()).filter(Boolean)
+  : ['perfera', 'emura', 'stylish', 'comfora', 'sensira', 'siesta', 'shira', 'nepura', 'ururu', 'split', 'duvar', 'klima', 'inverter', 'multi', 'ftx', 'atx', 'ctx'];
+const MODELS = args.models ? String(args.models).split(',').map((s) => s.trim().toLowerCase()).filter(Boolean) : ['perfera', 'emura', 'stylish', 'comfora', 'sensira', 'siesta', 'shira'];
 
 const root = path.join(__dirname, '..');
-const out = path.join(root, 'assets', 'daikin');
+const out = path.resolve(root, String(args.out || 'assets/daikin'));
 for (const d of ['logo', 'products', 'manual', 'shots', 'raw']) fs.mkdirSync(path.join(out, d), { recursive: true });
 
 const report = { fetchedAt: new Date().toISOString(), bases: BASES, base: null, homepage: null, logo: [], css: [], sitemap: { urls: 0, matched: [] }, navLinks: [], pages: [], manual: [], errors: [], tools: {} };
@@ -271,7 +274,7 @@ async function download(url, dir, name) {
   for (const m of home.html.matchAll(/<a\b[^>]*href="([^"#]+)"[^>]*>([\s\S]*?)<\/a>/gi)) { const u = abs(m[1], home.url); if (u && u.startsWith(BASE)) navLinks.push({ href: u, text: m[2].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim().slice(0, 80) }); }
   if (home.dom) for (const l of home.dom.links) if (l.href.startsWith(BASE)) navLinks.push(l);
   report.navLinks = navLinks.filter((l, i, a) => a.findIndex((x) => x.href === l.href) === i).filter((l) => KW.some((k) => (l.href + ' ' + l.text).toLowerCase().includes(k))).slice(0, 80);
-  const score = (u) => { const s = u.toLowerCase(); let n = 0; for (const k of ['perfera', 'emura', 'stylish', 'comfora', 'sensira', 'siesta', 'shira']) if (s.includes(k)) n += 5; for (const k of ['duvar', 'split', 'klima', 'inverter']) if (s.includes(k)) n += 2; if (/\/urun|\/product|\/klima/i.test(s)) n += 2; n -= Math.min(4, (s.match(/\//g) || []).length - 4) * 0.2; if (/(pdf|jpg|png|zip)$/i.test(s)) n -= 10; return n; };
+  const score = (u) => { const s = u.toLowerCase(); let n = 0; for (const k of MODELS) if (s.includes(k)) n += 5; for (const k of KW) if (s.includes(k)) n += 2; if (/\/urun|\/product|\/klima/i.test(s)) n += 2; n -= Math.min(4, (s.match(/\//g) || []).length - 4) * 0.2; if (/(pdf|jpg|png|zip)$/i.test(s)) n -= 10; return n; };
   const cand = [...new Set([...urls, ...report.navLinks.map((l) => l.href)])].filter((u) => KW.some((k) => u.toLowerCase().includes(k))).map((u) => ({ u, s: score(u) })).sort((a, b) => b.s - a.s);
   report.sitemap.matched = cand.slice(0, 120).map((c) => `${c.s.toFixed(1)} ${c.u}`);
   log(`✔ site haritası: ${urls.size} adres, ${cand.length} anahtar kelime eşleşmesi`);
@@ -279,7 +282,7 @@ async function download(url, dir, name) {
   /* --- Ürün sayfaları: görselleri topla --- */
   const chosen = [];
   const perModel = {};
-  for (const c of cand) { const model = (['perfera', 'emura', 'stylish', 'comfora', 'sensira', 'siesta', 'shira'].find((k) => c.u.toLowerCase().includes(k))) || 'genel'; perModel[model] = (perModel[model] || 0) + 1; if (perModel[model] <= 2) chosen.push(c.u); if (chosen.length >= PAGES) break; }
+  for (const c of cand) { const model = (MODELS.find((k) => c.u.toLowerCase().includes(k))) || 'genel'; perModel[model] = (perModel[model] || 0) + 1; if (perModel[model] <= 2) chosen.push(c.u); if (chosen.length >= PAGES) break; }
   if (!chosen.length && home.url) chosen.push(home.url);
   let pi = 0;
   for (const u of chosen) {
@@ -320,5 +323,5 @@ async function download(url, dir, name) {
   fs.writeFileSync(path.join(out, 'report.json'), JSON.stringify(report, null, 2));
   const md = [`# Daikin varlık raporu (${report.fetchedAt})`, '', `Kaynak: ${BASE} (ana sayfa: ${home.via}) · araçlar: sharp=${report.tools.sharp} playwright=${report.tools.playwright}`, '', '## Logo adayları', ...report.logo.map((l) => `- ${l.how}: ${l.file || l.src} ${l.width ? `(${l.width}x${l.height}, ${l.type}${l.alpha ? ', alfa' : ''})` : ''} ${l.error ? '✘ ' + l.error : ''}`), '', '## Ürün sayfaları', ...report.pages.flatMap((p) => [`- **${p.title || '?'}** ${p.url} ${p.fetchError ? '(fetch ✘ ' + p.fetchError + ')' : ''}`, ...p.images.map((i) => `  - ${i.how}: ${i.small ? i.small.png : i.file || i.src} ${i.width ? `(${i.width}x${i.height}${i.alpha ? ', alfa' : ''})` : ''} ${i.skipped ? '↷ ' + i.skipped : ''} ${i.error ? '✘ ' + i.error : ''}`)]), '', '## Site haritası eşleşmeleri (ilk 40)', ...report.sitemap.matched.slice(0, 40).map((s) => `- ${s}`), '', '## Hatalar', ...report.errors.map((e) => `- ${e}`)];
   fs.writeFileSync(path.join(out, 'report.md'), md.join('\n'));
-  log(`✔ rapor: assets/daikin/report.md (${report.errors.length} hata)`);
+  log(`✔ rapor: ${path.relative(root, path.join(out, 'report.md'))} (${report.errors.length} hata)`);
 })().catch(async (e) => { console.error(e); if (browser) await browser.close(); process.exit(1); });
