@@ -10,6 +10,19 @@
 ![Daikin klima masthead](assets/daikin/preview-970x250.jpg)
 ![Daikin kombi masthead](assets/daikin-kombi/preview-970x250.jpg)
 
+## Alternatif mekanikler (`alt/`)
+
+Aynı gerçek varlıklarla iki farklı etkileşim; her biri yaz (klima) ve kış (kombi) sürümüyle. Karşılaştırma sayfası: **`alt/index.html`** (altı bannerı bir arada gösterir); kontak şit: `alt/onizleme.jpg`.
+
+| Mekanik | Yaz | Kış | Ne yapar |
+|---|---|---|---|
+| **1 · Kaydır ve Hisset** | `alt/kaydir/klima/index.html` | `alt/kaydir/kombi/index.html` | Sürüklenebilir dikey çizgi "önce/sonra"yı ayırır: solda bunaltıcı sıcak (ya da kar/buz), sağda Daikin konforu. Çizgi imleci izler; ürünün ürettiği hava çizgiye çarparak halka ve kıvılcımlar üretir; çizgi boyunca soğuk/sıcak sınır ışığı. Giriş kurgusunda çizgi sağdan kayarak Daikin tarafını açar. Klavye ← → ile de kayar. |
+| **2 · Termostat** | `alt/termostat/klima/index.html` | `alt/termostat/kombi/index.html` | Ortada döndürülebilir termostat kadranı (270° yay, çentikler, mavi→turuncu skala). Ayar (büyük sayı) ile oda sıcaklığı (küçük "oda 28°") ayrıdır: oda, ayara gecikmeyle yaklaşır; fark büyüdükçe cihazın hava akımı güçlenir, zemin sıcak/soğuk arasında karışır, kışta kar ayar yükseldikçe diner. Kadran sürüklenerek, dokunarak ya da ← → ile çevrilir; giriş kurgusunda kadran kendiliğinden 34°→22° (kışta 5°→22°) döner. |
+
+![Alternatifler](alt/onizleme.jpg)
+
+Derleme: `node tools/build-daikin.js --variant=kaydir-klima,kaydir-kombi,termostat-klima,termostat-kombi` (ya da `--variant=all`). Metinler ve ürün ayarları `tools/build-daikin.js` → `PRODUCTS`, yerleşimler → `LAYOUTS`; şablonlar `src/daikin/alt-kaydir.html` ve `src/daikin/alt-termostat.html`.
+
 ## Kış sürümü – kombi (`kombi/index.html`)
 
 Yaz kurgusunun tersi: **karlı, buzlu soğuk sahne** (kar taneleri, köşelerde buz kristalleri, cam buğusu, büyük **3°** ve "Soğuk mu bastırdı?") → 1,3 sn'de NDJ Premix kombi devreye girer: paneldeki halka ışığı alev gibi yanar, kombiden sıcak ışık yayılır, zemin bakır–amber tonlarına ısınır, buz kristalleri erir, kar taneleri seyrekleşip erir, sayı **3 → 22**'ye yükselir → "SICAKLIĞI / EVİNDE HİSSET." başlığı, ürün sayfasındaki gerçek bilgilerle alt metin (%109'a kadar verimlilik, sessiz fan, kompakt) ve Daikin mavisi **"KOMBİLERİ KEŞFET"** CTA'sı → termostat çipi (22 °C · HEAT/BOOST) ve özellik çipleri. Her 7 sn'de kombiden bir sıcak hava dalgası yayılır.
@@ -59,7 +72,7 @@ Yeniden çekmek için: *Actions* → "Daikin – siteden logo ve ürün görsell
 ```bash
 node tools/build-daikin.js                 # klima: src/daikin/masthead.html + assets/daikin → index.html
 node tools/build-daikin.js --variant=kombi # kombi: src/daikin/masthead-kombi.html + assets/daikin-kombi → kombi/index.html
-node tools/build-daikin.js --variant=all   # ikisi birden
+node tools/build-daikin.js --variant=all   # ana + alternatif sürümlerin tamamı (6 dosya)
 NODE_PATH=$(npm root -g) node tools/optimize-daikin.js   # ürün fotoğrafını yeniden kırp/optimize et (Playwright)
 node tools/build-daikin.js --png           # WebP yerine PNG göm (eski tarayıcılar; dosya ~350 KB)
 ```

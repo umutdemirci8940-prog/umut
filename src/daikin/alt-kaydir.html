@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=970,height=250">
+<meta name="viewport" content="width=970, initial-scale=1">
+<title>{{TITLE}}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<script>var clickTag = window.clickTag || '{{CLICK_URL}}';</script>
+<style>
+  :root{ --daikin:#009ae5; --font:'Open Sans','Segoe UI',Roboto,Helvetica,Arial,sans-serif; }
+  html,body{margin:0;padding:0;background:#0b1220;}
+  body{min-height:100vh;display:grid;place-items:center;}
+  #ad{
+    position:relative;width:970px;height:250px;overflow:hidden;font-family:var(--font);color:#fff;cursor:ew-resize;
+    user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;isolation:isolate;outline:none;
+    --x:985px;
+  }
+  #ad:focus-visible{box-shadow:0 0 0 3px var(--daikin);}
+  #ad > *{position:absolute;}
+  /* mevsim renkleri */
+  #ad.s-cool{ --ctaBg:#e7882e; --ctaHover:#d3741c; --glow:rgba(140,230,255,1); --glow2:rgba(0,154,229,1); --accentText:#dcf7ff; }
+  #ad.s-warm{ --ctaBg:#009ae5; --ctaHover:#0079b8; --glow:rgba(255,220,150,1); --glow2:rgba(255,150,60,1); --accentText:#fff4e2; }
+
+  /* ---------- Sahneler ---------- */
+  .scene{inset:0;overflow:hidden;}
+  .scene > *{position:absolute;}
+  .before{z-index:1;}
+  .after{z-index:2;clip-path:inset(0 0 0 var(--x));}
+  .after canvas,.before canvas{left:0;top:0;width:970px;height:250px;pointer-events:none;}
+
+  /* önce: yaz için bunaltıcı sıcak, kış için buz gibi soğuk */
+  .s-cool .before .bg{inset:0;background:
+      radial-gradient(640px 320px at 20% -10%, rgba(255,246,214,.95), rgba(255,205,130,0) 60%),
+      radial-gradient(500px 260px at 88% 100%, rgba(255,120,60,.55), rgba(255,120,60,0) 62%),
+      linear-gradient(112deg,#ffd6a0 0%,#ffa95d 42%,#ff7a42 100%);}
+  .s-warm .before .bg{inset:0;background:
+      radial-gradient(640px 320px at 18% -10%, rgba(255,255,255,.95), rgba(255,255,255,0) 60%),
+      radial-gradient(520px 280px at 85% 110%, rgba(120,170,220,.7), rgba(120,170,220,0) 62%),
+      linear-gradient(112deg,#eef5fb 0%,#c6dbee 42%,#8fb6da 100%);}
+  .s-cool .sun{left:150px;top:-140px;width:360px;height:360px;border-radius:50%;
+    background:radial-gradient(circle, rgba(255,255,240,.95) 0%, rgba(255,225,150,.55) 22%, rgba(255,190,90,0) 62%);animation:sunPulse 3s ease-in-out infinite;}
+  .s-warm .sun{display:none;}
+  @keyframes sunPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+  .haze{inset:0;pointer-events:none;mix-blend-mode:overlay;opacity:.55;
+    background:repeating-linear-gradient(180deg, rgba(255,255,255,0) 0 9px, rgba(255,255,255,.16) 9px 11px);filter:url(#heat);}
+  .s-warm .haze{display:none;}
+  .frostglass{inset:0;pointer-events:none;box-shadow:inset 0 0 80px rgba(255,255,255,.55), inset 0 0 24px rgba(255,255,255,.35);}
+  .s-cool .frostglass{display:none;}
+
+  /* sonra: Daikin konforu */
+  .s-cool .after .bg{inset:0;background:
+      radial-gradient(520px 300px at 78% 88%, rgba(0,154,229,.55), rgba(0,154,229,0) 62%),
+      radial-gradient(700px 360px at 6% 110%, rgba(0,154,229,.45), rgba(0,154,229,0) 62%),
+      linear-gradient(110deg,#061225 0%,#0a2c5c 42%,#0b6fb6 78%,#12a7ea 100%);}
+  .s-warm .after .bg{inset:0;background:
+      radial-gradient(560px 320px at {{LED_X}}px {{LED_Y}}px, rgba(255,170,80,.75), rgba(255,140,50,0) 62%),
+      radial-gradient(700px 360px at 4% 115%, rgba(255,120,40,.35), rgba(255,120,40,0) 60%),
+      linear-gradient(110deg,#1f0c05 0%,#5e2408 40%,#c95a1c 78%,#f7a950 100%);}
+
+  /* ---------- Önce metni ---------- */
+  .bigtemp{left:40px;top:56px;font:800 92px/1 var(--font);letter-spacing:-3px;display:flex;align-items:flex-start;white-space:nowrap;}
+  .bigtemp .deg{font-size:44px;line-height:1;margin:8px 0 0 2px;letter-spacing:0;}
+  .s-cool .bigtemp{color:#fff8ea;text-shadow:0 12px 34px rgba(190,70,0,.45);}
+  .s-warm .bigtemp{color:#1f3d63;text-shadow:0 10px 30px rgba(80,120,170,.35);}
+  .bline{left:44px;top:158px;font:700 17px/1.2 var(--font);white-space:nowrap;}
+  .s-cool .bline{color:#fff;} .s-warm .bline{color:#1f3d63;}
+  .bhint{left:44px;top:196px;font:700 12px/1 var(--font);letter-spacing:.6px;text-transform:uppercase;white-space:nowrap;opacity:.85;}
+  .s-cool .bhint{color:#7a2d00;} .s-warm .bhint{color:#1f3d63;}
+
+  /* ---------- Sonra: ürün, metin, CTA ---------- */
+  .unit{left:{{UNIT_LEFT}}px;top:{{UNIT_TOP}}px;width:{{UNIT_W}}px;height:auto;display:block;pointer-events:none;
+    filter:drop-shadow(0 22px 26px rgba(0,10,40,.45)) drop-shadow(0 4px 8px rgba(0,10,40,.3));}
+  .lightline{left:{{ORIGIN_X1}}px;top:{{ORIGIN_Y1}}px;width:{{ORIGIN_LEN}}px;height:4px;border-radius:2px;pointer-events:none;
+    transform-origin:0 50%;transform:rotate({{ORIGIN_ANGLE}}deg);
+    background:linear-gradient(90deg, transparent, var(--glow) 15%, #fff 50%, var(--glow) 85%, transparent);
+    box-shadow:0 0 10px var(--glow), 0 0 26px var(--glow2), 0 8px 36px var(--glow2);animation:pulse 3s ease-in-out infinite;}
+  .lightdot{left:{{LED_X}}px;top:{{LED_Y}}px;width:56px;height:56px;margin:-28px 0 0 -28px;border-radius:50%;pointer-events:none;mix-blend-mode:screen;
+    background:radial-gradient(circle, rgba(255,255,255,.9), var(--glow2) 35%, transparent 70%);animation:pulse 2.4s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+
+  .copy{left:322px;top:66px;width:330px;pointer-events:none;}
+  .hl{margin:0;font:800 36px/1.06 var(--font);letter-spacing:-.6px;text-shadow:0 8px 28px rgba(0,20,60,.4);}
+  .hl .w{display:inline-block;opacity:0;transform:translate(24px,4px);filter:blur(8px);
+    transition:opacity .55s ease, transform .9s cubic-bezier(.2,.9,.2,1), filter .8s ease;transition-delay:calc(var(--i) * .13s);}
+  #ad.show-head .hl .w{opacity:1;transform:none;filter:blur(0);}
+  .s-cool .hl .acc{background-image:linear-gradient(100deg,#fff 0%,#c7f2ff 28%,#fff 48%,#9de6ff 66%,#fff 100%);}
+  .s-warm .hl .acc{background-image:linear-gradient(100deg,#fff 0%,#ffd89a 28%,#fff 48%,#ffbe6a 66%,#fff 100%);}
+  .hl .acc{background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:glint 4.5s linear infinite;}
+  @keyframes glint{0%{background-position:120% 0}100%{background-position:-120% 0}}
+  .sub{margin:9px 0 0 2px;font:600 14px/1.35 var(--font);color:var(--accentText);white-space:nowrap;opacity:0;transform:translateY(10px);
+    transition:opacity .6s ease .05s, transform .8s cubic-bezier(.2,.9,.2,1) .05s;}
+  #ad.show-sub .sub{opacity:1;transform:none;}
+  .sub b{color:#fff;font-weight:800;}
+  .cta{left:324px;top:190px;height:38px;padding:0 18px 0 20px;border-radius:4px;display:inline-flex;align-items:center;gap:10px;
+    background:var(--ctaBg);color:#fff;font:800 13px var(--font);letter-spacing:.5px;text-transform:uppercase;box-shadow:0 10px 26px rgba(0,20,60,.35);
+    opacity:0;transform:translateY(12px);overflow:hidden;transition:opacity .6s ease .25s, transform .8s cubic-bezier(.2,.9,.2,1) .25s, background .3s ease;}
+  #ad.show-sub .cta{opacity:1;transform:none;}
+  .cta::after{content:"";position:absolute;top:-40%;left:-60%;width:40%;height:180%;transform:rotate(18deg);
+    background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.4), rgba(255,255,255,0));animation:sweep 4.2s ease-in-out infinite 2s;}
+  @keyframes sweep{0%{left:-60%}35%{left:130%}100%{left:130%}}
+  .cta .arr{width:16px;height:16px;transition:transform .35s ease;}
+  #ad:hover .cta{background:var(--ctaHover);}
+  #ad:hover .cta .arr{transform:translateX(4px);}
+  .chips{left:{{CHIPS_LEFT}}px;top:204px;display:flex;gap:8px;pointer-events:none;}
+  .chip{height:28px;padding:0 11px 0 9px;border-radius:999px;display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.14);
+    border:1px solid rgba(255,255,255,.42);color:#fff;font:700 11.5px var(--font);white-space:nowrap;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+    opacity:0;transform:translateY(10px);transition:opacity .6s ease, transform .8s cubic-bezier(.2,.9,.2,1);transition-delay:calc(var(--i) * .12s);}
+  .chip svg{width:13px;height:13px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+  .chip.blue{background:var(--daikin);border-color:rgba(255,255,255,.55);}
+  #ad.show-chips .chip{opacity:1;transform:none;}
+  .aftertemp{left:{{AFTERTEMP_LEFT}}px;top:22px;font:800 22px/1 var(--font);letter-spacing:-.5px;white-space:nowrap;display:flex;align-items:center;gap:6px;
+    color:#fff;text-shadow:0 0 16px var(--glow2);}
+  .aftertemp small{font:700 9.5px/1 var(--font);letter-spacing:1px;padding:3px 6px;border-radius:3px;border:1px solid rgba(255,255,255,.5);}
+
+  /* ---------- Ayırıcı çizgi ve tutamaç ---------- */
+  .divider{z-index:3;left:var(--x);top:0;width:0;height:250px;pointer-events:none;}
+  .divider .line{position:absolute;left:-1.5px;top:0;width:3px;height:250px;background:#fff;box-shadow:0 0 8px var(--glow), 0 0 22px var(--glow2);}
+  .divider .knob{position:absolute;left:-22px;top:103px;width:44px;height:44px;border-radius:50%;background:#fff;box-shadow:0 8px 22px rgba(0,20,60,.4), 0 0 0 4px rgba(255,255,255,.25);
+    display:grid;place-items:center;transition:transform .25s ease;}
+  #ad.dragging .divider .knob,#ad:hover .divider .knob{transform:scale(1.1);}
+  .divider .knob svg{width:22px;height:22px;fill:none;stroke:var(--daikin);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;}
+  .s-warm .divider .knob svg{stroke:#e7882e;}
+
+  /* ---------- Marka, ipucu ---------- */
+  .plate{z-index:5;left:36px;top:18px;width:132px;height:36px;border-radius:5px;background:#fff;display:grid;place-items:center;box-shadow:0 6px 18px rgba(0,20,60,.28);}
+  .plate svg{width:110px;height:23px;display:block;}
+  .eyebrow{z-index:5;left:182px;top:29px;font:700 11px/1 var(--font);letter-spacing:1.6px;text-transform:uppercase;white-space:nowrap;}
+  .s-cool .eyebrow{color:#7a2d00;} .s-warm .eyebrow{color:#1f3d63;}
+  .hint{z-index:5;left:44%;top:18px;transform:translate(-50%,6px);height:28px;padding:0 12px 0 10px;border-radius:999px;pointer-events:none;
+    display:inline-flex;align-items:center;gap:7px;background:rgba(6,18,37,.6);border:1px solid rgba(255,255,255,.4);color:#fff;font:700 11.5px var(--font);
+    backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;transition:opacity .5s ease, transform .6s ease;white-space:nowrap;}
+  #ad.show-hint .hint{opacity:1;transform:translate(-50%,0);}
+  .hint svg{width:14px;height:14px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;animation:nudge 1.6s ease-in-out infinite;}
+  @keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(-4px)}}
+
+  @media (prefers-reduced-motion: reduce){
+    .sun,.cta::after,.hl .acc,.hint svg,.lightline,.lightdot{animation:none !important;}
+    .hl .w,.sub,.cta,.chip{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <filter id="heat" x="-5%" y="-5%" width="110%" height="110%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.012 0.045" numOctaves="2" seed="7" result="n"><animate attributeName="baseFrequency" values="0.012 0.045;0.016 0.06;0.012 0.045" dur="3.5s" repeatCount="indefinite"/></feTurbulence>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="14" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</defs></svg>
+
+<div id="ad" class="{{SEASON_CLASS}}" role="link" tabindex="0" aria-label="{{ARIA}}">
+  <!-- ÖNCE -->
+  <div class="scene before">
+    <div class="bg"></div>
+    <div class="sun"></div>
+    <div class="haze"></div>
+    <canvas id="c1" width="970" height="250"></canvas>
+    <div class="frostglass"></div>
+    <div class="bigtemp"><span>{{T_BEFORE}}</span><span class="deg">°</span></div>
+    <div class="bline">{{BEFORE_LINE}}</div>
+    <div class="bhint">{{BEFORE_HINT}}</div>
+  </div>
+  <!-- SONRA -->
+  <div class="scene after">
+    <div class="bg"></div>
+    <canvas id="c2" width="970" height="250"></canvas>
+    <img class="unit" src="{{UNIT_SRC}}" width="{{UNIT_W}}" height="{{UNIT_H}}" alt="{{UNIT_ALT}}">
+    <div class="lightdot"></div>
+    <div class="lightline"></div>
+    <div class="aftertemp"><span>{{T_AFTER}}°</span><small>{{MODE_LABEL}}</small></div>
+    <div class="copy">
+      <h1 class="hl"><span class="w" style="--i:0">{{HL1}}</span><br><span class="w acc" style="--i:1">{{HL2}}</span> <span class="w" style="--i:2">{{HL3}}</span></h1>
+      <p class="sub">{{SUB_HTML}}</p>
+    </div>
+    <div class="cta"><span>{{CTA_TEXT}}</span><svg class="arr" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></div>
+    <div class="chips">{{CHIPS_HTML}}</div>
+  </div>
+  <!-- AYIRICI -->
+  <div class="divider"><div class="line"></div><div class="knob"><svg viewBox="0 0 24 24"><path d="M9 6 3 12l6 6M15 6l6 6-6 6"/></svg></div></div>
+
+  <div class="plate" role="img" aria-label="Daikin">{{LOGO_SVG}}</div>
+  <div class="eyebrow">Doğru Hava Uzmanı</div>
+  <div class="hint" id="hint"><svg viewBox="0 0 24 24"><path d="M9 6 3 12l6 6M15 6l6 6-6 6"/></svg>{{HINT_TEXT}}</div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var AD = document.getElementById('ad'), W = 970, H = 250;
+  var SEASON = '{{SEASON}}', COOL = SEASON === 'cool';
+  var REDUCE = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var c1 = document.getElementById('c1'), g1 = c1.getContext('2d');
+  var c2 = document.getElementById('c2'), g2 = c2.getContext('2d');
+  var ORIGIN = { x1:{{ORIGIN_X1}}, y1:{{ORIGIN_Y1}}, x2:{{ORIGIN_X2}}, y2:{{ORIGIN_Y2}} };
+  var REST = 300, dpr = 1;
+  function fit(){ dpr = Math.min(2, window.devicePixelRatio || 1); [c1, c2].forEach(function(c){ c.width = W * dpr; c.height = H * dpr; c.style.width = W + 'px'; c.style.height = H + 'px'; }); g1.setTransform(dpr,0,0,dpr,0,0); g2.setTransform(dpr,0,0,dpr,0,0); }
+  fit(); window.addEventListener('resize', fit);
+
+  var S = { x:985, goal:985, pointer:null, intro:true, t0:performance.now(), pulse:0, lastRing:0, hintDone:false, touchUntil:0, gust:0 };
+  var streaks = [], stars = [], rings = [], flakes = [], wisps = [];
+  var rnd = function(a, b){ return a + Math.random() * (b - a); };
+  function sprite(size, draw){ var c = document.createElement('canvas'); c.width = c.height = size; draw(c.getContext('2d'), size); return c; }
+  var SPARK = sprite(48, function(g, s){ var c = s / 2, gr = g.createRadialGradient(c, c, 0, c, c, c); gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(.25, COOL ? 'rgba(200,240,255,.55)' : 'rgba(255,200,120,.6)'); gr.addColorStop(1, COOL ? 'rgba(160,220,255,0)' : 'rgba(255,140,60,0)'); g.fillStyle = gr; g.fillRect(0, 0, s, s); if (COOL){ g.strokeStyle = 'rgba(255,255,255,.95)'; g.lineWidth = 1.6; g.lineCap = 'round'; g.beginPath(); g.moveTo(c, 3); g.lineTo(c, s - 3); g.moveTo(3, c); g.lineTo(s - 3, c); g.stroke(); } });
+  var FLAKE = sprite(32, function(g, s){ var c = s / 2, gr = g.createRadialGradient(c, c, 0, c, c, c); gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(.45, 'rgba(255,255,255,.85)'); gr.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = gr; g.fillRect(0, 0, s, s); });
+  for (var i0 = 0; i0 < 120; i0++) flakes.push({ x:rnd(0, W), y:rnd(0, H), r:rnd(1.2, 3.4), vy:rnd(0.35, 1.1), vx:rnd(-0.25, 0.25), sw:rnd(0.3, 0.9), ph:rnd(0, 6.28), a:rnd(0.55, 0.95) });
+  for (var w0 = 0; w0 < 16; w0++) wisps.push({ x:rnd(20, 950), y:rnd(0, H), len:rnd(60, 140), sp:rnd(0.25, 0.6), ph:rnd(0, 6.28), a:rnd(0.08, 0.18) });
+
+  function originPoint(){ var t = Math.random(); return { x: ORIGIN.x1 + (ORIGIN.x2 - ORIGIN.x1) * t + rnd(-2, 2), y: ORIGIN.y1 + (ORIGIN.y2 - ORIGIN.y1) * t + rnd(0, 5) }; }
+  function spawnStreak(){
+    var v = originPoint(), ang = COOL ? Math.PI / 2 + rnd(0.12, 1.15) : Math.PI + rnd(-0.75, 0.35), sp = rnd(1.5, 3.0), r = Math.random();
+    var c = COOL ? (r < 0.3 ? '120,205,255' : '224,247,255') : (r < 0.35 ? '255,170,80' : r < 0.7 ? '255,214,140' : '255,244,225');
+    streaks.push({ x:v.x, y:v.y, vx:Math.cos(ang) * sp, vy:Math.sin(ang) * sp, sp:sp, age:0, life:rnd(110, 170), w:rnd(0.8, 1.9), wf:rnd(0.05, 0.11), wa:rnd(0.2, 0.7), ph:rnd(0, 6.28), h:[], c:c, steer:rnd(0.03, 0.05) });
+  }
+  function spawnStar(x, y){ stars.push({ x:x, y:y, vx:rnd(-0.6, 0.6), vy:COOL ? rnd(-0.6, 0.6) : rnd(-1.1, -0.2), age:0, life:rnd(26, 52), s:rnd(0.3, 0.75), rot:rnd(0, 6.28), rs:rnd(-0.06, 0.06) }); }
+  function spawnRing(x, y){ rings.push({ x:x, y:y, age:0, life:38 }); }
+
+  var last = performance.now();
+  function frame(now){
+    var dt = Math.min(2.2, (now - last) / 16.667); last = now;
+    var t = (now - S.t0) / 1000;
+    // ayırıcı hedefi
+    if (S.intro){ var p = Math.min(1, Math.max(0, (t - 0.9) / 2.4)); S.x = 985 - (985 - REST) * (1 - Math.pow(1 - p, 3)); if (p >= 1) S.intro = false; }
+    else {
+      if (S.pointer && (S.pointer.type !== 'touch' || now < S.touchUntil)) S.goal = Math.max(60, Math.min(920, S.pointer.x));
+      else S.goal = REST + 45 * Math.sin(t * 0.55);
+      S.x += (S.goal - S.x) * 0.14 * dt;
+    }
+    AD.style.setProperty('--x', S.x.toFixed(1) + 'px');
+    S.pulse = Math.max(0, S.pulse - 0.05 * dt);
+    S.gust = Math.max(0, S.gust - 0.012 * dt);
+    var active = S.pointer ? 1 : 0;
+    var target = { x: S.x + 6, y: S.pointer ? S.pointer.y : 128 + 40 * Math.sin(t * 0.8) };
+
+    /* --- ÖNCE tuvali: sıcak titreşim ya da kar --- */
+    g1.clearRect(0, 0, W, H);
+    if (COOL){
+      g1.lineWidth = 2; g1.lineCap = 'round';
+      for (var i = 0; i < wisps.length; i++){
+        var wsp = wisps[i]; wsp.y -= wsp.sp * dt; if (wsp.y + wsp.len < 0){ wsp.y = H + wsp.len; wsp.x = rnd(20, 950); }
+        g1.strokeStyle = 'rgba(255,245,225,' + wsp.a.toFixed(3) + ')'; g1.beginPath();
+        for (var yy = 0; yy <= wsp.len; yy += 6){ var px = wsp.x + Math.sin((wsp.y + yy) * 0.06 + wsp.ph + t * 2.2) * 7; var py = wsp.y + yy; if (yy === 0) g1.moveTo(px, py); else g1.lineTo(px, py); }
+        g1.stroke();
+      }
+    } else {
+      if (flakes.length < 170 && Math.random() < 1.4 * dt) flakes.push({ x:rnd(-10, W + 10), y:-8, r:rnd(1.2, 3.4), vy:rnd(0.35, 1.1), vx:rnd(-0.25, 0.25), sw:rnd(0.3, 0.9), ph:rnd(0, 6.28), a:rnd(0.55, 0.95) });
+      for (i = flakes.length - 1; i >= 0; i--){ var fl = flakes[i]; fl.y += fl.vy * dt; fl.x += (fl.vx + Math.sin(now * 0.001 * fl.sw + fl.ph) * 0.35) * dt; if (fl.y > H + 8){ flakes.splice(i, 1); continue; } g1.globalAlpha = fl.a; var fs = fl.r * 2.6; g1.drawImage(FLAKE, fl.x - fs / 2, fl.y - fs / 2, fs, fs); }
+      g1.globalAlpha = 1;
+    }
+
+    /* --- SONRA tuvali: ürünün ürettiği hava, ayırıcıya çarpar --- */
+    g2.clearRect(0, 0, W, H);
+    var vis = S.x < 940 ? 1 : 0;
+    var rate = (1.6 + 1.2 * active + 1.6 * S.gust) * vis * dt;
+    for (var n = rate; n > 0; n--) if (Math.random() < Math.min(1, n) && streaks.length < 220) spawnStreak();
+    // ayırıcı boyunca soğuk/sıcak sınır ışığı
+    var band = g2.createLinearGradient(S.x, 0, S.x + 70, 0);
+    var ba = 0.22 + 0.35 * S.pulse + 0.25 * S.gust;
+    band.addColorStop(0, (COOL ? 'rgba(220,246,255,' : 'rgba(255,225,180,') + ba.toFixed(3) + ')'); band.addColorStop(1, COOL ? 'rgba(220,246,255,0)' : 'rgba(255,225,180,0)');
+    g2.fillStyle = band; g2.fillRect(S.x, 0, 70, H);
+    g2.lineCap = 'round'; g2.lineJoin = 'round';
+    var speedK = 1 + 0.5 * active + 0.9 * S.gust;
+    for (i = streaks.length - 1; i >= 0; i--){
+      var s = streaks[i]; s.age += dt;
+      var tdx = target.x - s.x, tdy = target.y - s.y, td = Math.hypot(tdx, tdy) || 1, want = s.sp * speedK, st = s.steer * dt;
+      s.vx += (tdx / td * want - s.vx) * st; s.vy += (tdy / td * want - s.vy) * st - (COOL ? 0 : 0.004 * dt);
+      var vm = Math.hypot(s.vx, s.vy) || 1, pxn = -s.vy / vm, pyn = s.vx / vm, wob = Math.sin(now * 0.001 * s.wf * 60 + s.ph) * s.wa;
+      s.x += (s.vx + pxn * wob) * dt; s.y += (s.vy + pyn * wob) * dt;
+      s.h.push(s.x, s.y); if (s.h.length > 20) s.h.splice(0, 2);
+      var hit = s.x <= S.x + 14 || td < 14;
+      if (hit || s.age > s.life || s.x > W + 30 || s.y > H + 30 || s.y < -30){
+        if (hit){ S.pulse = Math.min(1, S.pulse + 0.3); if (now - S.lastRing > 220){ S.lastRing = now; spawnRing(S.x + 4, s.y); for (var q = 0; q < 3; q++) spawnStar(S.x + rnd(0, 26), s.y + rnd(-16, 16)); } }
+        streaks.splice(i, 1); continue;
+      }
+      var fade = Math.min(1, s.age / 9) * Math.min(1, (s.life - s.age) / 22), L = s.h.length / 2;
+      for (var j = 1; j < L; j++){ var f = j / L; g2.strokeStyle = 'rgba(' + s.c + ',' + (fade * f * 0.85).toFixed(3) + ')'; g2.lineWidth = s.w * (0.35 + f * 1.1); g2.beginPath(); g2.moveTo(s.h[(j - 1) * 2], s.h[(j - 1) * 2 + 1]); g2.lineTo(s.h[j * 2], s.h[j * 2 + 1]); g2.stroke(); }
+    }
+    for (i = rings.length - 1; i >= 0; i--){ var r = rings[i]; r.age += dt; if (r.age >= r.life){ rings.splice(i, 1); continue; } var rp = r.age / r.life; g2.strokeStyle = (COOL ? 'rgba(230,250,255,' : 'rgba(255,225,180,') + (0.55 * (1 - rp)).toFixed(3) + ')'; g2.lineWidth = 2.2 * (1 - rp) + 0.4; g2.beginPath(); g2.arc(r.x, r.y, 6 + 50 * (1 - Math.pow(1 - rp, 3)), 0, Math.PI * 2); g2.stroke(); }
+    g2.save(); g2.globalCompositeOperation = 'lighter';
+    for (i = stars.length - 1; i >= 0; i--){ var k = stars[i]; k.age += dt; if (k.age >= k.life){ stars.splice(i, 1); continue; } k.x += k.vx * dt; k.y += k.vy * dt; k.rot += k.rs * dt; var kp = k.age / k.life, ka = Math.sin(Math.PI * kp), ks = 48 * k.s * (0.6 + 0.4 * ka); g2.globalAlpha = ka * 0.95; g2.translate(k.x, k.y); g2.rotate(k.rot); g2.drawImage(SPARK, -ks / 2, -ks / 2, ks, ks); g2.setTransform(dpr, 0, 0, dpr, 0, 0); }
+    g2.restore();
+    requestAnimationFrame(frame);
+  }
+
+  function at(ms, fn){ if (REDUCE) fn(); else setTimeout(fn, ms); }
+  at(2600, function(){ AD.classList.add('show-head'); });
+  at(3400, function(){ AD.classList.add('show-sub'); });
+  at(4200, function(){ AD.classList.add('show-chips'); });
+  at(5000, function(){ if (!S.hintDone) AD.classList.add('show-hint'); });
+  at(9500, function(){ AD.classList.remove('show-hint'); });
+  if (!REDUCE){ setTimeout(function(){ function g(){ S.gust = 1; } g(); setInterval(g, 7000); }, 6800); requestAnimationFrame(frame); }
+  else { S.intro = false; S.x = REST; AD.style.setProperty('--x', REST + 'px'); }
+
+  function toLocal(e){ var r = AD.getBoundingClientRect(), k = W / (r.width || W); return { x:(e.clientX - r.left) * k, y:(e.clientY - r.top) * k, type:e.pointerType }; }
+  function hideHint(){ S.hintDone = true; AD.classList.remove('show-hint'); }
+  AD.addEventListener('pointermove', function(e){ if (e.pointerType === 'touch' && !S.dragging) return; S.pointer = toLocal(e); if (e.pointerType === 'touch') S.touchUntil = performance.now() + 3000; hideHint(); });
+  AD.addEventListener('pointerdown', function(e){ S.dragging = true; AD.classList.add('dragging'); S.pointer = toLocal(e); S.touchUntil = performance.now() + 3000; S.downAt = { x:e.clientX, y:e.clientY, t:performance.now() }; hideHint(); }, { passive:true });
+  AD.addEventListener('pointerup', function(e){ S.dragging = false; AD.classList.remove('dragging'); if (S.downAt && Math.hypot(e.clientX - S.downAt.x, e.clientY - S.downAt.y) < 6 && performance.now() - S.downAt.t < 400) exit(); });
+  AD.addEventListener('pointerleave', function(){ S.pointer = null; S.dragging = false; AD.classList.remove('dragging'); });
+  function exit(){ if (window.Enabler && typeof window.Enabler.exit === 'function'){ window.Enabler.exit('CTA'); return; } window.open(clickTag, '_blank'); }
+  AD.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); exit(); } if (e.key === 'ArrowLeft'){ S.pointer = { x: S.x - 40, y:125, type:'key' }; } if (e.key === 'ArrowRight'){ S.pointer = { x: S.x + 40, y:125, type:'key' }; } });
+})();
+</script>
+</body>
+</html>
