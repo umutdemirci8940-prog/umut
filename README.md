@@ -8,7 +8,7 @@
 | 300 × 600 | Half Page | `dist/300x600/index.html` | `dist/zip/ilacsizyasam-300x600.zip` |
 | 970 × 250 | Billboard | `dist/970x250/index.html` | `dist/zip/ilacsizyasam-970x250.zip` |
 
-Sunum sayfası: `preview/index.html` (üç boyutu bir arada gösterir; "Yayın simülasyonu" görünümü bannerları örnek bir haber sayfası içinde konumlandırır).
+Tek dosyalık teslim: `release/index.html` (üç banner içine gömülü; açınca doğrudan animasyonlu çalışır, her bannerın kendi index.html'i sayfadan indirilir). Sunum sayfası: `preview/index.html` (üç boyutu bir arada gösterir; "Yayın simülasyonu" görünümü bannerları örnek bir haber sayfası içinde konumlandırır).
 
 ## Ekran görüntüleri
 
@@ -93,7 +93,7 @@ Düzenledikten sonra:
 
 ```bash
 node build.js          # dist/ altındaki 3 HTML + zip paketlerini yeniden üretir
-node tools/package.js  # release/ altına index.html ile açılan teslim zip'i üretir
+node tools/package.js  # release/index.html (tek dosya) ve release/ilacsizyasam-banner-seti.zip üretir
 npm run capture        # (isteğe bağlı) preview/screens/ altına ekran görüntüleri alır
 npm run capture:video  # (isteğe bağlı) preview/video/ altına kısa kayıt alır
 npm test               # (isteğe bağlı) etkileşim duman testi (Playwright)
@@ -123,7 +123,7 @@ build.js                 dist/ üretici (fotoğraf / vektör modu)
 assets/                  Siteden çekilen gerçek görseller + manifest.json
 dist/<boyut>/            Yüklemeye hazır bannerlar
 dist/zip/                Zip paketleri
-release/                 Teslim paketi
+release/                 Teslim: index.html (tek dosya) + zip
 preview/index.html       Sunum sayfası
 preview/screens/         Ekran görüntüleri
 tools/fetch-assets.js    Siteden görsel/logo/fiyat çekme

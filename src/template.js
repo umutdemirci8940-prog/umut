@@ -294,8 +294,13 @@ ad.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;hover=true}
 ad.addEventListener('touchend',function(e){hover=false;if(tx===null)return;var dx=e.changedTouches[0].clientX-tx;tx=null;if(Math.abs(dx)>36){step(dx<0?1:-1)}},{passive:true});
 document.addEventListener('visibilitychange',function(){hidden=document.hidden});
 window.addEventListener('message',function(e){var m=e.data;if(m==='pause')hidden=true;else if(m==='play')hidden=false;else if(m==='restart')location.reload()});
-window.addEventListener('load',function(){setTimeout(function(){setPhase('intro');last=performance.now();requestAnimationFrame(frame)},60)});
-if(document.readyState==='complete'){setPhase('intro');last=performance.now();requestAnimationFrame(frame)}
+var started=false;
+function start(){if(started)return;started=true;setPhase('intro');last=performance.now();requestAnimationFrame(frame)}
+// Başlatma: yükleme bitince (fontlar dahil); gömülü/srcdoc iframe gibi durumlarda load gelmezse emniyet süresi sonunda
+window.addEventListener('load',function(){setTimeout(start,60)});
+document.addEventListener('DOMContentLoaded',function(){setTimeout(start,900)});
+if(document.readyState!=='loading')setTimeout(start,document.readyState==='complete'?0:900);
+setTimeout(start,2500);
 })();
 `;
 
