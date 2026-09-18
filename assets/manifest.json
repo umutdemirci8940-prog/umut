@@ -1,0 +1,225 @@
+{
+  "fetchedAt": "2026-09-18T00:19:03.272Z",
+  "base": "https://ilacsizyasam.com",
+  "logo": {
+    "file": "assets/logo.png",
+    "src": "https://ilacsizyasam.com/cdn/shop/files/Ilacsizyasam_logo2_copy.png?v=1723284484&width=500",
+    "alt": "",
+    "invert": false,
+    "optimized": "assets/logo.webp"
+  },
+  "palette": {
+    "themeColor": null,
+    "siteName": "İlaçsız Yaşam",
+    "ogImage": "http://ilacsizyasam.com/cdn/shop/files/iy_logo-1x1-20250317-053625.jpg?v=1742196026",
+    "vars": {
+      "COLOR-PRIMARY-OPPOSITE": "#ffffff",
+      "COLOR-PRIMARY-OPPOSITE-ALPHA-20": "rgba(255, 255, 255, 0.2)",
+      "COLOR-PRIMARY-LIGHTEN-DARKEN-ALPHA-20": "rgba(26, 61, 169, 0.2)",
+      "COLOR-PRIMARY-LIGHTEN-DARKEN-ALPHA-30": "rgba(26, 61, 169, 0.3)",
+      "PRIMARY-BUTTONS-COLOR-BG": "#132d7d",
+      "PRIMARY-BUTTONS-COLOR-TEXT": "#ffffff",
+      "PRIMARY-BUTTONS-COLOR-BORDER": "#132d7d",
+      "PRIMARY-BUTTONS-COLOR-LIGHTEN-DARKEN": "#1a3da9",
+      "PRIMARY-BUTTONS-COLOR-ALPHA-05": "rgba(19, 45, 125, 0.05)",
+      "PRIMARY-BUTTONS-COLOR-ALPHA-10": "rgba(19, 45, 125, 0.1)",
+      "PRIMARY-BUTTONS-COLOR-ALPHA-50": "rgba(19, 45, 125, 0.5)",
+      "COLOR-SECONDARY-OPPOSITE": "#000000",
+      "COLOR-SECONDARY-OPPOSITE-ALPHA-20": "rgba(0, 0, 0, 0.2)",
+      "COLOR-SECONDARY-LIGHTEN-DARKEN-ALPHA-20": "rgba(230, 230, 230, 0.2)",
+      "COLOR-SECONDARY-LIGHTEN-DARKEN-ALPHA-30": "rgba(230, 230, 230, 0.3)",
+      "SECONDARY-BUTTONS-COLOR-BG": "#ffffff",
+      "SECONDARY-BUTTONS-COLOR-TEXT": "#000000",
+      "SECONDARY-BUTTONS-COLOR-BORDER": "#ffffff",
+      "SECONDARY-BUTTONS-COLOR-ALPHA-05": "rgba(255, 255, 255, 0.05)",
+      "SECONDARY-BUTTONS-COLOR-ALPHA-10": "rgba(255, 255, 255, 0.1)",
+      "SECONDARY-BUTTONS-COLOR-ALPHA-50": "rgba(255, 255, 255, 0.5)",
+      "OUTLINE-BUTTONS-PRIMARY-BG": "transparent",
+      "OUTLINE-BUTTONS-PRIMARY-TEXT": "#132d7d",
+      "OUTLINE-BUTTONS-PRIMARY-BORDER": "#132d7d",
+      "OUTLINE-BUTTONS-PRIMARY-BG-HOVER": "rgba(26, 61, 169, 0.2)",
+      "OUTLINE-BUTTONS-SECONDARY-BG": "transparent",
+      "OUTLINE-BUTTONS-SECONDARY-TEXT": "#ffffff",
+      "OUTLINE-BUTTONS-SECONDARY-BORDER": "#ffffff",
+      "OUTLINE-BUTTONS-SECONDARY-BG-HOVER": "rgba(230, 230, 230, 0.2)",
+      "OUTLINE-BUTTONS-WHITE-BG": "transparent",
+      "OUTLINE-BUTTONS-WHITE-TEXT": "#ffffff",
+      "OUTLINE-BUTTONS-WHITE-BORDER": "#ffffff",
+      "OUTLINE-BUTTONS-BLACK-BG": "transparent",
+      "OUTLINE-BUTTONS-BLACK-TEXT": "#000000",
+      "OUTLINE-BUTTONS-BLACK-BORDER": "#000000",
+      "OUTLINE-SOLID-BUTTONS-PRIMARY-BG": "#132d7d",
+      "OUTLINE-SOLID-BUTTONS-PRIMARY-TEXT": "#ffffff",
+      "OUTLINE-SOLID-BUTTONS-PRIMARY-BORDER": "#ffffff",
+      "OUTLINE-SOLID-BUTTONS-PRIMARY-BG-HOVER": "rgba(255, 255, 255, 0.2)",
+      "OUTLINE-SOLID-BUTTONS-SECONDARY-BG": "#ffffff"
+    },
+    "candidates": [
+      {
+        "hex": "#0e2e68",
+        "n": 278
+      },
+      {
+        "hex": "#79a64e",
+        "n": 39
+      },
+      {
+        "hex": "#8a8a8a",
+        "n": 39
+      },
+      {
+        "hex": "#1c315f",
+        "n": 25
+      },
+      {
+        "hex": "#d43747",
+        "n": 25
+      },
+      {
+        "hex": "#383838",
+        "n": 20
+      },
+      {
+        "hex": "#108474",
+        "n": 13
+      },
+      {
+        "hex": "#132d7d",
+        "n": 10
+      },
+      {
+        "hex": "#213266",
+        "n": 10
+      },
+      {
+        "hex": "#5fa511",
+        "n": 8
+      },
+      {
+        "hex": "#be0518",
+        "n": 8
+      },
+      {
+        "hex": "#7b7b7b",
+        "n": 7
+      }
+    ]
+  },
+  "products": [
+    {
+      "key": "magnezyum",
+      "handle": "magnezyum",
+      "title": "Magnezyum",
+      "vendor": "İlaçsız Yaşam",
+      "type": "Multivitamin Supplements",
+      "price": "539.00",
+      "compareAtPrice": "1600.00",
+      "available": false,
+      "url": "https://ilacsizyasam.com/products/magnezyum",
+      "image": {
+        "file": "assets/products/magnezyum.png",
+        "src": "https://cdn.shopify.com/s/files/1/0879/4085/8154/files/Magnezyum_d1e19b75-b9ec-4bd0-8881-568c5290e319.png?v=1773563833",
+        "width": 1500,
+        "height": 1500,
+        "alt": "Magnezyum",
+        "optimized": "assets/products/magnezyum.webp",
+        "transparent": true,
+        "bytes": 15072,
+        "outWidth": 532,
+        "outHeight": 446
+      }
+    },
+    {
+      "key": "safran",
+      "handle": "safran-ekstresi",
+      "title": "Safran Ekstresi",
+      "vendor": "İlaçsız Yaşam",
+      "type": "Multivitamin Supplements",
+      "price": "1150.00",
+      "compareAtPrice": "3200.00",
+      "available": false,
+      "url": "https://ilacsizyasam.com/products/safran-ekstresi",
+      "image": {
+        "file": "assets/products/safran.png",
+        "src": "https://cdn.shopify.com/s/files/1/0879/4085/8154/files/Safran_905ccde3-2c1e-4e41-ab8e-a79610f0652e.png?v=1773643101",
+        "width": 1500,
+        "height": 1500,
+        "alt": "Safran Ekstresi",
+        "optimized": "assets/products/safran.webp",
+        "transparent": true,
+        "bytes": 18168,
+        "outWidth": 569,
+        "outHeight": 495
+      }
+    },
+    {
+      "key": "d3k2",
+      "handle": "d3-k2-vitamin-damlasi",
+      "title": "Vitamin D3 & K2 Damla",
+      "vendor": "İlaçsız Yaşam",
+      "type": "Multivitamin Supplements",
+      "price": "489.00",
+      "compareAtPrice": "1400.00",
+      "available": false,
+      "url": "https://ilacsizyasam.com/products/d3-k2-vitamin-damlasi",
+      "image": {
+        "file": "assets/products/d3k2.png",
+        "src": "https://cdn.shopify.com/s/files/1/0879/4085/8154/files/D3_K2.png?v=1773472302",
+        "width": 1500,
+        "height": 1500,
+        "alt": "Vitamin D3 & K2 Damla",
+        "optimized": "assets/products/d3k2.webp",
+        "transparent": true,
+        "bytes": 13278,
+        "outWidth": 327,
+        "outHeight": 520
+      }
+    },
+    {
+      "key": "b12",
+      "handle": "vitamin-b12-metilfolat",
+      "title": "Vitamin B12 & Folik Asit",
+      "vendor": "İlaçsız Yaşam",
+      "type": "Multivitamin Supplements",
+      "price": "500.00",
+      "compareAtPrice": "1250.00",
+      "available": false,
+      "url": "https://ilacsizyasam.com/products/vitamin-b12-metilfolat",
+      "image": {
+        "file": "assets/products/b12.png",
+        "src": "https://cdn.shopify.com/s/files/1/0879/4085/8154/files/Vitamin_B12.png?v=1772347514",
+        "width": 1500,
+        "height": 1500,
+        "alt": "Vitamin B12 & Folik Asit",
+        "optimized": "assets/products/b12.webp",
+        "transparent": true,
+        "bytes": 15126,
+        "outWidth": 285,
+        "outHeight": 520
+      }
+    },
+    {
+      "key": "omega3",
+      "handle": "omega-3-33-22-60-kapsul",
+      "title": "Omega 3 33/22",
+      "vendor": "İlaçsız Yaşam",
+      "type": "Multivitamin Supplements",
+      "price": "1040.00",
+      "compareAtPrice": "2600.00",
+      "available": false,
+      "url": "https://ilacsizyasam.com/products/omega-3-33-22-60-kapsul",
+      "image": {
+        "file": "assets/products/omega3.png",
+        "src": "https://cdn.shopify.com/s/files/1/0879/4085/8154/files/Omega_33_22.png?v=1771440463",
+        "width": 1500,
+        "height": 1500,
+        "alt": "Omega 3 33/22",
+        "optimized": "assets/products/omega3.webp",
+        "transparent": true,
+        "bytes": 14194,
+        "outWidth": 532,
+        "outHeight": 446
+      }
+    }
+  ]
+}
