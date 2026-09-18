@@ -1,3 +1,55 @@
+# Daikin – "Serinliği Yüzünde Hisset" · 970×250 interaktif masthead
+
+[daikin.com.tr](https://www.daikin.com.tr/) için hazırlanmış, **gerçek marka varlıklarıyla** (sitedeki logo ve Emura III ürün fotoğrafı) derlenmiş, imleci izleyen hava akımı animasyonlu tek dosyalık masthead: **`index.html`** (≈63 KB, her şey gömülü; açınca doğrudan çalışır).
+
+![Daikin masthead](assets/daikin/preview-970x250.jpg)
+
+## Kurgu (≈6 sn giriş, sonra sürekli)
+
+1. **Sıcak faz (0–1,3 sn)** – Turuncu, güneş parlamalı, ısı titremeli zemin; solda büyük **34°** ve "Sıcak bunaltıyor mu?".
+2. **Daikin devrede (1,3 sn)** – Emura III sağdan süzülür, LED yanar, kanat altındaki mavi ışık şeridi belirir (sitedeki ana görseldeki gibi) ve kanattan hava akımı çıkmaya başlar; zemin lacivert–Daikin mavisine soğur, sayı **34 → 22**'ye düşer, metin "Daikin devrede." olur.
+3. **Başlık (3,9 sn)** – "SERİNLİĞİ / YÜZÜNDE HİSSET." kelime kelime, buzlu parıltıyla esintiyle gelir; ardından alt metin ve sitenin turuncu düğme stilinde **"EMURA'YI KEŞFET"** CTA'sı.
+4. **Detaylar (5,3 sn)** – Köşelerde buz kristalleri büyür, cam buğusu oluşur; sağ altta ürün sayfasından alınan gerçek özellik çipleri (10 yıl garanti · 19 dB(A) sessizlik · A+++) ve canlı termostat çipi (22 °C · COOL/TURBO).
+5. **Esinti dalgaları** – Her 7 sn'de bir kanattan tüm bannerı süpüren soğuk hava dalgası; başlık hafifçe ürperir.
+
+## Etkileşim – "serinliği yüzünde hisset"
+
+- **İmleç = yüz:** Fare bannerın üzerindeyken hava akımı imlece yönelir; hava çizgileri imlece ulaşınca **halka dalgaları, buz kıvılcımları ve soğuk buğu** ile "yüze çarpar", imleç etrafında serin bir hale belirir.
+- **TURBO:** Üzerine gelince ünite turbo moda geçer: akım hızlanır ve yoğunlaşır, ışık şeridi parlar, termostat çipi "TURBO" yazar, fan çubukları dolar.
+- **Otomatik salınım:** İmleç yokken akım sol taraftaki başlık bölgesinde yavaşça gezer (görünmez bir yüze çarpıyormuş gibi halkalar oluşur).
+- **Dokunmatik:** Dokunulan noktaya 2,6 sn boyunca hava akımı yönelir.
+- **Tıklama / klavye:** Bannerın tamamı tıklanabilir (Enter/Boşluk dâhil). `clickTag` tanımlıysa o, `Enabler` varsa `Enabler.exit`, yoksa daikin.com.tr Emura III kategori sayfası (UTM'li) açılır.
+- `prefers-reduced-motion` açıksa parçacık döngüsü çalışmaz, son kare doğrudan gösterilir.
+
+## Gerçek varlıklar (siteden otomatik)
+
+Bulut oturumunun ağ politikası daikin.com.tr'ye erişemediği için varlıklar **GitHub Actions** üzerinde indirildi (`.github/workflows/fetch-assets.yml` → `tools/fetch-daikin.js`) ve `assets/daikin/` altına push'landı:
+
+| Varlık | Kaynak |
+|---|---|
+| Logo (SVG, orijinal renkler) | daikin.com.tr üst bilgi logosu → `assets/daikin/logo/logo-1.svg` |
+| Ürün fotoğrafı | Emura III 9000 BTU/h FTXJ25AW9 ürün sayfası, kanadı açık 3/4 görünüm (şeffaf PNG) → kırpılıp `assets/daikin/unit-emura.webp` (2x, 23 KB) |
+| Renkler | Site CSS'i: Daikin mavisi `#009ae5`; CTA turuncusu `#e7882e` (ana sayfadaki "HEMEN İNCELEYİN" düğmesi) |
+| Tipografi | Sitede kullanılan **Open Sans** (Google Fonts) |
+| Metin/özellikler | Sitenin başlık sloganı "Doğru Hava Uzmanı"; Emura III sayfasındaki 10 yıl garanti, 19 dB(A), A+++ bilgileri |
+| Referans | `assets/daikin/shots/` – ana sayfa ve ürün sayfalarının ekran görüntüleri; `assets/daikin/report.md` – bulunan her şeyin dökümü |
+
+Yeniden çekmek için: *Actions* → "Daikin – siteden logo ve ürün görsellerini çek" → *Run workflow* (isteğe bağlı `urls` girdisiyle belirli görsel adresleri de indirilebilir). Farklı bir ürün fotoğrafı kullanmak için `tools/optimize-daikin.js --src=<png>` ile kırpıp `tools/build-daikin.js` içindeki `LAYOUT.vent / led` oranlarını fotoğrafa göre güncelleyin.
+
+## Derleme ve özelleştirme
+
+```bash
+node tools/build-daikin.js                 # src/daikin/masthead.html + assets/daikin → index.html
+NODE_PATH=$(npm root -g) node tools/optimize-daikin.js   # ürün fotoğrafını yeniden kırp/optimize et (Playwright)
+node tools/build-daikin.js --png           # WebP yerine PNG göm (eski tarayıcılar; dosya ~350 KB)
+```
+
+- Metinler, çipler ve CTA `src/daikin/masthead.html` içinde; ürün konumu, kanat/LED oranları ve tıklama adresi `tools/build-daikin.js` → `LAYOUT` altında.
+- Zamanlama `at(ms, …)` satırlarında; parçacık yoğunluğu `MAX_STREAK / MAX_MIST`, esinti aralığı `setInterval(gust, 7000)`.
+- `<meta name="ad.size">`, `role="link"`, klavye odağı ve `aria-label` mevcuttur; Google Ads/DV360 için `clickTag` ve `Enabler` desteği hazırdır.
+
+---
+
 # İlaçsız Yaşam – Gıda Takviyesi Banner Serisi
 
 [ilacsizyasam.com](https://ilacsizyasam.com/) için hazırlanmış, gıda takviyeleri özelinde **animasyonlu, ürün slider'lı ve tıklanabilir HTML5 display reklam seti**.
