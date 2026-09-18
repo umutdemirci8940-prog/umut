@@ -10,7 +10,10 @@ on:
         default: '22'
       height:
         description: Ürün görseli azami yüksekliği (px)
-        default: '520'
+        default: '460'
+      quality:
+        description: WebP kalitesi (0-1)
+        default: '0.8'
       keep_bg:
         description: Fon temizlemeyi kapat (kart görünümü)
         type: boolean
@@ -40,7 +43,7 @@ jobs:
           npx playwright install --with-deps chromium
 
       - name: Görselleri optimize et
-        run: node tools/optimize-assets.js --tolerance=${{ inputs.tolerance }} --height=${{ inputs.height }} ${{ inputs.keep_bg && '--keep-bg' || '' }}
+        run: node tools/optimize-assets.js --tolerance=${{ inputs.tolerance }} --height=${{ inputs.height }} --quality=${{ inputs.quality }} ${{ inputs.keep_bg && '--keep-bg' || '' }}
 
       - name: Bannerları derle
         run: node build.js

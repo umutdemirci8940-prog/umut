@@ -124,9 +124,9 @@
         "alt": "Magnezyum",
         "optimized": "assets/products/magnezyum.webp",
         "transparent": true,
-        "bytes": 15072,
+        "bytes": 13752,
         "outWidth": 532,
-        "outHeight": 446
+        "outHeight": 393
       }
     },
     {
@@ -147,9 +147,9 @@
         "alt": "Safran Ekstresi",
         "optimized": "assets/products/safran.webp",
         "transparent": true,
-        "bytes": 18168,
+        "bytes": 16868,
         "outWidth": 569,
-        "outHeight": 495
+        "outHeight": 437
       }
     },
     {
@@ -170,9 +170,9 @@
         "alt": "Vitamin D3 & K2 Damla",
         "optimized": "assets/products/d3k2.webp",
         "transparent": true,
-        "bytes": 13278,
-        "outWidth": 327,
-        "outHeight": 520
+        "bytes": 10898,
+        "outWidth": 300,
+        "outHeight": 460
       }
     },
     {
@@ -193,9 +193,9 @@
         "alt": "Vitamin B12 & Folik Asit",
         "optimized": "assets/products/b12.webp",
         "transparent": true,
-        "bytes": 15126,
-        "outWidth": 285,
-        "outHeight": 520
+        "bytes": 12834,
+        "outWidth": 262,
+        "outHeight": 460
       }
     },
     {
@@ -216,9 +216,9 @@
         "alt": "Omega 3 33/22",
         "optimized": "assets/products/omega3.webp",
         "transparent": true,
-        "bytes": 14194,
+        "bytes": 13068,
         "outWidth": 532,
-        "outHeight": 446
+        "outHeight": 393
       }
     }
   ]

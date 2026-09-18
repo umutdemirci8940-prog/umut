@@ -3,13 +3,14 @@
 /**
  * assets/ altındaki gerçek görselleri banner için hazırlar (Playwright + Chromium):
  *   - Ürün fotoğrafı: düz (beyaz/açık) arka planı şeffaflaştırır, boşlukları kırpar,
- *     en fazla --height (vars. 520 px) yüksekliğe küçültür, alfa kanallı WebP yazar.
+ *     en fazla --height (vars. 460 px) yüksekliğe küçültür, alfa kanallı WebP yazar.
  *   - Logo: şeffaf boşlukları kırpar, koyu renkliyse bannerda beyaza çevrilmesi için işaretler.
  *   - Sonuçları assets/manifest.json içine yazar (image.optimized, image.transparent, logo.invert).
  *
- * Kullanım: NODE_PATH=$(npm root -g) node tools/optimize-assets.js [--height=520] [--quality=0.82] [--tolerance=22] [--keep-bg]
+ * Kullanım: NODE_PATH=$(npm root -g) node tools/optimize-assets.js [--height=460] [--quality=0.8] [--logoQuality=0.85] [--tolerance=22] [--keep-bg]
  *   --tolerance : arka plan rengine benzerlik eşiği (0-255). Açık renkli ürünlerde düşürün (ör. 14).
  *   --keep-bg   : hiçbir üründe fon temizleme yapma (kart görünümü). Ürün bazında: manifest → image.removeBg=false
+ *   --keep-reflection : ürün fotoğrafının altındaki ayna yansımasını/gölgeyi kesme (varsayılan: kesilir)
  */
 const fs = require('fs');
 const path = require('path');
@@ -20,15 +21,17 @@ const mfPath = path.join(root, 'assets', 'manifest.json');
 if (!fs.existsSync(mfPath)) { console.error('assets/manifest.json yok. Önce: node tools/fetch-assets.js'); process.exit(1); }
 const manifest = JSON.parse(fs.readFileSync(mfPath, 'utf8'));
 const args = Object.fromEntries(process.argv.slice(2).map((a) => { const m = a.match(/^--([^=]+)=(.*)$/); return m ? [m[1], m[2]] : [a.replace(/^--/, ''), true]; }));
-const MAXH = +args.height || 520;
-const Q = +args.quality || 0.82;
+const MAXH = +args.height || 460;
+const Q = +args.quality || 0.8;
+const LQ = +args.logoQuality || 0.85;
 const TOL = args.tolerance !== undefined ? +args.tolerance : 22;
 const KEEP_BG = !!args['keep-bg'];
+const CUT_REFLECTION = !args['keep-reflection'];
 const MIME = { svg: 'image/svg+xml', jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png', webp: 'image/webp', gif: 'image/gif' };
 const toDataUri = (file) => `data:${MIME[path.extname(file).slice(1).toLowerCase()] || 'application/octet-stream'};base64,${fs.readFileSync(file).toString('base64')}`;
 
 /* Tarayıcı içinde çalışan işleme fonksiyonu */
-const PROCESS = async ({ src, maxH, quality, mode, tol, keepBg }) => {
+const PROCESS = async ({ src, maxH, quality, mode, tol, keepBg, cutReflection }) => {
   const img = new Image();
   await new Promise((res, rej) => { img.onload = res; img.onerror = () => rej(new Error('görsel yüklenemedi')); img.src = src; });
   let W = img.naturalWidth || img.width, H = img.naturalHeight || img.height;
@@ -72,13 +75,39 @@ const PROCESS = async ({ src, maxH, quality, mode, tol, keepBg }) => {
         d[i + 3] = 0;
         stack.push(x + 1, y, x - 1, y, x, y + 1, x, y - 1);
       }
-      // Kenar yumuşatma: şeffaf komşusu olan opak pikselleri yarı saydam yap
+      // Ayna yansıması / zemin gölgesi: nesnenin altındaki zayıf satırları (en güçlü satırın %55'inin altı) kaldır
+      if (cutReflection) {
+        const strength = new Float32Array(H);
+        let maxS = 0;
+        for (let y = 0; y < H; y++) {
+          let m = 0;
+          for (let x = 0; x < W; x++) {
+            const i = px(x, y);
+            if (d[i + 3] === 0) continue;
+            const df = Math.max(Math.abs(d[i] - mean[0]), Math.abs(d[i + 1] - mean[1]), Math.abs(d[i + 2] - mean[2]));
+            if (df > m) m = df;
+          }
+          strength[y] = m; if (m > maxS) maxS = m;
+        }
+        const thr = maxS * 0.55;
+        for (let y = H - 1; y >= 0; y--) {
+          if (strength[y] >= thr) break;
+          for (let x = 0; x < W; x++) d[px(x, y) + 3] = 0;
+        }
+      }
+      // Kenar yumuşatma (2 px): dış halka %40, iç halka %75 alfa
       const a = new Uint8ClampedArray(W * H);
       for (let k = 0; k < W * H; k++) a[k] = d[k * 4 + 3];
+      const ring = new Uint8Array(W * H);
       for (let y = 1; y < H - 1; y++) for (let x = 1; x < W - 1; x++) {
         const k = y * W + x;
         if (a[k] === 0) continue;
-        if (a[k - 1] === 0 || a[k + 1] === 0 || a[k - W] === 0 || a[k + W] === 0) d[k * 4 + 3] = Math.round(a[k] * 0.55);
+        if (a[k - 1] === 0 || a[k + 1] === 0 || a[k - W] === 0 || a[k + W] === 0) { ring[k] = 1; d[k * 4 + 3] = Math.round(a[k] * 0.4); }
+      }
+      for (let y = 1; y < H - 1; y++) for (let x = 1; x < W - 1; x++) {
+        const k = y * W + x;
+        if (a[k] === 0 || ring[k]) continue;
+        if (ring[k - 1] || ring[k + 1] || ring[k - W] || ring[k + W]) d[k * 4 + 3] = Math.round(a[k] * 0.75);
       }
       transparent = true; removed = true;
     }
@@ -120,7 +149,7 @@ const PROCESS = async ({ src, maxH, quality, mode, tol, keepBg }) => {
     if (!p.image || !p.image.file) continue;
     const src = path.join(root, p.image.file);
     if (!fs.existsSync(src)) { console.log(`⚠ ${p.key}: ${p.image.file} yok`); continue; }
-    const r = await page.evaluate(PROCESS, { src: toDataUri(src), maxH: MAXH, quality: Q, mode: 'product', tol: TOL, keepBg: KEEP_BG || p.image.removeBg === false });
+    const r = await page.evaluate(PROCESS, { src: toDataUri(src), maxH: MAXH, quality: Q, mode: 'product', tol: TOL, keepBg: KEEP_BG || p.image.removeBg === false, cutReflection: CUT_REFLECTION && p.image.cutReflection !== false });
     const outFile = path.join(root, 'assets', 'products', `${p.key}.webp`);
     const bytes = writeOut(r.dataUrl, outFile);
     Object.assign(p.image, { optimized: path.relative(root, outFile), transparent: r.transparent, bytes, outWidth: r.width, outHeight: r.height });
@@ -130,7 +159,7 @@ const PROCESS = async ({ src, maxH, quality, mode, tol, keepBg }) => {
   if (manifest.logo && manifest.logo.file) {
     const src = path.join(root, manifest.logo.file);
     if (fs.existsSync(src)) {
-      const r = await page.evaluate(PROCESS, { src: toDataUri(src), maxH: 160, quality: 0.9, mode: 'logo', tol: TOL, keepBg: true });
+      const r = await page.evaluate(PROCESS, { src: toDataUri(src), maxH: 160, quality: LQ, mode: 'logo', tol: TOL, keepBg: true, cutReflection: false });
       const isSvg = /\.svg$/i.test(src);
       manifest.logo.invert = r.lum < 0.45; // koyu logo → bannerda beyaz
       if (!isSvg) {

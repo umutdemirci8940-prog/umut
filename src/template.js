@@ -23,16 +23,16 @@ function shade(hex, pct) {
 /* ---------- SVG parçaları ---------- */
 
 const MARK = `<svg class="mark" viewBox="0 0 40 40" aria-hidden="true">
-<circle cx="20" cy="20" r="20" fill="var(--gold)"/>
-<path d="M20.5 31c-.6-9.5 4.4-16.6 12.5-19-1.1 8.9-5.6 15.3-12.5 19z" fill="#0d3a2c"/>
-<path d="M19.5 31c.6-9.5-4.4-16.6-12.5-19 1.1 8.9 5.6 15.3 12.5 19z" fill="#2f8f5b"/>
-<path d="M20 31V16" stroke="#0d3a2c" stroke-width="1.2" stroke-linecap="round" opacity=".6"/>
+<circle cx="20" cy="20" r="20" fill="var(--accent)"/>
+<path d="M20.5 31c-.6-9.5 4.4-16.6 12.5-19-1.1 8.9-5.6 15.3-12.5 19z" fill="#0e2e68"/>
+<path d="M19.5 31c.6-9.5-4.4-16.6-12.5-19 1.1 8.9 5.6 15.3 12.5 19z" fill="#3f7d3a"/>
+<path d="M20 31V16" stroke="#0e2e68" stroke-width="1.2" stroke-linecap="round" opacity=".6"/>
 </svg>`;
 
 const LEAF = (cls, size, x, y, rot) =>
   `<svg class="leaf ${cls}" style="left:${x};top:${y};width:${size}px;transform:rotate(${rot}deg)" viewBox="0 0 48 48" aria-hidden="true">
 <path d="M4 40C4 18 18 6 44 4c-2 26-14 38-40 36z"/>
-<path d="M6 38C16 28 26 18 40 8" fill="none" stroke="#0d3a2c" stroke-width="1.6" opacity=".5"/>
+<path d="M6 38C16 28 26 18 40 8" fill="none" stroke="#07183f" stroke-width="1.6" opacity=".5"/>
 </svg>`;
 
 function bottle(p, i) {
@@ -41,12 +41,12 @@ function bottle(p, i) {
   return `<svg class="bottle" viewBox="0 0 120 200" aria-hidden="true">
 <defs>
 <linearGradient id="${g}b" x1="0" x2="1"><stop offset="0" stop-color="#fbf8f1"/><stop offset=".55" stop-color="#f3ecdd"/><stop offset="1" stop-color="#ddd3bf"/></linearGradient>
-<linearGradient id="${g}c" x1="0" x2="1"><stop offset="0" stop-color="#16473a"/><stop offset=".5" stop-color="#0d3a2c"/><stop offset="1" stop-color="#082419"/></linearGradient>
+<linearGradient id="${g}c" x1="0" x2="1"><stop offset="0" stop-color="#1c4494"/><stop offset=".5" stop-color="#0e2e68"/><stop offset="1" stop-color="#07183f"/></linearGradient>
 <linearGradient id="${g}l" x1="0" x2="1"><stop offset="0" stop-color="${p.color}"/><stop offset="1" stop-color="${shade(p.color, -22)}"/></linearGradient>
 </defs>
 <ellipse cx="60" cy="193" rx="40" ry="5.5" fill="#000" opacity=".35"/>
 <rect x="31" y="6" width="58" height="32" rx="7" fill="url(#${g}c)"/>
-<rect x="31" y="31" width="58" height="7" fill="var(--gold)"/>
+<rect x="31" y="31" width="58" height="7" fill="var(--accent)"/>
 <rect x="36" y="10" width="4" height="20" rx="2" fill="#fff" opacity=".12"/>
 <path d="M20 58c0-8 6-14 14-14h52c8 0 14 6 14 14v118c0 8-6 14-14 14H34c-8 0-14-6-14-14z" fill="url(#${g}b)"/>
 <rect x="20" y="78" width="80" height="72" fill="url(#${g}l)"/>
@@ -64,17 +64,17 @@ function bottle(p, i) {
 /* ---------- CSS ---------- */
 
 const BASE_CSS = `
-:root{--forest:#0d3a2c;--forest-2:#175a45;--leaf:#2f8f5b;--mint:#c9e7d3;--cream:#f7f2e8;--gold:#dcae44;--gold-2:#f3cf6e;--ink:#0b2019;--pc:#2f8f5b;--pa:#bfe3cc;--ease:cubic-bezier(.22,.8,.26,1)}
+:root{--forest:#0e2e68;--forest-2:#1c4494;--forest-3:#07183f;--leaf:#79a64e;--mint:#d3e6c3;--cream:#f7f5ef;--accent:#8cc05a;--accent-2:#b5dd85;--ink:#0a1d45;--pc:#79a64e;--pa:#d3e6c3;--ease:cubic-bezier(.22,.8,.26,1)}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{width:__W__px;height:__H__px;overflow:hidden;background:#000}
 body{font-family:'Manrope',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 .ad{position:relative;width:__W__px;height:__H__px;overflow:hidden;background:var(--forest);color:var(--cream);cursor:pointer;user-select:none;-webkit-user-select:none;outline:0}
-.ad:focus-visible{box-shadow:inset 0 0 0 2px var(--gold)}
-.bg{position:absolute;inset:0;background:radial-gradient(120% 100% at 15% 0%,var(--forest-2) 0%,var(--forest) 55%,#082a1f 100%)}
+.ad:focus-visible{box-shadow:inset 0 0 0 2px var(--accent)}
+.bg{position:absolute;inset:0;background:radial-gradient(120% 100% at 15% 0%,var(--forest-2) 0%,var(--forest) 55%,var(--forest-3) 100%)}
 .bg:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.04),transparent 40%,rgba(0,0,0,.18))}
-.glow{position:absolute;border-radius:50%;background:var(--pc);filter:blur(36px);opacity:.42;transition:background .9s var(--ease),opacity .6s;pointer-events:none}
+.glow{position:absolute;border-radius:50%;background:var(--pc);filter:blur(36px);opacity:.34;transition:background .9s var(--ease),opacity .6s;pointer-events:none}
 .leaves{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-.leaf{position:absolute;fill:var(--mint);opacity:.13}
+.leaf{position:absolute;fill:var(--leaf);opacity:.16}
 .leaf-a{animation:drift 9s ease-in-out infinite}
 .leaf-b{animation:drift 12s ease-in-out -4s infinite}
 .leaf-c{animation:drift 10s ease-in-out -7s infinite}
@@ -83,7 +83,7 @@ body{font-family:'Manrope',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-
 .mark{width:var(--mark);height:var(--mark);flex:none;filter:drop-shadow(0 2px 6px rgba(0,0,0,.3))}
 .word{display:flex;flex-direction:column;line-height:1}
 .word b{font-family:'Playfair Display',Georgia,'Times New Roman',serif;font-weight:700;font-size:var(--wm);letter-spacing:.005em;color:var(--cream)}
-.word small{font-size:var(--ws);letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:800;margin-top:4px}
+.word small{font-size:var(--ws);letter-spacing:.24em;text-transform:uppercase;color:var(--accent);font-weight:800;margin-top:4px}
 .intro{position:absolute;text-align:center;opacity:0;transform:translateY(10px);transition:opacity .45s,transform .45s;pointer-events:none;z-index:4}
 .ad[data-phase=intro] .intro{opacity:1;transform:none;transition-delay:.35s}
 .intro h1{font-family:'Playfair Display',Georgia,serif;font-weight:700;font-style:italic;color:var(--cream);line-height:1.12}
@@ -103,7 +103,15 @@ body{font-family:'Manrope',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-
 .photo.on-card{background:var(--cream);border-radius:calc(var(--bw)*.12);padding:calc(var(--bw)*.07);box-shadow:inset 0 0 0 1px rgba(0,0,0,.06);height:calc(var(--bw)*1.5);margin-top:calc(var(--bw)*.16)}
 .logo{display:block;height:var(--logo-h);width:auto;max-width:var(--logo-w);object-fit:contain;object-position:left center;filter:drop-shadow(0 2px 6px rgba(0,0,0,.3))}
 .logo.invert{filter:brightness(0) invert(1) drop-shadow(0 2px 6px rgba(0,0,0,.3))}
-.price{display:inline-block;margin-left:7px;vertical-align:middle;color:var(--gold);font-weight:800;font-size:calc(var(--badge-fs) + 2px);letter-spacing:.02em}
+.brand.plate{background:#fff;border-radius:7px;padding:var(--plate-p);box-shadow:0 6px 18px rgba(0,0,0,.28)}
+.brand.plate .logo{filter:none}
+.ad-photo .slide{align-items:center}
+.ad-photo .bottle-wrap{margin-top:0;width:var(--pw);height:var(--ph);display:flex;align-items:flex-end;justify-content:center;filter:drop-shadow(0 12px 16px rgba(0,0,0,.4))}
+.ad-photo .photo{height:100%;object-position:center}
+.ad-photo .photo.on-card{height:100%;margin-top:0}
+.ad-photo .slide.is-active .photo{animation:float 3.8s ease-in-out .9s infinite}
+.ad-photo[data-phase=outro] .slide .photo{animation:lift 3.6s ease-in-out calc(var(--j) * .35s) infinite}
+.price{display:inline-block;margin-left:7px;vertical-align:middle;color:var(--accent);font-weight:800;font-size:calc(var(--badge-fs) + 2px);letter-spacing:.02em}
 .slide.is-active .bottle-wrap{animation:enter .9s var(--ease) both}
 .slide.is-active .bottle{animation:float 3.8s ease-in-out .9s infinite}
 .ad[data-phase=outro] .slide .bottle-wrap{animation:none}
@@ -122,14 +130,14 @@ body{font-family:'Manrope',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-
 .ad[data-phase=slides] .dots{opacity:1}
 .dot{width:6px;height:6px;border-radius:99px;background:rgba(255,255,255,.3);border:0;padding:0;cursor:pointer;transition:width .35s var(--ease),background .35s}
 .dot:hover{background:rgba(255,255,255,.7)}
-.dot.is-on{width:20px;background:var(--gold)}
-.arrow{position:absolute;top:var(--arrow-y);width:28px;height:28px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(8,42,31,.72);color:var(--cream);opacity:0;transform:translateY(-50%);transition:opacity .3s,background .3s,transform .3s;cursor:pointer;display:grid;place-items:center;z-index:8;backdrop-filter:blur(3px)}
+.dot.is-on{width:20px;background:var(--accent)}
+.arrow{position:absolute;top:var(--arrow-y);width:28px;height:28px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(7,24,63,.72);color:var(--cream);opacity:0;transform:translateY(-50%);transition:opacity .3s,background .3s,transform .3s;cursor:pointer;display:grid;place-items:center;z-index:8;backdrop-filter:blur(3px)}
 .arrow svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .arrow.prev{left:var(--arrow-x)}.arrow.next{right:var(--arrow-x)}
 .ad:hover .arrow{opacity:1}
 .ad[data-phase=intro] .arrow{opacity:0!important}
-.arrow:hover{background:var(--gold);color:var(--ink)}
-.cta{position:absolute;display:inline-flex;align-items:center;justify-content:center;gap:7px;background:linear-gradient(135deg,var(--gold-2),var(--gold));color:var(--ink);font-weight:800;border-radius:99px;box-shadow:0 6px 16px rgba(0,0,0,.28);transition:transform .35s var(--ease),box-shadow .35s;white-space:nowrap;z-index:5;letter-spacing:.01em}
+.arrow:hover{background:var(--accent);color:var(--ink)}
+.cta{position:absolute;display:inline-flex;align-items:center;justify-content:center;gap:7px;background:linear-gradient(135deg,var(--accent-2),var(--accent));color:var(--ink);font-weight:800;border-radius:99px;box-shadow:0 6px 16px rgba(0,0,0,.28);transition:transform .35s var(--ease),box-shadow .35s;white-space:nowrap;z-index:5;letter-spacing:.01em}
 .cta i{display:inline-block;width:12px;height:12px;transition:transform .35s var(--ease)}
 .cta i svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
 .ad:hover .cta{transform:translateY(-2px);box-shadow:0 12px 24px rgba(0,0,0,.4)}
@@ -140,16 +148,16 @@ body{font-family:'Manrope',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-
 .legal{position:absolute;color:rgba(247,242,232,.58);font-size:var(--legal-fs);line-height:1.25;z-index:5;font-weight:500}
 .outro{position:absolute;opacity:0;pointer-events:none;transition:opacity .6s;text-align:center;z-index:5}
 .ad[data-phase=outro] .outro{opacity:1;transition-delay:.35s}
-.outro .promo{display:inline-block;border:1px solid var(--gold);color:var(--gold);border-radius:99px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:var(--promo-p);font-size:var(--promo-fs)}
+.outro .promo{display:inline-block;border:1px solid var(--accent);color:var(--accent);border-radius:99px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:var(--promo-p);font-size:var(--promo-fs)}
 .outro h2{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-weight:700;color:var(--cream);line-height:1.12;font-size:var(--h2-fs);margin-top:var(--h2-mt)}
 .outro .cta{position:relative;margin-top:var(--cta2-mt);animation:pulse 2.2s ease-in-out infinite}
 .outro .domain{display:block;color:var(--mint);font-weight:700;letter-spacing:.06em;font-size:var(--domain-fs);margin-top:var(--domain-mt)}
 .ad[data-phase=outro] .slide{opacity:1;filter:none;z-index:2;transform:translate(calc(var(--lx) + (var(--j) - var(--mid)) * var(--lg)),var(--ly)) scale(var(--ls))}
 .ad[data-phase=outro] .slide .bottle{animation:lift 3.6s ease-in-out calc(var(--j) * .35s) infinite}
 .progress{position:absolute;left:0;bottom:0;height:3px;width:100%;background:rgba(255,255,255,.08);z-index:7;transition:opacity .3s}
-.progress i{display:block;height:100%;width:100%;background:linear-gradient(90deg,var(--gold),var(--gold-2));transform-origin:left;transform:scaleX(0)}
+.progress i{display:block;height:100%;width:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));transform-origin:left;transform:scaleX(0)}
 .ad.is-ended .progress,.ad[data-phase=intro] .progress{opacity:0}
-.pause{position:absolute;right:8px;top:8px;width:18px;height:18px;border-radius:50%;background:rgba(8,42,31,.7);display:grid;place-items:center;opacity:0;transition:opacity .3s;z-index:8;pointer-events:none}
+.pause{position:absolute;right:8px;top:8px;width:18px;height:18px;border-radius:50%;background:rgba(7,24,63,.7);display:grid;place-items:center;opacity:0;transition:opacity .3s;z-index:8;pointer-events:none}
 .pause:before,.pause:after{content:"";width:2px;height:7px;background:var(--cream);border-radius:1px;position:absolute;top:5.5px}
 .pause:before{left:6px}.pause:after{left:10px}
 .ad.is-paused:not(.is-ended) .pause{opacity:.9}
@@ -159,13 +167,15 @@ body{font-family:'Manrope',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-
 @keyframes lift{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
 @keyframes enter{from{transform:translateY(34px) rotate(-7deg);opacity:0}to{transform:none;opacity:1}}
 @keyframes drift{0%,100%{translate:0 0}50%{translate:7px -12px}}
-@keyframes pulse{0%,100%{box-shadow:0 6px 16px rgba(0,0,0,.28),0 0 0 0 rgba(220,174,68,.55)}60%{box-shadow:0 6px 16px rgba(0,0,0,.28),0 0 0 12px rgba(220,174,68,0)}}
+@keyframes pulse{0%,100%{box-shadow:0 6px 16px rgba(0,0,0,.28),0 0 0 0 rgba(140,192,90,.55)}60%{box-shadow:0 6px 16px rgba(0,0,0,.28),0 0 0 12px rgba(140,192,90,0)}}
 @media (prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.15s!important}}
 `;
 
 const LAYOUT_CSS = {
   rect: `
-.ad{--mark:22px;--wm:13px;--ws:6.5px;--bg-gap:7px;--bw:82px;--bt:6px;--ox:57px;--oy:76px;--sx-prev:-150px;--sx-next:150px;--ghost-s:.7;--ghost-o:0;--ghost-b:2px;--badge-p:3px 7px;--badge-fs:7px;--name-fs:19px;--name-mt:6px;--claim-fs:10px;--claim-mt:5px;--legal-fs:6.6px;--arrow-x:6px;--arrow-y:118px;--promo-p:4px 9px;--promo-fs:7px;--h2-fs:17px;--h2-mt:6px;--cta2-mt:10px;--domain-fs:9px;--domain-mt:8px;--lx:93px;--ly:-46px;--lg:44px;--ls:.34;--mid:2;--logo-h:28px;--logo-w:160px}
+.ad{--mark:22px;--wm:13px;--ws:6.5px;--bg-gap:7px;--bw:82px;--bt:6px;--ox:57px;--oy:76px;--sx-prev:-150px;--sx-next:150px;--ghost-s:.7;--ghost-o:0;--ghost-b:2px;--badge-p:3px 7px;--badge-fs:7px;--name-fs:19px;--name-mt:6px;--claim-fs:10px;--claim-mt:5px;--legal-fs:6.6px;--arrow-x:6px;--arrow-y:118px;--promo-p:4px 9px;--promo-fs:7px;--h2-fs:17px;--h2-mt:6px;--cta2-mt:10px;--domain-fs:9px;--domain-mt:8px;--lx:93px;--ly:-46px;--lg:44px;--ls:.34;--mid:2;--logo-h:26px;--logo-w:150px;--plate-p:4px 7px}
+.ad-photo.ad-rect{--pw:104px;--ph:124px;--ox:68px;--oy:78px;--lx:82px;--ly:-46px;--lg:46px;--ls:.36}
+.ad-photo.ad-rect .info{left:126px;width:150px}
 .glow{width:180px;height:180px;left:-30px;top:20px}
 .brand{left:14px;top:12px}
 .ad[data-phase=intro] .brand{transform:translate(64px,52px) scale(1.55)}
@@ -183,7 +193,8 @@ const LAYOUT_CSS = {
 .outro .domain{margin-top:5px}
 `,
   tall: `
-.ad{--mark:34px;--wm:19px;--ws:8.5px;--bg-gap:9px;--bw:150px;--bt:10px;--ox:150px;--oy:135px;--sx-prev:-210px;--sx-next:210px;--ghost-s:.6;--ghost-o:0;--ghost-b:2px;--badge-p:5px 10px;--badge-fs:9px;--name-fs:27px;--name-mt:10px;--claim-fs:12.5px;--claim-mt:8px;--legal-fs:7.5px;--arrow-x:10px;--arrow-y:230px;--promo-p:6px 12px;--promo-fs:9px;--h2-fs:27px;--h2-mt:12px;--cta2-mt:18px;--domain-fs:11px;--domain-mt:12px;--lx:0px;--ly:6px;--lg:56px;--ls:.42;--mid:2;--logo-h:44px;--logo-w:200px}
+.ad{--mark:34px;--wm:19px;--ws:8.5px;--bg-gap:9px;--bw:150px;--bt:10px;--ox:150px;--oy:135px;--sx-prev:-210px;--sx-next:210px;--ghost-s:.6;--ghost-o:0;--ghost-b:2px;--badge-p:5px 10px;--badge-fs:9px;--name-fs:27px;--name-mt:10px;--claim-fs:12.5px;--claim-mt:8px;--legal-fs:7.5px;--arrow-x:10px;--arrow-y:230px;--promo-p:6px 12px;--promo-fs:9px;--h2-fs:27px;--h2-mt:12px;--cta2-mt:18px;--domain-fs:11px;--domain-mt:12px;--lx:0px;--ly:6px;--lg:56px;--ls:.42;--mid:2;--logo-h:40px;--logo-w:200px;--plate-p:6px 10px}
+.ad-photo.ad-tall{--pw:220px;--ph:250px;--ox:150px;--oy:150px;--lg:54px;--ls:.34;--ly:4px}
 .glow{width:280px;height:280px;left:10px;top:80px}
 .brand{left:50%;top:24px;transform:translateX(-50%);transform-origin:center}
 .ad[data-phase=intro] .brand{transform:translate(-50%,170px) scale(1.35)}
@@ -199,7 +210,8 @@ const LAYOUT_CSS = {
 .outro .cta{font-size:13px;padding:12px 26px}
 `,
   wide: `
-.ad{--mark:30px;--wm:17px;--ws:7.5px;--bg-gap:9px;--bw:126px;--bt:20px;--ox:190px;--oy:125px;--sx-prev:-150px;--sx-next:150px;--ghost-s:.62;--ghost-o:.38;--ghost-b:1.2px;--badge-p:5px 10px;--badge-fs:8.5px;--name-fs:27px;--name-mt:12px;--claim-fs:13px;--claim-mt:9px;--legal-fs:7.5px;--arrow-x:10px;--arrow-y:125px;--promo-p:5px 11px;--promo-fs:8.5px;--h2-fs:24px;--h2-mt:10px;--cta2-mt:14px;--domain-fs:10px;--domain-mt:10px;--lx:0px;--ly:0px;--lg:96px;--ls:.78;--mid:2;--logo-h:46px;--logo-w:260px}
+.ad{--mark:30px;--wm:17px;--ws:7.5px;--bg-gap:9px;--bw:126px;--bt:20px;--ox:190px;--oy:125px;--sx-prev:-150px;--sx-next:150px;--ghost-s:.62;--ghost-o:.38;--ghost-b:1.2px;--badge-p:5px 10px;--badge-fs:8.5px;--name-fs:27px;--name-mt:12px;--claim-fs:13px;--claim-mt:9px;--legal-fs:7.5px;--arrow-x:10px;--arrow-y:125px;--promo-p:5px 11px;--promo-fs:8.5px;--h2-fs:24px;--h2-mt:10px;--cta2-mt:14px;--domain-fs:10px;--domain-mt:10px;--lx:0px;--ly:0px;--lg:96px;--ls:.78;--mid:2;--logo-h:42px;--logo-w:250px;--plate-p:6px 10px}
+.ad-photo.ad-wide{--pw:200px;--ph:200px;--ox:190px;--oy:125px;--sx-prev:-150px;--sx-next:150px;--ghost-s:.55;--lg:118px;--ls:.56}
 .glow{width:300px;height:300px;left:360px;top:-30px}
 .brand{left:36px;top:36px}
 .ad[data-phase=intro] .brand{transform:translate(40px,30px) scale(1.15)}
@@ -320,11 +332,15 @@ function render(key, data, assets) {
   // Logo: gerçek logo varsa yaprak işareti + yazı yerine onu kullan; 300x250 açılışında ortalamak için genişliğe göre kaydırma hesapla.
   let brandInner = `${MARK}<div class="word"><b>${esc(B.name)}</b><small>${esc(B.by)}</small></div>`;
   let logoCss = '';
+  let brandClass = 'brand';
+  const photoMode = Object.keys(A.products).length > 0;
   if (A.logo) {
     brandInner = `<img class="logo${A.logo.invert ? ' invert' : ''}" src="${A.logo.uri}" alt="${esc(B.name)}">`;
-    const LOGO = { rect: [28, 160], tall: [44, 200], wide: [46, 260] }[s.layout];
-    const lw = Math.min(LOGO[1], LOGO[0] * (A.logo.aspect || 4));
+    const LOGO = { rect: [26, 150, 14], tall: [40, 200, 20], wide: [42, 250, 20] }[s.layout];
+    const plate = A.logo.plate !== false && !A.logo.invert; // koyu logo → beyaz plaka
+    const lw = Math.min(LOGO[1], LOGO[0] * (A.logo.aspect || 4)) + (plate ? LOGO[2] : 0);
     if (s.layout === 'rect') logoCss = `.ad[data-phase=intro] .brand{transform:translate(${(136 - lw * 0.725).toFixed(1)}px,36px) scale(1.45)}`;
+    brandClass += plate ? ' plate' : '';
   }
 
   const leaves = s.layout === 'wide'
@@ -351,11 +367,11 @@ function render(key, data, assets) {
 <style>${css}</style>
 </head>
 <body>
-<div id="ad" class="ad ad-${s.layout}" data-phase="boot" role="link" tabindex="0" aria-label="${esc(B.name)} – ${esc(B.intro)}">
+<div id="ad" class="ad ad-${s.layout}${photoMode ? ' ad-photo' : ''}" data-phase="boot" role="link" tabindex="0" aria-label="${esc(B.name)} – ${esc(B.intro)}">
   <div class="bg"></div>
   <div class="glow"></div>
   <div class="leaves">${leaves}</div>
-  <div class="brand">${brandInner}</div>
+  <div class="${brandClass}">${brandInner}</div>
   <div class="intro"><h1>${introWords}</h1><p>${esc(B.intro)}</p></div>
   ${headline}
   <div class="stage" style="--mid:${((n - 1) / 2).toFixed(2)}">
