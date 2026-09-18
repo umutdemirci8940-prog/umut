@@ -13,7 +13,7 @@ const { chromium } = require('playwright');
 const args = Object.fromEntries(process.argv.slice(2).map((a) => { const m = a.match(/^--([^=]+)=(.*)$/); return m ? [m[1], m[2]] : [a.replace(/^--/, ''), true]; }));
 const root = path.join(__dirname, '..');
 const SRC = path.resolve(root, args.src || 'assets/daikin/products/8-emura-9000-btu-h-a-ftxj25aw9-inverter-klima-r32/img-5-900.png');
-const OUT = path.join(root, 'assets', 'daikin', String(args.out || 'unit-emura'));
+const OUT = path.resolve(root, String(args.out || 'assets/daikin/unit-emura'));
 const WIDTH = +args.width || 800;
 
 (async () => {

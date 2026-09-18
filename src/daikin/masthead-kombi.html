@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=970,height=250">
+<meta name="viewport" content="width=970, initial-scale=1">
+<title>Daikin Kombi – Sıcaklığı Evinde Hisset · 970×250 Masthead</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<script>
+  /* Reklam ağı (Google Ads / DCM) clickTag tanımlarsa o kullanılır; yoksa daikin.com.tr kombi sayfası. */
+  var clickTag = window.clickTag || '{{CLICK_URL}}';
+</script>
+<style>
+  :root{
+    --daikin:#009ae5;        /* daikin.com.tr ana mavi */
+    --daikin-dark:#0079b8;
+    --orange:#e7882e;        /* daikin.com.tr CTA turuncusu */
+    --ember:#ff9a3c;
+    --gold:#ffd28a;
+    --cream:#fff4e2;
+    --font:'Open Sans','Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  }
+  html,body{margin:0;padding:0;background:#1a0d06;}
+  body{min-height:100vh;display:grid;place-items:center;}
+
+  /* ---------- Reklam çerçevesi ---------- */
+  #ad{
+    position:relative;width:970px;height:250px;overflow:hidden;
+    font-family:var(--font);color:#fff;cursor:pointer;
+    user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;
+    isolation:isolate;outline:none;background:#c9dcee;
+  }
+  #ad:focus-visible{box-shadow:0 0 0 3px var(--daikin);}
+  #ad > *{position:absolute;}
+
+  /* ---------- Arka planlar: soğuk → sıcak geçişi ---------- */
+  .bg{inset:0;}
+  .bg-cold{
+    z-index:0;
+    background:
+      radial-gradient(640px 320px at 18% -10%, rgba(255,255,255,.95), rgba(255,255,255,0) 60%),
+      radial-gradient(520px 280px at 85% 110%, rgba(120,170,220,.7), rgba(120,170,220,0) 62%),
+      linear-gradient(112deg,#eef5fb 0%,#c6dbee 42%,#8fb6da 100%);
+  }
+  .bg-warm{
+    z-index:1;opacity:0;
+    background:
+      radial-gradient(560px 320px at {{GLOW_X}}px {{GLOW_Y}}px, rgba(255,170,80,.75), rgba(255,140,50,0) 62%),
+      radial-gradient(700px 360px at 4% 115%, rgba(255,120,40,.35), rgba(255,120,40,0) 60%),
+      linear-gradient(110deg,#1f0c05 0%,#5e2408 40%,#c95a1c 78%,#f7a950 100%);
+    transition:opacity 2.8s ease;
+  }
+  #ad.is-warm .bg-warm{opacity:1;}
+
+  /* kombiden yayılan sıcak ışık */
+  .warmglow{
+    z-index:2;left:{{GLOW_X}}px;top:{{GLOW_Y}}px;width:900px;height:900px;margin:-450px 0 0 -450px;border-radius:50%;pointer-events:none;
+    background:radial-gradient(circle, rgba(255,205,130,.55) 0%, rgba(255,160,70,.28) 22%, rgba(255,120,40,0) 52%);
+    opacity:0;transform:scale(.3);transition:opacity 1.6s ease, transform 2.4s cubic-bezier(.2,.8,.2,1);mix-blend-mode:screen;
+  }
+  #ad.is-on .warmglow{opacity:1;transform:scale(1);animation:breathe 4s ease-in-out infinite 2.4s;}
+  @keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+
+  /* sıcak hava titremesi (sıcak fazda) */
+  .haze{
+    z-index:2;inset:0;opacity:0;pointer-events:none;
+    background:repeating-linear-gradient(180deg, rgba(255,255,255,0) 0 9px, rgba(255,230,200,.16) 9px 11px);
+    filter:url(#heat);transition:opacity 2s ease;mix-blend-mode:overlay;
+  }
+  #ad.is-warm .haze{opacity:.5;}
+
+  /* ---------- Parçacık tuvali (kar, sıcak hava, korlar) ---------- */
+  #air{z-index:3;left:0;top:0;width:970px;height:250px;pointer-events:none;}
+
+  .warmflash{
+    z-index:4;inset:0;opacity:0;pointer-events:none;
+    background:radial-gradient(circle at {{ORIGIN_CX}}px {{ORIGIN_CY}}px, rgba(255,240,210,.55), rgba(255,190,110,.22) 28%, rgba(255,190,110,0) 60%);
+  }
+  #ad.gusting .warmflash{animation:flash 1.1s ease-out;}
+  @keyframes flash{0%{opacity:0}18%{opacity:1}100%{opacity:0}}
+
+  /* ---------- Buz kristalleri: başta var, ısınınca erir ---------- */
+  .frost{z-index:2;left:0;top:0;width:970px;height:250px;pointer-events:none;overflow:visible;}
+  .frost path{
+    fill:none;stroke:rgba(255,255,255,.85);stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;
+    stroke-dasharray:var(--len,1000);stroke-dashoffset:0;
+    transition:stroke-dashoffset 3.2s cubic-bezier(.6,0,.4,1), opacity 2s ease;
+  }
+  #ad.is-warm .frost path{stroke-dashoffset:calc(var(--len,1000) * -1);opacity:0;}
+  .frostglass{
+    z-index:4;inset:0;opacity:1;pointer-events:none;
+    box-shadow:inset 0 0 80px rgba(255,255,255,.55), inset 0 0 24px rgba(255,255,255,.35);
+    transition:opacity 2.6s ease;
+  }
+  #ad.is-warm .frostglass{opacity:0;}
+
+  /* ---------- Marka: gerçek daikin.com.tr logosu ---------- */
+  .plate{
+    z-index:7;left:36px;top:18px;width:132px;height:36px;border-radius:5px;background:#fff;
+    display:grid;place-items:center;box-shadow:0 6px 18px rgba(20,30,60,.22);
+  }
+  .plate svg{width:110px;height:23px;display:block;}
+  .eyebrow{
+    z-index:7;left:182px;top:29px;font:700 11px/1 var(--font);letter-spacing:1.6px;text-transform:uppercase;
+    color:#1f3d63;text-shadow:none;white-space:nowrap;transition:color 2s ease, text-shadow 2s ease;
+  }
+  #ad.is-warm .eyebrow{color:rgba(255,255,255,.9);text-shadow:0 2px 8px rgba(80,30,0,.35);}
+
+  /* ---------- Sol metin bloğu ---------- */
+  .hot{z-index:6;left:40px;top:56px;transition:opacity .55s ease, transform .6s ease, filter .55s ease;}
+  .bigtemp{
+    font:800 92px/1 var(--font);letter-spacing:-3px;color:#1f3d63;
+    text-shadow:0 10px 30px rgba(80,120,170,.35);transition:color 1.6s ease, text-shadow 1.6s ease;
+    display:flex;align-items:flex-start;
+  }
+  .bigtemp .deg{font-size:44px;line-height:1;margin:8px 0 0 2px;letter-spacing:0;}
+  #ad.is-warm .bigtemp{color:var(--cream);text-shadow:0 0 30px rgba(255,190,100,.8), 0 12px 34px rgba(120,40,0,.5);}
+  .hotline{margin:6px 0 0 4px;font:700 17px/1.2 var(--font);color:#1f3d63;position:relative;height:22px;transition:color 1.6s ease;}
+  #ad.is-warm .hotline{color:#fff;}
+  .hotline span{position:absolute;left:0;top:0;white-space:nowrap;transition:opacity .5s ease, transform .5s ease;}
+  .hotline .b{opacity:0;transform:translateY(8px);}
+  #ad.is-warm .hotline .a{opacity:0;transform:translateY(-8px);}
+  #ad.is-warm .hotline .b{opacity:1;transform:none;}
+  #ad.hide-hot .hot{opacity:0;transform:translateX(-18px);filter:blur(8px);pointer-events:none;}
+
+  .copy{z-index:6;left:40px;top:66px;width:540px;pointer-events:none;}
+  .hl{margin:0;font:800 38px/1.06 var(--font);letter-spacing:-.6px;text-shadow:0 8px 28px rgba(90,30,0,.4);}
+  .hl .w{display:inline-block;opacity:0;transform:translate(30px,4px);filter:blur(10px);
+    transition:opacity .55s ease, transform .9s cubic-bezier(.2,.9,.2,1), filter .8s ease;transition-delay:calc(var(--i) * .13s);}
+  #ad.show-head .hl .w{opacity:1;transform:none;filter:blur(0);}
+  .hl .warm{
+    background:linear-gradient(100deg,#fff 0%,#ffd89a 28%,#fff 48%,#ffbe6a 66%,#fff 100%);
+    background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+    animation:glint 4.5s linear infinite;
+  }
+  @keyframes glint{0%{background-position:120% 0}100%{background-position:-120% 0}}
+  #ad.gusting .hl{animation:glow .9s ease;}
+  @keyframes glow{0%{filter:none}30%{filter:brightness(1.3) drop-shadow(0 0 12px rgba(255,200,120,.8))}100%{filter:none}}
+  .sub{
+    margin:9px 0 0 2px;font:600 14.5px/1.35 var(--font);color:#fff1dc;white-space:nowrap;
+    opacity:0;transform:translateY(10px);transition:opacity .6s ease .05s, transform .8s cubic-bezier(.2,.9,.2,1) .05s;
+  }
+  #ad.show-sub .sub{opacity:1;transform:none;}
+  .sub b{color:#fff;font-weight:800;}
+
+  /* CTA – Daikin mavisi (sıcak zeminde öne çıkar) */
+  .cta{
+    z-index:6;left:42px;top:190px;height:38px;padding:0 18px 0 20px;border-radius:4px;
+    display:inline-flex;align-items:center;gap:10px;background:var(--daikin);color:#fff;
+    font:800 13px var(--font);letter-spacing:.5px;text-transform:uppercase;box-shadow:0 10px 26px rgba(60,20,0,.35);
+    opacity:0;transform:translateY(12px);overflow:hidden;
+    transition:opacity .6s ease .25s, transform .8s cubic-bezier(.2,.9,.2,1) .25s, background .3s ease;
+  }
+  #ad.show-sub .cta{opacity:1;transform:none;}
+  .cta::after{
+    content:"";position:absolute;top:-40%;left:-60%;width:40%;height:180%;transform:rotate(18deg);
+    background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.4), rgba(255,255,255,0));
+    animation:sweep 4.2s ease-in-out infinite 2s;
+  }
+  @keyframes sweep{0%{left:-60%}35%{left:130%}100%{left:130%}}
+  .cta .arr{width:16px;height:16px;transition:transform .35s ease;}
+  #ad:hover .cta{background:var(--daikin-dark);}
+  #ad:hover .cta .arr{transform:translateX(4px);}
+
+  /* ---------- Ürün: gerçek Daikin kombi fotoğrafı (daikin.com.tr) ---------- */
+  .unit{
+    z-index:5;left:{{UNIT_LEFT}}px;top:{{UNIT_TOP}}px;width:{{UNIT_W}}px;height:auto;pointer-events:none;display:block;
+    filter:drop-shadow(0 22px 26px rgba(40,10,0,.45)) drop-shadow(0 4px 8px rgba(40,10,0,.3));
+    transform:translateX(44px);opacity:0;transition:transform 1.2s cubic-bezier(.2,.9,.2,1), opacity .9s ease;
+  }
+  #ad.unit-in .unit{transform:none;opacity:1;}
+  /* alev / ekran ışığı */
+  .flame{
+    z-index:6;left:{{FLAME_X}}px;top:{{FLAME_Y}}px;width:70px;height:70px;margin:-35px 0 0 -35px;border-radius:50%;pointer-events:none;
+    background:radial-gradient(circle, rgba(255,240,200,.95), rgba(255,170,70,.55) 30%, rgba(255,120,40,0) 68%);
+    opacity:0;transition:opacity .5s ease;mix-blend-mode:screen;
+  }
+  #ad.is-on .flame{opacity:1;animation:flicker 1.6s ease-in-out infinite;}
+  #ad.turbo .flame{animation-duration:.7s;filter:brightness(1.35);}
+  @keyframes flicker{0%,100%{transform:scale(1);opacity:1}30%{transform:scale(1.15);opacity:.8}60%{transform:scale(.95);opacity:1}80%{transform:scale(1.1);opacity:.85}}
+  /* kombi altındaki sıcak ışık şeridi */
+  .heatline{
+    z-index:6;left:{{ORIGIN_X1}}px;top:{{ORIGIN_Y1}}px;width:{{ORIGIN_LEN}}px;height:4px;border-radius:2px;pointer-events:none;
+    transform-origin:0 50%;transform:rotate({{ORIGIN_ANGLE}}deg);
+    background:linear-gradient(90deg, rgba(255,200,120,0), #ffd28a 15%, #fff 50%, #ffd28a 85%, rgba(255,200,120,0));
+    box-shadow:0 0 10px rgba(255,220,150,1), 0 0 26px rgba(255,150,60,1), 0 8px 36px rgba(255,120,40,.75);
+    opacity:0;transition:opacity .6s ease, filter .4s ease;
+  }
+  #ad.is-on .heatline{opacity:1;animation:heatPulse 3s ease-in-out infinite;}
+  #ad.turbo .heatline{filter:brightness(1.4);}
+  @keyframes heatPulse{0%,100%{opacity:1}50%{opacity:.65}}
+
+  /* ---------- İpucu, özellik çipleri, termostat, hale ---------- */
+  .hint{
+    z-index:7;left:336px;top:22px;height:28px;padding:0 12px 0 10px;border-radius:999px;pointer-events:none;
+    display:inline-flex;align-items:center;gap:7px;background:rgba(40,16,4,.55);border:1px solid rgba(255,255,255,.4);
+    color:#fff;font:700 11.5px var(--font);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+    opacity:0;transform:translateY(6px);transition:opacity .5s ease, transform .6s ease;white-space:nowrap;
+  }
+  #ad.show-hint .hint{opacity:1;transform:none;}
+  .hint svg{width:14px;height:14px;animation:cursorNudge 1.6s ease-in-out infinite;}
+  @keyframes cursorNudge{0%,100%{transform:translate(0,0)}50%{transform:translate(-4px,3px)}}
+
+  .chips{z-index:7;right:{{CHIPS_RIGHT}}px;top:204px;display:flex;gap:8px;pointer-events:none;}
+  .chip{
+    height:28px;padding:0 11px 0 9px;border-radius:999px;display:inline-flex;align-items:center;gap:6px;
+    background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.42);color:#fff;
+    font:700 11.5px var(--font);white-space:nowrap;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+    opacity:0;transform:translateY(10px);transition:opacity .6s ease, transform .8s cubic-bezier(.2,.9,.2,1);
+    transition-delay:calc(var(--i) * .12s);
+  }
+  .chip svg{width:13px;height:13px;fill:none;stroke:#ffd9a6;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+  .chip.blue{background:var(--daikin);border-color:rgba(255,255,255,.55);}
+  .chip.blue svg{stroke:#fff;}
+  #ad.show-chips .chip{opacity:1;transform:none;}
+  .chip.thermo{background:rgba(40,16,4,.62);gap:5px;font:800 13px var(--font);color:#ffd28a;text-shadow:0 0 8px rgba(255,190,100,.8);}
+  .chip.thermo .unitc{font-size:9px;margin:-6px 0 0;opacity:.9;}
+  .chip.thermo .mode{font:800 7.5px/1 var(--font);letter-spacing:.8px;color:#ffd9a6;text-shadow:none;padding:2px 4px;border-radius:3px;border:1px solid rgba(255,217,166,.55);margin-left:3px;}
+  #ad.turbo .chip.thermo .mode{background:#ffd28a;color:#3a1a05;border-color:#ffd28a;animation:modeBlink 1.2s ease-in-out infinite;}
+  @keyframes modeBlink{0%,100%{opacity:1}50%{opacity:.55}}
+  .fanbars{display:flex;flex-direction:column-reverse;gap:2px;width:6px;height:18px;margin-left:2px;}
+  .fanbars i{display:block;height:3px;border-radius:1px;background:#6b4a30;transition:background .3s ease, box-shadow .3s ease;}
+  #ad.is-on .fanbars i:nth-child(-n+2){background:#ffb85c;box-shadow:0 0 4px rgba(255,184,92,.9);}
+  #ad.turbo .fanbars i{background:#ffb85c;box-shadow:0 0 4px rgba(255,184,92,.9);}
+  #ad.turbo .fanbars i:nth-child(4){animation:barPulse .5s ease-in-out infinite;}
+  @keyframes barPulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+  .halo{
+    z-index:8;left:0;top:0;width:160px;height:160px;border-radius:50%;pointer-events:none;opacity:0;
+    background:radial-gradient(circle, rgba(255,235,200,.6) 0%, rgba(255,180,90,.3) 32%, rgba(255,120,40,0) 68%);
+    mix-blend-mode:screen;will-change:transform,opacity;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .cta::after,.hl .warm,.hint svg,.flame,.heatline,.warmglow,.chip.thermo .mode,.fanbars i{animation:none !important;}
+    #ad.gusting .hl,#ad.gusting .warmflash{animation:none !important;}
+    .hl .w,.sub,.cta,.chip,.unit,.frost path,.frostglass,.bg-warm,.warmglow{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="heat" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012 0.045" numOctaves="2" seed="7" result="n">
+        <animate attributeName="baseFrequency" values="0.012 0.045;0.016 0.06;0.012 0.045" dur="3.5s" repeatCount="indefinite"/>
+      </feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="14" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+</svg>
+
+<div id="ad" role="link" tabindex="0" aria-label="Daikin kombi – Sıcaklığı evinde hisset. Kombileri keşfet">
+  <div class="bg bg-cold"></div>
+  <div class="bg bg-warm"></div>
+  <div class="warmglow"></div>
+  <div class="haze"></div>
+
+  <svg class="frost" id="frost" viewBox="0 0 970 250" aria-hidden="true"></svg>
+  <canvas id="air" width="970" height="250" aria-hidden="true"></canvas>
+  <div class="warmflash"></div>
+  <div class="frostglass"></div>
+
+  <!-- Marka -->
+  <div class="plate" role="img" aria-label="Daikin">{{LOGO_SVG}}</div>
+  <div class="eyebrow">Doğru Hava Uzmanı</div>
+
+  <!-- Soğuk faz metni -->
+  <div class="hot" aria-hidden="true">
+    <div class="bigtemp"><span id="bigNum">3</span><span class="deg">°</span></div>
+    <div class="hotline"><span class="a">Soğuk mu bastırdı?</span><span class="b">Daikin devrede.</span></div>
+  </div>
+
+  <!-- Ana metin -->
+  <div class="copy">
+    <h1 class="hl">
+      <span class="w" style="--i:0">SICAKLIĞI</span><br>
+      <span class="w warm" style="--i:1">EVİNDE</span>
+      <span class="w" style="--i:2">HİSSET.</span>
+    </h1>
+    <p class="sub">{{SUB_HTML}}</p>
+  </div>
+  <div class="cta"><span>{{CTA_TEXT}}</span>
+    <svg class="arr" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg>
+  </div>
+
+  <!-- Ürün fotoğrafı (daikin.com.tr) -->
+  <img class="unit" src="{{UNIT_SRC}}" width="{{UNIT_W}}" height="{{UNIT_H}}" alt="{{UNIT_ALT}}">
+  <div class="flame"></div>
+  <div class="heatline"></div>
+
+  <!-- Etkileşim ipucu -->
+  <div class="hint" id="hint">
+    <svg viewBox="0 0 16 16" fill="#fff"><path d="M3 1.5 13 8l-4.2 1 2.4 4.2-1.8 1L7 10 3.6 13z"/></svg>
+    Fareni gezdir, sıcaklığı hisset
+  </div>
+
+  <!-- Özellik çipleri (daikin.com.tr ürün sayfasındaki bilgiler) -->
+  <div class="chips">
+    <div class="chip thermo" style="--i:0"><span id="dispNum">--</span><span class="unitc">°C</span><span class="mode" id="dispMode">HEAT</span><span class="fanbars"><i></i><i></i><i></i><i></i></span></div>
+    {{CHIPS_HTML}}
+  </div>
+
+  <div class="halo" id="halo"></div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var AD = document.getElementById('ad');
+  var W = 970, H = 250;
+  var REDUCE = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var $ = function(s){ return AD.querySelector(s); };
+  var canvas = $('#air'), ctx = canvas.getContext('2d');
+  var bigNum = $('#bigNum'), dispNum = $('#dispNum'), dispMode = $('#dispMode'), halo = $('#halo');
+
+  /* Sıcak hava çıkış çizgisi – ürün fotoğrafındaki gerçek konum, derleme sırasında hesaplanır */
+  var ORIGIN = { x1:{{ORIGIN_X1}}, y1:{{ORIGIN_Y1}}, x2:{{ORIGIN_X2}}, y2:{{ORIGIN_Y2}}, cx:{{ORIGIN_CX}}, cy:{{ORIGIN_CY}} };
+  var UNIT = { left:{{UNIT_LEFT}}, top:{{UNIT_TOP}}, w:{{UNIT_W}}, h:{{UNIT_H}} };
+  var T_COLD = {{T_COLD}}, T_WARM = {{T_WARM}};
+
+  /* ---------- Tuval ölçeği ---------- */
+  var dpr = 1;
+  function fit(){
+    dpr = Math.min(2, window.devicePixelRatio || 1);
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  fit(); window.addEventListener('resize', fit);
+
+  /* ---------- Buz kristali (dendrit) üretimi ---------- */
+  function fernPath(L, n){
+    var d = 'M0 0L' + L + ' 0', a = 58 * Math.PI / 180;
+    for (var i = 1; i <= n; i++){
+      var t = i / (n + 1), x = L * t, bl = L * 0.42 * (1 - t) + 6;
+      for (var s = -1; s <= 1; s += 2){
+        var ex = x + Math.cos(a) * bl, ey = s * Math.sin(a) * bl;
+        d += 'M' + x.toFixed(1) + ' 0L' + ex.toFixed(1) + ' ' + ey.toFixed(1);
+        var us = [0.4, 0.72];
+        for (var k = 0; k < us.length; k++){
+          var u = us[k], sx = x + Math.cos(a) * bl * u, sy = s * Math.sin(a) * bl * u, sl = bl * 0.34 * (1.15 - u);
+          d += 'M' + sx.toFixed(1) + ' ' + sy.toFixed(1) + 'L' + (sx + sl).toFixed(1) + ' ' + sy.toFixed(1);
+        }
+      }
+    }
+    return d;
+  }
+  (function buildFrost(){
+    var svg = $('#frost'), NS = 'http://www.w3.org/2000/svg';
+    var ferns = [
+      ['translate(-4 254) rotate(-48)', 170, 6],
+      ['translate(-6 236) rotate(-8)', 130, 4],
+      ['translate(30 256) rotate(-80)', 100, 4],
+      ['translate(-6 -4) rotate(40)', 150, 5],
+      ['translate(976 256) rotate(-135)', 150, 6],
+      ['translate(978 232) rotate(180)', 110, 4],
+      ['translate(974 -6) rotate(138)', 140, 5]
+    ];
+    ferns.forEach(function(f){
+      var p = document.createElementNS(NS, 'path');
+      p.setAttribute('d', fernPath(f[1], f[2]));
+      p.setAttribute('transform', f[0]);
+      svg.appendChild(p);
+      var len = 1000; try { len = Math.ceil(p.getTotalLength()); } catch(e){}
+      p.style.setProperty('--len', len);
+    });
+  })();
+
+  /* ---------- Durum ---------- */
+  var S = {
+    on:false, power:0, cold:1, turbo:0, turboGoal:0, gust:0, waveR:-1,
+    target:{x:380, y:200}, goal:{x:380, y:200}, pointer:null,
+    pulse:0, lastRing:0, lastPuff:0, hintDone:false, halo:{x:485, y:125}, t0:performance.now()
+  };
+  var streaks = [], mists = [], stars = [], rings = [], flakes = [];
+  var MAX_STREAK = 230, MAX_MIST = 90, MAX_STAR = 60, MAX_FLAKE = 170;
+
+  /* ---------- Sprite'lar ---------- */
+  function sprite(size, draw){ var c = document.createElement('canvas'); c.width = c.height = size; draw(c.getContext('2d'), size); return c; }
+  var MIST = sprite(128, function(g, s){
+    var r = s / 2, gr = g.createRadialGradient(r, r, 0, r, r, r);
+    gr.addColorStop(0, 'rgba(255,240,215,.95)'); gr.addColorStop(.3, 'rgba(255,215,160,.5)'); gr.addColorStop(1, 'rgba(255,190,120,0)');
+    g.fillStyle = gr; g.fillRect(0, 0, s, s);
+  });
+  var EMBER = sprite(48, function(g, s){
+    var c = s / 2, gr = g.createRadialGradient(c, c, 0, c, c, c);
+    gr.addColorStop(0, 'rgba(255,250,235,1)'); gr.addColorStop(.25, 'rgba(255,200,120,.6)'); gr.addColorStop(1, 'rgba(255,140,60,0)');
+    g.fillStyle = gr; g.fillRect(0, 0, s, s);
+  });
+  var FLAKE = sprite(32, function(g, s){
+    var c = s / 2, gr = g.createRadialGradient(c, c, 0, c, c, c);
+    gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(.45, 'rgba(255,255,255,.85)'); gr.addColorStop(1, 'rgba(255,255,255,0)');
+    g.fillStyle = gr; g.fillRect(0, 0, s, s);
+  });
+
+  /* ---------- Parçacık üreticileri ---------- */
+  function rnd(a, b){ return a + Math.random() * (b - a); }
+  function originPoint(){
+    var t = Math.random();
+    return { x: ORIGIN.x1 + (ORIGIN.x2 - ORIGIN.x1) * t + rnd(-2, 2), y: ORIGIN.y1 + (ORIGIN.y2 - ORIGIN.y1) * t + rnd(0, 5) };
+  }
+  function spawnStreak(){
+    var v = originPoint();
+    var ang = Math.PI + rnd(-0.75, 0.35), sp = rnd(1.4, 2.9);   // sola ve hafif yukarı (sıcak hava yükselir)
+    var r = Math.random();
+    streaks.push({ x:v.x, y:v.y, vx:Math.cos(ang) * sp, vy:Math.sin(ang) * sp, sp:sp, age:0, life:rnd(110, 170),
+      w:rnd(0.8, 1.9), wf:rnd(0.05, 0.11), wa:rnd(0.2, 0.7), ph:rnd(0, 6.28), h:[], c: r < 0.35 ? '255,170,80' : r < 0.7 ? '255,214,140' : '255,244,225', steer:rnd(0.028, 0.05) });
+  }
+  function spawnMist(x, y, big){
+    mists.push({ x:x, y:y, r: big ? rnd(14, 20) : rnd(8, 16), gr: big ? rnd(1.1, 1.6) : rnd(0.5, 0.9), vx:rnd(-1.2, -0.2), vy:rnd(-0.6, 0.2),
+      age:0, life: big ? rnd(30, 42) : rnd(90, 140), a: big ? rnd(0.08, 0.12) : rnd(0.12, 0.2), steer: big ? 0 : rnd(0.008, 0.016) });
+  }
+  function spawnStar(x, y, s){
+    stars.push({ x:x, y:y, vx:rnd(-0.5, 0.5), vy:rnd(-1.1, -0.2), age:0, life:rnd(30, 60), s:s || rnd(0.3, 0.7), ph:rnd(0, 6.28) });
+  }
+  function spawnRing(x, y){ rings.push({ x:x, y:y, r:6, age:0, life:38 }); }
+  function spawnFlake(){
+    flakes.push({ x:rnd(-10, W + 10), y:rnd(-14, -4), r:rnd(1.2, 3.4), vy:rnd(0.35, 1.1), vx:rnd(-0.25, 0.25), sw:rnd(0.3, 0.9), ph:rnd(0, 6.28), a:rnd(0.55, 0.95) });
+  }
+  for (var f0 = 0; f0 < 110; f0++){ spawnFlake(); flakes[flakes.length - 1].y = rnd(0, H); }
+
+  /* ---------- Hedef (imleç ya da otomatik salınım) ---------- */
+  function autoGoal(t){ return { x: 330 + 175 * Math.sin(t * 0.42), y: 150 + 58 * Math.sin(t * 0.69 + 1.3) }; }
+
+  /* ---------- Ana döngü ---------- */
+  var last = performance.now();
+  function frame(now){
+    var dt = Math.min(2.2, (now - last) / 16.667); last = now;
+    var t = (now - S.t0) / 1000;
+
+    if (S.pointer){
+      S.goal.x = S.pointer.x; S.goal.y = S.pointer.y;
+      if (S.pointer.x > UNIT.left - 10){ S.goal.x = UNIT.left - 30; }
+    } else { var g = autoGoal(t); S.goal.x = g.x; S.goal.y = g.y; }
+    S.target.x += (S.goal.x - S.target.x) * 0.09 * dt;
+    S.target.y += (S.goal.y - S.target.y) * 0.09 * dt;
+    S.turbo += (S.turboGoal - S.turbo) * 0.06 * dt;
+    if (S.on){ S.power = Math.min(1, S.power + 0.011 * dt); S.cold = Math.max(0, S.cold - 0.006 * dt); }
+    S.gust = Math.max(0, S.gust - 0.012 * dt);
+    S.pulse = Math.max(0, S.pulse - 0.05 * dt);
+
+    // hale
+    var hx = S.pointer ? S.pointer.x : S.target.x, hy = S.pointer ? S.pointer.y : S.target.y;
+    S.halo.x += (hx - S.halo.x) * 0.2 * dt; S.halo.y += (hy - S.halo.y) * 0.2 * dt;
+    halo.style.opacity = (S.turbo * 0.95).toFixed(3);
+    halo.style.transform = 'translate(' + (S.halo.x - 80).toFixed(1) + 'px,' + (S.halo.y - 80).toFixed(1) + 'px) scale(' + (0.85 + 0.3 * S.pulse + 0.05 * Math.sin(t * 5)).toFixed(3) + ')';
+
+    // üretim
+    var boost = 1 + 1.3 * S.turbo + 1.6 * S.gust;
+    var rate = 2.0 * S.power * boost * dt;
+    for (var n = rate; n > 0; n--) if (Math.random() < Math.min(1, n) && streaks.length < MAX_STREAK) spawnStreak();
+    if (S.power > 0.2 && Math.random() < 0.38 * S.power * boost * dt && mists.length < MAX_MIST){ var mv = originPoint(); spawnMist(mv.x, mv.y + 4, false); }
+    if (S.power > 0.5 && Math.random() < 0.08 * boost * dt && stars.length < MAX_STAR) spawnStar(rnd(ORIGIN.x1 - 120, ORIGIN.x2), rnd(ORIGIN.y1 - 30, ORIGIN.y1 + 40));
+    if (Math.random() < 1.6 * S.cold * dt && flakes.length < MAX_FLAKE) spawnFlake();
+
+    ctx.clearRect(0, 0, W, H);
+
+    // sıcak dalga (esinti)
+    if (S.waveR >= 0){
+      S.waveR += 10 * dt;
+      var wa = 0.22 * (1 - S.waveR / 1000);
+      if (wa <= 0){ S.waveR = -1; }
+      else {
+        ctx.save(); ctx.globalCompositeOperation = 'lighter';
+        ctx.strokeStyle = 'rgba(255,215,160,' + wa.toFixed(3) + ')'; ctx.lineWidth = 70;
+        ctx.beginPath(); ctx.arc(ORIGIN.cx, ORIGIN.cy, S.waveR, 0, Math.PI * 2); ctx.stroke();
+        ctx.strokeStyle = 'rgba(255,245,225,' + (wa * 0.7).toFixed(3) + ')'; ctx.lineWidth = 16;
+        ctx.beginPath(); ctx.arc(ORIGIN.cx, ORIGIN.cy, S.waveR * 0.82 + 10, 0, Math.PI * 2); ctx.stroke();
+        ctx.restore();
+      }
+    }
+
+    // sıcak buğu
+    ctx.save(); ctx.globalCompositeOperation = 'lighter';
+    for (var i = mists.length - 1; i >= 0; i--){
+      var m = mists[i]; m.age += dt;
+      if (m.age >= m.life){ mists.splice(i, 1); continue; }
+      if (m.steer){
+        var dx = S.target.x - m.x, dy = S.target.y - m.y, d = Math.hypot(dx, dy) || 1, ms = 1.4 * (1 + 0.6 * S.turbo + 0.8 * S.gust);
+        m.vx += (dx / d * ms - m.vx) * m.steer * dt; m.vy += (dy / d * ms - m.vy) * m.steer * dt;
+      }
+      m.x += m.vx * dt; m.y += m.vy * dt; m.r += m.gr * dt;
+      var p = m.age / m.life, al = m.a * Math.sin(Math.PI * p) * (m.steer ? S.power : 1);
+      ctx.globalAlpha = al;
+      ctx.drawImage(MIST, m.x - m.r, m.y - m.r, m.r * 2, m.r * 2);
+    }
+    ctx.restore();
+
+    // sıcak hava çizgileri
+    ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    var speedK = 1 + 0.65 * S.turbo + 0.9 * S.gust;
+    for (i = streaks.length - 1; i >= 0; i--){
+      var s = streaks[i]; s.age += dt;
+      var tdx = S.target.x - s.x, tdy = S.target.y - s.y, td = Math.hypot(tdx, tdy) || 1;
+      var want = s.sp * speedK;
+      var st = s.steer * (1 + 0.8 * S.turbo) * dt;
+      s.vx += (tdx / td * want - s.vx) * st; s.vy += (tdy / td * want - s.vy) * st - 0.004 * dt;   // sıcak hava hafifçe yükselir
+      var vm = Math.hypot(s.vx, s.vy) || 1, px = -s.vy / vm, py = s.vx / vm;
+      var wob = Math.sin(now * 0.001 * s.wf * 60 + s.ph) * s.wa;
+      s.x += (s.vx + px * wob) * dt; s.y += (s.vy + py * wob) * dt;
+      s.h.push(s.x, s.y); if (s.h.length > 20) s.h.splice(0, 2);
+      var hit = td < 16;
+      if (hit || s.age > s.life || s.x < -30 || s.x > W + 30 || s.y > H + 30 || s.y < -30){
+        if (hit){
+          S.pulse = Math.min(1, S.pulse + 0.35);
+          if (now - S.lastRing > 240){ S.lastRing = now; spawnRing(S.target.x, S.target.y); for (var q = 0; q < 3; q++) spawnStar(S.target.x + rnd(-14, 14), S.target.y + rnd(-14, 14)); }
+          if (now - S.lastPuff > 260 && mists.length < MAX_MIST){ S.lastPuff = now; spawnMist(S.target.x + rnd(-10, 10), S.target.y + rnd(-6, 6), true); }
+        }
+        streaks.splice(i, 1); continue;
+      }
+      var fade = Math.min(1, s.age / 9) * Math.min(1, (s.life - s.age) / 22) * Math.min(1, (td - 16) / 40 + 0.15) * S.power;
+      var L = s.h.length / 2;
+      for (var j = 1; j < L; j++){
+        var f = j / L;
+        ctx.strokeStyle = 'rgba(' + s.c + ',' + (fade * f * 0.85).toFixed(3) + ')';
+        ctx.lineWidth = s.w * (0.35 + f * 1.1);
+        ctx.beginPath(); ctx.moveTo(s.h[(j - 1) * 2], s.h[(j - 1) * 2 + 1]); ctx.lineTo(s.h[j * 2], s.h[j * 2 + 1]); ctx.stroke();
+      }
+    }
+
+    // halkalar ("yüze/ele dokunan sıcaklık")
+    for (i = rings.length - 1; i >= 0; i--){
+      var r = rings[i]; r.age += dt;
+      if (r.age >= r.life){ rings.splice(i, 1); continue; }
+      var rp = r.age / r.life;
+      ctx.strokeStyle = 'rgba(255,225,180,' + (0.55 * (1 - rp)).toFixed(3) + ')';
+      ctx.lineWidth = 2.2 * (1 - rp) + 0.4;
+      ctx.beginPath(); ctx.arc(r.x, r.y, 6 + 58 * (1 - Math.pow(1 - rp, 3)), 0, Math.PI * 2); ctx.stroke();
+    }
+
+    // korlar (yükselen sıcak kıvılcımlar)
+    ctx.save(); ctx.globalCompositeOperation = 'lighter';
+    for (i = stars.length - 1; i >= 0; i--){
+      var k = stars[i]; k.age += dt;
+      if (k.age >= k.life){ stars.splice(i, 1); continue; }
+      k.x += (k.vx + Math.sin(k.age * 0.15 + k.ph) * 0.3) * dt; k.y += k.vy * dt;
+      var kp = k.age / k.life, ka = Math.sin(Math.PI * kp), ks = 48 * k.s * (0.6 + 0.4 * ka);
+      ctx.globalAlpha = ka * 0.95;
+      ctx.drawImage(EMBER, k.x - ks / 2, k.y - ks / 2, ks, ks);
+    }
+    ctx.restore();
+
+    // kar taneleri: soğukta yağar, ısınınca ve imlecin yakınında erir
+    for (i = flakes.length - 1; i >= 0; i--){
+      var fl = flakes[i];
+      fl.y += fl.vy * dt; fl.x += (fl.vx + Math.sin(now * 0.001 * fl.sw + fl.ph) * 0.35) * dt;
+      var fdx = fl.x - hx, fdy = fl.y - hy, fd = Math.hypot(fdx, fdy);
+      if (S.turbo > 0.2 && fd < 90) fl.r -= (0.09 + 0.06 * S.turbo) * (1 - fd / 90) * dt * 3;
+      if (S.cold < 1) fl.r -= 0.012 * (1 - S.cold) * dt;
+      if (fl.r <= 0.25 || fl.y > H + 8){ flakes.splice(i, 1); continue; }
+      ctx.globalAlpha = fl.a * Math.min(1, fl.r / 1.2);
+      var fs = fl.r * 2.6;
+      ctx.drawImage(FLAKE, fl.x - fs / 2, fl.y - fs / 2, fs, fs);
+    }
+    ctx.globalAlpha = 1;
+
+    requestAnimationFrame(frame);
+  }
+
+  /* ---------- Zaman çizelgesi ---------- */
+  function at(ms, fn){ if (REDUCE) fn(); else setTimeout(fn, ms); }
+  function countup(from, to, dur){
+    var t0 = performance.now();
+    (function step(){
+      var p = Math.min(1, (performance.now() - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+      var v = Math.round(from + (to - from) * e);
+      bigNum.textContent = v; dispNum.textContent = v;
+      if (p < 1) requestAnimationFrame(step);
+    })();
+  }
+  function gust(){
+    if (document.hidden || REDUCE) return;
+    S.gust = 1; S.waveR = 0;
+    AD.classList.remove('gusting'); void AD.offsetWidth; AD.classList.add('gusting');
+    setTimeout(function(){ AD.classList.remove('gusting'); }, 1200);
+  }
+
+  at(150, function(){ AD.classList.add('unit-in'); });
+  at(1300, function(){ S.on = true; AD.classList.add('is-on'); dispNum.textContent = String(T_COLD); });
+  at(1700, function(){ AD.classList.add('is-warm'); if (REDUCE){ bigNum.textContent = String(T_WARM); dispNum.textContent = String(T_WARM); } else countup(T_COLD, T_WARM, 2200); });
+  at(3600, function(){ AD.classList.add('hide-hot'); });
+  at(3900, function(){ AD.classList.add('show-head'); });
+  at(4900, function(){ AD.classList.add('show-sub'); });
+  at(5300, function(){ AD.classList.add('show-chips'); });
+  at(6000, function(){ if (!S.hintDone) AD.classList.add('show-hint'); });
+  at(10000, function(){ AD.classList.remove('show-hint'); });
+  if (!REDUCE){
+    setTimeout(function(){ gust(); setInterval(gust, 7000); }, 6800);
+    requestAnimationFrame(frame);
+  } else {
+    S.power = 1; S.cold = 0;
+  }
+
+  /* ---------- Etkileşim ---------- */
+  function toLocal(e){
+    var r = AD.getBoundingClientRect(), k = W / (r.width || W);
+    return { x:(e.clientX - r.left) * k, y:(e.clientY - r.top) * k };
+  }
+  function hideHint(){ S.hintDone = true; AD.classList.remove('show-hint'); }
+  function turboOn(){ S.turboGoal = 1; AD.classList.add('turbo'); dispMode.textContent = 'BOOST'; }
+  function turboOff(){ S.pointer = null; S.turboGoal = 0; AD.classList.remove('turbo'); dispMode.textContent = 'HEAT'; }
+  var touchTimer = null;
+  AD.addEventListener('pointermove', function(e){
+    if (e.pointerType === 'touch') return;
+    S.pointer = toLocal(e); turboOn(); hideHint();
+  });
+  AD.addEventListener('pointerleave', turboOff);
+  AD.addEventListener('pointerdown', function(e){
+    if (e.pointerType !== 'touch') return;
+    S.pointer = toLocal(e); turboOn(); hideHint();
+    clearTimeout(touchTimer); touchTimer = setTimeout(turboOff, 2600);
+  }, { passive:true });
+
+  function exit(){
+    if (window.Enabler && typeof window.Enabler.exit === 'function'){ window.Enabler.exit('CTA'); return; }
+    window.open(clickTag, '_blank');
+  }
+  AD.addEventListener('click', exit);
+  AD.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); exit(); } });
+})();
+</script>
+</body>
+</html>
