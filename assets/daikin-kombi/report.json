@@ -1,0 +1,1266 @@
+{
+  "fetchedAt": "2026-09-18T23:16:49.215Z",
+  "bases": [
+    "https://www.daikin.com.tr"
+  ],
+  "base": "https://www.daikin.com.tr",
+  "homepage": {
+    "url": "https://www.daikin.com.tr/",
+    "via": "fetch",
+    "bytes": 153153,
+    "title": "Daikin | Doğru Hava Uzmanı",
+    "ogImage": "https://www.daikin.com.tr/~%20/Content/img/facebook_ogp.jpg",
+    "themeColor": "white"
+  },
+  "logo": [
+    {
+      "how": "dom-img",
+      "alt": "Daikin",
+      "rendered": "96x20@30,30",
+      "src": "https://st-daikin.mncdn.com/Content/img/icons/daikin-logo.svg",
+      "file": "assets/daikin-kombi/logo/logo-1.svg",
+      "bytes": 3556,
+      "width": 170,
+      "height": 36,
+      "type": "svg"
+    },
+    {
+      "how": "icon",
+      "src": "https://st-daikin.mncdn.com/Content/img/favicons/32.png",
+      "file": "assets/daikin-kombi/logo/logo-2.png",
+      "bytes": 1206,
+      "width": 32,
+      "height": 32,
+      "type": "png",
+      "alpha": true,
+      "small": {
+        "png": "assets/daikin-kombi/logo/logo-2-900.png",
+        "webp": "assets/daikin-kombi/logo/logo-2-900.webp",
+        "pngBytes": 2117,
+        "webpBytes": 414
+      },
+      "trim": {
+        "png": "assets/daikin-kombi/logo/logo-2-trim.png",
+        "width": 32,
+        "height": 32,
+        "bytes": 2117
+      }
+    },
+    {
+      "how": "apple-touch-icon",
+      "src": "https://st-daikin.mncdn.com/Content/img/favicons/180.png?v=r4n2e290",
+      "file": "assets/daikin-kombi/logo/logo-3.png",
+      "bytes": 2620,
+      "width": 180,
+      "height": 180,
+      "type": "png",
+      "alpha": true,
+      "small": {
+        "png": "assets/daikin-kombi/logo/logo-3-900.png",
+        "webp": "assets/daikin-kombi/logo/logo-3-900.webp",
+        "pngBytes": 12036,
+        "webpBytes": 1832
+      },
+      "trim": {
+        "png": "assets/daikin-kombi/logo/logo-3-trim.png",
+        "width": 180,
+        "height": 180,
+        "bytes": 12036
+      }
+    }
+  ],
+  "css": [
+    {
+      "url": "https://st-daikin.mncdn.com/Public/css/critical.css?v=r4n2e290",
+      "bytes": 11732,
+      "topColors": [
+        [
+          "#009ae5",
+          5
+        ],
+        [
+          "#b4b4b4",
+          5
+        ],
+        [
+          "#007bff",
+          3
+        ],
+        [
+          "#dc3545",
+          2
+        ],
+        [
+          "#ffc107",
+          2
+        ],
+        [
+          "#28a745",
+          2
+        ],
+        [
+          "#17a2b8",
+          2
+        ],
+        [
+          "#6c757d",
+          2
+        ],
+        [
+          "#343a40",
+          2
+        ],
+        [
+          "#212529",
+          2
+        ]
+      ]
+    },
+    {
+      "url": "https://st-daikin.mncdn.com/Public/css/critical.mobile.css?v=r4n2e290",
+      "bytes": 10777,
+      "topColors": [
+        [
+          "#009ae5",
+          5
+        ],
+        [
+          "#b4b4b4",
+          5
+        ],
+        [
+          "#007bff",
+          3
+        ],
+        [
+          "#dc3545",
+          2
+        ],
+        [
+          "#ffc107",
+          2
+        ],
+        [
+          "#28a745",
+          2
+        ],
+        [
+          "#17a2b8",
+          2
+        ],
+        [
+          "#6c757d",
+          2
+        ],
+        [
+          "#343a40",
+          2
+        ],
+        [
+          "#212529",
+          2
+        ]
+      ]
+    },
+    {
+      "url": "https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css",
+      "bytes": 4064,
+      "topColors": []
+    }
+  ],
+  "sitemap": {
+    "urls": 909,
+    "matched": [
+      "25.2 https://www.daikin.com.tr/ndj-premix-24-kw-d2cnd024-tam-yogusmali-kombi_182907?d=11802",
+      "25.2 https://www.daikin.com.tr/ndj-premix-28-kw-d2cnd028-tam-yogusmali-kombi_182908?d=11802",
+      "25.2 https://www.daikin.com.tr/ndj-premix-35-kw-d2cnd035-tam-yogusmali-kombi_182909?d=11802",
+      "25.2 https://www.daikin.com.tr/ndj-t-premix-24-kw-d2tnd024-tam-yogusmali-kombi_182913?d=11803",
+      "25.2 https://www.daikin.com.tr/ndj-t-premix-28-kw-d2tnd028-tam-yogusmali-kombi_182914?d=11803",
+      "25.2 https://www.daikin.com.tr/ndj-t-premix-35-kw-d2tnd035-tam-yogusmali-kombi_182915?d=11803",
+      "25.2 https://www.daikin.com.tr/ndj-smart-premix-24-kw-d2cnd024-tam-yogusmali-kombi_183265?d=11902",
+      "25.2 https://www.daikin.com.tr/ndj-smart-premix-28-kw-d2cnd028-tam-yogusmali-kombi_183266?d=11902",
+      "25.2 https://www.daikin.com.tr/ndj-smart-premix-35-kw-d2cnd035-tam-yogusmali-kombi_183267?d=11902",
+      "18.2 https://www.daikin.com.tr/vz-premix-30-kw-d2cpx030-tam-yogusmali-kombi_182911?d=11722",
+      "18.2 https://www.daikin.com.tr/csu-premix-24-kw-d2cnl024-tam-yogusmali-kombi_183215?d=11722",
+      "18.2 https://www.daikin.com.tr/vz-premix-26-kw-d2cpx026-tam-yogusmali-kombi_183226?d=11801",
+      "18.2 https://www.daikin.com.tr/vz-premix-36-kw-d2cpx036-tam-yogusmali-kombi_183273?d=11801",
+      "18.2 https://www.daikin.com.tr/icon-premix-d2cic020-tam-yogusmali-kombi_183299?d=11919",
+      "18.2 https://www.daikin.com.tr/vz-premix-42-kw-d2cpx042-tam-yogusmali-kombi_183387?d=11722",
+      "16.2 https://www.daikin.com.tr/premix-vz-23-kw-tam-yogusmali-kombi_183222?d=11801",
+      "16.2 https://www.daikin.com.tr/airfel-maestro-comfort-premix-tam-yogusmali-24-kw-kombi_183294?d=11925",
+      "16.2 https://www.daikin.com.tr/airfel-maestro-comfort-premix-tam-yogusmali-28-kw-kombi_183295?d=11925",
+      "16.2 https://www.daikin.com.tr/airfel-maestro-power-premix-tam-yogusmali-23-kw-kombi_183296?d=11925",
+      "16.2 https://www.daikin.com.tr/airfel-maestro-power-premix-tam-yogusmali-26-kw-kombi_183297?d=11925",
+      "16.2 https://www.daikin.com.tr/airfel-maestro-power-premix-tam-yogusmali-30-kw-kombi_183405?d=11925",
+      "16.2 https://www.daikin.com.tr/airfel-maestro-power-premix-tam-yogusmali-36-kw-kombi_183406?d=11925",
+      "16.0 https://www.daikin.com.tr/kombiler/tam-yogusmali-premix-vz",
+      "16.0 https://www.daikin.com.tr/kombiler/tam-yogusmali-premix-ndj",
+      "16.0 https://www.daikin.com.tr/kombiler/tam-yogusmali-premix-ndj-t",
+      "16.0 https://www.daikin.com.tr/kombiler/tam-yogusmali-smart-premix-ndj",
+      "16.0 https://www.daikin.com.tr/kombiler/tam-yogusmali-icon-premix",
+      "14.2 https://www.daikin.com.tr/airfel-maestro_optimum-23kw-yogusmali-kombi_183388?d=11925",
+      "14.2 https://www.daikin.com.tr/airfel-maestro_optimum-26kw-yogusmali-kombi_183389?d=11925",
+      "14.2 https://www.daikin.com.tr/airfel-maestro_optimum-30kw-yogusmali-kombi_183390?d=11925",
+      "14.2 https://www.daikin.com.tr/airfel-maestro_optimum-36kw-yogusmali-kombi_183391?d=11925",
+      "14.2 https://www.daikin.com.tr/airfel-maestro_optimum-42kw-yogusmali-kombi_183392?d=11925",
+      "14.2 https://www.daikin.com.tr/airfel-maestro_optimum-20kw-yogusmali-kombi_183407?d=11925",
+      "14.2 https://www.daikin.com.tr/daikin-yogusmali-ve-tam-yogusmali-kombi-arasindaki-fark",
+      "9.2 https://www.daikin.com.tr/daikin-cevre_butce-dostu-premix-vz-kombi",
+      "9.2 https://www.daikin.com.tr/daikin-premix-vz-kombi-kalite-tasarrufu-bir-arada-sunuyor",
+      "7.2 https://www.daikin.com.tr/daikin-airfel-guvenli-kombi-kampanyasinda-mutlu-son",
+      "7.2 https://www.daikin.com.tr/daikin-kombini-ihtiyaclarina-gore-programla-dogalgaz-tuketiminden-tasarruf-sagla",
+      "7.2 https://www.daikin.com.tr/daikin-kombiler-ve-kombi-kullanimi-hakkinda-merak-ettikleriniz",
+      "7.2 https://www.daikin.com.tr/daikin-turkiye-ceosu-hasan-onderden-dogru-kombi-kullanim-tavsiyeleri",
+      "7.2 https://www.daikin.com.tr/daikin-ilk-kombisini-turkiyede-uretti-ayni-anda-avrupaya-sundu",
+      "7.2 https://www.daikin.com.tr/daikin-kombileri-verimli-kullanmak-icin-tavsiyeler",
+      "7.2 https://www.daikin.com.tr/daikin-kombilerinizi-kisa-hazirlayin",
+      "7.2 https://www.daikin.com.tr/daikin-kombiler",
+      "7.2 https://www.daikin.com.tr/daikin-kombi-kampanyasi-gumus-effie-aldi",
+      "7.2 https://www.daikin.com.tr/daikin-kombi-bakimini-yaptirin-rahat-bir-kisa-hazirlanin",
+      "7.2 https://www.daikin.com.tr/daikin-kombi-kullanim",
+      "7.2 https://www.daikin.com.tr/daikin-kombi-klima-bulucu",
+      "7.2 https://www.daikin.com.tr/daikin-akilli-kombi-ndj-smart",
+      "7.2 https://www.daikin.com.tr/daikin-yesil-hidrojen-destekli-kombilerle-gelecege-hazir",
+      "7.2 https://www.daikin.com.tr/daikin-kombi-enerji-etiketi",
+      "7.2 https://www.daikin.com.tr/daikin-kombi-bakim-kampanyasiyla-kisa-hazirlik",
+      "7.2 https://www.daikin.com.tr/daikin-yerli-uretim-kombi-icon",
+      "7.2 https://www.daikin.com.tr/daikin-lodoslu-havalarda-kombi-kullanimi",
+      "7.2 https://www.daikin.com.tr/daikin-kombiden-neden-ses-gelir",
+      "7.2 https://www.daikin.com.tr/daikin-kisin-kombi-kullanimi-nasil-olmali",
+      "7.2 https://www.daikin.com.tr/daikin-kombi-bakimi-nasil-yapilmalidir",
+      "7.2 https://www.daikin.com.tr/daikin-kombi-neden-su-akitir",
+      "7.2 https://www.daikin.com.tr/daikin-kombide-dusuk-faturanin-recetesi",
+      "7.2 https://www.daikin.com.tr/daikin-kombide-kullanimsuyu-ve-eco-modu",
+      "7.2 https://www.daikin.com.tr/daikin-kombi-arizalari-nelerdir",
+      "7.2 https://www.daikin.com.tr/daikin-kombi-ayarlariniz-nasil-olmalidir",
+      "7.2 https://www.daikin.com.tr/daikin-kombi-secerken-nelere-dikkat-etmelisiniz-20",
+      "7.2 https://www.daikin.com.tr/daikin-kombi-bakim-kampanyasi-ile-soguk-havalara-hazirliksiz-yakalanmayin",
+      "7.2 https://www.daikin.com.tr/daikin-kombinizin-omrunu-uzatacak-ipuclari",
+      "7.2 https://www.daikin.com.tr/daikin-kombi-seciminde-dikkat-edilmesi-gereken-5-kriter",
+      "7.2 https://www.daikin.com.tr/kombi",
+      "7.2 https://www.daikin.com.tr/kombiler",
+      "7.0 https://www.daikin.com.tr/kombiler/termostatlar",
+      "2.2 https://www.daikin.com.tr/airfel-maestro-smart-premix-24-kw_183288?d=11925",
+      "2.2 https://www.daikin.com.tr/airfel-maestro-smart-premix-28-kw_183291?d=11925",
+      "2.2 https://www.daikin.com.tr/kaira-dpcy35bk-12000-btu-mobil-inverter-klima-sogutma-isitma-nem-alma_183414?d=11925",
+      "2.2 https://www.daikin.com.tr/daikin-sogutmadan-sonra-isitmada-da-1-numara-olmayi-hedefliyor",
+      "2.2 https://www.daikin.com.tr/daikin-turkiye-isitmada-da-zirveye-oynuyor",
+      "2.2 https://www.daikin.com.tr/daikin-sogutmadan-sonra-isitmada-da-liderlige-kosuyor",
+      "2.2 https://www.daikin.com.tr/daikin-premix-enerji-faturalarina-cozum",
+      "2.2 https://www.daikin.com.tr/daikin-klima-isitma-modu",
+      "2.2 https://www.daikin.com.tr/daikin-yeni-bir-isitma-sistemi-nasil-secilmeli",
+      "2.2 https://www.daikin.com.tr/daikin-klima-neden-isitmaz",
+      "2.2 https://www.daikin.com.tr/csu-premix"
+    ]
+  },
+  "navLinks": [
+    {
+      "href": "https://www.daikin.com.tr/daikin-kombiler",
+      "text": "KOMBİLER"
+    },
+    {
+      "href": "https://www.daikin.com.tr/kombiler",
+      "text": "T&#220;M &#220;R&#220;NLER"
+    },
+    {
+      "href": "https://www.daikin.com.tr/kombiler/tam-yogusmali-smart-premix-ndj",
+      "text": "NDJ SMART PREMIX"
+    },
+    {
+      "href": "https://www.daikin.com.tr/kombiler/tam-yogusmali-premix-ndj",
+      "text": "NDJ PREMİX"
+    },
+    {
+      "href": "https://www.daikin.com.tr/kombiler/tam-yogusmali-premix-ndj-t",
+      "text": "NDJ-T PREMİX"
+    },
+    {
+      "href": "https://www.daikin.com.tr/csu-premix",
+      "text": "CSU PREMIX"
+    },
+    {
+      "href": "https://www.daikin.com.tr/kombiler/tam-yogusmali-premix-vz",
+      "text": "VZ PREMİX"
+    },
+    {
+      "href": "https://www.daikin.com.tr/kombiler/tam-yogusmali-icon-premix",
+      "text": "ICON PREMIX"
+    },
+    {
+      "href": "https://www.daikin.com.tr/kombiler/termostatlar",
+      "text": "T&#220;M TERMOSTATLAR"
+    },
+    {
+      "href": "https://www.daikin.com.tr/daikin-kombi-klima-bulucu",
+      "text": "&#220;r&#252;n Bulucu"
+    },
+    {
+      "href": "https://www.daikin.com.tr/daikin-kombi-kullanim",
+      "text": "Kombi Kullanım &#214;nerileri"
+    },
+    {
+      "href": "https://www.daikin.com.tr/#tab-4449",
+      "text": "Kombiler"
+    }
+  ],
+  "pages": [
+    {
+      "url": "https://www.daikin.com.tr/ndj-premix-24-kw-d2cnd024-tam-yogusmali-kombi_182907?d=11802",
+      "title": "NDJ Premix 24 KW (D2CND024) \n             Tam Yoğuşmalı Kombi",
+      "images": [
+        {
+          "how": "og:image",
+          "rank": 9,
+          "src": "https://st-daikin.mncdn.com/mnresize/440/440/Content/media/ProductImg/original/TR.D2CND024A1ATR.2-daikin-premix-ndj-tam-yogusmali-24-kw-kombi-637231586301164727.png",
+          "file": "assets/daikin-kombi/products/1-ndj-premix-24-kw-d2cnd024-tam-yogusmali-kombi/img-1.png",
+          "bytes": 4860,
+          "width": 440,
+          "height": 440,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin-kombi/products/1-ndj-premix-24-kw-d2cnd024-tam-yogusmali-kombi/img-1-900.png",
+            "webp": "assets/daikin-kombi/products/1-ndj-premix-24-kw-d2cnd024-tam-yogusmali-kombi/img-1-900.webp",
+            "pngBytes": 17851,
+            "webpBytes": 4856
+          },
+          "trim": {
+            "png": "assets/daikin-kombi/products/1-ndj-premix-24-kw-d2cnd024-tam-yogusmali-kombi/img-1-trim.png",
+            "width": 164,
+            "height": 240,
+            "bytes": 12697
+          }
+        },
+        {
+          "how": "img",
+          "alt": "NDJ Premix 24 KW (D2CND024) | Tam Yoğuşmalı Kombi TR.D2CND024A1CTR.1",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/TR.D2CND024A1ATR.2-daikin-premix-ndj-tam-yogusmali-24-kw-kombi-637231586301164727.png?q=100",
+          "file": "assets/daikin-kombi/products/1-ndj-premix-24-kw-d2cnd024-tam-yogusmali-kombi/img-2.png",
+          "bytes": 17272,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin-kombi/products/1-ndj-premix-24-kw-d2cnd024-tam-yogusmali-kombi/img-2-900.png",
+            "webp": "assets/daikin-kombi/products/1-ndj-premix-24-kw-d2cnd024-tam-yogusmali-kombi/img-2-900.webp",
+            "pngBytes": 58403,
+            "webpBytes": 10352
+          },
+          "trim": {
+            "png": "assets/daikin-kombi/products/1-ndj-premix-24-kw-d2cnd024-tam-yogusmali-kombi/img-2-trim.png",
+            "width": 306,
+            "height": 438,
+            "bytes": 46097
+          }
+        },
+        {
+          "how": "img",
+          "alt": "NDJ Premix 24 KW (D2CND024) | Tam Yoğuşmalı Kombi TR.D2CND024A1CTR.1",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/TR.D2CND024A1ATR.2-daikin-premix-ndj-tam-yogusmali-24-kw-kombi-637231586223469772.png?q=100",
+          "file": "assets/daikin-kombi/products/1-ndj-premix-24-kw-d2cnd024-tam-yogusmali-kombi/img-3.png",
+          "bytes": 42822,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin-kombi/products/1-ndj-premix-24-kw-d2cnd024-tam-yogusmali-kombi/img-3-900.png",
+            "webp": "assets/daikin-kombi/products/1-ndj-premix-24-kw-d2cnd024-tam-yogusmali-kombi/img-3-900.webp",
+            "pngBytes": 172519,
+            "webpBytes": 17028
+          },
+          "trim": {
+            "png": "assets/daikin-kombi/products/1-ndj-premix-24-kw-d2cnd024-tam-yogusmali-kombi/img-3-trim.png",
+            "width": 526,
+            "height": 745,
+            "bytes": 159611
+          }
+        },
+        {
+          "how": "img",
+          "alt": "NDJ Premix 24 KW (D2CND024) | Tam Yoğuşmalı Kombi TR.D2CND024A1CTR.1",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/TR.D2CND024A1ATR.2-daikin-premix-ndj-tam-yogusmali-24-kw-kombi-637231586447658117.png?q=100",
+          "file": "assets/daikin-kombi/products/1-ndj-premix-24-kw-d2cnd024-tam-yogusmali-kombi/img-4.png",
+          "bytes": 29266,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin-kombi/products/1-ndj-premix-24-kw-d2cnd024-tam-yogusmali-kombi/img-4-900.png",
+            "webp": "assets/daikin-kombi/products/1-ndj-premix-24-kw-d2cnd024-tam-yogusmali-kombi/img-4-900.webp",
+            "pngBytes": 107305,
+            "webpBytes": 14532
+          },
+          "trim": {
+            "png": "assets/daikin-kombi/products/1-ndj-premix-24-kw-d2cnd024-tam-yogusmali-kombi/img-4-trim.png",
+            "width": 476,
+            "height": 690,
+            "bytes": 95936
+          }
+        },
+        {
+          "how": "img",
+          "alt": "NDJ Premix 24 KW (D2CND024) | Tam Yoğuşmalı Kombi TR.D2CND024A1CTR.1",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/trd2cnd024a1ctr1-ndj-premix-24-kw-d2cnd024-tam-yogusmali-kombi-639134979119177121.png?q=100",
+          "file": "assets/daikin-kombi/products/1-ndj-premix-24-kw-d2cnd024-tam-yogusmali-kombi/img-5.png",
+          "bytes": 131646,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin-kombi/products/1-ndj-premix-24-kw-d2cnd024-tam-yogusmali-kombi/img-5-900.png",
+            "webp": "assets/daikin-kombi/products/1-ndj-premix-24-kw-d2cnd024-tam-yogusmali-kombi/img-5-900.webp",
+            "pngBytes": 543260,
+            "webpBytes": 56692
+          },
+          "trim": {
+            "png": "assets/daikin-kombi/products/1-ndj-premix-24-kw-d2cnd024-tam-yogusmali-kombi/img-5-trim.png",
+            "width": 487,
+            "height": 679,
+            "bytes": 511439
+          }
+        },
+        {
+          "src": "https://st-daikin.mncdn.com/mnresize/100/100/Content/media/ProductImg/original/TR.D2CND024A1ATR.2-daikin-premix-ndj-tam-yogusmali-24-kw-kombi-637231586301164727.png",
+          "how": "img",
+          "skipped": "küçük (100x100)"
+        },
+        {
+          "src": "https://st-daikin.mncdn.com/mnresize/100/100/Content/media/ProductImg/original/TR.D2CND024A1ATR.2-daikin-premix-ndj-tam-yogusmali-24-kw-kombi-637231586223469772.png",
+          "how": "img",
+          "skipped": "küçük (100x100)"
+        }
+      ],
+      "candidates": 42
+    },
+    {
+      "url": "https://www.daikin.com.tr/ndj-premix-28-kw-d2cnd028-tam-yogusmali-kombi_182908?d=11802",
+      "title": "NDJ Premix 28 KW (D2CND028)  \n             Tam Yoğuşmalı Kombi",
+      "images": [
+        {
+          "how": "og:image",
+          "rank": 9,
+          "src": "https://st-daikin.mncdn.com/mnresize/440/440/Content/media/ProductImg/original/TR.D2CND028A1A.02-daikin-premix-ndj-tam-yogusmali-28-kw-kombi-637231586738596858.png",
+          "file": "assets/daikin-kombi/products/2-ndj-premix-28-kw-d2cnd028-tam-yogusmali-kombi/img-1.png",
+          "bytes": 4860,
+          "width": 440,
+          "height": 440,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin-kombi/products/2-ndj-premix-28-kw-d2cnd028-tam-yogusmali-kombi/img-1-900.png",
+            "webp": "assets/daikin-kombi/products/2-ndj-premix-28-kw-d2cnd028-tam-yogusmali-kombi/img-1-900.webp",
+            "pngBytes": 17851,
+            "webpBytes": 4856
+          },
+          "trim": {
+            "png": "assets/daikin-kombi/products/2-ndj-premix-28-kw-d2cnd028-tam-yogusmali-kombi/img-1-trim.png",
+            "width": 164,
+            "height": 240,
+            "bytes": 12697
+          }
+        },
+        {
+          "how": "img",
+          "alt": "NDJ Premix 28 KW (D2CND028)  | Tam Yoğuşmalı Kombi TR.D2CND028A1BTR.1",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/TR.D2CND028A1A.02-daikin-premix-ndj-tam-yogusmali-28-kw-kombi-637231586738596858.png?q=100",
+          "file": "assets/daikin-kombi/products/2-ndj-premix-28-kw-d2cnd028-tam-yogusmali-kombi/img-2.png",
+          "bytes": 17272,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin-kombi/products/2-ndj-premix-28-kw-d2cnd028-tam-yogusmali-kombi/img-2-900.png",
+            "webp": "assets/daikin-kombi/products/2-ndj-premix-28-kw-d2cnd028-tam-yogusmali-kombi/img-2-900.webp",
+            "pngBytes": 58403,
+            "webpBytes": 10352
+          },
+          "trim": {
+            "png": "assets/daikin-kombi/products/2-ndj-premix-28-kw-d2cnd028-tam-yogusmali-kombi/img-2-trim.png",
+            "width": 306,
+            "height": 438,
+            "bytes": 46097
+          }
+        },
+        {
+          "how": "img",
+          "alt": "NDJ Premix 28 KW (D2CND028)  | Tam Yoğuşmalı Kombi TR.D2CND028A1BTR.1",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/TR.D2CND028A1A.02-daikin-premix-ndj-tam-yogusmali-28-kw-kombi-637231586963615264.png?q=100",
+          "file": "assets/daikin-kombi/products/2-ndj-premix-28-kw-d2cnd028-tam-yogusmali-kombi/img-3.png",
+          "bytes": 42822,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin-kombi/products/2-ndj-premix-28-kw-d2cnd028-tam-yogusmali-kombi/img-3-900.png",
+            "webp": "assets/daikin-kombi/products/2-ndj-premix-28-kw-d2cnd028-tam-yogusmali-kombi/img-3-900.webp",
+            "pngBytes": 172519,
+            "webpBytes": 17028
+          },
+          "trim": {
+            "png": "assets/daikin-kombi/products/2-ndj-premix-28-kw-d2cnd028-tam-yogusmali-kombi/img-3-trim.png",
+            "width": 526,
+            "height": 745,
+            "bytes": 159611
+          }
+        },
+        {
+          "how": "img",
+          "alt": "NDJ Premix 28 KW (D2CND028)  | Tam Yoğuşmalı Kombi TR.D2CND028A1BTR.1",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/TR.D2CND028A1A.02-daikin-premix-ndj-tam-yogusmali-28-kw-kombi-637231586888215161.png?q=100",
+          "file": "assets/daikin-kombi/products/2-ndj-premix-28-kw-d2cnd028-tam-yogusmali-kombi/img-4.png",
+          "bytes": 29266,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin-kombi/products/2-ndj-premix-28-kw-d2cnd028-tam-yogusmali-kombi/img-4-900.png",
+            "webp": "assets/daikin-kombi/products/2-ndj-premix-28-kw-d2cnd028-tam-yogusmali-kombi/img-4-900.webp",
+            "pngBytes": 107305,
+            "webpBytes": 14532
+          },
+          "trim": {
+            "png": "assets/daikin-kombi/products/2-ndj-premix-28-kw-d2cnd028-tam-yogusmali-kombi/img-4-trim.png",
+            "width": 476,
+            "height": 690,
+            "bytes": 95936
+          }
+        },
+        {
+          "how": "img",
+          "alt": "NDJ Premix 28 KW (D2CND028)  | Tam Yoğuşmalı Kombi TR.D2CND028A1BTR.1",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/trd2cnd028a1btr1-ndj-premix-28-kw-d2cnd028-tam-yogusmali-kombi-639134979334532666.png?q=100",
+          "file": "assets/daikin-kombi/products/2-ndj-premix-28-kw-d2cnd028-tam-yogusmali-kombi/img-5.png",
+          "bytes": 131646,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin-kombi/products/2-ndj-premix-28-kw-d2cnd028-tam-yogusmali-kombi/img-5-900.png",
+            "webp": "assets/daikin-kombi/products/2-ndj-premix-28-kw-d2cnd028-tam-yogusmali-kombi/img-5-900.webp",
+            "pngBytes": 543260,
+            "webpBytes": 56692
+          },
+          "trim": {
+            "png": "assets/daikin-kombi/products/2-ndj-premix-28-kw-d2cnd028-tam-yogusmali-kombi/img-5-trim.png",
+            "width": 487,
+            "height": 679,
+            "bytes": 511439
+          }
+        },
+        {
+          "src": "https://st-daikin.mncdn.com/mnresize/100/100/Content/media/ProductImg/original/TR.D2CND028A1A.02-daikin-premix-ndj-tam-yogusmali-28-kw-kombi-637231586738596858.png",
+          "how": "img",
+          "skipped": "küçük (100x100)"
+        },
+        {
+          "src": "https://st-daikin.mncdn.com/mnresize/100/100/Content/media/ProductImg/original/TR.D2CND028A1A.02-daikin-premix-ndj-tam-yogusmali-28-kw-kombi-637231586963615264.png",
+          "how": "img",
+          "skipped": "küçük (100x100)"
+        }
+      ],
+      "candidates": 42
+    },
+    {
+      "url": "https://www.daikin.com.tr/ndj-t-premix-24-kw-d2tnd024-tam-yogusmali-kombi_182913?d=11803",
+      "title": "NDJ-T Premix 24 KW (D2TND024) \n             Tam Yoğuşmalı Kombi",
+      "images": [
+        {
+          "how": "og:image",
+          "rank": 9,
+          "src": "https://st-daikin.mncdn.com/mnresize/440/440/Content/media/ProductImg/original/TR.D2TND024A4ATR.2-daikin-premix-ndj-t-tam-yogusmali-24-kw-tank-model-kombi-637231588482738266.png",
+          "file": "assets/daikin-kombi/products/3-ndj-t-premix-24-kw-d2tnd024-tam-yogusmali-kombi/img-1.png",
+          "bytes": 4860,
+          "width": 440,
+          "height": 440,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin-kombi/products/3-ndj-t-premix-24-kw-d2tnd024-tam-yogusmali-kombi/img-1-900.png",
+            "webp": "assets/daikin-kombi/products/3-ndj-t-premix-24-kw-d2tnd024-tam-yogusmali-kombi/img-1-900.webp",
+            "pngBytes": 17851,
+            "webpBytes": 4856
+          },
+          "trim": {
+            "png": "assets/daikin-kombi/products/3-ndj-t-premix-24-kw-d2tnd024-tam-yogusmali-kombi/img-1-trim.png",
+            "width": 164,
+            "height": 240,
+            "bytes": 12697
+          }
+        },
+        {
+          "how": "img",
+          "alt": "NDJ-T Premix 24 KW (D2TND024) | Tam Yoğuşmalı Kombi TR.D2TND024A4ATR.2",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/TR.D2TND024A4ATR.2-daikin-premix-ndj-t-tam-yogusmali-24-kw-tank-model-kombi-637231588482738266.png?q=100",
+          "file": "assets/daikin-kombi/products/3-ndj-t-premix-24-kw-d2tnd024-tam-yogusmali-kombi/img-2.png",
+          "bytes": 17272,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin-kombi/products/3-ndj-t-premix-24-kw-d2tnd024-tam-yogusmali-kombi/img-2-900.png",
+            "webp": "assets/daikin-kombi/products/3-ndj-t-premix-24-kw-d2tnd024-tam-yogusmali-kombi/img-2-900.webp",
+            "pngBytes": 58403,
+            "webpBytes": 10352
+          },
+          "trim": {
+            "png": "assets/daikin-kombi/products/3-ndj-t-premix-24-kw-d2tnd024-tam-yogusmali-kombi/img-2-trim.png",
+            "width": 306,
+            "height": 438,
+            "bytes": 46097
+          }
+        },
+        {
+          "how": "img",
+          "alt": "NDJ-T Premix 24 KW (D2TND024) | Tam Yoğuşmalı Kombi TR.D2TND024A4ATR.2",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/TR.D2TND024A4ATR.2-daikin-premix-ndj-t-tam-yogusmali-24-kw-tank-model-kombi-637231588551517277.png?q=100",
+          "file": "assets/daikin-kombi/products/3-ndj-t-premix-24-kw-d2tnd024-tam-yogusmali-kombi/img-3.png",
+          "bytes": 42822,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin-kombi/products/3-ndj-t-premix-24-kw-d2tnd024-tam-yogusmali-kombi/img-3-900.png",
+            "webp": "assets/daikin-kombi/products/3-ndj-t-premix-24-kw-d2tnd024-tam-yogusmali-kombi/img-3-900.webp",
+            "pngBytes": 172519,
+            "webpBytes": 17028
+          },
+          "trim": {
+            "png": "assets/daikin-kombi/products/3-ndj-t-premix-24-kw-d2tnd024-tam-yogusmali-kombi/img-3-trim.png",
+            "width": 526,
+            "height": 745,
+            "bytes": 159611
+          }
+        },
+        {
+          "how": "img",
+          "alt": "NDJ-T Premix 24 KW (D2TND024) | Tam Yoğuşmalı Kombi TR.D2TND024A4ATR.2",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/TR.D2TND024A4ATR.2-daikin-premix-ndj-t-tam-yogusmali-24-kw-tank-model-kombi-637231588702034059.png?q=100",
+          "file": "assets/daikin-kombi/products/3-ndj-t-premix-24-kw-d2tnd024-tam-yogusmali-kombi/img-4.png",
+          "bytes": 29266,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin-kombi/products/3-ndj-t-premix-24-kw-d2tnd024-tam-yogusmali-kombi/img-4-900.png",
+            "webp": "assets/daikin-kombi/products/3-ndj-t-premix-24-kw-d2tnd024-tam-yogusmali-kombi/img-4-900.webp",
+            "pngBytes": 107305,
+            "webpBytes": 14532
+          },
+          "trim": {
+            "png": "assets/daikin-kombi/products/3-ndj-t-premix-24-kw-d2tnd024-tam-yogusmali-kombi/img-4-trim.png",
+            "width": 476,
+            "height": 690,
+            "bytes": 95936
+          }
+        },
+        {
+          "src": "https://st-daikin.mncdn.com/mnresize/100/100/Content/media/ProductImg/original/TR.D2TND024A4ATR.2-daikin-premix-ndj-t-tam-yogusmali-24-kw-tank-model-kombi-637231588482738266.png",
+          "how": "img",
+          "skipped": "küçük (100x100)"
+        },
+        {
+          "src": "https://st-daikin.mncdn.com/mnresize/100/100/Content/media/ProductImg/original/TR.D2TND024A4ATR.2-daikin-premix-ndj-t-tam-yogusmali-24-kw-tank-model-kombi-637231588551517277.png",
+          "how": "img",
+          "skipped": "küçük (100x100)"
+        },
+        {
+          "src": "https://st-daikin.mncdn.com/mnresize/100/100/Content/media/ProductImg/original/TR.D2TND024A4ATR.2-daikin-premix-ndj-t-tam-yogusmali-24-kw-tank-model-kombi-637231588702034059.png",
+          "how": "img",
+          "skipped": "küçük (100x100)"
+        }
+      ],
+      "candidates": 44
+    },
+    {
+      "url": "https://www.daikin.com.tr/ndj-t-premix-28-kw-d2tnd028-tam-yogusmali-kombi_182914?d=11803",
+      "title": "NDJ-T Premix 28 KW (D2TND028) \n             Tam Yoğuşmalı Kombi",
+      "images": [
+        {
+          "how": "og:image",
+          "rank": 9,
+          "src": "https://st-daikin.mncdn.com/mnresize/440/440/Content/media/ProductImg/original/TR.D2TND028A4ATR.2-daikin-premix-ndj-t-tam-yogusmali-28-kw-tank-model-kombi-637231588960001241.png",
+          "file": "assets/daikin-kombi/products/4-ndj-t-premix-28-kw-d2tnd028-tam-yogusmali-kombi/img-1.png",
+          "bytes": 4860,
+          "width": 440,
+          "height": 440,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin-kombi/products/4-ndj-t-premix-28-kw-d2tnd028-tam-yogusmali-kombi/img-1-900.png",
+            "webp": "assets/daikin-kombi/products/4-ndj-t-premix-28-kw-d2tnd028-tam-yogusmali-kombi/img-1-900.webp",
+            "pngBytes": 17851,
+            "webpBytes": 4856
+          },
+          "trim": {
+            "png": "assets/daikin-kombi/products/4-ndj-t-premix-28-kw-d2tnd028-tam-yogusmali-kombi/img-1-trim.png",
+            "width": 164,
+            "height": 240,
+            "bytes": 12697
+          }
+        },
+        {
+          "how": "img",
+          "alt": "NDJ-T Premix 28 KW (D2TND028) | Tam Yoğuşmalı Kombi TR.D2TND028A4ATR.2",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/TR.D2TND028A4ATR.2-daikin-premix-ndj-t-tam-yogusmali-28-kw-tank-model-kombi-637231588960001241.png?q=100",
+          "file": "assets/daikin-kombi/products/4-ndj-t-premix-28-kw-d2tnd028-tam-yogusmali-kombi/img-2.png",
+          "bytes": 17272,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin-kombi/products/4-ndj-t-premix-28-kw-d2tnd028-tam-yogusmali-kombi/img-2-900.png",
+            "webp": "assets/daikin-kombi/products/4-ndj-t-premix-28-kw-d2tnd028-tam-yogusmali-kombi/img-2-900.webp",
+            "pngBytes": 58403,
+            "webpBytes": 10352
+          },
+          "trim": {
+            "png": "assets/daikin-kombi/products/4-ndj-t-premix-28-kw-d2tnd028-tam-yogusmali-kombi/img-2-trim.png",
+            "width": 306,
+            "height": 438,
+            "bytes": 46097
+          }
+        },
+        {
+          "how": "img",
+          "alt": "NDJ-T Premix 28 KW (D2TND028) | Tam Yoğuşmalı Kombi TR.D2TND028A4ATR.2",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/TR.D2TND028A4ATR.2-daikin-premix-ndj-t-tam-yogusmali-28-kw-tank-model-kombi-637231589109775932.png?q=100",
+          "file": "assets/daikin-kombi/products/4-ndj-t-premix-28-kw-d2tnd028-tam-yogusmali-kombi/img-3.png",
+          "bytes": 42822,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin-kombi/products/4-ndj-t-premix-28-kw-d2tnd028-tam-yogusmali-kombi/img-3-900.png",
+            "webp": "assets/daikin-kombi/products/4-ndj-t-premix-28-kw-d2tnd028-tam-yogusmali-kombi/img-3-900.webp",
+            "pngBytes": 172519,
+            "webpBytes": 17028
+          },
+          "trim": {
+            "png": "assets/daikin-kombi/products/4-ndj-t-premix-28-kw-d2tnd028-tam-yogusmali-kombi/img-3-trim.png",
+            "width": 526,
+            "height": 745,
+            "bytes": 159611
+          }
+        },
+        {
+          "how": "img",
+          "alt": "NDJ-T Premix 28 KW (D2TND028) | Tam Yoğuşmalı Kombi TR.D2TND028A4ATR.2",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/TR.D2TND028A4ATR.2-daikin-premix-ndj-t-tam-yogusmali-28-kw-tank-model-kombi-637231589034512812.png?q=100",
+          "file": "assets/daikin-kombi/products/4-ndj-t-premix-28-kw-d2tnd028-tam-yogusmali-kombi/img-4.png",
+          "bytes": 29266,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin-kombi/products/4-ndj-t-premix-28-kw-d2tnd028-tam-yogusmali-kombi/img-4-900.png",
+            "webp": "assets/daikin-kombi/products/4-ndj-t-premix-28-kw-d2tnd028-tam-yogusmali-kombi/img-4-900.webp",
+            "pngBytes": 107305,
+            "webpBytes": 14532
+          },
+          "trim": {
+            "png": "assets/daikin-kombi/products/4-ndj-t-premix-28-kw-d2tnd028-tam-yogusmali-kombi/img-4-trim.png",
+            "width": 476,
+            "height": 690,
+            "bytes": 95936
+          }
+        },
+        {
+          "src": "https://st-daikin.mncdn.com/mnresize/100/100/Content/media/ProductImg/original/TR.D2TND028A4ATR.2-daikin-premix-ndj-t-tam-yogusmali-28-kw-tank-model-kombi-637231588960001241.png",
+          "how": "img",
+          "skipped": "küçük (100x100)"
+        },
+        {
+          "src": "https://st-daikin.mncdn.com/mnresize/100/100/Content/media/ProductImg/original/TR.D2TND028A4ATR.2-daikin-premix-ndj-t-tam-yogusmali-28-kw-tank-model-kombi-637231589109775932.png",
+          "how": "img",
+          "skipped": "küçük (100x100)"
+        },
+        {
+          "src": "https://st-daikin.mncdn.com/mnresize/100/100/Content/media/ProductImg/original/TR.D2TND028A4ATR.2-daikin-premix-ndj-t-tam-yogusmali-28-kw-tank-model-kombi-637231589034512812.png",
+          "how": "img",
+          "skipped": "küçük (100x100)"
+        }
+      ],
+      "candidates": 44
+    },
+    {
+      "url": "https://www.daikin.com.tr/vz-premix-30-kw-d2cpx030-tam-yogusmali-kombi_182911?d=11722",
+      "title": "VZ Premix 30 kW (D2CPX030) \n             Tam Yoğuşmalı Kombi",
+      "images": [
+        {
+          "how": "og:image",
+          "rank": 9,
+          "src": "https://st-daikin.mncdn.com/mnresize/440/440/Content/media/ProductImg/original/trd2cpx030catr01-vz-premix-30-kw-d2cpx030-tam-yogusmali-kombi-639243941524304368.png",
+          "file": "assets/daikin-kombi/products/5-vz-premix-30-kw-d2cpx030-tam-yogusmali-kombi/img-1.png",
+          "bytes": 3094,
+          "width": 440,
+          "height": 440,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin-kombi/products/5-vz-premix-30-kw-d2cpx030-tam-yogusmali-kombi/img-1-900.png",
+            "webp": "assets/daikin-kombi/products/5-vz-premix-30-kw-d2cpx030-tam-yogusmali-kombi/img-1-900.webp",
+            "pngBytes": 18272,
+            "webpBytes": 3168
+          },
+          "trim": {
+            "png": "assets/daikin-kombi/products/5-vz-premix-30-kw-d2cpx030-tam-yogusmali-kombi/img-1-trim.png",
+            "width": 138,
+            "height": 253,
+            "bytes": 12231
+          }
+        },
+        {
+          "how": "img",
+          "alt": "VZ Premix 30 kW (D2CPX030) | Tam Yoğuşmalı Kombi TR.D2CPX030CATR.01",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/trd2cpx030catr01-vz-premix-30-kw-d2cpx030-tam-yogusmali-kombi-639243941524304368.png?q=100",
+          "file": "assets/daikin-kombi/products/5-vz-premix-30-kw-d2cpx030-tam-yogusmali-kombi/img-2.png",
+          "bytes": 13136,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin-kombi/products/5-vz-premix-30-kw-d2cpx030-tam-yogusmali-kombi/img-2-900.png",
+            "webp": "assets/daikin-kombi/products/5-vz-premix-30-kw-d2cpx030-tam-yogusmali-kombi/img-2-900.webp",
+            "pngBytes": 53104,
+            "webpBytes": 6074
+          },
+          "trim": {
+            "png": "assets/daikin-kombi/products/5-vz-premix-30-kw-d2cpx030-tam-yogusmali-kombi/img-2-trim.png",
+            "width": 250,
+            "height": 459,
+            "bytes": 42424
+          }
+        },
+        {
+          "how": "img",
+          "alt": "VZ Premix 30 kW (D2CPX030) | Tam Yoğuşmalı Kombi TR.D2CPX030CATR.01",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/trd2cpx030catr01-vz-premix-30-kw-d2cpx030-tam-yogusmali-kombi-639243941529304411.png?q=100",
+          "file": "assets/daikin-kombi/products/5-vz-premix-30-kw-d2cpx030-tam-yogusmali-kombi/img-3.png",
+          "bytes": 60770,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin-kombi/products/5-vz-premix-30-kw-d2cpx030-tam-yogusmali-kombi/img-3-900.png",
+            "webp": "assets/daikin-kombi/products/5-vz-premix-30-kw-d2cpx030-tam-yogusmali-kombi/img-3-900.webp",
+            "pngBytes": 251915,
+            "webpBytes": 26612
+          },
+          "trim": {
+            "png": "assets/daikin-kombi/products/5-vz-premix-30-kw-d2cpx030-tam-yogusmali-kombi/img-3-trim.png",
+            "width": 247,
+            "height": 471,
+            "bytes": 226602
+          }
+        },
+        {
+          "how": "img",
+          "alt": "VZ Premix 30 kW (D2CPX030) | Tam Yoğuşmalı Kombi TR.D2CPX030CATR.01",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/trd2cpx030catr01-vz-premix-30-kw-d2cpx030-tam-yogusmali-kombi-639243941534304451.png?q=100",
+          "file": "assets/daikin-kombi/products/5-vz-premix-30-kw-d2cpx030-tam-yogusmali-kombi/img-4.png",
+          "bytes": 16938,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin-kombi/products/5-vz-premix-30-kw-d2cpx030-tam-yogusmali-kombi/img-4-900.png",
+            "webp": "assets/daikin-kombi/products/5-vz-premix-30-kw-d2cpx030-tam-yogusmali-kombi/img-4-900.webp",
+            "pngBytes": 65131,
+            "webpBytes": 8426
+          },
+          "trim": {
+            "png": "assets/daikin-kombi/products/5-vz-premix-30-kw-d2cpx030-tam-yogusmali-kombi/img-4-trim.png",
+            "width": 308,
+            "height": 450,
+            "bytes": 55700
+          }
+        },
+        {
+          "how": "img",
+          "alt": "VZ Premix 30 kW (D2CPX030) | Tam Yoğuşmalı Kombi TR.D2CPX030CATR.01",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/trd2cpx030catr01-vz-premix-30-kw-d2cpx030-tam-yogusmali-kombi-639243941539460790.png?q=100",
+          "file": "assets/daikin-kombi/products/5-vz-premix-30-kw-d2cpx030-tam-yogusmali-kombi/img-5.png",
+          "bytes": 18984,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin-kombi/products/5-vz-premix-30-kw-d2cpx030-tam-yogusmali-kombi/img-5-900.png",
+            "webp": "assets/daikin-kombi/products/5-vz-premix-30-kw-d2cpx030-tam-yogusmali-kombi/img-5-900.webp",
+            "pngBytes": 71760,
+            "webpBytes": 8946
+          },
+          "trim": {
+            "png": "assets/daikin-kombi/products/5-vz-premix-30-kw-d2cpx030-tam-yogusmali-kombi/img-5-trim.png",
+            "width": 313,
+            "height": 462,
+            "bytes": 61472
+          }
+        },
+        {
+          "src": "https://st-daikin.mncdn.com/mnresize/100/100/Content/media/ProductImg/original/trd2cpx030catr01-vz-premix-30-kw-d2cpx030-tam-yogusmali-kombi-639243941524304368.png",
+          "how": "img",
+          "skipped": "küçük (100x100)"
+        },
+        {
+          "src": "https://st-daikin.mncdn.com/mnresize/100/100/Content/media/ProductImg/original/trd2cpx030catr01-vz-premix-30-kw-d2cpx030-tam-yogusmali-kombi-639243941529304411.png",
+          "how": "img",
+          "skipped": "küçük (100x100)"
+        }
+      ],
+      "candidates": 25
+    },
+    {
+      "url": "https://www.daikin.com.tr/csu-premix-24-kw-d2cnl024-tam-yogusmali-kombi_183215?d=11722",
+      "title": "CSU Premix 24 kW (D2CNL024) \n             Tam Yoğuşmalı Kombi",
+      "images": [
+        {
+          "how": "og:image",
+          "rank": 9,
+          "src": "https://st-daikin.mncdn.com/mnresize/440/440/Content/media/ProductImg/original/trd2cnl024a1btr1-csu-premix-24-kw-d2cnl024-tam-yogusmali-kombi-639243945172445140.png",
+          "file": "assets/daikin-kombi/products/6-csu-premix-24-kw-d2cnl024-tam-yogusmali-kombi/img-1.png",
+          "bytes": 3786,
+          "width": 440,
+          "height": 440,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin-kombi/products/6-csu-premix-24-kw-d2cnl024-tam-yogusmali-kombi/img-1-900.png",
+            "webp": "assets/daikin-kombi/products/6-csu-premix-24-kw-d2cnl024-tam-yogusmali-kombi/img-1-900.webp",
+            "pngBytes": 16973,
+            "webpBytes": 3832
+          },
+          "trim": {
+            "png": "assets/daikin-kombi/products/6-csu-premix-24-kw-d2cnl024-tam-yogusmali-kombi/img-1-trim.png",
+            "width": 168,
+            "height": 242,
+            "bytes": 11651
+          }
+        },
+        {
+          "how": "img",
+          "alt": "CSU Premix 24 kW (D2CNL024) | Tam Yoğuşmalı Kombi TR.D2CNL024A1BTR.1",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/trd2cnl024a1btr1-csu-premix-24-kw-d2cnl024-tam-yogusmali-kombi-639243945157561646.png?q=100",
+          "file": "assets/daikin-kombi/products/6-csu-premix-24-kw-d2cnl024-tam-yogusmali-kombi/img-2.png",
+          "bytes": 55436,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin-kombi/products/6-csu-premix-24-kw-d2cnl024-tam-yogusmali-kombi/img-2-900.png",
+            "webp": "assets/daikin-kombi/products/6-csu-premix-24-kw-d2cnl024-tam-yogusmali-kombi/img-2-900.webp",
+            "pngBytes": 239413,
+            "webpBytes": 21320
+          },
+          "trim": {
+            "png": "assets/daikin-kombi/products/6-csu-premix-24-kw-d2cnl024-tam-yogusmali-kombi/img-2-trim.png",
+            "width": 304,
+            "height": 441,
+            "bytes": 210312
+          }
+        },
+        {
+          "how": "img",
+          "alt": "CSU Premix 24 kW (D2CNL024) | Tam Yoğuşmalı Kombi TR.D2CNL024A1BTR.1",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/trd2cnl024a1btr1-csu-premix-24-kw-d2cnl024-tam-yogusmali-kombi-639243945167132565.png?q=100",
+          "file": "assets/daikin-kombi/products/6-csu-premix-24-kw-d2cnl024-tam-yogusmali-kombi/img-3.png",
+          "bytes": 17740,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin-kombi/products/6-csu-premix-24-kw-d2cnl024-tam-yogusmali-kombi/img-3-900.png",
+            "webp": "assets/daikin-kombi/products/6-csu-premix-24-kw-d2cnl024-tam-yogusmali-kombi/img-3-900.webp",
+            "pngBytes": 52618,
+            "webpBytes": 9222
+          },
+          "trim": {
+            "png": "assets/daikin-kombi/products/6-csu-premix-24-kw-d2cnl024-tam-yogusmali-kombi/img-3-trim.png",
+            "width": 321,
+            "height": 442,
+            "bytes": 43427
+          }
+        },
+        {
+          "how": "img",
+          "alt": "CSU Premix 24 kW (D2CNL024) | Tam Yoğuşmalı Kombi TR.D2CNL024A1BTR.1",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/trd2cnl024a1btr1-csu-premix-24-kw-d2cnl024-tam-yogusmali-kombi-639243945172445140.png?q=100",
+          "file": "assets/daikin-kombi/products/6-csu-premix-24-kw-d2cnl024-tam-yogusmali-kombi/img-4.png",
+          "bytes": 17058,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin-kombi/products/6-csu-premix-24-kw-d2cnl024-tam-yogusmali-kombi/img-4-900.png",
+            "webp": "assets/daikin-kombi/products/6-csu-premix-24-kw-d2cnl024-tam-yogusmali-kombi/img-4-900.webp",
+            "pngBytes": 56304,
+            "webpBytes": 6962
+          },
+          "trim": {
+            "png": "assets/daikin-kombi/products/6-csu-premix-24-kw-d2cnl024-tam-yogusmali-kombi/img-4-trim.png",
+            "width": 304,
+            "height": 440,
+            "bytes": 46643
+          }
+        },
+        {
+          "how": "img",
+          "alt": "CSU Premix 24 kW (D2CNL024) | Tam Yoğuşmalı Kombi TR.D2CNL024A1BTR.1",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/trd2cnl024a1btr1-csu-premix-24-kw-d2cnl024-tam-yogusmali-kombi-639243945177601478.png?q=100",
+          "file": "assets/daikin-kombi/products/6-csu-premix-24-kw-d2cnl024-tam-yogusmali-kombi/img-5.png",
+          "bytes": 20974,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin-kombi/products/6-csu-premix-24-kw-d2cnl024-tam-yogusmali-kombi/img-5-900.png",
+            "webp": "assets/daikin-kombi/products/6-csu-premix-24-kw-d2cnl024-tam-yogusmali-kombi/img-5-900.webp",
+            "pngBytes": 67450,
+            "webpBytes": 9112
+          },
+          "trim": {
+            "png": "assets/daikin-kombi/products/6-csu-premix-24-kw-d2cnl024-tam-yogusmali-kombi/img-5-trim.png",
+            "width": 325,
+            "height": 452,
+            "bytes": 57455
+          }
+        },
+        {
+          "src": "https://st-daikin.mncdn.com/mnresize/100/100/Content/media/ProductImg/original/trd2cnl024a1btr1-csu-premix-24-kw-d2cnl024-tam-yogusmali-kombi-639243945157561646.png",
+          "how": "img",
+          "skipped": "küçük (100x100)"
+        },
+        {
+          "src": "https://st-daikin.mncdn.com/mnresize/100/100/Content/media/ProductImg/original/trd2cnl024a1btr1-csu-premix-24-kw-d2cnl024-tam-yogusmali-kombi-639243945167132565.png",
+          "how": "img",
+          "skipped": "küçük (100x100)"
+        }
+      ],
+      "candidates": 24
+    },
+    {
+      "url": "https://www.daikin.com.tr/daikin-cevre_butce-dostu-premix-vz-kombi",
+      "title": "Çevre Ve Bütçe Dostu Daikin Premix Vz Kombi",
+      "images": [
+        {
+          "src": "https://st-daikin.mncdn.com/Content/img/Unisite/11.png",
+          "how": "img",
+          "skipped": "küçük (1x1)"
+        },
+        {
+          "how": "img",
+          "alt": "Kombi",
+          "rank": 0,
+          "src": "https://st-daikin.mncdn.com/userfiles/Daikin-Kombi-Premix-VZ(1).png",
+          "file": "assets/daikin-kombi/products/7-cevre-ve-butce-dostu-daikin-premix-vz-kombi/img-2.png",
+          "bytes": 37350,
+          "width": 820,
+          "height": 577,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin-kombi/products/7-cevre-ve-butce-dostu-daikin-premix-vz-kombi/img-2-900.png",
+            "webp": "assets/daikin-kombi/products/7-cevre-ve-butce-dostu-daikin-premix-vz-kombi/img-2-900.webp",
+            "pngBytes": 397563,
+            "webpBytes": 34382
+          },
+          "trim": {
+            "png": "assets/daikin-kombi/products/7-cevre-ve-butce-dostu-daikin-premix-vz-kombi/img-2-trim.png",
+            "width": 820,
+            "height": 577,
+            "bytes": 397563
+          }
+        },
+        {
+          "how": "img",
+          "alt": "",
+          "rank": 0,
+          "src": "https://st-daikin.mncdn.com/userfiles/Daikin-Premix-VZ.png",
+          "file": "assets/daikin-kombi/products/7-cevre-ve-butce-dostu-daikin-premix-vz-kombi/img-3.png",
+          "bytes": 4056,
+          "width": 820,
+          "height": 547,
+          "type": "png",
+          "alpha": false,
+          "small": {
+            "png": "assets/daikin-kombi/products/7-cevre-ve-butce-dostu-daikin-premix-vz-kombi/img-3-900.png",
+            "webp": "assets/daikin-kombi/products/7-cevre-ve-butce-dostu-daikin-premix-vz-kombi/img-3-900.webp",
+            "pngBytes": 21347,
+            "webpBytes": 2810
+          },
+          "trim": {
+            "png": "assets/daikin-kombi/products/7-cevre-ve-butce-dostu-daikin-premix-vz-kombi/img-3-trim.png",
+            "width": 245,
+            "height": 452,
+            "bytes": 15998
+          }
+        },
+        {
+          "how": "img",
+          "alt": "",
+          "rank": 0,
+          "src": "https://st-daikin.mncdn.com/Content/img/Unisite/cagrimerkezi-10.jpg",
+          "file": "assets/daikin-kombi/products/7-cevre-ve-butce-dostu-daikin-premix-vz-kombi/img-4.jpg",
+          "bytes": 25410,
+          "width": 1099,
+          "height": 300,
+          "type": "jpg",
+          "alpha": false,
+          "small": {
+            "png": "assets/daikin-kombi/products/7-cevre-ve-butce-dostu-daikin-premix-vz-kombi/img-4-900.png",
+            "webp": "assets/daikin-kombi/products/7-cevre-ve-butce-dostu-daikin-premix-vz-kombi/img-4-900.webp",
+            "pngBytes": 146297,
+            "webpBytes": 10384
+          },
+          "trim": {
+            "png": "assets/daikin-kombi/products/7-cevre-ve-butce-dostu-daikin-premix-vz-kombi/img-4-trim.png",
+            "width": 900,
+            "height": 246,
+            "bytes": 169336
+          }
+        },
+        {
+          "how": "img",
+          "alt": "",
+          "rank": 0,
+          "src": "https://st-daikin.mncdn.com/Content/img/footerbg_v2.png",
+          "file": "assets/daikin-kombi/products/7-cevre-ve-butce-dostu-daikin-premix-vz-kombi/img-5.png",
+          "bytes": 19544,
+          "width": 1440,
+          "height": 96,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin-kombi/products/7-cevre-ve-butce-dostu-daikin-premix-vz-kombi/img-5-900.png",
+            "webp": "assets/daikin-kombi/products/7-cevre-ve-butce-dostu-daikin-premix-vz-kombi/img-5-900.webp",
+            "pngBytes": 59024,
+            "webpBytes": 11672
+          },
+          "trim": {
+            "png": "assets/daikin-kombi/products/7-cevre-ve-butce-dostu-daikin-premix-vz-kombi/img-5-trim.png",
+            "width": 900,
+            "height": 60,
+            "bytes": 53912
+          }
+        },
+        {
+          "how": "img",
+          "alt": "ssl secured",
+          "rank": 0,
+          "src": "https://st-daikin.mncdn.com/Content/img/shopify-ssl-secured.svg",
+          "file": "assets/daikin-kombi/products/7-cevre-ve-butce-dostu-daikin-premix-vz-kombi/img-6.svg",
+          "bytes": 3370,
+          "width": 2121,
+          "height": 1024,
+          "type": "svg"
+        }
+      ],
+      "candidates": 6
+    },
+    {
+      "url": "https://www.daikin.com.tr/daikin-premix-vz-kombi-kalite-tasarrufu-bir-arada-sunuyor",
+      "title": "DAIKIN PREMIX VZ KOMBİ, KALİTE VE TASARRUFU BİR ARADA SUNUYOR",
+      "images": [
+        {
+          "how": "img",
+          "alt": "",
+          "rank": 0,
+          "src": "https://st-daikin.mncdn.com/Content/img/Unisite/daikin-premix-bizden-haberlerrr.jpg",
+          "file": "assets/daikin-kombi/products/8-daikin-premix-vz-kombi-kali-te-ve-tasarrufu-bi-r/img-2.jpg",
+          "bytes": 173870,
+          "width": 7952,
+          "height": 5304,
+          "type": "jpg",
+          "alpha": false,
+          "small": {
+            "png": "assets/daikin-kombi/products/8-daikin-premix-vz-kombi-kali-te-ve-tasarrufu-bi-r/img-2-900.png",
+            "webp": "assets/daikin-kombi/products/8-daikin-premix-vz-kombi-kali-te-ve-tasarrufu-bi-r/img-2-900.webp",
+            "pngBytes": 50273,
+            "webpBytes": 3202
+          },
+          "trim": {
+            "png": "assets/daikin-kombi/products/8-daikin-premix-vz-kombi-kali-te-ve-tasarrufu-bi-r/img-2-trim.png",
+            "width": 490,
+            "height": 900,
+            "bytes": 180452
+          }
+        },
+        {
+          "how": "img",
+          "alt": "Kombi",
+          "rank": 0,
+          "src": "https://st-daikin.mncdn.com/Content/img/Unisite/daikin-kombi-premix-bizden-haberler.jpg",
+          "file": "assets/daikin-kombi/products/8-daikin-premix-vz-kombi-kali-te-ve-tasarrufu-bi-r/img-3.jpg",
+          "bytes": 139804,
+          "width": 2489,
+          "height": 1659,
+          "type": "jpg",
+          "alpha": false,
+          "small": {
+            "png": "assets/daikin-kombi/products/8-daikin-premix-vz-kombi-kali-te-ve-tasarrufu-bi-r/img-3-900.png",
+            "webp": "assets/daikin-kombi/products/8-daikin-premix-vz-kombi-kali-te-ve-tasarrufu-bi-r/img-3-900.webp",
+            "pngBytes": 448384,
+            "webpBytes": 31912
+          },
+          "trim": {
+            "png": "assets/daikin-kombi/products/8-daikin-premix-vz-kombi-kali-te-ve-tasarrufu-bi-r/img-3-trim.png",
+            "width": 900,
+            "height": 637,
+            "bytes": 680759
+          }
+        }
+      ],
+      "candidates": 6
+    }
+  ],
+  "manual": [],
+  "errors": [],
+  "tools": {
+    "sharp": true,
+    "playwright": true
+  }
+}
