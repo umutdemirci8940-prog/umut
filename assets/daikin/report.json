@@ -1,0 +1,1651 @@
+{
+  "fetchedAt": "2026-09-18T22:58:43.573Z",
+  "bases": [
+    "https://www.daikin.com.tr"
+  ],
+  "base": "https://www.daikin.com.tr",
+  "homepage": {
+    "url": "https://www.daikin.com.tr/",
+    "via": "fetch",
+    "bytes": 153153,
+    "title": "Daikin | Doğru Hava Uzmanı",
+    "ogImage": "https://www.daikin.com.tr/~%20/Content/img/facebook_ogp.jpg",
+    "themeColor": "white"
+  },
+  "logo": [
+    {
+      "how": "dom-img",
+      "alt": "Daikin",
+      "rendered": "96x20@30,30",
+      "src": "https://st-daikin.mncdn.com/Content/img/icons/daikin-logo.svg",
+      "file": "assets/daikin/logo/logo-1.svg",
+      "bytes": 3556,
+      "width": 170,
+      "height": 36,
+      "type": "svg"
+    },
+    {
+      "how": "icon",
+      "src": "https://st-daikin.mncdn.com/Content/img/favicons/32.png",
+      "file": "assets/daikin/logo/logo-2.png",
+      "bytes": 1206,
+      "width": 32,
+      "height": 32,
+      "type": "png",
+      "alpha": true,
+      "small": {
+        "png": "assets/daikin/logo/logo-2-900.png",
+        "webp": "assets/daikin/logo/logo-2-900.webp",
+        "pngBytes": 2117,
+        "webpBytes": 414
+      },
+      "trim": {
+        "png": "assets/daikin/logo/logo-2-trim.png",
+        "width": 32,
+        "height": 32,
+        "bytes": 2117
+      }
+    },
+    {
+      "how": "apple-touch-icon",
+      "src": "https://st-daikin.mncdn.com/Content/img/favicons/180.png?v=r4n2e290",
+      "file": "assets/daikin/logo/logo-3.png",
+      "bytes": 2620,
+      "width": 180,
+      "height": 180,
+      "type": "png",
+      "alpha": true,
+      "small": {
+        "png": "assets/daikin/logo/logo-3-900.png",
+        "webp": "assets/daikin/logo/logo-3-900.webp",
+        "pngBytes": 12036,
+        "webpBytes": 1832
+      },
+      "trim": {
+        "png": "assets/daikin/logo/logo-3-trim.png",
+        "width": 180,
+        "height": 180,
+        "bytes": 12036
+      }
+    }
+  ],
+  "css": [
+    {
+      "url": "https://st-daikin.mncdn.com/Public/css/critical.css?v=r4n2e290",
+      "bytes": 11732,
+      "topColors": [
+        [
+          "#009ae5",
+          5
+        ],
+        [
+          "#b4b4b4",
+          5
+        ],
+        [
+          "#007bff",
+          3
+        ],
+        [
+          "#dc3545",
+          2
+        ],
+        [
+          "#ffc107",
+          2
+        ],
+        [
+          "#28a745",
+          2
+        ],
+        [
+          "#17a2b8",
+          2
+        ],
+        [
+          "#6c757d",
+          2
+        ],
+        [
+          "#343a40",
+          2
+        ],
+        [
+          "#212529",
+          2
+        ]
+      ]
+    },
+    {
+      "url": "https://st-daikin.mncdn.com/Public/css/critical.mobile.css?v=r4n2e290",
+      "bytes": 10777,
+      "topColors": [
+        [
+          "#009ae5",
+          5
+        ],
+        [
+          "#b4b4b4",
+          5
+        ],
+        [
+          "#007bff",
+          3
+        ],
+        [
+          "#dc3545",
+          2
+        ],
+        [
+          "#ffc107",
+          2
+        ],
+        [
+          "#28a745",
+          2
+        ],
+        [
+          "#17a2b8",
+          2
+        ],
+        [
+          "#6c757d",
+          2
+        ],
+        [
+          "#343a40",
+          2
+        ],
+        [
+          "#212529",
+          2
+        ]
+      ]
+    },
+    {
+      "url": "https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css",
+      "bytes": 4064,
+      "topColors": []
+    }
+  ],
+  "sitemap": {
+    "urls": 909,
+    "matched": [
+      "14.2 https://www.daikin.com.tr/siesta-sensira-9000-btuh-atxf25f-inverter-klima-r32_183400?d=11944",
+      "14.2 https://www.daikin.com.tr/siesta-sensira-12000-btuh-atxf35f-inverter-klima-r32_183401?d=11944",
+      "14.2 https://www.daikin.com.tr/siesta-sensira-14000-btuh-atxf42f-inverter-klima-r32_183402?d=11944",
+      "14.2 https://www.daikin.com.tr/siesta-sensira-18000-btuh-atxf50f-inverter-klima-r32_183419?d=11944",
+      "14.2 https://www.daikin.com.tr/siesta-sensira-24000-btuh-atxf71f-inverter-klima-r32_183420?d=11944",
+      "13.8 https://www.daikin.com.tr/klimalar/bireysel-klimalar/yeni-siesta-sensira-klimalar",
+      "11.2 https://www.daikin.com.tr/perfera-18000-btuh-fvxm50a-yer-tipi-r32-inverter-split-klima_183208?d=11861",
+      "11.2 https://www.daikin.com.tr/perfera-9000-btuh-fvxm25b-yer-tipi-r32-inverter-split-klima_183415?d=11861",
+      "11.2 https://www.daikin.com.tr/perfera-12000-btuh-fvxm35b-yer-tipi-r32-inverter-split-klima_183416?d=11861",
+      "11.2 https://www.daikin.com.tr/perfera-18000-btuh-fvxm50b-yer-tipi-r32-inverter-split-klima_183417?d=11861",
+      "9.2 https://www.daikin.com.tr/sensira-22000-btuh-ftxf60d-inverter-klima-r32_182879?d=11683",
+      "9.2 https://www.daikin.com.tr/shira-eco-7000-btuh-ftxp20n9-inverter-klima-r32_182894?d=11684",
+      "9.2 https://www.daikin.com.tr/shira-eco-9000-btuh-ftxp25n9-inverter-klima-r32_182895?d=11684",
+      "9.2 https://www.daikin.com.tr/shira-eco-12000-btuh-ftxp35n9-inverter-klima-r32_182896?d=11684",
+      "9.2 https://www.daikin.com.tr/shira-eco-18000-btuh-ftxp50n9-inverter-klima-r32_182897?d=11684",
+      "9.2 https://www.daikin.com.tr/shira-eco-22000-btuh-ftxp60n-inverter-klima-r32_182898?d=11684",
+      "9.2 https://www.daikin.com.tr/shira-eco-24000-btuh-ftxp71n-inverter-klima-r32_182899?d=11684",
+      "9.2 https://www.daikin.com.tr/shira-plus-24000-btuh-ftxm71r-inverter-klima-r32_183198?d=11685",
+      "9.2 https://www.daikin.com.tr/emura-7000-btuh-a-ftxj20ab9-inverter-klima-r32_183229?d=11889",
+      "9.2 https://www.daikin.com.tr/emura-9000-btuh-a-ftxj25aw9-inverter-klima-r32_183230?d=11888",
+      "9.2 https://www.daikin.com.tr/emura-9000-btuh-a-ftxj25as9-inverter-klima-r32_183231?d=11890",
+      "9.2 https://www.daikin.com.tr/emura-9000-btuh-a-ftxj25ab9-inverter-klima-r32_183232?d=11889",
+      "9.2 https://www.daikin.com.tr/emura-12000-btuh-a-ftxj35aw9-inverter-klima-r32_183233?d=11888",
+      "9.2 https://www.daikin.com.tr/emura-12000-btuh-a-ftxj35as9-inverter-klima-r32_183234?d=11890",
+      "9.2 https://www.daikin.com.tr/emura-12000-btuh-a-ftxj35ab9-inverter-klima-r32_183235?d=11889",
+      "9.2 https://www.daikin.com.tr/emura-14000-btuh-a-ftxj42aw9-inverter-klima-r32_183236?d=11888",
+      "9.2 https://www.daikin.com.tr/emura-14000-btuh-a-ftxj42as9-inverter-klima-r32_183237?d=11890",
+      "9.2 https://www.daikin.com.tr/emura-14000-btuh-a-ftxj42ab9-inverter-klima-r32_183238?d=11889",
+      "9.2 https://www.daikin.com.tr/emura-18000-btuh-a-ftxj50aw9-inverter-klima-r32_183239?d=11888",
+      "9.2 https://www.daikin.com.tr/emura-18000-btuh-a-ftxj50as9-inverter-klima-r32_183240?d=11890",
+      "9.2 https://www.daikin.com.tr/emura-7000-btuh-a-ftxj20aw9-inverter-klima-r32_183241?d=11888",
+      "9.2 https://www.daikin.com.tr/emura-7000-btuh-a-ftxj20as9-inverter-klima-r32_183242?d=11890",
+      "9.2 https://www.daikin.com.tr/emura-18000-btuh-a-ftxj50ab9-inverter-klima-r32_183243?d=11889",
+      "9.2 https://www.daikin.com.tr/stylish-9000-btuh-a-ftxa25cb-inverter-klima-r32_183274?d=11915",
+      "9.2 https://www.daikin.com.tr/stylish-12000-btuh-a-ftxa35cb-inverter-klima-r32_183275?d=11915",
+      "9.2 https://www.daikin.com.tr/stylish-18000-btuh-a-ftxa50cb-inverter-klima-r32_183276?d=11915",
+      "9.2 https://www.daikin.com.tr/stylish-9000-btuh-a-ftxa25cw-inverter-klima-r32_183277?d=11915",
+      "9.2 https://www.daikin.com.tr/stylish-12000-btuh-a-ftxa35cw-inverter-klima-r32_183278?d=11915",
+      "9.2 https://www.daikin.com.tr/stylish-18000-btuh-a-ftxa50cw-inverter-klima-r32_183279?d=11915",
+      "9.2 https://www.daikin.com.tr/zeta-shira-plus-7000-btuh-ftxm20a-inverter-klima-r32_183315?d=11926",
+      "9.2 https://www.daikin.com.tr/zeta-shira-plus-9000-btuh-ftxm25a-inverter-klima-r32_183316?d=11926",
+      "9.2 https://www.daikin.com.tr/zeta-shira-plus-12000-btuh-ftxm35a-inverter-klima-r32_183317?d=11926",
+      "9.2 https://www.daikin.com.tr/zeta-shira-plus-14000-btuh-ftxm42a-inverter-klima-r32_183318?d=11926",
+      "9.2 https://www.daikin.com.tr/zeta-shira-plus-18000-btuh-ftxm50a-inverter-klima-r32_183319?d=11926",
+      "9.2 https://www.daikin.com.tr/zeta-shira-plus-24000-btuh-ftxm71a-inverter-klima-r32_183376?d=11926",
+      "9.2 https://www.daikin.com.tr/zeta-shira-plus-22000-btuh-ftxm60a-inverter-klima-r32_183378?d=11926",
+      "9.2 https://www.daikin.com.tr/yeni-sensira-7000-btuh-inverter-klima_183393?d=11943",
+      "9.2 https://www.daikin.com.tr/sensira-9000-btuh-ftxf25f-inverter-klima-r32_183394?d=11943",
+      "9.2 https://www.daikin.com.tr/sensira-12000-btuh-ftxf35f-inverter-klima-r32_183395?d=11943",
+      "9.2 https://www.daikin.com.tr/sensira-14000-btuh-ftxf42f-inverter-klima-r32_183396?d=11943",
+      "9.2 https://www.daikin.com.tr/sensira-18000-btuh-ftxf50f-inverter-klima-r32_183397?d=11943",
+      "9.2 https://www.daikin.com.tr/sensira-22000-btuh-ftxf60f-inverter-klima-r32_183398?d=11681",
+      "9.2 https://www.daikin.com.tr/sensira-24000-btuh-ftxf71f-inverter-klima-r32_183399?d=11943",
+      "9.2 https://www.daikin.com.tr/stylish-9000-btuh-a-wi-fi-inverter-klima-montaj-dahil_183429?d=11925",
+      "9.2 https://www.daikin.com.tr/stylish-12000-btuh-a-wi-fi-inverter-klima-montaj-dahil_183430?d=11925",
+      "9.2 https://www.daikin.com.tr/stylish-18000-btuh-a-wi-fi-inverter-klima-montaj-dahil_183431?d=11925",
+      "9.2 https://www.daikin.com.tr/shira-eco-9000-btuh-ftxp25n9-inverter-klima-r32_182895",
+      "9.2 https://www.daikin.com.tr/emura-9000-btuh-a-ftxj25ab9-inverter-klima-r32_183232",
+      "9.2 https://www.daikin.com.tr/emura-9000-btuh-a-ftxj25as9-inverter-klima-r32_183231",
+      "8.8 https://www.daikin.com.tr/klimalar/bireysel-klimalar/sensira-klimalar",
+      "8.8 https://www.daikin.com.tr/klimalar/bireysel-klimalar/shira-eco-klimalar",
+      "8.8 https://www.daikin.com.tr/klimalar/bireysel-klimalar/shira-plus-klimalar",
+      "8.8 https://www.daikin.com.tr/klimalar/bireysel-klimalar/perfera-klimalar",
+      "8.8 https://www.daikin.com.tr/klimalar/bireysel-klimalar/emura-iii-klimalar",
+      "8.8 https://www.daikin.com.tr/klimalar/bireysel-klimalar/stylish-klimalar",
+      "8.8 https://www.daikin.com.tr/klimalar/bireysel-klimalar/zeta-shira-plus-klimalar",
+      "8.8 https://www.daikin.com.tr/klimalar/bireysel-klimalar/yeni-sensira-klimalar",
+      "8.2 https://www.daikin.com.tr/hausluft-xtxd25h-9000-btuh-duvar-tipi-r32-inverter-split-klima-montaj-dahil_183445?d=11925",
+      "8.2 https://www.daikin.com.tr/hausluft-xtxd35h-12000-btuh-duvar-tipi-r32-inverter-split-klima-montaj-dahil_183446?d=11925",
+      "8.2 https://www.daikin.com.tr/kaira-9000-btuh-duvar-tipi-r32-inverter-split-klima_183211?d=11877",
+      "8.2 https://www.daikin.com.tr/kaira-12000-btuh-duvar-tipi-r32-inverter-split-klima_183212?d=11925",
+      "8.2 https://www.daikin.com.tr/kaira-18000-btuh-duvar-tipi-r32-inverter-split-klima_183213?d=11925",
+      "8.2 https://www.daikin.com.tr/kaira-24000-btuh-duvar-tipi-r32-inverter-split-klima_183214?d=11877",
+      "8.2 https://www.daikin.com.tr/daylux-9000-btuh-duvar-tipi-r32-inverter-split-klima_183261?d=11901",
+      "8.2 https://www.daikin.com.tr/daylux-12000-btuh-duvar-tipi-r32-inverter-split-klima_183262?d=11901",
+      "8.2 https://www.daikin.com.tr/daylux-18000-btuh-duvar-tipi-r32-inverter-split-klima_183263?d=11901",
+      "8.2 https://www.daikin.com.tr/daylux-24000-btuh-duvar-tipi-r32-inverter-split-klima_183264?d=11901",
+      "7.2 https://www.daikin.com.tr/daikin-hem-ekonomik-hem-verimli-klima-shira-eco-artik-r32li-uretiliyor",
+      "6.2 https://www.daikin.com.tr/kaira-plus-dtxr25kp-9000-btu-a-wifi-inverter-super-ionizer-duvar-tipi-klima-montaj-dahil_183408?d=11925",
+      "6.2 https://www.daikin.com.tr/kaira-plus-dtxr35kp-12000-btu-a-wifi-inverter-super-ionizer-duvar-tipi-klima-montaj-dahil_183409?d=11925",
+      "6.2 https://www.daikin.com.tr/kaira-plus-dtxr50kp-18000-btu-a-wifi-inverter-super-ionizer-duvar-tipi-klima-montaj-dahil_183410?d=11925",
+      "6.2 https://www.daikin.com.tr/kaira-plus-dtxr71kp-24000-btu-a-wifi-inverter-super-ionizer-duvar-tipi-klima-montaj-dahil_183411?d=11925",
+      "5.8 https://www.daikin.com.tr/klimalar/ticari-klimalar/duvar-tipi",
+      "5.6 https://www.daikin.com.tr/klimalar/ticari-klimalar/alpha-sky-air-serisi/duvar-tipi-klimalar",
+      "5.6 https://www.daikin.com.tr/klimalar/ticari-klimalar/duvar-tipi/alpha",
+      "5.6 https://www.daikin.com.tr/klimalar/ticari-klimalar/duvar-tipi/advance",
+      "5.2 https://www.daikin.com.tr/daikin-sensira-urun-gami",
+      "5.2 https://www.daikin.com.tr/daikin-emura-ile-tasarruf-ederken-konfor-yasayin",
+      "5.2 https://www.daikin.com.tr/daikin-emura",
+      "5.2 https://www.daikin.com.tr/daikin-emuraya-iki-odul-birden",
+      "5.2 https://www.daikin.com.tr/daikin-ustun-teknoloji-stylish",
+      "5.2 https://www.daikin.com.tr/daikin-zeta-shira-plus-ile-dogru-havann-tadini-cikarin",
+      "5.2 https://www.daikin.com.tr/emura-iii-beyaz-11888",
+      "5.2 https://www.daikin.com.tr/emura-iii-siyah-11889",
+      "5.2 https://www.daikin.com.tr/emura-iii-gumus-11890",
+      "4.2 https://www.daikin.com.tr/ururu-sarara-9000-btuh-a-ftxz25n-inverter-klima-r32_182900?d=11687",
+      "4.2 https://www.daikin.com.tr/ururu-sarara-12000-btuh-a-ftxz35n-inverter-klima-r32_182901?d=11687",
+      "4.2 https://www.daikin.com.tr/ururu-sarara-18000-btuh-a-ftxz50n-inverter-klima-r32_182902?d=11687",
+      "4.2 https://www.daikin.com.tr/alpha-duvar-tipi-klima-r32-24000-btuh-faa71a-rzag71nv1_183073?d=11777",
+      "4.2 https://www.daikin.com.tr/alpha-duvar-tipi-klima-r32-36000-btuh-faa100b-rzag100nv1_183074?d=11777",
+      "4.2 https://www.daikin.com.tr/advance-duvar-tipi-klima-r32-24000-btuh-faa71b-rzasg71mv1_183147?d=11777",
+      "4.2 https://www.daikin.com.tr/advance-duvar-tipi-klima-r32-36000-btuh-faa100b-rzasg100mv1_183148?d=11777",
+      "4.2 https://www.daikin.com.tr/airfel-vibe-inverter-klima-ltxq25a-9000-btuh-a_183432?d=11925",
+      "4.2 https://www.daikin.com.tr/airfel-vibe-inverter-klima-ltxq35a-12000-btuh-a_183433?d=11925",
+      "4.2 https://www.daikin.com.tr/airfel-vibe-inverter-klima-ltxq50c-18000-btuh-a_183434?d=11925",
+      "4.2 https://www.daikin.com.tr/airfel-vibe-inverter-klima-ltxq71c-24000-btuh-a_183435?d=11925",
+      "4.2 https://www.daikin.com.tr/hausluft-inverter-klima-xrxd50h-18000-btuh-a_183447?d=11925",
+      "4.2 https://www.daikin.com.tr/hausluft-inverter-klima-xrxd71h-24000-btuh-a_183448?d=11925",
+      "4.2 https://www.daikin.com.tr/9000-btuh-a-ltxm25n-inverter-klima_183282?d=11925",
+      "4.2 https://www.daikin.com.tr/12000-btuh-a-ltxm35n-inverter-klima_183283?d=11925",
+      "4.2 https://www.daikin.com.tr/18000-btuh-a-ltxm50n-inverter-klima_183284?d=11925",
+      "4.2 https://www.daikin.com.tr/24000-btuh-a-ltxm71n-inverter-klima_183285?d=11925",
+      "4.2 https://www.daikin.com.tr/kaira-dpcy35bk-12000-btu-mobil-inverter-klima-sogutma-isitma-nem-alma_183414?d=11925",
+      "4.2 https://www.daikin.com.tr/daikin-2015-yilinin-en-cok-split-klima-ihracati-yapan-markasi-oldu",
+      "4.2 https://www.daikin.com.tr/daikin-en-cok-split-klima-ihracati-yapan-firma-oldu",
+      "4.2 https://www.daikin.com.tr/daikin-split-klimalarda-akilli-konfor-hamlesi",
+      "4.2 https://www.daikin.com.tr/daikin-split-klimalada-bir-onceki-yila-oranla-yuzde55-satislarini-artirarak-2024-mali-yilini-25,5-milyar-tl-ciro-ile-kapatti",
+      "4.2 https://www.daikin.com.tr/klima",
+      "4.2 https://www.daikin.com.tr/multi-split-klimalar-11884",
+      "4.2 https://www.daikin.com.tr/klimalar"
+    ]
+  },
+  "navLinks": [
+    {
+      "href": "https://www.daikin.com.tr/daikin-klimalar",
+      "text": "KLİMALAR"
+    },
+    {
+      "href": "https://www.daikin.com.tr/klimalar",
+      "text": "T&#220;M &#220;R&#220;NLER"
+    },
+    {
+      "href": "https://www.daikin.com.tr/klimalar/bireysel-klimalar/ururu-sarara-klimalar",
+      "text": "URURU SARARA"
+    },
+    {
+      "href": "https://www.daikin.com.tr/klimalar/bireysel-klimalar/perfera-klimalar",
+      "text": "PERFERA"
+    },
+    {
+      "href": "https://www.daikin.com.tr/daikin-emura",
+      "text": "EMURA"
+    },
+    {
+      "href": "https://www.daikin.com.tr/klimalar/bireysel-klimalar/emura-iii-klimalar",
+      "text": "T&#220;M EMURA KLİMALAR"
+    },
+    {
+      "href": "https://www.daikin.com.tr/klimalar/bireysel-klimalar/stylish-klimalar",
+      "text": "STYLISH"
+    },
+    {
+      "href": "https://www.daikin.com.tr/klimalar/bireysel-klimalar/zeta-shira-plus-klimalar",
+      "text": "ZETA SHIRA PLUS"
+    },
+    {
+      "href": "https://www.daikin.com.tr/klimalar/bireysel-klimalar/shira-eco-klimalar",
+      "text": "SHIRA ECO"
+    },
+    {
+      "href": "https://www.daikin.com.tr/klimalar/bireysel-klimalar/sensira-klimalar",
+      "text": "SENSIRA"
+    },
+    {
+      "href": "https://www.daikin.com.tr/klimalar/bireysel-klimalar/yeni-siesta-sensira-klimalar",
+      "text": "SIESTA SENSIRA"
+    },
+    {
+      "href": "https://www.daikin.com.tr/multi-split-klimalar-11884",
+      "text": "MULTİ SPLİT KLİMALAR"
+    },
+    {
+      "href": "https://www.daikin.com.tr/vrv-sistem-klimalar",
+      "text": "VRV SİSTEM KLİMALAR"
+    },
+    {
+      "href": "https://www.daikin.com.tr/klimalar/ticari-klimalar",
+      "text": "TİCARİ KLİMALAR"
+    },
+    {
+      "href": "https://www.daikin.com.tr/klimalar/ticari-klimalar/dort-yone-uflemeli",
+      "text": "4 Y&#214;NE &#220;FLEMELİ TAVAN TİPİ"
+    },
+    {
+      "href": "https://www.daikin.com.tr/klimalar/ticari-klimalar/dort-yone-uflemeli/advance",
+      "text": "ADVANCE 4 Y&#214;NE &#220;FLEMELİ TAVAN TİPİ"
+    },
+    {
+      "href": "https://www.daikin.com.tr/klimalar/ticari-klimalar/dort-yone-uflemeli/alpha",
+      "text": "ALPHA 4 Y&#214;NE &#220;FLEMELİ TAVAN TİPİ"
+    },
+    {
+      "href": "https://www.daikin.com.tr/klimalar/ticari-klimalar/tavan-tipi",
+      "text": "TAVAN TİPİ"
+    },
+    {
+      "href": "https://www.daikin.com.tr/klimalar/ticari-klimalar/kucuk-ticari-klimalar/tavan-tipi",
+      "text": "K&#220;&#199;&#220;K TİCARİ TAVAN TİPİ"
+    },
+    {
+      "href": "https://www.daikin.com.tr/klimalar/ticari-klimalar/asili-tavan-tipi/advance",
+      "text": "ADVANCE ASILI TAVAN TİPİ"
+    },
+    {
+      "href": "https://www.daikin.com.tr/klimalar/ticari-klimalar/asili-tavan-tipi/alpha",
+      "text": "ALPHA ASILI TAVAN TİPİ"
+    },
+    {
+      "href": "https://www.daikin.com.tr/klimalar/ticari-klimalar/duvar-tipi",
+      "text": "DUVAR TİPİ"
+    },
+    {
+      "href": "https://www.daikin.com.tr/klimalar/ticari-klimalar/duvar-tipi/advance",
+      "text": "ADVANCE DUVAR TİPİ"
+    },
+    {
+      "href": "https://www.daikin.com.tr/klimalar/ticari-klimalar/duvar-tipi/alpha",
+      "text": "ALPHA DUVAR TİPİ"
+    },
+    {
+      "href": "https://www.daikin.com.tr/klimalar/ticari-klimalar/gizli-tavan-tipi",
+      "text": "GİZLİ TAVAN TİPİ"
+    },
+    {
+      "href": "https://www.daikin.com.tr/klimalar/ticari-klimalar/gizli-tavan-tipi/advance-orta-statik-basincli",
+      "text": "ADVANCE ORTA STATİK BASIN&#199;LI GİZLİ TAVAN TİPİ"
+    },
+    {
+      "href": "https://www.daikin.com.tr/klimalar/ticari-klimalar/gizli-tavan-tipi/alpha-orta-statik-basincli",
+      "text": "ALPHA ORTA STATİK BASIN&#199;LI GİZLİ TAVAN TİPİ"
+    },
+    {
+      "href": "https://www.daikin.com.tr/klimalar/ticari-klimalar/kucuk-ticari-klimalar/gizli-tavan-klimalar",
+      "text": "K&#220;&#199;&#220;K TİCARİ GİZLİ TAVAN TİPİ"
+    },
+    {
+      "href": "https://www.daikin.com.tr/klimalar/ticari-klimalar/gizli-tavan-tipi/advance-yuksek-statik-basincli",
+      "text": "ADVANCE Y&#220;KSEK STATİK BASIN&#199;LI GİZLİ TAVAN TİPİ"
+    },
+    {
+      "href": "https://www.daikin.com.tr/klimalar/ticari-klimalar/kaset-tipi",
+      "text": "KASET TİPİ"
+    },
+    {
+      "href": "https://www.daikin.com.tr/klimalar/ticari-klimalar/kaset-tipi/advance",
+      "text": "ADVANCE KASET TİPİ"
+    },
+    {
+      "href": "https://www.daikin.com.tr/klimalar/ticari-klimalar/kaset-tipi/alpha",
+      "text": "ALPHA KASET TİPİ"
+    },
+    {
+      "href": "https://www.daikin.com.tr/klimalar/ticari-klimalar/kucuk-ticari-klimalar/kaset-tipi-klimalar",
+      "text": "K&#220;&#199;&#220;K TİCARİ KASET TİPİ"
+    },
+    {
+      "href": "https://www.daikin.com.tr/klimalar/ticari-klimalar/salon-tipi",
+      "text": "SALON TİPİ"
+    },
+    {
+      "href": "https://www.daikin.com.tr/klimalar/ticari-klimalar/salon-tipi/advance",
+      "text": "ADVANCE SALON TİPİ"
+    },
+    {
+      "href": "https://www.daikin.com.tr/klimalar/ticari-klimalar/salon-tipi/alpha",
+      "text": "ALPHA SALON TİPİ"
+    },
+    {
+      "href": "https://www.daikin.com.tr/daikin-klima-santrali",
+      "text": "KLİMA SANTRALİ"
+    },
+    {
+      "href": "https://www.daikin.com.tr/sensei-duvar-tipi-kazan",
+      "text": "DUVAR TİPİ KAZAN"
+    },
+    {
+      "href": "https://www.daikin.com.tr/daikin-kombi-klima-bulucu",
+      "text": "&#220;r&#252;n Bulucu"
+    },
+    {
+      "href": "https://www.daikin.com.tr/tech-klimalar",
+      "text": "HEMEN İNCELEYİN"
+    },
+    {
+      "href": "https://www.daikin.com.tr/shira-eco-9000-btuh-ftxp25n9-inverter-klima-r32_182895",
+      "text": ""
+    },
+    {
+      "href": "https://www.daikin.com.tr/emura-9000-btuh-a-ftxj25ab9-inverter-klima-r32_183232",
+      "text": ""
+    },
+    {
+      "href": "https://www.daikin.com.tr/emura-9000-btuh-a-ftxj25as9-inverter-klima-r32_183231",
+      "text": ""
+    },
+    {
+      "href": "https://www.daikin.com.tr/ururu-sarara-12000-btuh-a-ftxz35n-inverter-klima-r32_182901",
+      "text": ""
+    },
+    {
+      "href": "https://www.daikin.com.tr/klimalar/bireysel-klimalar",
+      "text": "Bireysel Klimalar"
+    },
+    {
+      "href": "https://www.daikin.com.tr/daikin-hava-temizleme-cihaz-ve-klima-arasndaki-fark-nelerdir",
+      "text": "Hava Temizleme Cihazı ve Klima Arasındaki Fark Nelerdir?"
+    },
+    {
+      "href": "https://www.daikin.com.tr/bilgi-ve-ipuclari/klima-calismama-sorunu-ve-cozumleri",
+      "text": "Klima &#199;alışmama Sorunu ve &#199;&#246;z&#252;mleri"
+    },
+    {
+      "href": "https://www.daikin.com.tr/bilgi-ve-ipuclari/klima-arizalarinda-yapilmasi-gerekenler-nelerdir",
+      "text": "Klima Arızalarında Yapılması Gerekenler Nelerdir?"
+    },
+    {
+      "href": "https://www.daikin.com.tr/daikin-klima-kullanim",
+      "text": "T&#252;ketici Destek"
+    },
+    {
+      "href": "https://www.daikin.com.tr/#tab-4448",
+      "text": "Klimalar"
+    }
+  ],
+  "pages": [
+    {
+      "url": "https://www.daikin.com.tr/siesta-sensira-9000-btuh-atxf25f-inverter-klima-r32_183400?d=11944",
+      "title": "Siesta Sensira 9000 BTU/h \n             ATXF25F Inverter Klima R32",
+      "images": [
+        {
+          "how": "og:image",
+          "rank": 9,
+          "src": "https://st-daikin.mncdn.com/mnresize/440/440/Content/media/ProductImg/original/tratxf25f01-yeni-siesta-sensira-9000-btuh-atxf25f-inverter-klima-r32-638820335762676786.png",
+          "file": "assets/daikin/products/1-siesta-sensira-9000-btu-h-atxf25f-inverter-klima/img-1.png",
+          "bytes": 10170,
+          "width": 440,
+          "height": 440,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/1-siesta-sensira-9000-btu-h-atxf25f-inverter-klima/img-1-900.png",
+            "webp": "assets/daikin/products/1-siesta-sensira-9000-btu-h-atxf25f-inverter-klima/img-1-900.webp",
+            "pngBytes": 45867,
+            "webpBytes": 9774
+          },
+          "trim": {
+            "png": "assets/daikin/products/1-siesta-sensira-9000-btu-h-atxf25f-inverter-klima/img-1-trim.png",
+            "width": 389,
+            "height": 195,
+            "bytes": 39259
+          }
+        },
+        {
+          "how": "img",
+          "alt": "Siesta Sensira 9000 BTU/h | ATXF25F Inverter Klima R32 TR.ATXF25F.01",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/tratxf25f01-yeni-siesta-sensira-9000-btuh-atxf25f-inverter-klima-r32-638820335762676786.png?q=100",
+          "file": "assets/daikin/products/1-siesta-sensira-9000-btu-h-atxf25f-inverter-klima/img-2.png",
+          "bytes": 42954,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/1-siesta-sensira-9000-btu-h-atxf25f-inverter-klima/img-2-900.png",
+            "webp": "assets/daikin/products/1-siesta-sensira-9000-btu-h-atxf25f-inverter-klima/img-2-900.webp",
+            "pngBytes": 135704,
+            "webpBytes": 20120
+          },
+          "trim": {
+            "png": "assets/daikin/products/1-siesta-sensira-9000-btu-h-atxf25f-inverter-klima/img-2-trim.png",
+            "width": 708,
+            "height": 355,
+            "bytes": 125017
+          }
+        },
+        {
+          "how": "img",
+          "alt": "Siesta Sensira 9000 BTU/h | ATXF25F Inverter Klima R32 TR.ATXF25F.01",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/tratxf25f01-yeni-siesta-sensira-9000-btuh-atxf25f-inverter-klima-r32-638820320936087874.png?q=100",
+          "file": "assets/daikin/products/1-siesta-sensira-9000-btu-h-atxf25f-inverter-klima/img-3.png",
+          "bytes": 57864,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/1-siesta-sensira-9000-btu-h-atxf25f-inverter-klima/img-3-900.png",
+            "webp": "assets/daikin/products/1-siesta-sensira-9000-btu-h-atxf25f-inverter-klima/img-3-900.webp",
+            "pngBytes": 206205,
+            "webpBytes": 18666
+          },
+          "trim": {
+            "png": "assets/daikin/products/1-siesta-sensira-9000-btu-h-atxf25f-inverter-klima/img-3-trim.png",
+            "width": 659,
+            "height": 446,
+            "bytes": 197371
+          }
+        },
+        {
+          "how": "img",
+          "alt": "Siesta Sensira 9000 BTU/h | ATXF25F Inverter Klima R32 TR.ATXF25F.01",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/tratxf25f01-yeni-siesta-sensira-9000-btuh-atxf25f-inverter-klima-r32-638820320951556724.png?q=100",
+          "file": "assets/daikin/products/1-siesta-sensira-9000-btu-h-atxf25f-inverter-klima/img-4.png",
+          "bytes": 55670,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/1-siesta-sensira-9000-btu-h-atxf25f-inverter-klima/img-4-900.png",
+            "webp": "assets/daikin/products/1-siesta-sensira-9000-btu-h-atxf25f-inverter-klima/img-4-900.webp",
+            "pngBytes": 197766,
+            "webpBytes": 18848
+          },
+          "trim": {
+            "png": "assets/daikin/products/1-siesta-sensira-9000-btu-h-atxf25f-inverter-klima/img-4-trim.png",
+            "width": 656,
+            "height": 441,
+            "bytes": 179287
+          }
+        },
+        {
+          "src": "https://st-daikin.mncdn.com/mnresize/100/100/Content/media/ProductImg/original/tratxf25f01-yeni-siesta-sensira-9000-btuh-atxf25f-inverter-klima-r32-638820335762676786.png",
+          "how": "img",
+          "skipped": "küçük (100x100)"
+        },
+        {
+          "src": "https://st-daikin.mncdn.com/mnresize/100/100/Content/media/ProductImg/original/tratxf25f01-yeni-siesta-sensira-9000-btuh-atxf25f-inverter-klima-r32-638820320936087874.png",
+          "how": "img",
+          "skipped": "küçük (100x100)"
+        },
+        {
+          "src": "https://st-daikin.mncdn.com/mnresize/100/100/Content/media/ProductImg/original/tratxf25f01-yeni-siesta-sensira-9000-btuh-atxf25f-inverter-klima-r32-638820320951556724.png",
+          "how": "img",
+          "skipped": "küçük (100x100)"
+        }
+      ],
+      "candidates": 20
+    },
+    {
+      "url": "https://www.daikin.com.tr/siesta-sensira-12000-btuh-atxf35f-inverter-klima-r32_183401?d=11944",
+      "title": "Siesta Sensira 12000 BTU/h \n             ATXF35F Inverter Klima R32",
+      "images": [
+        {
+          "how": "og:image",
+          "rank": 9,
+          "src": "https://st-daikin.mncdn.com/mnresize/440/440/Content/media/ProductImg/original/tratxf35f01-yeni-siesta-sensira-12000-btuh-atxf35f-inverter-klima-r32-638820336091427448.png",
+          "file": "assets/daikin/products/2-siesta-sensira-12000-btu-h-atxf35f-inverter-klim/img-1.png",
+          "bytes": 10170,
+          "width": 440,
+          "height": 440,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/2-siesta-sensira-12000-btu-h-atxf35f-inverter-klim/img-1-900.png",
+            "webp": "assets/daikin/products/2-siesta-sensira-12000-btu-h-atxf35f-inverter-klim/img-1-900.webp",
+            "pngBytes": 45867,
+            "webpBytes": 9774
+          },
+          "trim": {
+            "png": "assets/daikin/products/2-siesta-sensira-12000-btu-h-atxf35f-inverter-klim/img-1-trim.png",
+            "width": 389,
+            "height": 195,
+            "bytes": 39259
+          }
+        },
+        {
+          "how": "img",
+          "alt": "Siesta Sensira 12000 BTU/h | ATXF35F Inverter Klima R32 TR.ATXF35F.01",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/tratxf35f01-yeni-siesta-sensira-12000-btuh-atxf35f-inverter-klima-r32-638820336091427448.png?q=100",
+          "file": "assets/daikin/products/2-siesta-sensira-12000-btu-h-atxf35f-inverter-klim/img-2.png",
+          "bytes": 42954,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/2-siesta-sensira-12000-btu-h-atxf35f-inverter-klim/img-2-900.png",
+            "webp": "assets/daikin/products/2-siesta-sensira-12000-btu-h-atxf35f-inverter-klim/img-2-900.webp",
+            "pngBytes": 135704,
+            "webpBytes": 20120
+          },
+          "trim": {
+            "png": "assets/daikin/products/2-siesta-sensira-12000-btu-h-atxf35f-inverter-klim/img-2-trim.png",
+            "width": 708,
+            "height": 355,
+            "bytes": 125017
+          }
+        },
+        {
+          "how": "img",
+          "alt": "Siesta Sensira 12000 BTU/h | ATXF35F Inverter Klima R32 TR.ATXF35F.01",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/tratxf35f01-yeni-siesta-sensira-12000-btuh-atxf35f-inverter-klima-r32-638820314230345391.png?q=100",
+          "file": "assets/daikin/products/2-siesta-sensira-12000-btu-h-atxf35f-inverter-klim/img-3.png",
+          "bytes": 55670,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/2-siesta-sensira-12000-btu-h-atxf35f-inverter-klim/img-3-900.png",
+            "webp": "assets/daikin/products/2-siesta-sensira-12000-btu-h-atxf35f-inverter-klim/img-3-900.webp",
+            "pngBytes": 197766,
+            "webpBytes": 18848
+          },
+          "trim": {
+            "png": "assets/daikin/products/2-siesta-sensira-12000-btu-h-atxf35f-inverter-klim/img-3-trim.png",
+            "width": 656,
+            "height": 441,
+            "bytes": 179287
+          }
+        },
+        {
+          "how": "img",
+          "alt": "Siesta Sensira 12000 BTU/h | ATXF35F Inverter Klima R32 TR.ATXF35F.01",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/tratxf35f01-yeni-siesta-sensira-12000-btuh-atxf35f-inverter-klima-r32-638820314249095529.png?q=100",
+          "file": "assets/daikin/products/2-siesta-sensira-12000-btu-h-atxf35f-inverter-klim/img-4.png",
+          "bytes": 57864,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/2-siesta-sensira-12000-btu-h-atxf35f-inverter-klim/img-4-900.png",
+            "webp": "assets/daikin/products/2-siesta-sensira-12000-btu-h-atxf35f-inverter-klim/img-4-900.webp",
+            "pngBytes": 206205,
+            "webpBytes": 18666
+          },
+          "trim": {
+            "png": "assets/daikin/products/2-siesta-sensira-12000-btu-h-atxf35f-inverter-klim/img-4-trim.png",
+            "width": 659,
+            "height": 446,
+            "bytes": 197371
+          }
+        },
+        {
+          "src": "https://st-daikin.mncdn.com/mnresize/100/100/Content/media/ProductImg/original/tratxf35f01-yeni-siesta-sensira-12000-btuh-atxf35f-inverter-klima-r32-638820336091427448.png",
+          "how": "img",
+          "skipped": "küçük (100x100)"
+        },
+        {
+          "src": "https://st-daikin.mncdn.com/mnresize/100/100/Content/media/ProductImg/original/tratxf35f01-yeni-siesta-sensira-12000-btuh-atxf35f-inverter-klima-r32-638820314230345391.png",
+          "how": "img",
+          "skipped": "küçük (100x100)"
+        },
+        {
+          "src": "https://st-daikin.mncdn.com/mnresize/100/100/Content/media/ProductImg/original/tratxf35f01-yeni-siesta-sensira-12000-btuh-atxf35f-inverter-klima-r32-638820314249095529.png",
+          "how": "img",
+          "skipped": "küçük (100x100)"
+        }
+      ],
+      "candidates": 20
+    },
+    {
+      "url": "https://www.daikin.com.tr/perfera-18000-btuh-fvxm50a-yer-tipi-r32-inverter-split-klima_183208?d=11861",
+      "title": "Perfera 18000 BTU/h \n             FVXM50A Yer Tipi R32 Inverter Split Klima",
+      "images": [
+        {
+          "how": "og:image",
+          "rank": 9,
+          "src": "https://st-daikin.mncdn.com/mnresize/440/440/Content/media/ProductImg/original/trfvxm50a01-perfera-18000-btuh-yer-tipi-r32-inverter-split-klima-637550708383346265.png",
+          "file": "assets/daikin/products/3-perfera-18000-btu-h-fvxm50a-yer-tipi-r32-inverte/img-1.png",
+          "bytes": 7304,
+          "width": 440,
+          "height": 440,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/3-perfera-18000-btu-h-fvxm50a-yer-tipi-r32-inverte/img-1-900.png",
+            "webp": "assets/daikin/products/3-perfera-18000-btu-h-fvxm50a-yer-tipi-r32-inverte/img-1-900.webp",
+            "pngBytes": 38562,
+            "webpBytes": 7152
+          },
+          "trim": {
+            "png": "assets/daikin/products/3-perfera-18000-btu-h-fvxm50a-yer-tipi-r32-inverte/img-1-trim.png",
+            "width": 358,
+            "height": 279,
+            "bytes": 34560
+          }
+        },
+        {
+          "how": "img",
+          "alt": "Perfera 18000 BTU/h | FVXM50A Yer Tipi R32 Inverter Split Klima TR.FVXM50A.01",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/trfvxm50a01-perfera-18000-btuh-yer-tipi-r32-inverter-split-klima-637550708383346265.png?q=100",
+          "file": "assets/daikin/products/3-perfera-18000-btu-h-fvxm50a-yer-tipi-r32-inverte/img-2.png",
+          "bytes": 41172,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/3-perfera-18000-btu-h-fvxm50a-yer-tipi-r32-inverte/img-2-900.png",
+            "webp": "assets/daikin/products/3-perfera-18000-btu-h-fvxm50a-yer-tipi-r32-inverte/img-2-900.webp",
+            "pngBytes": 133122,
+            "webpBytes": 14022
+          },
+          "trim": {
+            "png": "assets/daikin/products/3-perfera-18000-btu-h-fvxm50a-yer-tipi-r32-inverte/img-2-trim.png",
+            "width": 651,
+            "height": 507,
+            "bytes": 124435
+          }
+        },
+        {
+          "how": "img",
+          "alt": "Perfera 18000 BTU/h | FVXM50A Yer Tipi R32 Inverter Split Klima TR.FVXM50A.01",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/trfvxm50a01-perfera-18000-btuh-yer-tipi-r32-inverter-split-klima-637550708478610019.png?q=100",
+          "file": "assets/daikin/products/3-perfera-18000-btu-h-fvxm50a-yer-tipi-r32-inverte/img-3.png",
+          "bytes": 56702,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/3-perfera-18000-btu-h-fvxm50a-yer-tipi-r32-inverte/img-3-900.png",
+            "webp": "assets/daikin/products/3-perfera-18000-btu-h-fvxm50a-yer-tipi-r32-inverte/img-3-900.webp",
+            "pngBytes": 231566,
+            "webpBytes": 17602
+          },
+          "trim": {
+            "png": "assets/daikin/products/3-perfera-18000-btu-h-fvxm50a-yer-tipi-r32-inverte/img-3-trim.png",
+            "width": 669,
+            "height": 538,
+            "bytes": 220362
+          }
+        },
+        {
+          "how": "img",
+          "alt": "Perfera 18000 BTU/h | FVXM50A Yer Tipi R32 Inverter Split Klima TR.FVXM50A.01",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/trfvxm50a01-perfera-18000-btuh-yer-tipi-r32-inverter-split-klima-637550708596481210.png?q=100",
+          "file": "assets/daikin/products/3-perfera-18000-btu-h-fvxm50a-yer-tipi-r32-inverte/img-4.png",
+          "bytes": 65040,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/3-perfera-18000-btu-h-fvxm50a-yer-tipi-r32-inverte/img-4-900.png",
+            "webp": "assets/daikin/products/3-perfera-18000-btu-h-fvxm50a-yer-tipi-r32-inverte/img-4-900.webp",
+            "pngBytes": 245891,
+            "webpBytes": 26474
+          },
+          "trim": {
+            "png": "assets/daikin/products/3-perfera-18000-btu-h-fvxm50a-yer-tipi-r32-inverte/img-4-trim.png",
+            "width": 624,
+            "height": 646,
+            "bytes": 235286
+          }
+        },
+        {
+          "how": "img",
+          "alt": "Perfera 18000 BTU/h | FVXM50A Yer Tipi R32 Inverter Split Klima TR.FVXM50A.01",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/trfvxm50a01-perfera-18000-btuh-yer-tipi-r32-inverter-split-klima-637550708605612112.png?q=100",
+          "file": "assets/daikin/products/3-perfera-18000-btu-h-fvxm50a-yer-tipi-r32-inverte/img-5.png",
+          "bytes": 40720,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/3-perfera-18000-btu-h-fvxm50a-yer-tipi-r32-inverte/img-5-900.png",
+            "webp": "assets/daikin/products/3-perfera-18000-btu-h-fvxm50a-yer-tipi-r32-inverte/img-5-900.webp",
+            "pngBytes": 137253,
+            "webpBytes": 17550
+          },
+          "trim": {
+            "png": "assets/daikin/products/3-perfera-18000-btu-h-fvxm50a-yer-tipi-r32-inverte/img-5-trim.png",
+            "width": 484,
+            "height": 515,
+            "bytes": 124626
+          }
+        },
+        {
+          "src": "https://st-daikin.mncdn.com/mnresize/100/100/Content/media/ProductImg/original/trfvxm50a01-perfera-18000-btuh-yer-tipi-r32-inverter-split-klima-637550708383346265.png",
+          "how": "img",
+          "skipped": "küçük (100x100)"
+        },
+        {
+          "src": "https://st-daikin.mncdn.com/mnresize/100/100/Content/media/ProductImg/original/trfvxm50a01-perfera-18000-btuh-yer-tipi-r32-inverter-split-klima-637550708478610019.png",
+          "how": "img",
+          "skipped": "küçük (100x100)"
+        }
+      ],
+      "candidates": 44
+    },
+    {
+      "url": "https://www.daikin.com.tr/perfera-9000-btuh-fvxm25b-yer-tipi-r32-inverter-split-klima_183415?d=11861",
+      "title": "Perfera 9000 BTU/h \n             FVXM25B Yer Tipi R32 Inverter Split Klima",
+      "images": [
+        {
+          "how": "og:image",
+          "rank": 9,
+          "src": "https://st-daikin.mncdn.com/mnresize/440/440/Content/media/ProductImg/original/trfvxm25b01-perfera-9000-btuh-fvxm25b-yer-tipi-r32-inverter-split-klima-638918834975878248.png",
+          "file": "assets/daikin/products/4-perfera-9000-btu-h-fvxm25b-yer-tipi-r32-inverter/img-1.png",
+          "bytes": 7740,
+          "width": 440,
+          "height": 440,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/4-perfera-9000-btu-h-fvxm25b-yer-tipi-r32-inverter/img-1-900.png",
+            "webp": "assets/daikin/products/4-perfera-9000-btu-h-fvxm25b-yer-tipi-r32-inverter/img-1-900.webp",
+            "pngBytes": 40042,
+            "webpBytes": 7526
+          },
+          "trim": {
+            "png": "assets/daikin/products/4-perfera-9000-btu-h-fvxm25b-yer-tipi-r32-inverter/img-1-trim.png",
+            "width": 358,
+            "height": 279,
+            "bytes": 35837
+          }
+        },
+        {
+          "how": "img",
+          "alt": "Perfera 9000 BTU/h | FVXM25B Yer Tipi R32 Inverter Split Klima TR.FVXM25B.01",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/trfvxm25b01-perfera-9000-btuh-fvxm25b-yer-tipi-r32-inverter-split-klima-638918834975878248.png?q=100",
+          "file": "assets/daikin/products/4-perfera-9000-btu-h-fvxm25b-yer-tipi-r32-inverter/img-2.png",
+          "bytes": 37360,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/4-perfera-9000-btu-h-fvxm25b-yer-tipi-r32-inverter/img-2-900.png",
+            "webp": "assets/daikin/products/4-perfera-9000-btu-h-fvxm25b-yer-tipi-r32-inverter/img-2-900.webp",
+            "pngBytes": 108762,
+            "webpBytes": 15024
+          },
+          "trim": {
+            "png": "assets/daikin/products/4-perfera-9000-btu-h-fvxm25b-yer-tipi-r32-inverter/img-2-trim.png",
+            "width": 651,
+            "height": 507,
+            "bytes": 102453
+          }
+        },
+        {
+          "how": "img",
+          "alt": "Perfera 9000 BTU/h | FVXM25B Yer Tipi R32 Inverter Split Klima TR.FVXM25B.01",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/trfvxm25b01-perfera-9000-btuh-fvxm25b-yer-tipi-r32-inverter-split-klima-638918832644610094.png?q=100",
+          "file": "assets/daikin/products/4-perfera-9000-btu-h-fvxm25b-yer-tipi-r32-inverter/img-3.png",
+          "bytes": 59510,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/4-perfera-9000-btu-h-fvxm25b-yer-tipi-r32-inverter/img-3-900.png",
+            "webp": "assets/daikin/products/4-perfera-9000-btu-h-fvxm25b-yer-tipi-r32-inverter/img-3-900.webp",
+            "pngBytes": 221758,
+            "webpBytes": 25600
+          },
+          "trim": {
+            "png": "assets/daikin/products/4-perfera-9000-btu-h-fvxm25b-yer-tipi-r32-inverter/img-3-trim.png",
+            "width": 624,
+            "height": 646,
+            "bytes": 211433
+          }
+        },
+        {
+          "how": "img",
+          "alt": "Perfera 9000 BTU/h | FVXM25B Yer Tipi R32 Inverter Split Klima TR.FVXM25B.01",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/trfvxm25b01-perfera-9000-btuh-fvxm25b-yer-tipi-r32-inverter-split-klima-638918835056816368.png?q=100",
+          "file": "assets/daikin/products/4-perfera-9000-btu-h-fvxm25b-yer-tipi-r32-inverter/img-4.png",
+          "bytes": 37296,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/4-perfera-9000-btu-h-fvxm25b-yer-tipi-r32-inverter/img-4-900.png",
+            "webp": "assets/daikin/products/4-perfera-9000-btu-h-fvxm25b-yer-tipi-r32-inverter/img-4-900.webp",
+            "pngBytes": 122401,
+            "webpBytes": 17506
+          },
+          "trim": {
+            "png": "assets/daikin/products/4-perfera-9000-btu-h-fvxm25b-yer-tipi-r32-inverter/img-4-trim.png",
+            "width": 484,
+            "height": 515,
+            "bytes": 109887
+          }
+        },
+        {
+          "how": "img",
+          "alt": "Perfera 9000 BTU/h | FVXM25B Yer Tipi R32 Inverter Split Klima TR.FVXM25B.01",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/trfvxm25b01-perfera-9000-btuh-fvxm25b-yer-tipi-r32-inverter-split-klima-638918835000409766.png?q=100",
+          "file": "assets/daikin/products/4-perfera-9000-btu-h-fvxm25b-yer-tipi-r32-inverter/img-5.png",
+          "bytes": 55104,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": false,
+          "small": {
+            "png": "assets/daikin/products/4-perfera-9000-btu-h-fvxm25b-yer-tipi-r32-inverter/img-5-900.png",
+            "webp": "assets/daikin/products/4-perfera-9000-btu-h-fvxm25b-yer-tipi-r32-inverter/img-5-900.webp",
+            "pngBytes": 242542,
+            "webpBytes": 6288
+          },
+          "trim": {
+            "png": "assets/daikin/products/4-perfera-9000-btu-h-fvxm25b-yer-tipi-r32-inverter/img-5-trim.png",
+            "width": 800,
+            "height": 800,
+            "bytes": 242542
+          }
+        },
+        {
+          "how": "img",
+          "alt": "Perfera 9000 BTU/h | FVXM25B Yer Tipi R32 Inverter Split Klima TR.FVXM25B.01",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/trfvxm25b01-perfera-9000-btuh-fvxm25b-yer-tipi-r32-inverter-split-klima-638918835046816186.png?q=100",
+          "file": "assets/daikin/products/4-perfera-9000-btu-h-fvxm25b-yer-tipi-r32-inverter/img-6.png",
+          "bytes": 32288,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": false,
+          "small": {
+            "png": "assets/daikin/products/4-perfera-9000-btu-h-fvxm25b-yer-tipi-r32-inverter/img-6-900.png",
+            "webp": "assets/daikin/products/4-perfera-9000-btu-h-fvxm25b-yer-tipi-r32-inverter/img-6-900.webp",
+            "pngBytes": 135581,
+            "webpBytes": 8200
+          },
+          "trim": {
+            "png": "assets/daikin/products/4-perfera-9000-btu-h-fvxm25b-yer-tipi-r32-inverter/img-6-trim.png",
+            "width": 800,
+            "height": 800,
+            "bytes": 135581
+          }
+        },
+        {
+          "how": "img",
+          "alt": "Perfera 9000 BTU/h | FVXM25B Yer Tipi R32 Inverter Split Klima TR.FVXM25B.01",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/trfvxm25b01-perfera-9000-btuh-fvxm25b-yer-tipi-r32-inverter-split-klima-638918833994776823.png?q=100",
+          "file": "assets/daikin/products/4-perfera-9000-btu-h-fvxm25b-yer-tipi-r32-inverter/img-7.png",
+          "bytes": 37724,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": false,
+          "small": {
+            "png": "assets/daikin/products/4-perfera-9000-btu-h-fvxm25b-yer-tipi-r32-inverter/img-7-900.png",
+            "webp": "assets/daikin/products/4-perfera-9000-btu-h-fvxm25b-yer-tipi-r32-inverter/img-7-900.webp",
+            "pngBytes": 176521,
+            "webpBytes": 7540
+          },
+          "trim": {
+            "png": "assets/daikin/products/4-perfera-9000-btu-h-fvxm25b-yer-tipi-r32-inverter/img-7-trim.png",
+            "width": 800,
+            "height": 800,
+            "bytes": 176521
+          }
+        }
+      ],
+      "candidates": 40
+    },
+    {
+      "url": "https://www.daikin.com.tr/shira-eco-7000-btuh-ftxp20n9-inverter-klima-r32_182894?d=11684",
+      "title": "Shira Eco 7000 BTU/h \n             FTXP20N9 Inverter Klima R32",
+      "images": [
+        {
+          "how": "og:image",
+          "rank": 9,
+          "src": "https://st-daikin.mncdn.com/mnresize/440/440/Content/media/ProductImg/original/trftxp20n01-shira-eco-7000-btuh-ftxp20n9-inverter-klima-r32-638574069824380129.png",
+          "file": "assets/daikin/products/5-shira-eco-7000-btu-h-ftxp20n9-inverter-klima-r32/img-1.png",
+          "bytes": 3520,
+          "width": 440,
+          "height": 440,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/5-shira-eco-7000-btu-h-ftxp20n9-inverter-klima-r32/img-1-900.png",
+            "webp": "assets/daikin/products/5-shira-eco-7000-btu-h-ftxp20n9-inverter-klima-r32/img-1-900.webp",
+            "pngBytes": 15091,
+            "webpBytes": 3452
+          },
+          "trim": {
+            "png": "assets/daikin/products/5-shira-eco-7000-btu-h-ftxp20n9-inverter-klima-r32/img-1-trim.png",
+            "width": 383,
+            "height": 147,
+            "bytes": 11287
+          }
+        },
+        {
+          "how": "img",
+          "alt": "Shira Eco 7000 BTU/h | FTXP20N9 Inverter Klima R32 TR.FTXP20N.01",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/trftxp20n01-shira-eco-7000-btuh-ftxp20n9-inverter-klima-r32-638574069824380129.png?q=100",
+          "file": "assets/daikin/products/5-shira-eco-7000-btu-h-ftxp20n9-inverter-klima-r32/img-2.png",
+          "bytes": 17268,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/5-shira-eco-7000-btu-h-ftxp20n9-inverter-klima-r32/img-2-900.png",
+            "webp": "assets/daikin/products/5-shira-eco-7000-btu-h-ftxp20n9-inverter-klima-r32/img-2-900.webp",
+            "pngBytes": 51119,
+            "webpBytes": 7894
+          },
+          "trim": {
+            "png": "assets/daikin/products/5-shira-eco-7000-btu-h-ftxp20n9-inverter-klima-r32/img-2-trim.png",
+            "width": 697,
+            "height": 267,
+            "bytes": 41759
+          }
+        },
+        {
+          "how": "img",
+          "alt": "Shira Eco 7000 BTU/h | FTXP20N9 Inverter Klima R32 TR.FTXP20N.01",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/trftxp20n01-shira-eco-7000-btuh-ftxp20n9-inverter-klima-r32-638574069808755150.png?q=100",
+          "file": "assets/daikin/products/5-shira-eco-7000-btu-h-ftxp20n9-inverter-klima-r32/img-3.png",
+          "bytes": 28058,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/5-shira-eco-7000-btu-h-ftxp20n9-inverter-klima-r32/img-3-900.png",
+            "webp": "assets/daikin/products/5-shira-eco-7000-btu-h-ftxp20n9-inverter-klima-r32/img-3-900.webp",
+            "pngBytes": 70420,
+            "webpBytes": 14732
+          },
+          "trim": {
+            "png": "assets/daikin/products/5-shira-eco-7000-btu-h-ftxp20n9-inverter-klima-r32/img-3-trim.png",
+            "width": 704,
+            "height": 363,
+            "bytes": 65253
+          }
+        },
+        {
+          "how": "img",
+          "alt": "Shira Eco 7000 BTU/h | FTXP20N9 Inverter Klima R32 TR.FTXP20N.01",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/trftxp20n01-shira-eco-7000-btuh-ftxp20n9-inverter-klima-r32-638574069762974084.png?q=100",
+          "file": "assets/daikin/products/5-shira-eco-7000-btu-h-ftxp20n9-inverter-klima-r32/img-4.png",
+          "bytes": 27454,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/5-shira-eco-7000-btu-h-ftxp20n9-inverter-klima-r32/img-4-900.png",
+            "webp": "assets/daikin/products/5-shira-eco-7000-btu-h-ftxp20n9-inverter-klima-r32/img-4-900.webp",
+            "pngBytes": 72698,
+            "webpBytes": 14038
+          },
+          "trim": {
+            "png": "assets/daikin/products/5-shira-eco-7000-btu-h-ftxp20n9-inverter-klima-r32/img-4-trim.png",
+            "width": 701,
+            "height": 354,
+            "bytes": 66693
+          }
+        },
+        {
+          "how": "img",
+          "alt": "Shira Eco 7000 BTU/h | FTXP20N9 Inverter Klima R32 TR.FTXP20N.01",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/trftxp20n01-shira-eco-7000-btuh-ftxp20n9-inverter-klima-r32-638574069793442707.png?q=100",
+          "file": "assets/daikin/products/5-shira-eco-7000-btu-h-ftxp20n9-inverter-klima-r32/img-5.png",
+          "bytes": 27770,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/5-shira-eco-7000-btu-h-ftxp20n9-inverter-klima-r32/img-5-900.png",
+            "webp": "assets/daikin/products/5-shira-eco-7000-btu-h-ftxp20n9-inverter-klima-r32/img-5-900.webp",
+            "pngBytes": 104920,
+            "webpBytes": 13072
+          },
+          "trim": {
+            "png": "assets/daikin/products/5-shira-eco-7000-btu-h-ftxp20n9-inverter-klima-r32/img-5-trim.png",
+            "width": 132,
+            "height": 492,
+            "bytes": 82866
+          }
+        },
+        {
+          "src": "https://st-daikin.mncdn.com/mnresize/100/100/Content/media/ProductImg/original/trftxp20n01-shira-eco-7000-btuh-ftxp20n9-inverter-klima-r32-638574069824380129.png",
+          "how": "img",
+          "skipped": "küçük (100x100)"
+        },
+        {
+          "src": "https://st-daikin.mncdn.com/mnresize/100/100/Content/media/ProductImg/original/trftxp20n01-shira-eco-7000-btuh-ftxp20n9-inverter-klima-r32-638574069808755150.png",
+          "how": "img",
+          "skipped": "küçük (100x100)"
+        }
+      ],
+      "candidates": 33
+    },
+    {
+      "url": "https://www.daikin.com.tr/shira-eco-9000-btuh-ftxp25n9-inverter-klima-r32_182895?d=11684",
+      "title": "Shira Eco 9000 BTU/h \n             FTXP25N9 Inverter Klima R32",
+      "images": [
+        {
+          "how": "og:image",
+          "rank": 9,
+          "src": "https://st-daikin.mncdn.com/mnresize/440/440/Content/media/ProductImg/original/trftxp25n01-shira-eco-9000-btuh-ftxp25n9-inverter-klima-r32-638574071173286729.png",
+          "file": "assets/daikin/products/6-shira-eco-9000-btu-h-ftxp25n9-inverter-klima-r32/img-1.png",
+          "bytes": 3520,
+          "width": 440,
+          "height": 440,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/6-shira-eco-9000-btu-h-ftxp25n9-inverter-klima-r32/img-1-900.png",
+            "webp": "assets/daikin/products/6-shira-eco-9000-btu-h-ftxp25n9-inverter-klima-r32/img-1-900.webp",
+            "pngBytes": 15091,
+            "webpBytes": 3452
+          },
+          "trim": {
+            "png": "assets/daikin/products/6-shira-eco-9000-btu-h-ftxp25n9-inverter-klima-r32/img-1-trim.png",
+            "width": 383,
+            "height": 147,
+            "bytes": 11287
+          }
+        },
+        {
+          "how": "img",
+          "alt": "Shira Eco 9000 BTU/h | FTXP25N9 Inverter Klima R32 TR.FTXP25N9.01",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/trftxp25n01-shira-eco-9000-btuh-ftxp25n9-inverter-klima-r32-638574071173286729.png?q=100",
+          "file": "assets/daikin/products/6-shira-eco-9000-btu-h-ftxp25n9-inverter-klima-r32/img-2.png",
+          "bytes": 17268,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/6-shira-eco-9000-btu-h-ftxp25n9-inverter-klima-r32/img-2-900.png",
+            "webp": "assets/daikin/products/6-shira-eco-9000-btu-h-ftxp25n9-inverter-klima-r32/img-2-900.webp",
+            "pngBytes": 51119,
+            "webpBytes": 7894
+          },
+          "trim": {
+            "png": "assets/daikin/products/6-shira-eco-9000-btu-h-ftxp25n9-inverter-klima-r32/img-2-trim.png",
+            "width": 697,
+            "height": 267,
+            "bytes": 41759
+          }
+        },
+        {
+          "how": "img",
+          "alt": "Shira Eco 9000 BTU/h | FTXP25N9 Inverter Klima R32 TR.FTXP25N9.01",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/trftxp25n01-shira-eco-9000-btuh-ftxp25n9-inverter-klima-r32-638574071221255327.png?q=100",
+          "file": "assets/daikin/products/6-shira-eco-9000-btu-h-ftxp25n9-inverter-klima-r32/img-3.png",
+          "bytes": 28058,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/6-shira-eco-9000-btu-h-ftxp25n9-inverter-klima-r32/img-3-900.png",
+            "webp": "assets/daikin/products/6-shira-eco-9000-btu-h-ftxp25n9-inverter-klima-r32/img-3-900.webp",
+            "pngBytes": 70420,
+            "webpBytes": 14732
+          },
+          "trim": {
+            "png": "assets/daikin/products/6-shira-eco-9000-btu-h-ftxp25n9-inverter-klima-r32/img-3-trim.png",
+            "width": 704,
+            "height": 363,
+            "bytes": 65253
+          }
+        },
+        {
+          "how": "img",
+          "alt": "Shira Eco 9000 BTU/h | FTXP25N9 Inverter Klima R32 TR.FTXP25N9.01",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/trftxp25n01-shira-eco-9000-btuh-ftxp25n9-inverter-klima-r32-638574071236567735.png?q=100",
+          "file": "assets/daikin/products/6-shira-eco-9000-btu-h-ftxp25n9-inverter-klima-r32/img-4.png",
+          "bytes": 27454,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/6-shira-eco-9000-btu-h-ftxp25n9-inverter-klima-r32/img-4-900.png",
+            "webp": "assets/daikin/products/6-shira-eco-9000-btu-h-ftxp25n9-inverter-klima-r32/img-4-900.webp",
+            "pngBytes": 72698,
+            "webpBytes": 14038
+          },
+          "trim": {
+            "png": "assets/daikin/products/6-shira-eco-9000-btu-h-ftxp25n9-inverter-klima-r32/img-4-trim.png",
+            "width": 701,
+            "height": 354,
+            "bytes": 66693
+          }
+        },
+        {
+          "how": "img",
+          "alt": "Shira Eco 9000 BTU/h | FTXP25N9 Inverter Klima R32 TR.FTXP25N9.01",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/trftxp25n01-shira-eco-9000-btuh-ftxp25n9-inverter-klima-r32-638574071190318162.png?q=100",
+          "file": "assets/daikin/products/6-shira-eco-9000-btu-h-ftxp25n9-inverter-klima-r32/img-5.png",
+          "bytes": 27770,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/6-shira-eco-9000-btu-h-ftxp25n9-inverter-klima-r32/img-5-900.png",
+            "webp": "assets/daikin/products/6-shira-eco-9000-btu-h-ftxp25n9-inverter-klima-r32/img-5-900.webp",
+            "pngBytes": 104920,
+            "webpBytes": 13072
+          },
+          "trim": {
+            "png": "assets/daikin/products/6-shira-eco-9000-btu-h-ftxp25n9-inverter-klima-r32/img-5-trim.png",
+            "width": 132,
+            "height": 492,
+            "bytes": 82866
+          }
+        },
+        {
+          "src": "https://st-daikin.mncdn.com/mnresize/100/100/Content/media/ProductImg/original/trftxp25n01-shira-eco-9000-btuh-ftxp25n9-inverter-klima-r32-638574071173286729.png",
+          "how": "img",
+          "skipped": "küçük (100x100)"
+        },
+        {
+          "src": "https://st-daikin.mncdn.com/mnresize/100/100/Content/media/ProductImg/original/trftxp25n01-shira-eco-9000-btuh-ftxp25n9-inverter-klima-r32-638574071221255327.png",
+          "how": "img",
+          "skipped": "küçük (100x100)"
+        }
+      ],
+      "candidates": 33
+    },
+    {
+      "url": "https://www.daikin.com.tr/emura-7000-btuh-a-ftxj20ab9-inverter-klima-r32_183229?d=11889",
+      "title": "Emura 7000 BTU/h A+++ \n             FTXJ20AB9 Inverter Klima R32",
+      "images": [
+        {
+          "how": "og:image",
+          "rank": 9,
+          "src": "https://st-daikin.mncdn.com/mnresize/440/440/Content/media/ProductImg/original/trftxj20ab01-emura-7000-btuh-a-ftxj20ab-inverter-klima-r32-639186676420743035.png",
+          "file": "assets/daikin/products/7-emura-7000-btu-h-a-ftxj20ab9-inverter-klima-r32/img-1.png",
+          "bytes": 5384,
+          "width": 440,
+          "height": 440,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/7-emura-7000-btu-h-a-ftxj20ab9-inverter-klima-r32/img-1-900.png",
+            "webp": "assets/daikin/products/7-emura-7000-btu-h-a-ftxj20ab9-inverter-klima-r32/img-1-900.webp",
+            "pngBytes": 31360,
+            "webpBytes": 5260
+          },
+          "trim": {
+            "png": "assets/daikin/products/7-emura-7000-btu-h-a-ftxj20ab9-inverter-klima-r32/img-1-trim.png",
+            "width": 430,
+            "height": 151,
+            "bytes": 26013
+          }
+        },
+        {
+          "how": "img",
+          "alt": "Emura 7000 BTU/h A+++ | FTXJ20AB9 Inverter Klima R32 TR.FTXJ20AB.01",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/trftxj20ab01-emura-7000-btuh-a-ftxj20ab-inverter-klima-r32-639186676420743035.png?q=100",
+          "file": "assets/daikin/products/7-emura-7000-btu-h-a-ftxj20ab9-inverter-klima-r32/img-2.png",
+          "bytes": 29644,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/7-emura-7000-btu-h-a-ftxj20ab9-inverter-klima-r32/img-2-900.png",
+            "webp": "assets/daikin/products/7-emura-7000-btu-h-a-ftxj20ab9-inverter-klima-r32/img-2-900.webp",
+            "pngBytes": 113808,
+            "webpBytes": 10812
+          },
+          "trim": {
+            "png": "assets/daikin/products/7-emura-7000-btu-h-a-ftxj20ab9-inverter-klima-r32/img-2-trim.png",
+            "width": 781,
+            "height": 274,
+            "bytes": 105776
+          }
+        },
+        {
+          "how": "img",
+          "alt": "Emura 7000 BTU/h A+++ | FTXJ20AB9 Inverter Klima R32 TR.FTXJ20AB.01",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/trftxj20ab01-daikin-emura-7000-btuh-duvar-tipi-r32-inverter-split-klima-siyah-637889035590355126.png?q=100",
+          "file": "assets/daikin/products/7-emura-7000-btu-h-a-ftxj20ab9-inverter-klima-r32/img-3.png",
+          "bytes": 40558,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/7-emura-7000-btu-h-a-ftxj20ab9-inverter-klima-r32/img-3-900.png",
+            "webp": "assets/daikin/products/7-emura-7000-btu-h-a-ftxj20ab9-inverter-klima-r32/img-3-900.webp",
+            "pngBytes": 160287,
+            "webpBytes": 8394
+          },
+          "trim": {
+            "png": "assets/daikin/products/7-emura-7000-btu-h-a-ftxj20ab9-inverter-klima-r32/img-3-trim.png",
+            "width": 779,
+            "height": 263,
+            "bytes": 148288
+          }
+        },
+        {
+          "how": "img",
+          "alt": "Emura 7000 BTU/h A+++ | FTXJ20AB9 Inverter Klima R32 TR.FTXJ20AB.01",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/trftxj20ab01-daikin-emura-7000-btuh-duvar-tipi-r32-inverter-split-klima-siyah-637889035619185036.png?q=100",
+          "file": "assets/daikin/products/7-emura-7000-btu-h-a-ftxj20ab9-inverter-klima-r32/img-4.png",
+          "bytes": 35316,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/7-emura-7000-btu-h-a-ftxj20ab9-inverter-klima-r32/img-4-900.png",
+            "webp": "assets/daikin/products/7-emura-7000-btu-h-a-ftxj20ab9-inverter-klima-r32/img-4-900.webp",
+            "pngBytes": 116564,
+            "webpBytes": 14672
+          },
+          "trim": {
+            "png": "assets/daikin/products/7-emura-7000-btu-h-a-ftxj20ab9-inverter-klima-r32/img-4-trim.png",
+            "width": 781,
+            "height": 471,
+            "bytes": 112759
+          }
+        },
+        {
+          "how": "img",
+          "alt": "Emura 7000 BTU/h A+++ | FTXJ20AB9 Inverter Klima R32 TR.FTXJ20AB.01",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/trftxj20ab01-daikin-emura-7000-btuh-duvar-tipi-r32-inverter-split-klima-siyah-637889035599035186.png?q=100",
+          "file": "assets/daikin/products/7-emura-7000-btu-h-a-ftxj20ab9-inverter-klima-r32/img-5.png",
+          "bytes": 33834,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/7-emura-7000-btu-h-a-ftxj20ab9-inverter-klima-r32/img-5-900.png",
+            "webp": "assets/daikin/products/7-emura-7000-btu-h-a-ftxj20ab9-inverter-klima-r32/img-5-900.webp",
+            "pngBytes": 115981,
+            "webpBytes": 14996
+          },
+          "trim": {
+            "png": "assets/daikin/products/7-emura-7000-btu-h-a-ftxj20ab9-inverter-klima-r32/img-5-trim.png",
+            "width": 778,
+            "height": 463,
+            "bytes": 112144
+          }
+        },
+        {
+          "how": "img",
+          "alt": "Emura 7000 BTU/h A+++ | FTXJ20AB9 Inverter Klima R32 TR.FTXJ20AB.01",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/trftxj20ab01-daikin-emura-7000-btuh-duvar-tipi-r32-inverter-split-klima-siyah-637889035628475056.png?q=100",
+          "file": "assets/daikin/products/7-emura-7000-btu-h-a-ftxj20ab9-inverter-klima-r32/img-6.png",
+          "bytes": 38644,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/7-emura-7000-btu-h-a-ftxj20ab9-inverter-klima-r32/img-6-900.png",
+            "webp": "assets/daikin/products/7-emura-7000-btu-h-a-ftxj20ab9-inverter-klima-r32/img-6-900.webp",
+            "pngBytes": 125827,
+            "webpBytes": 16408
+          },
+          "trim": {
+            "png": "assets/daikin/products/7-emura-7000-btu-h-a-ftxj20ab9-inverter-klima-r32/img-6-trim.png",
+            "width": 564,
+            "height": 310,
+            "bytes": 115854
+          }
+        },
+        {
+          "how": "img",
+          "alt": "Emura 7000 BTU/h A+++ | FTXJ20AB9 Inverter Klima R32 TR.FTXJ20AB.01",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/trftxj20ab01-daikin-emura-7000-btuh-duvar-tipi-r32-inverter-split-klima-siyah-637889035638675057.png?q=100",
+          "file": "assets/daikin/products/7-emura-7000-btu-h-a-ftxj20ab9-inverter-klima-r32/img-7.png",
+          "bytes": 38794,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/7-emura-7000-btu-h-a-ftxj20ab9-inverter-klima-r32/img-7-900.png",
+            "webp": "assets/daikin/products/7-emura-7000-btu-h-a-ftxj20ab9-inverter-klima-r32/img-7-900.webp",
+            "pngBytes": 156480,
+            "webpBytes": 12382
+          },
+          "trim": {
+            "png": "assets/daikin/products/7-emura-7000-btu-h-a-ftxj20ab9-inverter-klima-r32/img-7-trim.png",
+            "width": 182,
+            "height": 729,
+            "bytes": 125620
+          }
+        }
+      ],
+      "candidates": 43
+    },
+    {
+      "url": "https://www.daikin.com.tr/emura-9000-btuh-a-ftxj25aw9-inverter-klima-r32_183230?d=11888",
+      "title": "Emura 9000 BTU/h A+++ \n             FTXJ25AW9 Inverter Klima R32",
+      "images": [
+        {
+          "how": "og:image",
+          "rank": 9,
+          "src": "https://st-daikin.mncdn.com/mnresize/440/440/Content/media/ProductImg/original/trftxj25aw01-emura-9000-btuh-a-ftxj25aw-inverter-klima-r32-639186674467720465.png",
+          "file": "assets/daikin/products/8-emura-9000-btu-h-a-ftxj25aw9-inverter-klima-r32/img-1.png",
+          "bytes": 5350,
+          "width": 440,
+          "height": 440,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/8-emura-9000-btu-h-a-ftxj25aw9-inverter-klima-r32/img-1-900.png",
+            "webp": "assets/daikin/products/8-emura-9000-btu-h-a-ftxj25aw9-inverter-klima-r32/img-1-900.webp",
+            "pngBytes": 37415,
+            "webpBytes": 5202
+          },
+          "trim": {
+            "png": "assets/daikin/products/8-emura-9000-btu-h-a-ftxj25aw9-inverter-klima-r32/img-1-trim.png",
+            "width": 429,
+            "height": 151,
+            "bytes": 31293
+          }
+        },
+        {
+          "how": "img",
+          "alt": "Emura 9000 BTU/h A+++ | FTXJ25AW9 Inverter Klima R32 TR.FTXJ25AW.01",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/trftxj25aw01-emura-9000-btuh-a-ftxj25aw-inverter-klima-r32-639186674467720465.png?q=100",
+          "file": "assets/daikin/products/8-emura-9000-btu-h-a-ftxj25aw9-inverter-klima-r32/img-2.png",
+          "bytes": 28836,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/8-emura-9000-btu-h-a-ftxj25aw9-inverter-klima-r32/img-2-900.png",
+            "webp": "assets/daikin/products/8-emura-9000-btu-h-a-ftxj25aw9-inverter-klima-r32/img-2-900.webp",
+            "pngBytes": 127589,
+            "webpBytes": 11020
+          },
+          "trim": {
+            "png": "assets/daikin/products/8-emura-9000-btu-h-a-ftxj25aw9-inverter-klima-r32/img-2-trim.png",
+            "width": 779,
+            "height": 274,
+            "bytes": 120343
+          }
+        },
+        {
+          "how": "img",
+          "alt": "Emura 9000 BTU/h A+++ | FTXJ25AW9 Inverter Klima R32 TR.FTXJ25AW.01",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/trftxj25aw01-daikin-emura-9000-btuh-duvar-tipi-r32-inverter-split-klima-beyaz-637889091068484627.png?q=100",
+          "file": "assets/daikin/products/8-emura-9000-btu-h-a-ftxj25aw9-inverter-klima-r32/img-3.png",
+          "bytes": 39408,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/8-emura-9000-btu-h-a-ftxj25aw9-inverter-klima-r32/img-3-900.png",
+            "webp": "assets/daikin/products/8-emura-9000-btu-h-a-ftxj25aw9-inverter-klima-r32/img-3-900.webp",
+            "pngBytes": 145200,
+            "webpBytes": 14470
+          },
+          "trim": {
+            "png": "assets/daikin/products/8-emura-9000-btu-h-a-ftxj25aw9-inverter-klima-r32/img-3-trim.png",
+            "width": 774,
+            "height": 466,
+            "bytes": 140572
+          }
+        },
+        {
+          "how": "img",
+          "alt": "Emura 9000 BTU/h A+++ | FTXJ25AW9 Inverter Klima R32 TR.FTXJ25AW.01",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/trftxj25aw01-daikin-emura-9000-btuh-duvar-tipi-r32-inverter-split-klima-beyaz-637889091129154602.png?q=100",
+          "file": "assets/daikin/products/8-emura-9000-btu-h-a-ftxj25aw9-inverter-klima-r32/img-4.png",
+          "bytes": 47994,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/8-emura-9000-btu-h-a-ftxj25aw9-inverter-klima-r32/img-4-900.png",
+            "webp": "assets/daikin/products/8-emura-9000-btu-h-a-ftxj25aw9-inverter-klima-r32/img-4-900.webp",
+            "pngBytes": 195490,
+            "webpBytes": 15576
+          },
+          "trim": {
+            "png": "assets/daikin/products/8-emura-9000-btu-h-a-ftxj25aw9-inverter-klima-r32/img-4-trim.png",
+            "width": 771,
+            "height": 459,
+            "bytes": 191969
+          }
+        },
+        {
+          "how": "img",
+          "alt": "Emura 9000 BTU/h A+++ | FTXJ25AW9 Inverter Klima R32 TR.FTXJ25AW.01",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/trftxj25aw01-daikin-emura-9000-btuh-duvar-tipi-r32-inverter-split-klima-beyaz-637889091108594679.png?q=100",
+          "file": "assets/daikin/products/8-emura-9000-btu-h-a-ftxj25aw9-inverter-klima-r32/img-5.png",
+          "bytes": 49744,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/8-emura-9000-btu-h-a-ftxj25aw9-inverter-klima-r32/img-5-900.png",
+            "webp": "assets/daikin/products/8-emura-9000-btu-h-a-ftxj25aw9-inverter-klima-r32/img-5-900.webp",
+            "pngBytes": 168369,
+            "webpBytes": 17954
+          },
+          "trim": {
+            "png": "assets/daikin/products/8-emura-9000-btu-h-a-ftxj25aw9-inverter-klima-r32/img-5-trim.png",
+            "width": 668,
+            "height": 368,
+            "bytes": 160009
+          }
+        },
+        {
+          "how": "img",
+          "alt": "Emura 9000 BTU/h A+++ | FTXJ25AW9 Inverter Klima R32 TR.FTXJ25AW.01",
+          "rank": 5,
+          "src": "https://st-daikin.mncdn.com/mnresize/800/800/Content/media/ProductImg/original/trftxj25aw01-daikin-emura-9000-btuh-duvar-tipi-r32-inverter-split-klima-beyaz-637889091098394553.png?q=100",
+          "file": "assets/daikin/products/8-emura-9000-btu-h-a-ftxj25aw9-inverter-klima-r32/img-6.png",
+          "bytes": 38194,
+          "width": 800,
+          "height": 800,
+          "type": "png",
+          "alpha": true,
+          "small": {
+            "png": "assets/daikin/products/8-emura-9000-btu-h-a-ftxj25aw9-inverter-klima-r32/img-6-900.png",
+            "webp": "assets/daikin/products/8-emura-9000-btu-h-a-ftxj25aw9-inverter-klima-r32/img-6-900.webp",
+            "pngBytes": 143818,
+            "webpBytes": 12908
+          },
+          "trim": {
+            "png": "assets/daikin/products/8-emura-9000-btu-h-a-ftxj25aw9-inverter-klima-r32/img-6-trim.png",
+            "width": 165,
+            "height": 663,
+            "bytes": 113617
+          }
+        },
+        {
+          "src": "https://st-daikin.mncdn.com/mnresize/100/100/Content/media/ProductImg/original/trftxj25aw01-emura-9000-btuh-a-ftxj25aw-inverter-klima-r32-639186674467720465.png",
+          "how": "img",
+          "skipped": "küçük (100x100)"
+        }
+      ],
+      "candidates": 41
+    }
+  ],
+  "manual": [],
+  "errors": [],
+  "tools": {
+    "sharp": true,
+    "playwright": true
+  }
+}
