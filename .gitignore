@@ -2,3 +2,4 @@ node_modules/
 preview/.fontcache/
 preview/video/
 .DS_Store
+release/stage/

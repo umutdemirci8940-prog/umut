@@ -10,9 +10,15 @@ module.exports = {
   brand: {
     name: 'İlaçsız Yaşam',
     by: 'Dr. Ümit Aktaş',
+    // Varlıkların (görsel, logo, fiyat) çekildiği mağaza adresi (tools/fetch-assets.js).
+    site: 'https://ilacsizyasam.com',
     // Tıklama hedefi. Reklam ağı clickTag sağlıyorsa o kullanılır (bkz. README).
     url: 'https://ilacsizyasam.com/collections/gida-takviyeleri?utm_source=display&utm_medium=banner&utm_campaign=gida-takviyeleri',
     domain: 'ilacsizyasam.com',
+    // Ürün kartında fiyat gösterilsin mi? (assets/manifest.json'daki güncel fiyat kullanılır)
+    showPrice: false,
+    // Ürün kartındayken tıklama ilgili ürün sayfasına gitsin mi? (clickTag tanımlıysa yine clickTag kullanılır)
+    deepLink: true,
     headline: 'Doğadan gelen günlük destek',
     intro: 'Dr. Ümit Aktaş formülleriyle bitkisel gıda takviyeleri',
     cta: 'Ürünleri İncele',
@@ -34,6 +40,8 @@ module.exports = {
 
   /**
    * Ürün slider'ı. Sıra, ekrandaki sıradır. İstediğiniz kadar ürün ekleyebilirsiniz.
+   *  - key    : Dosya/kimlik adı (assets/products/<key>.jpg)
+   *  - handle : Sitedeki ürün adresi (ilacsizyasam.com/products/<handle>); görsel ve fiyat buradan çekilir
    *  - name   : Kart başlığı
    *  - short  : Şişe etiketindeki kısa ad (büyük harf önerilir)
    *  - claim  : Kısa fayda cümlesi (EFSA onaylı sağlık beyanlarına yakın, ilaç çağrışımı yapmayan ifadeler seçildi)
@@ -43,6 +51,8 @@ module.exports = {
    */
   products: [
     {
+      key: 'magnezyum',
+      handle: 'magnezyum',
       name: 'Magnezyum',
       short: 'MAGNEZYUM',
       claim: 'Yorgunluk ve bitkinliğin azalmasına katkıda bulunur.',
@@ -51,6 +61,8 @@ module.exports = {
       accent: '#bfe3cc',
     },
     {
+      key: 'safran',
+      handle: 'safran-ekstresi',
       name: 'Safran Ekstresi',
       short: 'SAFRAN',
       claim: 'Günlük denge ve iyi hissetme rutininiz için.',
@@ -59,6 +71,8 @@ module.exports = {
       accent: '#ffd3b8',
     },
     {
+      key: 'd3k2',
+      handle: 'd3-k2-vitamin-damlasi',
       name: 'D3 & K2 Vitamini',
       short: 'D3 + K2',
       claim: 'Kemiklerin ve bağışıklık sisteminin normal işlevine katkıda bulunur.',
@@ -67,6 +81,8 @@ module.exports = {
       accent: '#ffe9b3',
     },
     {
+      key: 'b12',
+      handle: 'vitamin-b12-metilfolat',
       name: 'B12 & Folik Asit',
       short: 'B12 + FOLİK',
       claim: 'Normal enerji metabolizmasına katkıda bulunur.',
@@ -75,6 +91,8 @@ module.exports = {
       accent: '#ffcdd6',
     },
     {
+      key: 'omega3',
+      handle: 'omega-3-33-22-60-kapsul',
       name: 'Omega 3',
       short: 'OMEGA 3',
       claim: 'EPA ve DHA ile kalbin normal fonksiyonuna katkıda bulunur.',

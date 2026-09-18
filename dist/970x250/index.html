@@ -44,6 +44,11 @@ body{font-family:'Manrope',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-
 .slide.is-far-right{transform:translateX(calc(var(--sx-next)*1.9)) scale(.5);opacity:0;z-index:1}
 .bottle-wrap{width:var(--bw);margin-top:var(--bt);position:relative;filter:drop-shadow(0 14px 18px rgba(0,0,0,.35))}
 .bottle{display:block;width:100%;height:auto}
+.photo{display:block;width:100%;height:calc(var(--bw)*1.667);object-fit:contain;object-position:center bottom}
+.photo.on-card{background:var(--cream);border-radius:calc(var(--bw)*.12);padding:calc(var(--bw)*.07);box-shadow:inset 0 0 0 1px rgba(0,0,0,.06);height:calc(var(--bw)*1.5);margin-top:calc(var(--bw)*.16)}
+.logo{display:block;height:var(--logo-h);width:auto;max-width:var(--logo-w);object-fit:contain;object-position:left center;filter:drop-shadow(0 2px 6px rgba(0,0,0,.3))}
+.logo.invert{filter:brightness(0) invert(1) drop-shadow(0 2px 6px rgba(0,0,0,.3))}
+.price{display:inline-block;margin-left:7px;vertical-align:middle;color:var(--gold);font-weight:800;font-size:calc(var(--badge-fs) + 2px);letter-spacing:.02em}
 .slide.is-active .bottle-wrap{animation:enter .9s var(--ease) both}
 .slide.is-active .bottle{animation:float 3.8s ease-in-out .9s infinite}
 .ad[data-phase=outro] .slide .bottle-wrap{animation:none}
@@ -102,7 +107,7 @@ body{font-family:'Manrope',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-
 @keyframes pulse{0%,100%{box-shadow:0 6px 16px rgba(0,0,0,.28),0 0 0 0 rgba(220,174,68,.55)}60%{box-shadow:0 6px 16px rgba(0,0,0,.28),0 0 0 12px rgba(220,174,68,0)}}
 @media (prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.15s!important}}
 
-.ad{--mark:30px;--wm:17px;--ws:7.5px;--bg-gap:9px;--bw:126px;--bt:20px;--ox:190px;--oy:125px;--sx-prev:-150px;--sx-next:150px;--ghost-s:.62;--ghost-o:.38;--ghost-b:1.2px;--badge-p:5px 10px;--badge-fs:8.5px;--name-fs:27px;--name-mt:12px;--claim-fs:13px;--claim-mt:9px;--legal-fs:7.5px;--arrow-x:10px;--arrow-y:125px;--promo-p:5px 11px;--promo-fs:8.5px;--h2-fs:24px;--h2-mt:10px;--cta2-mt:14px;--domain-fs:10px;--domain-mt:10px;--lx:0px;--ly:0px;--lg:96px;--ls:.78;--mid:2}
+.ad{--mark:30px;--wm:17px;--ws:7.5px;--bg-gap:9px;--bw:126px;--bt:20px;--ox:190px;--oy:125px;--sx-prev:-150px;--sx-next:150px;--ghost-s:.62;--ghost-o:.38;--ghost-b:1.2px;--badge-p:5px 10px;--badge-fs:8.5px;--name-fs:27px;--name-mt:12px;--claim-fs:13px;--claim-mt:9px;--legal-fs:7.5px;--arrow-x:10px;--arrow-y:125px;--promo-p:5px 11px;--promo-fs:8.5px;--h2-fs:24px;--h2-mt:10px;--cta2-mt:14px;--domain-fs:10px;--domain-mt:10px;--lx:0px;--ly:0px;--lg:96px;--ls:.78;--mid:2;--logo-h:46px;--logo-w:260px}
 .glow{width:300px;height:300px;left:360px;top:-30px}
 .brand{left:36px;top:36px}
 .ad[data-phase=intro] .brand{transform:translate(40px,30px) scale(1.15)}
@@ -280,7 +285,7 @@ body{font-family:'Manrope',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-
 </div>
 <script>
 (function(){
-var D={"brand":{"url":"https://ilacsizyasam.com/collections/gida-takviyeleri?utm_source=display&utm_medium=banner&utm_campaign=gida-takviyeleri"},"timing":{"intro":2600,"slide":3200,"outro":3600,"maxAutoplay":30000},"products":[{"name":"Magnezyum","color":"#2f8f5b","accent":"#bfe3cc"},{"name":"Safran Ekstresi","color":"#d9542b","accent":"#ffd3b8"},{"name":"D3 & K2 Vitamini","color":"#d99a1e","accent":"#ffe9b3"},{"name":"B12 & Folik Asit","color":"#c4344c","accent":"#ffcdd6"},{"name":"Omega 3","color":"#2878b0","accent":"#cfe6f8"}]},n=D.products.length,T=D.timing;
+var D={"brand":{"url":"https://ilacsizyasam.com/collections/gida-takviyeleri?utm_source=display&utm_medium=banner&utm_campaign=gida-takviyeleri","deepLink":true},"timing":{"intro":2600,"slide":3200,"outro":3600,"maxAutoplay":30000},"products":[{"name":"Magnezyum","color":"#2f8f5b","accent":"#bfe3cc"},{"name":"Safran Ekstresi","color":"#d9542b","accent":"#ffd3b8"},{"name":"D3 & K2 Vitamini","color":"#d99a1e","accent":"#ffe9b3"},{"name":"B12 & Folik Asit","color":"#c4344c","accent":"#ffcdd6"},{"name":"Omega 3","color":"#2878b0","accent":"#cfe6f8"}]},n=D.products.length,T=D.timing;
 var ad=document.getElementById('ad'),stage=ad.querySelector('.stage'),info=ad.querySelector('.info'),dots=ad.querySelector('.dots'),bar=ad.querySelector('.progress i');
 var slides=[].slice.call(stage.children),items=[].slice.call(info.children),dotEls=[],side=[];
 var idx=-1,phase='intro',acc=0,total=0,last=0,paused=false,ended=false,hover=false,hidden=false;
@@ -319,7 +324,7 @@ function frame(now){
   ad.classList.toggle('is-paused',paused);
   requestAnimationFrame(frame);
 }
-function openLink(){var u=window.clickTag||D.brand.url;if(window.Enabler&&Enabler.exit){Enabler.exit('CTA')}else{window.open(u,'_blank','noopener')}}
+function openLink(){var p=D.products[idx];var u=window.clickTag||(D.brand.deepLink&&phase==='slides'&&p&&p.url?p.url:D.brand.url);if(window.Enabler&&Enabler.exit){Enabler.exit('CTA')}else{window.open(u,'_blank','noopener')}}
 function step(d){if(phase==='intro')return;goTo((idx<0?0:idx)+d,d);if(ended)bar.style.transform='scaleX(0)'}
 D.products.forEach(function(p,i){
   var b=document.createElement('button');b.type='button';b.className='dot ctrl';b.setAttribute('aria-label',p.name);

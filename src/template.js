@@ -99,6 +99,11 @@ body{font-family:'Manrope',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-
 .slide.is-far-right{transform:translateX(calc(var(--sx-next)*1.9)) scale(.5);opacity:0;z-index:1}
 .bottle-wrap{width:var(--bw);margin-top:var(--bt);position:relative;filter:drop-shadow(0 14px 18px rgba(0,0,0,.35))}
 .bottle{display:block;width:100%;height:auto}
+.photo{display:block;width:100%;height:calc(var(--bw)*1.667);object-fit:contain;object-position:center bottom}
+.photo.on-card{background:var(--cream);border-radius:calc(var(--bw)*.12);padding:calc(var(--bw)*.07);box-shadow:inset 0 0 0 1px rgba(0,0,0,.06);height:calc(var(--bw)*1.5);margin-top:calc(var(--bw)*.16)}
+.logo{display:block;height:var(--logo-h);width:auto;max-width:var(--logo-w);object-fit:contain;object-position:left center;filter:drop-shadow(0 2px 6px rgba(0,0,0,.3))}
+.logo.invert{filter:brightness(0) invert(1) drop-shadow(0 2px 6px rgba(0,0,0,.3))}
+.price{display:inline-block;margin-left:7px;vertical-align:middle;color:var(--gold);font-weight:800;font-size:calc(var(--badge-fs) + 2px);letter-spacing:.02em}
 .slide.is-active .bottle-wrap{animation:enter .9s var(--ease) both}
 .slide.is-active .bottle{animation:float 3.8s ease-in-out .9s infinite}
 .ad[data-phase=outro] .slide .bottle-wrap{animation:none}
@@ -160,7 +165,7 @@ body{font-family:'Manrope',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-
 
 const LAYOUT_CSS = {
   rect: `
-.ad{--mark:22px;--wm:13px;--ws:6.5px;--bg-gap:7px;--bw:82px;--bt:6px;--ox:57px;--oy:76px;--sx-prev:-150px;--sx-next:150px;--ghost-s:.7;--ghost-o:0;--ghost-b:2px;--badge-p:3px 7px;--badge-fs:7px;--name-fs:19px;--name-mt:6px;--claim-fs:10px;--claim-mt:5px;--legal-fs:6.6px;--arrow-x:6px;--arrow-y:118px;--promo-p:4px 9px;--promo-fs:7px;--h2-fs:17px;--h2-mt:6px;--cta2-mt:10px;--domain-fs:9px;--domain-mt:8px;--lx:93px;--ly:-46px;--lg:44px;--ls:.34;--mid:2}
+.ad{--mark:22px;--wm:13px;--ws:6.5px;--bg-gap:7px;--bw:82px;--bt:6px;--ox:57px;--oy:76px;--sx-prev:-150px;--sx-next:150px;--ghost-s:.7;--ghost-o:0;--ghost-b:2px;--badge-p:3px 7px;--badge-fs:7px;--name-fs:19px;--name-mt:6px;--claim-fs:10px;--claim-mt:5px;--legal-fs:6.6px;--arrow-x:6px;--arrow-y:118px;--promo-p:4px 9px;--promo-fs:7px;--h2-fs:17px;--h2-mt:6px;--cta2-mt:10px;--domain-fs:9px;--domain-mt:8px;--lx:93px;--ly:-46px;--lg:44px;--ls:.34;--mid:2;--logo-h:28px;--logo-w:160px}
 .glow{width:180px;height:180px;left:-30px;top:20px}
 .brand{left:14px;top:12px}
 .ad[data-phase=intro] .brand{transform:translate(64px,52px) scale(1.55)}
@@ -178,7 +183,7 @@ const LAYOUT_CSS = {
 .outro .domain{margin-top:5px}
 `,
   tall: `
-.ad{--mark:34px;--wm:19px;--ws:8.5px;--bg-gap:9px;--bw:150px;--bt:10px;--ox:150px;--oy:135px;--sx-prev:-210px;--sx-next:210px;--ghost-s:.6;--ghost-o:0;--ghost-b:2px;--badge-p:5px 10px;--badge-fs:9px;--name-fs:27px;--name-mt:10px;--claim-fs:12.5px;--claim-mt:8px;--legal-fs:7.5px;--arrow-x:10px;--arrow-y:230px;--promo-p:6px 12px;--promo-fs:9px;--h2-fs:27px;--h2-mt:12px;--cta2-mt:18px;--domain-fs:11px;--domain-mt:12px;--lx:0px;--ly:6px;--lg:56px;--ls:.42;--mid:2}
+.ad{--mark:34px;--wm:19px;--ws:8.5px;--bg-gap:9px;--bw:150px;--bt:10px;--ox:150px;--oy:135px;--sx-prev:-210px;--sx-next:210px;--ghost-s:.6;--ghost-o:0;--ghost-b:2px;--badge-p:5px 10px;--badge-fs:9px;--name-fs:27px;--name-mt:10px;--claim-fs:12.5px;--claim-mt:8px;--legal-fs:7.5px;--arrow-x:10px;--arrow-y:230px;--promo-p:6px 12px;--promo-fs:9px;--h2-fs:27px;--h2-mt:12px;--cta2-mt:18px;--domain-fs:11px;--domain-mt:12px;--lx:0px;--ly:6px;--lg:56px;--ls:.42;--mid:2;--logo-h:44px;--logo-w:200px}
 .glow{width:280px;height:280px;left:10px;top:80px}
 .brand{left:50%;top:24px;transform:translateX(-50%);transform-origin:center}
 .ad[data-phase=intro] .brand{transform:translate(-50%,170px) scale(1.35)}
@@ -194,7 +199,7 @@ const LAYOUT_CSS = {
 .outro .cta{font-size:13px;padding:12px 26px}
 `,
   wide: `
-.ad{--mark:30px;--wm:17px;--ws:7.5px;--bg-gap:9px;--bw:126px;--bt:20px;--ox:190px;--oy:125px;--sx-prev:-150px;--sx-next:150px;--ghost-s:.62;--ghost-o:.38;--ghost-b:1.2px;--badge-p:5px 10px;--badge-fs:8.5px;--name-fs:27px;--name-mt:12px;--claim-fs:13px;--claim-mt:9px;--legal-fs:7.5px;--arrow-x:10px;--arrow-y:125px;--promo-p:5px 11px;--promo-fs:8.5px;--h2-fs:24px;--h2-mt:10px;--cta2-mt:14px;--domain-fs:10px;--domain-mt:10px;--lx:0px;--ly:0px;--lg:96px;--ls:.78;--mid:2}
+.ad{--mark:30px;--wm:17px;--ws:7.5px;--bg-gap:9px;--bw:126px;--bt:20px;--ox:190px;--oy:125px;--sx-prev:-150px;--sx-next:150px;--ghost-s:.62;--ghost-o:.38;--ghost-b:1.2px;--badge-p:5px 10px;--badge-fs:8.5px;--name-fs:27px;--name-mt:12px;--claim-fs:13px;--claim-mt:9px;--legal-fs:7.5px;--arrow-x:10px;--arrow-y:125px;--promo-p:5px 11px;--promo-fs:8.5px;--h2-fs:24px;--h2-mt:10px;--cta2-mt:14px;--domain-fs:10px;--domain-mt:10px;--lx:0px;--ly:0px;--lg:96px;--ls:.78;--mid:2;--logo-h:46px;--logo-w:260px}
 .glow{width:300px;height:300px;left:360px;top:-30px}
 .brand{left:36px;top:36px}
 .ad[data-phase=intro] .brand{transform:translate(40px,30px) scale(1.15)}
@@ -261,7 +266,7 @@ function frame(now){
   ad.classList.toggle('is-paused',paused);
   requestAnimationFrame(frame);
 }
-function openLink(){var u=window.clickTag||D.brand.url;if(window.Enabler&&Enabler.exit){Enabler.exit('CTA')}else{window.open(u,'_blank','noopener')}}
+function openLink(){var p=D.products[idx];var u=window.clickTag||(D.brand.deepLink&&phase==='slides'&&p&&p.url?p.url:D.brand.url);if(window.Enabler&&Enabler.exit){Enabler.exit('CTA')}else{window.open(u,'_blank','noopener')}}
 function step(d){if(phase==='intro')return;goTo((idx<0?0:idx)+d,d);if(ended)bar.style.transform='scaleX(0)'}
 D.products.forEach(function(p,i){
   var b=document.createElement('button');b.type='button';b.className='dot ctrl';b.setAttribute('aria-label',p.name);
@@ -289,19 +294,38 @@ const ARROW_SVG = (dir) => dir === 'next'
   : `<svg viewBox="0 0 12 12"><path d="M8 2L4 6l4 4"/></svg>`;
 const CTA_ICON = `<i><svg viewBox="0 0 12 12"><path d="M2 6h8M6.5 2.5L10 6l-3.5 3.5"/></svg></i>`;
 
-function render(key, data) {
+function render(key, data, assets) {
   const s = SIZES[key];
   if (!s) throw new Error('Bilinmeyen boyut: ' + key);
   const B = data.brand, n = data.products.length;
+  const A = assets || { logo: null, products: {} };
+  const utm = B.url.includes('?') ? B.url.slice(B.url.indexOf('?')) : '';
+  const fmtPrice = (v) => { const num = parseFloat(v); return isNaN(num) ? '' : new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY', maximumFractionDigits: num % 1 ? 2 : 0 }).format(num); };
 
   const introWords = B.headline.split(' ')
     .map((w, i) => `<span style="animation-delay:${(0.45 + i * 0.12).toFixed(2)}s">${esc(w)}</span>`).join(' ');
 
-  const slides = data.products.map((p, i) =>
-    `<div class="slide" data-i="${i}" style="--j:${i}"><div class="bottle-wrap">${bottle(p, i)}</div></div>`).join('\n');
+  const slides = data.products.map((p, i) => {
+    const ph = A.products[p.key];
+    const visual = ph ? `<img class="photo${ph.transparent ? '' : ' on-card'}" src="${ph.uri}" alt="">` : bottle(p, i);
+    return `<div class="slide" data-i="${i}" style="--j:${i}"><div class="bottle-wrap">${visual}</div></div>`;
+  }).join('\n');
 
-  const items = data.products.map((p, i) =>
-    `<div class="info-item" data-i="${i}"><span class="badge">${esc(p.badge)}</span><div class="name">${esc(p.name)}</div><div class="claim">${esc(p.claim)}</div></div>`).join('\n');
+  const items = data.products.map((p, i) => {
+    const ph = A.products[p.key];
+    const price = B.showPrice && ph && ph.price ? `<span class="price">${esc(fmtPrice(ph.price))}</span>` : '';
+    return `<div class="info-item" data-i="${i}"><span class="badge">${esc(p.badge)}</span>${price}<div class="name">${esc(p.name)}</div><div class="claim">${esc(p.claim)}</div></div>`;
+  }).join('\n');
+
+  // Logo: gerçek logo varsa yaprak işareti + yazı yerine onu kullan; 300x250 açılışında ortalamak için genişliğe göre kaydırma hesapla.
+  let brandInner = `${MARK}<div class="word"><b>${esc(B.name)}</b><small>${esc(B.by)}</small></div>`;
+  let logoCss = '';
+  if (A.logo) {
+    brandInner = `<img class="logo${A.logo.invert ? ' invert' : ''}" src="${A.logo.uri}" alt="${esc(B.name)}">`;
+    const LOGO = { rect: [28, 160], tall: [44, 200], wide: [46, 260] }[s.layout];
+    const lw = Math.min(LOGO[1], LOGO[0] * (A.logo.aspect || 4));
+    if (s.layout === 'rect') logoCss = `.ad[data-phase=intro] .brand{transform:translate(${(136 - lw * 0.725).toFixed(1)}px,36px) scale(1.45)}`;
+  }
 
   const leaves = s.layout === 'wide'
     ? LEAF('leaf-a', 90, '-20px', '150px', -20) + LEAF('leaf-b', 60, '280px', '-16px', 130) + LEAF('leaf-c', 110, '880px', '140px', 40) + LEAF('leaf-d', 44, '640px', '200px', 200)
@@ -311,8 +335,8 @@ function render(key, data) {
 
   const headline = s.layout === 'wide' ? `<div class="headline">${esc(B.headline)}</div>` : '';
 
-  const css = (BASE_CSS + LAYOUT_CSS[s.layout]).replace(/__W__/g, s.w).replace(/__H__/g, s.h);
-  const payload = JSON.stringify({ brand: { url: B.url }, timing: data.timing, products: data.products.map(p => ({ name: p.name, color: p.color, accent: p.accent })) });
+  const css = (BASE_CSS + LAYOUT_CSS[s.layout] + logoCss).replace(/__W__/g, s.w).replace(/__H__/g, s.h);
+  const payload = JSON.stringify({ brand: { url: B.url, deepLink: B.deepLink !== false }, timing: data.timing, products: data.products.map(p => ({ name: p.name, color: p.color, accent: p.accent, url: A.products[p.key] && A.products[p.key].url ? A.products[p.key].url + utm : undefined })) });
 
   return `<!DOCTYPE html>
 <html lang="tr">
@@ -331,7 +355,7 @@ function render(key, data) {
   <div class="bg"></div>
   <div class="glow"></div>
   <div class="leaves">${leaves}</div>
-  <div class="brand">${MARK}<div class="word"><b>${esc(B.name)}</b><small>${esc(B.by)}</small></div></div>
+  <div class="brand">${brandInner}</div>
   <div class="intro"><h1>${introWords}</h1><p>${esc(B.intro)}</p></div>
   ${headline}
   <div class="stage" style="--mid:${((n - 1) / 2).toFixed(2)}">

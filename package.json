@@ -5,6 +5,10 @@
   "description": "İlaçsız Yaşam – gıda takviyeleri için animasyonlu, ürün slider'lı HTML5 banner serisi (300x250, 300x600, 970x250)",
   "scripts": {
     "build": "node build.js",
+    "build:vector": "node build.js --vector",
+    "fetch-assets": "node tools/fetch-assets.js",
+    "optimize-assets": "NODE_PATH=$(npm root -g) node tools/optimize-assets.js",
+    "package": "node tools/package.js",
     "capture": "NODE_PATH=$(npm root -g) node tools/capture.js",
     "capture:video": "NODE_PATH=$(npm root -g) node tools/capture.js --video",
     "test": "NODE_PATH=$(npm root -g) node tools/smoke.js",

@@ -81,7 +81,8 @@ const state = (page) => page.evaluate(() => {
     await page.click('.dot:nth-child(1)');
     ok((await opened()) === null, 'nokta tıklaması sayfa açmıyor');
     await page.mouse.click(w / 2, h - 30);
-    ok((await opened()) === data.brand.url, 'banner tıklaması hedef URL\'yi açıyor');
+    const target = await opened();
+    ok(target === data.brand.url || /\/products\//.test(target || ''), 'banner tıklaması hedef URL\'yi açıyor (' + (target === data.brand.url ? 'marka sayfası' : 'ürün sayfası') + ')');
     await page.evaluate(() => { window.clickTag = 'https://example.com/clicktag'; });
     await page.mouse.click(w / 2, h - 30);
     ok((await opened()) === 'https://example.com/clicktag', 'clickTag tanımlıysa o kullanılıyor');

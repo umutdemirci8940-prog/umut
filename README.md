@@ -48,6 +48,30 @@ Sunum sayfası: `preview/index.html` (üç boyutu bir arada gösterir; "Yayın s
 - Yasal ibare ("Takviye edici gıdalar ilaç değildir…") üç boyutta da yer alır.
 - Ürün fayda cümleleri EFSA onaylı sağlık beyanlarına yaslanacak şekilde yumuşatılmıştır (magnezyum–yorgunluk, D vitamini–kemik/bağışıklık, B12–enerji metabolizması, EPA/DHA–kalp). Yayın öncesi markanın regülasyon onayı önerilir.
 
+## Gerçek ürün görselleri ve logo (siteden otomatik)
+
+Bannerlar iki modda derlenir:
+
+- **Fotoğraf modu** – `assets/manifest.json` varsa sitedeki gerçek ürün fotoğrafları, logo ve ürün sayfası bağlantıları kullanılır (varsayılan).
+- **Vektör modu** – `assets/` yoksa veya `node build.js --vector` denirse şablondaki çizim şişeler kullanılır.
+
+Gerçek varlıkları çekmek için (normal internet erişimi olan bir bilgisayarda, Node 18+):
+
+```bash
+node tools/fetch-assets.js       # ilacsizyasam.com → assets/ (ürün fotoğrafları, logo, fiyatlar, ürün adresleri, tema renk adayları)
+npm run optimize-assets          # (önerilir) beyaz fonu şeffaflaştırır, kırpar, küçültür, WebP'ye çevirir; koyu logoyu beyaza çevirmek üzere işaretler
+node build.js                    # gerçek görsellerle derler; boyut 150 KB'ı aşarsa uyarır
+```
+
+- Ürün eşleştirmesi `src/data.js` içindeki `handle` alanıyla yapılır (`ilacsizyasam.com/products/<handle>`); handle bulunamazsa ürün adındaki kelimelerle başlık araması yapılır.
+- `optimize-assets` adımı Playwright + Chromium ister (`npm i -D playwright && npx playwright install chromium`). Atlanırsa fotoğraflar indirildiği gibi (640 px JPEG) gömülür; sunum için yeterlidir, Google Ads için boyut sınırı aşılabilir.
+- Arka planı düz beyaz olmayan fotoğraflar otomatik olarak krem renkli "kart" içinde gösterilir.
+- Logo koyu renkliyse bannerda otomatik olarak beyaza çevrilir (`manifest.json` → `logo.invert`).
+- `brand.showPrice: true` yapılırsa ürün kartında güncel fiyat, `brand.deepLink: true` ise ürün kartındayken tıklama ilgili ürün sayfasına gider (clickTag tanımlıysa yine clickTag kullanılır).
+- Görselleri elle eklemek isterseniz: `assets/products/<key>.png` ve `assets/logo.png` dosyalarını koyup `assets/manifest.json` içinde ilgili `file` alanlarını göstermeniz yeterlidir (örnek yapı için betiğin ürettiği manifest'e bakın).
+
+> Not: Bu depo Claude Code'un yalıtılmış ortamında hazırlandı; o ortamın ağ politikası ilacsizyasam.com ve Shopify CDN'e erişime izin vermediği için görseller oradan indirilemedi. Ortam ayarlarında bu alan adlarına izin verilirse aynı komutlar Claude tarafından da çalıştırılabilir.
+
 ## Özelleştirme
 
 Tüm metinler, ürünler, renkler ve süreler tek dosyadadır: **`src/data.js`**.
@@ -63,6 +87,7 @@ Düzenledikten sonra:
 
 ```bash
 node build.js          # dist/ altındaki 3 HTML + zip paketlerini yeniden üretir
+node tools/package.js  # release/ altına index.html ile açılan teslim zip'i üretir
 npm run capture        # (isteğe bağlı) preview/screens/ altına ekran görüntüleri alır
 npm run capture:video  # (isteğe bağlı) preview/video/ altına kısa kayıt alır
 npm test               # (isteğe bağlı) etkileşim duman testi (Playwright)
@@ -86,13 +111,18 @@ npm test               # (isteğe bağlı) etkileşim duman testi (Playwright)
 ## Klasör yapısı
 
 ```
-src/data.js        Marka metinleri, ürünler, süreler
-src/template.js    Ortak motor + 3 yerleşim (rect / tall / wide)
-build.js           dist/ üretici
-dist/<boyut>/      Yüklemeye hazır bannerlar
-dist/zip/          Zip paketleri
-preview/index.html Sunum sayfası
-preview/screens/   Ekran görüntüleri
-tools/capture.js   Playwright ile görüntü/video alma
-tools/smoke.js     Etkileşim duman testi
+src/data.js              Marka metinleri, ürünler (handle), süreler
+src/template.js          Ortak motor + 3 yerleşim (rect / tall / wide)
+build.js                 dist/ üretici (fotoğraf / vektör modu)
+assets/                  Siteden çekilen gerçek görseller + manifest.json
+dist/<boyut>/            Yüklemeye hazır bannerlar
+dist/zip/                Zip paketleri
+release/                 Teslim paketi
+preview/index.html       Sunum sayfası
+preview/screens/         Ekran görüntüleri
+tools/fetch-assets.js    Siteden görsel/logo/fiyat çekme
+tools/optimize-assets.js Görsel optimizasyonu (şeffaflaştırma, WebP)
+tools/package.js         Teslim zip'i
+tools/capture.js         Playwright ile görüntü/video alma
+tools/smoke.js           Etkileşim duman testi
 ```
