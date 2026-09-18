@@ -53,25 +53,49 @@ const extOf = (url) => ((new URL(url).pathname.match(/\.(png|jpe?g|webp|svg|gif|
 
 async function allProducts() {
   const out = [];
-  for (let page = 1; page <= 20; page++) {
-    const j = await get(`${BASE}/products.json?limit=250&page=${page}`, 'json');
-    if (!j.products || !j.products.length) break;
-    out.push(...j.products);
-    if (j.products.length < 250) break;
+  for (const base of [`${BASE}/products.json`, `${BASE}/collections/all/products.json`]) {
+    try {
+      for (let page = 1; page <= 20; page++) {
+        const j = await get(`${base}?limit=250&page=${page}`, 'json');
+        if (!j.products || !j.products.length) break;
+        out.push(...j.products);
+        if (j.products.length < 250) break;
+      }
+      if (out.length) return out;
+    } catch (e) { console.log(`⚠ ${base}: ${e.message}`); }
   }
   return out;
 }
-function findProduct(list, p) {
+// Önce doğrudan ürün adresi (/products/<handle>.json), olmazsa listede handle, en son başlıkta kelime araması
+async function findProduct(listPromise, p) {
+  if (p.handle) {
+    try { const j = await get(`${BASE}/products/${p.handle}.json`, 'json'); if (j && j.product) return j.product; }
+    catch (e) { console.log(`  ↳ ${p.handle}.json alınamadı (${e.message.split(' – ')[0]}), listede aranıyor`); }
+  }
+  const list = await listPromise;
   if (p.handle) { const h = list.find((x) => x.handle === p.handle); if (h) return h; }
   const kw = String(p.match || p.name).toLowerCase().split(/\s+/).filter(Boolean);
   return list.find((x) => kw.every((k) => x.title.toLowerCase().includes(k))) || null;
 }
 function pickLogo(html) {
-  // Başlık (header) içindeki ilk 'logo' geçen <img>; yoksa sayfadaki ilk 'logo' geçen görsel.
+  // Başlık (header) içinde: etiketinde 'logo' geçen <img>, yoksa 'logo' sınıflı bir sarmalayıcının hemen içindeki <img>,
+  // yoksa satır içi <svg class="...logo...">. Header yoksa tüm sayfa taranır.
   const header = (html.match(/<header[\s\S]*?<\/header>/i) || [html])[0];
-  const scan = (h) => [...h.matchAll(/<img\b[^>]*>/gi)].map((m) => m[0]).filter((t) => /logo/i.test(t));
+  const scan = (h) => {
+    const cands = [];
+    for (const m of h.matchAll(/<img\b[^>]*>/gi)) {
+      const t = m[0];
+      const before = h.slice(Math.max(0, m.index - 400), m.index);
+      const score = /logo/i.test(t) ? 2 : /logo/i.test(before) ? 1 : 0;
+      if (score && !/\.(svg|png|jpe?g|webp|gif|avif)?[^"]*(icon|favicon|payment|badge)/i.test(t)) cands.push({ t, score });
+    }
+    return cands.sort((a, b) => b.score - a.score).map((c) => c.t);
+  };
   const tag = scan(header)[0] || scan(html)[0];
-  if (!tag) return null;
+  if (!tag) {
+    const svg = (header.match(/<svg\b[^>]*class="[^"]*logo[^"]*"[\s\S]*?<\/svg>/i) || html.match(/<svg\b[^>]*class="[^"]*logo[^"]*"[\s\S]*?<\/svg>/i) || [])[0];
+    return svg ? { inlineSvg: svg, alt: 'logo' } : null;
+  }
   const srcset = tag.match(/\bsrcset="([^"]+)"/i) || tag.match(/\bdata-srcset="([^"]+)"/i);
   let src = null;
   if (srcset) {
@@ -107,7 +131,12 @@ function paletteOf(html) {
     const html = await get(`${BASE}/`);
     manifest.palette = paletteOf(html);
     const logo = pickLogo(html);
-    if (logo) {
+    if (logo && logo.inlineSvg) {
+      const file = path.join(assets, 'logo.svg');
+      fs.writeFileSync(file, logo.inlineSvg.replace(/^<svg/, '<svg xmlns="http://www.w3.org/2000/svg"'));
+      manifest.logo = { file: path.relative(root, file), src: 'inline-svg', alt: logo.alt };
+      console.log(`✔ logo (satır içi svg) → ${manifest.logo.file}`);
+    } else if (logo) {
       const url = sized(logo.src, LOGO_WIDTH);
       const ext = extOf(url);
       const file = path.join(assets, `logo.${ext}`);
@@ -117,14 +146,13 @@ function paletteOf(html) {
     } else console.log('⚠ Ana sayfada logo görseli bulunamadı; assets/logo.png olarak elle ekleyebilirsiniz.');
   } catch (e) { console.log(`⚠ Ana sayfa alınamadı: ${e.message}`); }
 
-  // Ürünler
-  let list = [];
-  try { list = await allProducts(); console.log(`✔ ${list.length} ürün listelendi`); }
-  catch (e) { console.log(`⚠ products.json alınamadı: ${e.message}`); }
+  // Ürünler (liste yalnızca gerektiğinde, bir kez çekilir)
+  let listPromise = null;
+  const lazyList = () => (listPromise ||= allProducts().then((l) => { console.log(`✔ ${l.length} ürün listelendi`); return l; }).catch((e) => { console.log(`⚠ ürün listesi alınamadı: ${e.message}`); return []; }));
 
   for (const p of data.products) {
     const key = p.key || p.handle || p.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-    const found = findProduct(list, p);
+    const found = await findProduct({ then: (r, j) => lazyList().then(r, j) }, p);
     if (!found) { console.log(`✘ ${p.name}: eşleşen ürün bulunamadı (handle: ${p.handle || '-'})`); continue; }
     const img = found.images && found.images[0];
     const entry = {

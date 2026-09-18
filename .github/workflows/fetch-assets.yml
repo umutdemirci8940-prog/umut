@@ -1,0 +1,75 @@
+name: Siteden görselleri çek ve derle
+
+# Bulut oturumunun ağ politikası ilacsizyasam.com'a erişemediği için görseller
+# GitHub'ın kendi sunucusunda indirilir, optimize edilir, bannerlar derlenir ve dala geri push'lanır.
+on:
+  workflow_dispatch:
+    inputs:
+      tolerance:
+        description: Fon temizleme toleransı (0-255)
+        default: '22'
+      height:
+        description: Ürün görseli azami yüksekliği (px)
+        default: '520'
+      keep_bg:
+        description: Fon temizlemeyi kapat (kart görünümü)
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  fetch-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Siteden ürün görselleri, logo ve fiyatları çek
+        run: node tools/fetch-assets.js
+
+      - name: Playwright + Chromium kur
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+
+      - name: Görselleri optimize et
+        run: node tools/optimize-assets.js --tolerance=${{ inputs.tolerance }} --height=${{ inputs.height }} ${{ inputs.keep_bg && '--keep-bg' || '' }}
+
+      - name: Bannerları derle
+        run: node build.js
+
+      - name: Ekran görüntüleri ve etkileşim testi
+        run: |
+          node tools/capture.js
+          node tools/smoke.js
+
+      - name: Teslim paketini üret
+        run: node tools/package.js
+
+      - name: Manifest özeti
+        run: |
+          node -e "const m=require('./assets/manifest.json');console.log(JSON.stringify({logo:m.logo,products:m.products.map(p=>({key:p.key,title:p.title,price:p.price,image:p.image&&(p.image.optimized||p.image.file),transparent:p.image&&p.image.transparent}))},null,1))"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ilacsizyasam-banner-seti
+          path: |
+            release/ilacsizyasam-banner-seti.zip
+            preview/screens
+            assets
+          if-no-files-found: error
+
+      - name: Sonuçları dala push'la
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A assets dist preview/screens release
+          git commit -m "Siteden gerçek ürün görselleri ve logo ile derleme (GitHub Actions)" || { echo "Değişiklik yok"; exit 0; }
+          git push
