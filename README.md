@@ -1,8 +1,26 @@
-# Daikin – "Serinliği Yüzünde Hisset" · 970×250 interaktif masthead
+# Daikin – 970×250 interaktif masthead serisi
 
-[daikin.com.tr](https://www.daikin.com.tr/) için hazırlanmış, **gerçek marka varlıklarıyla** (sitedeki logo ve Emura III ürün fotoğrafı) derlenmiş, imleci izleyen hava akımı animasyonlu tek dosyalık masthead: **`index.html`** (≈63 KB, her şey gömülü; açınca doğrudan çalışır).
+[daikin.com.tr](https://www.daikin.com.tr/) için hazırlanmış, **gerçek marka varlıklarıyla** (sitedeki logo ve ürün fotoğrafları) derlenmiş, imleci izleyen animasyonlu tek dosyalık mastheadler:
 
-![Daikin masthead](assets/daikin/preview-970x250.jpg)
+| Dönem | Ürün | Dosya |
+|---|---|---|
+| Yaz – "Serinliği yüzünde hisset" | Emura III klima | **`index.html`** (≈63 KB) |
+| Kış – "Sıcaklığı evinde hisset" | NDJ Premix tam yoğuşmalı kombi | **`kombi/index.html`** (≈62 KB) |
+
+![Daikin klima masthead](assets/daikin/preview-970x250.jpg)
+![Daikin kombi masthead](assets/daikin-kombi/preview-970x250.jpg)
+
+## Kış sürümü – kombi (`kombi/index.html`)
+
+Yaz kurgusunun tersi: **karlı, buzlu soğuk sahne** (kar taneleri, köşelerde buz kristalleri, cam buğusu, büyük **3°** ve "Soğuk mu bastırdı?") → 1,3 sn'de NDJ Premix kombi devreye girer: paneldeki halka ışığı alev gibi yanar, kombiden sıcak ışık yayılır, zemin bakır–amber tonlarına ısınır, buz kristalleri erir, kar taneleri seyrekleşip erir, sayı **3 → 22**'ye yükselir → "SICAKLIĞI / EVİNDE HİSSET." başlığı, ürün sayfasındaki gerçek bilgilerle alt metin (%109'a kadar verimlilik, sessiz fan, kompakt) ve Daikin mavisi **"KOMBİLERİ KEŞFET"** CTA'sı → termostat çipi (22 °C · HEAT/BOOST) ve özellik çipleri. Her 7 sn'de kombiden bir sıcak hava dalgası yayılır.
+
+**Etkileşim:** Fare bannerın üzerindeyken kombiden çıkan sıcak hava (altın/turuncu çizgiler, yükselen korlar) imlece yönelir ve imlece ulaşınca sıcak halkalar, kor kıvılcımları ve buğuyla "dokunur"; **imlecin yakınındaki kar taneleri erir**; kombi BOOST moda geçer (alev hızlanır, ışık şeridi parlar). Dokunmatik, klavye, `clickTag` / `Enabler` ve azaltılmış hareket desteği yaz sürümüyle aynıdır.
+
+**Gerçek varlıklar:** `assets/daikin-kombi/` – NDJ Premix 24 kW (D2CND024) ürün sayfasındaki 3/4 fotoğraf (kırpılmış, `unit-kombi.webp`, 21 KB), diğer 6 kombi sayfasının görselleri, ekran görüntüleri ve `report.md`. Derleme: `node tools/build-daikin.js --variant=kombi` (yerleşim ve metinler `tools/build-daikin.js` → `VARIANTS.kombi`; isteğe bağlı `src/daikin/kombi.config.json` ile üzerine yazılabilir). Varlıkları yeniden çekmek için workflow'u `keywords=kombi,yogusmal,d2cnd`, `models=d2cnd,d2tnd`, `out=assets/daikin-kombi` girdileriyle çalıştırın.
+
+---
+
+## Yaz sürümü – klima (`index.html`)
 
 ## Kurgu (≈6 sn giriş, sonra sürekli)
 
@@ -34,12 +52,14 @@ Bulut oturumunun ağ politikası daikin.com.tr'ye erişemediği için varlıklar
 | Metin/özellikler | Sitenin başlık sloganı "Doğru Hava Uzmanı"; Emura III sayfasındaki 10 yıl garanti, 19 dB(A), A+++ bilgileri |
 | Referans | `assets/daikin/shots/` – ana sayfa ve ürün sayfalarının ekran görüntüleri; `assets/daikin/report.md` – bulunan her şeyin dökümü |
 
-Yeniden çekmek için: *Actions* → "Daikin – siteden logo ve ürün görsellerini çek" → *Run workflow* (isteğe bağlı `urls` girdisiyle belirli görsel adresleri de indirilebilir). Farklı bir ürün fotoğrafı kullanmak için `tools/optimize-daikin.js --src=<png>` ile kırpıp `tools/build-daikin.js` içindeki `LAYOUT.vent / led` oranlarını fotoğrafa göre güncelleyin.
+Yeniden çekmek için: *Actions* → "Daikin – siteden logo ve ürün görsellerini çek" → *Run workflow* (`keywords`, `models`, `out` ve isteğe bağlı `urls` girdileriyle). Farklı bir ürün fotoğrafı kullanmak için `tools/optimize-daikin.js --src=<png>` ile kırpıp `tools/build-daikin.js` içindeki `LAYOUT.vent / led` oranlarını fotoğrafa göre güncelleyin.
 
 ## Derleme ve özelleştirme
 
 ```bash
-node tools/build-daikin.js                 # src/daikin/masthead.html + assets/daikin → index.html
+node tools/build-daikin.js                 # klima: src/daikin/masthead.html + assets/daikin → index.html
+node tools/build-daikin.js --variant=kombi # kombi: src/daikin/masthead-kombi.html + assets/daikin-kombi → kombi/index.html
+node tools/build-daikin.js --variant=all   # ikisi birden
 NODE_PATH=$(npm root -g) node tools/optimize-daikin.js   # ürün fotoğrafını yeniden kırp/optimize et (Playwright)
 node tools/build-daikin.js --png           # WebP yerine PNG göm (eski tarayıcılar; dosya ~350 KB)
 ```

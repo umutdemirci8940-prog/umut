@@ -26,17 +26,19 @@ const VARIANTS = {
   kombi: {
     template: 'src/daikin/masthead-kombi.html', out: 'kombi/index.html',
     assets: 'assets/daikin-kombi', image: 'unit-kombi', logo: 'assets/daikin/logo/logo-1.svg',
-    unit: { left: 790, top: 6, width: 150 },
-    origin: { x1: 0.05, y1: 0.98, x2: 0.7, y2: 0.98 },       // kombi alt kenarı (sıcak hava çıkışı)
-    led: { x: 0.5, y: 0.6 },                                   // alev / ekran ışığı
-    glow: { x: 0.5, y: 0.75 },                                 // sıcak ışık merkezi
+    unit: { left: 784, top: -6, width: 180 },
+    origin: { x1: 0.06, y1: 0.975, x2: 0.77, y2: 0.92 },     // siyah panelin alt kenarı (sıcak hava çıkışı)
+    led: { x: 0.357, y: 0.875 },                               // paneldeki halka ışığı (alev)
+    glow: { x: 0.357, y: 0.875 },                              // sıcak ışık merkezi
     tCold: 3, tWarm: 22,
-    unitAlt: 'Daikin yoğuşmalı kombi',
+    unitAlt: 'Daikin NDJ Premix tam yoğuşmalı kombi',
     ctaText: 'Kombileri Keşfet',
-    subHtml: 'Daikin <b>yoğuşmalı kombi</b>: kışın en soğuk gününde bile ev sıcacık.',
-    chipsHtml: '',
-    clickUrl: 'https://www.daikin.com.tr/kombiler?utm_source=masthead&utm_medium=display&utm_campaign=sicakligi-evinde-hisset',
+    subHtml: '<b>NDJ Premix</b> tam yoğuşmalı kombi: %109’a kadar verimlilik, sessiz, kompakt.',
+    chipsHtml: '<div class="chip blue" style="--i:1"><svg viewBox="0 0 24 24"><path d="M5 21c0-8 4-13 14-16-1 10-6 14-14 16z"/><path d="M5 21c3-5 7-9 11-12"/></svg>%109’a kadar verimlilik</div>'
+      + '<div class="chip" style="--i:2"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6"/></svg>Sessiz fan devri</div>',
+    clickUrl: 'https://www.daikin.com.tr/kombiler/tam-yogusmali-premix-ndj?utm_source=masthead&utm_medium=display&utm_campaign=sicakligi-evinde-hisset',
   },
+
 };
 // Varyant ayarları için isteğe bağlı yerel dosya (metinler, oranlar, adres): src/daikin/<variant>.config.json
 function loadVariant(name){
