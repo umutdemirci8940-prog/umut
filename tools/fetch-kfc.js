@@ -220,12 +220,20 @@ const noteMedia = (url, kind, extra = {}, page = '') => {
   // API/JSON gövdeleri
   for (const [u, body] of apiBodies) { const f = path.join(out, dirs.api, slug(new URL(u).pathname) + '-' + hash(u) + '.json'); fs.writeFileSync(f, body); manifest.api.push({ url: u, file: path.relative(out, f), bytes: body.length }); for (const m of body.matchAll(/https?:\\?\/\\?\/[^"'\s\\]+\.(?:jpe?g|png|webp|mp4|webm)/gi)) noteMedia(m[0].replace(/\\\//g, '/'), /\.(mp4|webm)$/i.test(m[0]) ? 'video' : 'image', { via: 'api' }); }
 
-  // İndir
+  // İndir – öncelik: sayfada görülenler → arşiv dizinindeki büyük dosyalar; küçük ikonlar ve süre bütçesi dışı kalanlar atlanır
+  const BUDGET = (+args['budget-min'] || 20) * 60000; const MAX_CDX_IMG = +args['max-cdx-img'] || 450; const t0 = Date.now();
   let total = 0; let idx = 0;
-  const list = [...media.values()];
-  console.log(`\n${list.length} varlık adayı; indiriliyor…`);
+  const seenOnPage = (m) => m.pages.size > 0 || (m.attrs.via && m.attrs.via !== 'cdx');
+  const all = [...media.values()];
+  const primary = all.filter(seenOnPage);
+  const cdxOnly = all.filter((m) => !seenOnPage(m)).filter((m) => m.kind !== 'image' || (m.attrs.archiveLen || 0) >= 2500 || /logo/i.test(m.url)).sort((a, b) => (b.attrs.archiveLen || 0) - (a.attrs.archiveLen || 0));
+  const list = [...primary, ...cdxOnly.filter((m) => m.kind !== 'image').concat(cdxOnly.filter((m) => m.kind === 'image').slice(0, MAX_CDX_IMG))];
+  manifest.candidates = { total: all.length, onPage: primary.length, cdxOnly: cdxOnly.length, queued: list.length };
+  console.log(`\n${all.length} varlık adayı (${primary.length} sayfada görülen, ${cdxOnly.length} yalnız dizinde); ${list.length} tanesi indiriliyor…`);
   for (const m of list) {
     idx++;
+    if (Date.now() - t0 > BUDGET) { manifest.media.push({ id: idx, url: m.url, kind: m.kind, skipped: 'süre bütçesi' }); continue; }
+    if (idx % 50 === 0) { console.log(`  … ${idx}/${list.length} (${((Date.now() - t0) / 60000).toFixed(1)} dk, ${(total / 1048576).toFixed(1)} MB)`); fs.writeFileSync(path.join(out, 'manifest.json'), JSON.stringify(manifest, null, 1)); }
     const rec = { id: idx, url: m.url, kind: m.kind, pages: [...m.pages].map((x) => { try { return new URL(x).pathname; } catch { return x; } }), ...m.attrs };
     try {
       let buf; let ct = m.attrs.contentType || '';
@@ -261,6 +269,7 @@ const noteMedia = (url, kind, extra = {}, page = '') => {
     } catch (e) { rec.error = e.message; manifest.media.push(rec); console.log(`  ✗ ${m.url}: ${e.message}`); }
   }
 
+  fs.writeFileSync(path.join(out, 'manifest.json'), JSON.stringify(manifest, null, 1));
   // Görsel boyutları
   const probe = await ctx.newPage();
   for (const r of manifest.media) {

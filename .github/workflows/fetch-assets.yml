@@ -12,6 +12,9 @@ on:
       max_total_mb:
         description: Toplam indirme sınırı (MB)
         default: '400'
+      budget_min:
+        description: İndirme aşaması süre bütçesi (dk)
+        default: '20'
 
 permissions:
   contents: write
@@ -23,7 +26,7 @@ concurrency:
 jobs:
   fetch:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 55
     steps:
       - uses: actions/checkout@v4
         with:
@@ -44,20 +47,23 @@ jobs:
           ffmpeg -version | head -1
 
       - name: Siteyi gez, varlıkları topla
-        run: node tools/fetch-kfc.js --max-video-mb=${{ inputs.max_video_mb }} --max-total-mb=${{ inputs.max_total_mb }}
+        run: node tools/fetch-kfc.js --max-video-mb=${{ inputs.max_video_mb }} --max-total-mb=${{ inputs.max_total_mb }} --budget-min=${{ inputs.budget_min }}
 
       - name: Özet
+        if: always()
         run: |
           node -e "const m=require('./assets/kfc/manifest.json');console.log('hosts',m.hostStatus,'archive',m.archiveMode,m.homeTs,'cdx',m.cdx&&m.cdx.counts);console.log('pages',m.pages.map(p=>[p.path,p.status,(p.title||'').slice(0,40),p.imgCount]));console.log('videos',m.videos.map(v=>[v.file,v.w,v.h,v.duration,v.derived]));console.log('fonts',m.theme.fontFaces.map(f=>f.family+' '+f.weight));console.log('colors',m.theme.colors.slice(0,15));console.log('errors',m.errors)"
           du -sh assets/kfc assets/kfc/* | sort -h | tail -12
 
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: kfc-assets
           path: assets/kfc
           if-no-files-found: error
 
       - name: Sonuçları dala push'la
+        if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
