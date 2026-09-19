@@ -67,4 +67,11 @@ for (const mode of ['embed', 'linked']) {
   if (mode === 'embed') fs.copyFileSync(file, path.join(root, 'release', 'kfc-970x250.html'));
 }
 for (const r of report) console.log(r.join('  '));
-console.log('release/kfc-970x250.html güncellendi');
+// Reklam ağlarına yükleme için zip (içinde index.html)
+try {
+  const { execSync } = require('child_process');
+  const zip = path.join(root, 'release', 'kfc-970x250.zip');
+  fs.rmSync(zip, { force: true });
+  execSync(`cd "${outDir}" && zip -q -X "${zip}" index.html`);
+  console.log(`release/kfc-970x250.html ve release/kfc-970x250.zip güncellendi (${(fs.statSync(zip).size / 1024).toFixed(0)} KB zip)`);
+} catch (e) { console.log('zip üretilemedi:', e.message.split('\n')[0]); }

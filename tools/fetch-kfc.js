@@ -19,7 +19,7 @@ const { chromium } = require('playwright');
 const args = Object.fromEntries(process.argv.slice(2).map((a) => {
   const m = a.match(/^--([^=]+)=(.*)$/); return m ? [m[1], m[2]] : [a.replace(/^--/, ''), true];
 }));
-const HOSTS = String(args.hosts || 'https://www.kfcturkiye.com,https://kfcturkiye.com,https://ns1.kfcturkiye.com').split(',').map((h) => h.trim().replace(/\/$/, '')).filter(Boolean);
+const HOSTS = String(args.hosts || 'https://www.kfcturkiye.com,https://kfcturkiye.com,https://ns1.kfcturkiye.com,https://www.kfc.com.tr,https://kfc.com.tr').split(',').map((h) => h.trim().replace(/\/$/, '')).filter(Boolean);
 let BASE = HOSTS[0];
 const WB = 'https://web.archive.org';
 const hostStatus = {};           // host -> HTTP durumu (403 = engelli)

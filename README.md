@@ -1,3 +1,48 @@
+# KFC Türkiye – "Kepenkler Yeniden Açılıyor" 970×250 İnteraktif Banner
+
+[kfcturkiye.com](https://www.kfcturkiye.com/) için hazırlanmış, **şubelerin yeniden açılışını** anlatan tek dosyalık, animasyonlu ve etkileşimli HTML5 billboard (970×250).
+
+**Teslim:** `release/kfc-970x250.html` (tek dosya, tüm görsel/video/fontlar gömülü; açınca yalnızca 970×250 çalışma görünür) · `release/kfc-970x250.zip` (reklam ağına yüklenecek `index.html`) · `dist/kfc-970x250/index-linked.html` (varlıkları gömmek yerine doğrudan sitedeki adreslerden yükleyen sürüm).
+
+## Kurgu
+
+1. **Kepenk (0–1,4 sn)** – Metal dükkân kepengi kapalı; asılı tabela sallanır ve **KAPALI → AÇIK** olarak 3 boyutlu döner. Alt kulp "Kepengi kaldır" diye nabız atar: kullanıcı kulpu yukarı sürükleyerek (ya da tıklayarak) kepengi kendisi açabilir; dokunmazsa kepenk kendiliğinden yukarı sarılır.
+2. **Açılış (1,4–2,4 sn)** – Kepenk makaraya sarılırken sıcak bir ışık parlaması ve kısa bir sarsıntı; arkada sitenin videosu/fotoğrafı oynamaya başlar.
+3. **Başlık (2,4 sn)** – Logo iner, "TÜRKİYE," ve harf harf sıçrayan "KFC GERİ DÖNDÜ!" gelir.
+4. **Damga (3,2 sn)** – "YENİDEN AÇILDI" damgası toz bulutuyla vurulur.
+5. **Ürünler (3,6 sn)** – Sitedeki gerçek ürün fotoğrafları sağdan derinlik sırasıyla uçar, üstlerinde buhar tüter; alt satır ve şehir çipleri + "En yakın KFC'yi bul" çağrısı gelir.
+6. **Son kare (5–14 sn)** – Video döner, şehir çipleri sırayla vurgulanır, CTA'da ışık süpürmesi; ardından kepenk iner ve kurgu yeniden başlar. Üç döngü sonunda son karede durur, "Tekrar izle" düğmesi çıkar.
+
+## Etkileşim
+
+- **Kepengi sürükleme:** Kulp ya da kepengin herhangi bir yeri yukarı sürüklenince kepenk elle kalkar (60 px'i geçince açılır, yoksa geri düşer). Tıklama da açar.
+- **Paralaks:** Fare hareketiyle video, ürünler (derinliğe göre) ve damga farklı hızlarda kayar.
+- **Ürün üzerine gelme:** Ürün büyür, parlar, altında adı belirir.
+- **Şehir çipleri:** Üzerine gelince o şehir seçilir (otomatik dönüş 3 sn durur); ← → tuşları da gezdirir.
+- **Tıklama:** Bannerın tamamı tıklanabilir. `window.clickTag` tanımlıysa o kullanılır, `Enabler` varsa `Enabler.exit`, yoksa `src/kfc/data.js` içindeki UTM'li restoran bulucu sayfası açılır. Kepenk ve "Tekrar izle" tıklamayı yutar.
+- Klavye: Enter tıklar, boşluk kepengi açar. `prefers-reduced-motion` açıksa doğrudan son kare gösterilir.
+
+## Teknik
+
+- Tek HTML, satır içi CSS/JS; görseller, video ve fontlar base64 gömülü (harici istek yok). `<meta name="ad.size">`, `role="link"`, aria etiketi ve klavye odağı var.
+- Tipografi: başlıklar *Anton*, metinler *Inter* (Google Fonts'tan indirilip gömüldü, latin + latin-ext alt kümeleri Türkçe karakterler için).
+- Video: `<video muted autoplay loop playsinline>`; oynatılamazsa arkadaki fotoğraf kalır. Buhar efekti SVG `feTurbulence` + `feDisplacementMap` ile.
+- Boyut sınırı gözetilmedi (etkileşimli sunum parçası); reklam ağı için `index-linked.html` çok daha küçüktür.
+
+## Varlıklar nereden geliyor?
+
+Claude Code'un bulut oturumu **ve** GitHub Actions sunucuları kfcturkiye.com'a erişemedi (site Türkiye dışına 403 döndürüyor). Bu yüzden `tools/fetch-kfc.js` GitHub Actions'ta çalışırken önce siteyi, sonra alternatif alan adlarını dener; erişemezse **Wayback Machine** arşivindeki (web.archive.org) kopyadan sitenin görsel, video, logo ve fontlarını CDX dizini üzerinden listeleyip ham (`id_`) kopyalarını indirir, arşivlenmiş sayfaların ekran görüntülerini alır ve `assets/kfc/` altına push'lar. Kaynak listesi ve her dosyanın orijinal site adresi `assets/kfc/manifest.json` içindedir.
+
+```bash
+# GitHub → Actions → "Siteden görselleri çek ve derle" → Run workflow   (assets/kfc/ güncellenir)
+node build-kfc.js                                  # dist/kfc-970x250/ + release/kfc-970x250.html/.zip
+NODE_PATH=$(npm root -g) node tools/capture-kfc.js --video   # preview/kfc/ ekran görüntüleri + etkileşim testi
+```
+
+Metinler, şehirler, süreler, tıklama adresi ve ürün seçimi/konumları: **`src/kfc/data.js`**.
+
+---
+
 # İlaçsız Yaşam – Gıda Takviyesi Banner Serisi
 
 [ilacsizyasam.com](https://ilacsizyasam.com/) için hazırlanmış, gıda takviyeleri özelinde **animasyonlu, ürün slider'lı ve tıklanabilir HTML5 display reklam seti**.
