@@ -48,7 +48,7 @@ jobs:
 
       - name: Özet
         run: |
-          node -e "const m=require('./assets/kfc/manifest.json');console.log('pages',m.pages.map(p=>[p.path,p.status,p.title,p.imgCount]));console.log('videos',m.videos.map(v=>[v.file,v.w,v.h,v.duration,v.derived]));console.log('fonts',m.theme.fontFaces.map(f=>f.family+' '+f.weight));console.log('colors',m.theme.colors.slice(0,15));console.log('errors',m.errors)"
+          node -e "const m=require('./assets/kfc/manifest.json');console.log('hosts',m.hostStatus,'archive',m.archiveMode,m.homeTs,'cdx',m.cdx&&m.cdx.counts);console.log('pages',m.pages.map(p=>[p.path,p.status,(p.title||'').slice(0,40),p.imgCount]));console.log('videos',m.videos.map(v=>[v.file,v.w,v.h,v.duration,v.derived]));console.log('fonts',m.theme.fontFaces.map(f=>f.family+' '+f.weight));console.log('colors',m.theme.colors.slice(0,15));console.log('errors',m.errors)"
           du -sh assets/kfc assets/kfc/* | sort -h | tail -12
 
       - uses: actions/upload-artifact@v4

@@ -19,7 +19,16 @@ const { chromium } = require('playwright');
 const args = Object.fromEntries(process.argv.slice(2).map((a) => {
   const m = a.match(/^--([^=]+)=(.*)$/); return m ? [m[1], m[2]] : [a.replace(/^--/, ''), true];
 }));
-const BASE = String(args.base || 'https://www.kfcturkiye.com').replace(/\/$/, '');
+const HOSTS = String(args.hosts || 'https://www.kfcturkiye.com,https://kfcturkiye.com,https://ns1.kfcturkiye.com').split(',').map((h) => h.trim().replace(/\/$/, '')).filter(Boolean);
+let BASE = HOSTS[0];
+const WB = 'https://web.archive.org';
+const hostStatus = {};           // host -> HTTP durumu (403 = engelli)
+const cdxTs = new Map();         // orijinal URL -> en yeni arşiv zaman damgası
+let archiveMode = false; let homeTs = null;
+// Wayback yeniden yazımlarını orijinal adrese çevir: https://web.archive.org/web/2026...im_/https://x → https://x
+const orig = (u) => { const m = String(u || '').match(/^https?:\/\/web\.archive\.org\/web\/(\d{4,17})[a-z_]*\/(https?:\/\/.+)$/i); return m ? m[2] : u; };
+const tsOf = (u) => { const m = String(u || '').match(/^https?:\/\/web\.archive\.org\/web\/(\d{4,17})/i); return m ? m[1] : null; };
+const isArchiveInfra = (u) => /web\.archive\.org\/(_static|static)\/|archive\.org\/(includes|images\/|components)|analytics\.archive\.org/i.test(u);
 const MAX_VIDEO = (+args['max-video-mb'] || 60) * 1024 * 1024;
 const MAX_TOTAL = (+args['max-total-mb'] || 400) * 1024 * 1024;
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36';
@@ -59,7 +68,10 @@ const noteMedia = (url, kind, extra = {}, page = '') => {
     const key = 'data:' + hash(url); const m = media.get(key) || { url: key, kind, dataUri: url, pages: new Set(), attrs: {} };
     Object.assign(m.attrs, extra); if (page) m.pages.add(page); media.set(key, m); return;
   }
-  const a = abs(url); if (!a || !/^https?:/.test(a)) return;
+  if (isArchiveInfra(url)) return;
+  const ts = tsOf(url); if (ts && !cdxTs.has(orig(url))) cdxTs.set(orig(url), ts);
+  const a = abs(orig(url)); if (!a || !/^https?:/.test(a)) return;
+  if (/web\.archive\.org/i.test(a)) return;
   const m = media.get(a) || { url: a, kind, pages: new Set(), attrs: {} };
   if (kind === 'video' || kind === 'poster') m.kind = kind === 'poster' ? (m.kind === 'video' ? 'video' : 'image') : kind;
   Object.assign(m.attrs, extra); if (page) m.pages.add(page); media.set(a, m);
@@ -84,16 +96,50 @@ const noteMedia = (url, kind, extra = {}, page = '') => {
     } catch { /* yoksay */ }
   });
 
+  // Hangi alan adı yanıt veriyor? (coğrafi engel 403 döndürüyor)
+  for (const h of HOSTS) {
+    try { const r = await ctx.request.get(h + '/', { timeout: 30000, maxRedirects: 3 }); hostStatus[h] = r.status(); console.log(`sonda ${h} → ${r.status()} ${r.headers()['server'] || ''}`); if (r.status() === 403) { const t = await r.text().catch(() => ''); manifest.blockedBody = manifest.blockedBody || t.slice(0, 600); manifest.blockedHeaders = manifest.blockedHeaders || r.headers(); } }
+    catch (e) { hostStatus[h] = 'ERR ' + e.message.split('\n')[0]; console.log(`sonda ${h} → ${hostStatus[h]}`); }
+  }
+  manifest.hostStatus = hostStatus;
+  const live = HOSTS.find((h) => typeof hostStatus[h] === 'number' && hostStatus[h] < 400);
+  if (live) { BASE = live; console.log(`canlı erişim: ${BASE}`); }
+  else { archiveMode = true; console.log('Canlı site engelli → Wayback Machine arşivi kullanılacak'); }
+  manifest.base = BASE; manifest.archiveMode = archiveMode;
+
+  // Wayback CDX dizini: alan adı (alt alan adları dahil) için arşivlenmiş görsel/video/font/sayfa adresleri
+  async function cdx(q) { const u = `${WB}/cdx/search/cdx?${q}`; const r = await ctx.request.get(u, { timeout: 180000 }); if (!r.ok()) throw new Error(`CDX ${r.status()}`); const t = await r.text(); return t.trim() ? JSON.parse(t) : []; }
+  const cdxRows = [];
+  for (const [label, filt] of [['image', 'filter=mimetype:image/.*'], ['video', 'filter=mimetype:video/.*'], ['video2', 'filter=original:.*\\.(mp4|webm|m3u8).*'], ['font', 'filter=mimetype:.*font.*'], ['font2', 'filter=original:.*\\.(woff2?|ttf|otf)(\\?.*)?$'], ['html', 'filter=mimetype:text/html']]) {
+    try {
+      const rows = await cdx(`url=kfcturkiye.com&matchType=domain&output=json&fl=timestamp,original,mimetype,statuscode,length&filter=statuscode:200&${filt}&from=2025&limit=6000`);
+      console.log(`CDX ${label}: ${Math.max(0, rows.length - 1)} kayıt`);
+      for (const row of rows.slice(1)) cdxRows.push({ label, ts: row[0], url: row[1], mime: row[2], len: +row[4] || 0 });
+    } catch (e) { manifest.errors.push(`CDX ${label}: ${e.message}`); console.log(`CDX ${label} hata: ${e.message}`); }
+  }
+  // Her adres için en yeni zaman damgası
+  for (const r of cdxRows) { const prev = cdxTs.get(r.url); if (!prev || r.ts > prev) cdxTs.set(r.url, r.ts); }
+  const cdxPages = [...new Map(cdxRows.filter((r) => r.label === 'html').map((r) => [r.url, r])).values()];
+  manifest.cdx = { counts: Object.fromEntries(['image', 'video', 'video2', 'font', 'font2', 'html'].map((l) => [l, cdxRows.filter((r) => r.label === l).length])), pages: cdxPages.map((r) => ({ url: r.url, ts: cdxTs.get(r.url) })).slice(0, 400) };
+  for (const r of cdxRows) { if (r.label === 'html') continue; noteMedia(r.url, r.label.startsWith('video') ? 'video' : r.label.startsWith('font') ? 'font' : 'image', { via: 'cdx', mime: r.mime, archiveLen: r.len }); }
+  const homeRow = cdxPages.filter((r) => /^https?:\/\/(www\.)?kfcturkiye\.com\/?$/.test(r.url)).sort((a, b) => (cdxTs.get(b.url) > cdxTs.get(a.url) ? 1 : -1))[0];
+  homeTs = homeRow ? cdxTs.get(homeRow.url) : '2026';
+  manifest.homeTs = homeTs;
+  // Arşivde görülen menü/kampanya sayfalarını gezinti kuyruğuna ekle
+  const extraPaths = cdxPages.map((r) => { try { return new URL(r.url).pathname.replace(/\/$/, '') || '/'; } catch { return null; } }).filter((p) => p && /^\/(menu|kampanya|urun|lezzet|kova|restoran)/i.test(p));
   const page = await ctx.newPage();
-  const visited = new Set(); const queue = [...SEED];
+  const visited = new Set(); const queue = [...SEED, ...[...new Set(extraPaths)].slice(0, 25)];
   const discovered = new Set();
   while (queue.length && visited.size < 40) {
     const p = queue.shift(); if (visited.has(p)) continue; visited.add(p);
     const url = BASE + p; const rec = { path: p, url, status: null };
-    console.log(`→ ${url}`);
+    const navUrl = archiveMode ? `${WB}/web/${homeTs}/${url}` : url;
+    console.log(`→ ${navUrl}`);
     try {
-      const res = await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });
-      rec.status = res ? res.status() : null; rec.finalUrl = page.url();
+      const res = await page.goto(navUrl, { waitUntil: 'domcontentloaded', timeout: 90000 });
+      rec.status = res ? res.status() : null; rec.finalUrl = orig(page.url()); rec.archived = archiveMode; rec.archiveTs = tsOf(page.url());
+      if (archiveMode && rec.status === 404) { rec.error = 'arşivde yok'; manifest.pages.push(rec); console.log('  ✗ arşivde yok'); continue; }
+      if (archiveMode) await page.evaluate(() => { const t = document.getElementById('wm-ipp-base'); if (t) t.remove(); const s = document.getElementById('wm-ipp-print'); if (s) s.remove(); document.querySelectorAll('#donato, #wm-ipp').forEach((e) => e.remove()); }).catch(() => {});
       await page.waitForLoadState('networkidle', { timeout: 15000 }).catch(() => {});
       await sleep(1200);
       // Çerez uyarısını kapatmayı dene
@@ -146,8 +192,8 @@ const noteMedia = (url, kind, extra = {}, page = '') => {
       for (const k of ['og:image', 'twitter:image']) if (dom.meta[k]) noteMedia(dom.meta[k], 'image', { via: k }, p);
       dom.svgs.forEach((s, i) => { const f = path.join(out, dirs.svg, `${slug(p) || 'home'}-${i}-${hash(s.html)}.svg`); fs.writeFileSync(f, s.html); rec.svgs = rec.svgs || []; rec.svgs.push({ file: path.relative(out, f), box: s.box, cls: s.cls, parentCls: s.parentCls }); });
       // Aynı sitedeki menü/kampanya bağlantılarını kuyruğa ekle
-      for (const l of dom.links) { if (!sameSite(l)) continue; const u = new URL(l); const pp = u.pathname.replace(/\/$/, '') || '/'; if (/^\/(menu|kampanya|urun|product|lezzet)/i.test(pp) && !visited.has(pp) && !queue.includes(pp) && discovered.size < 20) { discovered.add(pp); queue.push(pp); } }
-      rec.links = dom.links.filter(sameSite).slice(0, 150);
+      for (const l0 of dom.links) { const l = orig(l0); if (!sameSite(l)) continue; const u = new URL(l); const pp = u.pathname.replace(/\/$/, '') || '/'; if (/^\/(menu|kampanya|urun|product|lezzet)/i.test(pp) && !visited.has(pp) && !queue.includes(pp) && discovered.size < 20) { discovered.add(pp); queue.push(pp); } }
+      rec.links = dom.links.map(orig).filter(sameSite).slice(0, 150);
       // Ekran görüntüsü (tam sayfa)
       const shot = path.join(out, dirs.screens, `${p === '/' ? 'home' : slug(p)}.jpg`);
       await page.screenshot({ path: shot, fullPage: true, type: 'jpeg', quality: 70 }).catch(async (e) => { manifest.errors.push(`screenshot ${p}: ${e.message}`); await page.screenshot({ path: shot, type: 'jpeg', quality: 70 }).catch(() => {}); });
@@ -185,9 +231,21 @@ const noteMedia = (url, kind, extra = {}, page = '') => {
       let buf; let ct = m.attrs.contentType || '';
       if (m.dataUri) { const mm = m.dataUri.match(/^data:([^;,]+)(;base64)?,(.*)$/s); if (!mm) throw new Error('data uri'); ct = mm[1]; buf = mm[2] ? Buffer.from(mm[3], 'base64') : Buffer.from(decodeURIComponent(mm[3])); }
       else {
-        const r = await ctx.request.get(m.url, { timeout: 90000, headers: { referer: BASE + '/' }, maxRedirects: 5 });
-        rec.status = r.status(); if (!r.ok()) throw new Error(`HTTP ${r.status()}`);
+        let r = null; let host = null; try { host = new URL(m.url).origin; } catch { /* yok */ }
+        const hostBlocked = host && Object.keys(hostStatus).some((h) => h === host && hostStatus[h] === 403);
+        if (!hostBlocked) { try { r = await ctx.request.get(m.url, { timeout: 90000, headers: { referer: BASE + '/' }, maxRedirects: 5 }); rec.status = r.status(); if (!r.ok()) r = null; else rec.source = 'live'; } catch (e) { rec.liveError = e.message.split('\n')[0]; r = null; } }
+        if (!r) {
+          const ts = cdxTs.get(m.url) || cdxTs.get(m.url.replace(/^http:/, 'https:')) || homeTs || '2026';
+          const au = `${WB}/web/${ts}id_/${m.url}`;
+          for (let attempt = 0; attempt < 2 && !r; attempt++) {
+            try { const rr = await ctx.request.get(au, { timeout: 120000, maxRedirects: 8 }); rec.archiveStatus = rr.status(); if (rr.status() === 429) { await sleep(8000); continue; } if (rr.ok()) { r = rr; rec.source = 'archive'; rec.archiveTs = ts; } else break; }
+            catch (e) { rec.archiveError = e.message.split('\n')[0]; }
+          }
+          await sleep(120);
+        }
+        if (!r) throw new Error(`HTTP ${rec.status || ''}${rec.archiveStatus ? ' arşiv ' + rec.archiveStatus : ''}`.trim());
         ct = r.headers()['content-type'] || ct; buf = await r.body();
+        if (/text\/html/i.test(ct) && !/svg/i.test(ct)) throw new Error('HTML döndü (varlık değil)');
       }
       const ext = extFromType(ct, m.url);
       const kind = m.kind === 'font' ? 'font' : (/^(mp4|webm|mov|m3u8)$/.test(ext) ? 'video' : (/^(woff2?|ttf|otf)$/.test(ext) ? 'font' : 'image'));
@@ -267,7 +325,7 @@ const noteMedia = (url, kind, extra = {}, page = '') => {
 
   fs.writeFileSync(path.join(out, 'manifest.json'), JSON.stringify(manifest, null, 1));
   const ok = manifest.media.filter((r) => r.file);
-  console.log(`\n✔ ${manifest.pages.length} sayfa, ${ok.filter((r) => r.kind === 'image').length} görsel, ${ok.filter((r) => r.kind === 'video').length} video, ${ok.filter((r) => r.kind === 'font').length} font — ${(total / 1048576).toFixed(1)} MB → assets/kfc/`);
+  console.log(`\n✔ ${manifest.pages.length} sayfa, ${ok.filter((r) => r.kind === 'image').length} görsel, ${ok.filter((r) => r.kind === 'video').length} video, ${ok.filter((r) => r.kind === 'font').length} font (${ok.filter((r) => r.source === 'archive').length} arşivden, ${ok.filter((r) => r.source === 'live').length} canlı) — ${(total / 1048576).toFixed(1)} MB → assets/kfc/`);
   if (manifest.errors.length) console.log('Uyarılar:', manifest.errors.slice(0, 20));
   await browser.close();
 })().catch((e) => { console.error(e); process.exit(1); });
