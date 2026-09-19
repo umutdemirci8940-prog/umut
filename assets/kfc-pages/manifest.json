@@ -1,0 +1,6127 @@
+{
+ "base": "https://www.kfcturkiye.com",
+ "fetchedAt": "2026-09-19T20:41:27.544Z",
+ "pages": [
+  {
+   "path": "/",
+   "url": "https://www.kfcturkiye.com/",
+   "status": 200,
+   "finalUrl": "https://www.kfcturkiye.com/",
+   "archived": true,
+   "archiveTs": "20260906154947",
+   "title": "KFC Türkiye - Anasayfa",
+   "meta": {
+    "description": "KFC Türkiye Resmi Web Sitesi",
+    "og:title": "KFC Türkiye",
+    "og:description": "KFC Türkiye Resmi Web Sitesi",
+    "og:site_name": "KFC Türkiye",
+    "og:image": "https://kfcturkiye.com/img/og-image-logo.jpg",
+    "og:type": "website",
+    "twitter:card": "summary_large_image",
+    "twitter:site": "@kfcturkiyeresmi",
+    "twitter:creator": "@kfcturkiyeresmi",
+    "twitter:title": "KFC Türkiye",
+    "twitter:description": "KFC Türkiye Resmi Web Sitesi",
+    "twitter:image": "https://kfcturkiye.com/img/og-image-logo.jpg"
+   },
+   "texts": {
+    "h1": [
+     "KFC LEZZET KLASİKLERİ"
+    ],
+    "h2": [],
+    "h3": [],
+    "buttons": [
+     "01",
+     "02",
+     "03",
+     "04",
+     "05",
+     "06",
+     "07",
+     "08"
+    ],
+    "strong": [
+     "KFC LEZZET KLASİKLERİ"
+    ]
+   },
+   "fonts": {
+    "body": {
+     "family": "national2, \"national2 Fallback\"",
+     "weight": "400",
+     "size": "16px",
+     "color": "rgb(33, 33, 33)",
+     "bg": "rgb(255, 255, 255)",
+     "transform": "none"
+    },
+    "h1": {
+     "family": "national2Condensed, \"national2Condensed Fallback\"",
+     "weight": "400",
+     "size": "40px",
+     "color": "rgb(33, 33, 33)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    },
+    "button": {
+     "family": "national2, \"national2 Fallback\"",
+     "weight": "400",
+     "size": "14px",
+     "color": "rgb(255, 255, 255)",
+     "bg": "rgb(228, 0, 43)",
+     "transform": "none"
+    },
+    "a": {
+     "family": "national2, \"national2 Fallback\"",
+     "weight": "500",
+     "size": "14px",
+     "color": "rgb(33, 33, 33)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    },
+    "[class*=\"title\"]": {
+     "family": "national2, \"national2 Fallback\"",
+     "weight": "400",
+     "size": "16px",
+     "color": "rgb(33, 33, 33)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    }
+   },
+   "colorHits": {
+    "rgb(33, 33, 33)": 72,
+    "rgb(33, 33, 33) rgb(33, 33, 33) rgb(228, 227, 227)": 9,
+    "rgb(228, 0, 43)": 3,
+    "rgb(255, 255, 255)": 120,
+    "rgba(0, 0, 0, 0.45)": 2,
+    "rgba(255, 255, 255, 0.25)": 2,
+    "rgb(248, 247, 245)": 10
+   },
+   "videos": [
+    {
+     "src": "https://web.archive.org/web/20260906154947oe_/https://files.pidem.prod.hebiar.com/kfc/content/content/video/double-zinger_1920x840-20260325145335.webm",
+     "poster": "https://files.pidem.prod.hebiar.com/kfc/content/content/img/kfc_buyukacildiweb1920x840pxl1_doublezi-nger-20260325144300.jpg",
+     "autoplay": true,
+     "loop": false,
+     "muted": true,
+     "w": 1900,
+     "h": 840,
+     "dur": 19.021,
+     "box": {
+      "x": 0,
+      "y": 213,
+      "w": 1440,
+      "h": 630
+     },
+     "sources": [
+      "https://files.pidem.prod.hebiar.com/kfc/content/content/video/double-zinger_1920x840-20260325145335.webm",
+      "https://files.pidem.prod.hebiar.com/kfc/content/content/video/double-zinger_1920x840-20260325145344.mp4"
+     ]
+    },
+    {
+     "src": "https://web.archive.org/web/20260906154947oe_/https://files.pidem.prod.hebiar.com/kfc/content/content/video/double-zinger_800x800-20260325145307.webm",
+     "poster": "https://files.pidem.prod.hebiar.com/kfc/content/content/img/kfcbuyukacildi_1-20260325144406.jpg",
+     "autoplay": true,
+     "loop": false,
+     "muted": true,
+     "w": 800,
+     "h": 798,
+     "dur": 19.021,
+     "box": {
+      "x": 0,
+      "y": 0,
+      "w": 0,
+      "h": 0
+     },
+     "sources": [
+      "https://files.pidem.prod.hebiar.com/kfc/content/content/video/double-zinger_800x800-20260325145307.webm",
+      "https://files.pidem.prod.hebiar.com/kfc/content/content/video/double-zinger_800x800-20260325145315.mp4"
+     ]
+    },
+    {
+     "src": "https://web.archive.org/web/20260906154947oe_/https://files.pidem.prod.hebiar.com/kfc/content/content/video/strips_1920x840-20260325152026.webm",
+     "poster": "https://files.pidem.prod.hebiar.com/kfc/content/content/img/kfc_buyukacildiweb1920x840pxl2_stri-ps-20260325144750.jpg",
+     "autoplay": false,
+     "loop": false,
+     "muted": true,
+     "w": 0,
+     "h": 0,
+     "dur": null,
+     "box": {
+      "x": 1440,
+      "y": 213,
+      "w": 1440,
+      "h": 630
+     },
+     "sources": [
+      "https://files.pidem.prod.hebiar.com/kfc/content/content/video/strips_1920x840-20260325152026.webm",
+      "https://files.pidem.prod.hebiar.com/kfc/content/content/video/strips_1920x840-20260325144827.mp4"
+     ]
+    },
+    {
+     "src": "https://web.archive.org/web/20260906154947oe_/https://files.pidem.prod.hebiar.com/kfc/content/content/video/strips_800x800-20260325144921.webm",
+     "poster": "https://files.pidem.prod.hebiar.com/kfc/content/content/img/kfc_buyukacildiweb800x800pxl2_stri-ps-20260325144838.jpg",
+     "autoplay": false,
+     "loop": false,
+     "muted": true,
+     "w": 0,
+     "h": 0,
+     "dur": null,
+     "box": {
+      "x": 0,
+      "y": 0,
+      "w": 0,
+      "h": 0
+     },
+     "sources": [
+      "https://files.pidem.prod.hebiar.com/kfc/content/content/video/strips_800x800-20260325144921.webm",
+      "https://files.pidem.prod.hebiar.com/kfc/content/content/video/strips_800x800-20260325144927.mp4"
+     ]
+    },
+    {
+     "src": "https://web.archive.org/web/20260906154947oe_/https://files.pidem.prod.hebiar.com/kfc/content/content/video/mighty-cruncher_1920x840-20260325145155.webm",
+     "poster": "https://files.pidem.prod.hebiar.com/kfc/content/content/img/kfc_buyukacildiweb1920x840pxl3_mi-ghtycruncher-20260325145042.jpg",
+     "autoplay": false,
+     "loop": false,
+     "muted": true,
+     "w": 0,
+     "h": 0,
+     "dur": null,
+     "box": {
+      "x": 2880,
+      "y": 213,
+      "w": 1440,
+      "h": 630
+     },
+     "sources": [
+      "https://files.pidem.prod.hebiar.com/kfc/content/content/video/mighty-cruncher_1920x840-20260325145155.webm",
+      "https://files.pidem.prod.hebiar.com/kfc/content/content/video/mighty-cruncher_1920x840-20260325145206.mp4"
+     ]
+    },
+    {
+     "src": "https://web.archive.org/web/20260906154947oe_/https://files.pidem.prod.hebiar.com/kfc/content/content/video/mighty-cruncher_800x800-20260325145214.webm",
+     "poster": "https://files.pidem.prod.hebiar.com/kfc/content/content/img/kfc_buyukacildiweb800x800pxl3_mi-ghtycruncher-20260325145134.jpg",
+     "autoplay": false,
+     "loop": false,
+     "muted": true,
+     "w": 0,
+     "h": 0,
+     "dur": null,
+     "box": {
+      "x": 0,
+      "y": 0,
+      "w": 0,
+      "h": 0
+     },
+     "sources": [
+      "https://files.pidem.prod.hebiar.com/kfc/content/content/video/mighty-cruncher_800x800-20260325145214.webm",
+      "https://files.pidem.prod.hebiar.com/kfc/content/content/video/mighty-cruncher_800x800-20260325145222.mp4"
+     ]
+    },
+    {
+     "src": "https://web.archive.org/web/20260906154947oe_/https://files.pidem.prod.hebiar.com/kfc/content/content/video/hotshot_1920x840-20260325145447.webm",
+     "poster": "https://files.pidem.prod.hebiar.com/kfc/content/content/img/kfc_buyukacildiweb1920x840pxl4_hotshots-20260325145426.jpg",
+     "autoplay": false,
+     "loop": false,
+     "muted": true,
+     "w": 0,
+     "h": 0,
+     "dur": null,
+     "box": {
+      "x": 4320,
+      "y": 213,
+      "w": 1440,
+      "h": 630
+     },
+     "sources": [
+      "https://files.pidem.prod.hebiar.com/kfc/content/content/video/hotshot_1920x840-20260325145447.webm",
+      "https://files.pidem.prod.hebiar.com/kfc/content/content/video/hotshot_1920x840-20260325145451.mp4"
+     ]
+    },
+    {
+     "src": "https://web.archive.org/web/20260906154947oe_/https://files.pidem.prod.hebiar.com/kfc/content/content/video/hotshot_800x800-20260325145515.webm",
+     "poster": "https://files.pidem.prod.hebiar.com/kfc/content/content/img/kfc_buyukacildiweb800x800pxl4_hotshots-20260325145502.jpg",
+     "autoplay": false,
+     "loop": false,
+     "muted": true,
+     "w": 0,
+     "h": 0,
+     "dur": null,
+     "box": {
+      "x": 0,
+      "y": 0,
+      "w": 0,
+      "h": 0
+     },
+     "sources": [
+      "https://files.pidem.prod.hebiar.com/kfc/content/content/video/hotshot_800x800-20260325145515.webm",
+      "https://files.pidem.prod.hebiar.com/kfc/content/content/video/hotshot_800x800-20260325145520.mp4"
+     ]
+    }
+   ],
+   "iframes": [],
+   "icons": [
+    {
+     "href": "https://www.kfcturkiye.com/img/favicon.ico",
+     "rel": "icon",
+     "sizes": ""
+    },
+    {
+     "href": "https://www.kfcturkiye.com/img/favicon.ico",
+     "rel": "apple-touch-icon",
+     "sizes": ""
+    }
+   ],
+   "jsonld": [],
+   "cssLinks": [
+    "https://web-static.archive.org/_static/css/banner-styles.css?v=1utQkbB3",
+    "https://web-static.archive.org/_static/css/iconochive.css?v=3PDvdIFv",
+    "https://www.kfcturkiye.com/_next/static/chunks/14894rcsbxzy8.css",
+    "https://www.kfcturkiye.com/_next/static/chunks/0bc4~__0w82fk.css",
+    "https://www.kfcturkiye.com/_next/static/chunks/0~j-~l4~edv6t.css",
+    "https://www.kfcturkiye.com/_next/static/chunks/16vy4k6aoc70c.css",
+    "https://www.kfcturkiye.com/_next/static/chunks/14894rcsbxzy8.css",
+    "https://www.kfcturkiye.com/_next/static/chunks/0bc4~__0w82fk.css",
+    "https://www.kfcturkiye.com/_next/static/chunks/0~j-~l4~edv6t.css",
+    "https://www.kfcturkiye.com/_next/static/chunks/16vy4k6aoc70c.css"
+   ],
+   "scrollHeight": 3630,
+   "imgCount": 37,
+   "svgs": [
+    {
+     "file": "svg/x-0-e838cab6.svg",
+     "box": {
+      "x": 499,
+      "y": 93,
+      "w": 12,
+      "h": 12
+     },
+     "cls": "",
+     "parentCls": ""
+    },
+    {
+     "file": "svg/x-1-e838cab6.svg",
+     "box": {
+      "x": 1157,
+      "y": 93,
+      "w": 12,
+      "h": 12
+     },
+     "cls": "",
+     "parentCls": ""
+    },
+    {
+     "file": "svg/x-2-15a7ad7a.svg",
+     "box": {
+      "x": 0,
+      "y": 0,
+      "w": 0,
+      "h": 0
+     },
+     "cls": "",
+     "parentCls": "header-module__djqnaa__trigger"
+    }
+   ],
+   "links": [
+    "https://www.kfcturkiye.com/restoranlar",
+    "https://www.kfcturkiye.com/",
+    "https://www.kfcturkiye.com/kfc-lezzetleri",
+    "https://www.kfcturkiye.com/kfc-lezzetleri#kampanyalar",
+    "https://www.kfcturkiye.com/kfc-lezzetleri#burgerler",
+    "https://www.kfcturkiye.com/kfc-lezzetleri#kwench",
+    "https://www.kfcturkiye.com/kfc-lezzetleri#wrapler",
+    "https://www.kfcturkiye.com/kfc-lezzetleri#kutular",
+    "https://www.kfcturkiye.com/kfc-lezzetleri#kovalar",
+    "https://www.kfcturkiye.com/kfc-lezzetleri#sosla-tavuklar",
+    "https://www.kfcturkiye.com/kfc-lezzetleri#yan-urunler-ve-tatlilar",
+    "https://www.kfcturkiye.com/kfc-lezzetleri#icecekler",
+    "https://www.kfcturkiye.com/kampanyalar",
+    "https://www.kfcturkiye.com/kariyer",
+    "https://www.kfcturkiye.com/hd-holding-hakkinda",
+    "https://www.kfcturkiye.com/kfc-hakkinda",
+    "https://www.kfcturkiye.com/iletisim",
+    "https://www.kfcturkiye.com/kfc-lezzetleri#soslar",
+    "https://www.kfcturkiye.com/yardim/acik-riza-metni",
+    "https://www.kfcturkiye.com/yardim/cerez-politikasi",
+    "https://www.kfcturkiye.com/yardim/etk-onay-metni",
+    "https://www.kfcturkiye.com/yardim/gizlilik-politikasi",
+    "https://www.kfcturkiye.com/yardim/kvkk-aydinlatma-metni",
+    "https://www.kfcturkiye.com/yardim/kullanim-kosullari"
+   ],
+   "screenshot": "screens/home.jpg",
+   "screenshotTop": "screens/home-top.jpg"
+  },
+  {
+   "path": "/kampanyalar",
+   "url": "https://www.kfcturkiye.com/kampanyalar",
+   "status": 200,
+   "finalUrl": "https://www.kfcturkiye.com/kampanyalar",
+   "archived": true,
+   "archiveTs": "20260710224409",
+   "title": "KFC Türkiye",
+   "meta": {
+    "description": "KFC Türkiye Resmi Web Sitesi",
+    "og:title": "KFC Türkiye",
+    "og:description": "KFC Türkiye Resmi Web Sitesi",
+    "og:site_name": "KFC Türkiye",
+    "og:image": "https://kfcturkiye.com/img/og-image-logo.jpg",
+    "og:type": "website",
+    "twitter:card": "summary_large_image",
+    "twitter:site": "@kfcturkiyeresmi",
+    "twitter:creator": "@kfcturkiyeresmi",
+    "twitter:title": "KFC Türkiye",
+    "twitter:description": "KFC Türkiye Resmi Web Sitesi",
+    "twitter:image": "https://kfcturkiye.com/img/og-image-logo.jpg"
+   },
+   "texts": {
+    "h1": [
+     "KAMPANYALAR"
+    ],
+    "h2": [
+     "MENÜ"
+    ],
+    "h3": [
+     "2 Cruncherlı Menü",
+     "Cruncher Menü",
+     "Cruncher Kutu",
+     "2'li Mighty Cruncher Menü",
+     "2'li Twister Menü"
+    ],
+    "buttons": [],
+    "strong": [
+     "MENÜ"
+    ]
+   },
+   "fonts": {
+    "body": {
+     "family": "national2, \"national2 Fallback\"",
+     "weight": "400",
+     "size": "16px",
+     "color": "rgb(33, 33, 33)",
+     "bg": "rgb(255, 255, 255)",
+     "transform": "none"
+    },
+    "h1": {
+     "family": "national2Condensed, \"national2Condensed Fallback\"",
+     "weight": "400",
+     "size": "36px",
+     "color": "rgb(33, 33, 33)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    },
+    "h2": {
+     "family": "national2Condensed, \"national2Condensed Fallback\"",
+     "weight": "400",
+     "size": "36px",
+     "color": "rgb(33, 33, 33)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    },
+    "h3": {
+     "family": "national2, \"national2 Fallback\"",
+     "weight": "700",
+     "size": "16px",
+     "color": "rgb(33, 33, 33)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    },
+    "a": {
+     "family": "national2, \"national2 Fallback\"",
+     "weight": "500",
+     "size": "14px",
+     "color": "rgb(33, 33, 33)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    },
+    "[class*=\"title\"]": {
+     "family": "national2Condensed, \"national2Condensed Fallback\"",
+     "weight": "400",
+     "size": "36px",
+     "color": "rgb(33, 33, 33)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    }
+   },
+   "colorHits": {
+    "rgb(33, 33, 33)": 51,
+    "rgb(33, 33, 33) rgb(33, 33, 33) rgb(228, 227, 227)": 8,
+    "rgb(228, 0, 43)": 2,
+    "rgb(255, 255, 255)": 104
+   },
+   "videos": [],
+   "iframes": [],
+   "icons": [
+    {
+     "href": "https://www.kfcturkiye.com/img/favicon.ico",
+     "rel": "icon",
+     "sizes": ""
+    },
+    {
+     "href": "https://www.kfcturkiye.com/img/favicon.ico",
+     "rel": "apple-touch-icon",
+     "sizes": ""
+    }
+   ],
+   "jsonld": [],
+   "cssLinks": [
+    "https://web-static.archive.org/_static/css/banner-styles.css?v=1utQkbB3",
+    "https://web-static.archive.org/_static/css/iconochive.css?v=3PDvdIFv",
+    "https://www.kfcturkiye.com/_next/static/chunks/0u8msk7~v.ime.css",
+    "https://www.kfcturkiye.com/_next/static/chunks/0bc4~__0w82fk.css",
+    "https://www.kfcturkiye.com/_next/static/chunks/0~j-~l4~edv6t.css",
+    "https://www.kfcturkiye.com/_next/static/chunks/05.s-x9ovavlu.css",
+    "https://www.kfcturkiye.com/_next/static/chunks/0u8msk7~v.ime.css",
+    "https://www.kfcturkiye.com/_next/static/chunks/0bc4~__0w82fk.css",
+    "https://www.kfcturkiye.com/_next/static/chunks/0~j-~l4~edv6t.css",
+    "https://www.kfcturkiye.com/_next/static/chunks/05.s-x9ovavlu.css"
+   ],
+   "scrollHeight": 1946,
+   "imgCount": 21,
+   "svgs": [
+    {
+     "file": "svg/kampanyalar-0-e838cab6.svg",
+     "box": {
+      "x": 499,
+      "y": 93,
+      "w": 12,
+      "h": 12
+     },
+     "cls": "",
+     "parentCls": ""
+    },
+    {
+     "file": "svg/kampanyalar-1-e838cab6.svg",
+     "box": {
+      "x": 1157,
+      "y": 93,
+      "w": 12,
+      "h": 12
+     },
+     "cls": "",
+     "parentCls": ""
+    },
+    {
+     "file": "svg/kampanyalar-2-15a7ad7a.svg",
+     "box": {
+      "x": 0,
+      "y": 0,
+      "w": 0,
+      "h": 0
+     },
+     "cls": "",
+     "parentCls": "header-module__djqnaa__trigger"
+    }
+   ],
+   "links": [
+    "https://www.kfcturkiye.com/restoranlar",
+    "https://www.kfcturkiye.com/",
+    "https://www.kfcturkiye.com/kfc-lezzetleri",
+    "https://www.kfcturkiye.com/kfc-lezzetleri#kampanyalar",
+    "https://www.kfcturkiye.com/kfc-lezzetleri#burgerler",
+    "https://www.kfcturkiye.com/kfc-lezzetleri#wrapler",
+    "https://www.kfcturkiye.com/kfc-lezzetleri#kutular",
+    "https://www.kfcturkiye.com/kfc-lezzetleri#kovalar",
+    "https://www.kfcturkiye.com/kfc-lezzetleri#sosla-tavuklar",
+    "https://www.kfcturkiye.com/kfc-lezzetleri#yan-urunler-ve-tatlilar",
+    "https://www.kfcturkiye.com/kfc-lezzetleri#icecekler",
+    "https://www.kfcturkiye.com/kampanyalar",
+    "https://www.kfcturkiye.com/kariyer",
+    "https://www.kfcturkiye.com/hd-holding-hakkinda",
+    "https://www.kfcturkiye.com/kfc-hakkinda",
+    "https://www.kfcturkiye.com/iletisim",
+    "https://www.kfcturkiye.com/kfc-lezzetleri#soslar",
+    "https://www.kfcturkiye.com/yardim/acik-riza-metni",
+    "https://www.kfcturkiye.com/yardim/cerez-politikasi",
+    "https://www.kfcturkiye.com/yardim/etk-onay-metni",
+    "https://www.kfcturkiye.com/yardim/gizlilik-politikasi",
+    "https://www.kfcturkiye.com/yardim/kvkk-aydinlatma-metni",
+    "https://www.kfcturkiye.com/yardim/kullanim-kosullari"
+   ],
+   "screenshot": "screens/kampanyalar.jpg",
+   "screenshotTop": "screens/kampanyalar-top.jpg"
+  },
+  {
+   "path": "/restoranlar",
+   "url": "https://www.kfcturkiye.com/restoranlar",
+   "status": 200,
+   "finalUrl": "https://www.kfcturkiye.com/restoranlar",
+   "archived": true,
+   "archiveTs": "20260802133119",
+   "title": "KFC Türkiye",
+   "meta": {
+    "description": "KFC Türkiye Resmi Web Sitesi",
+    "og:title": "KFC Türkiye",
+    "og:description": "KFC Türkiye Resmi Web Sitesi",
+    "og:site_name": "KFC Türkiye",
+    "og:image": "https://kfcturkiye.com/img/og-image-logo.jpg",
+    "og:type": "website",
+    "twitter:card": "summary_large_image",
+    "twitter:site": "@kfcturkiyeresmi",
+    "twitter:creator": "@kfcturkiyeresmi",
+    "twitter:title": "KFC Türkiye",
+    "twitter:description": "KFC Türkiye Resmi Web Sitesi",
+    "twitter:image": "https://kfcturkiye.com/img/og-image-logo.jpg"
+   },
+   "texts": {
+    "h1": [
+     "SİZE EN YAKIN KFC"
+    ],
+    "h2": [],
+    "h3": [],
+    "buttons": [],
+    "strong": [
+     "KFC Restoranlarından size en yakın olanı bulabilirsiniz."
+    ]
+   },
+   "fonts": {
+    "body": {
+     "family": "national2, \"national2 Fallback\"",
+     "weight": "400",
+     "size": "16px",
+     "color": "rgb(33, 33, 33)",
+     "bg": "rgb(255, 255, 255)",
+     "transform": "none"
+    },
+    "h1": {
+     "family": "national2Condensed, \"national2Condensed Fallback\"",
+     "weight": "400",
+     "size": "36px",
+     "color": "rgb(33, 33, 33)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    },
+    "p": {
+     "family": "national2, \"national2 Fallback\"",
+     "weight": "500",
+     "size": "14px",
+     "color": "rgb(228, 0, 43)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    },
+    "a": {
+     "family": "national2, \"national2 Fallback\"",
+     "weight": "500",
+     "size": "14px",
+     "color": "rgb(33, 33, 33)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    },
+    "[class*=\"title\"]": {
+     "family": "national2, \"national2 Fallback\"",
+     "weight": "500",
+     "size": "14px",
+     "color": "rgb(33, 33, 33)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    }
+   },
+   "colorHits": {
+    "rgb(33, 33, 33)": 29,
+    "rgb(33, 33, 33) rgb(33, 33, 33) rgb(228, 227, 227)": 8,
+    "rgb(228, 0, 43)": 227,
+    "rgb(255, 255, 255)": 184,
+    "rgb(0, 0, 0)": 3,
+    "rgb(0, 0, 0) rgb(0, 0, 0) rgb(204, 204, 204)": 1,
+    "rgb(0, 120, 168)": 4
+   },
+   "videos": [],
+   "iframes": [],
+   "icons": [
+    {
+     "href": "https://www.kfcturkiye.com/img/favicon.ico",
+     "rel": "icon",
+     "sizes": ""
+    },
+    {
+     "href": "https://www.kfcturkiye.com/img/favicon.ico",
+     "rel": "apple-touch-icon",
+     "sizes": ""
+    }
+   ],
+   "jsonld": [],
+   "cssLinks": [
+    "https://web-static.archive.org/_static/css/banner-styles.css?v=1utQkbB3",
+    "https://web-static.archive.org/_static/css/iconochive.css?v=3PDvdIFv",
+    "https://www.kfcturkiye.com/_next/static/chunks/0u8msk7~v.ime.css",
+    "https://www.kfcturkiye.com/_next/static/chunks/0bc4~__0w82fk.css",
+    "https://www.kfcturkiye.com/_next/static/chunks/0~j-~l4~edv6t.css",
+    "https://www.kfcturkiye.com/_next/static/chunks/17qg_b89eatc-.css",
+    "https://www.kfcturkiye.com/_next/static/chunks/0u8msk7~v.ime.css",
+    "https://www.kfcturkiye.com/_next/static/chunks/0bc4~__0w82fk.css",
+    "https://www.kfcturkiye.com/_next/static/chunks/0~j-~l4~edv6t.css",
+    "https://www.kfcturkiye.com/_next/static/chunks/17qg_b89eatc-.css",
+    "https://www.kfcturkiye.com/_next/static/chunks/0t48hzs_6fshe.css"
+   ],
+   "scrollHeight": 1761,
+   "imgCount": 114,
+   "svgs": [
+    {
+     "file": "svg/restoranlar-0-e838cab6.svg",
+     "box": {
+      "x": 499,
+      "y": 93,
+      "w": 12,
+      "h": 12
+     },
+     "cls": "",
+     "parentCls": ""
+    },
+    {
+     "file": "svg/restoranlar-1-e838cab6.svg",
+     "box": {
+      "x": 1157,
+      "y": 93,
+      "w": 12,
+      "h": 12
+     },
+     "cls": "",
+     "parentCls": ""
+    },
+    {
+     "file": "svg/restoranlar-2-15a7ad7a.svg",
+     "box": {
+      "x": 0,
+      "y": 0,
+      "w": 0,
+      "h": 0
+     },
+     "cls": "",
+     "parentCls": "header-module__djqnaa__trigger"
+    }
+   ],
+   "links": [
+    "https://www.kfcturkiye.com/restoranlar",
+    "https://www.kfcturkiye.com/",
+    "https://www.kfcturkiye.com/kfc-lezzetleri",
+    "https://www.kfcturkiye.com/kfc-lezzetleri#kampanyalar",
+    "https://www.kfcturkiye.com/kfc-lezzetleri#burgerler",
+    "https://www.kfcturkiye.com/kfc-lezzetleri#wrapler",
+    "https://www.kfcturkiye.com/kfc-lezzetleri#kutular",
+    "https://www.kfcturkiye.com/kfc-lezzetleri#kovalar",
+    "https://www.kfcturkiye.com/kfc-lezzetleri#sosla-tavuklar",
+    "https://www.kfcturkiye.com/kfc-lezzetleri#yan-urunler-ve-tatlilar",
+    "https://www.kfcturkiye.com/kfc-lezzetleri#icecekler",
+    "https://www.kfcturkiye.com/kampanyalar",
+    "https://www.kfcturkiye.com/kariyer",
+    "https://www.kfcturkiye.com/hd-holding-hakkinda",
+    "https://www.kfcturkiye.com/kfc-hakkinda",
+    "https://www.kfcturkiye.com/iletisim",
+    "https://www.kfcturkiye.com/restoranlar#",
+    "https://www.kfcturkiye.com/kfc-lezzetleri#soslar",
+    "https://www.kfcturkiye.com/yardim/acik-riza-metni",
+    "https://www.kfcturkiye.com/yardim/cerez-politikasi",
+    "https://www.kfcturkiye.com/yardim/etk-onay-metni",
+    "https://www.kfcturkiye.com/yardim/gizlilik-politikasi",
+    "https://www.kfcturkiye.com/yardim/kvkk-aydinlatma-metni",
+    "https://www.kfcturkiye.com/yardim/kullanim-kosullari"
+   ],
+   "screenshot": "screens/restoranlar.jpg",
+   "screenshotTop": "screens/restoranlar-top.jpg"
+  },
+  {
+   "path": "/kfc-lezzetleri",
+   "url": "https://www.kfcturkiye.com/kfc-lezzetleri",
+   "status": 200,
+   "finalUrl": "https://www.kfcturkiye.com/kfc-lezzetleri",
+   "archived": true,
+   "archiveTs": "20260729201729",
+   "title": "KFC Türkiye",
+   "meta": {
+    "description": "KFC Türkiye Resmi Web Sitesi",
+    "og:title": "KFC Türkiye",
+    "og:description": "KFC Türkiye Resmi Web Sitesi",
+    "og:site_name": "KFC Türkiye",
+    "og:image": "https://kfcturkiye.com/img/og-image-logo.jpg",
+    "og:type": "website",
+    "twitter:card": "summary_large_image",
+    "twitter:site": "@kfcturkiyeresmi",
+    "twitter:creator": "@kfcturkiyeresmi",
+    "twitter:title": "KFC Türkiye",
+    "twitter:description": "KFC Türkiye Resmi Web Sitesi",
+    "twitter:image": "https://kfcturkiye.com/img/og-image-logo.jpg"
+   },
+   "texts": {
+    "h1": [
+     "KFC LEZZETLERİ"
+    ],
+    "h2": [
+     "MENÜ",
+     "Kampanyalar",
+     "Burgerler",
+     "Wrapler",
+     "Kutular",
+     "Kovalar",
+     "Sosla Tavuklar",
+     "Yan Ürünler ve Tatlılar",
+     "İçecekler",
+     "Soslar"
+    ],
+    "h3": [
+     "2 Cruncherlı Menü",
+     "Cruncher Menü",
+     "Cruncher Kutu",
+     "2'li Mighty Cruncher Menü",
+     "2'li Twister Menü",
+     "Çifte Cruncher Menü",
+     "2 Cruncherlı Menü",
+     "Cruncher Menü",
+     "Mighty Cruncher Menü",
+     "Zinger Menü",
+     "Double Cruncher Menü",
+     "Double Zinger Menü",
+     "2'li Mighty Cruncher Menü",
+     "Cruncher Burger",
+     "Mighty Cruncher Burger",
+     "Double Cruncher Burger",
+     "Zinger Burger",
+     "Double Zinger Burger",
+     "Çifte Cruncher Menü",
+     "Twister Menü",
+     "2'li Twister Menü",
+     "Twister",
+     "Cruncher Kutu",
+     "Mighty Cruncher Kutu",
+     "Kemiksiz Kutu",
+     "Twister Kutu",
+     "Best of Kutu",
+     "Xtreme Kutu",
+     "Kanka Kova",
+     "2'li Mighty Cruncher Kova",
+     "Kemiksiz Kova",
+     "Kanat Eseri Kova",
+     "Kanatlandıran Kova",
+     "Mega Kanat Kova",
+     "6'lı Hot Shots Menü",
+     "9'lu Hot Shots Menü",
+     "12'li Hot Shots Menü",
+     "4'lü Hot Wings Menü",
+     "6'lı Hot Wings Menü",
+     "8'li Hot Wings Menü",
+     "2'li Strips Menü",
+     "3'lü Strips Menü",
+     "5'li Strips Menü",
+     "7'li Strips Menü",
+     "1 Hot Wing",
+     "4 Hot Wings",
+     "6 Hot Wings",
+     "8 Hot Wings",
+     "6 Hot Shots",
+     "9 Hot Shots",
+     "12 Hot Shots",
+     "1 Strip",
+     "3 Strips",
+     "Mozaik Kek",
+     "Biscuit",
+     "Coleslaw",
+     "Patates Püresi",
+     "4'lü Onion Rings",
+     "8'li Onion Rings",
+     "12'li Onion Rings"
+    ],
+    "buttons": [],
+    "strong": [
+     "MENÜ"
+    ]
+   },
+   "fonts": {
+    "body": {
+     "family": "national2, \"national2 Fallback\"",
+     "weight": "400",
+     "size": "16px",
+     "color": "rgb(33, 33, 33)",
+     "bg": "rgb(255, 255, 255)",
+     "transform": "none"
+    },
+    "h1": {
+     "family": "national2Condensed, \"national2Condensed Fallback\"",
+     "weight": "400",
+     "size": "36px",
+     "color": "rgb(33, 33, 33)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    },
+    "h2": {
+     "family": "national2Condensed, \"national2Condensed Fallback\"",
+     "weight": "400",
+     "size": "36px",
+     "color": "rgb(33, 33, 33)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    },
+    "h3": {
+     "family": "national2, \"national2 Fallback\"",
+     "weight": "700",
+     "size": "16px",
+     "color": "rgb(33, 33, 33)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    },
+    "a": {
+     "family": "national2, \"national2 Fallback\"",
+     "weight": "500",
+     "size": "14px",
+     "color": "rgb(33, 33, 33)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    },
+    "[class*=\"title\"]": {
+     "family": "national2Condensed, \"national2Condensed Fallback\"",
+     "weight": "400",
+     "size": "36px",
+     "color": "rgb(33, 33, 33)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    }
+   },
+   "colorHits": {
+    "rgb(33, 33, 33)": 76,
+    "rgb(33, 33, 33) rgb(33, 33, 33) rgb(228, 227, 227)": 8,
+    "rgb(228, 0, 43)": 4,
+    "rgb(255, 255, 255)": 114,
+    "rgb(228, 227, 227)": 9
+   },
+   "videos": [],
+   "iframes": [],
+   "icons": [
+    {
+     "href": "https://www.kfcturkiye.com/img/favicon.ico",
+     "rel": "icon",
+     "sizes": ""
+    },
+    {
+     "href": "https://www.kfcturkiye.com/img/favicon.ico",
+     "rel": "apple-touch-icon",
+     "sizes": ""
+    }
+   ],
+   "jsonld": [],
+   "cssLinks": [
+    "https://web-static.archive.org/_static/css/banner-styles.css?v=1utQkbB3",
+    "https://web-static.archive.org/_static/css/iconochive.css?v=3PDvdIFv",
+    "https://www.kfcturkiye.com/_next/static/chunks/0u8msk7~v.ime.css",
+    "https://www.kfcturkiye.com/_next/static/chunks/0bc4~__0w82fk.css",
+    "https://www.kfcturkiye.com/_next/static/chunks/0~j-~l4~edv6t.css",
+    "https://www.kfcturkiye.com/_next/static/chunks/039h4b2lx.3rv.css",
+    "https://www.kfcturkiye.com/_next/static/chunks/0u8msk7~v.ime.css",
+    "https://www.kfcturkiye.com/_next/static/chunks/0bc4~__0w82fk.css",
+    "https://www.kfcturkiye.com/_next/static/chunks/0~j-~l4~edv6t.css",
+    "https://www.kfcturkiye.com/_next/static/chunks/039h4b2lx.3rv.css"
+   ],
+   "scrollHeight": 13804,
+   "imgCount": 107,
+   "svgs": [
+    {
+     "file": "svg/kfc-lezzetleri-0-e838cab6.svg",
+     "box": {
+      "x": 499,
+      "y": 93,
+      "w": 12,
+      "h": 12
+     },
+     "cls": "",
+     "parentCls": ""
+    },
+    {
+     "file": "svg/kfc-lezzetleri-1-e838cab6.svg",
+     "box": {
+      "x": 1157,
+      "y": 93,
+      "w": 12,
+      "h": 12
+     },
+     "cls": "",
+     "parentCls": ""
+    },
+    {
+     "file": "svg/kfc-lezzetleri-2-15a7ad7a.svg",
+     "box": {
+      "x": 0,
+      "y": 892,
+      "w": 0,
+      "h": 0
+     },
+     "cls": "",
+     "parentCls": "header-module__djqnaa__trigger"
+    }
+   ],
+   "links": [
+    "https://www.kfcturkiye.com/restoranlar",
+    "https://www.kfcturkiye.com/",
+    "https://www.kfcturkiye.com/kfc-lezzetleri",
+    "https://www.kfcturkiye.com/kfc-lezzetleri#kampanyalar",
+    "https://www.kfcturkiye.com/kfc-lezzetleri#burgerler",
+    "https://www.kfcturkiye.com/kfc-lezzetleri#wrapler",
+    "https://www.kfcturkiye.com/kfc-lezzetleri#kutular",
+    "https://www.kfcturkiye.com/kfc-lezzetleri#kovalar",
+    "https://www.kfcturkiye.com/kfc-lezzetleri#sosla-tavuklar",
+    "https://www.kfcturkiye.com/kfc-lezzetleri#yan-urunler-ve-tatlilar",
+    "https://www.kfcturkiye.com/kfc-lezzetleri#icecekler",
+    "https://www.kfcturkiye.com/kampanyalar",
+    "https://www.kfcturkiye.com/kariyer",
+    "https://www.kfcturkiye.com/hd-holding-hakkinda",
+    "https://www.kfcturkiye.com/kfc-hakkinda",
+    "https://www.kfcturkiye.com/iletisim",
+    "https://www.kfcturkiye.com/kfc-lezzetleri#soslar",
+    "https://www.kfcturkiye.com/yardim/acik-riza-metni",
+    "https://www.kfcturkiye.com/yardim/cerez-politikasi",
+    "https://www.kfcturkiye.com/yardim/etk-onay-metni",
+    "https://www.kfcturkiye.com/yardim/gizlilik-politikasi",
+    "https://www.kfcturkiye.com/yardim/kvkk-aydinlatma-metni",
+    "https://www.kfcturkiye.com/yardim/kullanim-kosullari"
+   ],
+   "screenshot": "screens/kfc-lezzetleri.jpg",
+   "screenshotTop": "screens/kfc-lezzetleri-top.jpg"
+  },
+  {
+   "path": "/menu",
+   "url": "https://www.kfcturkiye.com/menu",
+   "status": 200,
+   "finalUrl": "https://kfcturkiye.com/menu/",
+   "archived": true,
+   "archiveTs": "20230602154954",
+   "error": "page.evaluate: TypeError: Cannot read properties of undefined (reading 'trim')\n    at eval (eval at evaluate (:290:30), <anonymous>:14:330)\n    at Array.map (<anonymous>)\n    at eval (eval at evaluate (:290:30), <anonymous>:14:307)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+  },
+  {
+   "path": "/menu/firsatlar",
+   "url": "https://www.kfcturkiye.com/menu/firsatlar",
+   "status": null,
+   "error": "page.goto: net::ERR_ABORTED at https://web.archive.org/web/20260906154947/https://www.kfcturkiye.com/menu/firsatlar\nCall log:\n  - navigating to \"https://web.archive.org/web/20260906154947/https://www.kfcturkiye.com/menu/firsatlar\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+   "path": "/menu/kovalar",
+   "url": "https://www.kfcturkiye.com/menu/kovalar",
+   "status": 404,
+   "finalUrl": "https://www.kfcturkiye.com/menu/kovalar",
+   "archived": true,
+   "archiveTs": "20260906154947",
+   "error": "arşivde yok"
+  },
+  {
+   "path": "/menu/burgerler",
+   "url": "https://www.kfcturkiye.com/menu/burgerler",
+   "status": 404,
+   "finalUrl": "https://www.kfcturkiye.com/menu/burgerler",
+   "archived": true,
+   "archiveTs": "20260906154947",
+   "error": "arşivde yok"
+  },
+  {
+   "path": "/menu/wrapler",
+   "url": "https://www.kfcturkiye.com/menu/wrapler",
+   "status": 404,
+   "finalUrl": "https://www.kfcturkiye.com/menu/wrapler",
+   "archived": true,
+   "archiveTs": "20260906154947",
+   "error": "arşivde yok"
+  },
+  {
+   "path": "/menu/kutular",
+   "url": "https://www.kfcturkiye.com/menu/kutular",
+   "status": 404,
+   "finalUrl": "https://www.kfcturkiye.com/menu/kutular",
+   "archived": true,
+   "archiveTs": "20260906154947",
+   "error": "arşivde yok"
+  },
+  {
+   "path": "/menu/sosla-tavuklar",
+   "url": "https://www.kfcturkiye.com/menu/sosla-tavuklar",
+   "status": 404,
+   "finalUrl": "https://www.kfcturkiye.com/menu/sosla-tavuklar",
+   "archived": true,
+   "archiveTs": "20260906154947",
+   "error": "arşivde yok"
+  },
+  {
+   "path": "/menu/yan-urunler-ve-tatlilar",
+   "url": "https://www.kfcturkiye.com/menu/yan-urunler-ve-tatlilar",
+   "status": 404,
+   "finalUrl": "https://www.kfcturkiye.com/menu/yan-urunler-ve-tatlilar",
+   "archived": true,
+   "archiveTs": "20260906154947",
+   "error": "arşivde yok"
+  },
+  {
+   "path": "/menu/icecekler",
+   "url": "https://www.kfcturkiye.com/menu/icecekler",
+   "status": 404,
+   "finalUrl": "https://www.kfcturkiye.com/menu/icecekler",
+   "archived": true,
+   "archiveTs": "20260906154947",
+   "error": "arşivde yok"
+  },
+  {
+   "path": "/kampanya/lezzet-carki",
+   "url": "https://www.kfcturkiye.com/kampanya/lezzet-carki",
+   "status": 404,
+   "finalUrl": "https://www.kfcturkiye.com/kampanya/lezzet-carki",
+   "archived": true,
+   "archiveTs": "20260906154947",
+   "error": "arşivde yok"
+  }
+ ],
+ "media": [
+  {
+   "id": 1,
+   "url": "https://www.kfcturkiye.com/_next/static/media/National2Bold-s.p.0eeuqsndmx.aa.woff2",
+   "kind": "font",
+   "pages": [
+    "/web/20260906154947/https://www.kfcturkiye.com/",
+    "/web/20260710224409/https://www.kfcturkiye.com/kampanyalar",
+    "/web/20260802133119/https://www.kfcturkiye.com/restoranlar",
+    "/web/20260729201729/https://www.kfcturkiye.com/kfc-lezzetleri"
+   ],
+   "via": "font-face",
+   "mime": "font/woff2",
+   "archiveLen": 31481,
+   "contentType": "font/woff2",
+   "family": "national2",
+   "weight": "700",
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260906155111",
+   "file": "fonts/001-national2bold-s-p-0eeuqsndmx-aa.woff2",
+   "bytes": 30580,
+   "ext": "woff2"
+  },
+  {
+   "id": 2,
+   "url": "https://www.kfcturkiye.com/_next/static/media/National2CondensedBold-s.p.01sg1ea~60rdi.woff2",
+   "kind": "font",
+   "pages": [
+    "/web/20260906154947/https://www.kfcturkiye.com/",
+    "/web/20260710224409/https://www.kfcturkiye.com/kampanyalar",
+    "/web/20260802133119/https://www.kfcturkiye.com/restoranlar",
+    "/web/20260729201729/https://www.kfcturkiye.com/kfc-lezzetleri"
+   ],
+   "via": "font-face",
+   "mime": "font/woff2",
+   "archiveLen": 22538,
+   "contentType": "font/woff2",
+   "family": "national2Condensed",
+   "weight": "700",
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260906155111",
+   "file": "fonts/002-national2condensedbold-s-p-01sg1ea-60rdi.woff2",
+   "bytes": 21628,
+   "ext": "woff2"
+  },
+  {
+   "id": 3,
+   "url": "https://www.kfcturkiye.com/_next/static/media/National2Medium-s.p.0xsq9z9ef_kli.woff2",
+   "kind": "font",
+   "pages": [
+    "/web/20260906154947/https://www.kfcturkiye.com/",
+    "/web/20260710224409/https://www.kfcturkiye.com/kampanyalar",
+    "/web/20260802133119/https://www.kfcturkiye.com/restoranlar",
+    "/web/20260729201729/https://www.kfcturkiye.com/kfc-lezzetleri"
+   ],
+   "via": "font-face",
+   "mime": "font/woff2",
+   "archiveLen": 31467,
+   "contentType": "font/woff2",
+   "family": "national2",
+   "weight": "500",
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260906155111",
+   "file": "fonts/003-national2medium-s-p-0xsq9z9ef-kli.woff2",
+   "bytes": 30564,
+   "ext": "woff2"
+  },
+  {
+   "id": 4,
+   "url": "https://www.kfcturkiye.com/_next/static/media/National2Regular-s.p.0blljcam0cnmh.woff2",
+   "kind": "font",
+   "pages": [
+    "/web/20260906154947/https://www.kfcturkiye.com/",
+    "/web/20260710224409/https://www.kfcturkiye.com/kampanyalar",
+    "/web/20260802133119/https://www.kfcturkiye.com/restoranlar",
+    "/web/20260729201729/https://www.kfcturkiye.com/kfc-lezzetleri"
+   ],
+   "via": "font-face",
+   "mime": "font/woff2",
+   "archiveLen": 29240,
+   "contentType": "font/woff2",
+   "family": "national2",
+   "weight": "400",
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260906155111",
+   "file": "fonts/004-national2regular-s-p-0blljcam0cnmh.woff2",
+   "bytes": 28336,
+   "ext": "woff2"
+  },
+  {
+   "id": 5,
+   "url": "https://web-static.archive.org/_static/fonts/Iconochive-Regular.woff",
+   "kind": "font",
+   "pages": [
+    "/web/20260906154947/https://www.kfcturkiye.com/",
+    "/web/20260710224409/https://www.kfcturkiye.com/kampanyalar",
+    "/web/20260802133119/https://www.kfcturkiye.com/restoranlar",
+    "/web/20260729201729/https://www.kfcturkiye.com/kfc-lezzetleri"
+   ],
+   "contentType": "font/woff",
+   "via": "font-face",
+   "family": "Iconochive-Regular",
+   "weight": "normal",
+   "status": 200,
+   "source": "live",
+   "file": "fonts/005-iconochive-regular.woff",
+   "bytes": 27960,
+   "ext": "woff"
+  },
+  {
+   "id": 6,
+   "url": "https://files.pidem.prod.hebiar.com/kfc/content/content/video/double-zinger_1920x840-20260325145335.webm",
+   "kind": "video",
+   "pages": [
+    "/web/20260906154947/https://www.kfcturkiye.com/",
+    "/"
+   ],
+   "contentType": "video/webm",
+   "via": "video",
+   "type": "video/webm; codecs=\"av01.0.08M.08\"",
+   "poster": "https://files.pidem.prod.hebiar.com/kfc/content/content/img/kfc_buyukacildiweb1920x840pxl1_doublezi-nger-20260325144300.jpg",
+   "autoplay": true,
+   "loop": false,
+   "box": {
+    "x": 0,
+    "y": 213,
+    "w": 1440,
+    "h": 630
+   },
+   "dur": 19.021,
+   "size": [
+    1900,
+    840
+   ],
+   "status": 403,
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260906154947",
+   "file": "video/006-double-zinger-1920x840-20260325145335.webm",
+   "bytes": 4417034,
+   "ext": "webm"
+  },
+  {
+   "id": 7,
+   "url": "https://files.pidem.prod.hebiar.com/kfc/content/content/video/double-zinger_800x800-20260325145307.webm",
+   "kind": "video",
+   "pages": [
+    "/web/20260906154947/https://www.kfcturkiye.com/",
+    "/"
+   ],
+   "contentType": "video/webm",
+   "via": "video",
+   "type": "video/webm; codecs=\"av01.0.08M.08\"",
+   "poster": "https://files.pidem.prod.hebiar.com/kfc/content/content/img/kfcbuyukacildi_1-20260325144406.jpg",
+   "autoplay": true,
+   "loop": false,
+   "box": {
+    "x": 0,
+    "y": 0,
+    "w": 0,
+    "h": 0
+   },
+   "dur": 19.021,
+   "size": [
+    800,
+    798
+   ],
+   "status": 403,
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260906154947",
+   "file": "video/007-double-zinger-800x800-20260325145307.webm",
+   "bytes": 3215867,
+   "ext": "webm"
+  },
+  {
+   "id": 8,
+   "url": "https://files.pidem.prod.hebiar.com/kfc/content/content/video/double-zinger_1920x840-20260325145344.mp4",
+   "kind": "video",
+   "pages": [
+    "/"
+   ],
+   "via": "video",
+   "type": "video/mp4",
+   "poster": "https://files.pidem.prod.hebiar.com/kfc/content/content/img/kfc_buyukacildiweb1920x840pxl1_doublezi-nger-20260325144300.jpg",
+   "autoplay": true,
+   "loop": false,
+   "box": {
+    "x": 0,
+    "y": 213,
+    "w": 1440,
+    "h": 630
+   },
+   "dur": 19.021,
+   "size": [
+    1900,
+    840
+   ],
+   "status": 403,
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260906154947",
+   "file": "video/008-double-zinger-1920x840-20260325145344.mp4",
+   "bytes": 5842305,
+   "contentType": "video/mp4",
+   "ext": "mp4"
+  },
+  {
+   "id": 9,
+   "url": "https://files.pidem.prod.hebiar.com/kfc/content/content/video/double-zinger_800x800-20260325145315.mp4",
+   "kind": "video",
+   "pages": [
+    "/"
+   ],
+   "via": "video",
+   "type": "video/mp4",
+   "poster": "https://files.pidem.prod.hebiar.com/kfc/content/content/img/kfcbuyukacildi_1-20260325144406.jpg",
+   "autoplay": true,
+   "loop": false,
+   "box": {
+    "x": 0,
+    "y": 0,
+    "w": 0,
+    "h": 0
+   },
+   "dur": 19.021,
+   "size": [
+    800,
+    798
+   ],
+   "status": 403,
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260906154947",
+   "file": "video/009-double-zinger-800x800-20260325145315.mp4",
+   "bytes": 3916970,
+   "contentType": "video/mp4",
+   "ext": "mp4"
+  },
+  {
+   "id": 10,
+   "url": "https://files.pidem.prod.hebiar.com/kfc/content/content/video/strips_1920x840-20260325152026.webm",
+   "kind": "video",
+   "pages": [
+    "/"
+   ],
+   "via": "video",
+   "type": "video/webm; codecs=\"av01.0.08M.08\"",
+   "poster": "https://files.pidem.prod.hebiar.com/kfc/content/content/img/kfc_buyukacildiweb1920x840pxl2_stri-ps-20260325144750.jpg",
+   "autoplay": false,
+   "loop": false,
+   "box": {
+    "x": 1440,
+    "y": 213,
+    "w": 1440,
+    "h": 630
+   },
+   "dur": null,
+   "size": [
+    0,
+    0
+   ],
+   "status": 403,
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260906154947",
+   "file": "video/010-strips-1920x840-20260325152026.webm",
+   "bytes": 5467698,
+   "contentType": "video/webm",
+   "ext": "webm"
+  },
+  {
+   "id": 11,
+   "url": "https://files.pidem.prod.hebiar.com/kfc/content/content/video/strips_1920x840-20260325144827.mp4",
+   "kind": "video",
+   "pages": [
+    "/"
+   ],
+   "via": "video",
+   "type": "video/mp4",
+   "poster": "https://files.pidem.prod.hebiar.com/kfc/content/content/img/kfc_buyukacildiweb1920x840pxl2_stri-ps-20260325144750.jpg",
+   "autoplay": false,
+   "loop": false,
+   "box": {
+    "x": 1440,
+    "y": 213,
+    "w": 1440,
+    "h": 630
+   },
+   "dur": null,
+   "size": [
+    0,
+    0
+   ],
+   "status": 403,
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260906154947",
+   "file": "video/011-strips-1920x840-20260325144827.mp4",
+   "bytes": 6779240,
+   "contentType": "video/mp4",
+   "ext": "mp4"
+  },
+  {
+   "id": 12,
+   "url": "https://files.pidem.prod.hebiar.com/kfc/content/content/video/strips_800x800-20260325144921.webm",
+   "kind": "video",
+   "pages": [
+    "/"
+   ],
+   "via": "video",
+   "type": "video/webm; codecs=\"av01.0.08M.08\"",
+   "poster": "https://files.pidem.prod.hebiar.com/kfc/content/content/img/kfc_buyukacildiweb800x800pxl2_stri-ps-20260325144838.jpg",
+   "autoplay": false,
+   "loop": false,
+   "box": {
+    "x": 0,
+    "y": 0,
+    "w": 0,
+    "h": 0
+   },
+   "dur": null,
+   "size": [
+    0,
+    0
+   ],
+   "status": 403,
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260906154947",
+   "file": "video/012-strips-800x800-20260325144921.webm",
+   "bytes": 3254312,
+   "contentType": "video/webm",
+   "ext": "webm"
+  },
+  {
+   "id": 13,
+   "url": "https://files.pidem.prod.hebiar.com/kfc/content/content/video/strips_800x800-20260325144927.mp4",
+   "kind": "video",
+   "pages": [
+    "/"
+   ],
+   "via": "video",
+   "type": "video/mp4",
+   "poster": "https://files.pidem.prod.hebiar.com/kfc/content/content/img/kfc_buyukacildiweb800x800pxl2_stri-ps-20260325144838.jpg",
+   "autoplay": false,
+   "loop": false,
+   "box": {
+    "x": 0,
+    "y": 0,
+    "w": 0,
+    "h": 0
+   },
+   "dur": null,
+   "size": [
+    0,
+    0
+   ],
+   "status": 403,
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260906154947",
+   "file": "video/013-strips-800x800-20260325144927.mp4",
+   "bytes": 3766461,
+   "contentType": "video/mp4",
+   "ext": "mp4"
+  },
+  {
+   "id": 14,
+   "url": "https://files.pidem.prod.hebiar.com/kfc/content/content/video/mighty-cruncher_1920x840-20260325145155.webm",
+   "kind": "video",
+   "pages": [
+    "/"
+   ],
+   "via": "video",
+   "type": "video/webm; codecs=\"av01.0.08M.08\"",
+   "poster": "https://files.pidem.prod.hebiar.com/kfc/content/content/img/kfc_buyukacildiweb1920x840pxl3_mi-ghtycruncher-20260325145042.jpg",
+   "autoplay": false,
+   "loop": false,
+   "box": {
+    "x": 2880,
+    "y": 213,
+    "w": 1440,
+    "h": 630
+   },
+   "dur": null,
+   "size": [
+    0,
+    0
+   ],
+   "status": 403,
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260906154947",
+   "file": "video/014-mighty-cruncher-1920x840-20260325145155.webm",
+   "bytes": 6317975,
+   "contentType": "video/webm",
+   "ext": "webm"
+  },
+  {
+   "id": 15,
+   "url": "https://files.pidem.prod.hebiar.com/kfc/content/content/video/mighty-cruncher_1920x840-20260325145206.mp4",
+   "kind": "video",
+   "pages": [
+    "/"
+   ],
+   "via": "video",
+   "type": "video/mp4",
+   "poster": "https://files.pidem.prod.hebiar.com/kfc/content/content/img/kfc_buyukacildiweb1920x840pxl3_mi-ghtycruncher-20260325145042.jpg",
+   "autoplay": false,
+   "loop": false,
+   "box": {
+    "x": 2880,
+    "y": 213,
+    "w": 1440,
+    "h": 630
+   },
+   "dur": null,
+   "size": [
+    0,
+    0
+   ],
+   "status": 403,
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260906154947",
+   "file": "video/015-mighty-cruncher-1920x840-20260325145206.mp4",
+   "bytes": 7836547,
+   "contentType": "video/mp4",
+   "ext": "mp4"
+  },
+  {
+   "id": 16,
+   "url": "https://files.pidem.prod.hebiar.com/kfc/content/content/video/mighty-cruncher_800x800-20260325145214.webm",
+   "kind": "video",
+   "pages": [
+    "/"
+   ],
+   "via": "video",
+   "type": "video/webm; codecs=\"av01.0.08M.08\"",
+   "poster": "https://files.pidem.prod.hebiar.com/kfc/content/content/img/kfc_buyukacildiweb800x800pxl3_mi-ghtycruncher-20260325145134.jpg",
+   "autoplay": false,
+   "loop": false,
+   "box": {
+    "x": 0,
+    "y": 0,
+    "w": 0,
+    "h": 0
+   },
+   "dur": null,
+   "size": [
+    0,
+    0
+   ],
+   "status": 403,
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260906154947",
+   "file": "video/016-mighty-cruncher-800x800-20260325145214.webm",
+   "bytes": 4112417,
+   "contentType": "video/webm",
+   "ext": "webm"
+  },
+  {
+   "id": 17,
+   "url": "https://files.pidem.prod.hebiar.com/kfc/content/content/video/mighty-cruncher_800x800-20260325145222.mp4",
+   "kind": "video",
+   "pages": [
+    "/"
+   ],
+   "via": "video",
+   "type": "video/mp4",
+   "poster": "https://files.pidem.prod.hebiar.com/kfc/content/content/img/kfc_buyukacildiweb800x800pxl3_mi-ghtycruncher-20260325145134.jpg",
+   "autoplay": false,
+   "loop": false,
+   "box": {
+    "x": 0,
+    "y": 0,
+    "w": 0,
+    "h": 0
+   },
+   "dur": null,
+   "size": [
+    0,
+    0
+   ],
+   "status": 403,
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260906154947",
+   "file": "video/017-mighty-cruncher-800x800-20260325145222.mp4",
+   "bytes": 4649958,
+   "contentType": "video/mp4",
+   "ext": "mp4"
+  },
+  {
+   "id": 18,
+   "url": "https://files.pidem.prod.hebiar.com/kfc/content/content/video/hotshot_1920x840-20260325145447.webm",
+   "kind": "video",
+   "pages": [
+    "/"
+   ],
+   "via": "video",
+   "type": "video/webm; codecs=\"av01.0.08M.08\"",
+   "poster": "https://files.pidem.prod.hebiar.com/kfc/content/content/img/kfc_buyukacildiweb1920x840pxl4_hotshots-20260325145426.jpg",
+   "autoplay": false,
+   "loop": false,
+   "box": {
+    "x": 4320,
+    "y": 213,
+    "w": 1440,
+    "h": 630
+   },
+   "dur": null,
+   "size": [
+    0,
+    0
+   ],
+   "status": 403,
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260906154947",
+   "file": "video/018-hotshot-1920x840-20260325145447.webm",
+   "bytes": 3628454,
+   "contentType": "video/webm",
+   "ext": "webm"
+  },
+  {
+   "id": 19,
+   "url": "https://files.pidem.prod.hebiar.com/kfc/content/content/video/hotshot_1920x840-20260325145451.mp4",
+   "kind": "video",
+   "pages": [
+    "/"
+   ],
+   "via": "video",
+   "type": "video/mp4",
+   "poster": "https://files.pidem.prod.hebiar.com/kfc/content/content/img/kfc_buyukacildiweb1920x840pxl4_hotshots-20260325145426.jpg",
+   "autoplay": false,
+   "loop": false,
+   "box": {
+    "x": 4320,
+    "y": 213,
+    "w": 1440,
+    "h": 630
+   },
+   "dur": null,
+   "size": [
+    0,
+    0
+   ],
+   "status": 403,
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260906154947",
+   "file": "video/019-hotshot-1920x840-20260325145451.mp4",
+   "bytes": 4558814,
+   "contentType": "video/mp4",
+   "ext": "mp4"
+  },
+  {
+   "id": 20,
+   "url": "https://files.pidem.prod.hebiar.com/kfc/content/content/video/hotshot_800x800-20260325145515.webm",
+   "kind": "video",
+   "pages": [
+    "/"
+   ],
+   "via": "video",
+   "type": "video/webm; codecs=\"av01.0.08M.08\"",
+   "poster": "https://files.pidem.prod.hebiar.com/kfc/content/content/img/kfc_buyukacildiweb800x800pxl4_hotshots-20260325145502.jpg",
+   "autoplay": false,
+   "loop": false,
+   "box": {
+    "x": 0,
+    "y": 0,
+    "w": 0,
+    "h": 0
+   },
+   "dur": null,
+   "size": [
+    0,
+    0
+   ],
+   "status": 403,
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260906154947",
+   "file": "video/020-hotshot-800x800-20260325145515.webm",
+   "bytes": 2467377,
+   "contentType": "video/webm",
+   "ext": "webm"
+  },
+  {
+   "id": 21,
+   "url": "https://files.pidem.prod.hebiar.com/kfc/content/content/video/hotshot_800x800-20260325145520.mp4",
+   "kind": "video",
+   "pages": [
+    "/"
+   ],
+   "via": "video",
+   "type": "video/mp4",
+   "poster": "https://files.pidem.prod.hebiar.com/kfc/content/content/img/kfc_buyukacildiweb800x800pxl4_hotshots-20260325145502.jpg",
+   "autoplay": false,
+   "loop": false,
+   "box": {
+    "x": 0,
+    "y": 0,
+    "w": 0,
+    "h": 0
+   },
+   "dur": null,
+   "size": [
+    0,
+    0
+   ],
+   "status": 403,
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260906154947",
+   "file": "video/021-hotshot-800x800-20260325145520.mp4",
+   "bytes": 2859928,
+   "contentType": "video/mp4",
+   "ext": "mp4"
+  },
+  {
+   "id": 22,
+   "url": "https://web-static.archive.org/_static/fonts/Iconochive-Regular.eot",
+   "kind": "font",
+   "pages": [],
+   "family": "Iconochive-Regular",
+   "weight": "normal",
+   "via": "font-face",
+   "status": 200,
+   "source": "live",
+   "file": "fonts/022-iconochive-regular.bin",
+   "bytes": 28092,
+   "contentType": "application/vnd.ms-fontobject",
+   "ext": "bin"
+  },
+  {
+   "id": 23,
+   "url": "https://web-static.archive.org/_static/fonts/Iconochive-Regular.ttf",
+   "kind": "font",
+   "pages": [],
+   "family": "Iconochive-Regular",
+   "weight": "normal",
+   "via": "font-face",
+   "status": 200,
+   "source": "live",
+   "file": "fonts/023-iconochive-regular.ttf",
+   "bytes": 27884,
+   "contentType": "font/ttf",
+   "ext": "ttf"
+  },
+  {
+   "id": 24,
+   "url": "https://web-static.archive.org/_static/fonts/Iconochive-Regular.svg#Iconochive-Regular",
+   "kind": "font",
+   "pages": [],
+   "family": "Iconochive-Regular",
+   "weight": "normal",
+   "via": "font-face",
+   "status": 200,
+   "source": "live",
+   "file": "fonts/024-iconochive-regular.svg",
+   "bytes": 84940,
+   "contentType": "image/svg+xml; charset=utf-8",
+   "ext": "svg"
+  },
+  {
+   "id": 25,
+   "url": "https://www.kfcturkiye.com/_next/image?url=%2Fimg%2Fcategory%2Fcat-burgerler.png&w=128&q=75",
+   "kind": "image",
+   "pages": [
+    "/web/20260906154947/https://www.kfcturkiye.com/",
+    "/",
+    "/web/20260710224409/https://www.kfcturkiye.com/kampanyalar",
+    "/kampanyalar",
+    "/web/20260802133119/https://www.kfcturkiye.com/restoranlar",
+    "/restoranlar",
+    "/web/20260729201729/https://www.kfcturkiye.com/kfc-lezzetleri",
+    "/kfc-lezzetleri"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 6569,
+   "contentType": "image/png",
+   "alt": "Burgerler",
+   "cls": "",
+   "box": {
+    "x": 698,
+    "y": 153,
+    "w": 72,
+    "h": 72
+   },
+   "inHeader": true,
+   "inFooter": false,
+   "rendered": [
+    128,
+    128
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260906154952",
+   "file": "img/025-image.png",
+   "bytes": 5534,
+   "ext": "png",
+   "w": 128,
+   "h": 128,
+   "transparent": 0.8211805555555556
+  },
+  {
+   "id": 26,
+   "url": "https://www.kfcturkiye.com/_next/image?q=75&url=%2Fimg%2Fcategory%2Fcat-burgerler.png&w=128",
+   "kind": "image",
+   "pages": [
+    "/web/20260729201729/https://www.kfcturkiye.com/kfc-lezzetleri"
+   ],
+   "via": "network",
+   "mime": "image/png",
+   "archiveLen": 6572,
+   "contentType": "image/png",
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260727225744",
+   "file": "img/026-image.png",
+   "bytes": 5534,
+   "ext": "png",
+   "w": 128,
+   "h": 128,
+   "transparent": 0.8211805555555556
+  },
+  {
+   "id": 27,
+   "url": "https://www.kfcturkiye.com/_next/image?url=%2Fimg%2Fcategory%2Fcat-icecekler.png&w=128&q=75",
+   "kind": "image",
+   "pages": [
+    "/web/20260906154947/https://www.kfcturkiye.com/",
+    "/",
+    "/web/20260710224409/https://www.kfcturkiye.com/kampanyalar",
+    "/kampanyalar",
+    "/web/20260802133119/https://www.kfcturkiye.com/restoranlar",
+    "/restoranlar",
+    "/web/20260729201729/https://www.kfcturkiye.com/kfc-lezzetleri",
+    "/kfc-lezzetleri"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 5695,
+   "contentType": "image/png",
+   "alt": "İçecekler",
+   "cls": "",
+   "box": {
+    "x": 698,
+    "y": 372,
+    "w": 72,
+    "h": 72
+   },
+   "inHeader": true,
+   "inFooter": false,
+   "rendered": [
+    128,
+    128
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260724105451",
+   "file": "img/027-image.png",
+   "bytes": 4889,
+   "ext": "png",
+   "w": 128,
+   "h": 128,
+   "transparent": 0.8524305555555556
+  },
+  {
+   "id": 28,
+   "url": "https://www.kfcturkiye.com/_next/image?w=128&q=75&url=%2Fimg%2Fcategory%2Fcat-icecekler.png",
+   "kind": "image",
+   "pages": [
+    "/web/20260802133119/https://www.kfcturkiye.com/restoranlar",
+    "/web/20260729201729/https://www.kfcturkiye.com/kfc-lezzetleri"
+   ],
+   "via": "network",
+   "mime": "image/png",
+   "archiveLen": 5927,
+   "contentType": "image/png",
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260726123938",
+   "file": "img/028-image.png",
+   "bytes": 4889,
+   "ext": "png",
+   "w": 128,
+   "h": 128,
+   "transparent": 0.8524305555555556
+  },
+  {
+   "id": 29,
+   "url": "https://www.kfcturkiye.com/_next/image?url=%2Fimg%2Fcategory%2Fcat-kampanyalar.png&w=128&q=75",
+   "kind": "image",
+   "pages": [
+    "/web/20260906154947/https://www.kfcturkiye.com/",
+    "/",
+    "/web/20260710224409/https://www.kfcturkiye.com/kampanyalar",
+    "/kampanyalar",
+    "/web/20260802133119/https://www.kfcturkiye.com/restoranlar",
+    "/restoranlar",
+    "/web/20260729201729/https://www.kfcturkiye.com/kfc-lezzetleri",
+    "/kfc-lezzetleri"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 7758,
+   "contentType": "image/png",
+   "alt": "Kampanyalar",
+   "cls": "",
+   "box": {
+    "x": 407,
+    "y": 153,
+    "w": 72,
+    "h": 72
+   },
+   "inHeader": true,
+   "inFooter": false,
+   "rendered": [
+    128,
+    128
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260906154952",
+   "file": "img/029-image.png",
+   "bytes": 6719,
+   "ext": "png",
+   "w": 128,
+   "h": 128,
+   "transparent": 0.7760416666666666
+  },
+  {
+   "id": 30,
+   "url": "https://www.kfcturkiye.com/_next/image?url=%2Fimg%2Fcategory%2Fcat-kovalar.png&w=128&q=75",
+   "kind": "image",
+   "pages": [
+    "/web/20260906154947/https://www.kfcturkiye.com/",
+    "/",
+    "/web/20260710224409/https://www.kfcturkiye.com/kampanyalar",
+    "/kampanyalar",
+    "/web/20260802133119/https://www.kfcturkiye.com/restoranlar",
+    "/restoranlar",
+    "/web/20260729201729/https://www.kfcturkiye.com/kfc-lezzetleri",
+    "/kfc-lezzetleri"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 8195,
+   "contentType": "image/png",
+   "alt": "Kovalar",
+   "cls": "",
+   "box": {
+    "x": 407,
+    "y": 299,
+    "w": 72,
+    "h": 72
+   },
+   "inHeader": true,
+   "inFooter": false,
+   "rendered": [
+    128,
+    128
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260831013329",
+   "file": "img/030-image.png",
+   "bytes": 7162,
+   "ext": "png",
+   "w": 128,
+   "h": 128,
+   "transparent": 0.7413194444444444
+  },
+  {
+   "id": 31,
+   "url": "https://www.kfcturkiye.com/_next/image?q=75&url=%2Fimg%2Fcategory%2Fcat-kovalar.png&w=128",
+   "kind": "image",
+   "pages": [
+    "/web/20260802133119/https://www.kfcturkiye.com/restoranlar",
+    "/web/20260729201729/https://www.kfcturkiye.com/kfc-lezzetleri"
+   ],
+   "via": "network",
+   "mime": "image/png",
+   "archiveLen": 8195,
+   "contentType": "image/png",
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260802133125",
+   "file": "img/031-image.png",
+   "bytes": 7162,
+   "ext": "png",
+   "w": 128,
+   "h": 128,
+   "transparent": 0.7413194444444444
+  },
+  {
+   "id": 32,
+   "url": "https://www.kfcturkiye.com/_next/image?url=%2Fimg%2Fcategory%2Fcat-kutular.png&w=128&q=75",
+   "kind": "image",
+   "pages": [
+    "/web/20260906154947/https://www.kfcturkiye.com/",
+    "/",
+    "/web/20260710224409/https://www.kfcturkiye.com/kampanyalar",
+    "/kampanyalar",
+    "/web/20260802133119/https://www.kfcturkiye.com/restoranlar",
+    "/restoranlar",
+    "/web/20260729201729/https://www.kfcturkiye.com/kfc-lezzetleri",
+    "/kfc-lezzetleri"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 6363,
+   "contentType": "image/png",
+   "alt": "Kutular",
+   "cls": "",
+   "box": {
+    "x": 698,
+    "y": 226,
+    "w": 72,
+    "h": 72
+   },
+   "inHeader": true,
+   "inFooter": false,
+   "rendered": [
+    128,
+    128
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260906154952",
+   "file": "img/032-image.png",
+   "bytes": 5332,
+   "ext": "png",
+   "w": 128,
+   "h": 128,
+   "transparent": 0.8541666666666666
+  },
+  {
+   "id": 33,
+   "url": "https://www.kfcturkiye.com/_next/image?q=75&url=%2Fimg%2Fcategory%2Fcat-kutular.png&w=128",
+   "kind": "image",
+   "pages": [
+    "/web/20260802133119/https://www.kfcturkiye.com/restoranlar",
+    "/web/20260729201729/https://www.kfcturkiye.com/kfc-lezzetleri"
+   ],
+   "via": "network",
+   "mime": "image/png",
+   "archiveLen": 6364,
+   "contentType": "image/png",
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260724105505",
+   "file": "img/033-image.png",
+   "bytes": 5332,
+   "ext": "png",
+   "w": 128,
+   "h": 128,
+   "transparent": 0.8541666666666666
+  },
+  {
+   "id": 34,
+   "url": "https://www.kfcturkiye.com/_next/image?w=128&q=75&url=%2Fimg%2Fcategory%2Fcat-sosla-tavuklar.png",
+   "kind": "image",
+   "pages": [
+    "/web/20260729201729/https://www.kfcturkiye.com/kfc-lezzetleri"
+   ],
+   "via": "network",
+   "mime": "image/png",
+   "archiveLen": 8707,
+   "contentType": "image/png",
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260727225745",
+   "file": "img/034-image.png",
+   "bytes": 7659,
+   "ext": "png",
+   "w": 128,
+   "h": 128,
+   "transparent": 0.7378472222222222
+  },
+  {
+   "id": 35,
+   "url": "https://www.kfcturkiye.com/_next/image?q=75&url=%2Fimg%2Fcategory%2Fcat-sosla-tavuklar.png&w=128",
+   "kind": "image",
+   "pages": [
+    "/web/20260710224409/https://www.kfcturkiye.com/kampanyalar",
+    "/web/20260802133119/https://www.kfcturkiye.com/restoranlar"
+   ],
+   "via": "network",
+   "mime": "image/png",
+   "archiveLen": 8704,
+   "contentType": "image/png",
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260223143658",
+   "file": "img/035-image.png",
+   "bytes": 7659,
+   "ext": "png",
+   "w": 128,
+   "h": 128,
+   "transparent": 0.7378472222222222
+  },
+  {
+   "id": 36,
+   "url": "https://www.kfcturkiye.com/_next/image?url=%2Fimg%2Fcategory%2Fcat-sosla-tavuklar.png&w=128&q=75",
+   "kind": "image",
+   "pages": [
+    "/web/20260906154947/https://www.kfcturkiye.com/",
+    "/",
+    "/web/20260710224409/https://www.kfcturkiye.com/kampanyalar",
+    "/kampanyalar",
+    "/web/20260802133119/https://www.kfcturkiye.com/restoranlar",
+    "/restoranlar",
+    "/web/20260729201729/https://www.kfcturkiye.com/kfc-lezzetleri",
+    "/kfc-lezzetleri"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 8704,
+   "contentType": "image/png",
+   "alt": "Sosla Tavuklar",
+   "cls": "",
+   "box": {
+    "x": 698,
+    "y": 299,
+    "w": 72,
+    "h": 72
+   },
+   "inHeader": true,
+   "inFooter": false,
+   "rendered": [
+    128,
+    128
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260906154957",
+   "file": "img/036-image.png",
+   "bytes": 7659,
+   "ext": "png",
+   "w": 128,
+   "h": 128,
+   "transparent": 0.7378472222222222
+  },
+  {
+   "id": 37,
+   "url": "https://www.kfcturkiye.com/_next/image?url=%2Fimg%2Fcategory%2Fcat-yan-urunler-ve-tatlilar.png&w=128&q=75",
+   "kind": "image",
+   "pages": [
+    "/web/20260906154947/https://www.kfcturkiye.com/",
+    "/",
+    "/web/20260710224409/https://www.kfcturkiye.com/kampanyalar",
+    "/kampanyalar",
+    "/web/20260802133119/https://www.kfcturkiye.com/restoranlar",
+    "/restoranlar",
+    "/web/20260729201729/https://www.kfcturkiye.com/kfc-lezzetleri",
+    "/kfc-lezzetleri"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 5592,
+   "contentType": "image/png",
+   "alt": "Yan Ürünler ve Tatlılar",
+   "cls": "",
+   "box": {
+    "x": 407,
+    "y": 372,
+    "w": 72,
+    "h": 72
+   },
+   "inHeader": true,
+   "inFooter": false,
+   "rendered": [
+    128,
+    128
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260725072645",
+   "file": "img/037-image.png",
+   "bytes": 4853,
+   "ext": "png",
+   "w": 128,
+   "h": 128,
+   "transparent": 0.8697916666666666
+  },
+  {
+   "id": 38,
+   "url": "https://www.kfcturkiye.com/_next/image?url=%2Fimg%2Fproducts%2Ftwister-menu.png&w=128&q=75",
+   "kind": "image",
+   "pages": [
+    "/web/20260906154947/https://www.kfcturkiye.com/",
+    "/",
+    "/web/20260710224409/https://www.kfcturkiye.com/kampanyalar",
+    "/kampanyalar",
+    "/web/20260802133119/https://www.kfcturkiye.com/restoranlar",
+    "/restoranlar",
+    "/web/20260729201729/https://www.kfcturkiye.com/kfc-lezzetleri",
+    "/kfc-lezzetleri"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 5471,
+   "contentType": "image/png",
+   "alt": "Wrapler",
+   "cls": "",
+   "box": {
+    "x": 407,
+    "y": 226,
+    "w": 72,
+    "h": 72
+   },
+   "inHeader": true,
+   "inFooter": false,
+   "rendered": [
+    128,
+    128
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260726123938",
+   "file": "img/038-image.png",
+   "bytes": 4435,
+   "ext": "png",
+   "w": 128,
+   "h": 128,
+   "transparent": 0.890625
+  },
+  {
+   "id": 39,
+   "url": "https://www.kfcturkiye.com/_next/image?w=256&q=75&url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fcontent%2Fimg%2Fbuyuk-coca-cola-zero-20251208171318-20260807061300.png",
+   "kind": "image",
+   "pages": [
+    "/web/20260906154947/https://www.kfcturkiye.com/"
+   ],
+   "via": "network",
+   "mime": "image/png",
+   "archiveLen": 15130,
+   "contentType": "image/png",
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260906155041",
+   "file": "img/039-image.png",
+   "bytes": 13962,
+   "ext": "png",
+   "w": 256,
+   "h": 256,
+   "transparent": 0.8524305555555556
+  },
+  {
+   "id": 40,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fcontent%2Fimg%2Fcat-kampanyalar-20251211112507.png&w=480&q=75",
+   "kind": "image",
+   "pages": [
+    "/web/20260906154947/https://www.kfcturkiye.com/",
+    "/"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 56219,
+   "contentType": "image/png",
+   "alt": "KAMPANYALAR",
+   "cls": "",
+   "box": {
+    "x": 156,
+    "y": 991,
+    "w": 534,
+    "h": 534
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    480,
+    480
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260710224358",
+   "file": "img/040-image.png",
+   "bytes": 55838,
+   "ext": "png",
+   "w": 480,
+   "h": 480,
+   "transparent": 0.7777777777777778
+  },
+  {
+   "id": 41,
+   "url": "https://www.kfcturkiye.com/_next/image?q=75&url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fcontent%2Fimg%2Fcat-kampanyalar-20251211112507.png&w=480",
+   "kind": "image",
+   "pages": [
+    "/web/20260906154947/https://www.kfcturkiye.com/"
+   ],
+   "via": "network",
+   "mime": "image/png",
+   "archiveLen": 56968,
+   "contentType": "image/png",
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260724105518",
+   "file": "img/041-image.png",
+   "bytes": 55838,
+   "ext": "png",
+   "w": 480,
+   "h": 480,
+   "transparent": 0.7777777777777778
+  },
+  {
+   "id": 42,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fcontent%2Fimg%2Fcat-kovalar-20251211113716.png&w=256&q=75",
+   "kind": "image",
+   "pages": [
+    "/web/20260906154947/https://www.kfcturkiye.com/",
+    "/"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 22329,
+   "contentType": "image/png",
+   "alt": "KOVALAR",
+   "cls": "",
+   "box": {
+    "x": 1047,
+    "y": 1316,
+    "w": 237,
+    "h": 237
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    256,
+    256
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260906155039",
+   "file": "img/042-image.png",
+   "bytes": 21210,
+   "ext": "png",
+   "w": 256,
+   "h": 256,
+   "transparent": 0.7430555555555556
+  },
+  {
+   "id": 43,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fcontent%2Fimg%2Fcat-sosla-tavuklar-20251211112721.png&w=256&q=75",
+   "kind": "image",
+   "pages": [
+    "/web/20260906154947/https://www.kfcturkiye.com/",
+    "/"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 24888,
+   "contentType": "image/png",
+   "alt": "SOSLA TAVUKLAR",
+   "cls": "",
+   "box": {
+    "x": 156,
+    "y": 1641,
+    "w": 237,
+    "h": 237
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    256,
+    256
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260710224359",
+   "file": "img/043-image.png",
+   "bytes": 24242,
+   "ext": "png",
+   "w": 256,
+   "h": 256,
+   "transparent": 0.7361111111111112
+  },
+  {
+   "id": 44,
+   "url": "https://www.kfcturkiye.com/_next/image?w=256&q=75&url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fcontent%2Fimg%2Fcat-sosla-tavuklar-20251211112721.png",
+   "kind": "image",
+   "pages": [
+    "/web/20260906154947/https://www.kfcturkiye.com/"
+   ],
+   "via": "network",
+   "mime": "image/png",
+   "archiveLen": 25378,
+   "contentType": "image/png",
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260724105520",
+   "file": "img/044-image.png",
+   "bytes": 24242,
+   "ext": "png",
+   "w": 256,
+   "h": 256,
+   "transparent": 0.7361111111111112
+  },
+  {
+   "id": 45,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fcontent%2Fimg%2Fcat-soslar-20251211112827.png&w=256&q=75",
+   "kind": "image",
+   "pages": [
+    "/web/20260906154947/https://www.kfcturkiye.com/",
+    "/"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 13671,
+   "contentType": "image/png",
+   "alt": "SOSLAR",
+   "cls": "",
+   "box": {
+    "x": 1047,
+    "y": 1641,
+    "w": 237,
+    "h": 237
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    256,
+    256
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260724105521",
+   "file": "img/045-image.png",
+   "bytes": 12551,
+   "ext": "png",
+   "w": 256,
+   "h": 256,
+   "transparent": 0.7534722222222222
+  },
+  {
+   "id": 46,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fcontent%2Fimg%2Fcat-yan-urunler-ve-tatlilar-20251211112742.png&w=256&q=75",
+   "kind": "image",
+   "pages": [
+    "/web/20260906154947/https://www.kfcturkiye.com/",
+    "/"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 13364,
+   "contentType": "image/png",
+   "alt": "YAN ÜRÜNLER VE TATLILAR",
+   "cls": "",
+   "box": {
+    "x": 453,
+    "y": 1641,
+    "w": 237,
+    "h": 237
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    256,
+    256
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260710224359",
+   "file": "img/046-image.png",
+   "bytes": 12846,
+   "ext": "png",
+   "w": 256,
+   "h": 256,
+   "transparent": 0.8680555555555556
+  },
+  {
+   "id": 47,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fcontent%2Fimg%2Fdouble-zinger-men-20251229113332.png&w=256&q=75",
+   "kind": "image",
+   "pages": [
+    "/web/20260906154947/https://www.kfcturkiye.com/",
+    "/"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 19216,
+   "contentType": "image/png",
+   "alt": "BURGERLER",
+   "cls": "",
+   "box": {
+    "x": 750,
+    "y": 991,
+    "w": 237,
+    "h": 237
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    256,
+    274
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260724105518",
+   "file": "img/047-image.png",
+   "bytes": 18082,
+   "ext": "png",
+   "w": 256,
+   "h": 274,
+   "transparent": 0.8055555555555556
+  },
+  {
+   "id": 48,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fcontent%2Fimg%2Fkfc_websitebanner_1920x840pxl1-20251229065350-20260325144651.jpg&w=3840&q=75",
+   "kind": "image",
+   "pages": [
+    "/"
+   ],
+   "via": "img",
+   "mime": "image/jpeg",
+   "archiveLen": 173751,
+   "alt": "Slide 5",
+   "cls": "mainSlider-module__vDavpW__slide_image",
+   "box": {
+    "x": 5760,
+    "y": 213,
+    "w": 1440,
+    "h": 630
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    0,
+    0
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260906155004",
+   "file": "img/048-image.jpg",
+   "bytes": 172550,
+   "contentType": "image/jpeg",
+   "ext": "jpg",
+   "w": 1920,
+   "h": 840
+  },
+  {
+   "id": 49,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fcontent%2Fimg%2Fkfc_websitebanner_1920x840pxl1-20251229065350-20260325144651.jpg&w=640&q=75",
+   "kind": "image",
+   "pages": [
+    "/"
+   ],
+   "via": "srcset",
+   "mime": "image/jpeg",
+   "archiveLen": 32893,
+   "alt": "Slide 5",
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260906155001",
+   "file": "img/049-image.jpg",
+   "bytes": 31704,
+   "contentType": "image/jpeg",
+   "ext": "jpg",
+   "w": 640,
+   "h": 280
+  },
+  {
+   "id": 50,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fcontent%2Fimg%2Fkfc_websitebanner_1920x840pxl5-20251229113543.jpg&w=1920&q=75",
+   "kind": "image",
+   "pages": [
+    "/web/20260906154947/https://www.kfcturkiye.com/",
+    "/"
+   ],
+   "via": "img",
+   "mime": "image/jpeg",
+   "archiveLen": 252935,
+   "contentType": "image/jpeg",
+   "alt": "KFC Banner",
+   "cls": "",
+   "box": {
+    "x": 0,
+    "y": 2416,
+    "w": 1440,
+    "h": 630
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    1440,
+    630
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260906155046",
+   "file": "img/050-image.jpg",
+   "bytes": 251757,
+   "ext": "jpg",
+   "w": 1920,
+   "h": 840
+  },
+  {
+   "id": 51,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fcontent%2Fimg%2Fkfc_websitebanner_1920x840pxl5-20251229113543.jpg&w=640&q=75",
+   "kind": "image",
+   "pages": [
+    "/"
+   ],
+   "via": "srcset",
+   "mime": "image/jpeg",
+   "archiveLen": 42083,
+   "alt": "KFC Banner",
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260724105521",
+   "file": "img/051-image.jpg",
+   "bytes": 40921,
+   "contentType": "image/jpeg",
+   "ext": "jpg",
+   "w": 640,
+   "h": 280
+  },
+  {
+   "id": 52,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fcontent%2Fimg%2Fkfc_websitebanner_800x800pxl7-20251229065400-20260325144655.jpg&w=3840&q=75",
+   "kind": "image",
+   "pages": [
+    "/"
+   ],
+   "via": "img",
+   "mime": "image/jpeg",
+   "archiveLen": 76723,
+   "alt": "Slide 5",
+   "cls": "mainSlider-module__vDavpW__slide_image_mobile",
+   "box": {
+    "x": 0,
+    "y": 0,
+    "w": 0,
+    "h": 0
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    0,
+    0
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260906155005",
+   "file": "img/052-image.jpg",
+   "bytes": 75529,
+   "contentType": "image/jpeg",
+   "ext": "jpg",
+   "w": 800,
+   "h": 800
+  },
+  {
+   "id": 53,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fcontent%2Fimg%2Fkfc_websitebanner_800x800pxl7-20251229065400-20260325144655.jpg&w=640&q=75",
+   "kind": "image",
+   "pages": [
+    "/"
+   ],
+   "via": "srcset",
+   "mime": "image/jpeg",
+   "archiveLen": 54198,
+   "alt": "Slide 5",
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260906155005",
+   "file": "img/053-image.jpg",
+   "bytes": 53010,
+   "contentType": "image/jpeg",
+   "ext": "jpg",
+   "w": 640,
+   "h": 640
+  },
+  {
+   "id": 54,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fcontent%2Fimg%2Fkfc_websitebannertr_1920x840pxl2-20260719215329.jpg&w=3840&q=75",
+   "kind": "image",
+   "pages": [
+    "/"
+   ],
+   "via": "img",
+   "mime": "image/jpeg",
+   "archiveLen": 163648,
+   "alt": "Slide 8",
+   "cls": "mainSlider-module__vDavpW__slide_image",
+   "box": {
+    "x": 10080,
+    "y": 213,
+    "w": 1440,
+    "h": 630
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    0,
+    0
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260724105515",
+   "file": "img/054-image.jpg",
+   "bytes": 162470,
+   "contentType": "image/jpeg",
+   "ext": "jpg",
+   "w": 1920,
+   "h": 840
+  },
+  {
+   "id": 55,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fcontent%2Fimg%2Fkfc_websitebannertr_1920x840pxl2-20260719215329.jpg&w=640&q=75",
+   "kind": "image",
+   "pages": [
+    "/"
+   ],
+   "via": "srcset",
+   "mime": "image/jpeg",
+   "archiveLen": 27896,
+   "alt": "Slide 8",
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260906155024",
+   "file": "img/055-image.jpg",
+   "bytes": 26733,
+   "contentType": "image/jpeg",
+   "ext": "jpg",
+   "w": 640,
+   "h": 280
+  },
+  {
+   "id": 56,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fcontent%2Fimg%2Fkfc_websitebannertr_1920x840pxl3-20260722065045.jpg&w=3840&q=75",
+   "kind": "image",
+   "pages": [
+    "/"
+   ],
+   "via": "img",
+   "mime": "image/jpeg",
+   "archiveLen": 163499,
+   "alt": "Slide 6",
+   "cls": "mainSlider-module__vDavpW__slide_image",
+   "box": {
+    "x": 7200,
+    "y": 213,
+    "w": 1440,
+    "h": 630
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    0,
+    0
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260906155010",
+   "file": "img/056-image.jpg",
+   "bytes": 162324,
+   "contentType": "image/jpeg",
+   "ext": "jpg",
+   "w": 1920,
+   "h": 840
+  },
+  {
+   "id": 57,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fcontent%2Fimg%2Fkfc_websitebannertr_1920x840pxl3-20260722065045.jpg&w=640&q=75",
+   "kind": "image",
+   "pages": [
+    "/"
+   ],
+   "via": "srcset",
+   "mime": "image/jpeg",
+   "archiveLen": 28283,
+   "alt": "Slide 6",
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260906155010",
+   "file": "img/057-image.jpg",
+   "bytes": 27120,
+   "contentType": "image/jpeg",
+   "ext": "jpg",
+   "w": 640,
+   "h": 280
+  },
+  {
+   "id": 58,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fcontent%2Fimg%2Fkfc_websitebannertr_1920x840pxl4-20260719215302.jpg&w=3840&q=75",
+   "kind": "image",
+   "pages": [
+    "/"
+   ],
+   "via": "img",
+   "mime": "image/jpeg",
+   "archiveLen": 206054,
+   "alt": "Slide 7",
+   "cls": "mainSlider-module__vDavpW__slide_image",
+   "box": {
+    "x": 8640,
+    "y": 213,
+    "w": 1440,
+    "h": 630
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    0,
+    0
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260906155018",
+   "file": "img/058-image.jpg",
+   "bytes": 204872,
+   "contentType": "image/jpeg",
+   "ext": "jpg",
+   "w": 1920,
+   "h": 840
+  },
+  {
+   "id": 59,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fcontent%2Fimg%2Fkfc_websitebannertr_1920x840pxl4-20260719215302.jpg&w=640&q=75",
+   "kind": "image",
+   "pages": [
+    "/"
+   ],
+   "via": "srcset",
+   "mime": "image/jpeg",
+   "archiveLen": 31776,
+   "alt": "Slide 7",
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260906155019",
+   "file": "img/059-image.jpg",
+   "bytes": 30612,
+   "contentType": "image/jpeg",
+   "ext": "jpg",
+   "w": 640,
+   "h": 280
+  },
+  {
+   "id": 60,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fcontent%2Fimg%2Fkfc_websitebannertr_800x800pxl3-20260719215335.jpg&w=640&q=75",
+   "kind": "image",
+   "pages": [
+    "/"
+   ],
+   "via": "srcset",
+   "mime": "image/jpeg",
+   "archiveLen": 53308,
+   "alt": "Slide 8",
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260906155029",
+   "file": "img/060-image.jpg",
+   "bytes": 52147,
+   "contentType": "image/jpeg",
+   "ext": "jpg",
+   "w": 640,
+   "h": 640
+  },
+  {
+   "id": 61,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fcontent%2Fimg%2Fkfc_websitebannertr_800x800pxl4-20260722065054.jpg&w=3840&q=75",
+   "kind": "image",
+   "pages": [
+    "/"
+   ],
+   "via": "img",
+   "mime": "image/jpeg",
+   "archiveLen": 74157,
+   "alt": "Slide 6",
+   "cls": "mainSlider-module__vDavpW__slide_image_mobile",
+   "box": {
+    "x": 0,
+    "y": 0,
+    "w": 0,
+    "h": 0
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    0,
+    0
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260906155013",
+   "file": "img/061-image.jpg",
+   "bytes": 72989,
+   "contentType": "image/jpeg",
+   "ext": "jpg",
+   "w": 800,
+   "h": 800
+  },
+  {
+   "id": 62,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fcontent%2Fimg%2Fkfc_websitebannertr_800x800pxl4-20260722065054.jpg&w=640&q=75",
+   "kind": "image",
+   "pages": [
+    "/"
+   ],
+   "via": "srcset",
+   "mime": "image/jpeg",
+   "archiveLen": 51799,
+   "alt": "Slide 6",
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260724105510",
+   "file": "img/062-image.jpg",
+   "bytes": 50636,
+   "contentType": "image/jpeg",
+   "ext": "jpg",
+   "w": 640,
+   "h": 640
+  },
+  {
+   "id": 63,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fcontent%2Fimg%2Fkfc_websitebannertr_800x800pxl5-20260719215317.jpg&w=3840&q=75",
+   "kind": "image",
+   "pages": [
+    "/"
+   ],
+   "via": "img",
+   "mime": "image/jpeg",
+   "archiveLen": 89448,
+   "alt": "Slide 7",
+   "cls": "mainSlider-module__vDavpW__slide_image_mobile",
+   "box": {
+    "x": 0,
+    "y": 0,
+    "w": 0,
+    "h": 0
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    0,
+    0
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260724105514",
+   "file": "img/063-image.jpg",
+   "bytes": 88278,
+   "contentType": "image/jpeg",
+   "ext": "jpg",
+   "w": 800,
+   "h": 800
+  },
+  {
+   "id": 64,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fcontent%2Fimg%2Ftwister_menu-20260814135455.png&w=256&q=75",
+   "kind": "image",
+   "pages": [
+    "/web/20260906154947/https://www.kfcturkiye.com/",
+    "/"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 13769,
+   "contentType": "image/png",
+   "alt": "WRAPLER",
+   "cls": "",
+   "box": {
+    "x": 1047,
+    "y": 991,
+    "w": 237,
+    "h": 237
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    256,
+    256
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260906155037",
+   "file": "img/064-image.png",
+   "bytes": 12647,
+   "ext": "png",
+   "w": 256,
+   "h": 256,
+   "transparent": 0.8871527777777778
+  },
+  {
+   "id": 65,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fcontent%2Fimg%2Fxtreme-kutu-20251229113350.png&w=256&q=75",
+   "kind": "image",
+   "pages": [
+    "/web/20260906154947/https://www.kfcturkiye.com/",
+    "/"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 16208,
+   "contentType": "image/png",
+   "alt": "KUTULAR",
+   "cls": "",
+   "box": {
+    "x": 750,
+    "y": 1316,
+    "w": 237,
+    "h": 237
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    256,
+    256
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260724105519",
+   "file": "img/065-image.png",
+   "bytes": 15086,
+   "ext": "png",
+   "w": 256,
+   "h": 256,
+   "transparent": 0.8506944444444444
+  },
+  {
+   "id": 66,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F1-hot-wing-20251208145300.png&w=384&q=75",
+   "kind": "image",
+   "pages": [
+    "/kfc-lezzetleri"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 28375,
+   "alt": "1 Hot Wing",
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260725072757",
+   "file": "img/066-image.png",
+   "bytes": 27257,
+   "contentType": "image/png",
+   "ext": "png",
+   "w": 384,
+   "h": 391,
+   "transparent": 0.859375
+  },
+  {
+   "id": 67,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F1-hot-wing-20251208145300.png&w=640&q=75",
+   "kind": "image",
+   "pages": [
+    "/kfc-lezzetleri"
+   ],
+   "via": "img",
+   "mime": "image/png",
+   "archiveLen": 66282,
+   "alt": "1 Hot Wing",
+   "cls": "",
+   "box": {
+    "x": 709,
+    "y": 6470,
+    "w": 255,
+    "h": 255
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    0,
+    0
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260725072757",
+   "file": "img/067-image.png",
+   "bytes": 65344,
+   "contentType": "image/png",
+   "ext": "png",
+   "w": 640,
+   "h": 652,
+   "transparent": 0.8315972222222222
+  },
+  {
+   "id": 68,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F1-strip-20251208150656.png&w=384&q=75",
+   "kind": "image",
+   "pages": [
+    "/kfc-lezzetleri"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 21597,
+   "alt": "1 Strip",
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260710224529",
+   "file": "img/068-image.png",
+   "bytes": 20485,
+   "contentType": "image/png",
+   "ext": "png",
+   "w": 384,
+   "h": 384,
+   "transparent": 0.8680555555555556
+  },
+  {
+   "id": 69,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F1-strip-20251208150656.png&w=640&q=75",
+   "kind": "image",
+   "pages": [
+    "/kfc-lezzetleri"
+   ],
+   "via": "img",
+   "mime": "image/png",
+   "archiveLen": 50848,
+   "alt": "1 Strip",
+   "cls": "",
+   "box": {
+    "x": 1029,
+    "y": 7157,
+    "w": 255,
+    "h": 255
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    0,
+    0
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260710224529",
+   "file": "img/069-image.png",
+   "bytes": 49736,
+   "contentType": "image/png",
+   "ext": "png",
+   "w": 640,
+   "h": 640,
+   "transparent": 0.8628472222222222
+  },
+  {
+   "id": 70,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F12-hot-shots-20251208145709.png&w=384&q=75",
+   "kind": "image",
+   "pages": [
+    "/kfc-lezzetleri"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 21555,
+   "alt": "12 Hot Shots",
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260725072812",
+   "file": "img/070-image.png",
+   "bytes": 20433,
+   "contentType": "image/png",
+   "ext": "png",
+   "w": 384,
+   "h": 384,
+   "transparent": 0.8940972222222222
+  },
+  {
+   "id": 71,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F12-hot-shots-20251208145709.png&w=640&q=75",
+   "kind": "image",
+   "pages": [
+    "/kfc-lezzetleri"
+   ],
+   "via": "img",
+   "mime": "image/png",
+   "archiveLen": 47595,
+   "alt": "12 Hot Shots",
+   "cls": "",
+   "box": {
+    "x": 709,
+    "y": 7157,
+    "w": 255,
+    "h": 255
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    0,
+    0
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260710224528",
+   "file": "img/071-image.png",
+   "bytes": 46473,
+   "contentType": "image/png",
+   "ext": "png",
+   "w": 640,
+   "h": 640,
+   "transparent": 0.8993055555555556
+  },
+  {
+   "id": 72,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F12li-hot-shots-menu-20251208121558.png&w=384&q=75",
+   "kind": "image",
+   "pages": [
+    "/web/20260729201729/https://www.kfcturkiye.com/kfc-lezzetleri",
+    "/kfc-lezzetleri"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 28854,
+   "contentType": "image/png",
+   "alt": "12'li Hot Shots Menü",
+   "cls": "",
+   "box": {
+    "x": 1029,
+    "y": 5439,
+    "w": 255,
+    "h": 255
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    384,
+    384
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260729201745",
+   "file": "img/072-image.png",
+   "bytes": 27720,
+   "ext": "png",
+   "w": 384,
+   "h": 384,
+   "transparent": 0.8298611111111112
+  },
+  {
+   "id": 73,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F12li-onion-rings-20251208150617.png&w=384&q=75",
+   "kind": "image",
+   "pages": [
+    "/kfc-lezzetleri"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 25161,
+   "alt": "12'li Onion Rings",
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260724105518",
+   "file": "img/073-image.png",
+   "bytes": 24030,
+   "contentType": "image/png",
+   "ext": "png",
+   "w": 384,
+   "h": 384,
+   "transparent": 0.8576388888888888
+  },
+  {
+   "id": 74,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F12li-onion-rings-20251208150617.png&w=640&q=75",
+   "kind": "image",
+   "pages": [
+    "/kfc-lezzetleri"
+   ],
+   "via": "img",
+   "mime": "image/png",
+   "archiveLen": 57016,
+   "alt": "12'li Onion Rings",
+   "cls": "",
+   "box": {
+    "x": 390,
+    "y": 8654,
+    "w": 255,
+    "h": 255
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    0,
+    0
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260725072826",
+   "file": "img/074-image.png",
+   "bytes": 55885,
+   "contentType": "image/png",
+   "ext": "png",
+   "w": 640,
+   "h": 640,
+   "transparent": 0.8576388888888888
+  },
+  {
+   "id": 75,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F2-li-twister_png_1600x1600-20260719214913.png&w=384&q=75",
+   "kind": "image",
+   "pages": [
+    "/web/20260729201729/https://www.kfcturkiye.com/kfc-lezzetleri",
+    "/kfc-lezzetleri"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 51054,
+   "contentType": "image/png",
+   "alt": "2'li Twister Menü",
+   "cls": "",
+   "box": {
+    "x": 709,
+    "y": 3350,
+    "w": 255,
+    "h": 255
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    384,
+    384
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260724105505",
+   "file": "img/075-image.png",
+   "bytes": 49902,
+   "ext": "png",
+   "w": 384,
+   "h": 384,
+   "transparent": 0.65625
+  },
+  {
+   "id": 76,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F2li-mighty-cruncher-kova-20251208120746.png&w=384&q=75",
+   "kind": "image",
+   "pages": [
+    "/web/20260729201729/https://www.kfcturkiye.com/kfc-lezzetleri",
+    "/kfc-lezzetleri"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 39784,
+   "contentType": "image/png",
+   "alt": "2'li Mighty Cruncher Kova",
+   "cls": "",
+   "box": {
+    "x": 709,
+    "y": 4628,
+    "w": 255,
+    "h": 255
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    384,
+    384
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260710224454",
+   "file": "img/076-image.png",
+   "bytes": 38639,
+   "ext": "png",
+   "w": 384,
+   "h": 384,
+   "transparent": 0.7413194444444444
+  },
+  {
+   "id": 77,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F2li-mighty-cruncher-menu-20251208114426.png&w=384&q=75",
+   "kind": "image",
+   "pages": [
+    "/web/20260710224409/https://www.kfcturkiye.com/kampanyalar",
+    "/kampanyalar",
+    "/web/20260729201729/https://www.kfcturkiye.com/kfc-lezzetleri",
+    "/kfc-lezzetleri"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 32463,
+   "contentType": "image/png",
+   "alt": "2'li Mighty Cruncher Menü ",
+   "cls": "",
+   "box": {
+    "x": 390,
+    "y": 2183,
+    "w": 255,
+    "h": 255
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    384,
+    384
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260725072651",
+   "file": "img/077-image.png",
+   "bytes": 31317,
+   "ext": "png",
+   "w": 384,
+   "h": 384,
+   "transparent": 0.7881944444444444
+  },
+  {
+   "id": 78,
+   "url": "https://www.kfcturkiye.com/_next/image?q=75&url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F2li-mighty-cruncher-menu-20251208114426.png&w=384",
+   "kind": "image",
+   "pages": [
+    "/web/20260729201729/https://www.kfcturkiye.com/kfc-lezzetleri"
+   ],
+   "via": "network",
+   "mime": "image/png",
+   "archiveLen": 32462,
+   "contentType": "image/png",
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260729201732",
+   "file": "img/078-image.png",
+   "bytes": 31317,
+   "ext": "png",
+   "w": 384,
+   "h": 384,
+   "transparent": 0.7881944444444444
+  },
+  {
+   "id": 79,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F2li-strips-menu-20251208121905.png&w=384&q=75",
+   "kind": "image",
+   "pages": [
+    "/web/20260729201729/https://www.kfcturkiye.com/kfc-lezzetleri",
+    "/kfc-lezzetleri"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 32905,
+   "contentType": "image/png",
+   "alt": "2'li Strips Menü",
+   "cls": "",
+   "box": {
+    "x": 390,
+    "y": 6126,
+    "w": 255,
+    "h": 255
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    384,
+    384
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260725072752",
+   "file": "img/079-image.png",
+   "bytes": 31776,
+   "ext": "png",
+   "w": 384,
+   "h": 384,
+   "transparent": 0.8003472222222222
+  },
+  {
+   "id": 80,
+   "url": "https://www.kfcturkiye.com/_next/image?q=75&url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F2li_twister_menu-20251208115904.png&w=384",
+   "kind": "image",
+   "pages": [
+    "/web/20260710224409/https://www.kfcturkiye.com/kampanyalar"
+   ],
+   "via": "network",
+   "mime": "image/png",
+   "archiveLen": 31592,
+   "contentType": "image/png",
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260710224412",
+   "file": "img/080-image.png",
+   "bytes": 30462,
+   "ext": "png",
+   "w": 384,
+   "h": 384,
+   "transparent": 0.8142361111111112
+  },
+  {
+   "id": 81,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F2li_twister_menu-20251208115904.png&w=384&q=75",
+   "kind": "image",
+   "pages": [
+    "/web/20260710224409/https://www.kfcturkiye.com/kampanyalar",
+    "/kampanyalar"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 31591,
+   "contentType": "image/png",
+   "alt": "2'li Twister Menü",
+   "cls": "",
+   "box": {
+    "x": 709,
+    "y": 838,
+    "w": 255,
+    "h": 255
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    384,
+    384
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260710224413",
+   "file": "img/081-image.png",
+   "bytes": 30462,
+   "ext": "png",
+   "w": 384,
+   "h": 384,
+   "transparent": 0.8142361111111112
+  },
+  {
+   "id": 82,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F3-lu-strips-menu-20251210082423.png&w=384&q=75",
+   "kind": "image",
+   "pages": [
+    "/web/20260729201729/https://www.kfcturkiye.com/kfc-lezzetleri",
+    "/kfc-lezzetleri"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 45300,
+   "contentType": "image/png",
+   "alt": "3'lü Strips Menü",
+   "cls": "",
+   "box": {
+    "x": 709,
+    "y": 6126,
+    "w": 255,
+    "h": 255
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    384,
+    384
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260725072754",
+   "file": "img/082-image.png",
+   "bytes": 44170,
+   "ext": "png",
+   "w": 384,
+   "h": 384,
+   "transparent": 0.7291666666666666
+  },
+  {
+   "id": 83,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F3-strips-20251208150918.png&w=384&q=75",
+   "kind": "image",
+   "pages": [
+    "/kfc-lezzetleri"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 38670,
+   "alt": "3 Strips",
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260710224529",
+   "file": "img/083-image.png",
+   "bytes": 37556,
+   "contentType": "image/png",
+   "ext": "png",
+   "w": 384,
+   "h": 384,
+   "transparent": 0.7777777777777778
+  },
+  {
+   "id": 84,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F3-strips-20251208150918.png&w=640&q=75",
+   "kind": "image",
+   "pages": [
+    "/kfc-lezzetleri"
+   ],
+   "via": "img",
+   "mime": "image/png",
+   "archiveLen": 94645,
+   "alt": "3 Strips",
+   "cls": "",
+   "box": {
+    "x": 390,
+    "y": 7500,
+    "w": 255,
+    "h": 255
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    0,
+    0
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260725072815",
+   "file": "img/084-image.png",
+   "bytes": 93525,
+   "contentType": "image/png",
+   "ext": "png",
+   "w": 640,
+   "h": 640,
+   "transparent": 0.7725694444444444
+  },
+  {
+   "id": 85,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F4lu-hot-wings-2-20251210082109.png&w=384&q=75",
+   "kind": "image",
+   "pages": [
+    "/kfc-lezzetleri"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 30468,
+   "alt": "4 Hot Wings",
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260725072759",
+   "file": "img/085-image.png",
+   "bytes": 29340,
+   "contentType": "image/png",
+   "ext": "png",
+   "w": 384,
+   "h": 384,
+   "transparent": 0.8142361111111112
+  },
+  {
+   "id": 86,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F4lu-hot-wings-menu-2-20251210082132.png&w=384&q=75",
+   "kind": "image",
+   "pages": [
+    "/web/20260729201729/https://www.kfcturkiye.com/kfc-lezzetleri",
+    "/kfc-lezzetleri"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 37050,
+   "contentType": "image/png",
+   "alt": "4'lü Hot Wings Menü",
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260710224509",
+   "file": "img/086-image.png",
+   "bytes": 35913,
+   "ext": "png",
+   "w": 384,
+   "h": 384,
+   "transparent": 0.7638888888888888
+  },
+  {
+   "id": 87,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F4lu-hot-wings-menu-2-20251210082132.png&w=640&q=75",
+   "kind": "image",
+   "pages": [
+    "/kfc-lezzetleri"
+   ],
+   "via": "img",
+   "mime": "image/png",
+   "archiveLen": 85801,
+   "alt": "4'lü Hot Wings Menü",
+   "cls": "",
+   "box": {
+    "x": 390,
+    "y": 5783,
+    "w": 255,
+    "h": 255
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    0,
+    0
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260710224508",
+   "file": "img/087-image.png",
+   "bytes": 84658,
+   "contentType": "image/png",
+   "ext": "png",
+   "w": 640,
+   "h": 640,
+   "transparent": 0.7638888888888888
+  },
+  {
+   "id": 88,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F4lu-onion-rings-20251208150227.png&w=640&q=75",
+   "kind": "image",
+   "pages": [
+    "/kfc-lezzetleri"
+   ],
+   "via": "img",
+   "mime": "image/png",
+   "archiveLen": 45265,
+   "alt": "4'lü Onion Rings",
+   "cls": "",
+   "box": {
+    "x": 709,
+    "y": 8311,
+    "w": 255,
+    "h": 255
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    0,
+    0
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260725072823",
+   "file": "img/088-image.png",
+   "bytes": 44137,
+   "contentType": "image/png",
+   "ext": "png",
+   "w": 640,
+   "h": 640,
+   "transparent": 0.8888888888888888
+  },
+  {
+   "id": 89,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F5-li-strips-menu-20251210082445.png&w=384&q=75",
+   "kind": "image",
+   "pages": [
+    "/web/20260729201729/https://www.kfcturkiye.com/kfc-lezzetleri",
+    "/kfc-lezzetleri"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 46309,
+   "contentType": "image/png",
+   "alt": "5'li Strips Menü",
+   "cls": "",
+   "box": {
+    "x": 1029,
+    "y": 6126,
+    "w": 255,
+    "h": 255
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    384,
+    384
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260725072755",
+   "file": "img/089-image.png",
+   "bytes": 45179,
+   "ext": "png",
+   "w": 384,
+   "h": 384,
+   "transparent": 0.7378472222222222
+  },
+  {
+   "id": 90,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F6-hot-shots-20251208145542.png&w=384&q=75",
+   "kind": "image",
+   "pages": [
+    "/kfc-lezzetleri"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 21584,
+   "alt": "6 Hot Shots",
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260725072810",
+   "file": "img/090-image.png",
+   "bytes": 20464,
+   "contentType": "image/png",
+   "ext": "png",
+   "w": 384,
+   "h": 384,
+   "transparent": 0.8940972222222222
+  },
+  {
+   "id": 91,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F6-hot-shots-20251208145542.png&w=640&q=75",
+   "kind": "image",
+   "pages": [
+    "/kfc-lezzetleri"
+   ],
+   "via": "img",
+   "mime": "image/png",
+   "archiveLen": 49127,
+   "alt": "6 Hot Shots",
+   "cls": "",
+   "box": {
+    "x": 1029,
+    "y": 6813,
+    "w": 255,
+    "h": 255
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    0,
+    0
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260725072810",
+   "file": "img/091-image.png",
+   "bytes": 48008,
+   "contentType": "image/png",
+   "ext": "png",
+   "w": 640,
+   "h": 640,
+   "transparent": 0.8975694444444444
+  },
+  {
+   "id": 92,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F6-hot-wings-20251208145425.png&w=384&q=75",
+   "kind": "image",
+   "pages": [
+    "/kfc-lezzetleri"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 39760,
+   "alt": "6 Hot Wings",
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260710224523",
+   "file": "img/092-image.png",
+   "bytes": 38640,
+   "contentType": "image/png",
+   "ext": "png",
+   "w": 384,
+   "h": 384,
+   "transparent": 0.7673611111111112
+  },
+  {
+   "id": 93,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F6-hot-wings-20251208145425.png&w=640&q=75",
+   "kind": "image",
+   "pages": [
+    "/kfc-lezzetleri"
+   ],
+   "via": "img",
+   "mime": "image/png",
+   "archiveLen": 98389,
+   "alt": "6 Hot Wings",
+   "cls": "",
+   "box": {
+    "x": 390,
+    "y": 6813,
+    "w": 255,
+    "h": 255
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    0,
+    0
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260725072804",
+   "file": "img/093-image.png",
+   "bytes": 97263,
+   "contentType": "image/png",
+   "ext": "png",
+   "w": 640,
+   "h": 640,
+   "transparent": 0.7708333333333334
+  },
+  {
+   "id": 94,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F6-li-hot-wings-menu-20251210082318.png&w=384&q=75",
+   "kind": "image",
+   "pages": [
+    "/web/20260729201729/https://www.kfcturkiye.com/kfc-lezzetleri",
+    "/kfc-lezzetleri"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 41737,
+   "contentType": "image/png",
+   "alt": "6'lı Hot Wings Menü",
+   "cls": "",
+   "box": {
+    "x": 709,
+    "y": 5783,
+    "w": 255,
+    "h": 255
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    384,
+    384
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260725072747",
+   "file": "img/094-image.png",
+   "bytes": 40602,
+   "ext": "png",
+   "w": 384,
+   "h": 384,
+   "transparent": 0.75
+  },
+  {
+   "id": 95,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F7-li-strips-menu-20251210082504.png&w=384&q=75",
+   "kind": "image",
+   "pages": [
+    "/kfc-lezzetleri"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 51024,
+   "alt": "7'li Strips Menü",
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260725072756",
+   "file": "img/095-image.png",
+   "bytes": 49895,
+   "contentType": "image/png",
+   "ext": "png",
+   "w": 384,
+   "h": 384,
+   "transparent": 0.71875
+  },
+  {
+   "id": 96,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F7-li-strips-menu-20251210082504.png&w=640&q=75",
+   "kind": "image",
+   "pages": [
+    "/kfc-lezzetleri"
+   ],
+   "via": "img",
+   "mime": "image/png",
+   "archiveLen": 125896,
+   "alt": "7'li Strips Menü",
+   "cls": "",
+   "box": {
+    "x": 390,
+    "y": 6470,
+    "w": 255,
+    "h": 255
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    0,
+    0
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260725072757",
+   "file": "img/096-image.png",
+   "bytes": 124759,
+   "contentType": "image/png",
+   "ext": "png",
+   "w": 640,
+   "h": 640,
+   "transparent": 0.7204861111111112
+  },
+  {
+   "id": 97,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F8-hot-wings-20251208145500.png&w=384&q=75",
+   "kind": "image",
+   "pages": [
+    "/kfc-lezzetleri"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 40112,
+   "alt": "8 Hot Wings",
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260725072809",
+   "file": "img/097-image.png",
+   "bytes": 38992,
+   "contentType": "image/png",
+   "ext": "png",
+   "w": 384,
+   "h": 384,
+   "transparent": 0.7760416666666666
+  },
+  {
+   "id": 98,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F8-hot-wings-20251208145500.png&w=640&q=75",
+   "kind": "image",
+   "pages": [
+    "/kfc-lezzetleri"
+   ],
+   "via": "img",
+   "mime": "image/png",
+   "archiveLen": 99217,
+   "alt": "8 Hot Wings",
+   "cls": "",
+   "box": {
+    "x": 709,
+    "y": 6813,
+    "w": 255,
+    "h": 255
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    0,
+    0
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260710224524",
+   "file": "img/098-image.png",
+   "bytes": 98092,
+   "contentType": "image/png",
+   "ext": "png",
+   "w": 640,
+   "h": 640,
+   "transparent": 0.78125
+  },
+  {
+   "id": 99,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F8-li-hot-wings-menu-20251210082339.png&w=384&q=75",
+   "kind": "image",
+   "pages": [
+    "/web/20260729201729/https://www.kfcturkiye.com/kfc-lezzetleri",
+    "/kfc-lezzetleri"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 40965,
+   "contentType": "image/png",
+   "alt": "8'li Hot Wings Menü",
+   "cls": "",
+   "box": {
+    "x": 1029,
+    "y": 5783,
+    "w": 255,
+    "h": 255
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    384,
+    384
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260725072749",
+   "file": "img/099-image.png",
+   "bytes": 39829,
+   "ext": "png",
+   "w": 384,
+   "h": 384,
+   "transparent": 0.7604166666666666
+  },
+  {
+   "id": 100,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F8li-onion-rings-20251208150521.png&w=640&q=75",
+   "kind": "image",
+   "pages": [
+    "/kfc-lezzetleri"
+   ],
+   "via": "img",
+   "mime": "image/png",
+   "archiveLen": 51364,
+   "alt": "8'li Onion Rings",
+   "cls": "",
+   "box": {
+    "x": 1029,
+    "y": 8311,
+    "w": 255,
+    "h": 255
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    0,
+    0
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260710224536",
+   "file": "img/100-image.png",
+   "bytes": 50236,
+   "contentType": "image/png",
+   "ext": "png",
+   "w": 640,
+   "h": 640,
+   "transparent": 0.8767361111111112
+  },
+  {
+   "id": 101,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F9-hot-shots-20251208145632.png&w=384&q=75",
+   "kind": "image",
+   "pages": [
+    "/kfc-lezzetleri"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 23212,
+   "alt": "9 Hot Shots",
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260710224527",
+   "file": "img/101-image.png",
+   "bytes": 22093,
+   "contentType": "image/png",
+   "ext": "png",
+   "w": 384,
+   "h": 384,
+   "transparent": 0.8784722222222222
+  },
+  {
+   "id": 102,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F9-hot-shots-20251208145632.png&w=640&q=75",
+   "kind": "image",
+   "pages": [
+    "/kfc-lezzetleri"
+   ],
+   "via": "img",
+   "mime": "image/png",
+   "archiveLen": 54882,
+   "alt": "9 Hot Shots",
+   "cls": "",
+   "box": {
+    "x": 390,
+    "y": 7157,
+    "w": 255,
+    "h": 255
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    0,
+    0
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260725072810",
+   "file": "img/102-image.png",
+   "bytes": 53763,
+   "contentType": "image/png",
+   "ext": "png",
+   "w": 640,
+   "h": 640,
+   "transparent": 0.8819444444444444
+  },
+  {
+   "id": 103,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F9lu_hotshot_menu-20251208121511.png&w=384&q=75",
+   "kind": "image",
+   "pages": [
+    "/web/20260729201729/https://www.kfcturkiye.com/kfc-lezzetleri",
+    "/kfc-lezzetleri"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 29072,
+   "contentType": "image/png",
+   "alt": "9'lu Hot Shots Menü",
+   "cls": "",
+   "box": {
+    "x": 709,
+    "y": 5439,
+    "w": 255,
+    "h": 255
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    384,
+    384
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260725072742",
+   "file": "img/103-image.png",
+   "bytes": 27941,
+   "ext": "png",
+   "w": 384,
+   "h": 384,
+   "transparent": 0.8315972222222222
+  },
+  {
+   "id": 104,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fayran-20251208171411.png&w=640&q=75",
+   "kind": "image",
+   "pages": [
+    "/kfc-lezzetleri"
+   ],
+   "via": "img",
+   "mime": "image/png",
+   "archiveLen": 33164,
+   "alt": "Ayran",
+   "cls": "",
+   "box": {
+    "x": 709,
+    "y": 11542,
+    "w": 255,
+    "h": 255
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    0,
+    0
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260725072905",
+   "file": "img/104-image.png",
+   "bytes": 32056,
+   "contentType": "image/png",
+   "ext": "png",
+   "w": 640,
+   "h": 640,
+   "transparent": 0.8888888888888888
+  },
+  {
+   "id": 105,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fbbq-20251208172633.png&w=384&q=75",
+   "kind": "image",
+   "pages": [
+    "/kfc-lezzetleri"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 14336,
+   "alt": "BBQ Sos",
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260727225809",
+   "file": "img/105-image.png",
+   "bytes": 13231,
+   "contentType": "image/png",
+   "ext": "png",
+   "w": 384,
+   "h": 384,
+   "transparent": 0.8784722222222222
+  },
+  {
+   "id": 106,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fbbq-20251208172633.png&w=640&q=75",
+   "kind": "image",
+   "pages": [
+    "/kfc-lezzetleri"
+   ],
+   "via": "img",
+   "mime": "image/png",
+   "archiveLen": 32056,
+   "alt": "BBQ Sos",
+   "cls": "",
+   "box": {
+    "x": 1029,
+    "y": 12010,
+    "w": 255,
+    "h": 255
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    0,
+    0
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260725072908",
+   "file": "img/106-image.png",
+   "bytes": 30952,
+   "contentType": "image/png",
+   "ext": "png",
+   "w": 640,
+   "h": 640,
+   "transparent": 0.8784722222222222
+  },
+  {
+   "id": 107,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fbest-of-kutu-20251208120512.png&w=384&q=75",
+   "kind": "image",
+   "pages": [
+    "/web/20260729201729/https://www.kfcturkiye.com/kfc-lezzetleri",
+    "/kfc-lezzetleri"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 31174,
+   "contentType": "image/png",
+   "alt": "Best of Kutu",
+   "cls": "",
+   "box": {
+    "x": 709,
+    "y": 4161,
+    "w": 255,
+    "h": 255
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    384,
+    384
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260710224444",
+   "file": "img/107-image.png",
+   "bytes": 30052,
+   "ext": "png",
+   "w": 384,
+   "h": 384,
+   "transparent": 0.8194444444444444
+  },
+  {
+   "id": 108,
+   "url": "https://www.kfcturkiye.com/_next/image?q=75&url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fbest-of-kutu-20251208120512.png&w=384",
+   "kind": "image",
+   "pages": [
+    "/web/20260729201729/https://www.kfcturkiye.com/kfc-lezzetleri"
+   ],
+   "via": "network",
+   "mime": "image/png",
+   "archiveLen": 31173,
+   "contentType": "image/png",
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260729201741",
+   "file": "img/108-image.png",
+   "bytes": 30052,
+   "ext": "png",
+   "w": 384,
+   "h": 384,
+   "transparent": 0.8194444444444444
+  },
+  {
+   "id": 109,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fbiscuit-20251208150025.png&w=384&q=75",
+   "kind": "image",
+   "pages": [
+    "/kfc-lezzetleri"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 51898,
+   "alt": "Biscuit",
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260727225758",
+   "file": "img/109-image.png",
+   "bytes": 50784,
+   "contentType": "image/png",
+   "ext": "png",
+   "w": 384,
+   "h": 384,
+   "transparent": 0.6336805555555556
+  },
+  {
+   "id": 110,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fbiscuit-20251208150025.png&w=640&q=75",
+   "kind": "image",
+   "pages": [
+    "/kfc-lezzetleri"
+   ],
+   "via": "img",
+   "mime": "image/png",
+   "archiveLen": 135591,
+   "alt": "Biscuit",
+   "cls": "",
+   "box": {
+    "x": 709,
+    "y": 7967,
+    "w": 255,
+    "h": 255
+   },
+   "inHeader": false,
+   "inFooter": false,
+   "rendered": [
+    0,
+    0
+   ],
+   "archiveStatus": 200,
+   "source": "archive",
+   "archiveTs": "20260725072816",
+   "file": "img/110-image.png",
+   "bytes": 134467,
+   "contentType": "image/png",
+   "ext": "png",
+   "w": 640,
+   "h": 640,
+   "transparent": 0.6388888888888888
+  },
+  {
+   "id": 111,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fbuffalo_new-20251208172950.png&w=384&q=75",
+   "kind": "image",
+   "pages": [
+    "/kfc-lezzetleri"
+   ],
+   "via": "srcset",
+   "mime": "image/png",
+   "archiveLen": 13198,
+   "alt": "Buffalo Sos",
+   "archiveError": "apiRequestContext.get: Timeout 120000ms exceeded.",
+   "error": "HTTP"
+  },
+  {
+   "id": 112,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fbuffalo_new-20251208172950.png&w=640&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 113,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fbuyuk-coca-cola-zero-20251208171318.png&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 114,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fbuyuk-coca-cola-zero-20251208171318.png&w=640&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 115,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fbuyuk-patates-kizartmasi-20251208171047.png&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 116,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fbuyuk-patates-kizartmasi-20251208171047.png&w=640&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 117,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fc-i-fte-cruncher-menu-_png_1600x1600-20260719214730.png&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 118,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fcappy_karisik-20251208172428.png&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 119,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fcappy_karisik-20251208172428.png&w=640&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 120,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fcappy_seftali-20251208171454.png&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 121,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fcappy_seftali-20251208171454.png&w=640&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 122,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fcappy_visne-20251208172344.png&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 123,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fcappy_visne-20251208172344.png&w=640&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 124,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fcoleslaw-20251208150106.png&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 125,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fcoleslaw-20251208150106.png&w=640&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 126,
+   "url": "https://www.kfcturkiye.com/_next/image?q=75&url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fcruncher-menu-20251208113553.png&w=384",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 127,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fcruncher-menu-20251208113553.png&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 128,
+   "url": "https://www.kfcturkiye.com/_next/image?w=384&q=75&url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fcruncher-menu-20251208113553.png",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 129,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fcruncher_kutu-20251208113803.png&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 130,
+   "url": "https://www.kfcturkiye.com/_next/image?q=75&url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fcruncher_kutu-20251208113803.png&w=384",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 131,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fdouble-cruncher-20251208115515.png&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 132,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fdouble-cruncher-menu-20251208114207.png&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 133,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fdouble-zinger-burger-20251229064941.png&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 134,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fdouble-zinger-men-20251229064849.png&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 135,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Ffanta_orta-20251208171719.png&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 136,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Ffanta_orta-20251208171719.png&w=640&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 137,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fgarlic_yogurt-20251208173047.png&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 138,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fgarlic_yogurt-20251208173047.png&w=640&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 139,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fgravy_sos_new-20251208145935.png&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 140,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fgravy_sos_new-20251208145935.png&w=640&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 141,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fhoney_mustard-20251208172908.png&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 142,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fhoney_mustard-20251208172908.png&w=640&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 143,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fikili-cruncherli-menu-2-20251211110504.png&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 144,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fkanat-eseri-kova-20251208121056.png&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 145,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fkanka-kova-20251208120643.png&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 146,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fkemiksiz-kutu-20251208120307.png&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 147,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fkemiksiz_kova-20251208120948.png&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 148,
+   "url": "https://www.kfcturkiye.com/_next/image?q=75&url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fkemiksiz_kova-20251208120948.png&w=384",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 149,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fketcap-20251208173122.png&w=640&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 150,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fkucuk-coca-cola-zero-20251208171139.png&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 151,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fkucuk-coca-cola-zero-20251208171139.png&w=640&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 152,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fkucuk-patates-kizartmasi-20251208170925.png&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 153,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fkucuk-patates-kizartmasi-20251208170925.png&w=640&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 154,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fkwench-da-ilekli-boba-refresher-20260202055556.png&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 155,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fkwench-da-ilekli-boba-refresher-20260202055556.png&w=640&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 156,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fkwench-fizz-ahududu-20260202055501.png&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 157,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fkwench-fizz-ahududu-20260202055501.png&w=640&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 158,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fkwench-fizz-limon-bulutu-20260202055321.png&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 159,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fkwench-fizz-limon-bulutu-20260202055321.png&w=640&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 160,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fkwench-iced-karamel-latte-20260202055519.png&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 161,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fkwench-iced-karamel-latte-20260202055519.png&w=640&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 162,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fkwench-iced-latte-20260202055414.png&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 163,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fkwench-iced-latte-20260202055414.png&w=640&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 164,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fkwench-ikolatal-k-t-rl-shake-20260202055430.png&w=128&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 165,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fkwench-ikolatal-k-t-rl-shake-20260202055430.png&w=640&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 166,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fkwench-karamelli-k-t-rl-shake-20260202055534.png&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 167,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fkwench-karamelli-k-t-rl-shake-20260202055534.png&w=640&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 168,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fkwench-vi-neli-boba-refresher-20260202055612.png&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 169,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fkwench-vi-neli-boba-refresher-20260202055612.png&w=640&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 170,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fmayonez-20251208173157.png&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 171,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fmighty-cruncher-burger-20251208115359.png&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 172,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fmighty-cruncher-kutu-20251208120221.png&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 173,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fmighty-cruncher-menu-20251208114006.png&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 174,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fmozaik-kek-20251208145802.png&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 175,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fmozaik-kek-20251208145802.png&w=640&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 176,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Forta-coca-cola-zero-20251208171233.png&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 177,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Forta-coca-cola-zero-20251208171233.png&w=640&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 178,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Forta-patates-kizartmasi-20251208171006.png&w=640&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 179,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Forta_fusetea_limon-20251208172148.png&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 180,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Forta_fusetea_limon-20251208172148.png&w=640&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 181,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Forta_fusetea_limon-20251208172503.png&w=640&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 182,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fpatates-puresi-20251208150142.png&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 183,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fspicymayo-20260120124809.jpg&w=384&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  },
+  {
+   "id": 184,
+   "url": "https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fspicymayo-20260120124809.jpg&w=640&q=75",
+   "kind": "image",
+   "skipped": "süre bütçesi"
+  }
+ ],
+ "videos": [
+  {
+   "id": 6,
+   "url": "https://files.pidem.prod.hebiar.com/kfc/content/content/video/double-zinger_1920x840-20260325145335.webm",
+   "file": "video/006-double-zinger-1920x840-20260325145335.webm",
+   "bytes": 4417034,
+   "frames": [
+    "video/006-double-zinger-1920x840-20260325145335-frame-a.jpg",
+    "video/006-double-zinger-1920x840-20260325145335-frame-b.jpg",
+    "video/006-double-zinger-1920x840-20260325145335-frame-c.jpg",
+    "video/006-double-zinger-1920x840-20260325145335-frame-d.jpg"
+   ],
+   "derived": {
+    "1280": {
+     "file": "video/006-double-zinger-1920x840-20260325145335-1280.mp4",
+     "bytes": 817943
+    },
+    "970x250": {
+     "file": "video/006-double-zinger-1920x840-20260325145335-970x250.mp4",
+     "bytes": 496725
+    },
+    "970x250-webm": {
+     "file": "video/006-double-zinger-1920x840-20260325145335-970x250.webm",
+     "bytes": 577818
+    }
+   },
+   "duration": 19.021,
+   "w": 1900,
+   "h": 840,
+   "codec": "av1",
+   "hasAudio": true
+  },
+  {
+   "id": 7,
+   "url": "https://files.pidem.prod.hebiar.com/kfc/content/content/video/double-zinger_800x800-20260325145307.webm",
+   "file": "video/007-double-zinger-800x800-20260325145307.webm",
+   "bytes": 3215867,
+   "frames": [
+    "video/007-double-zinger-800x800-20260325145307-frame-a.jpg",
+    "video/007-double-zinger-800x800-20260325145307-frame-b.jpg",
+    "video/007-double-zinger-800x800-20260325145307-frame-c.jpg",
+    "video/007-double-zinger-800x800-20260325145307-frame-d.jpg"
+   ],
+   "derived": {
+    "1280": {
+     "file": "video/007-double-zinger-800x800-20260325145307-1280.mp4",
+     "bytes": 1919657
+    },
+    "970x250": {
+     "file": "video/007-double-zinger-800x800-20260325145307-970x250.mp4",
+     "bytes": 597184
+    },
+    "970x250-webm": {
+     "file": "video/007-double-zinger-800x800-20260325145307-970x250.webm",
+     "bytes": 557354
+    }
+   },
+   "duration": 19.021,
+   "w": 800,
+   "h": 798,
+   "codec": "av1",
+   "hasAudio": true
+  },
+  {
+   "id": 8,
+   "url": "https://files.pidem.prod.hebiar.com/kfc/content/content/video/double-zinger_1920x840-20260325145344.mp4",
+   "file": "video/008-double-zinger-1920x840-20260325145344.mp4",
+   "bytes": 5842305,
+   "frames": [
+    "video/008-double-zinger-1920x840-20260325145344-frame-a.jpg",
+    "video/008-double-zinger-1920x840-20260325145344-frame-b.jpg",
+    "video/008-double-zinger-1920x840-20260325145344-frame-c.jpg",
+    "video/008-double-zinger-1920x840-20260325145344-frame-d.jpg"
+   ],
+   "derived": {
+    "1280": {
+     "file": "video/008-double-zinger-1920x840-20260325145344-1280.mp4",
+     "bytes": 839414
+    },
+    "970x250": {
+     "file": "video/008-double-zinger-1920x840-20260325145344-970x250.mp4",
+     "bytes": 499884
+    },
+    "970x250-webm": {
+     "file": "video/008-double-zinger-1920x840-20260325145344-970x250.webm",
+     "bytes": 582095
+    }
+   },
+   "duration": 19.028,
+   "w": 1900,
+   "h": 840,
+   "codec": "h264",
+   "hasAudio": true
+  },
+  {
+   "id": 9,
+   "url": "https://files.pidem.prod.hebiar.com/kfc/content/content/video/double-zinger_800x800-20260325145315.mp4",
+   "file": "video/009-double-zinger-800x800-20260325145315.mp4",
+   "bytes": 3916970,
+   "frames": [
+    "video/009-double-zinger-800x800-20260325145315-frame-a.jpg",
+    "video/009-double-zinger-800x800-20260325145315-frame-b.jpg",
+    "video/009-double-zinger-800x800-20260325145315-frame-c.jpg",
+    "video/009-double-zinger-800x800-20260325145315-frame-d.jpg"
+   ],
+   "derived": {
+    "1280": {
+     "file": "video/009-double-zinger-800x800-20260325145315-1280.mp4",
+     "bytes": 1973952
+    },
+    "970x250": {
+     "file": "video/009-double-zinger-800x800-20260325145315-970x250.mp4",
+     "bytes": 582206
+    },
+    "970x250-webm": {
+     "file": "video/009-double-zinger-800x800-20260325145315-970x250.webm",
+     "bytes": 587135
+    }
+   },
+   "duration": 19.028,
+   "w": 800,
+   "h": 798,
+   "codec": "h264",
+   "hasAudio": true
+  },
+  {
+   "id": 10,
+   "url": "https://files.pidem.prod.hebiar.com/kfc/content/content/video/strips_1920x840-20260325152026.webm",
+   "file": "video/010-strips-1920x840-20260325152026.webm",
+   "bytes": 5467698,
+   "frames": [
+    "video/010-strips-1920x840-20260325152026-frame-a.jpg",
+    "video/010-strips-1920x840-20260325152026-frame-b.jpg",
+    "video/010-strips-1920x840-20260325152026-frame-c.jpg",
+    "video/010-strips-1920x840-20260325152026-frame-d.jpg"
+   ],
+   "derived": {
+    "1280": {
+     "file": "video/010-strips-1920x840-20260325152026-1280.mp4",
+     "bytes": 595328
+    },
+    "970x250": {
+     "file": "video/010-strips-1920x840-20260325152026-970x250.mp4",
+     "bytes": 378636
+    },
+    "970x250-webm": {
+     "file": "video/010-strips-1920x840-20260325152026-970x250.webm",
+     "bytes": 430604
+    }
+   },
+   "duration": 18.621,
+   "w": 1920,
+   "h": 840,
+   "codec": "av1",
+   "hasAudio": true
+  },
+  {
+   "id": 11,
+   "url": "https://files.pidem.prod.hebiar.com/kfc/content/content/video/strips_1920x840-20260325144827.mp4",
+   "file": "video/011-strips-1920x840-20260325144827.mp4",
+   "bytes": 6779240,
+   "frames": [
+    "video/011-strips-1920x840-20260325144827-frame-a.jpg",
+    "video/011-strips-1920x840-20260325144827-frame-b.jpg",
+    "video/011-strips-1920x840-20260325144827-frame-c.jpg",
+    "video/011-strips-1920x840-20260325144827-frame-d.jpg"
+   ],
+   "derived": {
+    "1280": {
+     "file": "video/011-strips-1920x840-20260325144827-1280.mp4",
+     "bytes": 633149
+    },
+    "970x250": {
+     "file": "video/011-strips-1920x840-20260325144827-970x250.mp4",
+     "bytes": 389635
+    },
+    "970x250-webm": {
+     "file": "video/011-strips-1920x840-20260325144827-970x250.webm",
+     "bytes": 429794
+    }
+   },
+   "duration": 18.613,
+   "w": 1920,
+   "h": 840,
+   "codec": "h264",
+   "hasAudio": true
+  },
+  {
+   "id": 12,
+   "url": "https://files.pidem.prod.hebiar.com/kfc/content/content/video/strips_800x800-20260325144921.webm",
+   "file": "video/012-strips-800x800-20260325144921.webm",
+   "bytes": 3254312,
+   "frames": [
+    "video/012-strips-800x800-20260325144921-frame-a.jpg",
+    "video/012-strips-800x800-20260325144921-frame-b.jpg",
+    "video/012-strips-800x800-20260325144921-frame-c.jpg",
+    "video/012-strips-800x800-20260325144921-frame-d.jpg"
+   ],
+   "derived": {
+    "1280": {
+     "file": "video/012-strips-800x800-20260325144921-1280.mp4",
+     "bytes": 1263903
+    },
+    "970x250": {
+     "file": "video/012-strips-800x800-20260325144921-970x250.mp4",
+     "bytes": 449345
+    },
+    "970x250-webm": {
+     "file": "video/012-strips-800x800-20260325144921-970x250.webm",
+     "bytes": 444781
+    }
+   },
+   "duration": 18.621,
+   "w": 798,
+   "h": 800,
+   "codec": "av1",
+   "hasAudio": true
+  },
+  {
+   "id": 13,
+   "url": "https://files.pidem.prod.hebiar.com/kfc/content/content/video/strips_800x800-20260325144927.mp4",
+   "file": "video/013-strips-800x800-20260325144927.mp4",
+   "bytes": 3766461,
+   "frames": [
+    "video/013-strips-800x800-20260325144927-frame-a.jpg",
+    "video/013-strips-800x800-20260325144927-frame-b.jpg",
+    "video/013-strips-800x800-20260325144927-frame-c.jpg",
+    "video/013-strips-800x800-20260325144927-frame-d.jpg"
+   ],
+   "derived": {
+    "1280": {
+     "file": "video/013-strips-800x800-20260325144927-1280.mp4",
+     "bytes": 1351423
+    },
+    "970x250": {
+     "file": "video/013-strips-800x800-20260325144927-970x250.mp4",
+     "bytes": 462287
+    },
+    "970x250-webm": {
+     "file": "video/013-strips-800x800-20260325144927-970x250.webm",
+     "bytes": 459541
+    }
+   },
+   "duration": 18.623,
+   "w": 798,
+   "h": 800,
+   "codec": "h264",
+   "hasAudio": true
+  },
+  {
+   "id": 14,
+   "url": "https://files.pidem.prod.hebiar.com/kfc/content/content/video/mighty-cruncher_1920x840-20260325145155.webm",
+   "file": "video/014-mighty-cruncher-1920x840-20260325145155.webm",
+   "bytes": 6317975,
+   "frames": [
+    "video/014-mighty-cruncher-1920x840-20260325145155-frame-a.jpg",
+    "video/014-mighty-cruncher-1920x840-20260325145155-frame-b.jpg",
+    "video/014-mighty-cruncher-1920x840-20260325145155-frame-c.jpg",
+    "video/014-mighty-cruncher-1920x840-20260325145155-frame-d.jpg"
+   ],
+   "derived": {
+    "1280": {
+     "file": "video/014-mighty-cruncher-1920x840-20260325145155-1280.mp4",
+     "bytes": 787633
+    },
+    "970x250": {
+     "file": "video/014-mighty-cruncher-1920x840-20260325145155-970x250.mp4",
+     "bytes": 492542
+    },
+    "970x250-webm": {
+     "file": "video/014-mighty-cruncher-1920x840-20260325145155-970x250.webm",
+     "bytes": 613103
+    }
+   },
+   "duration": 18.421,
+   "w": 1920,
+   "h": 840,
+   "codec": "av1",
+   "hasAudio": true
+  },
+  {
+   "id": 15,
+   "url": "https://files.pidem.prod.hebiar.com/kfc/content/content/video/mighty-cruncher_1920x840-20260325145206.mp4",
+   "file": "video/015-mighty-cruncher-1920x840-20260325145206.mp4",
+   "bytes": 7836547,
+   "frames": [
+    "video/015-mighty-cruncher-1920x840-20260325145206-frame-a.jpg",
+    "video/015-mighty-cruncher-1920x840-20260325145206-frame-b.jpg",
+    "video/015-mighty-cruncher-1920x840-20260325145206-frame-c.jpg",
+    "video/015-mighty-cruncher-1920x840-20260325145206-frame-d.jpg"
+   ],
+   "derived": {
+    "1280": {
+     "file": "video/015-mighty-cruncher-1920x840-20260325145206-1280.mp4",
+     "bytes": 824197
+    },
+    "970x250": {
+     "file": "video/015-mighty-cruncher-1920x840-20260325145206-970x250.mp4",
+     "bytes": 504441
+    },
+    "970x250-webm": {
+     "file": "video/015-mighty-cruncher-1920x840-20260325145206-970x250.webm",
+     "bytes": 618962
+    }
+   },
+   "duration": 18.431,
+   "w": 1920,
+   "h": 840,
+   "codec": "h264",
+   "hasAudio": true
+  },
+  {
+   "id": 16,
+   "url": "https://files.pidem.prod.hebiar.com/kfc/content/content/video/mighty-cruncher_800x800-20260325145214.webm",
+   "file": "video/016-mighty-cruncher-800x800-20260325145214.webm",
+   "bytes": 4112417,
+   "frames": [
+    "video/016-mighty-cruncher-800x800-20260325145214-frame-a.jpg",
+    "video/016-mighty-cruncher-800x800-20260325145214-frame-b.jpg",
+    "video/016-mighty-cruncher-800x800-20260325145214-frame-c.jpg",
+    "video/016-mighty-cruncher-800x800-20260325145214-frame-d.jpg"
+   ],
+   "derived": {
+    "1280": {
+     "file": "video/016-mighty-cruncher-800x800-20260325145214-1280.mp4",
+     "bytes": 1971850
+    },
+    "970x250": {
+     "file": "video/016-mighty-cruncher-800x800-20260325145214-970x250.mp4",
+     "bytes": 602520
+    },
+    "970x250-webm": {
+     "file": "video/016-mighty-cruncher-800x800-20260325145214-970x250.webm",
+     "bytes": 606041
+    }
+   },
+   "duration": 18.381,
+   "w": 800,
+   "h": 800,
+   "codec": "av1",
+   "hasAudio": true
+  },
+  {
+   "id": 17,
+   "url": "https://files.pidem.prod.hebiar.com/kfc/content/content/video/mighty-cruncher_800x800-20260325145222.mp4",
+   "file": "video/017-mighty-cruncher-800x800-20260325145222.mp4",
+   "bytes": 4649958,
+   "frames": [
+    "video/017-mighty-cruncher-800x800-20260325145222-frame-a.jpg",
+    "video/017-mighty-cruncher-800x800-20260325145222-frame-b.jpg",
+    "video/017-mighty-cruncher-800x800-20260325145222-frame-c.jpg",
+    "video/017-mighty-cruncher-800x800-20260325145222-frame-d.jpg"
+   ],
+   "derived": {
+    "1280": {
+     "file": "video/017-mighty-cruncher-800x800-20260325145222-1280.mp4",
+     "bytes": 2036133
+    },
+    "970x250": {
+     "file": "video/017-mighty-cruncher-800x800-20260325145222-970x250.mp4",
+     "bytes": 603382
+    },
+    "970x250-webm": {
+     "file": "video/017-mighty-cruncher-800x800-20260325145222-970x250.webm",
+     "bytes": 622936
+    }
+   },
+   "duration": 18.388,
+   "w": 800,
+   "h": 800,
+   "codec": "h264",
+   "hasAudio": true
+  },
+  {
+   "id": 18,
+   "url": "https://files.pidem.prod.hebiar.com/kfc/content/content/video/hotshot_1920x840-20260325145447.webm",
+   "file": "video/018-hotshot-1920x840-20260325145447.webm",
+   "bytes": 3628454,
+   "frames": [
+    "video/018-hotshot-1920x840-20260325145447-frame-a.jpg",
+    "video/018-hotshot-1920x840-20260325145447-frame-b.jpg",
+    "video/018-hotshot-1920x840-20260325145447-frame-c.jpg",
+    "video/018-hotshot-1920x840-20260325145447-frame-d.jpg"
+   ],
+   "derived": {
+    "1280": {
+     "file": "video/018-hotshot-1920x840-20260325145447-1280.mp4",
+     "bytes": 571019
+    },
+    "970x250": {
+     "file": "video/018-hotshot-1920x840-20260325145447-970x250.mp4",
+     "bytes": 354738
+    },
+    "970x250-webm": {
+     "file": "video/018-hotshot-1920x840-20260325145447-970x250.webm",
+     "bytes": 422619
+    }
+   },
+   "duration": 18.181,
+   "w": 1916,
+   "h": 840,
+   "codec": "av1",
+   "hasAudio": true
+  },
+  {
+   "id": 19,
+   "url": "https://files.pidem.prod.hebiar.com/kfc/content/content/video/hotshot_1920x840-20260325145451.mp4",
+   "file": "video/019-hotshot-1920x840-20260325145451.mp4",
+   "bytes": 4558814,
+   "frames": [
+    "video/019-hotshot-1920x840-20260325145451-frame-a.jpg",
+    "video/019-hotshot-1920x840-20260325145451-frame-b.jpg",
+    "video/019-hotshot-1920x840-20260325145451-frame-c.jpg",
+    "video/019-hotshot-1920x840-20260325145451-frame-d.jpg"
+   ],
+   "derived": {
+    "1280": {
+     "file": "video/019-hotshot-1920x840-20260325145451-1280.mp4",
+     "bytes": 603949
+    },
+    "970x250": {
+     "file": "video/019-hotshot-1920x840-20260325145451-970x250.mp4",
+     "bytes": 363767
+    },
+    "970x250-webm": {
+     "file": "video/019-hotshot-1920x840-20260325145451-970x250.webm",
+     "bytes": 425605
+    }
+   },
+   "duration": 18.196,
+   "w": 1916,
+   "h": 840,
+   "codec": "h264",
+   "hasAudio": true
+  },
+  {
+   "id": 20,
+   "url": "https://files.pidem.prod.hebiar.com/kfc/content/content/video/hotshot_800x800-20260325145515.webm",
+   "file": "video/020-hotshot-800x800-20260325145515.webm",
+   "bytes": 2467377,
+   "frames": [
+    "video/020-hotshot-800x800-20260325145515-frame-a.jpg",
+    "video/020-hotshot-800x800-20260325145515-frame-b.jpg",
+    "video/020-hotshot-800x800-20260325145515-frame-c.jpg",
+    "video/020-hotshot-800x800-20260325145515-frame-d.jpg"
+   ],
+   "derived": {
+    "1280": {
+     "file": "video/020-hotshot-800x800-20260325145515-1280.mp4",
+     "bytes": 1212155
+    },
+    "970x250": {
+     "file": "video/020-hotshot-800x800-20260325145515-970x250.mp4",
+     "bytes": 390300
+    },
+    "970x250-webm": {
+     "file": "video/020-hotshot-800x800-20260325145515-970x250.webm",
+     "bytes": 398541
+    }
+   },
+   "duration": 18.181,
+   "w": 800,
+   "h": 800,
+   "codec": "av1",
+   "hasAudio": true
+  },
+  {
+   "id": 21,
+   "url": "https://files.pidem.prod.hebiar.com/kfc/content/content/video/hotshot_800x800-20260325145520.mp4",
+   "file": "video/021-hotshot-800x800-20260325145520.mp4",
+   "bytes": 2859928,
+   "frames": [
+    "video/021-hotshot-800x800-20260325145520-frame-a.jpg",
+    "video/021-hotshot-800x800-20260325145520-frame-b.jpg",
+    "video/021-hotshot-800x800-20260325145520-frame-c.jpg",
+    "video/021-hotshot-800x800-20260325145520-frame-d.jpg"
+   ],
+   "derived": {
+    "1280": {
+     "file": "video/021-hotshot-800x800-20260325145520-1280.mp4",
+     "bytes": 1301018
+    },
+    "970x250": {
+     "file": "video/021-hotshot-800x800-20260325145520-970x250.mp4",
+     "bytes": 403666
+    },
+    "970x250-webm": {
+     "file": "video/021-hotshot-800x800-20260325145520-970x250.webm",
+     "bytes": 422658
+    }
+   },
+   "duration": 18.196,
+   "w": 800,
+   "h": 800,
+   "codec": "h264",
+   "hasAudio": true
+  }
+ ],
+ "fonts": [],
+ "api": [
+  {
+   "url": "https://wayback-api.archive.org/services/context/notices?url=https%3A%2F%2Fwww.kfcturkiye.com%2F&timestamp=20260906154947",
+   "file": "api/services-context-notices-4baccb3a.json",
+   "bytes": 33
+  },
+  {
+   "url": "https://web.archive.org/__wb/sparkline?output=json&url=https%3A%2F%2Fwww.kfcturkiye.com%2F&collection=web&nav=20260906154947",
+   "file": "api/wb-sparkline-7ad916e8.json",
+   "bytes": 1591
+  },
+  {
+   "url": "https://wayback-api.archive.org/services/context/notices?url=https%3A%2F%2Fwww.kfcturkiye.com%2Fkampanyalar&timestamp=20260710224409",
+   "file": "api/services-context-notices-d6e96a4f.json",
+   "bytes": 33
+  },
+  {
+   "url": "https://web.archive.org/__wb/sparkline?output=json&url=https%3A%2F%2Fwww.kfcturkiye.com%2Fkampanyalar&collection=web&nav=20260710224409",
+   "file": "api/wb-sparkline-c3a06376.json",
+   "bytes": 653
+  },
+  {
+   "url": "https://wayback-api.archive.org/services/context/notices?url=https%3A%2F%2Fwww.kfcturkiye.com%2Frestoranlar&timestamp=20260802133119",
+   "file": "api/services-context-notices-2c19c25a.json",
+   "bytes": 33
+  },
+  {
+   "url": "https://web.archive.org/__wb/sparkline?output=json&url=https%3A%2F%2Fwww.kfcturkiye.com%2Frestoranlar&collection=web&nav=20260802133119",
+   "file": "api/wb-sparkline-bc9bc378.json",
+   "bytes": 706
+  },
+  {
+   "url": "https://wayback-api.archive.org/services/context/notices?url=https%3A%2F%2Fwww.kfcturkiye.com%2Fkfc-lezzetleri&timestamp=20260729201729",
+   "file": "api/services-context-notices-282c7468.json",
+   "bytes": 33
+  },
+  {
+   "url": "https://web.archive.org/__wb/sparkline?output=json&url=https%3A%2F%2Fwww.kfcturkiye.com%2Fkfc-lezzetleri&collection=web&nav=20260729201729",
+   "file": "api/wb-sparkline-fc391113.json",
+   "bytes": 309
+  }
+ ],
+ "theme": {
+  "fonts": [],
+  "colors": [
+   {
+    "hex": "#fff",
+    "count": 331
+   },
+   {
+    "hex": "#212121",
+    "count": 147
+   },
+   {
+    "hex": "#e4002b",
+    "count": 137
+   },
+   {
+    "hex": "#e4e3e3",
+    "count": 54
+   },
+   {
+    "hex": "#ddd",
+    "count": 43
+   },
+   {
+    "hex": "#999",
+    "count": 37
+   },
+   {
+    "hex": "#ccc",
+    "count": 36
+   },
+   {
+    "hex": "#000",
+    "count": 32
+   },
+   {
+    "hex": "#333",
+    "count": 32
+   },
+   {
+    "hex": "#ffffff",
+    "count": 32
+   },
+   {
+    "hex": "#428bca",
+    "count": 30
+   },
+   {
+    "hex": "#2c2c2c",
+    "count": 27
+   },
+   {
+    "hex": "#eee",
+    "count": 19
+   },
+   {
+    "hex": "#4b64ff",
+    "count": 18
+   },
+   {
+    "hex": "#3c763d",
+    "count": 13
+   },
+   {
+    "hex": "#8a6d3b",
+    "count": 13
+   },
+   {
+    "hex": "#a94442",
+    "count": 13
+   },
+   {
+    "hex": "#767676",
+    "count": 12
+   },
+   {
+    "hex": "#484747",
+    "count": 10
+   },
+   {
+    "hex": "#aaaaaa",
+    "count": 10
+   },
+   {
+    "hex": "#f5f5f5",
+    "count": 10
+   },
+   {
+    "hex": "#777",
+    "count": 8
+   },
+   {
+    "hex": "#31708f",
+    "count": 8
+   },
+   {
+    "hex": "#555",
+    "count": 8
+   },
+   {
+    "hex": "#475ff2",
+    "count": 8
+   },
+   {
+    "hex": "#4a90e2",
+    "count": 8
+   },
+   {
+    "hex": "#666",
+    "count": 7
+   },
+   {
+    "hex": "#222222",
+    "count": 7
+   },
+   {
+    "hex": "#e5e5e5",
+    "count": 7
+   },
+   {
+    "hex": "#be1024",
+    "count": 7
+   },
+   {
+    "hex": "#ff0",
+    "count": 6
+   },
+   {
+    "hex": "#00a544",
+    "count": 6
+   },
+   {
+    "hex": "#dff0d8",
+    "count": 6
+   },
+   {
+    "hex": "#fcf8e3",
+    "count": 6
+   },
+   {
+    "hex": "#f2dede",
+    "count": 6
+   },
+   {
+    "hex": "#080808",
+    "count": 6
+   },
+   {
+    "hex": "#444",
+    "count": 6
+   },
+   {
+    "hex": "#525252",
+    "count": 5
+   },
+   {
+    "hex": "#d9edf7",
+    "count": 5
+   },
+   {
+    "hex": "#5cb85c",
+    "count": 5
+   }
+  ],
+  "fontFaces": [
+   {
+    "family": "Iconochive-Regular",
+    "weight": "normal",
+    "src": [
+     "https://web-static.archive.org/_static/fonts/Iconochive-Regular.eot",
+     "https://web-static.archive.org/_static/fonts/Iconochive-Regular.eot",
+     "https://web-static.archive.org/_static/fonts/Iconochive-Regular.woff",
+     "https://web-static.archive.org/_static/fonts/Iconochive-Regular.ttf",
+     "https://web-static.archive.org/_static/fonts/Iconochive-Regular.svg#Iconochive-Regular"
+    ]
+   },
+   {
+    "family": "national2",
+    "weight": "400",
+    "src": [
+     "https://web.archive.org/web/20260906155052im_/https://www.kfcturkiye.com/_next/static/media/National2Regular-s.p.0blljcam0cnmh.woff2"
+    ]
+   },
+   {
+    "family": "national2",
+    "weight": "500",
+    "src": [
+     "https://web.archive.org/web/20260906155052im_/https://www.kfcturkiye.com/_next/static/media/National2Medium-s.p.0xsq9z9ef_kli.woff2"
+    ]
+   },
+   {
+    "family": "national2",
+    "weight": "700",
+    "src": [
+     "https://web.archive.org/web/20260906155052im_/https://www.kfcturkiye.com/_next/static/media/National2Bold-s.p.0eeuqsndmx.aa.woff2"
+    ]
+   },
+   {
+    "family": "national2 Fallback",
+    "src": []
+   },
+   {
+    "family": "national2Condensed",
+    "weight": "700",
+    "src": [
+     "https://web.archive.org/web/20260906155052im_/https://www.kfcturkiye.com/_next/static/media/National2CondensedBold-s.p.01sg1ea~60rdi.woff2"
+    ]
+   },
+   {
+    "family": "national2Condensed Fallback",
+    "src": []
+   },
+   {
+    "family": "national2",
+    "weight": "400",
+    "src": [
+     "https://web.archive.org/web/20260710224354im_/https://www.kfcturkiye.com/_next/static/media/National2Regular-s.p.0blljcam0cnmh.woff2"
+    ]
+   },
+   {
+    "family": "national2",
+    "weight": "500",
+    "src": [
+     "https://web.archive.org/web/20260710224354im_/https://www.kfcturkiye.com/_next/static/media/National2Medium-s.p.0xsq9z9ef_kli.woff2"
+    ]
+   },
+   {
+    "family": "national2",
+    "weight": "700",
+    "src": [
+     "https://web.archive.org/web/20260710224354im_/https://www.kfcturkiye.com/_next/static/media/National2Bold-s.p.0eeuqsndmx.aa.woff2"
+    ]
+   },
+   {
+    "family": "national2 Fallback",
+    "src": []
+   },
+   {
+    "family": "national2Condensed",
+    "weight": "700",
+    "src": [
+     "https://web.archive.org/web/20260710224354im_/https://www.kfcturkiye.com/_next/static/media/National2CondensedBold-s.p.01sg1ea~60rdi.woff2"
+    ]
+   },
+   {
+    "family": "national2Condensed Fallback",
+    "src": []
+   },
+   {
+    "family": "national2",
+    "weight": "400",
+    "src": [
+     "https://web.archive.org/web/20260725072916im_/https://www.kfcturkiye.com/_next/static/media/National2Regular-s.p.0blljcam0cnmh.woff2"
+    ]
+   },
+   {
+    "family": "national2",
+    "weight": "500",
+    "src": [
+     "https://web.archive.org/web/20260725072916im_/https://www.kfcturkiye.com/_next/static/media/National2Medium-s.p.0xsq9z9ef_kli.woff2"
+    ]
+   },
+   {
+    "family": "national2",
+    "weight": "700",
+    "src": [
+     "https://web.archive.org/web/20260725072916im_/https://www.kfcturkiye.com/_next/static/media/National2Bold-s.p.0eeuqsndmx.aa.woff2"
+    ]
+   },
+   {
+    "family": "national2 Fallback",
+    "src": []
+   },
+   {
+    "family": "national2Condensed",
+    "weight": "700",
+    "src": [
+     "https://web.archive.org/web/20260725072916im_/https://www.kfcturkiye.com/_next/static/media/National2CondensedBold-s.p.01sg1ea~60rdi.woff2"
+    ]
+   },
+   {
+    "family": "national2Condensed Fallback",
+    "src": []
+   },
+   {
+    "family": "national2",
+    "weight": "400",
+    "src": [
+     "https://web.archive.org/web/20260725072916im_/https://www.kfcturkiye.com/_next/static/media/National2Regular-s.p.0blljcam0cnmh.woff2"
+    ]
+   },
+   {
+    "family": "national2",
+    "weight": "500",
+    "src": [
+     "https://web.archive.org/web/20260725072916im_/https://www.kfcturkiye.com/_next/static/media/National2Medium-s.p.0xsq9z9ef_kli.woff2"
+    ]
+   },
+   {
+    "family": "national2",
+    "weight": "700",
+    "src": [
+     "https://web.archive.org/web/20260725072916im_/https://www.kfcturkiye.com/_next/static/media/National2Bold-s.p.0eeuqsndmx.aa.woff2"
+    ]
+   },
+   {
+    "family": "national2 Fallback",
+    "src": []
+   },
+   {
+    "family": "national2Condensed",
+    "weight": "700",
+    "src": [
+     "https://web.archive.org/web/20260725072916im_/https://www.kfcturkiye.com/_next/static/media/National2CondensedBold-s.p.01sg1ea~60rdi.woff2"
+    ]
+   },
+   {
+    "family": "national2Condensed Fallback",
+    "src": []
+   },
+   {
+    "family": "Glyphicons Halflings",
+    "src": [
+     "https://archive.org/components/npm/bootstrap/dist/fonts/glyphicons-halflings-regular.eot",
+     "https://archive.org/components/npm/bootstrap/dist/fonts/glyphicons-halflings-regular.eot?#iefix",
+     "https://archive.org/components/npm/bootstrap/dist/fonts/glyphicons-halflings-regular.woff",
+     "https://archive.org/components/npm/bootstrap/dist/fonts/glyphicons-halflings-regular.ttf",
+     "https://archive.org/components/npm/bootstrap/dist/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular"
+    ]
+   },
+   {
+    "family": "Iconochive-Regular",
+    "weight": "normal",
+    "src": [
+     "https://archive.org/includes/fonts/Iconochive-Regular.woff"
+    ]
+   }
+  ],
+  "cssFiles": [
+   "https://web-static.archive.org/_static/css/banner-styles.css?v=1utQkbB3",
+   "https://web-static.archive.org/_static/css/iconochive.css?v=3PDvdIFv",
+   "https://web.archive.org/web/20260906155055cs_/https://www.kfcturkiye.com/_next/static/chunks/0~j-~l4~edv6t.css",
+   "https://web.archive.org/web/20260906155055cs_/https://www.kfcturkiye.com/_next/static/chunks/16vy4k6aoc70c.css",
+   "https://web.archive.org/web/20260906155052cs_/https://www.kfcturkiye.com/_next/static/chunks/14894rcsbxzy8.css",
+   "https://web.archive.org/web/20260906155052cs_/https://www.kfcturkiye.com/_next/static/chunks/0bc4~__0w82fk.css",
+   "https://web.archive.org/web/20260906155052mp_/https://www.kfcturkiye.com/_next/static/chunks/0bc4~__0w82fk.css",
+   "https://web.archive.org/web/20260906155055mp_/https://www.kfcturkiye.com/_next/static/chunks/0~j-~l4~edv6t.css",
+   "https://web.archive.org/web/20260906155055mp_/https://www.kfcturkiye.com/_next/static/chunks/16vy4k6aoc70c.css",
+   "https://web.archive.org/web/20260710224354cs_/https://www.kfcturkiye.com/_next/static/chunks/0bc4~__0w82fk.css",
+   "https://web.archive.org/web/20260710224354cs_/https://www.kfcturkiye.com/_next/static/chunks/0u8msk7~v.ime.css",
+   "https://web.archive.org/web/20260710224416cs_/https://www.kfcturkiye.com/_next/static/chunks/05.s-x9ovavlu.css",
+   "https://web.archive.org/web/20260710224354cs_/https://www.kfcturkiye.com/_next/static/chunks/0~j-~l4~edv6t.css",
+   "https://web.archive.org/web/20260725072917cs_/https://www.kfcturkiye.com/_next/static/chunks/0bc4~__0w82fk.css",
+   "https://web.archive.org/web/20260725072917cs_/https://www.kfcturkiye.com/_next/static/chunks/0~j-~l4~edv6t.css",
+   "https://web.archive.org/web/20260725072916cs_/https://www.kfcturkiye.com/_next/static/chunks/0u8msk7~v.ime.css",
+   "https://web.archive.org/web/20260802133125cs_/https://www.kfcturkiye.com/_next/static/chunks/17qg_b89eatc-.css",
+   "https://web.archive.org/web/20260710224407cs_/https://www.kfcturkiye.com/_next/static/chunks/0t48hzs_6fshe.css",
+   "https://web.archive.org/web/20260725072917cs_/https://www.kfcturkiye.com/_next/static/chunks/039h4b2lx.3rv.css",
+   "https://web.archive.org/web/20260725072916mp_/https://www.kfcturkiye.com/_next/static/chunks/0u8msk7~v.ime.css",
+   "https://web.archive.org/web/20260725072917mp_/https://www.kfcturkiye.com/_next/static/chunks/0bc4~__0w82fk.css",
+   "https://web.archive.org/web/20260725072917mp_/https://www.kfcturkiye.com/_next/static/chunks/039h4b2lx.3rv.css",
+   "https://web.archive.org/web/20260725072917mp_/https://www.kfcturkiye.com/_next/static/chunks/0~j-~l4~edv6t.css",
+   "https://web-static.archive.org/_static/css/styles.css?v=Zb1uSJFF",
+   "https://archive.org/includes/build/css/archive.min.css?v=f2db56d8",
+   "https://web-static.archive.org/_static/css/web.css"
+  ]
+ },
+ "errors": [
+  "/menu: page.evaluate: TypeError: Cannot read properties of undefined (reading 'trim')\n    at eval (eval at evaluate (:290:30), <anonymous>:14:330)\n    at Array.map (<anonymous>)\n    at eval (eval at evaluate (:290:30), <anonymous>:14:307)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)",
+  "/menu/firsatlar: page.goto: net::ERR_ABORTED at https://web.archive.org/web/20260906154947/https://www.kfcturkiye.com/menu/firsatlar\nCall log:\n  - navigating to \"https://web.archive.org/web/20260906154947/https://www.kfcturkiye.com/menu/firsatlar\", waiting until \"domcontentloaded\"\n"
+ ],
+ "blockedBody": "<html>\r\n<head><title>403 Forbidden</title></head>\r\n<body>\r\n<center><h1>403 Forbidden</h1></center>\r\n</body>\r\n</html>\r\n<!-- a padding to disable MSIE and Chrome friendly error page -->\r\n<!-- a padding to disable MSIE and Chrome friendly error page -->\r\n<!-- a padding to disable MSIE and Chrome friendly error page -->\r\n<!-- a padding to disable MSIE and Chrome friendly error page -->\r\n<!-- a padding to disable MSIE and Chrome friendly error page -->\r\n<!-- a padding to disable MSIE and Chrome friendly error page -->\r\n",
+ "blockedHeaders": {
+  "server": "awselb/2.0",
+  "date": "Sat, 19 Sep 2026 20:41:28 GMT",
+  "content-type": "text/html",
+  "content-length": "520",
+  "connection": "keep-alive"
+ },
+ "hostStatus": {
+  "https://www.kfcturkiye.com": 403
+ },
+ "archiveMode": true,
+ "cdx": {
+  "counts": {
+   "image": 931,
+   "video": 0,
+   "video2": 0,
+   "font": 29,
+   "font2": 29,
+   "html": 157
+  },
+  "pages": [
+   {
+    "url": "https://kfcturkiye.com/",
+    "ts": "20251230144544"
+   },
+   {
+    "url": "https://www.kfcturkiye.com/",
+    "ts": "20260906154947"
+   },
+   {
+    "url": "https://kfcturkiye.com/404",
+    "ts": "20250124064819"
+   },
+   {
+    "url": "https://kfcturkiye.com/?ref=indirimlikupon.com",
+    "ts": "20250215000156"
+   },
+   {
+    "url": "https://www.kfcturkiye.com/?srsltid=AfmBOor1EperqTykdDHlsa22GyHZojTyNwXGOEdO0NmPJ6hsNDT9dYse",
+    "ts": "20260128083316"
+   },
+   {
+    "url": "https://kfcturkiye.com/acik-riza-metni",
+    "ts": "20250215011353"
+   },
+   {
+    "url": "https://kfcturkiye.com/basvuru-formu",
+    "ts": "20250124065301"
+   },
+   {
+    "url": "https://kfcturkiye.com/besin-degerleri",
+    "ts": "20250215013404"
+   },
+   {
+    "url": "https://kfcturkiye.com/besin-degerleri?lang=en",
+    "ts": "20250215005726"
+   },
+   {
+    "url": "https://kfcturkiye.com/bize-ulasin",
+    "ts": "20250124110115"
+   },
+   {
+    "url": "https://kfcturkiye.com/cdn-cgi/l/email-protection",
+    "ts": "20250215010024"
+   },
+   {
+    "url": "https://kfcturkiye.com/cerez-politikasi",
+    "ts": "20250124055749"
+   },
+   {
+    "url": "https://www.kfcturkiye.com/hd-holding-hakkinda",
+    "ts": "20260710224409"
+   },
+   {
+    "url": "https://kfcturkiye.com/hd-holding-hakkinda",
+    "ts": "20251208110303"
+   },
+   {
+    "url": "https://www.kfcturkiye.com/iletisim",
+    "ts": "20260710224409"
+   },
+   {
+    "url": "https://kfcturkiye.com/iletisim",
+    "ts": "20251218195130"
+   },
+   {
+    "url": "https://kfcturkiye.com/islem-rehberi",
+    "ts": "20250124074400"
+   },
+   {
+    "url": "https://kfcturkiye.com/islem-rehberi?lang=en",
+    "ts": "20250124064252"
+   },
+   {
+    "url": "https://kfcturkiye.com/kafana-gore-kova?lang=en",
+    "ts": "20250215003558"
+   },
+   {
+    "url": "https://kfcturkiye.com/kampanya/icecek-kampanyasi",
+    "ts": "20250124070906"
+   },
+   {
+    "url": "https://kfcturkiye.com/kampanya/kahve-kampanyasi",
+    "ts": "20250124062655"
+   },
+   {
+    "url": "https://kfcturkiye.com/kampanya/kahve-kampanyasi?lang=en",
+    "ts": "20250124064658"
+   },
+   {
+    "url": "https://kfcturkiye.com/kampanya/kovalarda-indirim-yuzde",
+    "ts": "20250124073949"
+   },
+   {
+    "url": "https://kfcturkiye.com/kampanya/kovalarda-indirim-yuzde?lang=en",
+    "ts": "20250124054143"
+   },
+   {
+    "url": "https://kfcturkiye.com/kampanya/ucle-kazan",
+    "ts": "20250124062610"
+   },
+   {
+    "url": "https://kfcturkiye.com/kampanya/Xtreme-kutu-indirim",
+    "ts": "20250124054807"
+   },
+   {
+    "url": "https://kfcturkiye.com/kampanya/yeni-uye",
+    "ts": "20250124054430"
+   },
+   {
+    "url": "https://kfcturkiye.com/kampanya/yeni-uye?lang=en",
+    "ts": "20250215004516"
+   },
+   {
+    "url": "https://kfcturkiye.com/kampanyalar",
+    "ts": "20251211025921"
+   },
+   {
+    "url": "https://www.kfcturkiye.com/kampanyalar",
+    "ts": "20260710224409"
+   },
+   {
+    "url": "https://kfcturkiye.com/kampanyalar/liste",
+    "ts": "20250124073342"
+   },
+   {
+    "url": "https://kfcturkiye.com/kampanyalar/liste?lang=en",
+    "ts": "20250215000443"
+   },
+   {
+    "url": "https://www.kfcturkiye.com/kariyer",
+    "ts": "20260710224409"
+   },
+   {
+    "url": "https://kfcturkiye.com/kariyer",
+    "ts": "20251224022143"
+   },
+   {
+    "url": "https://kfcturkiye.com/kariyer?_rsc=rfvsh",
+    "ts": "20260105134142"
+   },
+   {
+    "url": "https://www.kfcturkiye.com/kfc-hakkinda",
+    "ts": "20260710224409"
+   },
+   {
+    "url": "https://kfcturkiye.com/kfc-hakkinda",
+    "ts": "20251218044834"
+   },
+   {
+    "url": "https://kfcturkiye.com/kfc-kariyer?lang=en",
+    "ts": "20250124061230"
+   },
+   {
+    "url": "https://www.kfcturkiye.com/kfc-lezzetleri",
+    "ts": "20260729201729"
+   },
+   {
+    "url": "https://kfcturkiye.com/kfc-lezzetleri",
+    "ts": "20251213020055"
+   },
+   {
+    "url": "https://kfcturkiye.com/kisisel-verilerin-korunmasi",
+    "ts": "20250124110143"
+   },
+   {
+    "url": "https://kfcturkiye.com/kisisel-verilerin-korunmasi?lang=en",
+    "ts": "20250124071144"
+   },
+   {
+    "url": "https://kfcturkiye.com/kisisellestirilmis-pazarlama-amaciyla-islenmesine-iliskin-aydinlatma-ve-acik-riza-metnini",
+    "ts": "20250215013230"
+   },
+   {
+    "url": "https://kfcturkiye.com/kova-kulubu/ucle-kazan",
+    "ts": "20250215011435"
+   },
+   {
+    "url": "https://kfcturkiye.com/kullanim-kosullari",
+    "ts": "20250215004918"
+   },
+   {
+    "url": "https://kfcturkiye.com/menu/firsatlar?lang=en",
+    "ts": "20250124065417"
+   },
+   {
+    "url": "https://kfcturkiye.com/menu/paylasimlik-menuler/cocuk-menuler",
+    "ts": "20250124070234"
+   },
+   {
+    "url": "https://kfcturkiye.com/menu/paylasimlik-menuler/kova-menuler",
+    "ts": "20250124055035"
+   },
+   {
+    "url": "https://kfcturkiye.com/menu/paylasimlik-menuler/kova-menuler?lang=en",
+    "ts": "20250215013824"
+   },
+   {
+    "url": "https://kfcturkiye.com/menu/paylasimlik-menuler/parca-tavuklar-tekli-burgerler",
+    "ts": "20250214232014"
+   },
+   {
+    "url": "https://kfcturkiye.com/menu/paylasimlik-menuler/tatlilar-icecekler",
+    "ts": "20250124073855"
+   },
+   {
+    "url": "https://kfcturkiye.com/menu/paylasimlik-menuler/tatlilar-icecekler?lang=en",
+    "ts": "20250215004556"
+   },
+   {
+    "url": "https://kfcturkiye.com/menu/tek-kisilik-menuler/burger-tavuk-menuler",
+    "ts": "20250124070114"
+   },
+   {
+    "url": "https://kfcturkiye.com/menu/tek-kisilik-menuler/cocuk-menuler",
+    "ts": "20250124062432"
+   },
+   {
+    "url": "https://kfcturkiye.com/menu/tek-kisilik-menuler/kova-menuler",
+    "ts": "20250124073922"
+   },
+   {
+    "url": "https://kfcturkiye.com/menu/tek-kisilik-menuler/kutu-menuler",
+    "ts": "20250124065830"
+   },
+   {
+    "url": "https://kfcturkiye.com/menu/tek-kisilik-menuler/tatlilar-icecekler",
+    "ts": "20250215005937"
+   },
+   {
+    "url": "https://kfcturkiye.com/restoran/adana-m1",
+    "ts": "20250124062348"
+   },
+   {
+    "url": "https://kfcturkiye.com/restoran/ankara-antares",
+    "ts": "20250124070948"
+   },
+   {
+    "url": "https://kfcturkiye.com/restoran/ankara-antares?lang=en",
+    "ts": "20250215002637"
+   },
+   {
+    "url": "https://kfcturkiye.com/restoran/ankara-eryaman",
+    "ts": "20250124065020"
+   },
+   {
+    "url": "https://kfcturkiye.com/restoran/ankara-eryaman?lang=en",
+    "ts": "20250215000319"
+   },
+   {
+    "url": "https://kfcturkiye.com/restoran/bayrampasa-axis",
+    "ts": "20250124071651"
+   },
+   {
+    "url": "https://kfcturkiye.com/restoran/istanbul-bayrampasa-yildirim",
+    "ts": "20250124060726"
+   },
+   {
+    "url": "https://kfcturkiye.com/restoran/istanbul-goztepe-loft",
+    "ts": "20250124064334"
+   },
+   {
+    "url": "https://kfcturkiye.com/restoran/istanbul-halaskargazi?lang=en",
+    "ts": "20250215013808"
+   },
+   {
+    "url": "https://kfcturkiye.com/restoran/istanbul-ritim-istanbul?lang=en",
+    "ts": "20250215013856"
+   },
+   {
+    "url": "https://kfcturkiye.com/restoran/istanbul-white-corner-beylilduzu?lang=en",
+    "ts": "20250124072610"
+   },
+   {
+    "url": "https://kfcturkiye.com/restoran/izmir-balcova-kipa",
+    "ts": "20250124065747"
+   },
+   {
+    "url": "https://kfcturkiye.com/restoran/izmir-karsiyaka-hilltown",
+    "ts": "20250124063709"
+   },
+   {
+    "url": "https://kfcturkiye.com/restoran/kocaeli-cayirova-alyans?lang=en",
+    "ts": "20250214231510"
+   },
+   {
+    "url": "https://kfcturkiye.com/restoran/konya-kentplaza",
+    "ts": "20250215011316"
+   },
+   {
+    "url": "https://kfcturkiye.com/restoran/konya-kulesite",
+    "ts": "20250124052944"
+   },
+   {
+    "url": "https://kfcturkiye.com/restoran/konya-kulesite?lang=en",
+    "ts": "20250215011205"
+   },
+   {
+    "url": "https://kfcturkiye.com/restoran/mugla-bodrum",
+    "ts": "20250215001749"
+   },
+   {
+    "url": "https://kfcturkiye.com/restoranlar",
+    "ts": "20251221202430"
+   },
+   {
+    "url": "https://www.kfcturkiye.com/restoranlar",
+    "ts": "20260802133119"
+   },
+   {
+    "url": "https://kfcturkiye.com/restoranlar?srsltid=AfmBOoogrN4IFFMvTjMoPT2R9MWITW934MlCfc2qbtfooWypTtLAeEko",
+    "ts": "20251229134258"
+   },
+   {
+    "url": "https://kfcturkiye.com/temassiz-teslimat",
+    "ts": "20250124054241"
+   },
+   {
+    "url": "https://kfcturkiye.com/temassiz-teslimat?lang=en",
+    "ts": "20250124064211"
+   },
+   {
+    "url": "https://www.kfcturkiye.com/yardim/acik-riza-metni",
+    "ts": "20260710224409"
+   },
+   {
+    "url": "https://kfcturkiye.com/yardim/acik-riza-metni",
+    "ts": "20251219074107"
+   },
+   {
+    "url": "https://www.kfcturkiye.com/yardim/cerez-politikasi",
+    "ts": "20260831013321"
+   },
+   {
+    "url": "https://kfcturkiye.com/yardim/cerez-politikasi",
+    "ts": "20251213064042"
+   },
+   {
+    "url": "https://www.kfcturkiye.com/yardim/etk-onay-metni",
+    "ts": "20260710224409"
+   },
+   {
+    "url": "https://kfcturkiye.com/yardim/etk-onay-metni",
+    "ts": "20251220184421"
+   },
+   {
+    "url": "https://www.kfcturkiye.com/yardim/gizlilik-politikasi",
+    "ts": "20260710224409"
+   },
+   {
+    "url": "https://kfcturkiye.com/yardim/gizlilik-politikasi",
+    "ts": "20251223170520"
+   },
+   {
+    "url": "https://www.kfcturkiye.com/yardim/kullanim-kosullari",
+    "ts": "20260808173659"
+   },
+   {
+    "url": "https://www.kfcturkiye.com/yardim/kvkk-aydinlatma-metni",
+    "ts": "20260710224410"
+   },
+   {
+    "url": "https://kfcturkiye.com/yardim/kvkk-aydinlatma-metni",
+    "ts": "20251216131521"
+   },
+   {
+    "url": "https://kariyer.kfcturkiye.com/",
+    "ts": "20250210041332"
+   }
+  ]
+ },
+ "homeTs": "20260906154947",
+ "candidates": {
+  "total": 1067,
+  "onPage": 477,
+  "cdxOnly": 579,
+  "queued": 184
+ },
+ "contactSheets": [
+  "contact-1.jpg",
+  "contact-2.jpg",
+  "contact-3.jpg",
+  "contact-video.jpg"
+ ]
+}
