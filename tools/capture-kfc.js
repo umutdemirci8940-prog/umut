@@ -60,6 +60,14 @@ const MOMENTS = [['00-kepenk', 300], ['01-tabela', 1150], ['02-aciliyor', 1650],
   // Video oynuyor mu
   const v = await page.evaluate(() => { const v = document.querySelector('video'); return v ? { ok: v.classList.contains('ok'), paused: v.paused, t: v.currentTime, w: v.videoWidth, h: v.videoHeight, err: v.error && v.error.code } : 'video yok'; });
   console.log('video:', v);
+  // Azaltılmış hareket: doğrudan son kare, hata yok
+  const rmCtx = await browser.newContext({ viewport: { width: 970, height: 250 }, reducedMotion: 'reduce' });
+  const rmPage = await rmCtx.newPage(); rmPage.on('pageerror', (e) => errors.push('rm pageerror: ' + e.message));
+  await rmPage.goto('file://' + file); await rmPage.waitForTimeout(400);
+  const rmState = await rmPage.evaluate(() => window.__kfc.state());
+  console.log('azaltılmış hareket:', rmState.cls.includes('ended') && rmState.cls.includes('open') ? 'son karede ✔' : 'BEKLENMEDİK ' + rmState.cls);
+  await rmPage.screenshot({ path: path.join(out, '12-azaltilmis-hareket.jpg'), type: 'jpeg', quality: 80 });
+  await rmCtx.close();
   await ctx.close(); await browser.close();
   if (args.video) { const d = path.join(out, 'video'); for (const f of fs.readdirSync(d)) if (f.endsWith('.webm')) fs.renameSync(path.join(d, f), path.join(d, 'kfc-970x250.webm')); }
   if (errors.length) { console.log('HATALAR:\n' + errors.join('\n')); process.exitCode = 1; } else console.log('hata yok ✔');

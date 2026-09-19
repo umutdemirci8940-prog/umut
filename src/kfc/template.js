@@ -36,14 +36,14 @@ html,body{margin:0;padding:0;background:#fff}
 .stage{position:absolute;inset:0}
 /* Arka plan: sitenin videosu / fotoğrafı */
 .bg{position:absolute;inset:0;overflow:hidden;background:#2a0f0f}
-.bg img,.bg video{position:absolute;left:50%;top:50%;width:106%;height:106%;object-fit:cover;transform:translate(calc(-50% + var(--px) * -7px),calc(-50% + var(--py) * -5px))}
+.bg img,.bg video{position:absolute;left:50%;top:50%;width:106%;height:106%;object-fit:cover;object-position:${A.heroPos || '50% 50%'};transform:translate(calc(-50% + var(--px) * -7px),calc(-50% + var(--py) * -5px))}
 .bg video{opacity:0;transition:opacity .8s}
 .bg video.ok{opacity:1}
 .kb{animation:kb 16s ease-in-out infinite alternate}
 @keyframes kb{from{width:106%;height:106%}to{width:118%;height:118%}}
 .tint{position:absolute;inset:0;background:linear-gradient(90deg,rgba(22,7,7,.97) 0,rgba(22,7,7,.93) 270px,rgba(22,7,7,.6) 450px,rgba(22,7,7,.16) 640px,rgba(22,7,7,.2) 100%)}
 .glow{position:absolute;inset:0;background:radial-gradient(560px 280px at 4% 96%,rgba(228,0,43,.55),transparent 66%),radial-gradient(420px 220px at 100% 0%,rgba(255,150,40,.2),transparent 60%);mix-blend-mode:screen}
-.vig{position:absolute;inset:0;box-shadow:inset 0 0 90px rgba(0,0,0,.55)}
+.vig{position:absolute;inset:0;box-shadow:inset 0 0 90px rgba(0,0,0,.55);background:radial-gradient(520px 300px at 72% 60%,rgba(20,4,4,.55),transparent 70%)}
 /* Ürünler (sitedeki gerçek fotoğraflar) */
 .food{position:absolute;inset:0;z-index:3}
 .prod{position:absolute;left:var(--x);top:var(--y);height:var(--h);transform:translate(calc(var(--px) * var(--d) * 11px),calc(var(--py) * var(--d) * 7px));will-change:transform}
@@ -67,7 +67,7 @@ html,body{margin:0;padding:0;background:#fff}
 .txt{position:absolute;left:24px;top:16px;width:400px;z-index:4}
 .logo{height:42px;width:auto;display:block;opacity:0}
 .show-head .logo{animation:fade .6s ease-out both}
-.kicker{margin-top:9px;font:400 15px/1 '${HF}',Impact,sans-serif;letter-spacing:4px;color:#ffd0d8;opacity:0}
+.kicker{margin-top:9px;font:400 16px/1 '${HF}',Impact,sans-serif;letter-spacing:3px;color:#ffd0d8;opacity:0}
 .show-head .kicker{animation:fade .5s .22s ease-out both}
 .head{font:400 42px/1 '${HF}',Impact,sans-serif;letter-spacing:1px;margin-top:5px;white-space:nowrap;text-shadow:0 4px 18px rgba(0,0,0,.55)}
 .ch{display:inline-block;opacity:0;transform:translateY(30px) scale(.6) rotate(8deg)}
@@ -75,7 +75,7 @@ html,body{margin:0;padding:0;background:#fff}
 .sp{display:inline-block;width:.3em}
 @keyframes pop{to{opacity:1;transform:none}}
 @keyframes fade{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
-.sub{margin-top:9px;font:600 14px/1.25 '${TF}',Arial,sans-serif;color:#fff;opacity:0;transform:translateY(8px)}
+.sub{margin-top:9px;font:500 14px/1.25 '${TF}',Arial,sans-serif;color:#fff;opacity:0;transform:translateY(8px)}
 .show-sub .sub{animation:up .5s ease-out both}
 @keyframes up{to{opacity:1;transform:none}}
 /* Şehirler + CTA */

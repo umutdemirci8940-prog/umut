@@ -28,29 +28,31 @@ function resolveAssets(mode) {
     video: pick(S.video),
     poster: S.video && S.video.poster ? pick({ file: S.video.poster, url: S.video.posterUrl }) : null,
     hero: pick(S.hero),
+    heroPos: (S.hero && S.hero.pos) || '50% 50%',
     products: (S.products || []).map((p) => ({ ...p, src: pick(p) })).filter((p) => p.src),
     steam: S.steam || [],
     headFont: null, textFont: null, fontCss: '',
   };
-  // Fontlar: önce sitenin kendi fontu (varsa), sonra src/kfc/fonts altındaki Google Fonts kopyaları
+  // Fontlar: önce sitenin kendi fontları (varsa), yoksa src/kfc/fonts altındaki Google Fonts kopyaları (Anton + Inter)
   const faces = [];
-  if (S.font && S.font.family && (S.font.faces || []).some((f) => has(f.file))) {
-    out.headFont = S.font.family;
-    for (const f of S.font.faces) if (has(f.file)) faces.push({ family: S.font.family, weight: f.weight || 400, style: f.style || 'normal', src: dataUri(f.file), range: f.range });
-  }
-  const gf = path.join(root, 'src', 'kfc', 'fonts', 'fonts.json');
-  if (fs.existsSync(gf)) {
-    for (const f of JSON.parse(fs.readFileSync(gf, 'utf8'))) {
-      const file = path.join(root, 'src', 'kfc', 'fonts', f.file);
-      if (!fs.existsSync(file)) continue;
-      if (f.family === (out.headFont || '')) continue;
-      if (f.family === 'Inter' && ![600, 800].includes(f.weight)) continue;
-      faces.push({ family: f.family, weight: f.weight, style: f.style || 'normal', src: dataUri(file), range: f.unicodeRange });
+  const siteFaces = (S.font && S.font.faces || []).filter((f) => has(f.file));
+  if (siteFaces.length) {
+    for (const f of siteFaces) faces.push({ family: f.family, weight: f.weight || 400, style: f.style || 'normal', src: (mode === 'linked' && f.url) ? f.url : dataUri(f.file), range: f.range });
+    out.headFont = S.font.headFamily || siteFaces[0].family;
+    out.textFont = S.font.textFamily || siteFaces[0].family;
+  } else {
+    const gf = path.join(root, 'src', 'kfc', 'fonts', 'fonts.json');
+    if (fs.existsSync(gf)) {
+      for (const f of JSON.parse(fs.readFileSync(gf, 'utf8'))) {
+        const file = path.join(root, 'src', 'kfc', 'fonts', f.file);
+        if (!fs.existsSync(file)) continue;
+        if (f.family === 'Inter' && ![500, 700].includes(f.weight)) continue;
+        faces.push({ family: f.family, weight: f.weight, style: f.style || 'normal', src: dataUri(file), range: f.unicodeRange });
+      }
     }
+    out.headFont = 'Anton'; out.textFont = 'Inter';
   }
-  out.headFont = out.headFont || (S.font && S.font.headFallback) || 'Anton';
-  out.textFont = (S.font && S.font.textFamily) || 'Inter';
-  out.fontCss = faces.map((f) => `@font-face{font-family:'${f.family}';font-style:${f.style};font-weight:${f.weight};font-display:block;src:url(${f.src}) format('${f.src.startsWith('data:font/woff2') ? 'woff2' : f.src.startsWith('data:font/woff') ? 'woff' : 'truetype'}');${f.range ? `unicode-range:${f.range};` : ''}}`).join('\n');
+  out.fontCss = faces.map((f) => `@font-face{font-family:'${f.family}';font-style:${f.style};font-weight:${f.weight};font-display:block;src:url(${f.src}) format('${/woff2/.test(f.src.slice(0, 40)) || /\.woff2/.test(f.src) ? 'woff2' : 'woff'}');${f.range ? `unicode-range:${f.range};` : ''}}`).join('\n');
   return out;
 }
 
