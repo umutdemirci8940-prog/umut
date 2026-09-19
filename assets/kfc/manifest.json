@@ -1,0 +1,891 @@
+{
+ "base": "https://www.kfcturkiye.com",
+ "fetchedAt": "2026-09-19T19:47:57.613Z",
+ "pages": [
+  {
+   "path": "/",
+   "url": "https://www.kfcturkiye.com/",
+   "status": 403,
+   "finalUrl": "https://www.kfcturkiye.com/",
+   "title": "403 Forbidden",
+   "meta": {},
+   "texts": {
+    "h1": [
+     "403 Forbidden"
+    ],
+    "h2": [],
+    "h3": [],
+    "buttons": [],
+    "strong": []
+   },
+   "fonts": {
+    "body": {
+     "family": "\"Times New Roman\"",
+     "weight": "400",
+     "size": "16px",
+     "color": "rgb(0, 0, 0)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    },
+    "h1": {
+     "family": "\"Times New Roman\"",
+     "weight": "700",
+     "size": "32px",
+     "color": "rgb(0, 0, 0)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    }
+   },
+   "colorHits": {},
+   "videos": [],
+   "iframes": [],
+   "icons": [],
+   "jsonld": [],
+   "cssLinks": [],
+   "scrollHeight": 900,
+   "imgCount": 0,
+   "links": [],
+   "screenshot": "screens/home.jpg",
+   "screenshotTop": "screens/home-top.jpg"
+  },
+  {
+   "path": "/kampanyalar",
+   "url": "https://www.kfcturkiye.com/kampanyalar",
+   "status": 403,
+   "finalUrl": "https://www.kfcturkiye.com/kampanyalar",
+   "title": "403 Forbidden",
+   "meta": {},
+   "texts": {
+    "h1": [
+     "403 Forbidden"
+    ],
+    "h2": [],
+    "h3": [],
+    "buttons": [],
+    "strong": []
+   },
+   "fonts": {
+    "body": {
+     "family": "\"Times New Roman\"",
+     "weight": "400",
+     "size": "16px",
+     "color": "rgb(0, 0, 0)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    },
+    "h1": {
+     "family": "\"Times New Roman\"",
+     "weight": "700",
+     "size": "32px",
+     "color": "rgb(0, 0, 0)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    }
+   },
+   "colorHits": {},
+   "videos": [],
+   "iframes": [],
+   "icons": [],
+   "jsonld": [],
+   "cssLinks": [],
+   "scrollHeight": 900,
+   "imgCount": 0,
+   "links": [],
+   "screenshot": "screens/kampanyalar.jpg",
+   "screenshotTop": "screens/kampanyalar-top.jpg"
+  },
+  {
+   "path": "/restoranlar",
+   "url": "https://www.kfcturkiye.com/restoranlar",
+   "status": 403,
+   "finalUrl": "https://www.kfcturkiye.com/restoranlar",
+   "title": "403 Forbidden",
+   "meta": {},
+   "texts": {
+    "h1": [
+     "403 Forbidden"
+    ],
+    "h2": [],
+    "h3": [],
+    "buttons": [],
+    "strong": []
+   },
+   "fonts": {
+    "body": {
+     "family": "\"Times New Roman\"",
+     "weight": "400",
+     "size": "16px",
+     "color": "rgb(0, 0, 0)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    },
+    "h1": {
+     "family": "\"Times New Roman\"",
+     "weight": "700",
+     "size": "32px",
+     "color": "rgb(0, 0, 0)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    }
+   },
+   "colorHits": {},
+   "videos": [],
+   "iframes": [],
+   "icons": [],
+   "jsonld": [],
+   "cssLinks": [],
+   "scrollHeight": 900,
+   "imgCount": 0,
+   "links": [],
+   "screenshot": "screens/restoranlar.jpg",
+   "screenshotTop": "screens/restoranlar-top.jpg"
+  },
+  {
+   "path": "/kfc-lezzetleri",
+   "url": "https://www.kfcturkiye.com/kfc-lezzetleri",
+   "status": 403,
+   "finalUrl": "https://www.kfcturkiye.com/kfc-lezzetleri",
+   "title": "403 Forbidden",
+   "meta": {},
+   "texts": {
+    "h1": [
+     "403 Forbidden"
+    ],
+    "h2": [],
+    "h3": [],
+    "buttons": [],
+    "strong": []
+   },
+   "fonts": {
+    "body": {
+     "family": "\"Times New Roman\"",
+     "weight": "400",
+     "size": "16px",
+     "color": "rgb(0, 0, 0)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    },
+    "h1": {
+     "family": "\"Times New Roman\"",
+     "weight": "700",
+     "size": "32px",
+     "color": "rgb(0, 0, 0)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    }
+   },
+   "colorHits": {},
+   "videos": [],
+   "iframes": [],
+   "icons": [],
+   "jsonld": [],
+   "cssLinks": [],
+   "scrollHeight": 900,
+   "imgCount": 0,
+   "links": [],
+   "screenshot": "screens/kfc-lezzetleri.jpg",
+   "screenshotTop": "screens/kfc-lezzetleri-top.jpg"
+  },
+  {
+   "path": "/menu",
+   "url": "https://www.kfcturkiye.com/menu",
+   "status": 403,
+   "finalUrl": "https://www.kfcturkiye.com/menu",
+   "title": "403 Forbidden",
+   "meta": {},
+   "texts": {
+    "h1": [
+     "403 Forbidden"
+    ],
+    "h2": [],
+    "h3": [],
+    "buttons": [],
+    "strong": []
+   },
+   "fonts": {
+    "body": {
+     "family": "\"Times New Roman\"",
+     "weight": "400",
+     "size": "16px",
+     "color": "rgb(0, 0, 0)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    },
+    "h1": {
+     "family": "\"Times New Roman\"",
+     "weight": "700",
+     "size": "32px",
+     "color": "rgb(0, 0, 0)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    }
+   },
+   "colorHits": {},
+   "videos": [],
+   "iframes": [],
+   "icons": [],
+   "jsonld": [],
+   "cssLinks": [],
+   "scrollHeight": 900,
+   "imgCount": 0,
+   "links": [],
+   "screenshot": "screens/menu.jpg",
+   "screenshotTop": "screens/menu-top.jpg"
+  },
+  {
+   "path": "/menu/firsatlar",
+   "url": "https://www.kfcturkiye.com/menu/firsatlar",
+   "status": 403,
+   "finalUrl": "https://www.kfcturkiye.com/menu/firsatlar",
+   "title": "403 Forbidden",
+   "meta": {},
+   "texts": {
+    "h1": [
+     "403 Forbidden"
+    ],
+    "h2": [],
+    "h3": [],
+    "buttons": [],
+    "strong": []
+   },
+   "fonts": {
+    "body": {
+     "family": "\"Times New Roman\"",
+     "weight": "400",
+     "size": "16px",
+     "color": "rgb(0, 0, 0)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    },
+    "h1": {
+     "family": "\"Times New Roman\"",
+     "weight": "700",
+     "size": "32px",
+     "color": "rgb(0, 0, 0)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    }
+   },
+   "colorHits": {},
+   "videos": [],
+   "iframes": [],
+   "icons": [],
+   "jsonld": [],
+   "cssLinks": [],
+   "scrollHeight": 900,
+   "imgCount": 0,
+   "links": [],
+   "screenshot": "screens/menu-firsatlar.jpg",
+   "screenshotTop": "screens/menu-firsatlar-top.jpg"
+  },
+  {
+   "path": "/menu/kovalar",
+   "url": "https://www.kfcturkiye.com/menu/kovalar",
+   "status": 403,
+   "finalUrl": "https://www.kfcturkiye.com/menu/kovalar",
+   "title": "403 Forbidden",
+   "meta": {},
+   "texts": {
+    "h1": [
+     "403 Forbidden"
+    ],
+    "h2": [],
+    "h3": [],
+    "buttons": [],
+    "strong": []
+   },
+   "fonts": {
+    "body": {
+     "family": "\"Times New Roman\"",
+     "weight": "400",
+     "size": "16px",
+     "color": "rgb(0, 0, 0)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    },
+    "h1": {
+     "family": "\"Times New Roman\"",
+     "weight": "700",
+     "size": "32px",
+     "color": "rgb(0, 0, 0)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    }
+   },
+   "colorHits": {},
+   "videos": [],
+   "iframes": [],
+   "icons": [],
+   "jsonld": [],
+   "cssLinks": [],
+   "scrollHeight": 900,
+   "imgCount": 0,
+   "links": [],
+   "screenshot": "screens/menu-kovalar.jpg",
+   "screenshotTop": "screens/menu-kovalar-top.jpg"
+  },
+  {
+   "path": "/menu/burgerler",
+   "url": "https://www.kfcturkiye.com/menu/burgerler",
+   "status": 403,
+   "finalUrl": "https://www.kfcturkiye.com/menu/burgerler",
+   "title": "403 Forbidden",
+   "meta": {},
+   "texts": {
+    "h1": [
+     "403 Forbidden"
+    ],
+    "h2": [],
+    "h3": [],
+    "buttons": [],
+    "strong": []
+   },
+   "fonts": {
+    "body": {
+     "family": "\"Times New Roman\"",
+     "weight": "400",
+     "size": "16px",
+     "color": "rgb(0, 0, 0)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    },
+    "h1": {
+     "family": "\"Times New Roman\"",
+     "weight": "700",
+     "size": "32px",
+     "color": "rgb(0, 0, 0)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    }
+   },
+   "colorHits": {},
+   "videos": [],
+   "iframes": [],
+   "icons": [],
+   "jsonld": [],
+   "cssLinks": [],
+   "scrollHeight": 900,
+   "imgCount": 0,
+   "links": [],
+   "screenshot": "screens/menu-burgerler.jpg",
+   "screenshotTop": "screens/menu-burgerler-top.jpg"
+  },
+  {
+   "path": "/menu/wrapler",
+   "url": "https://www.kfcturkiye.com/menu/wrapler",
+   "status": 403,
+   "finalUrl": "https://www.kfcturkiye.com/menu/wrapler",
+   "title": "403 Forbidden",
+   "meta": {},
+   "texts": {
+    "h1": [
+     "403 Forbidden"
+    ],
+    "h2": [],
+    "h3": [],
+    "buttons": [],
+    "strong": []
+   },
+   "fonts": {
+    "body": {
+     "family": "\"Times New Roman\"",
+     "weight": "400",
+     "size": "16px",
+     "color": "rgb(0, 0, 0)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    },
+    "h1": {
+     "family": "\"Times New Roman\"",
+     "weight": "700",
+     "size": "32px",
+     "color": "rgb(0, 0, 0)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    }
+   },
+   "colorHits": {},
+   "videos": [],
+   "iframes": [],
+   "icons": [],
+   "jsonld": [],
+   "cssLinks": [],
+   "scrollHeight": 900,
+   "imgCount": 0,
+   "links": [],
+   "screenshot": "screens/menu-wrapler.jpg",
+   "screenshotTop": "screens/menu-wrapler-top.jpg"
+  },
+  {
+   "path": "/menu/kutular",
+   "url": "https://www.kfcturkiye.com/menu/kutular",
+   "status": 403,
+   "finalUrl": "https://www.kfcturkiye.com/menu/kutular",
+   "title": "403 Forbidden",
+   "meta": {},
+   "texts": {
+    "h1": [
+     "403 Forbidden"
+    ],
+    "h2": [],
+    "h3": [],
+    "buttons": [],
+    "strong": []
+   },
+   "fonts": {
+    "body": {
+     "family": "\"Times New Roman\"",
+     "weight": "400",
+     "size": "16px",
+     "color": "rgb(0, 0, 0)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    },
+    "h1": {
+     "family": "\"Times New Roman\"",
+     "weight": "700",
+     "size": "32px",
+     "color": "rgb(0, 0, 0)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    }
+   },
+   "colorHits": {},
+   "videos": [],
+   "iframes": [],
+   "icons": [],
+   "jsonld": [],
+   "cssLinks": [],
+   "scrollHeight": 900,
+   "imgCount": 0,
+   "links": [],
+   "screenshot": "screens/menu-kutular.jpg",
+   "screenshotTop": "screens/menu-kutular-top.jpg"
+  },
+  {
+   "path": "/menu/sosla-tavuklar",
+   "url": "https://www.kfcturkiye.com/menu/sosla-tavuklar",
+   "status": 403,
+   "finalUrl": "https://www.kfcturkiye.com/menu/sosla-tavuklar",
+   "title": "403 Forbidden",
+   "meta": {},
+   "texts": {
+    "h1": [
+     "403 Forbidden"
+    ],
+    "h2": [],
+    "h3": [],
+    "buttons": [],
+    "strong": []
+   },
+   "fonts": {
+    "body": {
+     "family": "\"Times New Roman\"",
+     "weight": "400",
+     "size": "16px",
+     "color": "rgb(0, 0, 0)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    },
+    "h1": {
+     "family": "\"Times New Roman\"",
+     "weight": "700",
+     "size": "32px",
+     "color": "rgb(0, 0, 0)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    }
+   },
+   "colorHits": {},
+   "videos": [],
+   "iframes": [],
+   "icons": [],
+   "jsonld": [],
+   "cssLinks": [],
+   "scrollHeight": 900,
+   "imgCount": 0,
+   "links": [],
+   "screenshot": "screens/menu-sosla-tavuklar.jpg",
+   "screenshotTop": "screens/menu-sosla-tavuklar-top.jpg"
+  },
+  {
+   "path": "/menu/yan-urunler-ve-tatlilar",
+   "url": "https://www.kfcturkiye.com/menu/yan-urunler-ve-tatlilar",
+   "status": 403,
+   "finalUrl": "https://www.kfcturkiye.com/menu/yan-urunler-ve-tatlilar",
+   "title": "403 Forbidden",
+   "meta": {},
+   "texts": {
+    "h1": [
+     "403 Forbidden"
+    ],
+    "h2": [],
+    "h3": [],
+    "buttons": [],
+    "strong": []
+   },
+   "fonts": {
+    "body": {
+     "family": "\"Times New Roman\"",
+     "weight": "400",
+     "size": "16px",
+     "color": "rgb(0, 0, 0)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    },
+    "h1": {
+     "family": "\"Times New Roman\"",
+     "weight": "700",
+     "size": "32px",
+     "color": "rgb(0, 0, 0)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    }
+   },
+   "colorHits": {},
+   "videos": [],
+   "iframes": [],
+   "icons": [],
+   "jsonld": [],
+   "cssLinks": [],
+   "scrollHeight": 900,
+   "imgCount": 0,
+   "links": [],
+   "screenshot": "screens/menu-yan-urunler-ve-tatlilar.jpg",
+   "screenshotTop": "screens/menu-yan-urunler-ve-tatlilar-top.jpg"
+  },
+  {
+   "path": "/menu/icecekler",
+   "url": "https://www.kfcturkiye.com/menu/icecekler",
+   "status": 403,
+   "finalUrl": "https://www.kfcturkiye.com/menu/icecekler",
+   "title": "403 Forbidden",
+   "meta": {},
+   "texts": {
+    "h1": [
+     "403 Forbidden"
+    ],
+    "h2": [],
+    "h3": [],
+    "buttons": [],
+    "strong": []
+   },
+   "fonts": {
+    "body": {
+     "family": "\"Times New Roman\"",
+     "weight": "400",
+     "size": "16px",
+     "color": "rgb(0, 0, 0)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    },
+    "h1": {
+     "family": "\"Times New Roman\"",
+     "weight": "700",
+     "size": "32px",
+     "color": "rgb(0, 0, 0)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    }
+   },
+   "colorHits": {},
+   "videos": [],
+   "iframes": [],
+   "icons": [],
+   "jsonld": [],
+   "cssLinks": [],
+   "scrollHeight": 900,
+   "imgCount": 0,
+   "links": [],
+   "screenshot": "screens/menu-icecekler.jpg",
+   "screenshotTop": "screens/menu-icecekler-top.jpg"
+  },
+  {
+   "path": "/kampanya/lezzet-carki",
+   "url": "https://www.kfcturkiye.com/kampanya/lezzet-carki",
+   "status": 403,
+   "finalUrl": "https://www.kfcturkiye.com/kampanya/lezzet-carki",
+   "title": "403 Forbidden",
+   "meta": {},
+   "texts": {
+    "h1": [
+     "403 Forbidden"
+    ],
+    "h2": [],
+    "h3": [],
+    "buttons": [],
+    "strong": []
+   },
+   "fonts": {
+    "body": {
+     "family": "\"Times New Roman\"",
+     "weight": "400",
+     "size": "16px",
+     "color": "rgb(0, 0, 0)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    },
+    "h1": {
+     "family": "\"Times New Roman\"",
+     "weight": "700",
+     "size": "32px",
+     "color": "rgb(0, 0, 0)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    }
+   },
+   "colorHits": {},
+   "videos": [],
+   "iframes": [],
+   "icons": [],
+   "jsonld": [],
+   "cssLinks": [],
+   "scrollHeight": 900,
+   "imgCount": 0,
+   "links": [],
+   "screenshot": "screens/kampanya-lezzet-carki.jpg",
+   "screenshotTop": "screens/kampanya-lezzet-carki-top.jpg"
+  },
+  {
+   "path": "/kampanya/haftanin-lezzet-firsatlari",
+   "url": "https://www.kfcturkiye.com/kampanya/haftanin-lezzet-firsatlari",
+   "status": 403,
+   "finalUrl": "https://www.kfcturkiye.com/kampanya/haftanin-lezzet-firsatlari",
+   "title": "403 Forbidden",
+   "meta": {},
+   "texts": {
+    "h1": [
+     "403 Forbidden"
+    ],
+    "h2": [],
+    "h3": [],
+    "buttons": [],
+    "strong": []
+   },
+   "fonts": {
+    "body": {
+     "family": "\"Times New Roman\"",
+     "weight": "400",
+     "size": "16px",
+     "color": "rgb(0, 0, 0)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    },
+    "h1": {
+     "family": "\"Times New Roman\"",
+     "weight": "700",
+     "size": "32px",
+     "color": "rgb(0, 0, 0)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    }
+   },
+   "colorHits": {},
+   "videos": [],
+   "iframes": [],
+   "icons": [],
+   "jsonld": [],
+   "cssLinks": [],
+   "scrollHeight": 900,
+   "imgCount": 0,
+   "links": [],
+   "screenshot": "screens/kampanya-haftanin-lezzet-firsatlari.jpg",
+   "screenshotTop": "screens/kampanya-haftanin-lezzet-firsatlari-top.jpg"
+  },
+  {
+   "path": "/kfc-hakkinda",
+   "url": "https://www.kfcturkiye.com/kfc-hakkinda",
+   "status": 403,
+   "finalUrl": "https://www.kfcturkiye.com/kfc-hakkinda",
+   "title": "403 Forbidden",
+   "meta": {},
+   "texts": {
+    "h1": [
+     "403 Forbidden"
+    ],
+    "h2": [],
+    "h3": [],
+    "buttons": [],
+    "strong": []
+   },
+   "fonts": {
+    "body": {
+     "family": "\"Times New Roman\"",
+     "weight": "400",
+     "size": "16px",
+     "color": "rgb(0, 0, 0)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    },
+    "h1": {
+     "family": "\"Times New Roman\"",
+     "weight": "700",
+     "size": "32px",
+     "color": "rgb(0, 0, 0)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    }
+   },
+   "colorHits": {},
+   "videos": [],
+   "iframes": [],
+   "icons": [],
+   "jsonld": [],
+   "cssLinks": [],
+   "scrollHeight": 900,
+   "imgCount": 0,
+   "links": [],
+   "screenshot": "screens/kfc-hakkinda.jpg",
+   "screenshotTop": "screens/kfc-hakkinda-top.jpg"
+  },
+  {
+   "path": "/hd-holding-hakkinda",
+   "url": "https://www.kfcturkiye.com/hd-holding-hakkinda",
+   "status": 403,
+   "finalUrl": "https://www.kfcturkiye.com/hd-holding-hakkinda",
+   "title": "403 Forbidden",
+   "meta": {},
+   "texts": {
+    "h1": [
+     "403 Forbidden"
+    ],
+    "h2": [],
+    "h3": [],
+    "buttons": [],
+    "strong": []
+   },
+   "fonts": {
+    "body": {
+     "family": "\"Times New Roman\"",
+     "weight": "400",
+     "size": "16px",
+     "color": "rgb(0, 0, 0)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    },
+    "h1": {
+     "family": "\"Times New Roman\"",
+     "weight": "700",
+     "size": "32px",
+     "color": "rgb(0, 0, 0)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    }
+   },
+   "colorHits": {},
+   "videos": [],
+   "iframes": [],
+   "icons": [],
+   "jsonld": [],
+   "cssLinks": [],
+   "scrollHeight": 900,
+   "imgCount": 0,
+   "links": [],
+   "screenshot": "screens/hd-holding-hakkinda.jpg",
+   "screenshotTop": "screens/hd-holding-hakkinda-top.jpg"
+  },
+  {
+   "path": "/hikayemiz",
+   "url": "https://www.kfcturkiye.com/hikayemiz",
+   "status": 403,
+   "finalUrl": "https://www.kfcturkiye.com/hikayemiz",
+   "title": "403 Forbidden",
+   "meta": {},
+   "texts": {
+    "h1": [
+     "403 Forbidden"
+    ],
+    "h2": [],
+    "h3": [],
+    "buttons": [],
+    "strong": []
+   },
+   "fonts": {
+    "body": {
+     "family": "\"Times New Roman\"",
+     "weight": "400",
+     "size": "16px",
+     "color": "rgb(0, 0, 0)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    },
+    "h1": {
+     "family": "\"Times New Roman\"",
+     "weight": "700",
+     "size": "32px",
+     "color": "rgb(0, 0, 0)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    }
+   },
+   "colorHits": {},
+   "videos": [],
+   "iframes": [],
+   "icons": [],
+   "jsonld": [],
+   "cssLinks": [],
+   "scrollHeight": 900,
+   "imgCount": 0,
+   "links": [],
+   "screenshot": "screens/hikayemiz.jpg",
+   "screenshotTop": "screens/hikayemiz-top.jpg"
+  },
+  {
+   "path": "/degerlerimiz",
+   "url": "https://www.kfcturkiye.com/degerlerimiz",
+   "status": 403,
+   "finalUrl": "https://www.kfcturkiye.com/degerlerimiz",
+   "title": "403 Forbidden",
+   "meta": {},
+   "texts": {
+    "h1": [
+     "403 Forbidden"
+    ],
+    "h2": [],
+    "h3": [],
+    "buttons": [],
+    "strong": []
+   },
+   "fonts": {
+    "body": {
+     "family": "\"Times New Roman\"",
+     "weight": "400",
+     "size": "16px",
+     "color": "rgb(0, 0, 0)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    },
+    "h1": {
+     "family": "\"Times New Roman\"",
+     "weight": "700",
+     "size": "32px",
+     "color": "rgb(0, 0, 0)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "transform": "none"
+    }
+   },
+   "colorHits": {},
+   "videos": [],
+   "iframes": [],
+   "icons": [],
+   "jsonld": [],
+   "cssLinks": [],
+   "scrollHeight": 900,
+   "imgCount": 0,
+   "links": [],
+   "screenshot": "screens/degerlerimiz.jpg",
+   "screenshotTop": "screens/degerlerimiz-top.jpg"
+  }
+ ],
+ "media": [],
+ "videos": [],
+ "fonts": [],
+ "api": [],
+ "theme": {
+  "fonts": [],
+  "colors": [],
+  "fontFaces": [],
+  "cssFiles": []
+ },
+ "errors": []
+}
