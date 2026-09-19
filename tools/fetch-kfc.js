@@ -34,7 +34,8 @@ const MAX_TOTAL = (+args['max-total-mb'] || 400) * 1024 * 1024;
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36';
 
 const root = path.join(__dirname, '..');
-const out = path.join(root, 'assets', 'kfc');
+const out = args.out ? path.resolve(root, String(args.out)) : path.join(root, 'assets', 'kfc');
+const PAGES_ONLY = !!args['pages-only']; // yalnız sayfa gezme + ekran görüntüsü; görsel indirme sınırlı
 const dirs = { screens: 'screens', img: 'img', video: 'video', fonts: 'fonts', api: 'api', svg: 'svg' };
 for (const d of Object.values(dirs)) fs.mkdirSync(path.join(out, d), { recursive: true });
 
@@ -230,7 +231,9 @@ const noteMedia = (url, kind, extra = {}, page = '') => {
   const all = [...media.values()];
   const primary = all.filter(seenOnPage);
   const cdxOnly = all.filter((m) => !seenOnPage(m)).filter((m) => m.kind !== 'image' || (m.attrs.archiveLen || 0) >= 2500 || /logo/i.test(m.url)).sort((a, b) => (b.attrs.archiveLen || 0) - (a.attrs.archiveLen || 0));
-  const list = [...primary, ...cdxOnly.filter((m) => m.kind !== 'image').concat(cdxOnly.filter((m) => m.kind === 'image').slice(0, MAX_CDX_IMG))];
+  const list = PAGES_ONLY
+    ? [...primary.filter((m) => m.kind !== 'image'), ...primary.filter((m) => m.kind === 'image').slice(0, 160), ...cdxOnly.filter((m) => m.kind === 'video')]
+    : [...primary, ...cdxOnly.filter((m) => m.kind !== 'image').concat(cdxOnly.filter((m) => m.kind === 'image').slice(0, MAX_CDX_IMG))];
   manifest.candidates = { total: all.length, onPage: primary.length, cdxOnly: cdxOnly.length, queued: list.length };
   console.log(`\n${all.length} varlık adayı (${primary.length} sayfada görülen, ${cdxOnly.length} yalnız dizinde); ${list.length} tanesi indiriliyor…`);
   for (const m of list) {

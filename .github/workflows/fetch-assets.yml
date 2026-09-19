@@ -18,6 +18,16 @@ on:
       page_budget_min:
         description: Sayfa gezme süre bütçesi (dk)
         default: '10'
+      hosts:
+        description: Denenecek alan adları (virgülle; boş = varsayılan liste)
+        default: ''
+      pages_only:
+        description: Yalnız sayfaları gez (ekran görüntüsü + sınırlı indirme)
+        type: boolean
+        default: false
+      out_dir:
+        description: Çıktı klasörü
+        default: 'assets/kfc'
 
 permissions:
   contents: write
@@ -50,19 +60,19 @@ jobs:
           ffmpeg -version | head -1
 
       - name: Siteyi gez, varlıkları topla
-        run: node tools/fetch-kfc.js --max-video-mb=${{ inputs.max_video_mb }} --max-total-mb=${{ inputs.max_total_mb }} --budget-min=${{ inputs.budget_min }} --page-budget-min=${{ inputs.page_budget_min }}
+        run: node tools/fetch-kfc.js --max-video-mb=${{ inputs.max_video_mb }} --max-total-mb=${{ inputs.max_total_mb }} --budget-min=${{ inputs.budget_min }} --page-budget-min=${{ inputs.page_budget_min }} --out=${{ inputs.out_dir }} ${{ inputs.hosts != '' && format('--hosts={0}', inputs.hosts) || '' }} ${{ inputs.pages_only && '--pages-only' || '' }}
 
       - name: Özet
         if: always()
         run: |
-          node -e "const m=require('./assets/kfc/manifest.json');console.log('hosts',m.hostStatus,'archive',m.archiveMode,m.homeTs,'cdx',m.cdx&&m.cdx.counts);console.log('pages',m.pages.map(p=>[p.path,p.status,(p.title||'').slice(0,40),p.imgCount]));console.log('videos',m.videos.map(v=>[v.file,v.w,v.h,v.duration,v.derived]));console.log('fonts',m.theme.fontFaces.map(f=>f.family+' '+f.weight));console.log('colors',m.theme.colors.slice(0,15));console.log('errors',m.errors)"
-          du -sh assets/kfc assets/kfc/* | sort -h | tail -12
+          node -e "const m=require(process.cwd()+'/${{ inputs.out_dir }}/manifest.json');console.log('hosts',m.hostStatus,'archive',m.archiveMode,m.homeTs,'cdx',m.cdx&&m.cdx.counts);console.log('pages',m.pages.map(p=>[p.path,p.status,(p.title||'').slice(0,40),p.imgCount]));console.log('videos',m.videos.map(v=>[v.file,v.w,v.h,v.duration,v.derived]));console.log('fonts',m.theme.fontFaces.map(f=>f.family+' '+f.weight));console.log('colors',m.theme.colors.slice(0,15));console.log('errors',m.errors)"
+          du -sh ${{ inputs.out_dir }} ${{ inputs.out_dir }}/* | sort -h | tail -12
 
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: kfc-assets
-          path: assets/kfc
+          name: kfc-assets-${{ github.run_number }}
+          path: ${{ inputs.out_dir }}
           if-no-files-found: error
 
       - name: Sonuçları dala push'la
@@ -70,8 +80,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A assets/kfc
-          git commit -m "KFC: siteden toplanan görsel, video, logo ve font varlıkları (GitHub Actions)" || { echo "Değişiklik yok"; exit 0; }
+          git add -A "${{ inputs.out_dir }}"
+          git commit -m "KFC: siteden toplanan görsel, video, logo ve font varlıkları (GitHub Actions, ${{ inputs.out_dir }})" || { echo "Değişiklik yok"; exit 0; }
           # Aynı anda biten başka bir koşu manifesti değiştirmişse kendi sürümümüzü koru (-X theirs = bu koşunun commit'i)
-          git pull --rebase -X theirs origin "${GITHUB_REF_NAME}" || { git rebase --abort || true; git fetch origin "${GITHUB_REF_NAME}"; git reset --soft "origin/${GITHUB_REF_NAME}"; git add -A assets/kfc; git commit -m "KFC: siteden toplanan varlıklar (GitHub Actions, çakışma sonrası)"; }
+          git pull --rebase -X theirs origin "${GITHUB_REF_NAME}" || { git rebase --abort || true; git fetch origin "${GITHUB_REF_NAME}"; git reset --soft "origin/${GITHUB_REF_NAME}"; git add -A "${{ inputs.out_dir }}"; git commit -m "KFC: siteden toplanan varlıklar (GitHub Actions, çakışma sonrası)"; }
           git push origin HEAD:"${GITHUB_REF_NAME}"
