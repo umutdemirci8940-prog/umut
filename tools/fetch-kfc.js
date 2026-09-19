@@ -128,9 +128,12 @@ const noteMedia = (url, kind, extra = {}, page = '') => {
   // Arşivde görülen menü/kampanya sayfalarını gezinti kuyruğuna ekle
   const extraPaths = cdxPages.map((r) => { try { return new URL(r.url).pathname.replace(/\/$/, '') || '/'; } catch { return null; } }).filter((p) => p && /^\/(menu|kampanya|urun|lezzet|kova|restoran)/i.test(p));
   const page = await ctx.newPage();
+  const MAX_PAGES = +args['max-pages'] || (archiveMode ? 14 : 40);
+  const PAGE_BUDGET = (+args['page-budget-min'] || 12) * 60000; const tp0 = Date.now();
   const visited = new Set(); const queue = [...SEED, ...[...new Set(extraPaths)].slice(0, 25)];
   const discovered = new Set();
-  while (queue.length && visited.size < 40) {
+  while (queue.length && visited.size < MAX_PAGES) {
+    if (Date.now() - tp0 > PAGE_BUDGET) { manifest.errors.push(`sayfa süre bütçesi doldu; kalan: ${queue.slice(0, 30).join(' ')}`); break; }
     const p = queue.shift(); if (visited.has(p)) continue; visited.add(p);
     const url = BASE + p; const rec = { path: p, url, status: null };
     const navUrl = archiveMode ? `${WB}/web/${homeTs}/${url}` : url;
@@ -140,19 +143,19 @@ const noteMedia = (url, kind, extra = {}, page = '') => {
       rec.status = res ? res.status() : null; rec.finalUrl = orig(page.url()); rec.archived = archiveMode; rec.archiveTs = tsOf(page.url());
       if (archiveMode && rec.status === 404) { rec.error = 'arşivde yok'; manifest.pages.push(rec); console.log('  ✗ arşivde yok'); continue; }
       if (archiveMode) await page.evaluate(() => { const t = document.getElementById('wm-ipp-base'); if (t) t.remove(); const s = document.getElementById('wm-ipp-print'); if (s) s.remove(); document.querySelectorAll('#donato, #wm-ipp').forEach((e) => e.remove()); }).catch(() => {});
-      await page.waitForLoadState('networkidle', { timeout: 15000 }).catch(() => {});
-      await sleep(1200);
+      await page.waitForLoadState('networkidle', { timeout: archiveMode ? 8000 : 15000 }).catch(() => {});
+      await sleep(archiveMode ? 600 : 1200);
       // Çerez uyarısını kapatmayı dene
       for (const sel of ['button:has-text("Kabul")', 'button:has-text("Tümünü Kabul")', 'button:has-text("Accept")', '#onetrust-accept-btn-handler', '.cookie button', '[class*="cookie"] button']) {
         try { const b = page.locator(sel).first(); if (await b.isVisible({ timeout: 500 })) { await b.click({ timeout: 1500 }); await sleep(500); break; } } catch { /* yok */ }
       }
       // Tembel yüklemeleri tetiklemek için kaydır
       const total = await page.evaluate(() => document.documentElement.scrollHeight);
-      for (let y = 0; y < Math.min(total, 12000); y += 500) { await page.evaluate((yy) => window.scrollTo(0, yy), y); await sleep(180); }
-      await page.evaluate(() => window.scrollTo(0, 0)); await sleep(800);
-      await page.waitForLoadState('networkidle', { timeout: 10000 }).catch(() => {});
+      for (let y = 0; y < Math.min(total, archiveMode ? 8000 : 12000); y += archiveMode ? 700 : 500) { await page.evaluate((yy) => window.scrollTo(0, yy), y); await sleep(archiveMode ? 120 : 180); }
+      await page.evaluate(() => window.scrollTo(0, 0)); await sleep(archiveMode ? 400 : 800);
+      await page.waitForLoadState('networkidle', { timeout: archiveMode ? 6000 : 10000 }).catch(() => {});
       // Slider/karusel varsa birkaç adım ilerlet (yeni görseller yüklensin)
-      for (let i = 0; i < 6; i++) {
+      for (let i = 0; i < (archiveMode ? 3 : 6); i++) {
         const clicked = await page.evaluate(() => {
           const cand = [...document.querySelectorAll('button, a, div')].filter((e) => /next|sonraki|ileri|swiper-button-next|slick-next|arrow-right|carousel-control-next/i.test(e.className + ' ' + (e.getAttribute('aria-label') || '')));
           const v = cand.find((e) => { const r = e.getBoundingClientRect(); return r.width > 4 && r.height > 4; });

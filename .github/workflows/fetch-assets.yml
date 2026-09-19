@@ -14,13 +14,16 @@ on:
         default: '400'
       budget_min:
         description: İndirme aşaması süre bütçesi (dk)
-        default: '20'
+        default: '18'
+      page_budget_min:
+        description: Sayfa gezme süre bütçesi (dk)
+        default: '10'
 
 permissions:
   contents: write
 
 concurrency:
-  group: fetch-kfc-${{ github.ref }}
+  group: fetch-kfc-${{ github.ref }}-${{ github.run_id }}
   cancel-in-progress: false
 
 jobs:
@@ -47,7 +50,7 @@ jobs:
           ffmpeg -version | head -1
 
       - name: Siteyi gez, varlıkları topla
-        run: node tools/fetch-kfc.js --max-video-mb=${{ inputs.max_video_mb }} --max-total-mb=${{ inputs.max_total_mb }} --budget-min=${{ inputs.budget_min }}
+        run: node tools/fetch-kfc.js --max-video-mb=${{ inputs.max_video_mb }} --max-total-mb=${{ inputs.max_total_mb }} --budget-min=${{ inputs.budget_min }} --page-budget-min=${{ inputs.page_budget_min }}
 
       - name: Özet
         if: always()
@@ -69,5 +72,6 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A assets/kfc
           git commit -m "KFC: siteden toplanan görsel, video, logo ve font varlıkları (GitHub Actions)" || { echo "Değişiklik yok"; exit 0; }
-          git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          # Aynı anda biten başka bir koşu manifesti değiştirmişse kendi sürümümüzü koru (-X theirs = bu koşunun commit'i)
+          git pull --rebase -X theirs origin "${GITHUB_REF_NAME}" || { git rebase --abort || true; git fetch origin "${GITHUB_REF_NAME}"; git reset --soft "origin/${GITHUB_REF_NAME}"; git add -A assets/kfc; git commit -m "KFC: siteden toplanan varlıklar (GitHub Actions, çakışma sonrası)"; }
           git push origin HEAD:"${GITHUB_REF_NAME}"
