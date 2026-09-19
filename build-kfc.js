@@ -30,6 +30,15 @@ function resolveAssets(mode) {
     hero: pick(S.hero),
     heroPos: (S.hero && S.hero.pos) || '50% 50%',
     products: (S.products || []).map((p) => ({ ...p, src: pick(p) })).filter((p) => p.src),
+    slides: (S.slides || []).map((sl) => {
+      const useWebm = !!args.webm;
+      let video = null, type = 'video/mp4';
+      if (mode === 'linked' && sl.url) { video = sl.url; type = /\.webm(\?|$)/i.test(sl.url) ? 'video/webm' : 'video/mp4'; }
+      else if (useWebm && has(sl.webm)) { video = dataUri(sl.webm); type = 'video/webm'; }
+      else if (has(sl.file)) { video = dataUri(sl.file); }
+      return { name: sl.name, video, type, thumb: pick(sl.thumb) };
+    }).filter((sl) => sl.video && sl.thumb),
+    videoScale: S.videoScale, videoX: S.videoX,
     steam: S.steam || [],
     headFont: null, textFont: null, fontCss: '',
   };
@@ -60,14 +69,17 @@ const outDir = path.join(root, 'dist', 'kfc-970x250');
 fs.mkdirSync(outDir, { recursive: true });
 fs.mkdirSync(path.join(root, 'release'), { recursive: true });
 const report = [];
-for (const mode of ['embed', 'linked']) {
+// --webm: yalnızca yerel test sürümü (Playwright Chromium H.264 çözemez) → index-test.html
+const targets = args.webm ? [['embed', 'index-test.html']] : [['embed', 'index.html'], ['linked', 'index-linked.html']];
+for (const [mode, name] of targets) {
   const assets = resolveAssets(mode);
   const html = render({ data: D, assets });
-  const file = path.join(outDir, mode === 'embed' ? 'index.html' : 'index-linked.html');
+  const file = path.join(outDir, name);
   fs.writeFileSync(file, html);
-  report.push([path.relative(root, file), (Buffer.byteLength(html) / 1024).toFixed(0) + ' KB', `logo:${!!assets.logo} video:${!!assets.video} hero:${!!assets.hero} ürün:${assets.products.length} font:${assets.headFont}/${assets.textFont}`]);
-  if (mode === 'embed') fs.copyFileSync(file, path.join(root, 'release', 'kfc-970x250.html'));
+  report.push([path.relative(root, file), (Buffer.byteLength(html) / 1024).toFixed(0) + ' KB', `logo:${!!assets.logo} video:${assets.slides.length} hero:${!!assets.hero} ürün:${assets.products.length} font:${assets.headFont}/${assets.textFont}`]);
+  if (mode === 'embed' && !args.webm) fs.copyFileSync(file, path.join(root, 'release', 'kfc-970x250.html'));
 }
+if (args.webm) { for (const r of report) console.log(r.join('  ')); process.exit(0); }
 for (const r of report) console.log(r.join('  '));
 // Reklam ağlarına yükleme için zip (içinde index.html)
 try {

@@ -4,3 +4,4 @@ preview/video/
 .DS_Store
 release/stage/
 assets/kfc-placeholder/
+dist/kfc-970x250/index-test.html

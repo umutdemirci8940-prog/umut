@@ -57,9 +57,18 @@ const MOMENTS = [['00-kepenk', 300], ['01-tabela', 1150], ['02-aciliyor', 1650],
   console.log('sürükleme sonrası açık mı:', st2.opened, st2.cls);
   await page.waitForTimeout(1500);
   await page.screenshot({ path: path.join(out, '11-surukleme-sonrasi.jpg'), type: 'jpeg', quality: 88 });
-  // Video oynuyor mu
-  const v = await page.evaluate(() => { const v = document.querySelector('video'); return v ? { ok: v.classList.contains('ok'), paused: v.paused, t: v.currentTime, w: v.videoWidth, h: v.videoHeight, err: v.error && v.error.code } : 'video yok'; });
-  console.log('video:', v);
+  // Video oynuyor mu + ürün seçici
+  const vinfo = () => page.evaluate(() => [...document.querySelectorAll('.bg video')].map((v) => ({ on: v.classList.contains('on'), ok: v.classList.contains('ok'), paused: v.paused, t: +v.currentTime.toFixed(2), w: v.videoWidth, h: v.videoHeight, err: v.error && v.error.code })));
+  await page.waitForTimeout(600);
+  console.log('videolar:', JSON.stringify(await vinfo()));
+  const th = page.locator('.th').nth(2);
+  if (await th.count()) {
+    await th.hover(); await page.waitForTimeout(900);
+    const st3 = await page.evaluate(() => window.__kfc.state());
+    const label = await page.evaluate(() => document.querySelector('.vlabel') && document.querySelector('.vlabel').textContent.trim());
+    console.log('ürün seçici (3. slayt aktif olmalı):', st3.slide, '|', label, '|', JSON.stringify((await vinfo()).map((v) => [v.on, v.ok, v.paused])));
+    await page.screenshot({ path: path.join(out, '13-urun-secici.jpg'), type: 'jpeg', quality: 88 });
+  }
   // Azaltılmış hareket: doğrudan son kare, hata yok
   const rmCtx = await browser.newContext({ viewport: { width: 970, height: 250 }, reducedMotion: 'reduce' });
   const rmPage = await rmCtx.newPage(); rmPage.on('pageerror', (e) => errors.push('rm pageerror: ' + e.message));

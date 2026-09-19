@@ -2,22 +2,22 @@
 
 [kfcturkiye.com](https://www.kfcturkiye.com/) için hazırlanmış, **şubelerin yeniden açılışını** anlatan tek dosyalık, animasyonlu ve etkileşimli HTML5 billboard (970×250).
 
-**Teslim:** `release/kfc-970x250.html` (tek dosya, tüm görsel/video/fontlar gömülü; açınca yalnızca 970×250 çalışma görünür) · `release/kfc-970x250.zip` (reklam ağına yüklenecek `index.html`) · `dist/kfc-970x250/index-linked.html` (varlıkları gömmek yerine doğrudan sitedeki adreslerden yükleyen sürüm).
+**Teslim:** `release/kfc-970x250.html` (tek dosya ~3 MB; sitenin 4 kampanya videosu, görselleri ve fontları gömülü; açınca yalnızca 970×250 çalışma görünür) · `release/kfc-970x250.zip` (reklam ağına yüklenecek `index.html`) · `dist/kfc-970x250/index-linked.html` (varlıkları gömmek yerine doğrudan sitedeki adreslerden yükleyen ~100 KB sürüm).
 
 ## Kurgu
 
 1. **Kepenk (0–1,4 sn)** – Metal dükkân kepengi kapalı; asılı tabela sallanır ve **KAPALI → AÇIK** olarak 3 boyutlu döner. Alt kulp "Kepengi kaldır" diye nabız atar: kullanıcı kulpu yukarı sürükleyerek (ya da tıklayarak) kepengi kendisi açabilir; dokunmazsa kepenk kendiliğinden yukarı sarılır.
-2. **Açılış (1,4–2,4 sn)** – Kepenk makaraya sarılırken sıcak bir ışık parlaması ve kısa bir sarsıntı; arkada sitenin restoran fotoğrafı belirir.
+2. **Açılış (1,4–2,4 sn)** – Kepenk makaraya sarılırken sıcak bir ışık parlaması ve kısa bir sarsıntı; arkada sitenin ana sayfasındaki "KFC Büyük Açıldı" kampanya filmi (Double Zinger) oynamaya başlar.
 3. **Başlık (2,4 sn)** – Logo iner, "BU LEZZETİ ÖZLEDİN Mİ?" ve harf harf sıçrayan "KFC GERİ DÖNDÜ!" gelir.
 4. **Damga (3,2 sn)** – "YENİDEN AÇILDI" damgası toz bulutuyla vurulur.
-5. **Ürünler (3,6 sn)** – Sitedeki gerçek ürün fotoğrafları sağdan derinlik sırasıyla uçar, üstlerinde buhar tüter; alt satır ve şehir çipleri + "En yakın KFC'yi bul" çağrısı gelir.
-6. **Son kare (5–14 sn)** – Fotoğraf yavaşça yakınlaşır, şehir çipleri (İstanbul · Ankara · İzmir) sırayla vurgulanır, CTA'da ışık süpürmesi; ardından kepenk iner ve kurgu yeniden başlar. Üç döngü sonunda son karede durur, "Tekrar izle" düğmesi çıkar.
+5. **Ürün seçici (3,6 sn)** – Sağ altta sitenin ana sayfa kaydırıcısı gibi dört ürün rozeti (sitedeki şeffaf ürün fotoğraflarıyla) sırayla belirir; üstünde ürün adı ve kırmızı ilerleme çizgisi. Alt satır, şehir çipleri ve "En yakın KFC'yi bul" çağrısı gelir.
+6. **Son kare (5–14 sn)** – Her 6 saniyede bir sonraki kampanya filmine (Strips → Mighty Cruncher → Hot Shots) yumuşak geçiş; şehir çipleri (İstanbul · Ankara · İzmir) sırayla vurgulanır, CTA'da ışık süpürmesi; ardından kepenk iner ve kurgu yeniden başlar. Üç döngü sonunda son karede durur, "Tekrar izle" düğmesi çıkar.
 
 ## Etkileşim
 
 - **Kepengi sürükleme:** Kulp ya da kepengin herhangi bir yeri yukarı sürüklenince kepenk elle kalkar (60 px'i geçince açılır, yoksa geri düşer). Tıklama da açar.
-- **Paralaks:** Fare hareketiyle video, ürünler (derinliğe göre) ve damga farklı hızlarda kayar.
-- **Ürün üzerine gelme:** Ürün büyür, parlar, altında adı belirir.
+- **Paralaks:** Fare hareketiyle video arka planı hafifçe kayar.
+- **Ürün seçici:** Sağ alttaki rozetlerden birine gelince (ya da tıklayınca) arka plandaki kampanya filmi o ürününkine geçer, adı yazılır; otomatik geçiş 7 sn duraklar. ↑ ↓ tuşları da gezdirir.
 - **Şehir çipleri:** Üzerine gelince o şehir seçilir (otomatik dönüş 3 sn durur); ← → tuşları da gezdirir.
 - **Tıklama:** Bannerın tamamı tıklanabilir. `window.clickTag` tanımlıysa o kullanılır, `Enabler` varsa `Enabler.exit`, yoksa `src/kfc/data.js` içindeki UTM'li restoran bulucu sayfası açılır. Kepenk ve "Tekrar izle" tıklamayı yutar.
 - Klavye: Enter tıklar, boşluk kepengi açar. `prefers-reduced-motion` açıksa doğrudan son kare gösterilir.
@@ -26,8 +26,8 @@
 
 - Tek HTML, satır içi CSS/JS; görseller, video ve fontlar base64 gömülü (harici istek yok). `<meta name="ad.size">`, `role="link"`, aria etiketi ve klavye odağı var.
 - Tipografi: sitenin kendi fontları *National 2 Condensed* (başlık, damga, tabela) ve *National 2* (metin, CTA), base64 gömülü. Site fontu yoksa `tools/fetch-fonts.js` ile indirilen *Anton* + *Inter* kullanılır.
-- Arka plan: sitenin restoran fotoğrafı, yavaş yakınlaşma ve paralaks ile; video verilirse `<video muted autoplay loop playsinline>` olarak eklenir, oynatılamazsa fotoğraf kalır. Buhar efekti SVG `feTurbulence` + `feDisplacementMap` ile.
-- Tek dosya ~715 KB (görseller + 3 font gömülü). Reklam ağlarının 150 KB sınırı gözetilmedi (etkileşimli sunum parçası); gerekirse ürün görselleri WebP'ye çevrilerek küçültülebilir.
+- Arka plan: dört `<video muted loop playsinline>` üst üste, yalnızca aktif olan oynar ve `playing` olayından sonra görünür (0,9 sn çapraz geçiş); hiçbiri oynatılamazsa sitenin restoran fotoğrafı yavaş yakınlaşmayla kalır.
+- Tek dosya ~3 MB (4 video ≈ 1,7 MB + görseller + 3 font, base64). Reklam ağlarının 150 KB sınırı gözetilmedi (etkileşimli sunum parçası); ağ için `index-linked.html` ya da tek videolu derleme kullanılabilir (`src/kfc/data.js` → `assets.slides` listesini kısaltın).
 
 ## Varlıklar nereden geliyor?
 
@@ -35,20 +35,24 @@ Claude Code'un bulut oturumu **ve** GitHub Actions sunucuları kfcturkiye.com'a 
 
 | Öğe | Sitedeki kaynak |
 |---|---|
-| Restoran fotoğrafı (kepenk açılınca) | `kfcturkiye.com/img/about-image-2.jpg` (Hakkımızda sayfası) |
-| Ürün kesitleri | Menü sayfalarındaki şeffaf PNG'ler: *Kanatlandıran Kova*, *Double Zinger Burger*, *8'li Hot Wings* (`/_next/image?url=…/product/img/…`) |
+| Kampanya filmleri (arka plan) | Ana sayfa video kaydırıcısı: `files.pidem.prod.hebiar.com/kfc/content/content/video/{double-zinger,strips,mighty-cruncher,hotshot}_1920x840-….mp4` — GitHub Actions'ta ffmpeg ile 970×250 kesit, ilk 12 sn, sessiz, H.264 (`assets/kfc-pages/video/*-970x250.mp4`; yerel test için VP9 `.webm`) |
+| Restoran fotoğrafı (video oynamazsa yedek) | `kfcturkiye.com/img/about-image-2.jpg` (Hakkımızda sayfası) |
+| Ürün rozetleri | Menü sayfalarındaki şeffaf PNG'ler: *Double Zinger Burger*, *Strips*, *Mighty Cruncher*, *Hot Shots* (`/_next/image?url=…/products/…`) |
 | Logo | `kfcturkiye.com/img/og-image-logo.jpg` (beyaz fon şeffaflaştırıldı → `assets/kfc-derived/logo-wordmark.png`) |
 | Fontlar | Sitenin kendi fontları *National 2 Condensed Bold*, *National 2 Bold/Medium* (`/_next/static/media/…woff2`) |
 | Kicker metni | Sitenin açılış öncesi görselindeki "Bu lezzeti özledin mi?" cümlesi |
 
-> Sitede ve arşivinde **video bulunmuyor** (CDX dizininde 0 video kaydı); bu yüzden arka plan sitenin fotoğrafıyla yavaş yakınlaşma (Ken Burns) olarak kurgulandı. Şablon video destekler: `src/kfc/data.js` → `assets.video.file` verilirse `<video>` olarak gömülür.
+> Videolar CDX dizininde görünmüyordu; arşivlenmiş ana sayfa gerçek tarayıcıda açılınca (`--pages-only` koşusu, `assets/kfc-pages/`) `<video>` etiketlerinden bulundu ve arşivden indirildi. Sitedeki filmler 19 sn ve sesli; bannerda 12 sn'lik sessiz kesitleri döner.
+>
+> Yerel Playwright Chromium H.264 çözemediği için doğrulama `node build-kfc.js --webm` ile üretilen `dist/kfc-970x250/index-test.html` (VP9) üzerinde yapılır; teslim dosyası mp4'tür.
 >
 > `index-linked.html` varlıkları sitedeki adreslerden yükler; site Türkiye dışından açılmadığı ve `_next` adresleri dağıtımla değişebildiği için bu sürüm yalnızca Türkiye içinden ve güncel sitede çalışır. Teslim dosyası gömülü sürümdür.
 
 ```bash
 # GitHub → Actions → "Siteden görselleri çek ve derle" → Run workflow   (assets/kfc/ güncellenir)
 node build-kfc.js                                  # dist/kfc-970x250/ + release/kfc-970x250.html/.zip
-NODE_PATH=$(npm root -g) node tools/capture-kfc.js --video   # preview/kfc/ ekran görüntüleri + etkileşim testi
+node build-kfc.js --webm                           # dist/kfc-970x250/index-test.html (yerel Chromium için VP9)
+NODE_PATH=$(npm root -g) node tools/capture-kfc.js --file=dist/kfc-970x250/index-test.html --video   # preview/kfc/ ekran görüntüleri, kayıt, etkileşim testi
 ```
 
 Metinler, şehirler, süreler, tıklama adresi ve ürün seçimi/konumları: **`src/kfc/data.js`**. Ekran görüntüleri ve kısa kayıt: `preview/kfc/` (`kfc-970x250.webm`).

@@ -18,8 +18,8 @@ html,body{margin:0;padding:0;background:#fff}
 /* Arka plan: sitenin videosu / fotoğrafı */
 .bg{position:absolute;inset:0;overflow:hidden;background:#2a0f0f}
 .bg img,.bg video{position:absolute;left:50%;top:50%;width:106%;height:106%;object-fit:cover;object-position:50% 58%;transform:translate(calc(-50% + var(--px) * -7px),calc(-50% + var(--py) * -5px))}
-.bg video{opacity:0;transition:opacity .8s}
-.bg video.ok{opacity:1}
+.bg video{left:58%;width:104%;height:104%;object-position:50% 50%;opacity:0;transition:opacity .9s}
+.bg video.on.ok{opacity:1}
 .kb{animation:kb 16s ease-in-out infinite alternate}
 @keyframes kb{from{width:106%;height:106%}to{width:118%;height:118%}}
 .tint{position:absolute;inset:0;background:linear-gradient(90deg,rgba(22,7,7,.97) 0,rgba(22,7,7,.93) 270px,rgba(22,7,7,.6) 450px,rgba(22,7,7,.16) 640px,rgba(22,7,7,.2) 100%)}
@@ -118,8 +118,25 @@ html,body{margin:0;padding:0;background:#fff}
 .handle b{font-size:14px}
 @keyframes nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
 .open .handle,.closing .handle{animation:none}
+/* Video / ürün seçici (sitenin ana sayfa kaydırıcısı gibi) */
+.slides{position:absolute;right:16px;bottom:13px;z-index:6;display:flex;flex-direction:column;align-items:flex-end;gap:7px}
+.vlabel{position:relative;font:400 17px/1 'National 2 Condensed',Impact,sans-serif;letter-spacing:1px;color:#fff;opacity:0;transform:translateY(6px);transition:.35s;text-shadow:0 2px 8px rgba(0,0,0,.7);padding-bottom:4px}
+.vlabel::after{content:'';position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--red);box-shadow:0 0 8px rgba(228,0,43,.8)}
+.vlabel.tick::after{animation:tick 6000ms linear both}
+@keyframes tick{from{width:0}to{width:100%}}
+.show-prod .vlabel{opacity:1;transform:none}
+.thumbs{display:flex;gap:8px}
+.th{position:relative;width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(.4);cursor:pointer;transition:border-color .25s,background .25s,box-shadow .25s;backdrop-filter:blur(4px)}
+.show-prod .th{animation:thin .55s cubic-bezier(.2,1.3,.4,1) var(--dl) both}
+@keyframes thin{to{opacity:1;transform:none}}
+.th img{width:38px;height:38px;object-fit:contain;filter:drop-shadow(0 3px 4px rgba(0,0,0,.55));transition:transform .3s cubic-bezier(.2,1.2,.4,1)}
+.th.on,.th:hover{border-color:#fff;background:rgba(228,0,43,.88)}
+.th.on{box-shadow:0 0 0 3px rgba(228,0,43,.45),0 6px 16px rgba(0,0,0,.4)}
+.th:hover img{transform:scale(1.18)}
+.th.on::after{content:'';position:absolute;inset:-7px;border-radius:50%;border:2px solid rgba(255,255,255,.55);animation:ring 1.8s ease-out infinite;pointer-events:none}
+@keyframes ring{0%{transform:scale(.8);opacity:1}100%{transform:scale(1.3);opacity:0}}
 /* Tekrar */
-.replay{position:absolute;right:10px;bottom:10px;height:30px;padding:0 12px 0 10px;border-radius:15px;background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.45);color:#fff;display:none;align-items:center;gap:6px;font:600 11px/1 'National 2',Arial,sans-serif;z-index:10;backdrop-filter:blur(3px)}
+.replay{position:absolute;right:12px;top:78px;height:30px;padding:0 12px 0 10px;border-radius:15px;background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.45);color:#fff;display:none;align-items:center;gap:6px;font:600 11px/1 'National 2',Arial,sans-serif;z-index:10;backdrop-filter:blur(3px)}
 .replay:hover{background:var(--red);border-color:var(--red)}
 .ended .replay{display:flex}
 .rm *{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important}
@@ -129,17 +146,8 @@ html,body{margin:0;padding:0;background:#fff}
 <div id="ad" role="link" tabindex="0" aria-label="KFC Türkiye – şubelerimiz yeniden açılıyor. En yakın KFC’yi bul.">
   <svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="haze" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence type="fractalNoise" baseFrequency="0.012 0.03" numOctaves="2" seed="3"><animate attributeName="baseFrequency" dur="7s" values="0.012 0.03;0.016 0.036;0.012 0.03" repeatCount="indefinite"/></feTurbulence><feDisplacementMap in="SourceGraphic" scale="9" xChannelSelector="R" yChannelSelector="G"/></filter></svg>
   <div class="stage">
-    <div class="bg"><img class="hero kb" src="https://www.kfcturkiye.com/img/about-image-2.jpg" alt=""><div class="tint"></div><div class="glow"></div><div class="vig"></div></div>
-    <div class="food"><div class="steam" style="--sx:560px;--sy:-70px"><i></i><i></i><i></i></div><div class="steam" style="--sx:740px;--sy:-50px"><i></i><i></i><i></i></div>
-      <div class="prod" style="--x:500px;--y:-6px;--h:238px;--d:1;--r:-1.5deg;--dl:0ms;--fd:0.0s" title="Kanatlandıran Kova">
-        <div class="in"><div class="fl"><img src="https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fkanatlandiran-kova-20251208121146.png&w=640&q=75" alt="Kanatlandıran Kova" draggable="false"></div><span class="lbl">Kanatlandıran Kova</span></div>
-      </div>
-      <div class="prod" style="--x:712px;--y:46px;--h:182px;--d:0.65;--r:2.5deg;--dl:170ms;--fd:0.9s" title="Double Zinger Burger">
-        <div class="in"><div class="fl"><img src="https://www.kfcturkiye.com/_next/image?url=%2Fimg%2Fproducts%2Fdouble_zinger_burger.png&w=640&q=75" alt="Double Zinger Burger" draggable="false"></div><span class="lbl">Double Zinger Burger</span></div>
-      </div>
-      <div class="prod" style="--x:842px;--y:116px;--h:136px;--d:0.45;--r:-3deg;--dl:340ms;--fd:1.8s" title="8’li Hot Wings">
-        <div class="in"><div class="fl"><img src="https://www.kfcturkiye.com/_next/image?url=%2Fimg%2Fproducts%2F8-hot-wings.png&w=640&q=75" alt="8’li Hot Wings" draggable="false"></div><span class="lbl">8’li Hot Wings</span></div>
-      </div></div>
+    <div class="bg"><img class="hero kb" src="https://www.kfcturkiye.com/img/about-image-2.jpg" alt=""><video class="v on" data-i="0" muted loop playsinline preload="auto"><source src="https://files.pidem.prod.hebiar.com/kfc/content/content/video/double-zinger_1920x840-20260325145344.mp4" type="video/mp4"></video><video class="v" data-i="1" muted loop playsinline preload="metadata"><source src="https://files.pidem.prod.hebiar.com/kfc/content/content/video/strips_1920x840-20260325144827.mp4" type="video/mp4"></video><video class="v" data-i="2" muted loop playsinline preload="metadata"><source src="https://files.pidem.prod.hebiar.com/kfc/content/content/video/mighty-cruncher_1920x840-20260325145206.mp4" type="video/mp4"></video><video class="v" data-i="3" muted loop playsinline preload="metadata"><source src="https://files.pidem.prod.hebiar.com/kfc/content/content/video/hotshot_1920x840-20260325145451.mp4" type="video/mp4"></video><div class="tint"></div><div class="glow"></div><div class="vig"></div></div>
+    <div class="food"></div>
     <div class="dust"></div>
     <div class="stamp">YENİDEN AÇILDI</div>
     <div class="txt">
@@ -148,6 +156,7 @@ html,body{margin:0;padding:0;background:#fff}
       <div class="head"><span class="ch" style="animation-delay:0ms">K</span><span class="ch" style="animation-delay:38ms">F</span><span class="ch" style="animation-delay:76ms">C</span><span class="sp"> </span><span class="ch" style="animation-delay:152ms">G</span><span class="ch" style="animation-delay:190ms">E</span><span class="ch" style="animation-delay:228ms">R</span><span class="ch" style="animation-delay:266ms">İ</span><span class="sp"> </span><span class="ch" style="animation-delay:342ms">D</span><span class="ch" style="animation-delay:380ms">Ö</span><span class="ch" style="animation-delay:418ms">N</span><span class="ch" style="animation-delay:456ms">D</span><span class="ch" style="animation-delay:494ms">Ü</span><span class="ch" style="animation-delay:532ms">!</span></div>
       <div class="sub">Şubelerimiz Türkiye genelinde birer birer yeniden açılıyor.</div>
     </div>
+    <div class="slides"><div class="vlabel"><b>Double Zinger Burger</b></div><div class="thumbs"><span class="th on" role="button" tabindex="-1" data-i="0" style="--dl:0ms" aria-label="Double Zinger Burger"><img src="https://www.kfcturkiye.com/_next/image?url=%2Fimg%2Fproducts%2Fdouble_zinger_burger.png&w=640&q=75" alt="" draggable="false"></span><span class="th" role="button" tabindex="-1" data-i="1" style="--dl:120ms" aria-label="Strips"><img src="https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F3-strips-20251208150918.png&w=640&q=75" alt="" draggable="false"></span><span class="th" role="button" tabindex="-1" data-i="2" style="--dl:240ms" aria-label="Mighty Cruncher"><img src="https://www.kfcturkiye.com/_next/image?url=%2Fimg%2Fproducts%2Fmighty-cruncher-burger.png&w=640&q=75" alt="" draggable="false"></span><span class="th" role="button" tabindex="-1" data-i="3" style="--dl:360ms" aria-label="Hot Shots"><img src="https://www.kfcturkiye.com/_next/image?url=%2Fimg%2Fproducts%2F6-hot-shots.png&w=640&q=75" alt="" draggable="false"></span></div></div>
     <div class="row">
       <div class="cities"><span class="cl">Sana en yakın şube</span><span class="chip" role="button" tabindex="-1">İstanbul</span><span class="chip" role="button" tabindex="-1">Ankara</span><span class="chip" role="button" tabindex="-1">İzmir</span></div>
       <div class="ctaw"><span class="cta">En yakın KFC’yi bul<i>→</i></span></div>
@@ -166,8 +175,9 @@ html,body{margin:0;padding:0;background:#fff}
 </div>
 <script>
 (function(){
-var D={"brand":{"url":"https://www.kfcturkiye.com/restoranlar?utm_source=display&utm_medium=banner&utm_campaign=yeniden-acilis&utm_content=970x250"},"timing":{"shutterOpen":900,"autoOpenWait":500,"headline":1900,"stamp":2700,"products":3100,"sub":3900,"cta":4500,"hold":9000,"cycle":15000,"loops":3}},T=D.timing;
-var ad=document.getElementById('ad'),sh=ad.querySelector('.shutter'),slats=ad.querySelector('.slats'),vid=ad.querySelector('video');
+var D={"brand":{"url":"https://www.kfcturkiye.com/restoranlar?utm_source=display&utm_medium=banner&utm_campaign=yeniden-acilis&utm_content=970x250"},"timing":{"shutterOpen":900,"autoOpenWait":500,"headline":1900,"stamp":2700,"products":3100,"sub":3900,"cta":4500,"slide":6000,"hold":9000,"cycle":15000,"loops":3},"slides":["Double Zinger Burger","Strips","Mighty Cruncher","Hot Shots"]},T=D.timing;
+var ad=document.getElementById('ad'),sh=ad.querySelector('.shutter'),slats=ad.querySelector('.slats');
+var vids=[].slice.call(ad.querySelectorAll('.bg video')),ths=[].slice.call(ad.querySelectorAll('.th')),vlabel=ad.querySelector('.vlabel'),si=0,sHold=0;
 var timers=[],loops=0,opened=false,drag=null;
 var CLS=['open','flip','reveal','shake','show-head','show-stamp','show-prod','show-sub','show-cta','closing','ended'];
 function after(ms,fn){var id=setTimeout(fn,Math.max(0,ms));timers.push(id);return id}
@@ -180,7 +190,7 @@ function openShutter(){if(opened)return;opened=true;slats.style.transition='';sl
   after(1250,function(){ad.classList.add('shake');after(600,function(){ad.classList.remove('shake')})});
   after(T.headline-o,function(){ad.classList.add('show-head')});
   after(T.stamp-o,function(){ad.classList.add('show-stamp')});
-  after(T.products-o,function(){ad.classList.add('show-prod')});
+  after(T.products-o,function(){ad.classList.add('show-prod');if(vlabel){vlabel.classList.add('tick')}cycleSlides()});
   after(T.sub-o,function(){ad.classList.add('show-sub')});
   after(T.cta-o,function(){ad.classList.add('show-cta');cycleCities()});
   after(T.cta-o+T.hold,function(){loops++;if(loops>=T.loops){ad.classList.add('ended');return}ad.classList.add('closing');after(1250,start)});
@@ -188,7 +198,7 @@ function openShutter(){if(opened)return;opened=true;slats.style.transition='';sl
 /* Şehir çipleri */
 var chips=[].slice.call(ad.querySelectorAll('.chip')),ci=0,hold=0;
 function setCity(i){ci=(i+chips.length)%chips.length;for(var k=0;k<chips.length;k++)chips[k].classList.toggle('on',k===ci)}
-function cycleCities(){setCity(0);var iv=setInterval(function(){if(Date.now()<hold)return;setCity(ci+1)},1700);timers.push(iv)}
+function cycleCities(){setCity(0);var iv=setInterval(function(){if(Date.now()<hold)return;setCity(ci+1)},2200);timers.push(iv)}
 chips.forEach(function(c,k){c.addEventListener('pointerenter',function(){setCity(k);hold=Date.now()+3000})});
 /* Paralaks */
 var tx=0,ty=0,cx=0,cy=0,raf=null;
@@ -200,18 +210,25 @@ sh.addEventListener('pointerdown',function(e){if(opened||ad.classList.contains('
 sh.addEventListener('pointermove',function(e){if(!drag)return;var dy=Math.min(0,e.clientY-drag.y);drag.m=-dy;slats.style.transform='translateY('+dy+'px)'});
 function endDrag(){if(!drag)return;var m=drag.m;drag=null;slats.style.transition='';if(m>60||m<6){openShutter()}else{slats.style.transform=''}}
 sh.addEventListener('pointerup',endDrag);sh.addEventListener('pointercancel',endDrag);
-/* Video */
-function play(){if(!vid)return;var p=vid.play();if(p&&p.catch)p.catch(function(){})}
-if(vid){vid.addEventListener('playing',function(){vid.classList.add('ok')});vid.addEventListener('error',function(){vid.classList.remove('ok')},true)}
-document.addEventListener('pointerdown',play,{once:true});
+/* Video / ürün seçici */
+function play(v){v=v||vids[si];if(!v)return;var p=v.play();if(p&&p.catch)p.catch(function(){})}
+vids.forEach(function(v){v.addEventListener('playing',function(){v.classList.add('ok')});v.addEventListener('error',function(){v.classList.remove('ok')},true)});
+function setSlide(i,user){if(!vids.length)return;si=(i+vids.length)%vids.length;
+  vids.forEach(function(v,k){var on=k===si;if(on){v.classList.add('on');play(v)}else{v.classList.remove('on');if(!v.paused)v.pause()}});
+  ths.forEach(function(t,k){t.classList.toggle('on',k===si)});
+  if(vlabel){vlabel.firstChild.textContent=D.slides[si];vlabel.classList.remove('tick');void vlabel.offsetWidth;vlabel.classList.add('tick')}
+  if(user)sHold=Date.now()+7000}
+function cycleSlides(){if(vids.length<2)return;var iv=setInterval(function(){if(Date.now()<sHold)return;setSlide(si+1)},T.slide||6000);timers.push(iv)}
+ths.forEach(function(t,k){t.addEventListener('pointerenter',function(){setSlide(k,true)});t.addEventListener('click',function(e){e.stopPropagation();setSlide(k,true)})});
+document.addEventListener('pointerdown',function(){play()},{once:true});
 /* Tıklama */
 function openLink(){var u=window.clickTag||D.brand.url;if(window.Enabler&&window.Enabler.exit){window.Enabler.exit('CTA')}else{window.open(u,'_blank','noopener')}}
 ad.addEventListener('click',function(e){var t=e.target;if(t.closest&&(t.closest('.shutter')||t.closest('.replay')))return;openLink()});
 ad.querySelector('.replay').addEventListener('click',function(e){e.stopPropagation();loops=0;start()});
-ad.addEventListener('keydown',function(e){if(e.key==='Enter'){openLink()}else if(e.key===' '){e.preventDefault();if(!opened)openShutter()}else if(e.key==='ArrowRight'){setCity(ci+1);hold=Date.now()+3000}else if(e.key==='ArrowLeft'){setCity(ci-1);hold=Date.now()+3000}});
+ad.addEventListener('keydown',function(e){if(e.key==='Enter'){openLink()}else if(e.key===' '){e.preventDefault();if(!opened)openShutter()}else if(e.key==='ArrowRight'){setCity(ci+1);hold=Date.now()+3000}else if(e.key==='ArrowLeft'){setCity(ci-1);hold=Date.now()+3000}else if(e.key==='ArrowDown'){e.preventDefault();setSlide(si+1,true)}else if(e.key==='ArrowUp'){e.preventDefault();setSlide(si-1,true)}});
 var rm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-if(rm){ad.classList.add('rm');['open','flip','show-head','show-stamp','show-prod','show-sub','show-cta','ended'].forEach(function(c){ad.classList.add(c)});setCity(0);play()}else{start()}
-window.__kfc={start:start,open:openShutter,setCity:setCity,state:function(){return{loops:loops,opened:opened,cls:ad.className}}};
+if(rm){ad.classList.add('rm');['open','flip','show-head','show-stamp','show-prod','show-sub','show-cta','ended'].forEach(function(c){ad.classList.add(c)});setCity(0);setSlide(0);play()}else{start()}
+window.__kfc={start:start,open:openShutter,setCity:setCity,setSlide:setSlide,state:function(){return{loops:loops,opened:opened,slide:si,cls:ad.className}}};
 })();
 </script>
 </body>

@@ -46,13 +46,19 @@ module.exports = {
         { family: 'National 2', weight: 700, file: 'fonts/080-national2bold-s-p-0eeuqsndmx-aa.woff2', url: 'https://www.kfcturkiye.com/_next/static/media/National2Bold-s.p.0eeuqsndmx.aa.woff2' },
       ],
     },
-    // Sitedeki şeffaf ürün fotoğrafları (menü sayfaları)
-    products: [
-      { key: 'kova', name: 'Kanatlandıran Kova', file: 'img/176-image.png', url: 'https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2Fkanatlandiran-kova-20251208121146.png&w=640&q=75', x: 500, y: -6, h: 238, depth: 1, rot: -1.5, delay: 0 },
-      { key: 'zinger', name: 'Double Zinger Burger', file: 'img/231-image.png', url: 'https://www.kfcturkiye.com/_next/image?url=%2Fimg%2Fproducts%2Fdouble_zinger_burger.png&w=640&q=75', x: 712, y: 46, h: 182, depth: .65, rot: 2.5, delay: 170 },
-      { key: 'wings', name: '8’li Hot Wings', file: 'img/166-image.png', url: 'https://www.kfcturkiye.com/_next/image?url=%2Fimg%2Fproducts%2F8-hot-wings.png&w=640&q=75', x: 842, y: 116, h: 136, depth: .45, rot: -3, delay: 340 },
+    // Ana sayfa video kaydırıcısındaki kampanya filmleri ("KFC büyük açıldı" serisi) – 970x250 kesit (12 sn, sessiz)
+    // file: H.264 mp4 (teslim), webm: VP9 (yerel test), url: sitedeki orijinal, thumb: sitedeki şeffaf ürün görseli
+    slides: [
+      { key: 'double-zinger', name: 'Double Zinger Burger', file: '../kfc-pages/video/008-double-zinger-1920x840-20260325145344-970x250.mp4', webm: '../kfc-pages/video/008-double-zinger-1920x840-20260325145344-970x250.webm', url: 'https://files.pidem.prod.hebiar.com/kfc/content/content/video/double-zinger_1920x840-20260325145344.mp4', thumb: { file: 'img/231-image.png', url: 'https://www.kfcturkiye.com/_next/image?url=%2Fimg%2Fproducts%2Fdouble_zinger_burger.png&w=640&q=75' } },
+      { key: 'strips', name: 'Strips', file: '../kfc-pages/video/011-strips-1920x840-20260325144827-970x250.mp4', webm: '../kfc-pages/video/011-strips-1920x840-20260325144827-970x250.webm', url: 'https://files.pidem.prod.hebiar.com/kfc/content/content/video/strips_1920x840-20260325144827.mp4', thumb: { file: 'img/183-image.png', url: 'https://www.kfcturkiye.com/_next/image?url=https%3A%2F%2Ffiles.pidem.prod.hebiar.com%2Fkfc%2Fcontent%2Fproduct%2Fimg%2F3-strips-20251208150918.png&w=640&q=75' } },
+      { key: 'mighty-cruncher', name: 'Mighty Cruncher', file: '../kfc-pages/video/015-mighty-cruncher-1920x840-20260325145206-970x250.mp4', webm: '../kfc-pages/video/015-mighty-cruncher-1920x840-20260325145206-970x250.webm', url: 'https://files.pidem.prod.hebiar.com/kfc/content/content/video/mighty-cruncher_1920x840-20260325145206.mp4', thumb: { file: 'img/374-image.png', url: 'https://www.kfcturkiye.com/_next/image?url=%2Fimg%2Fproducts%2Fmighty-cruncher-burger.png&w=640&q=75' } },
+      { key: 'hot-shots', name: 'Hot Shots', file: '../kfc-pages/video/019-hotshot-1920x840-20260325145451-970x250.mp4', webm: '../kfc-pages/video/019-hotshot-1920x840-20260325145451-970x250.webm', url: 'https://files.pidem.prod.hebiar.com/kfc/content/content/video/hotshot_1920x840-20260325145451.mp4', thumb: { file: 'img/424-image.png', url: 'https://www.kfcturkiye.com/_next/image?url=%2Fimg%2Fproducts%2F6-hot-shots.png&w=640&q=75' } },
     ],
-    steam: [{ x: 560, y: -70 }, { x: 740, y: -50 }],
+    // Video üstünde ürün kesiti kullanılmıyor (video zaten ürünü gösteriyor); boş bırakılırsa uçan ürün katmanı çizilmez
+    products: [],
+    steam: [],
+    // Videonun banner içindeki ölçeği ve yatay merkezi (ürün, metin sütununun sağında kalsın)
+    videoScale: '104%', videoX: '58%',
   },
   timing: {
     shutterOpen: 900,     // kepenk kalkmaya başlar (ms)
@@ -62,6 +68,7 @@ module.exports = {
     products: 3100,
     sub: 3900,
     cta: 4500,
+    slide: 6000,          // video/ürün otomatik geçiş aralığı
     hold: 9000,           // son kare bekleme
     cycle: 15000,         // döngü süresi (kepenk iner, yeniden başlar)
     loops: 3,             // kaç kez döner, sonra son karede durur
