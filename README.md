@@ -6,9 +6,24 @@
 |---|---|---|
 | Yaz – "Serinliği yüzünde hisset" | Emura III klima | **`index.html`** (≈63 KB) |
 | Kış – "Sıcaklığı evinde hisset" | NDJ Premix tam yoğuşmalı kombi | **`kombi/index.html`** (≈62 KB) |
+| Rich media – Yaz + Kış, detay katmanlı | Emura III + NDJ Premix | **`rich/index.html`** (≈250 KB) |
 
 ![Daikin klima masthead](assets/daikin/preview-970x250.jpg)
 ![Daikin kombi masthead](assets/daikin-kombi/preview-970x250.jpg)
+
+## Rich media sürümü (`rich/index.html`) – 970×250 içinde, Yaz + Kış tek dosyada
+
+Sinematik, sade bir görsel dil: koyu lacivert/bakır zemin, ürünün arkasında yumuşak spot ışığı, süzülen ışık tozu, üründen imlece doğru akan geniş ve yumuşak **hava/ısı şeritleri** (çizgi yerine bezier şeritler), ters (beyaz) Daikin logosu, ince tipografi (Open Sans 300 + 800). Tüm etkileşim **970×250 alanının içinde** kalır; genişleme yoktur.
+
+![Rich media – yaz](rich/preview-yaz.jpg)
+![Rich media – detaylar](rich/preview-detaylar.jpg)
+![Rich media – kış](rich/preview-kis.jpg)
+
+- **Yaz / Kış anahtarı** (logonun yanında): sahne, ürün (Emura III ↔ NDJ Premix), metinler, renkler ve şeritler birbirine akarak değişir; CTA adresi de mevsime göre değişir.
+- **Detaylar**: aynı alanın içinde, sahnenin üzerine cam bir katman açılır: 3 görsellik ürün galerisi (ürün sayfasındaki gerçek fotoğraflar: ön, yan, kumanda / kesit), "Neden Emura III? / Neden NDJ Premix?" özellik listesi (ürün sayfasındaki ifadeler), rozet (10 yıl garanti / KIWA onaylı kalite) ve CTA. × ya da Esc ile kapanır.
+- **İmleç**: şeritler imlece doğru bükülür, imlecin etrafında yumuşak bir serinlik/sıcaklık halesi oluşur.
+- Klavye: Enter = çıkış, Boşluk = detaylar, ← → = mevsim. `clickTag` (yaz) ve `clickTagKis` (kış) reklam ağı değişkenleri desteklenir; `Enabler` varsa `Enabler.exit('Klima'|'Kombi')`.
+- Dosya ≈ 250 KB (8 gerçek ürün fotoğrafı WebP olarak gömülü; küçük resimler ana görsellerden üretilir). Derleme: `node tools/build-rich.js` (şablon `src/daikin/rich-media.html`, görseller `assets/daikin/rich/`).
 
 ## Alternatif mekanikler (`alt/`)
 

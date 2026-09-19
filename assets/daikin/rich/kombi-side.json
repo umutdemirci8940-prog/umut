@@ -1,0 +1,21 @@
+{
+  "source": "assets/daikin-kombi/products/1-ndj-premix-24-kw-d2cnd024-tam-yogusmali-kombi/img-4-900.png",
+  "sourceSize": [
+    800,
+    800
+  ],
+  "bbox": [
+    150,
+    49,
+    625,
+    740
+  ],
+  "size": [
+    476,
+    692
+  ],
+  "files": {
+    "webp": "assets/daikin/rich/kombi-side.webp",
+    "png": "assets/daikin/rich/kombi-side.png"
+  }
+}

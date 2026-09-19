@@ -1,0 +1,21 @@
+{
+  "source": "assets/daikin/products/8-emura-9000-btu-h-a-ftxj25aw9-inverter-klima-r32/img-4-900.png",
+  "sourceSize": [
+    800,
+    800
+  ],
+  "bbox": [
+    15,
+    169,
+    786,
+    628
+  ],
+  "size": [
+    560,
+    334
+  ],
+  "files": {
+    "webp": "assets/daikin/rich/emura-side.webp",
+    "png": "assets/daikin/rich/emura-side.png"
+  }
+}
