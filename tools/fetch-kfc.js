@@ -295,6 +295,10 @@ const noteMedia = (url, kind, extra = {}, page = '') => {
         const o1 = `${stem}-970x250.mp4`;
         const r1 = spawnSync('ffmpeg', ['-y', '-v', 'error', '-i', f, '-t', '12', '-an', '-vf', 'scale=970:250:force_original_aspect_ratio=increase,crop=970:250,fps=25', '-c:v', 'libx264', '-preset', 'slow', '-crf', '26', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', o1]);
         if (r1.status === 0) v.derived['970x250'] = { file: path.relative(out, o1), bytes: fs.statSync(o1).size }; else v.derivedError = String(r1.stderr);
+        // Aynı kesim VP9/WebM (yerel Chromium H.264 çözemediği için önizleme/test; isteğe bağlı yedek kaynak)
+        const o1w = `${stem}-970x250.webm`;
+        const r1w = spawnSync('ffmpeg', ['-y', '-v', 'error', '-i', f, '-t', '12', '-an', '-vf', 'scale=970:250:force_original_aspect_ratio=increase,crop=970:250,fps=25', '-c:v', 'libvpx-vp9', '-b:v', '0', '-crf', '34', '-row-mt', '1', '-deadline', 'good', '-cpu-used', '2', o1w]);
+        if (r1w.status === 0) v.derived['970x250-webm'] = { file: path.relative(out, o1w), bytes: fs.statSync(o1w).size };
         const o2 = `${stem}-1280.mp4`;
         const r2 = spawnSync('ffmpeg', ['-y', '-v', 'error', '-i', f, '-t', '12', '-an', '-vf', 'scale=1280:-2,fps=25', '-c:v', 'libx264', '-preset', 'slow', '-crf', '28', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', o2]);
         if (r2.status === 0) v.derived['1280'] = { file: path.relative(out, o2), bytes: fs.statSync(o2).size };
