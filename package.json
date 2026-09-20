@@ -12,7 +12,10 @@
     "capture": "NODE_PATH=$(npm root -g) node tools/capture.js",
     "capture:video": "NODE_PATH=$(npm root -g) node tools/capture.js --video",
     "test": "NODE_PATH=$(npm root -g) node tools/smoke.js",
-    "preview": "npx --yes serve -l 4173 ."
+    "preview": "npx --yes serve -l 4173 .",
+    "tchibo:assets": "python3 tchibo-barista-colombia/tools/render-assets.py",
+    "tchibo:build": "node tchibo-barista-colombia/build.js",
+    "tchibo:capture": "NODE_PATH=$(npm root -g) node tchibo-barista-colombia/tools/capture.js"
   },
   "license": "UNLICENSED"
 }

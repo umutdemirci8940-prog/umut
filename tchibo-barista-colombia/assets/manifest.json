@@ -1,0 +1,92 @@
+{
+ "bg": {
+  "file": "assets/bg.webp",
+  "w": 1940,
+  "h": 500,
+  "kb": 18.2
+ },
+ "cup": {
+  "file": "assets/cup.webp",
+  "w": 560,
+  "h": 400,
+  "kb": 18.7
+ },
+ "bean1": {
+  "file": "assets/bean1.webp",
+  "w": 176,
+  "h": 124,
+  "kb": 2.7
+ },
+ "bean2": {
+  "file": "assets/bean2.webp",
+  "w": 176,
+  "h": 124,
+  "kb": 2.6
+ },
+ "bean3": {
+  "file": "assets/bean3.webp",
+  "w": 176,
+  "h": 124,
+  "kb": 2.6
+ },
+ "bean4": {
+  "file": "assets/bean4.webp",
+  "w": 176,
+  "h": 124,
+  "kb": 2.6
+ },
+ "bean5": {
+  "file": "assets/bean5.webp",
+  "w": 176,
+  "h": 124,
+  "kb": 2.4
+ },
+ "steam1": {
+  "file": "assets/steam1.webp",
+  "w": 192,
+  "h": 192,
+  "kb": 7.7
+ },
+ "steam2": {
+  "file": "assets/steam2.webp",
+  "w": 192,
+  "h": 192,
+  "kb": 6.1
+ },
+ "steam3": {
+  "file": "assets/steam3.webp",
+  "w": 192,
+  "h": 192,
+  "kb": 8.3
+ },
+ "bokeh": {
+  "file": "assets/bokeh.webp",
+  "w": 128,
+  "h": 128,
+  "kb": 2.9
+ },
+ "heatring": {
+  "file": "assets/heatring.webp",
+  "w": 256,
+  "h": 256,
+  "kb": 8.7
+ },
+ "spark": {
+  "file": "assets/spark.webp",
+  "w": 48,
+  "h": 48,
+  "kb": 0.6
+ },
+ "shadow": {
+  "file": "assets/shadow.webp",
+  "w": 160,
+  "h": 160,
+  "kb": 2.6
+ },
+ "glow": {
+  "file": "assets/glow.webp",
+  "w": 256,
+  "h": 256,
+  "kb": 6.2
+ }
+}
