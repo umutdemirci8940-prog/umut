@@ -1,6 +1,6 @@
 # İlaçsız Yaşam – Gıda Takviyesi Banner Serisi
 
-> **Diğer çalışma:** [Tchibo Barista Colombia Origin – 970×250 interaktif masthead](tchibo-barista-colombia/README.md) (`tchibo-barista-colombia/`): üç perdelik sinematik kurgu (Kolombiya dağlarında şafak → tambur kavurma → makineden fincana), tamamı özgün, piksel piksel üretilmiş raster görsellerle (dağ katmanları, çiğ ve kavrulmuş çekirdekler, fincan, krema, makine ağzı, kahve akışı, buhar, ahşap masa) animasyonlu ve etkileşimli masthead. Hazır dosya: `tchibo-barista-colombia/dist/970x250/index.html`.
+> **Diğer çalışma:** [Tchibo Barista Colombia Origin – 970×250 interaktif masthead](tchibo-barista-colombia/README.md) (`tchibo-barista-colombia/`): üç perdelik sinematik kurgu (Kolombiya dağlarında şafak → tambur kavurma → makineden fincana), tamamı özgün, piksel piksel üretilmiş raster görsellerle (dağ katmanları, çiğ ve kavrulmuş çekirdekler, fincan, krema, makine ağzı, kahve akışı, buhar, ahşap masa) animasyonlu ve etkileşimli masthead. İki sürüm: **kampanya KV** (tchibo.com.tr'den gerçek paket çekimleri, resmi logo, mutfak fotoğrafı; `tchibo-barista-colombia/dist/970x250-kampanya/index.html`) ve **sinematik 3 perde** (`tchibo-barista-colombia/dist/970x250/index.html`).
 
 [ilacsizyasam.com](https://ilacsizyasam.com/) için hazırlanmış, gıda takviyeleri özelinde **animasyonlu, ürün slider'lı ve tıklanabilir HTML5 display reklam seti**.
 

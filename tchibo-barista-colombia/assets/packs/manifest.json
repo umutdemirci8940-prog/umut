@@ -1,0 +1,65 @@
+{
+ "barista-caffe-crema-2": {
+  "file": "assets/packs/barista-caffe-crema-2.webp",
+  "w": 306,
+  "h": 480,
+  "kb": 32.0,
+  "source": "assets/products/barista-caffe-crema-2.webp"
+ },
+ "barista-caffe-crema-3": {
+  "file": "assets/packs/barista-caffe-crema-3.webp",
+  "w": 301,
+  "h": 480,
+  "kb": 32.4,
+  "source": "assets/products/barista-caffe-crema-3.webp"
+ },
+ "barista-caffe-crema-4": {
+  "file": "assets/packs/barista-caffe-crema-4.webp",
+  "w": 293,
+  "h": 480,
+  "kb": 31.3,
+  "source": "assets/products/barista-caffe-crema-4.webp"
+ },
+ "barista-espresso-1": {
+  "file": "assets/packs/barista-espresso-1.webp",
+  "w": 306,
+  "h": 480,
+  "kb": 33.1,
+  "source": "assets/products/barista-espresso-1.webp"
+ },
+ "barista-espresso-2": {
+  "file": "assets/packs/barista-espresso-2.webp",
+  "w": 293,
+  "h": 480,
+  "kb": 32.6,
+  "source": "assets/products/barista-espresso-2.webp"
+ },
+ "barista-espresso-3": {
+  "file": "assets/packs/barista-espresso-3.webp",
+  "w": 302,
+  "h": 480,
+  "kb": 33.8,
+  "source": "assets/products/barista-espresso-3.webp"
+ },
+ "barista-origins-colombia-2": {
+  "file": "assets/packs/barista-origins-colombia-2.webp",
+  "w": 263,
+  "h": 480,
+  "kb": 34.9,
+  "source": "assets/products/barista-origins-colombia-2.webp"
+ },
+ "barista-origins-colombia-3": {
+  "file": "assets/packs/barista-origins-colombia-3.webp",
+  "w": 257,
+  "h": 480,
+  "kb": 33.9,
+  "source": "assets/products/barista-origins-colombia-3.webp"
+ },
+ "barista-origins-colombia-4": {
+  "file": "assets/packs/barista-origins-colombia-4.webp",
+  "w": 260,
+  "h": 480,
+  "kb": 34.2,
+  "source": "assets/products/barista-origins-colombia-4.webp"
+ }
+}

@@ -2,14 +2,32 @@
 
 [tchibo.com.tr – Tam otomatik makineler için kahve](https://www.tchibo.com.tr/categories/kahve/kahveler/tam-otomatik-makineler-icin-kahve) kategorisi ve **Barista Caffè Crema Colombia Origin** (1 kg çekirdek, %100 Arabica) iletişimi için hazırlanmış, üç perdelik sinematik kurguya sahip, animasyonlu ve etkileşimli **970×250 HTML5 masthead**.
 
-| Dosya | Açıklama |
-|---|---|
-| `dist/970x250/index.html` | Yüklemeye hazır tek dosya (tüm görseller gömülü, ~295 KB) |
-| `dist/tchibo-barista-colombia-970x250.zip` | Reklam ağına yükleme paketi |
-| `preview/index.html` | Yayın simülasyonu (masthead örnek bir haber sayfasının üstünde) |
-| `preview/screens/` | Kurgu ve etkileşim ekran görüntüleri (`01-daglar` … `09-paralaks`) |
+İki sürüm vardır:
 
-## Kurgu: çekirdekten fincana, üç perde
+| Sürüm | Dosya | Açıklama |
+|---|---|---|
+| **A · Kampanya KV** (gerçek paketler) | `dist/970x250-kampanya/index.html` (~366 KB) · `dist/tchibo-barista-colombia-970x250-kampanya.zip` | Kampanya videosunun/anahtar görselinin dilinde: mavi zemin, krem lekeler, kırmızı-sarı üçgen motifi, **tchibo.com.tr'den alınan gerçek paket çekimleri** (Colombia + Caffè Crema + Espresso), "YENİ" rozeti, resmi logo; ikinci sahnede ürün sayfasındaki **gerçek mutfak fotoğrafı** (paket + tam otomatik makine). |
+| **B · Sinematik 3 perde** (üretilmiş raster) | `dist/970x250/index.html` (~295 KB) · `dist/tchibo-barista-colombia-970x250.zip` | Kolombiya dağlarında şafak → tambur kavurma → makineden fincana; tüm görseller piksel piksel üretilmiş. |
+| Önizleme | `preview/index.html` · `preview/screens/` | Yayın simülasyonu (iki sürüm) ve ekran görüntüleri (`kv-*` kampanya, `970x250-*` sinematik) |
+
+## A · Kampanya KV sürümü
+
+Tchibo Barista serisi kampanya videosunun (YouTube `QD5d6irb-ZA`) anahtar görseliyle aynı dil: royal mavi zemin (#3942a1), krem organik lekeler (#ecd69d), sağ kenarda kırmızı (#f14827) / sarı (#fec015) / turuncu (#cc6343) üçgen motifi, altta turuncu bant, "YENİ" konuşma balonu rozeti, "TCHIBO BARISTA SERİSİ: KAHVEDE UZMANLIK ESERİ" başlığı ve "Barista Colombia · Single Origin Edition" alt satırı. Renkler videonun küçük resminden örneklendi (`assets/video/thumb-maxresdefault.jpg`).
+
+**Gerçek görseller (tasarlanmadı, siteden alındı):**
+- Paket çekimleri: tchibo.com.tr ürün sayfalarından (`tools/fetch-products.js`, GitHub Actions görevi `tchibo-products`): Barista Origins Colombia 1 kg (kahraman), Barista Caffè Crema, Barista Espresso; 3/4 açı ve cephe çekimleri `assets/products/`. Beyaz fon `tools/cutout.py` ile şeffaflaştırıldı (kenardan taşma dolgusu, 1 px erozyon, un-matte) → `assets/packs/`. Espresso Dark ürün sayfası 404 döndürdüğü için yer almıyor.
+- Mutfak fotoğrafı (paket + tam otomatik makine): Colombia ürün sayfasının yaşam tarzı görseli → `assets/packs/photo.jpg`; 2. sahnede yavaş zoom (Ken Burns) ile.
+- Resmi Tchibo logosu (bkz. Teknik → Logo).
+
+**Kurgu (12,4 sn, sonra son kare):** mavi zemin ve lekeler patlayarak açılır, üçgenler sağdan kayar → kahraman paket zıplayarak iner, yere değince gerçek çekirdek sprite'ları saçılır → "YENİ" rozeti fırlar → aile paketleri sağdan kayarak dizilir → başlık satırları maskeyle yükselir, script alt satır, CTA (3,4 sn) → **krem leke geçişi** (6,4 sn) → mutfak fotoğrafı sahnesi: "TAM OTOMATİK MAKİNELER İÇİN TASARLANDI" + tat notaları (Ken Burns) → leke geçişi → son kare (KV, her şey yerleşik). Sağ üst noktalarla sahneler arasında geçilebilir.
+
+**Etkileşim:** fare paralaksı (zemin, lekeler, üçgenler, paketler farklı derinlikte); paketlerin üzerine gelince paket kalkar ve ürün etiketi belirir; **pakete tıklama ilgili ürün sayfasına** (UTM'li) gider, kahraman pakete tıklayınca çekirdek saçılır; CTA ve boş alan kategori sayfasına; `clickTag` / `Enabler.exit` desteği; Enter / Boşluk ile çıkış.
+
+> Kampanya videosunun kendisi GitHub sunucusundan indirilemedi (YouTube "bot doğrulaması"); iş akışı görevi `tchibo-video` hazır, MP4 elde edilirse `assets/video/` altına konularak gerçek video kareleri de eklenebilir. Kaynak: `src/masthead-kv.html`; KV parçaları `tools/render-kv.py` → `assets/kv/`.
+
+## B · Sinematik 3 perde sürümü
+
+### Kurgu: çekirdekten fincana, üç perde
 
 | # | Perde | Süre | Ne olur |
 |---|---|---|---|
@@ -22,7 +40,7 @@
 
 Sağ üstteki üç nokta perdeleri gösterir; tıklanınca ilgili perdeye atlanır (izleyici hikâyeyi yeniden oynatabilir).
 
-## Görseller: hiçbir şey vektör değil, hepsi özgün
+### Görseller: hiçbir şey vektör değil, hepsi özgün
 
 Bannerdaki **her görsel sıfırdan, piksel piksel üretilmiş raster görseldir** – stok fotoğraf, hazır illüstrasyon ya da vektör çizim kullanılmadı. `tools/render-assets.py` (numpy + Pillow) yükseklik haritası → yüzey normalleri → Blinn-Phong ışıklandırma → 3–4× süper örnekleme → WebP zinciriyle çalışır.
 
@@ -43,7 +61,7 @@ Tek istisna markanın kendisidir: sol üstteki **resmi Tchibo logosu** tasarlanm
 
 Yeniden üretmek: `python3 tools/render-assets.py` (Pillow + numpy). Renk, oran, ışık yönü gibi her şey betikteki parametrelerdir.
 
-## Etkileşim
+### Etkileşim
 
 - **1. perde** – Fare hareketi sırtları, sisi ve süzülen çekirdekleri farklı hızlarda kaydırır (derinlik).
 - **2. perde** – İmleç ısı kaynağı: 120 px içindeki çekirdekler kor gibi parlar, rastgele kıvılcım saçar; ısı titreşimi artar.
@@ -53,7 +71,7 @@ Yeniden üretmek: `python3 tools/render-assets.py` (Pillow + numpy). Renk, oran,
 - **Klavye** – Banner odaklanabilir (`role="link"`), Enter / Boşluk ile çıkış. Son karede imleç bannera girince CTA yanında 3 sn'lik ipucu belirir.
 - `prefers-reduced-motion` açıksa kurgu atlanır, son kare doğrudan gösterilir; buhar ve titreşim kapalıdır.
 
-## Yerleşim
+### Yerleşim
 
 Üç net bölge: **sol** metin kolonu (marka satırı, üst satır, iki satırlık başlık, tek satır alt metin, CTA) – her perdede arka plan bu tarafta karartılır, üzerine görsel gelmez; **orta** fincan / kavurma çekirdekleri / güneş; **sağ** çekirdekler ve perde noktaları.
 
@@ -69,22 +87,34 @@ Yeniden üretmek: `python3 tools/render-assets.py` (Pillow + numpy). Renk, oran,
 ## Derleme
 
 ```bash
-python3 tools/render-assets.py                    # görselleri üret (assets/*.webp + manifest.json), ~1 dk
-node build.js                                     # dist/970x250/index.html + zip
-NODE_PATH=$(npm root -g) node tools/capture.js    # (isteğe bağlı) preview/screens/ – Playwright + Chromium
+python3 tools/render-assets.py                    # B: görselleri üret (assets/*.webp + manifest.json), ~1 dk
+python3 tools/render-kv.py                        # A: kampanya dili parçaları (assets/kv/)
+python3 tools/cutout.py                           # A: paket kesimleri + mutfak fotoğrafı (assets/packs/) – assets/products/ gerekir
+node build.js                                     # iki sürüm: dist/970x250 ve dist/970x250-kampanya (+ zip); tek sürüm: --only=kampanya
+NODE_PATH=$(npm root -g) node tools/capture.js    # B ekran görüntüleri; A için tools/capture-kv.js – Playwright + Chromium
 ```
+
+Siteden görsel çekme (GitHub Actions → "Siteden görselleri çek ve derle" → task): `tchibo-logo` (resmi logo), `tchibo-products` (paket görselleri, site videoları), `tchibo-video` (kampanya videosu; YouTube bot doğrulaması nedeniyle şu an yalnızca küçük resimler).
 
 Metinler, CTA ve hedef adres `src/masthead.html` içindedir; perde süreleri JS başındaki `T` nesnesinde (ms), metin zamanlamaları `updateText()` içindedir. Fincan konumu `CUP`, çekirdek yerleşimleri `mkBean(...)`, kavurma çekirdekleri `roast` dizisiyle ayarlanır.
 
 ## Klasör yapısı
 
 ```
-src/masthead.html        Kaynak (görseller {{asset:ad}} yer tutucularıyla)
-tools/render-assets.py   Raster görsel üretici (numpy + Pillow)
+src/masthead-kv.html     A · Kampanya KV sürümü kaynağı ({{kv:}}, {{pack:}}, {{url:}}, {{photo}}, {{logo}})
+src/masthead.html        B · Sinematik sürüm kaynağı ({{asset:}} yer tutucularıyla)
+tools/render-kv.py       Kampanya dili parçaları (zemin, lekeler, üçgenler, rozet)
+tools/fetch-products.js  tchibo.com.tr ürün görselleri + site videoları (GitHub Actions)
+tools/cutout.py          Beyaz fonlu paket çekimlerini şeffaflaştırma, mutfak fotoğrafı
+tools/fetch-video.sh     Kampanya videosu (yt-dlp + ffmpeg; GitHub Actions)
+tools/capture-kv.js      A sürümü ekran görüntüleri
+tools/render-assets.py   B · Raster görsel üretici (numpy + Pillow)
 tools/capture.js         Playwright ekran görüntüleri (yerel font önbelleği)
 assets/                  Üretilen görseller + manifest.json
 build.js                 Tek dosya derleyici + zip
-dist/970x250/index.html  Yüklemeye hazır masthead
+dist/970x250-kampanya/   A · Yüklemeye hazır kampanya masthead'i
+dist/970x250/            B · Yüklemeye hazır sinematik masthead
+assets/products|packs|kv Gerçek paket görselleri, kesimler, kampanya parçaları
 preview/index.html       Yayın simülasyonu
 preview/screens/         Ekran görüntüleri
 ```

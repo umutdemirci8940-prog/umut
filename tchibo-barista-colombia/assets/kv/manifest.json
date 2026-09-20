@@ -1,0 +1,38 @@
+{
+ "kvBg": {
+  "file": "assets/kv/kvBg.webp",
+  "w": 1940,
+  "h": 500,
+  "kb": 3.8
+ },
+ "blobA": {
+  "file": "assets/kv/blobA.webp",
+  "w": 900,
+  "h": 620,
+  "kb": 3.7
+ },
+ "blobB": {
+  "file": "assets/kv/blobB.webp",
+  "w": 560,
+  "h": 460,
+  "kb": 2.3
+ },
+ "blobC": {
+  "file": "assets/kv/blobC.webp",
+  "w": 380,
+  "h": 300,
+  "kb": 1.5
+ },
+ "badge": {
+  "file": "assets/kv/badge.webp",
+  "w": 260,
+  "h": 260,
+  "kb": 1.2
+ },
+ "tris": {
+  "file": "assets/kv/tris.webp",
+  "w": 560,
+  "h": 560,
+  "kb": 9.4
+ }
+}
