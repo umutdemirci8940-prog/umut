@@ -1,3 +1,49 @@
+# KFC Türkiye – "KFSOOO Menüler / Yeni Çifte Cruncher Menü" 970×250 İnteraktif Banner
+
+Kampanya görselinden (`assets/kfsooo/kv-1200.jpg`) üretilmiş, **KFSOOO Menüler** iletişimi için tek dosyalık, animasyonlu ve etkileşimli HTML5 billboard. Mesaj: *Yeni Çifte Cruncher Menü – kişi başı 155 TL, toplam 310 TL*; tıklama `kfcturkiye.com/kfsooo` sayfasına gider.
+
+**Teslim:** `release/kfsooo-970x250.html` (tek dosya ~1,1 MB; fotoğraf, etiket, logo, avatarlar ve sitenin fontları gömülü; açınca yalnızca 970×250 çalışma görünür) · `release/kfsooo-970x250.zip` (reklam ağına yüklenecek `index.html`).
+
+| Etiket + açılış | Son kare (Kişi başı) | Toplam modu |
+|---|---|---|
+| ![](preview/kfsooo/01-etiket.jpg) | ![](preview/kfsooo/06-son-kare.jpg) | ![](preview/kfsooo/07-toplam.jpg) |
+
+## Kurgu
+
+1. **Tabela (0–1,2 sn)** – Kamera KV'nin üstünde: kırmızı KFC tabelası ve çiftin başları. "KFSOOO MENÜLER" etiketi (KV'den kesilmiş gerçek etiket) sola *şak* diye yapışır, hafif sallanır; üzerinde parlama süpürmesi döner.
+2. **Yüzler (1,2 sn)** – Kamera yüzlere ve elindeki burgere iner; "YENİ" rozeti patlar, "ÇİFTE CRUNCHER MENÜ" harf harf sıçrar (KV'deki gibi dış çizgili tipografi).
+3. **Fiyat (2,3 sn)** – Sağda "Kişi Başı / Toplam" anahtarı belirir; fiyat odometre gibi 000 → **155 TL** döner, altına "Toplam 310 TL · 2 kişilik menü" ve iki yüzün avatarları ("× 2 KİŞİ") gelir.
+4. **Tepsi (3,3 sn)** – Kamera menüye iner: burger, patates, soslar, Coca-Cola; "Menüyü keşfet" çağrısı, "i" düğmesi, Coca-Cola logosu ve yasal şerit belirir.
+5. **Son kare (5,6 sn)** – Kamera yüzlere döner; 6,3 sn'de anahtar kendiliğinden **Toplam 310 TL**'ye geçer (avatarlar "+" ile ayrılır), 9,3 sn'de Kişi Başı'na döner. 13 sn'de kısa bir kararmayla kurgu yeniden başlar; üç döngü sonra son karede durur, "Tekrar izle" çıkar.
+
+## Etkileşim
+
+- **Fare ile kamera:** Fareyi yukarı/aşağı hareket ettirmek fotoğrafı kaydırır (tabela ↔ burger), sağa/sola hafif paralaks.
+- **Kişi başı / Toplam anahtarı:** Üzerine gelince ya da tıklayınca fiyat 155 ↔ 310 arasında rakam rakam döner, etiket ve alt satır değişir, avatarlar birleşir/ayrılır; otomatik geçiş 8 sn duraklar. ← → tuşları da değiştirir.
+- **Etiket:** Üzerine gelince sallanır.
+- **"i" – Kampanya koşulları:** Üzerine gelince ya da tıklayınca KV'deki yasal metnin tamamı alttan açılır (× ya da Esc kapatır). Şerit hâlinde ilk cümleler her zaman görünür.
+- **Tıklama:** Bannerın tamamı tıklanabilir (`clickTag` / `Enabler.exit` desteği; yoksa UTM'li kampanya adresi). Anahtar, "i", yasal kutu ve "Tekrar izle" tıklamayı yutar. Enter tıklar, boşluk baştan oynatır. `prefers-reduced-motion` açıksa doğrudan son kare.
+
+## Görselden türetilen parçalar (`tools/kfsooo-derive.js`)
+
+| Parça | Yöntem |
+|---|---|
+| `sticker.png` | Beyaz "KFSOOO MENÜLER" etiketi: beyaz alanı flood-fill ile seçme, harf deliklerini doldurma, poligonla kırpma, kenar yumuşatma |
+| `cola.png` | Coca-Cola yazı logosu: beyazlık/doygunluk anahtarı |
+| `avatar-a/b.png` | İki yüzün yuvarlak kesitleri |
+| `photo.jpg` | Kamera hareketi için KV (1100 px) |
+| `bg.jpg` | 970×250 bulanık, koyulaştırılmış arka plan |
+
+Fontlar sitenin kendi *National 2 Condensed / National 2* dosyaları (`assets/kfc/fonts`). Metinler, fiyatlar, süreler, tıklama adresi ve kamera durakları: **`src/kfsooo/data.js`**.
+
+```bash
+NODE_PATH=$(npm root -g) node tools/kfsooo-derive.js     # KV'den parçaları üret
+node build-kfsooo.js                                    # dist/kfsooo-970x250/ + release/kfsooo-970x250.html/.zip
+NODE_PATH=$(npm root -g) node tools/capture-kfsooo.js --video   # preview/kfsooo/ görüntüler, kayıt, etkileşim testleri
+```
+
+---
+
 # KFC Türkiye – "Kepenkler Yeniden Açılıyor" 970×250 İnteraktif Banner
 
 [kfcturkiye.com](https://www.kfcturkiye.com/) için hazırlanmış, **şubelerin yeniden açılışını** anlatan tek dosyalık, animasyonlu ve etkileşimli HTML5 billboard (970×250).
