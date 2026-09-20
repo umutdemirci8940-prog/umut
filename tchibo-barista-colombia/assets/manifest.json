@@ -17,11 +17,23 @@
   "h": 124,
   "kb": 2.7
  },
+ "beanG1": {
+  "file": "assets/beanG1.webp",
+  "w": 176,
+  "h": 124,
+  "kb": 2.6
+ },
  "bean2": {
   "file": "assets/bean2.webp",
   "w": 176,
   "h": 124,
   "kb": 2.6
+ },
+ "beanG2": {
+  "file": "assets/beanG2.webp",
+  "w": 176,
+  "h": 124,
+  "kb": 2.5
  },
  "bean3": {
   "file": "assets/bean3.webp",
@@ -29,17 +41,113 @@
   "h": 124,
   "kb": 2.6
  },
+ "beanG3": {
+  "file": "assets/beanG3.webp",
+  "w": 176,
+  "h": 124,
+  "kb": 2.5
+ },
  "bean4": {
   "file": "assets/bean4.webp",
   "w": 176,
   "h": 124,
   "kb": 2.6
  },
+ "beanG4": {
+  "file": "assets/beanG4.webp",
+  "w": 176,
+  "h": 124,
+  "kb": 2.5
+ },
  "bean5": {
   "file": "assets/bean5.webp",
   "w": 176,
   "h": 124,
   "kb": 2.4
+ },
+ "beanG5": {
+  "file": "assets/beanG5.webp",
+  "w": 176,
+  "h": 124,
+  "kb": 2.4
+ },
+ "cupEmpty": {
+  "file": "assets/cupEmpty.webp",
+  "w": 560,
+  "h": 400,
+  "kb": 17.1
+ },
+ "sky": {
+  "file": "assets/sky.webp",
+  "w": 1940,
+  "h": 500,
+  "kb": 11.7
+ },
+ "ridgeMid": {
+  "file": "assets/ridgeMid.webp",
+  "w": 1940,
+  "h": 500,
+  "kb": 12.6
+ },
+ "ridgeNear": {
+  "file": "assets/ridgeNear.webp",
+  "w": 1940,
+  "h": 500,
+  "kb": 12.1
+ },
+ "roastBg": {
+  "file": "assets/roastBg.webp",
+  "w": 1940,
+  "h": 500,
+  "kb": 7.1
+ },
+ "crema": {
+  "file": "assets/crema.webp",
+  "w": 240,
+  "h": 240,
+  "kb": 8.1
+ },
+ "cremaHi": {
+  "file": "assets/cremaHi.webp",
+  "w": 240,
+  "h": 82,
+  "kb": 2.8
+ },
+ "spout": {
+  "file": "assets/spout.webp",
+  "w": 200,
+  "h": 150,
+  "kb": 1.9
+ },
+ "stream": {
+  "file": "assets/stream.webp",
+  "w": 48,
+  "h": 420,
+  "kb": 8.9
+ },
+ "splash": {
+  "file": "assets/splash.webp",
+  "w": 140,
+  "h": 140,
+  "kb": 3.8
+ },
+ "rays": {
+  "file": "assets/rays.webp",
+  "w": 600,
+  "h": 600,
+  "kb": 20.4
+ },
+ "flare": {
+  "file": "assets/flare.webp",
+  "w": 600,
+  "h": 120,
+  "kb": 5.7
+ },
+ "drop": {
+  "file": "assets/drop.webp",
+  "w": 24,
+  "h": 24,
+  "kb": 0.6
  },
  "steam1": {
   "file": "assets/steam1.webp",

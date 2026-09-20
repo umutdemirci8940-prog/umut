@@ -131,7 +131,7 @@ def render_bean(name, seed, w=176, h=124, ss=4, base=(0.36, 0.21, 0.11), gloss=0
     save(finish(col, inside.astype(np.float32), ss), name)
 
 # ----------------------------------------------------------------- fincan + tabak
-def render_cup(name='cup', ss=3):
+def render_cup(name='cup', ss=3, with_coffee=True):
     w, h = 560, 400                       # 2x sprite (ekranda 280x200)
     W, H = w * ss, h * ss
     R = 124.0 * ss; k = 0.34              # üst ağız yarıçapı, elips oranı (kamera eğimi)
@@ -220,7 +220,7 @@ def render_cup(name='cup', ss=3):
     over(inner, (E2 <= 1).astype(np.float32))
     dc = 0.20 * R; Rc = R - t - 0.012 * R
     Ec = ell(cx, y0 + dc, Rc, Rc * k)
-    coffee = (Ec <= 1) & (E2 <= 1)
+    coffee = ((Ec <= 1) & (E2 <= 1)) if with_coffee else np.zeros((H, W), bool)
     uc = X / Rc; vc = (Y - dc) / (Rc * k); rc = np.sqrt(uc ** 2 + vc ** 2)
     wx = fbm(H, W, 0.40 * R, 21, 3); wy = fbm(H, W, 0.40 * R, 22, 3)
     n1 = fbm(H, W, 0.16 * R, 23, 4, persistence=0.55)
@@ -373,6 +373,245 @@ def render_background(name='bg', scale=2):
     MANIFEST[name] = {'file': 'assets/' + name + '.webp', 'w': w, 'h': h, 'kb': round(kb, 1)}
     print(f'  {name:14s} {w:5d}x{h:<5d} {kb:6.1f} KB')
 
+# ----------------------------------------------------------------- 1. perde: Kolombiya dağları
+def fbm1d(w, scale, seed, octaves=4, persistence=0.5):
+    return fbm(3, w, scale, seed, octaves, persistence)[1]
+
+def render_landscape(scale=2):
+    """Gökyüzü + güneş + bulut + uzak sırtlar tek görselde; orta ve yakın sırtlar paralaks için ayrı (alfa)."""
+    w, h = 970 * scale, 250 * scale
+    ys, xs = np.mgrid[0:h, 0:w].astype(np.float32)
+    u = xs / w; v = ys / h
+    top = np.array([0.05, 0.07, 0.17], np.float32); mid = np.array([0.30, 0.20, 0.30], np.float32)
+    hor = np.array([0.95, 0.60, 0.30], np.float32)
+    t1 = smoothstep(0.0, 0.50, v)[..., None]; t2 = smoothstep(0.45, 0.74, v)[..., None]
+    sky = top * (1 - t1) + mid * t1
+    sky = sky * (1 - t2) + hor * t2
+    sun = np.exp(-(((u - 0.80) / 0.075) ** 2 + ((v - 0.66) / 0.13) ** 2))
+    sky += sun[..., None] * np.array([1.0, 0.80, 0.50]) * 1.1
+    sky += np.exp(-(((u - 0.78) / 0.42) ** 2 + ((v - 0.62) / 0.45) ** 2))[..., None] * np.array([0.42, 0.22, 0.08])
+    cl = fbm(h, w // 10, w / 9, 41, 4, persistence=0.55)
+    cl = np.asarray(Image.fromarray(cl, 'F').resize((w, h), Image.BICUBIC), np.float32)
+    band = smoothstep(0.08, 0.30, v) * (1 - smoothstep(0.50, 0.66, v))
+    clouds = smoothstep(0.50, 0.80, cl) * band
+    sky = sky * (1 - 0.35 * clouds)[..., None] + (clouds * (0.7 + 0.3 * (1 - v)))[..., None] * np.array([0.85, 0.55, 0.45]) * 0.6
+    sky += ((fbm(h, w, 1.5, 42, 1) - 0.5) * 0.02)[..., None]
+    # uzak sırtlar (sis içinde)
+    ridges = [(0.60, 0.05, w / 5, 51, (0.42, 0.40, 0.50), 0.55), (0.66, 0.06, w / 4, 52, (0.30, 0.32, 0.40), 0.40),
+              (0.72, 0.05, w / 3.5, 53, (0.20, 0.26, 0.30), 0.25)]
+    img = sky.copy()
+    for base, amp, sc, sd, col, haze in ridges:
+        line = base * h + amp * h * (fbm1d(w, sc, sd, 4) - 0.5) * 2 + 0.012 * h * (fbm1d(w, w / 60, sd + 7, 2) - 0.5)
+        mask = smoothstep(-1.5, 1.5, ys - line[None, :])
+        depth = np.clip((ys - line[None, :]) / (0.25 * h), 0, 1)
+        col = np.array(col, np.float32)[None, None, :] * (1 - 0.35 * depth)[..., None]
+        hz = hor * 0.9 + np.array([0.0, 0.05, 0.12])
+        col = col * (1 - haze) + hz[None, None, :] * haze
+        rim = np.exp(-((ys - line[None, :]) / (3.0 * scale)) ** 2) * np.clip(1 - np.abs(u - 0.80) / 0.5, 0, 1)
+        col = col + rim[..., None] * np.array([0.6, 0.35, 0.12]) * 0.8
+        img = img * (1 - mask)[..., None] + col * mask[..., None]
+    out = Image.fromarray((np.clip(img, 0, 1) * 255 + 0.5).astype(np.uint8), 'RGB')
+    path = os.path.join(OUT, 'sky.webp'); out.save(path, quality=80, method=6)
+    MANIFEST['sky'] = {'file': 'assets/sky.webp', 'w': w, 'h': h, 'kb': round(os.path.getsize(path) / 1024, 1)}
+    print(f"  {'sky':14s} {w:5d}x{h:<5d} {MANIFEST['sky']['kb']:6.1f} KB")
+    # orta ve yakın sırtlar (alfa kanallı)
+    for name, base, amp, sc, sd, col, haze, tree in [
+        ('ridgeMid', 0.78, 0.085, w / 4.5, 61, (0.12, 0.21, 0.19), 0.22, 0.006),
+        ('ridgeNear', 0.87, 0.075, w / 3.2, 62, (0.05, 0.10, 0.08), 0.05, 0.012)]:
+        line = base * h + amp * h * (fbm1d(w, sc, sd, 4) - 0.5) * 2 + tree * h * (fbm1d(w, w / 160, sd + 9, 3, 0.6) - 0.5) * 2
+        mask = smoothstep(-1.5, 1.5, ys - line[None, :])
+        depth = np.clip((ys - line[None, :]) / (0.30 * h), 0, 1)
+        colA = np.array(col, np.float32)[None, None, :] * (1 - 0.45 * depth)[..., None]
+        colA = colA * (1 - haze) + (hor * 0.8)[None, None, :] * haze
+        tex = fbm(h, w, w / 90, sd + 3, 3)
+        colA *= (1 + 0.12 * (tex - 0.5))[..., None]
+        rim = np.exp(-((ys - line[None, :]) / (2.5 * scale)) ** 2) * np.clip(1 - np.abs(u - 0.80) / 0.55, 0, 1)
+        colA = colA + rim[..., None] * np.array([0.9, 0.55, 0.2]) * 0.7
+        rgba = np.dstack([np.clip(colA, 0, 1), mask])
+        im = Image.fromarray((rgba * 255 + 0.5).astype(np.uint8), 'RGBA')
+        save(im, name, quality=85)
+
+# ----------------------------------------------------------------- 2. perde: kavurma zemini
+def render_roast_bg(scale=2):
+    w, h = 970 * scale, 250 * scale
+    ys, xs = np.mgrid[0:h, 0:w].astype(np.float32)
+    u = xs / w; v = ys / h
+    base = np.array([0.055, 0.040, 0.035], np.float32)
+    img = np.broadcast_to(base, (h, w, 3)).copy() * (1.15 - 0.5 * v)[..., None]
+    brushed = fbm(h, w // 12, w / 8, 71, 3)
+    brushed = np.asarray(Image.fromarray(brushed, 'F').resize((w, h), Image.BICUBIC), np.float32)
+    img *= (1 + 0.10 * (brushed - 0.5))[..., None]
+    img += np.exp(-(((u - 0.60) / 0.55) ** 2 + ((v - 1.08) / 0.55) ** 2))[..., None] * np.array([0.55, 0.20, 0.04])
+    img += np.exp(-(((u - 0.25) / 0.30) ** 2 + ((v - 1.05) / 0.35) ** 2))[..., None] * np.array([0.30, 0.10, 0.02])
+    rad = np.sqrt(((u - 0.55) / 0.65) ** 2 + ((v - 0.5) / 0.8) ** 2)
+    img *= (1 - 0.5 * np.clip(rad, 0, 1) ** 2)[..., None]
+    img *= (0.55 + 0.45 * smoothstep(0.0, 0.45, u))[..., None]
+    img += ((fbm(h, w, 1.5, 72, 1) - 0.5) * 0.03)[..., None]
+    out = Image.fromarray((np.clip(img, 0, 1) * 255 + 0.5).astype(np.uint8), 'RGB')
+    path = os.path.join(OUT, 'roastBg.webp'); out.save(path, quality=78, method=6)
+    MANIFEST['roastBg'] = {'file': 'assets/roastBg.webp', 'w': w, 'h': h, 'kb': round(os.path.getsize(path) / 1024, 1)}
+    print(f"  {'roastBg':14s} {w:5d}x{h:<5d} {MANIFEST['roastBg']['kb']:6.1f} KB")
+
+# ----------------------------------------------------------------- 3. perde: krema diski, makine ağzı, akış, sıçrama
+def render_crema_disc(name='crema', size=240, ss=3):
+    """Üstten görünüm daire (çalışma anında elips olarak yatırılıp döndürülür)."""
+    S = size * ss
+    ys, xs = np.mgrid[0:S, 0:S].astype(np.float32)
+    R = S / 2 * 0.96
+    uc = (xs - S / 2) / R; vc = (ys - S / 2) / R; rc = np.sqrt(uc ** 2 + vc ** 2)
+    inside = smoothstep(1.0, 0.99, rc)
+    wx = fbm(S, S, R * 0.8, 21, 3); wy = fbm(S, S, R * 0.8, 22, 3)
+    n1 = fbm(S, S, 0.32 * R, 23, 4, persistence=0.55)
+    marble = sample(n1, xs + (wx - 0.5) * 0.6 * R, ys + (wy - 0.5) * 0.6 * R)
+    fleck = fbm(S, S, 0.07 * R, 24, 3, persistence=0.6)
+    theta = np.arctan2(vc, uc)
+    swirl = 0.5 + 0.5 * np.sin(3 * theta + 7 * rc + 5 * (marble - 0.5))
+    p = 0.55 * marble + 0.25 * fleck + 0.20 * swirl
+    light = np.array([0.82, 0.58, 0.31], np.float32); mid = np.array([0.64, 0.40, 0.18], np.float32)
+    dark = np.array([0.34, 0.17, 0.07], np.float32)
+    tL = smoothstep(0.40, 0.75, p)[..., None]; tD = (1 - smoothstep(0.22, 0.42, p))[..., None]
+    cc = mid * (1 - tL) + light * tL
+    cc = cc * (1 - 0.55 * tD) + dark * 0.55 * tD
+    cc *= (1 + 0.10 * (fleck - 0.5))[..., None]
+    cc *= (1.06 - 0.16 * rc ** 2)[..., None]
+    edge = smoothstep(0.86, 1.0, rc)[..., None]
+    cc = cc * (1 - 0.8 * edge) + dark * 0.8 * edge
+    ring = np.exp(-((rc - 0.84) / 0.03) ** 2)[..., None]
+    cc = cc * (1 - 0.35 * ring) + light * 0.35 * ring
+    rr = np.random.default_rng(5)
+    bub = np.zeros((S, S), np.float32)
+    for _ in range(260):
+        ang = rr.uniform(0, 6.283); rad = rr.uniform(0.5, 0.96); sz = rr.uniform(0.012, 0.03) * R
+        bx = S / 2 + np.cos(ang) * rad * R; by = S / 2 + np.sin(ang) * rad * R
+        bub += np.exp(-((xs - bx) ** 2 + (ys - by) ** 2) / (sz * sz)) * rr.uniform(0.3, 1.0)
+    cc += np.clip(bub, 0, 1)[..., None] * np.array([0.18, 0.13, 0.07])
+    save(finish(cc, inside.astype(np.float32), ss), name, quality=88)
+
+def render_crema_overlay(name='cremaHi', w=240, h=82, ss=3):
+    """Elips uzayında sabit gölge (iç duvar) + pencere yansıması; siyah/beyaz alfa katmanı."""
+    W, H = w * ss, h * ss
+    ys, xs = np.mgrid[0:H, 0:W].astype(np.float32)
+    uc = (xs - W / 2) / (W / 2 * 0.96); vc = (ys - H / 2) / (H / 2 * 0.96); rc = np.sqrt(uc ** 2 + vc ** 2)
+    inside = smoothstep(1.0, 0.985, rc)
+    shadow = 0.55 * smoothstep(0.30, 1.0, rc) * np.clip(-(0.75 * vc + 0.55 * uc), 0, 1)
+    spec = 0.42 * np.exp(-((uc + 0.30) / 0.30) ** 2 - ((vc + 0.28) / 0.13) ** 2) \
+           + 0.12 * np.exp(-((uc - 0.30) / 0.28) ** 2 - ((vc - 0.50) / 0.12) ** 2) + 0.05 * np.clip(-vc, 0, 1)
+    rgb = np.zeros((H, W, 3), np.float32); a = np.zeros((H, W), np.float32)
+    # önce gölge (siyah), sonra parlaklık (sıcak beyaz) – tek katmanda: baskın olanı seç
+    lighten = spec > shadow
+    rgb[lighten] = np.array([1.0, 0.95, 0.88]); a[lighten] = spec[lighten]
+    rgb[~lighten] = np.array([0.02, 0.01, 0.0]); a[~lighten] = shadow[~lighten]
+    save(finish(rgb, np.clip(a, 0, 1) * inside, ss), name, lossless=True)
+
+def render_spout(name='spout', w=200, h=150, ss=3):
+    """Tam otomatik makinenin çift ağızlı kahve çıkışı: mat grafit gövde, krom bant, iki silindir."""
+    W, H = w * ss, h * ss
+    ys, xs = np.mgrid[0:H, 0:W].astype(np.float32)
+    pm = np.zeros((H, W, 3), np.float32); A = np.zeros((H, W), np.float32)
+    def over(rgb, a):
+        nonlocal pm, A
+        a = np.clip(a, 0, 1).astype(np.float32)
+        pm = np.clip(rgb, 0, 1) * a[..., None] + pm * (1 - a)[..., None]; A = a + A * (1 - a)
+    def rrect(x0, y0, x1, y1, r):
+        cx = np.clip(xs, x0 + r, x1 - r); cy = np.clip(ys, y0 + r, y1 - r)
+        d = np.sqrt((xs - cx) ** 2 + (ys - cy) ** 2)
+        return smoothstep(r + 1.5, r - 1.5, d)
+    s = ss
+    # gölge
+    sh = blur(rrect(30 * s, 20 * s, 170 * s, 82 * s, 14 * s), 6 * s) * 0.5
+    over(np.zeros((H, W, 3), np.float32), sh)
+    # gövde
+    body = rrect(28 * s, 0, 172 * s, 78 * s, 12 * s)
+    vgrad = 0.26 - 0.16 * np.clip(ys / (78 * s), 0, 1)
+    hgrad = 1 + 0.25 * np.exp(-((xs - 70 * s) / (40 * s)) ** 2)
+    col = np.array([0.12, 0.12, 0.13])[None, None, :] * (vgrad * hgrad / 0.2)[..., None]
+    col *= (1 + 0.04 * (fbm(H, W, 20 * s, 81, 2) - 0.5))[..., None]
+    over(col, body)
+    # krom bant (alt kenar)
+    band = body * smoothstep(64 * s, 66 * s, ys) * (1 - smoothstep(76 * s, 78 * s, ys))
+    bt = np.clip((ys - 64 * s) / (14 * s), 0, 1)
+    bc = 0.35 + 0.55 * np.exp(-((bt - 0.35) / 0.22) ** 2) + 0.15 * np.exp(-((xs - 60 * s) / (50 * s)) ** 2)
+    over(np.array([0.92, 0.93, 0.95])[None, None, :] * bc[..., None], band)
+    # iki silindirik ağız
+    for cxn in (72 * s, 128 * s):
+        rn = 15 * s
+        cyl = (np.abs(xs - cxn) <= rn) & (ys >= 76 * s) & (ys <= 136 * s)
+        cap = ((xs - cxn) / rn) ** 2 + ((ys - 136 * s) / (rn * 0.35)) ** 2 <= 1
+        m = (cyl | (cap & (ys > 136 * s))).astype(np.float32)
+        nx = np.clip((xs - cxn) / rn, -1, 1); nz = np.sqrt(np.clip(1 - nx ** 2, 0, 1))
+        n = normalize(np.dstack([nx, np.zeros_like(nx) + 0.1, nz]))
+        alb = np.broadcast_to(np.array([0.11, 0.11, 0.12], np.float32), (H, W, 3)).copy()
+        c = phong(n, alb, [dict(dir=(-0.5, -0.4, 0.75), col=(1, 1, 1), diff=0.9, spec=0.45, power=26),
+                           dict(dir=(0.8, 0.1, 0.5), col=(1.0, 0.75, 0.5), diff=0.3, spec=0.15, power=8)], ambient=0.5)
+        c *= (1 - 0.35 * (1 - smoothstep(76 * s, 92 * s, ys)))[..., None]          # gövdeyle birleşimde AO
+        capm = cap & (ys > 136 * s)
+        c[capm] = np.array([0.05, 0.045, 0.04])
+        over(c, m)
+    rgb = pm / np.maximum(A[..., None], 1e-4)
+    save(finish(rgb, A, ss), name, quality=88)
+
+def render_stream(name='stream', w=48, h=420, ss=3):
+    """Dökülen kahve akışı: koyu kahverengi sütun, dikey parlaklık şeridi, hafif incelme."""
+    W, H = w * ss, h * ss
+    ys, xs = np.mgrid[0:H, 0:W].astype(np.float32)
+    v = ys / H
+    taper = 1.0 - 0.18 * v
+    u = (xs - W / 2) / (W / 2 * 0.9 * taper)
+    a = 1 - smoothstep(0.72, 1.0, np.abs(u))
+    streak = fbm(H, W, W / 3, 91, 3)
+    streak = np.asarray(Image.fromarray(streak, 'F').resize((W, H), Image.BICUBIC), np.float32)
+    col = np.array([0.30, 0.15, 0.06], np.float32)[None, None, :] * (0.9 + 0.25 * streak)[..., None]
+    col += (0.55 * np.exp(-((u + 0.35) / 0.20) ** 2) + 0.18 * np.exp(-((u - 0.55) / 0.18) ** 2))[..., None] * np.array([1.0, 0.85, 0.65])
+    col *= (1 - 0.25 * smoothstep(0.55, 1.0, np.abs(u)))[..., None]
+    a *= (0.85 + 0.15 * streak)
+    save(finish(col, a.astype(np.float32), ss), name, lossless=True)
+
+def render_splash(name='splash', size=140, ss=3):
+    S = size * ss
+    ys, xs = np.mgrid[0:S, 0:S].astype(np.float32)
+    u = (xs - S / 2) / (S / 2); v = (ys - S / 2) / (S / 2); r = np.sqrt(u ** 2 + v ** 2); th = np.arctan2(v, u)
+    a = np.exp(-((r - 0.55) / 0.09) ** 2) * (0.55 + 0.45 * np.sin(9 * th + 1.0))
+    rr = np.random.default_rng(9)
+    for _ in range(14):
+        ang = rr.uniform(0, 6.283); rad = rr.uniform(0.62, 0.92); sz = rr.uniform(0.03, 0.06)
+        a += np.exp(-((u - np.cos(ang) * rad) ** 2 + (v - np.sin(ang) * rad) ** 2) / (sz * sz)) * 0.9
+    a *= (1 - smoothstep(0.9, 1.0, r))
+    rgb = np.ones((S, S, 3), np.float32) * np.array([0.88, 0.64, 0.38], np.float32)
+    save(finish(rgb, np.clip(a, 0, 1), ss), name, lossless=True)
+
+def render_rays(name='rays', size=600, ss=2):
+    S = size * ss
+    ys, xs = np.mgrid[0:S, 0:S].astype(np.float32)
+    u = (xs - S / 2) / (S / 2); v = (ys - S / 2) / (S / 2); r = np.sqrt(u ** 2 + v ** 2); th = np.arctan2(v, u)
+    rr = np.random.default_rng(13)
+    a = np.zeros((S, S), np.float32)
+    for _ in range(16):
+        t0 = rr.uniform(-3.1416, 3.1416); wdt = rr.uniform(0.02, 0.07); amp = rr.uniform(0.3, 1.0)
+        d = np.angle(np.exp(1j * (th - t0)))
+        a += amp * np.exp(-(d / wdt) ** 2)
+    a *= np.clip(1 - r, 0, 1) ** 1.6 * smoothstep(0.02, 0.12, r)
+    rgb = np.ones((S, S, 3), np.float32) * np.array([1.0, 0.88, 0.66], np.float32)
+    save(finish(rgb, np.clip(a, 0, 1), ss), name, lossless=True)
+
+def render_flare(name='flare', w=600, h=120, ss=2):
+    W, H = w * ss, h * ss
+    ys, xs = np.mgrid[0:H, 0:W].astype(np.float32)
+    u = (xs - W / 2) / (W / 2); v = (ys - H / 2) / (H / 2)
+    a = 0.75 * np.exp(-(v / 0.28) ** 2) * np.exp(-(u / 0.85) ** 4) + np.exp(-(u / 0.10) ** 2 - (v / 0.55) ** 2)
+    rgb = np.ones((H, W, 3), np.float32) * np.array([1.0, 0.86, 0.62], np.float32)
+    save(finish(rgb, np.clip(a, 0, 1), ss), name, lossless=True)
+
+def render_drop(name='drop', size=24, ss=4):
+    S = size * ss
+    ys, xs = np.mgrid[0:S, 0:S].astype(np.float32)
+    u = (xs - S / 2) / (S / 2 * 0.9); v = (ys - S / 2) / (S / 2 * 0.9); r2 = u ** 2 + v ** 2
+    inside = (r2 <= 1).astype(np.float32)
+    z = np.sqrt(np.clip(1 - r2, 0, 1))
+    n = normalize(np.dstack([u, v, z]))
+    col = phong(n, np.broadcast_to(np.array([0.32, 0.16, 0.06], np.float32), (S, S, 3)).copy(),
+                [dict(dir=(-0.5, -0.5, 0.7), col=(1, 0.95, 0.9), diff=0.9, spec=0.7, power=30)], ambient=0.35)
+    save(finish(col, inside, ss), name, lossless=True)
+
 # ----------------------------------------------------------------- üretim
 if __name__ == '__main__':
     print('Raster görseller üretiliyor →', OUT)
@@ -387,6 +626,13 @@ if __name__ == '__main__':
     ]
     for nm, sd, base, gl, back in beans:
         render_bean(nm, sd, base=base, gloss=gl, back=back)
+        # aynı tohum = aynı şekil; çiğ (yeşil, mat) sürüm – kavurma geçişi için
+        render_bean(nm.replace('bean', 'beanG'), sd, base=(0.46, 0.49, 0.30), gloss=0.16, back=back)
+    render_cup('cupEmpty', with_coffee=False)
+    render_landscape()
+    render_roast_bg()
+    render_crema_disc(); render_crema_overlay()
+    render_spout(); render_stream(); render_splash(); render_rays(); render_flare(); render_drop()
     render_steam('steam1', 7, stretch=1.35)
     render_steam('steam2', 8, stretch=1.1)
     render_steam('steam3', 9, stretch=1.6)

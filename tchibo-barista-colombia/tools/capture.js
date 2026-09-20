@@ -64,16 +64,16 @@ function ensureFonts(cssUrl) {
   const at = async (ms) => { const d = start + ms - Date.now(); if (d > 0) await page.waitForTimeout(d); };
   const shot = (name) => page.screenshot({ path: path.join(out, `970x250-${name}.jpg`), type: 'jpeg', quality: 88 });
 
-  await at(650); await shot('01-intro');          // ışık süpürmesi, çekirdekler düşüyor
-  await at(1750); await shot('02-beans-land');    // fincan yerleşti, başlık yükseliyor
-  await at(2600); await shot('03-headline');      // başlık + alt metin
-  await at(5200); await shot('04-final');         // CTA, buhar, bokeh – nihai kare
-  // fincana yaklaşma: buhar yoğunlaşır, ısı halkaları masaya yayılır, hale büyür
-  await page.mouse.move(600, 150); await page.waitForTimeout(1500); await shot('05-hover-cup');
-  // çekirdeğe dokunma: çekirdek takla atar, aroma kıvılcımları + tat notu
-  await page.mouse.move(758, 232); await page.waitForTimeout(300);
-  await page.mouse.down(); await page.mouse.up(); await page.waitForTimeout(380); await shot('06-bean-tap');
-  await page.mouse.move(120, 120); await page.waitForTimeout(900); await shot('07-parallax-left');
+  await at(1400); await shot('01-daglar');          // 1. perde: Kolombiya dağlarında şafak
+  await at(3800); await shot('02-gecis');           // parlama ile geçiş
+  await at(6600); await shot('03-kavurma');         // 2. perde: tambur kavurma, çekirdekler kızarıyor
+  await at(10000); await shot('04-fincan-bos');     // 3. perde: boş fincan, makine ağzı iniyor
+  await at(11000); await shot('05-dokum');          // kahve dökülüyor, krema doluyor
+  await at(14200); await shot('06-son-kare');       // son kare: CTA, buhar
+  await page.mouse.move(600, 150); await page.waitForTimeout(1500); await shot('07-hover-fincan');
+  await page.mouse.move(752, 232); await page.waitForTimeout(300);
+  await page.mouse.down(); await page.mouse.up(); await page.waitForTimeout(380); await shot('08-cekirdek');
+  await page.mouse.move(120, 120); await page.waitForTimeout(900); await shot('09-paralaks');
   await browser.close();
   console.log('✔ Ekran görüntüleri:', path.relative(root, out) + (errors.length ? '  ⚠ ' + errors.join(' | ') : ''));
 })().catch((e) => { console.error(e); process.exit(1); });

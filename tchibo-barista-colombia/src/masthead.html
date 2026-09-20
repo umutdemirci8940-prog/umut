@@ -11,61 +11,74 @@
 <style>
 :root{--gold:#e8bb6b;--gold2:#c98f3d;--cream:#f8eedf;--ink:#2a1608}
 html,body{margin:0;padding:0;background:#0d0705}
-#ad{position:relative;width:970px;height:250px;overflow:hidden;background:#140c08;font-family:Manrope,"Segoe UI",Arial,sans-serif;cursor:pointer;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;outline:none;touch-action:none}
+#ad{position:relative;width:970px;height:250px;overflow:hidden;background:#0b0710;font-family:Manrope,"Segoe UI",Arial,sans-serif;cursor:pointer;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;outline:none;touch-action:none}
 #ad:focus-visible{box-shadow:inset 0 0 0 2px var(--gold)}
 #c{position:absolute;left:0;top:0;width:970px;height:250px;display:block}
 .ui{position:absolute;inset:0;pointer-events:none}
-.brand{position:absolute;left:44px;top:24px;font-weight:800;font-size:14px;letter-spacing:.34em;color:var(--cream);opacity:.95;display:flex;align-items:baseline;gap:10px}
+.brand{position:absolute;left:44px;top:24px;font-weight:800;font-size:14px;letter-spacing:.34em;color:var(--cream);display:flex;align-items:baseline;gap:10px;opacity:0;transition:opacity .8s}
 .brand small{font-size:8.5px;letter-spacing:.32em;color:var(--gold);opacity:.95}
-.copy{position:absolute;left:44px;top:70px;width:410px}
-.over{font-size:10px;font-weight:700;letter-spacing:.22em;color:var(--gold)}
+#ad.go .brand{opacity:.95}
+.tx{position:absolute;left:44px;top:70px;width:420px;opacity:0;transition:opacity .5s ease,transform .5s ease}
+.tx.on{opacity:1}
+.tx.off{opacity:0;transform:translateY(-10px);transition-duration:.4s}
+.over{font-size:10px;font-weight:700;letter-spacing:.22em;color:var(--gold);opacity:0;transform:translateY(8px);transition:opacity .6s ease .1s,transform .6s ease .1s}
+.tx.on .over{opacity:1;transform:none}
 .h{margin:7px 0 0;font-family:"Playfair Display",Georgia,serif;font-weight:700;font-size:28px;line-height:1.1;color:var(--cream);text-shadow:0 2px 16px rgba(0,0,0,.6)}
 .h .l{display:block;overflow:hidden;padding-bottom:3px}
-.h .l>span{display:block}
+.h .l>span{display:block;transform:translateY(112%)}
+.tx.on .l>span{animation:rise .95s cubic-bezier(.2,.75,.15,1) both}
+.tx.on .l:nth-child(2)>span{animation-delay:.22s}
+.tx.off .l>span{animation:none;transform:none}
 .h em{font-style:italic;font-weight:600;color:var(--gold)}
-.sub{margin:8px 0 0;font-size:11.5px;line-height:1.4;font-weight:500;letter-spacing:.01em;color:rgba(248,238,223,.72);white-space:nowrap}
+.sub{margin:8px 0 0;font-size:11.5px;line-height:1.4;font-weight:500;letter-spacing:.01em;color:rgba(248,238,223,.72);white-space:nowrap;opacity:0;transform:translateY(8px);transition:opacity .7s ease .7s,transform .7s ease .7s}
+.tx.on .sub{opacity:1;transform:none}
 .sub i{font-style:normal;color:var(--gold);opacity:.9;padding:0 5px}
-.row{position:absolute;left:44px;bottom:26px;display:flex;align-items:center;gap:16px;pointer-events:none}
+.row{position:absolute;left:44px;bottom:26px;display:flex;align-items:center;gap:16px;pointer-events:none;opacity:0;transform:translateY(12px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.row.on{opacity:1;transform:none}
 .cta{pointer-events:auto;position:relative;overflow:hidden;border:0;border-radius:999px;padding:0 20px;height:34px;font:700 13px/34px Manrope,Arial,sans-serif;letter-spacing:.02em;color:var(--ink);background:linear-gradient(180deg,#f2cd85 0%,#e0ad57 55%,#c98f3d 100%);box-shadow:0 6px 18px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.55);cursor:pointer;transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s}
 .cta:hover{transform:translateY(-1px) scale(1.03);box-shadow:0 10px 24px rgba(230,170,80,.35),inset 0 1px 0 rgba(255,255,255,.6)}
-.cta:after{content:"";position:absolute;top:-40%;left:-70%;width:45%;height:180%;transform:rotate(18deg);background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.55),rgba(255,255,255,0));animation:shine 5.5s linear 4.2s infinite paused}
-#ad.go .cta:after{animation-play-state:running}
+.cta:after{content:"";position:absolute;top:-40%;left:-70%;width:45%;height:180%;transform:rotate(18deg);background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.55),rgba(255,255,255,0))}
+.row.on .cta:after{animation:shine 5.5s linear 1.4s infinite}
 .hint{font-size:9.5px;letter-spacing:.05em;color:rgba(248,238,223,.5);font-weight:600;opacity:0;transition:opacity .6s}
 .hint.on{opacity:1}
+.dots{position:absolute;right:22px;top:22px;display:flex;gap:6px;pointer-events:auto;opacity:0;transition:opacity .8s}
+#ad.go .dots{opacity:1}
+.dots b{display:block;width:6px;height:6px;border-radius:3px;background:rgba(248,238,223,.32);cursor:pointer;transition:width .35s,background .35s}
+.dots b.on{width:18px;background:var(--gold)}
+.dots b:hover{background:rgba(248,238,223,.7)}
 .note{position:absolute;pointer-events:none;font-family:"Playfair Display",Georgia,serif;font-style:italic;font-size:15px;color:var(--gold);white-space:nowrap;text-shadow:0 1px 3px rgba(0,0,0,.8),0 0 14px rgba(230,170,80,.5);transform:translate(-50%,-50%);animation:noteUp 1.7s cubic-bezier(.2,.7,.2,1) forwards}
-/* giriş animasyonları */
-.brand,.over,.sub,.row{opacity:0;animation:up .9s cubic-bezier(.2,.7,.2,1) both paused}
-#ad.go .brand,#ad.go .over,#ad.go .sub,#ad.go .row,#ad.go .h .l>span{animation-play-state:running}
-.brand{animation-delay:1.05s}.over{animation-delay:1.35s}.sub{animation-delay:2.15s}.row{animation-delay:2.85s}
-.h .l>span{transform:translateY(112%);animation:rise .95s cubic-bezier(.2,.75,.15,1) both paused}
-.h .l:nth-child(1)>span{animation-delay:1.55s}.h .l:nth-child(2)>span{animation-delay:1.78s}
-@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 @keyframes rise{from{transform:translateY(112%)}to{transform:none}}
 @keyframes shine{0%{left:-70%}18%{left:130%}100%{left:130%}}
 @keyframes noteUp{0%{opacity:0;transform:translate(-50%,-30%) scale(.8)}18%{opacity:1;transform:translate(-50%,-70%) scale(1)}70%{opacity:1}100%{opacity:0;transform:translate(-50%,-190%) scale(1.02)}}
 @media (prefers-reduced-motion:reduce){
-  .brand,.over,.sub,.row,.h .l>span{animation:none;opacity:1;transform:none}
-  .cta:after{animation:none}
+  .tx,.tx.on .l>span,.row,.brand,.dots{animation:none;transition:none}
+  .row.on .cta:after{animation:none}
 }
 </style>
 </head>
 <body>
-<div id="ad" role="link" tabindex="0" aria-label="Tchibo Barista Colombia Origin – Kolombiya'nın enfes lezzeti, sıcacık fincanınızda. Ürünü keşfet">
+<div id="ad" role="link" tabindex="0" aria-label="Tchibo Barista Colombia Origin – Yüksek dağlarda yetişen %100 Arabica, usta işi kavurma, çekirdekten fincana Kolombiya'nın enfes lezzeti. Ürünü keşfet">
   <canvas id="c" width="970" height="250" aria-hidden="true"></canvas>
   <div class="ui">
     <div class="brand">TCHIBO <small>BARISTA · COLOMBIA ORIGIN</small></div>
-    <div class="copy">
+    <div class="tx" id="tx1">
+      <div class="over">KOLOMBİYA · TEK YÖRE</div>
+      <h2 class="h"><span class="l"><span>Yüksek dağlarda yetişen</span></span><span class="l"><span>%100 Arabica <em>çekirdekler.</em></span></span></h2>
+    </div>
+    <div class="tx" id="tx2">
+      <div class="over">GELENEKSEL TAMBUR KAVURMA</div>
+      <h2 class="h"><span class="l"><span>Her çekirdeğe zaman tanıyan,</span></span><span class="l"><span>usta işi bir <em>kavurma.</em></span></span></h2>
+    </div>
+    <div class="tx" id="tx3">
       <div class="over">%100 ARABICA · TAM OTOMATİK MAKİNELER İÇİN · 1 KG</div>
-      <h1 class="h">
-        <span class="l"><span>Çekirdekten fincana,</span></span>
-        <span class="l"><span>Kolombiya'nın <em>enfes lezzeti.</em></span></span>
-      </h1>
+      <h2 class="h"><span class="l"><span>Çekirdekten fincana,</span></span><span class="l"><span>Kolombiya'nın <em>enfes lezzeti.</em></span></span></h2>
       <p class="sub">Kırmızı meyve ve çikolata notaları<i>·</i>İpeksi, yoğun krema</p>
     </div>
-    <div class="row">
+    <div class="row" id="row">
       <button class="cta" type="button" id="cta">Ürünü Keşfet</button>
       <span class="hint" id="hint">Fincana yaklaş, sıcaklığı hisset · Çekirdeğe dokun</span>
     </div>
+    <div class="dots" id="dots" aria-hidden="true"><b class="on" data-i="0"></b><b data-i="1"></b><b data-i="2"></b></div>
     <div id="notes"></div>
   </div>
 </div>
@@ -76,66 +89,76 @@ var W=970,H=250;
 var URL_='https://www.tchibo.com.tr/categories/kahve/kahveler/tam-otomatik-makineler-icin-kahve?utm_source=display&utm_medium=masthead&utm_campaign=barista-colombia';
 var MAX_AUTOPLAY=30000;         // 30 sn sonra ortam animasyonu durur (etkileşimle yeniden canlanır)
 var RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+// ---- zaman çizgisi (ms): 1. perde dağlar → 2. perde kavurma → 3. perde makineden fincana → son kare
+var T={t1:3400,s2:4200,t2:8600,s3:9400,pourIn:9900,pour:10300,pourEnd:11900,pourOut:12300,steam:11500,cta:12600,end:13800};
 var SRC={
-  bg:'{{asset:bg}}',cup:'{{asset:cup}}',
+  sky:'{{asset:sky}}',ridgeMid:'{{asset:ridgeMid}}',ridgeNear:'{{asset:ridgeNear}}',rays:'{{asset:rays}}',flare:'{{asset:flare}}',
+  roastBg:'{{asset:roastBg}}',
+  bg:'{{asset:bg}}',cup:'{{asset:cupEmpty}}',crema:'{{asset:crema}}',cremaHi:'{{asset:cremaHi}}',spout:'{{asset:spout}}',stream:'{{asset:stream}}',splash:'{{asset:splash}}',drop:'{{asset:drop}}',
   bean:['{{asset:bean1}}','{{asset:bean2}}','{{asset:bean3}}','{{asset:bean4}}','{{asset:bean5}}'],
+  beanG:['{{asset:beanG1}}','{{asset:beanG2}}','{{asset:beanG3}}','{{asset:beanG4}}','{{asset:beanG5}}'],
   steam:['{{asset:steam1}}','{{asset:steam2}}','{{asset:steam3}}'],
   bokeh:'{{asset:bokeh}}',heatring:'{{asset:heatring}}',spark:'{{asset:spark}}',shadow:'{{asset:shadow}}',glow:'{{asset:glow}}'
 };
-var IMG={bean:[],steam:[]},pending=0,started=false;
-function load(src,cb){pending++;var im=new Image();im.onload=im.onerror=function(){pending--;cb&&cb(im);if(!pending)start()};im.src=src;return im}
-IMG.bg=load(SRC.bg);IMG.cup=load(SRC.cup);
-for(var i=0;i<SRC.bean.length;i++)IMG.bean[i]=load(SRC.bean[i]);
-for(i=0;i<SRC.steam.length;i++)IMG.steam[i]=load(SRC.steam[i]);
-IMG.bokeh=load(SRC.bokeh);IMG.heatring=load(SRC.heatring);IMG.spark=load(SRC.spark);IMG.shadow=load(SRC.shadow);IMG.glow=load(SRC.glow);
-setTimeout(start,2500);
+var IMG={bean:[],beanG:[],steam:[]},pending=0,started=false;
+function load(src){pending++;var im=new Image();im.onload=im.onerror=function(){pending--;if(!pending)start()};im.src=src;return im}
+for(var key in SRC){if(SRC[key] instanceof Array){for(var i=0;i<SRC[key].length;i++)IMG[key][i]=load(SRC[key][i])}else IMG[key]=load(SRC[key])}
+setTimeout(start,3000);
 
-// ---------------------------------------------------------------- sahne
+// ---------------------------------------------------------------- tuval
 var ad=document.getElementById('ad'),cv=document.getElementById('c'),ctx=cv.getContext('2d');
 var DPR=Math.min(window.devicePixelRatio||1,2);
-cv.width=W*DPR;cv.height=H*DPR;
-var scene=document.createElement('canvas');scene.width=W*DPR;scene.height=H*DPR;var sc=scene.getContext('2d');
-sc.scale(DPR,DPR);ctx.scale(DPR,DPR);
+cv.width=W*DPR;cv.height=H*DPR;ctx.scale(DPR,DPR);
+function offscreen(){var c=document.createElement('canvas');c.width=W*DPR;c.height=H*DPR;var g=c.getContext('2d');g.scale(DPR,DPR);return{c:c,g:g}}
+var scene=offscreen(),layer=offscreen();
 
 function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;var t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
 var R=rng(20260920);
 function clamp(v,a,b){return v<a?a:v>b?b:v}
+function sm(a,b,x){var t=clamp((x-a)/(b-a),0,1);return t*t*(3-2*t)}
 function easeOutCubic(p){return 1-Math.pow(1-p,3)}
 function bounce(p){var n1=7.5625,d1=2.75;if(p<1/d1)return n1*p*p;if(p<2/d1)return n1*(p-=1.5/d1)*p+.75;if(p<2.5/d1)return n1*(p-=2.25/d1)*p+.9375;return n1*(p-=2.625/d1)*p+.984375}
 
-var CS=.95,CUP={x:482,y:56,w:280*CS,h:200*CS};          // sprite yerleşimi (ölçek .95, tabak tam görünür)
+// ---------------------------------------------------------------- 3. perde geometrisi
+var CS=.95,CUP={x:482,y:56};
 var CUPC={x:CUP.x+140*CS,y:CUP.y+88*CS};               // gövde merkezi
-var RIM={x:CUP.x+140*CS,y:CUP.y+30*CS};                // ağız (buhar kaynağı)
+var RIM={x:CUP.x+140*CS,y:CUP.y+30*CS};                // ağız merkezi
 var SAUCER={x:CUP.x+140*CS,y:CUP.y+172*CS};
+var INNER={rx:57.35*CS,ry:57.35*CS*.34};                // ağız iç elipsi (kırpma)
+var COFFEE={r:56.6*CS,dy:12.4*CS};                      // krema yarıçapı ve ağızdan derinliği
 
-// çekirdekler: v=varyant, s=ölçek, r=açı, land=iniş zamanı (ms)
+// çekirdekler (3. perde): v=varyant, s=ölçek, r=açı, land=iniş zamanı (ms, mutlak)
 var beans=[],far=[],heap=[],front=[];
-function mkBean(x,y,s,layer,land){var b={x:x,y:y,s:s,v:Math.floor(R()*5),r:(R()-.5)*Math.PI*2,land:land,lift:1,liftT:1,flip:-1,hover:false,seed:R()*100};layer.push(b);beans.push(b);return b}
-// uzak (odak dışı, masa arkası)
-[[468,124,.30],[736,118,.28],[808,112,.26]].forEach(function(p,k){mkBean(p[0],p[1],p[2],far,300+k*160)});
-// masa üzerinde dağınık (sağ orta)
-[[792,150,.40],[846,138,.36],[912,156,.44],[948,136,.36],[870,168,.40]].forEach(function(p,k){mkBean(p[0],p[1],p[2],heap,420+k*90)});
-// önde yığın (sağ alt köşe)
-[[812,212,.60],[876,204,.56],[936,210,.58],[842,236,.68],[906,238,.64],[782,240,.58]].forEach(function(p,k){mkBean(p[0],p[1],p[2],heap,700+k*80)});
-// kahraman çekirdekler (en önde, tabak ile yığın arasında)
-[[752,232,.82]].forEach(function(p,k){mkBean(p[0],p[1],p[2],front,1250+k*70)});
-heap.sort(function(a,b){return a.y-b.y});front.sort(function(a,b){return a.y-b.y});
+function mkBean(x,y,s,layerArr,land){var b={x:x,y:y,s:s,v:Math.floor(R()*5),r:(R()-.5)*Math.PI*2,land:land,lift:1,liftT:1,flip:-1,seed:R()*100};layerArr.push(b);beans.push(b);return b}
+[[468,124,.30],[736,118,.28],[808,112,.26]].forEach(function(p,k){mkBean(p[0],p[1],p[2],far,T.s3+200+k*140)});
+[[792,150,.40],[846,138,.36],[912,156,.44],[948,136,.36],[870,168,.40]].forEach(function(p,k){mkBean(p[0],p[1],p[2],heap,T.s3+500+k*90)});
+[[812,212,.60],[876,204,.56],[936,210,.58],[842,236,.68],[906,238,.64],[782,240,.58]].forEach(function(p,k){mkBean(p[0],p[1],p[2],heap,T.s3+900+k*80)});
+[[752,232,.82]].forEach(function(p,k){mkBean(p[0],p[1],p[2],front,T.s3+1500)});
+heap.sort(function(a,b){return a.y-b.y});
 
-// bokeh
-var bokeh=[];for(i=0;i<7;i++)bokeh.push({x:520+R()*430,y:6+R()*70,s:16+R()*40,a:.05+R()*.12,vx:(R()-.5)*4,ph:R()*6.28,f:.2+R()*.4});
+// 2. perde: tamburda savrulan çekirdekler
+var roast=[];for(i=0;i<32;i++)roast.push({v:Math.floor(R()*5),cx:530+R()*410,cy:50+R()*160,ax:22+R()*52,ay:16+R()*32,w:.45+R()*.6,ph:R()*6.28,ph2:R()*6.28,rot:R()*6.28,wr:(R()-.5)*3.2,s:.40+R()*.52,off:R()*700,cracked:false,pop:-1});
+roast.sort(function(a,b){return a.s-b.s});
+// 1. perde: sisin içinde süzülen çekirdekler (odak dışı)
+var drift=[];for(i=0;i<5;i++)drift.push({v:Math.floor(R()*5),x:540+R()*400,y:50+R()*150,s:.26+R()*.26,vx:-(6+R()*8),vy:-(4+R()*6),rot:R()*6.28,wr:(R()-.5)*.8});
+// bokeh (3. perde)
+var bokeh=[];for(i=0;i<7;i++)bokeh.push({x:520+R()*430,y:6+R()*70,s:16+R()*40,a:.05+R()*.12,ph:R()*6.28,f:.2+R()*.4});
 
-var steam=[],sparks=[],rings=[],puffs=[];
-var px=0,py=0,tpx=0,tpy=0,pointer=null,hoverCup=false,hoverBean=null,interactAt=-1e9,lastEmit=0,lastRing=0,suppress=false,hazeAmp=0,glowK=0,t0=0,started_at=0;
+var steam=[],sparks=[],rings=[],puffs=[],embers=[],smoke=[],drops=[];
+var px=0,py=0,tpx=0,tpy=0,pointer=null,hoverCup=false,hoverBean=null,interactAt=-1e9,lastEmit=0,lastRing=0,lastEmber=0,lastSmoke=0,lastDrop=0,suppress=false,hazeAmp=0,glowK=0,t0=0;
 
+// ---------------------------------------------------------------- parçacıklar
 function emitSteam(now,strong){
   if(steam.length>40)return;
-  var sway=(R()-.5)*2;
   steam.push({x:RIM.x+(R()-.5)*40,y:RIM.y+6+R()*6,born:now,life:2300+R()*1500,img:Math.floor(R()*3),s0:.18+R()*.10,s1:.62+R()*.40*(strong?1.25:1),vy:-(20+R()*12)*(strong?1.3:1),sw:10+R()*12,f:.7+R()*.8,ph:R()*6.28,rot:(R()-.5)*.8,vr:(R()-.5)*.35,a:(strong?.20:.13)+R()*.06});
+}
+function spark(x,y,now,n,spread,up){
+  for(var k=0;k<n;k++){var a=-Math.PI/2+(R()-.5)*spread,v=up*(0.6+R()*0.8);sparks.push({x:x,y:y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,born:now,life:700+R()*700,s:.35+R()*.7})}
 }
 function pop(b,now){
   b.flip=now;interactAt=now;
-  for(var k=0;k<14;k++){var a=-Math.PI/2+(R()-.5)*1.7,v=45+R()*80;sparks.push({x:b.x,y:b.y-8*b.s,vx:Math.cos(a)*v,vy:Math.sin(a)*v-25,born:now,life:900+R()*700,s:.5+R()*.8})}
-  for(k=0;k<3;k++)puffs.push({x:b.x+(R()-.5)*16,y:b.y-6,born:now+k*120,life:1500+R()*500,img:Math.floor(R()*3),sw:(R()-.5)*30,rot:(R()-.5)*1.2});
+  spark(b.x,b.y-8*b.s,now,14,1.7,90);
+  for(var k=0;k<3;k++)puffs.push({x:b.x+(R()-.5)*16,y:b.y-6,born:now+k*120,life:1500+R()*500,img:Math.floor(R()*3),sw:(R()-.5)*30,rot:(R()-.5)*1.2});
   var notes=["Kırmızı meyve","Çikolata","İpeksi krema","Hafif tatlılık","Zarif asidite","Tek yöre Arabica"];
   var n=document.createElement('div');n.className='note';n.textContent=notes[Math.floor(R()*notes.length)];
   n.style.left=clamp(b.x,110,880)+'px';n.style.top=(b.y-14)+'px';document.getElementById('notes').appendChild(n);
@@ -147,14 +170,13 @@ function hitBean(x,y){
   return null;
 }
 
-// ---------------------------------------------------------------- çizim
+// ---------------------------------------------------------------- çizim yardımcıları
 function drawBean(g,b,t,ox,oy,blurpx){
   var p=RM?1:clamp((t-b.land)/900,0,1);
   var e=bounce(p);var yoff=-(1-e)*150;if(p<=0)return;
   var s=b.s*b.lift,w=88*s,h=62*s,x=b.x+ox,y=b.y+oy+yoff;
   var fl=1,by=1;
   if(b.flip>=0){var fp=clamp((t-b.flip)/520,0,1);fl=Math.cos(fp*Math.PI);by=1+Math.sin(fp*Math.PI)*.28;if(fp>=1){b.flip=-1;b.r+=Math.PI*.06}}
-  // gölge (ışık sol-üstten → sağ-alt)
   g.globalAlpha=.55*e*(b.lift>1.01?.7:1);
   var lift=(b.lift-1)*40;
   g.drawImage(IMG.shadow,x-w*.72+7*s+lift,y-h*.62+6*s+lift*.6,w*1.45,h*1.35);
@@ -163,93 +185,216 @@ function drawBean(g,b,t,ox,oy,blurpx){
   if(blurpx)g.filter='blur('+blurpx+'px)';
   g.drawImage(IMG.bean[b.v],-w/2,-h/2,w,h);g.restore();
 }
-function drawScene(now,t){
-  var ambient=RM?false:(t<MAX_AUTOPLAY||now-interactAt<6000);
-  var g=sc;g.clearRect(0,0,W,H);
-  // arka plan (hafif paralaks)
+function mist(g,t,y,alpha,speed,seed){
+  g.globalCompositeOperation='screen';
+  for(var i=0;i<5;i++){var M=W+420;var x=((i*258+seed*97+t/1000*speed*10)%M+M)%M-210;g.globalAlpha=alpha*(0.6+0.4*Math.sin(t/1000*.3+i*1.7));g.save();g.translate(x,y);g.scale(3.4,.42);g.drawImage(IMG.steam[i%3],-96,-96,192,192);g.restore()}
+  g.globalCompositeOperation='source-over';g.globalAlpha=1;
+}
+function vignette(g,a){var vg=g.createRadialGradient(W*.55,H*.5,H*.35,W*.55,H*.5,W*.62);vg.addColorStop(0,'rgba(8,3,1,0)');vg.addColorStop(1,'rgba(8,3,1,'+a+')');g.fillStyle=vg;g.fillRect(0,0,W,H)}
+function leftShade(g,a){var lg=g.createLinearGradient(0,0,520,0);lg.addColorStop(0,'rgba(4,3,8,'+a+')');lg.addColorStop(.55,'rgba(4,3,8,'+(a*.55)+')');lg.addColorStop(1,'rgba(4,3,8,0)');g.fillStyle=lg;g.fillRect(0,0,520,H)}
+
+// ---------------------------------------------------------------- 1. perde: Kolombiya dağlarında şafak
+function drawS1(g,t,now){
+  var k=clamp(t/T.s2,0,1),zoom=1+.06*k;
+  g.save();g.translate(W/2,H/2);g.scale(zoom,zoom);g.translate(-W/2,-H/2);
+  g.drawImage(IMG.sky,-8+px*2,-4+py,W+16,H+8);
+  g.globalCompositeOperation='screen';g.globalAlpha=.30+.06*Math.sin(t/1000*.9);
+  g.save();g.translate(776+px*2,165+py);g.rotate(t/1000*.04);g.drawImage(IMG.rays,-320,-320,640,640);g.restore();
+  g.globalCompositeOperation='source-over';g.globalAlpha=1;
+  g.drawImage(IMG.ridgeMid,-14+px*5,-5+py*3,W+28,H+10);
+  mist(g,t,196,.22,7,0);
+  g.drawImage(IMG.ridgeNear,-22+px*10,-6+py*5,W+44,H+12);
+  mist(g,t,234,.30,-5,3);
+  g.restore();
+  // süzülen çekirdekler (odak dışı, sis içinde)
+  for(var i=0;i<drift.length;i++){var d=drift[i];var x=d.x+d.vx*t/1000+px*14,y=d.y+d.vy*t/1000+Math.sin(t/1000*.8+i)*6+py*8;g.save();g.translate(x,y);g.rotate(d.rot+d.wr*t/1000);g.filter='blur(2.2px)';g.globalAlpha=.8;var w=88*d.s,h=62*d.s;g.drawImage(IMG.bean[d.v],-w/2,-h/2,w,h);g.restore()}
+  leftShade(g,.72);vignette(g,.35);
+  if(t<900){g.fillStyle='rgba(5,4,10,'+(1-easeOutCubic(clamp(t/900,0,1)))+')';g.fillRect(0,0,W,H)}
+}
+
+// ---------------------------------------------------------------- 2. perde: tambur kavurma
+function drawS2(g,t,now,ambient){
+  var lt=t-T.t1;
+  g.drawImage(IMG.roastBg,-6+px*2,-4+py,W+12,H+8);
+  // kor ışığı
+  g.globalCompositeOperation='lighter';g.globalAlpha=.30+.08*Math.sin(t/1000*2.1);
+  g.drawImage(IMG.glow,150+px*3,80,900,420);g.globalAlpha=.25;g.drawImage(IMG.glow,-80,120,520,300);
+  // duman
+  for(var k=smoke.length-1;k>=0;k--){var s=smoke[k];var sp=(now-s.born)/s.life;if(sp>=1){smoke.splice(k,1);continue}var dt=(now-s.born)/1000;var ss=.8+sp*1.1;g.globalCompositeOperation='screen';g.globalAlpha=.10*Math.sin(sp*Math.PI);g.save();g.translate(s.x+Math.sin(dt*.6+s.ph)*18+px*3,s.y-28*dt);g.rotate(s.rot+dt*.15);g.drawImage(IMG.steam[s.img],-96*ss,-96*ss,192*ss,192*ss);g.restore()}
+  g.globalCompositeOperation='source-over';g.globalAlpha=1;
+  // savrulan çekirdekler: yeşilden kavrulmuşa
+  var Ts=lt/1000;
+  for(k=0;k<roast.length;k++){var b=roast[k];
+    var x=b.cx+b.ax*Math.cos(b.w*Ts+b.ph)+px*(3+9*b.s),y=b.cy+b.ay*Math.sin(b.w*1.3*Ts+b.ph2)+py*(2+4*b.s);
+    var r=sm(0,1,(lt-900-b.off)/2600);
+    var heat=0;if(pointer){var dx=pointer.x-x,dy=pointer.y-y;heat=clamp(1-Math.sqrt(dx*dx+dy*dy)/120,0,1)}
+    if(!b.cracked&&r>.72){b.cracked=true;b.pop=now;spark(x,y,now,5,2.2,70)}
+    if(heat>.35&&R()<heat*.06)spark(x,y,now,1,2.5,60);
+    var popS=b.pop>=0?1+.18*Math.sin(clamp((now-b.pop)/260,0,1)*Math.PI):1;
+    var s=b.s*popS,w=88*s,h=62*s;
+    var gl=.28*Math.sin(r*Math.PI)+.55*heat;
+    if(gl>.02){g.globalCompositeOperation='lighter';g.globalAlpha=gl;var gs=w*2.2;g.drawImage(IMG.glow,x-gs/2,y-gs/2,gs,gs);g.globalCompositeOperation='source-over';g.globalAlpha=1}
+    g.save();g.translate(x,y);g.rotate(b.rot+b.wr*Ts);
+    if(b.s<.55)g.filter='blur(.8px)';
+    if(r<1){g.globalAlpha=1-r;g.drawImage(IMG.beanG[b.v],-w/2,-h/2,w,h)}
+    if(r>0){g.globalAlpha=r;g.drawImage(IMG.bean[b.v],-w/2,-h/2,w,h)}
+    g.restore();g.globalAlpha=1;
+  }
+  // kor kıvılcımları
+  g.globalCompositeOperation='lighter';
+  for(k=embers.length-1;k>=0;k--){var e=embers[k];var ep=(now-e.born)/e.life;if(ep>=1){embers.splice(k,1);continue}var ed=(now-e.born)/1000;var ex=e.x+e.vx*ed+Math.sin(ed*3+e.ph)*8+px*6,ey=e.y+e.vy*ed;var es=40*e.s*(1-ep*.6);g.globalAlpha=(1-ep)*(.8+.2*Math.sin(ed*20));g.drawImage(IMG.spark,ex-es/2,ey-es/2,es,es)}
+  g.globalCompositeOperation='source-over';g.globalAlpha=1;
+  leftShade(g,.62);vignette(g,.30);
+}
+
+// ---------------------------------------------------------------- 3. perde: makineden fincana
+var swirl=0,lastFrame=0;
+function drawS3(g,t,now,ambient){
+  var lt=t-T.t2;
   g.drawImage(IMG.bg,-6+px*3,-4+py*2,W+12,H+8);
   // bokeh
-  if(IMG.bokeh.width){g.globalCompositeOperation='lighter';for(var k=0;k<bokeh.length;k++){var o=bokeh[k];var bx=o.x+px*5*(o.s/60+.6)+(ambient?Math.sin(t/1000*o.f+o.ph)*6:0),by=o.y+py*3+(ambient?Math.cos(t/1000*o.f*.7+o.ph)*3:0);g.globalAlpha=o.a*(RM?1:clamp((t-200)/1500,0,1));g.drawImage(IMG.bokeh,bx-o.s/2,by-o.s/2,o.s,o.s)}g.globalCompositeOperation='source-over';g.globalAlpha=1}
-  // uzak çekirdekler (odak dışı)
-  for(k=0;k<far.length;k++)drawBean(g,far[k],t,px*5,py*3,1.2);
-  // sıcak hale + masa yansıması
-  var cp=RM?1:clamp((t-700)/900,0,1),ce=easeOutCubic(cp),cy=(1-ce)*30;
-  var gk=glowK*(0.85+0.15*Math.sin(t/1000*1.6));
   g.globalCompositeOperation='lighter';
-  g.globalAlpha=ce*(.30+.40*gk);var gs=280+90*gk;g.drawImage(IMG.glow,CUPC.x-gs/2+px*4,CUPC.y-gs/2+cy+py*2,gs,gs);
-  g.globalAlpha=ce*(.28+.35*gk);g.save();g.translate(SAUCER.x+px*4,SAUCER.y+12+cy);g.scale(1,.34);g.drawImage(IMG.glow,-190-60*gk,-190-60*gk,380+120*gk,380+120*gk);g.restore();
+  for(var k=0;k<bokeh.length;k++){var o=bokeh[k];var bx=o.x+px*5*(o.s/60+.6)+(ambient?Math.sin(t/1000*o.f+o.ph)*6:0),by=o.y+py*3+(ambient?Math.cos(t/1000*o.f*.7+o.ph)*3:0);g.globalAlpha=o.a*clamp(lt/1500,0,1);g.drawImage(IMG.bokeh,bx-o.s/2,by-o.s/2,o.s,o.s)}
   g.globalCompositeOperation='source-over';g.globalAlpha=1;
-  // ısı halkaları (masa üstünde yayılan sıcaklık)
+  for(k=0;k<far.length;k++)drawBean(g,far[k],t,px*5,py*3,1.2);
+  // fincan girişi + hale
+  var cp=RM?1:clamp((lt-300)/900,0,1),ce=easeOutCubic(cp),cy=(1-ce)*30;
+  var fill=sm(0,1,(t-T.pour)/(T.pourEnd-T.pour));
+  var gk=glowK*(0.85+0.15*Math.sin(t/1000*1.6));
+  var warm=fill*(.6+.4*gk);
   g.globalCompositeOperation='lighter';
+  g.globalAlpha=ce*(.12+.30*warm);var gs=280+90*gk;g.drawImage(IMG.glow,CUPC.x-gs/2+px*4,CUPC.y-gs/2+cy+py*2,gs,gs);
+  g.globalAlpha=ce*(.10+.30*warm);g.save();g.translate(SAUCER.x+px*4,SAUCER.y+12+cy);g.scale(1,.34);g.drawImage(IMG.glow,-190-60*gk,-190-60*gk,380+120*gk,380+120*gk);g.restore();
+  // ısı halkaları
   for(k=rings.length-1;k>=0;k--){var r=rings[k];var rp=(now-r.born)/r.life;if(rp>=1){rings.splice(k,1);continue}var rs=150+rp*400;g.globalAlpha=.6*Math.pow(1-rp,1.3);g.save();g.translate(SAUCER.x+px*4,SAUCER.y+2);g.scale(1,.36);g.drawImage(IMG.heatring,-rs/2,-rs/2,rs,rs);g.restore()}
   g.globalCompositeOperation='source-over';g.globalAlpha=1;
-  // fincan
-  var hs=1+glowK*.025;
-  g.globalAlpha=ce;g.save();g.translate(CUPC.x+px*4,CUPC.y+cy+py*2);g.scale(hs*CS,hs*CS);g.drawImage(IMG.cup,-140,-88,280,200);g.restore();g.globalAlpha=1;
+  // fincan (boş)
+  var hs=1+glowK*.025,ox=px*4,oy=cy+py*2;
+  g.globalAlpha=ce;g.save();g.translate(CUPC.x+ox,CUPC.y+oy);g.scale(hs*CS,hs*CS);g.drawImage(IMG.cup,-140,-88,280,200);g.restore();g.globalAlpha=1;
+  // krema: ağız iç elipsine kırpılarak dolar ve döner
+  var pouring=t>=T.pour&&t<T.pourEnd;
+  var dtf=lastFrame?Math.min((now-lastFrame)/1000,.05):0;lastFrame=now;
+  swirl+=dtf*(pouring?1.1:0.06);
+  if(fill>0){
+    var level=RIM.y+oy+COFFEE.dy+(1-fill)*26,sc=(.84+.16*fill)*hs;
+    g.save();g.beginPath();g.ellipse(RIM.x+ox,RIM.y+oy,INNER.rx*hs,INNER.ry*hs,0,0,Math.PI*2);g.clip();
+    g.globalAlpha=ce*clamp(fill*5,0,1);
+    g.save();g.translate(RIM.x+ox,level);g.scale(sc,sc*.34);g.rotate(swirl);g.drawImage(IMG.crema,-COFFEE.r,-COFFEE.r,COFFEE.r*2,COFFEE.r*2);g.restore();
+    g.save();g.translate(RIM.x+ox,level);g.scale(sc,sc);g.drawImage(IMG.cremaHi,-COFFEE.r*1.06,-COFFEE.r*.34*1.06,COFFEE.r*2.12,COFFEE.r*.68*1.06);g.restore();
+    // akış çarpma noktası + damlacıklar (kırpma içinde)
+    if(t>=T.pour-100&&t<T.pourEnd+250){
+      for(var n=-1;n<=1;n+=2){var sx=RIM.x+ox+n*14;var ssz=30+5*Math.sin(t/1000*17+n);g.globalAlpha=.55;g.save();g.translate(sx,level-1);g.scale(1,.34);g.rotate(t/1000*(2*n));g.drawImage(IMG.splash,-ssz/2,-ssz/2,ssz,ssz);g.restore()}
+      if(now-lastDrop>70&&pouring){lastDrop=now;drops.push({x:RIM.x+ox+(R()<.5?-14:14)+(R()-.5)*6,y:level-2,vx:(R()-.5)*90,vy:-(40+R()*70),born:now,life:420+R()*220,s:3+R()*3})}
+    }
+    g.globalAlpha=1;
+    for(k=drops.length-1;k>=0;k--){var d=drops[k];var dp=(now-d.born)/d.life;if(dp>=1){drops.splice(k,1);continue}var dd=(now-d.born)/1000;g.globalAlpha=1-dp*dp;g.drawImage(IMG.drop,d.x+d.vx*dd-d.s/2,d.y+d.vy*dd+260*dd*dd-d.s/2,d.s,d.s)}
+    g.globalAlpha=1;g.restore();
+  }
+  // makine ağzı ve iki kahve akışı
+  var pin=easeOutCubic(clamp((t-T.pourIn)/450,0,1)),pout=easeOutCubic(clamp((t-T.pourOut)/550,0,1));
+  var sy=-76+68*pin*(1-pout);
+  if(sy>-70){
+    var pf=clamp((t-T.pour)/220,0,1),pe=clamp((t-T.pourEnd)/300,0,1);
+    var nozzleY=sy+68,surf=RIM.y+oy+COFFEE.dy+(1-fill)*26-2;
+    for(n=-1;n<=1;n+=2){var lenS=surf-nozzleY,y0=nozzleY+lenS*pe,hh=lenS*pf*(1-pe);if(hh>1){var ww=9+1.2*Math.sin(t/1000*23+n*2);g.drawImage(IMG.stream,RIM.x+ox+n*14-ww/2,y0,ww,hh)}}
+    g.drawImage(IMG.spout,RIM.x+ox-50,sy,100,75);
+  }
   // buhar
   g.globalCompositeOperation='screen';
   for(k=steam.length-1;k>=0;k--){var s=steam[k];var sp=(now-s.born)/s.life;if(sp>=1){steam.splice(k,1);continue}
-    var dt=(now-s.born)/1000;var sx=s.x+Math.sin(dt*s.f+s.ph)*s.sw*sp+px*4,sy=s.y+s.vy*dt+cy;var ss=s.s0+(s.s1-s.s0)*easeOutCubic(sp);var al=s.a*Math.sin(sp*Math.PI);
-    g.globalAlpha=al;g.save();g.translate(sx,sy);g.rotate(s.rot+s.vr*dt);g.drawImage(IMG.steam[s.img],-96*ss,-96*ss,192*ss,192*ss);g.restore()}
+    var dts=(now-s.born)/1000;var sxx=s.x+Math.sin(dts*s.f+s.ph)*s.sw*sp+px*4,syy=s.y+s.vy*dts+cy;var ssc=s.s0+(s.s1-s.s0)*easeOutCubic(sp);var al=s.a*Math.sin(sp*Math.PI);
+    g.globalAlpha=al;g.save();g.translate(sxx,syy);g.rotate(s.rot+s.vr*dts);g.drawImage(IMG.steam[s.img],-96*ssc,-96*ssc,192*ssc,192*ssc);g.restore()}
   g.globalCompositeOperation='source-over';g.globalAlpha=1;
+  leftShade(g,.35);
+}
+function drawS3Front(g,t,now){
+  for(var k=0;k<heap.length;k++)drawBean(g,heap[k],t,px*8,py*5,0);
+  for(k=0;k<front.length;k++)drawBean(g,front[k],t,px*12,py*7,0);
+  g.globalCompositeOperation='lighter';
+  for(k=sparks.length-1;k>=0;k--){var q=sparks[k];var qp=(now-q.born)/q.life;if(qp>=1){sparks.splice(k,1);continue}var qd=(now-q.born)/1000;var qx=q.x+q.vx*qd+px*12,qy=q.y+q.vy*qd+30*qd*qd;var qs=64*q.s*(1-qp*.4);g.globalAlpha=1-qp*qp;g.drawImage(IMG.spark,qx-qs/2,qy-qs/2,qs,qs)}
+  g.globalCompositeOperation='screen';
+  for(k=puffs.length-1;k>=0;k--){var u=puffs[k];var up=(now-u.born)/u.life;if(up>=1){puffs.splice(k,1);continue}if(up<0)continue;var us=.22+up*.55;g.globalAlpha=.30*Math.sin(up*Math.PI);g.save();g.translate(u.x+u.sw*up+px*12,u.y-70*up);g.rotate(u.rot*up);g.drawImage(IMG.steam[u.img],-96*us,-96*us,192*us,192*us);g.restore()}
+  g.globalCompositeOperation='source-over';g.globalAlpha=1;
+}
+function flareSweep(g,p,alpha){var x=-320+(W+640)*p;g.globalCompositeOperation='screen';g.globalAlpha=alpha*Math.sin(p*Math.PI);g.drawImage(IMG.flare,x-300,60,600,120);g.globalAlpha=alpha*.5*Math.sin(p*Math.PI);g.drawImage(IMG.flare,x-450,20,900,180);g.globalCompositeOperation='source-over';g.globalAlpha=1}
 
-  // ana tuvale aktar + ısı titreşimi (fincanın üstündeki hava)
-  ctx.clearRect(0,0,W,H);
-  ctx.drawImage(scene,0,0,W,H);
-  if(hazeAmp>0.02){
-    var x0=RIM.x-96+px*4,ww=192,y1=RIM.y+cy+10;
-    ctx.globalAlpha=.7;
-    for(var yy=0;yy<y1;yy+=2){var f=(yy/y1);var amp=hazeAmp*(0.25+0.75*f*f);var dx=amp*(Math.sin(yy*.11+t/1000*4.6)+.6*Math.sin(yy*.27-t/1000*3.1));
-      ctx.drawImage(scene,x0*DPR,yy*DPR,ww*DPR,2*DPR,x0+dx,yy,ww,2)}
-    ctx.globalAlpha=1;
-  }
-  // yığın + ön çekirdekler
-  for(k=0;k<heap.length;k++)drawBean(ctx,heap[k],t,px*8,py*5,0);
-  for(k=0;k<front.length;k++)drawBean(ctx,front[k],t,px*12,py*7,0);
-  // aroma kıvılcımları
-  ctx.globalCompositeOperation='lighter';
-  for(k=sparks.length-1;k>=0;k--){var q=sparks[k];var qp=(now-q.born)/q.life;if(qp>=1){sparks.splice(k,1);continue}var qd=(now-q.born)/1000;var qx=q.x+q.vx*qd+px*12,qy=q.y+q.vy*qd+30*qd*qd;var qs=64*q.s*(1-qp*.4);ctx.globalAlpha=1-qp*qp;ctx.drawImage(IMG.spark,qx-qs/2,qy-qs/2,qs,qs)}
-  ctx.globalCompositeOperation='screen';
-  for(k=puffs.length-1;k>=0;k--){var u=puffs[k];var up=(now-u.born)/u.life;if(up>=1){puffs.splice(k,1);continue}if(up<0)continue;var us=.22+up*.55;ctx.globalAlpha=.30*Math.sin(up*Math.PI);ctx.save();ctx.translate(u.x+u.sw*up+px*12,u.y-70*up);ctx.rotate(u.rot*up);ctx.drawImage(IMG.steam[u.img],-96*us,-96*us,192*us,192*us);ctx.restore()}
-  ctx.globalCompositeOperation='source-over';ctx.globalAlpha=1;
-  // vinyet
-  var vg=ctx.createRadialGradient(W*.55,H*.5,H*.35,W*.55,H*.5,W*.62);vg.addColorStop(0,'rgba(8,3,1,0)');vg.addColorStop(1,'rgba(8,3,1,.42)');ctx.fillStyle=vg;ctx.fillRect(0,0,W,H);
-  // giriş: sıcak ışık süpürmesi
-  if(!RM&&t<1100){var lp=t/1100;var lg=ctx.createLinearGradient(0,0,W,0);var c=lp*1.4-.2;lg.addColorStop(clamp(c-.25,0,1),'rgba(0,0,0,0)');lg.addColorStop(clamp(c,0,1),'rgba(255,190,110,'+(.22*(1-lp))+')');lg.addColorStop(clamp(c+.25,0,1),'rgba(0,0,0,0)');ctx.fillStyle=lg;ctx.fillRect(0,0,W,H);ctx.fillStyle='rgba(8,3,1,'+(1-easeOutCubic(clamp(t/700,0,1)))+')';ctx.fillRect(0,0,W,H)}
-  return ambient;
+// ---------------------------------------------------------------- kare
+function haze(x0,ww,y1,amp,t){
+  ctx.globalAlpha=.7;
+  for(var yy=0;yy<y1;yy+=2){var f=yy/y1;var a=amp*(0.25+0.75*f*f);var dx=a*(Math.sin(yy*.11+t/1000*4.6)+.6*Math.sin(yy*.27-t/1000*3.1));
+    ctx.drawImage(scene.c,x0*DPR,yy*DPR,ww*DPR,2*DPR,x0+dx,yy,ww,2)}
+  ctx.globalAlpha=1;
+}
+function drawFrame(now,t){
+  var ambient=RM?false:(t<MAX_AUTOPLAY||now-interactAt<6000);
+  var g=scene.g;g.clearRect(0,0,W,H);
+  var phase;
+  if(t<T.t1){phase=1;drawS1(g,t,now)}
+  else if(t<T.s2){phase=1.5;drawS1(g,t,now);var a=sm(0,1,(t-T.t1)/(T.s2-T.t1));layer.g.clearRect(0,0,W,H);drawS2(layer.g,t,now,ambient);g.globalAlpha=a;g.drawImage(layer.c,0,0,W,H);g.globalAlpha=1;flareSweep(g,a,.9)}
+  else if(t<T.t2){phase=2;drawS2(g,t,now,ambient)}
+  else if(t<T.s3){phase=2.5;drawS2(g,t,now,ambient);var a2=sm(0,1,(t-T.t2)/(T.s3-T.t2));layer.g.clearRect(0,0,W,H);drawS3(layer.g,t,now,ambient);g.globalAlpha=a2;g.drawImage(layer.c,0,0,W,H);g.globalAlpha=1;flareSweep(g,a2,.8)}
+  else{phase=3;drawS3(g,t,now,ambient)}
+  ctx.clearRect(0,0,W,H);ctx.drawImage(scene.c,0,0,W,H);
+  // ısı titreşimi: kavurmada tüm kare, fincanda ağız üstü
+  if(phase>=1.5&&phase<3){var hz=1.3*(phase===1.5?sm(0,1,(t-T.t1)/800):phase===2.5?1-sm(0,1,(t-T.t2)/800):1);if(pointer&&phase===2)hz+=.6;haze(0,W,232,hz,t)}
+  else if(phase===3&&hazeAmp>.02)haze(RIM.x-96+px*4,192,RIM.y+10,hazeAmp,t);
+  if(phase>=2.5)drawS3Front(ctx,t,now);
+  vignette(ctx,.30);
+  return {ambient:ambient,phase:phase};
+}
+
+// ---------------------------------------------------------------- metin durumu, noktalar
+var tx=[document.getElementById('tx1'),document.getElementById('tx2'),document.getElementById('tx3')],row=document.getElementById('row'),dots=document.getElementById('dots').children;
+var txState=['','',''],rowState='',dotState=-1;
+function setCls(el,cls,cur){if(cls!==cur){el.className=el===row?'row '+cls:'tx '+cls}return cls}
+function updateText(t){
+  var w=[[500,3300],[4400,8500],[9800,1e9]];
+  for(var i=0;i<3;i++){var s=t<w[i][0]?'':t<w[i][1]?'on':'on off';txState[i]=setCls(tx[i],s,txState[i])}
+  rowState=setCls(row,t>=T.cta?'on':'',rowState);
+  var d=t<T.t1?0:t<T.t2?1:2;if(d!==dotState){dotState=d;for(i=0;i<3;i++)dots[i].className=i===d?'on':''}
 }
 
 function frame(now){
   var t=now-t0;
-  // paralaks yumuşatma (+ boşta hafif kendiliğinden hareket)
   var ax=pointer?tpx:Math.sin(t/1000*.28)*.35,ay=pointer?tpy:Math.cos(t/1000*.21)*.25;
   if(RM){ax=0;ay=0}
   px+=(ax-px)*.06;py+=(ay-py)*.06;
   for(var k=0;k<beans.length;k++){var b=beans[k];b.lift+=(b.liftT-b.lift)*.18}
-  var ambient=drawScene(now,t);
-  var strong=hoverCup;
-  if(ambient&&t>1400&&now-lastEmit>(strong?70:135)){emitSteam(now,strong);lastEmit=now}
+  var st=drawFrame(now,t),ambient=st.ambient,phase=st.phase;
+  updateText(t);
+  // 2. perde parçacık üretimi
+  if(phase>=1.5&&phase<=2.5&&ambient){
+    if(now-lastEmber>55){lastEmber=now;embers.push({x:120+R()*760,y:H+8,vx:(R()-.5)*22,vy:-(28+R()*55),born:now,life:1400+R()*1600,s:.25+R()*.5,ph:R()*6.28})}
+    if(now-lastSmoke>260){lastSmoke=now;smoke.push({x:300+R()*560,y:H+50,born:now,life:4500+R()*2500,img:Math.floor(R()*3),rot:R()*6.28,ph:R()*6.28})}
+  }
+  // 3. perde buhar, ısı
+  var strong=hoverCup&&phase===3&&t>T.pourEnd;
+  if(ambient&&t>T.steam&&now-lastEmit>(strong?70:135)){emitSteam(now,strong);lastEmit=now}
   if(strong&&now-lastRing>650){rings.push({born:now,life:1800});lastRing=now}
-  hazeAmp+=(((ambient&&t>1400)?(strong?2.4:1.1):0)-hazeAmp)*.05;
+  hazeAmp+=(((ambient&&t>T.steam)?(strong?2.4:1.1):0)-hazeAmp)*.05;
   glowK+=((strong?1:0)-glowK)*.06;
   requestAnimationFrame(frame);
 }
-function start(){if(started)return;started=true;t0=performance.now();ad.className="go";requestAnimationFrame(frame)}
+function reset(){steam.length=0;sparks.length=0;rings.length=0;puffs.length=0;embers.length=0;smoke.length=0;drops.length=0;swirl=0;for(var k=0;k<roast.length;k++){roast[k].cracked=false;roast[k].pop=-1}for(k=0;k<beans.length;k++)beans[k].flip=-1}
+function start(){if(started)return;started=true;t0=performance.now()-(RM?T.end:0);ad.className='go';requestAnimationFrame(frame)}
+function jump(i){var now=performance.now();t0=now-[0,T.s2,T.s3][i];reset();interactAt=now}
 
 // ---------------------------------------------------------------- etkileşim
 function local(e){var r=ad.getBoundingClientRect();return{x:(e.clientX-r.left)*W/r.width,y:(e.clientY-r.top)*H/r.height}}
-var hint=document.getElementById('hint'),hintShown=false,hintTimer=0;
+var hint=document.getElementById('hint'),hintShown=false;
 function touched(){interactAt=performance.now();hint.classList.remove('on');hintShown=true}
-ad.addEventListener('pointerenter',function(){if(hintShown||RM)return;hintShown=true;hint.classList.add('on');hintTimer=setTimeout(function(){hint.classList.remove('on')},3200)});
+ad.addEventListener('pointerenter',function(){if(hintShown||RM)return;var t=performance.now()-t0;if(t<T.cta)return;hintShown=true;hint.classList.add('on');setTimeout(function(){hint.classList.remove('on')},3200)});
 ad.addEventListener('pointermove',function(e){var p=local(e);pointer=p;tpx=clamp((p.x/W-.5)*2,-1,1);tpy=clamp((p.y/H-.5)*2,-1,1);
+  var t=performance.now()-t0;if(t<T.s3){hoverCup=false;return}
   var dx=p.x-CUPC.x,dy=p.y-(CUPC.y+8);var hc=(dx*dx)/(105*105)+(dy*dy)/(98*98)<=1;if(hc!==hoverCup){hoverCup=hc;touched()}
   var hb=hitBean(p.x,p.y);if(hb!==hoverBean){if(hoverBean)hoverBean.liftT=1;hoverBean=hb;if(hb){hb.liftT=1.08;touched()}}
 });
 ad.addEventListener('pointerleave',function(){pointer=null;tpx=0;tpy=0;hoverCup=false;if(hoverBean){hoverBean.liftT=1;hoverBean=null}});
-ad.addEventListener('pointerdown',function(e){var p=local(e);var b=hitBean(p.x,p.y);if(b){pop(b,performance.now());touched();suppress=true;e.preventDefault()}});
+ad.addEventListener('pointerdown',function(e){var t=performance.now()-t0;if(t<T.s3)return;var p=local(e);var b=hitBean(p.x,p.y);if(b){pop(b,performance.now());touched();suppress=true;e.preventDefault()}});
 function openLink(){var u=window.clickTag||URL_;if(window.Enabler&&window.Enabler.exit){window.Enabler.exit('CTA')}else{window.open(u,'_blank','noopener')}}
 ad.addEventListener('click',function(){if(suppress){suppress=false;return}openLink()});
 document.getElementById('cta').addEventListener('click',function(e){e.stopPropagation();openLink()});
+for(var di=0;di<3;di++)dots[di].addEventListener('click',function(e){e.stopPropagation();jump(+this.getAttribute('data-i'))});
 ad.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();openLink()}});
 })();
 </script>
