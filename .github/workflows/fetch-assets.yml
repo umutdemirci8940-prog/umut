@@ -12,6 +12,7 @@ on:
         options:
           - tchibo-logo
           - tchibo-video
+          - tchibo-products
           - ilacsizyasam-assets
       video_id:
         description: Kampanya videosu YouTube kimliği (tchibo-video görevi)
@@ -121,6 +122,43 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A tchibo-barista-colombia/assets/video
           git commit -m "Tchibo kampanya videosu kareleri ve 960p kopya (GitHub Actions)" || { echo "Değişiklik yok"; exit 0; }
+          git push
+
+  # ---------------------------------------------------------------------------
+  # Tchibo Barista ürün (paket) görselleri ve sitedeki videolar: tchibo.com.tr'den çek, dala push'la.
+  tchibo-products:
+    if: ${{ inputs.task == 'tchibo-products' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Ürün görsellerini ve site videolarını çek
+        run: node tchibo-barista-colombia/tools/fetch-products.js
+
+      - name: Özet
+        run: node -e "const m=require('./tchibo-barista-colombia/assets/products/products.json');console.log(JSON.stringify({products:m.products.map(p=>({title:p.title,price:p.price,images:p.images.map(i=>i.file)})),videoUrls:m.videoUrls,savedVideos:m.savedVideos},null,1))"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: tchibo-urun-gorselleri
+          path: |
+            tchibo-barista-colombia/assets/products
+            tchibo-barista-colombia/assets/video
+          if-no-files-found: warn
+
+      - name: Sonuçları dala push'la
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          find tchibo-barista-colombia/assets/video -type f -size +9M -print -delete || true
+          git add -A tchibo-barista-colombia/assets/products tchibo-barista-colombia/assets/video
+          git commit -m "Tchibo Barista ürün görselleri ve site videoları (GitHub Actions)" || { echo "Değişiklik yok"; exit 0; }
           git push
 
   # ---------------------------------------------------------------------------
