@@ -39,6 +39,8 @@ Bannerdaki **her görsel sıfırdan, piksel piksel üretilmiş raster görseldir
 | Ahşap masa (`bg`) | Perspektifli damarlar (dünya uzayında üretilip perspektifle örneklenir), tahta ek yerleri, cila yansıması, odak dışı uzak kenar, vinyet. |
 | Buhar, bokeh, hale, ısı halkası, kıvılcım, gölge | Tel tel (ridged) buhar tutamları; yumuşak disk ve halkalar. |
 
+Tek istisna markanın kendisidir: sol üstteki **resmi Tchibo logosu** tasarlanmamış, Tchibo'nun sitesinden alınıp raster olarak gömülmüştür (bkz. Teknik → Logo).
+
 Yeniden üretmek: `python3 tools/render-assets.py` (Pillow + numpy). Renk, oran, ışık yönü gibi her şey betikteki parametrelerdir.
 
 ## Etkileşim
@@ -62,7 +64,7 @@ Yeniden üretmek: `python3 tools/render-assets.py` (Pillow + numpy). Renk, oran,
 - Sahne iki `<canvas>` katmanında çizilir (perde geçişleri için ayrı katman; devicePixelRatio'ya göre 2× netlik); metin ve CTA HTML katmanındadır.
 - `<meta name="ad.size" content="width=970,height=250">`, `role="link"`, `aria-label`, klavye odağı mevcuttur.
 - Ürün bilgileri (tek yöre Kolombiya Arabica, geleneksel tambur kavurma, kırmızı meyve ve çikolata notaları, ipeksi krema, 1 kg, tam otomatik makineler için) Tchibo'nun ürün tanımına dayanır; yayın öncesi marka onayı önerilir.
-- **Logo:** Tchibo logosu bu ortamda erişilebilir olmadığından sol üstte tipografik "TCHIBO · BARISTA" yer tutucu kullanıldı. Resmi logo dosyası `src/masthead.html` içindeki `<div class="brand">` yerine `<img>` olarak konur.
+- **Logo:** Sol üstteki logo Tchibo'nun resmi logosudur; tchibo.com.tr'nin kendi SVG sprite'ından (`/static/svgs/tchibo.svg`) alınmıştır (`assets/logo-src.svg`, kaynak bilgisi `assets/logo-source.json`). Koyu zemin için tek renk krem sürümü 4× çözünürlükte şeffaf PNG olarak render edilip gömülür (`assets/logo-light.png`, ekranda 30 px); özgün renkli sürüm `assets/logo.png`. Claude'un bulut oturumu tchibo.com.tr'ye erişemediği için indirme ve render işlemi GitHub Actions'ta yapılır: *Actions → "Siteden görselleri çek ve derle" → Run workflow → task: `tchibo-logo`* (`tools/fetch-logo.js` + `tools/render-logo.js`, ardından derleme ve ekran görüntüleri dala push'lanır). Yerelde: `node tools/fetch-logo.js && node tools/render-logo.js && node build.js`. Logo dosyası yoksa derleyici tipografik "TCHIBO" yer tutucusuna döner.
 
 ## Derleme
 
