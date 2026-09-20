@@ -1,5 +1,5 @@
 {
- "fetchedAt": "2026-09-20T17:47:17.608Z",
+ "fetchedAt": "2026-09-20T17:50:19.673Z",
  "category": "https://www.tchibo.com.tr/categories/kahve/kahveler/tam-otomatik-makineler-icin-kahve",
  "products": [
   {
@@ -8,19 +8,24 @@
    "price": "2299.00",
    "images": [
     {
-     "file": "assets/products/barista-origins-colombia-1-kg-cekirdek-kahve-tchibo-dan-sati-1.webp",
+     "file": "assets/products/barista-origins-colombia-1.webp",
+     "url": "https://www.tchibo.com.tr/img/gAAJmy3F/900/image.webp",
+     "bytes": 56690
+    },
+    {
+     "file": "assets/products/barista-origins-colombia-2.webp",
+     "url": "https://www.tchibo.com.tr/img/gQg52yHk/900/image.webp",
+     "bytes": 43398
+    },
+    {
+     "file": "assets/products/barista-origins-colombia-3.webp",
      "url": "https://www.tchibo.com.tr/img/gwQ5GyGP/900/image.webp",
      "bytes": 43104
     },
     {
-     "file": "assets/products/barista-origins-colombia-1-kg-cekirdek-kahve-tchibo-dan-sati-2.webp",
+     "file": "assets/products/barista-origins-colombia-4.webp",
      "url": "https://www.tchibo.com.tr/img/gAwJmi49/900/image.webp",
      "bytes": 42652
-    },
-    {
-     "file": "assets/products/barista-origins-colombia-1-kg-cekirdek-kahve-tchibo-dan-sati-3.jpg",
-     "url": "https://www.tchibo.com.tr/img/gAAJmy3F/900/image.jpeg",
-     "bytes": 121910
     }
    ],
    "allImageUrls": [
@@ -44,6 +49,99 @@
     "https://www.tchibo.com.tr/img/gAAJmy3F/320/image.webp",
     "https://www.tchibo.com.tr/img/gAAJmy3F/1279/image.webp",
     "https://www.tchibo.com.tr/img/gAAJmy3F/1919/image.webp"
+   ]
+  },
+  {
+   "url": "https://www.tchibo.com.tr/products/233722167222/barista-caffe-crema",
+   "title": "BARISTA Caffè Crema - 500 g Çekirdek Kahve Tchibo’dan satın al | 213370",
+   "price": "1299.00",
+   "images": [
+    {
+     "file": "assets/products/barista-caffe-crema-1.webp",
+     "url": "https://www.tchibo.com.tr/img/gQA3vLYO/900/image.webp",
+     "bytes": 79566
+    },
+    {
+     "file": "assets/products/barista-caffe-crema-2.webp",
+     "url": "https://www.tchibo.com.tr/img/gAg3XxKn/900/image.webp",
+     "bytes": 42046
+    },
+    {
+     "file": "assets/products/barista-caffe-crema-3.webp",
+     "url": "https://www.tchibo.com.tr/img/gAAHXRdb/900/image.webp",
+     "bytes": 43644
+    },
+    {
+     "file": "assets/products/barista-caffe-crema-4.webp",
+     "url": "https://www.tchibo.com.tr/img/gQgnnxdd/900/image.webp",
+     "bytes": 41934
+    }
+   ],
+   "allImageUrls": [
+    "https://www.tchibo.com.tr/img/gQA3vLYO/900/image.webp",
+    "https://www.tchibo.com.tr/img/gAg3XxKn/900/image.webp",
+    "https://www.tchibo.com.tr/img/gAAHXRdb/900/image.webp",
+    "https://www.tchibo.com.tr/img/gQgnnxdd/900/image.webp",
+    "https://www.tchibo.com.tr/img/gQA3vLYO/438/image.webp",
+    "https://www.tchibo.com.tr/img/gQA3vLYO/900/image.jpeg",
+    "https://www.tchibo.com.tr/img/gAg3XxKn/900/image.jpeg",
+    "https://www.tchibo.com.tr/img/gAAHXRdb/900/image.jpeg",
+    "https://www.tchibo.com.tr/img/gQgnnxdd/900/image.jpeg",
+    "https://www.tchibo.com.tr/img/gQA3vLYO/64/image.avif",
+    "https://www.tchibo.com.tr/img/gQA3vLYO/320/image.avif",
+    "https://www.tchibo.com.tr/img/gQA3vLYO/438/image.avif",
+    "https://www.tchibo.com.tr/img/gQA3vLYO/900/image.avif",
+    "https://www.tchibo.com.tr/img/gQA3vLYO/1279/image.avif",
+    "https://www.tchibo.com.tr/img/gQA3vLYO/1919/image.avif",
+    "https://www.tchibo.com.tr/img/gQA3vLYO/2250/image.avif",
+    "https://www.tchibo.com.tr/img/gQA3vLYO/64/image.webp",
+    "https://www.tchibo.com.tr/img/gQA3vLYO/320/image.webp",
+    "https://www.tchibo.com.tr/img/gQA3vLYO/1279/image.webp",
+    "https://www.tchibo.com.tr/img/gQA3vLYO/1919/image.webp"
+   ]
+  },
+  {
+   "url": "https://www.tchibo.com.tr/products/280387747392/barista-espresso",
+   "title": "BARISTA Espresso - 500 gr çekirdek kahve Tchibo’dan satın al | 213372",
+   "price": "1299.00",
+   "images": [
+    {
+     "file": "assets/products/barista-espresso-1.webp",
+     "url": "https://www.tchibo.com.tr/img/gQwn3xOl/900/image.webp",
+     "bytes": 47022
+    },
+    {
+     "file": "assets/products/barista-espresso-2.webp",
+     "url": "https://www.tchibo.com.tr/img/ggAHnRuK/900/image.webp",
+     "bytes": 45190
+    },
+    {
+     "file": "assets/products/barista-espresso-3.webp",
+     "url": "https://www.tchibo.com.tr/img/gAQH3BOH/900/image.webp",
+     "bytes": 46632
+    }
+   ],
+   "allImageUrls": [
+    "https://www.tchibo.com.tr/img/gQwn3xOl/900/image.webp",
+    "https://www.tchibo.com.tr/img/ggAHnRuK/900/image.webp",
+    "https://www.tchibo.com.tr/img/gAQH3BOH/900/image.webp",
+    "https://www.tchibo.com.tr/img/gQwn3xOl/438/image.webp",
+    "https://www.tchibo.com.tr/img/gQwn3xOl/900/image.jpeg",
+    "https://www.tchibo.com.tr/img/ggAHnRuK/900/image.jpeg",
+    "https://www.tchibo.com.tr/img/gAQH3BOH/900/image.jpeg",
+    "https://www.tchibo.com.tr/img/gQwn3xOl/64/image.avif",
+    "https://www.tchibo.com.tr/img/gQwn3xOl/320/image.avif",
+    "https://www.tchibo.com.tr/img/gQwn3xOl/438/image.avif",
+    "https://www.tchibo.com.tr/img/gQwn3xOl/900/image.avif",
+    "https://www.tchibo.com.tr/img/gQwn3xOl/1279/image.avif",
+    "https://www.tchibo.com.tr/img/gQwn3xOl/1919/image.avif",
+    "https://www.tchibo.com.tr/img/gQwn3xOl/2750/image.avif",
+    "https://www.tchibo.com.tr/img/gQwn3xOl/64/image.webp",
+    "https://www.tchibo.com.tr/img/gQwn3xOl/320/image.webp",
+    "https://www.tchibo.com.tr/img/gQwn3xOl/1279/image.webp",
+    "https://www.tchibo.com.tr/img/gQwn3xOl/1919/image.webp",
+    "https://www.tchibo.com.tr/img/gQwn3xOl/2750/image.webp",
+    "https://www.tchibo.com.tr/img/gQwn3xOl/64/image.jpeg"
    ]
   }
  ],
