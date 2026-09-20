@@ -1,0 +1,20 @@
+{
+ "source": "https://www.tchibo.com.tr/ (satır içi SVG)",
+ "url": null,
+ "bytes": 191,
+ "type": "svg",
+ "fetchedAt": "2026-09-20T17:20:50.139Z",
+ "render": {
+  "original": {
+   "file": "assets/logo.png",
+   "w": 364,
+   "h": 104
+  },
+  "light": {
+   "file": "assets/logo-light.png",
+   "w": 364,
+   "h": 104
+  }
+ },
+ "scale": 4
+}
