@@ -1,7 +1,7 @@
 {
- "source": "https://www.tchibo.com.tr/ (satır içi SVG)",
- "url": null,
- "bytes": 191,
+ "source": "https://www.tchibo.com.tr/ (logo sprite: /static/svgs/tchibo.svg)",
+ "url": "https://www.tchibo.com.tr/static/svgs/tchibo.svg",
+ "bytes": 4292,
  "type": "svg",
- "fetchedAt": "2026-09-20T17:20:50.139Z"
+ "fetchedAt": "2026-09-20T17:22:52.079Z"
 }
