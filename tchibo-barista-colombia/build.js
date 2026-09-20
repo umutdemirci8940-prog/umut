@@ -39,7 +39,7 @@ let logoHtml = '<span class="wordmark">TCHIBO</span>';
 if (fs.existsSync(logoFile)) {
   const r = (logoMeta && logoMeta.render && logoMeta.render.light) || { w: 0, h: 104 };
   const scale = (logoMeta && logoMeta.scale) || 4;
-  const h = Math.round(r.h / scale), w = r.w ? Math.round(r.w / scale) : 0;
+  const h = 30, w = r.w && r.h ? Math.round(r.w / r.h * h) : 0;   // ekranda 30 px yükseklik (CSS ile aynı)
   logoHtml = `<img class="logo" src="data:image/png;base64,${fs.readFileSync(logoFile).toString('base64')}" alt="Tchibo" height="${h}"${w ? ` width="${w}"` : ''}>`;
   console.log(`ℹ Logo: assets/logo-light.png (${w}x${h} px)${logoMeta && logoMeta.source ? ' ← ' + logoMeta.source : ''}`);
 } else console.log('ℹ Logo dosyası yok (assets/logo-light.png); tipografik yer tutucu kullanıldı. Üretmek için: node tools/fetch-logo.js && node tools/render-logo.js');
