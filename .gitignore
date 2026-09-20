@@ -4,3 +4,4 @@ preview/video/
 .DS_Store
 release/stage/
 tchibo-barista-colombia/preview/.fontcache/
+.video-original/

@@ -11,7 +11,11 @@ on:
         default: tchibo-logo
         options:
           - tchibo-logo
+          - tchibo-video
           - ilacsizyasam-assets
+      video_id:
+        description: Kampanya videosu YouTube kimliği (tchibo-video görevi)
+        default: QD5d6irb-ZA
       tolerance:
         description: Fon temizleme toleransı (0-255)
         default: '22'
@@ -81,6 +85,42 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A tchibo-barista-colombia/assets tchibo-barista-colombia/dist tchibo-barista-colombia/preview/screens
           git commit -m "Tchibo resmi logosu ile masthead derlemesi (GitHub Actions)" || { echo "Değişiklik yok"; exit 0; }
+          git push
+
+  # ---------------------------------------------------------------------------
+  # Tchibo kampanya videosu: YouTube'dan indir, kareleri ve 960p sessiz kopyayı assets/video altına al, dala push'la.
+  tchibo-video:
+    if: ${{ inputs.task == 'tchibo-video' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: ffmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg >/dev/null
+
+      - name: Videoyu indir, kareleri çıkar
+        run: bash tchibo-barista-colombia/tools/fetch-video.sh "${{ inputs.video_id }}"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: tchibo-kampanya-videosu
+          path: |
+            tchibo-barista-colombia/assets/video
+            .video-original
+          if-no-files-found: warn
+
+      - name: Sonuçları dala push'la
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A tchibo-barista-colombia/assets/video
+          git commit -m "Tchibo kampanya videosu kareleri ve 960p kopya (GitHub Actions)" || { echo "Değişiklik yok"; exit 0; }
           git push
 
   # ---------------------------------------------------------------------------
