@@ -62,6 +62,15 @@ const save = (name, dataUrl) => { fs.writeFileSync(path.join(out, name), Buffer.
   });
   save('sticker.png', r.sticker.url); console.log('  etiket', r.sticker.w + 'x' + r.sticker.h, 'kutu', r.sticker.box);
   save('cola.png', r.cola.url); save('avatar-a.png', r.avatarA); save('avatar-b.png', r.avatarB); save('photo.jpg', r.photo); save('bg.jpg', r.bg);
+  // Film küçük resimleri (sitedeki kampanya filmlerinin kareleri → 72 px yuvarlak)
+  const frames = [['double-zinger', 'assets/kfc-pages/video/008-double-zinger-1920x840-20260325145344-frame-c.jpg'], ['strips', 'assets/kfc-pages/video/011-strips-1920x840-20260325144827-frame-c.jpg'], ['mighty-cruncher', 'assets/kfc-pages/video/015-mighty-cruncher-1920x840-20260325145206-frame-c.jpg'], ['hot-shots', 'assets/kfc-pages/video/019-hotshot-1920x840-20260325145451-frame-c.jpg']];
+  for (const [key, f] of frames) {
+    const fp = path.join(root, f); if (!fs.existsSync(fp)) { console.log('yok:', f); continue; }
+    const d = 'data:image/jpeg;base64,' + fs.readFileSync(fp).toString('base64');
+    const png = await p.evaluate(async (u) => { const i = new Image(); i.src = u; await i.decode(); const S = 72; const c = document.createElement('canvas'); c.width = S; c.height = S; const x = c.getContext('2d'); const side = Math.min(i.width, i.height) * .8; x.drawImage(i, (i.width - side) / 2, (i.height - side) / 2, side, side, 0, 0, S, S); return c.toDataURL('image/jpeg', 0.85); }, d);
+    fs.writeFileSync(path.join(out, `thumb-${key}.jpg`), Buffer.from(png.split(',')[1], 'base64'));
+  }
+  console.log('✔ film küçük resimleri');
   // Kontrol sayfası
   const du = (n) => 'data:image/' + (n.endsWith('png') ? 'png' : 'jpeg') + ';base64,' + fs.readFileSync(path.join(out, n)).toString('base64');
   await p.setViewportSize({ width: 1100, height: 420 });
