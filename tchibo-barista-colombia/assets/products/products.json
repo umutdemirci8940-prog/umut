@@ -1,0 +1,52 @@
+{
+ "fetchedAt": "2026-09-20T17:47:17.608Z",
+ "category": "https://www.tchibo.com.tr/categories/kahve/kahveler/tam-otomatik-makineler-icin-kahve",
+ "products": [
+  {
+   "url": "https://www.tchibo.com.tr/products/285801255462/barista-origins-colombia",
+   "title": "BARISTA Origins Colombia - 1 kg çekirdek kahve Tchibo’dan satın al | 219838",
+   "price": "2299.00",
+   "images": [
+    {
+     "file": "assets/products/barista-origins-colombia-1-kg-cekirdek-kahve-tchibo-dan-sati-1.webp",
+     "url": "https://www.tchibo.com.tr/img/gwQ5GyGP/900/image.webp",
+     "bytes": 43104
+    },
+    {
+     "file": "assets/products/barista-origins-colombia-1-kg-cekirdek-kahve-tchibo-dan-sati-2.webp",
+     "url": "https://www.tchibo.com.tr/img/gAwJmi49/900/image.webp",
+     "bytes": 42652
+    },
+    {
+     "file": "assets/products/barista-origins-colombia-1-kg-cekirdek-kahve-tchibo-dan-sati-3.jpg",
+     "url": "https://www.tchibo.com.tr/img/gAAJmy3F/900/image.jpeg",
+     "bytes": 121910
+    }
+   ],
+   "allImageUrls": [
+    "https://www.tchibo.com.tr/img/gAAJmy3F/900/image.webp",
+    "https://www.tchibo.com.tr/img/gQg52yHk/900/image.webp",
+    "https://www.tchibo.com.tr/img/gwQ5GyGP/900/image.webp",
+    "https://www.tchibo.com.tr/img/gAwJmi49/900/image.webp",
+    "https://www.tchibo.com.tr/img/gAAJmy3F/438/image.webp",
+    "https://www.tchibo.com.tr/img/gAAJmy3F/900/image.jpeg",
+    "https://www.tchibo.com.tr/img/gQg52yHk/900/image.jpeg",
+    "https://www.tchibo.com.tr/img/gwQ5GyGP/900/image.jpeg",
+    "https://www.tchibo.com.tr/img/gAwJmi49/900/image.jpeg",
+    "https://www.tchibo.com.tr/img/gAAJmy3F/64/image.avif",
+    "https://www.tchibo.com.tr/img/gAAJmy3F/320/image.avif",
+    "https://www.tchibo.com.tr/img/gAAJmy3F/438/image.avif",
+    "https://www.tchibo.com.tr/img/gAAJmy3F/900/image.avif",
+    "https://www.tchibo.com.tr/img/gAAJmy3F/1279/image.avif",
+    "https://www.tchibo.com.tr/img/gAAJmy3F/1919/image.avif",
+    "https://www.tchibo.com.tr/img/gAAJmy3F/2250/image.avif",
+    "https://www.tchibo.com.tr/img/gAAJmy3F/64/image.webp",
+    "https://www.tchibo.com.tr/img/gAAJmy3F/320/image.webp",
+    "https://www.tchibo.com.tr/img/gAAJmy3F/1279/image.webp",
+    "https://www.tchibo.com.tr/img/gAAJmy3F/1919/image.webp"
+   ]
+  }
+ ],
+ "videoUrls": [],
+ "savedVideos": []
+}
