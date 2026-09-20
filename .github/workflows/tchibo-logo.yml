@@ -1,0 +1,59 @@
+name: Tchibo logosunu çek ve masthead'i derle
+
+# Claude'un bulut oturumunun ağ politikası tchibo.com.tr ve Wikimedia'ya erişemediği için resmi logo
+# GitHub'ın kendi sunucusunda indirilir, şeffaf PNG olarak render edilir, masthead derlenir ve dala geri push'lanır.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  logo-and-build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: tchibo-barista-colombia
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Resmi logoyu indir
+        run: node tools/fetch-logo.js
+
+      - name: Playwright + Chromium kur
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+
+      - name: Logoyu şeffaf PNG olarak render et (özgün + krem)
+        run: node tools/render-logo.js
+
+      - name: Masthead'i derle
+        run: node build.js
+
+      - name: Ekran görüntüleri
+        run: node tools/capture.js
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: tchibo-masthead
+          path: |
+            tchibo-barista-colombia/dist
+            tchibo-barista-colombia/preview/screens
+            tchibo-barista-colombia/assets/logo*
+          if-no-files-found: error
+
+      - name: Sonuçları dala push'la
+        working-directory: .
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A tchibo-barista-colombia/assets tchibo-barista-colombia/dist tchibo-barista-colombia/preview/screens
+          git commit -m "Tchibo resmi logosu ile masthead derlemesi (GitHub Actions)" || { echo "Değişiklik yok"; exit 0; }
+          git push

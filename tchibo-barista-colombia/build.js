@@ -32,6 +32,18 @@ html = html.replace(/\{\{asset:([a-z0-9_-]+)\}\}/gi, (_, name) => {
   used.add(name);
   return `data:${MIME[ext] || 'application/octet-stream'};base64,${fs.readFileSync(file).toString('base64')}`;
 });
+// Marka logosu: assets/logo-light.png (tools/fetch-logo.js + tools/render-logo.js ile üretilir) varsa <img>, yoksa tipografik yer tutucu
+const logoFile = path.join(root, 'assets', 'logo-light.png');
+const logoMeta = fs.existsSync(path.join(root, 'assets', 'logo.json')) ? JSON.parse(fs.readFileSync(path.join(root, 'assets', 'logo.json'), 'utf8')) : null;
+let logoHtml = '<span class="wordmark">TCHIBO</span>';
+if (fs.existsSync(logoFile)) {
+  const r = (logoMeta && logoMeta.render && logoMeta.render.light) || { w: 0, h: 104 };
+  const scale = (logoMeta && logoMeta.scale) || 4;
+  const h = Math.round(r.h / scale), w = r.w ? Math.round(r.w / scale) : 0;
+  logoHtml = `<img class="logo" src="data:image/png;base64,${fs.readFileSync(logoFile).toString('base64')}" alt="Tchibo" height="${h}"${w ? ` width="${w}"` : ''}>`;
+  console.log(`ℹ Logo: assets/logo-light.png (${w}x${h} px)${logoMeta && logoMeta.source ? ' ← ' + logoMeta.source : ''}`);
+} else console.log('ℹ Logo dosyası yok (assets/logo-light.png); tipografik yer tutucu kullanıldı. Üretmek için: node tools/fetch-logo.js && node tools/render-logo.js');
+html = html.replace('{{logo}}', logoHtml);
 const missing = Object.keys(manifest).filter((k) => !used.has(k));
 if (missing.length) console.log('ℹ Kullanılmayan görseller:', missing.join(', '));
 
