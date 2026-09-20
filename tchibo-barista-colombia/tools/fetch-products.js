@@ -12,7 +12,13 @@ fs.mkdirSync(out, { recursive: true });
 const UA = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0 Safari/537.36';
 const SITE = 'https://www.tchibo.com.tr';
 const CATEGORY = process.argv[2] || SITE + '/categories/kahve/kahveler/tam-otomatik-makineler-icin-kahve';
-const KNOWN = [SITE + '/products/402032924', SITE + '/products/285801255462/barista-origins-colombia'];
+const KNOWN = [
+  SITE + '/products/285801255462/barista-origins-colombia',   // Barista Origins Colombia (kahraman)
+  SITE + '/products/233722167222/barista-caffe-crema',        // Barista Caffè Crema
+  SITE + '/products/280387747392/barista-espresso',           // Barista Espresso
+  SITE + '/products/283130059074/barista-espresso-dark',      // Barista Espresso Dark
+  SITE + '/products/402032924',
+];
 const log = (...a) => console.log('[products]', ...a);
 
 async function get(url, accept) {
@@ -98,11 +104,21 @@ async function saveVideo(url, i) {
       if (!/barista/i.test(title + ' ' + url)) { log('barista değil, atlandı:', title || url); continue; }
       const imgs = imagesFrom(html, url);
       const price = (html.match(/"price"\s*:\s*"?([\d.,]+)"?/) || [])[1] || null;
-      const slug = title.toLowerCase().replace(/ç/g, 'c').replace(/ğ/g, 'g').replace(/ı/g, 'i').replace(/ö/g, 'o').replace(/ş/g, 's').replace(/ü/g, 'u').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 60) || path.basename(url);
+      const slugSrc = (url.match(/\/products\/\d+\/([a-z0-9-]+)/i) || [])[1] || title;
+      const slug = slugSrc.toLowerCase().replace(/ç/g, 'c').replace(/ğ/g, 'g').replace(/ı/g, 'i').replace(/ö/g, 'o').replace(/ş/g, 's').replace(/ü/g, 'u').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40) || path.basename(url);
       const saved = [];
       let n = 0;
+      const ordered = [];
       for (const img of imgs) {
-        if (n >= 3) break;
+        const m = img.match(/^(https?:\/\/www\.tchibo\.com\.tr\/img\/[^/]+\/)(\d+)(\/image\.(?:webp|png|jpe?g))$/i);
+        if (m && +m[2] < 1600) { ordered.push(m[1] + '1600' + m[3], m[1] + '1200' + m[3]); }
+        ordered.push(img);
+      }
+      const seenBase = new Set();
+      for (const img of uniq(ordered)) {
+        if (n >= 4) break;
+        const base = img.replace(/\/\d+\/image\./, '/X/image.').replace(/\.(jpe?g|png|webp|avif)(\?.*)?$/i, '');
+        if (seenBase.has(base)) continue;
         try {
           const r = await get(img, 'image/*');
           const buf = Buffer.from(await r.arrayBuffer());
@@ -112,6 +128,7 @@ async function saveVideo(url, i) {
           const file = `${slug}-${n + 1}.${ext}`;
           fs.writeFileSync(path.join(out, file), buf);
           saved.push({ file: 'assets/products/' + file, url: img, bytes: buf.length });
+          seenBase.add(base);
           n++;
         } catch (e) { /* görsel atlandı */ }
       }
