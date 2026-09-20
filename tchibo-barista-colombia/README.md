@@ -6,9 +6,9 @@
 
 | Sürüm | Dosya | Açıklama |
 |---|---|---|
-| **A · Kampanya KV** (gerçek paketler) | `dist/970x250-kampanya/index.html` (~366 KB) · `dist/tchibo-barista-colombia-970x250-kampanya.zip` | Kampanya videosunun/anahtar görselinin dilinde: mavi zemin, krem lekeler, kırmızı-sarı üçgen motifi, **tchibo.com.tr'den alınan gerçek paket çekimleri** (Colombia + Caffè Crema + Espresso), "YENİ" rozeti, resmi logo; ikinci sahnede ürün sayfasındaki **gerçek mutfak fotoğrafı** (paket + tam otomatik makine). |
+| **A · Kampanya KV** (gerçek paketler) | `dist/970x250-kampanya/index.html` (~507 KB) · `dist/tchibo-barista-colombia-970x250-kampanya.zip` | Kampanya videosunun/anahtar görselinin dilinde: mavi zemin, krem lekeler, kırmızı-sarı üçgen motifi, **tchibo.com.tr'den alınan gerçek paket çekimleri** (Colombia + Caffè Crema + Espresso), "YENİ" rozeti, resmi logo; ikinci sahnede ürün sayfasındaki **gerçek mutfak fotoğrafı** (paket + tam otomatik makine). |
 | **B · Sinematik 3 perde** (üretilmiş raster) | `dist/970x250/index.html` (~295 KB) · `dist/tchibo-barista-colombia-970x250.zip` | Kolombiya dağlarında şafak → tambur kavurma → makineden fincana; tüm görseller piksel piksel üretilmiş. |
-| Önizleme | `preview/index.html` · `preview/screens/` | Yayın simülasyonu (iki sürüm) ve ekran görüntüleri (`kv-*` kampanya, `970x250-*` sinematik) |
+| Önizleme | `preview/index.html` · `preview/screens/` | Yayın simülasyonu (iki sürüm) ve ekran görüntüleri (`kv-01…12` kampanya: açılış, paket inişi, başlık, ipucu, geçiş, mutfak, sıcak nokta, son kare, 3D eğilme, aile paketi, seçim, paralaks; `970x250-*` sinematik) |
 
 ## A · Kampanya KV sürümü
 
@@ -21,7 +21,13 @@ Tchibo Barista serisi kampanya videosunun (YouTube `QD5d6irb-ZA`) anahtar görse
 
 **Kurgu (12,4 sn, sonra son kare):** mavi zemin ve lekeler patlayarak açılır, üçgenler sağdan kayar → kahraman paket zıplayarak iner, yere değince gerçek çekirdek sprite'ları saçılır → "YENİ" rozeti fırlar → aile paketleri sağdan kayarak dizilir → başlık satırları maskeyle yükselir, script alt satır, CTA (3,4 sn) → **krem leke geçişi** (6,4 sn) → mutfak fotoğrafı sahnesi: "TAM OTOMATİK MAKİNELER İÇİN TASARLANDI" + tat notaları (Ken Burns) → leke geçişi → son kare (KV, her şey yerleşik). Sağ üst noktalarla sahneler arasında geçilebilir.
 
-**Etkileşim:** fare paralaksı (zemin, lekeler, üçgenler, paketler farklı derinlikte); paketlerin üzerine gelince paket kalkar ve ürün etiketi belirir; **pakete tıklama ilgili ürün sayfasına** (UTM'li) gider, kahraman pakete tıklayınca çekirdek saçılır; CTA ve boş alan kategori sayfasına; `clickTag` / `Enabler.exit` desteği; Enter / Boşluk ile çıkış.
+**Etkileşim (rich media):**
+- **Paket seçici** – Aile paketine (Caffè Crema / Espresso) tıklayınca o ürün zıplayarak kahraman konumuna geçer, eski kahraman aileye iner; script alt satır ("Barista Caffè Crema · Aromatic & well-balanced"), CTA'nın hedef sayfası ve "YENİ" rozeti (yalnızca Colombia) buna göre değişir; seçimden sonra kurgu KV sahnesinde kilitlenir. Klavye: ← → ile ürün değiştirme, 1 / 2 ile sahne, Enter ile çıkış.
+- **3D eğilme ve cepheye dönüş** – Kahraman paket imleci izleyerek perspektifle eğilir; sağa doğru çekince cephe çekimine çapraz erir. Aile paketleri üzerine gelince kalkar, cepheye döner ve ürün etiketi belirir (ad + tat karakteri).
+- **Mutfak sahnesi sıcak noktaları** – Paket ve makine üzerinde nabız atan iki nokta; üzerine gelince bilgi balonu, tıklayınca ürün sayfası.
+- Fare paralaksı (zemin, lekeler, üçgenler, paketler farklı derinlikte), imleci izleyen yumuşak spot ışığı, altta zaman çizgisi ilerleme çubuğu, son karede lekeler nefes alır ve kahraman paket süzülür.
+- Kahraman pakete / "YENİ" rozetine tıklayınca gerçek çekirdek sprite'ları saçılır; kahraman paket ilgili ürün sayfasına (UTM'li), CTA seçili ürüne, boş alan kategori sayfasına gider; `clickTag` / `Enabler.exit` desteği. 4,6 sn'de kısa "PAKETLERE DOKUN · SERİYİ KEŞFET" ipucu, ilk etkileşimde kaybolur.
+- 970×250 dışında kalan sayfa zemini beyazdır; banner yatayda ortalanır.
 
 > Kampanya videosunun kendisi GitHub sunucusundan indirilemedi (YouTube "bot doğrulaması"); iş akışı görevi `tchibo-video` hazır, MP4 elde edilirse `assets/video/` altına konularak gerçek video kareleri de eklenebilir. Kaynak: `src/masthead-kv.html`; KV parçaları `tools/render-kv.py` → `assets/kv/`.
 

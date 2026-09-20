@@ -4,21 +4,23 @@
 <meta charset="utf-8">
 <meta name="ad.size" content="width=970,height=250">
 <meta name="viewport" content="width=970,initial-scale=1">
-<title>Tchibo Barista Colombia – Kampanya Masthead 970x250</title>
+<title>Tchibo Barista Serisi – Kampanya Masthead 970x250</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Lobster&display=swap" rel="stylesheet">
 <style>
 :root{--blue:#3942a1;--blue2:#2c3488;--cream:#ecd69d;--badge:#eedc94;--orange:#cc6343;--red:#f14827;--yellow:#fec015;--ink:#1f2566}
-html,body{margin:0;padding:0;background:#2c3488}
-#ad{position:relative;width:970px;height:250px;overflow:hidden;background:var(--blue);font-family:Montserrat,"Segoe UI",Arial,sans-serif;cursor:pointer;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;outline:none;touch-action:none}
+html,body{margin:0;padding:0;background:#fff}
+#ad{position:relative;width:970px;height:250px;margin:0 auto;overflow:hidden;background:var(--blue);font-family:Montserrat,"Segoe UI",Arial,sans-serif;cursor:pointer;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;outline:none;touch-action:none}
 #ad:focus-visible{box-shadow:inset 0 0 0 3px var(--yellow)}
-.layer{position:absolute;inset:0;will-change:transform}
-.scene{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .01s}
+.layer{position:absolute;inset:0;will-change:transform;pointer-events:none}
+.scene{position:absolute;inset:0;opacity:0;visibility:hidden}
 .scene.on{opacity:1;visibility:visible}
 img{display:block;pointer-events:none}
 /* ---- KV sahnesi */
 .bg{position:absolute;left:-10px;top:-6px;width:990px;height:262px}
+.spot{position:absolute;left:0;top:0;width:520px;height:520px;margin:-260px 0 0 -260px;border-radius:50%;background:radial-gradient(circle,rgba(255,240,200,.22) 0%,rgba(255,240,200,.08) 35%,rgba(255,240,200,0) 65%);opacity:0;transition:opacity .5s;pointer-events:none;z-index:1}
+#ad.hover .spot{opacity:1}
 .band{position:absolute;left:0;right:0;bottom:0;height:12px;background:var(--orange)}
 .blobA{position:absolute;left:600px;top:70px;width:520px;transform:scale(0);transform-origin:40% 40%}
 .blobC{position:absolute;left:430px;top:178px;width:200px;transform:scale(0);transform-origin:50% 60%}
@@ -26,25 +28,44 @@ img{display:block;pointer-events:none}
 .kv.on .blobA{animation:pop .9s cubic-bezier(.2,1.2,.3,1) .05s both}
 .kv.on .blobC{animation:pop .8s cubic-bezier(.2,1.2,.3,1) .25s both}
 .kv.on .tris{animation:slideL .8s cubic-bezier(.2,.9,.2,1) .15s both}
-.pack{position:absolute;bottom:14px;transform-origin:50% 100%;filter:drop-shadow(0 10px 16px rgba(20,20,60,.35));transition:transform .35s cubic-bezier(.2,.8,.2,1),filter .35s;pointer-events:auto}
+.kv.settled .blobA,.kv.settled .blobC{animation:breathe 6s ease-in-out infinite!important}
+.kv.settled .tris{animation:none!important;transform:none}
+/* paketler */
+.pack{position:absolute;bottom:14px;transform-origin:50% 100%;filter:drop-shadow(0 10px 16px rgba(20,20,60,.35));transition:transform .4s cubic-bezier(.2,.8,.2,1),filter .35s,opacity .3s;pointer-events:auto;perspective:700px}
+.pack .card{position:relative;height:100%;transform-style:preserve-3d;transition:transform .25s ease-out}
 .pack img{height:100%;width:auto}
+.pack img.vf{position:absolute;left:50%;top:0;transform:translateX(-50%);opacity:0;transition:opacity .35s}
+.pack.turn img.vf{opacity:1}
 .hero{left:468px;height:214px;transform:translateY(120%) rotate(6deg);z-index:3}
 .fam{height:140px;bottom:26px;transform:translateX(160px) rotate(-6deg);opacity:0}
-.fam.f1{left:640px;z-index:2}.fam.f2{left:704px;z-index:2}.fam.f3{left:768px;z-index:2}
+.fam.f1{left:640px;z-index:2}.fam.f2{left:704px;z-index:2}
 .kv.on .hero{animation:heroIn 1s cubic-bezier(.2,1.1,.3,1) .5s both}
 .kv.on .fam.f1{animation:famIn .7s cubic-bezier(.2,1.1,.3,1) 1.3s both}
 .kv.on .fam.f2{animation:famIn .7s cubic-bezier(.2,1.1,.3,1) 1.45s both}
-.kv.on .fam.f3{animation:famIn .7s cubic-bezier(.2,1.1,.3,1) 1.6s both}
-.pack:hover{transform:translateY(-8px) scale(1.05)!important;filter:drop-shadow(0 18px 22px rgba(20,20,60,.45));animation-play-state:paused}
-.kv.settled .pack,.kv.settled .blobA,.kv.settled .blobC,.kv.settled .tris,.kv.settled .badge,.kv.settled .lockup,.kv.settled .sub{animation:none!important;transform:none;opacity:1}
-.kv.settled .h span>span{animation:none!important;transform:none}
-.lbl{position:absolute;left:50%;bottom:-2px;transform:translate(-50%,120%);white-space:nowrap;background:var(--badge);color:var(--ink);font:800 9.5px/1 Montserrat,Arial,sans-serif;letter-spacing:.04em;padding:6px 9px;border-radius:999px;opacity:0;transition:opacity .25s,transform .25s;pointer-events:none}
-.pack:hover .lbl{opacity:1;transform:translate(-50%,100%)}
-.badge{position:absolute;left:592px;top:8px;width:82px;height:82px;transform:scale(0) rotate(-20deg);transform-origin:50% 60%;z-index:4}
+.kv.settled .pack{animation:none!important;transform:none;opacity:1}
+.kv.settled .hero{animation:float 5s ease-in-out infinite!important}
+.pack.lift{transform:translateY(-8px) scale(1.05)!important;filter:drop-shadow(0 18px 22px rgba(20,20,60,.45));animation:none!important;opacity:1}
+.pack.swapOut{animation:swapOut .32s cubic-bezier(.4,0,.8,.4) both!important}
+.pack.swapIn{animation:swapIn .55s cubic-bezier(.2,1.2,.3,1) both!important}
+.lbl{position:absolute;left:50%;bottom:-2px;transform:translate(-50%,120%);white-space:nowrap;background:var(--badge);color:var(--ink);font:800 9.5px/1 Montserrat,Arial,sans-serif;letter-spacing:.04em;padding:6px 10px;border-radius:999px;opacity:0;transition:opacity .25s,transform .25s;pointer-events:none;box-shadow:0 4px 10px rgba(20,20,60,.25)}
+.lbl small{display:inline;margin-left:7px;font-weight:600;font-size:8.5px;letter-spacing:.06em;color:#4a4f8f}
+.pack.lift .lbl{opacity:1;transform:translate(-50%,100%)}
+.hero .lbl{display:none}
+.fam .lbl{bottom:-3px;transform:translate(-50%,100%) translateY(-6px)}
+.fam.lift .lbl{transform:translate(-50%,100%)}
+.fam.f2 .lbl{left:auto;right:0;transform:translate(0,100%) translateY(-6px)}
+.fam.f2.lift .lbl{transform:translate(0,100%)}
+.hint{position:absolute;left:652px;bottom:6px;font:700 8.5px/1 Montserrat,Arial,sans-serif;letter-spacing:.14em;color:var(--ink);opacity:0;transition:opacity .6s;z-index:4;pointer-events:none}
+.hint.on{opacity:.85;animation:hintPulse 1.6s ease-in-out infinite}
+.badge{position:absolute;left:592px;top:8px;width:82px;height:82px;transform:scale(0) rotate(-20deg);transform-origin:50% 60%;z-index:4;transition:opacity .35s,transform .35s;pointer-events:auto}
 .badge img{width:100%;height:100%}
 .badge b{position:absolute;left:0;top:0;width:100%;height:78%;display:flex;align-items:center;justify-content:center;font:900 17px/1 Montserrat,Arial,sans-serif;color:var(--ink);letter-spacing:.02em;transform:rotate(-8deg)}
 .kv.on .badge{animation:badgeIn .8s cubic-bezier(.2,1.4,.3,1) 1.1s both}
-.copy{position:absolute;left:40px;top:22px;width:420px;z-index:5}
+.kv.settled .badge{animation:none!important;transform:none}
+.badge:hover{animation:wobble .6s ease-in-out!important}
+.badge.off{opacity:0;transform:scale(.6) rotate(-20deg)!important;pointer-events:none}
+/* metin */
+.copy{position:absolute;left:40px;top:22px;width:420px;z-index:5;pointer-events:none}
 .lockup{display:flex;align-items:center;gap:10px;height:30px;opacity:0;transform:translateY(10px)}
 .lockup img{height:28px;width:auto}
 .lockup i{width:1.5px;height:22px;background:var(--cream);opacity:.8}
@@ -57,17 +78,22 @@ img{display:block;pointer-events:none}
 .kv.on .h span:nth-child(1)>span{animation:rise .8s cubic-bezier(.2,.9,.2,1) 1.5s both}
 .kv.on .h span:nth-child(2)>span{animation:rise .8s cubic-bezier(.2,.9,.2,1) 1.7s both}
 .sub{margin:8px 0 0;display:flex;align-items:baseline;gap:12px;opacity:0;transform:translateY(10px)}
-.sub em{font:400 24px/1 Lobster,"Brush Script MT",cursive;color:var(--yellow);font-style:normal}
-.sub small{font:700 9.5px/1 Montserrat,Arial,sans-serif;letter-spacing:.2em;color:var(--cream)}
+.sub em{font:400 24px/1 Lobster,"Brush Script MT",cursive;color:var(--yellow);font-style:normal;transition:opacity .25s}
+.sub small{font:700 9.5px/1 Montserrat,Arial,sans-serif;letter-spacing:.2em;color:var(--cream);transition:opacity .25s}
+.sub.swap em,.sub.swap small{opacity:0}
 .kv.on .sub{animation:up .7s cubic-bezier(.2,.8,.2,1) 2.2s both}
-.cta{position:absolute;left:40px;bottom:30px;z-index:6;border:0;border-radius:999px;padding:0 20px;height:34px;font:800 13px/34px Montserrat,Arial,sans-serif;letter-spacing:.03em;color:var(--ink);background:var(--yellow);box-shadow:0 8px 18px rgba(20,20,60,.35);cursor:pointer;opacity:0;transform:translateY(14px);transition:background .2s,transform .25s;pointer-events:auto}
+.kv.settled .lockup,.kv.settled .sub{animation:none!important;opacity:1;transform:none}
+.kv.settled .h span>span{animation:none!important;transform:none}
+.cta{position:absolute;left:40px;bottom:30px;z-index:6;border:0;border-radius:999px;padding:0 20px 0 20px;height:34px;font:800 13px/34px Montserrat,Arial,sans-serif;letter-spacing:.03em;color:var(--ink);background:var(--yellow);box-shadow:0 8px 18px rgba(20,20,60,.35);cursor:pointer;opacity:0;transform:translateY(14px);transition:background .2s,transform .25s,box-shadow .25s;pointer-events:auto;display:flex;align-items:center;gap:8px}
 .cta.on{animation:up .7s cubic-bezier(.2,.8,.2,1) both}
-.cta:hover{background:#ffd043;transform:translateY(-2px) scale(1.04)!important}
+.cta:hover{background:#ffd043;transform:translateY(-2px) scale(1.04)!important;box-shadow:0 12px 22px rgba(20,20,60,.4)}
+.cta s{display:block;width:6px;height:6px;border-top:2.5px solid var(--ink);border-right:2.5px solid var(--ink);transform:rotate(45deg);transition:transform .25s}
+.cta:hover s{transform:rotate(45deg) translate(2px,-2px)}
 /* ---- fotoğraf sahnesi */
 .photo{position:absolute;left:40px;top:-292px;width:930px;transform-origin:60% 85%}
 .ph.on .photo{animation:kenburns 5.2s linear both}
 .shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(35,42,140,.92) 0%,rgba(35,42,140,.78) 34%,rgba(35,42,140,0) 62%)}
-.copy2{position:absolute;left:40px;top:56px;width:420px;z-index:5}
+.copy2{position:absolute;left:40px;top:56px;width:420px;z-index:5;pointer-events:none}
 .copy2 .k{color:var(--cream);font-weight:800;font-size:22px;line-height:1.12;letter-spacing:.02em}
 .copy2 .k span{display:block;overflow:hidden;padding-bottom:2px}
 .copy2 .k span>span{display:block;transform:translateY(112%)}
@@ -75,19 +101,36 @@ img{display:block;pointer-events:none}
 .ph.on .k span:nth-child(2)>span{animation:rise .8s cubic-bezier(.2,.9,.2,1) .55s both}
 .copy2 p{margin:10px 0 0;font:600 12px/1.45 Montserrat,Arial,sans-serif;color:rgba(236,214,157,.9);opacity:0;transform:translateY(10px)}
 .ph.on .copy2 p{animation:up .7s cubic-bezier(.2,.8,.2,1) 1s both}
-/* ---- geçiş lekesi, noktalar, efekt tuvali */
+.hot{position:absolute;width:22px;height:22px;margin:-11px 0 0 -11px;border-radius:50%;background:rgba(254,192,21,.95);box-shadow:0 0 0 0 rgba(254,192,21,.55);pointer-events:auto;z-index:6;opacity:0;transform:scale(.4);transition:opacity .4s,transform .4s;cursor:pointer}
+.hot:before{content:"";position:absolute;left:8px;top:8px;width:6px;height:6px;border-radius:50%;background:var(--ink)}
+.ph.on .hot{opacity:1;transform:scale(1);animation:pulse 2s ease-out 1.4s infinite}
+.hot .tip{position:absolute;left:50%;bottom:30px;transform:translateX(-50%) translateY(6px);white-space:nowrap;background:var(--badge);color:var(--ink);font:800 9.5px/1 Montserrat,Arial,sans-serif;letter-spacing:.04em;padding:7px 10px;border-radius:999px;opacity:0;transition:opacity .25s,transform .25s;box-shadow:0 4px 10px rgba(20,20,60,.25)}
+.hot .tip small{display:block;margin-top:3px;font-weight:600;font-size:8.5px;letter-spacing:.06em;color:#4a4f8f}
+.hot:hover{animation:none;transform:scale(1.15)}
+.hot:hover .tip{opacity:1;transform:translateX(-50%) translateY(0)}
+/* ---- geçiş lekesi, ilerleme, noktalar, efekt tuvali */
 .wipe{position:absolute;left:485px;top:125px;width:1400px;height:1000px;margin:-500px 0 0 -700px;transform:scale(0);transform-origin:50% 50%;z-index:20;pointer-events:none}
 .wipe img{width:100%;height:100%}
 #fx{position:absolute;left:0;top:0;width:970px;height:250px;z-index:15;pointer-events:none}
+.prog{position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--yellow);z-index:21;opacity:.9;transition:opacity .5s}
+.prog.off{opacity:0}
 .dots{position:absolute;right:20px;top:20px;display:flex;gap:6px;z-index:30;pointer-events:auto;opacity:0;transition:opacity .8s}
 #ad.go .dots{opacity:1}
 .dots b{display:block;width:7px;height:7px;border-radius:4px;background:rgba(236,214,157,.45);cursor:pointer;transition:width .35s,background .35s}
 .dots b.on{width:20px;background:var(--yellow)}
+.dots b:hover{background:rgba(236,214,157,.85)}
 @keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
 @keyframes slideL{from{transform:translateX(120%)}to{transform:none}}
 @keyframes heroIn{0%{transform:translateY(120%) rotate(6deg)}70%{transform:translateY(-4%) rotate(-1.5deg)}100%{transform:none}}
 @keyframes famIn{0%{transform:translateX(160px) rotate(-6deg);opacity:0}100%{transform:none;opacity:1}}
 @keyframes badgeIn{0%{transform:scale(0) rotate(-30deg)}100%{transform:scale(1) rotate(0)}}
+@keyframes wobble{0%,100%{transform:rotate(0)}25%{transform:rotate(-9deg) scale(1.08)}75%{transform:rotate(7deg) scale(1.08)}}
+@keyframes swapOut{to{transform:translateY(40px) scale(.7);opacity:0}}
+@keyframes swapIn{0%{transform:translateY(50px) scale(.6);opacity:0}60%{transform:translateY(-6px) scale(1.04);opacity:1}100%{transform:none;opacity:1}}
+@keyframes hintPulse{0%,100%{opacity:.85}50%{opacity:.4}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(254,192,21,.55)}100%{box-shadow:0 0 0 22px rgba(254,192,21,0)}}
 @keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 @keyframes rise{from{transform:translateY(112%)}to{transform:none}}
 @keyframes kenburns{from{transform:scale(1)}to{transform:scale(1.06)}}
@@ -99,21 +142,23 @@ img{display:block;pointer-events:none}
   <!-- 1. sahne: kampanya anahtar görseli -->
   <div class="scene kv" id="kv">
     <div class="layer" data-p="2"><img class="bg" src="{{kv:kvBg}}" alt=""></div>
+    <div class="spot" id="spot"></div>
     <div class="band"></div>
     <div class="layer" data-p="6"><img class="blobA" src="{{kv:blobA}}" alt=""><img class="blobC" src="{{kv:blobC}}" alt=""></div>
     <div class="layer" data-p="10"><img class="tris" src="{{kv:tris}}" alt=""></div>
     <div class="layer" data-p="8">
-      <div class="pack fam f1" data-url="{{url:barista-caffe-crema}}"><img src="{{pack:barista-caffe-crema-2}}" alt="Barista Caffè Crema"><span class="lbl">BARISTA CAFFÈ CREMA</span></div>
-      <div class="pack fam f2" data-url="{{url:barista-espresso}}"><img src="{{pack:barista-espresso-1}}" alt="Barista Espresso"><span class="lbl">BARISTA ESPRESSO</span></div>
+      <div class="pack fam f1" data-slot="1"><div class="card"><img class="v34" src="" alt=""><img class="vf" src="" alt=""></div><span class="lbl"></span></div>
+      <div class="pack fam f2" data-slot="2"><div class="card"><img class="v34" src="" alt=""><img class="vf" src="" alt=""></div><span class="lbl"></span></div>
+      <div class="hint" id="hint">PAKETLERE DOKUN · SERİYİ KEŞFET</div>
     </div>
     <div class="layer" data-p="14">
-      <div class="pack hero" id="hero" data-url="{{url:barista-origins-colombia}}"><img src="{{pack:barista-origins-colombia-2}}" alt="Barista Colombia"><span class="lbl">BARISTA COLOMBIA · %100 ARABICA · 1 KG</span></div>
-      <div class="badge"><img src="{{kv:badge}}" alt=""><b>YENİ</b></div>
+      <div class="pack hero" id="hero" data-slot="0"><div class="card"><img class="v34" src="" alt=""><img class="vf" src="" alt=""></div><span class="lbl"></span></div>
+      <div class="badge" id="badge"><img src="{{kv:badge}}" alt=""><b>YENİ</b></div>
     </div>
     <div class="copy">
       <div class="lockup">{{logo}}<i></i><b>BARISTA</b></div>
       <h1 class="h"><span><span>TCHIBO BARISTA SERİSİ:</span></span><span><span>KAHVEDE UZMANLIK ESERİ</span></span></h1>
-      <div class="sub"><em>Barista Colombia</em><small>SINGLE ORIGIN EDITION</small></div>
+      <div class="sub" id="sub"><em id="subName">Barista Colombia</em><small id="subTag">SINGLE ORIGIN EDITION</small></div>
     </div>
   </div>
   <!-- 2. sahne: mutfakta tam otomatik makine (ürün sayfası fotoğrafı) -->
@@ -124,10 +169,13 @@ img{display:block;pointer-events:none}
       <div class="k"><span><span>TAM OTOMATİK MAKİNELER</span></span><span><span>İÇİN TASARLANDI</span></span></div>
       <p>Yoğun krema, kırmızı meyve ve çikolata notaları.<br>Her fincanda usta işi bir Colombia.</p>
     </div>
+    <div class="hot" style="left:486px;top:96px" data-url="{{url:barista-origins-colombia}}"><span class="tip">BARISTA COLOMBIA · 1 KG<small>%100 ARABICA · AROMA PROTECT</small></span></div>
+    <div class="hot" style="left:700px;top:78px" data-url=""><span class="tip">TAM OTOMATİK MAKİNE<small>ÇEKİRDEKTEN FİNCANA, TEK DOKUNUŞLA</small></span></div>
   </div>
-  <button class="cta" type="button" id="cta">Ürünü Keşfet</button>
+  <button class="cta" type="button" id="cta"><span id="ctaText">Ürünü Keşfet</span><s></s></button>
   <canvas id="fx" width="970" height="250" aria-hidden="true"></canvas>
   <div class="wipe" id="wipe"><img src="{{kv:blobB}}" alt=""></div>
+  <div class="prog" id="prog"></div>
   <div class="dots" id="dots" aria-hidden="true"><b class="on" data-i="0"></b><b data-i="1"></b></div>
 </div>
 <script>
@@ -138,29 +186,41 @@ var URL_='https://www.tchibo.com.tr/categories/kahve/kahveler/tam-otomatik-makin
 var DEEP=true;                       // paketlere tıklama ilgili ürün sayfasına gitsin (clickTag tanımlıysa yine clickTag)
 var MAX_AUTOPLAY=30000;
 var RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-var T={kv:0,cta:3400,wipe1:6400,ph:6850,wipe2:11000,kv2:11450,end:12400};
-var ad=document.getElementById('ad'),kv=document.getElementById('kv'),ph=document.getElementById('ph'),cta=document.getElementById('cta'),wipe=document.getElementById('wipe'),dots=document.getElementById('dots').children;
+var T={kv:0,cta:3400,hint:4600,wipe1:6400,ph:6850,wipe2:11000,kv2:11450,end:12400};
+// ürünler: siteden alınan gerçek paket çekimleri (3/4 açı + cephe) ve ürün sayfaları
+var PRODUCTS=[
+  {key:'colombia',name:'Barista Colombia',tag:'SINGLE ORIGIN EDITION',lbl:'BARISTA COLOMBIA · 1 KG',desc:'AROMATIC & VIBRANT · %100 ARABICA',v34:'{{pack:barista-origins-colombia-2}}',vf:'{{pack:barista-origins-colombia-3}}',url:'{{url:barista-origins-colombia}}',isNew:true},
+  {key:'crema',name:'Barista Caffè Crema',tag:'AROMATIC & WELL-BALANCED',lbl:'BARISTA CAFFÈ CREMA',desc:'YUMUŞAK GÖVDE · NARİN KREMA',v34:'{{pack:barista-caffe-crema-2}}',vf:'{{pack:barista-caffe-crema-3}}',url:'{{url:barista-caffe-crema}}',isNew:false},
+  {key:'espresso',name:'Barista Espresso',tag:'CHARACTERFUL & INTENSE',lbl:'BARISTA ESPRESSO',desc:'KARAKTERLİ · YOĞUN',v34:'{{pack:barista-espresso-1}}',vf:'{{pack:barista-espresso-2}}',url:'{{url:barista-espresso}}',isNew:false}
+];
+var order=[0,1,2];                    // slot 0 = kahraman, 1-2 = aile
+var ad=document.getElementById('ad'),kv=document.getElementById('kv'),ph=document.getElementById('ph'),cta=document.getElementById('cta'),ctaText=document.getElementById('ctaText'),wipe=document.getElementById('wipe'),prog=document.getElementById('prog'),dots=document.getElementById('dots').children,badge=document.getElementById('badge'),hint=document.getElementById('hint'),spot=document.getElementById('spot'),sub=document.getElementById('sub'),subName=document.getElementById('subName'),subTag=document.getElementById('subTag');
+var slots=[document.getElementById('hero'),ad.querySelector('.fam.f1'),ad.querySelector('.fam.f2')];
 var BEANS=['{{asset:bean1}}','{{asset:bean2}}','{{asset:bean3}}','{{asset:bean4}}','{{asset:bean5}}'].map(function(s){var i=new Image();i.src=s;return i});
 var fx=document.getElementById('fx'),g=fx.getContext('2d'),DPR=Math.min(window.devicePixelRatio||1,2);fx.width=W*DPR;fx.height=H*DPR;g.scale(DPR,DPR);
 function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;var t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
 var R=rng(7),clamp=function(v,a,b){return v<a?a:v>b?b:v};
-var t0=0,started=false,state={},beans=[],px=0,py=0,tpx=0,tpy=0,pointer=false,burstDone=false,interactAt=-1e9,suppress=false;
+var t0=0,started=false,state={},beans=[],px=0,py=0,tpx=0,tpy=0,pointer=false,burstDone=false,interactAt=-1e9,suppress=false,locked=false,swapping=false,hintShown=false;
 
+function fill(){for(var s=0;s<3;s++){var p=PRODUCTS[order[s]],el=slots[s];el.querySelector('.v34').src=p.v34;el.querySelector('.vf').src=p.vf;el.querySelector('.v34').alt=p.name;el.querySelector('.lbl').innerHTML=p.lbl+'<small>'+p.desc+'</small>';el.setAttribute('data-url',p.url)}
+  var h=PRODUCTS[order[0]];subName.textContent=h.name;subTag.textContent=h.tag;badge.classList.toggle('off',!h.isNew);ad.setAttribute('aria-label','Tchibo Barista Serisi: Kahvede uzmanlık eseri. '+h.name+' – ürünü keşfet')}
+fill();
 function set(key,val,fn){if(state[key]!==val){state[key]=val;fn(val)}}
 function cls(el,c,on){el.classList[on?'add':'remove'](c)}
 function burst(x,y,n){for(var k=0;k<n;k++){var a=-Math.PI/2+(R()-.5)*2.2,v=140+R()*220;beans.push({x:x,y:y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-60,r:R()*6.28,vr:(R()-.5)*10,s:.28+R()*.3,v:Math.floor(R()*5),born:performance.now(),life:1400+R()*700})}}
+function center(el){var r=el.getBoundingClientRect(),ar=ad.getBoundingClientRect();return{x:(r.left+r.width/2-ar.left)*W/ar.width,y:(r.top+r.height*.6-ar.top)*H/ar.height}}
 function apply(t,now){
-  var inKv=t<T.wipe1+450||t>=T.wipe2+450, inPh=!inKv;
+  var inKv=locked||t<T.wipe1+450||t>=T.wipe2+450, inPh=!inKv;
   set('kv',inKv,function(v){cls(kv,'on',v)});
-  set('settled',t>=T.kv2,function(v){cls(kv,'settled',v)});
+  set('settled',locked||t>=T.kv2,function(v){cls(kv,'settled',v)});
   set('ph',inPh,function(v){cls(ph,'on',v)});
   set('cta',t>=T.cta,function(v){cls(cta,'on',v)});
+  set('hint',!hintShown&&t>=T.hint&&inKv&&t<T.wipe1,function(v){cls(hint,'on',v)});
   set('dot',inKv?0:1,function(v){for(var i=0;i<2;i++)cls(dots[i],'on',i===v)});
-  // leke geçişi: büyü → sahne değiş → küçül
   var w=0;
-  [[T.wipe1,T.ph],[T.wipe2,T.kv2]].forEach(function(p){var a=p[0],b=p[1],mid=(a+b)/2;if(t>=a&&t<b){var q=t<mid?(t-a)/(mid-a):1-(t-mid)/(b-mid);q=q*q*(3-2*q);w=q}});
+  if(!locked)[[T.wipe1,T.ph],[T.wipe2,T.kv2]].forEach(function(p){var a=p[0],b=p[1],mid=(a+b)/2;if(t>=a&&t<b){var q=t<mid?(t-a)/(mid-a):1-(t-mid)/(b-mid);q=q*q*(3-2*q);w=q}});
   wipe.style.transform='scale('+w.toFixed(3)+')';
-  // kahraman paket yere inince çekirdek patlaması (bir kez)
+  var pr=clamp(t/T.end,0,1);prog.style.width=(pr*W).toFixed(1)+'px';cls(prog,'off',pr>=1||locked);
   if(!burstDone&&t>1250&&t<1400){burstDone=true;burst(536,236,12)}
   if(t<1250)burstDone=false;
 }
@@ -172,26 +232,54 @@ function frame(now){
   var layers=ad.querySelectorAll('.layer');
   for(var i=0;i<layers.length;i++){var p=+layers[i].getAttribute('data-p');layers[i].style.transform='translate('+(px*p).toFixed(2)+'px,'+(py*p*.5).toFixed(2)+'px)'}
   apply(t,now);
-  // çekirdek efektleri
   g.clearRect(0,0,W,H);
   for(i=beans.length-1;i>=0;i--){var b=beans[i];var q=(now-b.born)/b.life;if(q>=1){beans.splice(i,1);continue}var d=(now-b.born)/1000;var x=b.x+b.vx*d,y=b.y+b.vy*d+380*d*d;if(y>H-8){y=H-8}var img=BEANS[b.v];if(!img.complete)continue;g.save();g.globalAlpha=1-q*q;g.translate(x,y);g.rotate(b.r+b.vr*d);var ww=88*b.s,hh=62*b.s;g.drawImage(img,-ww/2,-hh/2,ww,hh);g.restore()}
   requestAnimationFrame(frame);
 }
 function start(){if(started)return;started=true;t0=performance.now()-(RM?T.end:0);ad.className='go';requestAnimationFrame(frame)}
-function jump(i){var now=performance.now();t0=now-[0,T.ph][i];state={};beans.length=0;burstDone=i===1;interactAt=now;
-  // CSS animasyonlarının yeniden oynaması için sınıfları sıfırla
-  kv.classList.remove('on');ph.classList.remove('on');cta.classList.remove('on');void kv.offsetWidth;}
+function jump(i){var now=performance.now();t0=now-[0,T.ph][i];locked=false;state={};beans.length=0;burstDone=i===1;interactAt=now;kv.classList.remove('on','settled');ph.classList.remove('on');cta.classList.remove('on');void kv.offsetWidth}
+
+// ---------------------------------------------------------------- paket seçici
+function select(slot){
+  if(swapping||slot===0)return;
+  swapping=true;interactAt=performance.now();locked=true;hintShown=true;cls(hint,'on',false);
+  var hero=slots[0],fam=slots[slot];
+  cls(hero,'lift',false);cls(fam,'lift',false);cls(fam,'turn',false);cls(hero,'turn',false);
+  hero.classList.add('swapOut');fam.classList.add('swapOut');sub.classList.add('swap');
+  var c=center(fam);burst(c.x,c.y,8);
+  setTimeout(function(){
+    var tmp=order[0];order[0]=order[slot];order[slot]=tmp;fill();
+    hero.classList.remove('swapOut');fam.classList.remove('swapOut');void hero.offsetWidth;
+    hero.classList.add('swapIn');fam.classList.add('swapIn');sub.classList.remove('swap');
+    setTimeout(function(){hero.classList.remove('swapIn');fam.classList.remove('swapIn');swapping=false},600);
+  },320);
+}
 // ---------------------------------------------------------------- etkileşim
 function local(e){var r=ad.getBoundingClientRect();return{x:(e.clientX-r.left)*W/r.width,y:(e.clientY-r.top)*H/r.height}}
-ad.addEventListener('pointermove',function(e){var p=local(e);pointer=true;tpx=clamp((p.x/W-.5)*2,-1,1);tpy=clamp((p.y/H-.5)*2,-1,1);interactAt=performance.now()});
-ad.addEventListener('pointerleave',function(){pointer=false;tpx=0;tpy=0});
+var hovered=null;
+ad.addEventListener('pointerenter',function(){ad.classList.add('hover')});
+ad.addEventListener('pointermove',function(e){var p=local(e);pointer=true;tpx=clamp((p.x/W-.5)*2,-1,1);tpy=clamp((p.y/H-.5)*2,-1,1);interactAt=performance.now();
+  spot.style.transform='translate('+p.x.toFixed(1)+'px,'+p.y.toFixed(1)+'px)';
+  // kahraman: imleci izleyen 3D eğilme + cepheye dönüş
+  if(hovered===slots[0]){var r=slots[0].getBoundingClientRect(),ar=ad.getBoundingClientRect();var cx=(r.left+r.width/2-ar.left)*W/ar.width,cy=(r.top+r.height/2-ar.top)*H/ar.height;var dx=clamp((p.x-cx)/(r.width/2*W/ar.width),-1,1),dy=clamp((p.y-cy)/(r.height/2*H/ar.height),-1,1);slots[0].querySelector('.card').style.transform='rotateY('+(dx*14).toFixed(1)+'deg) rotateX('+(-dy*8).toFixed(1)+'deg)';cls(slots[0],'turn',dx>.15)}
+});
+ad.addEventListener('pointerleave',function(){pointer=false;tpx=0;tpy=0;ad.classList.remove('hover');if(hovered){leave(hovered)}});
+function enter(el){hovered=el;cls(el,'lift',true);if(el!==slots[0])cls(el,'turn',true);hintShown=true;cls(hint,'on',false);interactAt=performance.now()}
+function leave(el){cls(el,'lift',false);cls(el,'turn',false);el.querySelector('.card').style.transform='';if(hovered===el)hovered=null}
+for(var i=0;i<3;i++){(function(el){el.addEventListener('pointerenter',function(){enter(el)});el.addEventListener('pointerleave',function(){leave(el)});
+  el.addEventListener('click',function(e){e.stopPropagation();var s=+el.getAttribute('data-slot');if(s!==0){select(s);return}var c=center(el);burst(c.x,c.y,10);var u=el.getAttribute('data-url');openLink(DEEP&&u&&u.indexOf('http')===0?u:URL_)})})(slots[i])}
+badge.addEventListener('click',function(e){e.stopPropagation();var c=center(badge);burst(c.x,c.y+20,8)});
+var hots=ad.querySelectorAll('.hot');
+for(i=0;i<hots.length;i++)hots[i].addEventListener('click',function(e){e.stopPropagation();var u=this.getAttribute('data-url');openLink(u&&u.indexOf('http')===0?u:URL_)});
 function openLink(u){var url=window.clickTag||u||URL_;if(window.Enabler&&window.Enabler.exit){window.Enabler.exit('CTA')}else{window.open(url,'_blank','noopener')}}
-ad.addEventListener('click',function(e){if(suppress){suppress=false;return}openLink(URL_)});
-cta.addEventListener('click',function(e){e.stopPropagation();openLink(URL_)});
-var packs=ad.querySelectorAll('.pack');
-for(var i=0;i<packs.length;i++)packs[i].addEventListener('click',function(e){e.stopPropagation();var u=this.getAttribute('data-url');if(this.id==='hero'){var r=this.getBoundingClientRect(),ar=ad.getBoundingClientRect();burst((r.left+r.width/2-ar.left)*W/ar.width,(r.top+r.height*.6-ar.top)*H/ar.height,10)}openLink(DEEP&&u&&u.indexOf('http')===0?u:URL_)});
+ad.addEventListener('click',function(){if(suppress){suppress=false;return}openLink(URL_)});
+cta.addEventListener('click',function(e){e.stopPropagation();var h=PRODUCTS[order[0]];openLink(DEEP&&h.url&&h.url.indexOf('http')===0?h.url:URL_)});
 for(i=0;i<2;i++)dots[i].addEventListener('click',function(e){e.stopPropagation();jump(+this.getAttribute('data-i'))});
-ad.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();openLink(URL_)}});
+ad.addEventListener('keydown',function(e){
+  if(e.key==='Enter'||e.key===' '){e.preventDefault();var h=PRODUCTS[order[0]];openLink(DEEP&&h.url&&h.url.indexOf('http')===0?h.url:URL_)}
+  else if(e.key==='ArrowRight'){e.preventDefault();select(1)}else if(e.key==='ArrowLeft'){e.preventDefault();select(2)}
+  else if(e.key==='1'){jump(0)}else if(e.key==='2'){jump(1)}
+});
 var imgs=ad.querySelectorAll('img'),pending=imgs.length;
 function done(){pending--;if(pending<=0)start()}
 for(i=0;i<imgs.length;i++){if(imgs[i].complete)done();else{imgs[i].addEventListener('load',done);imgs[i].addEventListener('error',done)}}

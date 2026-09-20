@@ -41,12 +41,15 @@ function ensureFonts(cssUrl) {
   await at(700); await shot('01-acilis');
   await at(1500); await shot('02-paket-inis');
   await at(2600); await shot('03-baslik');
-  await at(4600); await shot('04-kv-son');
+  await at(4900); await shot('04-kv-son');            // ipucu: paketlere dokun
   await at(6650); await shot('05-gecis');
   await at(8200); await shot('06-mutfak');
-  await at(12600); await shot('07-son-kare');
-  await page.mouse.move(535, 150); await page.waitForTimeout(500); await shot('08-hover-paket');
-  await page.mouse.move(120, 120); await page.waitForTimeout(600); await shot('09-paralaks');
+  await page.mouse.move(700, 78); await page.waitForTimeout(500); await shot('07-mutfak-sicak-nokta');
+  await at(12600); await shot('08-son-kare');
+  await page.mouse.move(560, 120); await page.waitForTimeout(550); await shot('09-hover-3d');   // kahraman: eğilme + cephe
+  await page.mouse.move(675, 200); await page.waitForTimeout(400); await shot('10-hover-aile');
+  await page.mouse.click(675, 200); await page.waitForTimeout(1100); await shot('11-secim-crema'); // Caffè Crema kahraman oldu
+  await page.mouse.move(120, 120); await page.waitForTimeout(600); await shot('12-paralaks');
   await browser.close();
   console.log('✔ Ekran görüntüleri:', path.relative(root, out) + (errors.length ? '  ⚠ ' + errors.join(' | ') : ''));
 })().catch((e) => { console.error(e); process.exit(1); });
