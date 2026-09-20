@@ -28,9 +28,13 @@ Görselleri yeniden üretmek: `python3 tools/render-assets.py` (Pillow + numpy g
 
 1. **0–1,1 sn** Karanlıktan sıcak bir ışık süpürmesiyle açılış; çekirdekler yukarıdan dökülüp masaya sekerek yerleşir (her çekirdek kademeli, dönerek iner, gölgesi yere indikçe belirir).
 2. **0,7–1,6 sn** Fincan yükselerek gelir, arkasında sıcak hale yanar, masaya yansır; ağızdan buhar tütmeye başlar; fincanın üstünde hava ısı titreşimiyle (heat haze) dalgalanır.
-3. **1,05–2,2 sn** Marka, üst satır, başlık ("Çekirdekten fincana, Kolombiya'nın *enfes lezzeti*.") maskeyle yükselerek, ardından alt metin gelir.
-4. **2,85 sn** CTA ("Ürünü Keşfet") ve "Tam otomatik makineler için" satırı; 4,2 sn'den sonra CTA üzerinde periyodik parıltı.
+3. **1,05–2,2 sn** Marka satırı, üst satır ("%100 Arabica · Tam otomatik makineler için · 1 kg"), başlık ("Çekirdekten fincana, Kolombiya'nın *enfes lezzeti*.") maskeyle yükselerek, ardından tek satır alt metin (tat notaları) gelir.
+4. **2,85 sn** CTA ("Ürünü Keşfet"); 4,2 sn'den sonra CTA üzerinde periyodik parıltı.
 5. **Sürekli** Buhar, bokeh ışıklarının süzülmesi, halenin nefes alması, boştayken kendiliğinden hafif paralaks. 30 sn sonra ortam animasyonu durur (Google Ads kuralı); her etkileşim onu 6 sn için yeniden canlandırır.
+
+## Yerleşim
+
+Üç net bölge: **sol** sade metin kolonu (marka satırı, üst satır, iki satırlık başlık, tek satır tat notası, CTA) – arka plan bu tarafta karartılmış, üzerine görsel gelmez; **orta** fincan, tabağıyla tam görünür ve etrafında boşluk; **sağ** masaya dökülmüş çekirdekler (arkada küçük, önde büyük, köşede yığın). Bokeh ışıkları yalnızca üst-orta/sağ bölgede kalır.
 
 ## Etkileşim
 
@@ -38,7 +42,7 @@ Görselleri yeniden üretmek: `python3 tools/render-assets.py` (Pillow + numpy g
 - **Fincana yaklaşma** → buhar iki kat yoğunlaşır ve yükselir, ısı titreşimi artar, sıcak hale büyür, masada dışa doğru **ısı halkaları** yayılır, fincan hafifçe "nefes alır".
 - **Çekirdeğin üzerine gelme** → çekirdek hafif kalkar (gölgesi uzar). **Tıklama/dokunma** → çekirdek takla atar, altın **aroma kıvılcımları** ve aroma tütsüsü yükselir, bir tat notu belirir ("Kırmızı meyve", "Çikolata", "İpeksi krema", "Hafif tatlılık", "Zarif asidite", "Tek yöre Arabica", "Kolombiya'nın yüksek dağları"). Çekirdeğe tıklama reklam çıkışını tetiklemez.
 - **CTA veya boş alan** → ürün sayfası. `window.clickTag` tanımlıysa o kullanılır (Google Ads / CM360), `Enabler` varsa `Enabler.exit('CTA')` (Studio / DV360), yoksa `src/masthead.html` içindeki UTM'li kategori adresi açılır.
-- **Klavye**: Banner odaklanabilir (`role="link"`), Enter / Boşluk ile çıkış. Sağ üstteki ipucu ilk etkileşimde kaybolur.
+- **Klavye**: Banner odaklanabilir (`role="link"`), Enter / Boşluk ile çıkış. İmleç bannera girince CTA'nın yanında 3 sn'lik küçük bir ipucu belirir ("Fincana yaklaş, sıcaklığı hisset · Çekirdeğe dokun"); ilk etkileşimde kaybolur.
 - `prefers-reduced-motion` açıksa giriş animasyonu, buhar ve titreşim kapatılır; son kare doğrudan gösterilir.
 - Dokunmatik cihazlarda çekirdeğe dokunma çalışır; paralaks fare hareketine bağlıdır.
 

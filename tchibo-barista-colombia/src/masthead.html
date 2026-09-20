@@ -15,30 +15,28 @@ html,body{margin:0;padding:0;background:#0d0705}
 #ad:focus-visible{box-shadow:inset 0 0 0 2px var(--gold)}
 #c{position:absolute;left:0;top:0;width:970px;height:250px;display:block}
 .ui{position:absolute;inset:0;pointer-events:none}
-.brand{position:absolute;left:40px;top:20px;font-weight:800;font-size:15px;letter-spacing:.32em;color:var(--cream);opacity:.92}
-.brand small{display:block;font-size:8.5px;letter-spacing:.34em;color:var(--gold);margin-top:2px;opacity:.9}
-.copy{position:absolute;left:40px;top:58px;width:410px}
-.over{font-size:10.5px;font-weight:700;letter-spacing:.20em;color:var(--gold)}
-.h{margin:8px 0 0;font-family:"Playfair Display",Georgia,serif;font-weight:700;font-size:28px;line-height:1.12;color:var(--cream);text-shadow:0 2px 14px rgba(0,0,0,.55)}
+.brand{position:absolute;left:44px;top:24px;font-weight:800;font-size:14px;letter-spacing:.34em;color:var(--cream);opacity:.95;display:flex;align-items:baseline;gap:10px}
+.brand small{font-size:8.5px;letter-spacing:.32em;color:var(--gold);opacity:.95}
+.copy{position:absolute;left:44px;top:70px;width:410px}
+.over{font-size:10px;font-weight:700;letter-spacing:.22em;color:var(--gold)}
+.h{margin:7px 0 0;font-family:"Playfair Display",Georgia,serif;font-weight:700;font-size:28px;line-height:1.1;color:var(--cream);text-shadow:0 2px 16px rgba(0,0,0,.6)}
 .h .l{display:block;overflow:hidden;padding-bottom:3px}
 .h .l>span{display:block}
 .h em{font-style:italic;font-weight:600;color:var(--gold)}
-.sub{margin:9px 0 0;font-size:12.5px;line-height:1.42;font-weight:500;color:rgba(248,238,223,.84);width:388px}
-.row{position:absolute;left:40px;bottom:24px;display:flex;align-items:center;gap:14px;pointer-events:none}
+.sub{margin:8px 0 0;font-size:11.5px;line-height:1.4;font-weight:500;letter-spacing:.01em;color:rgba(248,238,223,.72);white-space:nowrap}
+.sub i{font-style:normal;color:var(--gold);opacity:.9;padding:0 5px}
+.row{position:absolute;left:44px;bottom:26px;display:flex;align-items:center;gap:16px;pointer-events:none}
 .cta{pointer-events:auto;position:relative;overflow:hidden;border:0;border-radius:999px;padding:0 20px;height:34px;font:700 13px/34px Manrope,Arial,sans-serif;letter-spacing:.02em;color:var(--ink);background:linear-gradient(180deg,#f2cd85 0%,#e0ad57 55%,#c98f3d 100%);box-shadow:0 6px 18px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.55);cursor:pointer;transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s}
 .cta:hover{transform:translateY(-1px) scale(1.03);box-shadow:0 10px 24px rgba(230,170,80,.35),inset 0 1px 0 rgba(255,255,255,.6)}
 .cta:after{content:"";position:absolute;top:-40%;left:-70%;width:45%;height:180%;transform:rotate(18deg);background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.55),rgba(255,255,255,0));animation:shine 5.5s linear 4.2s infinite paused}
 #ad.go .cta:after{animation-play-state:running}
-.tag{font-size:11px;font-weight:700;letter-spacing:.04em;color:rgba(248,238,223,.78)}
-.tag b{color:var(--gold);font-weight:800}
-.hint{position:absolute;right:22px;top:16px;font-size:10px;letter-spacing:.06em;color:rgba(248,238,223,.55);font-weight:600;transition:opacity .5s}
-.hint.off{opacity:0!important}
+.hint{font-size:9.5px;letter-spacing:.05em;color:rgba(248,238,223,.5);font-weight:600;opacity:0;transition:opacity .6s}
+.hint.on{opacity:1}
 .note{position:absolute;pointer-events:none;font-family:"Playfair Display",Georgia,serif;font-style:italic;font-size:15px;color:var(--gold);white-space:nowrap;text-shadow:0 1px 3px rgba(0,0,0,.8),0 0 14px rgba(230,170,80,.5);transform:translate(-50%,-50%);animation:noteUp 1.7s cubic-bezier(.2,.7,.2,1) forwards}
-.legal{position:absolute;right:16px;bottom:8px;font-size:8px;letter-spacing:.06em;color:rgba(248,238,223,.38);font-weight:600}
 /* giriş animasyonları */
-.brand,.over,.sub,.row,.hint{opacity:0;animation:up .9s cubic-bezier(.2,.7,.2,1) both paused}
-#ad.go .brand,#ad.go .over,#ad.go .sub,#ad.go .row,#ad.go .hint,#ad.go .h .l>span{animation-play-state:running}
-.brand{animation-delay:1.05s}.over{animation-delay:1.35s}.sub{animation-delay:2.15s}.row{animation-delay:2.85s}.hint{animation-delay:4.6s;animation-duration:1.4s}
+.brand,.over,.sub,.row{opacity:0;animation:up .9s cubic-bezier(.2,.7,.2,1) both paused}
+#ad.go .brand,#ad.go .over,#ad.go .sub,#ad.go .row,#ad.go .h .l>span{animation-play-state:running}
+.brand{animation-delay:1.05s}.over{animation-delay:1.35s}.sub{animation-delay:2.15s}.row{animation-delay:2.85s}
 .h .l>span{transform:translateY(112%);animation:rise .95s cubic-bezier(.2,.75,.15,1) both paused}
 .h .l:nth-child(1)>span{animation-delay:1.55s}.h .l:nth-child(2)>span{animation-delay:1.78s}
 @keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
@@ -46,7 +44,7 @@ html,body{margin:0;padding:0;background:#0d0705}
 @keyframes shine{0%{left:-70%}18%{left:130%}100%{left:130%}}
 @keyframes noteUp{0%{opacity:0;transform:translate(-50%,-30%) scale(.8)}18%{opacity:1;transform:translate(-50%,-70%) scale(1)}70%{opacity:1}100%{opacity:0;transform:translate(-50%,-190%) scale(1.02)}}
 @media (prefers-reduced-motion:reduce){
-  .brand,.over,.sub,.row,.hint,.h .l>span{animation:none;opacity:1;transform:none}
+  .brand,.over,.sub,.row,.h .l>span{animation:none;opacity:1;transform:none}
   .cta:after{animation:none}
 }
 </style>
@@ -55,21 +53,19 @@ html,body{margin:0;padding:0;background:#0d0705}
 <div id="ad" role="link" tabindex="0" aria-label="Tchibo Barista Colombia Origin – Kolombiya'nın enfes lezzeti, sıcacık fincanınızda. Ürünü keşfet">
   <canvas id="c" width="970" height="250" aria-hidden="true"></canvas>
   <div class="ui">
-    <div class="brand">TCHIBO<small>BARISTA</small></div>
+    <div class="brand">TCHIBO <small>BARISTA · COLOMBIA ORIGIN</small></div>
     <div class="copy">
-      <div class="over">COLOMBIA ORIGIN · %100 ARABICA · 1 KG ÇEKİRDEK</div>
+      <div class="over">%100 ARABICA · TAM OTOMATİK MAKİNELER İÇİN · 1 KG</div>
       <h1 class="h">
         <span class="l"><span>Çekirdekten fincana,</span></span>
         <span class="l"><span>Kolombiya'nın <em>enfes lezzeti.</em></span></span>
       </h1>
-      <p class="sub">Yüksek dağlardan gelen tek yöre Arabica çekirdekleri; kırmızı meyve ve çikolata notaları, ipeksi bir krema.</p>
+      <p class="sub">Kırmızı meyve ve çikolata notaları<i>·</i>İpeksi, yoğun krema</p>
     </div>
     <div class="row">
       <button class="cta" type="button" id="cta">Ürünü Keşfet</button>
-      <span class="tag">Tam otomatik makineler için <b>· Şimdi keşfet</b></span>
+      <span class="hint" id="hint">Fincana yaklaş, sıcaklığı hisset · Çekirdeğe dokun</span>
     </div>
-    <div class="hint" id="hint">Fincana yaklaş, sıcaklığı hisset · Çekirdeklere dokun</div>
-    <div class="legal">tchibo.com.tr</div>
     <div id="notes"></div>
   </div>
 </div>
@@ -107,21 +103,26 @@ function clamp(v,a,b){return v<a?a:v>b?b:v}
 function easeOutCubic(p){return 1-Math.pow(1-p,3)}
 function bounce(p){var n1=7.5625,d1=2.75;if(p<1/d1)return n1*p*p;if(p<2/d1)return n1*(p-=1.5/d1)*p+.75;if(p<2.5/d1)return n1*(p-=2.25/d1)*p+.9375;return n1*(p-=2.625/d1)*p+.984375}
 
-var CUP={x:470,y:62,w:280,h:200};                     // sprite yerleşimi
-var CUPC={x:CUP.x+140,y:CUP.y+88};                     // gövde merkezi
-var RIM={x:CUP.x+140,y:CUP.y+30};                      // ağız (buhar kaynağı)
-var SAUCER={x:CUP.x+140,y:CUP.y+172};
+var CS=.95,CUP={x:482,y:56,w:280*CS,h:200*CS};          // sprite yerleşimi (ölçek .95, tabak tam görünür)
+var CUPC={x:CUP.x+140*CS,y:CUP.y+88*CS};               // gövde merkezi
+var RIM={x:CUP.x+140*CS,y:CUP.y+30*CS};                // ağız (buhar kaynağı)
+var SAUCER={x:CUP.x+140*CS,y:CUP.y+172*CS};
 
 // çekirdekler: v=varyant, s=ölçek, r=açı, land=iniş zamanı (ms)
 var beans=[],far=[],heap=[],front=[];
 function mkBean(x,y,s,layer,land){var b={x:x,y:y,s:s,v:Math.floor(R()*5),r:(R()-.5)*Math.PI*2,land:land,lift:1,liftT:1,flip:-1,hover:false,seed:R()*100};layer.push(b);beans.push(b);return b}
-for(i=0;i<7;i++)mkBean(455+i*46+R()*12,98+R()*22,.28+R()*.12,far,300+R()*500);
-(function(){var n=0;for(var k=0;k<24;k++){var a=R()*Math.PI*2,rr=Math.sqrt(R());var x=850+Math.cos(a)*rr*98,y=186+Math.sin(a)*rr*32;if(x>958)x=958;mkBean(x,y,.44+R()*.22,heap,260+n*38);n++}})();
-[[452,224,.74],[503,240,.6],[398,238,.52],[642,236,.7],[758,232,.8],[905,236,.72],[720,206,.56],[835,150,.5],[930,168,.55]].forEach(function(p,k){mkBean(p[0],p[1],p[2],front,900+k*70)});
+// uzak (odak dışı, masa arkası)
+[[468,124,.30],[736,118,.28],[808,112,.26]].forEach(function(p,k){mkBean(p[0],p[1],p[2],far,300+k*160)});
+// masa üzerinde dağınık (sağ orta)
+[[792,150,.40],[846,138,.36],[912,156,.44],[948,136,.36],[870,168,.40]].forEach(function(p,k){mkBean(p[0],p[1],p[2],heap,420+k*90)});
+// önde yığın (sağ alt köşe)
+[[812,212,.60],[876,204,.56],[936,210,.58],[842,236,.68],[906,238,.64],[782,240,.58]].forEach(function(p,k){mkBean(p[0],p[1],p[2],heap,700+k*80)});
+// kahraman çekirdekler (en önde, tabak ile yığın arasında)
+[[752,232,.82]].forEach(function(p,k){mkBean(p[0],p[1],p[2],front,1250+k*70)});
 heap.sort(function(a,b){return a.y-b.y});front.sort(function(a,b){return a.y-b.y});
 
 // bokeh
-var bokeh=[];for(i=0;i<11;i++)bokeh.push({x:300+R()*670,y:8+R()*80,s:14+R()*46,a:.07+R()*.16,vx:(R()-.5)*4,ph:R()*6.28,f:.2+R()*.4});
+var bokeh=[];for(i=0;i<7;i++)bokeh.push({x:520+R()*430,y:6+R()*70,s:16+R()*40,a:.05+R()*.12,vx:(R()-.5)*4,ph:R()*6.28,f:.2+R()*.4});
 
 var steam=[],sparks=[],rings=[],puffs=[];
 var px=0,py=0,tpx=0,tpy=0,pointer=null,hoverCup=false,hoverBean=null,interactAt=-1e9,lastEmit=0,lastRing=0,suppress=false,hazeAmp=0,glowK=0,t0=0,started_at=0;
@@ -135,9 +136,9 @@ function pop(b,now){
   b.flip=now;interactAt=now;
   for(var k=0;k<14;k++){var a=-Math.PI/2+(R()-.5)*1.7,v=45+R()*80;sparks.push({x:b.x,y:b.y-8*b.s,vx:Math.cos(a)*v,vy:Math.sin(a)*v-25,born:now,life:900+R()*700,s:.5+R()*.8})}
   for(k=0;k<3;k++)puffs.push({x:b.x+(R()-.5)*16,y:b.y-6,born:now+k*120,life:1500+R()*500,img:Math.floor(R()*3),sw:(R()-.5)*30,rot:(R()-.5)*1.2});
-  var notes=["Kırmızı meyve","Çikolata","İpeksi krema","Hafif tatlılık","Zarif asidite","Tek yöre Arabica","Kolombiya'nın yüksek dağları"];
+  var notes=["Kırmızı meyve","Çikolata","İpeksi krema","Hafif tatlılık","Zarif asidite","Tek yöre Arabica"];
   var n=document.createElement('div');n.className='note';n.textContent=notes[Math.floor(R()*notes.length)];
-  n.style.left=clamp(b.x,70,900)+'px';n.style.top=(b.y-14)+'px';document.getElementById('notes').appendChild(n);
+  n.style.left=clamp(b.x,110,880)+'px';n.style.top=(b.y-14)+'px';document.getElementById('notes').appendChild(n);
   setTimeout(function(){n.parentNode&&n.parentNode.removeChild(n)},1800);
 }
 function hitBean(x,y){
@@ -184,7 +185,7 @@ function drawScene(now,t){
   g.globalCompositeOperation='source-over';g.globalAlpha=1;
   // fincan
   var hs=1+glowK*.025;
-  g.globalAlpha=ce;g.save();g.translate(CUPC.x+px*4,CUPC.y+cy+py*2);g.scale(hs,hs);g.drawImage(IMG.cup,-140,-88,CUP.w,CUP.h);g.restore();g.globalAlpha=1;
+  g.globalAlpha=ce;g.save();g.translate(CUPC.x+px*4,CUPC.y+cy+py*2);g.scale(hs*CS,hs*CS);g.drawImage(IMG.cup,-140,-88,280,200);g.restore();g.globalAlpha=1;
   // buhar
   g.globalCompositeOperation='screen';
   for(k=steam.length-1;k>=0;k--){var s=steam[k];var sp=(now-s.born)/s.life;if(sp>=1){steam.splice(k,1);continue}
@@ -237,8 +238,9 @@ function start(){if(started)return;started=true;t0=performance.now();ad.classNam
 
 // ---------------------------------------------------------------- etkileşim
 function local(e){var r=ad.getBoundingClientRect();return{x:(e.clientX-r.left)*W/r.width,y:(e.clientY-r.top)*H/r.height}}
-var hint=document.getElementById('hint');
-function touched(){interactAt=performance.now();hint.classList.add('off')}
+var hint=document.getElementById('hint'),hintShown=false,hintTimer=0;
+function touched(){interactAt=performance.now();hint.classList.remove('on');hintShown=true}
+ad.addEventListener('pointerenter',function(){if(hintShown||RM)return;hintShown=true;hint.classList.add('on');hintTimer=setTimeout(function(){hint.classList.remove('on')},3200)});
 ad.addEventListener('pointermove',function(e){var p=local(e);pointer=p;tpx=clamp((p.x/W-.5)*2,-1,1);tpy=clamp((p.y/H-.5)*2,-1,1);
   var dx=p.x-CUPC.x,dy=p.y-(CUPC.y+8);var hc=(dx*dx)/(105*105)+(dy*dy)/(98*98)<=1;if(hc!==hoverCup){hoverCup=hc;touched()}
   var hb=hitBean(p.x,p.y);if(hb!==hoverBean){if(hoverBean)hoverBean.liftT=1;hoverBean=hb;if(hb){hb.liftT=1.08;touched()}}
