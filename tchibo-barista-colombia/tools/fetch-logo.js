@@ -20,11 +20,16 @@ const log = (...a) => console.log('[logo]', ...a);
 
 async function fromTchibo() {
   const out = [];
+  out.push({ url: 'https://www.tchibo.com.tr/static/svgs/tchibo.svg', frag: 'svg', source: 'https://www.tchibo.com.tr/ (logo sprite: /static/svgs/tchibo.svg)' });
   for (const site of ['https://www.tchibo.com.tr/', 'https://www.tchibo.com/', 'https://www.tchibo.de/']) {
     try {
       const html = await (await get(site, 'text/html')).text();
       const inline = html.match(/<svg[^>]*(?:logo|Logo|LOGO)[^>]*>[\s\S]*?<\/svg>/);
-      if (inline) out.push({ inline: inline[0], source: site + ' (satır içi SVG)' });
+      if (inline) {
+        const use = inline[0].match(/<use[^>]*(?:xlink:)?href=["']([^"'#]+)(#[^"']*)?["']/i);
+        if (use) { try { out.push({ url: new URL(use[1], site).href, frag: use[2] ? use[2].slice(1) : null, source: site + ' (logo sprite: ' + use[1] + ')' }); } catch { /* geçersiz url */ } }
+        else if (/<(path|polygon|rect|circle|g)\b/i.test(inline[0])) out.push({ inline: inline[0], source: site + ' (satır içi SVG)' });
+      }
       for (const m of html.matchAll(/["'(]([^"'()\s]*logo[^"'()\s]*\.(?:svg|png))(?:\?[^"'()\s]*)?["')]/gi)) {
         try { out.push({ url: new URL(m[1], site).href, source: site }); } catch { /* geçersiz url */ }
       }
@@ -74,6 +79,22 @@ async function fromWikipedia() {
         ext = ct.includes('svg') || /\.svg(\?|$)/i.test(c.url) ? 'svg' : ct.includes('png') || /\.png(\?|$)/i.test(c.url) ? 'png' : null;
         if (!ext || buf.length < 600) { log('atlandı (tür/boyut):', c.url, ct, buf.length); continue; }
         if (ext === 'svg' && !/<svg[\s>]/i.test(buf.toString('utf8', 0, 4000))) { log('atlandı (svg değil):', c.url); continue; }
+      }
+      if (ext === 'svg') {
+        let svg = buf.toString('utf8');
+        // sprite (<symbol id="..">) ise istenen sembolü bağımsız bir SVG'ye çevir
+        const symbols = [...svg.matchAll(/<symbol\b([^>]*)>([\s\S]*?)<\/symbol>/gi)];
+        if (symbols.length) {
+          let pick = symbols.find((m) => c.frag && new RegExp('id=["\']' + c.frag + '["\']').test(m[1]))
+            || symbols.find((m) => /tchibo|logo/i.test(m[1])) || symbols[0];
+          const vb = (pick[1].match(/viewBox=["']([^"']+)["']/i) || [])[1];
+          const defs = (svg.match(/<defs\b[\s\S]*?<\/defs>/i) || [''])[0];
+          svg = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"${vb ? ` viewBox="${vb}"` : ''}>${defs}${pick[2]}</svg>`;
+          log('sprite sembolü ayrıştırıldı:', c.frag || '(ilk)', 'viewBox', vb || '-');
+        }
+        if (!/<(path|polygon|polyline|rect|circle|ellipse|text|image)\b/i.test(svg)) { log('atlandı (boş svg):', c.url || 'inline'); continue; }
+        if (!/xmlns=/.test(svg)) svg = svg.replace(/<svg\b/i, '<svg xmlns="http://www.w3.org/2000/svg"');
+        buf = Buffer.from(svg, 'utf8');
       }
       for (const old of ['logo-src.svg', 'logo-src.png']) fs.rmSync(path.join(assets, old), { force: true });
       fs.writeFileSync(path.join(assets, `logo-src.${ext}`), buf);
