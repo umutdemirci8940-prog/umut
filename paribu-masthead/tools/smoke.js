@@ -39,10 +39,18 @@ const ok = (c, m) => { console.log(`${c ? '  ✔' : '  ✘'} ${m}`); if (!c) fai
   await page.mouse.move(560, 120);
   await page.waitForTimeout(150);
   ok((await mode()) === 'play', 'fare alana girince oyun moduna geçiyor');
-  ok(await page.evaluate(() => document.getElementById('ad').classList.contains('is-playing')), 'is-playing sınıfı (imleç gizli, cüzdan imleci izliyor)');
+  ok(await page.evaluate(() => document.getElementById('ad').classList.contains('is-playing')), 'is-playing sınıfı (imleç gizli, telefon imleci izliyor)');
   await page.mouse.move(420, 120); await page.waitForTimeout(400);
   let s = await st();
-  ok(Math.abs(s.wallet.x - 420) < 12, `cüzdan imleci izliyor (x=${Math.round(s.wallet.x)})`);
+  ok(Math.abs(s.phone.x - 420) < 12, `telefon imleci izliyor (x=${Math.round(s.phone.x)})`);
+  // yüzen coine gelince vurgu, tıklayınca düşer
+  const fl = s.coins.find((c) => c.state === 'float');
+  if (fl) {
+    await page.mouse.move(fl.x, fl.y); await page.waitForTimeout(250);
+    ok((await st()).hover === fl.key, `yüzen coine gelince vurgulanıyor (${fl.key})`);
+    await page.mouse.click(fl.x, fl.y); await page.waitForTimeout(120);
+    ok((await st()).coins.some((c) => c.key === fl.key && c.state === 'fall'), 'coine tıklayınca hemen düşüyor');
+  }
   // yakalama: en aşağıdaki coine yönel
   const start = s.score;
   for (let i = 0; i < 260 && (await st()).score < start + 2; i++) {
@@ -53,8 +61,8 @@ const ok = (c, m) => { console.log(`${c ? '  ✔' : '  ✘'} ${m}`); if (!c) fai
   }
   s = await st();
   ok(s.score >= start + 2, `coin yakalanınca skor artıyor (${s.score}/${data.game.target})`);
-  ok((await page.$$('.slot.is-on')).length === s.score, 'portföy şeridinde yakalanan coin görünüyor');
-  ok((await page.textContent('.pl b')).trim() === `${s.score}/${data.game.target}`, 'skor metni güncel');
+  ok(s.rows.length === s.score, 'telefon ekranındaki portföy listesi skorla eşit');
+  ok(s.combo >= 1, `seri sayacı çalışıyor (x${s.combo})`);
   for (let i = 0; i < 500 && (await mode()) !== 'win'; i++) {
     s = await st();
     const f = s.coins.filter((c) => c.state === 'fall').sort((a, b) => b.y - a.y)[0];
@@ -68,12 +76,12 @@ const ok = (c, m) => { console.log(`${c ? '  ✔' : '  ✘'} ${m}`); if (!c) fai
   await page.waitForTimeout(150);
   s = await st();
   ok(s.mode === 'play' && s.score === 0, 'tekrar oyna: skor sıfırlanıp oyun sürüyor');
-  ok((await page.$$('.slot.is-on')).length === 0, 'portföy şeridi temizlendi');
+  ok(s.rows.length === 0, 'telefon ekranındaki liste temizlendi');
 
   console.log('\nTıklama ve klavye');
   await page.evaluate(() => { window.__opened = []; window.open = (u) => { window.__opened.push(u); return null; }; window.__tracked = []; window.adTrack = (n) => window.__tracked.push(n); });
   const opened = () => page.evaluate(() => window.__opened);
-  await page.mouse.click(560, 120);            // oyun alanı: hamle, çıkış değil
+  await page.mouse.move(560, 30); await page.waitForTimeout(80); await page.mouse.click(560, 30);   // oyun alanı (coin yok): hamle, çıkış değil
   await page.waitForTimeout(100);
   ok((await opened()).length === 0, 'oyun alanına tıklama siteye gitmiyor (hamle)');
   ok((await page.evaluate(() => window.__tracked.includes('boost'))), 'hamle izleme olayı (boost) tetiklendi');
@@ -81,16 +89,18 @@ const ok = (c, m) => { console.log(`${c ? '  ✔' : '  ✘'} ${m}`); if (!c) fai
   ok((await opened()).slice(-1)[0] === data.brand.url, 'CTA tıklaması hedef adresi açıyor');
   await page.click('.brand');
   ok((await opened()).length === 2, 'logo tıklaması siteye gidiyor');
-  if (data.campaign.enabled) { await page.click('.badge'); ok((await opened()).length === 3, 'kampanya kartı siteye gidiyor'); }
+  if (data.copy.cta2) { await page.click('.cta2'); ok((await opened()).length === 3, 'ikinci CTA (Uygulamayı indir) siteye gidiyor'); }
+  const n0 = (await opened()).length;
+  if (data.campaign.enabled) { await page.click('.badge', { force: true }); ok((await opened()).length === n0 + 1, 'kampanya kartı siteye gidiyor'); }
   await page.mouse.click(120, 200 - 1 + 20);   // sol boş alan (CTA dışı): siteye gider
   await page.evaluate(() => { window.clickTag = 'https://example.com/clicktag'; });
   await page.click('.cta');
   ok((await opened()).slice(-1)[0] === 'https://example.com/clicktag', 'clickTag tanımlıysa o kullanılıyor');
   await page.focus('#ad');
-  const before = (await st()).wallet.x;
+  const before = (await st()).phone.x;
   await page.mouse.move(600, 10); await page.evaluate(() => document.getElementById('ad').dispatchEvent(new Event('pointerleave')));
   await page.keyboard.press('ArrowRight'); await page.waitForTimeout(300);
-  ok((await st()).wallet.x > before + 15 || (await mode()) === 'play', 'klavye → ile cüzdan sağa gidiyor');
+  ok((await st()).phone.x > before + 15 || (await mode()) === 'play', 'klavye → ile telefon sağa gidiyor');
   await page.keyboard.press('Enter');
   ok((await opened()).slice(-1)[0] === 'https://example.com/clicktag', 'Enter tıklama sayılıyor');
   const tracked = await page.evaluate(() => window.__tracked);

@@ -19,17 +19,22 @@ module.exports = {
     tagline: 'Yarının dünyası şimdi daha geniş.',   // paribu.com ana sayfa başlığı
     headline: ['Kripto dünyasına', 'ilk adımını at.'],           // 2. satır marka renginde
     sub: 'Kripto al/sat, hisse, DeFi ve getiri. Hepsi tek uygulamada.',   // sitenin ürün başlıkları (paribu.com üst menü)
-    cta: 'Hesap oluştur',            // sitenin kendi CTA metni
-    prompt: 'Cüzdanı imleçle yönlendir, coinleri yakala!',
-    promptTouch: 'Cüzdanı parmağınla sürükle, coinleri yakala!',
-    promptPlaying: 'Harika gidiyorsun!',
-    portfolioLabel: 'Portföyüm',
+    cta: 'Hesap oluştur',            // sitenin birincil CTA metni
+    cta2: 'Uygulamayı indir',        // sitenin ikincil CTA metni (hayalet düğme)
+    prompt: 'Telefonu imleçle yönlendir, coinleri yakala!',
+    promptTouch: 'Telefonu parmağınla sürükle, coinleri yakala!',
+    promptTap: 'Coine tıkla → hemen düşer',
+    phoneTitle: 'Portföyüm',
+    phoneEmpty: 'Yakaladığın coinler burada birikir',
+    phoneWin: 'Portföyün hazır!',
+    combo: 'SERİ x{n}',
     winHeadline: ['Portföyün hazır!', 'Şimdi Paribu’da kur.'],
     winCta: 'Şimdi hesap oluştur',
     replay: 'Tekrar oyna',
     features: ['Kripto al/sat', 'Hisse', 'DeFi', 'Getiri'],   // paribu.com ana menüsündeki ürünler
+    trust: ['Türk lirası ile yatır / çek', 'Uygulamadan ayrılmadan 7/24 destek'],   // paribu.com ana sayfa ifadeleri
     legal: 'Kripto varlıklar yüksek fiyat dalgalanması riski içerir; yatırım tavsiyesi değildir.',
-    ariaLabel: 'Paribu – Kripto dünyasına ilk adımını at. İnteraktif masthead: cüzdanı yönlendirip coinleri yakala, Paribu’ya git.',
+    ariaLabel: 'Paribu – Kripto dünyasına ilk adımını at. İnteraktif masthead: telefonu yönlendirip coinleri yakala, Paribu’ya git.',
   },
 
   // Sağ üstteki kampanya kartı. Kaynak: ParibuLog "Paribu’dan yeni üyelere özel kampanya: 500 TL hediye".
@@ -71,9 +76,9 @@ module.exports = {
     target: 5,               // kazanmak için yakalanacak coin sayısı
     dropIdle: 2300,          // ms – kullanıcı yokken (otomatik gösteri) düşme aralığı
     dropPlay: 1150,          // ms – oynarken düşme aralığı
-    gravity: 420,            // px/s²
-    walletWidth: 92,         // px
-    boostMs: 650,            // tıklama hamlesi süresi (cüzdan genişler, coinleri çeker)
+    gravity: 440,            // px/s²
+    phoneWidth: 126,         // px – telefonun genişliği (yakalama alanı)
+    boostMs: 700,            // tıklama hamlesi süresi (mıknatıs dalgası, coinleri çeker)
     winHold: 4200,           // ms – kazanma ekranı süresi
     maxAutoplay: 30000,      // ms – etkileşim olmadan kendi kendine oynayan animasyonun üst sınırı (IAB/Google 30 sn)
   },

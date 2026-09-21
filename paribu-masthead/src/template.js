@@ -11,6 +11,8 @@ const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replac
 
 const ARROW = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8h10M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 const HAND = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.2 1.6 12.6 7.3l-3.9.9-1.6 3.7z"/><path d="M1 12.5h2.2M12.8 12.5H15M2.4 11l-1.4 1.5 1.4 1.5M13.6 11l1.4 1.5-1.4 1.5" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/></svg>';
+const CHECK = '<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5"/><path d="M5 8.2l2 2 4-4.4"/></svg>';
+const DOWNLOAD = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.5v7.5M4.8 7.2 8 10.4l3.2-3.2M3 12.5h10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 const GIFT = '<svg class="gift" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 9.5h17v4h-17zM5 13.5h14V21H5zM12 9.5V21M12 9.5c-3 0-5-1.2-5-3a2 2 0 0 1 3.6-1.2C11.6 6.4 12 9.5 12 9.5zm0 0c3 0 5-1.2 5-3a2 2 0 0 0-3.6-1.2C12.4 6.4 12 9.5 12 9.5z"/></svg>';
 
 /** Gerçek logo yoksa: marka renginde sembol + Sora ile yazılmış "Paribu" kelime markası (yer tutucu). */
@@ -52,13 +54,13 @@ function render(data, assets = {}) {
     .filter((c) => c.uri);
   const payload = {
     brand: { name: B.name, url: B.url, clickThroughEverywhere: !!B.clickThroughEverywhere },
-    copy: { cta: K.cta, winCta: K.winCta, promptTouch: K.promptTouch },
+    copy: { cta: K.cta, winCta: K.winCta, promptTouch: K.promptTouch, promptTap: K.promptTap, phoneTitle: K.phoneTitle, phoneEmpty: K.phoneEmpty, phoneWin: K.phoneWin, combo: K.combo },
     colors: { bg: colors.bg, bg2: colors.bg2, brand: colors.brand, brand2: colors.brand2, brandDark: colors.brandDark },
     coins, game: data.game, timing: data.timing, tracking: data.tracking || { enabled: true },
     symbol: assets.symbol && assets.symbol.uri ? assets.symbol.uri : null,
   };
 
-  const slots = Array.from({ length: data.game.target }, () => '<span class="slot"></span>').join('');
+  const trust = (K.trust || []).map((t) => `<span>${CHECK}${esc(t)}</span>`).join('');
   const feats = (K.features || []).map((f) => `<span>${esc(f)}</span>`).join('');
   const legal = esc(K.legal) + (CP.enabled && CP.footnote ? ' ' + esc(CP.footnote) : '');
   const delay = (s) => ` style="animation-delay:${s}s"`;
@@ -82,14 +84,16 @@ ${fontLink}
     <h1 class="h-win" aria-hidden="true"><span class="l1"><i>${esc(K.winHeadline[0])}</i></span><span class="l2"><i>${esc(K.winHeadline[1])}</i></span></h1>
   </div>
   <p class="sub exit in"${delay(1.25)}>${esc(K.sub)}</p>
-  <button type="button" class="cta exit in"${delay(1.65)} aria-label="${esc(K.cta)} – ${esc(B.domain)}"><b>${esc(K.cta)}</b>${ARROW}</button>
+  <div class="cta-wrap in"${delay(1.65)}><button type="button" class="cta exit" aria-label="${esc(K.cta)} – ${esc(B.domain)}"><b>${esc(K.cta)}</b>${ARROW}</button></div>
+  ${K.cta2 ? `<div class="cta2-wrap in" id="cta2wrap"${delay(1.85)}><button type="button" class="cta2 exit" aria-label="${esc(K.cta2)} – ${esc(B.domain)}">${DOWNLOAD}${esc(K.cta2)}</button></div>` : ''}
   <div class="hint"><div class="prompt in"${delay(2.7)} aria-live="polite">${HAND}<span>${esc(K.prompt)}</span></div></div>
   <button type="button" class="replay">${esc(K.replay)}</button>
   ${CP.enabled ? `<div class="badge exit" role="button" tabindex="0" aria-label="${esc(CP.kicker)} ${esc(CP.value)} ${esc(CP.suffix)}">${GIFT}<span class="k">${esc(CP.kicker)}</span><span class="v">${esc(CP.value)}</span><span class="s">${esc(CP.suffix)}</span></div>` : ''}
   <div class="feats in"${delay(2.25)}>${feats}</div>
-  <div class="portfolio in"${delay(2.4)}><div class="pl"><span>${esc(K.portfolioLabel)}</span><b>0/${data.game.target}</b></div><div class="slots" aria-hidden="true">${slots}</div></div>
+  <div class="trust in"${delay(2.4)}>${trust}</div>
   <div class="legal in"${delay(2.5)}>${legal}</div>
 </div>
+<script>(function(){var w=document.querySelector('.cta-wrap'),a=document.querySelector('.cta'),b=document.getElementById('cta2wrap');if(w&&a&&b){b.style.left=(w.offsetLeft+a.offsetWidth+8)+'px'}})();</script>
 <script>${runtime.split('__DATA__').join(JSON.stringify(payload))}</script>
 </body>
 </html>`;

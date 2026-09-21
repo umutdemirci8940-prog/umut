@@ -4,7 +4,7 @@
 
 | Dosya | Ne |
 |---|---|
-| **`dist/970x250/index.html`** | Reklam ağına yüklenecek masthead (tek dosya, ~110 KB, harici istek yok; sitenin logosu, coin ikonları ve font gömülü) |
+| **`dist/970x250/index.html`** | Reklam ağına yüklenecek masthead (tek dosya, ~122 KB, harici istek yok; sitenin logosu, coin ikonları ve font gömülü) |
 | `dist/zip/paribu-masthead-970x250.zip` | Aynı dosya zip içinde |
 | `release/sunum.html` | Tek dosyalık sunum: masthead gömülü, yayın simülasyonu, kurgu notları, ekran görüntüleri |
 | `release/paribu-masthead-teslim.zip` | dist + sunum + ekran görüntüleri + bu README |
@@ -12,27 +12,31 @@
 
 | Kurgu tamam | Oyun | Kazanma |
 |---|---|---|
-| ![](preview/screens/03-kurgu-tamam.jpg) | ![](preview/screens/05-oyun.jpg) | ![](preview/screens/07-kazandin.jpg) |
+| ![](preview/screens/03-kurgu-tamam.jpg) | ![](preview/screens/06-portfoy-doluyor.jpg) | ![](preview/screens/07-kazandin.jpg) |
 
-## Konsept: “Cüzdanı yönlendir, coinleri yakala”
+| Coin üzerine gelme | Otomatik gösteri | Konfeti |
+|---|---|---|
+| ![](preview/screens/04b-coin-hover.jpg) | ![](preview/screens/04-otomatik-gosteri.jpg) | ![](preview/screens/08-konfeti.jpg) |
 
-Masthead ilk saniyede markayı ve mesajı verir, sonra izleyiciyi oyuna çeker:
+## Konsept: “Telefonu yönlendir, coinleri yakala”
 
-1. **Giriş (0–3 sn)** – Koyu nötr “işlem ekranı” zemini; sitenin limon yeşili “PARiBU” logosu sol üstte belirir, arka planda aynı renkte grafik çizgisi soldan sağa çizilir. “**Kripto dünyasına / ilk adımını at.**” satır satır yükselir (ikinci satır Paribu yeşili), alt metin “Kripto al/sat, hisse, DeFi ve getiri. Hepsi tek uygulamada.” ve sitenin CTA’sı “**Hesap oluştur**” gelir. BTC, ETH, SOL, AVAX, XRP, DOGE sağdan uçarak oyun alanına yerleşir ve yerinde döner. Sağda “**Yeni üyelere özel 500 TL hediye**” kartı 3B dönüşle açılır; ürün çipleri (Kripto al/sat · Hisse · DeFi · Getiri – sitenin ana menüsü) ve “Portföyüm 0/5” şeridi gelir.
-2. **Otomatik gösteri (3 sn →)** – İpucu: “Cüzdanı imleçle yönlendir, coinleri yakala!”. Coinler tek tek düşmeye başlar, Paribu cüzdanı kendi kendine (bazen kaçırarak) yakalar; kazanmaz, son iki coini kullanıcıya bırakır. Etkileşim olmazsa **30 sn**’de durağan kareye geçer (IAB/Google 30 sn kuralı); etkileşimle yeniden başlar.
-3. **Oyun** – İmleç banner üzerine gelince cüzdan imleci izler (dokunmatikte parmak, klavyede ← →). Yakalanan her coin: +1, parçacık patlaması, cüzdan sıçraması, grafikte yeşil dalga ve portföy şeridine coin ikonu. Oyun alanına tıklama/Boşluk = **hamle**: cüzdan kısa süre genişler ve yakındaki coinleri çeker.
-4. **Kazanma** – 5 coin → konfeti; başlık “**Portföyün hazır! Şimdi Paribu’da kur.**”, CTA “**Şimdi hesap oluştur**” olup nabız atar, cüzdanda onay işareti, “Tekrar oyna” çıkar. 4 sn sonra oyun kendiliğinden sıfırlanır.
+Masthead ilk saniyede markayı ve mesajı verir, sonra izleyiciyi oyuna çeker. Sahne katmanlı ve derinlikli kurulmuştur: en arkada imleçle kayan (paralaks) bulanık coin siluetleri ve süzülen ışık noktaları, önünde canlı mum grafiği ve yükselen fiyat çizgisi, önde 3B görünümlü coinler ve alttan yükselen Paribu telefonu.
 
-Arka plandaki grafik yalnızca dekoratiftir (rastgele, yukarı eğilimli yürüyüş); **gerçek fiyat/getiri gösterilmez**, sayısal vaat yoktur. Yasal ibare (“Kripto varlıklar yüksek fiyat dalgalanması riski içerir; yatırım tavsiyesi değildir.”) sabittir.
+1. **Giriş (0–3 sn)** – Koyu nötr “işlem ekranı” zemini; sitenin limon yeşili “PARiBU” logosu ışık parlamasıyla belirir, mum grafiği ve fiyat çizgisi soldan sağa çizilir. “**Kripto dünyasına / ilk adımını at.**” satırları bulanıktan netleşerek yükselir; alt metin, sitenin CTA’ları “**Hesap oluştur**” (birincil) ve “**Uygulamayı indir**” (hayalet) gelir. BTC, ETH, SOL, AVAX, XRP, DOGE metalik kenarlı, dönen 3B coinler olarak sağdan uçar; 2,0 sn’de **Paribu telefonu** alttan yükselir (ekranında “Portföyüm 0/5”), “Yeni üyelere özel 500 TL hediye” kartı 3B dönüşle açılır, ürün çipleri (Kripto al/sat · Hisse · DeFi · Getiri) ve güven satırları (Türk lirası ile yatır/çek · 7/24 destek) gelir.
+2. **Otomatik gösteri (3 sn →)** – İpucu: “Telefonu imleçle yönlendir, coinleri yakala!”. Coinler tek tek düşmeye başlar, telefon kendi kendine (bazen kaçırarak) yakalar; kazanmaz, son iki coini kullanıcıya bırakır. Etkileşim olmazsa **30 sn**’de durağan kareye geçer (IAB/Google 30 sn kuralı); etkileşimle yeniden başlar.
+3. **Oyun** – İmleç banner üzerine gelince telefon imleci izler ve hareket yönüne hafifçe yatar (dokunmatikte parmak, klavyede ← →). Sahne imleçle paralaks yapar, imlecin etrafında yeşil bir ışık halesi gezer. Yakalanan her coin: telefon ekranı yeşil flaş verir, sahne hafifçe sarsılır, parçacık patlaması ve +1; coin **uygulamadaki portföy listesine** satır olarak eklenir (ikon, ad, mini grafik). Art arda yakalamalar **SERİ x2, x3…** yazısıyla ödüllenir; kaçırma seriyi sıfırlar. Havada duran bir coinin üzerine gelince adı görünür, **tıklayınca hemen düşer**. Oyun alanına tıklama/Boşluk = **hamle**: telefondan mıknatıs dalgaları yayılır, yakındaki coinler çekilir.
+4. **Kazanma** – 5 coin → konfeti; telefon ekranında onay işareti ve “Portföyün hazır!”, başlık “**Portföyün hazır! Şimdi Paribu’da kur.**”, CTA “**Şimdi hesap oluştur**” olup nabız atar, “Tekrar oyna” çıkar. 4 sn sonra oyun kendiliğinden sıfırlanır.
+
+Arka plandaki grafik ve mumlar yalnızca dekoratiftir (rastgele, yukarı eğilimli yürüyüş); **gerçek fiyat/getiri gösterilmez**, sayısal vaat yoktur. Yasal ibare (“Kripto varlıklar yüksek fiyat dalgalanması riski içerir; yatırım tavsiyesi değildir.”) sabittir.
 
 ## Rich media özellikleri
 
-- **Tıklama/çıkış:** Logo, başlık, CTA, kampanya kartı ve boş alanlar siteye gider. Oyun alanındaki tıklama çıkış değil hamledir; ağ “her yer tıklanabilir olsun” isterse `src/data.js` → `brand.clickThroughEverywhere: true`. Öncelik: `window.clickTag` → `Enabler.exit()` → `brand.url` (UTM’li).
-- **Etkileşim sayaçları:** `window.adTrack(olay)` tanımlıysa çağrılır, `Enabler` varsa `Enabler.counter(olay)`. Olaylar: `interaction`, `game_start`, `coin_catch`, `coin_miss`, `boost`, `game_win`, `replay`, `cta_click`, `exit`. Ağın kendi izleme makrosu `runtime.js` → `track()` içine bir satırla bağlanır.
-- **Durum API’si (QA/entegrasyon):** `window.paribuMasthead.state()` (mod, skor, coin konumları), `.spawn()`, `.reset()`.
+- **Tıklama/çıkış:** Logo, başlık, iki CTA, kampanya kartı ve boş alanlar siteye gider (`Enabler.exit` etiketleri: CTA, Uygulama, Logo, Kampanya, Banner). Oyun alanındaki tıklama çıkış değil hamledir (coin üzerindeyse coini düşürür); ağ “her yer tıklanabilir olsun” isterse `src/data.js` → `brand.clickThroughEverywhere: true`. Öncelik: `window.clickTag` → `Enabler.exit()` → `brand.url` (UTM’li).
+- **Etkileşim sayaçları:** `window.adTrack(olay)` tanımlıysa çağrılır, `Enabler` varsa `Enabler.counter(olay)`. Olaylar: `interaction`, `game_start`, `coin_catch`, `coin_miss`, `coin_tap`, `boost`, `game_win`, `replay`, `cta_click`, `exit`. Ağın kendi izleme makrosu `runtime.js` → `track()` içine bir satırla bağlanır.
+- **Durum API’si (QA/entegrasyon):** `window.paribuMasthead.state()` (mod, skor, seri, telefon konumu, portföy satırları, coin konumları), `.spawn()`, `.reset()`.
 - **Sekme gizlenince duraklar**, `postMessage('pause'|'play'|'restart')` ile dışarıdan yönetilir (sunum sayfası bunu kullanır).
 - `<meta name="ad.size">`, `role="group"`, `aria-label`, klavye odağı; `prefers-reduced-motion` açıksa giriş kurgusu atlanır ve coinler yalnızca kullanıcı etkileşimiyle düşer.
-- Canvas 2D (retina 2×), ses yok, genişleme yok; tüm etkileşim 970×250 içinde. **Harici istek yok** (font, ikon ve logo gömülü) – rich media ağlarının “self-contained” şartına uygundur.
+- Canvas 2D (retina 2×; paralaks, mum grafiği, 3B coinler, telefon ekranı ve parçacıklar tek canvas’ta), ses yok, genişleme yok; tüm etkileşim 970×250 içinde. **Harici istek yok** (font, ikon ve logo gömülü) – rich media ağlarının “self-contained” şartına uygundur.
 
 > “First media” talebi, isteğin bağlamına göre **rich media** (etkileşimli, oyunlaştırılmış, ölçümlenebilir masthead) olarak yorumlandı. Belirli bir ağ/sağlayıcı (ör. “First Media” adlı bir rich media platformu) hedefleniyorsa, dosya standart HTML5 + clickTag olduğu için o ağın yükleme şablonuna uyarlanması `track()` / `openLink()` fonksiyonlarına birer satır eklemekten ibarettir.
 
@@ -63,7 +67,7 @@ Tüm metinler, kampanya kartı, renkler, coin listesi, oyun ve süre ayarları *
 ```js
 copy.headline: ['Kripto dünyasına', 'ilk adımını at.'],   // copy.cta: 'Hesap oluştur', copy.features: ['Kripto al/sat', 'Hisse', 'DeFi', 'Getiri']
 campaign: { enabled: true, kicker: 'Yeni üyelere özel', value: '500 TL', suffix: 'hediye*' },
-game: { target: 5, dropIdle: 2300, dropPlay: 1150, maxAutoplay: 30000 },
+game: { target: 5, dropIdle: 2300, dropPlay: 1150, phoneWidth: 126, maxAutoplay: 30000 },
 brand: { url: 'https://www.paribu.com/?utm_…', clickThroughEverywhere: false },
 ```
 
@@ -81,7 +85,7 @@ node tools/package.js         # release/ (tek dosya masthead, zip, sunum.html, t
 - **Rich media / masthead ağları (Adform, Sizmek/Amazon Ad Server, yayıncı özel formatları):** `index.html`’i doğrudan yükleyin; ağın clickTag makrosunu tanımlaması yeterlidir. Etkileşim sayaçları için `window.adTrack` ya da ağın API’sini `track()` içine bağlayın.
 - **Google Ads / DV360 / CM360:** `ad.size` meta etiketi, `clickTag` ve `Enabler` desteği hazırdır. Studio’ya yükleniyorsa `<head>` içine `<script src="https://s0.2mdn.net/ads/studio/Enabler.js"></script>` ekleyin.
 - Fontu dışarıdan yüklemek (dosyayı ~65 KB küçültmek) için `node build.js --no-embed-fonts` (Google Fonts bağlantısı kullanılır).
-- Google Ads standart display için 150 KB sınırı uygular; dosya ~110 KB’dır.
+- Google Ads standart display için 150 KB sınırı uygular; dosya ~122 KB’dır.
 
 ## Klasör yapısı
 

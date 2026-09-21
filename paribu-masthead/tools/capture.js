@@ -29,6 +29,9 @@ async function run(ctx, { video }) {
   await at(1500); await shot('02-coinler-geliyor');
   await at(2950); await shot('03-kurgu-tamam');
   await at(5200); await shot('04-otomatik-gosteri');
+  // yüzen coine hover (isim etiketi)
+  let s0 = await st(); const fls = s0.coins.filter((c) => c.state === 'float'); const fl = fls[Math.min(2, fls.length - 1)];
+  if (fl) { await page.mouse.move(fl.x, fl.y); await page.waitForTimeout(350); await shot('04b-coin-hover'); }
   // oyun: fare alana girer, en aşağıdaki coine yönelir
   await page.mouse.move(560, 130);
   let s = await st(), caught = false, shotsLeft = { play: 1, catch: 1 };
@@ -37,7 +40,7 @@ async function run(ctx, { video }) {
     const f = s.coins.filter((c) => c.state === 'fall').sort((a, b) => b.y - a.y)[0];
     if (f) await page.mouse.move(f.x + (i % 7 === 0 && s.score < 1 ? 70 : 0), 130); // ilk turda bir kez kaçırsın
     if (s.score >= 1 && shotsLeft.play) { shotsLeft.play = 0; await shot('05-oyun'); }
-    if (s.score >= 3 && shotsLeft.catch) { shotsLeft.catch = 0; await shot('06-portfoy-doluyor'); }
+    if (s.score >= 3 && shotsLeft.catch) { shotsLeft.catch = 0; await page.waitForTimeout(120); await shot('06-portfoy-doluyor'); }
     await page.waitForTimeout(70);
   }
   await page.waitForTimeout(420); await shot('07-kazandin');
