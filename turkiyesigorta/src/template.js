@@ -68,7 +68,7 @@ body{font-family:${fontFamily},'Manrope',system-ui,-apple-system,'Segoe UI',Robo
 .phone strong{display:block;font-size:13px;font-weight:800;letter-spacing:.02em;color:var(--navy)}
 @keyframes shine{from{transform:skewX(-22deg) translateX(0)}to{transform:skewX(-22deg) translateX(520%)}}
 /* ---------- kontroller ---------- */
-.dots{position:absolute;left:600px;width:370px;bottom:12px;display:flex;justify-content:center;gap:6px;z-index:6}
+.dots{position:absolute;left:604px;bottom:14px;display:flex;gap:6px;z-index:6}
 .dot{width:7px;height:7px;border-radius:50%;border:0;padding:0;background:#c5d8e3;cursor:pointer;transition:background .25s,width .25s}
 .dot.is-on{background:var(--tq);width:20px;border-radius:4px}
 .dot:hover{background:var(--tq6)}
@@ -102,7 +102,7 @@ body{font-family:${fontFamily},'Manrope',system-ui,-apple-system,'Segoe UI',Robo
 /* ---------- kapanış ---------- */
 .outro{position:absolute;inset:0;z-index:5;opacity:0;pointer-events:none;transition:opacity .5s var(--ease);color:#fff}
 #ad[data-phase=outro] .outro{opacity:1;pointer-events:auto}
-#ad[data-phase=outro] .copy,#ad[data-phase=outro] .stage,#ad[data-phase=outro] .logo,#ad[data-phase=outro] .tag,#ad[data-phase=outro] .bar{opacity:0}
+#ad[data-phase=outro] .copy,#ad[data-phase=outro] .stage,#ad[data-phase=outro] .logo,#ad[data-phase=outro] .tag,#ad[data-phase=outro] .bar,#ad[data-phase=outro] .dots{opacity:0}
 .outro .glow{position:absolute;right:120px;top:-120px;width:520px;height:520px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.16),rgba(255,255,255,0))}
 .outro .ologo{position:absolute;left:28px;top:24px;height:32px}
 .outro .ologo img{height:32px;width:auto;display:block}

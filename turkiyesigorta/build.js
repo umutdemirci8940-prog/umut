@@ -38,7 +38,7 @@ const COVER = async ({ src, w, h, fx, fy, q, zoom, type }) => {
   return c.toDataURL(type === 'png' ? 'image/png' : 'image/jpeg', q);
 };
 /* Şeffaf boşlukları kırpar (isteğe bağlı beyaz zemini şeffaflaştırır), w×h kutusuna sığdırır; PNG döndürür */
-const CONTAIN = async ({ src, w, h, keyWhite, pad }) => {
+const CONTAIN = async ({ src, w, h, keyWhite, pad, noUpscale, fmt, q }) => {
   const img = new Image(); await new Promise((res, rej) => { img.onload = res; img.onerror = () => rej(new Error('görsel yüklenemedi')); img.src = src; });
   let iw = img.naturalWidth || 800, ih = img.naturalHeight || 600;
   const pre = Math.min(1, 1800 / Math.max(iw, ih)); const c0 = document.createElement('canvas'); c0.width = Math.round(iw * pre); c0.height = Math.round(ih * pre);
@@ -49,10 +49,19 @@ const CONTAIN = async ({ src, w, h, keyWhite, pad }) => {
   for (let y = 0; y < c0.height; y++) for (let x = 0; x < c0.width; x++) { if (d[(y * c0.width + x) * 4 + 3] > 10) { if (x < minx) minx = x; if (x > maxx) maxx = x; if (y < miny) miny = y; if (y > maxy) maxy = y; } }
   if (maxx < 0) { minx = 0; miny = 0; maxx = c0.width - 1; maxy = c0.height - 1; }
   const cw = maxx - minx + 1, ch = maxy - miny + 1; const p = pad || 0;
-  const s = Math.min((w - 2 * p) / cw, (h - 2 * p) / ch);
+  let s = Math.min((w - 2 * p) / cw, (h - 2 * p) / ch); if (noUpscale) s = Math.min(s, 1);
   const c = document.createElement('canvas'); c.width = Math.round(cw * s) + 2 * p; c.height = Math.round(ch * s) + 2 * p;
   const ctx = c.getContext('2d'); ctx.imageSmoothingQuality = 'high'; ctx.drawImage(c0, minx, miny, cw, ch, p, p, Math.round(cw * s), Math.round(ch * s));
-  return { uri: c.toDataURL('image/png'), w: c.width, h: c.height };
+  return { uri: fmt === 'webp' ? c.toDataURL('image/webp', q || .86) : c.toDataURL('image/png'), w: c.width, h: c.height };
+};
+const CIRCLE = async ({ src, d, fx, fy, zoom, ring, fmt, q }) => {
+  const img = new Image(); await new Promise((res, rej) => { img.onload = res; img.onerror = () => rej(new Error('görsel yüklenemedi')); img.src = src; });
+  const iw = img.naturalWidth, ih = img.naturalHeight; const c = document.createElement('canvas'); c.width = d; c.height = d; const ctx = c.getContext('2d'); ctx.imageSmoothingQuality = 'high';
+  const r = d / 2 - 6; ctx.save(); ctx.beginPath(); ctx.arc(d / 2, d / 2, r, 0, Math.PI * 2); ctx.clip();
+  const s = Math.max((2 * r) / iw, (2 * r) / ih) * (zoom || 1); const dw = iw * s, dh = ih * s;
+  ctx.drawImage(img, (d - dw) * (fx == null ? .5 : fx), (d - dh) * (fy == null ? .5 : fy), dw, dh); ctx.restore();
+  if (ring) { ctx.beginPath(); ctx.arc(d / 2, d / 2, r + 3, 0, Math.PI * 2); ctx.lineWidth = 6; ctx.strokeStyle = ring; ctx.stroke(); }
+  return { uri: fmt === 'webp' ? c.toDataURL('image/webp', q || .86) : c.toDataURL('image/png'), w: d, h: d };
 };
 const PLACEHOLDER = async ({ w, h, a, b, label }) => {
   const c = document.createElement('canvas'); c.width = w; c.height = h; const ctx = c.getContext('2d');
@@ -88,7 +97,7 @@ const PLACEHOLDER = async ({ w, h, a, b, label }) => {
   const fontDir = path.join(root, 'assets', 'fonts');
   const avenir = ['book', 'medium', 'heavy'].map((wgt) => ({ wgt, f: [path.join(fontDir, `avenir-${wgt}.woff2`), path.join(fontDir, `avenir-${wgt}.woff`)].find(fs.existsSync) })).filter((x) => x.f);
   if (avenir.length >= 2) {
-    const wmap = { book: 500, medium: 700, heavy: 800 };
+    const wmap = { book: '100 500', medium: '600 700', heavy: '800 900' };
     assets.fonts.css = avenir.map((x) => `@font-face{font-family:'Avenir';font-style:normal;font-weight:${wmap[x.wgt]};font-display:block;src:url(${uriOf(x.f)}) format('${x.f.endsWith('woff2') ? 'woff2' : 'woff'}')}`).join('\n');
     assets.fonts.family = "'Avenir'"; report.push(`font: Avenir (${avenir.map((x) => x.wgt).join(', ')}) – siteden`);
   } else {
@@ -116,13 +125,14 @@ const PLACEHOLDER = async ({ w, h, a, b, label }) => {
   for (const [i, s] of data.scenes.entries()) {
     const p = (pick.scenes || {})[s.key]; const f = p && resolveFile(p.file);
     if (f) {
-      if (p.mode === 'cover') { const uri = await page.evaluate(COVER, { src: await rasterSource(f), w: SW, h: SH, fx: p.fx, fy: p.fy, zoom: p.zoom, q: Q, type: 'png' }); assets.scenes[s.key] = { uri }; }
-      else { const r = await page.evaluate(CONTAIN, { src: await rasterSource(f), w: SW, h: SH, keyWhite: !!p.keyWhite }); assets.scenes[s.key] = r; }
+      if (p.mode === 'circle') { assets.scenes[s.key] = await page.evaluate(CIRCLE, { src: await rasterSource(f), d: SH, fx: p.fx, fy: p.fy, zoom: p.zoom, ring: '#b0e6f1', fmt: 'webp', q: Q }); }
+      else if (p.mode === 'cover') { const uri = await page.evaluate(COVER, { src: await rasterSource(f), w: SW, h: SH, fx: p.fx, fy: p.fy, zoom: p.zoom, q: Q, type: 'png' }); assets.scenes[s.key] = { uri }; }
+      else { const r = await page.evaluate(CONTAIN, { src: await rasterSource(f), w: SW, h: SH, keyWhite: !!p.keyWhite, noUpscale: true, fmt: 'webp', q: Q }); assets.scenes[s.key] = r; }
       report.push(`${s.key}: ${path.relative(root, f)} (${kb(b64len(assets.scenes[s.key].uri))})`);
     } else { assets.scenes[s.key] = { uri: await page.evaluate(PLACEHOLDER, { w: SW, h: SH, a: pal[i][0], b: pal[i][1], label: s.kicker }) }; report.push(`${s.key}: yer tutucu`); }
   }
   const of = pick.outro && resolveFile(pick.outro.file);
-  assets.hero = of ? await page.evaluate(CONTAIN, { src: await rasterSource(of), w: Math.round(340 * SCALE), h: Math.round(240 * SCALE), keyWhite: !!pick.outro.keyWhite }) : assets.scenes[data.scenes[data.scenes.length - 1].key];
+  assets.hero = of ? await page.evaluate(CONTAIN, { src: await rasterSource(of), w: Math.round(340 * SCALE), h: Math.round(240 * SCALE), keyWhite: !!pick.outro.keyWhite, noUpscale: true, fmt: 'webp', q: Q }) : assets.scenes[data.scenes[data.scenes.length - 1].key];
 
   const html = render(data, assets);
   const out = path.join(root, 'index.html'); fs.writeFileSync(out, html);
