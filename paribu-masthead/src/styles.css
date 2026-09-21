@@ -30,7 +30,7 @@ button{font:inherit;color:inherit}
 .h-win .l2{color:var(--brand2)}
 .is-win .h-main{opacity:0;transform:translateY(-10px)}
 .is-win .h-win{opacity:1;transform:none}
-.sub{position:absolute;left:32px;top:136px;font-size:12.5px;line-height:1.35;color:var(--muted);font-weight:500;white-space:nowrap}
+.sub{position:absolute;left:32px;top:135px;width:312px;font-size:12px;line-height:1.35;color:var(--muted);font-weight:500}
 .cta{position:absolute;left:32px;top:176px;height:38px;padding:0 17px 0 20px;border:0;border-radius:999px;background:var(--brand);color:var(--cta-text);font-weight:700;font-size:14px;letter-spacing:-.01em;display:inline-flex;align-items:center;gap:9px;cursor:pointer;overflow:hidden;box-shadow:0 8px 24px rgba(20,210,110,.28);transition:transform .25s var(--ease),box-shadow .25s}
 .cta:hover{transform:translateY(-1px) scale(1.03);box-shadow:0 12px 30px rgba(20,210,110,.42)}
 .cta:after{content:"";position:absolute;top:-20%;left:-40%;width:26%;height:140%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.6),transparent);transform:skewX(-18deg);animation:shine 3.4s 2.6s ease-in-out infinite}

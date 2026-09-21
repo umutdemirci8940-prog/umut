@@ -232,9 +232,14 @@ async function grabPage(ctx, url, isBase) {
   // renkler: doygun, orta parlaklıkta, buton zemini olan → marka rengi
   const colorRows = [...colorsFound.entries()].map(([hex, e]) => { const { h, s, l } = /^#/.test(hex) ? hsl(hex) : { h: 0, s: 0, l: 0 }; return { hex, count: e.count, where: [...e.where].slice(0, 4), h, s: +s.toFixed(2), l: +l.toFixed(2) }; }).sort((a, b) => b.count - a.count);
   const brandCand = colorRows.filter((c) => /^#/.test(c.hex) && c.s > 0.45 && c.l > 0.25 && c.l < 0.75).sort((a, b) => (b.where.some((w) => /button bg/.test(w)) ? 1000 : 0) + b.count - ((a.where.some((w) => /button bg/.test(w)) ? 1000 : 0) + a.count));
-  let brand = brandCand[0] ? brandCand[0].hex : null;
+  let brand = brandCand[0] ? brandCand[0].hex : null, brandSource = brand ? 'button' : null;
+  if (logo && path.extname(logo.file) === '.svg') {   // logonun kendi rengi en güvenilir marka rengidir
+    const fills = {}; for (const m of fs.readFileSync(path.join(root, logo.file), 'utf8').matchAll(/(?:fill|stroke)[=:]\s*"?(#[0-9a-fA-F]{6})\b/g)) fills[m[1].toLowerCase()] = (fills[m[1].toLowerCase()] || 0) + 1;
+    const lf = Object.keys(fills).filter((h) => hsl(h).s > 0.35).sort((a, b) => fills[b] - fills[a])[0];
+    if (lf) { brand = lf; brandSource = 'logo'; }
+  }
   if (!brand && themeColor && /^#/.test(themeColor)) { const { s, l } = hsl(themeColor); if (s > 0.4 && l > 0.2 && l < 0.8) brand = themeColor; }
-  const colors = brand ? { brand, brand2: mix(brand, 48), brandDark: mix(brand, -38), themeColor, candidates: brandCand.slice(0, 8), all: colorRows.slice(0, 40) } : { brand: null, themeColor, candidates: brandCand.slice(0, 8), all: colorRows.slice(0, 40) };
+  const colors = brand ? { brand, brandSource, brand2: mix(brand, 48), brandDark: mix(brand, -38), themeColor, candidates: brandCand.slice(0, 8), all: colorRows.slice(0, 40) } : { brand: null, themeColor, candidates: brandCand.slice(0, 8), all: colorRows.slice(0, 40) };
 
   const manifest = {
     source: BASE, fetchedAt: new Date().toISOString(), pages: pagesDone,

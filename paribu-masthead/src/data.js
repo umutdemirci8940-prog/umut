@@ -16,18 +16,18 @@ module.exports = {
   },
 
   copy: {
-    tagline: 'Türkiye’nin kripto para platformu',
+    tagline: 'Yarının dünyası şimdi daha geniş.',   // paribu.com ana sayfa başlığı
     headline: ['Kripto dünyasına', 'ilk adımını at.'],           // 2. satır marka renginde
-    sub: 'Al, sat, sakla. Hepsi tek uygulamada, 7/24.',
-    cta: 'Hemen Başla',
+    sub: 'Kripto al/sat, hisse, DeFi ve getiri. Hepsi tek uygulamada.',   // sitenin ürün başlıkları (paribu.com üst menü)
+    cta: 'Hesap oluştur',            // sitenin kendi CTA metni
     prompt: 'Cüzdanı imleçle yönlendir, coinleri yakala!',
     promptTouch: 'Cüzdanı parmağınla sürükle, coinleri yakala!',
     promptPlaying: 'Harika gidiyorsun!',
     portfolioLabel: 'Portföyüm',
     winHeadline: ['Portföyün hazır!', 'Şimdi Paribu’da kur.'],
-    winCta: 'Paribu’ya Katıl',
+    winCta: 'Şimdi hesap oluştur',
     replay: 'Tekrar oyna',
-    features: ['7/24 TL yatır–çek', 'Kolay üyelik', 'Güvenli saklama'],
+    features: ['Kripto al/sat', 'Hisse', 'DeFi', 'Getiri'],   // paribu.com ana menüsündeki ürünler
     legal: 'Kripto varlıklar yüksek fiyat dalgalanması riski içerir; yatırım tavsiyesi değildir.',
     ariaLabel: 'Paribu – Kripto dünyasına ilk adımını at. İnteraktif masthead: cüzdanı yönlendirip coinleri yakala, Paribu’ya git.',
   },
@@ -42,19 +42,19 @@ module.exports = {
     footnote: '*Kampanya koşulları geçerlidir.',
   },
 
-  // Renkler: koyu "işlem ekranı" zemini + Paribu yeşili vurgu. tools/fetch-assets.js siteden theme-color ve
-  // CSS renk adaylarını assets/manifest.json → colors altına yazar; build, manifest.colors.brand varsa onu kullanır.
+  // Renkler: koyu nötr zemin + Paribu limon yeşili. build.js marka rengini önce logonun SVG dolgusundan,
+  // yoksa assets/manifest.json → colors.brand'dan alır; ikisi de yoksa buradaki brand kullanılır (--data-colors ile her zaman buradakiler).
   colors: {
-    bg: '#070d1a',
-    bg2: '#0d1b30',
-    brand: '#14d26e',
-    brand2: '#7ff2b6',
-    brandDark: '#0a8f4a',
+    bg: '#12141a',           // sitenin koyu kart rengi ailesi (#121212 / #1f2229)
+    bg2: '#1f2229',
+    brand: '#9bba3c',        // Paribu limon yeşili (logo dolgusu, --color-foreground-accent)
+    brand2: '#d6e57c',       // vurgu / kazanma satırı
+    brandDark: '#5c7012',    // sitede --color-button-secondary-accent-text
     ink: '#ffffff',
-    muted: '#9db0c6',
-    ctaText: '#04150c',
-    up: '#14d26e',
-    down: '#ff5c5c',
+    muted: '#a7afbb',
+    ctaText: '#141a08',
+    up: '#9bba3c',
+    down: '#e53d3d',         // sitede --color-foreground-danger
   },
 
   // Oyundaki coinler (ikonlar: assets/coins/<key>.svg – cryptocurrency-icons, CC0). Sıra = ağırlık; ilk 6 kullanılır.

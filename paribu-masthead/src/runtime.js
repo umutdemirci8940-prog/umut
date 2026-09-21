@@ -73,7 +73,7 @@
     o.fillStyle = g; o.fillRect(0, 0, W, H);
     var rg = o.createRadialGradient(600, 150, 10, 600, 150, 360); rg.addColorStop(0, rgba(C.brand, 0.2)); rg.addColorStop(0.5, rgba(C.brand, 0.06)); rg.addColorStop(1, rgba(C.brand, 0));
     o.fillStyle = rg; o.fillRect(0, 0, W, H);
-    var rg2 = o.createRadialGradient(120, 40, 10, 120, 40, 300); rg2.addColorStop(0, 'rgba(60,110,220,.16)'); rg2.addColorStop(1, 'rgba(60,110,220,0)');
+    var rg2 = o.createRadialGradient(120, 40, 10, 120, 40, 300); rg2.addColorStop(0, 'rgba(255,255,255,.07)'); rg2.addColorStop(1, 'rgba(255,255,255,0)');
     o.fillStyle = rg2; o.fillRect(0, 0, W, H);
     o.strokeStyle = 'rgba(255,255,255,.04)'; o.lineWidth = 1; o.beginPath();
     for (var x = 48.5; x < W; x += 48.5) { o.moveTo(Math.round(x) + 0.5, 0); o.lineTo(Math.round(x) + 0.5, H); }
@@ -169,7 +169,8 @@
       ctx.strokeStyle = 'rgba(255,255,255,' + wallet.check + ')'; ctx.lineWidth = 2.6; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
       ctx.beginPath(); ctx.moveTo(cx - 7, cy); ctx.lineTo(cx - 2, cy + 4.5); ctx.lineTo(cx + 7, cy - 5); ctx.stroke();
     } else if (symbolImg && symbolImg.complete && symbolImg.naturalWidth) {
-      ctx.drawImage(symbolImg, cx - 8, cy - 8, 16, 16);
+      var sw = 17, sh = sw * (symbolImg.naturalHeight / symbolImg.naturalWidth); if (sh > 17) { sh = 17; sw = sh * (symbolImg.naturalWidth / symbolImg.naturalHeight); }
+      ctx.drawImage(symbolImg, cx - sw / 2, cy - sh / 2, sw, sh);
     } else {
       ctx.fillStyle = '#fff'; ctx.font = '800 13px Sora, system-ui, sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
       ctx.fillText(D.brand.name.charAt(0).toUpperCase(), cx, cy + 0.5);

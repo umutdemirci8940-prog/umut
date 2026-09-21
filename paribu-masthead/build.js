@@ -63,6 +63,43 @@ function whitenSvg(svg) {
     .replace(/(fill|stroke):\s*black/gi, '$1:#ffffff');
 }
 
+
+/** SVG path d → yaklaşık sınır kutusu (kontrol noktaları dâhil; M L H V C S Q T Z, mutlak/göreli). */
+function pathBBox(d) {
+  const tok = d.match(/[a-zA-Z]|-?\d*\.?\d+(?:e[-+]?\d+)?/g) || [];
+  let cmd = '', i = 0, x = 0, y = 0, sx = 0, sy = 0, minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+  const pt = (px, py) => { if (px < minX) minX = px; if (px > maxX) maxX = px; if (py < minY) minY = py; if (py > maxY) maxY = py; };
+  const num = () => parseFloat(tok[i++]);
+  while (i < tok.length) {
+    if (/[a-zA-Z]/.test(tok[i])) cmd = tok[i++];
+    const rel = cmd === cmd.toLowerCase(); const C = cmd.toUpperCase();
+    if (C === 'Z') { x = sx; y = sy; continue; }
+    if (C === 'H') { const v = num(); x = rel ? x + v : v; pt(x, y); continue; }
+    if (C === 'V') { const v = num(); y = rel ? y + v : v; pt(x, y); continue; }
+    const n = C === 'C' ? 3 : (C === 'S' || C === 'Q') ? 2 : 1;
+    if (C === 'A') { i += 5; const ex = num(), ey = num(); x = rel ? x + ex : ex; y = rel ? y + ey : ey; pt(x, y); continue; }
+    for (let k = 0; k < n; k++) { const px = num(), py = num(); if (isNaN(px) || isNaN(py)) { i = tok.length; break; } const ax = rel ? x + px : px, ay = rel ? y + py : py; pt(ax, ay); if (k === n - 1) { x = ax; y = ay; } }
+    if (C === 'M') { sx = x; sy = y; cmd = rel ? 'l' : 'L'; }
+  }
+  return isFinite(minX) ? { x: minX, y: minY, w: maxX - minX, h: maxY - minY } : null;
+}
+/** Kelime markası SVG'sinin ilk glifinden (ör. "P") beyaz sembol üretir – cüzdan üzerindeki işaret. */
+function glyphFromWordmark(svg) {
+  const paths = [...svg.matchAll(/<path[^>]*\sd="([^"]+)"[^>]*>/g)].map((m) => m[1]);
+  if (paths.length < 2) return null;
+  const bb = pathBBox(paths[0]); if (!bb || bb.w < 4 || bb.h < 4) return null;
+  const pad = Math.max(bb.w, bb.h) * 0.04;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${(bb.x - pad).toFixed(2)} ${(bb.y - pad).toFixed(2)} ${(bb.w + 2 * pad).toFixed(2)} ${(bb.h + 2 * pad).toFixed(2)}"><path d="${paths[0]}" fill="#ffffff"/></svg>`;
+}
+/** Logodaki baskın doygun dolgu rengi (marka rengi). */
+function dominantFill(svg) {
+  const count = {};
+  for (const m of svg.matchAll(/(?:fill|stroke)[=:]\s*"?(#[0-9a-fA-F]{6}|#[0-9a-fA-F]{3})\b/g)) { let h = m[1].toLowerCase(); if (h.length === 4) h = '#' + h.slice(1).split('').map((c) => c + c).join(''); count[h] = (count[h] || 0) + 1; }
+  const sat = (h) => { const n = parseInt(h.slice(1), 16), r = n >> 16, g = (n >> 8) & 255, b = n & 255, mx = Math.max(r, g, b), mn = Math.min(r, g, b); return mx ? (mx - mn) / mx : 0; };
+  return Object.keys(count).filter((h) => sat(h) > 0.35).sort((a, b) => count[b] - count[a])[0] || null;
+}
+function mix(hex, pct) { const n = parseInt(hex.slice(1), 16); const f = (c) => Math.max(0, Math.min(255, Math.round(c + (pct / 100) * (pct > 0 ? 255 - c : c)))); return '#' + ((1 << 24) + (f(n >> 16) << 16) + (f((n >> 8) & 255) << 8) + f(n & 255)).toString(16).slice(1); }
+
 /* ---------- varlıklar ---------- */
 const assets = { coins: {}, fonts: null, logo: null, symbol: null, colors: null };
 
@@ -94,16 +131,27 @@ if (fs.existsSync(mf) && !args.has('--placeholder-logo')) {
   };
   assets.logo = pick(manifest.logo);
   assets.symbol = pick(manifest.symbol);
-  if (manifest.colors && manifest.colors.brand && !args.has('--data-colors')) {
-    assets.colors = { brand: manifest.colors.brand };
-    if (manifest.colors.brand2) assets.colors.brand2 = manifest.colors.brand2;
-    if (manifest.colors.brandDark) assets.colors.brandDark = manifest.colors.brandDark;
+  // Sembol: kelime markası SVG ise ilk glifi (beyaz) cüzdan işareti olarak türet; --icon-symbol ile sitenin uygulama ikonu kullanılır
+  const logoSvg = assets.logo && extOf(assets.logo.file) === 'svg' ? fs.readFileSync(path.join(root, assets.logo.file), 'utf8') : null;
+  if (logoSvg && !args.has('--icon-symbol')) {
+    const g = glyphFromWordmark(logoSvg);
+    if (g) {
+      const gf = path.join(root, 'assets', 'logo', 'symbol-glyph.svg'); fs.writeFileSync(gf, g);
+      assets.symbol = { uri: dataUri(gf).uri, bytes: Buffer.byteLength(g), aspect: 1, kind: 'glyph', file: 'assets/logo/symbol-glyph.svg (kelime markasının ilk harfi)' };
+    }
+  }
+  // Marka rengi: önce logonun dolgusu, sonra manifest.colors.brand; --data-colors ile data.js
+  if (!args.has('--data-colors')) {
+    const fromLogo = logoSvg ? dominantFill(logoSvg) : null;
+    const brand = fromLogo || (manifest.colors && manifest.colors.brand) || null;
+    if (brand) { assets.colors = { brand, brandDark: mix(brand, -40) }; assets.colors.source = fromLogo ? 'logo' : 'manifest'; }
+    if (!fromLogo && manifest.colors && manifest.colors.brand2) assets.colors.brand2 = manifest.colors.brand2;
   }
 }
 if (args.has('--no-campaign')) data.campaign.enabled = false;
 
 console.log(`Logo: ${assets.logo ? `SİTEDEN (${assets.logo.file}, ${(assets.logo.bytes / 1024).toFixed(1)} KB)` : 'YER TUTUCU (assets/manifest.json yok → tools/fetch-assets.js / GitHub Actions)'}`);
-console.log(`Sembol: ${assets.symbol ? assets.symbol.file : 'yok (cüzdanda baş harf)'}  ·  Renk: ${assets.colors ? 'siteden ' + assets.colors.brand : 'data.js ' + data.colors.brand}  ·  Font: ${data.fonts.embed ? 'gömülü Sora' : 'Google Fonts'}`);
+console.log(`Sembol: ${assets.symbol ? assets.symbol.file : 'yok (cüzdanda baş harf)'}  ·  Renk: ${assets.colors ? assets.colors.brand + ' (' + (assets.colors.source === 'logo' ? 'logodan' : 'siteden') + ')' : 'data.js ' + data.colors.brand}  ·  Font: ${data.fonts.embed ? 'gömülü Sora' : 'Google Fonts'}`);
 
 /* ---------- derleme ---------- */
 const html = render(data, assets);

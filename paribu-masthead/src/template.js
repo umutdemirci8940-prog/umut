@@ -31,7 +31,7 @@ function fontCss(data, assets) {
 }
 
 function render(data, assets = {}) {
-  const B = data.brand, K = data.copy, CP = data.campaign || {}, colors = Object.assign({}, data.colors, assets.colors || {});
+  const B = data.brand, K = data.copy, CP = data.campaign || {}, colors = Object.assign({}, data.colors, assets.colors || {}); delete colors.source;
   const base = fs.readFileSync(path.join(__dirname, 'styles.css'), 'utf8');
   const runtime = fs.readFileSync(path.join(__dirname, 'runtime.js'), 'utf8');
   const embedded = fontCss(data, assets);

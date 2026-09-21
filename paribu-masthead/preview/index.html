@@ -8,16 +8,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300..800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#070d1a;--panel:#0d1729;--line:rgba(255,255,255,.09);--text:#eef2f7;--muted:#9db0c6;--brand:#14d26e;--brand2:#7ff2b6}
+:root{--bg:#12141a;--panel:#1a1d24;--line:rgba(255,255,255,.09);--text:#eef2f7;--muted:#a7afbb;--brand:#9bba3c;--brand2:#d6e57c}
 *{box-sizing:border-box;margin:0;padding:0}
 html{background:var(--bg);color:var(--text);font-family:'Sora',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;-webkit-font-smoothing:antialiased}
-body{min-height:100vh;background:radial-gradient(900px 500px at 10% -10%,rgba(60,110,220,.18),transparent 60%),radial-gradient(800px 400px at 100% 0%,rgba(20,210,110,.12),transparent 60%),var(--bg)}
+body{min-height:100vh;background:radial-gradient(900px 500px at 10% -10%,rgba(255,255,255,.05),transparent 60%),radial-gradient(800px 400px at 100% 0%,rgba(155,186,60,.14),transparent 60%),var(--bg)}
 a{color:inherit}
 .wrap{max-width:1120px;margin:0 auto;padding:40px 24px 80px}
 header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px}
 .lockup{display:flex;align-items:center;gap:12px}
-.lockup .mark{width:40px;height:40px;border-radius:11px;background:var(--brand);display:grid;place-items:center;color:#04150c;font-weight:800;font-size:22px}
-.lockup b{display:block;font-size:22px;line-height:1;font-weight:800}
+.lockup .mark{display:block}
 .lockup small{display:block;margin-top:5px;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--brand2);font-weight:700}
 h1{font-size:34px;line-height:1.12;font-weight:800;letter-spacing:-.02em;margin-top:26px;max-width:760px}
 h1 em{font-style:normal;color:var(--brand)}
@@ -25,11 +24,11 @@ h1 em{font-style:normal;color:var(--brand)}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 .chip{border:1px solid var(--line);border-radius:99px;padding:6px 12px;font-size:12px;font-weight:600;color:var(--muted);background:rgba(255,255,255,.02)}
 .chip b{color:var(--brand2)}
-.toolbar{position:sticky;top:0;z-index:20;display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:30px 0 18px;padding:10px;border:1px solid var(--line);border-radius:14px;background:rgba(7,13,26,.86);backdrop-filter:blur(10px)}
+.toolbar{position:sticky;top:0;z-index:20;display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:30px 0 18px;padding:10px;border:1px solid var(--line);border-radius:14px;background:rgba(18,20,26,.88);backdrop-filter:blur(10px)}
 .toolbar .sp{flex:1}
 button,.btn{appearance:none;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--text);font:inherit;font-weight:600;font-size:13px;padding:9px 14px;border-radius:10px;cursor:pointer;transition:background .2s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
 button:hover,.btn:hover{background:rgba(255,255,255,.09)}
-button.primary{background:var(--brand);color:#04150c;border-color:transparent}
+button.primary{background:var(--brand);color:#141a08;border-color:transparent}
 button.is-on{border-color:var(--brand);color:var(--brand2)}
 .card{border:1px solid var(--line);border-radius:18px;background:var(--panel);padding:18px;overflow:hidden}
 .card-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
@@ -40,7 +39,7 @@ button.is-on{border-color:var(--brand);color:var(--brand2)}
 .card-h .links a:hover{color:var(--text)}
 .stage-area{overflow:auto;padding:6px 0}
 .frame{display:inline-block;line-height:0;box-shadow:0 24px 60px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.08);border-radius:3px;background:#000}
-iframe{border:0;display:block;background:#070d1a;width:970px;height:250px}
+iframe{border:0;display:block;background:#12141a;width:970px;height:250px}
 .light .stage-area{background:#eceff3;border-radius:12px;padding:22px}
 .light .frame{box-shadow:0 18px 40px rgba(0,0,0,.25),0 0 0 1px rgba(0,0,0,.08)}
 .hint{margin-top:12px;font-size:12.5px;color:var(--muted);line-height:1.5}
@@ -81,8 +80,16 @@ footer{margin-top:40px;color:var(--muted);font-size:12.5px;line-height:1.6}
 <body>
 <div class="wrap">
 <header>
-  <div class="lockup"><div class="mark">P</div><div><b>Paribu</b><small>970 × 250 · Rich Media</small></div></div>
-  <div class="chips"><span class="chip">Boyut <b>970 × 250</b></span><span class="chip">Tek dosya, <b>~107 KB</b></span><span class="chip"><b>clickTag</b> / Enabler</span><span class="chip">Otomatik oynatma <b>≤ 30 sn</b></span><span class="chip">Etkileşim <b>sınırsız</b></span></div>
+  <div class="lockup"><div class="mark"><svg width="131" height="24" style="height:26px;width:auto;display:block" viewBox="0 0 131 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0.410156 4.12168V0H15.3775C21.1786 0 24.4759 2.93341 24.4759 8.07673C24.4759 13.2201 21.2772 16.3179 15.4104 16.3179H9.04814V23.4059H4.53183V16.3179H0.410156V12.3628H4.53183V4.12168H0.410156ZM9.04814 12.3628H15.3775C18.2123 12.3628 19.8281 11.0781 19.8281 8.20828C19.8281 5.33845 18.2123 4.11949 15.3775 4.11949H9.04814V12.3628Z" fill="#9BBA3C"/>
+<path d="M120.421 24C115.344 24 111.553 21.6257 110.433 17.5062C109.97 15.7588 109.871 13.9786 109.871 12.1984V0H114.388V12.1984C114.388 14.0115 114.486 15.2634 114.949 16.4845C115.708 18.4949 117.553 19.7161 120.388 19.7161C123.223 19.7161 125.102 18.4971 125.795 16.4845C126.222 15.2656 126.29 14.0115 126.29 12.1984V0H130.806V12.1655C130.806 13.9786 130.741 15.7588 130.311 17.4733C129.256 21.595 125.466 24 120.421 24Z" fill="#9BBA3C"/>
+<path d="M98.197 23.4059H85.7684V0H98.1312C102.713 0 105.515 2.30858 105.515 6.32941C105.515 8.01096 104.921 9.46013 103.669 11.2403C105.384 12.3935 106.339 14.2724 106.339 16.6796C106.339 20.7684 103.275 23.4059 98.197 23.4059ZM90.2847 19.4837H98.2299C100.405 19.4837 101.757 18.2976 101.757 16.285C101.757 14.2724 100.769 13.1192 98.5587 13.1192H90.2847V19.4837ZM90.2847 3.92217V9.69033H99.8456C100.604 8.76733 101.032 7.74569 101.032 6.65826C101.032 4.87805 99.9114 3.92217 97.7673 3.92217H90.2847Z" fill="#9BBA3C"/>
+<path d="M80.6952 23.4058H76.1131V7.1878H80.6952V23.4081V23.4058Z" fill="#9BBA3C"/>
+<path d="M80.7609 4.71362H76.0473V0H80.7609V4.71362Z" fill="#9BBA3C"/>
+<path d="M50.9512 23.4059V0H62.8843C68.1263 0 71.1583 2.67032 71.1583 7.2524C71.1583 9.79118 70.2025 11.8674 67.7623 14.3404L67.565 14.5706L72.807 23.4059H67.6966L63.1474 15.5264H55.4653V23.4059H50.949H50.9512ZM55.4675 4.12168V11.7709H64.3685C65.8199 10.3195 66.5105 8.96903 66.5105 7.48479C66.5105 5.30995 65.1929 4.12168 62.687 4.12168H55.4675Z" fill="#9BBA3C"/>
+<path d="M23.4959 23.4059L32.4956 0H39.1868L48.1536 23.4059H43.3742L40.9341 17.1093H30.7154L28.3082 23.4059H23.4959ZM33.7804 9.03261L32.1975 13.2201H39.4499L37.867 9.03261C37.24 7.38394 36.5822 5.60373 36.021 3.92217H35.6264C35.0651 5.60373 34.4074 7.38394 33.7804 9.03261Z" fill="#9BBA3C"/>
+</svg></div><div><small>970 × 250 · Rich Media Masthead</small></div></div>
+  <div class="chips"><span class="chip">Boyut <b>970 × 250</b></span><span class="chip">Tek dosya, <b>~110 KB</b></span><span class="chip"><b>clickTag</b> / Enabler</span><span class="chip">Otomatik oynatma <b>≤ 30 sn</b></span><span class="chip">Etkileşim <b>sınırsız</b></span></div>
 </header>
 <h1>“Cüzdanı yönlendir, coinleri yakala” — <em>oyunlaştırılmış</em> interaktif masthead</h1>
 <p class="lead">Yatırımcının ilgisini ilk saniyede yakalayan kurgu (logo → başlık → uçuşan coinler → canlı grafik), ardından fareyle oynanan mini oyun: cüzdan imleci izler, düşen coinler yakalanır, portföy şeridi dolar. Beş coin toplanınca konfeti ve “Portföyün hazır! Şimdi Paribu’da kur.” CTA’sı. Kullanıcı dokunmazsa banner kendi kendine gösteri yapar ve 30 saniyede durağan kareye geçer.</p>
@@ -116,20 +123,20 @@ footer{margin-top:40px;color:var(--muted);font-size:12.5px;line-height:1.6}
 <section class="notes">
   <div class="note"><h4>Kurgu (ilk 3 sn)</h4><ol>
     <li><b>0,15 sn</b> Logo sol üstte belirir; arka planda ızgara ve yeşil parıltı, grafik çizgisi soldan sağa çizilmeye başlar.</li>
-    <li><b>0,45 sn</b> “Kripto dünyasına / ilk adımını at.” satır satır yükselir; alt metin ve “Hemen Başla” CTA’sı gelir.</li>
+    <li><b>0,45 sn</b> “Kripto dünyasına / ilk adımını at.” satır satır yükselir; alt metin ve sitenin CTA’sı “Hesap oluştur” gelir.</li>
     <li><b>0,9 sn</b> BTC, ETH, SOL, AVAX, XRP, DOGE sağdan uçarak oyun alanına yerleşir, yerinde döner.</li>
-    <li><b>2,0 sn</b> “Yeni üyelere özel 500 TL hediye” kartı 3B dönüşle açılır; özellik çipleri ve portföy şeridi gelir.</li>
+    <li><b>2,0 sn</b> “Yeni üyelere özel 500 TL hediye” kartı 3B dönüşle açılır; ürün çipleri (Kripto al/sat · Hisse · DeFi · Getiri) ve portföy şeridi gelir.</li>
     <li><b>2,7 sn</b> “Cüzdanı imleçle yönlendir, coinleri yakala!” ipucu; cüzdan alta gelir, ilk coin düşer.</li>
   </ol></div>
   <div class="note"><h4>Etkileşim</h4><ul>
     <li><b>Cüzdan imleci izler</b>; düşen coinler yakalanınca +1, parçacık patlaması, grafikte yeşil sıçrama ve portföy şeridine coin eklenir.</li>
     <li><b>Hamle:</b> oyun alanına tıklama/Boşluk cüzdanı kısa süre genişletir ve yakındaki coinleri çeker.</li>
-    <li><b>Kazanma:</b> 5 coin → konfeti, başlık “Portföyün hazır! Şimdi Paribu’da kur.”, CTA “Paribu’ya Katıl” olur ve nabız atar; “Tekrar oyna” çıkar.</li>
+    <li><b>Kazanma:</b> 5 coin → konfeti, başlık “Portföyün hazır! Şimdi Paribu’da kur.”, CTA “Şimdi hesap oluştur” olur ve nabız atar; “Tekrar oyna” çıkar.</li>
     <li><b>Otomatik gösteri:</b> imleç yokken cüzdan kendi kendine oynar (kazanmaz, son iki coini kullanıcıya bırakır).</li>
     <li><b>Çıkış:</b> logo, başlık, CTA, kampanya kartı ve boş alanlar siteye gider; oyun alanı tıklaması çıkış değildir (ayar: <code>clickThroughEverywhere</code>).</li>
   </ul></div>
   <div class="note"><h4>Rich media / teknik</h4><ul>
-    <li>Tek HTML dosyası; CSS/JS satır içi, coin ikonları, logo ve Sora fontu base64 gömülü → <b>harici istek yok</b>.</li>
+    <li>Tek HTML dosyası; CSS/JS satır içi, sitenin kendi logosu (paribu.com/icon/paribu-color.svg), coin ikonları ve Sora fontu base64 gömülü → <b>harici istek yok</b>. Marka rengi logodan (#9BBA3C).</li>
     <li><code>&lt;meta name="ad.size"&gt;</code>, <code>window.clickTag</code>, <code>Enabler.exit</code>; etkileşim sayaçları için <code>window.adTrack(olay)</code> ve <code>Enabler.counter</code> kancaları (interaction, game_start, coin_catch, boost, game_win, replay, cta_click).</li>
     <li>Canvas 2D, retina (2×), 60 fps; sekme gizlenince duraklar; 30 sn sonra kendi kendine durur, etkileşimle devam eder.</li>
     <li>Klavye, dokunmatik ve azaltılmış hareket desteği; yasal ibare ve kampanya dipnotu sabit.</li>
