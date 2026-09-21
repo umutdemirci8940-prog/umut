@@ -1,0 +1,1385 @@
+{
+ "source": "https://www.paribu.com",
+ "fetchedAt": "2026-09-21T13:42:04.761Z",
+ "pages": [
+  {
+   "url": "https://www.paribu.com/",
+   "status": 200,
+   "shot": "assets/site/www-paribu-com.jpg"
+  },
+  {
+   "url": "https://net.paribu.com/medya",
+   "status": 200,
+   "shot": "assets/site/net-paribu-com-medya.jpg"
+  },
+  {
+   "url": "https://www.paribu.com/blog/",
+   "status": 200,
+   "shot": "assets/site/www-paribu-com-blog.jpg"
+  },
+  {
+   "url": "https://www.paribu.com/hub",
+   "status": 200,
+   "shot": "assets/site/www-paribu-com-hub.jpg"
+  }
+ ],
+ "logo": {
+  "file": "assets/logo/www-paribu-com-img-1-paribu-color.svg",
+  "from": "https://www.paribu.com/icon/paribu-color.svg",
+  "kind": "wordmark",
+  "dark": true,
+  "w": 131,
+  "h": 24,
+  "score": 95
+ },
+ "symbol": {
+  "file": "assets/logo/www-paribu-com-icon-5-apple-touch-icon-x.png",
+  "from": "https://www.paribu.com/blog/wp-content/uploads/2025/10/cropped-favicon-180x180.png",
+  "kind": "symbol",
+  "dark": false,
+  "w": 184,
+  "h": 184,
+  "white": "assets/logo/www-paribu-com-icon-5-apple-touch-icon-x-trim.png",
+  "stats": {
+   "dark": 0,
+   "light": 4327,
+   "colored": 27817,
+   "n": 32144
+  }
+ },
+ "colors": {
+  "brand": "#99a636",
+  "brand2": "#cad196",
+  "brandDark": "#5f6721",
+  "themeColor": null,
+  "candidates": [
+   {
+    "hex": "#99a636",
+    "count": 126,
+    "where": [
+     "button bg \"İndir\"",
+     "button fg",
+     "text fg",
+     "button bg \"Ara\""
+    ],
+    "h": 67,
+    "s": 0.51,
+    "l": 0.43
+   },
+   {
+    "hex": "#9bba3c",
+    "count": 115,
+    "where": [
+     "button bg \"Uygulamayı indir Uygulamayı indirmek içi\"",
+     "text fg",
+     "var --color-foreground-accent-dark",
+     "var --color-foreground-accent-native-light"
+    ],
+    "h": 75,
+    "s": 0.51,
+    "l": 0.48
+   },
+   {
+    "hex": "#0000ee",
+    "count": 128,
+    "where": [
+     "button fg"
+    ],
+    "h": 240,
+    "s": 1,
+    "l": 0.47
+   },
+   {
+    "hex": "#7b9530",
+    "count": 55,
+    "where": [
+     "text fg",
+     "var --color-foreground-accent-light",
+     "var --color-themes-brand-solid-medium-light",
+     "var --color-themes-brand-solid-medium"
+    ],
+    "h": 75,
+    "s": 0.51,
+    "l": 0.39
+   },
+   {
+    "hex": "#e53d3d",
+    "count": 41,
+    "where": [
+     "text fg",
+     "var --color-foreground-danger-light",
+     "var --color-foreground-danger-dark",
+     "var --color-stroke-danger-light"
+    ],
+    "h": 0,
+    "s": 0.76,
+    "l": 0.57
+   },
+   {
+    "hex": "#79c0ff",
+    "count": 19,
+    "where": [
+     "text fg"
+    ],
+    "h": 208,
+    "s": 1,
+    "l": 0.74
+   },
+   {
+    "hex": "#f59e0b",
+    "count": 16,
+    "where": [
+     "var --color-foreground-warning-dark",
+     "var --color-stroke-warning-light",
+     "var --color-stroke-warning-dark",
+     "var --color-themes-warning-solid-light-light"
+    ],
+    "h": 38,
+    "s": 0.92,
+    "l": 0.5
+   },
+   {
+    "hex": "#d97706",
+    "count": 14,
+    "where": [
+     "var --color-foreground-warning-light",
+     "var --color-themes-warning-solid-medium-light",
+     "var --color-themes-warning-solid-medium",
+     "var --directional-down-solid"
+    ],
+    "h": 32,
+    "s": 0.95,
+    "l": 0.44
+   }
+  ],
+  "all": [
+   {
+    "hex": "#ffffff",
+    "count": 425,
+    "where": [
+     "button fg",
+     "text fg",
+     "var --color-background-white-light",
+     "var --color-background-fix-white-light"
+    ],
+    "h": 0,
+    "s": 0,
+    "l": 1
+   },
+   {
+    "hex": "#1a1a1a",
+    "count": 334,
+    "where": [
+     "button fg",
+     "text fg",
+     "var --color-background-light-dark",
+     "var --color-foreground-primary-light"
+    ],
+    "h": 0,
+    "s": 0,
+    "l": 0.1
+   },
+   {
+    "hex": "#0000ee",
+    "count": 128,
+    "where": [
+     "button fg"
+    ],
+    "h": 240,
+    "s": 1,
+    "l": 0.47
+   },
+   {
+    "hex": "#99a636",
+    "count": 126,
+    "where": [
+     "button bg \"İndir\"",
+     "button fg",
+     "text fg",
+     "button bg \"Ara\""
+    ],
+    "h": 67,
+    "s": 0.51,
+    "l": 0.43
+   },
+   {
+    "hex": "#9bba3c",
+    "count": 115,
+    "where": [
+     "button bg \"Uygulamayı indir Uygulamayı indirmek içi\"",
+     "text fg",
+     "var --color-foreground-accent-dark",
+     "var --color-foreground-accent-native-light"
+    ],
+    "h": 75,
+    "s": 0.51,
+    "l": 0.48
+   },
+   {
+    "hex": "#757575",
+    "count": 112,
+    "where": [
+     "button fg",
+     "text fg",
+     "var --color-foreground-tertiary-light",
+     "var --color-themes-system-solid-light-light"
+    ],
+    "h": 0,
+    "s": 0,
+    "l": 0.46
+   },
+   {
+    "hex": "#292d36",
+    "count": 110,
+    "where": [
+     "button fg",
+     "button bg \"Şimdi Başla\"",
+     "text fg"
+    ],
+    "h": 222,
+    "s": 0.14,
+    "l": 0.19
+   },
+   {
+    "hex": "#1f2229",
+    "count": 92,
+    "where": [
+     "button fg",
+     "text fg",
+     "var --fg-primary",
+     "var --fg-secondary"
+    ],
+    "h": 222,
+    "s": 0.14,
+    "l": 0.14
+   },
+   {
+    "hex": "#7b9530",
+    "count": 55,
+    "where": [
+     "text fg",
+     "var --color-foreground-accent-light",
+     "var --color-themes-brand-solid-medium-light",
+     "var --color-themes-brand-solid-medium"
+    ],
+    "h": 75,
+    "s": 0.51,
+    "l": 0.39
+   },
+   {
+    "hex": "#000000",
+    "count": 46,
+    "where": [
+     "var --color-overlay-light-dark",
+     "var --color-overlay-medium-light",
+     "var --color-overlay-medium-dark",
+     "var --color-overlay-strong-light"
+    ],
+    "h": 0,
+    "s": 0,
+    "l": 0
+   },
+   {
+    "hex": "#888888",
+    "count": 44,
+    "where": [
+     "button fg",
+     "text fg",
+     "var --wp--preset--color--typology-meta"
+    ],
+    "h": 0,
+    "s": 0,
+    "l": 0.53
+   },
+   {
+    "hex": "#555555",
+    "count": 42,
+    "where": [
+     "button fg",
+     "text fg",
+     "var --color-foreground-secondary-light",
+     "var --color-foreground-secondary"
+    ],
+    "h": 0,
+    "s": 0,
+    "l": 0.33
+   },
+   {
+    "hex": "#e53d3d",
+    "count": 41,
+    "where": [
+     "text fg",
+     "var --color-foreground-danger-light",
+     "var --color-foreground-danger-dark",
+     "var --color-stroke-danger-light"
+    ],
+    "h": 0,
+    "s": 0.76,
+    "l": 0.57
+   },
+   {
+    "hex": "#a5d6ff",
+    "count": 40,
+    "where": [
+     "text fg"
+    ],
+    "h": 207,
+    "s": 1,
+    "l": 0.82
+   },
+   {
+    "hex": "#959ead",
+    "count": 34,
+    "where": [
+     "button fg",
+     "text fg"
+    ],
+    "h": 218,
+    "s": 0.13,
+    "l": 0.63
+   },
+   {
+    "hex": "#333333",
+    "count": 24,
+    "where": [
+     "button fg",
+     "button bg \"Sonraki sayfa »\"",
+     "text fg"
+    ],
+    "h": 0,
+    "s": 0,
+    "l": 0.2
+   },
+   {
+    "hex": "#444444",
+    "count": 21,
+    "where": [
+     "button fg",
+     "text fg",
+     "var --wp--preset--color--typology-txt"
+    ],
+    "h": 0,
+    "s": 0,
+    "l": 0.27
+   },
+   {
+    "hex": "#121212",
+    "count": 20,
+    "where": [
+     "button bg \"PARIBUPASSBiletler için Paribu Pass.\"",
+     "button bg \"PARIBU artYeni bir ifade alanı.\"",
+     "button bg \"PARIBUVENTURESGeleceğe yatırım.\"",
+     "button bg \"TEAMPARIBUYarının takımı.\""
+    ],
+    "h": 0,
+    "s": 0,
+    "l": 0.07
+   },
+   {
+    "hex": "#79c0ff",
+    "count": 19,
+    "where": [
+     "text fg"
+    ],
+    "h": 208,
+    "s": 1,
+    "l": 0.74
+   },
+   {
+    "hex": "#f59e0b",
+    "count": 16,
+    "where": [
+     "var --color-foreground-warning-dark",
+     "var --color-stroke-warning-light",
+     "var --color-stroke-warning-dark",
+     "var --color-themes-warning-solid-light-light"
+    ],
+    "h": 38,
+    "s": 0.92,
+    "l": 0.5
+   },
+   {
+    "hex": "#5c7012",
+    "count": 15,
+    "where": [
+     "button fg",
+     "text fg",
+     "var --color-button-secondary-accent-text"
+    ],
+    "h": 73,
+    "s": 0.72,
+    "l": 0.25
+   },
+   {
+    "hex": "#d97706",
+    "count": 14,
+    "where": [
+     "var --color-foreground-warning-light",
+     "var --color-themes-warning-solid-medium-light",
+     "var --color-themes-warning-solid-medium",
+     "var --directional-down-solid"
+    ],
+    "h": 32,
+    "s": 0.95,
+    "l": 0.44
+   },
+   {
+    "hex": "#f5f8eb",
+    "count": 13,
+    "where": [
+     "button bg \"Giriş yap\"",
+     "button bg \"Hesap oluştur\"",
+     "button bg \"Detaylı bilgi\"",
+     "button bg \"Getiri seçeneklerini gör\""
+    ],
+    "h": 74,
+    "s": 0.48,
+    "l": 0.95
+   },
+   {
+    "hex": "#d9d9d9",
+    "count": 12,
+    "where": [
+     "text fg",
+     "var --color-stroke-strong-light",
+     "var --color-border-strong"
+    ],
+    "h": 0,
+    "s": 0,
+    "l": 0.85
+   },
+   {
+    "hex": "#7ee787",
+    "count": 11,
+    "where": [
+     "text fg"
+    ],
+    "h": 125,
+    "s": 0.69,
+    "l": 0.7
+   },
+   {
+    "hex": "#212121",
+    "count": 11,
+    "where": [
+     "var --color-background-regular-dark",
+     "var --color-stroke-medium-dark",
+     "var --background-regular",
+     "var --color-border-default"
+    ],
+    "h": 0,
+    "s": 0,
+    "l": 0.13
+   },
+   {
+    "hex": "#2c2c2c",
+    "count": 11,
+    "where": [
+     "var --color-background-medium-dark",
+     "var --color-stroke-strong-dark",
+     "var --background-medium",
+     "var --color-border-strong"
+    ],
+    "h": 0,
+    "s": 0,
+    "l": 0.17
+   },
+   {
+    "hex": "#b8cf53",
+    "count": 9,
+    "where": [
+     "var --color-themes-brand-solid-medium-dark",
+     "var --color-themes-brand-solid-medium",
+     "var --directional-up-pressed",
+     "var --themes-main-solid-medium"
+    ],
+    "h": 71,
+    "s": 0.56,
+    "l": 0.57
+   },
+   {
+    "hex": "#f5f5f5",
+    "count": 8,
+    "where": [
+     "var --color-background-light-light",
+     "var --color-stroke-light-light",
+     "var --background-light"
+    ],
+    "h": 0,
+    "s": 0,
+    "l": 0.96
+   },
+   {
+    "hex": "rgba(229,61,61,.1)",
+    "count": 8,
+    "where": [
+     "var --color-themes-danger-adaptive-light",
+     "var --directional-down-fill"
+    ],
+    "h": 0,
+    "s": 0,
+    "l": 0
+   },
+   {
+    "hex": "rgba(155,186,60,.1)",
+    "count": 8,
+    "where": [
+     "var --color-themes-brand-adaptive-light",
+     "var --directional-up-fill"
+    ],
+    "h": 0,
+    "s": 0,
+    "l": 0
+   },
+   {
+    "hex": "#a9a9a9",
+    "count": 8,
+    "where": [
+     "text fg"
+    ],
+    "h": 0,
+    "s": 0,
+    "l": 0.66
+   },
+   {
+    "hex": "#d2a8ff",
+    "count": 7,
+    "where": [
+     "text fg"
+    ],
+    "h": 269,
+    "s": 1,
+    "l": 0.83
+   },
+   {
+    "hex": "#b3b3b3",
+    "count": 7,
+    "where": [
+     "var --color-foreground-secondary-dark",
+     "var --color-foreground-secondary",
+     "var --color-foreground-secondary-light"
+    ],
+    "h": 0,
+    "s": 0,
+    "l": 0.7
+   },
+   {
+    "hex": "#808080",
+    "count": 7,
+    "where": [
+     "var --color-foreground-tertiary-dark",
+     "var --color-foreground-tertiary",
+     "var --color-foreground-tertiary-light"
+    ],
+    "h": 0,
+    "s": 0,
+    "l": 0.5
+   },
+   {
+    "hex": "#ebebeb",
+    "count": 7,
+    "where": [
+     "var --color-stroke-medium-light",
+     "var --color-border-default"
+    ],
+    "h": 0,
+    "s": 0,
+    "l": 0.92
+   },
+   {
+    "hex": "#c32a2a",
+    "count": 7,
+    "where": [
+     "var --color-themes-danger-solid-medium-light",
+     "var --color-themes-danger-solid-medium",
+     "var --directional-down-pressed"
+    ],
+    "h": 0,
+    "s": 0.65,
+    "l": 0.46
+   },
+   {
+    "hex": "#ff5151",
+    "count": 7,
+    "where": [
+     "var --color-themes-danger-solid-medium-dark",
+     "var --color-themes-danger-solid-medium",
+     "var --directional-down-pressed"
+    ],
+    "h": 0,
+    "s": 1,
+    "l": 0.66
+   },
+   {
+    "hex": "#ff7b72",
+    "count": 6,
+    "where": [
+     "text fg"
+    ],
+    "h": 4,
+    "s": 1,
+    "l": 0.72
+   },
+   {
+    "hex": "rgba(229, 61, 61, .1)",
+    "count": 6,
+    "where": [
+     "var --color-themes-danger-adaptive-light-light",
+     "var --color-themes-danger-adaptive-light-dark",
+     "var --color-themes-danger-adaptive-light",
+     "var --directional-down-fill"
+    ],
+    "h": 0,
+    "s": 0,
+    "l": 0
+   }
+  ]
+ },
+ "fonts": [
+  {
+   "family": "ParibuSans",
+   "where": [
+    "h1 600",
+    "h2 600",
+    "body 400",
+    "button 400",
+    "a 400",
+    "p 400",
+    "h1 700",
+    "h2 700",
+    "a 700"
+   ]
+  },
+  {
+   "family": "Campton",
+   "where": [
+    "h1 500",
+    "body 400",
+    "a 400",
+    "p 500"
+   ]
+  },
+  {
+   "family": "",
+   "where": [
+    "body 400"
+   ]
+  },
+  {
+   "family": "campton",
+   "where": [
+    "h1 500",
+    "body 400",
+    "button 400",
+    "a 400",
+    "p 400"
+   ]
+  }
+ ],
+ "texts": {
+  "title": [
+   "Paribu: Bitcoin, Ethereum & Kripto Paralarda Yarının Dünyası"
+  ],
+  "h1": [
+   "Yarının dünyasışimdi daha geniş."
+  ],
+  "h2": [
+   "Haberler",
+   "Yatırımlarınızı tek yerdenyönetin.",
+   "Getiri ile varlıklarınız beklerken değerkazansın.",
+   "Piyasayı analizedin,fırsatı keşfedin.",
+   "DeFi fırsatlarınadünyayla birlikte erişin.",
+   "Al/Sat.Bir işlem, üç yol.",
+   "Hızlı.Tutarınızı yazın, anında alın.",
+   "Paribu Standardı.Piyasaya bakarak karar verin.",
+   "Sektör Gelişmişi.Stratejinizi tek ekranda kurun.",
+   "En doğru eşleşme.Milisaniyede.",
+   "Haberler, fiyatlar, göstergeler.Tek ekranda.",
+   "İşlem yaptıkça ayrıcalıkkazanın.",
+   "Stratejinizi kodla otomatikleştirin.",
+   "Uygulamadan ayrılmadan7/24 destek.",
+   "Paribuevreni."
+  ],
+  "buttons": [
+   "Kripto al/sat",
+   "Piyasalar",
+   "Hisse",
+   "Getiri",
+   "Keşfet",
+   "Destek",
+   "Giriş yap",
+   "Hesap oluştur",
+   "Getiri seçeneklerini gör",
+   "Hemen başla",
+   "Kopyala",
+   "API dokümantasyonu",
+   "Kimlik doğrulama",
+   "Türk lirası yatırma ve çekme",
+   "Alım satım işlemleri"
+  ]
+ },
+ "candidates": [
+  {
+   "file": "assets/logo/www-paribu-com-img-1-paribu-color.svg",
+   "from": "https://www.paribu.com/icon/paribu-color.svg",
+   "kind": "img",
+   "w": 131,
+   "h": 24,
+   "dark": true,
+   "header": true,
+   "score": 95,
+   "symScore": -8.45,
+   "bytes": 2235
+  },
+  {
+   "file": "assets/logo/press/inverted-primary-logo-svg-zip/ParibuNET_Logotype_Y.svg",
+   "from": "https://net.paribu.com/download/inverted-primary-logo-svg.zip",
+   "kind": "press-kit",
+   "w": 596,
+   "h": 142,
+   "dark": false,
+   "score": 85,
+   "symScore": -20,
+   "bytes": 3851
+  },
+  {
+   "file": "assets/logo/press/dark-background-logo-svg-zip/dark-background-logo-svg.svg",
+   "from": "https://net.paribu.com/download/dark-background-logo-svg.zip",
+   "kind": "press-kit",
+   "w": 596,
+   "h": 142,
+   "dark": true,
+   "score": 85,
+   "symScore": -20,
+   "bytes": 3863
+  },
+  {
+   "file": "assets/logo/www-paribu-com-img-1-paribu-log.png",
+   "from": "https://www.paribu.com/blog/wp-content/uploads/2025/10/paribu_log.png",
+   "kind": "img",
+   "w": 1000,
+   "h": 221,
+   "dark": null,
+   "header": true,
+   "score": 75,
+   "symScore": -35,
+   "bytes": 6997
+  },
+  {
+   "file": "assets/logo/www-paribu-com-inline-1.svg",
+   "from": "https://www.paribu.com/hub (inline svg)",
+   "kind": "inline-svg",
+   "w": 459,
+   "h": 57,
+   "dark": true,
+   "header": true,
+   "score": 75,
+   "symScore": -20,
+   "bytes": 4369
+  },
+  {
+   "file": "assets/logo/press/paribu-net-media-kit-zip/ParibuNET Logos/Logo Beyaz Zemin/ParibuNET_Logotype.svg",
+   "from": "https://net.paribu.com/download/paribu-net-media-kit.zip",
+   "kind": "press-kit",
+   "w": 595.28,
+   "h": 141.73,
+   "dark": true,
+   "score": 73,
+   "symScore": -20,
+   "bytes": 3620
+  },
+  {
+   "file": "assets/logo/press/paribu-net-media-kit-zip/ParibuNET Logos/Logo Koyu Zemin/ParibuNET_Logotype Disi.svg",
+   "from": "https://net.paribu.com/download/paribu-net-media-kit.zip",
+   "kind": "press-kit",
+   "w": 595.28,
+   "h": 141.73,
+   "dark": false,
+   "score": 65,
+   "symScore": -20,
+   "bytes": 3620
+  },
+  {
+   "file": "assets/logo/press/paribu-net-media-kit-zip/ParibuNET Logos/Logo Yesil Zemin/ParibuNET_Logotype_Y.svg",
+   "from": "https://net.paribu.com/download/paribu-net-media-kit.zip",
+   "kind": "press-kit",
+   "w": 595.28,
+   "h": 141.73,
+   "dark": true,
+   "score": 65,
+   "symScore": -20,
+   "bytes": 3665
+  },
+  {
+   "file": "assets/logo/press/inverted-primary-logo-png-zip/inverted-primary-logo-png.png",
+   "from": "https://net.paribu.com/download/inverted-primary-logo-png.zip",
+   "kind": "press-kit",
+   "w": 596,
+   "h": 142,
+   "dark": null,
+   "score": 65,
+   "symScore": -35,
+   "bytes": 5056
+  },
+  {
+   "file": "assets/logo/press/dark-background-logo-png-zip/dark-background-logo-png.png",
+   "from": "https://net.paribu.com/download/dark-background-logo-png.zip",
+   "kind": "press-kit",
+   "w": 596,
+   "h": 142,
+   "dark": null,
+   "score": 65,
+   "symScore": -35,
+   "bytes": 5053
+  },
+  {
+   "file": "assets/logo/press/paribu-net-media-kit-zip/ParibuNET Logos/Logo Beyaz Zemin/ParibuNET_Logotype.png",
+   "from": "https://net.paribu.com/download/paribu-net-media-kit.zip",
+   "kind": "press-kit",
+   "w": 1999,
+   "h": 383,
+   "dark": null,
+   "score": 53,
+   "symScore": -35,
+   "bytes": 23871
+  },
+  {
+   "file": "assets/logo/press/paribu-net-media-kit-zip/ParibuNET Logos/Logo Koyu Zemin/ParibuNET_Logotype Disi.png",
+   "from": "https://net.paribu.com/download/paribu-net-media-kit.zip",
+   "kind": "press-kit",
+   "w": 2480,
+   "h": 590,
+   "dark": null,
+   "score": 45,
+   "symScore": -35,
+   "bytes": 27879
+  },
+  {
+   "file": "assets/logo/press/paribu-net-media-kit-zip/ParibuNET Logos/Logo Yesil Zemin/ParibuNET_Logotype_Y.png",
+   "from": "https://net.paribu.com/download/paribu-net-media-kit.zip",
+   "kind": "press-kit",
+   "w": 2480,
+   "h": 590,
+   "dark": null,
+   "score": 45,
+   "symScore": -35,
+   "bytes": 29498
+  },
+  {
+   "file": "assets/logo/press/paribu-net-media-kit-zip/__MACOSX/ParibuNET Logos/Logo Beyaz Zemin/._ParibuNET_Logotype.svg",
+   "from": "https://net.paribu.com/download/paribu-net-media-kit.zip",
+   "kind": "press-kit",
+   "w": null,
+   "h": null,
+   "dark": true,
+   "score": 43,
+   "symScore": 15,
+   "bytes": 312
+  },
+  {
+   "file": "assets/logo/net-logo-svg.svg",
+   "from": "https://net.paribu.com/logo.svg",
+   "kind": "network",
+   "score": 40,
+   "symScore": 15,
+   "bytes": 4618
+  },
+  {
+   "file": "assets/logo/press/paribu-net-media-kit-zip/ParibuNET Logos/Amblem/Dişi/ParibuNET_Amblem_Dişi.svg",
+   "from": "https://net.paribu.com/download/paribu-net-media-kit.zip",
+   "kind": "press-kit",
+   "w": 566.93,
+   "h": 566.93,
+   "dark": false,
+   "score": 35,
+   "symScore": 35,
+   "bytes": 2281
+  },
+  {
+   "file": "assets/logo/press/paribu-net-media-kit-zip/ParibuNET Logos/Amblem/Normal/ParibuNET_Amblem.svg",
+   "from": "https://net.paribu.com/download/paribu-net-media-kit.zip",
+   "kind": "press-kit",
+   "w": 566.93,
+   "h": 566.93,
+   "dark": false,
+   "score": 35,
+   "symScore": 35,
+   "bytes": 2725
+  },
+  {
+   "file": "assets/logo/press/paribu-net-media-kit-zip/__MACOSX/ParibuNET Logos/Amblem/Dişi/._ParibuNET_Amblem_Dişi.svg",
+   "from": "https://net.paribu.com/download/paribu-net-media-kit.zip",
+   "kind": "press-kit",
+   "w": null,
+   "h": null,
+   "dark": true,
+   "score": 35,
+   "symScore": 15,
+   "bytes": 268
+  },
+  {
+   "file": "assets/logo/press/paribu-net-media-kit-zip/__MACOSX/ParibuNET Logos/Amblem/Normal/._ParibuNET_Amblem.svg",
+   "from": "https://net.paribu.com/download/paribu-net-media-kit.zip",
+   "kind": "press-kit",
+   "w": null,
+   "h": null,
+   "dark": true,
+   "score": 35,
+   "symScore": 15,
+   "bytes": 268
+  },
+  {
+   "file": "assets/logo/press/paribu-net-media-kit-zip/__MACOSX/ParibuNET Logos/Logo Beyaz Zemin/._ParibuNET_Logotype.png",
+   "from": "https://net.paribu.com/download/paribu-net-media-kit.zip",
+   "kind": "press-kit",
+   "w": null,
+   "h": null,
+   "dark": null,
+   "score": 23,
+   "symScore": 0,
+   "bytes": 312
+  },
+  {
+   "file": "assets/logo/www-paribu-com-img-8-logo.png",
+   "from": "https://assets.xprstock.run/US/BMNR/logo.png",
+   "kind": "img",
+   "w": 231,
+   "h": 100,
+   "dark": null,
+   "header": false,
+   "score": 20,
+   "symScore": -18.45,
+   "bytes": 13874
+  },
+  {
+   "file": "assets/logo/press/paribu-net-media-kit-zip/ParibuNET Logos/Amblem/Dişi/ParibuNET_Amblem_Dişi.png",
+   "from": "https://net.paribu.com/download/paribu-net-media-kit.zip",
+   "kind": "press-kit",
+   "w": 2362,
+   "h": 2362,
+   "dark": null,
+   "score": 15,
+   "symScore": 20,
+   "bytes": 42075
+  },
+  {
+   "file": "assets/logo/press/paribu-net-media-kit-zip/ParibuNET Logos/Amblem/Normal/ParibuNET_Amblem.png",
+   "from": "https://net.paribu.com/download/paribu-net-media-kit.zip",
+   "kind": "press-kit",
+   "w": 2362,
+   "h": 2362,
+   "dark": null,
+   "score": 15,
+   "symScore": 20,
+   "bytes": 42933
+  },
+  {
+   "file": "assets/logo/press/paribu-net-media-kit-zip/__MACOSX/ParibuNET Logos/Amblem/Dişi/._ParibuNET_Amblem_Dişi.png",
+   "from": "https://net.paribu.com/download/paribu-net-media-kit.zip",
+   "kind": "press-kit",
+   "w": null,
+   "h": null,
+   "dark": null,
+   "score": 15,
+   "symScore": 0,
+   "bytes": 212
+  },
+  {
+   "file": "assets/logo/press/paribu-net-media-kit-zip/__MACOSX/ParibuNET Logos/Amblem/Normal/._ParibuNET_Amblem.png",
+   "from": "https://net.paribu.com/download/paribu-net-media-kit.zip",
+   "kind": "press-kit",
+   "w": null,
+   "h": null,
+   "dark": null,
+   "score": 15,
+   "symScore": 0,
+   "bytes": 312
+  },
+  {
+   "file": "assets/logo/net-logo-gal-3x-webp.webp",
+   "from": "https://www.paribu.com/assets/images/home/logo-gal@3x.webp?v=7b25a07269",
+   "kind": "network",
+   "score": 12,
+   "symScore": 0,
+   "bytes": 6658
+  },
+  {
+   "file": "assets/logo/net-logo-fet-3x-webp.webp",
+   "from": "https://www.paribu.com/assets/images/home/logo-fet@3x.webp?v=2cff0c4313",
+   "kind": "network",
+   "score": 12,
+   "symScore": 0,
+   "bytes": 2014
+  },
+  {
+   "file": "assets/logo/net-logo-sahara-3x-webp.webp",
+   "from": "https://www.paribu.com/assets/images/home/logo-sahara@3x.webp?v=f7f24502d2",
+   "kind": "network",
+   "score": 12,
+   "symScore": 0,
+   "bytes": 5748
+  },
+  {
+   "file": "assets/logo/www-paribu-com-img-6-logo-fb-3x.webp",
+   "from": "https://www.paribu.com/assets/images/home/logo-fb@3x.webp?v=f692e250b6",
+   "kind": "img",
+   "w": null,
+   "h": null,
+   "dark": null,
+   "header": false,
+   "score": 12,
+   "symScore": 25,
+   "bytes": 14780
+  },
+  {
+   "file": "assets/logo/www-paribu-com-og-image.png",
+   "from": "https://v3.paribu.com/img/paribu-og-2020.png",
+   "kind": "og",
+   "w": 1024,
+   "h": 512,
+   "dark": null,
+   "score": 10,
+   "symScore": -10,
+   "bytes": 30560
+  },
+  {
+   "file": "assets/logo/net-paribu-com-img-2-primary-logo-thumb.jpg",
+   "from": "https://net.paribu.com/primary-logo-thumb.jpg",
+   "kind": "img",
+   "w": null,
+   "h": null,
+   "dark": null,
+   "header": false,
+   "score": 10,
+   "symScore": 0,
+   "bytes": 14142
+  },
+  {
+   "file": "assets/logo/net-paribu-com-img-3-inverted-primary-logo-thumb.jpg",
+   "from": "https://net.paribu.com/inverted-primary-logo-thumb.jpg",
+   "kind": "img",
+   "w": null,
+   "h": null,
+   "dark": null,
+   "header": false,
+   "score": 10,
+   "symScore": 0,
+   "bytes": 15178
+  },
+  {
+   "file": "assets/logo/net-paribu-com-img-4-dark-background-logo-thumb.jpg",
+   "from": "https://net.paribu.com/dark-background-logo-thumb.jpg",
+   "kind": "img",
+   "w": null,
+   "h": null,
+   "dark": null,
+   "header": false,
+   "score": 10,
+   "symScore": 0,
+   "bytes": 14968
+  },
+  {
+   "file": "assets/logo/net-paribu-com-icon-8-apple-touch-icon-precomposed-114x114.png",
+   "from": "https://net.paribu.com/apple-touch-icon-114x114.png",
+   "kind": "icon",
+   "w": 114,
+   "h": 114,
+   "dark": null,
+   "score": 0,
+   "symScore": 55.7,
+   "bytes": 6370
+  },
+  {
+   "file": "assets/logo/net-paribu-com-icon-9-apple-touch-icon-precomposed-72x72.png",
+   "from": "https://net.paribu.com/apple-touch-icon-72x72.png",
+   "kind": "icon",
+   "w": 72,
+   "h": 72,
+   "dark": null,
+   "score": 0,
+   "symScore": 53.599999999999994,
+   "bytes": 1402
+  },
+  {
+   "file": "assets/logo/net-paribu-com-icon-10-apple-touch-icon-precomposed-144x144.png",
+   "from": "https://net.paribu.com/apple-touch-icon-144x144.png",
+   "kind": "icon",
+   "w": 144,
+   "h": 144,
+   "dark": null,
+   "score": 0,
+   "symScore": 57.2,
+   "bytes": 2577
+  },
+  {
+   "file": "assets/logo/net-paribu-com-icon-11-apple-touch-icon-precomposed-60x60.png",
+   "from": "https://net.paribu.com/apple-touch-icon-60x60.png",
+   "kind": "icon",
+   "w": 60,
+   "h": 60,
+   "dark": null,
+   "score": 0,
+   "symScore": 53,
+   "bytes": 1179
+  },
+  {
+   "file": "assets/logo/net-paribu-com-icon-12-apple-touch-icon-precomposed-120x120.png",
+   "from": "https://net.paribu.com/apple-touch-icon-120x120.png",
+   "kind": "icon",
+   "w": 120,
+   "h": 120,
+   "dark": null,
+   "score": 0,
+   "symScore": 56,
+   "bytes": 2126
+  },
+  {
+   "file": "assets/logo/net-paribu-com-icon-13-apple-touch-icon-precomposed-76x76.png",
+   "from": "https://net.paribu.com/apple-touch-icon-76x76.png",
+   "kind": "icon",
+   "w": 76,
+   "h": 76,
+   "dark": null,
+   "score": 0,
+   "symScore": 53.8,
+   "bytes": 3783
+  },
+  {
+   "file": "assets/logo/net-paribu-com-icon-14-apple-touch-icon-precomposed-152x152.png",
+   "from": "https://net.paribu.com/apple-touch-icon-152x152.png",
+   "kind": "icon",
+   "w": 152,
+   "h": 152,
+   "dark": null,
+   "score": 0,
+   "symScore": 57.599999999999994,
+   "bytes": 9879
+  },
+  {
+   "file": "assets/logo/net-paribu-com-icon-15-icon-196x196.png",
+   "from": "https://net.paribu.com/favicon-196x196.png",
+   "kind": "icon",
+   "w": 196,
+   "h": 196,
+   "dark": null,
+   "score": 0,
+   "symScore": 39.8,
+   "bytes": 22827
+  },
+  {
+   "file": "assets/logo/net-paribu-com-icon-16-icon-96x96.png",
+   "from": "https://net.paribu.com/favicon-96x96.png",
+   "kind": "icon",
+   "w": 96,
+   "h": 96,
+   "dark": null,
+   "score": 0,
+   "symScore": 34.8,
+   "bytes": 1921
+  },
+  {
+   "file": "assets/logo/net-paribu-com-icon-19-icon-128x128.png",
+   "from": "https://net.paribu.com/favicon-128.png",
+   "kind": "icon",
+   "w": 128,
+   "h": 128,
+   "dark": null,
+   "score": 0,
+   "symScore": 36.4,
+   "bytes": 4040
+  },
+  {
+   "file": "assets/logo/www-paribu-com-icon-4-icon-192x192.png",
+   "from": "https://www.paribu.com/blog/wp-content/uploads/2025/10/cropped-favicon-192x192.png",
+   "kind": "icon",
+   "w": 192,
+   "h": 192,
+   "dark": null,
+   "score": 0,
+   "symScore": 39.599999999999994,
+   "bytes": 4807
+  },
+  {
+   "file": "assets/logo/www-paribu-com-icon-5-apple-touch-icon-x.png",
+   "from": "https://www.paribu.com/blog/wp-content/uploads/2025/10/cropped-favicon-180x180.png",
+   "kind": "icon",
+   "w": 180,
+   "h": 180,
+   "dark": null,
+   "score": 0,
+   "symScore": 59,
+   "bytes": 4486
+  },
+  {
+   "file": "assets/logo/www-paribu-com-img-7-9108deab-0c29-4a95-83a9-16cf6b9e4453.png",
+   "from": "https://terminal-assets.paribu.one/sources/9108deab-0c29-4a95-83a9-16cf6b9e4453.png",
+   "kind": "img",
+   "w": 180,
+   "h": 180,
+   "dark": null,
+   "header": false,
+   "score": -10,
+   "symScore": 34,
+   "bytes": 7509
+  },
+  {
+   "file": "assets/logo/www-paribu-com-img-9-0fca23e8-f5f4-486e-8197-1181f27e9699.png",
+   "from": "https://terminal-assets.paribu.one/sources/0fca23e8-f5f4-486e-8197-1181f27e9699.png",
+   "kind": "img",
+   "w": 180,
+   "h": 180,
+   "dark": null,
+   "header": false,
+   "score": -10,
+   "symScore": 34,
+   "bytes": 23016
+  },
+  {
+   "file": "assets/logo/www-paribu-com-img-10-b4690591-f994-4ff4-9ade-30a3a4da4846.png",
+   "from": "https://terminal-assets.paribu.one/sources/b4690591-f994-4ff4-9ade-30a3a4da4846.png",
+   "kind": "img",
+   "w": 128,
+   "h": 128,
+   "dark": null,
+   "header": false,
+   "score": -10,
+   "symScore": 31.4,
+   "bytes": 1901
+  },
+  {
+   "file": "assets/logo/www-paribu-com-img-11-826417cd-5fa4-4ab4-8cfc-13ddeb67505d.png",
+   "from": "https://terminal-assets.paribu.one/sources/826417cd-5fa4-4ab4-8cfc-13ddeb67505d.png",
+   "kind": "img",
+   "w": 180,
+   "h": 180,
+   "dark": null,
+   "header": false,
+   "score": -10,
+   "symScore": 34,
+   "bytes": 2990
+  },
+  {
+   "file": "assets/logo/www-paribu-com-img-12-a676ec67-72fa-4edf-b632-1fb89e9ff548-2648f6c0db802.png",
+   "from": "https://terminal-assets.paribu.one/sources/a676ec67-72fa-4edf-b632-1fb89e9ff548-2648f6c0db802b76b035228af6e0819b.png",
+   "kind": "img",
+   "w": 128,
+   "h": 128,
+   "dark": null,
+   "header": false,
+   "score": -10,
+   "symScore": 31.4,
+   "bytes": 1320
+  },
+  {
+   "file": "assets/logo/www-paribu-com-icon-27-icon-48x48.ico",
+   "from": "https://www.paribu.com/favicon.ico",
+   "kind": "icon",
+   "w": null,
+   "h": null,
+   "dark": null,
+   "score": -20,
+   "symScore": 55,
+   "bytes": 15086
+  },
+  {
+   "file": "assets/logo/net-paribu-com-icon-6-icon-x.ico",
+   "from": "https://net.paribu.com/favicon.ico",
+   "kind": "icon",
+   "w": null,
+   "h": null,
+   "dark": null,
+   "score": -20,
+   "symScore": 30,
+   "bytes": 34494
+  },
+  {
+   "file": "assets/logo/net-paribu-com-og-image.jpg",
+   "from": "https://net.paribu.com/paribu-net.jpg",
+   "kind": "og",
+   "w": null,
+   "h": null,
+   "dark": null,
+   "score": -20,
+   "symScore": 0,
+   "bytes": 57977
+  },
+  {
+   "file": "assets/logo/www-paribu-com-og-image.bin",
+   "from": "https://www.paribu.com/blog/",
+   "kind": "og",
+   "w": null,
+   "h": null,
+   "dark": null,
+   "score": -20,
+   "symScore": 0,
+   "bytes": 76482
+  },
+  {
+   "file": "assets/logo/www-paribu-com-og-image.jpg",
+   "from": "https://www.paribu.com/hub/paribu-hub.jpeg",
+   "kind": "og",
+   "w": null,
+   "h": null,
+   "dark": null,
+   "score": -20,
+   "symScore": 0,
+   "bytes": 70331
+  },
+  {
+   "file": "assets/logo/www-paribu-com-img-19-a857d891-e3e2-451d-a6a3-a2d828c00810.jpg",
+   "from": "https://terminal-assets.paribu.one/sources/a857d891-e3e2-451d-a6a3-a2d828c00810.jpg",
+   "kind": "img",
+   "w": null,
+   "h": null,
+   "dark": null,
+   "header": false,
+   "score": -30,
+   "symScore": 25,
+   "bytes": 3838
+  },
+  {
+   "file": "assets/logo/net-paribu-com-icon-7-apple-touch-icon-precomposed-57x57.png",
+   "from": "https://net.paribu.com/apple-touch-icon-57x57.png",
+   "kind": "icon",
+   "w": 57,
+   "h": 57,
+   "dark": null,
+   "score": -30,
+   "symScore": 52.849999999999994,
+   "bytes": 2543
+  },
+  {
+   "file": "assets/logo/net-paribu-com-icon-17-icon-32x32.png",
+   "from": "https://net.paribu.com/favicon-32x32.png",
+   "kind": "icon",
+   "w": 32,
+   "h": 32,
+   "dark": null,
+   "score": -30,
+   "symScore": 31.6,
+   "bytes": 833
+  },
+  {
+   "file": "assets/logo/net-paribu-com-icon-18-icon-16x16.png",
+   "from": "https://net.paribu.com/favicon-16x16.png",
+   "kind": "icon",
+   "w": 16,
+   "h": 16,
+   "dark": null,
+   "score": -30,
+   "symScore": 30.799999999999997,
+   "bytes": 459
+  },
+  {
+   "file": "assets/logo/www-paribu-com-icon-3-icon-32x32.png",
+   "from": "https://www.paribu.com/blog/wp-content/uploads/2025/10/cropped-favicon-32x32.png",
+   "kind": "icon",
+   "w": 32,
+   "h": 32,
+   "dark": null,
+   "score": -30,
+   "symScore": 31.6,
+   "bytes": 688
+  }
+ ]
+}
