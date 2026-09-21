@@ -1,3 +1,12 @@
+# Banner çalışmaları
+
+| Marka | Çalışma | Klasör |
+|---|---|---|
+| **Paribu** | 970×250 interaktif rich media masthead – “Cüzdanı yönlendir, coinleri yakala” oyunu, canlı grafik, kampanya kartı | [`paribu-masthead/`](paribu-masthead/README.md) → `paribu-masthead/dist/970x250/index.html` |
+| İlaçsız Yaşam | 300×250 / 300×600 / 970×250 ürün slider’lı banner seti | bu klasör (aşağıda) |
+
+---
+
 # İlaçsız Yaşam – Gıda Takviyesi Banner Serisi
 
 [ilacsizyasam.com](https://ilacsizyasam.com/) için hazırlanmış, gıda takviyeleri özelinde **animasyonlu, ürün slider'lı ve tıklanabilir HTML5 display reklam seti**.

@@ -1,0 +1,19 @@
+{
+  "name": "paribu-masthead-970x250",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Paribu – 970x250 interaktif rich media masthead (coin yakalama oyunu, canlı grafik, kampanya kartı)",
+  "scripts": {
+    "build": "node build.js",
+    "build:placeholder": "node build.js --placeholder-logo",
+    "fetch-assets": "NODE_PATH=$(npm root -g) node tools/fetch-assets.js",
+    "optimize-logo": "NODE_PATH=$(npm root -g) node tools/optimize-logo.js",
+    "capture": "NODE_PATH=$(npm root -g) node tools/capture.js",
+    "capture:video": "NODE_PATH=$(npm root -g) node tools/capture.js --video",
+    "test": "NODE_PATH=$(npm root -g) node tools/smoke.js",
+    "test:quick": "NODE_PATH=$(npm root -g) node tools/smoke.js --quick",
+    "package": "node tools/package.js",
+    "preview": "npx --yes serve -l 4174 .."
+  },
+  "license": "UNLICENSED"
+}

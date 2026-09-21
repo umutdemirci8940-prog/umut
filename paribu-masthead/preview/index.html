@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Paribu – 970×250 İnteraktif Rich Media Masthead</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300..800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070d1a;--panel:#0d1729;--line:rgba(255,255,255,.09);--text:#eef2f7;--muted:#9db0c6;--brand:#14d26e;--brand2:#7ff2b6}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg);color:var(--text);font-family:'Sora',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+body{min-height:100vh;background:radial-gradient(900px 500px at 10% -10%,rgba(60,110,220,.18),transparent 60%),radial-gradient(800px 400px at 100% 0%,rgba(20,210,110,.12),transparent 60%),var(--bg)}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:40px 24px 80px}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px}
+.lockup{display:flex;align-items:center;gap:12px}
+.lockup .mark{width:40px;height:40px;border-radius:11px;background:var(--brand);display:grid;place-items:center;color:#04150c;font-weight:800;font-size:22px}
+.lockup b{display:block;font-size:22px;line-height:1;font-weight:800}
+.lockup small{display:block;margin-top:5px;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--brand2);font-weight:700}
+h1{font-size:34px;line-height:1.12;font-weight:800;letter-spacing:-.02em;margin-top:26px;max-width:760px}
+h1 em{font-style:normal;color:var(--brand)}
+.lead{color:var(--muted);font-size:15px;line-height:1.6;max-width:720px;margin-top:12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.chip{border:1px solid var(--line);border-radius:99px;padding:6px 12px;font-size:12px;font-weight:600;color:var(--muted);background:rgba(255,255,255,.02)}
+.chip b{color:var(--brand2)}
+.toolbar{position:sticky;top:0;z-index:20;display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:30px 0 18px;padding:10px;border:1px solid var(--line);border-radius:14px;background:rgba(7,13,26,.86);backdrop-filter:blur(10px)}
+.toolbar .sp{flex:1}
+button,.btn{appearance:none;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--text);font:inherit;font-weight:600;font-size:13px;padding:9px 14px;border-radius:10px;cursor:pointer;transition:background .2s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+button:hover,.btn:hover{background:rgba(255,255,255,.09)}
+button.primary{background:var(--brand);color:#04150c;border-color:transparent}
+button.is-on{border-color:var(--brand);color:var(--brand2)}
+.card{border:1px solid var(--line);border-radius:18px;background:var(--panel);padding:18px;overflow:hidden}
+.card-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.card-h h3{font-size:15px;font-weight:800}
+.card-h h3 span{color:var(--muted);font-weight:500;margin-left:8px}
+.card-h .links{display:flex;gap:6px;flex-wrap:wrap}
+.card-h .links a{font-size:12px;color:var(--muted);text-decoration:none;border:1px solid var(--line);padding:5px 9px;border-radius:8px}
+.card-h .links a:hover{color:var(--text)}
+.stage-area{overflow:auto;padding:6px 0}
+.frame{display:inline-block;line-height:0;box-shadow:0 24px 60px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.08);border-radius:3px;background:#000}
+iframe{border:0;display:block;background:#070d1a;width:970px;height:250px}
+.light .stage-area{background:#eceff3;border-radius:12px;padding:22px}
+.light .frame{box-shadow:0 18px 40px rgba(0,0,0,.25),0 0 0 1px rgba(0,0,0,.08)}
+.hint{margin-top:12px;font-size:12.5px;color:var(--muted);line-height:1.5}
+.hint kbd{font:inherit;font-size:11px;border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:1px 6px;color:var(--text)}
+.notes{margin-top:34px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.note{border:1px solid var(--line);border-radius:16px;padding:18px;background:rgba(255,255,255,.02)}
+.note h4{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--brand2);margin-bottom:10px}
+.note ol,.note ul{list-style:none;display:grid;gap:8px;counter-reset:s}
+.note li{font-size:13.5px;line-height:1.55;color:#cfd7e2;padding-left:18px;position:relative}
+.note ul li:before{content:"";position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--brand)}
+.note ol li{counter-increment:s}.note ol li:before{content:counter(s);position:absolute;left:0;top:1px;font-size:11px;font-weight:800;color:var(--brand)}
+.note li b{color:#fff}
+.shots{margin-top:34px}
+.shots h3{font-size:15px;font-weight:800;margin-bottom:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.grid figure{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#000}
+.grid img{display:block;width:100%;height:auto}
+.grid figcaption{font-size:12px;color:var(--muted);padding:8px 10px}
+/* yayın simülasyonu */
+.sim{display:none;background:#f4f5f7;color:#222;border-radius:18px;overflow:hidden;border:1px solid rgba(0,0,0,.1);font-family:Georgia,serif}
+.sim.is-on{display:block}
+.sim .top{background:#fff;border-bottom:1px solid #e4e4e0;padding:14px 28px;display:flex;align-items:center;gap:18px}
+.sim .top b{font-size:22px;letter-spacing:-.02em}
+.sim .top span{font:600 12px/1 system-ui,sans-serif;color:#666}
+.sim .nav{display:flex;gap:18px;padding:10px 28px;background:#fff;border-bottom:1px solid #e4e4e0;font:600 12px system-ui,sans-serif;color:#333}
+.sim .slot{display:flex;justify-content:center;padding:16px 0 12px;background:#e9ebef}
+.sim .slot small{display:block;text-align:center;font:10px system-ui,sans-serif;color:#888;letter-spacing:.2em;text-transform:uppercase;margin-bottom:6px}
+.sim .body{display:grid;grid-template-columns:2fr 1fr;gap:24px;padding:24px 28px 40px;max-width:1080px;margin:0 auto}
+.sim .art{background:#fff;border:1px solid #e4e4e0;border-radius:6px;padding:20px}
+.sim .art h2{font-size:26px;line-height:1.2;margin-bottom:10px}
+.sim .art p{font-size:15px;line-height:1.7;color:#444;margin-bottom:10px}
+.sim .ph{height:220px;border-radius:6px;background:linear-gradient(135deg,#d9dde4,#c5cbd5);margin:10px 0 16px}
+.sim .side{display:grid;gap:14px;align-content:start}
+.sim .side div{background:#fff;border:1px solid #e4e4e0;border-radius:6px;padding:14px;font:13px/1.5 system-ui,sans-serif;color:#555}
+footer{margin-top:40px;color:var(--muted);font-size:12.5px;line-height:1.6}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="lockup"><div class="mark">P</div><div><b>Paribu</b><small>970 × 250 · Rich Media</small></div></div>
+  <div class="chips"><span class="chip">Boyut <b>970 × 250</b></span><span class="chip">Tek dosya, <b>~107 KB</b></span><span class="chip"><b>clickTag</b> / Enabler</span><span class="chip">Otomatik oynatma <b>≤ 30 sn</b></span><span class="chip">Etkileşim <b>sınırsız</b></span></div>
+</header>
+<h1>“Cüzdanı yönlendir, coinleri yakala” — <em>oyunlaştırılmış</em> interaktif masthead</h1>
+<p class="lead">Yatırımcının ilgisini ilk saniyede yakalayan kurgu (logo → başlık → uçuşan coinler → canlı grafik), ardından fareyle oynanan mini oyun: cüzdan imleci izler, düşen coinler yakalanır, portföy şeridi dolar. Beş coin toplanınca konfeti ve “Portföyün hazır! Şimdi Paribu’da kur.” CTA’sı. Kullanıcı dokunmazsa banner kendi kendine gösteri yapar ve 30 saniyede durağan kareye geçer.</p>
+
+<div class="toolbar">
+  <button class="primary" id="restart">↻ Yeniden başlat</button>
+  <button id="pause">⏸ Duraklat</button>
+  <button id="bgToggle">Zemin: koyu</button>
+  <button id="simToggle">Yayın simülasyonu</button>
+  <span class="sp"></span>
+  <a class="btn" href="../dist/970x250/index.html" target="_blank">Yeni sekmede aç</a>
+  <a class="btn" href="../dist/zip/paribu-masthead-970x250.zip">Zip indir</a>
+</div>
+
+<div class="card" id="stageCard">
+  <div class="card-h"><h3>970 × 250 <span>Masthead / Billboard · interaktif</span></h3><div class="links"><span style="font-size:12px;color:var(--muted)">İmleci banner üzerine getirip sağa-sola hareket ettirin; oyun alanına tıklayınca cüzdan “hamle” yapar.</span></div></div>
+  <div class="stage-area"><div class="frame"><iframe id="masthead" src="../dist/970x250/index.html" title="Paribu masthead" scrolling="no"></iframe></div></div>
+  <p class="hint">Klavye: bannerı odaklayıp <kbd>←</kbd> <kbd>→</kbd> cüzdanı taşır, <kbd>Boşluk</kbd> hamle, <kbd>Enter</kbd> siteye gider. Dokunmatikte parmakla sürüklenir. <code>prefers-reduced-motion</code> açıkken giriş kurgusu atlanır, coinler yalnızca etkileşimle düşer.</p>
+</div>
+
+<div class="sim" id="sim">
+  <div class="top"><b>Ekonomi Gündemi</b><span>21 Eylül 2026 · Piyasalar</span></div>
+  <div class="nav"><span>Son Dakika</span><span>Borsa</span><span>Döviz</span><span>Kripto</span><span>Altın</span><span>Şirketler</span><span>Analiz</span></div>
+  <div class="slot"><div><small>Reklam</small><div class="frame"><iframe id="mastheadSim" title="Paribu masthead (yayın simülasyonu)" scrolling="no"></iframe></div></div></div>
+  <div class="body">
+    <div class="art"><h2>Piyasalarda haftanın öne çıkan gelişmeleri</h2><div class="ph"></div><p>Örnek haber metni. Bu alan, mastheadin bir haber sitesinin en üstünde nasıl görüneceğini göstermek için yer tutucu içerikle doldurulmuştur.</p><p>Masthead sayfa yüklendiği anda kurguya başlar; kullanıcı imleci üzerine getirdiğinde oyun devreye girer. Sayfanın diğer öğeleriyle etkileşmez, ses içermez ve genişlemez.</p></div>
+    <div class="side"><div><b>Çok okunanlar</b><br>Örnek başlık bir<br>Örnek başlık iki<br>Örnek başlık üç</div><div><b>Piyasa özeti</b><br>Bu kutu yer tutucudur.</div></div>
+  </div>
+</div>
+
+<section class="notes">
+  <div class="note"><h4>Kurgu (ilk 3 sn)</h4><ol>
+    <li><b>0,15 sn</b> Logo sol üstte belirir; arka planda ızgara ve yeşil parıltı, grafik çizgisi soldan sağa çizilmeye başlar.</li>
+    <li><b>0,45 sn</b> “Kripto dünyasına / ilk adımını at.” satır satır yükselir; alt metin ve “Hemen Başla” CTA’sı gelir.</li>
+    <li><b>0,9 sn</b> BTC, ETH, SOL, AVAX, XRP, DOGE sağdan uçarak oyun alanına yerleşir, yerinde döner.</li>
+    <li><b>2,0 sn</b> “Yeni üyelere özel 500 TL hediye” kartı 3B dönüşle açılır; özellik çipleri ve portföy şeridi gelir.</li>
+    <li><b>2,7 sn</b> “Cüzdanı imleçle yönlendir, coinleri yakala!” ipucu; cüzdan alta gelir, ilk coin düşer.</li>
+  </ol></div>
+  <div class="note"><h4>Etkileşim</h4><ul>
+    <li><b>Cüzdan imleci izler</b>; düşen coinler yakalanınca +1, parçacık patlaması, grafikte yeşil sıçrama ve portföy şeridine coin eklenir.</li>
+    <li><b>Hamle:</b> oyun alanına tıklama/Boşluk cüzdanı kısa süre genişletir ve yakındaki coinleri çeker.</li>
+    <li><b>Kazanma:</b> 5 coin → konfeti, başlık “Portföyün hazır! Şimdi Paribu’da kur.”, CTA “Paribu’ya Katıl” olur ve nabız atar; “Tekrar oyna” çıkar.</li>
+    <li><b>Otomatik gösteri:</b> imleç yokken cüzdan kendi kendine oynar (kazanmaz, son iki coini kullanıcıya bırakır).</li>
+    <li><b>Çıkış:</b> logo, başlık, CTA, kampanya kartı ve boş alanlar siteye gider; oyun alanı tıklaması çıkış değildir (ayar: <code>clickThroughEverywhere</code>).</li>
+  </ul></div>
+  <div class="note"><h4>Rich media / teknik</h4><ul>
+    <li>Tek HTML dosyası; CSS/JS satır içi, coin ikonları, logo ve Sora fontu base64 gömülü → <b>harici istek yok</b>.</li>
+    <li><code>&lt;meta name="ad.size"&gt;</code>, <code>window.clickTag</code>, <code>Enabler.exit</code>; etkileşim sayaçları için <code>window.adTrack(olay)</code> ve <code>Enabler.counter</code> kancaları (interaction, game_start, coin_catch, boost, game_win, replay, cta_click).</li>
+    <li>Canvas 2D, retina (2×), 60 fps; sekme gizlenince duraklar; 30 sn sonra kendi kendine durur, etkileşimle devam eder.</li>
+    <li>Klavye, dokunmatik ve azaltılmış hareket desteği; yasal ibare ve kampanya dipnotu sabit.</li>
+  </ul></div>
+</section>
+
+<section class="shots">
+  <h3>Ekran görüntüleri</h3>
+  <div class="grid">
+    <figure><img src="screens/01-acilis.jpg" alt=""><figcaption>Açılış (0,6 sn)</figcaption></figure>
+    <figure><img src="screens/02-coinler-geliyor.jpg" alt=""><figcaption>Coinler sahneye giriyor (1,5 sn)</figcaption></figure>
+    <figure><img src="screens/03-kurgu-tamam.jpg" alt=""><figcaption>Kurgu tamam (3 sn)</figcaption></figure>
+    <figure><img src="screens/05-oyun.jpg" alt=""><figcaption>Oyun: yakalama, +1</figcaption></figure>
+    <figure><img src="screens/06-portfoy-doluyor.jpg" alt=""><figcaption>Portföy doluyor</figcaption></figure>
+    <figure><img src="screens/07-kazandin.jpg" alt=""><figcaption>Kazanma: konfeti ve yeni başlık</figcaption></figure>
+  </div>
+</section>
+
+<footer>Bu sayfa sunum amaçlı bir önizlemedir. Reklam ağına yüklenecek dosya <code>dist/970x250/index.html</code> (zip: <code>dist/zip/</code>). Metinler, renkler, coinler ve süreler <code>src/data.js</code> içindedir.</footer>
+</div>
+<script>
+(function(){
+  var main=document.getElementById('masthead'),simF=document.getElementById('mastheadSim'),sim=document.getElementById('sim'),card=document.getElementById('stageCard');
+  var paused=false;
+  function frames(){return [main,simF].filter(function(f){return f&&(f.src||f.srcdoc)})}
+  document.getElementById('restart').addEventListener('click',function(){frames().forEach(function(f){if(f.src)f.contentWindow.postMessage('restart','*');else if(f.srcdoc)f.srcdoc=f.srcdoc})});
+  document.getElementById('pause').addEventListener('click',function(){paused=!paused;this.textContent=paused?'▶ Oynat':'⏸ Duraklat';frames().forEach(function(f){f.contentWindow.postMessage(paused?'pause':'play','*')})});
+  document.getElementById('bgToggle').addEventListener('click',function(){card.classList.toggle('light');this.textContent='Zemin: '+(card.classList.contains('light')?'açık':'koyu')});
+  document.getElementById('simToggle').addEventListener('click',function(){
+    var on=sim.classList.toggle('is-on');this.classList.toggle('is-on',on);
+    if(on){ if(main.srcdoc){simF.srcdoc=main.srcdoc}else if(!simF.src){simF.src=main.src} sim.scrollIntoView({behavior:'smooth',block:'start'}) }
+  });
+})();
+</script>
+</body>
+</html>
