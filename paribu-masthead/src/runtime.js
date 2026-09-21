@@ -357,6 +357,10 @@
     interact(); boost();
   });
   ad.addEventListener('keydown', function (e) {
+    if (e.target !== ad) { // odak bir düğmedeyse (CTA, Tekrar oyna, kampanya kartı) tarayıcının tıklaması geçerli; çift çıkış olmasın
+      if ((e.key === 'Enter' || e.key === ' ') && e.target.classList && e.target.classList.contains('badge')) { e.preventDefault(); openLink('Kampanya'); }
+      return;
+    }
     if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') { e.preventDefault(); kb = true; if (mode !== 'intro' && mode !== 'boot' && mode !== 'win') interact(); wallet.tx += e.key === 'ArrowLeft' ? -46 : 46; }
     else if (e.key === ' ') { e.preventDefault(); if (mode === 'win') resetGame(true); else { kb = true; interact(); boost(); } }
     else if (e.key === 'Enter') { openLink('CTA'); }

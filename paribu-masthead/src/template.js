@@ -85,7 +85,7 @@ ${fontLink}
   <button type="button" class="cta exit in"${delay(1.65)} aria-label="${esc(K.cta)} – ${esc(B.domain)}"><b>${esc(K.cta)}</b>${ARROW}</button>
   <div class="hint"><div class="prompt in"${delay(2.7)} aria-live="polite">${HAND}<span>${esc(K.prompt)}</span></div></div>
   <button type="button" class="replay">${esc(K.replay)}</button>
-  ${CP.enabled ? `<div class="badge exit" role="button" aria-label="${esc(CP.kicker)} ${esc(CP.value)} ${esc(CP.suffix)}">${GIFT}<span class="k">${esc(CP.kicker)}</span><span class="v">${esc(CP.value)}</span><span class="s">${esc(CP.suffix)}</span></div>` : ''}
+  ${CP.enabled ? `<div class="badge exit" role="button" tabindex="0" aria-label="${esc(CP.kicker)} ${esc(CP.value)} ${esc(CP.suffix)}">${GIFT}<span class="k">${esc(CP.kicker)}</span><span class="v">${esc(CP.value)}</span><span class="s">${esc(CP.suffix)}</span></div>` : ''}
   <div class="feats in"${delay(2.25)}>${feats}</div>
   <div class="portfolio in"${delay(2.4)}><div class="pl"><span>${esc(K.portfolioLabel)}</span><b>0/${data.game.target}</b></div><div class="slots" aria-hidden="true">${slots}</div></div>
   <div class="legal in"${delay(2.5)}>${legal}</div>

@@ -105,7 +105,7 @@ button{font:inherit;color:inherit}
   <button type="button" class="cta exit in" style="animation-delay:1.65s" aria-label="Hemen Başla – paribu.com"><b>Hemen Başla</b><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8h10M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   <div class="hint"><div class="prompt in" style="animation-delay:2.7s" aria-live="polite"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.2 1.6 12.6 7.3l-3.9.9-1.6 3.7z"/><path d="M1 12.5h2.2M12.8 12.5H15M2.4 11l-1.4 1.5 1.4 1.5M13.6 11l1.4 1.5-1.4 1.5" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/></svg><span>Cüzdanı imleçle yönlendir, coinleri yakala!</span></div></div>
   <button type="button" class="replay">Tekrar oyna</button>
-  <div class="badge exit" role="button" aria-label="Yeni üyelere özel 500 TL hediye*"><svg class="gift" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 9.5h17v4h-17zM5 13.5h14V21H5zM12 9.5V21M12 9.5c-3 0-5-1.2-5-3a2 2 0 0 1 3.6-1.2C11.6 6.4 12 9.5 12 9.5zm0 0c3 0 5-1.2 5-3a2 2 0 0 0-3.6-1.2C12.4 6.4 12 9.5 12 9.5z"/></svg><span class="k">Yeni üyelere özel</span><span class="v">500 TL</span><span class="s">hediye*</span></div>
+  <div class="badge exit" role="button" tabindex="0" aria-label="Yeni üyelere özel 500 TL hediye*"><svg class="gift" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 9.5h17v4h-17zM5 13.5h14V21H5zM12 9.5V21M12 9.5c-3 0-5-1.2-5-3a2 2 0 0 1 3.6-1.2C11.6 6.4 12 9.5 12 9.5zm0 0c3 0 5-1.2 5-3a2 2 0 0 0-3.6-1.2C12.4 6.4 12 9.5 12 9.5z"/></svg><span class="k">Yeni üyelere özel</span><span class="v">500 TL</span><span class="s">hediye*</span></div>
   <div class="feats in" style="animation-delay:2.25s"><span>7/24 TL yatır–çek</span><span>Kolay üyelik</span><span>Güvenli saklama</span></div>
   <div class="portfolio in" style="animation-delay:2.4s"><div class="pl"><span>Portföyüm</span><b>0/5</b></div><div class="slots" aria-hidden="true"><span class="slot"></span><span class="slot"></span><span class="slot"></span><span class="slot"></span><span class="slot"></span></div></div>
   <div class="legal in" style="animation-delay:2.5s">Kripto varlıklar yüksek fiyat dalgalanması riski içerir; yatırım tavsiyesi değildir. *Kampanya koşulları geçerlidir.</div>
@@ -469,6 +469,10 @@ button{font:inherit;color:inherit}
     interact(); boost();
   });
   ad.addEventListener('keydown', function (e) {
+    if (e.target !== ad) { // odak bir düğmedeyse (CTA, Tekrar oyna, kampanya kartı) tarayıcının tıklaması geçerli; çift çıkış olmasın
+      if ((e.key === 'Enter' || e.key === ' ') && e.target.classList && e.target.classList.contains('badge')) { e.preventDefault(); openLink('Kampanya'); }
+      return;
+    }
     if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') { e.preventDefault(); kb = true; if (mode !== 'intro' && mode !== 'boot' && mode !== 'win') interact(); wallet.tx += e.key === 'ArrowLeft' ? -46 : 46; }
     else if (e.key === ' ') { e.preventDefault(); if (mode === 'win') resetGame(true); else { kb = true; interact(); boost(); } }
     else if (e.key === 'Enter') { openLink('CTA'); }
