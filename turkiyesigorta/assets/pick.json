@@ -1,0 +1,9 @@
+{
+  "logo":      { "file": "assets/brand/logo.png",          "note": "Sitenin Logolar sayfası: Türkiye Sigorta slogansız logo (PNG, şeffaf)" },
+  "logoWhite": { "file": "assets/brand/wordmark-white.svg", "note": "Site alt bilgisindeki beyaz yazı markası (satır içi SVG)" },
+  "lockup":    { "file": "assets/brand/lockup-white.svg",   "note": "Site üst şeridindeki iki markalı beyaz logo" },
+  "emblem":    { "file": "assets/brand/emblem.svg",         "note": "Amblem (etiket ikonu)" },
+  "swoosh":    { "file": "assets/brand/swoosh.svg",         "note": "Amblemin turkuaz formu – sayfa başlıklarındaki filigran" },
+  "scenes": {},
+  "outro": null
+}
