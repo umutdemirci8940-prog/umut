@@ -27,13 +27,13 @@ const MAX_FILE = 12 * 1024 * 1024, MAX_TOTAL = 160 * 1024 * 1024;
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36';
 const root = path.join(__dirname, '..');
 const out = path.resolve(root, String(args.out || 'assets/site'));
-for (const d of ['screens', 'img', 'svg', 'logo', 'sheets']) fs.mkdirSync(path.join(out, d), { recursive: true });
+for (const d of ['screens', 'img', 'svg', 'logo', 'sheets', 'fonts']) fs.mkdirSync(path.join(out, d), { recursive: true });
 
 const SEED = ['/', '/urunlerimiz', '/urunlerimiz/arac-sigortalari', '/urunlerimiz/arac-sigortalari/genisletilmis-kasko',
   '/urunlerimiz/arac-sigortalari/trafik-sigortasi', '/urunlerimiz/konut-sigortalari', '/urunlerimiz/konut-sigortalari/konut-sigortasi',
-  '/urunlerimiz/konut-sigortalari/dask/1000', '/urunlerimiz/saglik-sigortalari', '/urunlerimiz/saglik-sigortalari/tamamlayici-saglik-sigortasi',
+  '/urunlerimiz/konut-sigortalari/dask', '/urunlerimiz/saglik-sigortalari', '/urunlerimiz/saglik-sigortalari/tamamlayici-saglik-sigortasi',
   '/urunlerimiz/saglik-sigortalari/seyahat-saglik-sigortasi', '/urunlerimiz/hayat-sigortalari', '/bireysel-emeklilik',
-  '/hakkimizda', '/hakkimizda/kurumsal-iletisim/kurumsal-materyaller/logolar', '/kurumsal/kurumsal-iletisim/kurumsal-materyaller/logolar',
+  '/hakkimizda', '/hakkimizda/kurumsal-iletisim/kurumsal-materyaller/logolar', '/kampanyalar', '/firsatlar', '/urunlerimiz/arac-sigortalari/dar-pert-kasko', '/urunlerimiz/saglik-sigortalari/ozel-avantaj-saglik-sigortasi', '/urunlerimiz/hayat-sigortalari/hayat-sigortasi', '/bireysel-emeklilik/bireysel-emeklilik-urunlerimiz',
   '/musteri-platformu-mobil', '/aktif-kampanyalar/pesin-fiyatina-taksit-kampanyasi', '/pesin-fiyatina-taksit-kampanyasi',
   '/aktif-kampanyalar', '/musteri-iletisim-merkezi', '/hakkimizda/kurumsal-iletisim/reklam-filmleri/2023', '/hasar'];
 
@@ -77,6 +77,7 @@ const note = (url, extra = {}, page = '') => {
   const ctx = await browser.newContext({ userAgent: UA, locale: 'tr-TR', timezoneId: 'Europe/Istanbul', viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1, ignoreHTTPSErrors: true });
   await ctx.addInitScript(() => { Object.defineProperty(navigator, 'webdriver', { get: () => undefined }); });
   const netBodies = new Map(); // url -> {buf, ct}
+  const fontBodies = new Map(); // url -> {buf, ct}
   ctx.on('response', async (res) => {
     try {
       const req = res.request(); const t = req.resourceType(); const url = res.url(); const ct = res.headers()['content-type'] || '';
@@ -84,7 +85,9 @@ const note = (url, extra = {}, page = '') => {
       if (t === 'image' || ct.startsWith('image/')) {
         const pg = req.frame() && req.frame().url();
         note(url, { via: 'network', contentType: ct }, orig(pg));
-        if (!netBodies.has(orig(url)) && netBodies.size < 400) { const b = await res.body().catch(() => null); if (b && b.length > 1500 && b.length < MAX_FILE) netBodies.set(orig(url), { buf: b, ct }); }
+        if (!netBodies.has(orig(url)) && netBodies.size < 600) { const b = await res.body().catch(() => null); if (b && b.length > 1500 && b.length < MAX_FILE) netBodies.set(orig(url), { buf: b, ct }); }
+      } else if (t === 'font' || /font\//.test(ct) || /\.(woff2?|otf|ttf)(\?|$)/i.test(url)) {
+        if (!fontBodies.has(url) && fontBodies.size < 40) { const b = await res.body().catch(() => null); if (b && b.length > 1000) fontBodies.set(url, { buf: b, ct }); }
       }
     } catch { /* yoksay */ }
   });
@@ -126,14 +129,16 @@ const note = (url, extra = {}, page = '') => {
       for (let y = 0; y < Math.min(total, 9000); y += 500) { await page.evaluate((yy) => window.scrollTo(0, yy), y); await sleep(160); }
       await page.evaluate(() => window.scrollTo(0, 0)); await sleep(600);
       await page.waitForLoadState('networkidle', { timeout: 10000 }).catch(() => {});
-      // slider ilerlet
-      for (let i = 0; i < 6; i++) {
-        const clicked = await page.evaluate(() => {
-          const cand = [...document.querySelectorAll('button, a, div, span')].filter((e) => /next|sonraki|ileri|swiper-button-next|slick-next|arrow-right|carousel-control-next|owl-next/i.test(e.className + ' ' + (e.getAttribute('aria-label') || '')));
-          const v = cand.find((e) => { const r = e.getBoundingClientRect(); return r.width > 4 && r.height > 4; });
-          if (v) { v.click(); return true; } return false;
-        }).catch(() => false);
-        if (!clicked) break; await sleep(900);
+      // Karusel: yalnız gerçek slider düğmeleri (bağlantı olmayan), her adımda slayt görsellerini topla
+      rec.slides = [];
+      for (let i = 0; i < 7; i++) {
+        const got = await page.evaluate(() => {
+          const imgs = [...document.querySelectorAll('.swiper-slide img, [class*="slider"] img, [class*="carousel"] img, [class*="hero"] img')].map((im) => ({ src: im.currentSrc || im.src, alt: im.alt || '', nw: im.naturalWidth, nh: im.naturalHeight, w: Math.round(im.getBoundingClientRect().width) }));
+          const btn = [...document.querySelectorAll('div, button, span')].filter((e) => e.tagName !== 'A' && !e.closest('a') && !e.closest('header, nav, footer') && /(^|\s)(next|swiper-button-next|slick-next|owl-next|carousel-control-next)(\s|$)/i.test(String(e.className)) && e.getBoundingClientRect().width > 4);
+          if (btn.length) { btn[0].click(); return { imgs, clicked: true }; } return { imgs, clicked: false };
+        }).catch(() => ({ imgs: [], clicked: false }));
+        for (const im of got.imgs) { if (im.src && !rec.slides.some((x) => x.src === im.src)) rec.slides.push(im); note(im.src, { alt: im.alt, via: 'slide', natural: [im.nw, im.nh], box: { w: im.w, h: im.w } }, p); }
+        if (!got.clicked) break; await sleep(1100);
       }
       const shotF = path.join(out, 'screens', `${slug(p === '/' ? 'home' : p)}-full.jpg`);
       await page.screenshot({ path: shotF, type: 'jpeg', quality: 62, fullPage: true, clip: undefined }).catch(() => {});
@@ -166,7 +171,7 @@ const note = (url, extra = {}, page = '') => {
       for (const l of dom.lazy) note(l.src, { via: 'data-attr', cls: l.cls }, p);
       for (const ic of dom.icons) note(ic.href, { via: 'icon', alt: ic.rel + ' ' + ic.sizes }, p);
       for (const k of ['og:image', 'twitter:image']) if (dom.meta[k]) note(dom.meta[k], { via: k }, p);
-      dom.svgs.forEach((s, i) => { const f = path.join(out, 'svg', `${slug(p === '/' ? 'home' : p)}-${i}-${hash(s.html)}.svg`); fs.writeFileSync(f, s.html); manifest.svgs.push({ file: path.relative(out, f), page: p, box: s.box, cls: s.cls, parentCls: s.parentCls, bytes: s.html.length }); });
+      dom.svgs.forEach((s, i) => { const hsh = hash(s.html); if (manifest.svgs.some((x) => x.hash === hsh)) return; const f = path.join(out, 'svg', `${hsh}-${slug(p === '/' ? 'home' : p)}-${i}.svg`); fs.writeFileSync(f, s.html); manifest.svgs.push({ file: path.relative(out, f), hash: hsh, page: p, box: s.box, cls: s.cls, parentCls: s.parentCls, bytes: s.html.length }); });
       Object.assign(manifest.cssVars, dom.vars);
       for (const [c, n] of Object.entries(dom.colorHits)) manifest.colors[c] = (manifest.colors[c] || 0) + n;
       for (const [k, v] of Object.entries(dom.fonts)) manifest.fonts[k] = manifest.fonts[k] || v;
@@ -201,7 +206,8 @@ const note = (url, extra = {}, page = '') => {
     const nat = m.natural || [0, 0]; const box = m.box || { w: 0, h: 0 };
     const isLogo = m.inHeader || /logo/i.test(m.url + ' ' + [...m.alts].join(' ') + ' ' + (m.cls || ''));
     const isIcon = /favicon|icon|sprite|arrow|ok\b|chevron|social|facebook|twitter|instagram|linkedin|youtube|apple|google-play|app-store|whatsapp|play\.png/i.test(m.url) && !isLogo;
-    const big = Math.max(nat[0], box.w) >= MIN_W || /\.(svg)(\?|$)/i.test(m.url) && isLogo;
+    const cachedBig = netBodies.has(m.url) && netBodies.get(m.url).buf.length >= 12 * 1024;
+    const big = Math.max(nat[0], box.w) >= MIN_W || cachedBig || (/\.(svg)(\?|$)/i.test(m.url) && isLogo);
     m.isLogo = isLogo; m.isIcon = isIcon;
     m.score = (isLogo ? 1000 : 0) + Math.max(nat[0] * nat[1], box.w * box.h) / 1000 + (m.pages.has('/') ? 50 : 0) + ([...m.via].includes('og:image') ? 80 : 0);
     m.want = isLogo || (big && !isIcon);
@@ -224,7 +230,7 @@ const note = (url, extra = {}, page = '') => {
       if (!buf || buf.length < 800 || buf.length > MAX_FILE) { m.dlError = 'boyut'; continue; }
       const ext = extOf(ct, m.url); if (!/^(jpg|png|webp|gif|svg|avif)$/.test(ext)) { m.dlError = 'tür ' + ct; continue; }
       const dim = imgSize(buf, ext) || (m.natural && m.natural[0] ? { w: m.natural[0], h: m.natural[1] } : null);
-      if (!m.isLogo && dim && dim.w < MIN_W && ext !== 'svg') { m.dlError = 'dar ' + dim.w; continue; }
+      if (!m.isLogo && dim && dim.w < Math.min(MIN_W, 300) && ext !== 'svg') { m.dlError = 'dar ' + dim.w; continue; }
       const base = slug(path.basename(new URL(m.url).pathname).replace(/\.[a-z0-9]+$/i, '')) || 'img';
       const name = `${m.isLogo ? 'logo-' : ''}${base}-${hash(m.url)}.${ext}`;
       const file = path.join(out, m.isLogo ? 'logo' : 'img', name);
@@ -258,6 +264,11 @@ const note = (url, extra = {}, page = '') => {
     await sheetPage.screenshot({ path: path.join(out, 'sheets', 'logos.jpg'), type: 'jpeg', quality: 80, fullPage: true }).catch(() => {});
     fs.unlinkSync(f);
   }
+  // Fontlar
+  fs.mkdirSync(path.join(out, 'fonts'), { recursive: true });
+  manifest.fontFiles = [];
+  for (const [u, { buf, ct }] of fontBodies) { const ext = (u.match(/\.(woff2?|otf|ttf)(\?|$)/i) || [, ct.includes('woff2') ? 'woff2' : 'woff'])[1].toLowerCase(); const name = slug(path.basename(new URL(u).pathname).replace(/\.[a-z0-9]+$/i, '')) + '.' + ext; fs.writeFileSync(path.join(out, 'fonts', name), buf); manifest.fontFiles.push({ file: 'fonts/' + name, url: u, bytes: buf.length }); }
+  log(`✔ ${manifest.fontFiles.length} font dosyası`);
   await browser.close();
 
   // Rapor
