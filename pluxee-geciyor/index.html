@@ -310,7 +310,7 @@ function scopeOf(st, t) {
   var n = nLive(c.nFinal, t);
   if (st.data === 'low' || n < 300) {
     var b = BOLGE[c.bolge];
-    if (b && nLive(b.nFinal, t) >= 300) return { ad: c.bolge, da: b.da, n: nLive(b.nFinal, t), pay: b.pay, kind: 'bolge' };
+    if (b && nLive(b.nFinal, t) >= 100) return { ad: c.bolge, da: b.da, n: nLive(b.nFinal, t), pay: b.pay, kind: 'bolge' };
     return { ad: TR.ad, da: TR.da, n: nLive(TR.nFinal, t), pay: TR.pay, kind: 'tr' };
   }
   return { ad: c.ad, da: c.da, n: n, pay: c.pay, kind: 'il' };
@@ -569,6 +569,10 @@ function createUnit(host, opts) {
   function render(st) {
     U.state = st;
     var v = buildVM(st);
+    if (st.cmp === 'limited') { /* sınırlı rıza: fiş ve sıra rozeti kapalı, oy yalnız sayfa belleğinde */
+      v.ctas = v.ctas.filter(function (c) { return c.k !== 'fis'; });
+      if (v.panel && v.panel.seq) v.panel.seq = 1;
+    }
     var key = [v.id, st.cat, st.city, st.seg, st.cal, st.vote, st.data, st.seq, st.weather, v.ctas.length].join('|');
     var full = key !== U.last;
     el.classList.toggle('green', !!v.green);
