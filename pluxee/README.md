@@ -6,7 +6,7 @@ Kampanyanın ana fikri "Pluxee geçiyor: burada, şurada, orada". Aynı fikir ü
 |---|---|---|---|
 | **Koridor** (varsayılan) | Kart, kabul noktalarının kapılarından *geçer*; her kapıda flaş ve "Geçti ✓", finalde koridor açılır | Sürükle (ileri/geri), basılı tut (hızlan), imleçle yönlendir, rota noktasına tıkla | `dist/koridor/index.html` |
 | **Mercek** | Kart bir ışık merceğidir; karanlık şehirde gezdirdiğiniz yerdeki kabul noktası aydınlanır ve "geçiyor" | Kartı imleç/parmakla gezdir (ok tuşları da) | `dist/mercek/index.html` |
-| **Fiş** | POS fişi satır satır yazılır: RESTORAN … GEÇTİ ✓; toplam: HER YERDE | POS'a/karta dokunarak yazdır, satır üstüne gel, fişi çekip kopar | `dist/fis/index.html` |
+| **Fiş** | POS fişi satır satır yazılır: RESTORAN … GEÇİYOR ✓; toplam: HER YERDE GEÇİYOR | POS'a/karta dokunarak yazdır, satır üstüne gel, fişi çekip kopar | `dist/fis/index.html` |
 
 Diğer çıktılar: `dist/970x250/index.html` (varsayılan konseptin kopyası), `dist/zip/pluxee-<konsept>-970x250.zip` (reklam ağı paketleri), `preview/index.html` (üç sekmeli sunum sayfası; sinyal paneli, karar zinciri), `preview/screens/` (ekran görüntüleri), `dist/arsiv/` (önceki sürümler).
 
@@ -24,7 +24,7 @@ Diğer çıktılar: `dist/970x250/index.html` (varsayılan konseptin kopyası), 
 |---|---|
 | ![](preview/screens/mercek-restoran.jpg) | ![](preview/screens/mercek-final.jpg) |
 
-| Fiş: satır satır yazdırıyor | Fiş: tamam, "HER YERDE GEÇTİ" |
+| Fiş: satır satır yazdırıyor | Fiş: tamam, "HER YERDE GEÇİYOR" |
 |---|---|
 | ![](preview/screens/fis-yazdiriyor.jpg) | ![](preview/screens/fis-tamam.jpg) |
 
@@ -56,7 +56,7 @@ Varlıkları siteden çekmenin iki yolu:
 
 **Mercek** – sahne karanlık ve bulanık bir şehir; kartın çevresindeki mercek (CSS maske) altındaki renkli katmanı gösterir. Dört kabul noktası loş simgelerle durur; mercek üstüne gelince aydınlanır, 0,3 sn kalınca "Geçiyor ✓" rozeti ve parçacıklar. Kart imleci gecikmeli izler, hıza göre eğilir. Dördü de aydınlanınca mercek tüm sahneyi kaplar. Dokunulmazsa kart noktaları sırayla dolaşır. Klavye: ok tuşları.
 
-**Fiş** – kart POS'a dokunur, cihaz "Onaylandı" der, ısıl yazıcı fişi çıkar: PLUXEE / İŞLEM FİŞİ · saat / RESTORAN … GEÇTİ ✓ … / HER YERDE GEÇTİ ✓. Her satır soldan sağa basılır, kağıt yukarı kayar. POS'a ya da karta dokunmak bir sonraki satırı yazdırır; satırın üstüne gelince o yerin atmosferi ve başlığı gelir; bitince fişi çekmek (ya da dokunmak) koparır: kağıt savrulur, yuvada tırtıklı bir parça kalır. Dokunulmazsa satırlar 2,3 sn arayla yazılır ve fiş kendiliğinden kopar. Klavye: boşluk.
+**Fiş** – kart POS'a dokunur, cihaz "Onaylandı" der, ısıl yazıcı fişi çıkar: PLUXEE / İŞLEM FİŞİ · saat / RESTORAN … GEÇİYOR ✓ … / HER YERDE GEÇİYOR ✓. Her satır soldan sağa basılır, kağıt yukarı kayar. POS'a ya da karta dokunmak bir sonraki satırı yazdırır; satırın üstüne gelince o yerin atmosferi ve başlığı gelir; bitince fişi çekmek (ya da dokunmak) koparır: kağıt savrulur, yuvada tırtıklı bir parça kalır. Dokunulmazsa satırlar 2,3 sn arayla yazılır ve fiş kendiliğinden kopar. Klavye: boşluk.
 
 ## Sinyaller ve parametreler
 

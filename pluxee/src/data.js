@@ -215,7 +215,7 @@ module.exports = {
     final: { title: 'Burada, şurada, orada', word: 'Her yerde,' },
     header: 'PLUXEE',
     subheader: 'İŞLEM FİŞİ',
-    pass: 'GEÇTİ',
+    pass: 'GEÇİYOR',
     total: 'HER YERDE',
     lineNames: { restoran: 'RESTORAN', kafe: 'KAFE', market: 'MARKET', online: 'ONLİNE SİPARİŞ' },
     hint: 'Dokunun: yazdırın',

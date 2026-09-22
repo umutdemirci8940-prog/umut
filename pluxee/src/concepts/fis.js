@@ -1,6 +1,6 @@
 'use strict';
 /**
- * KONSEPT 3 – Fiş: POS fişi satır satır yazdırılır ("RESTORAN … GEÇTİ ✓").
+ * KONSEPT 3 – Fiş: POS fişi satır satır yazdırılır ("RESTORAN … GEÇİYOR ✓").
  * Kullanıcı POS'a/karta dokunarak bir sonraki satırı yazdırır, bitince fişi çekip koparır.
  * Yazdırılan satırın üstüne gelince o yerin atmosferi görünür. Dokunulmazsa fiş kendiliğinden yazılır.
  */
@@ -46,9 +46,9 @@ const CSS = `
 .ln.hdr{justify-content:center;font-weight:800;font-size:11px;letter-spacing:.14em;color:#1B1636;padding-top:2px}
 .ln.subh{justify-content:center;font-size:7.5px;letter-spacing:.2em;color:#6B6B78}
 .ln.dash{height:9px;line-height:9px;color:#9a9aa8;justify-content:center;letter-spacing:.1em;font-size:7px}
-.ln.item{cursor:pointer}
+.ln.item{cursor:pointer;font-size:8px;gap:4px}
 .ln.item b{font-weight:700}
-.ln.item .dots{flex:1;overflow:hidden;color:#b5b5c0}
+.ln.item .dots{flex:1;min-width:8px;overflow:hidden;color:#b5b5c0}
 .ln.item .ok{font-weight:800;color:#0B7A3E;display:inline-flex;align-items:center;gap:3px}
 .ln.item .ok svg{width:9px;height:9px}
 .ln.item.is-hot{background:rgba(0,235,94,.14);margin:0 -6px;padding:0 6px;border-radius:3px}
@@ -161,7 +161,7 @@ function render(data, assets) {
 }
 
 module.exports = {
-  id: 'fis', title: 'Fiş', tagline: 'POS fişi satır satır yazılır: RESTORAN … GEÇTİ ✓',
+  id: 'fis', title: 'Fiş', tagline: 'POS fişi satır satır yazılır: RESTORAN … GEÇİYOR ✓',
   howto: 'POS\'a ya da karta dokunarak bir sonraki satırı yazdırın; satırların üstüne gelin; bitince fişi çekip koparın.',
   render,
 };

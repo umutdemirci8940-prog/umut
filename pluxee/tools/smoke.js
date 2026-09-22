@@ -118,9 +118,11 @@ function fileChecks(id) {
   await page.mouse.click(440 + 408, 200); await page.waitForTimeout(450); await page.mouse.click(440 + 408, 200); await page.waitForTimeout(450); s = await st(page);
   ok(s.printed > p1 && s.visited >= 3, 'her dokunuş bir satır daha (' + s.visited + '/4)');
   await page.mouse.click(440 + 408, 200); await page.waitForTimeout(1300); s = await st(page);
-  ok(s.visited === 4 && s.phase === 'ready' && s.finalState && s.word === 'Her yerde,', 'dört satır + toplam: "HER YERDE GEÇTİ", fiş hazır');
+  ok(s.visited === 4 && s.phase === 'ready' && s.finalState && s.word === 'Her yerde,', 'dört satır + toplam: "HER YERDE GEÇİYOR", fiş hazır');
   const items = await page.$$eval('.ln.item', (l) => l.map((e) => e.textContent.replace(/\s+/g, ' ').trim()));
-  ok(items.length === 4 && items.every((x) => /GEÇTİ/.test(x)) && /RESTORAN/.test(items[0]), 'satırlar: ' + items.join(' | '));
+  ok(items.length === 4 && items.every((x) => /GEÇİYOR/.test(x) && !/GEÇTİ\b/.test(x)) && /RESTORAN/.test(items[0]), 'satırlar: ' + items.join(' | '));
+  const fits = await page.$$eval('.ln.item', (l) => l.every((e) => e.scrollWidth <= e.clientWidth + 1));
+  ok(fits, 'en uzun satır (ONLİNE SİPARİŞ … GEÇİYOR) fişe sığıyor');
   const lb = await page.$eval('.ln.item[data-i="1"]', (e) => { const r = e.getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2]; });
   await page.mouse.move(lb[0], lb[1], { steps: 4 }); await page.waitForTimeout(300); s = await st(page);
   ok(s.word === 'Kafede,' && s.layer === 'kafe', 'satırın üstüne gelince o yerin atmosferi ve başlığı');
