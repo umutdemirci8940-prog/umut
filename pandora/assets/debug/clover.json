@@ -1,0 +1,97 @@
+{
+ "url": "https://tr.pandora.net/",
+ "dom": {
+  "title": "Resmî Pandora™ | Charm’lar ve Bileklikler | Kadın Mücevherleri",
+  "h1": "Pandora",
+  "prices": [],
+  "gallery": [
+   {
+    "src": "https://cdn.media.amplience.net/v/pandora/2026Q3E_collection_pme_go_awa_bbl_gemini_zodiac_10s_16x9_Gemini_D1259922-04?w=auto&fmt=auto&qlt=80",
+    "alts": [],
+    "alt": "",
+    "nw": 1920,
+    "nh": 1080,
+    "x": 0,
+    "y": 0,
+    "w": 1440,
+    "h": 855,
+    "inHeader": false
+   },
+   {
+    "src": "https://cdn.media.amplience.net/v/pandora/2026Q3E_collection_moments_go_con_ic_pdp_model_styled_16x9_Gemini_D1260704-02?w=auto&fmt=auto&qlt=80",
+    "alts": [],
+    "alt": "",
+    "nw": 1920,
+    "nh": 1080,
+    "x": 0,
+    "y": 45,
+    "w": 1440,
+    "h": 855,
+    "inHeader": false
+   },
+   {
+    "src": "https://cdn.media.amplience.net/v/pandora/2026Q2C_occasion_because_go_con_fmg_gemini_video_04_10s_16x9_515360?w=auto&fmt=auto&qlt=80",
+    "alts": [],
+    "alt": "",
+    "nw": 1920,
+    "nh": 1080,
+    "x": 0,
+    "y": 45,
+    "w": 1440,
+    "h": 855,
+    "inHeader": false
+   },
+   {
+    "src": "https://cdn.media.amplience.net/v/pandora/2026Q3E_collection_pme_go_awa_bbl_gemini_zodiac_10s_3x4_Gemini_D1259922-03?w=auto&fmt=auto&qlt=80",
+    "alts": [],
+    "alt": "",
+    "nw": 1080,
+    "nh": 1440,
+    "x": 0,
+    "y": 0,
+    "w": 0,
+    "h": 0,
+    "inHeader": false
+   },
+   {
+    "src": "https://cdn.media.amplience.net/v/pandora/2026Q3E_collection_moments_go_con_ic_pdp_model_styled_3x4_Gemini_D1260704-01?w=auto&fmt=auto&qlt=80",
+    "alts": [],
+    "alt": "",
+    "nw": 1080,
+    "nh": 1440,
+    "x": 0,
+    "y": 0,
+    "w": 0,
+    "h": 0,
+    "inHeader": false
+   },
+   {
+    "src": "https://cdn.media.amplience.net/v/pandora/2026Q2C_occasion_because_go_con_fmg_gemini_video_04_10s_3x4_515361?w=auto&fmt=auto&qlt=80",
+    "alts": [],
+    "alt": "",
+    "nw": 1080,
+    "nh": 1440,
+    "x": 0,
+    "y": 0,
+    "w": 0,
+    "h": 0,
+    "inHeader": false
+   },
+   {
+    "src": "https://cdn.cookielaw.org/logos/static/powered_by_logo.svg",
+    "alts": [],
+    "alt": "Powered by Onetrust",
+    "nw": 568,
+    "nh": 53,
+    "x": 0,
+    "y": 0,
+    "w": 0,
+    "h": 0,
+    "inHeader": false
+   }
+  ],
+  "imgCount": 10,
+  "notFound": false
+ },
+ "jsonld": null
+}
