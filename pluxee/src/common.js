@@ -57,8 +57,10 @@ function paint(P,W,H){
   return c;
 }
 function grainUri(){var c=document.createElement('canvas');c.width=180;c.height=180;var x=c.getContext('2d'),d=x.createImageData(180,180),p=d.data,r=rng(5);for(var i=0;i<p.length;i+=4){var v=Math.floor(r()*255);p[i]=p[i+1]=p[i+2]=v;p[i+3]=255}x.putImageData(d,0,0);return c.toDataURL()}
-function initLayers(host,keys){var out={};try{for(var i=0;i<keys.length;i++){var cv=paint(PAL[keys[i]]);cv.setAttribute('data-key',keys[i]);host.appendChild(cv);out[keys[i]]=cv}var gr=ad.querySelector('.grain');if(gr)gr.style.backgroundImage='url('+grainUri()+')'}catch(err){}return out}
-function showLayer(layers,key){for(var k in layers)layers[k].classList.toggle('is-on',k===key)}
+/* Katmanlar: gerçek fotoğraf varsa <img> (object-fit: cover), yoksa üretilmiş bokeh (geçici) */
+function initLayers(host,keys){var out={};try{for(var i=0;i<keys.length;i++){var k=keys[i],el;var ph=D.photos&&(D.photos[k]||(k==='rain'&&D.photos.online)||(k==='final'&&(D.photos.hero||D.photos.restoran)));if(ph){el=document.createElement('img');el.src=ph;el.alt='';el.className='ph';el.setAttribute('data-src',k)}else{el=paint(PAL[k])}el.setAttribute('data-key',k);host.appendChild(el);out[k]=el}var gr=ad.querySelector('.grain');if(gr)gr.style.backgroundImage='url('+grainUri()+')'}catch(err){}return out}
+function photoOf(k){return D.photos&&D.photos[k]?D.photos[k]:null}
+function showLayer(layers,key){if(!layers[key]){for(var kk in layers){key=kk;break}}for(var k in layers)layers[k].classList.toggle('is-on',k===key)}
 `;
 
 /* ---------- Ortak CSS ---------- */
@@ -70,8 +72,11 @@ body{font-family:Manrope,Inter,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
 .ad{position:relative;width:970px;height:250px;overflow:hidden;background:var(--ink);color:#fff;user-select:none;-webkit-user-select:none;outline:0;cursor:pointer}
 .ad:focus-visible{box-shadow:inset 0 0 0 2px var(--green)}
 .bg{position:absolute;inset:0;overflow:hidden}
-.bg canvas{position:absolute;left:0;top:0;width:970px;height:250px;opacity:0;transition:opacity 1.1s ease}
-.bg canvas.is-on{opacity:1}
+.bg canvas,.bg img.ph{position:absolute;left:0;top:0;width:970px;height:250px;opacity:0;transition:opacity 1.1s ease}
+.bg img.ph{object-fit:cover;transform-origin:60% 50%}
+.bg canvas.is-on,.bg img.ph.is-on{opacity:1}
+.bg img.ph.is-on{animation:kb 9s linear forwards}
+@keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.09)}}
 .grain{position:absolute;inset:0;opacity:.08;mix-blend-mode:overlay;pointer-events:none;background-repeat:repeat}
 .vig{position:absolute;inset:0;pointer-events:none;background:radial-gradient(120% 140% at 70% 48%,transparent 40%,rgba(0,0,0,.6) 100%)}
 .shade{position:absolute;inset:0;pointer-events:none;z-index:3;background:linear-gradient(90deg,rgba(15,12,38,.97) 0%,rgba(15,12,38,.9) 32%,rgba(15,12,38,.5) 48%,rgba(15,12,38,0) 64%),linear-gradient(180deg,rgba(15,12,38,0) 70%,rgba(15,12,38,.5) 100%)}
@@ -235,8 +240,10 @@ function sigMarkup() { return `<div class="sig" aria-hidden="true"></div>`; }
 
 /** Konsept sayfasını birleştirir. */
 function page({ data, assets, concept, title, css, js, body, runtime }) {
+  const photos = {}; for (const [k, v] of Object.entries((assets && assets.photos) || {})) photos[k] = v.uri;
   const rt = Object.assign({
     concept,
+    photos,
     brand: { url: data.brand.url },
     segments: data.segments,
     cinematic: data.cinematic,

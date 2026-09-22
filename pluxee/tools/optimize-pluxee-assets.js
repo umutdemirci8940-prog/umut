@@ -6,7 +6,8 @@
  *   - logo: raster ise şeffaf boşlukları kırpar, 96 px yüksekliğe indirir, PNG yazar; koyu renkliyse
  *           koyu zeminde beyaza çevrilmek üzere manifest'te işaretler (logo.white = true). SVG olduğu gibi kalır,
  *           renk analizi için yine render edilir.
- * Kullanım: NODE_PATH=$(npm root -g) node pluxee/tools/optimize-pluxee-assets.js [--width=640] [--quality=0.82]
+ *   - fotoğraflar (assets/photos.json): en fazla --photo-width (vars. 1000 px) genişliğe küçültür, WebP yazar
+ * Kullanım: NODE_PATH=$(npm root -g) node pluxee/tools/optimize-pluxee-assets.js [--width=640] [--quality=0.82] [--photo-width=1000] [--photo-quality=0.76]
  */
 const fs = require('fs');
 const path = require('path');
@@ -16,7 +17,7 @@ const root = path.join(__dirname, '..');
 const dir = path.join(root, 'assets');
 const mfPath = path.join(dir, 'manifest.json');
 const args = Object.fromEntries(process.argv.slice(2).map((a) => { const m = a.match(/^--([^=]+)=(.*)$/); return m ? [m[1], m[2]] : [a.replace(/^--/, ''), true]; }));
-const WIDTH = +args.width || 640, Q = +args.quality || 0.82;
+const WIDTH = +args.width || 640, Q = +args.quality || 0.82, PW = +args['photo-width'] || 1000, PQ = +args['photo-quality'] || 0.76;
 const MIME = { svg: 'image/svg+xml', png: 'image/png', jpg: 'image/jpeg', jpeg: 'image/jpeg', webp: 'image/webp', gif: 'image/gif' };
 const uri = (f) => `data:${MIME[path.extname(f).slice(1).toLowerCase()] || 'application/octet-stream'};base64,${fs.readFileSync(f).toString('base64')}`;
 const manifest = fs.existsSync(mfPath) ? JSON.parse(fs.readFileSync(mfPath, 'utf8')) : {};
@@ -55,6 +56,17 @@ const PROCESS = async ({ src, mode, width, q }) => {
     manifest.card = Object.assign(manifest.card || {}, { file: path.basename(card), optimized: 'card.opt.webp' });
     console.log(`✔ kart: ${path.basename(card)} → card.opt.webp (${(fs.statSync(path.join(dir, 'card.opt.webp')).size / 1024).toFixed(0)} KB)`);
   } else console.log('ℹ kart görseli yok');
+  const phPath = path.join(dir, 'photos.json');
+  if (fs.existsSync(phPath)) {
+    const ph = JSON.parse(fs.readFileSync(phPath, 'utf8'));
+    for (const [slot, e] of Object.entries(ph.slots || {})) {
+      const f = path.join(dir, e.file); if (!fs.existsSync(f)) continue;
+      const r = await page.evaluate(PROCESS, { src: uri(f), mode: 'card', width: PW, q: PQ });
+      const out = `photos/${slot}.opt.webp`; fs.writeFileSync(path.join(dir, out), Buffer.from(r.data.split(',')[1], 'base64')); e.optimized = out;
+      console.log(`✔ fotoğraf ${slot}: ${e.file} → ${out} (${(fs.statSync(path.join(dir, out)).size / 1024).toFixed(0)} KB)`);
+    }
+    fs.writeFileSync(phPath, JSON.stringify(ph, null, 2));
+  }
   await browser.close();
   fs.writeFileSync(mfPath, JSON.stringify(manifest, null, 2));
 })();

@@ -43,8 +43,25 @@ function loadAssets() {
     const buf = fs.readFileSync(f);
     return { uri: `data:${MIME[ext] || 'application/octet-stream'};base64,${buf.toString('base64')}`, bytes: buf.length, file: path.relative(root, f), white: !!entry.white };
   };
-  const out = { logo: find('logo'), card: find('card') };
+  const out = { logo: find('logo'), card: find('card'), photos: {} };
+  const phPath = path.join(dir, 'photos.json');
+  const standin = process.argv.includes('--standin');
+  if (fs.existsSync(phPath)) {
+    const ph = JSON.parse(fs.readFileSync(phPath, 'utf8'));
+    for (const [slot, e] of Object.entries(ph.slots || {})) {
+      const f = [e.optimized, e.file].filter(Boolean).map((x) => path.join(dir, x)).find((x) => fs.existsSync(x));
+      if (!f) continue;
+      const ext = path.extname(f).slice(1).toLowerCase(); const buf = fs.readFileSync(f);
+      out.photos[slot] = { uri: `data:${MIME[ext] || 'application/octet-stream'};base64,${buf.toString('base64')}`, bytes: buf.length, file: path.relative(root, f), source: e.source || 'manual', credit: e.credit || '' };
+    }
+  }
+  if (standin && !Object.keys(out.photos).length) {
+    const sd = path.join(dir, 'photos', 'standin');
+    if (fs.existsSync(sd)) for (const f of fs.readdirSync(sd)) { const slot = f.replace(/\.\w+$/, ''); const buf = fs.readFileSync(path.join(sd, f)); out.photos[slot] = { uri: `data:image/jpeg;base64,${buf.toString('base64')}`, bytes: buf.length, file: 'photos/standin/' + f, source: 'standin', credit: 'GEÇİCİ – gerçek fotoğraf iş akışıyla gelir' }; }
+  }
   const parts = [];
+  const pk = Object.keys(out.photos);
+  if (pk.length) parts.push(`fotoğraflar ${pk.map((k) => `${k} (${(out.photos[k].bytes / 1024).toFixed(0)} KB, ${out.photos[k].source})`).join(', ')}`);
   if (out.logo) parts.push(`logo ${out.logo.file} (${(out.logo.bytes / 1024).toFixed(0)} KB${out.logo.white ? ', beyaza çevrilir' : ''})`);
   if (out.card) parts.push(`kart ${out.card.file} (${(out.card.bytes / 1024).toFixed(0)} KB)`);
   console.log(parts.length ? `Marka varlıkları: ${parts.join(', ')}` : 'Marka varlıkları: assets/ boş → çizim logo ve kart (gerçekleri için: tools/fetch-pluxee-assets.js ya da GitHub Actions)');
@@ -97,7 +114,7 @@ if (!tpl.includes('__CONCEPTS_JSON__')) {
     scenes: C.scenes,
     weather: data.weather,
     brand: { name: data.brand.name, campaign: data.brand.campaign, url: data.brand.url },
-    assets: { logo: !!assets.logo, card: !!assets.card },
+    assets: { logo: !!assets.logo, card: !!assets.card, photos: Object.fromEntries(Object.entries(assets.photos).map(([k, v]) => [k, { source: v.source, credit: v.credit, kb: Math.round(v.bytes / 1024) }])) },
   };
   const concepts = CONCEPTS.map((c) => ({ id: c.id, title: c.title, tagline: c.tagline, howto: c.howto, kb: built[c.id].kb.toFixed(0), src: built[c.id].html }));
   const jsString = (s) => JSON.stringify(s).replace(/<\//g, '<\\/').replace(/<!--/g, '<\\!--');
