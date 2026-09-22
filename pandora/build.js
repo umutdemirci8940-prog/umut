@@ -39,8 +39,8 @@ let mode = 'VEKTÖR (assets/opt.json yok)';
 if (!args.has('--vector') && fs.existsSync(optPath)) {
   const opt = JSON.parse(fs.readFileSync(optPath, 'utf8'));
   const load = (rel) => { const f = rel && path.join(root, rel); return f && fs.existsSync(f) ? dataUri(f) : null; };
-  for (const [k, v] of Object.entries(opt.bracelets || {})) { const a = load(v.file); if (a) assets.bracelets[k] = a; if (v.title || v.price) assets.overrides.bracelets[k] = { title: v.title, price: v.price }; }
-  for (const [k, v] of Object.entries(opt.charms || {})) { const a = load(v.file); if (a) assets.charms[k] = a; if (v.title || v.price) assets.overrides.charms[k] = { title: v.title, price: v.price }; }
+  for (const [k, v] of Object.entries(opt.bracelets || {})) { const a = load(v.file); if (a) assets.bracelets[k] = a; if (v.price) assets.overrides.bracelets[k] = { price: v.price }; }
+  for (const [k, v] of Object.entries(opt.charms || {})) { const a = load(v.file); if (a) assets.charms[k] = a; if (v.price) assets.overrides.charms[k] = { price: v.price }; }
   if (opt.logo && opt.logo.file) { const a = load(opt.logo.file); if (a) assets.logo = Object.assign(a, { aspect: opt.logo.aspect, svg: opt.logo.inline ? a.svg : undefined }); }
   if (opt.hero && opt.hero.file && !args.has('--no-hero')) { const a = load(opt.hero.file); if (a) { assets.hero = a; assets.heroPos = opt.hero.pos; } }
   mode = `FOTOĞRAF (${Object.keys(assets.bracelets).length} bileklik, ${Object.keys(assets.charms).length} charm${assets.logo ? ', logo' : ''}${assets.hero ? ', hero' : ''})`;

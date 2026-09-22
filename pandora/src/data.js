@@ -49,31 +49,36 @@ module.exports = {
 
   // Bileklik seçenekleri (metal). Fotoğraf: assets/manifest.json → products[key]
   bracelets: [
-    { key: 'silver', label: 'Gümüş', metal: '925 ayar gümüş', sku: '599652C01', skus: ['590702HV', '599652C01'], title: 'Pandora Moments Yılan Zincir Bileklik', price: 5269,
+    { key: 'silver', label: 'Gümüş', metal: '925 ayar gümüş', sku: '599652C01', skus: ['590702HV', '599652C01'], title: 'Pandora Moments Yılan Zinciri Ayarlanabilir Bileklik', price: 4479,
       url: 'https://tr.pandora.net/tr/bileklikler/zincir-bileklikler/pandora-moments-yilan-zincir-bileklik/599652C01.html',
       alt: ['https://www.pandora.net/tr-tr/products/bracelets/silver/590702hv', 'https://www.pandora.net/tr-tr/products/bracelets/silver/599652c01-2'],
-      swatch: ['#ffffff', '#d9dde3', '#8f97a3'], tone: '#c9ced6' },
-    { key: 'rose', label: 'Rose', metal: '14 ayar pembe altın kaplama', sku: '580728', title: 'Moments 14 Ayar Pembe Altın Kaplama Bileklik', price: 7609,
+      swatch: ['#ffffff', '#d9dde3', '#8f97a3'], tone: '#c9ced6',
+      // kaydırmalı klips sağ üstte → yuvalar sol uç + alt yay
+      slots: [{ x: 0.05, y: 0.64, r: -62 }, { x: 0.24, y: 0.93, r: -26 }, { x: 0.42, y: 0.995, r: -6 }, { x: 0.60, y: 0.985, r: 8 }, { x: 0.77, y: 0.90, r: 28 }] },
+    { key: 'rose', label: 'Rose', metal: '14 ayar pembe altın kaplama', sku: '580728', title: 'Moments 14 Ayar Pembe Altın Kaplama Bileklik', price: 5449,
       url: 'https://tr.pandora.net/tr/bileklikler/zincir-bileklikler/moments-14-ayar-pembe-altin-kaplama-bileklik/580728.html',
-      alt: ['https://www.pandora.net/tr-tr/products/bracelets/580728'], swatch: ['#ffe9e2', '#e9b4a4', '#b9766a'], tone: '#e3b3a4' },
-    { key: 'gold', label: 'Altın', metal: '14 ayar altın kaplama', sku: '568748C00', title: 'Moments 14 Ayar Altın Kaplama Düz Klipsli Bileklik', price: 6419,
+      alt: ['https://www.pandora.net/tr-tr/products/bracelets/580728'], swatch: ['#ffe9e2', '#e9b4a4', '#b9766a'], tone: '#e3b3a4',
+      // top klips sol altta (x≈0.31) → yuvalar klipsin sağında
+      slots: [{ x: 0.05, y: 0.62, r: -62 }, { x: 0.50, y: 0.995, r: -2 }, { x: 0.655, y: 0.965, r: 14 }, { x: 0.80, y: 0.885, r: 30 }, { x: 0.925, y: 0.72, r: 52 }] },
+    { key: 'gold', label: 'Altın', metal: '14 ayar altın kaplama', sku: '568748C00', title: 'Moments 14 Ayar Altın Kaplama Düz Klipsli Bileklik', price: 5609,
       url: 'https://tr.pandora.net/tr/charmlar-ve-bileklikler/bileklikler/zincir-bileklikler/moments-14-ayar-altin-kaplama-duz-klipsli-bileklik/568748C00.html',
-      alt: ['https://www.pandora.net/tr-tr/products/bracelets/pandora-shine/568748c00'], swatch: ['#fff3c4', '#e8c35a', '#b8891c'], tone: '#e6c56b' },
+      alt: ['https://www.pandora.net/tr-tr/products/bracelets/pandora-shine/568748c00'], swatch: ['#fff3c4', '#e8c35a', '#b8891c'], tone: '#e6c56b',
+      slots: [{ x: 0.05, y: 0.62, r: -62 }, { x: 0.50, y: 0.995, r: -2 }, { x: 0.655, y: 0.965, r: 14 }, { x: 0.80, y: 0.885, r: 30 }, { x: 0.925, y: 0.72, r: 52 }] },
   ],
 
   // Charm tepsisi (sitedeki gerçek ürünler). Fiyat null ise toplayıcıdan gelen fiyat kullanılır.
   charms: [
-    { key: 'hearts', short: 'Sonsuz Kalpler', sku: '790800C00', title: 'İç İçe Sonsuz Kalpler Charm', price: 1599,
+    { key: 'hearts', short: 'Sonsuz Kalpler', sku: '790800C00', title: 'İç İçe Sonsuz Kalpler Charm', price: 999,
       url: 'https://tr.pandora.net/tr/charmlar-ve-bileklikler/charmlar/charmlar/i%CC%87c-i%CC%87ce-sonsuz-kalpler-charm/790800C00.html' },
-    { key: 'murano', short: 'Pembe Murano', sku: '789421C00', title: 'Mat Pembe Murano Cam Charm', price: 2009,
+    { key: 'murano', short: 'Pembe Murano', sku: '789421C00', title: 'Mat Pembe Murano Cam Charm', price: 2699,
       url: 'https://tr.pandora.net/tr/charmlar-ve-bileklikler/charmlar/charmlar/mat-pembe-murano-cam-charm/789421C00.html' },
-    { key: 'galaxy', short: 'Galaksi Murano', sku: '790015C00', title: 'Galaksi Mavisi ve Yıldız Murano Charm', price: 2549,
+    { key: 'galaxy', short: 'Galaksi Murano', sku: '790015C00', title: 'Galaksi Mavisi ve Yıldız Murano Charm', price: 2779,
       url: 'https://tr.pandora.net/tr/charm%E2%80%99lar-ve-bileklikler/charm%E2%80%99lar/charm%E2%80%99lar/galaksi-mavisi-ve-yildiz-murano-charm/790015C00.html' },
-    { key: 'butterfly', short: 'Mavi Kelebek', sku: '790761C01', title: 'Mavi Kelebek Işıltılı Charm', price: 2359,
+    { key: 'butterfly', short: 'Mavi Kelebek', sku: '790761C01', title: 'Mavi Kelebek Işıltılı Charm', price: 3579,
       url: 'https://tr.pandora.net/tr/charmlar-ve-bileklikler/charmlar/charmlar/mavi-kelebek-isiltili-charm/790761C01.html' },
-    { key: 'clip', short: 'Pavé Klips', sku: '791817NSBMX', title: 'Mavi Pavé Klips Charm', price: 2029,
+    { key: 'clip', short: 'Pavé Klips', sku: '791817NSBMX', title: 'Mavi Pavé Klips Charm', price: 2699,
       url: 'https://tr.pandora.net/tr/charmlar/klipsler/mavi-pave-klips-charm/791817NSBMX.html' },
-    { key: 'bigbutterfly', short: 'Büyük Kelebek', sku: '793747C01', title: 'Büyük Kelebek Charm', price: null,
+    { key: 'bigbutterfly', short: 'Büyük Kelebek', sku: '793747C01', title: 'Büyük Kelebek Charm', price: 4349,
       url: 'https://tr.pandora.net/tr/charmlar-ve-bileklikler/charmlar/charmlar/buyuk-kelebek-charm/793747C01.html' },
     { key: 'star', short: 'Galaksi Yıldız', sku: '792368C01', title: 'Galaksi Yıldız Murano Sallantılı Charm', price: 2359,
       url: 'https://tr.pandora.net/tr/charmlar-ve-bileklikler/charmlar/sallantili-charmlar/galaksi-yildiz-murano-sallantili-charm/792368C01.html' },
@@ -114,7 +119,7 @@ module.exports = {
   // Orta sahne: bileklik fotoğrafının kutusu (px) ve charm yuvaları (kutuya oranla; r = açı derece).
   // Packshot'lar geniş oval (≈1.9:1); yuvalar alt yayda, klips (sol alt) boş bırakılır.
   stage: {
-    left: 342, top: 28, w: 338, h: 178, charmSize: 46,
+    left: 342, top: 42, w: 338, h: 140, charmSize: 52,
     slots: [
       { x: 0.05, y: 0.66, r: -62 },
       { x: 0.40, y: 0.985, r: -8 },

@@ -36,13 +36,13 @@
     "file": "assets/src/hearts-1.jpg",
     "crop": {
       "x": 0,
-      "y": 0.03,
+      "y": 0.06,
       "w": 1,
       "h": 0.575
     },
     "max": 700,
     "quality": 0.78,
-    "pos": "50% 50%"
+    "pos": "50% 0%"
   },
   "logo": {
     "file": "assets/logo/wikimedia-pandora-2019.svg",

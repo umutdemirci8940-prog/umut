@@ -77,7 +77,7 @@ const fontsDir = path.join(root, 'assets', 'fonts');
   await page.click('.cta'); await page.waitForTimeout(100);
   let op = await page.evaluate(() => window.__opened || []);
   ok(op.length === 1 && op[0] === data.brand.url, 'CTA → marka adresi (clickTag varsayılanı)');
-  await page.click('.ring', { position: { x: 20, y: 140 } }); await page.waitForTimeout(100);
+  await page.click('.ring', { position: { x: 169, y: 10 } }); await page.waitForTimeout(100);
   op = await page.evaluate(() => window.__opened || []);
   ok(op.length === 2 && op[1] === data.bracelets.find((b) => b.key === 'rose').url, 'bileklik fotoğrafı → ürün sayfası (derin bağlantı)');
   await page.click('.panel', { position: { x: 10, y: 5 } }); await page.waitForTimeout(80);

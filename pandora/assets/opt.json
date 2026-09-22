@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-22T12:45:44.139Z",
+  "generatedAt": "2026-09-22T12:47:44.248Z",
   "bracelets": {
     "silver": {
       "file": "assets/opt/silver.webp",
@@ -123,8 +123,8 @@
     "file": "assets/opt/hero.webp",
     "w": 700,
     "h": 537,
-    "bytes": 30876,
-    "pos": "50% 50%",
+    "bytes": 30078,
+    "pos": "50% 0%",
     "from": "assets/src/hearts-1.jpg"
   }
 }
