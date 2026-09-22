@@ -2,11 +2,11 @@
 /**
  * Pluxee "Geçiyor" – Media-first interaktif masthead (970x250)
  * ---------------------------------------------------------------
- * Splash Digital konsept çalışması.
+ * Media-first konsept çalışması.
  *
  * Kreatif tek bir HTML dosyasıdır; kopya, durak sırası, CTA ve atmosfer
  * yayın anında gelen SİNYALLERE göre kurulur:
- *   seg   : Splash 1. parti segment  (wc = beyaz yaka, hr = İK, emp = işveren/karar verici)
+ *   seg   : 1. parti kitle segmenti  (wc = beyaz yaka, hr = İK, emp = işveren/karar verici)
  *   h, m  : saat / dakika           (ad server makrosu; yoksa cihaz saati)
  *   geo   : ilçe anahtarı           (IP / GPS → ilçe; yoksa 'none' = Türkiye geneli)
  *   w     : hava                    (sun | rain)
@@ -18,8 +18,6 @@
 module.exports = {
   brand: {
     name: 'Pluxee',
-    product: 'Yemek Kartı',
-    agency: 'Splash Digital',
     campaign: 'Pluxee Geçiyor',
     // Tıklama hedefi. Reklam ağı clickTag sağlıyorsa o kullanılır.
     url: 'https://www.pluxee.com.tr/?utm_source=splash&utm_medium=masthead&utm_campaign=pluxee-geciyor',
@@ -31,7 +29,17 @@ module.exports = {
     lavender: '#B8A9FF',
   },
 
-  // Süreler (ms). Bir tur ≈ enter + 5 × (move + dwell) + hold ≈ 13,5 sn; 2 tur ≈ 27 sn (< 30 sn).
+  // Sinematik sürüm süreleri (ms). Tur ≈ enter + 5 × dwell + hold ≈ 14,4 sn; 2 tur ≈ 28,7 sn (< 30 sn).
+  timingCinematic: {
+    enter: 600,     // sahne belirir
+    tap: 450,       // durağa geçtikten sonra kartın POS'a uzanması
+    dwell: 2150,    // durak başına süre (dokunma + fiş)
+    hold: 3000,     // final karesi
+    loops: 2,
+    resume: 1500,
+  },
+
+  // İllüstrasyon sürümü süreleri (ms). Bir tur ≈ enter + 5 × (move + dwell) + hold ≈ 13,5 sn; 2 tur ≈ 27 sn (< 30 sn).
   timing: {
     enter: 700,     // açılış: sahne belirir, kart yerine gelir
     move: 720,      // kartın bir duraktan diğerine gidişi
@@ -41,7 +49,7 @@ module.exports = {
     resume: 1500,   // fare ayrıldıktan sonra otomatik oynatmaya dönüş gecikmesi
   },
 
-  // Splash segmentleri → hitap dili + CTA
+  // Kitle segmentleri → hitap dili + CTA
   segments: {
     wc:  { label: 'Beyaz yaka',             cta: 'Yakınımda nerede geçiyor?' },
     hr:  { label: 'İK profesyoneli',        cta: 'Ekibim için teklif al' },
@@ -61,12 +69,14 @@ module.exports = {
   ],
 
   // Duraklar (vitrinler). Renkler pastel; lacivert zemin üzerinde okunur.
+  // place  : sinematik sürümde kinetik başlık kelimesi ("Restoranda geçiyor.")
+  // receipt: POS fişindeki satır
   stops: {
-    firin:    { name: 'Fırın',    sign: 'FIRIN',    body: '#FFE0CC', awning: '#FF8C5A', signBg: '#FFF3EA', icon: 'simit' },
-    restoran: { name: 'Restoran', sign: 'RESTORAN', body: '#E2DBFF', awning: '#7A63FF', signBg: '#F1EDFF', icon: 'cloche' },
-    kafe:     { name: 'Kafe',     sign: 'KAFE',     body: '#D6F5E6', awning: '#12C77E', signBg: '#EAFBF2', icon: 'cup' },
-    market:   { name: 'Market',   sign: 'MARKET',   body: '#FFF1BF', awning: '#FFC331', signBg: '#FFF9E3', icon: 'basket' },
-    online:   { name: 'Online',   sign: 'ONLİNE',   body: '#D4EBFF', awning: '#3AA1FF', signBg: '#EAF5FF', icon: 'phone' },
+    firin:    { name: 'Fırın',    sign: 'FIRIN',    place: 'Fırında',   receipt: 'FIRIN',          body: '#FFE0CC', awning: '#FF8C5A', signBg: '#FFF3EA', icon: 'simit' },
+    restoran: { name: 'Restoran', sign: 'RESTORAN', place: 'Restoranda', receipt: 'RESTORAN',      body: '#E2DBFF', awning: '#7A63FF', signBg: '#F1EDFF', icon: 'cloche' },
+    kafe:     { name: 'Kafe',     sign: 'KAFE',     place: 'Kafede',    receipt: 'KAFE',           body: '#D6F5E6', awning: '#12C77E', signBg: '#EAFBF2', icon: 'cup' },
+    market:   { name: 'Market',   sign: 'MARKET',   place: 'Markette',  receipt: 'MARKET',         body: '#FFF1BF', awning: '#FFC331', signBg: '#FFF9E3', icon: 'basket' },
+    online:   { name: 'Online',   sign: 'ONLİNE',   place: "Online'da", receipt: 'ONLINE SIPARIS', body: '#D4EBFF', awning: '#3AA1FF', signBg: '#EAF5FF', icon: 'phone' },
   },
 
   // Damga sırası: kart kaçıncı durağa dokunuyorsa o kelime ("… geçiyor ✓")
@@ -127,6 +137,37 @@ module.exports = {
       rain:      { top: 'Yağmurlu gün',              sub: 'Çalışanınız dışarı çıkmasın. Online siparişte de geçiyor.' },
       final:     { top: 'Burada, şurada, orada',     sub: "Türkiye'nin her yerinde geçiyor. {loc} {n} noktada." },
     },
+  },
+
+  /**
+   * SİNEMATİK SÜRÜM (ana teslim). Konum ve nokta sayısı kullanılmaz; dil kurumsaldır.
+   * Sahneler kabul noktalarıdır; sıra saate göre kurulur (öncü sahne = "şu an"a en yakın an).
+   * Segment yalnızca alt metni ve CTA'yı değiştirir.
+   */
+  cinematic: {
+    scenes: [
+      { key: 'restoran', title: 'Öğle yemeği',       word: 'restoranda.',       label: 'Restoran', tag: 'burada' },
+      { key: 'kafe',     title: 'Kahve molası',      word: 'kafede.',           label: 'Kafe',     tag: 'şurada' },
+      { key: 'market',   title: 'Market alışverişi', word: 'markette.',         label: 'Market',   tag: 'orada' },
+      { key: 'online',   title: 'Online sipariş',    word: 'online siparişte.', label: 'Online',   tag: 'orada da' },
+    ],
+    // Saat aralığı → öncü sahne
+    lead: [
+      { from: 6,  to: 10, scene: 'kafe' },
+      { from: 11, to: 14, scene: 'restoran' },
+      { from: 15, to: 17, scene: 'kafe' },
+      { from: 18, to: 22, scene: 'market' },
+      { from: 23, to: 5,  scene: 'online' },
+    ],
+    rainLead: 'online',   // yağmurda öncü sahne (isteğe bağlı sinyal)
+    final: { title: 'Burada, şurada, orada', word: 'her yerde.' },
+    segments: {
+      wc:  { sub: 'Öğle yemeğinden market alışverişine, kafeden online siparişe: tek kart, her yerde geçerli.', cta: "Pluxee'yi keşfedin" },
+      hr:  { sub: 'Ekibinizin her günü için geçerli yan hak. Kurulumu kolay, kullanımı her yerde.',           cta: 'Teklif alın' },
+      emp: { sub: 'Yan hak bütçenizi geniş kabul ağı ve vergi avantajıyla değerlendirin.',                     cta: 'Bize ulaşın' },
+    },
+    // POS ekranı metinleri
+    pos: { idle: 'Kartı okutun', ok: 'Onaylandı' },
   },
 
   // Varsayılan sinyaller (parametre gelmezse). Saat için cihaz saati kullanılır.

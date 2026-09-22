@@ -245,7 +245,7 @@ function build(){
   ad.classList.toggle('is-rain',S.weather==='rain');ad.classList.toggle('is-demo',S.demo);
   variant=[S.seg,copyKey,G.key,S.weather].join('-').toUpperCase();
   ad.setAttribute('data-variant',variant);
-  sig.innerHTML='<span class="lbl">SPLASH DATA LAYER</span><span>SAAT <b>'+pad(S.hour)+':'+pad(S.minute)+'</b></span><span>KONUM <b>'+esc(G.name)+'</b></span><span>HAVA <b>'+esc(D.weather[S.weather].label)+'</b></span><span>SEGMENT <b>'+esc(D.segments[S.seg].label)+'</b></span><span>#'+esc(variant)+'</span>';
+  sig.innerHTML='<span class="lbl">DATA LAYER</span><span>SAAT <b>'+pad(S.hour)+':'+pad(S.minute)+'</b></span><span>KONUM <b>'+esc(G.name)+'</b></span><span>HAVA <b>'+esc(D.weather[S.weather].label)+'</b></span><span>SEGMENT <b>'+esc(D.segments[S.seg].label)+'</b></span><span>#'+esc(variant)+'</span>';
   setCopy(false,false);
 }
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
@@ -418,7 +418,7 @@ function render(data) {
     <div class="card" aria-hidden="true"><span class="chip"></span>${NFC}<span class="cw">pluxee</span><span class="stripe"></span><span class="shine"></span></div>
   </div>
   <div class="left">
-    <div class="logo"><b>pluxee</b><i></i><small>${esc(data.brand.product)}</small></div>
+    <div class="logo"><b>pluxee</b><i></i></div>
     <div class="hl">
       <span class="hl-top"></span>
       <span class="hl-main"><b>Pluxee</b> <em>geçiyor.</em></span>

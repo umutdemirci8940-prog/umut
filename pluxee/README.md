@@ -1,81 +1,81 @@
 # Pluxee "Geçiyor" – Media-first interaktif masthead (970 × 250)
 
-**Splash Digital** konsept çalışması. Kampanyanın ana fikri "Pluxee geçiyor: burada, şurada, orada, her yerde". Bu masthead o cümleyi herkese aynı şekilde söylemek yerine, **Splash'in sinyalleriyle her kullanıcının o anına, konumuna ve rolüne göre yeniden kurar**: tek HTML kreatif, 144 versiyon.
+Media-first konsept çalışması. Kampanyanın ana fikri "Pluxee geçiyor: burada, şurada, orada". Masthead bu fikri kendi içinde canlandırır: Pluxee kartı restoranda, kafede, markette ve online siparişte POS'a dokunur, her sahnede "geçiyor". Medya veri katmanının **segment** sinyali kimin izlediğini (beyaz yaka, İK, işveren), **saat** sinyali hangi sahnenin önce geldiğini belirler. Tek HTML kreatif, 12 versiyon.
 
 | Çıktı | Dosya |
 |---|---|
-| Yayına hazır kreatif (tek dosya, 44 KB, harici kaynak yok) | `dist/970x250/index.html` |
+| **Ana teslim** – sinematik sürüm, yayına hazır tek dosya | `dist/970x250/index.html` |
 | Reklam ağı paketi | `dist/zip/pluxee-970x250.zip` |
-| Sunum sayfası (kreatif gömülü, tek dosya, sinyal paneli + karar zinciri) | `preview/index.html` |
+| Sunum sayfası (kreatif gömülü, tek dosya: sinyal paneli, karar zinciri, sinyal→kreatif haritası) | `preview/index.html` |
 | Ekran görüntüleri | `preview/screens/` |
+| İlk taslak (illüstrasyon dili, arşiv) | `dist/970x250-flat/index.html` |
 
 ## Ekran görüntüleri
 
-| Öğle · beyaz yaka · Levent – ilk dokunuş | Aynı versiyon – üçüncü durak |
+| Öğle · beyaz yaka – kart POS'ta onaylanıyor | Aynı versiyon – ikinci sahne (kafe) |
 |---|---|
-| ![](preview/screens/wc-lunch-stamp.jpg) | ![](preview/screens/wc-lunch-mid.jpg) |
+| ![](preview/screens/wc-lunch-tap.jpg) | ![](preview/screens/wc-lunch-kafe.jpg) |
 
-| Final karesi – "Her yerde geçiyor." | Akşam 19:05 · İK · Kadıköy |
+| Final karesi – "Pluxee geçiyor her yerde." | Akşam · İK – Market ile açılır, "Teklif alın" |
 |---|---|
 | ![](preview/screens/wc-lunch-final.jpg) | ![](preview/screens/hr-evening.jpg) |
 
-| Yağmur · işveren · Çankaya | Gece 23:45 · beyaz yaka · Alsancak |
+| Sabah · işveren – Kafe ile açılır, "Bize ulaşın" | Yağmur · İK – Online sipariş öne alınır |
 |---|---|
-| ![](preview/screens/emp-rain.jpg) | ![](preview/screens/wc-night.jpg) |
+| ![](preview/screens/emp-morning.jpg) | ![](preview/screens/hr-rain.jpg) |
 
 ## Kurgu
 
-Sağdaki "gün sokağı"nda beş vitrin vardır: **Fırın, Restoran, Kafe, Market, Online**. Pluxee kartı yolda ilerler, her vitrinin POS cihazına dokunur; cihaz yeşile döner, halka yayılır ve vitrinin üstüne damga düşer: **"burada geçiyor ✓" → "şurada geçiyor ✓" → "orada geçiyor ✓" → "orada da geçiyor ✓" → "her yerde geçiyor ✓"**. Beşinci damgayla başlık **"Her yerde geçiyor."** olur ve CTA nabız atar.
-
-- Kart **"şu an"ın durağından** başlar: 12:31'de Restoran'dan, 19:05'te Market'ten, 23:45'te Online'dan. Vitrinlerin altındaki zaman çizgisi günün kalanını gösterir (*şimdi → ikindi → akşam → gece → yarın sabah*).
-- Gökyüzü ve güneş/ay saate göre değişir; yağmurda bulutlar ve yağmur çizgileri gelir, **Online** durağı öne alınır.
-- Sol sütundaki üst satır, alt başlık ve CTA segmente göre yazılır (bkz. kopya matrisi).
-- Otomatik oynatma: tur ≈ 13,5 sn, en fazla 2 tur (≈ 27 sn, Google Ads 30 sn kuralı), sonra final karesinde durur.
+- **Sol sütun:** Pluxee logosu, sahne başlığı (ÖĞLE YEMEĞİ / KAHVE MOLASI / MARKET ALIŞVERİŞİ / ONLİNE SİPARİŞ), sabit başlık **"Pluxee geçiyor"** ve sahneyle değişen kinetik kelime: *restoranda. → kafede. → markette. → online siparişte.* Finalde **"her yerde."**
+- **Sahne:** fotoğrafik bokeh arka plan (sahneye göre restoran, kafe, market, online atmosferi), 3B Pluxee kartı ve POS cihazı. Her sahnede kart POS'a uzanır, ekran **"Onaylandı"** olur, sahne etiketi onaylanır: *burada ✓ → şurada ✓ → orada ✓ → orada da ✓*, finalde *her yerde ✓*.
+- **Alt gösterge:** dört sahne başlığı; aktif sahnenin çizgisi dolar, tamamlananlar yeşil ✓ olur.
+- **Segment** yalnızca alt metni ve CTA'yı değiştirir: beyaz yaka "Pluxee'yi keşfedin", İK "Teklif alın", işveren "Bize ulaşın".
+- **Saat** öncü sahneyi belirler: 06–10 ve 15–17 kafe, 11–14 restoran, 18–22 market, 23–05 online. Yağmur (isteğe bağlı sinyal) online siparişi öne alır.
+- Otomatik oynatma: tur ≈ 12 sn, en fazla 2 tur (≈ 24 sn, Google Ads 30 sn kuralı), sonra final karesinde durur.
+- Konum, nokta sayısı ve gün içi zaman etiketleri **kullanılmaz**; dil kurumsaldır.
 
 ## Etkileşim
 
-- **Fare / parmak sokağa girince** otomatik oynatma durur, kart imleci takip eder; bir vitrinin önünden geçerken dokunur ve damgalar. Tüm duraklar kullanıcı eliyle tamamlanırsa final karesi gelir.
-- Sokaktan ayrılınca 1,5 sn sonra kaldığı yerden otomatik devam eder.
-- **Vitrine tıklama** kartı oraya götürür. Sokaktaki hareket ve tıklamalar reklam çıkışı **değildir**; etkileşim olarak ölçülür.
+- **Fare / parmak sahneye girince** otomatik oynatma durur; yatay hareket sahneleri gezdirir, her sahnede kart POS'a dokunur. Tüm sahneler gezildiğinde final karesi gelir.
+- Sahneden ayrılınca 1,5 sn sonra kaldığı yerden devam eder. **Alt başlıklara tıklama** ilgili sahneye götürür. Sahnedeki hareket ve tıklamalar reklam çıkışı **değildir**; etkileşim olarak ölçülür.
 - **CTA ve sol sütun** reklam çıkışıdır: `window.clickTag` varsa o, `Enabler` varsa `Enabler.exit('CTA')`, yoksa UTM'li Pluxee sayfası.
-- Klavye: ← → duraklar, Enter tıklama. `prefers-reduced-motion` açıksa doğrudan final karesi.
+- Klavye: ← → sahneler, Enter tıklama. `prefers-reduced-motion` açıksa doğrudan final karesi.
 
 ## Sinyaller ve parametreler
 
 | Sinyal | Parametre | Kaynak (yayında) | Kreatifte değişen |
 |---|---|---|---|
-| Segment | `seg=wc` (beyaz yaka) · `hr` (İK) · `emp` (işveren / karar verici) | Splash 1. parti kitle + mecra bağlamı | Üst satır, alt başlık, CTA |
-| Saat | `h=0-23`, `m=0-59` | Ad server saat makrosu; yoksa cihaz saati | Başlangıç durağı, zaman çizgisi, gökyüzü |
-| Konum | `geo=levent\|maslak\|kadikoy\|atasehir\|cankaya\|alsancak\|nilufer\|none` | IP / GPS → ilçe; Pluxee üye işyeri sayısı (API) | Konum adı ve nokta sayısı |
-| Hava | `w=sun\|rain` | Hava durumu API | Online önceliği, atmosfer, "dışarı çıkma" kopyası |
+| Segment | `seg=wc` (beyaz yaka) · `hr` (İK) · `emp` (işveren / karar verici) | 1. parti kitle segmenti + mecra bağlamı | Alt metin, CTA |
+| Saat | `h=0-23`, `m=0-59` | Ad server saat makrosu; yoksa cihaz saati | Öncü sahne ve sahne sırası, ışık atmosferi |
+| Hava | `w=sun\|rain` (isteğe bağlı) | Hava durumu API | Yağmurda online sipariş öne alınır |
 | Sunum | `demo=1` | – | Sinyal çubuğu (sadece sunumda) |
 
-Örnek: `dist/970x250/index.html?seg=hr&h=19&m=5&geo=kadikoy&w=sun`
+Örnek: `dist/970x250/index.html?seg=hr&h=19&m=5`
 
-- Ad server makroları doğrudan bu parametrelere bağlanır; alternatif olarak `<script>window.__PLUXEE_SIGNALS={seg:'hr',geo:'kadikoy'}</script>` ile enjekte edilebilir.
-- Sözlükte olmayan bir ilçe gelirse "… civarında binlerce noktada", konum yoksa "Türkiye genelinde binlerce noktada" yazılır. Nokta sayıları **demo amaçlıdır**; yayında Pluxee verisiyle beslenir.
-- Her gösterim `SEG-AN-KONUM-HAVA` biçiminde bir varyant kimliği taşır (`HR-EVENING-KADIKOY-SUN`); ölçüm etiketi olarak raporlanır.
+- Ad server makroları doğrudan bu parametrelere bağlanır; alternatif olarak `<script>window.__PLUXEE_SIGNALS={seg:'hr'}</script>` ile enjekte edilebilir.
+- Her gösterim `SEGMENT-ÖNCÜSAHNE` biçiminde bir varyant kimliği taşır (`HR-MARKET`, `WC-ONLINE-RAIN`); ölçüm etiketi olarak raporlanır.
 
 ### postMessage API (sunum ve entegrasyon)
 
-Gelen: `{type:'pluxee:signals', signals:{seg,hour,minute,geo,weather,demo}}`, `{type:'pluxee:replay'}`, `{type:'pluxee:demo', on:true}`.
-Giden: `{type:'pluxee:state', variant, moment, order, labels, visited, total, finalState, ended, copy, signals, geo}` ve gömülü modda tıklamada `{type:'pluxee:click', url}`. Sayfa içinden `window.PLUXEE.setSignals({...})`, `window.PLUXEE.replay()`, `window.PLUXEE.state()` da kullanılabilir.
+Gelen: `{type:'pluxee:signals', signals:{seg,hour,minute,weather,demo}}`, `{type:'pluxee:replay'}`, `{type:'pluxee:demo', on:true}`.
+Giden: `{type:'pluxee:state', variant, lead, order, idx, visited, total, finalState, ended, copy, signals}` ve gömülü modda tıklamada `{type:'pluxee:click', url}`. Sayfa içinden `window.PLUXEE.setSignals({...})`, `window.PLUXEE.replay()`, `window.PLUXEE.state()` da kullanılabilir.
 
-## Kopya matrisi
+## Kopya
 
-Tüm metinler, segmentler, anlar, konum sözlüğü ve süreler **`src/data.js`** içindedir. Örnek:
+Tüm metinler **`src/data.js` → `cinematic`** altındadır:
 
 ```js
-copy.hr.evening = { top: 'Mesai bitti', sub: 'Market alışverişinde de geçiyor. Ekibiniz için gerçek fayda.' }
-segments.hr.cta = 'Ekibim için teklif al'
+scenes:   [{ key:'restoran', title:'Öğle yemeği', word:'restoranda.', label:'Restoran', tag:'burada' }, …]
+segments: { hr: { sub:'Ekibinizin her günü için geçerli yan hak. …', cta:'Teklif alın' }, … }
+final:    { title:'Burada, şurada, orada', word:'her yerde.' }
 ```
 
-Yer tutucular: `{geo}` ilçe adı, `{loc}` bulunma hâli ("Kadıköy'de"), `{n}` nokta sayısı. Her segmentte 5 an + yağmur + final kopyası vardır. Yeni bir an ya da segment eklemek için ilgili nesneyi genişletmek yeterlidir.
+Sahne eklemek ya da metin değiştirmek için ilgili nesneyi düzenleyip `node pluxee/build.js` çalıştırmak yeterlidir. "Vergi avantajıyla" gibi ifadeler marka ve hukuk onayına tabidir.
 
 ## Derleme ve test
 
 ```bash
-node pluxee/build.js                                   # dist/970x250/index.html, zip ve preview/index.html
+node pluxee/build.js                                   # dist/ ve preview/index.html
 NODE_PATH=$(npm root -g) node pluxee/tools/smoke.js    # sinyal, etkileşim, tıklama, API, 30 sn kontrolü (Playwright)
 NODE_PATH=$(npm root -g) node pluxee/tools/capture.js  # preview/screens/*.jpg
 ```
@@ -84,28 +84,31 @@ Kök `package.json` içinden: `npm run pluxee:build`, `npm run pluxee:test`, `np
 
 ## Teknik notlar
 
-- 970×250 HTML5, satır içi CSS + JS + SVG; harici font ve kütüphane yok (sistem yazı tipi yığını). `<meta name="ad.size">`, `role`/`aria` etiketleri ve klavye odağı mevcuttur.
-- Tarayıcı tarafı JS ES5 ile yazıldı (reklam ağı doğrulayıcıları için).
+- 970×250 HTML5, tek dosya; satır içi CSS + ES5 JS. Arka planlar yükleme anında canvas ile üretilir (ışık, bokeh, tane, vinyet); görsel dosyası yoktur, bu yüzden dosya ~35 KB'dır. Tek harici kaynak Google Fonts (Manrope); Google Ads ve DV360'ta izinlidir, harici font kabul etmeyen ağlar için `@font-face` ile gömülebilir.
+- `<meta name="ad.size">`, `role`/`aria` etiketleri ve klavye odağı mevcuttur.
 - **Google Ads / CM360:** `dist/zip/pluxee-970x250.zip` doğrudan yüklenir (`clickTag`). **DV360 / Studio:** `Enabler` algılanır; Studio'ya yüklenecekse `<head>` içine `Enabler.js` satırı eklenir. **Diğer ağlar:** `openLink()` içindeki `window.clickTag` satırı ağın makrosuna çevrilir.
-- Marka varlıkları temsilidir: bu ortamın ağ politikası pluxee.com.tr'ye erişime izin vermediği için logo metin olarak, palet Pluxee'nin lacivert (#221C46) + yeşil (#00EB5E) kimliğine göre kuruldu. Resmi logo SVG'si `src/template.js` içindeki `.logo` bloğuna, marka fontu `body` yazı tipi yığınına eklenir.
-- Kopyalar (özellikle "vergi avantajıyla") marka ve hukuk onayına tabidir.
+- **Gerçek fotoğraf kullanımı:** sahne arka planları `PAL` paletiyle üretilir; lisanslı stok fotoğraf tercih edilirse `.bg` katmanına `<img>` olarak yerleştirilir (sahne başına 970×250, WebP ~40 KB). Bu ortamın ağ politikası stok kaynaklara erişime izin vermediği için üretilmiş arka planlar kullanıldı.
+- Marka varlıkları temsilidir (pluxee.com.tr'ye erişilemedi): logo metin olarak, palet Pluxee lacivert (#221C46) + yeşil (#00EB5E). Resmi logo SVG'si `src/template-cinematic.js` içindeki `.logo` bloğuna, resmi kart tasarımı `.card .face` bloğuna yerleştirilir.
 
 ## Masthead'in ötesi: aynı fikirden türeyen özel proje başlıkları
 
-- **"Yakınımda nerede geçiyor?"** – CTA masthead içinde açılan bir liste/haritaya dönüşür; kullanıcının ilçesindeki üye işyerleri Pluxee API'sinden gelir. Reklamdan çıkmadan cevap.
-- **Öğle arası senkronu** – Splash ağındaki tüm mastheadler 12:00–13:30 arasında aynı anda "öğle" moduna geçer; ortak sayaç "şu an X noktada Pluxee geçiyor" (Pluxee işlem verisiyle).
-- **İK için teklif akışı** – İK / karar verici segmentinde CTA, masthead içinde iki adımlık mini form açar (çalışan sayısı → tahmini fayda); lead doğrudan Pluxee'ye düşer.
+- **Segment bazlı teklif akışı** – İK ve karar verici segmentinde CTA, masthead içinde iki adımlık kısa forma dönüşür (çalışan sayısı → geri arama); lead doğrudan Pluxee'ye düşer.
+- **Bağlam senkronu** – ağdaki tüm mastheadler öğle saatlerinde restoran, mesai sonunda market sahnesiyle açılır; kampanya ağ genelinde aynı "an"ı konuşur.
+- **Mecra bağlamı** – İK ve iş dünyası içeriklerinde otomatik olarak İK/işveren versiyonu; genel haber ve yaşam içeriklerinde beyaz yaka versiyonu servis edilir.
 
 ## Klasör yapısı
 
 ```
-pluxee/src/data.js        Kopya matrisi, segmentler, anlar, konum sözlüğü, süreler
-pluxee/src/template.js    Kreatif motoru (CSS + ES5 JS + SVG vitrinler)
-pluxee/src/showcase.html  Sunum sayfası şablonu (build.js kreatifi içine gömer)
-pluxee/build.js           dist/ + preview/index.html üretici
-pluxee/dist/970x250/      Yayına hazır kreatif
-pluxee/dist/zip/          Reklam ağı paketi
-pluxee/preview/           Sunum sayfası + ekran görüntüleri
-pluxee/tools/smoke.js     Duman testi (Playwright)
-pluxee/tools/capture.js   Ekran görüntüleri (Playwright)
+pluxee/src/data.js               Kopya, sahneler, segmentler, süreler (cinematic + ilk taslak verisi)
+pluxee/src/template-cinematic.js Ana kreatif motoru (canvas arka plan, 3B kart, POS, kinetik başlık)
+pluxee/src/template.js           İlk taslak motoru (illüstrasyon), arşiv
+pluxee/src/showcase.html         Sunum sayfası şablonu (build.js kreatifi içine gömer)
+pluxee/build.js                  dist/ + preview/index.html üretici
+pluxee/dist/970x250/             Yayına hazır kreatif (ana teslim)
+pluxee/dist/970x250-flat/        İlk taslak
+pluxee/dist/zip/                 Reklam ağı paketleri
+pluxee/preview/                  Sunum sayfası + ekran görüntüleri
+pluxee/tools/smoke.js            Duman testi (Playwright)
+pluxee/tools/capture.js          Ekran görüntüleri (Playwright)
+pluxee/tools/fonts.js            Google Fonts önbelleği (yalıtılmış ortamlar için)
 ```
