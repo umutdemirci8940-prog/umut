@@ -20,13 +20,14 @@ const data = require('../src/data');
 
 const args = Object.fromEntries(process.argv.slice(2).map((a) => { const m = a.match(/^--([^=]+)=(.*)$/); return m ? [m[1], m[2]] : [a.replace(/^--/, ''), true]; }));
 const BASE = data.brand.site.replace(/\/$/, '');
+const ALT = (data.brand.altSite || '').replace(/\/$/, '');
 const WB = 'https://web.archive.org';
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36';
 const MAX_PER = +args['max-per-product'] || 4;
 const MAX_LIST = +args['max-list'] || 16;
 const root = path.join(__dirname, '..');
 const out = path.join(root, 'assets');
-for (const d of ['src', 'logo', 'site', 'sheets']) fs.mkdirSync(path.join(out, d), { recursive: true });
+for (const d of ['src', 'logo', 'site', 'sheets', 'debug']) fs.mkdirSync(path.join(out, d), { recursive: true });
 
 const report = [];
 const log = (s) => { console.log(s); report.push(s); };
@@ -120,12 +121,19 @@ function extractProduct(html, url, sku) {
     try {
       const res = await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 90000 });
       const status = res ? res.status() : 0;
-      await page.waitForLoadState('networkidle', { timeout: 15000 }).catch(() => {});
+      await page.waitForLoadState('networkidle', { timeout: opts.fast ? 7000 : 15000 }).catch(() => {});
       await sleep(opts.wait || 1200);
       await acceptCookies();
-      if (opts.scroll) { const total = await page.evaluate(() => document.documentElement.scrollHeight); for (let y = 0; y < Math.min(total, 8000); y += 600) { await page.evaluate((yy) => window.scrollTo(0, yy), y); await sleep(180); } await page.evaluate(() => window.scrollTo(0, 0)); await sleep(500); await page.waitForLoadState('networkidle', { timeout: 8000 }).catch(() => {}); }
+      if (opts.scroll) { const total = await page.evaluate(() => document.documentElement.scrollHeight); for (let y = 0; y < Math.min(total, opts.fast ? 2400 : 8000); y += 600) { await page.evaluate((yy) => window.scrollTo(0, yy), y); await sleep(180); } await page.evaluate(() => window.scrollTo(0, 0)); await sleep(500); await page.waitForLoadState('networkidle', { timeout: 8000 }).catch(() => {}); }
       const html = await page.content();
-      return { status, html, finalUrl: page.url() };
+      const dom = await page.evaluate(() => {
+        const vw = innerWidth; const best = (ss) => { const c = String(ss || '').split(',').map((x) => x.trim().split(/\s+/)).filter((x) => x[0]).sort((x, y) => parseInt(y[1] || 0) - parseInt(x[1] || 0))[0]; return c ? c[0] : ''; };
+        const imgs = [...document.images].map((i) => { const r = i.getBoundingClientRect(); let src = i.currentSrc || i.src || i.getAttribute('data-src') || ''; const ss = i.srcset || i.getAttribute('data-srcset') || ''; const b = best(ss); if (b) src = b; const pic = i.parentElement && i.parentElement.tagName === 'PICTURE' ? [...i.parentElement.querySelectorAll('source')].map((so) => best(so.srcset || so.getAttribute('data-srcset'))).filter(Boolean) : []; return { src, alts: pic, alt: i.alt || '', nw: i.naturalWidth, nh: i.naturalHeight, x: Math.round(r.x), y: Math.round(r.y + scrollY), w: Math.round(r.width), h: Math.round(r.height), inHeader: !!i.closest('header, nav, [class*="header"], [class*="Header"]') }; });
+        const gallery = imgs.filter((i) => i.src && !/^data:/.test(i.src) && !i.inHeader && Math.max(i.w, i.nw) >= 220 && i.y < 1600 && i.x < vw * 0.66).sort((a, b) => (b.w * b.h) - (a.w * a.h)).slice(0, 10);
+        const h1 = document.querySelector('h1'); const priceEls = [...document.querySelectorAll('[class*="price"], [data-testid*="price"], [itemprop="price"]')].slice(0, 12).map((e) => (e.getAttribute('content') || e.textContent || '').replace(/\s+/g, ' ').trim()).filter(Boolean);
+        return { title: document.title, h1: h1 ? h1.textContent.replace(/\s+/g, ' ').trim() : '', prices: priceEls, gallery, imgCount: imgs.length, notFound: /bulunamad|not found|404|hata/i.test(document.title) };
+      }).catch(() => null);
+      return { status, html, finalUrl: page.url(), dom };
     } catch (e) { return { status: 0, html: '', error: e.message.split('\n')[0] }; }
   };
   const wayback = async (url) => {
@@ -155,7 +163,13 @@ function extractProduct(html, url, sku) {
   log(`sonda (tarayıcı) ${BASE}/ → ${bprobe.status} "${manifest.access.browser.title || ''}"${manifest.access.browser.blocked ? ' ENGELLİ' : ''}`);
   manifest.access.blocked = manifest.access.plain.blocked && manifest.access.browser.blocked;
   if (manifest.access.blocked) log('Canlı site engelli → Wayback Machine arşivi denenecek');
-  const homeHtml = !manifest.access.browser.blocked ? bprobe.html : (!manifest.access.plain.blocked ? probe.html : '');
+  if (ALT) {
+    const ap = await browserGet(ALT + '/', { wait: 2500 });
+    manifest.access.alt = { base: ALT, status: ap.status, blocked: isBlocked(ap.status, ap.html), title: (ap.html.match(/<title>([^<]*)<\/title>/i) || [])[1] };
+    log(`sonda (tarayıcı) ${ALT}/ → ${ap.status} "${manifest.access.alt.title || ''}"${manifest.access.alt.blocked ? ' ENGELLİ' : ''}`);
+  }
+  const altLive = !!(ALT && manifest.access.alt && !manifest.access.alt.blocked && manifest.access.alt.status < 400);
+  const liveBase = !manifest.access.browser.blocked ? BASE : (altLive ? ALT : null);
 
   // ---------- 1. Ürün sayfaları ----------
   const products = [...data.bracelets.map((b) => ({ ...b, kind: 'bracelet' })), ...data.charms.map((c) => ({ ...c, kind: 'charm' }))];
@@ -164,20 +178,41 @@ function extractProduct(html, url, sku) {
     log(`\n## ${p.kind} ${p.key} (${p.sku}) ${p.url}`);
     let got = null;
     const attempts = [];
-    if (!manifest.access.plain.blocked) attempts.push(['plain', () => plainGet(p.url)]);
-    if (!manifest.access.browser.blocked) attempts.push(['browser', () => browserGet(p.url, { scroll: true })]);
-    for (const u of p.alt || []) { attempts.push(['plain-alt', () => plainGet(u)]); attempts.push(['browser-alt', () => browserGet(u, { scroll: true })]); }
-    attempts.push(['wayback', () => wayback(p.url)]);
-    for (const [name, fn] of attempts) {
+    const skus = p.skus || [p.sku];
+    if (!manifest.access.plain.blocked) attempts.push(['plain', p.url, () => plainGet(p.url)]);
+    if (!manifest.access.browser.blocked) attempts.push(['browser', p.url, () => browserGet(p.url, { scroll: true })]);
+    const altUrls = [];
+    for (const u of p.alt || []) altUrls.push(u);
+    if (altLive) for (const sk of skus) { const s = sk.toLowerCase(); const cat = p.kind === 'bracelet' ? 'bracelets' : 'charms'; for (const mid of ['silver/', '', 'pandora-rose/']) altUrls.push(`${ALT}/products/${cat}/${mid}${s}`); altUrls.push(`${ALT}/search?q=${encodeURIComponent(sk)}`); }
+    for (const u of [...new Set(altUrls)]) attempts.push([/search\?q=/.test(u) ? 'alt-search' : 'alt', u, () => browserGet(u, { scroll: true, wait: 1200, fast: true })]);
+    attempts.push(['wayback', p.url, () => wayback(p.url)]);
+    const skuRe = new RegExp(skus.map((x) => x.replace(/[^A-Z0-9]/gi, '')).join('|'), 'i');
+    for (const [name, url, fn] of attempts) {
       const r = await fn(); if (!r) { rec.tries.push(`${name}: yok`); continue; }
       const blocked = isBlocked(r.status, r.html);
-      const ex = r.html ? extractProduct(r.html, r.finalUrl || p.url, p.sku) : { images: [] };
-      rec.tries.push(`${name}: ${r.status}${blocked ? ' engelli' : ''} ${ex.images.length} görsel${ex.price ? ' ₺' + ex.price : ''}${r.error ? ' ' + r.error : ''}`);
+      let ex = r.html ? extractProduct(r.html, r.finalUrl || url, p.sku) : { images: [] };
+      let domGallery = 0;
+      if (r.dom) {
+        if (name === 'alt-search') {
+          // arama sonucundan ilk ürün bağlantısı
+          const m = r.html.match(new RegExp('href="([^"]*\\/products\\/[^"]*?(?:' + skus.map((x) => x.toLowerCase()).join('|') + ')[^"]*)"', 'i'));
+          if (m) { const pu = absUrl(m[1], ALT); rec.tries.push(`alt-search → ${pu}`); const r2 = await browserGet(pu, { scroll: true, wait: 1500 }); if (r2 && r2.html && !isBlocked(r2.status, r2.html)) { r.html = r2.html; r.dom = r2.dom; r.finalUrl = r2.finalUrl; r.status = r2.status; ex = extractProduct(r.html, r.finalUrl, p.sku); } }
+          else { rec.tries.push('alt-search: ürün bağlantısı yok'); continue; }
+        }
+        const isProduct = !r.dom.notFound && r.dom.h1 && (skuRe.test(r.html) || ex.jsonld) && (ex.images.length || ex.price || r.dom.gallery.length);
+        if (!isProduct) { rec.tries.push(`${name}: ${r.status} ürün sayfası değil ("${(r.dom.h1 || r.dom.title || '').slice(0, 60)}")`); continue; }
+        if (!ex.title && r.dom.h1) ex.title = r.dom.h1;
+        if (!ex.price) { for (const t of r.dom.prices) { const m = t.match(/(?:₺\s?)?(\d{1,3}(?:\.\d{3})*,\d{2})/) || t.match(/^(\d{3,6})(?:[.,]\d\d)?\s*(?:TL|₺)?$/); if (m) { ex.price = trNum(m[1]); ex.currency = 'TRY'; break; } } }
+        for (const g of r.dom.gallery) { for (const u2 of [g.src, ...g.alts]) { const a = absUrl(u2, r.finalUrl || url); if (a && !ex.images.includes(a)) { ex.images.push(a); domGallery++; } } }
+        const shot = path.join(out, 'debug', `${p.key}.jpg`); await page.screenshot({ path: shot, type: 'jpeg', quality: 55 }).catch(() => {});
+        fs.writeFileSync(path.join(out, 'debug', `${p.key}.json`), JSON.stringify({ url: r.finalUrl || url, dom: r.dom, jsonld: ex.jsonld }, null, 1));
+      }
+      rec.tries.push(`${name}: ${r.status}${blocked ? ' engelli' : ''} ${ex.images.length} görsel (${domGallery} galeri)${ex.price ? ' ₺' + ex.price : ''}${r.error ? ' ' + r.error : ''} ${url.slice(0, 80)}`);
       if (blocked || !r.html || r.status >= 400) continue;
-      if (ex.images.length || ex.price) { got = { ...ex, via: name }; break; }
+      if (ex.images.length || ex.price) { got = { ...ex, via: name, url: r.finalUrl || url }; break; }
     }
     if (got) {
-      rec.source = got.via; if (got.title) rec.title = got.title; if (got.price) rec.price = got.price; if (got.currency) rec.currency = got.currency;
+      rec.source = got.via; rec.sourceUrl = got.url; if (got.title) rec.title = got.title; if (got.price) rec.price = got.price; if (got.currency) rec.currency = got.currency;
       rec.description = got.description ? String(got.description).slice(0, 400) : undefined;
       rec.jsonld = got.jsonld ? { name: got.jsonld.name, sku: got.jsonld.sku, brand: got.jsonld.brand, offers: got.jsonld.offers } : undefined;
       rec.imageUrls = got.images.slice(0, 12);
@@ -194,8 +229,9 @@ function extractProduct(html, url, sku) {
     for (const u0 of rec.imageUrls) {
       if (n >= MAX_PER) break;
       const u = bigImg(u0);
-      let r = await download(u, p.url, rec.source === 'wayback');
-      if (r.err && u !== u0) r = await download(u0, p.url, rec.source === 'wayback');
+      if (rec.source === 'wayback') { rec.tries.push('görseller arşivde yok; atlandı'); break; }
+      let r = await download(u, rec.sourceUrl || p.url, false);
+      if (r.err && u !== u0) r = await download(u0, rec.sourceUrl || p.url, false);
       if (r.err) { rec.tries.push(`görsel ${u0.slice(0, 90)} → ${r.err}`); continue; }
       const ext = extOf(r.ct, u); if (!/^(jpg|png|webp)$/.test(ext)) continue;
       const h = hash(r.buf); if (seenHash.has(h)) continue; seenHash.add(h);
@@ -210,8 +246,8 @@ function extractProduct(html, url, sku) {
   }
 
   // ---------- 2. Listeleme sayfaları ----------
-  if (!args['skip-listings'] && !manifest.access.browser.blocked) {
-    for (const L of data.listings || []) {
+  if (!args['skip-listings'] && liveBase) {
+    for (const L of (liveBase === BASE ? data.listings : data.altListings) || []) {
       log(`\n## liste ${L.key} ${L.url}`);
       const rec = { key: L.key, name: L.name, url: L.url, items: [], error: null };
       const r = await browserGet(L.url, { scroll: true, wait: 1800 });
@@ -219,7 +255,7 @@ function extractProduct(html, url, sku) {
       const tiles = await page.evaluate((MAX) => {
         const outT = []; const seen = new Set();
         for (const a of document.querySelectorAll('a[href]')) {
-          const m = a.href.match(/\/([0-9]{5,}[A-Z0-9]*)\.html(\?|#|$)/i); if (!m) continue; const sku = m[1].toUpperCase(); if (seen.has(sku)) continue;
+          const m = a.href.match(/\/([0-9]{5,}[A-Z0-9]*)\.html(\?|#|$)/i) || a.href.match(/\/products\/(?:[^/?#]+\/){0,3}([0-9]{5,}[a-z0-9_]*)(?:-\d+)?\/?(\?|#|$)/i); if (!m) continue; const sku = m[1].toUpperCase(); if (seen.has(sku)) continue;
           const tile = a.closest('.product-tile, .product, [class*="tile"], [class*="product"], li, article') || a;
           const img = tile.querySelector('img'); let src = img ? (img.currentSrc || img.src || img.getAttribute('data-src') || '') : '';
           const ss = img ? (img.srcset || img.getAttribute('data-srcset') || '') : '';
@@ -251,13 +287,13 @@ function extractProduct(html, url, sku) {
   }
 
   // ---------- 3. Marka sayfaları: logo, hero görselleri, metinler ----------
-  if (!args['skip-site'] && !manifest.access.browser.blocked) {
-    for (const p of data.sitePages || ['/']) {
-      const url = BASE + p; log(`\n## site ${url}`);
+  if (!args['skip-site'] && liveBase) {
+    for (const p of (liveBase === BASE ? data.sitePages : data.altSitePages) || ['/']) {
+      const url = liveBase + p; log(`\n## site ${url}`);
       const rec = { path: p, url, images: [], texts: {}, svgs: [] };
       const r = await browserGet(url, { scroll: true, wait: 2000 });
       if (isBlocked(r.status, r.html) || r.status >= 400) { rec.error = 'HTTP ' + r.status; manifest.site.pages.push(rec); log(`- ${rec.error}`); continue; }
-      const name = slug(p === '/' ? 'home' : p);
+      const name = slug(p === '/' || p === '' ? 'home' : p);
       const shotV = path.join(out, 'site', `${name}-hero.jpg`); await page.screenshot({ path: shotV, type: 'jpeg', quality: 74 }).catch(() => {});
       const shotF = path.join(out, 'site', `${name}-full.jpg`); await page.screenshot({ path: shotF, type: 'jpeg', quality: 60, fullPage: true }).catch(() => {});
       rec.screens = { hero: path.relative(root, shotV), full: path.relative(root, shotF) };
