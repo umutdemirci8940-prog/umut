@@ -2,7 +2,7 @@
 'use strict';
 /**
  * 12'yi Geçiyor · 970x250 birimin sahnelerini Playwright ile görüntüler ve
- * temel etkileşimleri (oy, kod kopyalama, fiş indirme, üç ekran) duman testinden geçirir.
+ * temel etkileşimleri (oy, Pazartesi uygulama çıkışı, fiş indirme, tıklama çıkışı, döngü, üç ekran) duman testinden geçirir.
  *
  * Kullanım:  NODE_PATH=$(npm root -g) node pluxee-geciyor/tools/capture.js [--out <klasör>]
  *
@@ -54,6 +54,8 @@ const SHOTS = [
   ['S5b-rapor-kariyer-ilan-satiri', 'hour=15&min=10&cat=career&seg=hr&city=34', 2200],
   ['S6a-pazartesi-12-04', 'hour=12&min=4&cat=news&cal=monday&dow=1&city=06', 1800],
   ['S6b-ayin-biri', 'hour=12&min=4&cat=news&cal=payday&dom=1&city=06', 1800],
+  ['S6b2-ismarliyorum', 'hour=12&min=4&cat=news&cal=payday&dom=1&city=06', 1800, 'vote:ismarliyorum'],
+  ['S4-esik-alti-erzurum-derbi', 'hour=12&min=40&cat=news&city=25&seq=3', 1800, 'vote:lokanta'],
   ['S6c-ay-sonu', 'hour=12&min=4&cat=market&cal=eom&dom=27&city=06', 1800],
   ['S7-kapanis-14-00', 'hour=14&min=0&cat=news&city=06&seq=3', 2600],
   ['S8-pencere-disi-15-10', 'hour=15&min=10&cat=news&city=06', 1800],
@@ -66,6 +68,9 @@ const SHOTS = [
 
 (async () => {
   const src = fs.readFileSync(html, 'utf8');
+  // Yasaklı ifade taraması (metin değişikliklerinde kural sessizce bozulmasın)
+  const banned = src.match(/splash|yayıncı ağ|medya ortağ|ajans|network/i);
+  if (banned) { console.error('✖ yasaklı ifade:', banned[0]); process.exit(1); }
   const cssUrl = src.match(/href="(https:\/\/fonts\.googleapis\.com[^"]+)"/)[1].replace(/&amp;/g, '&');
   const fontCss = ensureFonts(cssUrl);
   const browser = await chromium.launch();
@@ -112,10 +117,8 @@ const SHOTS = [
   // 2) Etkileşim duman testi
   await page.goto('file://' + html + '?dev=0&hour=12&min=4&cat=news&cal=monday&dow=1&city=06');
   await page.waitForTimeout(600);
-  await page.click('.unit button[data-copy]');
-  await page.waitForTimeout(200);
-  const copied = await page.$eval('.unit button[data-copy]', (b) => b.textContent);
-  if (!/Kopyalandı/.test(copied)) errors.push('kod kopyalama geri bildirimi yok: ' + copied);
+  const [appPopup] = await Promise.all([ctx.waitForEvent('page', { timeout: 5000 }).catch(() => null), page.click('.unit button[data-act="app"]')]);
+  if (!appPopup) errors.push('Pazartesi "Uygulamayı aç" düğmesi yeni pencere açmadı'); else { console.log('✔ Pazartesi uygulama çıkışı →', appPopup.url()); await appPopup.close(); }
   await page.goto('file://' + html + '?dev=0&hour=12&min=7&cat=finance&city=06');
   await page.waitForTimeout(600);
   await page.click('.unit button[data-vote="siparis"]');
