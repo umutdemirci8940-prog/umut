@@ -36,8 +36,8 @@ const CSS = `
 @keyframes kbh{from{transform:scale(1.06) translate(1.1%,0)}to{transform:scale(1.15) translate(-.9%,.7%)}}
 .ad.is-thud .bg{animation:thud .55s var(--ease)}
 @keyframes thud{0%{transform:scale(1)}14%{transform:scale(1.014)}100%{transform:scale(1)}}
-.tops{position:absolute;left:440px;top:0;width:530px;height:76px;pointer-events:none;background:linear-gradient(180deg,rgba(15,12,38,.55),rgba(15,12,38,0))}
-.flash{position:absolute;left:440px;top:0;width:530px;height:250px;pointer-events:none;opacity:0;background:linear-gradient(90deg,rgba(255,255,255,0),#fff 22%)}
+.tops{position:absolute;left:0;top:0;width:970px;height:80px;pointer-events:none;background:linear-gradient(180deg,rgba(15,12,38,.55),rgba(15,12,38,0))}
+.flash{position:absolute;left:0;top:0;width:970px;height:250px;pointer-events:none;opacity:0;background:linear-gradient(90deg,rgba(255,255,255,0) 40%,#fff 64%)}
 .flash.is-on{animation:flash .5s ease-out}
 @keyframes flash{0%{opacity:.5}100%{opacity:0}}
 /* ilerleme çubukları */
@@ -68,7 +68,7 @@ const CSS = `
 .scene.is-paused .pz{opacity:1;transform:translate(-50%,0)}
 .scene.is-paused .bar i{box-shadow:0 0 12px rgba(0,235,94,.95)}
 /* final: dört damga alt sırada */
-.fin{position:absolute;left:480px;top:188px;width:346px;height:48px;display:flex;gap:10px;align-items:flex-end;pointer-events:none}
+.fin{position:absolute;left:480px;top:188px;width:340px;height:48px;display:flex;gap:10px;align-items:flex-end;pointer-events:none}
 .fs{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;opacity:0;will-change:transform,opacity}
 .fs small{font-size:7.5px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.85);text-shadow:0 1px 6px rgba(0,0,0,.6);white-space:nowrap}
 .fs .box{position:relative;display:inline-flex;align-items:center;gap:4px;padding:3px 7px 3px 8px;border:2px solid var(--green);border-radius:5px;color:var(--green);font-size:8.5px;font-weight:800;letter-spacing:.1em;line-height:1;text-transform:uppercase;transform:rotate(-6deg);background:rgba(0,235,94,.08);filter:drop-shadow(0 4px 8px rgba(0,0,0,.5));white-space:nowrap}
@@ -78,8 +78,8 @@ const CSS = `
 .scene.is-final .fs:nth-child(1){animation-delay:.35s}.scene.is-final .fs:nth-child(2){animation-delay:.5s}.scene.is-final .fs:nth-child(3){animation-delay:.65s}.scene.is-final .fs:nth-child(4){animation-delay:.8s}
 @keyframes fslam{0%{opacity:0;transform:scale(1.7)}100%{opacity:1;transform:scale(1)}}
 /* imza: kart */
-.card{font-size:6.2px;left:auto;top:auto;right:14px;bottom:14px;z-index:6;pointer-events:none;opacity:0;transform:translateY(10px) rotate(-14deg);transition:opacity .7s .55s,transform 1s .55s var(--ease);box-shadow:0 2.4em 3.6em -.8em rgba(0,0,0,.65),0 .6em 1.4em rgba(0,0,0,.35)}
-.ad.is-live .card{opacity:1;transform:translateY(0) rotate(-8deg)}
+.card{font-size:6.2px;left:auto;top:auto;right:20px;bottom:19px;z-index:6;pointer-events:none;opacity:0;transform:translateY(10px) rotate(-13deg);transition:opacity .7s .55s,transform 1s .55s var(--ease);box-shadow:0 2.4em 3.6em -.8em rgba(0,0,0,.65),0 .6em 1.4em rgba(0,0,0,.35)}
+.ad.is-live .card{opacity:1;transform:translateY(0) rotate(-7deg)}
 .ad.is-ended .gloss{animation:none}
 .burst{left:730px;top:106px}
 .hint{left:655px;top:214px}
@@ -113,7 +113,7 @@ function go(i,byUser){
   setTitle(o.scene.title);setWord(K.words[o.key]||o.scene.word);showPhoto(layerFor(o.key));
   numEl.textContent=pad(i+1)+' / '+pad(order.length);
   story.classList.remove('is-stamp','is-lbl');slbl.innerHTML=esc(o.scene.label)+' <em>·</em> '+esc(o.tag);
-  later(function(){story.classList.add('is-stamp');flashNow();sparks(burst)},T.stamp);
+  later(function(){story.classList.add('is-stamp');flashNow()},T.stamp);
   later(function(){story.classList.add('is-lbl')},T.label);
   drawBars();tick();emit('state');
 }
