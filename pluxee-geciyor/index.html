@@ -9,13 +9,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
-<script>
-/* Ad server clickTag'leri (yükleme doğrulayıcıları için deklarasyon). Ad server bunları ezerse birim ezilen adresi olduğu gibi kullanır. */
-var clickTag = "https://www.pluxee.com.tr/uye-isyerleri?utm_source=display&utm_medium=masthead&utm_campaign=pluxee-geciyor&utm_content=12yi-geciyor";
-var clickTag1 = "https://www.pluxee.com.tr/sayfa/pluxee-gecen-marketler/?utm_source=display&utm_medium=masthead&utm_campaign=pluxee-geciyor&utm_content=market";
-var clickTag2 = "https://www.pluxee.com.tr/?utm_source=display&utm_medium=masthead&utm_campaign=pluxee-geciyor&utm_content=isveren-teklif";
-var clickTag3 = "https://www.pluxee.com.tr/sayfa/pluxee-mobil-uygulamasi/?utm_source=display&utm_medium=masthead&utm_campaign=pluxee-geciyor&utm_content=pazartesi";
-</script>
 <style>
 :root{
   --pg:#221C46; --pg2:#2E2760; --pg3:#3A3375;
@@ -52,13 +45,6 @@ body.dev{background:#0c0a1f;color:#fff;min-height:100vh}
 .panel{position:absolute;left:620px;top:18px;width:330px;height:208px}
 .tag{position:absolute;left:20px;bottom:7px;font-size:11px;font-weight:700;color:var(--w50);letter-spacing:.01em}
 .unit.green .tag{color:var(--pg)}
-.unit.green .calm .t,.unit.green .calm .l{color:var(--pg)}
-.unit.green .btn{background:var(--pg);color:var(--sg)}
-.unit.green .lnk{color:var(--pg)}
-.unit.green .prog i{background:var(--pg)}
-/* 30 sn animasyon bütçesi: canlı modda süre dolunca dekoratif hareket durur, etkileşim geçici olarak açar */
-.unit.still .logo svg,.unit.still .chip{animation:none!important}
-.unit.still .bar i,.unit.still .prog i{transition:none!important}
 .prog{position:absolute;left:0;bottom:0;width:100%;height:3px;background:var(--w12)}
 .prog i{display:block;height:100%;width:0;background:var(--sg);transition:width .6s}
 .fade-in{animation:fadein .3s ease both}
@@ -81,7 +67,7 @@ body.dev{background:#0c0a1f;color:#fff;min-height:100vh}
 .chip svg{width:18px;height:18px;flex:none}
 .chip:hover{background:var(--sg20);border-color:var(--sg)}
 .chip.sel{background:var(--sg);color:var(--pg)}
-.chip.wide{grid-column:1/-1;height:36px;background:var(--sg);color:var(--pg);justify-content:center}
+.chip.wide{grid-column:1/-1;background:var(--sg);color:var(--pg);justify-content:center}
 .chips.c3{grid-template-columns:repeat(3,1fr)}
 .chips.c3 .chip{height:36px;font-size:12px;padding:0 8px;gap:6px}
 @keyframes chipin{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:none}}
@@ -121,21 +107,23 @@ body.dev{background:#0c0a1f;color:#fff;min-height:100vh}
 
 /* kod kutusu */
 .code{display:flex;align-items:center;justify-content:space-between;background:var(--pg2);border-radius:10px;height:44px;padding:0 14px;margin-bottom:8px}
-.code b{color:var(--sg);font-size:14px}
+.code b{color:var(--sg);font-size:16px;letter-spacing:.08em;font-variant-numeric:tabular-nums}
 .code button{background:none;border:0;color:var(--w70);font-size:12px;font-weight:700;cursor:pointer;font-family:inherit}
 .code button:hover{color:var(--w)}
 
 /* kapanış birleşmesi: gezilen mecralar tek yeşil çizgide toplanır, çizgi x'e varır */
 .merge{position:relative;height:150px;margin-top:34px}
-.merge .mis{position:absolute;left:0;top:22px;display:flex;justify-content:space-between}
-.merge .mi{width:64px;text-align:center;font-size:11px;font-weight:700;color:var(--w70);animation:fadein .4s ease both}
-.merge .dot{display:block;width:26px;height:26px;margin:0 auto 6px;border-radius:50%;border:2px solid var(--sg);background:var(--pg);color:var(--sg);font-size:12px;line-height:22px;font-weight:800}
-.merge .line{position:absolute;left:30px;top:35px;height:3px;width:246px;background:var(--sg);border-radius:2px;animation:linegrow .9s .9s cubic-bezier(.2,.8,.2,1) both;z-index:-1}
-@keyframes linegrow{from{width:0}}
-.merge .xm{position:absolute;left:266px;top:12px;width:48px;height:48px;animation:xin .4s 1.7s ease both}
+.merge .mi{position:absolute;top:22px;width:64px;text-align:center;font-size:11px;font-weight:700;color:var(--w70);animation:fadein .4s ease both}
+.merge .mi svg{width:26px;height:26px;display:block;margin:0 auto 6px;background:var(--pg);border-radius:50%;padding:2px}
+.merge .mi:nth-child(1){left:0;animation-delay:.1s}
+.merge .mi:nth-child(2){left:86px;animation-delay:.4s}
+.merge .mi:nth-child(3){left:172px;animation-delay:.7s}
+.merge .line{position:absolute;left:30px;top:35px;height:3px;width:0;background:var(--sg);border-radius:2px;animation:linegrow .9s .9s cubic-bezier(.2,.8,.2,1) both;z-index:-1}
+@keyframes linegrow{to{width:246px}}
+.merge .xm{position:absolute;left:266px;top:12px;width:48px;height:48px;opacity:0;animation:xin .4s 1.7s ease both}
 .merge .xm path{stroke:var(--sg)}
-@keyframes xin{from{opacity:0}}
-.merge .cap{position:absolute;left:0;right:0;top:92px;text-align:left;font-size:12px;font-weight:700;color:var(--w70);animation:xin .4s 2s ease both}
+@keyframes xin{to{opacity:1}}
+.merge .cap{position:absolute;left:0;right:0;top:92px;text-align:left;font-size:12px;font-weight:700;color:var(--w70);opacity:0;animation:xin .4s 2s ease both}
 
 /* Ramazan / sakin */
 .calm{position:absolute;right:0;top:60px;text-align:right}
@@ -143,8 +131,8 @@ body.dev{background:#0c0a1f;color:#fff;min-height:100vh}
 .calm .l{font-size:13px;color:var(--w70);font-weight:700;margin-top:6px}
 
 @media (prefers-reduced-motion:reduce){
-  .logo svg,.chip,.merge .mi,.merge .line,.merge .xm,.merge .cap,.rain,.fade-in,.slide-r{animation:none!important;opacity:1;transform:none}
-  .wave{transition:none}.bar i,.prog i,.clock .big,.h1 .pay{transition:none}
+  .logo svg,.chip,.merge .mi,.merge .line,.merge .xm,.merge .cap,.rain{animation:none!important;opacity:1;transform:none}
+  .wave{transition:none}.bar i{transition:none}
 }
 
 /* ---------- sunum kabuğu (yalnız dev modunda) ---------- */
@@ -193,8 +181,7 @@ body:not(.dev) #unitHost{position:absolute;left:0;top:0}
    ===================================================================== */
 var Q = new URLSearchParams(location.search);
 var inFrame = (function(){ try { return window.top !== window.self; } catch (e) { return true; } })();
-var dv = Q.get('dev');
-var DEV = dv === '1' || (dv == null && !inFrame && !window.Enabler); /* iframe içinde veya Enabler varken asla sunum kabuğu yok */
+var DEV = Q.has('dev') ? Q.get('dev') === '1' : !inFrame;
 var RM = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
 var B2B = { hr: 1, employer: 1, sme: 1, decision: 1 };
 
@@ -226,9 +213,9 @@ var OPTS = [
 var ROPTS = [
   { k: 'evde', ad: 'Evde', dedi: 'evde' },
   { k: 'lokanta', ad: 'Lokantada', dedi: 'lokantada' },
-  { k: 'siparis', ad: 'Siparişle', dedi: 'siparişle' },
+  { k: 'siparis', ad: 'Sipariş', dedi: 'sipariş' },
   { k: 'davet', ad: 'Davette', dedi: 'davette' },
-  { k: 'market', ad: 'Marketten', dedi: 'marketten' }
+  { k: 'market', ad: 'Market', dedi: 'market' }
 ];
 var RPAY = [54, 12, 16, 10, 8];
 var TR = { ad: 'Türkiye', da: 'de', loc: "Türkiye'de", nFinal: 41000, pay: [27, 19, 34, 11, 6, 3] };
@@ -239,52 +226,31 @@ var BOLGE = {
   'Doğu Anadolu': { da: 'da', nFinal: 410, pay: [33, 22, 18, 15, 7, 5] }
 };
 var CITIES = {
-  '34': { ad: 'İstanbul', slug: 'istanbul', da: 'da', loc: "İstanbul'da", gen: "İstanbul'un", bolge: 'Marmara', lokanta: "24.000'den fazla", market: "9.000'den fazla", nFinal: 13000, pay: [30, 16, 28, 11, 10, 5], iftar: '19:40' },
-  '06': { ad: 'Ankara', slug: 'ankara', da: 'da', loc: "Ankara'da", gen: "Ankara'nın", bolge: 'İç Anadolu', lokanta: "6.400'den fazla", market: "2.900'den fazla", nFinal: 3500, pay: [29, 16, 31, 12, 8, 4], iftar: '19:25' },
-  '35': { ad: 'İzmir', slug: 'izmir', da: 'de', loc: "İzmir'de", gen: "İzmir'in", bolge: 'Ege', lokanta: "5.100'den fazla", market: "2.400'den fazla", nFinal: 2600, pay: [25, 14, 27, 14, 15, 5], iftar: '19:48' },
-  '25': { ad: 'Erzurum', slug: 'erzurum', da: 'da', loc: "Erzurum'da", gen: "Erzurum'un", bolge: 'Doğu Anadolu', lokanta: "600'den fazla", market: "300'den fazla", nFinal: 120, pay: [36, 24, 14, 15, 6, 5], iftar: '19:05' }
+  '34': { ad: 'İstanbul', da: 'da', loc: "İstanbul'da", gen: "İstanbul'un", bolge: 'Marmara', lokanta: "24.000'den fazla", market: "9.000'den fazla", nFinal: 13000, pay: [30, 16, 28, 11, 10, 5], iftar: '19:40' },
+  '06': { ad: 'Ankara', da: 'da', loc: "Ankara'da", gen: "Ankara'nın", bolge: 'İç Anadolu', lokanta: "6.400'den fazla", market: "2.900'den fazla", nFinal: 3500, pay: [29, 16, 31, 12, 8, 4], iftar: '19:25' },
+  '35': { ad: 'İzmir', da: 'de', loc: "İzmir'de", gen: "İzmir'in", bolge: 'Ege', lokanta: "5.100'den fazla", market: "2.400'den fazla", nFinal: 2600, pay: [25, 14, 27, 14, 15, 5], iftar: '19:48' },
+  '25': { ad: 'Erzurum', da: 'da', loc: "Erzurum'da", gen: "Erzurum'un", bolge: 'Doğu Anadolu', lokanta: "600'den fazla", market: "300'den fazla", nFinal: 120, pay: [36, 24, 14, 15, 6, 5], iftar: '19:05' }
 };
 var CATS = {
-  news:    { ad: 'Haber', cerceve: 'Gündem yoğun, mola kısa. Bugün ne yesek?', isv: '{n} kişi şimdiden cevap verdi. Hangisini seçerlerse seçsinler, tek kart yeter.' },
-  finance: { ad: 'Finans / ekonomi', cerceve: 'Piyasa açık, sen molada. Bugün ne yesek?', isv: "Öğle yemeğinin vergi avantajı var; şirket harcaması da Business Kart'ta. {n} kişi şimdiden cevap verdi." },
-  recipe:  { ad: 'Yemek / tarif', cerceve: 'Tarif güzel, mola kısa. Bugün tarif mi, sipariş mi?', urun: "{loc} {lokanta} nokta Pluxee'li; ev yemeği lokantaları da dahil.", isv: 'Ekibinin cevabı öğle raporunda, 14:00\'te. {n} kişi şimdiden cevap verdi.' },
-  market:  { ad: 'Market / alışveriş', cerceve: 'Öğle arasında market de bir cevap. Bugün ne yesek?', urun: "{loc} {market} markette Market Kart da Pluxee'li.", isv: 'Gıda yardımı nakit değil, kartla: Market Kart ve Pluxee Pro. {n} kişi cevaplıyor.' },
-  auto:    { ad: 'Otomotiv', cerceve: 'Yol uzun, mola kısa. Bugün ne yesek?', urun: "Yol üstü mola da sayılır: akaryakıt istasyonlarındaki kafe ve marketler Pluxee'li.", isv: 'Ekibin öğlesi tek kartta, filonun yakıtı tek faturada: Pluxee Yemek ve Pluxee Yakıt.' },
-  sport:   { ad: 'Spor', cerceve: 'Maç akşama, mola şimdi. Bugün ne yesek?', urunCuma: "Hafta sonu maç bileti Biletix'te Pluxee Kültür-Sanat indirimli.", isv: '{n} kişi şimdiden cevap verdi. Hangisini seçerlerse seçsinler, tek kart yeter.' },
-  culture: { ad: 'Kültür-sanat', cerceve: 'Akşamın planı molada yapılır. Bugün ne yesek?', urunCuma: "Akşamın biletini molada al: Pluxee Kültür-Sanat, Biletix'te indirimli.", isv: 'Ekip motivasyonu sahneden: Pluxee Kültür-Sanat kurumsal. {n} kişi cevaplıyor.' },
-  life:    { ad: 'Kadın / yaşam', cerceve: 'Molada küçük bir keyif. Bugün ne yesek?', isv: 'Ekibe özel gün jesti tek karttan: Kurumsal Hediye Kartı. {n} kişi cevaplıyor.' },
-  career:  { ad: 'Kariyer / İK', cerceve: 'Yeni işte ilk soru: yemek kartı var mı? Bugün ne yesek?', urun: "İlanda 'yemek kartı' yazıyorsa Pluxee'li olsun.", isv: 'Yeni işte ilk soru hâlâ aynı: yemek kartı var mı? {n} kişi şimdiden cevap verdi.', rapor: "Bugünkü ilanların %63'ünde yemek kartı yazıyor. Seninkinde?" },
-  tech:    { ad: 'Teknoloji', cerceve: 'Kart ofiste kaldıysa telefon yeter. Bugün ne yesek?', urun: 'Pluxee uygulaması: bakiye, harita, dijital cüzdan; dönüşte Ulaşım da aynı uygulamada.', isv: 'Yan hak yönetimi tek panelde. {n} kişi şu an cevaplıyor.' }
+  news:    { ad: 'Haber', cerceve: 'Gündem yoğun, mola kısa. Bugün ne yesek?', isv: '{n} çalışan şimdiden cevap verdi. Hangisini seçerlerse seçsinler, tek kart yeter.' },
+  finance: { ad: 'Finans / ekonomi', cerceve: 'Piyasa açık, sen molada. Bugün ne yesek?', isv: 'Öğle yemeğinin vergi avantajı var. {n} çalışan şimdiden cevap verdi; tek kart yeter.' },
+  recipe:  { ad: 'Yemek / tarif', cerceve: 'Tarif güzel, mola kısa. Bugün tarif mi, sipariş mi?', urun: "Ev yemeği lokantaları da Pluxee'li: {loc} {lokanta} nokta.", isv: 'Ekibin bugün ne yedi? Öğle raporu 14:00\'te. {n} çalışan şimdiden cevap verdi.' },
+  market:  { ad: 'Market / alışveriş', cerceve: 'Öğle arasında market de bir cevap. Bugün ne yesek?', urun: "33.000'den fazla markette Market Kart; {loc} {market} market.", isv: 'Gıda yardımı nakit değil, kartla: Market Kart ve Pluxee Pro. {n} çalışan cevaplıyor.' },
+  auto:    { ad: 'Otomotiv', cerceve: 'Yol uzun, mola kısa. Bugün ne yesek?', isv: 'Ekibin öğlesi tek kartta, filonun yakıtı tek faturada: Pluxee Yemek ve Pluxee Yakıt.' },
+  sport:   { ad: 'Spor', cerceve: 'Maç akşama, mola şimdi. Bugün ne yesek?', urunCuma: "Hafta sonu maç bileti Biletix'te Pluxee Kültür-Sanat indirimli.", isv: '{n} çalışan şimdiden cevap verdi. Hangisini seçerlerse seçsinler, tek kart yeter.' },
+  culture: { ad: 'Kültür-sanat', cerceve: 'Akşamın planı molada yapılır. Bugün ne yesek?', urunCuma: "Akşamın biletini molada al: Pluxee Kültür-Sanat, Biletix'te indirimli.", isv: 'Ekip motivasyonu sahneden: Pluxee Kültür-Sanat kurumsal. {n} çalışan cevaplıyor.' },
+  life:    { ad: 'Kadın / yaşam', cerceve: 'Molada küçük bir keyif. Bugün ne yesek?', isv: 'Ekibe özel gün jesti tek karttan: Kurumsal Hediye Kartı. {n} çalışan cevaplıyor.' },
+  career:  { ad: 'Kariyer / İK', cerceve: 'Yeni işte ilk soru: yemek kartı var mı? Bugün ne yesek?', urun: "İlanda 'yemek kartı' yazıyorsa Pluxee'li olsun.", isv: 'Yeni işte ilk soru hâlâ aynı: yemek kartı var mı? {n} çalışan şimdiden cevap verdi.', rapor: "Bugünkü ilanların %63'ünde yemek kartı yazıyor. Seninkinde?" },
+  tech:    { ad: 'Teknoloji', cerceve: 'Kart ofiste kaldıysa telefon yeter. Bugün ne yesek?', urun: 'Pluxee uygulaması: bakiye, harita, dijital cüzdan.', isv: 'Yan hak yönetimi tek panelde. {n} çalışan şu an cevaplıyor.' }
 };
 var DAYS = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];
-
-/* Canlı veri kancaları: barometre.json / il.json adresleri ve oy uç noktası parametreyle (ad server makrosuyla) verilirse
-   gömülü örnek veri yerine kullanılır; verilmezse dosya hiçbir ağ isteği yapmaz. */
-var LIVE = { baro: Q.get('baro_url') || null, il: Q.get('il_url') || null, oy: Q.get('oy_url') || null, on: false };
-function applyLive(j) {
-  try {
-    if (j.turkiye) { TR.nFinal = j.turkiye.n; TR.pay = j.turkiye.pay; LIVE.on = true; }
-    var k, c;
-    for (k in (j.iller || {})) { if (!CITIES[k]) continue; c = j.iller[k]; if (c.n != null) { CITIES[k].nFinal = c.n; LIVE.on = true; } if (c.pay) CITIES[k].pay = c.pay; if (c.lokanta) CITIES[k].lokanta = c.lokanta; if (c.market) CITIES[k].market = c.market; if (c.iftar) CITIES[k].iftar = c.iftar; }
-    for (k in (j.bolgeler || {})) { if (!BOLGE[k]) continue; BOLGE[k].nFinal = j.bolgeler[k].n; BOLGE[k].pay = j.bolgeler[k].pay; }
-  } catch (e) { /* bozuk veri: gömülü örnekle devam */ }
-}
-function loadLive() {
-  [LIVE.baro, LIVE.il].forEach(function (u) {
-    if (!u || !window.fetch) return;
-    fetch(u, { cache: 'no-store', credentials: 'omit' }).then(function (r) { return r.json(); }).then(function (j) { applyLive(j); render(); }).catch(function () {});
-  });
-}
-function sendVote(k) { if (!LIVE.oy || S.cmp === 'limited' || !navigator.sendBeacon) return; try { navigator.sendBeacon(LIVE.oy, JSON.stringify({ p: S.city, s: k, k: S.cat })); } catch (e) {} }
-/* Pazartesi: kod birimde gösterilmez; Pluxee uygulamasına yönlendirilir (kod Pluxee'nin kendi kanalında verilir) */
+var MONDAY_CODE = 'PLX-PZT-60';
 
 /* ---------- yardımcılar ---------- */
 function fmt(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
 function pad(n) { return (n < 10 ? '0' : '') + n; }
-function lead(pay, ex) { var m = -1; for (var i = 0; i < pay.length; i++) { if (i === ex) continue; if (m < 0 || pay[i] > pay[m]) m = i; } return m; }
-/* Öğle sorusunda lider yalnız Pluxee'nin geçtiği beş seçenekten seçilir; 'Evden getirdim' barometrede görünür, lider olmaz */
-function leadO(pay) { return lead(pay, 5); }
-function nLive(nFinal, t) { if (LIVE.on) return nFinal; if (t < 718) return 0; if (t >= 840) return nFinal; return Math.round(nFinal * (1 - Math.exp(-(t - 718) / 25))); }
+function lead(pay) { var m = 0; for (var i = 1; i < pay.length; i++) if (pay[i] > pay[m]) m = i; return m; }
+function nLive(nFinal, t) { if (t < 718) return 0; if (t >= 840) return nFinal; return Math.round(nFinal * (1 - Math.exp(-(t - 718) / 25))); }
 function tpl(s, o) { return s.replace(/\{(\w+)\}/g, function (_, k) { return o[k] != null ? o[k] : ''; }); }
 function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
 
@@ -310,6 +276,8 @@ function saatCumlesi(h, m) {
 }
 function payoff(h1) {
   if (h1 === 'Saat 12.') return 'Öğle arası. Pluxee de.';
+  if (h1 === 'On iki buçuk.') return 'Yarısı geçti; Pluxee de burada.';
+  if (h1 === 'Saat bir.') return 'Geç çıkanlar için de.';
   if (h1 === 'Saat iki.') return 'Öğle arası geçti.';
   if (/var\.$/.test(h1)) return 'Pluxee de var.';
   return 'Pluxee de.';
@@ -317,28 +285,22 @@ function payoff(h1) {
 function iftarMin(city) { var s = (city ? city.iftar : '19:40').split(':'); return (+s[0]) * 60 + (+s[1]); }
 
 /* ---------- durum ---------- */
-var S = { h: 11, m: 57, s: 42, cat: 'news', city: DEV ? '06' : '00', seg: 'whitecollar', cal: 'none', dow: 2, dom: 22, weather: 'clear', seq: 1, vote: null, data: 'live', cmp: 'full', live: false };
-var FIXED = { dow: false, dom: false, cal: false }; /* URL'den gelen değerler cihaz saatiyle ezilmez */
-function num(k, lo, hi) { var x = Q.get(k); if (x == null || !/^-?\d{1,3}$/.test(x)) return null; var n = +x; return n >= lo && n <= hi ? n : null; }
-function autoCal() { if (FIXED.cal) return; S.cal = S.dow === 1 ? 'monday' : (S.dom === 1 ? 'payday' : (S.dom >= 25 ? 'eom' : 'none')); }
+var S = { h: 11, m: 57, s: 42, cat: 'news', city: '06', seg: 'whitecollar', cal: 'none', dow: 2, dom: 22, weather: 'clear', seq: 1, prev: ['news'], vote: null, data: 'live', cmp: 'full', live: false };
 function readParams() {
   var p = function (k) { return Q.get(k); };
-  var CALS = { none: 1, monday: 1, payday: 1, eom: 1, ramadan: 1 }, SEGS = { whitecollar: 1, hr: 1, employer: 1, sme: 1, decision: 1 }, WX = { clear: 'clear', rain: 'rain', heat: 'heat', snow: 'clear', na: 'clear' };
-  if (!DEV) { var d0 = new Date(); S.dow = d0.getDay(); S.dom = d0.getDate(); }
-  var h = num('hour', 0, 23);
-  if (h != null) { S.h = h; S.m = num('min', 0, 59) || 0; S.s = 0; }
-  else if (!DEV) { S.live = true; var d = new Date(); S.h = d.getHours(); S.m = d.getMinutes(); S.s = d.getSeconds(); }
-  if (num('dow', 0, 7) != null) { S.dow = num('dow', 0, 7) % 7; FIXED.dow = true; }
-  if (num('dom', 1, 31) != null) { S.dom = num('dom', 1, 31); FIXED.dom = true; }
-  if (CALS[p('cal')]) { S.cal = p('cal'); FIXED.cal = true; }
+  if (p('hour') != null) { S.h = +p('hour'); S.m = +(p('min') || 0); S.s = 0; }
+  else if (!DEV) { S.live = true; var d = new Date(); S.h = d.getHours(); S.m = d.getMinutes(); S.s = d.getSeconds(); S.dow = d.getDay(); S.dom = d.getDate(); }
+  if (p('dow')) S.dow = +p('dow') % 7;
+  if (p('dom')) S.dom = +p('dom');
+  if (p('cal')) S.cal = p('cal');
   if (p('cat') || p('ctx')) S.cat = p('cat') || p('ctx');
-  if (SEGS[p('seg')]) S.seg = p('seg');
+  if (p('seg')) S.seg = p('seg');
   if (p('city')) S.city = p('city');
-  if (WX[p('weather')]) S.weather = WX[p('weather')];
-  if (num('seq', 0, 9) != null) S.seq = Math.max(1, num('seq', 0, 9));
-  if (p('cmp') === 'limited') S.cmp = 'limited';
+  if (p('weather')) S.weather = p('weather');
+  if (p('seq')) S.seq = +p('seq');
+  if (p('cmp')) S.cmp = p('cmp');
   if (!CATS[S.cat]) S.cat = 'news';
-  if (!DEV) autoCal();
+  if (S.cal === 'none' && S.dow === 1 && !p('cal')) S.cal = 'monday';
 }
 
 /* barometre kapsamı: il ≥ 300 oy → il; yoksa bölge; yoksa Türkiye */
@@ -367,14 +329,14 @@ function buildVM(st) {
   v.pay = payoff(v.h1);
   var sc = scopeOf(st, t);
   var trN = nLive(TR.nFinal, t);
-  var trLead = OPTS[leadO(TR.pay)];
+  var trLead = OPTS[lead(TR.pay)];
 
   if (st.cal === 'ramadan') return buildRamazan(st, t, city, cat, b2b, v);
 
   /* ---- işveren / İK / KOBİ yüzü ---- */
   if (b2b) {
     if (t < 720) {
-      v.id = 'E0'; v.sub = 'Ekibin bugün ne yiyecek? Türkiye 12\'de cevaplıyor.'; v.panel = { type: 'clock', big: true };
+      v.id = 'E0'; v.sub = 'Ekibin bugün ne yiyecek? 12:00\'de Türkiye cevaplıyor.'; v.panel = { type: 'clock', big: true };
     } else if (t < 840) {
       v.id = 'S5'; v.pay = 'Çalışanların cevaplıyor.';
       v.sub = 'Bugün ne yesek? ' + tpl(cat.isv, { n: fmt(trN) });
@@ -382,11 +344,11 @@ function buildVM(st) {
     } else if (t < 1080) {
       v.id = 'S5b'; v.pay = 'Bugünün öğle raporu hazır.';
       if (st.cal === 'eom') v.sub = 'Ay bitiyor; yan hak bütçesi vergi avantajıyla planlanır. Bu ay Türkiye en çok \'' + trLead.dedi + '\' dedi.';
-      else v.sub = 'Bugün öğlen ' + fmt(TR.nFinal) + ' kişi cevap verdi: %' + TR.pay[2] + ' sipariş, %' + TR.pay[0] + ' lokanta, %' + TR.pay[3] + ' market. Nerede yediyse yedi, tek kartla.';
-      v.panel = { type: 'baro', scope: { ad: 'Türkiye', n: TR.nFinal, pay: TR.pay }, extra: cat.rapor || null }; v.ctas = [{ t: 'Ekibin için teklif al', k: 'offer' }];
+      else v.sub = 'Bugün öğlen ' + fmt(TR.nFinal) + ' çalışan cevap verdi: %' + TR.pay[2] + ' sipariş, %' + TR.pay[0] + ' lokanta, %' + TR.pay[3] + ' market. Nerede yediyse yedi, tek kartla.';
+      v.panel = { type: 'baro', scope: { ad: 'Türkiye', n: TR.nFinal, pay: TR.pay }, extra: cat.rapor || null }; v.ctas = [{ t: 'Teklif al', k: 'offer' }];
     } else {
       v.id = 'E9'; v.sub = 'Yarın 12\'de. Bugünün öğle raporu: %' + TR.pay[2] + ' sipariş, %' + TR.pay[0] + ' lokanta, %' + TR.pay[3] + ' market.';
-      v.panel = { type: 'baro', scope: { ad: 'Türkiye', n: TR.nFinal, pay: TR.pay } }; v.ctas = [{ t: 'Ekibin için teklif al', k: 'offer' }];
+      v.panel = { type: 'baro', scope: { ad: 'Türkiye', n: TR.nFinal, pay: TR.pay } }; v.ctas = [{ t: 'Teklif al', k: 'offer' }];
     }
     return v;
   }
@@ -401,54 +363,48 @@ function buildVM(st) {
     return v;
   }
   if (t < 840) {
-    if (st.vote === 'ismarliyorum') {
-      v.id = 'S6b2'; v.h1 = 'Ayın biri. ' + v.h1;
-      v.sub = 'Afiyet olsun, ekibe selam. ' + (city ? city.loc + ' ' + city.lokanta + ' nokta Pluxee\'li.' : "81 ilde 170.000'den fazla nokta Pluxee'li.") + ' Bugün ne yesek?';
-      v.panel = { type: 'chips', wide: { k: 'ismarliyorum', ad: 'Bugün ben ısmarlıyorum' }, sel: 'ismarliyorum' }; v.ctas = [{ t: 'Yakınındakileri gör', k: 'map' }];
-      return v;
-    }
     var vi = st.vote ? idxOf(st.vote) : -1;
     var vo = vi >= 0 ? OPTS[vi] : null;
     if (vo) {
       if (st.data === 'none') {
-        v.id = 'S3n'; v.sub = (t >= 750 ? 'Sağ ol; cevabın sayıldı. ' : 'Sağ ol. ' + (city ? city.gen : "Türkiye'nin") + ' cevabı 12:30\'da. ') + (city ? city.loc + ' ' + city.lokanta + ' nokta Pluxee\'li.' : "81 ilde 170.000'den fazla nokta Pluxee'li.");
+        v.id = 'S3n'; v.sub = 'Sağ ol. ' + (city ? city.gen : "Türkiye'nin") + ' cevabı 12:30\'da. ' + (city ? city.loc + ' ' + city.lokanta + ' noktada Pluxee\'li.' : "81 ilde 170.000'den fazla noktada Pluxee'li.");
         v.panel = { type: 'chips', sel: st.vote }; v.ctas = [{ t: 'Yakınındakileri gör', k: 'map' }];
         return v;
       }
-      var li = leadO(sc.pay), lo = OPTS[li];
-      var urun = (st.dow === 5 && cat.urunCuma) ? cat.urunCuma : (cat.urun ? tpl(cat.urun, city || { loc: "Türkiye'de", lokanta: "170.000'den fazla", market: "33.000'den fazla" }) : (city ? city.loc + ' ' + city.lokanta + ' lokanta ve online üye iş yeri Pluxee\'li.' : "81 ilde 170.000'den fazla nokta Pluxee'li."));
+      var li = lead(sc.pay), lo = OPTS[li];
+      var urun = (st.dow === 5 && cat.urunCuma) ? cat.urunCuma : (cat.urun ? tpl(cat.urun, city || { loc: "Türkiye'de", lokanta: "170.000'den fazla", market: "33.000'den fazla" }) : (city ? city.loc + ' ' + city.lokanta + ' lokanta ve online üye iş yeri Pluxee\'li.' : "81 ilde 170.000'den fazla noktada Pluxee'li."));
       if (t >= 750) {
         /* S4: ilk okuma yayında, il derbisi */
-        var a, b; /* il eşik üstündeyse kendi ili + büyük il; değilse İstanbul-Ankara derbisi ve alt satırda bölge/Türkiye kademesi */
-        if (sc.kind === 'il' && city) { a = city; b = st.city === '34' ? CITIES['06'] : CITIES['34']; } else { a = CITIES['34']; b = CITIES['06']; }
-        var al = OPTS[leadO(a.pay)], bl = OPTS[leadO(b.pay)];
+        var a = city && st.city !== '34' ? city : CITIES['06'], b = st.city === '34' ? CITIES['34'] : (city && st.city !== '34' ? CITIES['34'] : CITIES['34']);
+        if (st.city === '34') { a = CITIES['34']; b = CITIES['06']; }
+        var al = OPTS[lead(a.pay)], bl = OPTS[lead(b.pay)];
         v.id = 'S4';
-        v.sub = 'İlk okuma: ' + a.ad + " '" + al.dedi + "' dedi (%" + a.pay[leadO(a.pay)] + '), ' + b.ad + " '" + bl.dedi + "' (%" + b.pay[leadO(b.pay)] + ').' + (sc.kind === 'bolge' ? ' ' + sc.ad + ": '" + OPTS[leadO(sc.pay)].dedi + "' (%" + sc.pay[leadO(sc.pay)] + ').' : '') + (st.weather === 'rain' ? ' Yağmurlu illerde sipariş önde.' : (st.weather === 'heat' ? ' Sıcak illerde kafe yükseldi.' : ''));
+        v.sub = 'İlk okuma: ' + a.ad + " '" + al.dedi + "' dedi (%" + a.pay[lead(a.pay)] + '), ' + b.ad + " '" + bl.dedi + "' (%" + b.pay[lead(b.pay)] + ').' + (st.weather === 'rain' ? ' Yağmurlu illerde sipariş önde.' : (st.weather === 'heat' ? ' Sıcak illerde kafe yükseldi.' : ''));
         v.panel = { type: 'derby', a: a, b: b, seq: st.seq, rain: st.weather === 'rain', t: t };
         v.ctas = [{ t: 'Yakınındakileri gör', k: 'map' }, { t: 'Fişi al', k: 'fis', lnk: true }];
         return v;
       }
       v.id = 'S3';
-      v.sub = (li === vi ? "Sen '" + vo.dedi + "' dedin. " + sc.ad + ' ' + sc.da + ' öyle: %' + sc.pay[vi] + '. ' : "Sen '" + vo.dedi + "' dedin; " + sc.ad + " '" + lo.dedi + "' dedi (%" + sc.pay[li] + '). ') + urun;
+      v.sub = (li === vi ? "Sen '" + vo.dedi + "' dedin. " + sc.ad + ' ' + sc.da + ': %' + sc.pay[vi] + '. ' : "Sen '" + vo.dedi + "' dedin; " + sc.ad + " '" + lo.dedi + "' dedi (%" + sc.pay[li] + '). ') + urun;
       v.panel = { type: 'baro', scope: sc, t: t, sel: vi };
       v.ctas = [{ t: 'Yakınındakileri gör', k: 'map' }, { t: 'Fişi al', k: 'fis', lnk: true }];
       return v;
     }
     /* oy yok */
     if (st.cal === 'monday') {
-      v.id = 'S6a'; v.h1 = 'Pazartesi. ' + v.h1; v.sub = 'Pluxee Pazartesi kodun uygulamada; 191 markada. Bugün ne yesek?';
-      v.panel = { type: 'chips', app: true }; return v;
+      v.id = 'S6a'; v.h1 = 'Pazartesi. ' + v.h1; v.sub = 'Pluxee Pazartesi kodun hazır; 191 markada. Bugün ne yesek?';
+      v.panel = { type: 'chips', code: MONDAY_CODE }; return v;
     }
     if (st.cal === 'payday') {
       v.id = 'S6b'; v.h1 = 'Ayın biri. ' + v.h1; v.sub = 'Kart yüklendi mi? Bugün ne yesek?';
       v.panel = { type: 'chips', wide: { k: 'ismarliyorum', ad: 'Bugün ben ısmarlıyorum' } }; return v;
     }
     if (st.cal === 'eom') {
-      v.id = 'S6c'; v.h1 = 'Ay sonu. ' + v.h1; v.sub = 'Kalan bakiye markette de bir cevap: Pluxee Geçen Marketler il il. Bugün ne yesek?';
+      v.id = 'S6c'; v.sub = 'Ayın ' + (st.dom || 27) + '\'si. Kalan bakiye markette de bir cevap: Pluxee Geçen Marketler il il. Bugün ne yesek?';
       v.panel = { type: 'chips' }; v.ctas = [{ t: 'Marketleri gör', k: 'market' }]; return v;
     }
     if (t >= 780) {
-      v.id = 'S4b'; v.sub = 'Geç çıkanlar için de. ' + sc.ad + " bugün '" + OPTS[leadO(sc.pay)].dedi + "' dedi; sen ne dersin?";
+      v.id = 'S4b'; v.sub = 'Geç çıkanlar için de. ' + sc.ad + " bugün '" + OPTS[lead(sc.pay)].dedi + "' dedi; sen ne dersin?";
       v.panel = { type: 'chips' }; return v;
     }
     v.id = 'S2'; v.sub = cat.cerceve; v.panel = { type: 'chips' };
@@ -456,13 +412,14 @@ function buildVM(st) {
   }
   if (t < 845) {
     v.id = 'S7'; v.h1 = 'Saat iki.'; v.pay = 'Öğle arası geçti.';
-    v.sub = "Türkiye bugün '" + trLead.dedi + "' dedi: %" + TR.pay[leadO(TR.pay)] + '. ' + (sc.kind !== 'tr' ? sc.ad + ": '" + OPTS[leadO(sc.pay)].dedi + "' %" + sc.pay[leadO(sc.pay)] + '. ' : '') + 'Nerede yediysen ye, yarın 12\'de yine buradayız.';
-    v.panel = { type: 'merge', n: Math.max(1, Math.min(4, st.seq || 1)) }; v.ctas = [{ t: 'Fişi al', k: 'fis', lnk: true }]; v.prog = 1;
+    v.sub = "Türkiye bugün '" + trLead.dedi + "' dedi: %" + TR.pay[lead(TR.pay)] + '. ' + (city ? city.ad + ': %' + city.pay[lead(TR.pay)] + '. ' : '') + 'Nerede yediysen ye, yarın 12\'de yine buradayız.';
+    v.panel = { type: 'merge', prev: st.prev }; v.ctas = [{ t: 'Fişi al', k: 'fis', lnk: true }]; v.prog = 1;
     return v;
   }
   if (t < 1080) {
     v.id = 'S8';
-    v.sub = "Türkiye bugün '" + trLead.dedi + "' dedi: %" + TR.pay[leadO(TR.pay)] + '.' + (sc.kind !== 'tr' ? ' ' + sc.ad + ": '" + OPTS[leadO(sc.pay)].dedi + "' %" + sc.pay[leadO(sc.pay)] + '.' : '') + ' Yarın 12\'de yine buradayız.';
+    var cl = city ? OPTS[lead(city.pay)] : null;
+    v.sub = "Türkiye bugün '" + trLead.dedi + "' dedi: %" + TR.pay[lead(TR.pay)] + '.' + (city ? ' ' + city.ad + ": '" + cl.dedi + "' %" + city.pay[lead(city.pay)] + '.' : '') + ' Yarın 12\'de yine buradayız.';
     v.panel = { type: 'baro', scope: { ad: 'Türkiye', n: TR.nFinal, pay: TR.pay } }; v.ctas = [{ t: 'Yakınındakileri gör', k: 'map' }]; v.prog = 1;
     return v;
   }
@@ -471,13 +428,7 @@ function buildVM(st) {
 }
 
 function buildRamazan(st, t, city, cat, b2b, v) {
-  if (!city) { /* il bilinmiyorsa iftar saati iddia edilmez, geri sayım yapılmaz */
-    v.id = 'R0g'; v.h1 = 'Ramazan.'; v.pay = 'Pluxee de sofrada.'; v.prog = 0;
-    v.sub = b2b ? 'Ramazan kolisi yerine kart: ekibin kendi sofrasını kendi kursun. Market Kart, Pluxee Pro, Hediye Kartı.' : "İftar saati ilinize göre değişir. Sofra alışverişi 33.000'den fazla markette Pluxee'li.";
-    v.panel = { type: 'calm', t: 'Ramazan', l: 'Türkiye · ' + DAYS[st.dow] }; if (b2b) v.ctas = [{ t: 'Ekibin için teklif al', k: 'offer' }];
-    return v;
-  }
-  var c = city;
+  var c = city || CITIES['34'];
   var ift = iftarMin(c), d = ift - t;
   var H = Math.floor(d / 60), M = d % 60;
   v.prog = Math.max(0, Math.min(1, (90 - d) / 90));
@@ -485,8 +436,8 @@ function buildRamazan(st, t, city, cat, b2b, v) {
   v.pay = 'Pluxee de sofrada.';
   if (b2b) {
     v.id = 'R5'; v.sub = 'Ramazan kolisi yerine kart: ekibin kendi sofrasını kendi kursun. Market Kart, Pluxee Pro, Hediye Kartı.';
-    v.panel = { type: 'calm', t: 'İftar ' + c.iftar, l: c.ad }; v.ctas = [{ t: 'Ekibin için teklif al', k: 'offer' }];
-    if (d <= 0) { if (d > -1) { v.h1 = 'İftar vakti.'; v.pay = 'Afiyet olsun.'; v.green = true; } else { v.h1 = 'Afiyet olsun.'; v.pay = ''; } }
+    v.panel = { type: 'calm', t: 'İftar ' + c.iftar, l: c.ad }; v.ctas = [{ t: 'Teklif al', k: 'offer' }];
+    if (d <= 0) { v.h1 = 'İftar vakti.'; v.pay = 'Afiyet olsun.'; v.green = d > -1; }
     return v;
   }
   if (d > 90) {
@@ -495,9 +446,9 @@ function buildRamazan(st, t, city, cat, b2b, v) {
   }
   if (d > 0) {
     if (st.vote) {
-      var vi = idxOf(st.vote, ROPTS), li = lead(RPAY), rvo = vi >= 0 ? ROPTS[vi] : null;
+      var vi = idxOf(st.vote, ROPTS), li = lead(RPAY);
       v.id = 'R2';
-      v.sub = (rvo && vi === li ? "Sen '" + rvo.dedi + "' dedin. " + c.ad + ' ' + c.da + ' öyle: %' + RPAY[li] + '. ' : (rvo ? "Sen '" + rvo.dedi + "' dedin; " : '') + c.ad + " '" + ROPTS[li].dedi + "' dedi (%" + RPAY[li] + '). ') + "Sofra alışverişi 33.000'den fazla markette Pluxee'li.";
+      v.sub = (vi === li ? "Sen '" + ROPTS[vi].dedi + "' dedin. " + c.ad + ' ' + c.da + ': %' + RPAY[li] + '. ' : c.ad + " bugün '" + ROPTS[li].dedi + "' dedi (%" + RPAY[li] + '). ') + "Sofra alışverişi 33.000'den fazla markette Pluxee'li.";
       v.panel = { type: 'baro', scope: { ad: c.ad, n: Math.round(c.nFinal * .6), pay: RPAY }, list: ROPTS, sel: vi, label: 'İftar ' + c.iftar };
       v.ctas = [{ t: 'Marketleri gör', k: 'market' }]; return v;
     }
@@ -524,36 +475,36 @@ function createUnit(host, opts) {
 
   if (!opts.mini && opts.interactive !== false) {
     el.setAttribute('role', 'link'); el.tabIndex = 0;
-    el.setAttribute('aria-label', 'Pluxee Geçiyor. Yakınındaki Pluxee üye iş yerlerini gör.');
+    el.setAttribute('aria-label', 'Pluxee Geçiyor. Yakınındaki Pluxee geçen mekânları gör.');
     el.addEventListener('click', function (e) { if (e.target.closest('button')) return; openLink('map', U.state); });
     el.addEventListener('keydown', function (e) { if (e.key === 'Enter' && e.target === el) openLink('map', U.state); });
   }
 
   function setH1(text, pay, animate) {
     var tt = $('.h1t'), pp = $('.pay');
-    clearInterval(U.ty); U.ty = null; U.tyText = text;
-    if (animate && !RM && !el.classList.contains('still')) {
+    clearInterval(U.ty);
+    if (animate && !RM) {
       tt.textContent = ''; pp.textContent = pay; pp.style.opacity = 0;
       var step = Math.min(28, 1200 / Math.max(1, text.length)), i = 0;
-      U.ty = setInterval(function () { i++; var tx = U.tyText; tt.textContent = tx.slice(0, i); if (i >= tx.length) { clearInterval(U.ty); U.ty = null; tt.textContent = tx; pp.style.opacity = 1; } }, step);
+      U.ty = setInterval(function () { i++; tt.textContent = text.slice(0, i); if (i >= text.length) { clearInterval(U.ty); pp.style.opacity = 1; } }, step);
     } else { tt.textContent = text; pp.textContent = pay; pp.style.opacity = 1; }
   }
   function chipsHTML(p, st) {
     var list = p.list || OPTS, h = '';
     var t = st.h * 60 + st.m;
-    h += '<div class="mclock"><span>' + (p.label || (pad(st.h) + ':' + pad(st.m) + ' · ' + (CITIES[st.city] ? CITIES[st.city].ad : 'Türkiye'))) + '</span><span></span></div>';
-    if (p.app) h += '<div class="code"><b>Pazartesi kodun uygulamada</b><button type="button" data-act="app">Uygulamayı aç</button></div>';
-    h += '<div class="chips' + (p.app ? ' c3' : '') + '">';
+    h += '<div class="mclock"><span>' + (p.label || (pad(st.h) + ':' + pad(st.m) + ' · ' + (CITIES[st.city] ? CITIES[st.city].ad : 'Türkiye'))) + '</span><span>' + (p.code ? '' : (t >= 720 && t < 840 ? 'Bugün ne yesek?' : '')) + '</span></div>';
+    if (p.code) h += '<div class="code"><b>' + p.code + '</b><button type="button" data-copy="' + p.code + '">Kodu kopyala</button></div>';
+    h += '<div class="chips' + (p.code ? ' c3' : '') + '">';
     for (var i = 0; i < list.length; i++) {
       var o = list[i];
       h += '<button type="button" class="chip' + (p.sel === o.k ? ' sel' : '') + '" data-vote="' + o.k + '" style="animation-delay:' + (i * 60) + 'ms">' + (I[o.k] || '') + '<span>' + esc(o.ad) + '</span></button>';
     }
-    if (p.wide) h += '<button type="button" class="chip wide' + (p.sel === p.wide.k ? ' sel' : '') + '" data-vote="' + p.wide.k + '">' + (p.sel === p.wide.k ? '✓ ' : '') + esc(p.wide.ad) + '</button>';
+    if (p.wide) h += '<button type="button" class="chip wide" data-vote="' + p.wide.k + '">' + esc(p.wide.ad) + '</button>';
     h += '</div>';
     return h;
   }
   function baroHTML(p, st, compact) {
-    var list = p.list || OPTS, sc = p.scope, li = (list === OPTS ? leadO(sc.pay) : lead(sc.pay)), h = '<div class="baro' + (compact ? ' compact' : '') + '">';
+    var list = p.list || OPTS, sc = p.scope, li = lead(sc.pay), h = '<div class="baro' + (compact ? ' compact' : '') + '">';
     if (!compact) h += '<div class="hd"><span>' + esc(sc.ad) + ' · <span class="cnt" data-n="' + sc.n + '">0</span> cevap</span><span>' + (p.label || (pad(st.h) + ':' + pad(st.m))) + '</span></div>';
     var rows = compact ? 4 : list.length;
     var order = []; for (var i = 0; i < list.length; i++) order.push(i);
@@ -567,21 +518,24 @@ function createUnit(host, opts) {
     return h;
   }
   function derbyHTML(p) {
-    var al = leadO(p.a.pay), bl = leadO(p.b.pay);
+    var al = lead(p.a.pay), bl = lead(p.b.pay);
     var card = function (c, l) { return '<div class="dcard"><div class="il">' + esc(c.ad) + '</div><div class="opt">' + (I[OPTS[l].k] || '') + esc(OPTS[l].ad) + '</div><div class="pct">%' + c.pay[l] + '</div><div class="n">' + fmt(nLive(c.nFinal, p.t)) + ' cevap</div></div>'; };
     return '<div class="dhd"><div class="rain"' + (p.rain ? '' : ' style="animation:none"') + '>İlk okuma · 12:30' + (p.rain ? ' · ' + I.rain + 'yağmur' : '') + '</div>' + (p.seq > 1 ? '<div class="badge">' + p.seq + '. karşılaşma</div>' : '') + '</div><div class="derby">' + card(p.a, al) + card(p.b, bl) + '</div>';
   }
   function mergeHTML(p) {
-    var n = p.n || 1, h = '<div class="merge"><div class="mis" style="width:' + (n === 1 ? 64 : 236) + 'px">';
-    for (var i = 0; i < n; i++) h += '<div class="mi" style="animation-delay:' + (0.1 + i * 0.3) + 's"><span class="dot">' + (i + 1) + '</span>' + (i + 1) + '. mecra</div>';
-    h += '</div><div class="line"></div><div class="xm">' + I.x + '</div><div class="cap">' + (n > 1 ? 'Bugün ' + n + ' mecrada birlikte mola verdik.' : 'Bugün birlikte mola verdik.') + ' TOPLAM: GEÇİYOR.</div></div>';
+    var names = { news: 'haber', recipe: 'tarif', market: 'market', finance: 'finans', sport: 'spor', career: 'kariyer', tech: 'teknoloji', culture: 'kültür', life: 'yaşam', auto: 'otomotiv' };
+    var prev = (p.prev && p.prev.length ? p.prev : ['news', 'recipe', 'market']).slice(0, 3);
+    while (prev.length < 3) prev.push(['news', 'recipe', 'market'][prev.length]);
+    var h = '<div class="merge">';
+    for (var i = 0; i < 3; i++) h += '<div class="mi">' + (I[prev[i]] || I.news) + names[prev[i]] + '</div>';
+    h += '<div class="line"></div><div class="xm">' + I.x + '</div><div class="cap">Bugün ' + prev.length + ' mecrada birlikte mola verdik. TOPLAM: GEÇİYOR.</div></div>';
     return h;
   }
   function renderPanel(v, st) {
     var pn = $('.panel'), p = v.panel, h = '';
     if (U.mini) { U.mini = null; }
     if (p.type === 'clock') {
-      h = '<div class="clock"><div class="big' + (p.xl ? ' xl' : '') + '">' + pad(st.h) + ':' + pad(st.m) + (p.big && !el.classList.contains('still') ? '<small style="font-size:.5em;opacity:.7">:' + pad(st.s) + '</small>' : '') + '</div><div class="lbl">' + (CITIES[st.city] ? CITIES[st.city].ad : 'Türkiye') + ' · ' + DAYS[st.dow] + '</div></div>';
+      h = '<div class="clock"><div class="big' + (p.xl ? ' xl' : '') + '">' + pad(st.h) + ':' + pad(st.m) + (p.big ? '<small style="font-size:.5em;opacity:.7">:' + pad(st.s) + '</small>' : '') + '</div><div class="lbl">' + (CITIES[st.city] ? CITIES[st.city].ad : 'Türkiye') + ' · ' + DAYS[st.dow] + '</div></div>';
       pn.innerHTML = h; return;
     }
     if (p.type === 'calm') { pn.innerHTML = '<div class="calm fade-in"><div class="t">' + esc(p.t) + '</div><div class="l">' + esc(p.l) + '</div></div>'; return; }
@@ -604,8 +558,8 @@ function createUnit(host, opts) {
   }
   function countTo(node, n) {
     if (RM) { node.textContent = fmt(n); return; }
-    var t0 = performance.now(), dur = 1200; node._anim = true;
-    (function step(now) { var k = Math.min(1, (now - t0) / dur); k = 1 - Math.pow(1 - k, 3); node.textContent = fmt(n * k); if (k < 1) requestAnimationFrame(step); else node._anim = false; })(t0);
+    var t0 = performance.now(), dur = 1200;
+    (function step(now) { var k = Math.min(1, (now - t0) / dur); k = 1 - Math.pow(1 - k, 3); node.textContent = fmt(n * k); if (k < 1) requestAnimationFrame(step); })(t0);
   }
   function renderCtas(v) {
     var c = $('.ctas'), h = '';
@@ -619,8 +573,7 @@ function createUnit(host, opts) {
       v.ctas = v.ctas.filter(function (c) { return c.k !== 'fis'; });
       if (v.panel && v.panel.seq) v.panel.seq = 1;
     }
-    var tNow = st.h * 60 + st.m, psc = v.panel.scope;
-    var key = [v.id, st.cat, st.city, st.seg, st.cal, st.vote, st.data, st.seq, st.weather, v.ctas.length, v.panel.type, psc ? psc.kind + ':' + psc.ad : '', v.panel.type === 'mini' ? scopeOf({ city: st.city, data: 'live' }, tNow).kind : ''].join('|');
+    var key = [v.id, st.cat, st.city, st.seg, st.cal, st.vote, st.data, st.seq, st.weather, v.ctas.length].join('|');
     var full = key !== U.last;
     el.classList.toggle('green', !!v.green);
     if (full) {
@@ -630,13 +583,9 @@ function createUnit(host, opts) {
       renderCtas(v);
       U.last = key;
     } else {
-      U.tyText = v.h1; if (!U.ty) $('.h1t').textContent = v.h1;
-      $('.pay').textContent = v.pay; $('.sub').textContent = v.sub;
-      var cnt = $('.baro .cnt'); if (cnt && psc && psc.n != null && !cnt._anim) cnt.textContent = fmt(psc.n);
-      var hdT = $('.baro .hd > span:last-child'); if (hdT && v.panel.type === 'baro' && !v.panel.label) hdT.textContent = pad(st.h) + ':' + pad(st.m);
-      if (v.panel.type === 'derby') { var ns = el.querySelectorAll('.dcard .n'); if (ns.length === 2) { ns[0].textContent = fmt(nLive(v.panel.a.nFinal, v.panel.t)) + ' cevap'; ns[1].textContent = fmt(nLive(v.panel.b.nFinal, v.panel.t)) + ' cevap'; } }
+      $('.h1t').textContent = v.h1; $('.pay').textContent = v.pay; $('.sub').textContent = v.sub;
       var big = $('.clock .big'), mc = $('.mclock span');
-      if (big) big.innerHTML = pad(st.h) + ':' + pad(st.m) + (v.panel.big && !el.classList.contains('still') ? '<small style="font-size:.5em;opacity:.7">:' + pad(st.s) + '</small>' : '');
+      if (big) big.innerHTML = pad(st.h) + ':' + pad(st.m) + (v.panel.big ? '<small style="font-size:.5em;opacity:.7">:' + pad(st.s) + '</small>' : '');
       if (mc && !v.panel.label && v.panel.type === 'chips') mc.textContent = pad(st.h) + ':' + pad(st.m) + ' · ' + (CITIES[st.city] ? CITIES[st.city].ad : 'Türkiye');
       if (U.mini) { var ms = {}; for (var k in st) ms[k] = st[k]; ms.seg = 'whitecollar'; ms.vote = null; U.mini.render(ms); }
     }
@@ -648,6 +597,7 @@ function createUnit(host, opts) {
       var b = e.target.closest('button'); if (!b) return;
       e.stopPropagation();
       if (b.dataset.vote) { track('vote:' + b.dataset.vote); if (opts.onVote) opts.onVote(b.dataset.vote); return; }
+      if (b.dataset.copy) { copyText(b.dataset.copy, b); return; }
       if (b.dataset.act === 'fis') { makeFis(U.state); return; }
       if (b.dataset.act) openLink(b.dataset.act, U.state);
     });
@@ -660,60 +610,50 @@ function createUnit(host, opts) {
 var URLS = {
   map: 'https://www.pluxee.com.tr/uye-isyerleri?utm_source=display&utm_medium=masthead&utm_campaign=pluxee-geciyor&utm_content=12yi-geciyor',
   market: 'https://www.pluxee.com.tr/sayfa/pluxee-gecen-marketler/?utm_source=display&utm_medium=masthead&utm_campaign=pluxee-geciyor&utm_content=market',
-  offer: 'https://www.pluxee.com.tr/?utm_source=display&utm_medium=masthead&utm_campaign=pluxee-geciyor&utm_content=isveren-teklif',
-  app: 'https://www.pluxee.com.tr/sayfa/pluxee-mobil-uygulamasi/?utm_source=display&utm_medium=masthead&utm_campaign=pluxee-geciyor&utm_content=pazartesi'
+  offer: 'https://www.pluxee.com.tr/?utm_source=display&utm_medium=masthead&utm_campaign=pluxee-geciyor&utm_content=isveren-teklif'
 };
 function track(ev) { try { if (window.Enabler && Enabler.counter) Enabler.counter(ev); } catch (e) {} if (DEV && window.console) console.debug('[12yigeciyor]', ev); }
-var TAGS = { map: 'clickTag', market: 'clickTag1', offer: 'clickTag2', app: 'clickTag3' };
 function openLink(kind, st) {
   track('cta_' + kind);
+  var u = window.clickTag || URLS[kind] || URLS.map;
+  if (st && st.city && CITIES[st.city] && !window.clickTag) u += '&il=' + encodeURIComponent(CITIES[st.city].ad.toLowerCase());
   if (window.Enabler && Enabler.exit) { Enabler.exit('CTA_' + kind); return; }
-  var base = URLS[kind] || URLS.map, tag = window[TAGS[kind] || 'clickTag'];
-  var u = (tag && tag !== base) ? tag : base; /* ad server clickTag'i ezdiyse (izleme adresi) olduğu gibi kullanılır */
-  if (u === base && st && CITIES[st.city]) u += '&il=' + CITIES[st.city].slug;
   window.open(u, '_blank', 'noopener');
+}
+function copyText(txt, btn) {
+  var done = function () { var o = btn.textContent; btn.textContent = 'Kopyalandı'; setTimeout(function () { btn.textContent = o; }, 1500); track('code_copy'); };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(done, done);
+  else { var ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} document.body.removeChild(ta); done(); }
 }
 /* Öğle Arası Fişi: tarayıcıda üretilir, sunucuya hiçbir şey gitmez */
 function makeFis(st) {
   track('fis');
   var c = document.createElement('canvas'); c.width = 1080; c.height = 1920; var g = c.getContext('2d');
   var city = CITIES[st.city]; var t = st.h * 60 + st.m; var sc = scopeOf(st, Math.max(t, 750));
-  var vo = optOf(st.vote);
+  var vo = optOf(st.vote) || OPTS[lead(sc.pay)];
   g.fillStyle = '#221C46'; g.fillRect(0, 0, 1080, 1920);
   g.textAlign = 'center'; g.fillStyle = '#00EB5E'; g.font = '800 46px Manrope, Arial, sans-serif'; g.fillText('ÖĞLE ARASI FİŞİ', 540, 230);
   g.fillStyle = 'rgba(255,255,255,.72)'; g.font = '700 34px Manrope, Arial, sans-serif';
   var d = new Date(); var tarih = d.getDate() + ' ' + ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'][d.getMonth()];
-  var lines = [tarih + ' · 12:00-' + pad(Math.max(st.h, 12)) + ':' + pad(st.m), (city ? city.ad : 'Türkiye') + (st.weather === 'rain' ? ' · yağmur' : st.weather === 'heat' ? ' · sıcak' : ' · açık'), '', (vo ? 'Ben: ' + vo.dedi : 'Ben: cevap vermedim'), sc.ad + ': ' + OPTS[leadO(sc.pay)].dedi + ' %' + sc.pay[leadO(sc.pay)], 'Türkiye: ' + OPTS[leadO(TR.pay)].dedi + ' %' + TR.pay[leadO(TR.pay)], '', 'Mecra sayısı: ' + (st.seq || 1)];
+  var lines = [tarih + ' · 12:00-' + pad(Math.max(st.h, 12)) + ':' + pad(st.m), (city ? city.ad : 'Türkiye') + (st.weather === 'rain' ? ' · yağmur' : st.weather === 'heat' ? ' · sıcak' : ' · açık'), '', 'Ben: ' + vo.dedi, sc.ad + ': ' + OPTS[lead(sc.pay)].dedi + ' %' + sc.pay[lead(sc.pay)], 'Türkiye: ' + OPTS[lead(TR.pay)].dedi + ' %' + TR.pay[lead(TR.pay)], '', 'Mecralar: ' + (st.prev || ['haber']).map(function (k) { return ({ news: 'haber', recipe: 'tarif', market: 'market', finance: 'finans', sport: 'spor', career: 'kariyer', tech: 'teknoloji', culture: 'kültür', life: 'yaşam', auto: 'otomotiv' })[k] || k; }).join(' · ')];
   var y = 360; for (var i = 0; i < lines.length; i++) { if (lines[i]) g.fillText(lines[i], 540, y); y += 70; }
   g.strokeStyle = 'rgba(255,255,255,.3)'; g.setLineDash([14, 14]); g.lineWidth = 3; g.beginPath(); g.moveTo(120, 1180); g.lineTo(960, 1180); g.stroke();
   g.fillStyle = '#00EB5E'; g.font = '800 84px Manrope, Arial, sans-serif'; g.fillText('TOPLAM: GEÇİYOR', 540, 1340);
   g.fillStyle = '#fff'; g.font = '800 54px Manrope, Arial, sans-serif'; g.fillText('pluxee', 540, 1700);
-  g.fillStyle = 'rgba(255,255,255,.5)'; g.font = '700 26px Manrope, Arial, sans-serif'; g.fillText("Pluxee Geçiyor · 12'yi Geçiyor · Reklam", 540, 1760);
-  var dl = function (url) { var a = document.createElement('a'); a.href = url; a.download = 'ogle-arasi-fisi.png'; document.body.appendChild(a); a.click(); document.body.removeChild(a); };
-  if (inFrame && c.toBlob) { /* sandbox iframe'de indirme engellenebilir: önce yeni sekmede aç, olmazsa indirmeyi dene */
-    c.toBlob(function (b) { var u = URL.createObjectURL(b), w = null; try { w = window.open(u, '_blank'); } catch (e) {} if (!w) dl(u); });
-  } else dl(c.toDataURL('image/png'));
+  g.fillStyle = 'rgba(255,255,255,.5)'; g.font = '700 26px Manrope, Arial, sans-serif'; g.fillText("12'yi Geçiyor · Reklam", 540, 1760);
+  var url = c.toDataURL('image/png');
+  var a = document.createElement('a'); a.href = url; a.download = 'ogle-arasi-fisi.png'; document.body.appendChild(a); a.click(); document.body.removeChild(a);
 }
 
 /* ---------- kurulum ---------- */
 readParams();
-var main = createUnit(document.getElementById(DEV ? 'unitHost' : 'liveHost'), { onVote: function (k) {
-  S.vote = k; if (S.cal === 'ramadan' && !optOf(k, ROPTS)) S.vote = null;
-  if (S.vote) sendVote(S.vote);
-  render();
-  var fb = main.el.querySelector('.ctas .btn') || main.el.querySelector('.chip.sel'); if (fb) fb.focus(); /* klavye odağı kaybolmasın */
-} });
+var main = createUnit(document.getElementById(DEV ? 'unitHost' : 'liveHost'), { onVote: function (k) { S.vote = k; if (S.cal === 'ramadan' && !optOf(k, ROPTS)) S.vote = null; render(); } });
 function render() { var v = main.render(S); if (DEV) updateCtxLine(v); }
-loadLive();
-if (!DEV) { /* IAB animasyon süresi: ~28 sn sonra dekoratif hareket durur; etkileşim 3 sn açar */
-  var stillT = setTimeout(function () { main.el.classList.add('still'); }, 28000);
-  main.el.addEventListener('click', function () { main.el.classList.remove('still'); clearTimeout(stillT); stillT = setTimeout(function () { main.el.classList.add('still'); }, 3000); });
-}
 
 /* saniye tıkı: canlıda gerçek saat; sunumda sanal saat */
 var play = { on: false, speed: 60, hold: 0 };
 setInterval(function () {
-  if (S.live) { var d = new Date(); S.h = d.getHours(); S.m = d.getMinutes(); S.s = d.getSeconds(); if (!FIXED.dow) S.dow = d.getDay(); if (!FIXED.dom) S.dom = d.getDate(); autoCal(); render(); return; }
+  if (S.live) { var d = new Date(); S.h = d.getHours(); S.m = d.getMinutes(); S.s = d.getSeconds(); render(); return; }
   if (play.on) {
     if (play.hold > 0) { play.hold--; S.s++; }
     else { var t = S.h * 60 + S.m + (play.speed === 60 ? 1 : 5); if (t >= 1440) t -= 1440; var was = S.h * 60 + S.m; S.h = Math.floor(t / 60); S.m = t % 60; S.s = 0; if (was < 720 && t >= 720 && S.cal !== 'ramadan') { S.h = 12; S.m = 0; play.hold = 3; } }
@@ -725,16 +665,16 @@ setInterval(function () {
 /* ---------- sunum kabuğu ---------- */
 var loop = { on: false, i: 0, timer: null, sub: null };
 var LOOP = [
-  { d: 4000, s: { h: 11, m: 57, s: 42, cat: 'news', city: '06', seg: 'whitecollar', cal: 'none', dow: 2, weather: 'clear', seq: 1, vote: null, data: 'live' } },
+  { d: 4000, s: { h: 11, m: 57, s: 42, cat: 'news', city: '06', seg: 'whitecollar', cal: 'none', dow: 2, weather: 'clear', seq: 1, prev: ['news'], vote: null, data: 'live' } },
   { d: 3000, s: { h: 12, m: 0, s: 0 } },
   { d: 6000, s: { h: 12, m: 7, s: 10, cat: 'finance' }, at: 4500, fn: function () { S.vote = 'siparis'; render(); } },
   { d: 6000, s: { s: 20 } },
-  { d: 6000, s: { h: 12, m: 38, s: 5, cat: 'market', city: '35', weather: 'rain', seq: 2 } },
+  { d: 6000, s: { h: 12, m: 38, s: 5, cat: 'market', city: '35', weather: 'rain', seq: 2, prev: ['news', 'finance'] } },
   { d: 4000, s: { h: 13, m: 12, s: 0, cat: 'sport', city: '06', weather: 'clear', seq: 1, vote: null } },
   { d: 7000, s: { h: 12, m: 7, s: 20, cat: 'career', seg: 'hr' } },
   { d: 6000, s: { h: 15, m: 10, s: 0, cat: 'finance', seg: 'hr' } },
   { d: 5000, s: { h: 12, m: 4, s: 0, cat: 'news', seg: 'whitecollar', cal: 'monday', dow: 1, vote: null } },
-  { d: 5000, s: { h: 14, m: 0, s: 0, cal: 'none', dow: 2, vote: 'siparis', seq: 3 } }
+  { d: 5000, s: { h: 14, m: 0, s: 0, cal: 'none', dow: 2, vote: 'siparis', seq: 3, prev: ['news', 'recipe', 'market'] } }
 ];
 function loopStep() {
   var st = LOOP[loop.i % LOOP.length];
@@ -803,11 +743,11 @@ function buildSim() {
     if (v === 'ramadan') { S.vote = null; setTime(1145); } else if (wasR) { S.vote = null; setTime(727); }
   }, sim);
   group('Hava', [['clear', 'Açık'], ['rain', 'Yağmur'], ['heat', 'Sıcak']], function () { return S.weather; }, function (v) { S.weather = v; }, sim);
-  group('Sıra', [['1', '1. mecra'], ['2', '2. mecra'], ['3', '3. mecra']], function () { return String(S.seq); }, function (v) { S.seq = +v; }, sim);
+  group('Sıra', [['1', '1. mecra'], ['2', '2. mecra'], ['3', '3. mecra']], function () { return String(S.seq); }, function (v) { S.seq = +v; S.prev = ['news', 'recipe', 'market'].slice(0, S.seq); }, sim);
   group('Oy', [['none', 'Vermedi'], ['siparis', "'Sipariş' dedi"], ['kafe', "'Kafe' dedi"]], function () { return S.vote || 'none'; }, function (v) { S.vote = v === 'none' ? null : v; if (S.cal === 'ramadan' && S.vote) S.vote = 'evde'; }, sim);
   group('Veri', [['live', 'Canlı (il eşik üstü)'], ['low', 'İl eşik altı → bölge'], ['none', 'Sayım servisi yok']], function () { return S.data; }, function (v) { S.data = v; }, sim);
   var note = document.createElement('div'); note.className = 'note';
-  note.innerHTML = 'Sunum modu: birim 970×250, kontroller yalnız bu sayfada. Canlıda aynı dosya ad server key-value\'larından beslenir (hour, min, dow, dom, cal, cat, seg, city, weather, seq); iframe içinde açıldığında simülatör hiç kurulmaz. İl bazlı üye iş yeri rakamları ve barometre yüzdeleri <b>örnek veridir</b>; canlıda Pluxee onaylı il verisinden ve gerçek oylardan gelir. Birime tıklamak Pluxee üye iş yerleri sayfasını açar; çipler oy verir; "Fişi al" tarayıcıda 1080×1920 PNG üretir.';
+  note.innerHTML = 'Sunum modu: birim 970×250, kontroller yalnız bu sayfada. Canlıda aynı dosya ad server key-value\'larından beslenir (hour, min, dow, dom, cal, cat, seg, city, weather, seq); iframe içinde açıldığında simülatör hiç kurulmaz. İl bazlı üye iş yeri rakamları ve barometre yüzdeleri <b>örnek veridir</b>; canlıda Pluxee onaylı il verisinden ve gerçek oylardan gelir. Birime tıklamak Pluxee\'li Mekanlar sayfasını açar; çipler oy verir; "Fişi al" tarayıcıda 1080×1920 PNG üretir.';
   sim.appendChild(note);
   syncSlider(); syncPills();
 }
