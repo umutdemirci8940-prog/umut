@@ -40,7 +40,7 @@
   function caption(html) { els.caption.innerHTML = html; els.caption.classList.remove('sw'); void els.caption.offsetWidth; els.caption.classList.add('sw'); }
   function captionDefault() {
     var b = bracelet();
-    caption('<b>' + b.title + '</b> · ' + b.metal + (b.price ? ' · <i>' + fmt(b.price) + '</i>' : ''));
+    caption('<b>' + b.title + '</b><span>' + b.metal + (b.price ? ' · <i>' + fmt(b.price) + '</i>' : '') + '</span>');
   }
   var shownTotal = 0;
   function renderTotal(animate) {
@@ -108,7 +108,7 @@
     placeCharm(st.charms.length - 1, key, fromEl);
     renderTotal(true);
     var c = charm(key); if (c && !st.user) return true;
-    if (c) { st.hover = null; caption('<b>' + c.title + '</b>' + (c.price ? ' · <i>' + fmt(c.price) + '</i>' : '') + ' <span>eklendi</span>'); clearTimeout(capTimer); capTimer = setTimeout(function () { if (!st.hover) captionDefault(); }, 2200); }
+    if (c) { st.hover = null; caption('<b>' + c.title + '</b><span>' + (c.price ? '<i>' + fmt(c.price) + '</i> · ' : '') + 'bilekliğe eklendi</span>'); clearTimeout(capTimer); capTimer = setTimeout(function () { if (!st.hover) captionDefault(); }, 2200); }
     return true;
   }
   function removeCharm(key) {
@@ -146,7 +146,11 @@
   function rest() { ad.classList.add('is-rest'); ad.classList.remove('is-demo'); }
 
   /* ---------- olaylar ---------- */
-  ad.addEventListener('mouseenter', takeover);
+  // Devralma: gerçek fare hareketi (iki farklı konum), dokunma, tıklama veya klavye. Sayfa yüklenirken imlecin
+  // reklamın üzerinde durması kurguyu bozmaz.
+  var lastPt = null, moves = 0;
+  ad.addEventListener('mousemove', function (e) { if (st.user) return; if (lastPt && (Math.abs(e.clientX - lastPt[0]) > 2 || Math.abs(e.clientY - lastPt[1]) > 2)) moves++; lastPt = [e.clientX, e.clientY]; if (moves >= 2) takeover(); });
+  ad.addEventListener('mousedown', takeover);
   ad.addEventListener('touchstart', takeover, { passive: true });
   ad.addEventListener('focusin', function () { if (st.started) takeover(); });
   ad.addEventListener('click', function (e) {
@@ -168,9 +172,9 @@
     if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLink('CTA'); }
     else if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); var i = 0; for (var k = 0; k < D.bracelets.length; k++) if (D.bracelets[k].key === st.metal) i = k; i = (i + (e.key === 'ArrowRight' ? 1 : D.bracelets.length - 1)) % D.bracelets.length; setMetal(D.bracelets[i].key, true); }
   });
-  els.tray.addEventListener('mouseover', function (e) { var cell = e.target.closest ? e.target.closest('.cell') : null; if (!cell) return; var c = charm(cell.getAttribute('data-charm')); if (!c) return; st.hover = c.key; clearTimeout(capTimer); caption('<b>' + c.title + '</b>' + (c.price ? ' · <i>' + fmt(c.price) + '</i>' : '') + (st.charms.indexOf(c.key) >= 0 ? ' <span>· çıkarmak için tıkla</span>' : ' <span>· eklemek için tıkla</span>')); });
+  els.tray.addEventListener('mouseover', function (e) { var cell = e.target.closest ? e.target.closest('.cell') : null; if (!cell) return; var c = charm(cell.getAttribute('data-charm')); if (!c) return; st.hover = c.key; clearTimeout(capTimer); caption('<b>' + c.title + '</b><span>' + (c.price ? '<i>' + fmt(c.price) + '</i> · ' : '') + (st.charms.indexOf(c.key) >= 0 ? 'çıkarmak için tıkla' : 'eklemek için tıkla') + '</span>'); });
   els.tray.addEventListener('mouseleave', function () { st.hover = null; captionDefault(); });
-  els.ring.addEventListener('mouseover', function (e) { var ch = e.target.closest ? e.target.closest('.charm') : null; if (ch) { var c = charm(ch.getAttribute('data-charm')); if (c) { st.hover = c.key; caption('<b>' + c.title + '</b>' + (c.price ? ' · <i>' + fmt(c.price) + '</i>' : '') + ' <span>· çıkarmak için tıkla</span>'); } } });
+  els.ring.addEventListener('mouseover', function (e) { var ch = e.target.closest ? e.target.closest('.charm') : null; if (ch) { var c = charm(ch.getAttribute('data-charm')); if (c) { st.hover = c.key; caption('<b>' + c.title + '</b><span>' + (c.price ? '<i>' + fmt(c.price) + '</i> · ' : '') + 'çıkarmak için tıkla</span>'); } } });
   els.ring.addEventListener('mouseleave', function () { st.hover = null; captionDefault(); });
   document.addEventListener('visibilitychange', function () { if (document.hidden) { clearTimers(); } });
 

@@ -98,13 +98,13 @@ module.exports = {
 
   // Orta sahne: bileklik fotoğrafının konumu (px) ve charm yuvaları (kutuya oranla; açı derece)
   stage: {
-    left: 322, top: -58, size: 300,
+    left: 402, top: -52, size: 280,
     slots: [
-      { x: 0.135, y: 0.62, r: -46 },
-      { x: 0.285, y: 0.815, r: -24 },
-      { x: 0.5, y: 0.885, r: 0 },
-      { x: 0.715, y: 0.815, r: 24 },
-      { x: 0.865, y: 0.62, r: 46 },
+      { x: 0.14, y: 0.62, r: -46 },
+      { x: 0.29, y: 0.80, r: -24 },
+      { x: 0.5, y: 0.85, r: 0 },
+      { x: 0.71, y: 0.80, r: 24 },
+      { x: 0.86, y: 0.62, r: 46 },
     ],
     charmSize: 56,
   },

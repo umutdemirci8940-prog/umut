@@ -75,7 +75,7 @@ function render(data, assets = {}) {
 <meta name="ad.size" content="width=${SIZE.w},height=${SIZE.h}">
 <meta name="description" content="${esc(B.name)} Moments – ${esc(K.headline).replace(/\n/g, ' ')}">
 <title>${esc(B.name)} Moments – ${SIZE.w}×${SIZE.h} masthead</title>
-<script>var clickTag = "${esc(B.url)}";</script>
+<script>var clickTag = ${JSON.stringify(B.url)};</script>
 ${fontHead}
 <style>${css}</style>
 </head>
@@ -96,7 +96,7 @@ ${fontHead}
   <div class="stage">
     <div class="ring" style="left:${S.left}px;top:${S.top}px;width:${S.size}px;height:${S.size}px;--cs:${S.charmSize}px" title="${esc(bracelets[0].title)}">${ringLayers}<div class="slots"></div></div>
   </div>
-  <div class="caption" aria-live="polite"></div>
+  <div class="caption" aria-live="polite" style="left:${S.left - 10}px;width:${S.size + 20}px"></div>
   <div class="fx" aria-hidden="true"></div>
 
   <div class="panel rise" role="group" aria-label="Bilekliğini tasarla">

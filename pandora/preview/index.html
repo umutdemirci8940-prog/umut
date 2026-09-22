@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pandora Moments – 970×250 Media-First Rich Media Masthead</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fbf7f8;--panel:#fff;--line:rgba(31,30,28,.1);--text:#1f1e1c;--muted:#6b5d61;--rose:#c8104e;--rose2:#ef5f87;--blush:#f7e9ec}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+body{min-height:100vh;background:radial-gradient(900px 500px at 8% -10%,rgba(239,95,135,.12),transparent 60%),radial-gradient(800px 400px at 100% 0%,rgba(200,16,78,.08),transparent 60%),var(--bg)}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:40px 24px 80px}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px}
+.lockup{display:flex;align-items:center;gap:14px}
+.lockup .wm{font-weight:800;font-size:22px;letter-spacing:.32em}
+.lockup small{display:block;margin-top:5px;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--rose);font-weight:700}
+h1{font-size:34px;line-height:1.12;font-weight:800;letter-spacing:-.025em;margin-top:26px;max-width:800px}
+h1 em{font-style:normal;color:var(--rose)}
+.lead{color:var(--muted);font-size:15px;line-height:1.6;max-width:760px;margin-top:12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.chip{border:1px solid var(--line);border-radius:99px;padding:6px 12px;font-size:12px;font-weight:600;color:var(--muted);background:#fff}
+.chip b{color:var(--rose)}
+.toolbar{position:sticky;top:0;z-index:20;display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:30px 0 18px;padding:10px;border:1px solid var(--line);border-radius:14px;background:rgba(251,247,248,.9);backdrop-filter:blur(10px)}
+.toolbar .sp{flex:1}
+button,.btn{appearance:none;border:1px solid var(--line);background:#fff;color:var(--text);font:inherit;font-weight:600;font-size:13px;padding:9px 14px;border-radius:10px;cursor:pointer;transition:background .2s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+button:hover,.btn:hover{background:var(--blush)}
+button.primary{background:var(--text);color:#fff;border-color:transparent}
+button.primary:hover{background:#000}
+button.is-on{border-color:var(--rose);color:var(--rose)}
+.card{border:1px solid var(--line);border-radius:18px;background:var(--panel);padding:18px;overflow:hidden;box-shadow:0 20px 50px -30px rgba(74,30,40,.35)}
+.card-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.card-h h3{font-size:15px;font-weight:800}
+.card-h h3 span{color:var(--muted);font-weight:500;margin-left:8px}
+.stage-area{overflow:auto;padding:6px 0}
+.frame{display:inline-block;line-height:0;box-shadow:0 24px 60px rgba(74,30,40,.22),0 0 0 1px rgba(0,0,0,.06);border-radius:3px;background:#fff}
+iframe{border:0;display:block;background:#f7e9ec;width:970px;height:250px}
+.dark .stage-area{background:#1b1719;border-radius:12px;padding:22px}
+.hint{margin-top:12px;font-size:12.5px;color:var(--muted);line-height:1.5}
+.hint kbd{font:inherit;font-size:11px;border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:1px 6px;color:var(--text);background:#fff}
+.notes{margin-top:34px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.note{border:1px solid var(--line);border-radius:16px;padding:18px;background:#fff}
+.note h4{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--rose);margin-bottom:10px}
+.note ol,.note ul{list-style:none;display:grid;gap:8px;counter-reset:s}
+.note li{font-size:13.5px;line-height:1.55;color:#4a3f42;padding-left:18px;position:relative}
+.note ul li:before{content:"";position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--rose2)}
+.note ol li{counter-increment:s}.note ol li:before{content:counter(s);position:absolute;left:0;top:1px;font-size:11px;font-weight:800;color:var(--rose)}
+.note li b{color:var(--text)}
+.shots{margin-top:34px}
+.shots h3{font-size:15px;font-weight:800;margin-bottom:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.grid figure{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
+.grid img{display:block;width:100%;height:auto}
+.grid figcaption{font-size:12px;color:var(--muted);padding:8px 10px}
+.sim{display:none;background:#f4f5f7;color:#222;border-radius:18px;overflow:hidden;border:1px solid rgba(0,0,0,.1);font-family:Georgia,serif}
+.sim.is-on{display:block}
+.sim .top{background:#fff;border-bottom:1px solid #e4e4e0;padding:14px 28px;display:flex;align-items:center;gap:18px}
+.sim .top b{font-size:22px;letter-spacing:-.02em}
+.sim .top span{font:600 12px/1 system-ui,sans-serif;color:#666}
+.sim .nav{display:flex;gap:18px;padding:10px 28px;background:#fff;border-bottom:1px solid #e4e4e0;font:600 12px system-ui,sans-serif;color:#333}
+.sim .slot{display:flex;justify-content:center;padding:16px 0 12px;background:#e9ebef}
+.sim .slot small{display:block;text-align:center;font:10px system-ui,sans-serif;color:#888;letter-spacing:.2em;text-transform:uppercase;margin-bottom:6px}
+.sim .body{display:grid;grid-template-columns:2fr 1fr;gap:24px;padding:24px 28px 40px;max-width:1080px;margin:0 auto}
+.sim .art{background:#fff;border:1px solid #e4e4e0;border-radius:6px;padding:20px}
+.sim .art h2{font-size:26px;line-height:1.2;margin-bottom:10px}
+.sim .art p{font-size:15px;line-height:1.7;color:#444;margin-bottom:10px}
+.sim .ph{height:220px;border-radius:6px;background:linear-gradient(135deg,#e6dfe2,#d2c6cb);margin:10px 0 16px}
+.sim .side{display:grid;gap:14px;align-content:start}
+.sim .side div{background:#fff;border:1px solid #e4e4e0;border-radius:6px;padding:14px;font:13px/1.5 system-ui,sans-serif;color:#555}
+footer{margin-top:40px;color:var(--muted);font-size:12.5px;line-height:1.6}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92em;background:var(--blush);padding:1px 5px;border-radius:4px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="lockup"><span class="wm">PANDORA</span><div><small>Moments · 970 × 250 · Media-first masthead</small></div></div>
+  <div class="chips"><span class="chip">Boyut <b>970 × 250</b></span><span class="chip">Tek dosya, <b id="kb">–</b></span><span class="chip"><b>clickTag</b> / Enabler</span><span class="chip">Otomatik oynatma <b>≤ 30 sn</b></span><span class="chip">Ses <b>varsayılan kapalı</b></span></div>
+</header>
+<h1>“Kendi hikâyeni tasarla.” — <em>fotoğraf önde</em>, bileklik tasarlayıcı elinin altında</h1>
+<p class="lead">Sahne, tr.pandora.net’teki gerçek ürün fotoğraflarıyla kurulur: yumuşak Pandora pembesi zemin üzerinde büyük, kısmen kadrajdan taşan Pandora Moments yılan zincir bileklik; sağda buzlu cam panelde metal seçimi (gümüş / rose / altın), sitedeki gerçek charm’lar ve canlı toplam. Kullanıcı dokunmazsa banner kendi kendine üç charm takarak “gösteri” yapar; imleç hareket edince kontrol kullanıcıya geçer. “3 Al 2 Öde” kampanya çipi ve güncel TL fiyatları siteden.</p>
+
+<div class="toolbar">
+  <button class="primary" id="restart">↻ Yeniden başlat</button>
+  <button id="bgToggle">Zemin: açık</button>
+  <button id="simToggle">Yayın simülasyonu</button>
+  <span class="sp"></span>
+  <a class="btn" href="../dist/970x250/index.html" target="_blank">Yeni sekmede aç</a>
+  <a class="btn" href="../dist/zip/pandora-moments-970x250.zip">Zip indir</a>
+</div>
+
+<div class="card" id="stageCard">
+  <div class="card-h"><h3>970 × 250 <span>Masthead / Billboard · interaktif</span></h3><span style="font-size:12px;color:var(--muted)">İmleci banner üzerine getirin; metal seçin, tepsiden charm ekleyin, bileklikteki charm’a tıklayıp çıkarın.</span></div>
+  <div class="stage-area"><div class="frame"><iframe id="masthead" src="../dist/970x250/index.html" title="Pandora Moments masthead" scrolling="no"></iframe></div></div>
+  <p class="hint">Klavye: bannerı odaklayıp <kbd>←</kbd> <kbd>→</kbd> metali değiştirir, <kbd>Tab</kbd> ile charm hücrelerine gidilir, <kbd>Enter</kbd> siteye gider. <code>prefers-reduced-motion</code> açıkken kurgu ve gösteri atlanır. Ses yalnızca kullanıcı sağ alttaki hoparlör simgesine basarsa açılır.</p>
+</div>
+
+<div class="sim" id="sim">
+  <div class="top"><b>Yaşam &amp; Stil</b><span>22 Eylül 2026 · Moda</span></div>
+  <div class="nav"><span>Son Dakika</span><span>Moda</span><span>Güzellik</span><span>Alışveriş</span><span>Kültür</span><span>Seyahat</span></div>
+  <div class="slot"><div><small>Reklam</small><div class="frame"><iframe id="mastheadSim" title="Pandora Moments masthead (yayın simülasyonu)" scrolling="no"></iframe></div></div></div>
+  <div class="body">
+    <div class="art"><h2>Sonbaharın öne çıkan aksesuar trendleri</h2><div class="ph"></div><p>Örnek haber metni. Bu alan, mastheadin bir yayın sitesinin en üstünde nasıl görüneceğini göstermek için yer tutucu içerikle doldurulmuştur.</p><p>Masthead sayfa yüklendiği anda kurguya başlar; kullanıcı imleci üzerine getirip hareket ettirdiğinde tasarlayıcı devreye girer. Sayfanın diğer öğeleriyle etkileşmez, sesi kapalıdır ve genişlemez.</p></div>
+    <div class="side"><div><b>Çok okunanlar</b><br>Örnek başlık bir<br>Örnek başlık iki<br>Örnek başlık üç</div><div><b>Editörün seçimi</b><br>Bu kutu yer tutucudur.</div></div>
+  </div>
+</div>
+
+<section class="notes">
+  <div class="note"><h4>Kurgu (ilk 8 sn)</h4><ol>
+    <li><b>0–1,4 sn</b> Fotoğraf yumuşak bir zoom’la belirir (Ken Burns), logo ve “3 AL 2 ÖDE” çipi gelir; “Kendi hikâyeni / tasarla.” satır satır yükselir, alt metin ve siyah CTA.</li>
+    <li><b>0,75 sn</b> Bileklik packshot’ı hafif dönerek sahneye oturur; sağ panel buzlu camla süzülür.</li>
+    <li><b>2,6 sn</b> Gösteri: tepsiden bir charm bilekliğe uçar, yerine oturunca ışıltı ve halka; toplam sayarak artar. 1,5 sn arayla üç charm.</li>
+    <li><b>~7,5 sn</b> Dinlenme: CTA “Bu tasarımı satın al” olur ve nabız atar; boş yuvalar kesikli halkayla kullanıcıyı davet eder.</li>
+    <li><b>30 sn</b> Ken Burns ve nabız durur; etkileşim sürer.</li>
+  </ol></div>
+  <div class="note"><h4>Etkileşim</h4><ul>
+    <li><b>Metal:</b> Gümüş / Rose / Altın — bileklik fotoğrafı çapraz geçişle değişir, ad ve fiyat güncellenir (← → tuşları).</li>
+    <li><b>Charm ekle:</b> tepsideki gerçek charm fotoğrafına tıkla → yuvaya uçar, ışıltı; en fazla 5. Ekli charm’a (tepside ✓ veya bileklikte ×) tıklayınca çıkar; “Temizle” hepsini kaldırır.</li>
+    <li><b>Toplam:</b> bileklik + charm fiyatları TL olarak canlı toplanır (sitedeki liste fiyatları).</li>
+    <li><b>Çıkış:</b> CTA, başlık ve boş alanlar Pandora Moments koleksiyonuna (clickTag); bileklik fotoğrafı seçili bilekliğin ürün sayfasına (derin bağlantı; clickTag tanımlıysa o kullanılır). Panel içindeki kontroller çıkış tetiklemez.</li>
+    <li><b>Ses:</b> varsayılan kapalı; kullanıcı açarsa takma/çıkarma için kısa WebAudio tıkları.</li>
+  </ul></div>
+  <div class="note"><h4>Rich media / teknik</h4><ul>
+    <li>Tek HTML dosyası; CSS/JS satır içi, ürün fotoğrafları (şeffaf WebP), logo (SVG) ve Inter alt kümesi base64 gömülü → harici istek yok.</li>
+    <li><code>&lt;meta name="ad.size"&gt;</code>, <code>var clickTag</code>, <code>Enabler.exit</code> / <code>Enabler.counter</code>; <code>window.adTrack(olay)</code> kancası (interact, metal_*, charm_add_*, charm_remove, reset, sound_on, demo_complete, cta_click, exit).</li>
+    <li>ES5 çalışma zamanı, harici kütüphane yok; DOM + CSS geçişleri, WAAPI gerekmez. Retina fotoğraflar (2×).</li>
+    <li>Klavye, dokunmatik, <code>prefers-reduced-motion</code>, <code>aria-live</code> ürün satırı; 30 sn otomatik oynatma sınırı (IAB / Google).</li>
+  </ul></div>
+</section>
+
+<section class="shots">
+  <h3>Ekran görüntüleri</h3>
+  <div class="grid" id="shots"></div>
+</section>
+
+<footer>Reklam ağına yüklenecek dosya <code>dist/970x250/index.html</code> (zip: <code>dist/zip/</code>, teslim kopyası <code>release/Pandora2027.html</code>). Metinler, ürünler, fiyatlar, kampanya ve süreler <code>src/data.js</code> içindedir; gerçek görseller <code>tools/fetch-assets.js</code> (GitHub Actions) + <code>tools/optimize-assets.js</code> ile üretilir.</footer>
+</div>
+<script>
+(function(){
+  var main=document.getElementById('masthead'),simF=document.getElementById('mastheadSim'),sim=document.getElementById('sim'),card=document.getElementById('stageCard');
+  function frames(){return [main,simF].filter(function(f){return f&&(f.src||f.srcdoc)})}
+  document.getElementById('restart').addEventListener('click',function(){frames().forEach(function(f){if(f.srcdoc){f.srcdoc=f.srcdoc}else{f.src=f.src}})});
+  document.getElementById('bgToggle').addEventListener('click',function(){card.classList.toggle('dark');this.textContent='Zemin: '+(card.classList.contains('dark')?'koyu':'açık')});
+  document.getElementById('simToggle').addEventListener('click',function(){var on=sim.classList.toggle('is-on');this.classList.toggle('is-on',on);if(on){if(main.srcdoc){simF.srcdoc=main.srcdoc}else if(!simF.src){simF.src=main.src}sim.scrollIntoView({behavior:'smooth',block:'start'})}});
+  var shots=[['01-acilis','Açılış (0,5 sn)'],['02-mesaj','Mesaj yükseliyor (1,5 sn)'],['03-bileklik-sahnede','Bileklik sahnede (2,8 sn)'],['04-demo-charm-1','Gösteri: ilk charm uçuyor'],['05-demo-charm-3','Gösteri: üç charm takılı'],['06-dinlenme-cta','Dinlenme: CTA nabız atıyor'],['07-rose-gold','Metal: rose gold'],['08-charm-hover','Charm üzerine gelme'],['09-charm-ucuyor','Charm bilekliğe uçuyor'],['10-bileklik-dolu','Kullanıcı tasarımı'],['11-altin','Metal: altın'],['12-charm-cikar-hover','Bileklikteki charm: çıkar'],['13-cta-hover','CTA üzerine gelme'],['14-azaltilmis-hareket','Azaltılmış hareket']];
+  var g=document.getElementById('shots');
+  shots.forEach(function(s){var f=document.createElement('figure');var i=new Image();i.alt='';i.src='screens/'+s[0]+'.jpg';i.onerror=function(){f.remove()};f.appendChild(i);var c=document.createElement('figcaption');c.textContent=s[1];f.appendChild(c);g.appendChild(f)});
+  fetch('../dist/970x250/index.html').then(function(r){return r.blob()}).then(function(b){document.getElementById('kb').textContent='~'+Math.round(b.size/1024)+' KB'}).catch(function(){});
+})();
+</script>
+</body>
+</html>
