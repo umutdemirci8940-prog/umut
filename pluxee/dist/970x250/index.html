@@ -15,11 +15,11 @@ html,body{width:970px;height:250px;overflow:hidden;background:#14102F}
 body{font-family:Manrope,Inter,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 .ad{position:relative;width:970px;height:250px;overflow:hidden;background:var(--ink);color:#fff;user-select:none;-webkit-user-select:none;outline:0;cursor:pointer}
 .ad:focus-visible{box-shadow:inset 0 0 0 2px var(--green)}
-/* fotoğrafik arka plan katmanları */
-.bg{position:absolute;inset:0;overflow:hidden}
-.bg canvas{position:absolute;left:0;top:0;width:970px;height:250px;opacity:0;transition:opacity 1s ease;transform-origin:60% 50%}
+/* fotoğrafik arka plan katmanları (+ fare paralaksı) */
+.bg{position:absolute;inset:-12px;overflow:hidden;will-change:transform}
+.bg canvas{position:absolute;left:12px;top:12px;width:970px;height:250px;opacity:0;transition:opacity 1s ease;transform-origin:60% 50%}
 .bg canvas.is-on{opacity:1;animation:kb 7s linear forwards}
-@keyframes kb{from{transform:scale(1)}to{transform:scale(1.06)}}
+@keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.08)}}
 .grain{position:absolute;inset:0;opacity:.09;mix-blend-mode:overlay;pointer-events:none;background-repeat:repeat}
 .vig{position:absolute;inset:0;pointer-events:none;background:radial-gradient(120% 140% at 62% 45%,transparent 45%,rgba(0,0,0,.55) 100%)}
 .shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(20,16,47,.96) 0%,rgba(20,16,47,.9) 30%,rgba(20,16,47,.45) 50%,rgba(20,16,47,0) 66%),linear-gradient(180deg,rgba(20,16,47,0) 60%,rgba(20,16,47,.55) 100%)}
@@ -27,45 +27,60 @@ body{font-family:Manrope,Inter,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
 .ad.is-rain .rain{opacity:.55}
 @keyframes rain{to{background-position:-26px 120px}}
 /* sahne */
-.scene{position:absolute;left:470px;top:0;width:500px;height:250px;touch-action:none;cursor:grab;z-index:4}
-.scene.is-drag{cursor:grabbing}
-.surface{position:absolute;left:40px;top:190px;width:440px;height:40px;border-radius:50%;background:radial-gradient(50% 50% at 50% 50%,rgba(0,0,0,.55),rgba(0,0,0,0) 70%);filter:blur(6px);opacity:0;transition:opacity .8s}
+.scene{position:absolute;left:470px;top:0;width:500px;height:250px;z-index:4}
+.surface{position:absolute;left:40px;top:190px;width:440px;height:40px;border-radius:50%;background:radial-gradient(50% 50% at 50% 50%,rgba(0,0,0,.55),rgba(0,0,0,0) 70%);filter:blur(6px);opacity:0;transition:opacity .8s;pointer-events:none}
 .ad.is-live .surface{opacity:1}
 /* POS cihazı */
-.pos{position:absolute;left:334px;top:52px;width:104px;height:150px;opacity:0;transform:translateY(8px);transition:opacity .7s .15s,transform .8s .15s var(--ease)}
+.pos{position:absolute;left:334px;top:52px;width:104px;height:150px;opacity:0;transform:translateY(8px);transition:opacity .7s .15s,transform .8s .15s var(--ease);cursor:pointer}
 .ad.is-live .pos{opacity:1;transform:none}
-.pos-body{position:absolute;inset:0;border-radius:18px 18px 12px 12px;background:linear-gradient(180deg,#30323F 0%,#1E1F28 38%,#121319 100%);box-shadow:0 34px 50px -10px rgba(0,0,0,.75),0 6px 14px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.16),inset 0 -2px 0 rgba(0,0,0,.7),inset 1px 0 0 rgba(255,255,255,.05)}
+.pos.is-near{transform:scale(1.03)}
+.pos.is-ok{animation:bump .45s var(--ease)}
+@keyframes bump{0%{transform:none}35%{transform:translateY(3px) scale(.98)}100%{transform:none}}
+.pos-body{position:absolute;inset:0;border-radius:18px 18px 12px 12px;background:linear-gradient(180deg,#30323F 0%,#1E1F28 38%,#121319 100%);box-shadow:0 34px 50px -10px rgba(0,0,0,.75),0 6px 14px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.16),inset 0 -2px 0 rgba(0,0,0,.7),inset 1px 0 0 rgba(255,255,255,.05);transition:box-shadow .3s}
+.pos.is-near .pos-body{box-shadow:0 34px 50px -10px rgba(0,0,0,.75),0 6px 14px rgba(0,0,0,.4),0 0 0 2px rgba(0,235,94,.35),0 0 30px rgba(0,235,94,.25),inset 0 1px 0 rgba(255,255,255,.16),inset 0 -2px 0 rgba(0,0,0,.7)}
 .pos .slot{position:absolute;left:16px;right:16px;top:8px;height:4px;border-radius:2px;background:#050508;box-shadow:inset 0 1px 2px rgba(0,0,0,.9),0 1px 0 rgba(255,255,255,.08)}
-.pos .nfcz{position:absolute;left:0;right:0;top:15px;height:12px;display:flex;justify-content:center;color:rgba(255,255,255,.45)}
+.pos .nfcz{position:absolute;left:0;right:0;top:15px;height:12px;display:flex;justify-content:center;color:rgba(255,255,255,.45);transition:color .25s}
 .pos .nfcz svg{width:12px;height:12px}
+.pos.is-near .nfcz{color:var(--green);animation:blink .6s ease-in-out infinite}
+@keyframes blink{50%{opacity:.35}}
 .pos .led{position:absolute;right:14px;top:16px;width:5px;height:5px;border-radius:50%;background:#5a5f6e;box-shadow:0 0 0 1px rgba(0,0,0,.5);transition:background .25s,box-shadow .25s}
+.pos.is-near .led{background:#FFD166;box-shadow:0 0 8px #FFD166}
 .pos.is-ok .led{background:var(--green);box-shadow:0 0 8px var(--green)}
 .screen{position:absolute;left:11px;top:30px;width:82px;height:56px;border-radius:8px;overflow:hidden;background:radial-gradient(130% 110% at 50% -10%,#24365F,#101A33 65%);box-shadow:inset 0 0 0 2px #07080D,inset 0 0 16px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.05);transition:background .35s,box-shadow .35s}
 .screen:before{content:"";position:absolute;inset:0;background:linear-gradient(160deg,rgba(255,255,255,.14),transparent 45%);pointer-events:none}
 .screen span{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);text-align:center;font-size:8.5px;font-weight:700;letter-spacing:.06em;color:rgba(255,255,255,.72);transition:opacity .25s}
-.screen .ok{color:var(--navy);font-weight:800;font-size:9px;opacity:0;display:flex;align-items:center;justify-content:center;gap:4px}
+.screen .near,.screen .ok{opacity:0}
+.screen .ok{color:var(--navy);font-weight:800;font-size:9px;display:flex;align-items:center;justify-content:center;gap:4px}
 .screen .ok svg{width:11px;height:11px}
+.pos.is-near .screen{background:radial-gradient(130% 110% at 50% -10%,#3C5A9A,#1B2C55 65%);box-shadow:inset 0 0 0 2px #07080D,inset 0 0 16px rgba(0,0,0,.4),0 0 18px rgba(80,140,255,.35)}
+.pos.is-near .screen .idle{opacity:0}.pos.is-near .screen .near{opacity:1;color:#fff}
 .pos.is-ok .screen{background:radial-gradient(130% 110% at 50% -10%,#3BFF8A,#00B54B 70%);box-shadow:inset 0 0 0 2px #07080D,inset 0 0 16px rgba(0,0,0,.25),0 0 28px rgba(0,235,94,.45)}
-.pos.is-ok .screen .idle{opacity:0}.pos.is-ok .screen .ok{opacity:1}
+.pos.is-ok .screen .idle,.pos.is-ok .screen .near{opacity:0}.pos.is-ok .screen .ok{opacity:1}
 .keys{position:absolute;left:12px;top:96px;width:80px;display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
 .keys i{height:10px;border-radius:3px;background:linear-gradient(180deg,#3B3D4B,#24252E);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 1px 0 rgba(0,0,0,.65)}
 .keys i:nth-child(10){background:linear-gradient(180deg,#B33A3A,#7A2323)}
 .keys i:nth-child(12){background:linear-gradient(180deg,#22C76A,#128A46)}
-.ring{position:absolute;left:386px;top:60px;width:20px;height:20px;margin:-10px 0 0 -10px;border-radius:50%;border:2px solid var(--green);opacity:0;pointer-events:none;z-index:6}
-.scene.is-tap .ring{animation:ring .8s ease-out both}
-.scene.is-tap .ring.r2{animation-delay:.18s}
-@keyframes ring{0%{opacity:.9;transform:scale(.4)}100%{opacity:0;transform:scale(4.4)}}
+.ring{position:absolute;left:386px;top:70px;width:20px;height:20px;margin:-10px 0 0 -10px;border-radius:50%;border:2px solid var(--green);opacity:0;pointer-events:none;z-index:6}
+.scene.is-ok .ring{animation:ring .8s ease-out both}
+.scene.is-ok .ring.r2{animation-delay:.18s}
+@keyframes ring{0%{opacity:.9;transform:scale(.4)}100%{opacity:0;transform:scale(4.6)}}
+.burst{position:absolute;left:386px;top:70px;width:0;height:0;pointer-events:none;z-index:7}
+.burst i{position:absolute;left:-3px;top:-3px;width:6px;height:6px;border-radius:50%;background:var(--green);opacity:0;animation:burst .8s cubic-bezier(.2,.8,.3,1) forwards}
+.burst i.w{background:#fff;width:4px;height:4px}
+@keyframes burst{0%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(.3)}}
 /* etiket: burada / şurada / orada */
-.tag{position:absolute;left:334px;top:30px;display:inline-flex;align-items:center;gap:5px;height:20px;padding:0 9px 0 7px;border-radius:99px;background:rgba(20,16,47,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16);font-size:8.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#fff;opacity:0;transform:translateY(-4px);transition:opacity .35s,transform .45s var(--ease),background .3s,color .3s}
+.tag{position:absolute;left:358px;top:30px;display:inline-flex;align-items:center;gap:5px;height:20px;padding:0 9px 0 7px;border-radius:99px;background:rgba(20,16,47,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16);font-size:8.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#fff;opacity:0;transform:translateY(-4px);transition:opacity .35s,transform .45s var(--ease),background .3s,color .3s;pointer-events:none}
 .tag.is-on{opacity:1;transform:none}
 .tag svg{width:10px;height:10px}
 .tag .ck{display:none}
 .tag.is-ok{background:var(--green);color:var(--navy);box-shadow:0 6px 16px rgba(0,235,94,.35)}
 .tag.is-ok .pin{display:none}.tag.is-ok .ck{display:block}
-/* kart */
-.card{position:absolute;left:72px;top:64px;width:190px;height:120px;border-radius:13px;transform:perspective(900px) rotateY(-24deg) rotateX(7deg) rotateZ(-9deg);transform-style:preserve-3d;transition:transform .55s var(--ease),opacity .6s .25s;opacity:0;z-index:5;box-shadow:0 36px 60px -12px rgba(0,0,0,.75),0 10px 22px rgba(0,0,0,.4);pointer-events:none;will-change:transform}
+/* kart: sürüklenebilir */
+.card{position:absolute;left:72px;top:64px;width:190px;height:120px;border-radius:13px;transform-style:preserve-3d;transition:transform .6s var(--ease),opacity .5s .2s;opacity:0;z-index:5;box-shadow:0 36px 60px -12px rgba(0,0,0,.75),0 10px 22px rgba(0,0,0,.4);cursor:grab;touch-action:none;will-change:transform}
 .ad.is-live .card{opacity:1}
-.scene.is-tap .card{transform:perspective(900px) translate3d(78px,-10px,40px) rotateY(-34deg) rotateX(4deg) rotateZ(-16deg)}
+.card.is-drag{transition:none;cursor:grabbing;box-shadow:0 50px 70px -12px rgba(0,0,0,.8),0 16px 30px rgba(0,0,0,.45)}
+.card.is-fly{transition:transform .85s cubic-bezier(.3,.9,.3,1)}
+.card.is-docked{cursor:default}
 .face{position:absolute;inset:0;border-radius:13px;overflow:hidden;background:linear-gradient(116deg,#3A2F78 0%,#261D5C 36%,#1A1345 66%,#120D33 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.28),inset 0 -1px 0 rgba(0,0,0,.55),inset 1px 0 0 rgba(255,255,255,.08)}
 .face .band{position:absolute;left:-40px;top:58px;width:300px;height:30px;background:linear-gradient(90deg,#00EB5E,#00C77E 60%,#00B37A);transform:rotate(-16deg);box-shadow:0 3px 12px rgba(0,235,94,.35)}
 .face .band:after{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:rgba(255,255,255,.35)}
@@ -79,6 +94,20 @@ body{font-family:Manrope,Inter,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
 .face .nfc{position:absolute;right:16px;top:26px;width:20px;height:20px;color:rgba(255,255,255,.85)}
 .face .wm{position:absolute;left:18px;bottom:16px;font-size:19px;font-weight:800;letter-spacing:-.02em;color:#fff;text-shadow:0 1px 0 rgba(255,255,255,.22),0 -1px 0 rgba(0,0,0,.55)}
 .face .wm i{display:inline-block;width:6px;height:6px;border-radius:1.5px;background:var(--green);transform:rotate(45deg);margin-left:5px;vertical-align:middle}
+/* ipucu: hayalet el + etiket */
+.hand{position:absolute;left:150px;top:112px;width:26px;height:26px;color:#fff;opacity:0;pointer-events:none;z-index:8;filter:drop-shadow(0 4px 8px rgba(0,0,0,.5))}
+.hand svg{width:26px;height:26px}
+.scene.is-hint .hand{animation:hand 2.4s ease-in-out infinite}
+@keyframes hand{0%{opacity:0;transform:translate(0,0) scale(1)}12%{opacity:1;transform:translate(0,0) scale(.92)}62%{opacity:1;transform:translate(214px,-58px) scale(.92)}74%{opacity:1;transform:translate(214px,-58px) scale(.8)}88%,100%{opacity:0;transform:translate(214px,-58px) scale(1)}}
+.hint{position:absolute;left:72px;top:194px;display:inline-flex;align-items:center;gap:7px;font-size:8.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#fff;opacity:0;transform:translateY(4px);transition:opacity .4s,transform .5s var(--ease);pointer-events:none;white-space:nowrap}
+.hint small{font-size:8px;font-weight:700;letter-spacing:.1em;color:rgba(255,255,255,.55);text-transform:none}
+.hint svg{width:14px;height:10px;color:var(--green);animation:nudge 1.2s ease-in-out infinite}
+@keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(4px)}}
+.scene.is-hint .hint{opacity:1;transform:none}
+.again{position:absolute;left:72px;top:190px;display:none;align-items:center;gap:6px;height:24px;padding:0 11px 0 9px;border-radius:99px;background:rgba(255,255,255,.1);box-shadow:inset 0 0 0 1px rgba(255,255,255,.22);font:inherit;font-size:9px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#fff;border:0;cursor:pointer;z-index:8;transition:background .2s}
+.again:hover{background:rgba(255,255,255,.18)}
+.again svg{width:11px;height:11px}
+.ad.is-ended .again{display:inline-flex}
 /* sol sütun */
 .left{position:absolute;left:44px;top:28px;width:410px;height:214px;z-index:6}
 .logo{display:flex;align-items:center;gap:7px;height:24px}
@@ -105,10 +134,11 @@ body{font-family:Manrope,Inter,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
 .step b{display:block;font-size:8.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.45);line-height:10px;transition:color .3s;white-space:nowrap}
 .step b svg{width:8px;height:8px;vertical-align:-1px;margin-left:3px;display:none}
 .step .bar{position:absolute;left:0;right:0;bottom:0;height:2px;border-radius:2px;background:rgba(255,255,255,.18);overflow:hidden}
-.step .bar i{display:block;height:100%;width:0;background:var(--green);transition:width 0s}
+.step .bar i{display:block;height:100%;width:0;background:var(--green);transition:width .5s var(--ease)}
 .step.is-here b{color:#fff}
+.step.is-here .bar i{width:35%;background:rgba(255,255,255,.55)}
 .step.is-done b{color:var(--green)}.step.is-done b svg{display:inline}
-.step.is-done .bar i{width:100%!important;transition:width .3s}
+.step.is-done .bar i{width:100%;background:var(--green)}
 /* sinyal çubuğu (sunum) */
 .sig{position:absolute;left:480px;top:8px;height:18px;display:none;align-items:center;gap:4px;z-index:7;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:9px;letter-spacing:.03em;pointer-events:none}
 .ad.is-demo .sig{display:flex}
@@ -125,12 +155,16 @@ body{font-family:Manrope,Inter,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
   <div class="vig"></div>
   <div class="rain"></div>
   <div class="shade"></div>
-  <div class="scene" aria-label="Sahneler arasında gezinin">
+  <div class="scene" aria-label="Kartı POS cihazına sürükleyin">
     <div class="surface"></div>
-    <div class="pos"><div class="pos-body"><span class="slot"></span><span class="nfcz"><svg class="" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 8.5a5 5 0 0 1 0 7M10.5 5.5a10 10 0 0 1 0 13M14.5 2.5a15 15 0 0 1 0 19" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></span><span class="led"></span><div class="screen"><span class="idle">Kartı okutun</span><span class="ok"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.5l2.3 2.3L9.5 4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>Onaylandı</span></div><div class="keys"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div>
+    <div class="pos" role="button" aria-label="Kartı okut"><div class="pos-body"><span class="slot"></span><span class="nfcz"><svg class="" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 8.5a5 5 0 0 1 0 7M10.5 5.5a10 10 0 0 1 0 13M14.5 2.5a15 15 0 0 1 0 19" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></span><span class="led"></span><div class="screen"><span class="idle">Kartı okutun</span><span class="near">Okutun</span><span class="ok"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.5l2.3 2.3L9.5 4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>Onaylandı</span></div><div class="keys"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div>
     <span class="ring"></span><span class="ring r2"></span>
+    <div class="burst"></div>
     <div class="tag"><span class="pin"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 11s3.6-3.6 3.6-6.4A3.6 3.6 0 0 0 2.4 4.6C2.4 7.4 6 11 6 11z" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="6" cy="4.6" r="1.2" fill="currentColor"/></svg></span><span class="ck"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.5l2.3 2.3L9.5 4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="t"></span></div>
-    <div class="card" aria-hidden="true"><div class="face"><span class="band"></span><span class="gloss"></span><span class="chip"><i class="a"></i><i class="b"></i></span><svg class="nfc" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 8.5a5 5 0 0 1 0 7M10.5 5.5a10 10 0 0 1 0 13M14.5 2.5a15 15 0 0 1 0 19" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg><span class="wm">pluxee<i></i></span></div></div>
+    <div class="card" role="button" aria-label="Pluxee kartı: POS cihazına sürükleyin" tabindex="-1"><div class="face"><span class="band"></span><span class="gloss"></span><span class="chip"><i class="a"></i><i class="b"></i></span><svg class="nfc" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 8.5a5 5 0 0 1 0 7M10.5 5.5a10 10 0 0 1 0 13M14.5 2.5a15 15 0 0 1 0 19" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg><span class="wm">pluxee<i></i></span></div></div>
+    <div class="hand"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11.5V4.8a1.6 1.6 0 0 1 3.2 0v5.4l1.1-.3a1.5 1.5 0 0 1 1.9 1.4v.3l1.2-.2a1.5 1.5 0 0 1 1.8 1.5v.4l.9.1a1.6 1.6 0 0 1 1.4 1.6v2.8c0 2.9-2.3 5.2-5.2 5.2h-2.1a5.2 5.2 0 0 1-4.3-2.3l-3.3-4.9a1.5 1.5 0 0 1 2.3-1.9z" fill="#fff" stroke="#14102F" stroke-width="1.2" stroke-linejoin="round"/></svg></div>
+    <div class="hint">Kartı POS'a sürükleyin <svg viewBox="0 0 14 10" aria-hidden="true"><path d="M1 5h11M8.5 1.5L12 5l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> <small>ya da dokunun</small></div>
+    <button class="again" type="button"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.2 6a3.8 3.8 0 1 0 1.1-2.7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M2 1.8v2.4h2.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Tekrar oyna</button>
     <div class="steps"></div>
   </div>
   <div class="left">
@@ -144,11 +178,14 @@ body{font-family:Manrope,Inter,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
 </div>
 <script>
 (function(){
-var D={"brand":{"url":"https://www.pluxee.com.tr/?utm_source=splash&utm_medium=masthead&utm_campaign=pluxee-geciyor"},"timingCinematic":{"enter":600,"tap":450,"dwell":2150,"hold":3000,"loops":2,"resume":1500},"segments":{"wc":{"label":"Beyaz yaka","cta":"Yakınımda nerede geçiyor?"},"hr":{"label":"İK profesyoneli","cta":"Ekibim için teklif al"},"emp":{"label":"İşveren / karar verici","cta":"Şirketim için başvur"}},"cinematic":{"scenes":[{"key":"restoran","title":"Öğle yemeği","word":"restoranda.","label":"Restoran","tag":"burada"},{"key":"kafe","title":"Kahve molası","word":"kafede.","label":"Kafe","tag":"şurada"},{"key":"market","title":"Market alışverişi","word":"markette.","label":"Market","tag":"orada"},{"key":"online","title":"Online sipariş","word":"online siparişte.","label":"Online","tag":"orada da"}],"lead":[{"from":6,"to":10,"scene":"kafe"},{"from":11,"to":14,"scene":"restoran"},{"from":15,"to":17,"scene":"kafe"},{"from":18,"to":22,"scene":"market"},{"from":23,"to":5,"scene":"online"}],"rainLead":"online","final":{"title":"Burada, şurada, orada","word":"her yerde."},"segments":{"wc":{"sub":"Öğle yemeğinden market alışverişine, kafeden online siparişe: tek kart, her yerde geçerli.","cta":"Pluxee'yi keşfedin"},"hr":{"sub":"Ekibinizin her günü için geçerli yan hak. Kurulumu kolay, kullanımı her yerde.","cta":"Teklif alın"},"emp":{"sub":"Yan hak bütçenizi geniş kabul ağı ve vergi avantajıyla değerlendirin.","cta":"Bize ulaşın"}},"pos":{"idle":"Kartı okutun","ok":"Onaylandı"}},"defaults":{"seg":"wc"}},C=D.cinematic,T=D.timingCinematic;
-var ad=document.getElementById('ad'),scene=ad.querySelector('.scene'),bg=ad.querySelector('.bg'),pos=ad.querySelector('.pos'),tag=ad.querySelector('.tag'),tagT=tag.querySelector('.t');
+var D={"brand":{"url":"https://www.pluxee.com.tr/?utm_source=splash&utm_medium=masthead&utm_campaign=pluxee-geciyor"},"timingCinematic":{"enter":600,"hint":500,"idle":2600,"idleRetry":4200,"fly":850,"approve":1000,"next":650,"hold":3000,"loops":1},"segments":{"wc":{"label":"Beyaz yaka","cta":"Yakınımda nerede geçiyor?"},"hr":{"label":"İK profesyoneli","cta":"Ekibim için teklif al"},"emp":{"label":"İşveren / karar verici","cta":"Şirketim için başvur"}},"cinematic":{"scenes":[{"key":"restoran","title":"Öğle yemeği","word":"restoranda.","label":"Restoran","tag":"burada"},{"key":"kafe","title":"Kahve molası","word":"kafede.","label":"Kafe","tag":"şurada"},{"key":"market","title":"Market alışverişi","word":"markette.","label":"Market","tag":"orada"},{"key":"online","title":"Online sipariş","word":"online siparişte.","label":"Online","tag":"orada da"}],"lead":[{"from":6,"to":10,"scene":"kafe"},{"from":11,"to":14,"scene":"restoran"},{"from":15,"to":17,"scene":"kafe"},{"from":18,"to":22,"scene":"market"},{"from":23,"to":5,"scene":"online"}],"rainLead":"online","final":{"title":"Burada, şurada, orada","word":"her yerde."},"segments":{"wc":{"sub":"Öğle yemeğinden market alışverişine, kafeden online siparişe: tek kart, her yerde geçerli.","cta":"Pluxee'yi keşfedin"},"hr":{"sub":"Ekibinizin her günü için geçerli yan hak. Kurulumu kolay, kullanımı her yerde.","cta":"Teklif alın"},"emp":{"sub":"Yan hak bütçenizi geniş kabul ağı ve vergi avantajıyla değerlendirin.","cta":"Bize ulaşın"}},"pos":{"idle":"Kartı okutun","near":"Okutun","ok":"Onaylandı"},"hint":"Kartı POS'a sürükleyin","hintTap":"ya da dokunun","replay":"Tekrar oyna"},"defaults":{"seg":"wc"}},C=D.cinematic,T=D.timingCinematic;
+var ad=document.getElementById('ad'),scene=ad.querySelector('.scene'),bg=ad.querySelector('.bg'),pos=ad.querySelector('.pos'),tag=ad.querySelector('.tag'),tagT=tag.querySelector('.t'),card=ad.querySelector('.card'),burst=ad.querySelector('.burst'),again=ad.querySelector('.again');
 var eyebrow=ad.querySelector('.eyebrow'),l2=ad.querySelector('.l2'),sub=ad.querySelector('.sub'),cta=ad.querySelector('.cta'),ctaT=ad.querySelector('.cta-t'),sig=ad.querySelector('.sig'),steps=ad.querySelector('.steps');
 var W=970,H=250;
-var S={},order=[],idx=-1,timers=[],loops=0,manual=false,ended=false,finalState=false,embedded=false,resumeT=null,variant='',leadKey='',layers={},stepEls=[],currentCopy={};
+/* sahne koordinatları */
+var HOME={x:0,y:0,ry:-24,rx:7,rz:-9},DOCK={x:96,y:-46,ry:-36,rx:6,rz:-14},NFC={x:386,y:70},CARD_PT={x:237,y:92},NEAR=88;
+var S={},order=[],idx=-1,timers=[],loops=0,ended=false,finalState=false,embedded=false,variant='',leadKey='',layers={},stepEls=[],currentCopy={};
+var phase='',userPlayed=false,hintOn=false,drag=null,cur={x:0,y:0},tgt={x:0,y:0},vel={x:0,y:0},raf=0,par={x:0,y:0},parT={x:0,y:0},autoT=null,hintT=null;
 var reduced=!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 
 function q(n){var m=new RegExp('[?&]'+n+'=([^&#]*)').exec(location.search);return m?decodeURIComponent(m[1].replace(/\+/g,' ')):null}
@@ -156,7 +193,7 @@ function pad(n){return (n<10?'0':'')+n}
 function norm(s){if(!C.segments[s.seg])s.seg=D.defaults.seg;s.hour=((Math.floor(+s.hour)||0)%24+24)%24;s.minute=Math.max(0,Math.min(59,Math.floor(+s.minute)||0));s.weather=s.weather==='rain'?'rain':'sun';s.demo=!!s.demo;return s}
 function readSignals(){var now=new Date();var s={seg:q('seg')||D.defaults.seg,hour:q('h')!==null?+q('h'):now.getHours(),minute:q('m')!==null?+q('m'):now.getMinutes(),weather:q('w')||'sun',demo:q('demo')==='1'};var o=window.__PLUXEE_SIGNALS;if(o)for(var k in o)if(o.hasOwnProperty(k))s[k]=o[k];return norm(s)}
 function later(fn,ms){var t=setTimeout(fn,ms);timers.push(t);return t}
-function clearTimers(){while(timers.length)clearTimeout(timers.pop())}
+function clearTimers(){while(timers.length)clearTimeout(timers.pop());cancelAuto();if(hintT){clearTimeout(hintT);hintT=null}}
 function within(el,cls){while(el&&el!==ad){if(el.classList&&el.classList.contains(cls))return true;el=el.parentNode}return false}
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 
@@ -195,6 +232,7 @@ try{
   for(var pk in PAL){var cv=paint(PAL[pk]);cv.setAttribute('data-key',pk);bg.appendChild(cv);layers[pk]=cv}
   ad.querySelector('.grain').style.backgroundImage='url('+grain()+')';
 }catch(err){}
+
 function showLayer(key){for(var k in layers)layers[k].classList.toggle('is-on',k===key)}
 
 /* ---- sinyaller → sahne sırası ---- */
@@ -202,22 +240,14 @@ function leadFor(h){for(var i=0;i<C.lead.length;i++){var m=C.lead[i];if(m.from<=
 function build(){
   leadKey=S.weather==='rain'?C.rainLead:leadFor(S.hour);
   var start=0;for(var i=0;i<C.scenes.length;i++)if(C.scenes[i].key===leadKey)start=i;
-  order=[];for(i=0;i<C.scenes.length;i++){var sc=C.scenes[(start+i)%C.scenes.length];order.push({scene:sc,key:sc.key,visited:false,tag:sc.tag})}
-  for(i=0;i<order.length;i++)order[i].tag=C.scenes[i].tag; /* etiket sırası konumdan bağımsız: burada, şurada, orada, orada da */
+  order=[];for(i=0;i<C.scenes.length;i++){var sc=C.scenes[(start+i)%C.scenes.length];order.push({scene:sc,key:sc.key,visited:false,tag:C.scenes[i].tag})}
   steps.innerHTML='';stepEls=[];
   for(i=0;i<order.length;i++){var el=document.createElement('div');el.className='step';el.setAttribute('data-i',i);el.setAttribute('data-key',order[i].key);el.innerHTML='<b>'+esc(order[i].scene.label)+"<svg viewBox=\"0 0 12 12\" aria-hidden=\"true\"><path d=\"M2.5 6.5l2.3 2.3L9.5 4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>"+'</b><span class="bar"><i></i></span>';steps.appendChild(el);stepEls.push(el)}
   ad.classList.toggle('is-rain',S.weather==='rain');ad.classList.toggle('is-demo',S.demo);
   variant=[S.seg,leadKey].join('-').toUpperCase()+(S.weather==='rain'?'-RAIN':'');ad.setAttribute('data-variant',variant);ad.setAttribute('data-lead',leadKey);
-  var segLabel=D.segments[S.seg].label;
-  sig.innerHTML='<span class="lbl">DATA LAYER</span><span>SEGMENT <b>'+esc(segLabel)+'</b></span><span>SAAT <b>'+pad(S.hour)+':'+pad(S.minute)+'</b></span>'+(S.weather==='rain'?'<span>HAVA <b>Yağmurlu</b></span>':'')+'<span>#'+esc(variant)+'</span>';
+  sig.innerHTML='<span class="lbl">DATA LAYER</span><span>SEGMENT <b>'+esc(D.segments[S.seg].label)+'</b></span><span>SAAT <b>'+pad(S.hour)+':'+pad(S.minute)+'</b></span>'+(S.weather==='rain'?'<span>HAVA <b>Yağmurlu</b></span>':'')+'<span>#'+esc(variant)+'</span>';
   sub.textContent=C.segments[S.seg].sub;ctaT.textContent=C.segments[S.seg].cta;
   currentCopy={title:'',word:'',sub:C.segments[S.seg].sub,cta:C.segments[S.seg].cta,line1:'Pluxee geçiyor'};
-}
-function setWord(txt){
-  var old=l2.querySelector('span.on');var n=document.createElement('span');n.className='in';n.textContent=txt;l2.appendChild(n);
-  fitWord(n);void n.offsetWidth;n.className='on';
-  if(old){old.className='out';setTimeout(function(){if(old.parentNode)old.parentNode.removeChild(old)},520)}
-  currentCopy.word=txt;
 }
 /* Uzun kelimeler sütuna sığdırılır; font sonradan yüklenirse yeniden ölçülür */
 var WORD_MAX=404;
@@ -225,91 +255,163 @@ function fitWord(n){n.style.fontSize='';var w=n.scrollWidth;if(w>WORD_MAX)n.styl
 function refit(){var n=l2.querySelector('span.on');if(n)fitWord(n)}
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(refit,function(){});
 window.addEventListener('load',refit);
-function setTitle(txt){eyebrow.classList.add('is-out');setTimeout(function(){eyebrow.textContent=txt;eyebrow.classList.remove('is-out')},220);currentCopy.title=txt}
+function setWord(txt){
+  var old=l2.querySelector('span.on');if(old&&old.textContent===txt)return;
+  var n=document.createElement('span');n.className='in';n.textContent=txt;l2.appendChild(n);
+  fitWord(n);void n.offsetWidth;n.className='on';
+  if(old){old.className='out';setTimeout(function(){if(old.parentNode)old.parentNode.removeChild(old)},520)}
+  currentCopy.word=txt;
+}
+function setTitle(txt){if(eyebrow.textContent===txt)return;eyebrow.classList.add('is-out');setTimeout(function(){eyebrow.textContent=txt;eyebrow.classList.remove('is-out')},220);currentCopy.title=txt}
 function visitedCount(){var n=0;for(var i=0;i<order.length;i++)if(order[i].visited)n++;return n}
 function markHere(i){for(var k=0;k<stepEls.length;k++)stepEls[k].classList.toggle('is-here',k===i)}
 
+/* ---- kart konumu ---- */
+function setCard(p,instant){
+  if(instant){card.classList.add('is-drag')}
+  card.style.transform='translate3d('+p.x+'px,'+p.y+'px,0) perspective(900px) rotateY('+p.ry+'deg) rotateX('+p.rx+'deg) rotateZ('+p.rz+'deg)';
+  if(instant){void card.offsetWidth;card.classList.remove('is-drag')}
+}
+function cardPt(){return {x:CARD_PT.x+cur.x,y:CARD_PT.y+cur.y}}
+function dist(){var p=cardPt();return Math.sqrt((p.x-NFC.x)*(p.x-NFC.x)+(p.y-NFC.y)*(p.y-NFC.y))}
+function setNear(on){pos.classList.toggle('is-near',on)}
+
+/* ---- ipucu ve otomatik gösterim ---- */
+function showHint(){if(hintOn)return;hintOn=true;scene.classList.add('is-hint');emit('state')}
+function hideHint(){if(!hintOn)return;hintOn=false;scene.classList.remove('is-hint')}
+function cancelAuto(){if(autoT){clearTimeout(autoT);autoT=null}}
+function armAuto(ms){cancelAuto();if(reduced)return;autoT=setTimeout(function(){autoT=null;if(phase==='await')fly(true)},ms)}
+function armHint(){if(hintT)clearTimeout(hintT);hintT=setTimeout(function(){hintT=null;if(phase==='await')showHint()},T.hint)}
+
 /* ---- sahne akışı ---- */
-function go(i,opts){
-  opts=opts||{};idx=i;var o=order[i];
+function go(i,instant){
+  idx=i;var o=order[i];phase='await';
   showLayer(S.weather==='rain'&&o.key==='online'?'rain':o.key);
   markHere(i);setTitle(o.scene.title);setWord(o.scene.word);
   tag.classList.remove('is-ok');tagT.textContent=o.tag;tag.classList.add('is-on');
-  pos.classList.remove('is-ok');scene.classList.remove('is-tap');
-  var bar=stepEls[i].querySelector('.bar i');bar.style.transition='width 0s';bar.style.width='0%';void bar.offsetWidth;
-  if(!opts.noAuto){bar.style.transition='width '+(T.dwell-T.tap)+'ms linear';}
-  later(function(){tap(i);if(!opts.noAuto)bar.style.width='100%'},opts.quick?120:T.tap);
+  pos.classList.remove('is-ok');setNear(false);scene.classList.remove('is-ok');card.classList.remove('is-docked','is-fly');
+  cur={x:HOME.x,y:HOME.y};tgt={x:HOME.x,y:HOME.y};
+  if(instant)setCard(HOME,true);
+  else{setCard({x:-60,y:12,ry:-30,rx:7,rz:-14},true);setTimeout(function(){setCard(HOME)},20)}
+  armHint();armAuto(T.idle);emit('state');
+}
+function fly(auto){
+  if(phase!=='await')return;phase='fly';cancelAuto();hideHint();
+  card.classList.add('is-fly');setCard(DOCK);cur={x:DOCK.x,y:DOCK.y};
+  setTimeout(function(){setNear(true)},T.fly*.55);
+  later(function(){approve(auto)},T.fly);
+}
+function approve(auto){
+  if(phase==='approve'||phase==='final')return;phase='approve';cancelAuto();hideHint();
+  var o=order[idx];card.classList.remove('is-fly','is-drag');card.classList.add('is-docked');setCard(DOCK);cur={x:DOCK.x,y:DOCK.y};
+  setNear(false);pos.classList.add('is-ok');tag.classList.add('is-ok');
+  scene.classList.remove('is-ok');void scene.offsetWidth;scene.classList.add('is-ok');
+  sparks();
+  if(!o.visited){o.visited=true;stepEls[idx].classList.add('is-done')}
+  if(!auto)userPlayed=true;
   emit('state');
+  later(function(){
+    var n=-1;for(var k=0;k<order.length;k++){var j=(idx+1+k)%order.length;if(!order[j].visited){n=j;break}}
+    if(n<0)finish();else{card.style.opacity='';go(n,false)}
+  },T.approve);
 }
-function tap(i){
-  var o=order[i];scene.classList.remove('is-tap');void scene.offsetWidth;scene.classList.add('is-tap');
-  setTimeout(function(){pos.classList.add('is-ok');tag.classList.add('is-ok')},330);
-  if(!o.visited){o.visited=true;stepEls[i].classList.add('is-done')}
-  setTimeout(function(){scene.classList.remove('is-tap')},1100);
-  emit('state');
+function sparks(){
+  if(reduced)return;burst.innerHTML='';
+  for(var i=0;i<14;i++){var a=Math.random()*6.2832,r=26+Math.random()*44,el=document.createElement('i');if(i%3===0)el.className='w';el.style.setProperty('--dx',Math.cos(a)*r+'px');el.style.setProperty('--dy',Math.sin(a)*r-10+'px');el.style.animationDelay=(Math.random()*90)+'ms';burst.appendChild(el)}
+  setTimeout(function(){burst.innerHTML=''},900);
 }
-function next(){
-  var n=-1;for(var k=idx+1;k<order.length;k++)if(!order[k].visited){n=k;break}
-  if(n<0)for(k=0;k<order.length;k++)if(!order[k].visited){n=k;break}
-  if(n<0)finish(false);else{go(n);later(next,T.dwell)}
-}
-function finish(byUser){
-  finalState=true;ad.classList.add('is-final');setTitle(C.final.title);setWord(C.final.word);
+function finish(){
+  phase='final';finalState=true;ad.classList.add('is-final');setTitle(C.final.title);setWord(C.final.word);
   for(var k=0;k<stepEls.length;k++){stepEls[k].classList.remove('is-here');stepEls[k].classList.add('is-done')}
-  tag.classList.add('is-ok');tagT.textContent='her yerde';
-  if(byUser||reduced){ended=true;ad.classList.add('is-ended');emit('state');return}
+  tag.classList.add('is-ok');tagT.textContent='her yerde';hideHint();
   emit('state');
-  later(function(){loops++;if(loops<T.loops){reset();start()}else{ended=true;ad.classList.add('is-ended');emit('state')}},T.hold);
+  later(function(){loops++;if(!userPlayed&&loops<T.loops){reset();start()}else{ended=true;ad.classList.add('is-ended');emit('state')}},T.hold);
 }
 function reset(){
-  clearTimers();finalState=false;ended=false;idx=-1;ad.classList.remove('is-final','is-ended');pos.classList.remove('is-ok');tag.classList.remove('is-on','is-ok');
-  for(var k=0;k<order.length;k++){order[k].visited=false;stepEls[k].classList.remove('is-done','is-here');var b=stepEls[k].querySelector('.bar i');b.style.transition='width 0s';b.style.width='0%'}
+  clearTimers();finalState=false;ended=false;idx=-1;phase='';ad.classList.remove('is-final','is-ended');pos.classList.remove('is-ok','is-near');tag.classList.remove('is-on','is-ok');scene.classList.remove('is-ok');hideHint();
+  for(var k=0;k<order.length;k++){order[k].visited=false;stepEls[k].classList.remove('is-done','is-here')}
 }
 function start(){
   ad.classList.add('is-live');
-  if(reduced){for(var k=0;k<order.length;k++)order[k].visited=true;showLayer(order[order.length-1].key);finish(true);return}
-  showLayer(S.weather==='rain'&&order[0].key==='online'?'rain':order[0].key);
-  later(function(){go(0);later(next,T.dwell)},T.enter);
+  if(reduced){for(var k=0;k<order.length;k++){order[k].visited=true;stepEls[k].classList.add('is-done')}showLayer(order[order.length-1].key);setCard(DOCK,true);cur={x:DOCK.x,y:DOCK.y};pos.classList.add('is-ok');tag.classList.add('is-on');phase='final';finalState=true;ended=true;ad.classList.add('is-final','is-ended');setTitle(C.final.title);setWord(C.final.word);tag.classList.add('is-ok');tagT.textContent='her yerde';emit('state');return}
+  showLayer(S.weather==='rain'&&order[0].key==='online'?'rain':order[0].key);setCard(HOME,true);
+  later(function(){go(0,true)},T.enter);
   emit('state');
 }
-function restart(){clearTimers();if(resumeT){clearTimeout(resumeT);resumeT=null}manual=false;scene.classList.remove('is-drag');ad.classList.remove('is-manual');loops=0;reset();build();start()}
+function restart(){clearTimers();endDrag(true);loops=0;userPlayed=false;reset();build();start()}
+function replay(){clearTimers();endDrag(true);loops=0;userPlayed=true;reset();start()}
 
-/* ---- elle kontrol: sahne üzerinde yatay hareket sahneleri gezdirir ---- */
-function xIn(e){var r=scene.getBoundingClientRect();return (e.clientX-r.left)*(500/(r.width||500))}
-function enterManual(){if(manual)return;manual=true;clearTimers();if(resumeT){clearTimeout(resumeT);resumeT=null}ad.classList.add('is-manual');emit('state')}
-function scrubTo(n){
-  n=Math.max(0,Math.min(order.length-1,n));if(n===idx)return;
-  go(n,{noAuto:true,quick:true});
-  if(visitedCount()===order.length&&!finalState)setTimeout(function(){if(manual)finish(true)},900);
+/* ---- sürükleme: kartı POS'a götür ---- */
+function scale(){var r=scene.getBoundingClientRect();return (r.width||500)/500}
+function startRaf(){if(!raf)raf=requestAnimationFrame(tick)}
+function tick(){
+  raf=0;var need=false;
+  if(drag){
+    cur.x+=(tgt.x-cur.x)*.42;cur.y+=(tgt.y-cur.y)*.42;
+    var ty=Math.max(-18,Math.min(18,vel.x*.22)),tx=Math.max(-14,Math.min(14,-vel.y*.22));vel.x*=.85;vel.y*=.85;
+    setCard({x:cur.x,y:cur.y,ry:HOME.ry+ty,rx:HOME.rx+tx,rz:HOME.rz+ty*.25},false);
+    setNear(dist()<NEAR);need=true;
+  }
+  par.x+=(parT.x-par.x)*.08;par.y+=(parT.y-par.y)*.08;
+  bg.style.transform='translate3d('+par.x+'px,'+par.y+'px,0)';
+  if(Math.abs(parT.x-par.x)>.05||Math.abs(parT.y-par.y)>.05)need=true;
+  if(need)startRaf();
 }
-function onMove(e){enterManual();var x=xIn(e);var n=Math.floor((x-20)/(460/order.length));scrubTo(n)}
-function leaveManual(){
-  scene.classList.remove('is-drag');if(!manual)return;if(resumeT)clearTimeout(resumeT);
-  resumeT=setTimeout(function(){resumeT=null;manual=false;ad.classList.remove('is-manual');if(ended)return;clearTimers();next();emit('state')},T.resume);
+card.addEventListener('pointerdown',function(e){
+  if(phase!=='await'){return}
+  e.preventDefault();e.stopPropagation();
+  try{card.setPointerCapture(e.pointerId)}catch(err){}
+  drag={id:e.pointerId,sx:e.clientX,sy:e.clientY,ox:cur.x,oy:cur.y,moved:false,lx:e.clientX,ly:e.clientY};
+  tgt={x:cur.x,y:cur.y};vel={x:0,y:0};cancelAuto();hideHint();card.classList.add('is-drag');phase='drag';emit('state');startRaf();
+});
+card.addEventListener('pointermove',function(e){
+  if(!drag||e.pointerId!==drag.id)return;var s=scale();
+  var dx=(e.clientX-drag.sx)/s,dy=(e.clientY-drag.sy)/s;
+  tgt={x:Math.max(-80,Math.min(260,drag.ox+dx)),y:Math.max(-56,Math.min(80,drag.oy+dy))};
+  vel={x:(e.clientX-drag.lx)/s,y:(e.clientY-drag.ly)/s};drag.lx=e.clientX;drag.ly=e.clientY;
+  if(Math.abs(dx)+Math.abs(dy)>6)drag.moved=true;startRaf();
+});
+function endDrag(cancelOnly){
+  if(!drag)return;var moved=drag.moved;try{card.releasePointerCapture(drag.id)}catch(err){}drag=null;card.classList.remove('is-drag');
+  if(cancelOnly)return;
+  if(!moved){phase='await';fly(false);return}
+  if(dist()<NEAR){userPlayed=true;approve(false);return}
+  phase='await';setNear(false);cur={x:HOME.x,y:HOME.y};tgt={x:HOME.x,y:HOME.y};setCard(HOME);armAuto(T.idleRetry);armHint();emit('state');
 }
-scene.addEventListener('pointermove',onMove);
-scene.addEventListener('pointerdown',function(e){scene.classList.add('is-drag');onMove(e)});
-scene.addEventListener('pointerup',function(){scene.classList.remove('is-drag')});
-scene.addEventListener('pointerleave',leaveManual);
-scene.addEventListener('pointercancel',leaveManual);
+card.addEventListener('pointerup',function(e){if(drag&&e.pointerId===drag.id)endDrag(false)});
+card.addEventListener('pointercancel',function(e){if(drag&&e.pointerId===drag.id){drag=null;card.classList.remove('is-drag');phase='await';setCard(HOME);cur={x:HOME.x,y:HOME.y};armAuto(T.idleRetry)}});
+card.addEventListener('click',function(e){e.stopPropagation()});
+pos.addEventListener('pointerdown',function(e){e.stopPropagation()});
+pos.addEventListener('click',function(e){e.stopPropagation();if(phase==='await'){userPlayed=true;fly(false)}});
 scene.addEventListener('click',function(e){e.stopPropagation()});
-steps.addEventListener('click',function(e){var el=e.target;while(el&&el!==steps&&!(el.classList&&el.classList.contains('step')))el=el.parentNode;if(el&&el!==steps){enterManual();scrubTo(+el.getAttribute('data-i'));leaveManual()}});
+steps.addEventListener('click',function(e){var el=e.target;while(el&&el!==steps&&!(el.classList&&el.classList.contains('step')))el=el.parentNode;if(el&&el!==steps){goScene(+el.getAttribute('data-i'))}});
+function goScene(n){
+  n=Math.max(0,Math.min(order.length-1,n));if(phase==='drag')endDrag(true);
+  clearTimers();userPlayed=true;
+  if(finalState){finalState=false;ended=false;ad.classList.remove('is-final','is-ended')}
+  go(n,false);
+}
+again.addEventListener('click',function(e){e.stopPropagation();replay()});
+/* fare paralaksı */
+ad.addEventListener('pointermove',function(e){var r=ad.getBoundingClientRect();var px=(e.clientX-r.left)/(r.width||W)-.5,py=(e.clientY-r.top)/(r.height||H)-.5;parT={x:-px*12,y:-py*7};startRaf()});
+ad.addEventListener('pointerleave',function(){parT={x:0,y:0};startRaf()});
 
 /* ---- tıklama ---- */
 function openLink(){var u=window.clickTag||D.brand.url;if(embedded&&!window.clickTag){emit('click',{url:u});return}if(window.Enabler&&window.Enabler.exit){window.Enabler.exit('CTA')}else{window.open(u,'_blank','noopener')}}
 ad.addEventListener('click',function(e){if(within(e.target,'scene'))return;openLink()});
 cta.addEventListener('click',function(e){e.stopPropagation();openLink()});
 ad.addEventListener('keydown',function(e){
-  if(e.key==='ArrowRight'){e.preventDefault();enterManual();scrubTo((idx<0?0:idx)+1);leaveManual()}
-  else if(e.key==='ArrowLeft'){e.preventDefault();enterManual();scrubTo((idx<0?0:idx)-1);leaveManual()}
+  if(e.key==='ArrowRight'){e.preventDefault();goScene((idx<0?0:idx)+1)}
+  else if(e.key==='ArrowLeft'){e.preventDefault();goScene((idx<0?0:idx)-1)}
+  else if(e.key===' '){e.preventDefault();if(phase==='await'){userPlayed=true;fly(false)}}
   else if(e.key==='Enter'){openLink()}
 });
 
 /* ---- sunum / entegrasyon API'si ---- */
+function snapshot(){var names=[];for(var k=0;k<order.length;k++)names.push(order[k].key);return {variant:variant,lead:leadKey,order:names,idx:idx,phase:phase,hint:hintOn,userPlayed:userPlayed,visited:visitedCount(),total:order.length,finalState:finalState,ended:ended,copy:currentCopy,signals:S}}
 function emit(type,extra){
   if(!embedded||!(window.parent&&window.parent!==window))return;
-  var names=[];for(var k=0;k<order.length;k++)names.push(order[k].key);
-  var msg={type:'pluxee:'+type,variant:variant,lead:leadKey,order:names,idx:idx,visited:visitedCount(),total:order.length,finalState:finalState,ended:ended,manual:manual,copy:currentCopy,signals:S};
+  var msg=snapshot();msg.type='pluxee:'+type;
   if(extra)for(var x in extra)if(extra.hasOwnProperty(x))msg[x]=extra[x];
   try{window.parent.postMessage(msg,'*')}catch(err){}
 }
@@ -319,7 +421,7 @@ window.addEventListener('message',function(e){
   else if(d.type==='pluxee:replay'){embedded=true;restart()}
   else if(d.type==='pluxee:demo'){S.demo=!!d.on;ad.classList.toggle('is-demo',S.demo)}
 });
-window.PLUXEE={setSignals:function(s){for(var k in s)if(s.hasOwnProperty(k))S[k]=s[k];norm(S);restart()},replay:restart,state:function(){var names=[];for(var k=0;k<order.length;k++)names.push(order[k].key);return {variant:variant,lead:leadKey,order:names,idx:idx,visited:visitedCount(),finalState:finalState,ended:ended,manual:manual,copy:currentCopy,signals:S}}};
+window.PLUXEE={setSignals:function(s){for(var k in s)if(s.hasOwnProperty(k))S[k]=s[k];norm(S);restart()},replay:restart,state:snapshot};
 
 S=readSignals();build();start();
 })();

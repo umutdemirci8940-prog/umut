@@ -29,14 +29,17 @@ module.exports = {
     lavender: '#B8A9FF',
   },
 
-  // Sinematik sürüm süreleri (ms). Tur ≈ enter + 5 × dwell + hold ≈ 14,4 sn; 2 tur ≈ 28,7 sn (< 30 sn).
+  // Sinematik / etkileşimli sürüm süreleri (ms). Otomatik gösterim: enter + 4 × (idle + fly + approve) + final ≈ 22 sn (< 30 sn).
   timingCinematic: {
-    enter: 600,     // sahne belirir
-    tap: 450,       // durağa geçtikten sonra kartın POS'a uzanması
-    dwell: 2150,    // durak başına süre (dokunma + fiş)
-    hold: 3000,     // final karesi
-    loops: 2,
-    resume: 1500,
+    enter: 600,      // sahne belirir, kart yerine gelir
+    hint: 500,       // "kartı sürükleyin" ipucunun belirme gecikmesi
+    idle: 2600,      // kullanıcı dokunmazsa kartın kendi kendine POS'a gitmesi (otomatik gösterim)
+    idleRetry: 4200, // kart yanlış yere bırakılırsa bir sonraki otomatik gösterim
+    fly: 850,        // kartın POS'a uçuşu
+    approve: 1000,   // "Onaylandı" karesinin kalma süresi
+    next: 650,       // sahne geçişi
+    hold: 3000,      // final karesi
+    loops: 1,        // otomatik gösterim tur sayısı; sonra final karesinde durur (kullanıcı yine de oynayabilir)
   },
 
   // İllüstrasyon sürümü süreleri (ms). Bir tur ≈ enter + 5 × (move + dwell) + hold ≈ 13,5 sn; 2 tur ≈ 27 sn (< 30 sn).
@@ -166,8 +169,11 @@ module.exports = {
       hr:  { sub: 'Ekibinizin her günü için geçerli yan hak. Kurulumu kolay, kullanımı her yerde.',           cta: 'Teklif alın' },
       emp: { sub: 'Yan hak bütçenizi geniş kabul ağı ve vergi avantajıyla değerlendirin.',                     cta: 'Bize ulaşın' },
     },
-    // POS ekranı metinleri
-    pos: { idle: 'Kartı okutun', ok: 'Onaylandı' },
+    // POS ekranı ve ipucu metinleri
+    pos: { idle: 'Kartı okutun', near: 'Okutun', ok: 'Onaylandı' },
+    hint: "Kartı POS'a sürükleyin",
+    hintTap: 'ya da dokunun',
+    replay: 'Tekrar oyna',
   },
 
   // Varsayılan sinyaller (parametre gelmezse). Saat için cihaz saati kullanılır.

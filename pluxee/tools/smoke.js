@@ -29,6 +29,7 @@ const st = (page) => page.evaluate(() => {
     posOk: ad.querySelector('.pos').classList.contains('is-ok'), tagOk: ad.querySelector('.tag').classList.contains('is-ok'), tag: ad.querySelector('.tag .t').textContent,
     eyebrow: ad.querySelector('.eyebrow').textContent, word: (ad.querySelector('.l2 span.on') || {}).textContent, sub: ad.querySelector('.sub').textContent, cta: ad.querySelector('.cta-t').textContent,
     layer: (ad.querySelector('.bg canvas.is-on') || { dataset: {} }).dataset.key, layers: ad.querySelectorAll('.bg canvas').length,
+    near: ad.querySelector('.pos').classList.contains('is-near'), hintCls: ad.querySelector('.scene').classList.contains('is-hint'), tf: ad.querySelector('.card').style.transform,
   });
 });
 
@@ -57,16 +58,69 @@ const st = (page) => page.evaluate(() => {
   ok(s.steps.join('|') === 'Restoran|Kafe|Market|Online', 'sahne başlıkları: ' + s.steps.join(' · '));
   ok(s.layers === 5 && s.layer === 'restoran', 'fotoğrafik arka plan katmanları üretildi, restoran katmanı açık');
   ok(s.cta === C.segments.wc.cta && s.sub === C.segments.wc.sub && s.cls.includes('is-live'), 'beyaz yaka alt metin + CTA');
-  await page.waitForTimeout(T.enter + 300);
+  await page.waitForTimeout(T.enter + T.hint + 300);
   s = await st(page);
-  ok(s.eyebrow === 'Öğle yemeği' && s.word === 'restoranda.' && s.here === 'restoran', 'başlık: "Öğle yemeği / Pluxee geçiyor restoranda."');
-  await page.waitForTimeout(T.tap + 500);
+  ok(s.phase === 'await' && s.hint && s.hintCls && s.eyebrow === 'Öğle yemeği' && s.word === 'restoranda.', 'bekleme: "Kartı POS\'a sürükleyin" ipucu ve hayalet el görünür');
+  ok(!s.posOk && s.tag === 'burada' && !s.tagOk, 'POS boşta, "burada" etiketi onaysız');
+
+  console.log('\nKullanıcı aksiyonu: kartı sürükleyip okutma');
+  const CARD = { x: 470 + 167, y: 124 }, NFCP = { x: 470 + 386, y: 70 };
+  await page.mouse.move(CARD.x, CARD.y); await page.mouse.down();
+  for (let i = 1; i <= 10; i++) { await page.mouse.move(CARD.x + (NFCP.x - CARD.x) * i / 10, CARD.y + (NFCP.y - CARD.y) * i / 10); await page.waitForTimeout(25); }
+  await page.waitForTimeout(150);
   s = await st(page);
-  ok(s.posOk && s.tagOk && s.tag === 'burada' && s.visited === 1 && s.done[0] === 'restoran', 'kart POS\'a dokundu: Onaylandı + "burada" etiketi');
-  const finalAt = T.enter + C.scenes.length * T.dwell + 500;
-  await page.waitForTimeout(finalAt - (T.enter + 300 + T.tap + 500 + 300));
+  ok(s.phase === 'drag' && !s.hint && s.near, 'sürüklerken kart fareyi izliyor, ipucu kayboluyor, POS uyanıyor ("Okutun")');
+  await page.mouse.up(); await page.waitForTimeout(350);
   s = await st(page);
-  ok(s.finalState && s.visited === 4 && s.word === 'her yerde.' && s.eyebrow === C.final.title, `4/4 sahne ve final: "${s.eyebrow} / her yerde." (${(finalAt / 1000).toFixed(1)} sn)`);
+  ok(s.phase === 'approve' && s.posOk && s.tagOk && s.visited === 1 && s.userPlayed, 'POS\'a bırakınca: Onaylandı ✓, "burada" onaylandı, 1/4');
+  ok((await page.evaluate(() => window.__opened)) === null, 'sürükleme reklam çıkışı yapmıyor');
+  await page.waitForTimeout(T.approve + T.next + 300);
+  s = await st(page);
+  ok(s.idx === 1 && s.phase === 'await' && s.word === 'kafede.' && s.here === 'kafe', 'onaydan sonra ikinci sahne: "kafede."');
+  // yanlış yere bırakma → kart yerine döner
+  await page.mouse.move(CARD.x, CARD.y); await page.mouse.down(); await page.mouse.move(CARD.x - 40, CARD.y + 70, { steps: 8 }); await page.mouse.up();
+  await page.waitForTimeout(700);
+  s = await st(page);
+  ok(s.phase === 'await' && s.visited === 1 && /translate3d\(0px, 0px, 0px\)/.test(s.tf), 'POS dışına bırakınca kart yerine dönüyor, sayım değişmiyor');
+  // dokunma (tıklama) ile okutma
+  await page.mouse.click(CARD.x, CARD.y); await page.waitForTimeout(T.fly + 300);
+  s = await st(page);
+  ok(s.phase === 'approve' && s.visited === 2 && s.done.includes('kafe'), 'karta dokununca kart POS\'a uçup okutuluyor (2/4)');
+  await page.waitForTimeout(T.approve + T.next + 300);
+  // alt başlık ve klavye
+  await page.click('.step[data-i="3"]'); await page.waitForTimeout(300);
+  s = await st(page);
+  ok(s.idx === 3 && s.phase === 'await' && s.word === 'online siparişte.', 'alt başlığa tıklama ilgili sahneye götürüyor');
+  await page.focus('#ad'); await page.keyboard.press('ArrowLeft'); await page.waitForTimeout(300);
+  s = await st(page);
+  ok(s.idx === 2 && s.word === 'markette.', 'klavye sol ok sahne değiştiriyor');
+  await page.keyboard.press(' '); await page.waitForTimeout(T.fly + 300);
+  s = await st(page);
+  ok(s.phase === 'approve' && s.done.includes('market'), 'boşluk tuşu kartı okutuyor');
+  await page.waitForTimeout(T.approve + T.next + 300);
+  s = await st(page);
+  ok(s.idx === 3 && s.phase === 'await', 'kalan son sahneye geçildi');
+  await page.touchscreen.tap(470 + 386, 120); await page.waitForTimeout(T.fly + 300);
+  s = await st(page);
+  ok(s.phase === 'approve' && s.visited === 4, 'POS\'a dokunma da okutuyor (4/4)');
+  await page.waitForTimeout(T.approve + 400);
+  s = await st(page);
+  ok(s.finalState && s.word === 'her yerde.' && s.eyebrow === C.final.title && s.tag === 'her yerde', 'final: "Burada, şurada, orada / her yerde."');
+  await page.waitForTimeout(T.hold + 300);
+  s = await st(page);
+  ok(s.ended && (await page.$eval('.again', (e) => getComputedStyle(e).display)) !== 'none', 'kullanıcı tamamladı: döngü yok, "Tekrar oyna" görünür');
+  await page.click('.again'); await page.waitForTimeout(T.enter + 300);
+  s = await st(page);
+  ok(!s.finalState && s.visited === 0 && s.idx === 0 && s.phase === 'await', '"Tekrar oyna" baştan başlatıyor');
+
+  console.log('\nOtomatik gösterim (dokunulmazsa)');
+  await openAt(page, DIST, 'seg=hr&h=19&m=5'); await page.mouse.move(10, 10);
+  await page.waitForTimeout(T.enter + T.idle + T.fly + 300);
+  s = await st(page);
+  ok(s.variant === 'HR-MARKET' && s.phase === 'approve' && s.visited === 1 && !s.userPlayed, 'kart kendi kendine POS\'a gidip okutuluyor (hayalet el)');
+  await page.waitForTimeout(3 * (T.idle + T.fly + T.approve + T.next) + T.approve + 600);
+  s = await st(page);
+  ok(s.finalState && s.visited === 4, `otomatik gösterim 4 sahneyi tamamlayıp finale ulaşıyor`);
 
   console.log('\nSegment, saat, hava');
   await openAt(page, DIST, 'seg=hr&h=19&m=5'); await page.mouse.move(10, 10); await page.waitForTimeout(250);
@@ -88,33 +142,6 @@ const st = (page) => page.evaluate(() => {
   s = await st(page);
   ok(/^WC-/.test(s.variant), 'geçersiz parametreler varsayılana düşüyor (' + s.variant + ')');
 
-  console.log('\nEtkileşim');
-  await openAt(page, DIST, 'seg=wc&h=12&m=31'); await page.mouse.move(10, 10);
-  await page.waitForTimeout(T.enter + T.dwell + 300);
-  await page.mouse.move(470 + 20 + 3.5 * 115, 150); await page.waitForTimeout(250);
-  s = await st(page);
-  ok(s.manual && s.cls.includes('is-manual') && s.idx === 3 && s.here === 'online', 'fare sahneye girince elle kontrol; sağ uçta 4. sahne');
-  await page.waitForTimeout(T.tap + 500);
-  s = await st(page);
-  ok(s.done.includes('online') && s.word === 'online siparişte.', 'gezilen sahnede kart dokunuyor, başlık değişiyor');
-  ok((await page.evaluate(() => window.__opened)) === null, 'sahnedeki hareket reklam çıkışı yapmıyor');
-  await page.mouse.move(10, 10); await page.waitForTimeout(T.resume + 300);
-  s = await st(page);
-  ok(!s.manual, `fare ayrılınca ${T.resume / 1000} sn sonra otomatik oynatma sürüyor`);
-  await page.click('.step[data-i="2"]'); await page.waitForTimeout(T.tap + 400);
-  s = await st(page);
-  ok(s.idx === 2 && s.done.includes('market'), 'alt başlığa tıklama ilgili sahneye götürüyor');
-  ok((await page.evaluate(() => window.__opened)) === null, 'başlık tıklaması sayfa açmıyor');
-  await page.mouse.move(10, 10); await page.waitForTimeout(T.resume + 300);
-  await page.focus('#ad'); const before = (await st(page)).idx;
-  await page.keyboard.press('ArrowRight'); await page.waitForTimeout(150);
-  s = await st(page);
-  ok(s.idx === Math.min(before + 1, 3) || s.idx !== before, 'klavye sağ ok sahne değiştiriyor');
-  await page.mouse.move(10, 10); await page.waitForTimeout(T.resume + 300);
-  await page.touchscreen.tap(470 + 20 + 0.5 * 115, 150); await page.waitForTimeout(200);
-  s = await st(page);
-  ok(s.idx === 0, 'dokunma ile ilk sahneye gidiliyor');
-
   console.log('\nTıklama');
   await openAt(page, DIST, 'seg=wc&h=12'); await page.waitForTimeout(200);
   await page.click('.cta');
@@ -131,7 +158,7 @@ const st = (page) => page.evaluate(() => {
   await page.evaluate(() => window.postMessage({ type: 'pluxee:signals', signals: { seg: 'emp', hour: 19, minute: 5, weather: 'sun' } }, '*'));
   await page.waitForTimeout(250);
   s = await st(page);
-  ok(s.variant === 'EMP-MARKET' && s.cta === C.segments.emp.cta, 'sinyal mesajı kreatifi yeniden kuruyor: ' + s.variant);
+  ok(s.variant === 'EMP-MARKET' && s.cta === C.segments.emp.cta && typeof s.phase === 'string', 'sinyal mesajı kreatifi yeniden kuruyor: ' + s.variant);
   await page.evaluate(() => window.postMessage({ type: 'pluxee:demo', on: true }, '*')); await page.waitForTimeout(100);
   ok((await st(page)).cls.includes('is-demo'), 'demo mesajı sinyal çubuğunu açıyor');
   await page.evaluate(() => { window.__opened = null; });
@@ -171,10 +198,10 @@ const st = (page) => page.evaluate(() => {
   await routeFonts(ctxL);
   const pl = await ctxL.newPage();
   await openAt(pl, DIST, 'seg=wc&h=12'); await pl.mouse.move(10, 10);
-  const loop = T.enter + C.scenes.length * T.dwell + T.hold;
-  await pl.waitForTimeout(loop * T.loops + 600);
+  const loop = T.enter + C.scenes.length * (T.idle + T.fly + T.approve) + (C.scenes.length - 1) * T.next + T.hold;
+  await pl.waitForTimeout(loop * T.loops + 800);
   s = await st(pl);
-  ok(s.ended && s.finalState, `otomatik oynatma ${(loop * T.loops / 1000).toFixed(1)} sn'de final karesinde duruyor (≤ 30 sn)`);
+  ok(s.ended && s.finalState && loop * T.loops <= 30000, `otomatik gösterim ${(loop * T.loops / 1000).toFixed(1)} sn'de final karesinde duruyor (≤ 30 sn)`);
   await ctxL.close();
 
   console.log('\nİlk taslak (illüstrasyon) – temel kontrol');

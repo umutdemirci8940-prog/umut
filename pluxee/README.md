@@ -1,6 +1,6 @@
 # Pluxee "Geçiyor" – Media-first interaktif masthead (970 × 250)
 
-Media-first konsept çalışması. Kampanyanın ana fikri "Pluxee geçiyor: burada, şurada, orada". Masthead bu fikri kendi içinde canlandırır: Pluxee kartı restoranda, kafede, markette ve online siparişte POS'a dokunur, her sahnede "geçiyor". Medya veri katmanının **segment** sinyali kimin izlediğini (beyaz yaka, İK, işveren), **saat** sinyali hangi sahnenin önce geldiğini belirler. Tek HTML kreatif, 12 versiyon.
+Media-first konsept çalışması. Kampanyanın ana fikri "Pluxee geçiyor: burada, şurada, orada". Masthead bu fikri kullanıcıya oynatır: **kullanıcı Pluxee kartını sürükleyip POS'a okutur**; restoranda, kafede, markette ve online siparişte "geçiyor". Dokunulmazsa kart bunu kendisi gösterir. Medya veri katmanının **segment** sinyali kimin izlediğini (beyaz yaka, İK, işveren), **saat** sinyali hangi sahnenin önce geldiğini belirler. Tek HTML kreatif, 12 versiyon.
 
 | Çıktı | Dosya |
 |---|---|
@@ -12,13 +12,17 @@ Media-first konsept çalışması. Kampanyanın ana fikri "Pluxee geçiyor: bura
 
 ## Ekran görüntüleri
 
-| Öğle · beyaz yaka – kart POS'ta onaylanıyor | Aynı versiyon – ikinci sahne (kafe) |
+| Bekleme: "Kartı POS'a sürükleyin" ipucu | Kullanıcı kartı sürüklüyor, POS uyanıyor |
 |---|---|
-| ![](preview/screens/wc-lunch-tap.jpg) | ![](preview/screens/wc-lunch-kafe.jpg) |
+| ![](preview/screens/wc-lunch-hint.jpg) | ![](preview/screens/wc-lunch-drag.jpg) |
 
-| Final karesi – "Pluxee geçiyor her yerde." | Akşam · İK – Market ile açılır, "Teklif alın" |
+| POS'a bırakınca: Onaylandı ✓, "burada" | Final: "Pluxee geçiyor her yerde." + Tekrar oyna |
 |---|---|
-| ![](preview/screens/wc-lunch-final.jpg) | ![](preview/screens/hr-evening.jpg) |
+| ![](preview/screens/wc-lunch-approve.jpg) | ![](preview/screens/wc-lunch-final.jpg) |
+
+| Akşam · İK – Market ile açılır, otomatik gösterim | Gece · beyaz yaka – Online ile açılır |
+|---|---|
+| ![](preview/screens/hr-evening-auto.jpg) | ![](preview/screens/wc-night.jpg) |
 
 | Sabah · işveren – Kafe ile açılır, "Bize ulaşın" | Yağmur · İK – Online sipariş öne alınır |
 |---|---|
@@ -27,19 +31,19 @@ Media-first konsept çalışması. Kampanyanın ana fikri "Pluxee geçiyor: bura
 ## Kurgu
 
 - **Sol sütun:** Pluxee logosu, sahne başlığı (ÖĞLE YEMEĞİ / KAHVE MOLASI / MARKET ALIŞVERİŞİ / ONLİNE SİPARİŞ), sabit başlık **"Pluxee geçiyor"** ve sahneyle değişen kinetik kelime: *restoranda. → kafede. → markette. → online siparişte.* Finalde **"her yerde."**
-- **Sahne:** fotoğrafik bokeh arka plan (sahneye göre restoran, kafe, market, online atmosferi), 3B Pluxee kartı ve POS cihazı. Her sahnede kart POS'a uzanır, ekran **"Onaylandı"** olur, sahne etiketi onaylanır: *burada ✓ → şurada ✓ → orada ✓ → orada da ✓*, finalde *her yerde ✓*.
+- **Sahne:** fotoğrafik bokeh arka plan (sahneye göre restoran, kafe, market, online atmosferi), 3B Pluxee kartı ve POS cihazı. **Kullanıcı kartı sürükleyip POS'a okutur:** POS'a yaklaşınca cihaz uyanır ("Okutun", sarı LED), bırakınca ekran **"Onaylandı"** olur, ışık halkası ve parçacıklar yayılır, sahne etiketi onaylanır: *burada ✓ → şurada ✓ → orada ✓ → orada da ✓*, finalde *her yerde ✓*. Sonra bir sonraki sahne gelir.
 - **Alt gösterge:** dört sahne başlığı; aktif sahnenin çizgisi dolar, tamamlananlar yeşil ✓ olur.
 - **Segment** yalnızca alt metni ve CTA'yı değiştirir: beyaz yaka "Pluxee'yi keşfedin", İK "Teklif alın", işveren "Bize ulaşın".
 - **Saat** öncü sahneyi belirler: 06–10 ve 15–17 kafe, 11–14 restoran, 18–22 market, 23–05 online. Yağmur (isteğe bağlı sinyal) online siparişi öne alır.
-- Otomatik oynatma: tur ≈ 12 sn, en fazla 2 tur (≈ 24 sn, Google Ads 30 sn kuralı), sonra final karesinde durur.
+- **Otomatik gösterim:** kullanıcı dokunmazsa 2,6 sn sonra hayalet el belirir ve kart kendi kendine POS'a gidip okutulur; dört sahne + final ≈ 23 sn (Google Ads 30 sn kuralı), sonra final karesinde durur.
 - Konum, nokta sayısı ve gün içi zaman etiketleri **kullanılmaz**; dil kurumsaldır.
 
 ## Etkileşim
 
-- **Fare / parmak sahneye girince** otomatik oynatma durur; yatay hareket sahneleri gezdirir, her sahnede kart POS'a dokunur. Tüm sahneler gezildiğinde final karesi gelir.
-- Sahneden ayrılınca 1,5 sn sonra kaldığı yerden devam eder. **Alt başlıklara tıklama** ilgili sahneye götürür. Sahnedeki hareket ve tıklamalar reklam çıkışı **değildir**; etkileşim olarak ölçülür.
+- **Sürükle-bırak:** kart fareyi/parmağı izler (pointer events, dokunma dahil), hıza göre eğilir; POS'a yeterince yaklaşıp bırakılınca onaylanır, uzağa bırakılırsa yerine döner. **Karta ya da POS'a dokunmak** da kartı okutur (mobil için). Kullanıcı dört sahneyi tamamlayınca final gelir, döngü yapılmaz, **"Tekrar oyna"** görünür.
+- **Alt başlıklara tıklama** ilgili sahneye götürür. Fare hareketi arka planda hafif paralaks yaratır. Sahnedeki hareket ve tıklamalar reklam çıkışı **değildir**; etkileşim olarak ölçülür.
 - **CTA ve sol sütun** reklam çıkışıdır: `window.clickTag` varsa o, `Enabler` varsa `Enabler.exit('CTA')`, yoksa UTM'li Pluxee sayfası.
-- Klavye: ← → sahneler, Enter tıklama. `prefers-reduced-motion` açıksa doğrudan final karesi.
+- Klavye: ← → sahneler, boşluk kartı okutur, Enter tıklama. `prefers-reduced-motion` açıksa doğrudan final karesi.
 
 ## Sinyaller ve parametreler
 
@@ -58,7 +62,7 @@ Media-first konsept çalışması. Kampanyanın ana fikri "Pluxee geçiyor: bura
 ### postMessage API (sunum ve entegrasyon)
 
 Gelen: `{type:'pluxee:signals', signals:{seg,hour,minute,weather,demo}}`, `{type:'pluxee:replay'}`, `{type:'pluxee:demo', on:true}`.
-Giden: `{type:'pluxee:state', variant, lead, order, idx, visited, total, finalState, ended, copy, signals}` ve gömülü modda tıklamada `{type:'pluxee:click', url}`. Sayfa içinden `window.PLUXEE.setSignals({...})`, `window.PLUXEE.replay()`, `window.PLUXEE.state()` da kullanılabilir.
+Giden: `{type:'pluxee:state', variant, lead, order, idx, phase, hint, userPlayed, visited, total, finalState, ended, copy, signals}` ve gömülü modda tıklamada `{type:'pluxee:click', url}`. Sayfa içinden `window.PLUXEE.setSignals({...})`, `window.PLUXEE.replay()`, `window.PLUXEE.state()` da kullanılabilir.
 
 ## Kopya
 
