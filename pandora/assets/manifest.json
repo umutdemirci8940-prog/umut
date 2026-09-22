@@ -1,0 +1,467 @@
+{
+  "fetchedAt": "2026-09-22T12:18:13.730Z",
+  "base": "https://tr.pandora.net",
+  "access": {
+    "plain": {
+      "status": 403,
+      "blocked": true,
+      "server": null
+    },
+    "browser": {
+      "status": 403,
+      "blocked": true,
+      "title": "Bir dakika lütfen..."
+    },
+    "blocked": true
+  },
+  "logo": {
+    "file": "assets/logo/wikimedia-pandora-2019.svg",
+    "url": "https://commons.wikimedia.org/wiki/File:Pandora_Logo_2019.svg",
+    "kind": "wikimedia",
+    "bytes": 7095
+  },
+  "logos": [
+    {
+      "file": "assets/logo/wikimedia-pandora-2019.svg",
+      "url": "https://commons.wikimedia.org/wiki/File:Pandora_Logo_2019.svg",
+      "kind": "wikimedia",
+      "bytes": 7095
+    }
+  ],
+  "products": [
+    {
+      "key": "silver",
+      "kind": "bracelet",
+      "sku": "599652C01",
+      "url": "https://tr.pandora.net/tr/bileklikler/zincir-bileklikler/pandora-moments-yilan-zincir-bileklik/599652C01.html",
+      "title": "Pandora Moments Yılan Zincir Bileklik",
+      "price": 5269,
+      "currency": "TRY",
+      "images": [],
+      "source": null,
+      "tries": [
+        "plain-alt: 403 engelli 0 görsel",
+        "browser-alt: 200 0 görsel",
+        "wayback: yok",
+        "sfcc-tahmin",
+        "görsel https://tr.pandora.net/dw/image/v2/BFJB_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/on/demandware.static/-/Sites-pandora-master-catalog/default/images/ → HTTP 404"
+      ],
+      "error": "sayfa alınamadı",
+      "imageUrls": [
+        "https://tr.pandora.net/dw/image/v2/BFJB_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/images/hi-res/599652C01_RGB.jpg?sw=1400&sh=1400&sm=fit",
+        "https://tr.pandora.net/on/demandware.static/-/Sites-pandora-master-catalog/default/images/hi-res/599652C01_RGB.jpg"
+      ]
+    },
+    {
+      "key": "rose",
+      "kind": "bracelet",
+      "sku": "580728",
+      "url": "https://tr.pandora.net/tr/bileklikler/zincir-bileklikler/moments-14-ayar-pembe-altin-kaplama-bileklik/580728.html",
+      "title": "Yılan Zinciri Bileklikler",
+      "price": 7609,
+      "currency": "TRY",
+      "images": [],
+      "source": "wayback",
+      "tries": [
+        "wayback: 200 14 görsel ₺7609",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/tr/bileklikler/zincir-bileklikler/moments-14-ayar-pembe-altin-kapla → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404"
+      ],
+      "description": "Klasik 14 ayar pembe altın kaplama bilekliğimizle kendi Pandora hikâyeni başlat. Yaratıcılığın için mükemmel bir tuval olan bu yılan zinciri bileklik, en sevdiğin charm'larla sonsuz şekilde kombinlenebilir veya zarif, sade bir görünüm için tek başına kullanılabilir.",
+      "jsonld": {
+        "name": "Yılan Zinciri Bileklikler",
+        "sku": "580728",
+        "brand": {
+          "@type": "Brand",
+          "name": "Pandora"
+        },
+        "offers": {
+          "url": "https://tr.pandora.net/tr/bileklikler/zincir-bileklikler/moments-14-ayar-pembe-altin-kaplama-bileklik/580728.html",
+          "@type": "Offer",
+          "priceCurrency": "TRY",
+          "price": "7609.00",
+          "availability": "http://schema.org/InStock"
+        }
+      },
+      "imageUrls": [
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwc1de819f/productimages/main_rect_base/580728_RGB.jpg?sw=1200&sh=1200&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwc1de819f/productimages/main_rect_base/580728_RGB.jpg?sw=450&sh=450&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/tr/bileklikler/zincir-bileklikler/moments-14-ayar-pembe-altin-kaplama-bileklik/580728.html%22,%22image_url%22:%22https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwc1de819f/productimages/main_rect_base/580728_RGB.jpg?sw=1200&sh=1200&sm=fit&sfrm=png&bgcolor=F5F5F5%22,%22metal%22:%22pandora",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwea59cca2/productimages/main_rect_center/580728_RGB.jpg?sw=1200&sh=1200&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwea59cca2/productimages/main_rect_center/580728_RGB.jpg?sw=1500&sh=1500&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw92b4bcd6/productimages/singlepackshot_rect_center/580728_V2_RGB.jpg?sw=1200&sh=1200&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw92b4bcd6/productimages/singlepackshot_rect_center/580728_V2_RGB.jpg?sw=1500&sh=1500&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwbe94cfe5/productimages/singlepackshot_rect_center/580728_V3_RGB.jpg?sw=1200&sh=1200&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwbe94cfe5/productimages/singlepackshot_rect_center/580728_V3_RGB.jpg?sw=1500&sh=1500&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwbc66eb98/productimages/singlepackshot_rect_center/580728_V4_RGB.jpg?sw=1200&sh=1200&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwbc66eb98/productimages/singlepackshot_rect_center/580728_V4_RGB.jpg?sw=1500&sh=1500&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwc1de819f/productimages/main_rect_base/580728_RGB.jpg?sw=900&sh=900&sm=fit&sfrm=png&bgcolor=F5F5F5"
+      ]
+    },
+    {
+      "key": "gold",
+      "kind": "bracelet",
+      "sku": "568748C00",
+      "url": "https://tr.pandora.net/tr/charmlar-ve-bileklikler/bileklikler/zincir-bileklikler/moments-14-ayar-altin-kaplama-duz-klipsli-bileklik/568748C00.html",
+      "title": "Moments 14 Ayar Altın Kaplama Düz Klipsli Bileklik",
+      "price": 6419,
+      "currency": "TRY",
+      "images": [],
+      "source": "wayback",
+      "tries": [
+        "plain-alt: 403 engelli 0 görsel",
+        "browser-alt: 200 0 görsel",
+        "wayback: 200 14 görsel ₺6419",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/tr/charmlar-ve-bileklikler/bileklikler/zincir-bileklikler/moments-1 → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404"
+      ],
+      "description": "Klasik charm bilekliğimizin yeni bir yorumu olan bu Pandora Moments Düz Klipsli Yılan Zincir Bileklik ile charm’larına romantik bir yer aç. 14 ayar altın kaplamalı  şık görünümüyle koleksiyonunun vazgeçilmezleri arasında yer alacak. Parlak 14 ayar altın kaplama kilitte Pandora logosu bulunuyor.",
+      "jsonld": {
+        "name": "Moments 14 Ayar Altın Kaplama Düz Klipsli Bileklik",
+        "sku": "568748C00",
+        "brand": {
+          "@type": "Brand",
+          "name": "Pandora"
+        },
+        "offers": {
+          "url": "https://tr.pandora.net/tr/charmlar-ve-bileklikler/bileklikler/zincir-bileklikler/moments-14-ayar-altin-kaplama-duz-klipsli-bileklik/568748C00.html",
+          "@type": "Offer",
+          "priceCurrency": "TRY",
+          "price": "6419.00",
+          "availability": "http://schema.org/InStock"
+        }
+      },
+      "imageUrls": [
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwa8653308/productimages/singlepackshot/568748C00_RGB.jpg?sw=900&sh=900&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwa8653308/productimages/singlepackshot/568748C00_RGB.jpg?sw=200&sh=200&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/tr/charmlar-ve-bileklikler/bileklikler/zincir-bileklikler/moments-14-ayar-altin-kaplama-duz-klipsli-bileklik/568748C00.html%22,%22image_url%22:%22https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwa8653308/productimages/singlepackshot/568748C00_RGB.jpg?sw=900&sh=900&sm=fit&sfrm=png&bgcolor=F5F5F5%22,%22metal%22:%22gold%22,%22material%22:%22ba%C5%9Fka",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwa8653308/productimages/singlepackshot/568748C00_RGB.jpg?sw=112&sh=112&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwa8653308/productimages/singlepackshot/568748C00_RGB.jpg?sw=1200&sh=1200&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwa6a76770/productimages/singlepackshot/568748C00_V3_RGB.jpg?sw=112&sh=112&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwa6a76770/productimages/singlepackshot/568748C00_V3_RGB.jpg?sw=1200&sh=1200&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwa6a76770/productimages/singlepackshot/568748C00_V3_RGB.jpg?sw=900&sh=900&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw1eba565c/productimages/singlepackshot/568748C00_V4_RGB.jpg?sw=112&sh=112&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw1eba565c/productimages/singlepackshot/568748C00_V4_RGB.jpg?sw=1200&sh=1200&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw1eba565c/productimages/singlepackshot/568748C00_V4_RGB.jpg?sw=900&sh=900&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw2e7c2ba5/productimages/singlepackshot/568748C00_V2_RGB.jpg?sw=112&sh=112&sm=fit&sfrm=png&bgcolor=F5F5F5"
+      ]
+    },
+    {
+      "key": "hearts",
+      "kind": "charm",
+      "sku": "790800C00",
+      "url": "https://tr.pandora.net/tr/charmlar-ve-bileklikler/charmlar/charmlar/i%CC%87c-i%CC%87ce-sonsuz-kalpler-charm/790800C00.html",
+      "title": "İç İçe Sonsuz Kalpler Charm",
+      "price": 1599,
+      "currency": "TRY",
+      "images": [],
+      "source": null,
+      "tries": [
+        "wayback: yok",
+        "sfcc-tahmin",
+        "görsel https://tr.pandora.net/dw/image/v2/BFJB_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/on/demandware.static/-/Sites-pandora-master-catalog/default/images/ → HTTP 404"
+      ],
+      "error": "sayfa alınamadı",
+      "imageUrls": [
+        "https://tr.pandora.net/dw/image/v2/BFJB_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/images/hi-res/790800C00_RGB.jpg?sw=1400&sh=1400&sm=fit",
+        "https://tr.pandora.net/on/demandware.static/-/Sites-pandora-master-catalog/default/images/hi-res/790800C00_RGB.jpg"
+      ]
+    },
+    {
+      "key": "galaxy",
+      "kind": "charm",
+      "sku": "790015C00",
+      "url": "https://tr.pandora.net/tr/charm%E2%80%99lar-ve-bileklikler/charm%E2%80%99lar/charm%E2%80%99lar/galaksi-mavisi-ve-yildiz-murano-charm/790015C00.html",
+      "title": "Galaksi Mavisi ve Yıldız Murano Charm",
+      "price": 2549,
+      "currency": "TRY",
+      "images": [],
+      "source": null,
+      "tries": [
+        "wayback: yok",
+        "sfcc-tahmin",
+        "görsel https://tr.pandora.net/dw/image/v2/BFJB_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/on/demandware.static/-/Sites-pandora-master-catalog/default/images/ → HTTP 404"
+      ],
+      "error": "sayfa alınamadı",
+      "imageUrls": [
+        "https://tr.pandora.net/dw/image/v2/BFJB_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/images/hi-res/790015C00_RGB.jpg?sw=1400&sh=1400&sm=fit",
+        "https://tr.pandora.net/on/demandware.static/-/Sites-pandora-master-catalog/default/images/hi-res/790015C00_RGB.jpg"
+      ]
+    },
+    {
+      "key": "murano",
+      "kind": "charm",
+      "sku": "789421C00",
+      "url": "https://tr.pandora.net/tr/charmlar-ve-bileklikler/charmlar/charmlar/mat-pembe-murano-cam-charm/789421C00.html",
+      "title": "Mat Pembe Murano Cam Charm",
+      "price": 2009,
+      "currency": "TRY",
+      "images": [],
+      "source": "wayback",
+      "tries": [
+        "wayback: 200 17 görsel ₺2009",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/tr/charmlar-ve-bileklikler/charmlar/charmlar/mat-pembe-murano-cam-c → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404"
+      ],
+      "description": "Stilini yumuşak bir renkle zenginleştir. Bu 14 ayar pembe altın kaplama charm, eşsiz mat bir görünüme sahip buzlu pembe Murano camından üretildi. Opak tasarımı, charm'larında boyutlarla oynamanın yeni bir yolunu sunuyor.",
+      "jsonld": {
+        "name": "Mat Pembe Murano Cam Charm",
+        "sku": "789421C00",
+        "brand": {
+          "@type": "Brand",
+          "name": "Pandora"
+        },
+        "offers": {
+          "url": "https://tr.pandora.net/tr/charmlar-ve-bileklikler/charmlar/charmlar/mat-pembe-murano-cam-charm/789421C00.html",
+          "@type": "Offer",
+          "priceCurrency": "TRY",
+          "price": "2009.00",
+          "availability": "http://schema.org/InStock"
+        }
+      },
+      "imageUrls": [
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw6f9919eb/productimages/main/789421C00_RGB.jpg?sw=900&sh=900&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw6f9919eb/productimages/main/789421C00_RGB.jpg?sw=200&sh=200&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/tr/charmlar-ve-bileklikler/charmlar/charmlar/mat-pembe-murano-cam-charm/789421C00.html%22,%22image_url%22:%22https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw6f9919eb/productimages/main/789421C00_RGB.jpg?sw=900&sh=900&sm=fit&sfrm=png&bgcolor=F5F5F5%22,%22metal%22:%22pandora",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw6f9919eb/productimages/main/789421C00_RGB.jpg?sw=112&sh=112&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw6f9919eb/productimages/main/789421C00_RGB.jpg?sw=1200&sh=1200&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw2ce0e728/productimages/singlepackshot/789421C00_V3_RGB.jpg?sw=112&sh=112&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw2ce0e728/productimages/singlepackshot/789421C00_V3_RGB.jpg?sw=1200&sh=1200&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw2ce0e728/productimages/singlepackshot/789421C00_V3_RGB.jpg?sw=900&sh=900&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw8af75d44/productimages/singlepackshot/789421C00_V2_RGB.jpg?sw=112&sh=112&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw8af75d44/productimages/singlepackshot/789421C00_V2_RGB.jpg?sw=1200&sh=1200&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw8af75d44/productimages/singlepackshot/789421C00_V2_RGB.jpg?sw=900&sh=900&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw17ea4c19/productimages/singlepackshot/789421C00_V5_RGB.jpg?sw=112&sh=112&sm=fit&sfrm=png&bgcolor=F5F5F5"
+      ]
+    },
+    {
+      "key": "butterfly",
+      "kind": "charm",
+      "sku": "790761C01",
+      "url": "https://tr.pandora.net/tr/charmlar-ve-bileklikler/charmlar/charmlar/mavi-kelebek-isiltili-charm/790761C01.html",
+      "title": "Mavi Kelebek Işıltılı Charm",
+      "price": 2359,
+      "currency": "TRY",
+      "images": [],
+      "source": "wayback",
+      "tries": [
+        "wayback: 200 23 görsel ₺2359",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/tr/charmlar-ve-bileklikler/charmlar/charmlar/mavi-kelebek-isiltili- → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404"
+      ],
+      "description": "Mavi Kelebek Işıltılı Charm’ımız ile ilkbahar yenilenmesini ve dönüşüm mevsimini kucakla. Çift taraflı 925 ayar gümüş charm’ımızın kanatlarında elle boyanmış mine ve pırlanta kesim şeffaf kübik zirkon bulunuyor. Kabartmanlı antenler gerçeğe benzeyen bir dokunuş katıyor. Tıpkı doğadaki kelebekler gibi her charm benzersiz. Bu ilkbaharda uyumlu bir görünüm yaratmak için uyumlu Mavi Kelebek Halka Küpe",
+      "jsonld": {
+        "name": "Mavi Kelebek Işıltılı Charm",
+        "sku": "790761C01",
+        "brand": {
+          "@type": "Brand",
+          "name": "Pandora"
+        },
+        "offers": {
+          "url": "https://tr.pandora.net/tr/charmlar-ve-bileklikler/charmlar/charmlar/mavi-kelebek-isiltili-charm/790761C01.html",
+          "@type": "Offer",
+          "priceCurrency": "TRY",
+          "price": "2359.00",
+          "availability": "http://schema.org/InStock"
+        }
+      },
+      "imageUrls": [
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwf9a15adf/productimages/singlepackshot/790761C01_RGB.jpg?sw=900&sh=900&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwf9a15adf/productimages/singlepackshot/790761C01_RGB.jpg?sw=200&sh=200&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/tr/charmlar-ve-bileklikler/charmlar/charmlar/mavi-kelebek-isiltili-charm/790761C01.html%22,%22image_url%22:%22https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwf9a15adf/productimages/singlepackshot/790761C01_RGB.jpg?sw=900&sh=900&sm=fit&sfrm=png&bgcolor=F5F5F5%22,%22metal%22:%22silver%22,%22material%22:%22enamel%22,%22bonus%22:%22No%22,%22isBundled%22:%22No%22,%22carat_weight%22:null,%22bundle_id%22:null,%22giftset_id%22:null}],%22promos%22:[{%22promotion_id%22:[%222025_TRADING_PWP-VALENTINES_UNREGISTERED%E2%80%8B%22,%222023_AlwaysOn_Sitewide_Shipping%22],%22pricebook_id%22:[%22pandora-pricebook-regular-tr-TR%22]}],%22spin_360%22:%22no%22}]",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwf9a15adf/productimages/singlepackshot/790761C01_RGB.jpg?sw=112&sh=112&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwf9a15adf/productimages/singlepackshot/790761C01_RGB.jpg?sw=1200&sh=1200&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw2b36dc37/productimages/modelshot/790761C01_ABC123_MODEL_eCOM_02_RGB.jpg?sw=112&sh=112&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw2b36dc37/productimages/modelshot/790761C01_ABC123_MODEL_eCOM_02_RGB.jpg?sw=1200&sh=1200&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw2b36dc37/productimages/modelshot/790761C01_ABC123_MODEL_eCOM_02_RGB.jpg?sw=900&sh=900&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwcf160ad2/productimages/modelshot/790761C01_ABC123_MODEL_eCOM_01_RGB.jpg?sw=112&sh=112&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwcf160ad2/productimages/modelshot/790761C01_ABC123_MODEL_eCOM_01_RGB.jpg?sw=1200&sh=1200&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwcf160ad2/productimages/modelshot/790761C01_ABC123_MODEL_eCOM_01_RGB.jpg?sw=900&sh=900&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwceff1d2d/productimages/singlepackshot/790761C01_V5_RGB.jpg?sw=112&sh=112&sm=fit&sfrm=png&bgcolor=F5F5F5"
+      ]
+    },
+    {
+      "key": "star",
+      "kind": "charm",
+      "sku": "792368C01",
+      "url": "https://tr.pandora.net/tr/charmlar-ve-bileklikler/charmlar/sallantili-charmlar/galaksi-yildiz-murano-sallantili-charm/792368C01.html",
+      "title": "Galaksi Yıldız Murano Sallantılı Charm",
+      "price": 2359,
+      "currency": "TRY",
+      "images": [],
+      "source": "wayback",
+      "tries": [
+        "wayback: 200 17 görsel ₺2359",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/tr/charmlar-ve-bileklikler/charmlar/sallantili-charmlar/galaksi-yil → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404"
+      ],
+      "description": "Galaksi Yıldız Murano Sallantılı Charm ile parlak, yıldızlı bir gecenin mucizesini ölümsüzleştir. Bu 925 ayar gümüş sallantılı charm, ışıltılı derin mavi yıldız efekti ile Murano camından üretilen asimetrik, yıldız şeklinde benzersiz bir taşa sahip. 925 ayar gümüş kafes işi yıldızlar, charm’ın arka yüzüne ekstra bir detay katıyor ve halkanın üzerinde yıldız şekilleriyle dizilmiş şeffaf kübik zirko",
+      "jsonld": {
+        "name": "Galaksi Yıldız Murano Sallantılı Charm",
+        "sku": "792368C01",
+        "brand": {
+          "@type": "Brand",
+          "name": "Pandora"
+        },
+        "offers": {
+          "url": "https://tr.pandora.net/tr/charmlar-ve-bileklikler/charmlar/sallantili-charmlar/galaksi-yildiz-murano-sallantili-charm/792368C01.html",
+          "@type": "Offer",
+          "priceCurrency": "TRY",
+          "price": "2359.00",
+          "availability": "http://schema.org/InStock"
+        }
+      },
+      "imageUrls": [
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw2b92ea1c/productimages/singlepackshot/792368C01_RGB.jpg?sw=900&sh=900&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw2b92ea1c/productimages/singlepackshot/792368C01_RGB.jpg?sw=200&sh=200&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/tr/charmlar-ve-bileklikler/charmlar/sallantili-charmlar/galaksi-yildiz-murano-sallantili-charm/792368C01.html%22,%22image_url%22:%22https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw2b92ea1c/productimages/singlepackshot/792368C01_RGB.jpg?sw=900&sh=900&sm=fit&sfrm=png&bgcolor=F5F5F5%22,%22metal%22:%22silver%22,%22material%22:%22glass%22,%22bonus%22:%22No%22,%22isBundled%22:%22No%22,%22carat_weight%22:null,%22bundle_id%22:null,%22giftset_id%22:null}],%22promos%22:[{%22promotion_id%22:[%222025_TRADING_MOMENTS25_EVERYONE%22,%222023_AlwaysOn_Sitewide_Shipping%22],%22pricebook_id%22:[%22pandora-pricebook-regular-tr-TR%22]}],%22spin_360%22:%22no%22}]",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw2b92ea1c/productimages/singlepackshot/792368C01_RGB.jpg?sw=112&sh=112&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw2b92ea1c/productimages/singlepackshot/792368C01_RGB.jpg?sw=1200&sh=1200&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwa101c755/productimages/modelshot/792368C01_ABC123_MODEL_eCOM_01_RGB.jpg?sw=112&sh=112&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwa101c755/productimages/modelshot/792368C01_ABC123_MODEL_eCOM_01_RGB.jpg?sw=1200&sh=1200&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwa101c755/productimages/modelshot/792368C01_ABC123_MODEL_eCOM_01_RGB.jpg?sw=900&sh=900&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwe0cb4e3d/productimages/modelshot/792368C01_ABC123_MODEL_eCOM_02_RGB.jpg?sw=112&sh=112&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwe0cb4e3d/productimages/modelshot/792368C01_ABC123_MODEL_eCOM_02_RGB.jpg?sw=1200&sh=1200&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwe0cb4e3d/productimages/modelshot/792368C01_ABC123_MODEL_eCOM_02_RGB.jpg?sw=900&sh=900&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw4da35eff/productimages/singlepackshot/792368C01_V2_RGB.jpg?sw=112&sh=112&sm=fit&sfrm=png&bgcolor=F5F5F5"
+      ]
+    },
+    {
+      "key": "clip",
+      "kind": "charm",
+      "sku": "791817NSBMX",
+      "url": "https://tr.pandora.net/tr/charmlar/klipsler/mavi-pave-klips-charm/791817NSBMX.html",
+      "title": "Mavi Pavé Klips Charm",
+      "price": 2029,
+      "currency": "TRY",
+      "images": [],
+      "source": "wayback",
+      "tries": [
+        "wayback: 200 15 görsel ₺2029",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/tr/charmlar/klipsler/mavi-pave-klips-charm/791817NSBMX.html%22,%22i → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404"
+      ],
+      "description": "Mavi klips charm ile renkli bir görünüm yarat. Bu 925 ayar parça, silikon kavramaya sahiptir ve dişlerle uyumlu değildir (iki adet yükseltilmiş charm ayırıcı). Bilekliğinin geri kalan herhangi bir yerine takılabilir ve güvenli bir şekilde yerinde kalır.",
+      "jsonld": {
+        "name": "Mavi Pavé Klips Charm",
+        "sku": "791817NSBMX",
+        "brand": {
+          "@type": "Brand",
+          "name": "Pandora"
+        },
+        "offers": {
+          "url": "https://tr.pandora.net/tr/charmlar/klipsler/mavi-pave-klips-charm/791817NSBMX.html",
+          "@type": "Offer",
+          "priceCurrency": "TRY",
+          "price": "2029.00",
+          "availability": "http://schema.org/InStock"
+        }
+      },
+      "imageUrls": [
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw36f4ed19/productimages/main_rect_base/791817NSBMX_RGB.jpg?sw=1200&sh=1200&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw36f4ed19/productimages/main_rect_base/791817NSBMX_RGB.jpg?sw=450&sh=450&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/tr/charmlar/klipsler/mavi-pave-klips-charm/791817NSBMX.html%22,%22image_url%22:%22https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw36f4ed19/productimages/main_rect_base/791817NSBMX_RGB.jpg?sw=1200&sh=1200&sm=fit&sfrm=png&bgcolor=F5F5F5%22,%22metal%22:%22silver%22,%22material%22:%22silicone%22,%22bonus%22:%22No%22,%22isBundled%22:%22No%22,%22carat_weight%22:null,%22bundle_id%22:null,%22giftset_id%22:null}],%22promos%22:[{%22promotion_id%22:[%22TRADING_SSaugust_unregistered%22,%222023_AlwaysOn_Sitewide_Shipping%22,%22gemini-theme%22],%22pricebook_id%22:[%22pandora-pricebook-regular-tr-TR%22]}],%22spin_360%22:%22no%22}]",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwb1692956/productimages/modeldetailshot_rect/791817NSBMX_ABC123_MODEL_eCOM_02_RGB.jpg?sw=1200&sh=1200&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwb1692956/productimages/modeldetailshot_rect/791817NSBMX_ABC123_MODEL_eCOM_02_RGB.jpg?sw=1500&sh=1500&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwb692e704/productimages/main_rect_center/791817NSBMX_RGB.jpg?sw=1200&sh=1200&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwb692e704/productimages/main_rect_center/791817NSBMX_RGB.jpg?sw=1500&sh=1500&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw56010c91/productimages/singlepackshot_rect_center/791817NSBMX_V3_RGB.jpg?sw=1200&sh=1200&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw56010c91/productimages/singlepackshot_rect_center/791817NSBMX_V3_RGB.jpg?sw=1500&sh=1500&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw3a7444a6/productimages/singlepackshot_rect_center/791817NSBMX_V2_RGB.jpg?sw=1200&sh=1200&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw3a7444a6/productimages/singlepackshot_rect_center/791817NSBMX_V2_RGB.jpg?sw=1500&sh=1500&sm=fit&sfrm=png&bgcolor=F5F5F5",
+        "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwc0b052ee/productimages/singlepackshot_rect_center/791817NSBMX_V4_RGB.jpg?sw=1200&sh=1200&sm=fit&sfrm=png&bgcolor=F5F5F5"
+      ]
+    },
+    {
+      "key": "bigbutterfly",
+      "kind": "charm",
+      "sku": "793747C01",
+      "url": "https://tr.pandora.net/tr/charmlar-ve-bileklikler/charmlar/charmlar/buyuk-kelebek-charm/793747C01.html",
+      "title": "Büyük Kelebek Charm",
+      "price": null,
+      "currency": "TRY",
+      "images": [],
+      "source": null,
+      "tries": [
+        "wayback: yok",
+        "sfcc-tahmin",
+        "görsel https://tr.pandora.net/dw/image/v2/BFJB_PRD/on/demandware.static/-/Sites-pandora-master-ca → HTTP 404",
+        "görsel https://tr.pandora.net/on/demandware.static/-/Sites-pandora-master-catalog/default/images/ → HTTP 404"
+      ],
+      "error": "sayfa alınamadı",
+      "imageUrls": [
+        "https://tr.pandora.net/dw/image/v2/BFJB_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/images/hi-res/793747C01_RGB.jpg?sw=1400&sh=1400&sm=fit",
+        "https://tr.pandora.net/on/demandware.static/-/Sites-pandora-master-catalog/default/images/hi-res/793747C01_RGB.jpg"
+      ]
+    }
+  ],
+  "listings": [],
+  "site": {
+    "pages": []
+  },
+  "errors": [],
+  "durationSec": 139
+}
