@@ -27,7 +27,7 @@ let single = fs.readFileSync(path.join(root, 'preview', 'index.html'), 'utf8');
 single = single.replace('src="../dist/970x250/index.html"', `srcdoc="${escAttr(banner)}"`)
   .replace(/<a class="btn" href="\.\.\/dist\/970x250\/index\.html"[^>]*>[^<]*<\/a>/, '<a class="btn" href="#" id="dl">Mastheadi indir (Pandora2027.html)</a>')
   .replace(/<a class="btn" href="\.\.\/dist\/zip\/[^"]+"[^>]*>[^<]*<\/a>/, '')
-  .replace(/fetch\('\.\.\/dist\/970x250\/index\.html'\)[^;]*;/, `document.getElementById('kb').textContent='~${Math.round(Buffer.byteLength(banner) / 1024)} KB';`);
+  .replace(/if\(location\.protocol!=='file:'\)\{fetch\('\.\.\/dist\/970x250\/index\.html'\)[\s\S]*?\}\)\}/, `document.getElementById('kb').textContent='~${Math.round(Buffer.byteLength(banner) / 1024)} KB';`);
 // ekran görüntüleri base64 gömülü
 const screens = path.join(root, 'preview', 'screens');
 single = single.replace("i.src='screens/'+s[0]+'.jpg'", "i.src=(window.__shots||{})[s[0]]||('screens/'+s[0]+'.jpg')");

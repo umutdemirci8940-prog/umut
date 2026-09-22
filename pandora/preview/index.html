@@ -81,7 +81,7 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92em;bac
   <div class="chips"><span class="chip">Boyut <b>970 × 250</b></span><span class="chip">Tek dosya, <b id="kb">–</b></span><span class="chip"><b>clickTag</b> / Enabler</span><span class="chip">Otomatik oynatma <b>≤ 30 sn</b></span><span class="chip">Ses <b>varsayılan kapalı</b></span></div>
 </header>
 <h1>“Kendi hikâyeni tasarla.” — <em>fotoğraf önde</em>, bileklik tasarlayıcı elinin altında</h1>
-<p class="lead">Sahne, tr.pandora.net’teki gerçek ürün fotoğraflarıyla kurulur: yumuşak Pandora pembesi zemin üzerinde büyük, kısmen kadrajdan taşan Pandora Moments yılan zincir bileklik; sağda buzlu cam panelde metal seçimi (gümüş / rose / altın), sitedeki gerçek charm’lar ve canlı toplam. Kullanıcı dokunmazsa banner kendi kendine üç charm takarak “gösteri” yapar; imleç hareket edince kontrol kullanıcıya geçer. “3 Al 2 Öde” kampanya çipi ve güncel TL fiyatları siteden.</p>
+<p class="lead">Üç sütunlu, fotoğraf önde bir kurgu: solda tr.pandora.net’in kendi model çekimi (kadraj yavaşça açılır), üzerinde logo, “3 Al 2 Öde” çipi, başlık ve CTA; ortada Pandora pembesi zemin ve ışık halesi üzerinde büyük Pandora Moments yılan zincir bileklik packshot’ı; sağda buzlu cam panelde metal seçimi (gümüş / rose / altın), sitedeki gerçek charm fotoğrafları ve canlı toplam. Kullanıcı dokunmazsa banner kendi kendine üç charm takarak “gösteri” yapar; imleç hareket edince kontrol kullanıcıya geçer. Ürün adları ve TL fiyatları siteden.</p>
 
 <div class="toolbar">
   <button class="primary" id="restart">↻ Yeniden başlat</button>
@@ -110,10 +110,10 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92em;bac
 
 <section class="notes">
   <div class="note"><h4>Kurgu (ilk 8 sn)</h4><ol>
-    <li><b>0–1,4 sn</b> Fotoğraf yumuşak bir zoom’la belirir (Ken Burns), logo ve “3 AL 2 ÖDE” çipi gelir; “Kendi hikâyeni / tasarla.” satır satır yükselir, alt metin ve siyah CTA.</li>
-    <li><b>0,75 sn</b> Bileklik packshot’ı hafif dönerek sahneye oturur; sağ panel buzlu camla süzülür.</li>
+    <li><b>0–1,4 sn</b> Soldaki model fotoğrafı yumuşak bir zoom’la belirir (Ken Burns); logo, “3 AL 2 ÖDE” çipi, “PANDORA MOMENTS” ve “Kendi hikâyeni / tasarla.” satır satır yükselir, beyaz CTA gelir. Ortada “Bilekliğini seç, charm’larını ekle, anını taşı.”</li>
+    <li><b>0,75 sn</b> Bileklik packshot’ı hafif dönerek sahneye oturur, altında ürün adı ve fiyatı; sağ panel buzlu camla süzülür. Metal üzerinde ara ara ışıltılar.</li>
     <li><b>2,6 sn</b> Gösteri: tepsiden bir charm bilekliğe uçar, yerine oturunca ışıltı ve halka; toplam sayarak artar. 1,5 sn arayla üç charm.</li>
-    <li><b>~7,5 sn</b> Dinlenme: CTA “Bu tasarımı satın al” olur ve nabız atar; boş yuvalar kesikli halkayla kullanıcıyı davet eder.</li>
+    <li><b>~7,5 sn</b> Dinlenme: CTA “Bu tasarımı satın al” olur ve nabız atar; takılı charm’lar hafifçe salınır, boş yuvalar kesikli halkayla davet eder.</li>
     <li><b>30 sn</b> Ken Burns ve nabız durur; etkileşim sürer.</li>
   </ol></div>
   <div class="note"><h4>Etkileşim</h4><ul>
@@ -124,7 +124,7 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92em;bac
     <li><b>Ses:</b> varsayılan kapalı; kullanıcı açarsa takma/çıkarma için kısa WebAudio tıkları.</li>
   </ul></div>
   <div class="note"><h4>Rich media / teknik</h4><ul>
-    <li>Tek HTML dosyası; CSS/JS satır içi, ürün fotoğrafları (şeffaf WebP), logo (SVG) ve Inter alt kümesi base64 gömülü → harici istek yok.</li>
+    <li>Tek HTML dosyası (~450 KB); CSS/JS satır içi, model fotoğrafı ve ürün packshot’ları (fonu temizlenmiş, 2× WebP), logo (SVG) ve Inter alt kümesi (Latin + Türkçe) base64 gömülü → harici istek yok. Rich media / masthead yerleşimleri için; 150 KB sınırlı standart banner yuvalarına <code>--no-embed-fonts</code> ve daha küçük görsellerle indirilebilir.</li>
     <li><code>&lt;meta name="ad.size"&gt;</code>, <code>var clickTag</code>, <code>Enabler.exit</code> / <code>Enabler.counter</code>; <code>window.adTrack(olay)</code> kancası (interact, metal_*, charm_add_*, charm_remove, reset, sound_on, demo_complete, cta_click, exit).</li>
     <li>ES5 çalışma zamanı, harici kütüphane yok; DOM + CSS geçişleri, WAAPI gerekmez. Retina fotoğraflar (2×).</li>
     <li>Klavye, dokunmatik, <code>prefers-reduced-motion</code>, <code>aria-live</code> ürün satırı; 30 sn otomatik oynatma sınırı (IAB / Google).</li>
@@ -148,7 +148,7 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92em;bac
   var shots=[['01-acilis','Açılış (0,5 sn)'],['02-mesaj','Mesaj yükseliyor (1,5 sn)'],['03-bileklik-sahnede','Bileklik sahnede (2,8 sn)'],['04-demo-charm-1','Gösteri: ilk charm uçuyor'],['05-demo-charm-3','Gösteri: üç charm takılı'],['06-dinlenme-cta','Dinlenme: CTA nabız atıyor'],['07-rose-gold','Metal: rose gold'],['08-charm-hover','Charm üzerine gelme'],['09-charm-ucuyor','Charm bilekliğe uçuyor'],['10-bileklik-dolu','Kullanıcı tasarımı'],['11-altin','Metal: altın'],['12-charm-cikar-hover','Bileklikteki charm: çıkar'],['13-cta-hover','CTA üzerine gelme'],['14-azaltilmis-hareket','Azaltılmış hareket']];
   var g=document.getElementById('shots');
   shots.forEach(function(s){var f=document.createElement('figure');var i=new Image();i.alt='';i.src='screens/'+s[0]+'.jpg';i.onerror=function(){f.remove()};f.appendChild(i);var c=document.createElement('figcaption');c.textContent=s[1];f.appendChild(c);g.appendChild(f)});
-  fetch('../dist/970x250/index.html').then(function(r){return r.blob()}).then(function(b){document.getElementById('kb').textContent='~'+Math.round(b.size/1024)+' KB'}).catch(function(){});
+  if(location.protocol!=='file:'){fetch('../dist/970x250/index.html').then(function(r){return r.blob()}).then(function(b){document.getElementById('kb').textContent='~'+Math.round(b.size/1024)+' KB'}).catch(function(){})}
 })();
 </script>
 </body>

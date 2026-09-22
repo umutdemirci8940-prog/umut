@@ -11,12 +11,14 @@
 
 ## Kurgu ve etkileşim
 
-1. **Açılış (0–1,4 sn)** – Fotoğraf yumuşak zoom’la belirir (Ken Burns), Pandora logosu ve “3 AL 2 ÖDE · Pandora Club’a özel” çipi gelir; “Kendi hikâyeni / tasarla.” satır satır yükselir, alt metin ve siyah CTA.
-2. **Bileklik (0,75 sn)** – Pandora Moments yılan zincir bileklik packshot’ı hafif dönerek sahneye oturur (kadrajdan kısmen taşan, editoryal kadraj); sağ panel buzlu camla süzülür.
-3. **Gösteri (2,6 sn →)** – Kullanıcı dokunmazsa tepsiden üç charm sırayla bilekliğe uçar; yerine oturunca ışıltı + halka, toplam sayarak artar.
-4. **Dinlenme (~7,5 sn)** – CTA “Bu tasarımı satın al” olur ve nabız atar; boş yuvalar kesikli halkayla davet eder. 30 sn’de Ken Burns ve nabız durur (IAB / Google 30 sn kuralı), etkileşim sürer.
+Yerleşim üç sütun: **solda** tr.pandora.net’in kendi model çekimi (Ken Burns ile yavaşça açılır) ve üzerinde logo, kampanya çipi, başlık, CTA; **ortada** Pandora pembesi zemin + ışık halesi üzerinde büyük bileklik packshot’ı ve charm yuvaları; **sağda** buzlu cam panelde metal seçimi, charm tepsisi ve canlı toplam.
 
-- **Metal:** Gümüş / Rose / Altın – bileklik fotoğrafı çapraz geçişle değişir, ürün adı ve fiyatı güncellenir (klavyede ← →).
+1. **Açılış (0–1,4 sn)** – Fotoğraf yumuşak zoom’la belirir, Pandora logosu ve “3 AL 2 ÖDE · Pandora Club’a özel” çipi gelir; “PANDORA MOMENTS / Kendi hikâyeni / tasarla.” satır satır yükselir, beyaz CTA. Ortada “Bilekliğini seç, charm’larını ekle, anını taşı.”
+2. **Bileklik (0,75 sn)** – Pandora Moments yılan zincir bileklik packshot’ı hafif dönerek sahneye oturur, altında ürün adı/fiyatı; sağ panel buzlu camla süzülür; metal üzerinde ara ara ışıltılar.
+3. **Gösteri (2,6 sn →)** – Kullanıcı dokunmazsa tepsiden üç charm sırayla bilekliğe uçar; yerine oturunca ışıltı + halka, toplam sayarak artar.
+4. **Dinlenme (~7,5 sn)** – CTA “Bu tasarımı satın al” olur ve nabız atar; takılı charm’lar hafifçe salınır, boş yuvalar kesikli halkayla davet eder. 30 sn’de Ken Burns ve nabız durur (IAB / Google 30 sn kuralı), etkileşim sürer.
+
+- **Metal:** Gümüş / Rose / Altın – bileklik fotoğrafı çapraz geçişle değişir, ürün adı ve fiyatı güncellenir (klavyede ← →). Charm yuvaları bileklik başına tanımlıdır (klipsin üstüne gelmez).
 - **Charm ekle:** tepsideki gerçek charm fotoğrafına tıkla → yuvaya uçar; en fazla 5. Ekli charm’a (tepside ✓, bileklikte ×) tıklayınca çıkar; “Temizle” hepsini kaldırır. Üzerine gelince ürün satırında ad + fiyat.
 - **Toplam:** bileklik + charm liste fiyatları TL olarak canlı toplanır.
 - **Çıkış:** CTA, başlık ve boş alanlar `clickTag` (varsayılan: Pandora Moments koleksiyonu, UTM’li); bileklik fotoğrafı seçili bilekliğin ürün sayfasına derin bağlantı (clickTag reklam ağı tarafından tanımlanmışsa o kullanılır). Panel kontrolleri çıkış tetiklemez.
@@ -26,7 +28,7 @@
 
 ## Teknik
 
-- Tek HTML; CSS/JS satır içi, ES5, harici kütüphane yok. Ürün fotoğrafları şeffaf WebP (2×), logo SVG, Inter fontu (Latin + Türkçe alt kümesi) base64 gömülü → harici istek yok. `--no-embed-fonts` ile Google Fonts bağlantısı.
+- Tek HTML (~450 KB); CSS/JS satır içi, ES5, harici kütüphane yok. Model fotoğrafı ve ürün packshot’ları (fonu temizlenmiş, 2× WebP), logo SVG, Inter fontu (Latin + Türkçe alt kümesi, ~50 KB) base64 gömülü → harici istek yok. `--no-embed-fonts` ile Google Fonts bağlantısı (~400 KB). Rich media / masthead yerleşimi içindir; 150 KB sınırlı standart banner yuvaları için görselleri küçültmek gerekir (`tools/optimize-assets.js --bracelet=480 --charm=120 --quality=0.7`).
 - `<meta name="ad.size">`, `var clickTag`, `Enabler.exit` / `Enabler.counter` (Studio/DV360; `Enabler` varsa `INIT` beklenir), `window.adTrack(olay)` kancası: `impression_start, interact, metal_<key>, charm_add_<key>, charm_remove, reset, sound_on, demo_complete, cta_click, exit`.
 - Sekme gizlenince zamanlayıcılar durur; 30 sn sonra `is-still`.
 

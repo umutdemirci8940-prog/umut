@@ -29,7 +29,7 @@ async function run(ctx, { video }) {
   page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
   await page.goto(file);
   const st = () => page.evaluate(() => window.pandoraMasthead.state());
-  const shot = async (name) => { if (!video) await page.screenshot({ path: path.join(outDir, `${name}.jpg`), type: 'jpeg', quality: 90 }); };
+  const shot = async (name) => { if (!video) await page.screenshot({ path: path.join(outDir, `${name}.jpg`), type: 'jpeg', quality: 80 }); };
   const t0 = Date.now();
   const at = async (ms) => { const w = ms - (Date.now() - t0); if (w > 0) await page.waitForTimeout(w); };
   await at(500); await shot('01-acilis');
@@ -52,7 +52,7 @@ async function run(ctx, { video }) {
   if (video) { await page.waitForTimeout(1500); }
   if (!video) {
     const p2 = await ctx.newPage(); await p2.emulateMedia({ reducedMotion: 'reduce' }); await p2.goto(file); await p2.waitForTimeout(900);
-    await p2.screenshot({ path: path.join(outDir, '14-azaltilmis-hareket.jpg'), type: 'jpeg', quality: 90 }); await p2.close();
+    await p2.screenshot({ path: path.join(outDir, '14-azaltilmis-hareket.jpg'), type: 'jpeg', quality: 80 }); await p2.close();
   }
   await page.close();
   return errors;
