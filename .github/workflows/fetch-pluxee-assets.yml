@@ -1,0 +1,64 @@
+name: Pluxee – siteden logo ve kart görselini çek, derle
+
+# Bulut oturumunun ağ politikası pluxee.com.tr'ye erişemediği için varlıklar GitHub'ın kendi
+# sunucusunda indirilir, optimize edilir, üç konsept derlenir, test edilir ve dala geri push'lanır.
+on:
+  workflow_dispatch:
+    inputs:
+      logo_url:
+        description: Logo adresi (boşsa sitede aranır)
+        default: ''
+      card_url:
+        description: Kart görseli adresi (boşsa sitede aranır)
+        default: ''
+
+permissions:
+  contents: write
+
+jobs:
+  fetch-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Siteden logo ve kart görselini çek
+        run: node pluxee/tools/fetch-pluxee-assets.js ${{ inputs.logo_url && format('--logo={0}', inputs.logo_url) || '' }} ${{ inputs.card_url && format('--card={0}', inputs.card_url) || '' }}
+
+      - name: Playwright + Chromium kur
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+
+      - name: Görselleri optimize et
+        run: node pluxee/tools/optimize-pluxee-assets.js
+
+      - name: Konseptleri derle
+        run: node pluxee/build.js
+
+      - name: Test ve ekran görüntüleri
+        run: |
+          node pluxee/tools/smoke.js
+          node pluxee/tools/capture.js
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pluxee-masthead-konseptleri
+          path: |
+            pluxee/dist
+            pluxee/preview
+            pluxee/assets
+          if-no-files-found: error
+
+      - name: Sonuçları dala push'la
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A pluxee/assets pluxee/dist pluxee/preview
+          git commit -m "Pluxee: siteden gerçek logo ve kart görseliyle derleme (GitHub Actions)" || { echo "Değişiklik yok"; exit 0; }
+          git push

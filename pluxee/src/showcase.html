@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Pluxee Geçiyor – Media-first interaktif masthead</title>
-<meta name="description" content="Pluxee 'Geçiyor' kampanyası için veri sinyalleriyle kurulan 970×250 interaktif masthead.">
+<meta name="description" content="Pluxee 'Geçiyor' kampanyası için üç interaktif masthead konsepti (970×250).">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -39,6 +39,13 @@ section{margin-top:56px}
 .sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px}
 .sec-h h2{font-size:24px;letter-spacing:-.02em;font-weight:800}
 .sec-h p{color:var(--muted);font-size:14px;max-width:560px;line-height:1.55}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.tab{display:flex;flex-direction:column;align-items:flex-start;gap:3px;padding:10px 14px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.03);cursor:pointer;min-width:220px;text-align:left}
+.tab b{font-size:14px;color:#fff}
+.tab span{font-size:12px;color:var(--muted);font-weight:600}
+.tab.is-on{border-color:var(--green);background:rgba(0,235,94,.08)}
+.tab.is-on b{color:var(--green)}
+.tab small{font-family:var(--mono);font-size:10px;color:var(--lav)}
 .stage-wrap{position:relative;width:100%;overflow:hidden;border-radius:18px;border:1px solid var(--line);background:#E9E8EF}
 .stage{position:absolute;left:0;top:0;width:1010px;transform-origin:top left}
 .pub{background:#fff;color:#1a1a2e;font-family:Inter,'Segoe UI',Roboto,sans-serif}
@@ -129,27 +136,28 @@ footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);display
 <div class="wrap">
   <div class="top">
     <div class="lock"><span class="px">pluxee<i></i></span> <span class="x">·</span> Pluxee Geçiyor</div>
-    <div class="chips"><span class="chip">Masthead <b>970×250</b></span><span class="chip">HTML5 · <b>__KB__ KB</b></span><span class="chip">Media-first <b>konsept</b></span></div>
+    <div class="chips"><span class="chip">Masthead <b>970×250</b></span><span class="chip"><b>3</b> konsept · tek dosya</span><span class="chip">Media-first <b>__VARIANTS__ versiyon</b></span></div>
   </div>
 
   <div class="hero">
     <div>
       <div class="eyebrow">Konsept önerisi · "Pluxee Geçiyor" · Dijital özel proje</div>
-      <h1>Pluxee geçiyor. <em>Kapıdan kapıya, her yerde.</em></h1>
-      <p class="lead">"Geçiyor"un kelime anlamı sahneye taşınıyor: Pluxee kartı perspektifli bir ışık koridorunda kabul noktalarının kapılarından <b>geçiyor</b>. Kullanıcı sürükleyerek yol alıyor, basılı tutup hızlanıyor, imleçle koridoru yönlendiriyor; her kapıda yeşil flaş ve "Geçti ✓". Medya veri katmanının <b>segment</b> sinyali kimin izlediğini, <b>saat</b> sinyali hangi kapının önce geldiğini belirliyor. Tek HTML kreatif, __VARIANTS__ versiyon.</p>
+      <h1>Pluxee geçiyor. <em>Üç konsept, tek fikir.</em></h1>
+      <p class="lead">Aynı fikir üç farklı deneyimle: <b>Koridor</b> (kart kabul noktalarının kapılarından geçer), <b>Mercek</b> (kart bir ışık merceği; gezdirdiğiniz yer aydınlanır) ve <b>Fiş</b> (POS fişi satır satır "GEÇTİ ✓" yazar, kullanıcı koparır). Hepsi animasyonlu girişle açılır, kullanıcı aksiyonuyla ilerler, dokunulmazsa kendini oynatır. Medya veri katmanının <b>segment</b> sinyali kimin izlediğini, <b>saat</b> sinyali hangi kabul noktasının önce geldiğini belirler.</p>
     </div>
     <div class="stats">
-      <div class="stat"><b>1</b><span>HTML kreatif, tek prodüksiyon</span></div>
+      <div class="stat"><b>3</b><span>konsept, her biri tek HTML dosyası</span></div>
       <div class="stat"><b>__SEGMENTS__</b><span>hedef kitle: beyaz yaka, İK, işveren</span></div>
-      <div class="stat"><b><em>__VARIANTS__</em></b><span>versiyon (__SEGMENTS__ segment × __SCENES__ öncü kapı)</span></div>
+      <div class="stat"><b><em>__VARIANTS__</em></b><span>versiyon / konsept (__SEGMENTS__ segment × __SCENES__ öncü nokta)</span></div>
     </div>
   </div>
 
   <section id="demo">
     <div class="sec-h">
       <h2>Canlı deneyin</h2>
-      <p>Koridorda sürükleyin (sola: ileri), basılı tutup hızlanın, imleçle yönlendirin. Rota noktalarına tıklayınca o kapıya gidilir. Sinyalleri değiştirince masthead yeniden kurulur.</p>
+      <p id="howto"></p>
     </div>
+    <div class="tabs" id="tabs"></div>
     <div class="stage-wrap" id="stageWrap">
       <div class="stage" id="stage">
         <div class="pub">
@@ -175,7 +183,7 @@ footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);display
         <div class="variant"><span id="variant">—</span><span class="dot"></span></div>
         <ul class="chain" id="chain"></ul>
         <div class="copy"><div class="t" id="cTop"></div><div class="m"><em id="cWord">…</em>Pluxee geçiyor.</div><div class="s" id="cSub">&nbsp;</div><span class="c" id="cCta">&nbsp;</span></div>
-        <div class="prog"><span id="progT">0/4 kapı</span><div class="bar"><i id="progBar"></i></div><div class="stops" id="progStops"></div></div>
+        <div class="prog"><span id="progT">0/4</span><div class="bar"><i id="progBar"></i></div><div class="stops" id="progStops"></div></div>
       </div>
     </div>
   </section>
@@ -185,7 +193,7 @@ footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);display
     <div class="cards">
       <div class="card"><div class="n">01 · Sinyal</div><h4>Kreatif, mecradan öğreniyor</h4><p>Kitle segmenti (beyaz yaka, İK, karar verici), sayfanın bağlamı ve saat tek bir <b>sinyal paketi</b> olarak kreatife akar. Kim izliyorsa ona göre konuşur; hangi saatse o sahneyle açılır.</p></div>
       <div class="card"><div class="n">02 · Karar</div><h4>Tek prodüksiyon, tüm bağlamlar</h4><p>Her segment ve an için ayrı banner üretmek yerine tek HTML dosyası: alt metin, CTA ve sahne sırası değişkenle kurulur. Yeni bir sahne ya da segment eklemek <b>bir satır kopya</b> eklemek kadar kolay.</p></div>
-      <div class="card"><div class="n">03 · Kreatif</div><h4>Kart kapılardan geçer</h4><p>Restoran, kafe, market ve online sipariş kapıları perspektifle yaklaşır; kart geçerken kapı yeşil flaş verir, "Geçti ✓" düşer, hız çizgileri ve kısa sarsıntı hissi tamamlar. Sonuncu kapıdan sonra koridor açılır: <b>her yerde, Pluxee geçiyor</b>. Dokunulmazsa koridor kendiliğinden kat edilir.</p></div>
+      <div class="card"><div class="n">03 · Kreatif</div><h4>Üç deneyim, tek mekanik</h4><p><b>Koridor:</b> kart kapılardan geçer, her kapıda flaş ve "Geçti ✓". <b>Mercek:</b> kart bir ışık merceğidir, gezdirdiğiniz yerdeki kabul noktası aydınlanır. <b>Fiş:</b> POS fişi satır satır yazılır, kullanıcı fişi koparır. Üçünde de segment ve saat sinyali aynı şekilde çalışır.</p></div>
     </div>
   </section>
 
@@ -217,16 +225,16 @@ footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);display
     <div class="sec-h"><h2>Teknik</h2></div>
     <div class="tech">
       <ul>
-        <li><b>Format:</b> 970×250 HTML5, tek dosya (<code>dist/970x250/index.html</code>), __KB__ KB. Koridor, kapılar ve ışınlar DOM + CSS 3B ile, arka planlar canvas ile üretilir (görsel dosyası ve WebGL yok); tek harici kaynak Google Fonts (Manrope).</li>
+        <li><b>Format:</b> 970×250 HTML5; her konsept tek dosya (<code>dist/&lt;konsept&gt;/index.html</code>, ~40 KB). Sahneler DOM + CSS 3B ile, arka planlar canvas ile üretilir; tek harici kaynak Google Fonts (Manrope). Gerçek logo ve kart görseli <code>assets/</code> klasöründen gömülür.</li>
         <li><b>Tıklama:</b> <code>clickTag</code> desteği (Google Ads / CM360), <code>Enabler</code> varsa <code>Enabler.exit</code> (DV360 / Studio); yoksa Pluxee ana sayfası açılır.</li>
         <li><b>Parametreler:</b> <code>?seg=wc|hr|emp&amp;h=0-23&amp;m=0-59&amp;w=sun|rain&amp;demo=1</code>. Ad server makroları bu parametrelere bağlanır; alternatif olarak <code>window.__PLUXEE_SIGNALS</code> ile enjekte edilir.</li>
-        <li><b>Erişilebilirlik:</b> klavye (← → ileri/geri, boşluk hızlandırır, Enter tıklama), <code>prefers-reduced-motion</code> açıksa doğrudan final karesi, aria etiketleri.</li>
+        <li><b>Erişilebilirlik:</b> klavye desteği (oklar, boşluk, Enter tıklama), <code>prefers-reduced-motion</code> açıksa doğrudan final karesi, aria etiketleri.</li>
       </ul>
       <ul>
-        <li><b>Otomatik gösterim:</b> kullanıcı dokunmazsa koridor 17 sn'de kendiliğinden kat edilir, final 3 sn (toplam ≈ 21 sn, Google Ads 30 sn kuralına uygun); sonra final karesinde durur.</li>
-        <li><b>Etkileşim:</b> yatay sürükleme koridorda ileri/geri götürür (atalet ile), basılı tutmak 3× hızlandırır, kısa dokunma ileri sıçratır, imleç konumu koridoru yönlendirir (paralaks + kart eğimi). Rota noktaları kapı seçer; finalde "Tekrar geç". Kullanıcı oynadıysa otomatik döngü yapılmaz.</li>
+        <li><b>Giriş ve otomatik gösterim:</b> ışık süpürmesi, logo açılışı ve kademeli metin girişi (~0,6 sn); kullanıcı dokunmazsa her konsept ≈ 18–21 sn'de kendini oynatıp final karesinde durur (Google Ads 30 sn kuralına uygun).</li>
+        <li><b>Etkileşim:</b> Koridor: sürükle / basılı tut / yönlendir / rota noktası. Mercek: kartı gezdir (fare, parmak, ok tuşları). Fiş: dokunarak yazdır, satır üstüne gel, çekip kopar. Üçünde de kullanıcı oynadıysa otomatik döngü yapılmaz; finalde "Tekrar".</li>
         <li><b>Sunum API'si:</b> <code>postMessage</code> ile <code>pluxee:signals</code>, <code>pluxee:replay</code>, <code>pluxee:demo</code> mesajları alınır; <code>pluxee:state</code> ve <code>pluxee:click</code> yayınlanır. Bu sayfa aynı API ile çalışır.</li>
-        <li><b>Varyant kimliği:</b> <code>SEGMENT-ÖNCÜSAHNE</code> (örn. <code>HR-MARKET</code>) her gösterimde ölçüm etiketi olarak raporlanabilir.</li>
+        <li><b>Varyant kimliği:</b> <code>SEGMENT-ÖNCÜNOKTA</code> (örn. <code>HR-MARKET</code>) ve konsept adı her gösterimde ölçüm etiketi olarak raporlanabilir; konseptler A/B olarak yayınlanabilir.</li>
       </ul>
     </div>
   </section>
@@ -237,7 +245,7 @@ footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);display
 
 <script>
 (function(){
-var SRC=__MASTHEAD_SRC__;
+var CONCEPTS=__CONCEPTS_JSON__;var current='__DEFAULT__';
 var DATA=__SHOWCASE_DATA__;
 var TONE={wc:'kişisel fayda dili',hr:'"ekibiniz" dili, İK faydası',emp:'"şirketiniz" dili, bütçe ve avantaj'};
 var $=function(id){return document.getElementById(id)};
@@ -250,7 +258,10 @@ function fit(){var s=Math.min(1,wrap.clientWidth/1010);stage.style.transform='sc
 window.addEventListener('resize',fit);
 
 ad.addEventListener('load',function(){ready=true;send()});
-ad.srcdoc=SRC;
+function conceptOf(id){for(var i=0;i<CONCEPTS.length;i++)if(CONCEPTS[i].id===id)return CONCEPTS[i];return CONCEPTS[0]}
+function loadConcept(id){current=id;var c=conceptOf(id);ready=false;ad.srcdoc=c.src;$('howto').textContent=c.howto;[].forEach.call($('tabs').children,function(t){t.classList.toggle('is-on',t.dataset.id===id)});$('variant').textContent='—';$('chain').innerHTML='';$('cWord').textContent='…';$('cTop').textContent='';$('progT').textContent='0/4';$('progBar').style.width='0';$('progStops').innerHTML=''}
+CONCEPTS.forEach(function(c){var b=document.createElement('button');b.type='button';b.className='tab';b.dataset.id=c.id;b.innerHTML='<b>'+c.title+'</b><span>'+c.tagline+'</span><small>'+c.kb+' KB · dist/'+c.id+'/index.html</small>';b.addEventListener('click',function(){loadConcept(c.id)});$('tabs').appendChild(b)});
+loadConcept(current);
 function send(){if(!ready)return;ad.contentWindow.postMessage({type:'pluxee:signals',signals:sig},'*')}
 function sendDebounced(){clearTimeout(pendingTimer);pendingTimer=setTimeout(send,120)}
 
@@ -282,8 +293,8 @@ window.addEventListener('message',function(e){
   if(d.type==='pluxee:click'){toast('Tıklama → '+d.url);return}
   if(d.type!=='pluxee:state')return;
   var s=d.signals,lead=SCENE[d.lead]||{label:d.lead,title:''};
-  $('variant').textContent=d.variant;
-  $('stateHint').textContent=d.ended?'final karesi':(d.manual?'kullanıcı kontrolünde':(d.finalState?'final':'oynatılıyor'));
+  $('variant').textContent=d.variant+(d.concept?' · '+d.concept.toUpperCase():'');
+  $('stateHint').textContent=d.ended?'final karesi':(d.userPlayed?'kullanıcı oynuyor':(d.finalState?'final':'otomatik gösterim'));
   var chain=[
     '<b>Saat '+pad(s.hour)+':'+pad(s.minute)+'</b> → ilk kapı: <em>'+esc(lead.label)+'</em> ('+esc(lead.title)+')'+(s.weather==='rain'?' · yağmur önceliği':''),
     '<b>Segment: '+esc(DATA.segments[s.seg].label)+'</b> → '+TONE[s.seg]+' → CTA: <em>'+esc(d.copy.cta)+'</em>',
@@ -293,7 +304,7 @@ window.addEventListener('message',function(e){
   $('cTop').textContent=d.copy.title||'';
   $('cWord').textContent=d.copy.word||'…';
   $('cSub').textContent=d.copy.sub;$('cCta').textContent=d.copy.cta;
-  $('progT').textContent=d.visited+'/'+d.total+' kapı';
+  $('progT').textContent=d.visited+'/'+d.total+' nokta';
   $('progBar').style.width=(d.visited/d.total*100)+'%';
   $('progStops').innerHTML=d.order.map(function(k,i){return '<i class="'+(i<d.visited?'on':'')+'" title="'+esc(SCENE[k]?SCENE[k].label:k)+'"></i>'}).join('');
 });

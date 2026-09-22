@@ -1,120 +1,107 @@
-# Pluxee "Geçiyor" – Media-first interaktif masthead (970 × 250)
+# Pluxee "Geçiyor" – Media-first interaktif masthead (970 × 250) · üç konsept
 
-Media-first konsept çalışması. Kampanyanın ana fikri "Pluxee geçiyor: burada, şurada, orada". Masthead, **"geçiyor"un kelime anlamını** sahneye taşır: Pluxee kartı perspektifli bir ışık koridorunda kabul noktalarının kapılarından geçer. Kullanıcı sürükleyerek yol alır, basılı tutup hızlanır, imleçle koridoru yönlendirir; her kapıda yeşil flaş ve "Geçti ✓". Medya veri katmanının **segment** sinyali kimin izlediğini (beyaz yaka, İK, işveren), **saat** sinyali hangi kapının önce geldiğini belirler. Tek HTML kreatif, 12 versiyon.
+Kampanyanın ana fikri "Pluxee geçiyor: burada, şurada, orada". Aynı fikir üç farklı deneyimle, her biri **animasyonlu girişle** açılan, **kullanıcı aksiyonuyla** ilerleyen, dokunulmazsa kendini oynatan tek dosyalık HTML5 kreatif olarak hazırlandı. Medya veri katmanının **segment** sinyali kimin izlediğini (beyaz yaka, İK, işveren), **saat** sinyali hangi kabul noktasının önce geldiğini belirler.
 
-| Çıktı | Dosya |
-|---|---|
-| **Ana teslim** – koridor sürümü, yayına hazır tek dosya | `dist/970x250/index.html` |
-| Reklam ağı paketi | `dist/zip/pluxee-970x250.zip` |
-| Sunum sayfası (kreatif gömülü, tek dosya: sinyal paneli, karar zinciri, sinyal→kreatif haritası) | `preview/index.html` |
-| Ekran görüntüleri | `preview/screens/` |
-| Arşiv: POS'a sürükle-okut sürümü | `dist/970x250-pos/index.html` |
-| Arşiv: ilk taslak (illüstrasyon) | `dist/970x250-flat/index.html` |
+| Konsept | Fikir | Kullanıcı aksiyonu | Dosya |
+|---|---|---|---|
+| **Koridor** (varsayılan) | Kart, kabul noktalarının kapılarından *geçer*; her kapıda flaş ve "Geçti ✓", finalde koridor açılır | Sürükle (ileri/geri), basılı tut (hızlan), imleçle yönlendir, rota noktasına tıkla | `dist/koridor/index.html` |
+| **Mercek** | Kart bir ışık merceğidir; karanlık şehirde gezdirdiğiniz yerdeki kabul noktası aydınlanır ve "geçiyor" | Kartı imleç/parmakla gezdir (ok tuşları da) | `dist/mercek/index.html` |
+| **Fiş** | POS fişi satır satır yazılır: RESTORAN … GEÇTİ ✓; toplam: HER YERDE | POS'a/karta dokunarak yazdır, satır üstüne gel, fişi çekip kopar | `dist/fis/index.html` |
+
+Diğer çıktılar: `dist/970x250/index.html` (varsayılan konseptin kopyası), `dist/zip/pluxee-<konsept>-970x250.zip` (reklam ağı paketleri), `preview/index.html` (üç sekmeli sunum sayfası; sinyal paneli, karar zinciri), `preview/screens/` (ekran görüntüleri), `dist/arsiv/` (önceki sürümler).
 
 ## Ekran görüntüleri
 
-| Açılış: "Sürükleyin, yol alın" ipucu | Kapıya yaklaşma |
+| Giriş: ışık süpürmesi ve logo açılışı (ortak) | Koridor: ipucu |
 |---|---|
-| ![](preview/screens/wc-lunch-hint.jpg) | ![](preview/screens/wc-lunch-approach.jpg) |
+| ![](preview/screens/giris-isik-supurmesi.jpg) | ![](preview/screens/koridor-ipucu.jpg) |
 
-| Kapıdan geçiş: flaş + "Geçti ✓" | Kullanıcı sürüklüyor: hız çizgileri |
+| Koridor: kapıdan geçiş | Koridor: final |
 |---|---|
-| ![](preview/screens/wc-lunch-pass.jpg) | ![](preview/screens/wc-lunch-drag.jpg) |
+| ![](preview/screens/koridor-gecis.jpg) | ![](preview/screens/koridor-final.jpg) |
 
-| Final: koridor açılır, "Her yerde, Pluxee geçiyor." | Akşam · İK – Market kapısıyla açılır |
+| Mercek: kart restoranı aydınlatıyor | Mercek: final, tüm sahne açılır |
 |---|---|
-| ![](preview/screens/wc-lunch-final.jpg) | ![](preview/screens/hr-evening.jpg) |
+| ![](preview/screens/mercek-restoran.jpg) | ![](preview/screens/mercek-final.jpg) |
 
-| Gece · beyaz yaka – Online kapısı | Yağmur · İK – Online öne alınır |
+| Fiş: satır satır yazdırıyor | Fiş: tamam, "HER YERDE GEÇTİ" |
 |---|---|
-| ![](preview/screens/wc-night.jpg) | ![](preview/screens/hr-rain.jpg) |
+| ![](preview/screens/fis-yazdiriyor.jpg) | ![](preview/screens/fis-tamam.jpg) |
 
-## Kurgu
+## Gerçek logo ve kart tasarımı
 
-- **Sol sütun:** Pluxee logosu, sahne başlığı (ÖĞLE YEMEĞİ / KAHVE MOLASI / MARKET ALIŞVERİŞİ / ONLİNE SİPARİŞ), kinetik kelime + sabit satır: *Restoranda, / Pluxee geçiyor.* → *Kafede,* → *Markette,* → *Online siparişte,* → finalde **Her yerde, Pluxee geçiyor.**
-- **Koridor:** kaçış noktasına doğru daralan yeşil zemin ızgarası, perspektifle yaklaşan dört kapı (ince ışık çerçeveleri; etiket + ikon + "burada / şurada / orada / orada da"), kaçış noktasından fışkıran hız çizgileri, sahneye göre değişen fotoğrafik bokeh arka plan. Ön planda 3B Pluxee kartı hafifçe süzülür, hızlanınca öne eğilir.
-- **Geçiş:** kart bir kapıdan geçerken çerçeve beyaz-yeşil flaş verir, kapının içinde büyük **"Geçti ✓"** rozeti belirip kaybolur, kartın yeşil bandı parlar, sahne kısaca sarsılır, parçacıklar yayılır, rota noktası yeşile döner. Bir sonraki kapının başlığı ve kelimesi gelir.
-- **Final:** son kapıdan sonra kaçış noktasında yeşil-beyaz portal büyüyüp koridoru doldurur; başlık "Burada, şurada, orada / Her yerde, Pluxee geçiyor.", CTA nabız atar, rota tamamlanır, "Tekrar geç" görünür.
-- **Otomatik gösterim:** dokunulmazsa koridor 17 sn'de kendiliğinden kat edilir, final 3 sn (toplam ≈ 21 sn, Google Ads 30 sn kuralı); sonra final karesinde durur.
-- Konum, nokta sayısı ve gün içi zaman etiketleri **kullanılmaz**; dil kurumsaldır.
+Kreatifler `pluxee/assets/` klasöründeki gerçek varlıkları otomatik gömer:
 
-## Etkileşim
+- `assets/logo.svg` (ya da `.png` / `.webp`) → sol üstteki logo. Koyu renkli logo için `assets/manifest.json` içinde `"logo": {"white": true}` (kreatifte beyaza çevrilir).
+- `assets/card.png` (ya da `.jpg` / `.webp`) → 3B kartın yüzü (parlama efekti üstüne biner).
 
-- **Sürükleme:** koridor alanında yatay sürükleme ileri/geri götürür (sola: ileri; 470 px ≈ tüm koridor). Bırakınca atalet ile devam eder, 1,4 sn sonra otomatik uçuşa döner. Geçilen kapılar sayılır, geri gidince sayım korunur.
-- **Basılı tutma:** hareket etmeden basılı tutmak hızı 3× artırır; hız çizgileri yoğunlaşır, kart öne eğilir. **Kısa dokunma** ileri sıçratır.
-- **Yönlendirme:** imleç konumu kaçış noktasını kaydırır (paralaks), kart imlece doğru eğilir.
-- **Rota noktaları:** alttaki noktalara tıklamak ilgili kapının önüne götürür. Finalde **"Tekrar geç"**. Kullanıcı oynadıysa otomatik döngü yapılmaz.
-- **CTA ve sol sütun** reklam çıkışıdır: `window.clickTag` varsa o, `Enabler` varsa `Enabler.exit('CTA')`, yoksa Pluxee ana sayfası (`https://www.pluxee.com.tr/`). Koridordaki hareket ve tıklamalar reklam çıkışı **değildir**; etkileşim olarak ölçülür.
-- Klavye: ← → ileri/geri, boşluk hızlandırır, Enter tıklama. `prefers-reduced-motion` açıksa doğrudan final karesi.
+Varlıkları siteden çekmenin iki yolu:
+
+1. **GitHub Actions (önerilen):** depoda *Actions* → "Pluxee – siteden logo ve kart görselini çek, derle" → *Run workflow*. Sayfada logo/kart otomatik aranır; bulunamazsa `logo_url` / `card_url` alanlarına adresleri yazın. İş akışı indirir, optimize eder, üç konsepti derler, test eder ve dala push'lar (`.github/workflows/fetch-pluxee-assets.yml`).
+2. **Yerel bilgisayarda:** `node pluxee/tools/fetch-pluxee-assets.js [--logo=<url>] [--card=<url>]`, isteğe bağlı `node pluxee/tools/optimize-pluxee-assets.js` (Playwright), sonra `node pluxee/build.js`.
+
+> Bu çalışma Claude Code'un yalıtılmış ortamında hazırlandı; ortamın ağ politikası pluxee.com.tr'ye erişime izin vermediği için varlıklar burada indirilemedi. Depodaki derlemeler çizim logo ve kart kullanır; iş akışı çalıştırılınca gerçekleriyle yeniden derlenir.
+
+## Ortak kurgu
+
+- **Giriş (~0,6 sn):** yeşil-beyaz ışık süpürmesi soldan sağa geçer, logo maskeyle açılır, sahne başlığı / başlık / alt metin / CTA kademeli girer, sonra konseptin sahnesi kurulur.
+- **Sol sütun:** logo, sahne başlığı (ÖĞLE YEMEĞİ / KAHVE MOLASI / MARKET ALIŞVERİŞİ / ONLİNE SİPARİŞ), kinetik kelime + sabit satır: *Restoranda, / Pluxee geçiyor.* → *Kafede,* → … → finalde **Her yerde, Pluxee geçiyor.**
+- **Segment** alt metni ve CTA'yı belirler: beyaz yaka "Pluxee'yi keşfedin", İK "Teklif alın", işveren "Bize ulaşın". **Saat** ilk kabul noktasını belirler (06–10 ve 15–17 kafe, 11–14 restoran, 18–22 market, 23–05 online); yağmur (isteğe bağlı) online siparişi öne alır.
+- **Final:** CTA nabız atar, "Tekrar" düğmesi görünür. Kullanıcı oynadıysa otomatik döngü yapılmaz. Otomatik gösterim her konseptte ≈ 18–21 sn (Google Ads 30 sn kuralı).
+- Konum, nokta sayısı, gün içi zaman etiketi, UTM ve ajans adı **kullanılmaz**.
+
+## Konseptler
+
+**Koridor** – kaçış noktasına daralan zemin ızgarası, perspektifle yaklaşan dört kapı, hız çizgileri, sahneye göre değişen fotoğrafik bokeh. Kart bir kapıdan geçerken çerçeve flaş verir, "Geçti ✓" rozeti düşer, sahne sarsılır, rota noktası yeşile döner. Sürükleme ileri/geri götürür (atalet), basılı tutmak 3× hızlandırır, kısa dokunma sıçratır, imleç koridoru yönlendirir, rota noktaları kapı seçer. Klavye: ← →, boşluk.
+
+**Mercek** – sahne karanlık ve bulanık bir şehir; kartın çevresindeki mercek (CSS maske) altındaki renkli katmanı gösterir. Dört kabul noktası loş simgelerle durur; mercek üstüne gelince aydınlanır, 0,3 sn kalınca "Geçiyor ✓" rozeti ve parçacıklar. Kart imleci gecikmeli izler, hıza göre eğilir. Dördü de aydınlanınca mercek tüm sahneyi kaplar. Dokunulmazsa kart noktaları sırayla dolaşır. Klavye: ok tuşları.
+
+**Fiş** – kart POS'a dokunur, cihaz "Onaylandı" der, ısıl yazıcı fişi çıkar: PLUXEE / İŞLEM FİŞİ · saat / RESTORAN … GEÇTİ ✓ … / HER YERDE GEÇTİ ✓. Her satır soldan sağa basılır, kağıt yukarı kayar. POS'a ya da karta dokunmak bir sonraki satırı yazdırır; satırın üstüne gelince o yerin atmosferi ve başlığı gelir; bitince fişi çekmek (ya da dokunmak) koparır: kağıt savrulur, yuvada tırtıklı bir parça kalır. Dokunulmazsa satırlar 2,3 sn arayla yazılır ve fiş kendiliğinden kopar. Klavye: boşluk.
 
 ## Sinyaller ve parametreler
 
 | Sinyal | Parametre | Kaynak (yayında) | Kreatifte değişen |
 |---|---|---|---|
-| Segment | `seg=wc` (beyaz yaka) · `hr` (İK) · `emp` (işveren / karar verici) | 1. parti kitle segmenti + mecra bağlamı | Alt metin, CTA |
-| Saat | `h=0-23`, `m=0-59` | Ad server saat makrosu; yoksa cihaz saati | İlk kapı ve kapı sırası, ışık atmosferi |
-| Hava | `w=sun\|rain` (isteğe bağlı) | Hava durumu API | Yağmurda online sipariş kapısı öne alınır |
-| Sunum | `demo=1` | – | Sinyal çubuğu (sadece sunumda) |
+| Segment | `seg=wc` · `hr` · `emp` | 1. parti kitle segmenti + mecra bağlamı | Alt metin, CTA |
+| Saat | `h=0-23`, `m=0-59` | Ad server saat makrosu; yoksa cihaz saati | İlk kabul noktası ve sıra, ışık atmosferi |
+| Hava | `w=sun\|rain` (isteğe bağlı) | Hava durumu API | Yağmurda online sipariş öne alınır |
+| Sunum | `demo=1` | – | Sinyal çubuğu |
 
-Örnek: `dist/970x250/index.html?seg=hr&h=19&m=5`
+Örnek: `dist/mercek/index.html?seg=hr&h=19&m=5`. Alternatif: `window.__PLUXEE_SIGNALS={seg:'hr'}`. Varyant kimliği `SEGMENT-İLKNOKTA` (`HR-MARKET`) + konsept adı ölçüm etiketi olarak raporlanır; konseptler A/B olarak yayınlanabilir.
 
-- Ad server makroları doğrudan bu parametrelere bağlanır; alternatif olarak `<script>window.__PLUXEE_SIGNALS={seg:'hr'}</script>` ile enjekte edilebilir.
-- Her gösterim `SEGMENT-İLKKAPI` biçiminde bir varyant kimliği taşır (`HR-MARKET`, `WC-ONLINE-RAIN`); ölçüm etiketi olarak raporlanır.
+**postMessage API:** gelen `pluxee:signals`, `pluxee:replay`, `pluxee:demo`; giden `pluxee:state` (`variant, lead, order, phase, visited, total, finalState, ended, userPlayed, hint, copy, signals, concept` + konsepte özgü alanlar) ve gömülü modda `pluxee:click`. Sayfa içinden `window.PLUXEE.setSignals / replay / state`.
 
-### postMessage API (sunum ve entegrasyon)
+## Kopya ve süreler
 
-Gelen: `{type:'pluxee:signals', signals:{seg,hour,minute,weather,demo}}`, `{type:'pluxee:replay'}`, `{type:'pluxee:demo', on:true}`.
-Giden: `{type:'pluxee:state', variant, lead, order, idx, next, t, phase, hint, userPlayed, visited, total, finalState, ended, copy, signals}` ve gömülü modda tıklamada `{type:'pluxee:click', url}`. Sayfa içinden `window.PLUXEE.setSignals({...})`, `window.PLUXEE.replay()`, `window.PLUXEE.state()` da kullanılabilir.
-
-## Kopya
-
-Tüm metinler **`src/data.js`** içindedir: sahneler ve segment metinleri `cinematic` altında (ortak), koridora özgü kelimeler ve süreler `corridor` altında:
-
-```js
-corridor.words  = { restoran: 'Restoranda,', kafe: 'Kafede,', market: 'Markette,', online: 'Online siparişte,' }
-corridor.line2  = 'Pluxee geçiyor.'
-corridor.final  = { title: 'Burada, şurada, orada', word: 'Her yerde,' }
-cinematic.segments.hr = { sub: 'Ekibinizin her günü için geçerli yan hak. …', cta: 'Teklif alın' }
-```
-
-Düzenleyip `node pluxee/build.js` çalıştırmak yeterlidir. "Vergi avantajıyla" gibi ifadeler marka ve hukuk onayına tabidir.
+`src/data.js`: `cinematic` (sahneler, segment metinleri, saat → ilk nokta), `corridor`, `lens`, `receipt` (konsepte özgü kelimeler, ipuçları, süreler). Düzenleyip `node pluxee/build.js`. "Vergi avantajıyla" gibi ifadeler marka ve hukuk onayına tabidir.
 
 ## Derleme ve test
 
 ```bash
-node pluxee/build.js                                   # dist/ ve preview/index.html
-NODE_PATH=$(npm root -g) node pluxee/tools/smoke.js    # sinyal, sürükleme, basılı tutma, rota, tıklama, API, 30 sn (Playwright)
+node pluxee/build.js                                   # dist/<konsept>/, zip'ler, preview/index.html
+NODE_PATH=$(npm root -g) node pluxee/tools/smoke.js    # üç konsept + sunum + arşiv, gerçek fare/dokunma ile
 NODE_PATH=$(npm root -g) node pluxee/tools/capture.js  # preview/screens/*.jpg
 ```
 
-Kök `package.json` içinden: `npm run pluxee:build`, `npm run pluxee:test`, `npm run pluxee:capture`.
+Kök `package.json`: `npm run pluxee:build`, `npm run pluxee:test`, `npm run pluxee:capture`.
 
 ## Teknik notlar
 
-- 970×250 HTML5, tek dosya (~41 KB); satır içi CSS + ES5 JS. Koridor, kapılar ve ışınlar DOM + CSS 3B dönüşümleriyle, arka planlar yükleme anında canvas ile üretilir (görsel dosyası ve WebGL yok). Tek harici kaynak Google Fonts (Manrope); Google Ads ve DV360'ta izinlidir, gerekirse `@font-face` ile gömülür.
-- Animasyon tek `requestAnimationFrame` döngüsünde çalışır; etkileşim yokken ve final sonrası döngü durur.
-- `<meta name="ad.size">`, `role`/`aria` etiketleri ve klavye odağı mevcuttur.
-- **Google Ads / CM360:** `dist/zip/pluxee-970x250.zip` doğrudan yüklenir (`clickTag`). **DV360 / Studio:** `Enabler` algılanır; Studio'ya yüklenecekse `<head>` içine `Enabler.js` satırı eklenir. **Diğer ağlar:** `openLink()` içindeki `window.clickTag` satırı ağın makrosuna çevrilir.
-- Marka varlıkları temsilidir (pluxee.com.tr'ye erişilemedi): logo metin olarak, palet Pluxee lacivert (#221C46) + yeşil (#00EB5E). Resmi logo SVG'si `.logo` bloğuna, resmi kart tasarımı `.card .face` bloğuna yerleştirilir.
-
-## Arşiv sürümleri
-
-- `dist/970x250-pos/` – **POS'a sürükle-okut**: kullanıcı kartı POS cihazına sürükler, "Onaylandı" olur, sahne değişir (`src/template-cinematic.js`).
-- `dist/970x250-flat/` – **ilk taslak**: illüstrasyon dilinde gün sokağı (`src/template.js`).
+- 970×250 HTML5; her konsept tek dosya (~40 KB), satır içi CSS + ES5 JS. Sahneler DOM + CSS 3B, arka planlar canvas ile üretilir (görsel dosyası ve WebGL yok). Tek harici kaynak Google Fonts (Manrope); Google Ads ve DV360'ta izinlidir, gerekirse `@font-face` ile gömülür.
+- `<meta name="ad.size">`, `role`/`aria`, klavye odağı; `prefers-reduced-motion` açıksa doğrudan final karesi.
+- **Google Ads / CM360:** `dist/zip/*.zip` doğrudan yüklenir (`clickTag`). **DV360 / Studio:** `Enabler` algılanır. **Diğer ağlar:** `openLink()` içindeki `window.clickTag` satırı ağın makrosuna çevrilir. Tıklama hedefi `https://www.pluxee.com.tr/`.
 
 ## Klasör yapısı
 
 ```
+pluxee/src/common.js             Ortak altyapı: giriş, sinyaller, logo/kart varlıkları, arka plan, API
+pluxee/src/concepts/koridor.js   Konsept 1
+pluxee/src/concepts/mercek.js    Konsept 2
+pluxee/src/concepts/fis.js       Konsept 3
 pluxee/src/data.js               Kopya, sahneler, segmentler, süreler
-pluxee/src/template-corridor.js  Ana kreatif motoru (koridor)
-pluxee/src/template-cinematic.js POS sürükle-okut sürümü (arşiv)
-pluxee/src/template.js           İlk taslak (arşiv)
-pluxee/src/showcase.html         Sunum sayfası şablonu (build.js kreatifi içine gömer)
-pluxee/build.js                  dist/ + preview/index.html üretici
-pluxee/dist/970x250/             Yayına hazır kreatif (ana teslim)
-pluxee/dist/zip/                 Reklam ağı paketleri
-pluxee/preview/                  Sunum sayfası + ekran görüntüleri
-pluxee/tools/smoke.js            Duman testi (Playwright)
-pluxee/tools/capture.js          Ekran görüntüleri (Playwright)
-pluxee/tools/fonts.js            Google Fonts önbelleği (yalıtılmış ortamlar için)
+pluxee/src/showcase.html         Sunum sayfası şablonu (üç sekme)
+pluxee/build.js                  dist/ + preview/index.html üretici (assets/ varsa gömer)
+pluxee/assets/                   Gerçek logo ve kart görseli (fetch-pluxee-assets.js / elle)
+pluxee/tools/fetch-pluxee-assets.js, optimize-pluxee-assets.js, smoke.js, capture.js, fonts.js
+pluxee/src/template-cinematic.js, template.js   Arşiv sürümleri
 ```

@@ -197,6 +197,34 @@ module.exports = {
     },
   },
 
+  /** MERCEK konsepti: kart bir ışık merceği; gezdirildiği yerde kabul noktaları aydınlanır. */
+  lens: {
+    words: { restoran: 'Restoranda,', kafe: 'Kafede,', market: 'Markette,', online: 'Online siparişte,' },
+    line2: 'Pluxee geçiyor.',
+    final: { title: 'Burada, şurada, orada', word: 'Her yerde,' },
+    chip: 'Geçiyor',
+    hint: 'Kartı gezdirin',
+    hintSub: 'geçtiği yeri görün',
+    replay: 'Tekrar aydınlat',
+    timing: { idle: 1200, move: 1000, dwell: 320, hold: 1700, final: 3000, resume: 1400 },
+  },
+  /** FİŞ konsepti: POS fişi satır satır yazdırılır; kullanıcı dokunarak yazdırır, çekerek koparır. */
+  receipt: {
+    words: { restoran: 'Restoranda,', kafe: 'Kafede,', market: 'Markette,', online: 'Online siparişte,' },
+    line2: 'Pluxee geçiyor.',
+    final: { title: 'Burada, şurada, orada', word: 'Her yerde,' },
+    header: 'PLUXEE',
+    subheader: 'İŞLEM FİŞİ',
+    pass: 'GEÇTİ',
+    total: 'HER YERDE',
+    lineNames: { restoran: 'RESTORAN', kafe: 'KAFE', market: 'MARKET', online: 'ONLİNE SİPARİŞ' },
+    hint: 'Dokunun: yazdırın',
+    hintTear: 'Fişi çekip koparın',
+    replay: 'Yeniden yazdır',
+    pos: { idle: 'Kartı okutun', ok: 'Onaylandı' },
+    timing: { first: 900, line: 2300, tearIdle: 2200, hold: 3000 },
+  },
+
   // Varsayılan sinyaller (parametre gelmezse). Saat için cihaz saati kullanılır.
   defaults: { seg: 'wc', geo: 'levent', weather: 'sun' },
 };
