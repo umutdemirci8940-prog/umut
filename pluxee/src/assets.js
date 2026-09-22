@@ -30,7 +30,7 @@ function loadAssets(opts = {}) {
       const f = [e.optimized, e.file].filter(Boolean).map((x) => path.join(dir, x)).find((x) => fs.existsSync(x));
       if (!f) continue;
       const ext = path.extname(f).slice(1).toLowerCase(); const buf = fs.readFileSync(f);
-      out.photos[slot] = { uri: `data:${MIME[ext] || 'application/octet-stream'};base64,${buf.toString('base64')}`, bytes: buf.length, file: path.relative(root, f), source: e.source || 'manual', credit: e.credit || '' };
+      out.photos[slot] = { uri: `data:${MIME[ext] || 'application/octet-stream'};base64,${buf.toString('base64')}`, bytes: buf.length, file: path.relative(root, f), source: e.source || 'manual', credit: e.credit || '', focal: e.focal || null };
     }
   }
   if (opts.standin && !Object.keys(out.photos).length) {

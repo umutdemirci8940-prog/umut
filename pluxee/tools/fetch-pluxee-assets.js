@@ -8,6 +8,7 @@
  *
  * Kullanım: node pluxee/tools/fetch-pluxee-assets.js [--base=https://www.pluxee.com.tr] [--logo=<url>] [--card=<url>]
  *           [--no-stock] [--photo-restoran=<url> --photo-kafe=<url> --photo-market=<url> --photo-online=<url> --photo-hero=<url>]
+ * Aynı seçimler assets/fetch.config.json ile de verilebilir (iş akışı bunu okur).
  * Node 18+ yeterlidir. Sayfa yapısı bilinmediği için sezgisel arama yapar; --logo / --card ile adres
  * doğrudan verilebilir. Ardından `node pluxee/tools/optimize-pluxee-assets.js` (isteğe bağlı) ve `node pluxee/build.js`.
  *
@@ -18,6 +19,17 @@ const fs = require('fs');
 const path = require('path');
 
 const args = Object.fromEntries(process.argv.slice(2).map((a) => { const m = a.match(/^--([^=]+)=(.*)$/); return m ? [m[1], m[2]] : [a.replace(/^--/, ''), true]; }));
+// assets/fetch.config.json: elle seçimler (GitHub Actions'ta parametre vermeden). Örnek:
+// { "logo": "<url>", "card": "<url>", "photos": { "restoran": "<url>", "kafe": "<url>" }, "stock": false }
+try {
+  const cfg = JSON.parse(require('fs').readFileSync(require('path').join(__dirname, '..', 'assets', 'fetch.config.json'), 'utf8'));
+  const val = (v) => (v && typeof v === 'object' ? v.url : v);
+  if (cfg.logo && !args.logo) args.logo = val(cfg.logo);
+  if (cfg.card && !args.card) { args.card = val(cfg.card); if (cfg.card.crop) args.cardCrop = cfg.card.crop; }
+  for (const [k, v] of Object.entries(cfg.photos || {})) if (v && !args['photo-' + k]) { args['photo-' + k] = val(v); if (v.crop) args['crop-' + k] = v.crop; if (v.focal) args['focal-' + k] = v.focal; }
+  if (cfg.stock === false) args['no-stock'] = true;
+  console.log('assets/fetch.config.json uygulandı');
+} catch { /* yapılandırma yok */ }
 const BASE = String(args.base || 'https://www.pluxee.com.tr').replace(/\/$/, '');
 const UA = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0 Safari/537.36';
 const root = path.join(__dirname, '..');
@@ -107,7 +119,7 @@ const score = (i, re) => (re.test(i.url) ? 3 : 0) + (re.test(i.alt) ? 3 : 0) + (
     try {
       const { buf, ct } = await get(cardUrl, 'buffer'); const ext = extOf(cardUrl, ct);
       fs.writeFileSync(path.join(assets, `card.${ext}`), buf);
-      manifest.card = { file: `card.${ext}`, from: cardUrl };
+      manifest.card = { file: `card.${ext}`, from: cardUrl }; if (args.cardCrop) manifest.card.crop = args.cardCrop;
       console.log(`✔ kart: ${cardUrl} → assets/card.${ext} (${(buf.length / 1024).toFixed(0)} KB)`);
     } catch (e) { console.error('✘ kart görseli indirilemedi: ' + e.message); }
   } else console.error('✘ kart görseli adayı bulunamadı; --card=<url> ile verin ya da assets/card.png dosyasını elle koyun.');
@@ -145,7 +157,7 @@ const score = (i, re) => (re.test(i.url) ? 3 : 0) + (re.test(i.alt) ? 3 : 0) + (
   const used = new Set();
   for (const slot of Object.keys(SLOTS)) {
     const manual = args['photo-' + slot];
-    if (manual) { try { const u = abs(manual); const { buf, ct } = await get(u, 'buffer'); const ext = extOf(u, ct); const file = `photos/${slot}.${ext}`; fs.writeFileSync(path.join(assets, file), buf); photos.slots[slot] = { file, source: 'manual', from: u }; console.log(`✔ ${slot}: ${u}`); continue; } catch (e) { console.error(`✘ ${slot}: ${e.message}`); } }
+    if (manual) { try { const u = abs(manual); const { buf, ct } = await get(u, 'buffer'); const ext = extOf(u, ct); const file = `photos/${slot}.${ext}`; fs.writeFileSync(path.join(assets, file), buf); photos.slots[slot] = { file, source: /pluxee\.com/.test(u) ? 'site' : 'manual', from: u }; if (args['crop-' + slot]) photos.slots[slot].crop = args['crop-' + slot]; if (args['focal-' + slot]) photos.slots[slot].focal = args['focal-' + slot]; console.log(`✔ ${slot}: ${u}`); continue; } catch (e) { console.error(`✘ ${slot}: ${e.message}`); } }
     let best = photos.site.filter((p) => p.tags.includes(slot) && !used.has(p.file)).sort((a, b) => b.w * b.h - a.w * a.h)[0];
     if (!best && slot === 'hero') best = photos.site.filter((p) => !p.tags.length && !used.has(p.file) && p.w >= 1000).sort((a, b) => b.w * b.h - a.w * a.h)[0]; // etiketsiz en büyük görsel (ör. og:image)
     if (best) { used.add(best.file); photos.slots[slot] = { file: best.file, source: 'site', from: best.url, alt: best.alt }; console.log(`✔ ${slot}: siteden ${best.file}`); continue; }

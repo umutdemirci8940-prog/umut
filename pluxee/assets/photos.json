@@ -6,20 +6,38 @@
       "source": "site",
       "from": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/coh_x_large/public/2025-01/yemek%20u%CC%88creti.jpg.webp?itok=1czG0Bv5",
       "alt": "Yemek Kartlarında SGK Primi Kalktı ",
+      "focal": [
+        0.5,
+        0.45
+      ],
       "optimized": "photos/restoran.opt.webp"
     },
     "kafe": {
-      "file": "photos/kafe.jpg",
-      "source": "flickr",
-      "from": "https://loremflickr.com/1600/900/coffee,cafe,cup",
-      "credit": "Flickr CC via loremflickr.com – yayın öncesi lisanslı stok fotoğrafla değiştirin",
+      "file": "photos/site-08.webp",
+      "source": "site",
+      "from": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/plx_cards_partners_horizontal/public/2023-09/MicrosoftTeams-image%20%2837%29.png.webp?h=7777f076&itok=ZxcY9OVe",
+      "alt": "uye2",
+      "focal": [
+        0.5,
+        0.28
+      ],
       "optimized": "photos/kafe.opt.webp"
     },
     "market": {
-      "file": "photos/site-33.webp",
+      "file": "photos/site-34.jpg",
       "source": "site",
-      "from": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/plx_block_text_image/public/2026-02/al%E2%94%80%E2%96%92s%E2%95%A0%C4%9Fveris%E2%95%A0%C4%9F%20kart.webp?h=7347ad0e&itok=YOg5PJDL",
-      "alt": "market alışveriş kartı",
+      "from": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/2025-12/hediye.gida_.anasayfa.banner.2.jpg",
+      "alt": "og:image",
+      "focal": [
+        0.4,
+        0.45
+      ],
+      "crop": [
+        0,
+        0,
+        0.62,
+        1
+      ],
       "optimized": "photos/market.opt.webp"
     },
     "online": {
@@ -27,13 +45,27 @@
       "source": "site",
       "from": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/plx_block_banner/public/2025-09/pluxee%20web-%20mobile%20mockups-main%20page.jpg.webp?h=cbc4b1ae&itok=7QAF4Wpc",
       "alt": "pluxee web- mobile mockups-main page.jpg",
+      "focal": [
+        0.78,
+        0.5
+      ],
+      "crop": [
+        0.42,
+        0,
+        1,
+        1
+      ],
       "optimized": "photos/online.opt.webp"
     },
     "hero": {
-      "file": "photos/site-30.webp",
+      "file": "photos/site-23.webp",
       "source": "site",
-      "from": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/coh_x_large/public/2024-11/Y%E2%94%80%E2%96%92lbas%E2%95%A0%C4%9F%E2%94%80%E2%96%92%20I%E2%95%A0%C3%A7c%E2%95%A0%C4%9Fin%20Kurumsal%20Hediye%20O%E2%95%A0%C3%AAnerileri%20.jpg.webp?itok=C_J0sVX3",
-      "alt": "Yılbaşı için Kurumsal Hediye Önerileri ",
+      "from": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/plx_block_banner/public/2023-09/HP_PLUXEE2.png.webp?itok=t3NlflUX",
+      "alt": "kart",
+      "focal": [
+        0.5,
+        0.5
+      ],
       "optimized": "photos/hero.opt.webp"
     }
   },

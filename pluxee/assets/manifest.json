@@ -23,15 +23,17 @@
       "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/plx_cards_reinsurance/public/2023-10/plx-illus-GiftCard03%403x.png.webp?h=3cd06fc8&itok=3rhHQS5N"
     ]
   },
-  "logo": {
-    "file": "logo.webp",
-    "from": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/plx_block_carrousel/public/2023-12/I%E2%95%A0%C3%A7stanbul_Ulas%E2%95%A0%C4%9F%E2%94%80%E2%96%92m_logo.svg_.png.webp?h=378fda19&itok=92Hw6bKt",
-    "white": true,
-    "optimized": "logo.opt.png"
-  },
+  "logo": null,
   "card": {
-    "file": "card.webp",
-    "from": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/plx_cards_reinsurance/public/2023-09/plx-illus-GiftCard03%403x.png.webp?h=3cd06fc8&itok=7iHwCQck",
+    "file": "site-33.webp",
+    "from": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/plx_block_text_image/public/2026-02/al%E2%94%80%E2%96%92s%E2%95%A0%C4%9Fveris%E2%95%A0%C4%9F%20kart.webp?h=7347ad0e&itok=YOg5PJDL",
+    "crop": [
+      0.04,
+      0.07,
+      0.96,
+      0.93
+    ],
     "optimized": "card.opt.webp"
-  }
+  },
+  "logoNote": "Otomatik seçim yanlıştı (İstanbul Ulaşım iş ortağı logosu); doğru logo fetch.config.json ile iş akışında çekilir: Logo pluxee final.png"
 }

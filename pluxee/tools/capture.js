@@ -14,6 +14,7 @@ const root = path.join(__dirname, '..');
 const outDir = path.join(root, 'preview', 'screens');
 fs.mkdirSync(outDir, { recursive: true });
 const KT = data.corridor.timing, LT = data.lens.timing, RT = data.receipt.timing;
+const WT = require('../src/concepts/silme').timing, HT = require('../src/concepts/hikaye').timing, DT = require('../src/concepts/deste').timing;
 const INTRO = 520;
 const gateAt = (i) => INTRO + KT.enter + KT.gates[i] * KT.cruise;
 
@@ -49,6 +50,22 @@ const gateAt = (i) => INTRO + KT.enter + KT.gates[i] * KT.cruise;
   await page.mouse.click(440 + 408, 200); await page.waitForTimeout(500); await page.mouse.click(440 + 408, 200); await page.waitForTimeout(500); await page.mouse.click(440 + 408, 200); await page.waitForTimeout(700); await shot('fis-tamam');
   await page.mouse.move(440 + 400, 110); await page.mouse.down(); await page.mouse.move(440 + 400, 50, { steps: 8 }); await page.mouse.up(); await page.waitForTimeout(900); await shot('fis-koparildi');
   await open('fis', 'seg=hr&h=13&m=0&w=rain'); await page.waitForTimeout(INTRO + 900 + RT.first + RT.line + 500); await shot('fis-ik-yagmur');
+  // SİLME
+  await open('silme', 'seg=wc&h=12&m=31'); await page.waitForTimeout(INTRO + WT.enter + 1500); await shot('silme-ipucu');
+  await page.mouse.move(520, 120); await page.mouse.down(); for (let i = 1; i <= 10; i++) { await page.mouse.move(520 + 30 * i, 120); await page.waitForTimeout(25); } await page.waitForTimeout(150); await shot('silme-surukleme');
+  for (let i = 1; i <= 6; i++) { await page.mouse.move(820 + 25 * i, 120); await page.waitForTimeout(25); } await page.mouse.up(); await page.waitForTimeout(1200); await shot('silme-final');
+  await open('silme', 'seg=emp&h=9&m=15'); await page.waitForTimeout(INTRO + WT.enter + WT.glide * 0.55); await shot('silme-isveren-otomatik');
+  // HİKÂYE
+  await open('hikaye', 'seg=wc&h=12&m=31'); await page.waitForTimeout(INTRO + HT.label + 700); await shot('hikaye-damga');
+  await page.mouse.click(860, 130); await page.waitForTimeout(HT.label + 500); await shot('hikaye-kafe');
+  await page.mouse.move(860, 130); await page.mouse.down(); await page.waitForTimeout(HT.press + 500); await shot('hikaye-durduruldu'); await page.mouse.up();
+  await page.mouse.click(860, 130); await page.waitForTimeout(400); await page.mouse.click(860, 130); await page.waitForTimeout(HT.story + 1200); await shot('hikaye-final');
+  // DESTE
+  await open('deste', 'seg=wc&h=12&m=31'); await page.waitForTimeout(INTRO + DT.enter + DT.hint + 400); await shot('deste-ipucu');
+  await page.mouse.move(720, 120); await page.mouse.down(); for (let i = 1; i <= 8; i++) { await page.mouse.move(720 + 18 * i, 120 - 2 * i); await page.waitForTimeout(20); } await shot('deste-kaydirma');
+  await page.mouse.up(); await page.waitForTimeout(260); await shot('deste-damga');
+  await page.waitForTimeout(700); await page.mouse.click(720, 120); await page.waitForTimeout(700); await page.mouse.click(720, 120); await page.waitForTimeout(700); await page.mouse.click(720, 120); await page.waitForTimeout(DT.fly + 1400); await shot('deste-final');
+  await open('deste', 'seg=hr&h=19&m=5'); await page.waitForTimeout(INTRO + DT.enter + DT.show + DT.stampToFly + 900); await shot('deste-ik-aksam');
   await ctx.close();
 
   const ctx2 = await browser.newContext({ viewport: { width: 1280, height: 900 } });

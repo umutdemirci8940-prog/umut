@@ -23,10 +23,12 @@ const uri = (f) => `data:${MIME[path.extname(f).slice(1).toLowerCase()] || 'appl
 const manifest = fs.existsSync(mfPath) ? JSON.parse(fs.readFileSync(mfPath, 'utf8')) : {};
 const findFile = (key) => { const e = manifest[key] || {}; const c = [e.file].filter(Boolean).map((f) => path.join(dir, f)); for (const ext of ['svg', 'png', 'webp', 'jpg', 'jpeg']) c.push(path.join(dir, `${key}.${ext}`)); return c.find((p) => fs.existsSync(p)); };
 
-const PROCESS = async ({ src, mode, width, q }) => {
+const PROCESS = async ({ src, mode, width, q, crop }) => {
   const img = new Image(); await new Promise((res, rej) => { img.onload = res; img.onerror = () => rej(new Error('görsel yüklenemedi')); img.src = src; });
   let W = img.naturalWidth || img.width, H = img.naturalHeight || img.height;
-  const c = document.createElement('canvas'); c.width = W; c.height = H; const x = c.getContext('2d'); x.drawImage(img, 0, 0);
+  const c = document.createElement('canvas');
+  if (crop && crop.length === 4) { const sx = Math.round(crop[0] * W), sy = Math.round(crop[1] * H), sw = Math.round((crop[2] - crop[0]) * W), sh = Math.round((crop[3] - crop[1]) * H); c.width = sw; c.height = sh; c.getContext('2d').drawImage(img, sx, sy, sw, sh, 0, 0, sw, sh); W = sw; H = sh; } else { c.width = W; c.height = H; c.getContext('2d').drawImage(img, 0, 0); }
+  const x = c.getContext('2d');
   const d = x.getImageData(0, 0, W, H).data;
   let minX = W, minY = H, maxX = -1, maxY = -1, lum = 0, n = 0;
   for (let y = 0; y < H; y++) for (let xx = 0; xx < W; xx++) { const i = (y * W + xx) * 4; if (d[i + 3] > 20) { if (xx < minX) minX = xx; if (xx > maxX) maxX = xx; if (y < minY) minY = y; if (y > maxY) maxY = y; lum += (d[i] * .299 + d[i + 1] * .587 + d[i + 2] * .114); n++; } }
@@ -51,7 +53,7 @@ const PROCESS = async ({ src, mode, width, q }) => {
     console.log(`✔ logo: ${path.basename(logo)} ${r.dark ? '(koyu → kreatifte beyaza çevrilir)' : '(açık renk, olduğu gibi)'}`);
   } else console.log('ℹ logo yok');
   if (card) {
-    const r = await page.evaluate(PROCESS, { src: uri(card), mode: 'card', width: WIDTH, q: Q });
+    const r = await page.evaluate(PROCESS, { src: uri(card), mode: 'card', width: WIDTH, q: Q, crop: (manifest.card || {}).crop });
     fs.writeFileSync(path.join(dir, 'card.opt.webp'), Buffer.from(r.data.split(',')[1], 'base64'));
     manifest.card = Object.assign(manifest.card || {}, { file: path.basename(card), optimized: 'card.opt.webp' });
     console.log(`✔ kart: ${path.basename(card)} → card.opt.webp (${(fs.statSync(path.join(dir, 'card.opt.webp')).size / 1024).toFixed(0)} KB)`);
@@ -61,7 +63,7 @@ const PROCESS = async ({ src, mode, width, q }) => {
     const ph = JSON.parse(fs.readFileSync(phPath, 'utf8'));
     for (const [slot, e] of Object.entries(ph.slots || {})) {
       const f = path.join(dir, e.file); if (!fs.existsSync(f)) continue;
-      const r = await page.evaluate(PROCESS, { src: uri(f), mode: 'card', width: PW, q: PQ });
+      const r = await page.evaluate(PROCESS, { src: uri(f), mode: 'card', width: PW, q: PQ, crop: e.crop });
       const out = `photos/${slot}.opt.webp`; fs.writeFileSync(path.join(dir, out), Buffer.from(r.data.split(',')[1], 'base64')); e.optimized = out;
       console.log(`✔ fotoğraf ${slot}: ${e.file} → ${out} (${(fs.statSync(path.join(dir, out)).size / 1024).toFixed(0)} KB)`);
     }

@@ -58,8 +58,9 @@ function paint(P,W,H){
 }
 function grainUri(){var c=document.createElement('canvas');c.width=180;c.height=180;var x=c.getContext('2d'),d=x.createImageData(180,180),p=d.data,r=rng(5);for(var i=0;i<p.length;i+=4){var v=Math.floor(r()*255);p[i]=p[i+1]=p[i+2]=v;p[i+3]=255}x.putImageData(d,0,0);return c.toDataURL()}
 /* Katmanlar: gerçek fotoğraf varsa <img> (object-fit: cover), yoksa üretilmiş bokeh (geçici) */
-function initLayers(host,keys){var out={};try{for(var i=0;i<keys.length;i++){var k=keys[i],el;var ph=D.photos&&(D.photos[k]||(k==='rain'&&D.photos.online)||(k==='final'&&(D.photos.hero||D.photos.restoran)));if(ph){el=document.createElement('img');el.src=ph;el.alt='';el.className='ph';el.setAttribute('data-src',k)}else{el=paint(PAL[k])}el.setAttribute('data-key',k);host.appendChild(el);out[k]=el}var gr=ad.querySelector('.grain');if(gr)gr.style.backgroundImage='url('+grainUri()+')'}catch(err){}return out}
+function initLayers(host,keys){var out={};try{for(var i=0;i<keys.length;i++){var k=keys[i],el;var ph=D.photos&&(D.photos[k]||(k==='rain'&&D.photos.online)||(k==='final'&&(D.photos.hero||D.photos.restoran)));if(ph){el=document.createElement('img');el.src=ph;el.alt='';el.className='ph';el.setAttribute('data-src',k);var pk=D.photos[k]?k:(k==='rain'?'online':(D.photos.hero?'hero':'restoran'));if(D.photoPos&&D.photoPos[pk])el.style.objectPosition=D.photoPos[pk]}else{el=paint(PAL[k])}el.setAttribute('data-key',k);host.appendChild(el);out[k]=el}var gr=ad.querySelector('.grain');if(gr)gr.style.backgroundImage='url('+grainUri()+')'}catch(err){}return out}
 function photoOf(k){return D.photos&&D.photos[k]?D.photos[k]:null}
+function photoPosOf(k){return D.photoPos&&D.photoPos[k]?D.photoPos[k]:'50% 50%'}
 function showLayer(layers,key){if(!layers[key]){for(var kk in layers){key=kk;break}}for(var k in layers)layers[k].classList.toggle('is-on',k===key)}
 `;
 
@@ -240,10 +241,11 @@ function sigMarkup() { return `<div class="sig" aria-hidden="true"></div>`; }
 
 /** Konsept sayfasını birleştirir. */
 function page({ data, assets, concept, title, css, js, body, runtime }) {
-  const photos = {}; for (const [k, v] of Object.entries((assets && assets.photos) || {})) photos[k] = v.uri;
+  const photos = {}, photoPos = {}; for (const [k, v] of Object.entries((assets && assets.photos) || {})) { photos[k] = v.uri; if (v.focal) photoPos[k] = `${Math.round(v.focal[0] * 100)}% ${Math.round(v.focal[1] * 100)}%`; }
   const rt = Object.assign({
     concept,
     photos,
+    photoPos,
     brand: { url: data.brand.url },
     segments: data.segments,
     cinematic: data.cinematic,

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 'use strict';
 /**
- * Duman testi: üç konsept (giriş, sinyaller, ana etkileşim, final, tıklama, API), sunum sayfası, arşiv.
+ * Duman testi: altı konsept (giriş, sinyaller, ana etkileşim, final, tıklama, API), sunum sayfası, arşiv.
  * Kullanım: NODE_PATH=$(npm root -g) node pluxee/tools/smoke.js
  */
 const path = require('path');
@@ -13,6 +13,8 @@ const { routeFonts } = require('./fonts');
 const root = path.join(__dirname, '..');
 const dist = (c) => path.join(root, 'dist', c, 'index.html');
 const C = data.cinematic, KT = data.corridor.timing, LT = data.lens.timing, RT = data.receipt.timing, INTRO = 520;
+const ALL = ['koridor', 'mercek', 'fis', 'silme', 'hikaye', 'deste'];
+const WT = require('../src/concepts/silme').timing, HT = require('../src/concepts/hikaye').timing, DT = require('../src/concepts/deste').timing;
 let failures = 0;
 const ok = (cond, msg) => { console.log(`${cond ? '  ✔' : '  ✘'} ${msg}`); if (!cond) failures++; };
 const openAt = (page, file, qs) => page.goto('file://' + file + (qs ? '?' + qs : ''));
@@ -43,7 +45,7 @@ function fileChecks(id) {
   await page.addInitScript(() => { window.__opened = null; window.open = (u) => { window.__opened = u; return null; }; });
 
   console.log('\nDosyalar');
-  for (const id of ['koridor', 'mercek', 'fis']) fileChecks(id);
+  for (const id of ALL) fileChecks(id);
   ok(fs.readFileSync(dist('970x250'), 'utf8') === fs.readFileSync(dist('koridor'), 'utf8'), 'dist/970x250 varsayılan konseptin kopyası');
 
   console.log('\nOrtak: giriş, sinyaller, tıklama, API');
@@ -137,6 +139,81 @@ function fileChecks(id) {
   await page.waitForTimeout(autoTotal + 1200); s = await st(page);
   ok(!s.userPlayed && s.phase === 'torn' && s.visited === 4, `dokunulmazsa fiş kendiliğinden yazılıp kopuyor (≈ ${(autoTotal / 1000).toFixed(1)} sn)`);
 
+  console.log('\nSilme');
+  await openAt(page, dist('silme'), 'seg=wc&h=12&m=31'); await page.mouse.move(10, 10);
+  await page.waitForTimeout(INTRO + WT.enter + 900); s = await st(page);
+  ok(s.phase === 'wipe' && s.auto && s.hint && s.hintCls && s.x > 0, 'kart şeridi kendisi silmeye başladı, "Kartı sürükleyin" ipucu');
+  ok((await page.$$eval('.panel img.ph', (l) => l.length)) === 8 && (await page.$$eval('.panel', (l) => l.length)) === 8, 'renkli + soluk şerit: 4 + 4 panel, fotoğraflar çalışma zamanında tek kopyadan');
+  await page.mouse.move(520, 120); await page.mouse.down(); for (let i = 1; i <= 10; i++) { await page.mouse.move(520 + 30 * i, 120); await page.waitForTimeout(25); } s = await st(page);
+  ok(s.userPlayed && !s.hint && !s.auto && s.x > 250 && s.passed >= 2 && s.visited >= 2, `sürükleme kenarı taşıyor (x ${s.x}), geçilen paneller damgalanıyor (${s.passed}/4, "${s.word}")`);
+  const stamped = await page.$$eval('.strip.col .panel.is-done', (l) => l.map((e) => e.getAttribute('data-key')));
+  ok(stamped.length === s.passed && stamped[0] === 'restoran', 'damgalar sırayla: ' + stamped.join(' → '));
+  await page.mouse.up(); await page.waitForTimeout(1100); s = await st(page); const ix = s.x;
+  ok(!s.auto && s.phase === 'wipe' && ix > 310, `bırakınca atalet: kenar ${ix}'e kadar kayıp duruyor`);
+  await page.waitForTimeout(WT.resume + 500); s = await st(page);
+  ok(s.auto === true && s.phase === 'wipe' && s.x >= ix, `${(WT.resume / 1000).toFixed(1)} sn sonra otomatik kayma sürüyor`);
+  await page.mouse.move(700, 120); await page.mouse.down(); for (let i = 1; i <= 8; i++) { await page.mouse.move(700 + 34 * i, 120); await page.waitForTimeout(25); } await page.mouse.up(); await page.waitForTimeout(700); s = await st(page);
+  ok(s.phase === 'final' && s.visited === 4 && s.finalState && s.word === 'Her yerde,', 'sona kadar sürükleyince final: "Her yerde, Pluxee geçiyor."');
+  await page.waitForTimeout(WT.hold + 300); s = await st(page);
+  ok(s.ended && s.again, '"Yeniden geçir" görünür');
+  await openAt(page, dist('silme'), 'seg=hr&h=19&m=5'); await page.mouse.move(10, 10);
+  await page.waitForTimeout(INTRO + WT.enter + WT.glide + 1400); s = await st(page);
+  ok(!s.userPlayed && s.phase === 'final' && s.visited === 4 && s.order[0] === 'market', `dokunulmazsa şerit kendini siliyor (İK · akşam → önce market, ≈ ${((INTRO + WT.enter + WT.glide) / 1000).toFixed(1)} sn)`);
+  await page.focus('#ad'); await openAt(page, dist('silme'), 'seg=wc&h=12&m=31'); await page.waitForTimeout(INTRO + WT.enter + 300); await page.focus('#ad'); const kx = (await st(page)).x; await page.keyboard.press('ArrowRight'); await page.waitForTimeout(500); s = await st(page);
+  ok(s.userPlayed && s.x > kx + 30, 'ok tuşu kenarı kaydırıyor');
+
+  console.log('\nHikâye');
+  await openAt(page, dist('hikaye'), 'seg=wc&h=12&m=31'); await page.mouse.move(10, 10);
+  await page.waitForTimeout(INTRO + HT.label + 700); s = await st(page);
+  ok(s.phase === 'play' && s.idx === 0 && s.visited === 1 && s.word === 'Restoranda,' && s.layer === 'restoran' && s.hint && s.hintCls, 'ilk hikâye: restoran fotoğrafı, "Dokunun: ilerleyin" ipucu');
+  ok((await page.$eval('.story', (e) => e.classList.contains('is-stamp') && e.classList.contains('is-lbl'))) && /GEÇİYOR/.test(await page.textContent('.stamp')) && /restoran/i.test(await page.textContent('.slbl')), '"GEÇİYOR ✓" damgası ve RESTORAN · BURADA etiketi');
+  await page.mouse.click(860, 130); await page.waitForTimeout(500); s = await st(page);
+  ok(s.userPlayed && !s.hint && s.idx === 1 && s.word === 'Kafede,' && s.layer === 'kafe', 'sağa dokunma: sonraki hikâye (Kafede,)');
+  await page.mouse.click(520, 130); await page.waitForTimeout(500); s = await st(page);
+  ok(s.idx === 0 && s.word === 'Restoranda,', 'sola dokunma: önceki hikâye');
+  await page.mouse.move(860, 130); await page.mouse.down(); await page.waitForTimeout(HT.press + 400); s = await st(page); const e0 = s.elapsed; await page.waitForTimeout(600); s = await st(page);
+  ok(s.paused && s.elapsed === e0 && (await page.$eval('.scene', (e) => e.classList.contains('is-paused'))), 'basılı tutunca hikâye duruyor ("Durduruldu")');
+  await page.mouse.up(); await page.waitForTimeout(400); s = await st(page);
+  ok(!s.paused && s.elapsed > e0, 'bırakınca sürüyor');
+  await page.mouse.move(860, 130); await page.mouse.down(); await page.mouse.move(700, 130, { steps: 6 }); await page.mouse.up(); await page.waitForTimeout(500); s = await st(page);
+  ok(s.idx === 1, 'sola kaydırma: sonraki hikâye');
+  await page.focus('#ad'); await page.keyboard.press('ArrowRight'); await page.waitForTimeout(400); await page.keyboard.press('ArrowRight'); await page.waitForTimeout(HT.story + 900); s = await st(page);
+  ok(s.phase === 'final' && s.visited === 4 && s.finalState && s.word === 'Her yerde,' && (await page.$$eval('.fs', (l) => l.length)) === 4, 'dördüncü hikâyenin sonunda final: dört damga alt sırada');
+  await page.waitForTimeout(HT.hold + 300); s = await st(page);
+  ok(s.ended && s.again, '"Baştan izle" görünür');
+  await openAt(page, dist('hikaye'), 'seg=emp&h=9&m=15'); await page.mouse.move(10, 10);
+  await page.waitForTimeout(INTRO + 4 * HT.story + 900); s = await st(page);
+  ok(!s.userPlayed && s.phase === 'final' && s.visited === 4 && s.order[0] === 'kafe', `dokunulmazsa hikâyeler kendisi akıyor (işveren · sabah → önce kafe, ≈ ${((INTRO + 4 * HT.story) / 1000).toFixed(1)} sn)`);
+
+  console.log('\nDeste');
+  await openAt(page, dist('deste'), 'seg=wc&h=12&m=31'); await page.mouse.move(10, 10);
+  await page.waitForTimeout(INTRO + DT.enter + DT.hint + 300); s = await st(page);
+  ok(s.phase === 'play' && s.idx === 0 && s.passed === 0 && s.hint && s.hintCls && s.word === 'Restoranda,', 'deste dizildi, "Baskıyı kaydırın" ipucu');
+  ok((await page.$$eval('.pc', (l) => l.length)) === 4 && (await page.$$eval('.pc img.ph', (l) => l.length)) === 4 && (await page.$eval('.pc[data-key="restoran"]', (e) => getComputedStyle(e).zIndex)) === '10', 'dört fotoğraf baskısı; öncü nokta en üstte');
+  await page.mouse.move(720, 120); await page.mouse.down(); for (let i = 1; i <= 8; i++) { await page.mouse.move(720 + 18 * i, 120 - 2 * i); await page.waitForTimeout(20); } s = await st(page);
+  ok(s.userPlayed && s.dragging && !s.hint, 'baskı parmağı izliyor');
+  await page.mouse.up(); await page.waitForTimeout(120); s = await st(page);
+  ok(s.passed === 1 && (await page.$eval('.pc[data-key="restoran"]', (e) => e.classList.contains('is-stamp'))) && (await page.$eval('.card', (e) => e.classList.contains('is-tap'))), 'bırakınca damga: "GEÇİYOR ✓", kart dokunuyor');
+  await page.waitForTimeout(500); s = await st(page);
+  ok(s.idx === 1 && s.word === 'Kafede,' && (await page.$eval('.pc[data-key="restoran"]', (e) => e.classList.contains('is-out'))), 'baskı uçtu, sıradaki açıldı (Kafede,)');
+  await page.mouse.move(720, 120); await page.mouse.down(); await page.mouse.move(740, 122, { steps: 3 }); await page.mouse.up(); await page.waitForTimeout(400); s = await st(page);
+  ok(s.idx === 1 && s.passed === 1, 'kısa kaydırma geri yaylanıyor, damga yok');
+  await page.mouse.click(720, 120); await page.waitForTimeout(500); s = await st(page);
+  ok(s.idx === 2 && s.passed === 2 && s.word === 'Markette,', 'dokunma damgalayıp geçiriyor');
+  await page.focus('#ad'); await page.keyboard.press('ArrowLeft'); await page.waitForTimeout(500); s = await st(page);
+  ok(s.idx === 3 && s.passed === 3, 'ok tuşu baskıyı sola uçuruyor');
+  await page.keyboard.press('ArrowRight'); await page.waitForTimeout(DT.fly + 700); s = await st(page);
+  ok(s.phase === 'final' && s.visited === 4 && s.finalState && s.word === 'Her yerde,' && (await page.$$eval('.pc.is-fan.is-stamp', (l) => l.length)) === 4, 'dördü damgalanınca yelpaze: "Her yerde, Pluxee geçiyor."');
+  await page.waitForTimeout(DT.hold + 300); s = await st(page);
+  ok(s.ended && s.again, '"Yeniden karıştır" görünür');
+  await page.click('.again'); await page.waitForTimeout(INTRO + DT.enter + 300); s = await st(page);
+  ok(!s.finalState && s.passed === 0 && s.phase === 'play', '"Yeniden karıştır" desteyi baştan diziyor');
+  await openAt(page, dist('deste'), 'seg=hr&h=19&m=5'); await page.mouse.move(10, 10);
+  const desteAuto = INTRO + DT.enter + 4 * (DT.show + DT.stampToFly) + DT.fly;
+  await page.waitForTimeout(desteAuto + 600); s = await st(page);
+  ok(!s.userPlayed && s.phase === 'final' && s.visited === 4 && s.order[0] === 'market', `dokunulmazsa deste kendini oynatıyor (İK · akşam → önce market, ≈ ${(desteAuto / 1000).toFixed(1)} sn)`);
+  ok(!(await page.$eval('#ad', (e) => /Yemek Kartı|Splash/i.test(e.textContent))), 'açık zeminli konseptte de ajans adı yok');
+
   ok(errors.length === 0, 'konsolda hata yok' + (errors.length ? ': ' + errors.join(' | ') : ''));
   await ctx.close();
 
@@ -144,7 +221,7 @@ function fileChecks(id) {
   const ctxR = await browser.newContext({ viewport: { width: 970, height: 250 }, reducedMotion: 'reduce' });
   await routeFonts(ctxR);
   const pr = await ctxR.newPage();
-  for (const id of ['koridor', 'mercek', 'fis']) { await openAt(pr, dist(id), 'seg=wc&h=12'); await pr.waitForTimeout(400); s = await st(pr); ok(s.ended && s.visited === 4 && s.word === 'Her yerde,', `${id}: doğrudan final karesi`); }
+  for (const id of ALL) { await openAt(pr, dist(id), 'seg=wc&h=12'); await pr.waitForTimeout(400); s = await st(pr); ok(s.ended && s.visited === 4 && s.word === 'Her yerde,', `${id}: doğrudan final karesi`); }
   await ctxR.close();
 
   console.log('\nSunum sayfası');
@@ -155,9 +232,11 @@ function fileChecks(id) {
   ps.on('pageerror', (e) => errS.push(e.message));
   await ps.goto('file://' + path.join(root, 'preview', 'index.html'));
   await ps.waitForTimeout(1500);
-  ok((await ps.$$eval('.tab', (l) => l.length)) === 3 && /WC-RESTORAN · KORIDOR/.test(await ps.textContent('#variant')), 'üç konsept sekmesi; gömülü kreatif durum bildiriyor');
+  ok((await ps.$$eval('.tab', (l) => l.length)) === 6 && /WC-RESTORAN · KORIDOR/.test(await ps.textContent('#variant')), 'altı konsept sekmesi; gömülü kreatif durum bildiriyor');
   await ps.click('.tab[data-id="fis"]'); await ps.waitForTimeout(1600);
   ok(/WC-RESTORAN · FIS/.test(await ps.textContent('#variant')), 'sekme geçişi Fiş konseptini yüklüyor');
+  await ps.click('.tab[data-id="deste"]'); await ps.waitForTimeout(1600);
+  ok(/WC-RESTORAN · DESTE/.test(await ps.textContent('#variant')), 'sekme geçişi Deste konseptini yüklüyor');
   await ps.click('#presets button:nth-of-type(3)'); await ps.waitForTimeout(1200);
   ok(/EMP-KAFE/.test(await ps.textContent('#variant')), 'hazır senaryo kreatifi değiştiriyor');
   await ps.frameLocator('#ad').locator('.cta').click(); await ps.waitForTimeout(200);
@@ -173,6 +252,10 @@ function fileChecks(id) {
   const total = INTRO + KT.enter + KT.cruise + KT.hold;
   await pl.waitForTimeout(total + 800); s = await st(pl);
   ok(s.ended && s.finalState && total <= 30000, `koridor ${(total / 1000).toFixed(1)} sn'de final karesinde duruyor (≤ 30 sn)`);
+  for (const [id, t] of [['silme', INTRO + WT.enter + WT.glide + WT.hold], ['hikaye', INTRO + 4 * HT.story + HT.hold], ['deste', INTRO + DT.enter + 4 * (DT.show + DT.stampToFly) + DT.fly + DT.hold]]) {
+    await openAt(pl, dist(id), 'seg=wc&h=12'); await pl.mouse.move(10, 10); await pl.waitForTimeout(t + 1000); s = await st(pl);
+    ok(s.ended && s.finalState && t <= 30000, `${id} ${(t / 1000).toFixed(1)} sn'de final karesinde duruyor (≤ 30 sn)`);
+  }
   await ctxL.close();
 
   console.log('\nArşiv sürümleri');

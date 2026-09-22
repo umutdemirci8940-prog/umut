@@ -86,7 +86,8 @@ var scene=$('.scene'),col=$('.strip.col'),edge=$('.edge'),cardw=$('.cardw'),card
 var dim=null,panels=[],dpanels=[],x=0,phase='',auto=true,drag=null,vel=0,tilt=0,tw=null,raf=0,last=0,live=false,resumeT=null,hintT=null,inertia=false,lastMove=0;
 /* sol zemin + film greni */
 (function(){try{var h=photoOf('hero')||photoOf('restoran'),el;if(h){el=document.createElement('img');el.src=h;el.alt='';el.className='ph'}else el=paint(PAL.city,640,250);back.insertBefore(el,back.firstChild);var g=grainUri(),gs=ad.querySelectorAll('.grain');for(var i=0;i<gs.length;i++)gs[i].style.backgroundImage='url('+g+')'}catch(err){}})();
-function ensurePhoto(p,key){if(p.querySelector('img.ph'))return;var old=p.querySelector('canvas');if(old)p.removeChild(old);try{p.insertBefore(paint(PAL[key]||PAL.city,300,250),p.firstChild)}catch(err){}}
+/* panel fotoğrafı: gerçek fotoğraf çalışma zamanında D.photos'tan (dosyada tek kopya); yoksa üretilmiş bokeh */
+function ensurePhoto(p,key){if(p.querySelector('img.ph')||p.querySelector('canvas'))return;var ph=photoOf(key),el;if(ph){el=document.createElement('img');el.src=ph;el.alt='';el.className='ph';el.style.objectPosition=photoPosOf(key)}else{try{el=paint(PAL[key]||PAL.city,300,250)}catch(err){return}}p.insertBefore(el,p.firstChild)}
 function build(){
   buildCore();
   var byKey={},ps=col.querySelectorAll('.panel');for(var i=0;i<ps.length;i++)byKey[ps[i].getAttribute('data-key')]=ps[i];
@@ -193,11 +194,7 @@ S=readSignals();build();start();
 `;
 
 function render(data, assets) {
-  const photos = (assets && assets.photos) || {};
-  const panels = KEYS.map((k) => {
-    const img = photos[k] ? `<img class="ph" src="${photos[k].uri}" alt="">` : '';
-    return `<div class="panel" data-key="${k}">${img}<span class="cap"><b></b><small></small></span><span class="stamp">${SVG.check}${esc(COPY.stamp)}</span></div>`;
-  }).join('');
+  const panels = KEYS.map((k) => `<div class="panel" data-key="${k}"><span class="cap"><b></b><small></small></span><span class="stamp">${SVG.check}${esc(COPY.stamp)}</span></div>`).join('');
   const body = `
   <div class="back"><div class="grain"></div></div>
   <div class="scene" aria-label="Kartı sürükleyin: geçtiği yer renklensin">
@@ -217,5 +214,5 @@ function render(data, assets) {
 module.exports = {
   id: 'silme', title: 'Silme', tagline: 'Kartı geçir: geçtiği yer renklensin',
   howto: 'Kartı (ya da şeridi) sağa sürükleyin; geçtiği panel renklenir ve "GEÇİYOR ✓" damgası basılır. Dokunma bir sonraki panele geçirir; ok tuşları kenarı %12 kaydırır.',
-  render,
+  render, timing: COPY.timing,
 };
