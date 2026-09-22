@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-22T12:47:44.248Z",
+  "generatedAt": "2026-09-22T12:57:59.697Z",
   "bracelets": {
     "silver": {
       "file": "assets/opt/silver.webp",
@@ -115,16 +115,16 @@
   "logo": {
     "file": "assets/opt/logo.svg",
     "inline": true,
-    "aspect": 4.805085010042387,
-    "from": "assets/logo/wikimedia-pandora-2019.svg",
-    "bytes": 5545
+    "aspect": 3.629215182216846,
+    "from": "assets/logo/inline-home-0-50f76aa8.svg",
+    "bytes": 4009
   },
   "hero": {
     "file": "assets/opt/hero.webp",
     "w": 700,
-    "h": 537,
-    "bytes": 30078,
-    "pos": "50% 0%",
-    "from": "assets/src/hearts-1.jpg"
+    "h": 530,
+    "bytes": 11322,
+    "pos": "50% 50%",
+    "from": "assets/site/home-11-2026q3e-collection-moments-go-con-ic-pdp.webp"
   }
 }

@@ -365,7 +365,20 @@ function extractProduct(html, url, sku) {
 
   await browser.close();
   manifest.durationSec = Math.round((Date.now() - t0) / 1000);
-  fs.writeFileSync(path.join(out, 'manifest.json'), JSON.stringify(manifest, null, 2));
+  // --only ile kısmi çalıştırmada mevcut manifest'teki diğer ürünler/listeler korunur
+  const mfPath = path.join(out, 'manifest.json');
+  if (only && fs.existsSync(mfPath)) {
+    try {
+      const prev = JSON.parse(fs.readFileSync(mfPath, 'utf8'));
+      const byKey = {}; for (const p of prev.products || []) byKey[p.key] = p;
+      for (const p of manifest.products) if (p.images.length || !byKey[p.key]) byKey[p.key] = p;
+      manifest.products = Object.values(byKey);
+      if (!manifest.listings.length) manifest.listings = prev.listings || [];
+      if (!manifest.site.pages.length) manifest.site = prev.site || manifest.site;
+      if (!manifest.logos.some((l) => l.kind === 'inline-svg' || l.kind === 'header-img')) { manifest.logos = [...(prev.logos || []), ...manifest.logos]; manifest.logo = prev.logo || manifest.logo; }
+    } catch (e) { manifest.errors.push('önceki manifest birleştirilemedi: ' + e.message); }
+  }
+  fs.writeFileSync(mfPath, JSON.stringify(manifest, null, 2));
   const okP = manifest.products.filter((p) => p.images.length).length;
   log(`\n✔ ${okP}/${manifest.products.length} ürün görselli · ${manifest.listings.reduce((a, l) => a + l.items.length, 0)} liste kartı · ${manifest.site.pages.reduce((a, p) => a + p.images.length, 0)} site görseli · ${manifest.logos.length} logo adayı · ${manifest.durationSec} sn`);
   fs.writeFileSync(path.join(out, 'report.md'), '# Pandora toplayıcı raporu\n\n' + report.join('\n') + '\n');

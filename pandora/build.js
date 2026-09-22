@@ -45,8 +45,8 @@ if (!args.has('--vector') && fs.existsSync(optPath)) {
   if (opt.hero && opt.hero.file && !args.has('--no-hero')) { const a = load(opt.hero.file); if (a) { assets.hero = a; assets.heroPos = opt.hero.pos; } }
   mode = `FOTOĞRAF (${Object.keys(assets.bracelets).length} bileklik, ${Object.keys(assets.charms).length} charm${assets.logo ? ', logo' : ''}${assets.hero ? ', hero' : ''})`;
 }
-// Fontlar: assets/fonts/inter-subset.css varsa gömülür (tools/subset-fonts.sh üretir)
-const fontCssFile = path.join(root, 'assets', 'fonts', 'inter-subset.css');
+// Fontlar: assets/fonts/montserrat-subset.css varsa gömülür (tools/subset-fonts.sh üretir; Montserrat, sitenin Gotham'ına en yakın açık font)
+const fontCssFile = path.join(root, 'assets', 'fonts', 'montserrat-subset.css');
 if (!args.has('--no-embed-fonts') && fs.existsSync(fontCssFile)) assets.fontCss = fs.readFileSync(fontCssFile, 'utf8');
 
 const html = render(data, assets);
@@ -55,5 +55,5 @@ fs.writeFileSync(path.join(root, 'release', 'Pandora2027.html'), html);
 const kb = (Buffer.byteLength(html) / 1024).toFixed(0);
 let zipNote = '';
 try { execSync('zip -v', { stdio: 'ignore' }); const z = path.join(zipDir, 'pandora-moments-970x250.zip'); fs.rmSync(z, { force: true }); execSync(`zip -q -j "${z}" "${path.join(out, 'index.html')}"`); zipNote = ` → ${path.relative(root, z)}`; } catch { zipNote = ' (zip yok)'; }
-console.log(`Görsel modu: ${mode}${assets.fontCss ? ' · Inter gömülü' : ' · Google Fonts bağlantısı'}`);
+console.log(`Görsel modu: ${mode}${assets.fontCss ? ' · Montserrat gömülü' : ' · Google Fonts bağlantısı'}`);
 console.log(`✔ 970x250 ${SIZE.label}  ${kb} KB  → dist/970x250/index.html, release/Pandora2027.html${zipNote}`);

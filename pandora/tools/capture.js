@@ -15,7 +15,7 @@ const outDir = path.resolve(root, String(args.out || 'preview/screens'));
 fs.mkdirSync(outDir, { recursive: true });
 const W = 970, H = 250;
 const fontsDir = path.join(root, 'assets', 'fonts');
-const fontCss = fs.existsSync(path.join(fontsDir, 'inter.css')) ? fs.readFileSync(path.join(fontsDir, 'inter.css'), 'utf8') : null;
+const fontCss = fs.existsSync(path.join(fontsDir, 'montserrat.css')) ? fs.readFileSync(path.join(fontsDir, 'montserrat.css'), 'utf8') : null;
 
 async function routeFonts(ctx) {
   if (!fontCss) return;

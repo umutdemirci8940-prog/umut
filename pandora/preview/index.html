@@ -6,11 +6,11 @@
 <title>Pandora Moments – 970×250 Media-First Rich Media Masthead</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#fbf7f8;--panel:#fff;--line:rgba(31,30,28,.1);--text:#1f1e1c;--muted:#6b5d61;--rose:#c8104e;--rose2:#ef5f87;--blush:#f7e9ec}
 *{box-sizing:border-box;margin:0;padding:0}
-html{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+html{background:var(--bg);color:var(--text);font-family:'Montserrat',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;-webkit-font-smoothing:antialiased}
 body{min-height:100vh;background:radial-gradient(900px 500px at 8% -10%,rgba(239,95,135,.12),transparent 60%),radial-gradient(800px 400px at 100% 0%,rgba(200,16,78,.08),transparent 60%),var(--bg)}
 a{color:inherit}
 .wrap{max-width:1120px;margin:0 auto;padding:40px 24px 80px}
@@ -81,7 +81,7 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92em;bac
   <div class="chips"><span class="chip">Boyut <b>970 × 250</b></span><span class="chip">Tek dosya, <b id="kb">–</b></span><span class="chip"><b>clickTag</b> / Enabler</span><span class="chip">Otomatik oynatma <b>≤ 30 sn</b></span><span class="chip">Ses <b>varsayılan kapalı</b></span></div>
 </header>
 <h1>“Kendi hikâyeni tasarla.” — <em>fotoğraf önde</em>, bileklik tasarlayıcı elinin altında</h1>
-<p class="lead">Üç sütunlu, fotoğraf önde bir kurgu: solda tr.pandora.net’in kendi model çekimi (kadraj yavaşça açılır), üzerinde logo, “3 Al 2 Öde” çipi, başlık ve CTA; ortada Pandora pembesi zemin ve ışık halesi üzerinde büyük Pandora Moments yılan zincir bileklik packshot’ı; sağda buzlu cam panelde metal seçimi (gümüş / rose / altın), sitedeki gerçek charm fotoğrafları ve canlı toplam. Kullanıcı dokunmazsa banner kendi kendine üç charm takarak “gösteri” yapar; imleç hareket edince kontrol kullanıcıya geçer. Ürün adları ve TL fiyatları siteden.</p>
+<p class="lead">Üç sütunlu, fotoğraf önde bir kurgu: solda Pandora’nın güncel Moments kampanya görseli (sitenin ana sayfasından; kadraj yavaşça açılır), üzerinde sitenin logosu, “3 Al 2 Öde” çipi, büyük harf başlık ve CTA; ortada Pandora pembesi zemin ve ışık halesi üzerinde büyük Pandora Moments yılan zincir bileklik packshot’ı; sağda buzlu cam panelde metal seçimi (gümüş / rose / altın), sitedeki gerçek charm fotoğrafları ve canlı toplam. Kullanıcı dokunmazsa banner kendi kendine üç charm takarak “gösteri” yapar; imleç hareket edince kontrol kullanıcıya geçer. Ürün adları ve TL fiyatları siteden.</p>
 
 <div class="toolbar">
   <button class="primary" id="restart">↻ Yeniden başlat</button>
@@ -124,7 +124,7 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92em;bac
     <li><b>Ses:</b> varsayılan kapalı; kullanıcı açarsa takma/çıkarma için kısa WebAudio tıkları.</li>
   </ul></div>
   <div class="note"><h4>Rich media / teknik</h4><ul>
-    <li>Tek HTML dosyası (~450 KB); CSS/JS satır içi, model fotoğrafı ve ürün packshot’ları (fonu temizlenmiş, 2× WebP), logo (SVG) ve Inter alt kümesi (Latin + Türkçe) base64 gömülü → harici istek yok. Rich media / masthead yerleşimleri için; 150 KB sınırlı standart banner yuvalarına <code>--no-embed-fonts</code> ve daha küçük görsellerle indirilebilir.</li>
+    <li>Tek HTML dosyası (~420 KB); CSS/JS satır içi, kampanya fotoğrafı ve ürün packshot’ları (fonu temizlenmiş, 2× WebP), sitenin logo SVG’si ve Montserrat alt kümesi (Latin + Türkçe; sitenin Gotham’ına en yakın açık font) base64 gömülü → harici istek yok. Rich media / masthead yerleşimleri için; 150 KB sınırlı standart banner yuvalarına <code>--no-embed-fonts</code> ve daha küçük görsellerle indirilebilir.</li>
     <li><code>&lt;meta name="ad.size"&gt;</code>, <code>var clickTag</code>, <code>Enabler.exit</code> / <code>Enabler.counter</code>; <code>window.adTrack(olay)</code> kancası (interact, metal_*, charm_add_*, charm_remove, reset, sound_on, demo_complete, cta_click, exit).</li>
     <li>ES5 çalışma zamanı, harici kütüphane yok; DOM + CSS geçişleri, WAAPI gerekmez. Retina fotoğraflar (2×).</li>
     <li>Klavye, dokunmatik, <code>prefers-reduced-motion</code>, <code>aria-live</code> ürün satırı; 30 sn otomatik oynatma sınırı (IAB / Google).</li>

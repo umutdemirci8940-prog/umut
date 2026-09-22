@@ -19,8 +19,8 @@ const fontsDir = path.join(root, 'assets', 'fonts');
 (async () => {
   const browser = await chromium.launch();
   const ctx = await browser.newContext({ viewport: { width: 970, height: 250 } });
-  if (fs.existsSync(path.join(fontsDir, 'inter.css'))) {
-    const css = fs.readFileSync(path.join(fontsDir, 'inter.css'), 'utf8');
+  if (fs.existsSync(path.join(fontsDir, 'montserrat.css'))) {
+    const css = fs.readFileSync(path.join(fontsDir, 'montserrat.css'), 'utf8');
     await ctx.route('**/fonts.googleapis.com/**', (r) => r.fulfill({ contentType: 'text/css', body: css }));
     await ctx.route('**/fonts.gstatic.com/**', (r) => { const f = path.join(fontsDir, path.basename(new URL(r.request().url()).pathname)); fs.existsSync(f) ? r.fulfill({ contentType: 'font/woff2', body: fs.readFileSync(f) }) : r.abort(); });
   }

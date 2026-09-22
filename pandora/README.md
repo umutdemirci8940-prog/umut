@@ -34,21 +34,30 @@ Yerleşim üç sütun: **solda** tr.pandora.net’in kendi model çekimi (Ken Bu
 
 ## Veri: tr.pandora.net’ten alınanlar
 
-Bulut oturumunun ağ politikası tr.pandora.net’e erişemediği için ürün adları/fiyatları arama motoru sonuçları ve Wayback Machine’den, görseller ise **GitHub Actions** üzerinde çalışan toplayıcıyla (`tools/fetch-assets.js`) alınır. tr.pandora.net GitHub sunucusunu bekleme odasıyla (403 “Bir dakika lütfen…”) engellediği için toplayıcı Pandora’nın yeni platformu **www.pandora.net/tr-tr** (aynı ürünler, TL fiyatlar) üzerinden galeri görsellerini çeker; olmazsa Wayback’ten yalnızca ad/fiyat alır.
+Bulut oturumunun ağ politikası tr.pandora.net’e erişemediği için görseller, adlar ve fiyatlar **GitHub Actions** üzerinde çalışan toplayıcıyla (`tools/fetch-assets.js`, Playwright/Chromium) alınır: ürün sayfalarından JSON-LD / galeri görselleri (packshot + model çekimi), listeleme kartları, ana sayfadaki kampanya görselleri, üst menüdeki logo SVG’si ve site fontu/renkleri. tr.pandora.net zaman zaman bekleme odasıyla (403 “Bir dakika lütfen…”) yanıt verir; o durumda betik Pandora’nın yeni platformu **www.pandora.net/tr-tr** (aynı ürünler, TL fiyatlar) ve son çare Wayback Machine’e (yalnız ad/fiyat) düşer. Kısmi çalıştırma (`only` girdisi) mevcut manifest’e birleştirilir.
+
+Marka varlıkları:
+
+- **Logo:** www.pandora.net/tr-tr üst menüsündeki satır içi SVG (`assets/logo/inline-home-0-*.svg`), fotoğraf üzerinde beyaz.
+- **Fotoğraf:** ana sayfadaki Pandora Moments 2026 Q3 kampanya görseli (`assets/site/home-11-…moments….webp`), 3:4 kaynaktan 330×250 sütuna kırpıldı (`assets/pick.json → hero.crop`).
+- **Yazı tipi:** site Gotham SSm kullanıyor (lisanslı); en yakın açık font **Montserrat** (Google Fonts) gömüldü; başlıklar sitedeki gibi büyük harf.
+- **Renkler:** Pandora pembesi zemin (#f7e9ec → #efd6dd), mürekkep #1f1e1c, vurgu #c8104e.
 
 Ürünler (`src/data.js`):
 
 | Anahtar | Ürün | Kod | Fiyat (TL) |
 |---|---|---|---|
-| silver | Pandora Moments Yılan Zincir Bileklik | 599652C01 (alt.: 590702HV) | 5.269 |
-| rose | Moments 14 Ayar Pembe Altın Kaplama Bileklik | 580728 | 7.609 |
-| gold | Moments 14 Ayar Altın Kaplama Düz Klipsli Bileklik | 568748C00 | 6.419 |
-| hearts | İç İçe Sonsuz Kalpler Charm | 790800C00 | 1.599 |
-| galaxy | Galaksi Mavisi ve Yıldız Murano Charm | 790015C00 | 2.549 |
-| murano | Mat Pembe Murano Cam Charm | 789421C00 | 2.009 |
-| butterfly | Mavi Kelebek Işıltılı Charm | 790761C01 | 2.359 |
-| star | Galaksi Yıldız Murano Sallantılı Charm | 792368C01 | 2.359 |
-| clip | Mavi Pavé Klips Charm | 791817NSBMX | 2.029 |
+| silver | Pandora Moments Yılan Zinciri Ayarlanabilir Bileklik | 599652C01 | 4.479 |
+| rose | Moments 14 Ayar Pembe Altın Kaplama Bileklik | 580728 | 5.449 |
+| gold | Moments 14 Ayar Altın Kaplama Düz Klipsli Bileklik | 568748C00 | 5.609 |
+| hearts | İç İçe Sonsuz Kalpler Charm | 790800C00 | 999 |
+| murano | Mat Pembe Murano Cam Charm | 789421C00 | 2.699 |
+| galaxy | Galaksi Mavisi ve Yıldız Murano Charm | 790015C00 | 2.779 |
+| butterfly | Mavi Kelebek Işıltılı Charm | 790761C01 | 3.579 |
+| clip | Mavi Pavé Klips Charm | 791817NSBMX | 2.699 |
+| bigbutterfly | Büyük Kelebek Charm | 793747C01 | 4.349 |
+
+Fiyatlar ve packshot’lar 22 Eylül 2026’da tr.pandora.net ürün sayfalarından (tarayıcıyla) alındı; `assets/manifest.json` kaynağı ve adresi tutar. Tepside ilk 6 charm gösterilir; `star` (792368C01) sitede görselsiz kaldığı için `assets/pick.json` ile atlandı.
 
 Kampanya: “3 Al 2 Öde” (Pandora Club üyelerine özel, seçili mücevherlerde 3 ürün seç 1’i hediye) – tr.pandora.net ana sayfa, Eylül 2026. Fiyatlar liste fiyatıdır; yayın öncesi güncel fiyat ve kampanya koşullarının markayla teyidi önerilir.
 

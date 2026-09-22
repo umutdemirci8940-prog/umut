@@ -30,22 +30,36 @@
     },
     "star": {
       "skip": true
+    },
+    "silverclasp": {
+      "skip": true
+    },
+    "talisman": {
+      "skip": true
+    },
+    "firefly": {
+      "skip": true
+    },
+    "clover": {
+      "skip": true
     }
   },
   "hero": {
-    "file": "assets/src/hearts-1.jpg",
+    "file": "assets/site/home-11-2026q3e-collection-moments-go-con-ic-pdp.webp",
     "crop": {
       "x": 0,
-      "y": 0.06,
+      "y": 0.21,
       "w": 1,
-      "h": 0.575
+      "h": 0.568
     },
     "max": 700,
-    "quality": 0.78,
-    "pos": "50% 0%"
+    "quality": 0.8,
+    "pos": "50% 50%",
+    "source": "tr-tr ana sayfa – Pandora Moments 2026 Q3 kampanya görseli"
   },
   "logo": {
-    "file": "assets/logo/wikimedia-pandora-2019.svg",
-    "fill": "#ffffff"
+    "file": "assets/logo/inline-home-0-50f76aa8.svg",
+    "fill": "#ffffff",
+    "source": "www.pandora.net/tr-tr üst menü logosu (satır içi SVG)"
   }
 }

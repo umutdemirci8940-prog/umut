@@ -117,7 +117,8 @@ const PROCESS = async ({ src, max, quality, mode, tol, crop, pad, seeds, keyTol 
     const f = path.join(root, lg);
     if (/\.svg$/i.test(f)) {
       let svg = fs.readFileSync(f, 'utf8').replace(/<\?xml[^>]*>/, '').replace(/<!--[\s\S]*?-->/g, '').replace(/<script[\s\S]*?<\/script>/gi, '').replace(/<metadata[\s\S]*?<\/metadata>/gi, '').replace(/<sodipodi:namedview[\s\S]*?\/>/gi, '').replace(/<sodipodi:namedview[\s\S]*?<\/sodipodi:namedview>/gi, '').replace(/\s(?:inkscape|sodipodi):[a-zA-Z-]+="[^"]*"/g, '').replace(/\sxmlns:(?:dc|cc|rdf|svg|sodipodi|inkscape)="[^"]*"/g, '').replace(/<defs[^>]*\/>|<defs[^>]*>\s*<\/defs>/g, '').replace(/\sstyle="text-align:center"/, '').replace(/\s+/g, ' ').replace(/> </g, '><').trim();
-      if (pick.logo && pick.logo.fill) svg = svg.replace(/fill="(?!none)[^"]*"/g, `fill="${pick.logo.fill}"`).replace(/<svg/, `<svg fill="${pick.logo.fill}"`);
+      if (pick.logo && pick.logo.fill) { svg = svg.replace(/fill="(?!none)[^"]*"/g, `fill="${pick.logo.fill}"`).replace(/stroke="(?!none)[^"]*"/g, `stroke="${pick.logo.fill}"`); svg = svg.replace(/^(<svg[^>]*?)\sfill="[^"]*"/, '$1').replace(/^<svg/, `<svg fill="${pick.logo.fill}"`); }
+      svg = svg.replace(/\swidth="100%"/, '').replace(/<title>[\s\S]*?<\/title>/, '');
       const outFile = path.join(optDir, 'logo.svg'); fs.writeFileSync(outFile, svg);
       const vb = svg.match(/viewBox="([\d.\s,-]+)"/); const v = vb ? vb[1].trim().split(/[\s,]+/).map(Number) : null;
       opt.logo = { file: path.relative(root, outFile), inline: true, aspect: v ? v[2] / v[3] : null, from: lg, bytes: svg.length };

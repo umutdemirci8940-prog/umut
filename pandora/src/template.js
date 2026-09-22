@@ -32,7 +32,7 @@ function ringSvg(b) {
 function charmSvg(c, i) {
   const hues = ['#c8104e', '#3b5bdb', '#e8547f', '#2b8ad6', '#7048e8', '#b8891c', '#0ca678'];
   const col = hues[i % hues.length];
-  return `<svg viewBox="0 0 64 64" aria-hidden="true"><defs><radialGradient id="cg-${esc(c.key)}" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="${col}"/><stop offset="1" stop-color="#3a1020"/></radialGradient></defs><circle cx="32" cy="14" r="6" fill="none" stroke="#bfc4cc" stroke-width="3"/><circle cx="32" cy="38" r="22" fill="url(#cg-${esc(c.key)})"/><ellipse cx="25" cy="30" rx="7" ry="3.5" fill="#fff" opacity=".7" transform="rotate(-25 25 30)"/><text x="32" y="43" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="800" text-anchor="middle" fill="#fff" opacity=".9">${esc(c.short.slice(0, 2).toUpperCase())}</text></svg>`;
+  return `<svg viewBox="0 0 64 64" aria-hidden="true"><defs><radialGradient id="cg-${esc(c.key)}" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="${col}"/><stop offset="1" stop-color="#3a1020"/></radialGradient></defs><circle cx="32" cy="14" r="6" fill="none" stroke="#bfc4cc" stroke-width="3"/><circle cx="32" cy="38" r="22" fill="url(#cg-${esc(c.key)})"/><ellipse cx="25" cy="30" rx="7" ry="3.5" fill="#fff" opacity=".7" transform="rotate(-25 25 30)"/><text x="32" y="43" font-family="Montserrat,Arial,sans-serif" font-size="13" font-weight="800" text-anchor="middle" fill="#fff" opacity=".9">${esc(c.short.slice(0, 2).toUpperCase())}</text></svg>`;
 }
 function logoHtml(name, logo) {
   if (logo && logo.svg) return logo.svg.replace('<svg', '<svg class="logo" role="img" aria-label="' + esc(name) + '"');
@@ -47,7 +47,7 @@ function render(data, assets = {}) {
   const runtime = fs.readFileSync(path.join(__dirname, 'runtime.js'), 'utf8');
   const fontHead = assets.fontCss
     ? `<style>${assets.fontCss}</style>`
-    : `<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">`;
+    : `<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">`;
 
   const bracelets = data.bracelets.map((b) => Object.assign({}, b, (assets.overrides && assets.overrides.bracelets && assets.overrides.bracelets[b.key]) || {}));
   const charms = data.charms.map((c) => Object.assign({}, c, (assets.overrides && assets.overrides.charms && assets.overrides.charms[c.key]) || {}));
@@ -84,8 +84,7 @@ ${fontHead}
   <div class="media" aria-hidden="true"><div class="glow"></div><div class="grain"></div></div>
   <div class="photo" aria-hidden="true" style="--pw:${P.w}px"><div class="ph"${heroStyle}></div><div class="scrim"></div><div class="edge"></div></div>
 
-  <div class="brand rise d1">${logoHtml(B.name, assets.logo)}</div>
-  ${CP.enabled ? `<div class="promo rise d2"><b>${esc(CP.badge)}</b><span>${esc(CP.line)}</span></div>` : ''}
+  <div class="brand rise d1">${logoHtml(B.name, assets.logo)}${CP.enabled ? `<span class="promo rise d2"><b>${esc(CP.badge)}</b><span>${esc(CP.line)}</span></span>` : ''}</div>
 
   <div class="copy">
     <div class="kicker rise d2">${esc(K.kicker)}</div>
