@@ -12,7 +12,10 @@
     "capture": "NODE_PATH=$(npm root -g) node tools/capture.js",
     "capture:video": "NODE_PATH=$(npm root -g) node tools/capture.js --video",
     "test": "NODE_PATH=$(npm root -g) node tools/smoke.js",
-    "preview": "npx --yes serve -l 4173 ."
+    "preview": "npx --yes serve -l 4173 .",
+    "pluxee:build": "node pluxee/build.js",
+    "pluxee:test": "NODE_PATH=$(npm root -g) node pluxee/tools/smoke.js",
+    "pluxee:capture": "NODE_PATH=$(npm root -g) node pluxee/tools/capture.js"
   },
   "license": "UNLICENSED"
 }

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=970,initial-scale=1">
+<meta name="ad.size" content="width=970,height=250">
+<title>Pluxee – Pluxee Geçiyor · 970x250</title>
+<style>
+:root{--navy:#221C46;--navy2:#2B2458;--navy3:#15112F;--green:#00EB5E;--lav:#B8A9FF;--ease:cubic-bezier(.22,.8,.26,1)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:970px;height:250px;overflow:hidden;background:#221C46}
+body{font-family:Inter,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.ad{position:relative;width:970px;height:250px;overflow:hidden;background:var(--navy);color:#fff;user-select:none;-webkit-user-select:none;outline:0;cursor:pointer}
+.ad:focus-visible{box-shadow:inset 0 0 0 2px var(--green)}
+/* gökyüzü, güneş/ay, yıldız, yağmur */
+.sky{position:absolute;inset:0;opacity:0;transition:opacity .9s}
+.ad.is-live .sky{opacity:1}
+.ad[data-moment=breakfast] .sky{background:radial-gradient(60% 120% at 93% 0%,rgba(255,160,110,.55),transparent 62%),radial-gradient(50% 70% at 48% 110%,rgba(255,120,80,.12),transparent 60%)}
+.ad[data-moment=lunch] .sky{background:radial-gradient(60% 120% at 93% 0%,rgba(255,226,122,.5),transparent 62%),radial-gradient(50% 70% at 48% 110%,rgba(0,235,94,.1),transparent 60%)}
+.ad[data-moment=coffee] .sky{background:radial-gradient(60% 120% at 93% 0%,rgba(255,190,90,.5),transparent 62%),radial-gradient(50% 70% at 48% 110%,rgba(255,140,90,.1),transparent 60%)}
+.ad[data-moment=evening] .sky{background:radial-gradient(60% 120% at 93% 0%,rgba(255,110,150,.5),transparent 62%),radial-gradient(50% 70% at 48% 110%,rgba(122,99,255,.18),transparent 60%)}
+.ad[data-moment=night] .sky{background:radial-gradient(60% 120% at 93% 0%,rgba(122,99,255,.3),transparent 62%),linear-gradient(180deg,rgba(0,0,0,.28),transparent 70%)}
+.ad.is-rain .sky{background:radial-gradient(60% 120% at 93% 0%,rgba(170,180,210,.26),transparent 62%),linear-gradient(180deg,rgba(0,0,0,.22),transparent 70%)}
+.sun{position:absolute;left:918px;top:18px;width:30px;height:30px;border-radius:50%;background:#FFE27A;box-shadow:0 0 34px 10px rgba(255,226,122,.32);transition:top .9s var(--ease),background .9s,box-shadow .9s,opacity .6s}
+.ad[data-moment=breakfast] .sun{background:#FFB36B;top:30px;box-shadow:0 0 34px 10px rgba(255,179,107,.32)}
+.ad[data-moment=coffee] .sun{background:#FFC65C;top:22px}
+.ad[data-moment=evening] .sun{background:#FF7E9D;top:28px;box-shadow:0 0 34px 12px rgba(255,126,157,.34)}
+.ad[data-moment=night] .sun{background:transparent;box-shadow:inset -9px -6px 0 0 #EDE9FF,0 0 22px 4px rgba(237,233,255,.12);top:14px}
+.ad.is-rain .sun{opacity:0}
+.stars{position:absolute;inset:0;opacity:0;transition:opacity .9s;background-image:radial-gradient(1.6px 1.6px at 330px 22px,#fff 60%,transparent 100%),radial-gradient(1.1px 1.1px at 372px 58px,#fff 60%,transparent 100%),radial-gradient(1.1px 1.1px at 410px 14px,#fff 60%,transparent 100%),radial-gradient(1.6px 1.6px at 455px 40px,#fff 60%,transparent 100%),radial-gradient(1.1px 1.1px at 520px 26px,#fff 60%,transparent 100%),radial-gradient(1.1px 1.1px at 560px 70px,#fff 60%,transparent 100%),radial-gradient(1.6px 1.6px at 612px 12px,#fff 60%,transparent 100%),radial-gradient(1.1px 1.1px at 650px 46px,#fff 60%,transparent 100%),radial-gradient(1.1px 1.1px at 700px 30px,#fff 60%,transparent 100%),radial-gradient(1.6px 1.6px at 745px 66px,#fff 60%,transparent 100%),radial-gradient(1.1px 1.1px at 790px 18px,#fff 60%,transparent 100%),radial-gradient(1.1px 1.1px at 840px 52px,#fff 60%,transparent 100%),radial-gradient(1.6px 1.6px at 880px 84px,#fff 60%,transparent 100%),radial-gradient(1.1px 1.1px at 905px 20px,#fff 60%,transparent 100%),radial-gradient(1.1px 1.1px at 950px 62px,#fff 60%,transparent 100%);pointer-events:none}
+.ad[data-moment=night]:not(.is-rain) .stars{opacity:.9}
+.cloud{position:absolute;top:28px;width:130px;height:36px;border-radius:40px;background:rgba(190,196,225,.34);filter:blur(7px);opacity:0;transition:opacity .7s}
+.cloud.c1{left:590px}.cloud.c2{left:820px;top:54px;width:100px}.cloud.c3{left:380px;top:46px;width:90px;height:26px}
+.ad.is-rain .cloud{opacity:1}
+.rain{position:absolute;left:300px;top:0;width:670px;height:188px;opacity:0;transition:opacity .6s;pointer-events:none;background-image:repeating-linear-gradient(108deg,transparent 0 16px,rgba(184,169,255,.32) 16px 17.2px,transparent 17.2px 30px);background-size:64px 96px;animation:rain .55s linear infinite}
+.ad.is-rain .rain{opacity:.75}
+@keyframes rain{to{background-position:-20px 96px}}
+/* zemin */
+.skyline{position:absolute;left:300px;top:96px;width:670px;height:92px;opacity:0;transition:opacity .9s .1s}
+.ad.is-live .skyline{opacity:1}
+.ground{position:absolute;left:300px;right:0;top:186px;height:2px;background:rgba(255,255,255,.09)}
+.road{position:absolute;left:300px;right:0;top:188px;height:26px;background:var(--navy3)}
+.road:after{content:"";position:absolute;left:0;right:0;top:12px;border-top:2px dashed rgba(255,255,255,.13)}
+/* sokak: etkileşim alanı */
+.street{position:absolute;left:300px;top:0;width:670px;height:250px;touch-action:none;cursor:grab;z-index:4}
+.street.is-drag{cursor:grabbing}
+.stop{position:absolute;top:60px;width:100px;height:130px;opacity:0;transform:translateY(10px);transition:opacity .5s calc(var(--i,0)*70ms),transform .6s calc(var(--i,0)*70ms) var(--ease),left .7s var(--ease)}
+.ad.is-live .stop{opacity:1;transform:none}
+.stop .store{position:absolute;inset:0;width:100px;height:130px}
+.term{position:absolute;left:72px;top:88px;width:22px;height:34px;border-radius:5px;background:#171238;box-shadow:0 2px 0 #0d0a20,0 6px 12px rgba(0,0,0,.35);z-index:2}
+.term:before{content:"";position:absolute;left:3px;top:3px;right:3px;height:14px;border-radius:3px;background:#3B3470;transition:background .25s}
+.term:after{content:"";position:absolute;left:5px;bottom:4px;width:12px;height:9px;background:radial-gradient(circle,rgba(255,255,255,.4) 1px,transparent 1.6px) 0 0/4px 4.5px}
+.term i{position:absolute;left:0;right:0;top:3px;height:14px;font-style:normal;font-size:10px;line-height:14px;text-align:center;color:var(--navy);font-weight:900;opacity:0;transform:scale(.4);transition:opacity .2s,transform .3s var(--ease)}
+.stop.is-visited .term:before{background:var(--green)}
+.stop.is-visited .term i{opacity:1;transform:none}
+.stop[data-kind=online] .term{width:18px;height:38px;top:86px;left:74px;border-radius:6px}
+.stop[data-kind=online] .term:before{height:26px}
+.stop[data-kind=online] .term i{height:26px;line-height:26px}
+.stop[data-kind=online] .term:after{display:none}
+.ring{position:absolute;left:83px;top:98px;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;border:2px solid var(--green);opacity:0;pointer-events:none;z-index:1}
+.stop.is-tap .ring{animation:ring .75s ease-out both}
+.stop.is-tap .ring.r2{animation-delay:.16s}
+@keyframes ring{0%{opacity:.95;transform:scale(.5)}100%{opacity:0;transform:scale(4.2)}}
+.stamp{position:absolute;left:50%;top:-8px;transform:translate(-50%,8px) rotate(-6deg) scale(.6);padding:4px 8px;border-radius:6px;background:var(--green);color:var(--navy);font-size:9.5px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;opacity:0;box-shadow:0 6px 16px rgba(0,235,94,.35);z-index:3;pointer-events:none;transition:opacity .22s,transform .35s var(--ease)}
+.stop.is-tap .stamp{opacity:1;transform:translate(-50%,0) rotate(-6deg) scale(1)}
+.badge{position:absolute;right:4px;top:-4px;width:18px;height:18px;border-radius:50%;background:var(--green);color:var(--navy);font-size:11px;font-weight:900;line-height:18px;text-align:center;opacity:0;transform:scale(.3);transition:opacity .25s,transform .35s var(--ease);z-index:3;box-shadow:0 3px 8px rgba(0,0,0,.35)}
+.stop.is-visited:not(.is-tap) .badge{opacity:1;transform:none}
+.tl{position:absolute;left:0;width:100px;top:156px;text-align:center;font-size:9px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4);transition:color .3s;white-space:nowrap}
+.tl:before{content:"";display:block;width:6px;height:6px;margin:0 auto 5px;border-radius:50%;background:rgba(255,255,255,.2);transition:background .3s,box-shadow .3s}
+.stop.is-here .tl{color:#fff}
+.stop.is-visited .tl{color:var(--green)}
+.stop.is-visited .tl:before{background:var(--green);box-shadow:0 0 8px rgba(0,235,94,.6)}
+/* kart */
+.card{position:absolute;top:172px;left:18px;width:64px;height:40px;border-radius:7px;background:linear-gradient(135deg,#2E2766 0%,#1A1440 60%,#120E30 100%);box-shadow:0 10px 20px rgba(0,0,0,.45),inset 0 0 0 1px rgba(255,255,255,.14);z-index:5;transition:left .72s var(--ease),transform .38s var(--ease),opacity .5s .3s;will-change:left,transform;opacity:0;pointer-events:none}
+.ad.is-live .card{opacity:1}
+.card.is-tap{transform:translate(20px,-46px) rotate(-14deg)}
+.card .chip{position:absolute;left:8px;top:9px;width:12px;height:9px;border-radius:2px;background:linear-gradient(135deg,#FFD76A,#D9A72B);box-shadow:inset 0 0 0 .5px rgba(0,0,0,.25)}
+.card .nfc{position:absolute;right:7px;top:7px;width:12px;height:12px}
+.card .cw{position:absolute;left:8px;bottom:9px;font-size:9.5px;font-weight:800;color:#fff;letter-spacing:.01em;line-height:1}
+.card .stripe{position:absolute;left:0;right:0;bottom:0;height:4px;border-radius:0 0 6px 6px;background:var(--green)}
+.card .shine{position:absolute;inset:0;border-radius:7px;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.16) 50%,transparent 60%) 0 0/220% 100%;animation:shine 3.6s ease-in-out infinite}
+@keyframes shine{0%,30%{background-position:120% 0}70%,100%{background-position:-20% 0}}
+/* sol sütun */
+.left{position:absolute;left:26px;top:24px;width:268px;height:210px;z-index:6}
+.logo{display:flex;align-items:center;gap:7px;height:22px}
+.logo b{font-size:21px;font-weight:800;letter-spacing:-.025em;color:#fff;line-height:1}
+.logo i{width:8px;height:8px;border-radius:2px;background:var(--green);transform:rotate(45deg);margin-top:1px}
+.logo small{font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--lav);font-weight:700;margin:3px 0 0 3px}
+.hl{position:absolute;left:0;top:42px;width:268px;transition:opacity .22s,transform .22s var(--ease)}
+.hl.is-out{opacity:0;transform:translateY(5px)}
+.hl-top{display:block;font-size:10px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--green);height:14px;line-height:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hl-main{display:block;margin-top:6px;font-size:25px;font-weight:800;letter-spacing:-.015em;line-height:1.1;white-space:nowrap;color:#fff}
+.hl-main em{font-style:normal;color:var(--green)}
+.hl-sub{display:block;margin-top:7px;font-size:12.5px;line-height:1.42;color:rgba(255,255,255,.8);height:36px;overflow:hidden}
+.cta{position:absolute;left:0;top:156px;display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 15px 0 16px;border-radius:99px;background:var(--green);color:var(--navy);font:inherit;font-size:12.5px;font-weight:800;border:0;cursor:pointer;box-shadow:0 8px 20px rgba(0,235,94,.28);transition:transform .25s var(--ease),box-shadow .25s;white-space:nowrap}
+.cta:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(0,235,94,.42)}
+.cta svg{width:12px;height:12px}
+.ad.is-final .cta{animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 8px 20px rgba(0,235,94,.28)}50%{box-shadow:0 8px 20px rgba(0,235,94,.28),0 0 0 7px rgba(0,235,94,.16)}}
+.left,.left *{pointer-events:auto}
+/* sinyal çubuğu (sunum modu) */
+.sig{position:absolute;left:306px;top:8px;height:18px;display:none;align-items:center;gap:4px;z-index:7;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:9px;letter-spacing:.03em;pointer-events:none}
+.ad.is-demo .sig{display:flex}
+.sig span{padding:0 6px;height:18px;line-height:18px;border-radius:4px;background:rgba(0,0,0,.4);color:rgba(255,255,255,.85);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);white-space:nowrap}
+.sig span b{color:var(--green);font-weight:700}
+.sig .lbl{background:var(--green);color:var(--navy);font-weight:800;letter-spacing:.06em}
+@media (prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;transition-delay:0s!important}}
+</style>
+</head>
+<body>
+<div class="ad" id="ad" role="region" aria-label="Pluxee reklamı" tabindex="0" data-moment="lunch">
+  <div class="sky"></div>
+  <div class="stars"></div>
+  <div class="sun"></div>
+  <div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div>
+  <div class="rain"></div>
+  <svg class="skyline" viewBox="0 0 670 92" preserveAspectRatio="none" aria-hidden="true"><g fill="#2B2458"><rect x="0" y="34" width="40" height="58" rx="1.5"/><rect x="44" y="58" width="48" height="34" rx="1.5"/><rect x="98" y="20" width="40" height="72" rx="1.5"/><rect x="142" y="46" width="56" height="46" rx="1.5"/><rect x="204" y="30" width="44" height="62" rx="1.5"/><rect x="252" y="62" width="52" height="30" rx="1.5"/><rect x="308" y="14" width="40" height="78" rx="1.5"/><rect x="352" y="52" width="58" height="40" rx="1.5"/><rect x="416" y="26" width="46" height="66" rx="1.5"/><rect x="468" y="56" width="50" height="36" rx="1.5"/><rect x="524" y="12" width="44" height="80" rx="1.5"/><rect x="572" y="44" width="56" height="48" rx="1.5"/><rect x="634" y="32" width="40" height="60" rx="1.5"/></g><g fill="#fff" opacity=".07"><rect x="15" y="42" width="3" height="4"/><rect x="15" y="52" width="3" height="4"/><rect x="15" y="62" width="3" height="4"/><rect x="15" y="72" width="3" height="4"/><rect x="15" y="82" width="3" height="4"/><rect x="59" y="66" width="3" height="4"/><rect x="86" y="66" width="3" height="4"/><rect x="59" y="76" width="3" height="4"/><rect x="86" y="76" width="3" height="4"/><rect x="113" y="28" width="3" height="4"/><rect x="131" y="28" width="3" height="4"/><rect x="113" y="38" width="3" height="4"/><rect x="131" y="38" width="3" height="4"/><rect x="113" y="48" width="3" height="4"/><rect x="131" y="48" width="3" height="4"/><rect x="113" y="58" width="3" height="4"/><rect x="131" y="58" width="3" height="4"/><rect x="113" y="68" width="3" height="4"/><rect x="131" y="68" width="3" height="4"/><rect x="113" y="78" width="3" height="4"/><rect x="131" y="78" width="3" height="4"/><rect x="157" y="54" width="3" height="4"/><rect x="184" y="54" width="3" height="4"/><rect x="157" y="64" width="3" height="4"/><rect x="184" y="64" width="3" height="4"/><rect x="157" y="74" width="3" height="4"/><rect x="184" y="74" width="3" height="4"/><rect x="228" y="38" width="3" height="4"/><rect x="228" y="48" width="3" height="4"/><rect x="228" y="58" width="3" height="4"/><rect x="228" y="68" width="3" height="4"/><rect x="228" y="78" width="3" height="4"/><rect x="258" y="70" width="3" height="4"/><rect x="285" y="70" width="3" height="4"/><rect x="258" y="80" width="3" height="4"/><rect x="285" y="80" width="3" height="4"/><rect x="332" y="22" width="3" height="4"/><rect x="332" y="32" width="3" height="4"/><rect x="332" y="42" width="3" height="4"/><rect x="332" y="52" width="3" height="4"/><rect x="332" y="62" width="3" height="4"/><rect x="332" y="72" width="3" height="4"/><rect x="332" y="82" width="3" height="4"/><rect x="358" y="60" width="3" height="4"/><rect x="385" y="60" width="3" height="4"/><rect x="403" y="60" width="3" height="4"/><rect x="358" y="70" width="3" height="4"/><rect x="385" y="70" width="3" height="4"/><rect x="403" y="70" width="3" height="4"/><rect x="358" y="80" width="3" height="4"/><rect x="385" y="80" width="3" height="4"/><rect x="403" y="80" width="3" height="4"/><rect x="422" y="34" width="3" height="4"/><rect x="449" y="34" width="3" height="4"/><rect x="422" y="44" width="3" height="4"/><rect x="449" y="44" width="3" height="4"/><rect x="422" y="54" width="3" height="4"/><rect x="449" y="54" width="3" height="4"/><rect x="422" y="64" width="3" height="4"/><rect x="449" y="64" width="3" height="4"/><rect x="422" y="74" width="3" height="4"/><rect x="449" y="74" width="3" height="4"/><rect x="474" y="64" width="3" height="4"/><rect x="492" y="64" width="3" height="4"/><rect x="474" y="74" width="3" height="4"/><rect x="492" y="74" width="3" height="4"/><rect x="530" y="20" width="3" height="4"/><rect x="548" y="20" width="3" height="4"/><rect x="530" y="30" width="3" height="4"/><rect x="548" y="30" width="3" height="4"/><rect x="530" y="40" width="3" height="4"/><rect x="548" y="40" width="3" height="4"/><rect x="530" y="50" width="3" height="4"/><rect x="548" y="50" width="3" height="4"/><rect x="530" y="60" width="3" height="4"/><rect x="548" y="60" width="3" height="4"/><rect x="530" y="70" width="3" height="4"/><rect x="548" y="70" width="3" height="4"/><rect x="530" y="80" width="3" height="4"/><rect x="548" y="80" width="3" height="4"/><rect x="587" y="52" width="3" height="4"/><rect x="605" y="52" width="3" height="4"/><rect x="587" y="62" width="3" height="4"/><rect x="605" y="62" width="3" height="4"/><rect x="587" y="72" width="3" height="4"/><rect x="605" y="72" width="3" height="4"/><rect x="587" y="82" width="3" height="4"/><rect x="605" y="82" width="3" height="4"/><rect x="640" y="40" width="3" height="4"/><rect x="658" y="40" width="3" height="4"/><rect x="640" y="50" width="3" height="4"/><rect x="658" y="50" width="3" height="4"/><rect x="640" y="60" width="3" height="4"/><rect x="658" y="60" width="3" height="4"/><rect x="640" y="70" width="3" height="4"/><rect x="658" y="70" width="3" height="4"/><rect x="640" y="80" width="3" height="4"/><rect x="658" y="80" width="3" height="4"/></g></svg>
+  <div class="ground"></div>
+  <div class="road"></div>
+  <div class="street" aria-label="Pluxee kartını sürükleyin">
+    <div class="stop" data-kind="firin" style="left:0"><svg class="store" viewBox="0 0 100 130" aria-hidden="true">
+<ellipse cx="50" cy="129" rx="47" ry="2.6" fill="#000" opacity=".35"/>
+<rect x="6" y="28" width="88" height="100" rx="2" fill="#FFE0CC"/>
+<rect x="6" y="28" width="88" height="6" fill="#000" opacity=".06"/>
+<rect x="10" y="96" width="18" height="32" rx="3" fill="#221C46" opacity=".85"/>
+<rect x="13" y="100" width="12" height="11" rx="2" fill="#fff" opacity=".28"/>
+<circle cx="24" cy="114" r="1.2" fill="#fff" opacity=".6"/>
+<rect x="60" y="106" width="34" height="22" rx="2" fill="#d6bcab"/>
+<rect x="60" y="106" width="34" height="3" fill="#fff" opacity=".35"/>
+<circle cx="50" cy="84" r="19" fill="#fff"/>
+<circle cx="50" cy="84" r="19" fill="none" stroke="#221C46" stroke-width="1.2" opacity=".18"/>
+<circle cx="50" cy="84" r="9" fill="none" stroke="#D9822B" stroke-width="5.5"/>
+<circle cx="50" cy="84" r="9" fill="none" stroke="#221C46" stroke-width="1" opacity=".35"/>
+<g fill="#FFF3EA"><circle cx="43" cy="79" r="1.1"/><circle cx="51" cy="75.5" r="1.1"/><circle cx="58" cy="82" r="1.1"/><circle cx="55" cy="91" r="1.1"/><circle cx="45" cy="91" r="1.1"/></g>
+<rect x="2" y="40" width="96" height="13" fill="#FF8C5A"/><rect x="10" y="40" width="8" height="13" fill="#fff" opacity=".28"/><rect x="30" y="40" width="8" height="13" fill="#fff" opacity=".28"/><rect x="50" y="40" width="8" height="13" fill="#fff" opacity=".28"/><rect x="70" y="40" width="8" height="13" fill="#fff" opacity=".28"/><circle cx="8" cy="53" r="8" fill="#FF8C5A"/><circle cx="24" cy="53" r="8" fill="#FF8C5A"/><circle cx="40" cy="53" r="8" fill="#FF8C5A"/><circle cx="56" cy="53" r="8" fill="#FF8C5A"/><circle cx="72" cy="53" r="8" fill="#FF8C5A"/><circle cx="88" cy="53" r="8" fill="#FF8C5A"/>
+<rect x="10" y="5" width="80" height="24" rx="6" fill="#FFF3EA"/>
+<rect x="10" y="5" width="80" height="24" rx="6" fill="none" stroke="#221C46" stroke-width="1" opacity=".12"/>
+<text x="50" y="21.5" text-anchor="middle" font-size="10" font-weight="800" letter-spacing="1.6" fill="#221C46">FIRIN</text>
+</svg><div class="term"><i>✓</i></div><span class="ring"></span><span class="ring r2"></span><span class="stamp"></span><span class="badge">✓</span><span class="tl"></span></div>
+<div class="stop" data-kind="restoran" style="left:0"><svg class="store" viewBox="0 0 100 130" aria-hidden="true">
+<ellipse cx="50" cy="129" rx="47" ry="2.6" fill="#000" opacity=".35"/>
+<rect x="6" y="28" width="88" height="100" rx="2" fill="#E2DBFF"/>
+<rect x="6" y="28" width="88" height="6" fill="#000" opacity=".06"/>
+<rect x="10" y="96" width="18" height="32" rx="3" fill="#221C46" opacity=".85"/>
+<rect x="13" y="100" width="12" height="11" rx="2" fill="#fff" opacity=".28"/>
+<circle cx="24" cy="114" r="1.2" fill="#fff" opacity=".6"/>
+<rect x="60" y="106" width="34" height="22" rx="2" fill="#beb8d6"/>
+<rect x="60" y="106" width="34" height="3" fill="#fff" opacity=".35"/>
+<circle cx="50" cy="84" r="19" fill="#fff"/>
+<circle cx="50" cy="84" r="19" fill="none" stroke="#221C46" stroke-width="1.2" opacity=".18"/>
+<path d="M37 88a13 13 0 0 1 26 0z" fill="#7A63FF" stroke="#221C46" stroke-width="2.4" stroke-linejoin="round"/>
+<circle cx="50" cy="73" r="2.4" fill="#221C46"/>
+<line x1="33" y1="92" x2="67" y2="92" stroke="#221C46" stroke-width="2.6" stroke-linecap="round"/>
+<rect x="2" y="40" width="96" height="13" fill="#7A63FF"/><rect x="10" y="40" width="8" height="13" fill="#fff" opacity=".28"/><rect x="30" y="40" width="8" height="13" fill="#fff" opacity=".28"/><rect x="50" y="40" width="8" height="13" fill="#fff" opacity=".28"/><rect x="70" y="40" width="8" height="13" fill="#fff" opacity=".28"/><circle cx="8" cy="53" r="8" fill="#7A63FF"/><circle cx="24" cy="53" r="8" fill="#7A63FF"/><circle cx="40" cy="53" r="8" fill="#7A63FF"/><circle cx="56" cy="53" r="8" fill="#7A63FF"/><circle cx="72" cy="53" r="8" fill="#7A63FF"/><circle cx="88" cy="53" r="8" fill="#7A63FF"/>
+<rect x="10" y="5" width="80" height="24" rx="6" fill="#F1EDFF"/>
+<rect x="10" y="5" width="80" height="24" rx="6" fill="none" stroke="#221C46" stroke-width="1" opacity=".12"/>
+<text x="50" y="21.5" text-anchor="middle" font-size="10" font-weight="800" letter-spacing="1.6" fill="#221C46">RESTORAN</text>
+</svg><div class="term"><i>✓</i></div><span class="ring"></span><span class="ring r2"></span><span class="stamp"></span><span class="badge">✓</span><span class="tl"></span></div>
+<div class="stop" data-kind="kafe" style="left:0"><svg class="store" viewBox="0 0 100 130" aria-hidden="true">
+<ellipse cx="50" cy="129" rx="47" ry="2.6" fill="#000" opacity=".35"/>
+<rect x="6" y="28" width="88" height="100" rx="2" fill="#D6F5E6"/>
+<rect x="6" y="28" width="88" height="6" fill="#000" opacity=".06"/>
+<rect x="10" y="96" width="18" height="32" rx="3" fill="#221C46" opacity=".85"/>
+<rect x="13" y="100" width="12" height="11" rx="2" fill="#fff" opacity=".28"/>
+<circle cx="24" cy="114" r="1.2" fill="#fff" opacity=".6"/>
+<rect x="60" y="106" width="34" height="22" rx="2" fill="#b4cec1"/>
+<rect x="60" y="106" width="34" height="3" fill="#fff" opacity=".35"/>
+<circle cx="50" cy="84" r="19" fill="#fff"/>
+<circle cx="50" cy="84" r="19" fill="none" stroke="#221C46" stroke-width="1.2" opacity=".18"/>
+<path d="M39 77h20v9a9 9 0 0 1-9 9h-2a9 9 0 0 1-9-9z" fill="#12C77E" stroke="#221C46" stroke-width="2.4" stroke-linejoin="round"/>
+<path d="M59 80h3a4 4 0 0 1 0 8h-3" fill="none" stroke="#221C46" stroke-width="2.4"/>
+<path d="M45.5 72c0-2.5 2-2.5 2-5M51.5 72c0-2.5 2-2.5 2-5" fill="none" stroke="#221C46" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+<rect x="2" y="40" width="96" height="13" fill="#12C77E"/><rect x="10" y="40" width="8" height="13" fill="#fff" opacity=".28"/><rect x="30" y="40" width="8" height="13" fill="#fff" opacity=".28"/><rect x="50" y="40" width="8" height="13" fill="#fff" opacity=".28"/><rect x="70" y="40" width="8" height="13" fill="#fff" opacity=".28"/><circle cx="8" cy="53" r="8" fill="#12C77E"/><circle cx="24" cy="53" r="8" fill="#12C77E"/><circle cx="40" cy="53" r="8" fill="#12C77E"/><circle cx="56" cy="53" r="8" fill="#12C77E"/><circle cx="72" cy="53" r="8" fill="#12C77E"/><circle cx="88" cy="53" r="8" fill="#12C77E"/>
+<rect x="10" y="5" width="80" height="24" rx="6" fill="#EAFBF2"/>
+<rect x="10" y="5" width="80" height="24" rx="6" fill="none" stroke="#221C46" stroke-width="1" opacity=".12"/>
+<text x="50" y="21.5" text-anchor="middle" font-size="10" font-weight="800" letter-spacing="1.6" fill="#221C46">KAFE</text>
+</svg><div class="term"><i>✓</i></div><span class="ring"></span><span class="ring r2"></span><span class="stamp"></span><span class="badge">✓</span><span class="tl"></span></div>
+<div class="stop" data-kind="market" style="left:0"><svg class="store" viewBox="0 0 100 130" aria-hidden="true">
+<ellipse cx="50" cy="129" rx="47" ry="2.6" fill="#000" opacity=".35"/>
+<rect x="6" y="28" width="88" height="100" rx="2" fill="#FFF1BF"/>
+<rect x="6" y="28" width="88" height="6" fill="#000" opacity=".06"/>
+<rect x="10" y="96" width="18" height="32" rx="3" fill="#221C46" opacity=".85"/>
+<rect x="13" y="100" width="12" height="11" rx="2" fill="#fff" opacity=".28"/>
+<circle cx="24" cy="114" r="1.2" fill="#fff" opacity=".6"/>
+<rect x="60" y="106" width="34" height="22" rx="2" fill="#d6caa0"/>
+<rect x="60" y="106" width="34" height="3" fill="#fff" opacity=".35"/>
+<circle cx="50" cy="84" r="19" fill="#fff"/>
+<circle cx="50" cy="84" r="19" fill="none" stroke="#221C46" stroke-width="1.2" opacity=".18"/>
+<path d="M37 80h26l-3.5 15h-19z" fill="#FFC331" stroke="#221C46" stroke-width="2.4" stroke-linejoin="round"/>
+<path d="M44 80l4.5-8.5M56 80l-4.5-8.5" fill="none" stroke="#221C46" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M46 85.5v6M50 85.5v6M54 85.5v6" stroke="#221C46" stroke-width="1.6" opacity=".55"/>
+<rect x="2" y="40" width="96" height="13" fill="#FFC331"/><rect x="10" y="40" width="8" height="13" fill="#fff" opacity=".28"/><rect x="30" y="40" width="8" height="13" fill="#fff" opacity=".28"/><rect x="50" y="40" width="8" height="13" fill="#fff" opacity=".28"/><rect x="70" y="40" width="8" height="13" fill="#fff" opacity=".28"/><circle cx="8" cy="53" r="8" fill="#FFC331"/><circle cx="24" cy="53" r="8" fill="#FFC331"/><circle cx="40" cy="53" r="8" fill="#FFC331"/><circle cx="56" cy="53" r="8" fill="#FFC331"/><circle cx="72" cy="53" r="8" fill="#FFC331"/><circle cx="88" cy="53" r="8" fill="#FFC331"/>
+<rect x="10" y="5" width="80" height="24" rx="6" fill="#FFF9E3"/>
+<rect x="10" y="5" width="80" height="24" rx="6" fill="none" stroke="#221C46" stroke-width="1" opacity=".12"/>
+<text x="50" y="21.5" text-anchor="middle" font-size="10" font-weight="800" letter-spacing="1.6" fill="#221C46">MARKET</text>
+</svg><div class="term"><i>✓</i></div><span class="ring"></span><span class="ring r2"></span><span class="stamp"></span><span class="badge">✓</span><span class="tl"></span></div>
+<div class="stop" data-kind="online" style="left:0"><svg class="store" viewBox="0 0 100 130" aria-hidden="true">
+<ellipse cx="50" cy="129" rx="47" ry="2.6" fill="#000" opacity=".35"/>
+<rect x="6" y="28" width="88" height="100" rx="2" fill="#D4EBFF"/>
+<rect x="6" y="28" width="88" height="6" fill="#000" opacity=".06"/>
+<rect x="10" y="96" width="18" height="32" rx="3" fill="#221C46" opacity=".85"/>
+<rect x="13" y="100" width="12" height="11" rx="2" fill="#fff" opacity=".28"/>
+<circle cx="24" cy="114" r="1.2" fill="#fff" opacity=".6"/>
+<rect x="60" y="106" width="34" height="22" rx="2" fill="#b2c5d6"/>
+<rect x="60" y="106" width="34" height="3" fill="#fff" opacity=".35"/>
+<circle cx="50" cy="84" r="19" fill="#fff"/>
+<circle cx="50" cy="84" r="19" fill="none" stroke="#221C46" stroke-width="1.2" opacity=".18"/>
+<rect x="42.5" y="71" width="15" height="26" rx="3.5" fill="#3AA1FF" stroke="#221C46" stroke-width="2.4"/>
+<circle cx="50" cy="92.5" r="1.4" fill="#221C46"/>
+<path d="M46 82.5l2.8 2.8 5.4-5.6" fill="none" stroke="#fff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="2" y="40" width="96" height="13" fill="#3AA1FF"/><rect x="10" y="40" width="8" height="13" fill="#fff" opacity=".28"/><rect x="30" y="40" width="8" height="13" fill="#fff" opacity=".28"/><rect x="50" y="40" width="8" height="13" fill="#fff" opacity=".28"/><rect x="70" y="40" width="8" height="13" fill="#fff" opacity=".28"/><circle cx="8" cy="53" r="8" fill="#3AA1FF"/><circle cx="24" cy="53" r="8" fill="#3AA1FF"/><circle cx="40" cy="53" r="8" fill="#3AA1FF"/><circle cx="56" cy="53" r="8" fill="#3AA1FF"/><circle cx="72" cy="53" r="8" fill="#3AA1FF"/><circle cx="88" cy="53" r="8" fill="#3AA1FF"/>
+<rect x="10" y="5" width="80" height="24" rx="6" fill="#EAF5FF"/>
+<rect x="10" y="5" width="80" height="24" rx="6" fill="none" stroke="#221C46" stroke-width="1" opacity=".12"/>
+<text x="50" y="21.5" text-anchor="middle" font-size="10" font-weight="800" letter-spacing="1.6" fill="#221C46">ONLİNE</text>
+</svg><div class="term"><i>✓</i></div><span class="ring"></span><span class="ring r2"></span><span class="stamp"></span><span class="badge">✓</span><span class="tl"></span></div>
+    <div class="card" aria-hidden="true"><span class="chip"></span><svg class="nfc" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.2 4.4a2.6 2.6 0 0 1 0 3.2M5.6 2.8a5 5 0 0 1 0 6.4M8 1.2a7.6 7.6 0 0 1 0 9.6" fill="none" stroke="#fff" stroke-width="1.2" stroke-linecap="round" opacity=".85"/></svg><span class="cw">pluxee</span><span class="stripe"></span><span class="shine"></span></div>
+  </div>
+  <div class="left">
+    <div class="logo"><b>pluxee</b><i></i><small>Yemek Kartı</small></div>
+    <div class="hl">
+      <span class="hl-top"></span>
+      <span class="hl-main"><b>Pluxee</b> <em>geçiyor.</em></span>
+      <span class="hl-sub"></span>
+    </div>
+    <button class="cta" type="button"><span class="cta-t"></span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 6h8M6.5 2.5L10 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </div>
+  <div class="sig" aria-hidden="true"></div>
+</div>
+<script>
+(function(){
+var D={"brand":{"url":"https://www.pluxee.com.tr/?utm_source=splash&utm_medium=masthead&utm_campaign=pluxee-geciyor"},"timing":{"enter":700,"move":720,"dwell":1250,"hold":3200,"loops":2,"resume":1500},"segments":{"wc":{"label":"Beyaz yaka","cta":"Yakınımda nerede geçiyor?"},"hr":{"label":"İK profesyoneli","cta":"Ekibim için teklif al"},"emp":{"label":"İşveren / karar verici","cta":"Şirketim için başvur"}},"moments":[{"key":"breakfast","label":"sabah","from":6,"to":10,"stop":"firin"},{"key":"lunch","label":"öğle","from":11,"to":14,"stop":"restoran"},{"key":"coffee","label":"ikindi","from":15,"to":17,"stop":"kafe"},{"key":"evening","label":"akşam","from":18,"to":22,"stop":"market"},{"key":"night","label":"gece","from":23,"to":5,"stop":"online"}],"stampWords":["burada","şurada","orada","orada da","her yerde"],"geos":{"levent":{"name":"Levent","loc":"Levent'te","city":"İstanbul","count":1248},"maslak":{"name":"Maslak","loc":"Maslak'ta","city":"İstanbul","count":936},"kadikoy":{"name":"Kadıköy","loc":"Kadıköy'de","city":"İstanbul","count":2140},"atasehir":{"name":"Ataşehir","loc":"Ataşehir'de","city":"İstanbul","count":1412},"cankaya":{"name":"Çankaya","loc":"Çankaya'da","city":"Ankara","count":1705},"alsancak":{"name":"Alsancak","loc":"Alsancak'ta","city":"İzmir","count":812},"nilufer":{"name":"Nilüfer","loc":"Nilüfer'de","city":"Bursa","count":640}},"geoUnknown":{"loc":"{geo} civarında","countText":"binlerce"},"geoNone":{"name":"Türkiye","loc":"Türkiye genelinde","countText":"binlerce"},"weather":{"sun":{"label":"Güneşli"},"rain":{"label":"Yağmurlu"}},"copy":{"wc":{"breakfast":{"top":"Günaydın {geo}","sub":"Simitçiden fırına, kahvaltıda da geçiyor. {loc} {n} noktada."},"lunch":{"top":"Öğle arası · {geo}","sub":"Restoranda, kafede, markette geçiyor. {loc} {n} noktada."},"coffee":{"top":"İkindi molası · {geo}","sub":"Kahve molasında da geçiyor. {loc} {n} noktada."},"evening":{"top":"Mesai bitti · {geo}","sub":"Akşam market alışverişinde de geçiyor. {loc} {n} noktada."},"night":{"top":"Gece · {geo}","sub":"Online siparişte de geçiyor. Yemek kapına gelsin."},"rain":{"top":"Yağmur var · {geo}","sub":"Dışarı çıkma, online siparişte de geçiyor. Kapına gelsin."},"final":{"top":"Burada, şurada, orada","sub":"{loc} {n} noktada. Tek kart, günün her anı."}},"hr":{"breakfast":{"top":"Ekibiniz güne başlıyor","sub":"Kahvaltıda da geçiyor. Ekibiniz nerede olursa olsun."},"lunch":{"top":"Ekibinizde öğle arası","sub":"Restoranda, kafede, markette geçiyor. Tek kart, her ihtiyaç."},"coffee":{"top":"İkindi molası","sub":"Kahve molasında da geçiyor. Yan hak, günün her anında."},"evening":{"top":"Mesai bitti","sub":"Market alışverişinde de geçiyor. Ekibiniz için gerçek fayda."},"night":{"top":"Uzaktan çalışan ekipler","sub":"Online siparişte de geçiyor. Ofiste ya da evde."},"rain":{"top":"Yağmurlu gün","sub":"Ekibiniz dışarı çıkmasın. Online siparişte de geçiyor."},"final":{"top":"Burada, şurada, orada","sub":"Ekibiniz nerede olursa olsun. {loc} {n} noktada."}},"emp":{"breakfast":{"top":"Günün ilk yan hakkı","sub":"Sabah fırınından akşam marketine, her yerde geçiyor."},"lunch":{"top":"Öğle yemeği bütçeniz","sub":"Türkiye genelinde geçiyor. Vergi avantajıyla."},"coffee":{"top":"Yan hak bütçeniz","sub":"Boşa gitmesin. Kafede, markette, online'da geçiyor."},"evening":{"top":"Mesai bitti","sub":"Çalışanınızın market alışverişinde de geçiyor."},"night":{"top":"Her lokasyon, her vardiya","sub":"Online siparişte de geçiyor. 7/24, Türkiye genelinde."},"rain":{"top":"Yağmurlu gün","sub":"Çalışanınız dışarı çıkmasın. Online siparişte de geçiyor."},"final":{"top":"Burada, şurada, orada","sub":"Türkiye'nin her yerinde geçiyor. {loc} {n} noktada."}}},"defaults":{"seg":"wc","geo":"levent","weather":"sun"}};
+var ad=document.getElementById('ad'),street=ad.querySelector('.street'),card=ad.querySelector('.card');
+var hl=ad.querySelector('.hl'),hlTop=ad.querySelector('.hl-top'),hlMain=ad.querySelector('.hl-main'),hlSub=ad.querySelector('.hl-sub'),cta=ad.querySelector('.cta'),ctaT=ad.querySelector('.cta-t'),sig=ad.querySelector('.sig');
+var STOP_X=[50,187,324,461,598],CARD_W=64;
+var stopEls={};[].forEach.call(ad.querySelectorAll('.stop'),function(el){stopEls[el.getAttribute('data-kind')]=el});
+var S={},G=null,order=[],timers=[],tapCount=0,loops=0,manual=false,ended=false,finalState=false,embedded=false,resumeT=null,current=-1,lastCross=-1,variant='',momentKey='',copyKey='',currentCopy={};
+var reduced=!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+function q(n){var m=new RegExp('[?&]'+n+'=([^&#]*)').exec(location.search);return m?decodeURIComponent(m[1].replace(/\+/g,' ')):null}
+function pad(n){return (n<10?'0':'')+n}
+function fmt(n){return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,'.')}
+function norm(s){
+  if(!D.segments[s.seg])s.seg=D.defaults.seg;
+  s.hour=((Math.floor(+s.hour)||0)%24+24)%24;s.minute=Math.max(0,Math.min(59,Math.floor(+s.minute)||0));
+  s.weather=s.weather==='rain'?'rain':'sun';s.geo=String(s.geo||'none').toLowerCase();s.demo=!!s.demo;return s;
+}
+function readSignals(){
+  var now=new Date();
+  var s={seg:q('seg')||D.defaults.seg,hour:q('h')!==null?+q('h'):now.getHours(),minute:q('m')!==null?+q('m'):now.getMinutes(),geo:q('geo')||D.defaults.geo,weather:q('w')||D.defaults.weather,demo:q('demo')==='1'};
+  var o=window.__PLUXEE_SIGNALS;if(o)for(var k in o)if(o.hasOwnProperty(k))s[k]=o[k];
+  return norm(s);
+}
+function momentIndex(h){for(var i=0;i<D.moments.length;i++){var m=D.moments[i];if(m.from<=m.to?(h>=m.from&&h<=m.to):(h>=m.from||h<=m.to))return i}return 0}
+function geoInfo(g){
+  if(!g||g==='none')return {key:'none',name:D.geoNone.name,loc:D.geoNone.loc,n:D.geoNone.countText,count:null};
+  var x=D.geos[g];if(x)return {key:g,name:x.name,loc:x.loc,n:fmt(x.count),count:x.count,city:x.city};
+  var nm=g.charAt(0).toUpperCase()+g.slice(1);
+  return {key:g,name:nm,loc:D.geoUnknown.loc.replace('{geo}',nm),n:D.geoUnknown.countText,count:null};
+}
+function fill(t){return t.replace(/\{geo\}/g,G.name).replace(/\{loc\}/g,G.loc).replace(/\{n\}/g,G.n)}
+function later(fn,ms){var t=setTimeout(fn,ms);timers.push(t);return t}
+function clearTimers(){while(timers.length)clearTimeout(timers.pop())}
+function within(el,cls){while(el&&el!==ad){if(el.classList&&el.classList.contains(cls))return true;el=el.parentNode}return false}
+
+/* Sinyaller → sahne kurulumu */
+var firstBuild=true;
+function build(){
+  var M=D.moments,mi=momentIndex(S.hour);G=geoInfo(S.geo);momentKey=M[mi].key;
+  order=[];for(var k=0;k<M.length;k++){var idx=(mi+k)%M.length;order.push({moment:M[idx],idx:idx,wrapped:idx<mi,visited:false})}
+  if(S.weather==='rain'){for(k=0;k<order.length;k++)if(order[k].moment.key==='night'&&k>0){order.unshift(order.splice(k,1)[0]);break}}
+  for(k=0;k<order.length;k++){
+    var o=order[k];o.label=k===0?'şimdi':((o.wrapped&&S.hour>=12)?'yarın ':'')+o.moment.label;
+    var el=stopEls[o.moment.stop];o.el=el;el.className='stop';if(firstBuild)el.style.transition='none';el.style.left=(STOP_X[k]-50)+'px';el.style.setProperty('--i',k);el.setAttribute('data-i',k);
+    el.querySelector('.tl').textContent=o.label;el.setAttribute('aria-label',o.moment.stop+' – '+o.label);
+  }
+  if(firstBuild){void ad.offsetWidth;for(k=0;k<order.length;k++)order[k].el.style.transition='';firstBuild=false}
+  copyKey=S.weather==='rain'?'rain':momentKey;
+  ad.setAttribute('data-moment',momentKey);
+  ad.classList.toggle('is-rain',S.weather==='rain');ad.classList.toggle('is-demo',S.demo);
+  variant=[S.seg,copyKey,G.key,S.weather].join('-').toUpperCase();
+  ad.setAttribute('data-variant',variant);
+  sig.innerHTML='<span class="lbl">SPLASH DATA LAYER</span><span>SAAT <b>'+pad(S.hour)+':'+pad(S.minute)+'</b></span><span>KONUM <b>'+esc(G.name)+'</b></span><span>HAVA <b>'+esc(D.weather[S.weather].label)+'</b></span><span>SEGMENT <b>'+esc(D.segments[S.seg].label)+'</b></span><span>#'+esc(variant)+'</span>';
+  setCopy(false,false);
+}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function setCopy(fin,animate){
+  var c=D.copy[S.seg][fin?'final':copyKey],top=fill(c.top),sub=fill(c.sub),ctaText=D.segments[S.seg].cta;
+  var main=fin?'<b>Her yerde</b> <em>geçiyor.</em>':'<b>Pluxee</b> <em>geçiyor.</em>';
+  currentCopy={top:top,main:fin?'Her yerde geçiyor.':'Pluxee geçiyor.',sub:sub,cta:ctaText};
+  var apply=function(){hlTop.textContent=top;hlMain.innerHTML=main;hlSub.textContent=sub;ctaT.textContent=ctaText;hl.classList.remove('is-out')};
+  if(animate&&!reduced){hl.classList.add('is-out');setTimeout(apply,220)}else apply();
+}
+
+/* Kart ve duraklar */
+function placeCard(i,instant){
+  if(instant){card.style.transition='none'}
+  card.style.left=(STOP_X[i]-CARD_W/2)+'px';
+  if(instant){void card.offsetWidth;card.style.transition=''}
+  current=i;markHere(i);
+}
+function markHere(i){for(var k=0;k<order.length;k++)order[k].el.classList.toggle('is-here',k===i)}
+function visitedCount(){var n=0;for(var k=0;k<order.length;k++)if(order[k].visited)n++;return n}
+function tap(i){
+  var o=order[i];if(o.visited)return false;o.visited=true;
+  var word=D.stampWords[Math.min(tapCount,D.stampWords.length-1)];tapCount++;
+  o.el.querySelector('.stamp').textContent=word+' geçiyor ✓';
+  flash(o.el);o.el.classList.add('is-visited');emit('state');return true;
+}
+function flash(el){
+  el.classList.remove('is-tap');void el.offsetWidth;el.classList.add('is-tap');
+  card.classList.add('is-tap');setTimeout(function(){card.classList.remove('is-tap')},420);
+  setTimeout(function(){el.classList.remove('is-tap')},1300);
+}
+function visit(i){
+  placeCard(i);
+  later(function(){tap(i);later(function(){if(manual)return;if(i+1<order.length)visit(i+1);else finish(false)},D.timing.dwell)},D.timing.move);
+}
+function finish(byUser){
+  finalState=true;ad.classList.add('is-final');setCopy(true,true);
+  if(byUser||reduced){ended=true;ad.classList.add('is-ended');emit('state');return}
+  emit('state');
+  later(function(){loops++;if(loops<D.timing.loops){reset();start()}else{ended=true;ad.classList.add('is-ended');emit('state')}},D.timing.hold);
+}
+function reset(){
+  clearTimers();for(var k=0;k<order.length;k++){order[k].visited=false;order[k].el.classList.remove('is-visited','is-tap','is-here')}
+  tapCount=0;finalState=false;ended=false;lastCross=-1;ad.classList.remove('is-final','is-ended');setCopy(false,false);
+}
+function start(){
+  ad.classList.add('is-live');placeCard(0,true);
+  if(reduced){for(var k=0;k<order.length;k++){order[k].visited=true;order[k].el.classList.add('is-visited')}tapCount=order.length;placeCard(order.length-1,true);finish(true);return}
+  emit('state');
+  later(function(){visit(0)},D.timing.enter);
+}
+function restart(){clearTimers();if(resumeT){clearTimeout(resumeT);resumeT=null}manual=false;street.classList.remove('is-drag');ad.classList.remove('is-manual');card.style.transition='';loops=0;reset();build();start()}
+
+/* Elle kontrol: fare/parmak sokağa girince kart takip eder, duraktan geçerken dokunur */
+function xIn(e){var r=street.getBoundingClientRect();return (e.clientX-r.left)*(670/(r.width||670))}
+function nearest(x){var b=0,bd=1e9;for(var k=0;k<STOP_X.length;k++){var d=Math.abs(STOP_X[k]-x);if(d<bd){bd=d;b=k}}return b}
+function enterManual(){
+  if(manual)return;manual=true;clearTimers();if(resumeT){clearTimeout(resumeT);resumeT=null}
+  ad.classList.add('is-manual');card.style.transition='left .12s linear,transform .38s var(--ease)';emit('state');
+}
+function crossAt(n){
+  lastCross=n;current=n;markHere(n);
+  if(!order[n].visited){tap(n);if(visitedCount()===order.length&&!finalState)finish(true)}else flash(order[n].el);
+}
+function onMove(e){
+  enterManual();
+  var x=Math.max(STOP_X[0],Math.min(STOP_X[STOP_X.length-1],xIn(e)));
+  card.style.left=(x-CARD_W/2)+'px';
+  var n=nearest(x);
+  if(Math.abs(STOP_X[n]-x)<20){if(n!==lastCross)crossAt(n)}else lastCross=-1;
+}
+function leaveManual(){
+  street.classList.remove('is-drag');if(!manual)return;
+  if(resumeT)clearTimeout(resumeT);
+  resumeT=setTimeout(function(){
+    resumeT=null;manual=false;ad.classList.remove('is-manual');card.style.transition='';lastCross=-1;
+    if(ended)return;
+    var next=-1;for(var k=0;k<order.length;k++)if(!order[k].visited){next=k;break}
+    if(next<0)finish(false);else visit(next);
+    emit('state');
+  },D.timing.resume);
+}
+function stepTo(n){enterManual();n=Math.max(0,Math.min(order.length-1,n));card.style.left=(STOP_X[n]-CARD_W/2)+'px';crossAt(n);leaveManual()}
+
+street.addEventListener('pointermove',onMove);
+street.addEventListener('pointerdown',function(e){street.classList.add('is-drag');onMove(e)});
+street.addEventListener('pointerup',function(){street.classList.remove('is-drag')});
+street.addEventListener('pointerleave',leaveManual);
+street.addEventListener('pointercancel',leaveManual);
+street.addEventListener('click',function(e){e.stopPropagation()});
+[].forEach.call(ad.querySelectorAll('.stop'),function(el){el.addEventListener('click',function(e){e.stopPropagation();stepTo(+el.getAttribute('data-i')||0)})});
+
+/* Tıklama: sol sütun ve CTA reklam çıkışı; sokak etkileşim alanı */
+function openLink(){
+  var u=window.clickTag||D.brand.url;
+  if(embedded&&!window.clickTag){emit('click',{url:u});return}
+  if(window.Enabler&&window.Enabler.exit){window.Enabler.exit('CTA')}else{window.open(u,'_blank','noopener')}
+}
+ad.addEventListener('click',function(e){if(within(e.target,'street'))return;openLink()});
+cta.addEventListener('click',function(e){e.stopPropagation();openLink()});
+ad.addEventListener('keydown',function(e){
+  if(e.key==='ArrowRight'){e.preventDefault();stepTo((current<0?0:current)+1)}
+  else if(e.key==='ArrowLeft'){e.preventDefault();stepTo((current<0?0:current)-1)}
+  else if(e.key==='Enter'){openLink()}
+});
+
+/* Sunum / entegrasyon API'si (postMessage) */
+function emit(type,extra){
+  if(!embedded||!(window.parent&&window.parent!==window))return;
+  var names=[],labels=[];for(var k=0;k<order.length;k++){names.push(order[k].moment.stop);labels.push(order[k].label)}
+  var msg={type:'pluxee:'+type,variant:variant,moment:momentKey,copyKey:copyKey,order:names,labels:labels,visited:visitedCount(),total:order.length,finalState:finalState,ended:ended,manual:manual,copy:currentCopy,signals:S,geo:G};
+  if(extra)for(var x in extra)if(extra.hasOwnProperty(x))msg[x]=extra[x];
+  try{window.parent.postMessage(msg,'*')}catch(err){}
+}
+window.addEventListener('message',function(e){
+  var d=e.data;if(!d||typeof d!=='object'||typeof d.type!=='string')return;
+  if(d.type==='pluxee:signals'){embedded=true;var s=d.signals||{};for(var k in s)if(s.hasOwnProperty(k))S[k]=s[k];norm(S);restart()}
+  else if(d.type==='pluxee:replay'){embedded=true;restart()}
+  else if(d.type==='pluxee:demo'){S.demo=!!d.on;ad.classList.toggle('is-demo',S.demo)}
+});
+window.PLUXEE={setSignals:function(s){for(var k in s)if(s.hasOwnProperty(k))S[k]=s[k];norm(S);restart()},replay:restart,state:function(){return {variant:variant,moment:momentKey,visited:visitedCount(),finalState:finalState,ended:ended,manual:manual,copy:currentCopy,signals:S}}};
+
+S=readSignals();build();start();
+})();
+</script>
+</body>
+</html>

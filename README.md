@@ -10,6 +10,10 @@
 
 Tek dosyalık teslim: `release/index.html` (üç banner içine gömülü; açınca doğrudan animasyonlu çalışır, her bannerın kendi index.html'i sayfadan indirilir). Sunum sayfası: `preview/index.html` (üç boyutu bir arada gösterir; "Yayın simülasyonu" görünümü bannerları örnek bir haber sayfası içinde konumlandırır).
 
+## Diğer çalışmalar
+
+- **Pluxee "Geçiyor" – media-first interaktif masthead (970 × 250)** → [`pluxee/`](pluxee/README.md). Splash Digital sinyalleriyle (segment, saat, konum, hava) yeniden kurulan tek dosyalık kreatif; sunum sayfası `pluxee/preview/index.html`.
+
 ## Ekran görüntüleri
 
 | 970 × 250 – ürün kartı | 970 × 250 – kapanış |
