@@ -42,7 +42,7 @@ function logoHtml(name, logo) {
 const imgOrSvg = (a, alt, fallback) => a && a.uri ? `<img src="${a.uri}" alt="${esc(alt)}">` : fallback;
 
 function render(data, assets = {}) {
-  const B = data.brand, K = data.copy, CP = data.campaign || {}, S = data.stage;
+  const B = data.brand, K = data.copy, CP = data.campaign || {}, S = data.stage, P = data.photo || { w: 330 };
   const css = fs.readFileSync(path.join(__dirname, 'styles.css'), 'utf8');
   const runtime = fs.readFileSync(path.join(__dirname, 'runtime.js'), 'utf8');
   const fontHead = assets.fontCss
@@ -61,7 +61,7 @@ function render(data, assets = {}) {
     clickTagDefault: B.url,
     copy: K, stage: S, maxCharms: data.maxCharms, timing: data.timing, tracking: data.tracking || { enabled: true },
     demoOrder: data.demoOrder || [],
-    bracelets: bracelets.map((b) => ({ key: b.key, label: b.label, metal: b.metal, title: b.title, price: b.price, url: b.url, sku: b.sku })),
+    bracelets: bracelets.map((b) => ({ key: b.key, label: b.label, metal: b.metal, title: b.title, price: b.price, url: b.url, sku: b.sku, slots: b.slots || null })),
     charms: charms.map((c) => ({ key: c.key, short: c.short, title: c.title, price: c.price, url: c.url, sku: c.sku })),
     charmHtml,
   };
@@ -81,9 +81,11 @@ ${fontHead}
 </head>
 <body>
 <div id="ad" tabindex="0" role="link" aria-label="${esc(B.name)} Moments: ${esc(K.headline).replace(/\n/g, ' ')} – ${esc(K.cta)}" data-metal="${esc(bracelets[0].key)}" data-charms="0">
-  <div class="media" aria-hidden="true"><div class="ph"${heroStyle}></div><div class="veil"></div><div class="glow"></div><div class="grain"></div></div>
+  <div class="media" aria-hidden="true"><div class="glow"></div><div class="grain"></div></div>
+  <div class="photo" aria-hidden="true" style="--pw:${P.w}px"><div class="ph"${heroStyle}></div><div class="scrim"></div><div class="edge"></div></div>
 
-  <div class="brand rise d1">${logoHtml(B.name, assets.logo)}${CP.enabled ? `<span class="sep"></span><span class="promo"><b>${esc(CP.badge)}</b><span>${esc(CP.line)}</span></span>` : ''}</div>
+  <div class="brand rise d1">${logoHtml(B.name, assets.logo)}</div>
+  ${CP.enabled ? `<div class="promo rise d2"><b>${esc(CP.badge)}</b><span>${esc(CP.line)}</span></div>` : ''}
 
   <div class="copy">
     <div class="kicker rise d2">${esc(K.kicker)}</div>
@@ -94,9 +96,9 @@ ${fontHead}
   <div class="legal" aria-hidden="true">${esc(K.legal)}</div>
 
   <div class="stage">
-    <div class="ring" style="left:${S.left}px;top:${S.top}px;width:${S.size}px;height:${S.size}px;--cs:${S.charmSize}px" title="${esc(bracelets[0].title)}">${ringLayers}${(S.glints || []).map((g) => `<i class="glint" style="left:${g.x * 100}%;top:${g.y * 100}%;--gd:${g.d || 0}s"></i>`).join('')}<div class="slots"></div></div>
+    <div class="ring" style="left:${S.left}px;top:${S.top}px;width:${S.w}px;height:${S.h}px;--cs:${S.charmSize}px" title="${esc(bracelets[0].title)}">${ringLayers}${(S.glints || []).map((g) => `<i class="glint" style="left:${g.x * 100}%;top:${g.y * 100}%;--gd:${g.d || 0}s"></i>`).join('')}<div class="slots"></div></div>
   </div>
-  <div class="caption" aria-live="polite" style="left:${S.left - 10}px;width:${S.size + 20}px"></div>
+  <div class="caption" aria-live="polite" style="left:${S.left - 12}px;width:${S.w + 24}px"></div>
   <div class="fx" aria-hidden="true"></div>
 
   <div class="panel rise" role="group" aria-label="Bilekliğini tasarla">

@@ -62,8 +62,12 @@
     els.ctaText.textContent = st.charms.length ? K.ctaBuilt : K.cta;
     ad.setAttribute('data-charms', st.charms.length);
   }
+  function placeSlots(b) {
+    var sl = (b && b.slots) || S.slots;
+    for (var i = 0; i < els.slots.children.length; i++) { var s = els.slots.children[i], c = sl[i] || S.slots[i]; s.style.left = (c.x * 100) + '%'; s.style.top = (c.y * 100) + '%'; s.style.transform = 'rotate(' + (c.r || 0) + 'deg)'; }
+  }
   function renderMetal() {
-    var b = bracelet();
+    var b = bracelet(); placeSlots(b);
     var imgs = qa('.ring .v');
     for (var i = 0; i < imgs.length; i++) imgs[i].classList.toggle('on', imgs[i].getAttribute('data-metal') === b.key);
     for (i = 0; i < els.metals.length; i++) { var on = els.metals[i].getAttribute('data-metal') === b.key; els.metals[i].classList.toggle('on', on); els.metals[i].setAttribute('aria-pressed', on ? 'true' : 'false'); }
@@ -197,7 +201,7 @@
     if (st.started) return; st.started = true;
     // yuvalar
     for (var i = 0; i < S.slots.length && i < D.maxCharms; i++) { var s = document.createElement('div'); s.className = 'slot empty'; s.style.left = (S.slots[i].x * 100) + '%'; s.style.top = (S.slots[i].y * 100) + '%'; s.style.transform = 'rotate(' + (S.slots[i].r || 0) + 'deg)'; s.innerHTML = '<i class="hint"></i>'; els.slots.appendChild(s); }
-    renderMetal(); renderTotal(false); captionDefault();
+    renderMetal(); renderTotal(false); caption('<b>' + K.sub + '</b>'); later(function () { if (!st.hover) captionDefault(); }, Math.max(1200, T.intro - 600));
     requestAnimationFrame(function () { requestAnimationFrame(function () { ad.classList.add('is-in'); }); });
     if (RM) { ad.classList.add('is-in'); rest(); }
     else later(demo, T.intro);

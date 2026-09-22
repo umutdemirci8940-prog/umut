@@ -29,7 +29,7 @@ const toDataUri = (file) => `data:${MIME[path.extname(file).slice(1).toLowerCase
 const kb = (n) => (n / 1024).toFixed(1) + ' KB';
 
 /* Tarayıcıda çalışır: fon temizleme + kırpma + küçültme */
-const PROCESS = async ({ src, max, quality, mode, tol, crop, pad }) => {
+const PROCESS = async ({ src, max, quality, mode, tol, crop, pad, seeds, keyTol }) => {
   const img = new Image();
   await new Promise((res, rej) => { img.onload = res; img.onerror = () => rej(new Error('görsel yüklenemedi')); img.src = src; });
   let W = img.naturalWidth, H = img.naturalHeight;
@@ -58,7 +58,9 @@ const PROCESS = async ({ src, max, quality, mode, tol, crop, pad }) => {
       const seen = new Uint8Array(W * H); const stack = [];
       for (let x = 0; x < W; x++) stack.push(x, 0, x, H - 1);
       for (let y = 0; y < H; y++) stack.push(0, y, W - 1, y);
+      for (const sd of seeds || []) stack.push(Math.round(sd[0] * (W - 1)), Math.round(sd[1] * (H - 1)));
       while (stack.length) { const y = stack.pop(), x = stack.pop(); if (x < 0 || y < 0 || x >= W || y >= H) continue; const k = y * W + x; if (seen[k]) continue; seen[k] = 1; const i = k * 4; if (!near(i)) continue; d[i + 3] = 0; stack.push(x + 1, y, x - 1, y, x, y + 1, x, y - 1); }
+      if (keyTol) { for (let k = 0; k < W * H; k++) { const i = k * 4; if (d[i + 3] && Math.abs(d[i] - mean[0]) < keyTol && Math.abs(d[i + 1] - mean[1]) < keyTol && Math.abs(d[i + 2] - mean[2]) < keyTol) d[i + 3] = 0; } }
       // kenar yumuşatma: dış halka %35, ikinci halka %70 (gölge kalıntıları için ayrıca hafif toleranslı sönüm)
       const a = new Uint8ClampedArray(W * H); for (let k = 0; k < W * H; k++) a[k] = d[k * 4 + 3];
       const ring = new Uint8Array(W * H);
@@ -94,7 +96,7 @@ const PROCESS = async ({ src, max, quality, mode, tol, crop, pad }) => {
     if (!file) { const idx = pk.index != null ? pk.index : 0; const im = (p.images || []).filter((i) => !i.skip)[idx] || (p.images || [])[0]; if (im) file = path.join(root, im.file); }
     if (!file || !fs.existsSync(file)) { console.log(`⚠ ${p.key}: görsel yok`); continue; }
     const isBr = p.kind === 'bracelet';
-    const r = await page.evaluate(PROCESS, { src: toDataUri(file), max: isBr ? BR : CH, quality: Q, mode: 'packshot', tol: pk.tolerance != null ? +pk.tolerance : TOL, pad: pk.pad });
+    const r = await page.evaluate(PROCESS, { src: toDataUri(file), max: isBr ? BR : CH, quality: Q, mode: 'packshot', tol: pk.tolerance != null ? +pk.tolerance : TOL, pad: pk.pad, seeds: pk.seeds || (isBr ? [[0.5, 0.5]] : null), keyTol: pk.keyTol || 0 });
     const outFile = path.join(optDir, `${p.key}.webp`); const bytes = write(r.dataUrl, outFile);
     (isBr ? opt.bracelets : opt.charms)[p.key] = { file: path.relative(root, outFile), w: r.width, h: r.height, bytes, title: p.title, price: p.price, sku: p.sku, url: p.sourceUrl || p.url, from: path.relative(root, file), transparent: r.removed || r.hasAlpha };
     console.log(`✔ ${p.key.padEnd(12)} ${String(r.width + '×' + r.height).padEnd(9)} ${kb(bytes).padStart(9)}  ${r.removed ? 'fon temizlendi' : r.hasAlpha ? 'zaten şeffaf' : 'fon korundu'}  ${p.title} ${p.price ? p.price + ' TL' : ''}`);
@@ -103,7 +105,7 @@ const PROCESS = async ({ src, max, quality, mode, tol, crop, pad }) => {
   if (pick.hero && pick.hero.file) {
     const f = path.join(root, pick.hero.file);
     if (fs.existsSync(f)) {
-      const r = await page.evaluate(PROCESS, { src: toDataUri(f), max: HERO_W, quality: pick.hero.quality || 0.74, mode: 'hero', crop: pick.hero.crop });
+      const r = await page.evaluate(PROCESS, { src: toDataUri(f), max: pick.hero.max || HERO_W, quality: pick.hero.quality || 0.74, mode: 'hero', crop: pick.hero.crop });
       const outFile = path.join(optDir, 'hero.webp'); const bytes = write(r.dataUrl, outFile);
       opt.hero = { file: path.relative(root, outFile), w: r.width, h: r.height, bytes, pos: pick.hero.pos || '50% 50%', from: pick.hero.file };
       console.log(`✔ hero         ${r.width}×${r.height} ${kb(bytes)}`);
@@ -114,7 +116,7 @@ const PROCESS = async ({ src, max, quality, mode, tol, crop, pad }) => {
   if (lg) {
     const f = path.join(root, lg);
     if (/\.svg$/i.test(f)) {
-      let svg = fs.readFileSync(f, 'utf8').replace(/<\?xml[^>]*>/, '').replace(/<!--[\s\S]*?-->/g, '').replace(/<script[\s\S]*?<\/script>/gi, '');
+      let svg = fs.readFileSync(f, 'utf8').replace(/<\?xml[^>]*>/, '').replace(/<!--[\s\S]*?-->/g, '').replace(/<script[\s\S]*?<\/script>/gi, '').replace(/<metadata[\s\S]*?<\/metadata>/gi, '').replace(/<sodipodi:namedview[\s\S]*?\/>/gi, '').replace(/<sodipodi:namedview[\s\S]*?<\/sodipodi:namedview>/gi, '').replace(/\s(?:inkscape|sodipodi):[a-zA-Z-]+="[^"]*"/g, '').replace(/\sxmlns:(?:dc|cc|rdf|svg|sodipodi|inkscape)="[^"]*"/g, '').replace(/<defs[^>]*\/>|<defs[^>]*>\s*<\/defs>/g, '').replace(/\sstyle="text-align:center"/, '').replace(/\s+/g, ' ').replace(/> </g, '><').trim();
       if (pick.logo && pick.logo.fill) svg = svg.replace(/fill="(?!none)[^"]*"/g, `fill="${pick.logo.fill}"`).replace(/<svg/, `<svg fill="${pick.logo.fill}"`);
       const outFile = path.join(optDir, 'logo.svg'); fs.writeFileSync(outFile, svg);
       const vb = svg.match(/viewBox="([\d.\s,-]+)"/); const v = vb ? vb[1].trim().split(/[\s,]+/).map(Number) : null;

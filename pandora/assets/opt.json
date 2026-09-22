@@ -1,0 +1,130 @@
+{
+  "generatedAt": "2026-09-22T12:45:44.139Z",
+  "bracelets": {
+    "silver": {
+      "file": "assets/opt/silver.webp",
+      "w": 692,
+      "h": 310,
+      "bytes": 28370,
+      "title": "Yılan Zinciri Ayarlanabilir Bileklik",
+      "price": 4479,
+      "sku": "599652C01",
+      "url": "https://tr.pandora.net/tr/bileklikler/zincir-bileklikler/pandora-moments-yilan-zincir-bileklik/599652C01.html",
+      "from": "assets/src/silver-1.jpg",
+      "transparent": true
+    },
+    "rose": {
+      "file": "assets/opt/rose.webp",
+      "w": 691,
+      "h": 282,
+      "bytes": 27370,
+      "title": "Yılan Zinciri Bileklikler",
+      "price": 5449,
+      "sku": "580728",
+      "url": "https://tr.pandora.net/tr/bileklikler/zincir-bileklikler/moments-14-ayar-pembe-altin-kaplama-bileklik/580728.html",
+      "from": "assets/src/rose-1.jpg",
+      "transparent": true
+    },
+    "gold": {
+      "file": "assets/opt/gold.webp",
+      "w": 691,
+      "h": 282,
+      "bytes": 29530,
+      "title": "Yılan Zinciri Bileklikler",
+      "price": 5609,
+      "sku": "568748C00",
+      "url": "https://tr.pandora.net/tr/charmlar-ve-bileklikler/bileklikler/zincir-bileklikler/moments-14-ayar-altin-kaplama-duz-klipsli-bileklik/568748C00.html",
+      "from": "assets/src/gold-1.jpg",
+      "transparent": true
+    }
+  },
+  "charms": {
+    "hearts": {
+      "file": "assets/opt/hearts.webp",
+      "w": 200,
+      "h": 185,
+      "bytes": 23482,
+      "title": "İç İçe Sonsuz Kalpler Charm",
+      "price": 999,
+      "sku": "790800C00",
+      "url": "https://tr.pandora.net/tr/charmlar-ve-bileklikler/charmlar/charmlar/i%CC%87c-i%CC%87ce-sonsuz-kalpler-charm/790800C00.html",
+      "from": "assets/src/hearts-2.jpg",
+      "transparent": true
+    },
+    "galaxy": {
+      "file": "assets/opt/galaxy.webp",
+      "w": 170,
+      "h": 200,
+      "bytes": 15922,
+      "title": "Galaksi Mavisi ve Yıldız Murano Charm",
+      "price": 2779,
+      "sku": "790015C00",
+      "url": "https://tr.pandora.net/tr/charm%E2%80%99lar-ve-bileklikler/charm%E2%80%99lar/charm%E2%80%99lar/galaksi-mavisi-ve-yildiz-murano-charm/790015C00.html",
+      "from": "assets/src/galaxy-2.jpg",
+      "transparent": true
+    },
+    "murano": {
+      "file": "assets/opt/murano.webp",
+      "w": 151,
+      "h": 200,
+      "bytes": 5444,
+      "title": "Mat Pembe Murano Cam Charm",
+      "price": 2699,
+      "sku": "789421C00",
+      "url": "https://tr.pandora.net/tr/charmlar-ve-bileklikler/charmlar/charmlar/mat-pembe-murano-cam-charm/789421C00.html",
+      "from": "assets/src/murano-1.jpg",
+      "transparent": true
+    },
+    "butterfly": {
+      "file": "assets/opt/butterfly.webp",
+      "w": 200,
+      "h": 168,
+      "bytes": 12834,
+      "title": "Mavi Kelebek Işıltılı Charm",
+      "price": 3579,
+      "sku": "790761C01",
+      "url": "https://tr.pandora.net/tr/charmlar-ve-bileklikler/charmlar/charmlar/mavi-kelebek-isiltili-charm/790761C01.html",
+      "from": "assets/src/butterfly-2.jpg",
+      "transparent": true
+    },
+    "clip": {
+      "file": "assets/opt/clip.webp",
+      "w": 149,
+      "h": 200,
+      "bytes": 9822,
+      "title": "Mavi Pavé Klips Charm",
+      "price": 2699,
+      "sku": "791817NSBMX",
+      "url": "https://tr.pandora.net/tr/charmlar/klipsler/mavi-pave-klips-charm/791817NSBMX.html",
+      "from": "assets/src/clip-2.jpg",
+      "transparent": true
+    },
+    "bigbutterfly": {
+      "file": "assets/opt/bigbutterfly.webp",
+      "w": 187,
+      "h": 200,
+      "bytes": 10192,
+      "title": "Büyük Kelebek Charm",
+      "price": 4349,
+      "sku": "793747C01",
+      "url": "https://tr.pandora.net/tr/charmlar-ve-bileklikler/charmlar/charmlar/buyuk-kelebek-charm/793747C01.html",
+      "from": "assets/src/bigbutterfly-1.jpg",
+      "transparent": true
+    }
+  },
+  "logo": {
+    "file": "assets/opt/logo.svg",
+    "inline": true,
+    "aspect": 4.805085010042387,
+    "from": "assets/logo/wikimedia-pandora-2019.svg",
+    "bytes": 5545
+  },
+  "hero": {
+    "file": "assets/opt/hero.webp",
+    "w": 700,
+    "h": 537,
+    "bytes": 30876,
+    "pos": "50% 50%",
+    "from": "assets/src/hearts-1.jpg"
+  }
+}

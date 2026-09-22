@@ -1,0 +1,51 @@
+{
+  "products": {
+    "silver": {
+      "index": 0
+    },
+    "rose": {
+      "index": 0
+    },
+    "gold": {
+      "index": 0
+    },
+    "hearts": {
+      "index": 1,
+      "keyTol": 10
+    },
+    "galaxy": {
+      "index": 1
+    },
+    "murano": {
+      "index": 0
+    },
+    "butterfly": {
+      "index": 1
+    },
+    "clip": {
+      "index": 1
+    },
+    "bigbutterfly": {
+      "index": 0
+    },
+    "star": {
+      "skip": true
+    }
+  },
+  "hero": {
+    "file": "assets/src/hearts-1.jpg",
+    "crop": {
+      "x": 0,
+      "y": 0.03,
+      "w": 1,
+      "h": 0.575
+    },
+    "max": 700,
+    "quality": 0.78,
+    "pos": "50% 50%"
+  },
+  "logo": {
+    "file": "assets/logo/wikimedia-pandora-2019.svg",
+    "fill": "#ffffff"
+  }
+}

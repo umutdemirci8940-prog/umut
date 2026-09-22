@@ -7,47 +7,47 @@ button{font-family:inherit;font-size:inherit;line-height:inherit;color:inherit;b
 button:focus-visible{box-shadow:0 0 0 2px var(--white),0 0 0 4px var(--ink)}
 #ad img{display:block;-webkit-user-drag:none;user-drag:none;pointer-events:none}
 
-/* ---------- medya katmanı (fotoğraf + ışık) ---------- */
+/* ---------- medya katmanı: sol fotoğraf sütunu + sahne zemini ---------- */
 .media{position:absolute;inset:0;overflow:hidden;background:linear-gradient(115deg,#fbf3f5 0%,#f6e4e9 45%,#efd6dd 100%)}
-.media .ph{position:absolute;left:-3%;top:-6%;width:106%;height:112%;background-size:cover;background-position:var(--ph-pos,62% 40%);opacity:0;transform:scale(1.1) translate3d(1.2%,0,0)}
-#ad.is-in .media .ph{opacity:1;animation:kb 28s var(--ease) forwards;transition:opacity 1.4s ease-out}
-@keyframes kb{0%{transform:scale(1.1) translate3d(1.2%,0,0)}100%{transform:scale(1) translate3d(-1%,0,0)}}
-.media .veil{position:absolute;inset:0;background:linear-gradient(90deg,rgba(251,244,246,.97) 0%,rgba(251,244,246,.94) 24%,rgba(251,244,246,.62) 36%,rgba(251,244,246,.16) 50%,rgba(251,244,246,.06) 66%,rgba(251,244,246,.22) 100%)}
-.media .glow{position:absolute;left:29%;top:-56%;width:44%;height:212%;background:radial-gradient(closest-side,rgba(255,255,255,.92),rgba(255,255,255,.55) 45%,rgba(255,255,255,0));pointer-events:none}
+.media .glow{position:absolute;left:31%;top:-60%;width:44%;height:220%;background:radial-gradient(closest-side,rgba(255,255,255,.95),rgba(255,255,255,.6) 45%,rgba(255,255,255,0));pointer-events:none}
 .media .grain{position:absolute;inset:0;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");pointer-events:none}
-#ad.is-still .media .ph{animation-play-state:paused}
-
+.photo{position:absolute;left:0;top:0;width:var(--pw,330px);height:100%;overflow:hidden;background:linear-gradient(160deg,#4a3a40,#1f171a)}
+.photo .ph{position:absolute;left:-3%;top:-4%;width:106%;height:108%;background-size:cover;background-position:var(--ph-pos,50% 40%);opacity:0;transform:scale(1.08) translate3d(0,1%,0)}
+#ad.is-in .photo .ph{opacity:1;animation:kb 28s var(--ease) forwards;transition:opacity 1.3s ease-out}
+@keyframes kb{0%{transform:scale(1.08) translate3d(0,1%,0)}100%{transform:scale(1) translate3d(0,-1%,0)}}
+#ad.is-still .photo .ph{animation-play-state:paused}
+.photo .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,10,14,.42) 0%,rgba(20,10,14,.06) 26%,rgba(20,10,14,0) 40%,rgba(20,10,14,.28) 58%,rgba(20,10,14,.82) 100%)}
+.photo .edge{position:absolute;right:0;top:0;bottom:0;width:26px;background:linear-gradient(90deg,rgba(251,243,245,0),rgba(251,243,245,.9))}
 /* ---------- giriş kurgusu ---------- */
 .rise{opacity:0;transform:translate3d(0,10px,0)}
 #ad.is-in .rise{opacity:1;transform:none;transition:opacity .7s var(--ease),transform .85s var(--ease)}
 #ad.is-in .d1{transition-delay:.15s}#ad.is-in .d2{transition-delay:.42s}#ad.is-in .d3{transition-delay:.58s}#ad.is-in .d4{transition-delay:.78s}#ad.is-in .d5{transition-delay:1.05s}#ad.is-in .d6{transition-delay:1.25s}
 
-/* ---------- sol sütun: marka + mesaj ---------- */
-.brand{position:absolute;left:28px;top:19px;height:22px;display:flex;align-items:center;gap:14px}
-.brand .logo{height:20px;width:auto;display:block}
-.brand .logo-text{font-weight:800;font-size:21px;letter-spacing:.32em;line-height:1;color:var(--ink);padding-left:2px}
-.brand .sep{width:1px;height:16px;background:var(--line)}
-.promo{display:flex;align-items:center;gap:8px;white-space:nowrap}
-.promo b{display:inline-flex;align-items:center;height:20px;padding:0 9px;border-radius:999px;background:var(--rose);color:#fff;font-size:9.5px;font-weight:800;letter-spacing:.14em}
-.promo span{font-size:10px;font-weight:500;color:var(--ink2);letter-spacing:.01em}
-.copy{position:absolute;left:28px;top:62px;width:292px}
-.copy .kicker{font-size:9.5px;font-weight:700;letter-spacing:.22em;color:var(--rose);margin-bottom:8px}
-.copy h1{margin:0;font-size:29px;line-height:1.04;font-weight:800;letter-spacing:-.025em;color:var(--ink)}
-.copy h1 em{font-style:normal;color:var(--rose)}
-.copy p{margin:9px 0 0;font-size:12px;line-height:1.4;font-weight:500;color:var(--ink2);max-width:268px}
-.cta{position:absolute;left:28px;bottom:22px;height:40px;display:inline-flex;align-items:center;gap:10px;padding:0 18px 0 20px;border-radius:999px;background:var(--ink);color:#fff;font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;box-shadow:0 10px 24px -10px rgba(31,30,28,.55);transition:background .2s,transform .2s var(--ease),box-shadow .2s}
-.cta svg{width:14px;height:14px;transition:transform .25s var(--ease)}
-.cta:before{content:"";position:absolute;inset:-3px;border-radius:999px;border:2px solid rgba(31,30,28,.35);opacity:0;transform:scale(.9)}
+/* ---------- sol sütun (fotoğraf üzeri): marka + mesaj + CTA ---------- */
+.brand{position:absolute;left:22px;top:18px;height:22px;display:flex;align-items:center;gap:12px;color:#fff}
+.brand .logo{height:19px;width:auto;display:block;filter:drop-shadow(0 1px 2px rgba(0,0,0,.25))}
+.brand .logo-text{font-weight:800;font-size:19px;letter-spacing:.3em;line-height:1;color:#fff;padding-left:2px}
+.promo{position:absolute;left:22px;top:92px;display:flex;align-items:center;gap:7px;white-space:nowrap}
+.promo b{display:inline-flex;align-items:center;height:19px;padding:0 8px;border-radius:999px;background:var(--rose);color:#fff;font-size:9px;font-weight:800;letter-spacing:.14em;box-shadow:0 4px 10px -4px rgba(200,16,78,.7)}
+.promo span{font-size:9.5px;font-weight:600;color:rgba(255,255,255,.88);letter-spacing:.01em;text-shadow:0 1px 2px rgba(0,0,0,.35)}
+.copy{position:absolute;left:22px;bottom:70px;width:290px;color:#fff}
+.copy .kicker{font-size:9px;font-weight:800;letter-spacing:.22em;color:#ffb8cc;margin-bottom:6px;text-shadow:0 1px 2px rgba(0,0,0,.3)}
+.copy h1{margin:0;font-size:26px;line-height:1.04;font-weight:800;letter-spacing:-.025em;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.35)}
+.copy h1 em{font-style:normal;color:#ffd1dd}
+.copy p{display:none}
+.cta{position:absolute;left:22px;bottom:20px;height:36px;display:inline-flex;align-items:center;gap:9px;padding:0 15px 0 17px;border-radius:999px;background:#fff;color:var(--ink);font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;box-shadow:0 10px 24px -8px rgba(0,0,0,.55);transition:background .2s,transform .2s var(--ease),box-shadow .2s}
+.cta svg{width:13px;height:13px;transition:transform .25s var(--ease)}
+.cta:before{content:"";position:absolute;inset:-3px;border-radius:999px;border:2px solid rgba(255,255,255,.6);opacity:0;transform:scale(.9)}
 #ad.is-rest:not(.is-still) .cta:before{animation:pulse 3.2s ease-out infinite 1.2s}
-@keyframes pulse{0%{opacity:.6;transform:scale(.92)}60%{opacity:0;transform:scale(1.22)}100%{opacity:0;transform:scale(1.22)}}
-#ad:hover .cta{background:#000;transform:translate3d(0,-1px,0);box-shadow:0 14px 28px -10px rgba(31,30,28,.6)}
+@keyframes pulse{0%{opacity:.7;transform:scale(.92)}60%{opacity:0;transform:scale(1.22)}100%{opacity:0;transform:scale(1.22)}}
+#ad:hover .cta{background:#fff5f8;transform:translate3d(0,-1px,0);box-shadow:0 14px 28px -8px rgba(0,0,0,.6)}
 #ad:hover .cta svg{transform:translate3d(3px,0,0)}
-.legal{position:absolute;left:28px;bottom:8px;font-size:7.5px;color:var(--ink3);letter-spacing:.01em;white-space:nowrap;opacity:0}
-#ad.is-rest .legal{opacity:1;transition:opacity .6s}
+.legal{position:absolute;left:346px;bottom:2px;font-size:7px;color:var(--ink3);letter-spacing:.01em;white-space:nowrap;opacity:0}
+#ad.is-rest .legal{opacity:.9;transition:opacity .6s}
 
 /* ---------- orta sahne: bileklik + charm yuvaları ---------- */
 .stage{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none}
-.ring{position:absolute;pointer-events:auto;opacity:0;transform:translate3d(0,26px,0) rotate(-7deg) scale(.94);transform-origin:50% 60%;filter:drop-shadow(0 18px 22px rgba(74,30,40,.22))}
+.ring{position:absolute;pointer-events:auto;opacity:0;transform:translate3d(0,22px,0) rotate(-5deg) scale(.94);transform-origin:50% 60%;filter:drop-shadow(0 16px 20px rgba(74,30,40,.24))}
 #ad.is-in .ring{opacity:1;transform:none;transition:opacity .8s var(--ease) .75s,transform 1.15s var(--spring) .75s}
 .ring>.v{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity .45s var(--ease)}
 .ring>.v.on{opacity:1}
@@ -76,7 +76,7 @@ button:focus-visible{box-shadow:0 0 0 2px var(--white),0 0 0 4px var(--ink)}
 @keyframes spark{0%{opacity:1;transform:translate3d(0,0,0) scale(.5)}100%{opacity:0;transform:translate3d(var(--dx),var(--dy),0) scale(1.1)}}
 .ripple{position:absolute;width:var(--cs,56px);height:var(--cs,56px);margin:calc(var(--cs,56px) / -2) 0 0 calc(var(--cs,56px) / -2);border-radius:50%;border:2px solid rgba(255,255,255,.95);box-shadow:0 0 12px rgba(239,95,135,.5);opacity:0;animation:ripple .7s var(--ease) forwards}
 @keyframes ripple{0%{opacity:.9;transform:scale(.5)}100%{opacity:0;transform:scale(1.7)}}
-.caption{position:absolute;bottom:9px;text-align:center;font-size:10px;line-height:1.25;color:var(--ink2);pointer-events:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 6px}
+.caption{position:absolute;bottom:14px;text-align:center;font-size:10px;line-height:1.25;color:var(--ink2);pointer-events:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 6px}
 .caption span{display:block;font-size:9.5px;color:var(--ink3)}
 .caption b{color:var(--ink);font-weight:700}
 .caption i{font-style:normal;color:var(--rose);font-weight:700}

@@ -21,6 +21,13 @@ on:
         description: (pandora) Marka sayfalarını (logo/hero) atla
         type: boolean
         default: false
+      only:
+        description: (pandora) Yalnız bu ürün anahtarları (virgülle; boş = hepsi)
+        default: ''
+      skip_listings:
+        description: (pandora) Listeleme sayfalarını atla
+        type: boolean
+        default: false
       tolerance:
         description: (ilacsizyasam) Fon temizleme toleransı (0-255)
         default: '22'
@@ -63,7 +70,7 @@ jobs:
         continue-on-error: true
         env:
           PW_CHANNEL: chromium
-        run: node tools/fetch-assets.js --max-per-product=${{ inputs.max_per_product }} --max-list=${{ inputs.max_list }} ${{ inputs.skip_site && '--skip-site' || '' }}
+        run: node tools/fetch-assets.js --max-per-product=${{ inputs.max_per_product }} --max-list=${{ inputs.max_list }} ${{ inputs.skip_site && '--skip-site' || '' }} ${{ inputs.skip_listings && '--skip-listings' || '' }} ${{ inputs.only != '' && format('--only={0}', inputs.only) || '' }}
 
       - name: Rapor özeti
         if: always()

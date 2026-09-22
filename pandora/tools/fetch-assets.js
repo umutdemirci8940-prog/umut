@@ -172,8 +172,10 @@ function extractProduct(html, url, sku) {
   const liveBase = !manifest.access.browser.blocked ? BASE : (altLive ? ALT : null);
 
   // ---------- 1. Ürün sayfaları ----------
-  const products = [...data.bracelets.map((b) => ({ ...b, kind: 'bracelet' })), ...data.charms.map((c) => ({ ...c, kind: 'charm' }))];
+  const products = [...data.bracelets.map((b) => ({ ...b, kind: 'bracelet' })), ...data.charms.map((c) => ({ ...c, kind: 'charm' })), ...(data.candidates || [])];
+  const only = args.only ? String(args.only).split(',') : null;
   for (const p of products) {
+    if (only && only.indexOf(p.key) < 0) continue;
     const rec = { key: p.key, kind: p.kind, sku: p.sku, url: p.url, title: p.title, price: p.price, currency: 'TRY', images: [], source: null, tries: [] };
     log(`\n## ${p.kind} ${p.key} (${p.sku}) ${p.url}`);
     let got = null;
@@ -307,7 +309,7 @@ function extractProduct(html, url, sku) {
         const svgs = q('header svg, nav svg, [class*="logo"] svg, [class*="Logo"] svg, a[href="/"] svg, a[href$="/tr/"] svg, a[aria-label*="andora"] svg').slice(0, 10).map((s) => { let html = s.outerHTML; const uses = [...s.querySelectorAll('use')].map((u) => (u.getAttribute('href') || u.getAttribute('xlink:href') || '').replace('#', '')).filter(Boolean); const defs = uses.map((id) => { const d = document.getElementById(id); return d ? d.outerHTML : ''; }).join(''); if (defs) html = html.replace('</svg>', `<defs>${defs}</defs></svg>`); html = html.replace(/currentColor/g, getComputedStyle(s).color || '#000'); if (!/xmlns=/.test(html)) html = html.replace('<svg', '<svg xmlns="http://www.w3.org/2000/svg"'); return { html: html.slice(0, 80000), box: rect(s), aria: s.getAttribute('aria-label') || '', parentCls: String(s.parentElement && s.parentElement.className || '').slice(0, 100), title: (s.querySelector('title') || {}).textContent || '' }; });
         const icons = q('link[rel*="icon"]').map((l) => ({ href: l.href, sizes: l.getAttribute('sizes') || '' }));
         const meta = {}; for (const m of q('meta[property^="og:"], meta[name="description"], meta[name="theme-color"]')) meta[m.getAttribute('property') || m.getAttribute('name')] = m.getAttribute('content');
-        const tx = (sel, n, max) => q(sel).map((e) => e.innerText.trim().replace(/\s+/g, ' ')).filter((t) => t && t.length < max).slice(0, n);
+        const tx = (sel, n, max) => q(sel).map((e) => String(e.innerText || e.textContent || '').trim().replace(/\s+/g, ' ')).filter((t) => t && t.length < max).slice(0, n);
         const texts = { title: document.title, h1: tx('h1', 10, 200), h2: tx('h2', 30, 200), h3: tx('h3', 30, 200), buttons: tx('button, a.btn, [class*="btn"], [class*="button"]', 60, 60), hero: tx('[class*="hero"] h1, [class*="hero"] h2, [class*="hero"] p, [class*="banner"] h2, [class*="banner"] h3, [class*="banner"] p, [class*="headline"], [class*="promo"] p, [class*="promo"] h2', 40, 240), lead: tx('p', 40, 240) };
         const fonts = {}; for (const sel of ['body', 'h1', 'h2', 'p', 'button', 'a']) { const e = document.querySelector(sel); if (e) { const cs = getComputedStyle(e); fonts[sel] = { family: cs.fontFamily, weight: cs.fontWeight, size: cs.fontSize, color: cs.color, letterSpacing: cs.letterSpacing, transform: cs.textTransform }; } }
         const colorHits = {}; for (const e of q('button, a, header, footer, [class*="btn"], [class*="badge"], section, [class*="hero"], [class*="banner"], h1, h2, [class*="promo"]').slice(0, 600)) { const cs = getComputedStyle(e); for (const c of [cs.backgroundColor, cs.color]) { if (c && !/rgba\(0, 0, 0, 0\)/.test(c)) colorHits[c] = (colorHits[c] || 0) + 1; } }
