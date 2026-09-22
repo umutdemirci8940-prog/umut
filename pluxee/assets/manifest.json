@@ -1,0 +1,37 @@
+{
+  "source": "https://www.pluxee.com.tr",
+  "fetchedAt": "2026-09-22T17:03:10.207Z",
+  "candidates": {
+    "logo": [
+      "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/plx_block_carrousel/public/2023-12/I%E2%95%A0%C3%A7stanbul_Ulas%E2%95%A0%C4%9F%E2%94%80%E2%96%92m_logo.svg_.png.webp?h=378fda19&itok=92Hw6bKt",
+      "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/plx_block_carrousel/public/2023-12/Metro_I%E2%95%A0%C3%A7stanbul_logo.svg_.png.webp?h=378fda19&itok=XhNP2qla",
+      "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/plx_block_carrousel/public/2023-12/I%E2%95%A0%C3%A7DO_logosu.png.webp?h=378fda19&itok=DI5t6VbR",
+      "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/plx_block_carrousel/public/2023-12/S%E2%95%A0%C4%9Fehir_Hatlar%E2%94%80%E2%96%92_logo.png.webp?h=378fda19&itok=1Uy8hv4l",
+      "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/plx_block_carrousel/public/2023-12/Tu%E2%95%A0%C3%AArkiye_Cumhuriyeti_Devlet_Demiryollar%E2%94%80%E2%96%92_logo.png.webp?h=378fda19&itok=VfU4Qyv1",
+      "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/plx_block_carrousel/public/2023-12/havaist-logo_0.png.webp?h=378fda19&itok=Kjd9-gd6",
+      "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/Logo%20pluxee%20final.png",
+      "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/coh_x_large/public/2025-12/hediye.logolar-12.jpg.webp?itok=fy117ecp"
+    ],
+    "card": [
+      "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/plx_cards_reinsurance/public/2023-09/plx-illus-GiftCard03%403x.png.webp?h=3cd06fc8&itok=7iHwCQck",
+      "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/plx_cards_reinsurance/public/2023-09/plx-illus-CommunitySupport%402x.png.webp?h=93fa4828&itok=7VGb82_Q",
+      "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/plx_block_text_image/public/2026-02/al%E2%94%80%E2%96%92s%E2%95%A0%C4%9Fveris%E2%95%A0%C4%9F%20kart.webp?h=7347ad0e&itok=YOg5PJDL",
+      "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/plx_cards_partners_horizontal/public/2023-09/MicrosoftTeams-image%20%2837%29.png.webp?h=7777f076&itok=ZxcY9OVe",
+      "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/plx_cards_reinsurance/public/2023-11/Type%3D04%403x.png.webp?h=3cd06fc8&itok=reMEECRL",
+      "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/plx_cards_reinsurance/public/2023-11/plx-illus-Devicecard%402x.png.webp?h=93fa4828&itok=LmMD4YBF",
+      "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/plx_cards_reinsurance/public/2023-09/plx-illus-SecurityOn%402x.png.webp?h=93fa4828&itok=Fy7jyoHk",
+      "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/plx_cards_reinsurance/public/2023-10/plx-illus-GiftCard03%403x.png.webp?h=3cd06fc8&itok=3rhHQS5N"
+    ]
+  },
+  "logo": {
+    "file": "logo.webp",
+    "from": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/plx_block_carrousel/public/2023-12/I%E2%95%A0%C3%A7stanbul_Ulas%E2%95%A0%C4%9F%E2%94%80%E2%96%92m_logo.svg_.png.webp?h=378fda19&itok=92Hw6bKt",
+    "white": true,
+    "optimized": "logo.opt.png"
+  },
+  "card": {
+    "file": "card.webp",
+    "from": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/plx_cards_reinsurance/public/2023-09/plx-illus-GiftCard03%403x.png.webp?h=3cd06fc8&itok=7iHwCQck",
+    "optimized": "card.opt.webp"
+  }
+}

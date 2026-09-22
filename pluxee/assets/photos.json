@@ -1,0 +1,372 @@
+{
+  "note": "Sahne fotoğrafları. source: site = pluxee.com.tr, flickr = loremflickr.com (Flickr CC, yayın öncesi lisanslı stokla değiştirin), manual = elle",
+  "slots": {
+    "restoran": {
+      "file": "photos/site-25.webp",
+      "source": "site",
+      "from": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/coh_x_large/public/2025-01/yemek%20u%CC%88creti.jpg.webp?itok=1czG0Bv5",
+      "alt": "Yemek Kartlarında SGK Primi Kalktı ",
+      "optimized": "photos/restoran.opt.webp"
+    },
+    "kafe": {
+      "file": "photos/kafe.jpg",
+      "source": "flickr",
+      "from": "https://loremflickr.com/1600/900/coffee,cafe,cup",
+      "credit": "Flickr CC via loremflickr.com – yayın öncesi lisanslı stok fotoğrafla değiştirin",
+      "optimized": "photos/kafe.opt.webp"
+    },
+    "market": {
+      "file": "photos/site-33.webp",
+      "source": "site",
+      "from": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/plx_block_text_image/public/2026-02/al%E2%94%80%E2%96%92s%E2%95%A0%C4%9Fveris%E2%95%A0%C4%9F%20kart.webp?h=7347ad0e&itok=YOg5PJDL",
+      "alt": "market alışveriş kartı",
+      "optimized": "photos/market.opt.webp"
+    },
+    "online": {
+      "file": "photos/site-09.webp",
+      "source": "site",
+      "from": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/plx_block_banner/public/2025-09/pluxee%20web-%20mobile%20mockups-main%20page.jpg.webp?h=cbc4b1ae&itok=7QAF4Wpc",
+      "alt": "pluxee web- mobile mockups-main page.jpg",
+      "optimized": "photos/online.opt.webp"
+    },
+    "hero": {
+      "file": "photos/site-30.webp",
+      "source": "site",
+      "from": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/coh_x_large/public/2024-11/Y%E2%94%80%E2%96%92lbas%E2%95%A0%C4%9F%E2%94%80%E2%96%92%20I%E2%95%A0%C3%A7c%E2%95%A0%C4%9Fin%20Kurumsal%20Hediye%20O%E2%95%A0%C3%AAnerileri%20.jpg.webp?itok=C_J0sVX3",
+      "alt": "Yılbaşı için Kurumsal Hediye Önerileri ",
+      "optimized": "photos/hero.opt.webp"
+    }
+  },
+  "site": [
+    {
+      "file": "photos/site-01.png",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/2023-09/plx-illus-GiftCard%20jump02%403x.png",
+      "alt": "kampanya",
+      "w": 960,
+      "h": 960,
+      "tags": []
+    },
+    {
+      "file": "photos/site-02.webp",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/coh_x_large/public/2023-10/Character%3DNo%403x_0.png.webp?itok=KCQzQATC",
+      "alt": "b ",
+      "w": 960,
+      "h": 960,
+      "tags": []
+    },
+    {
+      "file": "photos/site-03.webp",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/coh_x_large/public/2023-10/plx-illus-GiftCard03%403x.png.webp?itok=NA_XbL4N",
+      "alt": "ss ",
+      "w": 960,
+      "h": 960,
+      "tags": []
+    },
+    {
+      "file": "photos/site-04.webp",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/coh_x_large/public/2023-12/plx-illus-GiftCard02%403x.png.webp?itok=lNFSgKai",
+      "alt": "qwqws ",
+      "w": 960,
+      "h": 960,
+      "tags": []
+    },
+    {
+      "file": "photos/site-05.webp",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/coh_x_large/public/2023-10/Type%3D03%403x.png.webp?itok=54hajMNC",
+      "alt": "u1 ",
+      "w": 960,
+      "h": 960,
+      "tags": []
+    },
+    {
+      "file": "photos/site-06.webp",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/coh_x_large/public/2023-10/plx-illus-GiftCard%20jump01%403x.png.webp?itok=1SCYBVAh",
+      "alt": "iş ",
+      "w": 960,
+      "h": 960,
+      "tags": []
+    },
+    {
+      "file": "photos/site-07.webp",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/plx_block_text_image/public/2023-09/plx-illus-GiftCard01%403x.png.webp?h=9fa7840f&itok=4prFFCZn",
+      "alt": "Club",
+      "w": 640,
+      "h": 476,
+      "tags": []
+    },
+    {
+      "file": "photos/site-08.webp",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/plx_cards_partners_horizontal/public/2023-09/MicrosoftTeams-image%20%2837%29.png.webp?h=7777f076&itok=ZxcY9OVe",
+      "alt": "uye2",
+      "w": 656,
+      "h": 544,
+      "tags": [
+        "hero"
+      ]
+    },
+    {
+      "file": "photos/site-09.webp",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/plx_block_banner/public/2025-09/pluxee%20web-%20mobile%20mockups-main%20page.jpg.webp?h=cbc4b1ae&itok=7QAF4Wpc",
+      "alt": "pluxee web- mobile mockups-main page.jpg",
+      "w": 1280,
+      "h": 360,
+      "tags": [
+        "online"
+      ]
+    },
+    {
+      "file": "photos/site-10.webp",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/coh_x_large/public/2026-09/Meslek%20De%C4%9Fi%C5%9Ftirmek%20%C4%B0steyenlere%20%C3%96neri.jpg.webp?itok=POdag9ni",
+      "alt": "Meslek Değiştirmek İsteyenlere Öneri  ",
+      "w": 640,
+      "h": 427,
+      "tags": []
+    },
+    {
+      "file": "photos/site-11.webp",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/coh_x_large/public/2026-09/Palo%20Santo%20Nedir%2C%20Nas%C4%B1l%20Yak%C4%B1l%C4%B1runsplash.jpg.webp?itok=dbRI0LBc",
+      "alt": "Palo Santo Nedir, Nasıl Yakılır ",
+      "w": 640,
+      "h": 360,
+      "tags": []
+    },
+    {
+      "file": "photos/site-12.webp",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/coh_x_large/public/2026-09/%C4%B0htiya%C3%A7kredisi_personalloan_loan.jpg.webp?itok=2L-WhKWp",
+      "alt": "İhtiyaçkredisi_personalloan_loan ",
+      "w": 640,
+      "h": 427,
+      "tags": []
+    },
+    {
+      "file": "photos/site-13.webp",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/coh_medium/public/2023-10/Character%3DNo%403x_0.png.webp?itok=bXLxQpw6",
+      "alt": "",
+      "w": 768,
+      "h": 768,
+      "tags": []
+    },
+    {
+      "file": "photos/site-14.webp",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/coh_medium/public/2023-10/plx-illus-GiftCard03%403x.png.webp?itok=jUAK64W9",
+      "alt": "",
+      "w": 768,
+      "h": 768,
+      "tags": []
+    },
+    {
+      "file": "photos/site-15.webp",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/coh_medium/public/2023-12/plx-illus-GiftCard02%403x.png.webp?itok=TdA76Yog",
+      "alt": "",
+      "w": 768,
+      "h": 768,
+      "tags": []
+    },
+    {
+      "file": "photos/site-16.webp",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/coh_medium/public/2023-10/Type%3D03%403x.png.webp?itok=L9ylr9sD",
+      "alt": "",
+      "w": 768,
+      "h": 768,
+      "tags": []
+    },
+    {
+      "file": "photos/site-17.webp",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/coh_medium/public/2023-10/plx-illus-GiftCard%20jump01%403x.png.webp?itok=x3rKqjsD",
+      "alt": "",
+      "w": 768,
+      "h": 768,
+      "tags": []
+    },
+    {
+      "file": "photos/site-18.webp",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/coh_medium/public/2026-09/Meslek%20De%C4%9Fi%C5%9Ftirmek%20%C4%B0steyenlere%20%C3%96neri.jpg.webp?itok=33lCrCds",
+      "alt": "",
+      "w": 640,
+      "h": 427,
+      "tags": []
+    },
+    {
+      "file": "photos/site-19.webp",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/coh_medium/public/2026-09/Palo%20Santo%20Nedir%2C%20Nas%C4%B1l%20Yak%C4%B1l%C4%B1runsplash.jpg.webp?itok=LJFk88Qk",
+      "alt": "",
+      "w": 640,
+      "h": 360,
+      "tags": []
+    },
+    {
+      "file": "photos/site-20.webp",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/coh_medium/public/2026-09/%C4%B0htiya%C3%A7kredisi_personalloan_loan.jpg.webp?itok=uggy8Fwn",
+      "alt": "",
+      "w": 640,
+      "h": 427,
+      "tags": []
+    },
+    {
+      "file": "photos/site-21.webp",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/2026-09/back.2school.banner.webp",
+      "alt": "og:image",
+      "w": 2200,
+      "h": 1100,
+      "tags": []
+    },
+    {
+      "file": "photos/site-22.webp",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/plx_block_text_image/public/2025-03/Artboard%201%202.jpg.webp?h=abc34b67&itok=z1NyrZ_9",
+      "alt": "kimiz",
+      "w": 640,
+      "h": 476,
+      "tags": []
+    },
+    {
+      "file": "photos/site-23.webp",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/plx_block_banner/public/2023-09/HP_PLUXEE2.png.webp?itok=t3NlflUX",
+      "alt": "kart",
+      "w": 1280,
+      "h": 360,
+      "tags": []
+    },
+    {
+      "file": "photos/site-24.webp",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/coh_x_large/public/2024-07/Blog_Pluxee.jpg.webp?itok=JVVyiKZF",
+      "alt": "huzur ",
+      "w": 1280,
+      "h": 460,
+      "tags": []
+    },
+    {
+      "file": "photos/site-25.webp",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/coh_x_large/public/2025-01/yemek%20u%CC%88creti.jpg.webp?itok=1czG0Bv5",
+      "alt": "Yemek Kartlarında SGK Primi Kalktı ",
+      "w": 1280,
+      "h": 460,
+      "tags": [
+        "restoran"
+      ]
+    },
+    {
+      "file": "photos/site-26.webp",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/coh_x_large/public/2024-07/buoni.jpg.webp?itok=U16YaoIL",
+      "alt": "catr ",
+      "w": 1280,
+      "h": 460,
+      "tags": []
+    },
+    {
+      "file": "photos/site-27.jpg",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/2023-12/web.jpg",
+      "alt": "og:image",
+      "w": 2200,
+      "h": 1100,
+      "tags": []
+    },
+    {
+      "file": "photos/site-28.webp",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/plx_block_text_image/public/2023-10/values-individuals.png.webp?h=1519cf3e&itok=vRQu_A6R",
+      "alt": "sdc",
+      "w": 640,
+      "h": 476,
+      "tags": []
+    },
+    {
+      "file": "photos/site-29.webp",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/plx_block_text_image/public/2023-10/iStock-1326251444_0.jpg.webp?itok=8SsHRk-Y",
+      "alt": "asas",
+      "w": 640,
+      "h": 476,
+      "tags": []
+    },
+    {
+      "file": "photos/site-30.webp",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/coh_x_large/public/2024-11/Y%E2%94%80%E2%96%92lbas%E2%95%A0%C4%9F%E2%94%80%E2%96%92%20I%E2%95%A0%C3%A7c%E2%95%A0%C4%9Fin%20Kurumsal%20Hediye%20O%E2%95%A0%C3%AAnerileri%20.jpg.webp?itok=C_J0sVX3",
+      "alt": "Yılbaşı için Kurumsal Hediye Önerileri ",
+      "w": 1280,
+      "h": 460,
+      "tags": [
+        "hero"
+      ]
+    },
+    {
+      "file": "photos/site-31.webp",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/coh_x_large/public/2024-01/Ads%C4%B1z%20tasar%C4%B1m%20%2836%29.jpg.webp?itok=ITqnChaG",
+      "alt": "lider ",
+      "w": 1280,
+      "h": 460,
+      "tags": []
+    },
+    {
+      "file": "photos/site-32.jpg",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/2024-11/IMG_6070.jpg",
+      "alt": "og:image",
+      "w": 2200,
+      "h": 1100,
+      "tags": []
+    },
+    {
+      "file": "photos/site-33.webp",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/plx_block_text_image/public/2026-02/al%E2%94%80%E2%96%92s%E2%95%A0%C4%9Fveris%E2%95%A0%C4%9F%20kart.webp?h=7347ad0e&itok=YOg5PJDL",
+      "alt": "market alışveriş kartı",
+      "w": 640,
+      "h": 476,
+      "tags": [
+        "market"
+      ]
+    },
+    {
+      "file": "photos/site-34.jpg",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/2025-12/hediye.gida_.anasayfa.banner.2.jpg",
+      "alt": "og:image",
+      "w": 1528,
+      "h": 765,
+      "tags": []
+    },
+    {
+      "file": "photos/site-35.webp",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/plx_block_text_image/public/2025-06/pluxee%20pro%20landing%20page%202.1%201.png.webp?h=6bbedca0&itok=ME1ZZaSX",
+      "alt": "pro1",
+      "w": 640,
+      "h": 476,
+      "tags": []
+    },
+    {
+      "file": "photos/site-36.webp",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/plx_block_text_image/public/2025-06/pluxee%20pro%20landing%20page%202.2%201.png.webp?h=872c6f2e&itok=7qA_-4bP",
+      "alt": "pro2",
+      "w": 640,
+      "h": 476,
+      "tags": []
+    },
+    {
+      "file": "photos/site-37.webp",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/plx_block_text_image/public/2025-06/pluxee%20pro%20landing%20page%202.3%201.png.webp?h=6bbedca0&itok=yoXfjHpI",
+      "alt": "pro3",
+      "w": 640,
+      "h": 476,
+      "tags": []
+    },
+    {
+      "file": "photos/site-38.webp",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/plx_block_text_image/public/2025-05/pluxee%20pro%20landing%20page-1.png.webp?h=2075fdba&itok=xjyIOZkS",
+      "alt": "1",
+      "w": 640,
+      "h": 476,
+      "tags": []
+    },
+    {
+      "file": "photos/site-39.webp",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/coh_x_large/public/2025-05/pluxee%20pro%20landing%20page-1.1%201.png.webp?itok=79yI7p13",
+      "alt": "ikon11 ",
+      "w": 1053,
+      "h": 427,
+      "tags": []
+    },
+    {
+      "file": "photos/site-40.webp",
+      "url": "https://www.pluxee.com.tr/sites/g/files/jclxxe426/files/styles/plx_block_text_image/public/2025-05/pluxee%20pro%20landing%20page-2.png.webp?h=2075fdba&itok=iXYMSdfn",
+      "alt": "2",
+      "w": 640,
+      "h": 476,
+      "tags": []
+    }
+  ]
+}
