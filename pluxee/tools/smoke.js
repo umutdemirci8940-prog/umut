@@ -24,7 +24,9 @@ const st = (page) => page.evaluate(() => {
 
 function fileChecks(id) {
   const html = fs.readFileSync(dist(id), 'utf8');
-  ok(Buffer.byteLength(html) < 150 * 1024, `${id}: boyut ${(Buffer.byteLength(html) / 1024).toFixed(1)} KB (< 150 KB)`);
+  const hasPhotos = /data:image\/(jpeg|webp|png);base64/.test(html);
+  const limit = hasPhotos ? 600 : 150; // fotoğraflı derleme: premium masthead / DV360 polite-load sınırları; Google Ads 150 KB için fotoğrafsız derleme
+  ok(Buffer.byteLength(html) < limit * 1024, `${id}: boyut ${(Buffer.byteLength(html) / 1024).toFixed(1)} KB (< ${limit} KB${hasPhotos ? ', fotoğraflar gömülü' : ''})`);
   const ext = [...html.matchAll(/https?:\/\/[^"' )]+/g)].map((m) => m[0]).filter((u) => !/fonts\.g(oogleapis|static)\.com|pluxee\.com\.tr/.test(u));
   ok(ext.length === 0 && !/__[A-Z_]+__/.test(html), `${id}: harici kaynak yalnızca Google Fonts + ana sayfa; yer tutucu yok`);
   ok(!/Yemek Kartı|Splash|utm_|noktada|Levent|ikindi/i.test(html), `${id}: ajans adı, UTM, konum ve gün etiketi yok`);

@@ -28,19 +28,27 @@ Diğer çıktılar: `dist/970x250/index.html` (varsayılan konseptin kopyası), 
 |---|---|
 | ![](preview/screens/fis-yazdiriyor.jpg) | ![](preview/screens/fis-tamam.jpg) |
 
-## Gerçek logo ve kart tasarımı
+## Gerçek görseller: logo, kart ve sahne fotoğrafları
 
-Kreatifler `pluxee/assets/` klasöründeki gerçek varlıkları otomatik gömer:
+Kreatifler `pluxee/assets/` klasöründeki gerçek varlıkları otomatik gömer; hiçbir konseptte vektör illüstrasyon yoktur, sahneler fotoğraftır.
 
-- `assets/logo.svg` (ya da `.png` / `.webp`) → sol üstteki logo. Koyu renkli logo için `assets/manifest.json` içinde `"logo": {"white": true}` (kreatifte beyaza çevrilir).
-- `assets/card.png` (ya da `.jpg` / `.webp`) → 3B kartın yüzü (parlama efekti üstüne biner).
+| Varlık | Dosya | Kullanım |
+|---|---|---|
+| Logo | `assets/logo.svg` (.png/.webp) | Sol üst; koyu logo için `manifest.json` → `"logo": {"white": true}` |
+| Kart | `assets/card.png` (.jpg/.webp) | 3B Pluxee kartının yüzü |
+| Sahne fotoğrafları | `assets/photos/<slot>.*` + `assets/photos.json` (slot: `restoran`, `kafe`, `market`, `online`, `hero`) | Arka planlar, mercek kompoziti, fotoğraf şeritleri/kartları |
 
-Varlıkları siteden çekmenin iki yolu:
+Varlıkları siteden çekmenin yolları:
 
-1. **GitHub Actions (önerilen):** depoda *Actions* → "Pluxee – siteden logo ve kart görselini çek, derle" → *Run workflow*. Sayfada logo/kart otomatik aranır; bulunamazsa `logo_url` / `card_url` alanlarına adresleri yazın. İş akışı indirir, optimize eder, üç konsepti derler, test eder ve dala push'lar (`.github/workflows/fetch-pluxee-assets.yml`).
-2. **Yerel bilgisayarda:** `node pluxee/tools/fetch-pluxee-assets.js [--logo=<url>] [--card=<url>]`, isteğe bağlı `node pluxee/tools/optimize-pluxee-assets.js` (Playwright), sonra `node pluxee/build.js`.
+1. **GitHub Actions (önerilen):** `pluxee/assets/.fetch-trigger` dosyasını değiştirip push'layın (ya da depo varsayılan dalındaysa Actions → "Pluxee – siteden logo ve kart görselini çek, derle" → *Run workflow*). İş akışı pluxee.com.tr'yi tarar: logo, kart görseli ve ≥ 600 px'lik fotoğrafları indirir, alt metin/dosya adına göre sahnelere eşler; sitede uygun fotoğraf bulunmayan sahneler için gerçek fotoğraf yedeği çeker (loremflickr.com – Flickr CC; **yayın öncesi lisanslı stok fotoğrafla değiştirilmelidir**). Sonra optimize eder (fotoğraf 1000 px WebP), tüm konseptleri derler, test eder ve dala push'lar (`.github/workflows/fetch-pluxee-assets.yml`).
+2. **Yerel bilgisayarda:** `node pluxee/tools/fetch-pluxee-assets.js [--logo=<url>] [--card=<url>] [--photo-restoran=<url> …] [--no-stock]`, ardından `node pluxee/tools/optimize-pluxee-assets.js` (Playwright) ve `node pluxee/build.js`.
+3. **Elle:** dosyaları `assets/` altına koyup `assets/photos.json` içinde `slots` eşlemesini yazın (`{"slots": {"restoran": {"file": "photos/restoran.jpg", "source": "manual"}}}`).
 
-> Bu çalışma Claude Code'un yalıtılmış ortamında hazırlandı; ortamın ağ politikası pluxee.com.tr'ye erişime izin vermediği için varlıklar burada indirilemedi. Depodaki derlemeler çizim logo ve kart kullanır; iş akışı çalıştırılınca gerçekleriyle yeniden derlenir.
+`assets/photos.json` → `site` listesi sitede bulunan tüm fotoğrafları boyut ve etiketleriyle tutar; eşlemeyi elle değiştirip yeniden derleyebilirsiniz. Sunum sayfası her fotoğrafın kaynağını gösterir.
+
+> Bu çalışma Claude Code'un yalıtılmış ortamında hazırlandı; ortamın ağ politikası pluxee.com.tr'ye ve stok sitelerine erişime izin vermediği için fotoğraflar ilk kez GitHub Actions iş akışıyla indirildi. Geliştirme sırasında `node tools/standin-photos.js` + `node build.js --standin` etiketli geçici görseller üretir (git'e girmez).
+
+**Boyut notu:** fotoğraflar gömülü olduğunda her konsept ~200–300 KB olur. Bu, publisher-direct masthead ve DV360/CM360 (polite load) için uygundur; Google Ads'in 150 KB sınırı gerekiyorsa `optimize-pluxee-assets.js --photo-width=700 --photo-quality=0.62` ile fotoğraflar küçültülür ya da fotoğraflar zip içinde ayrı dosya olarak servis edilir.
 
 ## Ortak kurgu
 

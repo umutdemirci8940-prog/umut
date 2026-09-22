@@ -119,6 +119,7 @@ td b{color:#fff}
 td code{font-family:var(--mono);font-size:12px;color:var(--lav);background:rgba(184,169,255,.1);padding:2px 6px;border-radius:5px}
 td.sig{font-weight:800;color:#fff}
 .note{margin-top:10px;font-size:12px;color:var(--muted)}
+.note b{color:#fff}
 .tech{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .tech ul{list-style:none;display:grid;gap:8px}
 .tech li{font-size:13.5px;line-height:1.55;color:#d6d4e6;padding-left:16px;position:relative}
@@ -168,6 +169,7 @@ footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);display
       </div>
     </div>
 
+    <p class="note" id="photoNote"></p>
     <div class="grid2">
       <div class="panel">
         <h3>Sinyal paneli <span>Yayında bu değerler medya veri katmanı ve ad server makrolarından gelir</span></h3>
@@ -308,6 +310,9 @@ window.addEventListener('message',function(e){
   $('progBar').style.width=(d.visited/d.total*100)+'%';
   $('progStops').innerHTML=d.order.map(function(k,i){return '<i class="'+(i<d.visited?'on':'')+'" title="'+esc(SCENE[k]?SCENE[k].label:k)+'"></i>'}).join('');
 });
+(function(){var ph=DATA.assets&&DATA.assets.photos||{};var keys=Object.keys(ph);var el=$('photoNote');if(!keys.length){el.innerHTML='Görseller: bu derlemede <b>gerçek fotoğraf yok</b> (üretilmiş arka plan, geçici). Gerçek fotoğraflar GitHub Actions iş akışıyla siteden çekilince kreatifler otomatik yeniden derlenir.';return}
+  var src={site:'pluxee.com.tr',flickr:'Flickr CC (loremflickr) – yayın öncesi lisanslı stok ile değiştirilecek',manual:'elle eklendi',standin:'GEÇİCİ geliştirme görseli'};
+  el.innerHTML='Görseller: '+keys.map(function(k){return '<b>'+k+'</b> · '+(src[ph[k].source]||ph[k].source)+' ('+ph[k].kb+' KB)'}).join(' · ');})();
 syncUI();fit();setTimeout(fit,300);
 })();
 </script>

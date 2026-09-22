@@ -146,7 +146,8 @@ const score = (i, re) => (re.test(i.url) ? 3 : 0) + (re.test(i.alt) ? 3 : 0) + (
   for (const slot of Object.keys(SLOTS)) {
     const manual = args['photo-' + slot];
     if (manual) { try { const u = abs(manual); const { buf, ct } = await get(u, 'buffer'); const ext = extOf(u, ct); const file = `photos/${slot}.${ext}`; fs.writeFileSync(path.join(assets, file), buf); photos.slots[slot] = { file, source: 'manual', from: u }; console.log(`✔ ${slot}: ${u}`); continue; } catch (e) { console.error(`✘ ${slot}: ${e.message}`); } }
-    const best = photos.site.filter((p) => p.tags.includes(slot) && !used.has(p.file)).sort((a, b) => b.w * b.h - a.w * a.h)[0];
+    let best = photos.site.filter((p) => p.tags.includes(slot) && !used.has(p.file)).sort((a, b) => b.w * b.h - a.w * a.h)[0];
+    if (!best && slot === 'hero') best = photos.site.filter((p) => !p.tags.length && !used.has(p.file) && p.w >= 1000).sort((a, b) => b.w * b.h - a.w * a.h)[0]; // etiketsiz en büyük görsel (ör. og:image)
     if (best) { used.add(best.file); photos.slots[slot] = { file: best.file, source: 'site', from: best.url, alt: best.alt }; console.log(`✔ ${slot}: siteden ${best.file}`); continue; }
     if (args['no-stock']) { console.log(`ℹ ${slot}: sitede uygun fotoğraf yok, stok yedeği kapalı`); continue; }
     try {

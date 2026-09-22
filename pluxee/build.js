@@ -16,7 +16,8 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 const data = require('./src/data');
-const CONCEPTS = [require('./src/concepts/koridor'), require('./src/concepts/mercek'), require('./src/concepts/fis')];
+const CONCEPT_IDS = ['koridor', 'mercek', 'fis', 'silme', 'hikaye', 'deste'];
+const CONCEPTS = CONCEPT_IDS.filter((id) => fs.existsSync(path.join(__dirname, 'src', 'concepts', id + '.js'))).map((id) => require('./src/concepts/' + id));
 const DEFAULT = 'koridor';
 
 const root = __dirname;
