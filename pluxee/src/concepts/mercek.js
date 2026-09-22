@@ -51,13 +51,30 @@ var scene=$('.scene'),card=$('.card'),glow=$('.glow'),burst=$('.burst'),again=$(
 var POS={restoran:{x:575,y:75},kafe:{x:760,y:52},market:{x:655,y:165},online:{x:900,y:150}};
 var spots={},nodes=[],bright=null,dark=null;
 var cur={x:770,y:120},tgt={x:770,y:120},vel={x:0,y:0},R=0,Rt=130,phase='',raf=0,last=0,pointerIn=false,auto=true,tourIdx=-1,tourT=null,resumeT=null,nearKey=null,nearSince=0,live=false,introK=0,introAt=0,hintT=null;
+function loadImg(uri){return new Promise(function(res){var im=new Image();im.onload=function(){res(im)};im.onerror=function(){res(null)};im.src=uri})}
+function compose(base,parts){
+  var b=document.createElement('canvas');b.width=W;b.height=H;var bx=b.getContext('2d');
+  if(base.tagName==='IMG')drawCover(bx,base,0,0,W,H);else bx.drawImage(base,0,0);
+  for(var k in parts){var src=parts[k];if(!src)continue;var tmp=document.createElement('canvas');tmp.width=W;tmp.height=H;var tx=tmp.getContext('2d');
+    if(src.tagName==='IMG')drawCover(tx,src,0,0,W,H);else tx.drawImage(src,0,0);
+    tx.globalCompositeOperation='destination-in';var g=tx.createRadialGradient(POS[k].x,POS[k].y,10,POS[k].x,POS[k].y,200);g.addColorStop(0,'rgba(0,0,0,1)');g.addColorStop(.55,'rgba(0,0,0,.8)');g.addColorStop(1,'rgba(0,0,0,0)');tx.fillStyle=g;tx.fillRect(0,0,W,H);bx.drawImage(tmp,0,0)}
+  var d=document.createElement('canvas');d.width=W;d.height=H;var dx=d.getContext('2d');if('filter' in dx)dx.filter='blur(3px) saturate(.4)';dx.drawImage(b,0,0);dx.filter='none';dx.fillStyle='rgba(8,6,26,.84)';dx.fillRect(0,0,W,H);
+  return {bright:b,dark:d};
+}
+function drawCover(x,im,dx,dy,dw,dh){var r=Math.max(dw/im.naturalWidth,dh/im.naturalHeight),sw=dw/r,sh=dh/r;x.drawImage(im,(im.naturalWidth-sw)/2,(im.naturalHeight-sh)/2,sw,sh,dx,dy,dw,dh)}
+function mount(c){
+  if(dark&&dark.parentNode)dark.parentNode.removeChild(dark);if(bright&&bright.parentNode)bright.parentNode.removeChild(bright);
+  dark=c.dark;dark.className='dark';bright=c.bright;bright.className='bright';bg.appendChild(dark);bg.appendChild(bright);setLens(cur.x,cur.y,R);
+}
 function paintScene(){
   try{
-    var base=paint(PAL.city);var b=document.createElement('canvas');b.width=W;b.height=H;var bx=b.getContext('2d');bx.drawImage(base,0,0);
-    for(var k in POS){var sc=paint(PAL[k]);var tmp=document.createElement('canvas');tmp.width=W;tmp.height=H;var tx=tmp.getContext('2d');tx.drawImage(sc,0,0);tx.globalCompositeOperation='destination-in';var g=tx.createRadialGradient(POS[k].x,POS[k].y,10,POS[k].x,POS[k].y,190);g.addColorStop(0,'rgba(0,0,0,1)');g.addColorStop(.55,'rgba(0,0,0,.75)');g.addColorStop(1,'rgba(0,0,0,0)');tx.fillStyle=g;tx.fillRect(0,0,W,H);bx.drawImage(tmp,0,0)}
-    var d=document.createElement('canvas');d.width=W;d.height=H;var dx=d.getContext('2d');if('filter' in dx)dx.filter='blur(3px) saturate(.4)';dx.drawImage(b,0,0);dx.filter='none';dx.fillStyle='rgba(8,6,26,.84)';dx.fillRect(0,0,W,H);
-    dark=d;dark.className='dark';bright=b;bright.className='bright';bg.appendChild(dark);bg.appendChild(bright);
     var gr=$('.grain');if(gr)gr.style.backgroundImage='url('+grainUri()+')';
+    var parts={};for(var k in POS)parts[k]=paint(PAL[k]);
+    mount(compose(paint(PAL.city),parts));            /* önce üretilmiş sahne (fotoğraflar yüklenene kadar) */
+    var keys=Object.keys(POS),has=false;for(var i=0;i<keys.length;i++)if(photoOf(keys[i]))has=true;
+    if(!has)return;
+    var jobs=[loadImg(photoOf('hero')||photoOf('restoran'))];for(i=0;i<keys.length;i++)jobs.push(loadImg(photoOf(keys[i])));
+    Promise.all(jobs).then(function(ims){var p2={};for(var j=0;j<keys.length;j++)p2[keys[j]]=ims[j+1]||paint(PAL[keys[j]]);mount(compose(ims[0]||paint(PAL.city),p2))});
   }catch(err){}
 }
 paintScene();

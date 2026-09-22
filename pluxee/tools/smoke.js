@@ -19,7 +19,7 @@ const openAt = (page, file, qs) => page.goto('file://' + file + (qs ? '?' + qs :
 const st = (page) => page.evaluate(() => {
   const ad = document.getElementById('ad'); const s = window.PLUXEE.state();
   return Object.assign(s, { cls: [...ad.classList], eyebrow: ad.querySelector('.eyebrow').textContent, word: (ad.querySelector('.l1 span.on') || {}).textContent, line2: ad.querySelector('.l2').textContent, sub: ad.querySelector('.sub').textContent, cta: ad.querySelector('.cta-t').textContent,
-    layer: (ad.querySelector('.bg canvas.is-on:not(.bright):not(.dark)') || { dataset: {} }).dataset.key, hintCls: ad.querySelector('.scene').classList.contains('is-hint'), again: getComputedStyle(ad.querySelector('.again')).display !== 'none' });
+    layer: (ad.querySelector('.bg .is-on[data-key]') || { dataset: {} }).dataset.key, hintCls: ad.querySelector('.scene').classList.contains('is-hint'), again: getComputedStyle(ad.querySelector('.again')).display !== 'none' });
 });
 
 function fileChecks(id) {
