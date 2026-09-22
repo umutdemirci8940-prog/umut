@@ -41,6 +41,8 @@ html,body{background:#F4F1EB}
 /* sol sütun: açık zemin */
 .logo b{color:var(--navy)}
 .logo img.is-white{filter:none}
+/* gerçek logo (sitede beyaz) açık zeminde lacivert: görsel maske olarak kullanılır */
+.logo .lgm{display:block;height:26px;background:var(--navy);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:contain;mask-size:contain;-webkit-mask-position:left center;mask-position:left center}
 .eyebrow{color:#00A64A}
 .hl,.hl .l1{color:var(--navy)}
 .hl .l1 span{padding:0 5px 0 3px;margin-left:-3px;background:linear-gradient(transparent 60%,rgba(0,235,94,.5) 60%,rgba(0,235,94,.5) 93%,transparent 93%)}
@@ -96,6 +98,11 @@ var K=D.copy,T=K.timing,FAN=D.fan;
 var scene=$('.scene'),deck=$('.deck'),dots=$('.dots'),card=$('.card'),again=$('.again'),burst=$('.burst');
 var cards=[],dotEls=[],idx=0,phase='',busy=false,drag=null,live=false;
 (function(){try{var g=grainUri(),gs=ad.querySelectorAll('.grain');for(var i=0;i<gs.length;i++)gs[i].style.backgroundImage='url('+g+')'}catch(err){}})();
+/* logo: beyaz site logosu açık zeminde görünmez → alfa maskesiyle laciverte boyanır (koyu logo da aynı yoldan geçer) */
+(function(){try{var im=ad.querySelector('.logo img');if(!im)return;var src=im.getAttribute('src'),m=document.createElement('span');m.className='lgm';m.style.webkitMaskImage='url("'+src+'")';m.style.maskImage='url("'+src+'")';
+function fit(){var r=im.naturalWidth&&im.naturalHeight?im.naturalWidth/im.naturalHeight:3.5;m.style.width=(26*r).toFixed(1)+'px'}
+if(im.complete&&im.naturalWidth)fit();else{fit();im.addEventListener('load',fit)}
+im.parentNode.insertBefore(m,im);im.style.display='none'}catch(err){}})();
 function stackT(d){return d===0?'none':'translate('+(d*7)+'px,'+(-d*4)+'px) rotate('+((d%2?-1:1)*(2.2+d*1.1)).toFixed(1)+'deg) scale('+(1-d*.035).toFixed(3)+')'}
 function fanT(i){var f=FAN[i]||FAN[FAN.length-1];return 'translate('+f[0]+'px,'+f[1]+'px) rotate('+f[2]+'deg) scale(.66)'}
 function build(){

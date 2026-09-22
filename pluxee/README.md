@@ -49,7 +49,7 @@ Kreatifler `pluxee/assets/` klasöründeki gerçek varlıkları otomatik gömer;
 
 | Varlık | Dosya | Kullanım |
 |---|---|---|
-| Logo | `assets/logo.svg` (.png/.webp) | Sol üst; koyu logo için `manifest.json` → `"logo": {"white": true}` |
+| Logo | `assets/logo.png` (siteden "Logo pluxee final.png", beyaz wordmark) | Sol üst; koyu zeminde olduğu gibi, açık zeminli Deste'de alfa maskesiyle laciverte boyanır. Koyu bir logo verilirse `manifest.json` → `"logo": {"white": true}` koyu zeminde beyaza çevirir |
 | Kart | `assets/card.png` (.jpg/.webp) | 3B Pluxee kartının yüzü |
 | Sahne fotoğrafları | `assets/photos/<slot>.*` + `assets/photos.json` (slot: `restoran`, `kafe`, `market`, `online`, `hero`) | Arka planlar, mercek kompoziti, fotoğraf şeritleri/kartları |
 

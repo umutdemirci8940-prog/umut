@@ -20,6 +20,7 @@ const COPY = {
     glide: 13000,  // dokunulmazsa kenarın 0 → %100 kayma süresi (panel başına ease-in-out)
     hold: 3000,    // final karesi
     resume: 1600,  // kullanıcı bıraktıktan sonra otomatik kaymaya dönüş
+    hintFor: 4200, // ipucu kendiliğinden bu kadar sonra söner (etkileşim olmasa da)
   },
 };
 
@@ -49,9 +50,10 @@ const CSS = `
 .cap b{font-size:9px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#fff;line-height:1;text-shadow:0 1px 10px rgba(0,0,0,.6);white-space:nowrap}
 .cap small{font-size:8px;font-weight:700;letter-spacing:.06em;color:rgba(255,255,255,.66);line-height:1;white-space:nowrap}
 .strip.col .panel.is-done .cap small{color:var(--green)}
-/* damga: "GEÇİYOR ✓" (kauçuk damga: 1.6 → 1, -8°) */
-.stamp{position:absolute;left:50%;top:22px;z-index:3;display:inline-flex;align-items:center;gap:5px;padding:4px 8px 4px 7px;border:1.5px solid var(--green);border-radius:5px;background:rgba(15,12,38,.58);color:var(--green);font-size:9.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;line-height:1;white-space:nowrap;opacity:0;transform:translateX(-50%) rotate(-8deg) scale(1.6);pointer-events:none;box-shadow:inset 0 0 0 1px rgba(15,12,38,.9),inset 0 0 0 2px rgba(0,235,94,.35),0 6px 18px rgba(0,0,0,.35)}
+/* damga: "GEÇİYOR ✓" (kauçuk damga: 1.6 → 1, -8°) – alt üçte birde, yüzlerin altında; yalnız renkli şeritte */
+.stamp{position:absolute;left:50%;bottom:48px;z-index:3;display:inline-flex;align-items:center;gap:5px;padding:4px 8px 4px 7px;border:1.5px solid var(--green);border-radius:5px;background:rgba(15,12,38,.58);color:var(--green);font-size:9.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;line-height:1;white-space:nowrap;opacity:0;transform:translateX(-50%) rotate(-8deg) scale(1.6);pointer-events:none;box-shadow:inset 0 0 0 1px rgba(15,12,38,.9),inset 0 0 0 2px rgba(0,235,94,.35),0 6px 18px rgba(0,0,0,.35)}
 .stamp svg{width:11px;height:11px}
+.strip.dim .stamp{display:none}
 .panel.is-done .stamp{animation:stampIn .35s cubic-bezier(.2,.9,.3,1.25) forwards}
 @keyframes stampIn{0%{opacity:0;transform:translateX(-50%) rotate(-8deg) scale(1.6)}55%{opacity:1;transform:translateX(-50%) rotate(-8deg) scale(.94)}100%{opacity:1;transform:translateX(-50%) rotate(-8deg) scale(1)}}
 .scene .grain{position:absolute;inset:0;z-index:3;opacity:.09}
@@ -59,13 +61,13 @@ const CSS = `
 .flash{position:absolute;inset:0;z-index:4;background:#fff;mix-blend-mode:overlay;opacity:0;pointer-events:none}
 .scene.is-flash .flash{animation:flash .9s ease-out forwards}
 @keyframes flash{0%{opacity:.6}100%{opacity:0}}
-/* ışık çizgisi (kenar) */
+/* ışık çizgisi (kenar) + kenarın solundaki parıltı (sahnenin içinde başlar, ilk 64 px'te büyür) */
 .edge{position:absolute;left:0;top:0;width:2px;height:250px;z-index:5;pointer-events:none;will-change:transform;transition:opacity .6s}
 .edge .ln{position:absolute;left:0;top:0;width:2px;height:250px;background:linear-gradient(180deg,#fff 0%,#DFFFEB 30%,var(--green) 62%,rgba(0,235,94,.55) 100%);box-shadow:0 0 10px rgba(0,235,94,.95),0 0 28px rgba(0,235,94,.5),0 0 60px rgba(0,235,94,.25);transform:scaleY(0);transform-origin:50% 0;transition:transform .55s var(--ease)}
 .edge.is-on .ln{transform:scaleY(1)}
-.edge .bloom{position:absolute;right:2px;top:0;width:64px;height:250px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(220,255,235,.16));opacity:0;transition:opacity .5s .3s}
-.edge.is-on .bloom{opacity:1}
-.ad.is-final .edge{opacity:0}
+.bloom{position:absolute;left:0;top:0;width:0;height:250px;z-index:5;pointer-events:none;will-change:transform;opacity:0;transition:opacity .5s .3s;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(220,255,235,.16))}
+.bloom.is-on{opacity:1}
+.ad.is-final .edge,.ad.is-final .bloom{opacity:0}
 /* kart: taşıyıcı (JS: konum) › düşüş (CSS animasyonu) › kart (JS: eğim) */
 .cardw{position:absolute;left:0;top:57px;width:0;height:0;z-index:6;will-change:transform}
 .cardd{position:absolute;left:0;top:0;width:0;height:0;opacity:0}
@@ -75,19 +77,25 @@ const CSS = `
 .card{left:0;top:0;font-size:7.6px;cursor:grab}
 .scene.is-drag .card{cursor:grabbing}
 .card .face{box-shadow:inset 0 1px 0 rgba(255,255,255,.28),inset 0 -1px 0 rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.06)}
-.burst{left:0;top:38px}
-.hint{left:265px;top:160px}
-.again{left:265px;top:160px}
+.burst{left:0;top:190px}
+/* ipucu ve tekrar: kart bölgesi (57–148) ile damga bölgesi (≈179–202) arasındaki boşlukta */
+.hint{left:265px;top:148px}
+.again{left:265px;top:148px}
 `;
 
 const JS = `
 var K=D.copy,T=K.timing,SW=530,CW=144;
-var scene=$('.scene'),col=$('.strip.col'),edge=$('.edge'),cardw=$('.cardw'),cardd=$('.cardd'),card=$('.card'),burst=$('.burst'),again=$('.again'),back=$('.back');
-var dim=null,panels=[],dpanels=[],x=0,phase='',auto=true,drag=null,vel=0,tilt=0,tw=null,raf=0,last=0,live=false,resumeT=null,hintT=null,inertia=false,lastMove=0;
+/* konsepte özel odak: dar panelde (≈130 px) telefon ekranı ortalansın (site fotoğrafı 742x360, telefon x %44–72) */
+var FOCAL={online:'58% 50%'};
+var scene=$('.scene'),col=$('.strip.col'),edge=$('.edge'),bloom=$('.bloom'),cardw=$('.cardw'),cardd=$('.cardd'),card=$('.card'),burst=$('.burst'),again=$('.again'),back=$('.back');
+var dim=null,panels=[],dpanels=[],x=0,phase='',auto=true,drag=null,vel=0,tilt=0,tw=null,raf=0,last=0,live=false,resumeT=null,hintT=null,titleT=null,inertia=false,lastMove=0,cy=0,bw=-1;
+/* başlık: bekleyen geçişi iptal eden sürüm (son çağrı kazanır); titleNow: anında yaz + yumuşak giriş (final karesi, kurulum) */
+function title(txt){if(titleT){clearTimeout(titleT);titleT=null}currentCopy.title=txt;if(eyebrow.textContent===txt){eyebrow.classList.remove('is-out');return}eyebrow.classList.add('is-out');titleT=setTimeout(function(){titleT=null;eyebrow.textContent=txt;eyebrow.classList.remove('is-out')},220)}
+function titleNow(txt){if(titleT){clearTimeout(titleT);titleT=null}currentCopy.title=txt;var same=eyebrow.textContent===txt;eyebrow.textContent=txt;eyebrow.classList.remove('is-out');if(!same&&!reduced&&phase&&eyebrow.animate){try{eyebrow.animate([{opacity:0,transform:'translateY(4px)'},{opacity:1,transform:'none'}],{duration:320,easing:'cubic-bezier(.22,.8,.26,1)'})}catch(err){}}}
 /* sol zemin + film greni */
 (function(){try{var h=photoOf('hero')||photoOf('restoran'),el;if(h){el=document.createElement('img');el.src=h;el.alt='';el.className='ph'}else el=paint(PAL.city,640,250);back.insertBefore(el,back.firstChild);var g=grainUri(),gs=ad.querySelectorAll('.grain');for(var i=0;i<gs.length;i++)gs[i].style.backgroundImage='url('+g+')'}catch(err){}})();
 /* panel fotoğrafı: gerçek fotoğraf çalışma zamanında D.photos'tan (dosyada tek kopya); yoksa üretilmiş bokeh */
-function ensurePhoto(p,key){if(p.querySelector('img.ph')||p.querySelector('canvas'))return;var ph=photoOf(key),el;if(ph){el=document.createElement('img');el.src=ph;el.alt='';el.className='ph';el.style.objectPosition=photoPosOf(key)}else{try{el=paint(PAL[key]||PAL.city,300,250)}catch(err){return}}p.insertBefore(el,p.firstChild)}
+function ensurePhoto(p,key){if(p.querySelector('img.ph')||p.querySelector('canvas'))return;var ph=photoOf(key),el;if(ph){el=document.createElement('img');el.src=ph;el.alt='';el.className='ph';el.style.objectPosition=FOCAL[key]||photoPosOf(key)}else{try{el=paint(PAL[key]||PAL.city,300,250)}catch(err){return}}p.insertBefore(el,p.firstChild)}
 function build(){
   buildCore();
   var byKey={},ps=col.querySelectorAll('.panel');for(var i=0;i<ps.length;i++)byKey[ps[i].getAttribute('data-key')]=ps[i];
@@ -97,22 +105,30 @@ function build(){
   dim=col.cloneNode(true);dim.className='strip dim';dim.style.clipPath='';dim.style.webkitClipPath='';scene.insertBefore(dim,col);
   dpanels=[];var dp=dim.querySelectorAll('.panel');for(i=0;i<dp.length;i++){ensurePhoto(dp[i],order[i].key);dpanels.push(dp[i])}
   col.classList.remove('is-in');
-  setTitle(order[0].scene.title);setWord(K.words[order[0].key]);
+  titleNow(order[0].scene.title);setWord(K.words[order[0].key]);
 }
 /* geometri: renkli şeridin panel kenarları (genişleme geçişi sırasında da doğru) */
 function geo(){var g=[];for(var i=0;i<panels.length;i++)g.push({l:panels[i].offsetLeft,w:panels[i].offsetWidth});return g}
 function rightAfter(i){var tot=0,acc=0;for(var k=0;k<order.length;k++){var w=(k<=i||order[k].passed)?1.25:1;tot+=w;if(k<=i)acc+=w}return SW*acc/tot}
+/* i. panelin genişledikten sonraki merkezi (damga burada durur) */
+function centreAfter(i){var tot=0,acc=0;for(var k=0;k<order.length;k++){var w=(k<=i||order[k].passed)?1.25:1;tot+=w;if(k<i)acc+=w;else if(k===i)acc+=w/2}return SW*acc/tot}
+/* damga ancak tamamen renkli bölgeye girince basılır: kenar damganın sağ ucunu geçmiş olmalı */
+function passAt(i){return Math.min(centreAfter(i)+50,SW-8)}
 function nextBoundary(){var g=geo();for(var i=0;i<order.length;i++){if(g[i].l+g[i].w>x+2)return rightAfter(i)}return SW}
 function easeIO(u){return u<.5?4*u*u*u:1-Math.pow(-2*u+2,3)/2}
 function tween(to,dur){tw={from:x,to:clamp(to,0,SW),t0:performance.now(),dur:Math.max(120,dur)};tick()}
-function pass(i,c){var o=order[i];o.passed=true;o.visited=true;panels[i].classList.add('is-done');dpanels[i].classList.add('is-done');burst.style.left=c.toFixed(0)+'px';sparks(burst);setTitle(o.scene.title);setWord(K.words[o.key]);emit('state')}
-function unpass(i){var o=order[i];o.passed=false;panels[i].classList.remove('is-done');dpanels[i].classList.remove('is-done');var j=i>0?i-1:0;setTitle(order[j].scene.title);setWord(K.words[order[j].key]);emit('state')}
-function check(){var g=geo();for(var i=0;i<order.length;i++){var c=g[i].l+g[i].w/2,o=order[i];if(!o.passed&&x>=c)pass(i,c);else if(o.passed&&x<c-36)unpass(i)}}
+function pass(i){var o=order[i];o.passed=true;o.visited=true;panels[i].classList.add('is-done');dpanels[i].classList.add('is-done');burst.style.left=centreAfter(i).toFixed(0)+'px';sparks(burst)}
+function unpass(i){var o=order[i];o.passed=false;panels[i].classList.remove('is-done');dpanels[i].classList.remove('is-done')}
+function syncCopy(){var j=-1;for(var i=0;i<order.length;i++)if(order[i].passed)j=i;var o=order[j<0?0:j];title(o.scene.title);setWord(K.words[o.key])}
+function check(){var ch=false;for(var i=0;i<order.length;i++){var pc=passAt(i),o=order[i];if(!o.passed&&x>=pc){pass(i);ch=true}else if(o.passed&&x<pc-40){unpass(i);ch=true}}if(ch){syncCopy();emit('state')}}
 function draw(now){
   var r=(SW-x).toFixed(1)+'px';col.style.clipPath='inset(0 '+r+' 0 0)';col.style.webkitClipPath='inset(0 '+r+' 0 0)';
   edge.style.transform='translate3d('+x.toFixed(1)+'px,0,0)';
-  var cx=clamp(x-6,10,SW-CW-10),fl=phase==='final'||phase==='wipe'?Math.sin(now/1100)*2.4:0;
-  cardw.style.transform='translate3d('+cx.toFixed(1)+'px,'+fl.toFixed(2)+'px,0)';
+  var bwid=Math.round(clamp(x-2,0,64));if(bwid!==bw){bw=bwid;bloom.style.width=bw+'px'}
+  bloom.style.transform='translate3d('+Math.max(0,x-66).toFixed(1)+'px,0,0)';
+  var ty=phase==='final'?-32:0;cy+=(ty-cy)*(reduced?1:.08);if(Math.abs(ty-cy)<.05)cy=ty;
+  var cx=clamp(x-6,10,SW-CW-22),fl=phase==='final'||phase==='wipe'?Math.sin(now/1100)*2.4:0;
+  cardw.style.transform='translate3d('+cx.toFixed(1)+'px,'+(fl+cy).toFixed(2)+'px,0)';
   card.style.transform='perspective(700px) rotateY('+(-20+tilt).toFixed(2)+'deg) rotateX(7deg) rotateZ('+(-5+tilt*.18).toFixed(2)+'deg)';
 }
 function frame(now){
@@ -133,26 +149,27 @@ function tick(){if(!raf){last=0;raf=requestAnimationFrame(frame)}}
 function finish(){
   if(phase==='final')return;phase='final';x=SW;tw=null;inertia=false;auto=false;drag=null;scene.classList.remove('is-drag');hideHint(scene);cancelResume();
   for(var i=0;i<order.length;i++){order[i].visited=true;if(!order[i].passed){order[i].passed=true;panels[i].classList.add('is-done');dpanels[i].classList.add('is-done')}}
-  setTitle(K.final.title);setWord(K.final.word);markFinal();if(!reduced){scene.classList.remove('is-flash');void scene.offsetWidth;scene.classList.add('is-flash')}
+  titleNow(K.final.title);setWord(K.final.word);markFinal();if(!reduced){scene.classList.remove('is-flash');void scene.offsetWidth;scene.classList.add('is-flash')}
   draw(performance.now());emit('state');
   later(function(){markEnded();emit('state');tick()},T.hold);
 }
 function cancelResume(){if(resumeT){clearTimeout(resumeT);resumeT=null}if(hintT){clearTimeout(hintT);hintT=null}}
 function armResume(){if(resumeT)clearTimeout(resumeT);resumeT=setTimeout(function(){resumeT=null;if(phase==='wipe'&&!drag){auto=true;tick()}},T.resume)}
-function armHint(){if(hintT)clearTimeout(hintT);hintT=setTimeout(function(){hintT=null;if(phase==='wipe'&&!userPlayed){showHint(scene);emit('state')}},400)}
+/* ipucu: girişten 400 ms sonra belirir, ilk etkileşimde ya da T.hintFor sonra söner */
+function armHint(){if(hintT)clearTimeout(hintT);hintT=setTimeout(function(){hintT=null;if(phase==='wipe'&&!userPlayed){showHint(scene);emit('state');hintT=setTimeout(function(){hintT=null;if(hintOn&&!userPlayed){hideHint(scene);emit('state')}},T.hintFor)}},400)}
 function reset(){
-  clearTimers();cancelResume();x=0;tw=null;phase='';auto=true;inertia=false;vel=0;tilt=0;drag=null;
-  scene.classList.remove('is-drag','is-flash');hideHint(scene);cardd.classList.remove('is-drop','is-set');edge.classList.remove('is-on');col.classList.remove('is-in');if(dim)dim.classList.remove('is-in');
+  clearTimers();cancelResume();x=0;tw=null;phase='';auto=true;inertia=false;vel=0;tilt=0;cy=0;drag=null;
+  scene.classList.remove('is-drag','is-flash');hideHint(scene);cardd.classList.remove('is-drop','is-set');edge.classList.remove('is-on');bloom.classList.remove('is-on');col.classList.remove('is-in');if(dim)dim.classList.remove('is-in');
   for(var i=0;i<order.length;i++){order[i].visited=false;order[i].passed=false;if(panels[i])panels[i].classList.remove('is-done');if(dpanels[i])dpanels[i].classList.remove('is-done')}
   draw(performance.now());
 }
 function start(){
   live=true;draw(performance.now());
-  if(reduced){ad.classList.add('is-in','is-live');col.classList.add('is-in');dim.classList.add('is-in');cardd.classList.add('is-set');edge.classList.add('is-on');phase='wipe';x=SW;finish();clearTimers();markEnded();emit('state');draw(performance.now());return}
+  if(reduced){ad.classList.add('is-in','is-live');col.classList.add('is-in');dim.classList.add('is-in');cardd.classList.add('is-set');edge.classList.add('is-on');bloom.classList.add('is-on');phase='wipe';x=SW;finish();clearTimers();markEnded();emit('state');draw(performance.now());return}
   intro(function(){
     col.classList.add('is-in');dim.classList.add('is-in');
     later(function(){cardd.classList.add('is-drop')},250);
-    later(function(){edge.classList.add('is-on')},620);
+    later(function(){edge.classList.add('is-on');bloom.classList.add('is-on')},620);
     later(function(){phase='wipe';tick();if(!userPlayed)armHint()},T.enter);
   });
   emit('state');
@@ -201,7 +218,8 @@ function render(data, assets) {
     <div class="strip col">${panels}</div>
     <div class="grain"></div>
     <div class="flash"></div>
-    <div class="edge"><i class="bloom"></i><i class="ln"></i></div>
+    <div class="bloom"></div>
+    <div class="edge"><i class="ln"></i></div>
     <div class="cardw"><div class="cardd">${cardMarkup(assets)}</div></div>
     <div class="burst"></div>
     <div class="hint">${SVG.drag} ${esc(COPY.hint)} <small>· ${esc(COPY.hintSub)}</small></div>
