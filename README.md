@@ -137,3 +137,7 @@ tools/package.js         Teslim zip'i
 tools/capture.js         Playwright ile görüntü/video alma
 tools/smoke.js           Etkileşim duman testi
 ```
+
+## Depodaki diğer çalışma: Pluxee Geçiyor · 12'yi Geçiyor
+
+`pluxee-geciyor/` klasöründe Pluxee'nin "Pluxee Geçiyor" kampanyası için media-first özel proje önerisi (`PROJE.md`) ve 970×250 kahraman birim (`index.html`) bulunur. Ayrıntılar: [pluxee-geciyor/README.md](pluxee-geciyor/README.md).
