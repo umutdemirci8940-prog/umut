@@ -86,7 +86,7 @@
   function placeCharm(i, key, fromEl) {
     var c = charm(key), slot = slotEl(i); if (!c || !slot) return;
     var el = document.createElement('button'); el.type = 'button'; el.className = 'charm'; el.setAttribute('data-charm', key); el.setAttribute('aria-label', c.title + ' – çıkarmak için tıkla'); el.title = c.title;
-    el.innerHTML = D.charmHtml[key] + '<span class="x" aria-hidden="true">×</span>';
+    el.innerHTML = D.charmHtml[key] + '<span class="x" aria-hidden="true">×</span>'; el.style.setProperty('--bd', (i * 0.7) + 's');
     slot.appendChild(el); slot.classList.remove('empty');
     var target = rel(slot), cx = target.x + target.w / 2, cy = target.y + target.h / 2;
     var finish = function () { el.classList.add('on'); if (!RM) sparkle(cx, cy, 9); beep('snap'); later(function () { beep('sparkle'); }, 60); };
@@ -120,7 +120,7 @@
     for (var i = 0; i < els.slots.children.length; i++) { var s = els.slots.children[i]; var old = s.querySelector('.charm'); if (old) s.removeChild(old); s.classList.add('empty'); }
     for (i = 0; i < st.charms.length; i++) { placeCharmInstant(i, st.charms[i]); }
   }
-  function placeCharmInstant(i, key) { var c = charm(key), slot = slotEl(i); if (!c || !slot) return; var el = document.createElement('button'); el.type = 'button'; el.className = 'charm on'; el.setAttribute('data-charm', key); el.setAttribute('aria-label', c.title + ' – çıkarmak için tıkla'); el.title = c.title; el.innerHTML = D.charmHtml[key] + '<span class="x" aria-hidden="true">×</span>'; el.style.transition = 'none'; slot.appendChild(el); slot.classList.remove('empty'); void el.offsetWidth; el.style.transition = ''; }
+  function placeCharmInstant(i, key) { var c = charm(key), slot = slotEl(i); if (!c || !slot) return; var el = document.createElement('button'); el.type = 'button'; el.className = 'charm on'; el.setAttribute('data-charm', key); el.setAttribute('aria-label', c.title + ' – çıkarmak için tıkla'); el.title = c.title; el.innerHTML = D.charmHtml[key] + '<span class="x" aria-hidden="true">×</span>'; el.style.setProperty('--bd', (i * 0.7) + 's'); el.style.transition = 'none'; slot.appendChild(el); slot.classList.remove('empty'); void el.offsetWidth; el.style.transition = ''; }
   function resetAll() { st.charms = []; relayout(); renderTotal(true); captionDefault(); beep('tick'); track('reset'); }
   function setMetal(key, viaUser) {
     if (st.metal === key) return; st.metal = key; renderMetal(); renderTotal(true); beep('tick'); if (viaUser) track('metal_' + key);

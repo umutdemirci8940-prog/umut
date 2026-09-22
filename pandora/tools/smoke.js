@@ -65,7 +65,7 @@ const fontsDir = path.join(root, 'assets', 'fonts');
   for (const c of data.charms) { if ((await st()).charms.length >= data.maxCharms) break; const el = await page.$(`.cell[data-charm="${c.key}"]:not(.added)`); if (el) { await el.click(); await page.waitForTimeout(120); } }
   s = await st(); ok(s.charms.length === data.maxCharms, `${data.maxCharms} charm ile bileklik doldu`);
   ok((await page.$$('.cell[disabled]')).length === Math.min(6, data.charms.length) - data.maxCharms, 'kalan hücreler devre dışı');
-  const onRing = await page.$('.slot .charm'); await onRing.click(); await page.waitForTimeout(300);
+  const onRing = await page.$('.slot .charm'); await onRing.click({ force: true }); await page.waitForTimeout(300);
   ok((await st()).charms.length === data.maxCharms - 1, 'bileklikteki charm\'a tıklayınca çıkıyor');
   await page.click('.reset'); await page.waitForTimeout(200);
   ok((await st()).charms.length === 0, 'temizle → bileklik boş');

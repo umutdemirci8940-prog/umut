@@ -94,7 +94,7 @@ ${fontHead}
   <div class="legal" aria-hidden="true">${esc(K.legal)}</div>
 
   <div class="stage">
-    <div class="ring" style="left:${S.left}px;top:${S.top}px;width:${S.size}px;height:${S.size}px;--cs:${S.charmSize}px" title="${esc(bracelets[0].title)}">${ringLayers}<div class="slots"></div></div>
+    <div class="ring" style="left:${S.left}px;top:${S.top}px;width:${S.size}px;height:${S.size}px;--cs:${S.charmSize}px" title="${esc(bracelets[0].title)}">${ringLayers}${(S.glints || []).map((g) => `<i class="glint" style="left:${g.x * 100}%;top:${g.y * 100}%;--gd:${g.d || 0}s"></i>`).join('')}<div class="slots"></div></div>
   </div>
   <div class="caption" aria-live="polite" style="left:${S.left - 10}px;width:${S.size + 20}px"></div>
   <div class="fx" aria-hidden="true"></div>

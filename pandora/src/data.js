@@ -107,6 +107,8 @@ module.exports = {
       { x: 0.86, y: 0.62, r: 46 },
     ],
     charmSize: 56,
+    // Metal üzerinde ara ara parlayan ışıltılar (kutuya oranla; d = gecikme sn)
+    glints: [{ x: 0.06, y: 0.42, d: 0 }, { x: 0.93, y: 0.36, d: 2.1 }, { x: 0.36, y: 0.955, d: 3.7 }],
   },
   demoOrder: ['hearts', 'murano', 'star'],
 

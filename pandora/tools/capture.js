@@ -47,7 +47,7 @@ async function run(ctx, { video }) {
   await page.click('.cell[data-charm="butterfly"]'); await page.waitForTimeout(350); await shot('09-charm-ucuyor');
   await page.waitForTimeout(600); await page.click('.cell[data-charm="galaxy"]'); await page.waitForTimeout(900); await shot('10-bileklik-dolu');
   await page.click('.metal[data-metal="gold"]'); await page.waitForTimeout(700); await shot('11-altin');
-  const ch = await page.$('.slot .charm'); if (ch) { await ch.hover(); await page.waitForTimeout(300); await shot('12-charm-cikar-hover'); }
+  const ch = await page.$('.slot .charm'); if (ch) { await ch.hover({ force: true }); await page.waitForTimeout(300); await shot('12-charm-cikar-hover'); }
   await page.mouse.move(120, 200); await page.waitForTimeout(300); await shot('13-cta-hover');
   if (video) { await page.waitForTimeout(1500); }
   if (!video) {

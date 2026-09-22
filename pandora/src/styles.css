@@ -60,6 +60,11 @@ button:focus-visible{box-shadow:0 0 0 2px var(--white),0 0 0 4px var(--ink)}
 @keyframes hintpulse{50%{opacity:.25}}
 .charm{position:absolute;inset:0;pointer-events:auto;cursor:pointer;opacity:0;transform:scale(.4);transition:transform .35s var(--spring),opacity .2s}
 .charm.on{opacity:1;transform:none}
+#ad.is-rest:not(.is-still) .charm.on{animation:bob 4.2s ease-in-out infinite;animation-delay:var(--bd,0s)}
+@keyframes bob{50%{transform:translate3d(0,-2px,0) rotate(1.5deg)}}
+.glint{position:absolute;width:14px;height:14px;margin:-7px 0 0 -7px;pointer-events:none;opacity:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 0c.6 7 5 11.4 12 12-7 .6-11.4 5-12 12-.6-7-5-11.4-12-12 7-.6 11.4-5 12-12z' fill='%23fff'/%3E%3C/svg%3E") center/contain no-repeat;filter:drop-shadow(0 0 3px rgba(255,255,255,.9))}
+#ad.is-in:not(.is-still) .glint{animation:twinkle 5.6s ease-in-out infinite;animation-delay:var(--gd,0s)}
+@keyframes twinkle{0%,78%,100%{opacity:0;transform:scale(.4) rotate(0)}86%{opacity:1;transform:scale(1) rotate(25deg)}94%{opacity:0;transform:scale(.5) rotate(45deg)}}
 .charm img,.charm svg{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 6px 8px rgba(60,20,30,.32))}
 .charm:hover{transform:scale(1.12) translate3d(0,-2px,0)}
 .charm .x{position:absolute;right:2px;top:2px;width:16px;height:16px;border-radius:50%;background:var(--ink);color:#fff;font-size:11px;line-height:16px;text-align:center;font-weight:700;opacity:0;transform:scale(.6);transition:opacity .15s,transform .2s var(--spring);pointer-events:none}
@@ -95,6 +100,7 @@ button:focus-visible{box-shadow:0 0 0 2px var(--white),0 0 0 4px var(--ink)}
 .cell:hover img{transform:scale(1.08)}
 .cell .plus{position:absolute;right:4px;bottom:4px;width:14px;height:14px;border-radius:50%;background:var(--ink);color:#fff;font-size:11px;line-height:14px;font-weight:700;text-align:center;opacity:0;transform:scale(.5);transition:opacity .15s,transform .2s var(--spring)}
 .cell:hover .plus{opacity:1;transform:none}
+.cell.hot{border-color:var(--rose);background:#fff;transform:translate3d(0,-2px,0);box-shadow:0 8px 16px -8px rgba(74,30,40,.35)}
 .cell.added{border-color:var(--rose);background:#fff5f8}
 .cell.added img{opacity:.55}
 .cell.added .plus{opacity:1;transform:none;background:var(--rose)}
