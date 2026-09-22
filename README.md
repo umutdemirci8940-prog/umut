@@ -12,7 +12,7 @@ Tek dosyalık teslim: `release/index.html` (üç banner içine gömülü; açın
 
 ## Diğer çalışmalar
 
-- **Pluxee "Geçiyor" – media-first interaktif masthead (970 × 250)** → [`pluxee/`](pluxee/README.md). medya veri katmanı sinyalleriyle (segment, saat) kurulan, fotoğrafik/sinematik tek dosyalık kreatif; sunum sayfası `pluxee/preview/index.html`.
+- **Pluxee "Geçiyor" – media-first interaktif masthead (970 × 250)** → [`pluxee/`](pluxee/README.md). medya veri katmanı sinyalleriyle (segment, saat) kurulan, kartın kabul noktalarının kapılarından geçtiği interaktif koridor; tek dosyalık kreatif, sunum sayfası `pluxee/preview/index.html`.
 
 ## Ekran görüntüleri
 

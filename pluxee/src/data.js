@@ -19,8 +19,8 @@ module.exports = {
   brand: {
     name: 'Pluxee',
     campaign: 'Pluxee Geçiyor',
-    // Tıklama hedefi. Reklam ağı clickTag sağlıyorsa o kullanılır.
-    url: 'https://www.pluxee.com.tr/?utm_source=splash&utm_medium=masthead&utm_campaign=pluxee-geciyor',
+    // Tıklama hedefi: Pluxee ana sayfası (UTM'siz). Reklam ağı clickTag sağlıyorsa o kullanılır.
+    url: 'https://www.pluxee.com.tr/',
     // Marka paleti (Pluxee lacivert + yeşil)
     navy: '#221C46',
     navy2: '#2B2458',
@@ -174,6 +174,27 @@ module.exports = {
     hint: "Kartı POS'a sürükleyin",
     hintTap: 'ya da dokunun',
     replay: 'Tekrar oyna',
+  },
+
+  /**
+   * KORİDOR SÜRÜMÜ (ana teslim): kart, kabul noktalarının kapılarından "geçer".
+   * Sahne sırası ve segment kopyası cinematic ile ortaktır; burada yalnızca koridora özgü metin ve süreler var.
+   */
+  corridor: {
+    words: { restoran: 'Restoranda,', kafe: 'Kafede,', market: 'Markette,', online: 'Online siparişte,' },
+    line2: 'Pluxee geçiyor.',
+    final: { title: 'Burada, şurada, orada', word: 'Her yerde,' },
+    pass: 'Geçti',
+    hint: 'Sürükleyin, yol alın',
+    hintHold: 'basılı tutun: hızlanın',
+    replay: 'Tekrar geç',
+    timing: {
+      enter: 600,      // sahne belirir
+      cruise: 17000,   // koridorun kendiliğinden kat edilme süresi (ms)
+      hold: 3000,      // final karesi
+      resume: 1400,    // sürükleme bırakıldıktan sonra otomatik uçuşa dönüş
+      gates: [0.2, 0.42, 0.64, 0.86], // kapıların koridor üzerindeki konumu (0..1)
+    },
   },
 
   // Varsayılan sinyaller (parametre gelmezse). Saat için cihaz saati kullanılır.

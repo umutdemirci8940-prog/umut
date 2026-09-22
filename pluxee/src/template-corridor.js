@@ -1,14 +1,35 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=970,initial-scale=1">
-<meta name="ad.size" content="width=970,height=250">
-<title>Pluxee – Pluxee Geçiyor · 970x250</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
-<style>
+'use strict';
+/**
+ * Pluxee "Geçiyor" – 970x250 interaktif masthead, KORİDOR sürümü (ana teslim).
+ *
+ * Fikir: "geçiyor" kelimesinin gerçek anlamı. Pluxee kartı, perspektifli bir ışık
+ * koridorunda kabul noktalarının kapılarından (Restoran, Kafe, Market, Online) geçer.
+ * Kullanıcı sürükleyerek yol alır ya da basılı tutup hızlanır; imleç koridoru yönlendirir.
+ * Her kapıdan geçişte yeşil flaş, "Geçti ✓", hız çizgileri, kısa sarsıntı; rota çubuğu dolar.
+ * Finalde koridor açılır: "Her yerde, Pluxee geçiyor." Dokunulmazsa koridor kendiliğinden
+ * kat edilir (≈ 17 sn) ve final karesinde durur.
+ *
+ * Sinyaller: seg (segment → alt metin + CTA), h/m (saat → kapı sırası), w=rain (isteğe bağlı),
+ * demo=1 (sinyal çubuğu). Konum ve nokta sayısı kullanılmaz.
+ */
+
+const SIZE = { key: '970x250', w: 970, h: 250, label: 'Billboard / Masthead' };
+const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+const NFC = (cls) => `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 8.5a5 5 0 0 1 0 7M10.5 5.5a10 10 0 0 1 0 13M14.5 2.5a15 15 0 0 1 0 19" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>`;
+const ARROW = `<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 6h8M6.5 2.5L10 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const CHECK = `<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.5l2.3 2.3L9.5 4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const DRAG = `<svg viewBox="0 0 28 12" aria-hidden="true"><path d="M5 6h18M8.5 2.5L5 6l3.5 3.5M19.5 2.5L23 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const AGAIN = `<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.2 6a3.8 3.8 0 1 0 1.1-2.7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M2 1.8v2.4h2.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const ICONS = {
+  restoran: `<path d="M7 3v7a2 2 0 0 0 2 2v9M9 3v6M11 3v6M17 3c-2 1-3 3.5-3 6v3h3v9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>`,
+  kafe: `<path d="M5 9h11v5a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5zM16 10h2a2.5 2.5 0 0 1 0 5h-2M8 6c0-1.5 1.2-1.5 1.2-3M12 6c0-1.5 1.2-1.5 1.2-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>`,
+  market: `<path d="M4 9h16l-1.6 10H5.6zM8.5 9l3.5-5 3.5 5M9.5 13v3M12 13v3M14.5 13v3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>`,
+  online: `<rect x="7" y="3" width="10" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10 12.5l1.6 1.6 3-3.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="18" r=".9" fill="currentColor"/>`,
+};
+
+/* ---------- CSS ---------- */
+const CSS = `
 :root{--navy:#221C46;--ink:#0F0C26;--green:#00EB5E;--lav:#B8A9FF;--ease:cubic-bezier(.22,.8,.26,1)}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{width:970px;height:250px;overflow:hidden;background:#0F0C26}
@@ -117,39 +138,12 @@ body{font-family:Manrope,Inter,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
 .sig span b{color:var(--green);font-weight:700}
 .sig .lbl{background:var(--green);color:var(--navy);font-weight:800;letter-spacing:.06em}
 @media (prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;transition-delay:0s!important}}
-</style>
-</head>
-<body>
-<div class="ad" id="ad" role="region" aria-label="Pluxee reklamı" tabindex="0">
-  <div class="bg"></div>
-  <div class="grain"></div>
-  <div class="world">
-    <div class="floor"></div>
-    <div class="rays"></div>
-    <div class="portal"></div>
-  </div>
-  <div class="vig"></div>
-  <div class="rain"></div>
-  <div class="shade"></div>
-  <div class="scene" aria-label="Sürükleyerek koridorda yol alın">
-    <div class="route"><span class="line"></span><span class="prog"></span></div>
-    <div class="card" aria-hidden="true"><div class="face"><span class="band"></span><span class="gloss"></span><span class="chip"></span><svg class="nfc" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 8.5a5 5 0 0 1 0 7M10.5 5.5a10 10 0 0 1 0 13M14.5 2.5a15 15 0 0 1 0 19" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg><span class="wm">pluxee<i></i></span></div></div>
-    <div class="burst"></div>
-    <div class="hint"><svg viewBox="0 0 28 12" aria-hidden="true"><path d="M5 6h18M8.5 2.5L5 6l3.5 3.5M19.5 2.5L23 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Sürükleyin, yol alın <small>· basılı tutun: hızlanın</small></div>
-    <button class="again" type="button"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.2 6a3.8 3.8 0 1 0 1.1-2.7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M2 1.8v2.4h2.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Tekrar geç</button>
-  </div>
-  <div class="left">
-    <div class="logo"><b>pluxee</b><i></i></div>
-    <span class="eyebrow"></span>
-    <div class="hl"><span class="l1"></span><span class="l2">Pluxee geçiyor.</span></div>
-    <p class="sub"></p>
-    <button class="cta" type="button"><span class="cta-t"></span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 6h8M6.5 2.5L10 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-  </div>
-  <div class="sig" aria-hidden="true"></div>
-</div>
-<script>
+`;
+
+/* ---------- Tarayıcı tarafı (ES5) ---------- */
+const JS = `
 (function(){
-var D={"brand":{"url":"https://www.pluxee.com.tr/"},"segments":{"wc":{"label":"Beyaz yaka","cta":"Yakınımda nerede geçiyor?"},"hr":{"label":"İK profesyoneli","cta":"Ekibim için teklif al"},"emp":{"label":"İşveren / karar verici","cta":"Şirketim için başvur"}},"cinematic":{"scenes":[{"key":"restoran","title":"Öğle yemeği","word":"restoranda.","label":"Restoran","tag":"burada"},{"key":"kafe","title":"Kahve molası","word":"kafede.","label":"Kafe","tag":"şurada"},{"key":"market","title":"Market alışverişi","word":"markette.","label":"Market","tag":"orada"},{"key":"online","title":"Online sipariş","word":"online siparişte.","label":"Online","tag":"orada da"}],"lead":[{"from":6,"to":10,"scene":"kafe"},{"from":11,"to":14,"scene":"restoran"},{"from":15,"to":17,"scene":"kafe"},{"from":18,"to":22,"scene":"market"},{"from":23,"to":5,"scene":"online"}],"rainLead":"online","final":{"title":"Burada, şurada, orada","word":"her yerde."},"segments":{"wc":{"sub":"Öğle yemeğinden market alışverişine, kafeden online siparişe: tek kart, her yerde geçerli.","cta":"Pluxee'yi keşfedin"},"hr":{"sub":"Ekibinizin her günü için geçerli yan hak. Kurulumu kolay, kullanımı her yerde.","cta":"Teklif alın"},"emp":{"sub":"Yan hak bütçenizi geniş kabul ağı ve vergi avantajıyla değerlendirin.","cta":"Bize ulaşın"}},"pos":{"idle":"Kartı okutun","near":"Okutun","ok":"Onaylandı"},"hint":"Kartı POS'a sürükleyin","hintTap":"ya da dokunun","replay":"Tekrar oyna"},"corridor":{"words":{"restoran":"Restoranda,","kafe":"Kafede,","market":"Markette,","online":"Online siparişte,"},"line2":"Pluxee geçiyor.","final":{"title":"Burada, şurada, orada","word":"Her yerde,"},"pass":"Geçti","hint":"Sürükleyin, yol alın","hintHold":"basılı tutun: hızlanın","replay":"Tekrar geç","timing":{"enter":600,"cruise":17000,"hold":3000,"resume":1400,"gates":[0.2,0.42,0.64,0.86]}},"defaults":{"seg":"wc"}},C=D.cinematic,K=D.corridor,T=K.timing;
+var D=__DATA__,C=D.cinematic,K=D.corridor,T=K.timing;
 var ad=document.getElementById('ad'),scene=ad.querySelector('.scene'),bg=ad.querySelector('.bg'),world=ad.querySelector('.world'),floor=ad.querySelector('.floor'),raysEl=ad.querySelector('.rays'),portal=ad.querySelector('.portal'),card=ad.querySelector('.card'),burst=ad.querySelector('.burst'),again=ad.querySelector('.again'),route=ad.querySelector('.route'),prog=route.querySelector('.prog');
 var eyebrow=ad.querySelector('.eyebrow'),l1=ad.querySelector('.l1'),sub=ad.querySelector('.sub'),cta=ad.querySelector('.cta'),ctaT=ad.querySelector('.cta-t'),sig=ad.querySelector('.sig');
 var W=970,H=250,VP={x:740,y:122};
@@ -158,7 +152,7 @@ var t=0,phase='',auto=true,drag=null,velT=0,inertia=false,boost=false,tween=null
 var reduced=!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 var cruiseV=1/T.cruise; // t birimi / ms
 
-function q(n){var m=new RegExp('[?&]'+n+'=([^&#]*)').exec(location.search);return m?decodeURIComponent(m[1].replace(/\+/g,' ')):null}
+function q(n){var m=new RegExp('[?&]'+n+'=([^&#]*)').exec(location.search);return m?decodeURIComponent(m[1].replace(/\\+/g,' ')):null}
 function pad(n){return (n<10?'0':'')+n}
 function clamp(v,a,b){return v<a?a:v>b?b:v}
 function norm(s){if(!C.segments[s.seg])s.seg=D.defaults.seg;s.hour=((Math.floor(+s.hour)||0)%24+24)%24;s.minute=clamp(Math.floor(+s.minute)||0,0,59);s.weather=s.weather==='rain'?'rain':'sun';s.demo=!!s.demo;return s}
@@ -215,9 +209,9 @@ function build(){
   order=[];for(i=0;i<C.scenes.length;i++){var sc=C.scenes[(start+i)%C.scenes.length];order.push({scene:sc,key:sc.key,z:T.gates[i],visited:false,passed:false,tag:C.scenes[i].tag})}
   world.querySelectorAll('.gate').forEach?null:null;
   var old=world.querySelectorAll('.gate');for(i=0;i<old.length;i++)world.removeChild(old[i]);
-  gates=[];for(i=0;i<order.length;i++){var g=document.createElement('div');g.className='gate';g.setAttribute('data-key',order[i].key);g.setAttribute('data-i',i);g.innerHTML='<span class="frame"></span><span class="lbl"><svg viewBox="0 0 24 24" aria-hidden="true">'+({"restoran":"<path d=\"M7 3v7a2 2 0 0 0 2 2v9M9 3v6M11 3v6M17 3c-2 1-3 3.5-3 6v3h3v9\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>","kafe":"<path d=\"M5 9h11v5a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5zM16 10h2a2.5 2.5 0 0 1 0 5h-2M8 6c0-1.5 1.2-1.5 1.2-3M12 6c0-1.5 1.2-1.5 1.2-3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>","market":"<path d=\"M4 9h16l-1.6 10H5.6zM8.5 9l3.5-5 3.5 5M9.5 13v3M12 13v3M14.5 13v3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>","online":"<rect x=\"7\" y=\"3\" width=\"10\" height=\"18\" rx=\"2.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\"/><path d=\"M10 12.5l1.6 1.6 3-3.2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><circle cx=\"12\" cy=\"18\" r=\".9\" fill=\"currentColor\"/>"}[order[i].key]||'')+'</svg>'+esc(order[i].scene.label)+'<small>· '+esc(order[i].tag)+'</small></span><span class="pass">'+"<svg viewBox=\"0 0 12 12\" aria-hidden=\"true\"><path d=\"M2.5 6.5l2.3 2.3L9.5 4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>"+esc(K.pass)+'</span>';world.insertBefore(g,portal);gates.push(g)}
+  gates=[];for(i=0;i<order.length;i++){var g=document.createElement('div');g.className='gate';g.setAttribute('data-key',order[i].key);g.setAttribute('data-i',i);g.innerHTML='<span class="frame"></span><span class="lbl"><svg viewBox="0 0 24 24" aria-hidden="true">'+(__ICONS__[order[i].key]||'')+'</svg>'+esc(order[i].scene.label)+'<small>· '+esc(order[i].tag)+'</small></span><span class="pass">'+__CHECK__+esc(K.pass)+'</span>';world.insertBefore(g,portal);gates.push(g)}
   var oldN=route.querySelectorAll('.node');for(i=0;i<oldN.length;i++)route.removeChild(oldN[i]);
-  nodes=[];for(i=0;i<order.length;i++){var n=document.createElement('div');n.className='node';n.style.left=(order[i].z*100)+'%';n.setAttribute('data-i',i);n.setAttribute('data-key',order[i].key);n.innerHTML='<i></i><b>'+esc(order[i].scene.label)+"<svg viewBox=\"0 0 12 12\" aria-hidden=\"true\"><path d=\"M2.5 6.5l2.3 2.3L9.5 4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>"+'</b>';route.appendChild(n);nodes.push(n)}
+  nodes=[];for(i=0;i<order.length;i++){var n=document.createElement('div');n.className='node';n.style.left=(order[i].z*100)+'%';n.setAttribute('data-i',i);n.setAttribute('data-key',order[i].key);n.innerHTML='<i></i><b>'+esc(order[i].scene.label)+__CHECK__+'</b>';route.appendChild(n);nodes.push(n)}
   ad.classList.toggle('is-rain',S.weather==='rain');ad.classList.toggle('is-demo',S.demo);
   variant=[S.seg,leadKey].join('-').toUpperCase()+(S.weather==='rain'?'-RAIN':'');ad.setAttribute('data-variant',variant);ad.setAttribute('data-lead',leadKey);
   sig.innerHTML='<span class="lbl">DATA LAYER</span><span>SEGMENT <b>'+esc(D.segments[S.seg].label)+'</b></span><span>SAAT <b>'+pad(S.hour)+':'+pad(S.minute)+'</b></span>'+(S.weather==='rain'?'<span>HAVA <b>Yağmurlu</b></span>':'')+'<span>#'+esc(variant)+'</span>';
@@ -406,6 +400,63 @@ window.PLUXEE={setSignals:function(s){for(var k in s)if(s.hasOwnProperty(k))S[k]
 
 S=readSignals();build();start();
 })();
-</script>
+`;
+
+/* ---------- HTML ---------- */
+function render(data) {
+  const runtime = {
+    brand: { url: data.brand.url },
+    segments: data.segments,
+    cinematic: data.cinematic,
+    corridor: data.corridor,
+    defaults: { seg: data.defaults.seg },
+  };
+  const json = JSON.stringify(runtime).replace(/<\//g, '<\\/');
+  const js = JS.replace('__DATA__', () => json).replace(/__CHECK__/g, () => JSON.stringify(CHECK)).replace(/__ICONS__/g, () => JSON.stringify(ICONS));
+  const k = data.corridor;
+  return `<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=${SIZE.w},initial-scale=1">
+<meta name="ad.size" content="width=${SIZE.w},height=${SIZE.h}">
+<title>${esc(data.brand.name)} – ${esc(data.brand.campaign)} · ${SIZE.key}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+<style>${CSS}</style>
+</head>
+<body>
+<div class="ad" id="ad" role="region" aria-label="${esc(data.brand.name)} reklamı" tabindex="0">
+  <div class="bg"></div>
+  <div class="grain"></div>
+  <div class="world">
+    <div class="floor"></div>
+    <div class="rays"></div>
+    <div class="portal"></div>
+  </div>
+  <div class="vig"></div>
+  <div class="rain"></div>
+  <div class="shade"></div>
+  <div class="scene" aria-label="Sürükleyerek koridorda yol alın">
+    <div class="route"><span class="line"></span><span class="prog"></span></div>
+    <div class="card" aria-hidden="true"><div class="face"><span class="band"></span><span class="gloss"></span><span class="chip"></span>${NFC('nfc')}<span class="wm">pluxee<i></i></span></div></div>
+    <div class="burst"></div>
+    <div class="hint">${DRAG} ${esc(k.hint)} <small>· ${esc(k.hintHold)}</small></div>
+    <button class="again" type="button">${AGAIN}${esc(k.replay)}</button>
+  </div>
+  <div class="left">
+    <div class="logo"><b>pluxee</b><i></i></div>
+    <span class="eyebrow"></span>
+    <div class="hl"><span class="l1"></span><span class="l2">${esc(k.line2)}</span></div>
+    <p class="sub"></p>
+    <button class="cta" type="button"><span class="cta-t"></span>${ARROW}</button>
+  </div>
+  <div class="sig" aria-hidden="true"></div>
+</div>
+<script>${js}</script>
 </body>
-</html>
+</html>`;
+}
+
+module.exports = { render, SIZE };

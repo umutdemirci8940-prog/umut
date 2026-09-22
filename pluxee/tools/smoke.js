@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 'use strict';
 /**
- * Duman testi: sinematik sürüm (ana teslim), sunum sayfası ve ilk taslak.
+ * Duman testi: koridor sürümü (ana teslim), sunum sayfası ve arşiv sürümleri.
  * Kullanım: NODE_PATH=$(npm root -g) node pluxee/tools/smoke.js
  */
 const path = require('path');
@@ -12,24 +12,27 @@ const { routeFonts } = require('./fonts');
 
 const root = path.join(__dirname, '..');
 const DIST = path.join(root, 'dist', '970x250', 'index.html');
+const POS = path.join(root, 'dist', '970x250-pos', 'index.html');
 const FLAT = path.join(root, 'dist', '970x250-flat', 'index.html');
-const C = data.cinematic, T = data.timingCinematic;
+const C = data.cinematic, K = data.corridor, T = K.timing;
 let failures = 0;
 const ok = (cond, msg) => { console.log(`${cond ? '  ✔' : '  ✘'} ${msg}`); if (!cond) failures++; };
 const openAt = (page, file, qs) => page.goto('file://' + file + (qs ? '?' + qs : ''));
+const gateAt = (i) => T.enter + T.gates[i] * T.cruise;
 
 const st = (page) => page.evaluate(() => {
   const ad = document.getElementById('ad');
   const s = window.PLUXEE.state();
-  const steps = [...ad.querySelectorAll('.step')];
+  const nodes = [...ad.querySelectorAll('.node')];
   return Object.assign(s, {
-    cls: [...ad.classList], lead: ad.dataset.lead, variantAttr: ad.dataset.variant,
-    steps: steps.map((e) => e.querySelector('b').textContent.trim()), done: steps.filter((e) => e.classList.contains('is-done')).map((e) => e.dataset.key),
-    here: (steps.find((e) => e.classList.contains('is-here')) || { dataset: {} }).dataset.key,
-    posOk: ad.querySelector('.pos').classList.contains('is-ok'), tagOk: ad.querySelector('.tag').classList.contains('is-ok'), tag: ad.querySelector('.tag .t').textContent,
-    eyebrow: ad.querySelector('.eyebrow').textContent, word: (ad.querySelector('.l2 span.on') || {}).textContent, sub: ad.querySelector('.sub').textContent, cta: ad.querySelector('.cta-t').textContent,
+    cls: [...ad.classList], leadAttr: ad.dataset.lead,
+    nodes: nodes.map((e) => e.querySelector('b').textContent.trim()), done: nodes.filter((e) => e.classList.contains('is-done')).map((e) => e.dataset.key),
+    nextNode: (nodes.find((e) => e.classList.contains('is-next')) || { dataset: {} }).dataset.key,
+    passed: [...ad.querySelectorAll('.gate.is-pass')].map((e) => e.dataset.key),
+    hintCls: ad.querySelector('.scene').classList.contains('is-hint'), dragCls: ad.querySelector('.scene').classList.contains('is-drag'),
+    eyebrow: ad.querySelector('.eyebrow').textContent, word: (ad.querySelector('.l1 span.on') || {}).textContent, line2: ad.querySelector('.l2').textContent, sub: ad.querySelector('.sub').textContent, cta: ad.querySelector('.cta-t').textContent,
     layer: (ad.querySelector('.bg canvas.is-on') || { dataset: {} }).dataset.key, layers: ad.querySelectorAll('.bg canvas').length,
-    near: ad.querySelector('.pos').classList.contains('is-near'), hintCls: ad.querySelector('.scene').classList.contains('is-hint'), tf: ad.querySelector('.card').style.transform,
+    prog: parseFloat(ad.querySelector('.route .prog').style.width) || 0,
   });
 });
 
@@ -43,100 +46,110 @@ const st = (page) => page.evaluate(() => {
   page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
   await page.addInitScript(() => { window.__opened = null; window.open = (u) => { window.__opened = u; return null; }; });
 
-  console.log('\nDosya (sinematik)');
+  console.log('\nDosya (koridor)');
   const html = fs.readFileSync(DIST, 'utf8');
   ok(Buffer.byteLength(html) < 150 * 1024, `boyut ${(Buffer.byteLength(html) / 1024).toFixed(1)} KB (< 150 KB)`);
   const ext = [...html.matchAll(/https?:\/\/[^"' )]+/g)].map((m) => m[0]).filter((u) => !/fonts\.g(oogleapis|static)\.com|pluxee\.com\.tr/.test(u));
   ok(ext.length === 0, 'harici kaynak yalnızca Google Fonts + tıklama hedefi' + (ext.length ? ': ' + ext.join(', ') : ''));
-  ok(!/Yemek Kartı/i.test(html) && !/Yemek Kartı/i.test(fs.readFileSync(FLAT, 'utf8')), 'logonun yanında "Yemek Kartı" yok (her iki sürüm)');
+  ok(!/Yemek Kartı|Splash/i.test(html), 'logonun yanında ürün yazısı ve ajans adı yok');
   ok(!/noktada|Levent|ikindi|yarın sabah/i.test(html), 'konum/nokta sayısı ve gün etiketleri kullanılmıyor');
+  ok(!/__[A-Z]+__/.test(html), 'yer tutucu kalmadı');
 
-  console.log('\nSinyal → sahne');
+  console.log('\nSinyal → koridor');
   await openAt(page, DIST, 'seg=wc&h=12&m=31'); await page.mouse.move(10, 10); await page.waitForTimeout(300);
   let s = await st(page);
-  ok(s.lead === 'restoran' && s.variant === 'WC-RESTORAN' && s.order.join(',') === 'restoran,kafe,market,online', `öğle 12:31 → Restoran ile açılır, varyant ${s.variant}`);
-  ok(s.steps.join('|') === 'Restoran|Kafe|Market|Online', 'sahne başlıkları: ' + s.steps.join(' · '));
-  ok(s.layers === 5 && s.layer === 'restoran', 'fotoğrafik arka plan katmanları üretildi, restoran katmanı açık');
+  ok(s.lead === 'restoran' && s.variant === 'WC-RESTORAN' && s.order.join(',') === 'restoran,kafe,market,online', `öğle 12:31 → Restoran kapısıyla açılır, varyant ${s.variant}`);
+  ok(s.nodes.join('|') === 'Restoran|Kafe|Market|Online', 'rota noktaları: ' + s.nodes.join(' → '));
+  ok(s.layers === 6 && s.layer === 'restoran', 'arka plan katmanları (5 sahne + final) üretildi, restoran açık');
   ok(s.cta === C.segments.wc.cta && s.sub === C.segments.wc.sub && s.cls.includes('is-live'), 'beyaz yaka alt metin + CTA');
-  await page.waitForTimeout(T.enter + T.hint + 300);
+  ok(s.eyebrow === 'Öğle yemeği' && s.word === 'Restoranda,' && s.line2 === K.line2, 'başlık: "Öğle yemeği / Restoranda, / Pluxee geçiyor."');
+  await page.waitForTimeout(T.enter + 700);
   s = await st(page);
-  ok(s.phase === 'await' && s.hint && s.hintCls && s.eyebrow === 'Öğle yemeği' && s.word === 'restoranda.', 'bekleme: "Kartı POS\'a sürükleyin" ipucu ve hayalet el görünür');
-  ok(!s.posOk && s.tag === 'burada' && !s.tagOk, 'POS boşta, "burada" etiketi onaysız');
+  ok(s.phase === 'fly' && s.hint && s.hintCls && s.t > 0, 'uçuş başladı, "Sürükleyin, yol alın" ipucu görünür');
+  await page.waitForTimeout(gateAt(0) + 450 - (T.enter + 1000));
+  s = await st(page);
+  ok(s.visited === 1 && s.done[0] === 'restoran' && s.passed.includes('restoran'), 'ilk kapıdan geçiş: flaş + "Geçti ✓" + rota noktası (1/4)');
+  ok(s.word === 'Kafede,' && s.eyebrow === 'Kahve molası' && s.nextNode === 'kafe' && s.layer === 'kafe', 'geçişten sonra bir sonraki kapı: "Kafede,"');
+  ok(s.prog > 15 && s.prog < 30, `rota ilerlemesi %${s.prog.toFixed(0)}`);
 
-  console.log('\nKullanıcı aksiyonu: kartı sürükleyip okutma');
-  const CARD = { x: 470 + 167, y: 124 }, NFCP = { x: 470 + 386, y: 70 };
-  await page.mouse.move(CARD.x, CARD.y); await page.mouse.down();
-  for (let i = 1; i <= 10; i++) { await page.mouse.move(CARD.x + (NFCP.x - CARD.x) * i / 10, CARD.y + (NFCP.y - CARD.y) * i / 10); await page.waitForTimeout(25); }
-  await page.waitForTimeout(150);
+  console.log('\nKullanıcı aksiyonu: sürükle / basılı tut / yönlendir');
+  const before = (await st(page)).t;
+  await page.mouse.move(800, 150); await page.mouse.down();
+  for (let i = 1; i <= 8; i++) { await page.mouse.move(800 - 160 * i / 8, 150); await page.waitForTimeout(25); }
+  await page.waitForTimeout(80);
   s = await st(page);
-  ok(s.phase === 'drag' && !s.hint && s.near, 'sürüklerken kart fareyi izliyor, ipucu kayboluyor, POS uyanıyor ("Okutun")');
-  await page.mouse.up(); await page.waitForTimeout(350);
-  s = await st(page);
-  ok(s.phase === 'approve' && s.posOk && s.tagOk && s.visited === 1 && s.userPlayed, 'POS\'a bırakınca: Onaylandı ✓, "burada" onaylandı, 1/4');
+  ok(s.dragCls && s.userPlayed && !s.hint && s.t > before + 0.2, `sola sürükleme ileri götürüyor (t ${before.toFixed(2)} → ${s.t.toFixed(2)}), ipucu kayboldu`);
+  ok(s.visited >= 2 && s.done.includes('kafe'), 'sürüklerken geçilen kapılar sayılıyor (' + s.visited + '/4)');
+  await page.mouse.up(); await page.waitForTimeout(400);
+  const afterUp = (await st(page)).t;
+  ok(afterUp >= s.t, 'bırakınca atalet ile ilerliyor');
   ok((await page.evaluate(() => window.__opened)) === null, 'sürükleme reklam çıkışı yapmıyor');
-  await page.waitForTimeout(T.approve + T.next + 300);
+  // geri sürükleme
+  await page.mouse.move(700, 150); await page.mouse.down();
+  for (let i = 1; i <= 6; i++) { await page.mouse.move(700 + 120 * i / 6, 150); await page.waitForTimeout(25); }
+  await page.waitForTimeout(60);
   s = await st(page);
-  ok(s.idx === 1 && s.phase === 'await' && s.word === 'kafede.' && s.here === 'kafe', 'onaydan sonra ikinci sahne: "kafede."');
-  // yanlış yere bırakma → kart yerine döner
-  await page.mouse.move(CARD.x, CARD.y); await page.mouse.down(); await page.mouse.move(CARD.x - 40, CARD.y + 70, { steps: 8 }); await page.mouse.up();
-  await page.waitForTimeout(700);
+  ok(s.t < afterUp, 'sağa sürükleme geri götürüyor');
+  ok(s.visited >= 2, 'geçilen kapı sayısı geri giderken korunuyor');
+  await page.mouse.up(); await page.waitForTimeout(T.resume + 400);
+  const t1 = (await st(page)).t; await page.waitForTimeout(500); const t2 = (await st(page)).t;
+  ok(t2 > t1, `bırakıldıktan ${T.resume / 1000} sn sonra otomatik uçuş sürüyor`);
+  // basılı tut → hızlan
+  await page.mouse.move(720, 150); await page.mouse.down(); await page.waitForTimeout(300);
+  const b0 = (await st(page)).t; await page.waitForTimeout(800); const b1 = (await st(page)).t; await page.mouse.up();
+  ok(b1 - b0 > (800 / T.cruise) * 2, `basılı tutunca hızlanıyor (Δt ${(b1 - b0).toFixed(3)} vs seyir ${(800 / T.cruise).toFixed(3)})`);
+  await page.waitForTimeout(200);
+  // rota noktasına tıklama
+  await openAt(page, DIST, 'seg=wc&h=12&m=31'); await page.mouse.move(10, 10); await page.waitForTimeout(T.enter + 400);
+  await page.click('.node[data-i="3"]'); await page.waitForTimeout(900);
   s = await st(page);
-  ok(s.phase === 'await' && s.visited === 1 && /translate3d\(0px, 0px, 0px\)/.test(s.tf), 'POS dışına bırakınca kart yerine dönüyor, sayım değişmiyor');
-  // dokunma (tıklama) ile okutma
-  await page.mouse.click(CARD.x, CARD.y); await page.waitForTimeout(T.fly + 300);
+  ok(Math.abs(s.t - (T.gates[3] - 0.12)) < 0.06 && s.nextNode === 'online' && s.visited === 3, 'rota noktasına tıklama o kapının önüne götürüyor (aradaki kapılar geçilmiş sayılır)');
+  // klavye
+  await page.focus('#ad'); await page.keyboard.press('ArrowLeft'); await page.waitForTimeout(500);
+  const k0 = (await st(page)).t;
+  ok(k0 < T.gates[3] - 0.12 - 0.05, 'klavye sol ok geri götürüyor');
+  await page.keyboard.press(' '); await page.waitForTimeout(600);
+  ok((await st(page)).t > k0 + 0.05, 'boşluk tuşu hızlandırıyor');
+  // final
+  await page.keyboard.press('ArrowRight'); await page.keyboard.press('ArrowRight'); await page.waitForTimeout(1500);
+  await page.waitForTimeout((1 - (await st(page)).t) * T.cruise + 600);
   s = await st(page);
-  ok(s.phase === 'approve' && s.visited === 2 && s.done.includes('kafe'), 'karta dokununca kart POS\'a uçup okutuluyor (2/4)');
-  await page.waitForTimeout(T.approve + T.next + 300);
-  // alt başlık ve klavye
-  await page.click('.step[data-i="3"]'); await page.waitForTimeout(300);
+  ok(s.finalState && s.phase === 'final' && s.visited === 4 && s.word === K.final.word && s.eyebrow === K.final.title && s.layer === 'final', 'final: koridor açılır, "Burada, şurada, orada / Her yerde, Pluxee geçiyor."');
+  await page.waitForTimeout(T.hold + 400);
   s = await st(page);
-  ok(s.idx === 3 && s.phase === 'await' && s.word === 'online siparişte.', 'alt başlığa tıklama ilgili sahneye götürüyor');
-  await page.focus('#ad'); await page.keyboard.press('ArrowLeft'); await page.waitForTimeout(300);
-  s = await st(page);
-  ok(s.idx === 2 && s.word === 'markette.', 'klavye sol ok sahne değiştiriyor');
-  await page.keyboard.press(' '); await page.waitForTimeout(T.fly + 300);
-  s = await st(page);
-  ok(s.phase === 'approve' && s.done.includes('market'), 'boşluk tuşu kartı okutuyor');
-  await page.waitForTimeout(T.approve + T.next + 300);
-  s = await st(page);
-  ok(s.idx === 3 && s.phase === 'await', 'kalan son sahneye geçildi');
-  await page.touchscreen.tap(470 + 386, 120); await page.waitForTimeout(T.fly + 300);
-  s = await st(page);
-  ok(s.phase === 'approve' && s.visited === 4, 'POS\'a dokunma da okutuyor (4/4)');
-  await page.waitForTimeout(T.approve + 400);
-  s = await st(page);
-  ok(s.finalState && s.word === 'her yerde.' && s.eyebrow === C.final.title && s.tag === 'her yerde', 'final: "Burada, şurada, orada / her yerde."');
-  await page.waitForTimeout(T.hold + 300);
-  s = await st(page);
-  ok(s.ended && (await page.$eval('.again', (e) => getComputedStyle(e).display)) !== 'none', 'kullanıcı tamamladı: döngü yok, "Tekrar oyna" görünür');
+  ok(s.ended && (await page.$eval('.again', (e) => getComputedStyle(e).display)) !== 'none', 'kullanıcı oynadı: döngü yok, "Tekrar geç" görünür');
   await page.click('.again'); await page.waitForTimeout(T.enter + 300);
   s = await st(page);
-  ok(!s.finalState && s.visited === 0 && s.idx === 0 && s.phase === 'await', '"Tekrar oyna" baştan başlatıyor');
+  ok(!s.finalState && s.visited === 0 && s.t < 0.05 && s.phase === 'fly', '"Tekrar geç" baştan başlatıyor');
+  // kısa dokunma
+  const d0 = (await st(page)).t;
+  await page.touchscreen.tap(760, 150); await page.waitForTimeout(500);
+  ok((await st(page)).t > d0 + 0.05, 'kısa dokunma ileri sıçratıyor');
 
   console.log('\nOtomatik gösterim (dokunulmazsa)');
   await openAt(page, DIST, 'seg=hr&h=19&m=5'); await page.mouse.move(10, 10);
-  await page.waitForTimeout(T.enter + T.idle + T.fly + 300);
+  await page.waitForTimeout(gateAt(1) + 400);
   s = await st(page);
-  ok(s.variant === 'HR-MARKET' && s.phase === 'approve' && s.visited === 1 && !s.userPlayed, 'kart kendi kendine POS\'a gidip okutuluyor (hayalet el)');
-  await page.waitForTimeout(3 * (T.idle + T.fly + T.approve + T.next) + T.approve + 600);
+  ok(s.variant === 'HR-MARKET' && s.visited === 2 && !s.userPlayed && s.done.join(',') === 'market,online', 'koridor kendiliğinden kat ediliyor: 2 kapı geçildi');
+  await page.waitForTimeout(T.enter + T.cruise - gateAt(1) + 600);
   s = await st(page);
-  ok(s.finalState && s.visited === 4, `otomatik gösterim 4 sahneyi tamamlayıp finale ulaşıyor`);
+  ok(s.finalState && s.visited === 4, `otomatik gösterim ${((T.enter + T.cruise) / 1000).toFixed(1)} sn'de finale ulaşıyor`);
 
   console.log('\nSegment, saat, hava');
   await openAt(page, DIST, 'seg=hr&h=19&m=5'); await page.mouse.move(10, 10); await page.waitForTimeout(250);
   s = await st(page);
-  ok(s.variant === 'HR-MARKET' && s.order.join(',') === 'market,online,restoran,kafe' && s.cta === C.segments.hr.cta, 'akşam 19:05 · İK → Market ile açılır, "Teklif alın"');
+  ok(s.variant === 'HR-MARKET' && s.order.join(',') === 'market,online,restoran,kafe' && s.cta === C.segments.hr.cta && s.word === 'Markette,', 'akşam 19:05 · İK → Market kapısı, "Teklif alın"');
   await openAt(page, DIST, 'seg=emp&h=9&m=15'); await page.mouse.move(10, 10); await page.waitForTimeout(250);
   s = await st(page);
-  ok(s.variant === 'EMP-KAFE' && s.cta === C.segments.emp.cta, 'sabah 09:15 · işveren → Kafe ile açılır, "Bize ulaşın"');
+  ok(s.variant === 'EMP-KAFE' && s.cta === C.segments.emp.cta, 'sabah 09:15 · işveren → Kafe kapısı, "Bize ulaşın"');
   await openAt(page, DIST, 'seg=wc&h=23&m=45'); await page.mouse.move(10, 10); await page.waitForTimeout(250);
   s = await st(page);
-  ok(s.variant === 'WC-ONLINE' && s.layer === 'online', 'gece 23:45 → Online sipariş ile açılır');
+  ok(s.variant === 'WC-ONLINE' && s.layer === 'online', 'gece 23:45 → Online sipariş kapısı');
   await openAt(page, DIST, 'seg=hr&h=13&m=0&w=rain'); await page.mouse.move(10, 10); await page.waitForTimeout(250);
   s = await st(page);
   ok(s.variant === 'HR-ONLINE-RAIN' && s.cls.includes('is-rain') && s.layer === 'rain', 'yağmur (isteğe bağlı) → Online öne alınır, yağmur katmanı');
-  await page.waitForTimeout(T.enter + 700);
-  const fitted = await page.evaluate(() => { const l2 = document.querySelector('.l2'), n = l2.querySelector('span.on'); return { fits: n.getBoundingClientRect().right <= l2.getBoundingClientRect().right + 0.5, font: document.fonts.check('800 29px Manrope'), text: n.textContent }; });
+  await page.waitForTimeout(T.enter + 500);
+  const fitted = await page.evaluate(() => { const l1 = document.querySelector('.l1'), n = l1.querySelector('span.on'); return { fits: n.getBoundingClientRect().right <= l1.getBoundingClientRect().right + 0.5, font: document.fonts.check('800 29px Manrope'), text: n.textContent }; });
   ok(fitted.fits && fitted.font, `uzun kelime sütuna sığıyor ("${fitted.text}", Manrope yüklü)`);
   await openAt(page, DIST, 'seg=xx&h=99&w=foo'); await page.waitForTimeout(250);
   s = await st(page);
@@ -145,11 +158,14 @@ const st = (page) => page.evaluate(() => {
   console.log('\nTıklama');
   await openAt(page, DIST, 'seg=wc&h=12'); await page.waitForTimeout(200);
   await page.click('.cta');
-  ok((await page.evaluate(() => window.__opened)) === data.brand.url, 'CTA marka sayfasını açıyor (UTM ile)');
+  ok((await page.evaluate(() => window.__opened)) === data.brand.url, 'CTA Pluxee ana sayfasını açıyor (UTM yok)');
   await page.evaluate(() => { window.__opened = null; });
   await page.mouse.click(150, 60);
   ok((await page.evaluate(() => window.__opened)) === data.brand.url, 'sol sütuna tıklama da reklam çıkışı');
-  await page.evaluate(() => { window.__opened = null; window.clickTag = 'https://example.com/clicktag'; });
+  await page.evaluate(() => { window.__opened = null; });
+  await page.mouse.click(700, 120);
+  ok((await page.evaluate(() => window.__opened)) === null, 'koridora tıklama reklam çıkışı yapmıyor (etkileşim)');
+  await page.evaluate(() => { window.clickTag = 'https://example.com/clicktag'; });
   await page.click('.cta');
   ok((await page.evaluate(() => window.__opened)) === 'https://example.com/clicktag', 'clickTag tanımlıysa o kullanılıyor');
 
@@ -173,7 +189,7 @@ const st = (page) => page.evaluate(() => {
   const pr = await ctxR.newPage();
   await openAt(pr, DIST, 'seg=wc&h=12'); await pr.waitForTimeout(300);
   s = await st(pr);
-  ok(s.ended && s.visited === 4 && s.word === 'her yerde.', 'hareket azaltma: doğrudan final karesi');
+  ok(s.ended && s.visited === 4 && s.word === K.final.word, 'hareket azaltma: doğrudan final karesi');
   await ctxR.close();
 
   console.log('\nSunum sayfası');
@@ -198,21 +214,24 @@ const st = (page) => page.evaluate(() => {
   await routeFonts(ctxL);
   const pl = await ctxL.newPage();
   await openAt(pl, DIST, 'seg=wc&h=12'); await pl.mouse.move(10, 10);
-  const loop = T.enter + C.scenes.length * (T.idle + T.fly + T.approve) + (C.scenes.length - 1) * T.next + T.hold;
-  await pl.waitForTimeout(loop * T.loops + 800);
+  const total = T.enter + T.cruise + T.hold;
+  await pl.waitForTimeout(total + 800);
   s = await st(pl);
-  ok(s.ended && s.finalState && loop * T.loops <= 30000, `otomatik gösterim ${(loop * T.loops / 1000).toFixed(1)} sn'de final karesinde duruyor (≤ 30 sn)`);
+  ok(s.ended && s.finalState && total <= 30000, `otomatik gösterim ${(total / 1000).toFixed(1)} sn'de final karesinde duruyor (≤ 30 sn)`);
   await ctxL.close();
 
-  console.log('\nİlk taslak (illüstrasyon) – temel kontrol');
-  const ctxF = await browser.newContext({ viewport: { width: 970, height: 250 } });
-  const pf = await ctxF.newPage();
-  const errF = [];
-  pf.on('pageerror', (e) => errF.push(e.message));
-  await openAt(pf, FLAT, 'seg=hr&h=19&m=5'); await pf.mouse.move(10, 10); await pf.waitForTimeout(300);
-  const f = await pf.evaluate(() => window.PLUXEE.state());
-  ok(f.variant === 'HR-EVENING-LEVENT-SUN' && errF.length === 0, 'ilk taslak hâlâ çalışıyor: ' + f.variant);
-  await ctxF.close();
+  console.log('\nArşiv sürümleri – temel kontrol');
+  const ctxA = await browser.newContext({ viewport: { width: 970, height: 250 } });
+  const pa = await ctxA.newPage();
+  const errA = [];
+  pa.on('pageerror', (e) => errA.push(e.message));
+  await openAt(pa, POS, 'seg=hr&h=19&m=5'); await pa.mouse.move(10, 10); await pa.waitForTimeout(300);
+  const a1 = await pa.evaluate(() => window.PLUXEE.state());
+  ok(a1.variant === 'HR-MARKET' && errA.length === 0, 'POS sürükle-okut sürümü çalışıyor: ' + a1.variant);
+  await openAt(pa, FLAT, 'seg=hr&h=19&m=5'); await pa.mouse.move(10, 10); await pa.waitForTimeout(300);
+  const a2 = await pa.evaluate(() => window.PLUXEE.state());
+  ok(a2.variant === 'HR-EVENING-LEVENT-SUN' && errA.length === 0, 'ilk taslak çalışıyor: ' + a2.variant);
+  await ctxA.close();
 
   await browser.close();
   console.log(failures ? `\n${failures} kontrol başarısız` : '\nTüm kontroller geçti');

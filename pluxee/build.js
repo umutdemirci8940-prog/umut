@@ -2,7 +2,8 @@
 'use strict';
 /**
  * Pluxee "Geçiyor" masthead derleyicisi.
- *   dist/970x250/index.html          – ANA TESLİM: sinematik sürüm (fotoğrafik, kurumsal)
+ *   dist/970x250/index.html          – ANA TESLİM: koridor sürümü (kart kapılardan geçer)
+ *   dist/970x250-pos/index.html      – POS'a sürükle-okut sürümü, arşiv
  *   dist/970x250-flat/index.html     – ilk taslak (illüstrasyon), arşiv
  *   dist/zip/pluxee-970x250*.zip     – reklam ağı paketleri
  *   preview/index.html               – sunum sayfası (sinematik kreatif srcdoc ile gömülü, tek dosya)
@@ -13,6 +14,7 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 const data = require('./src/data');
+const corr = require('./src/template-corridor');
 const cine = require('./src/template-cinematic');
 const flat = require('./src/template');
 
@@ -41,8 +43,9 @@ function emit(dirName, zipName, html, label) {
   return kb;
 }
 
-const cineHtml = cine.render(data);
-const kb = emit('970x250', 'pluxee-970x250.zip', cineHtml, '970x250 sinematik (ana teslim)');
+const mainHtml = corr.render(data);
+const kb = emit('970x250', 'pluxee-970x250.zip', mainHtml, '970x250 koridor (ana teslim)');
+emit('970x250-pos', 'pluxee-970x250-pos.zip', cine.render(data), '970x250 POS sürükle-okut (arşiv)');
 emit('970x250-flat', 'pluxee-970x250-flat.zip', flat.render(data), '970x250 illüstrasyon (ilk taslak)');
 if (!hasZip) console.log('ℹ zip bulunamadı; paketler atlandı.');
 
@@ -56,13 +59,13 @@ const showcaseData = {
   scenes: C.scenes,
   lead: C.lead,
   weather: data.weather,
-  timing: data.timingCinematic,
+  timing: data.corridor.timing,
   brand: { name: data.brand.name, campaign: data.brand.campaign, url: data.brand.url },
 };
 const jsString = (s) => JSON.stringify(s).replace(/<\//g, '<\\/').replace(/<!--/g, '<\\!--');
 const tpl = fs.readFileSync(path.join(root, 'src', 'showcase.html'), 'utf8');
 const showcase = tpl
-  .replace('__MASTHEAD_SRC__', () => jsString(cineHtml))
+  .replace('__MASTHEAD_SRC__', () => jsString(mainHtml))
   .replace('__SHOWCASE_DATA__', () => jsString(showcaseData))
   .replace(/__VARIANTS__/g, String(variants))
   .replace(/__SEGMENTS__/g, String(segs))

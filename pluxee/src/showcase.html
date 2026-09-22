@@ -89,6 +89,7 @@ input[type=range]{flex:1;accent-color:var(--green);height:4px}
 .copy .t{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--green);font-weight:800;min-height:12px}
 .copy .m{font-size:22px;font-weight:800;letter-spacing:-.015em;margin-top:4px;line-height:1.1}
 .copy .m em{font-style:normal;color:var(--green);display:block}
+.copy .m{display:flex;flex-direction:column}
 .copy .s{font-size:13px;color:rgba(255,255,255,.8);margin-top:6px;line-height:1.45}
 .copy .c{display:inline-block;margin-top:10px;background:var(--green);color:var(--navy);font-weight:800;font-size:12px;padding:7px 12px;border-radius:99px}
 .prog{margin-top:12px;display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted);font-weight:700}
@@ -134,20 +135,20 @@ footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);display
   <div class="hero">
     <div>
       <div class="eyebrow">Konsept önerisi · "Pluxee Geçiyor" · Dijital özel proje</div>
-      <h1>Pluxee geçiyor. <em>Burada, şurada, orada.</em></h1>
-      <p class="lead">Kampanya fikri masthead'in kendisine taşınıyor: kullanıcı Pluxee kartını <b>sürükleyip POS'a okutuyor</b>; restoranda, kafede, markette ve online siparişte "geçiyor". Dokunulmazsa kart bunu kendisi gösteriyor. Medya veri katmanının <b>segment</b> sinyali kimin izlediğini, <b>saat</b> sinyali hangi sahnenin önce geldiğini belirliyor. Tek HTML kreatif, __VARIANTS__ versiyon.</p>
+      <h1>Pluxee geçiyor. <em>Kapıdan kapıya, her yerde.</em></h1>
+      <p class="lead">"Geçiyor"un kelime anlamı sahneye taşınıyor: Pluxee kartı perspektifli bir ışık koridorunda kabul noktalarının kapılarından <b>geçiyor</b>. Kullanıcı sürükleyerek yol alıyor, basılı tutup hızlanıyor, imleçle koridoru yönlendiriyor; her kapıda yeşil flaş ve "Geçti ✓". Medya veri katmanının <b>segment</b> sinyali kimin izlediğini, <b>saat</b> sinyali hangi kapının önce geldiğini belirliyor. Tek HTML kreatif, __VARIANTS__ versiyon.</p>
     </div>
     <div class="stats">
       <div class="stat"><b>1</b><span>HTML kreatif, tek prodüksiyon</span></div>
       <div class="stat"><b>__SEGMENTS__</b><span>hedef kitle: beyaz yaka, İK, işveren</span></div>
-      <div class="stat"><b><em>__VARIANTS__</em></b><span>versiyon (__SEGMENTS__ segment × __SCENES__ öncü sahne)</span></div>
+      <div class="stat"><b><em>__VARIANTS__</em></b><span>versiyon (__SEGMENTS__ segment × __SCENES__ öncü kapı)</span></div>
     </div>
   </div>
 
   <section id="demo">
     <div class="sec-h">
       <h2>Canlı deneyin</h2>
-      <p>Kartı tutup POS cihazına sürükleyin (ya da karta dokunun). Sinyalleri değiştirince masthead yeniden kurulur; alttaki başlıklar sahneler arasında gezdirir.</p>
+      <p>Koridorda sürükleyin (sola: ileri), basılı tutup hızlanın, imleçle yönlendirin. Rota noktalarına tıklayınca o kapıya gidilir. Sinyalleri değiştirince masthead yeniden kurulur.</p>
     </div>
     <div class="stage-wrap" id="stageWrap">
       <div class="stage" id="stage">
@@ -173,8 +174,8 @@ footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);display
         <h3>Sunulan versiyon <span id="stateHint">yükleniyor…</span></h3>
         <div class="variant"><span id="variant">—</span><span class="dot"></span></div>
         <ul class="chain" id="chain"></ul>
-        <div class="copy"><div class="t" id="cTop"></div><div class="m">Pluxee geçiyor <em id="cWord">…</em></div><div class="s" id="cSub">&nbsp;</div><span class="c" id="cCta">&nbsp;</span></div>
-        <div class="prog"><span id="progT">0/4 sahne</span><div class="bar"><i id="progBar"></i></div><div class="stops" id="progStops"></div></div>
+        <div class="copy"><div class="t" id="cTop"></div><div class="m"><em id="cWord">…</em>Pluxee geçiyor.</div><div class="s" id="cSub">&nbsp;</div><span class="c" id="cCta">&nbsp;</span></div>
+        <div class="prog"><span id="progT">0/4 kapı</span><div class="bar"><i id="progBar"></i></div><div class="stops" id="progStops"></div></div>
       </div>
     </div>
   </section>
@@ -184,7 +185,7 @@ footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);display
     <div class="cards">
       <div class="card"><div class="n">01 · Sinyal</div><h4>Kreatif, mecradan öğreniyor</h4><p>Kitle segmenti (beyaz yaka, İK, karar verici), sayfanın bağlamı ve saat tek bir <b>sinyal paketi</b> olarak kreatife akar. Kim izliyorsa ona göre konuşur; hangi saatse o sahneyle açılır.</p></div>
       <div class="card"><div class="n">02 · Karar</div><h4>Tek prodüksiyon, tüm bağlamlar</h4><p>Her segment ve an için ayrı banner üretmek yerine tek HTML dosyası: alt metin, CTA ve sahne sırası değişkenle kurulur. Yeni bir sahne ya da segment eklemek <b>bir satır kopya</b> eklemek kadar kolay.</p></div>
-      <div class="card"><div class="n">03 · Kreatif</div><h4>Kullanıcı kartı okutur</h4><p>Kullanıcı kartı sürükleyip POS'a okutur: cihaz uyanır, ekran "Onaylandı" olur, ışık halkası ve etiket düşer: burada, şurada, orada… <b>her yerde geçiyor</b>. Dokunulmazsa hayalet el gösterir, kart kendi kendine okutulur.</p></div>
+      <div class="card"><div class="n">03 · Kreatif</div><h4>Kart kapılardan geçer</h4><p>Restoran, kafe, market ve online sipariş kapıları perspektifle yaklaşır; kart geçerken kapı yeşil flaş verir, "Geçti ✓" düşer, hız çizgileri ve kısa sarsıntı hissi tamamlar. Sonuncu kapıdan sonra koridor açılır: <b>her yerde, Pluxee geçiyor</b>. Dokunulmazsa koridor kendiliğinden kat edilir.</p></div>
     </div>
   </section>
 
@@ -194,8 +195,8 @@ footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);display
       <thead><tr><th>Sinyal</th><th>Kaynak</th><th>Kreatifte değişen</th><th>Örnek</th></tr></thead>
       <tbody>
         <tr><td class="sig">Segment</td><td>1. parti kitle segmentleri + mecra bağlamı (İK, finans, iş dünyası içerikleri)</td><td>Alt metin ve CTA</td><td><code>seg=hr</code> → "Ekibinizin her günü için geçerli yan hak." · <b>Teklif alın</b></td></tr>
-        <tr><td class="sig">Saat</td><td>Ad server saat makrosu; yoksa cihaz saati</td><td>Öncü sahne (açılış) ve sahne sırası, ışık atmosferi</td><td><code>h=12</code> → Restoran ile açılır; <code>h=19</code> → Market ile açılır</td></tr>
-        <tr><td class="sig">Hava</td><td>Hava durumu API (isteğe bağlı)</td><td>Yağmurda Online sipariş sahnesi öne alınır</td><td><code>w=rain</code> → "Pluxee geçiyor online siparişte."</td></tr>
+        <tr><td class="sig">Saat</td><td>Ad server saat makrosu; yoksa cihaz saati</td><td>İlk kapı ve kapı sırası, ışık atmosferi</td><td><code>h=12</code> → Restoran kapısıyla açılır; <code>h=19</code> → Market kapısıyla açılır</td></tr>
+        <tr><td class="sig">Hava</td><td>Hava durumu API (isteğe bağlı)</td><td>Yağmurda Online sipariş kapısı öne alınır</td><td><code>w=rain</code> → "Online siparişte, Pluxee geçiyor."</td></tr>
         <tr><td class="sig">Mecra bağlamı</td><td>Sayfa kategorisi (hedefleme katmanı)</td><td>Hangi segment versiyonunun servis edileceği</td><td>İK / iş dünyası içeriği → İK versiyonu; genel haber → beyaz yaka versiyonu</td></tr>
       </tbody>
     </table>
@@ -216,14 +217,14 @@ footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);display
     <div class="sec-h"><h2>Teknik</h2></div>
     <div class="tech">
       <ul>
-        <li><b>Format:</b> 970×250 HTML5, tek dosya (<code>dist/970x250/index.html</code>), __KB__ KB. Arka planlar canvas ile üretilir (görsel dosyası yok); tek harici kaynak Google Fonts (Manrope), Google Ads ve DV360'ta izinlidir.</li>
-        <li><b>Tıklama:</b> <code>clickTag</code> desteği (Google Ads / CM360), <code>Enabler</code> varsa <code>Enabler.exit</code> (DV360 / Studio); yoksa UTM'li Pluxee sayfası açılır.</li>
+        <li><b>Format:</b> 970×250 HTML5, tek dosya (<code>dist/970x250/index.html</code>), __KB__ KB. Koridor, kapılar ve ışınlar DOM + CSS 3B ile, arka planlar canvas ile üretilir (görsel dosyası ve WebGL yok); tek harici kaynak Google Fonts (Manrope).</li>
+        <li><b>Tıklama:</b> <code>clickTag</code> desteği (Google Ads / CM360), <code>Enabler</code> varsa <code>Enabler.exit</code> (DV360 / Studio); yoksa Pluxee ana sayfası açılır.</li>
         <li><b>Parametreler:</b> <code>?seg=wc|hr|emp&amp;h=0-23&amp;m=0-59&amp;w=sun|rain&amp;demo=1</code>. Ad server makroları bu parametrelere bağlanır; alternatif olarak <code>window.__PLUXEE_SIGNALS</code> ile enjekte edilir.</li>
-        <li><b>Erişilebilirlik:</b> klavye (← → sahneler, boşluk kartı okutur, Enter tıklama), <code>prefers-reduced-motion</code> açıksa doğrudan final karesi, aria etiketleri.</li>
+        <li><b>Erişilebilirlik:</b> klavye (← → ileri/geri, boşluk hızlandırır, Enter tıklama), <code>prefers-reduced-motion</code> açıksa doğrudan final karesi, aria etiketleri.</li>
       </ul>
       <ul>
-        <li><b>Otomatik gösterim:</b> kullanıcı dokunmazsa kart 2,6 sn sonra kendi kendine POS'a gider; dört sahne + final ≈ 23 sn (Google Ads 30 sn kuralına uygun), sonra final karesinde durur.</li>
-        <li><b>Etkileşim:</b> kart sürüklenir (pointer events, dokunma dahil), hıza göre eğilir; POS'a yaklaşınca cihaz uyanır, bırakınca onaylanır, uzağa bırakılırsa yerine döner. Karta ya da POS'a dokunmak da okutur. Alt başlıklar sahne seçer; finalde "Tekrar oyna".</li>
+        <li><b>Otomatik gösterim:</b> kullanıcı dokunmazsa koridor 17 sn'de kendiliğinden kat edilir, final 3 sn (toplam ≈ 21 sn, Google Ads 30 sn kuralına uygun); sonra final karesinde durur.</li>
+        <li><b>Etkileşim:</b> yatay sürükleme koridorda ileri/geri götürür (atalet ile), basılı tutmak 3× hızlandırır, kısa dokunma ileri sıçratır, imleç konumu koridoru yönlendirir (paralaks + kart eğimi). Rota noktaları kapı seçer; finalde "Tekrar geç". Kullanıcı oynadıysa otomatik döngü yapılmaz.</li>
         <li><b>Sunum API'si:</b> <code>postMessage</code> ile <code>pluxee:signals</code>, <code>pluxee:replay</code>, <code>pluxee:demo</code> mesajları alınır; <code>pluxee:state</code> ve <code>pluxee:click</code> yayınlanır. Bu sayfa aynı API ile çalışır.</li>
         <li><b>Varyant kimliği:</b> <code>SEGMENT-ÖNCÜSAHNE</code> (örn. <code>HR-MARKET</code>) her gösterimde ölçüm etiketi olarak raporlanabilir.</li>
       </ul>
@@ -284,15 +285,15 @@ window.addEventListener('message',function(e){
   $('variant').textContent=d.variant;
   $('stateHint').textContent=d.ended?'final karesi':(d.manual?'kullanıcı kontrolünde':(d.finalState?'final':'oynatılıyor'));
   var chain=[
-    '<b>Saat '+pad(s.hour)+':'+pad(s.minute)+'</b> → öncü sahne: <em>'+esc(lead.label)+'</em> ('+esc(lead.title)+')'+(s.weather==='rain'?' · yağmur önceliği':''),
+    '<b>Saat '+pad(s.hour)+':'+pad(s.minute)+'</b> → ilk kapı: <em>'+esc(lead.label)+'</em> ('+esc(lead.title)+')'+(s.weather==='rain'?' · yağmur önceliği':''),
     '<b>Segment: '+esc(DATA.segments[s.seg].label)+'</b> → '+TONE[s.seg]+' → CTA: <em>'+esc(d.copy.cta)+'</em>',
-    '<b>Sahne sırası</b> → '+d.order.map(function(k){return SCENE[k]?SCENE[k].label:k}).join(' → ')
+    '<b>Kapı sırası</b> → '+d.order.map(function(k){return SCENE[k]?SCENE[k].label:k}).join(' → ')
   ];
   $('chain').innerHTML=chain.map(function(t,i){return '<li><i>'+(i+1)+'</i><span>'+t+'</span></li>'}).join('');
   $('cTop').textContent=d.copy.title||'';
   $('cWord').textContent=d.copy.word||'…';
   $('cSub').textContent=d.copy.sub;$('cCta').textContent=d.copy.cta;
-  $('progT').textContent=d.visited+'/'+d.total+' sahne';
+  $('progT').textContent=d.visited+'/'+d.total+' kapı';
   $('progBar').style.width=(d.visited/d.total*100)+'%';
   $('progStops').innerHTML=d.order.map(function(k,i){return '<i class="'+(i<d.visited?'on':'')+'" title="'+esc(SCENE[k]?SCENE[k].label:k)+'"></i>'}).join('');
 });
