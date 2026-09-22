@@ -1,0 +1,159 @@
+{
+ "url": "https://tr.pandora.net/tr/charmlar-ve-bileklikler/charmlar/charmlar/buyuk-kelebek-charm/793747C01.html",
+ "dom": {
+  "title": "Büyük Kelebek Charm | 925 ayar gümüş | Pandora TR",
+  "h1": "Pandora",
+  "prices": [
+   "₺4.349,00",
+   "₺279,00",
+   "₺3.799,00",
+   "₺3.799,00",
+   "₺3.799,00",
+   "₺3.249,00",
+   "₺3.909,00",
+   "₺999,00",
+   "₺5.449,00",
+   "₺2.099,00",
+   "₺1.349,00",
+   "₺2.699,00"
+  ],
+  "gallery": [
+   {
+    "src": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw29390f3c/productimages/main_rect_center/793747C01_RGB.jpg?q=70&sfrm=png&bgcolor=F7F7F7&sw=810",
+    "alts": [],
+    "alt": "Büyük Kelebek Charm",
+    "nw": 810,
+    "nh": 1080,
+    "x": 0,
+    "y": 188,
+    "w": 505,
+    "h": 900,
+    "inHeader": false
+   },
+   {
+    "src": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwb78d1be9/productimages/singlepackshot_rect_center/793747C01_V3_RGB.jpg?q=70&sfrm=png&bgcolor=F7F7F7&sw=810",
+    "alts": [],
+    "alt": "Büyük Kelebek Charm",
+    "nw": 810,
+    "nh": 1080,
+    "x": 505,
+    "y": 188,
+    "w": 331,
+    "h": 441,
+    "inHeader": false
+   },
+   {
+    "src": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwfb2d1c2e/productimages/styledmodelimage_rect/Q125_B_PDP_Model_Styled_02_Spring_1x1_RGB.jpg?q=70&sfrm=png&bgcolor=F7F7F7&sw=810",
+    "alts": [],
+    "alt": "Büyük Kelebek Charm",
+    "nw": 810,
+    "nh": 1080,
+    "x": 505,
+    "y": 629,
+    "w": 331,
+    "h": 441,
+    "inHeader": false
+   },
+   {
+    "src": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwb6087d2c/productimages/singlepackshot_rect_center/793747C01_V2_RGB.jpg?q=70&sfrm=png&bgcolor=F7F7F7&sw=810",
+    "alts": [],
+    "alt": "Büyük Kelebek Charm",
+    "nw": 810,
+    "nh": 1080,
+    "x": 505,
+    "y": 1071,
+    "w": 331,
+    "h": 441,
+    "inHeader": false
+   },
+   {
+    "src": "https://cdn.cookielaw.org/logos/static/powered_by_logo.svg",
+    "alts": [],
+    "alt": "Powered by Onetrust",
+    "nw": 568,
+    "nh": 53,
+    "x": 0,
+    "y": 0,
+    "w": 0,
+    "h": 0,
+    "inHeader": false
+   }
+  ],
+  "imgCount": 30,
+  "notFound": false
+ },
+ "jsonld": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "@id": "https://tr.pandora.net/tr/charmlar-ve-bileklikler/charmlar/charmlar/buyuk-kelebek-charm/793747C01.html",
+  "name": "Büyük Kelebek Charm",
+  "mpn": "793747C01",
+  "sku": "793747C01",
+  "image": [
+   {
+    "@type": "ImageObject",
+    "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw29390f3c/productimages/main_rect_center/793747C01_RGB.png",
+    "caption": "Büyük Kelebek Charm"
+   },
+   {
+    "@type": "ImageObject",
+    "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwb78d1be9/productimages/singlepackshot_rect_center/793747C01_V3_RGB.png",
+    "caption": "Büyük Kelebek Charm"
+   },
+   {
+    "@type": "ImageObject",
+    "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwfb2d1c2e/productimages/styledmodelimage_rect/Q125_B_PDP_Model_Styled_02_Spring_1x1_RGB.png",
+    "caption": "Büyük Kelebek Charm"
+   },
+   {
+    "@type": "ImageObject",
+    "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwb6087d2c/productimages/singlepackshot_rect_center/793747C01_V2_RGB.png",
+    "caption": "Büyük Kelebek Charm"
+   }
+  ],
+  "brand": {
+   "@type": "Brand",
+   "name": "Pandora",
+   "@id": "https://tr.pandora.net/#organization"
+  },
+  "offers": {
+   "@type": "Offer",
+   "url": "https://tr.pandora.net/tr/charmlar-ve-bileklikler/charmlar/charmlar/buyuk-kelebek-charm/793747C01.html",
+   "priceCurrency": "TRY",
+   "price": 4349,
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://tr.pandora.net/#organization"
+   }
+  },
+  "gtin13": "5700303178998",
+  "color": "Mavi",
+  "material": "925 ayar gümüş, Enamel",
+  "category": "Charm’lar > Charm’lar",
+  "itemCondition": "https://schema.org/NewCondition",
+  "additionalProperty": [
+   {
+    "@type": "PropertyValue",
+    "name": "Stone",
+    "value": "Kübik zirkon"
+   },
+   {
+    "@type": "PropertyValue",
+    "name": "Collection",
+    "value": "Pandora Moments"
+   },
+   {
+    "@type": "PropertyValue",
+    "name": "Compatibility",
+    "value": "Compatible with Pandora Moments"
+   }
+  ],
+  "aggregateRating": {
+   "@type": "AggregateRating",
+   "ratingValue": 4.8,
+   "reviewCount": 123,
+   "bestRating": 5,
+   "worstRating": 1
+  }
+ }
+}

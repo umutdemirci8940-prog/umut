@@ -1,0 +1,176 @@
+{
+ "url": "https://tr.pandora.net/tr/charmlar/klipsler/mavi-pave-klips-charm/791817NSBMX.html",
+ "dom": {
+  "title": "Mavi Pavé Klips Charm | 925 ayar gümüş | Pandora TR",
+  "h1": "Pandora",
+  "prices": [
+   "₺2.699,00",
+   "₺279,00",
+   "₺2.699,00",
+   "₺2.779,00",
+   "₺2.449,00",
+   "₺2.779,00",
+   "₺2.699,00",
+   "₺1.769,00",
+   "₺3.799,00",
+   "₺2.519,00",
+   "₺3.799,00",
+   "₺2.699,00"
+  ],
+  "gallery": [
+   {
+    "src": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwb1692956/productimages/modeldetailshot_rect/791817NSBMX_ABC123_MODEL_eCOM_02_RGB.jpg?q=70&sfrm=png&bgcolor=F7F7F7&sw=810",
+    "alts": [],
+    "alt": "Mavi Pavé Klips Charm",
+    "nw": 810,
+    "nh": 1080,
+    "x": 0,
+    "y": 188,
+    "w": 505,
+    "h": 900,
+    "inHeader": false
+   },
+   {
+    "src": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwb692e704/productimages/main_rect_center/791817NSBMX_RGB.jpg?q=70&sfrm=png&bgcolor=F7F7F7&sw=810",
+    "alts": [],
+    "alt": "Mavi Pavé Klips Charm",
+    "nw": 810,
+    "nh": 1080,
+    "x": 505,
+    "y": 188,
+    "w": 331,
+    "h": 441,
+    "inHeader": false
+   },
+   {
+    "src": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw584b32e4/productimages/modelshot_rect/791817NSBMX_ABC123_MODEL_eCOM_01_RGB.jpg?q=70&sfrm=png&bgcolor=F7F7F7&sw=810",
+    "alts": [],
+    "alt": "Mavi Pavé Klips Charm",
+    "nw": 810,
+    "nh": 1080,
+    "x": 505,
+    "y": 629,
+    "w": 331,
+    "h": 441,
+    "inHeader": false
+   },
+   {
+    "src": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw56010c91/productimages/singlepackshot_rect_center/791817NSBMX_V3_RGB.jpg?q=70&sfrm=png&bgcolor=F7F7F7&sw=810",
+    "alts": [],
+    "alt": "Mavi Pavé Klips Charm",
+    "nw": 810,
+    "nh": 1080,
+    "x": 505,
+    "y": 1071,
+    "w": 331,
+    "h": 441,
+    "inHeader": false
+   },
+   {
+    "src": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw3a7444a6/productimages/singlepackshot_rect_center/791817NSBMX_V2_RGB.jpg?q=70&sfrm=png&bgcolor=F7F7F7&sw=810",
+    "alts": [],
+    "alt": "Mavi Pavé Klips Charm",
+    "nw": 810,
+    "nh": 1080,
+    "x": 505,
+    "y": 1512,
+    "w": 331,
+    "h": 441,
+    "inHeader": false
+   },
+   {
+    "src": "https://cdn.cookielaw.org/logos/static/powered_by_logo.svg",
+    "alts": [],
+    "alt": "Powered by Onetrust",
+    "nw": 568,
+    "nh": 53,
+    "x": 0,
+    "y": 0,
+    "w": 0,
+    "h": 0,
+    "inHeader": false
+   }
+  ],
+  "imgCount": 30,
+  "notFound": false
+ },
+ "jsonld": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "@id": "https://tr.pandora.net/tr/charmlar/klipsler/mavi-pave-klips-charm/791817NSBMX.html",
+  "name": "Mavi Pavé Klips Charm",
+  "mpn": "791817NSBMX",
+  "sku": "791817NSBMX",
+  "image": [
+   {
+    "@type": "ImageObject",
+    "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwb1692956/productimages/modeldetailshot_rect/791817NSBMX_ABC123_MODEL_eCOM_02_RGB.png",
+    "caption": "Mavi Pavé Klips Charm"
+   },
+   {
+    "@type": "ImageObject",
+    "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwb692e704/productimages/main_rect_center/791817NSBMX_RGB.png",
+    "caption": "Mavi Pavé Klips Charm"
+   },
+   {
+    "@type": "ImageObject",
+    "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw584b32e4/productimages/modelshot_rect/791817NSBMX_ABC123_MODEL_eCOM_01_RGB.png",
+    "caption": "Mavi Pavé Klips Charm"
+   },
+   {
+    "@type": "ImageObject",
+    "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw56010c91/productimages/singlepackshot_rect_center/791817NSBMX_V3_RGB.png",
+    "caption": "Mavi Pavé Klips Charm"
+   },
+   {
+    "@type": "ImageObject",
+    "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw3a7444a6/productimages/singlepackshot_rect_center/791817NSBMX_V2_RGB.png",
+    "caption": "Mavi Pavé Klips Charm"
+   },
+   {
+    "@type": "ImageObject",
+    "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwc0b052ee/productimages/singlepackshot_rect_center/791817NSBMX_V4_RGB.png",
+    "caption": "Mavi Pavé Klips Charm"
+   }
+  ],
+  "brand": {
+   "@type": "Brand",
+   "name": "Pandora",
+   "@id": "https://tr.pandora.net/#organization"
+  },
+  "offers": {
+   "@type": "Offer",
+   "url": "https://tr.pandora.net/tr/charmlar/klipsler/mavi-pave-klips-charm/791817NSBMX.html",
+   "priceCurrency": "TRY",
+   "price": 2699,
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://tr.pandora.net/#organization"
+   }
+  },
+  "gtin13": "5700302550276",
+  "color": "Mavi",
+  "material": "925 ayar gümüş, Silicone",
+  "category": "Charm’lar > Kategori > Klipsler",
+  "itemCondition": "https://schema.org/NewCondition",
+  "additionalProperty": [
+   {
+    "@type": "PropertyValue",
+    "name": "Collection",
+    "value": "Pandora Moments"
+   },
+   {
+    "@type": "PropertyValue",
+    "name": "Compatibility",
+    "value": "Compatible with Pandora Moments"
+   }
+  ],
+  "aggregateRating": {
+   "@type": "AggregateRating",
+   "ratingValue": 4.5,
+   "reviewCount": 170,
+   "bestRating": 5,
+   "worstRating": 1
+  }
+ }
+}

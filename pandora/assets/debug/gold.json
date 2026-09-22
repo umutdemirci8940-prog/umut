@@ -1,0 +1,640 @@
+{
+ "url": "https://tr.pandora.net/tr/charmlar-ve-bileklikler/bileklikler/zincir-bileklikler/moments-14-ayar-altin-kaplama-duz-klipsli-bileklik/568748C00.html",
+ "dom": {
+  "title": "Yılan Zinciri Bileklikler | Altın kaplama | Pandora TR",
+  "h1": "Pandora",
+  "prices": [
+   "₺5.609,00",
+   "₺279,00",
+   "₺5.449,00",
+   "₺3.689,00",
+   "₺4.349,00",
+   "₺7.099,00",
+   "₺5.609,00",
+   "₺9.569,00",
+   "₺6.549,00",
+   "₺7.099,00",
+   "₺7.869,00",
+   "₺5.449,00"
+  ],
+  "gallery": [
+   {
+    "src": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwa7ab2bd1/productimages/modeldetailshot_rect/SS24_A_PDP_Model_Single_56_1x1_RGB_bracelet.jpg?q=70&sfrm=png&bgcolor=F7F7F7&sw=810",
+    "alts": [],
+    "alt": "Yılan Zinciri Bileklikler",
+    "nw": 810,
+    "nh": 1080,
+    "x": 0,
+    "y": 188,
+    "w": 505,
+    "h": 900,
+    "inHeader": false
+   },
+   {
+    "src": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw954ce86a/productimages/main_rect_center/568748C00_RGB.jpg?q=70&sfrm=png&bgcolor=F7F7F7&sw=810",
+    "alts": [],
+    "alt": "Yılan Zinciri Bileklikler",
+    "nw": 810,
+    "nh": 1080,
+    "x": 505,
+    "y": 188,
+    "w": 331,
+    "h": 441,
+    "inHeader": false
+   },
+   {
+    "src": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw0f67530c/productimages/singlepackshot_rect_center/568748C00_V3_RGB.jpg?q=70&sfrm=png&bgcolor=F7F7F7&sw=810",
+    "alts": [],
+    "alt": "Yılan Zinciri Bileklikler",
+    "nw": 810,
+    "nh": 1080,
+    "x": 505,
+    "y": 629,
+    "w": 331,
+    "h": 441,
+    "inHeader": false
+   },
+   {
+    "src": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw1aa58ad5/productimages/styledmodelimage_rect/Q125_A_PDP_MODEL_STYLED_27_1x1_RGB.jpg?q=70&sfrm=png&bgcolor=F7F7F7&sw=810",
+    "alts": [],
+    "alt": "Yılan Zinciri Bileklikler",
+    "nw": 810,
+    "nh": 1080,
+    "x": 505,
+    "y": 1071,
+    "w": 331,
+    "h": 441,
+    "inHeader": false
+   },
+   {
+    "src": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dweb7191e1/productimages/singlepackshot_rect_center/568748C00_V4_RGB.jpg?q=70&sfrm=png&bgcolor=F7F7F7&sw=810",
+    "alts": [],
+    "alt": "Yılan Zinciri Bileklikler",
+    "nw": 810,
+    "nh": 1080,
+    "x": 505,
+    "y": 1512,
+    "w": 331,
+    "h": 441,
+    "inHeader": false
+   },
+   {
+    "src": "https://cdn.cookielaw.org/logos/static/powered_by_logo.svg",
+    "alts": [],
+    "alt": "Powered by Onetrust",
+    "nw": 568,
+    "nh": 53,
+    "x": 0,
+    "y": 0,
+    "w": 0,
+    "h": 0,
+    "inHeader": false
+   }
+  ],
+  "imgCount": 21,
+  "notFound": false
+ },
+ "jsonld": {
+  "@context": "https://schema.org",
+  "@type": "ProductGroup",
+  "@id": "https://tr.pandora.net/tr/bileklikler/zincir-bileklikler/yilan-zinciri-bileklikler/568748C00.html",
+  "name": "Yılan Zinciri Bileklikler",
+  "mpn": "568748C00",
+  "sku": "568748C00",
+  "image": [
+   {
+    "@type": "ImageObject",
+    "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwa7ab2bd1/productimages/modeldetailshot_rect/SS24_A_PDP_Model_Single_56_1x1_RGB_bracelet.png",
+    "caption": "Yılan Zinciri Bileklikler"
+   },
+   {
+    "@type": "ImageObject",
+    "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw954ce86a/productimages/main_rect_center/568748C00_RGB.png",
+    "caption": "Yılan Zinciri Bileklikler"
+   },
+   {
+    "@type": "ImageObject",
+    "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw0f67530c/productimages/singlepackshot_rect_center/568748C00_V3_RGB.png",
+    "caption": "Yılan Zinciri Bileklikler"
+   },
+   {
+    "@type": "ImageObject",
+    "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw1aa58ad5/productimages/styledmodelimage_rect/Q125_A_PDP_MODEL_STYLED_27_1x1_RGB.png",
+    "caption": "Yılan Zinciri Bileklikler"
+   },
+   {
+    "@type": "ImageObject",
+    "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dweb7191e1/productimages/singlepackshot_rect_center/568748C00_V4_RGB.png",
+    "caption": "Yılan Zinciri Bileklikler"
+   },
+   {
+    "@type": "ImageObject",
+    "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwb0b6345b/productimages/styledmodelimage_rect/SS24_A_PDP_Model_Styled_13_1x1_RGB.png",
+    "caption": "Yılan Zinciri Bileklikler"
+   },
+   {
+    "@type": "ImageObject",
+    "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw577c8880/productimages/singlepackshot_rect_center/568748C00_V2_RGB.png",
+    "caption": "Yılan Zinciri Bileklikler"
+   }
+  ],
+  "brand": {
+   "@type": "Brand",
+   "name": "Pandora",
+   "@id": "https://tr.pandora.net/#organization"
+  },
+  "offers": {
+   "@type": "Offer",
+   "url": "https://tr.pandora.net/tr/bileklikler/zincir-bileklikler/yilan-zinciri-bileklikler/568748C00.html",
+   "priceCurrency": "TRY",
+   "price": 5609,
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://tr.pandora.net/#organization"
+   }
+  },
+  "color": "Renksiz",
+  "material": "14 ayar altın kaplama imza metal alaşım, Başka malzeme yok",
+  "category": "Bileklikler > Kategori > Zincir Bileklikler",
+  "itemCondition": "https://schema.org/NewCondition",
+  "additionalProperty": [
+   {
+    "@type": "PropertyValue",
+    "name": "Collection",
+    "value": "Pandora Moments"
+   },
+   {
+    "@type": "PropertyValue",
+    "name": "Compatibility",
+    "value": "Compatible with Pandora Moments"
+   }
+  ],
+  "aggregateRating": {
+   "@type": "AggregateRating",
+   "ratingValue": 4.5,
+   "reviewCount": 181,
+   "bestRating": 5,
+   "worstRating": 1
+  },
+  "productGroupID": "568748C00",
+  "variesBy": "size",
+  "hasVariant": [
+   {
+    "@type": "Product",
+    "@id": "https://tr.pandora.net/tr/bileklikler/zincir-bileklikler/yilan-zinciri-bileklikler/568748C00.html#variant-568748C00-17",
+    "mpn": "568748C00-17",
+    "sku": "568748C00-17",
+    "name": "Yılan Zinciri Bileklikler",
+    "size": "1700",
+    "image": [
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwa7ab2bd1/productimages/modeldetailshot_rect/SS24_A_PDP_Model_Single_56_1x1_RGB_bracelet.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw954ce86a/productimages/main_rect_center/568748C00_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw0f67530c/productimages/singlepackshot_rect_center/568748C00_V3_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw1aa58ad5/productimages/styledmodelimage_rect/Q125_A_PDP_MODEL_STYLED_27_1x1_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dweb7191e1/productimages/singlepackshot_rect_center/568748C00_V4_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwb0b6345b/productimages/styledmodelimage_rect/SS24_A_PDP_Model_Styled_13_1x1_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw577c8880/productimages/singlepackshot_rect_center/568748C00_V2_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     }
+    ],
+    "isVariantOf": {
+     "@id": "https://tr.pandora.net/tr/bileklikler/zincir-bileklikler/yilan-zinciri-bileklikler/568748C00.html"
+    },
+    "offers": {
+     "@type": "Offer",
+     "priceCurrency": "TRY",
+     "price": 5609,
+     "availability": "https://schema.org/InStock",
+     "url": "https://tr.pandora.net/tr/bileklikler/zincir-bileklikler/yilan-zinciri-bileklikler/568748C00.html"
+    },
+    "color": "Renksiz",
+    "material": "14 ayar altın kaplama imza metal alaşım, Başka malzeme yok"
+   },
+   {
+    "@type": "Product",
+    "@id": "https://tr.pandora.net/tr/bileklikler/zincir-bileklikler/yilan-zinciri-bileklikler/568748C00.html#variant-568748C00-20",
+    "mpn": "568748C00-20",
+    "sku": "568748C00-20",
+    "name": "Yılan Zinciri Bileklikler",
+    "size": "2000",
+    "image": [
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwa7ab2bd1/productimages/modeldetailshot_rect/SS24_A_PDP_Model_Single_56_1x1_RGB_bracelet.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw954ce86a/productimages/main_rect_center/568748C00_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw0f67530c/productimages/singlepackshot_rect_center/568748C00_V3_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw1aa58ad5/productimages/styledmodelimage_rect/Q125_A_PDP_MODEL_STYLED_27_1x1_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dweb7191e1/productimages/singlepackshot_rect_center/568748C00_V4_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwb0b6345b/productimages/styledmodelimage_rect/SS24_A_PDP_Model_Styled_13_1x1_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw577c8880/productimages/singlepackshot_rect_center/568748C00_V2_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     }
+    ],
+    "isVariantOf": {
+     "@id": "https://tr.pandora.net/tr/bileklikler/zincir-bileklikler/yilan-zinciri-bileklikler/568748C00.html"
+    },
+    "offers": {
+     "@type": "Offer",
+     "priceCurrency": "TRY",
+     "price": 5609,
+     "availability": "https://schema.org/InStock",
+     "url": "https://tr.pandora.net/tr/bileklikler/zincir-bileklikler/yilan-zinciri-bileklikler/568748C00.html"
+    },
+    "color": "Renksiz",
+    "material": "14 ayar altın kaplama imza metal alaşım, Başka malzeme yok"
+   },
+   {
+    "@type": "Product",
+    "@id": "https://tr.pandora.net/tr/bileklikler/zincir-bileklikler/yilan-zinciri-bileklikler/568748C00.html#variant-568748C00-16",
+    "mpn": "568748C00-16",
+    "sku": "568748C00-16",
+    "name": "Yılan Zinciri Bileklikler",
+    "size": "1600",
+    "image": [
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwa7ab2bd1/productimages/modeldetailshot_rect/SS24_A_PDP_Model_Single_56_1x1_RGB_bracelet.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw954ce86a/productimages/main_rect_center/568748C00_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw0f67530c/productimages/singlepackshot_rect_center/568748C00_V3_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw1aa58ad5/productimages/styledmodelimage_rect/Q125_A_PDP_MODEL_STYLED_27_1x1_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dweb7191e1/productimages/singlepackshot_rect_center/568748C00_V4_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwb0b6345b/productimages/styledmodelimage_rect/SS24_A_PDP_Model_Styled_13_1x1_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw577c8880/productimages/singlepackshot_rect_center/568748C00_V2_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     }
+    ],
+    "isVariantOf": {
+     "@id": "https://tr.pandora.net/tr/bileklikler/zincir-bileklikler/yilan-zinciri-bileklikler/568748C00.html"
+    },
+    "offers": {
+     "@type": "Offer",
+     "priceCurrency": "TRY",
+     "price": 5609,
+     "availability": "https://schema.org/InStock",
+     "url": "https://tr.pandora.net/tr/bileklikler/zincir-bileklikler/yilan-zinciri-bileklikler/568748C00.html"
+    },
+    "color": "Renksiz",
+    "material": "14 ayar altın kaplama imza metal alaşım, Başka malzeme yok"
+   },
+   {
+    "@type": "Product",
+    "@id": "https://tr.pandora.net/tr/bileklikler/zincir-bileklikler/yilan-zinciri-bileklikler/568748C00.html#variant-568748C00-15",
+    "mpn": "568748C00-15",
+    "sku": "568748C00-15",
+    "name": "Yılan Zinciri Bileklikler",
+    "size": "1500",
+    "image": [
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwa7ab2bd1/productimages/modeldetailshot_rect/SS24_A_PDP_Model_Single_56_1x1_RGB_bracelet.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw954ce86a/productimages/main_rect_center/568748C00_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw0f67530c/productimages/singlepackshot_rect_center/568748C00_V3_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw1aa58ad5/productimages/styledmodelimage_rect/Q125_A_PDP_MODEL_STYLED_27_1x1_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dweb7191e1/productimages/singlepackshot_rect_center/568748C00_V4_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwb0b6345b/productimages/styledmodelimage_rect/SS24_A_PDP_Model_Styled_13_1x1_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw577c8880/productimages/singlepackshot_rect_center/568748C00_V2_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     }
+    ],
+    "isVariantOf": {
+     "@id": "https://tr.pandora.net/tr/bileklikler/zincir-bileklikler/yilan-zinciri-bileklikler/568748C00.html"
+    },
+    "offers": {
+     "@type": "Offer",
+     "priceCurrency": "TRY",
+     "price": 5609,
+     "availability": "https://schema.org/OutOfStock",
+     "url": "https://tr.pandora.net/tr/bileklikler/zincir-bileklikler/yilan-zinciri-bileklikler/568748C00.html"
+    },
+    "color": "Renksiz",
+    "material": "14 ayar altın kaplama imza metal alaşım, Başka malzeme yok"
+   },
+   {
+    "@type": "Product",
+    "@id": "https://tr.pandora.net/tr/bileklikler/zincir-bileklikler/yilan-zinciri-bileklikler/568748C00.html#variant-568748C00-18",
+    "mpn": "568748C00-18",
+    "sku": "568748C00-18",
+    "name": "Yılan Zinciri Bileklikler",
+    "size": "1800",
+    "image": [
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwa7ab2bd1/productimages/modeldetailshot_rect/SS24_A_PDP_Model_Single_56_1x1_RGB_bracelet.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw954ce86a/productimages/main_rect_center/568748C00_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw0f67530c/productimages/singlepackshot_rect_center/568748C00_V3_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw1aa58ad5/productimages/styledmodelimage_rect/Q125_A_PDP_MODEL_STYLED_27_1x1_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dweb7191e1/productimages/singlepackshot_rect_center/568748C00_V4_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwb0b6345b/productimages/styledmodelimage_rect/SS24_A_PDP_Model_Styled_13_1x1_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw577c8880/productimages/singlepackshot_rect_center/568748C00_V2_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     }
+    ],
+    "isVariantOf": {
+     "@id": "https://tr.pandora.net/tr/bileklikler/zincir-bileklikler/yilan-zinciri-bileklikler/568748C00.html"
+    },
+    "offers": {
+     "@type": "Offer",
+     "priceCurrency": "TRY",
+     "price": 5609,
+     "availability": "https://schema.org/InStock",
+     "url": "https://tr.pandora.net/tr/bileklikler/zincir-bileklikler/yilan-zinciri-bileklikler/568748C00.html"
+    },
+    "color": "Renksiz",
+    "material": "14 ayar altın kaplama imza metal alaşım, Başka malzeme yok"
+   },
+   {
+    "@type": "Product",
+    "@id": "https://tr.pandora.net/tr/bileklikler/zincir-bileklikler/yilan-zinciri-bileklikler/568748C00.html#variant-568748C00-21",
+    "mpn": "568748C00-21",
+    "sku": "568748C00-21",
+    "name": "Yılan Zinciri Bileklikler",
+    "size": "2100",
+    "image": [
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwa7ab2bd1/productimages/modeldetailshot_rect/SS24_A_PDP_Model_Single_56_1x1_RGB_bracelet.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw954ce86a/productimages/main_rect_center/568748C00_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw0f67530c/productimages/singlepackshot_rect_center/568748C00_V3_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw1aa58ad5/productimages/styledmodelimage_rect/Q125_A_PDP_MODEL_STYLED_27_1x1_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dweb7191e1/productimages/singlepackshot_rect_center/568748C00_V4_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwb0b6345b/productimages/styledmodelimage_rect/SS24_A_PDP_Model_Styled_13_1x1_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw577c8880/productimages/singlepackshot_rect_center/568748C00_V2_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     }
+    ],
+    "isVariantOf": {
+     "@id": "https://tr.pandora.net/tr/bileklikler/zincir-bileklikler/yilan-zinciri-bileklikler/568748C00.html"
+    },
+    "offers": {
+     "@type": "Offer",
+     "priceCurrency": "TRY",
+     "price": 5609,
+     "availability": "https://schema.org/InStock",
+     "url": "https://tr.pandora.net/tr/bileklikler/zincir-bileklikler/yilan-zinciri-bileklikler/568748C00.html"
+    },
+    "color": "Renksiz",
+    "material": "14 ayar altın kaplama imza metal alaşım, Başka malzeme yok"
+   },
+   {
+    "@type": "Product",
+    "@id": "https://tr.pandora.net/tr/bileklikler/zincir-bileklikler/yilan-zinciri-bileklikler/568748C00.html#variant-568748C00-23",
+    "mpn": "568748C00-23",
+    "sku": "568748C00-23",
+    "name": "Yılan Zinciri Bileklikler",
+    "size": "2300",
+    "image": [
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwa7ab2bd1/productimages/modeldetailshot_rect/SS24_A_PDP_Model_Single_56_1x1_RGB_bracelet.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw954ce86a/productimages/main_rect_center/568748C00_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw0f67530c/productimages/singlepackshot_rect_center/568748C00_V3_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw1aa58ad5/productimages/styledmodelimage_rect/Q125_A_PDP_MODEL_STYLED_27_1x1_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dweb7191e1/productimages/singlepackshot_rect_center/568748C00_V4_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwb0b6345b/productimages/styledmodelimage_rect/SS24_A_PDP_Model_Styled_13_1x1_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw577c8880/productimages/singlepackshot_rect_center/568748C00_V2_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     }
+    ],
+    "isVariantOf": {
+     "@id": "https://tr.pandora.net/tr/bileklikler/zincir-bileklikler/yilan-zinciri-bileklikler/568748C00.html"
+    },
+    "offers": {
+     "@type": "Offer",
+     "priceCurrency": "TRY",
+     "price": 5609,
+     "availability": "https://schema.org/InStock",
+     "url": "https://tr.pandora.net/tr/bileklikler/zincir-bileklikler/yilan-zinciri-bileklikler/568748C00.html"
+    },
+    "color": "Renksiz",
+    "material": "14 ayar altın kaplama imza metal alaşım, Başka malzeme yok"
+   },
+   {
+    "@type": "Product",
+    "@id": "https://tr.pandora.net/tr/bileklikler/zincir-bileklikler/yilan-zinciri-bileklikler/568748C00.html#variant-568748C00-19",
+    "mpn": "568748C00-19",
+    "sku": "568748C00-19",
+    "name": "Yılan Zinciri Bileklikler",
+    "size": "1900",
+    "image": [
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwa7ab2bd1/productimages/modeldetailshot_rect/SS24_A_PDP_Model_Single_56_1x1_RGB_bracelet.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw954ce86a/productimages/main_rect_center/568748C00_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw0f67530c/productimages/singlepackshot_rect_center/568748C00_V3_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw1aa58ad5/productimages/styledmodelimage_rect/Q125_A_PDP_MODEL_STYLED_27_1x1_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dweb7191e1/productimages/singlepackshot_rect_center/568748C00_V4_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwb0b6345b/productimages/styledmodelimage_rect/SS24_A_PDP_Model_Styled_13_1x1_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     },
+     {
+      "@type": "ImageObject",
+      "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw577c8880/productimages/singlepackshot_rect_center/568748C00_V2_RGB.png",
+      "caption": "Yılan Zinciri Bileklikler"
+     }
+    ],
+    "isVariantOf": {
+     "@id": "https://tr.pandora.net/tr/bileklikler/zincir-bileklikler/yilan-zinciri-bileklikler/568748C00.html"
+    },
+    "offers": {
+     "@type": "Offer",
+     "priceCurrency": "TRY",
+     "price": 5609,
+     "availability": "https://schema.org/InStock",
+     "url": "https://tr.pandora.net/tr/bileklikler/zincir-bileklikler/yilan-zinciri-bileklikler/568748C00.html"
+    },
+    "color": "Renksiz",
+    "material": "14 ayar altın kaplama imza metal alaşım, Başka malzeme yok"
+   }
+  ]
+ }
+}

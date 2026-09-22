@@ -1,0 +1,171 @@
+{
+ "url": "https://tr.pandora.net/tr/charmlar-ve-bileklikler/charmlar/charmlar/mat-pembe-murano-cam-charm/789421C00.html",
+ "dom": {
+  "title": "Mat Pembe Murano Cam Charm | Pembe altın kaplama | Pandora TR",
+  "h1": "Pandora",
+  "prices": [
+   "₺2.699,00",
+   "₺279,00",
+   "₺2.159,00",
+   "₺2.779,00",
+   "₺3.249,00",
+   "₺2.159,00",
+   "₺4.899,00",
+   "₺2.519,00",
+   "₺3.909,00",
+   "₺4.479,00",
+   "₺3.909,00",
+   "₺2.779,00"
+  ],
+  "gallery": [
+   {
+    "src": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw8c002cc2/productimages/main_rect_center/789421C00_RGB.jpg?q=70&sfrm=png&bgcolor=F7F7F7&sw=810",
+    "alts": [],
+    "alt": "Mat Pembe Murano Cam Charm",
+    "nw": 810,
+    "nh": 1080,
+    "x": 0,
+    "y": 188,
+    "w": 505,
+    "h": 900,
+    "inHeader": false
+   },
+   {
+    "src": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwdeefe856/productimages/singlepackshot_rect_center/789421C00_V4_RGB.jpg?q=70&sfrm=png&bgcolor=F7F7F7&sw=810",
+    "alts": [],
+    "alt": "Mat Pembe Murano Cam Charm",
+    "nw": 810,
+    "nh": 1080,
+    "x": 505,
+    "y": 188,
+    "w": 331,
+    "h": 441,
+    "inHeader": false
+   },
+   {
+    "src": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwfe7db30c/productimages/styledmodelimage_rect/SS24_A_PDP_Model_Styled_08_1x1_RGB.jpg?q=70&sfrm=png&bgcolor=F7F7F7&sw=810",
+    "alts": [],
+    "alt": "Mat Pembe Murano Cam Charm",
+    "nw": 810,
+    "nh": 1080,
+    "x": 505,
+    "y": 629,
+    "w": 331,
+    "h": 441,
+    "inHeader": false
+   },
+   {
+    "src": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwb517ff1e/productimages/singlepackshot_rect_center/789421C00_V3_RGB.jpg?q=70&sfrm=png&bgcolor=F7F7F7&sw=810",
+    "alts": [],
+    "alt": "Mat Pembe Murano Cam Charm",
+    "nw": 810,
+    "nh": 1080,
+    "x": 505,
+    "y": 1071,
+    "w": 331,
+    "h": 441,
+    "inHeader": false
+   },
+   {
+    "src": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw144b2ac7/productimages/singlepackshot_rect_center/789421C00_V2_RGB.jpg?q=70&sfrm=png&bgcolor=F7F7F7&sw=810",
+    "alts": [],
+    "alt": "Mat Pembe Murano Cam Charm",
+    "nw": 810,
+    "nh": 1080,
+    "x": 505,
+    "y": 1512,
+    "w": 331,
+    "h": 441,
+    "inHeader": false
+   },
+   {
+    "src": "https://cdn.cookielaw.org/logos/static/powered_by_logo.svg",
+    "alts": [],
+    "alt": "Powered by Onetrust",
+    "nw": 568,
+    "nh": 53,
+    "x": 0,
+    "y": 0,
+    "w": 0,
+    "h": 0,
+    "inHeader": false
+   }
+  ],
+  "imgCount": 27,
+  "notFound": false
+ },
+ "jsonld": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "@id": "https://tr.pandora.net/tr/charmlar-ve-bileklikler/charmlar/charmlar/mat-pembe-murano-cam-charm/789421C00.html",
+  "name": "Mat Pembe Murano Cam Charm",
+  "mpn": "789421C00",
+  "sku": "789421C00",
+  "image": [
+   {
+    "@type": "ImageObject",
+    "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw8c002cc2/productimages/main_rect_center/789421C00_RGB.png",
+    "caption": "Mat Pembe Murano Cam Charm"
+   },
+   {
+    "@type": "ImageObject",
+    "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwdeefe856/productimages/singlepackshot_rect_center/789421C00_V4_RGB.png",
+    "caption": "Mat Pembe Murano Cam Charm"
+   },
+   {
+    "@type": "ImageObject",
+    "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwfe7db30c/productimages/styledmodelimage_rect/SS24_A_PDP_Model_Styled_08_1x1_RGB.png",
+    "caption": "Mat Pembe Murano Cam Charm"
+   },
+   {
+    "@type": "ImageObject",
+    "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwb517ff1e/productimages/singlepackshot_rect_center/789421C00_V3_RGB.png",
+    "caption": "Mat Pembe Murano Cam Charm"
+   },
+   {
+    "@type": "ImageObject",
+    "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw144b2ac7/productimages/singlepackshot_rect_center/789421C00_V2_RGB.png",
+    "caption": "Mat Pembe Murano Cam Charm"
+   }
+  ],
+  "brand": {
+   "@type": "Brand",
+   "name": "Pandora",
+   "@id": "https://tr.pandora.net/#organization"
+  },
+  "offers": {
+   "@type": "Offer",
+   "url": "https://tr.pandora.net/tr/charmlar-ve-bileklikler/charmlar/charmlar/mat-pembe-murano-cam-charm/789421C00.html",
+   "priceCurrency": "TRY",
+   "price": 2699,
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://tr.pandora.net/#organization"
+   }
+  },
+  "gtin13": "5700302922929",
+  "color": "Pembe",
+  "material": "14 ayar pembe altın kaplama imza metal alaşım, Glass",
+  "category": "Charm’lar > Charm’lar",
+  "itemCondition": "https://schema.org/NewCondition",
+  "additionalProperty": [
+   {
+    "@type": "PropertyValue",
+    "name": "Collection",
+    "value": "Pandora Moments"
+   },
+   {
+    "@type": "PropertyValue",
+    "name": "Compatibility",
+    "value": "Compatible with Pandora Moments"
+   }
+  ],
+  "aggregateRating": {
+   "@type": "AggregateRating",
+   "ratingValue": 4.7,
+   "reviewCount": 289,
+   "bestRating": 5,
+   "worstRating": 1
+  }
+ }
+}

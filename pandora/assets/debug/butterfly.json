@@ -1,0 +1,181 @@
+{
+ "url": "https://tr.pandora.net/tr/charmlar-ve-bileklikler/charmlar/charmlar/mavi-kelebek-isiltili-charm/790761C01.html",
+ "dom": {
+  "title": "Mavi Kelebek Işıltılı Charm | 925 ayar gümüş | Pandora TR",
+  "h1": "Pandora",
+  "prices": [
+   "₺3.579,00",
+   "₺279,00",
+   "₺2.699,00",
+   "₺2.779,00",
+   "₺999,00",
+   "₺5.609,00",
+   "₺5.449,00",
+   "₺4.479,00",
+   "₺2.699,00",
+   "₺2.779,00",
+   "₺999,00",
+   "₺5.609,00"
+  ],
+  "gallery": [
+   {
+    "src": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwaa5b1a59/productimages/modeldetailshot_rect/790761C01_ABC123_MODEL_eCOM_02_RGB.jpg?q=70&sfrm=png&bgcolor=F7F7F7&sw=810",
+    "alts": [],
+    "alt": "Mavi Kelebek Işıltılı Charm",
+    "nw": 810,
+    "nh": 1080,
+    "x": 0,
+    "y": 188,
+    "w": 505,
+    "h": 900,
+    "inHeader": false
+   },
+   {
+    "src": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw66ebe6fd/productimages/main_rect_center/790761C01_RGB.jpg?q=70&sfrm=png&bgcolor=F7F7F7&sw=810",
+    "alts": [],
+    "alt": "Mavi Kelebek Işıltılı Charm",
+    "nw": 810,
+    "nh": 1080,
+    "x": 505,
+    "y": 188,
+    "w": 331,
+    "h": 441,
+    "inHeader": false
+   },
+   {
+    "src": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwa90ab918/productimages/modelshot_rect/790761C01_ABC123_MODEL_eCOM_01_RGB.jpg?q=70&sfrm=png&bgcolor=F7F7F7&sw=810",
+    "alts": [],
+    "alt": "Mavi Kelebek Işıltılı Charm",
+    "nw": 810,
+    "nh": 1080,
+    "x": 505,
+    "y": 629,
+    "w": 331,
+    "h": 441,
+    "inHeader": false
+   },
+   {
+    "src": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw710c239e/productimages/singlepackshot_rect_center/790761C01_V5_RGB.jpg?q=70&sfrm=png&bgcolor=F7F7F7&sw=810",
+    "alts": [],
+    "alt": "Mavi Kelebek Işıltılı Charm",
+    "nw": 810,
+    "nh": 1080,
+    "x": 505,
+    "y": 1071,
+    "w": 331,
+    "h": 441,
+    "inHeader": false
+   },
+   {
+    "src": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw4e36f2b9/productimages/singlepackshot_rect_center/790761C01_V4_RGB.jpg?q=70&sfrm=png&bgcolor=F7F7F7&sw=810",
+    "alts": [],
+    "alt": "Mavi Kelebek Işıltılı Charm",
+    "nw": 810,
+    "nh": 1080,
+    "x": 505,
+    "y": 1512,
+    "w": 331,
+    "h": 441,
+    "inHeader": false
+   },
+   {
+    "src": "https://cdn.cookielaw.org/logos/static/powered_by_logo.svg",
+    "alts": [],
+    "alt": "Powered by Onetrust",
+    "nw": 568,
+    "nh": 53,
+    "x": 0,
+    "y": 0,
+    "w": 0,
+    "h": 0,
+    "inHeader": false
+   }
+  ],
+  "imgCount": 21,
+  "notFound": false
+ },
+ "jsonld": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "@id": "https://tr.pandora.net/tr/charmlar-ve-bileklikler/charmlar/charmlar/mavi-kelebek-isiltili-charm/790761C01.html",
+  "name": "Mavi Kelebek Işıltılı Charm",
+  "mpn": "790761C01",
+  "sku": "790761C01",
+  "image": [
+   {
+    "@type": "ImageObject",
+    "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwaa5b1a59/productimages/modeldetailshot_rect/790761C01_ABC123_MODEL_eCOM_02_RGB.png",
+    "caption": "Mavi Kelebek Işıltılı Charm"
+   },
+   {
+    "@type": "ImageObject",
+    "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw66ebe6fd/productimages/main_rect_center/790761C01_RGB.png",
+    "caption": "Mavi Kelebek Işıltılı Charm"
+   },
+   {
+    "@type": "ImageObject",
+    "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwa90ab918/productimages/modelshot_rect/790761C01_ABC123_MODEL_eCOM_01_RGB.png",
+    "caption": "Mavi Kelebek Işıltılı Charm"
+   },
+   {
+    "@type": "ImageObject",
+    "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw710c239e/productimages/singlepackshot_rect_center/790761C01_V5_RGB.png",
+    "caption": "Mavi Kelebek Işıltılı Charm"
+   },
+   {
+    "@type": "ImageObject",
+    "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw4e36f2b9/productimages/singlepackshot_rect_center/790761C01_V4_RGB.png",
+    "caption": "Mavi Kelebek Işıltılı Charm"
+   },
+   {
+    "@type": "ImageObject",
+    "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw016de6ee/productimages/singlepackshot_rect_center/790761C01_V2_RGB.png",
+    "caption": "Mavi Kelebek Işıltılı Charm"
+   }
+  ],
+  "brand": {
+   "@type": "Brand",
+   "name": "Pandora",
+   "@id": "https://tr.pandora.net/#organization"
+  },
+  "offers": {
+   "@type": "Offer",
+   "url": "https://tr.pandora.net/tr/charmlar-ve-bileklikler/charmlar/charmlar/mavi-kelebek-isiltili-charm/790761C01.html",
+   "priceCurrency": "TRY",
+   "price": 3579,
+   "availability": "https://schema.org/OutOfStock",
+   "seller": {
+    "@id": "https://tr.pandora.net/#organization"
+   }
+  },
+  "gtin13": "5700302970937",
+  "color": "Mavi",
+  "material": "925 ayar gümüş, Enamel",
+  "category": "Charm’lar > Charm’lar",
+  "itemCondition": "https://schema.org/NewCondition",
+  "additionalProperty": [
+   {
+    "@type": "PropertyValue",
+    "name": "Stone",
+    "value": "Kübik zirkon"
+   },
+   {
+    "@type": "PropertyValue",
+    "name": "Collection",
+    "value": "Pandora Moments"
+   },
+   {
+    "@type": "PropertyValue",
+    "name": "Compatibility",
+    "value": "Compatible with Pandora Moments"
+   }
+  ],
+  "aggregateRating": {
+   "@type": "AggregateRating",
+   "ratingValue": 4.8,
+   "reviewCount": 133,
+   "bestRating": 5,
+   "worstRating": 1
+  }
+ }
+}

@@ -1,0 +1,176 @@
+{
+ "url": "https://tr.pandora.net/tr/charm%E2%80%99lar-ve-bileklikler/charm%E2%80%99lar/charm%E2%80%99lar/galaksi-mavisi-ve-yildiz-murano-charm/790015C00.html",
+ "dom": {
+  "title": "Galaksi Mavisi ve Yıldız Murano Charm | 925 ayar gümüş | Pandora TR",
+  "h1": "Pandora",
+  "prices": [
+   "₺2.779,00",
+   "₺279,00",
+   "₺2.779,00",
+   "₺1.769,00",
+   "₺3.799,00",
+   "₺2.159,00",
+   "₺2.519,00",
+   "₺2.449,00",
+   "₺2.519,00",
+   "₺2.519,00",
+   "₺2.519,00",
+   "₺999,00"
+  ],
+  "gallery": [
+   {
+    "src": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwf403e4e7/productimages/modeldetailshot_rect/790015C00_ABC123_MODEL_eCOM_02_RGB.jpg?q=70&sfrm=png&bgcolor=F7F7F7&sw=810",
+    "alts": [],
+    "alt": "Galaksi Mavisi ve Yıldız Murano Charm",
+    "nw": 810,
+    "nh": 1080,
+    "x": 0,
+    "y": 188,
+    "w": 505,
+    "h": 900,
+    "inHeader": false
+   },
+   {
+    "src": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw13d239b9/productimages/main_rect_center/790015C00_RGB.jpg?q=70&sfrm=png&bgcolor=F7F7F7&sw=810",
+    "alts": [],
+    "alt": "Galaksi Mavisi ve Yıldız Murano Charm",
+    "nw": 810,
+    "nh": 1080,
+    "x": 505,
+    "y": 188,
+    "w": 331,
+    "h": 441,
+    "inHeader": false
+   },
+   {
+    "src": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw64a81133/productimages/modelshot_rect/790015C00_ABC123_MODEL_eCOM_01_RGB.jpg?q=70&sfrm=png&bgcolor=F7F7F7&sw=810",
+    "alts": [],
+    "alt": "Galaksi Mavisi ve Yıldız Murano Charm",
+    "nw": 810,
+    "nh": 1080,
+    "x": 505,
+    "y": 629,
+    "w": 331,
+    "h": 441,
+    "inHeader": false
+   },
+   {
+    "src": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwaf43c674/productimages/singlepackshot_rect_center/790015C00_V2_RGB.jpg?q=70&sfrm=png&bgcolor=F7F7F7&sw=810",
+    "alts": [],
+    "alt": "Galaksi Mavisi ve Yıldız Murano Charm",
+    "nw": 810,
+    "nh": 1080,
+    "x": 505,
+    "y": 1071,
+    "w": 331,
+    "h": 441,
+    "inHeader": false
+   },
+   {
+    "src": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw06d3720b/productimages/singlepackshot_rect_center/790015C00_V5_RGB.jpg?q=70&sfrm=png&bgcolor=F7F7F7&sw=810",
+    "alts": [],
+    "alt": "Galaksi Mavisi ve Yıldız Murano Charm",
+    "nw": 810,
+    "nh": 1080,
+    "x": 505,
+    "y": 1512,
+    "w": 331,
+    "h": 441,
+    "inHeader": false
+   },
+   {
+    "src": "https://cdn.cookielaw.org/logos/static/powered_by_logo.svg",
+    "alts": [],
+    "alt": "Powered by Onetrust",
+    "nw": 568,
+    "nh": 53,
+    "x": 0,
+    "y": 0,
+    "w": 0,
+    "h": 0,
+    "inHeader": false
+   }
+  ],
+  "imgCount": 22,
+  "notFound": false
+ },
+ "jsonld": {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "@id": "https://tr.pandora.net/tr/charmlar-ve-bileklikler/charmlar/charmlar/galaksi-mavisi-ve-yildiz-murano-charm/790015C00.html",
+  "name": "Galaksi Mavisi ve Yıldız Murano Charm",
+  "mpn": "790015C00",
+  "sku": "790015C00",
+  "image": [
+   {
+    "@type": "ImageObject",
+    "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwf403e4e7/productimages/modeldetailshot_rect/790015C00_ABC123_MODEL_eCOM_02_RGB.png",
+    "caption": "Galaksi Mavisi ve Yıldız Murano Charm"
+   },
+   {
+    "@type": "ImageObject",
+    "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw13d239b9/productimages/main_rect_center/790015C00_RGB.png",
+    "caption": "Galaksi Mavisi ve Yıldız Murano Charm"
+   },
+   {
+    "@type": "ImageObject",
+    "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw64a81133/productimages/modelshot_rect/790015C00_ABC123_MODEL_eCOM_01_RGB.png",
+    "caption": "Galaksi Mavisi ve Yıldız Murano Charm"
+   },
+   {
+    "@type": "ImageObject",
+    "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwaf43c674/productimages/singlepackshot_rect_center/790015C00_V2_RGB.png",
+    "caption": "Galaksi Mavisi ve Yıldız Murano Charm"
+   },
+   {
+    "@type": "ImageObject",
+    "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw06d3720b/productimages/singlepackshot_rect_center/790015C00_V5_RGB.png",
+    "caption": "Galaksi Mavisi ve Yıldız Murano Charm"
+   },
+   {
+    "@type": "ImageObject",
+    "url": "https://tr.pandora.net/dw/image/v2/BJRN_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw2d93369f/productimages/singlepackshot_rect_center/790015C00_V4_RGB.png",
+    "caption": "Galaksi Mavisi ve Yıldız Murano Charm"
+   }
+  ],
+  "brand": {
+   "@type": "Brand",
+   "name": "Pandora",
+   "@id": "https://tr.pandora.net/#organization"
+  },
+  "offers": {
+   "@type": "Offer",
+   "url": "https://tr.pandora.net/tr/charmlar-ve-bileklikler/charmlar/charmlar/galaksi-mavisi-ve-yildiz-murano-charm/790015C00.html",
+   "priceCurrency": "TRY",
+   "price": 2779,
+   "availability": "https://schema.org/InStock",
+   "seller": {
+    "@id": "https://tr.pandora.net/#organization"
+   }
+  },
+  "gtin13": "5700302952933",
+  "color": "Mavi",
+  "material": "925 ayar gümüş, Glass",
+  "category": "Charm’lar > Charm’lar",
+  "itemCondition": "https://schema.org/NewCondition",
+  "additionalProperty": [
+   {
+    "@type": "PropertyValue",
+    "name": "Collection",
+    "value": "Pandora Moments"
+   },
+   {
+    "@type": "PropertyValue",
+    "name": "Compatibility",
+    "value": "Compatible with Pandora Moments"
+   }
+  ],
+  "aggregateRating": {
+   "@type": "AggregateRating",
+   "ratingValue": 4.6,
+   "reviewCount": 605,
+   "bestRating": 5,
+   "worstRating": 1
+  }
+ }
+}
