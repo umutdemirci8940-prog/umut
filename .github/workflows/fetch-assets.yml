@@ -1,21 +1,37 @@
 name: Siteden görselleri çek ve derle
 
-# Bulut oturumunun ağ politikası ilacsizyasam.com'a erişemediği için görseller
-# GitHub'ın kendi sunucusunda indirilir, optimize edilir, bannerlar derlenir ve dala geri push'lanır.
+# Bulut oturumunun ağ politikası hedef sitelere (tr.pandora.net, ilacsizyasam.com) erişemediği için
+# görseller GitHub'ın kendi sunucusunda indirilir ve dala geri push'lanır. Dosya adı, workflow_dispatch'in
+# varsayılan daldaki kayıtlı yolla tetiklenebilmesi için "fetch-assets.yml" olarak korunur.
 on:
   workflow_dispatch:
     inputs:
+      task:
+        description: Görev
+        type: choice
+        options: [pandora, ilacsizyasam]
+        default: pandora
+      max_per_product:
+        description: (pandora) Ürün başına en fazla görsel
+        default: '4'
+      max_list:
+        description: (pandora) Listeleme sayfası başına en fazla ürün kartı
+        default: '16'
+      skip_site:
+        description: (pandora) Marka sayfalarını (logo/hero) atla
+        type: boolean
+        default: false
       tolerance:
-        description: Fon temizleme toleransı (0-255)
+        description: (ilacsizyasam) Fon temizleme toleransı (0-255)
         default: '22'
       height:
-        description: Ürün görseli azami yüksekliği (px)
+        description: (ilacsizyasam) Ürün görseli azami yüksekliği (px)
         default: '460'
       quality:
-        description: WebP kalitesi (0-1)
+        description: (ilacsizyasam) WebP kalitesi (0-1)
         default: '0.8'
       keep_bg:
-        description: Fon temizlemeyi kapat (kart görünümü)
+        description: (ilacsizyasam) Fon temizlemeyi kapat
         type: boolean
         default: false
 
@@ -23,7 +39,58 @@ permissions:
   contents: write
 
 jobs:
-  fetch-and-build:
+  pandora:
+    if: ${{ inputs.task == 'pandora' }}
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: pandora
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Playwright + Chromium kur
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+
+      - name: tr.pandora.net üzerinden ürün görselleri, fiyatlar, logo ve kampanya görsellerini topla
+        continue-on-error: true
+        env:
+          PW_CHANNEL: chromium
+        run: node tools/fetch-assets.js --max-per-product=${{ inputs.max_per_product }} --max-list=${{ inputs.max_list }} ${{ inputs.skip_site && '--skip-site' || '' }}
+
+      - name: Rapor özeti
+        if: always()
+        run: |
+          if [ -f assets/report.md ]; then sed -n '1,160p' assets/report.md; else echo "assets/report.md yok"; fi
+          du -sh assets 2>/dev/null || true
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pandora-assets
+          path: pandora/assets
+          if-no-files-found: warn
+
+      - name: Sonuçları dala push'la
+        if: always()
+        working-directory: .
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A pandora/assets
+          git commit -m "Pandora: tr.pandora.net'ten çekilen ürün görselleri, fiyatlar, logo ve kampanya görselleri (GitHub Actions)" || { echo "Değişiklik yok"; exit 0; }
+          git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          git push
+
+  ilacsizyasam:
+    if: ${{ inputs.task == 'ilacsizyasam' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -55,10 +122,6 @@ jobs:
 
       - name: Teslim paketini üret
         run: node tools/package.js
-
-      - name: Manifest özeti
-        run: |
-          node -e "const m=require('./assets/manifest.json');console.log(JSON.stringify({logo:m.logo,products:m.products.map(p=>({key:p.key,title:p.title,price:p.price,image:p.image&&(p.image.optimized||p.image.file),transparent:p.image&&p.image.transparent}))},null,1))"
 
       - uses: actions/upload-artifact@v4
         with:
