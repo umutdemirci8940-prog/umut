@@ -4,24 +4,23 @@
 <meta charset="utf-8">
 <meta name="ad.size" content="width=970,height=250">
 <meta name="viewport" content="width=970">
-<title>Superonline – 1000 Mbps Fiber İnternet | 970x250 Interactive Masthead</title>
+<title>Superonline – 1000 Mbps Fiber İnternet | 970x250 Masthead</title>
 <style>
 /* ============================================================
    SUPERONLINE · 1000 Mbps · "HIZ KADRAJA SIĞMIYOR" · 970x250
-   Etkileşimli (media-first) masthead: kullanıcı basılı tutarak
-   sayacı 1000 Mbps'e çıkarır. Etkileşim yoksa otomatik oynar.
-   Tek dosya HTML5. Canvas yok, harici bağımlılık yok.
+   Tek dosya HTML5 masthead. Canvas yok, harici bağımlılık yok.
    ------------------------------------------------------------
    Kolay değiştirilecek alanlar:
    - Renkler: :root değişkenleri
-   - Metinler: <body> içindeki metin düğümleri
-   - Süreler / sahne zamanları / fizik: <script> içindeki CONFIG ve T
+   - Metinler: <body> içindeki data-* / metin düğümleri
+   - Süreler / sahne zamanları: <script> içindeki T nesnesi
    - Fiyat, taahhüt, URL, logo: <script> içindeki CONFIG nesnesi
    ============================================================ */
 :root{
   --w:970px; --h:250px;
   --bg0:#05060a;            /* zemin – siyah/lacivert */
   --bg1:#0b1020;            /* zemin – derin lacivert ton */
+  --navy:#101a33;
   --yellow:#FFC40C;         /* Superonline sarısı */
   --yellow2:#FFD95A;        /* parlama tonu */
   --white:#ffffff;
@@ -32,7 +31,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{background:var(--bg0)}
 body{width:var(--w);height:var(--h);overflow:hidden;font-family:var(--font);-webkit-font-smoothing:antialiased;text-rendering:geometricPrecision}
-#ad{position:relative;width:var(--w);height:var(--h);overflow:hidden;background:var(--bg0);contain:strict;user-select:none;-webkit-user-select:none;cursor:pointer;touch-action:none}
+#ad{position:relative;width:var(--w);height:var(--h);overflow:hidden;background:var(--bg0);contain:strict;user-select:none;cursor:pointer}
 #ad::after{content:"";position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
 
 /* ---------- Arka plan katmanı ---------- */
@@ -43,7 +42,7 @@ body{width:var(--w);height:var(--h);overflow:hidden;font-family:var(--font);-web
   background:radial-gradient(circle,rgba(255,196,12,.20) 0%,rgba(255,196,12,.06) 28%,rgba(255,196,12,0) 60%);
   transform:scale(.55);opacity:.7;will-change:transform,opacity}
 .horizon{position:absolute;left:0;right:0;top:50%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.10) 30%,rgba(255,196,12,.35) 50%,rgba(255,255,255,.10) 70%,transparent);opacity:.6}
-.streaks{position:absolute;inset:-12px;overflow:hidden;will-change:transform}
+.streaks{position:absolute;inset:0;overflow:hidden}
 .streak{position:absolute;left:0;top:0;height:2px;width:160px;border-radius:2px;transform-origin:100% 50%;will-change:transform,opacity;opacity:0;
   background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.55) 70%,#fff 100%)}
 .streak.y{background:linear-gradient(90deg,rgba(255,196,12,0) 0%,rgba(255,196,12,.7) 70%,var(--yellow2) 100%)}
@@ -94,7 +93,7 @@ body{width:var(--w);height:var(--h);overflow:hidden;font-family:var(--font);-web
 /* Küçük konsept satırı (sağ üst) */
 .kicker{position:absolute;right:30px;top:24px;font-size:11px;font-weight:700;letter-spacing:.32em;color:var(--yellow);opacity:0;white-space:nowrap}
 
-/* "Online'a Özel Fiber İnternet" */
+/* "Online’a Özel Fiber İnternet" */
 .tag{position:absolute;left:0;right:0;top:50%;margin-top:-24px;text-align:center;font-size:36px;font-weight:800;letter-spacing:-.02em;color:#fff;opacity:0;line-height:1.2;
   text-shadow:0 2px 24px rgba(5,6,10,.9),0 0 60px rgba(5,6,10,.8)}
 .tag em{font-style:normal;color:var(--yellow)}
@@ -117,27 +116,8 @@ body{width:var(--w);height:var(--h);overflow:hidden;font-family:var(--font);-web
 .price small{font-size:15px;font-weight:700;letter-spacing:0;color:var(--muted);margin-left:2px}
 .terms{font-size:12px;font-weight:500;color:var(--muted);letter-spacing:.01em;padding-left:14px;border-left:1px solid rgba(255,255,255,.18);line-height:1.3}
 
-/* ---------- PEDAL (etkileşim) – CTA ile aynı konumda ---------- */
-.pedalWrap{position:absolute;right:34px;top:50%;margin-top:-26px;opacity:0;transform:scale(.85);z-index:3}
-.pedal{position:relative;display:inline-flex;align-items:center;gap:12px;height:52px;padding:0 24px 0 20px;border-radius:26px;overflow:hidden;
-  border:1.5px solid rgba(255,196,12,.65);background:rgba(255,196,12,.08);color:var(--yellow);font-size:13.5px;font-weight:800;letter-spacing:.14em;white-space:nowrap;cursor:pointer;
-  transition:transform .15s cubic-bezier(.2,.8,.2,1),background .2s,border-color .2s,box-shadow .25s}
-.pedal .fill{position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,196,12,.18),rgba(255,196,12,.55));transform:scaleX(0);transform-origin:0 50%;will-change:transform;pointer-events:none}
-.pedal .lbl,.pedal .ico{position:relative}
-.pedal .lbl b{font-weight:800}
-.pedal .lbl span{font-weight:600;color:rgba(255,216,90,.85)}
-.pedal .ico{width:20px;height:20px;stroke:var(--yellow);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.pedal::after{content:"";position:absolute;inset:-3px;border-radius:30px;border:2px solid rgba(255,196,12,.6);pointer-events:none;animation:pulse 1.8s .9s ease-out infinite}
-.interacted .pedal::after,.auto .pedal::after{animation:none;opacity:0}
-.pedal:hover{background:rgba(255,196,12,.15);border-color:var(--yellow);box-shadow:0 0 0 4px rgba(255,196,12,.10),0 10px 28px rgba(255,196,12,.18)}
-.pedal.pressed,.auto .pedal{transform:scale(.95);background:rgba(255,196,12,.20);border-color:var(--yellow);box-shadow:0 0 34px rgba(255,196,12,.38),0 0 0 4px rgba(255,196,12,.10)}
-.pedal.pressed .lbl,.auto .pedal .lbl{color:#fff}
-.hint{position:absolute;right:38px;top:50%;margin-top:-52px;font-size:11px;font-weight:800;letter-spacing:.3em;color:var(--yellow);opacity:0;pointer-events:none;z-index:3;white-space:nowrap}
-.hint.show{animation:hintIn 1s ease-out forwards}
-
 /* CTA */
-.ctaWrap{position:absolute;right:34px;top:50%;margin-top:-26px;opacity:0;transform:scale(.85);z-index:3;pointer-events:none}
-.s5 .ctaWrap{pointer-events:auto}
+.ctaWrap{position:absolute;right:34px;top:50%;margin-top:-26px;opacity:0;transform:scale(.85);z-index:3}
 .cta{position:relative;display:inline-flex;align-items:center;gap:12px;height:52px;padding:0 22px 0 26px;border-radius:26px;background:var(--yellow);color:var(--ink);
   font-family:var(--font);font-size:15px;font-weight:800;letter-spacing:.14em;text-decoration:none;overflow:hidden;white-space:nowrap;z-index:3;
   box-shadow:0 10px 30px rgba(255,196,12,.22),0 2px 0 rgba(0,0,0,.15);transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s,background .25s}
@@ -147,12 +127,6 @@ body{width:var(--w);height:var(--h);overflow:hidden;font-family:var(--font);-web
 .cta:hover .arrow{transform:translateX(4px)}
 .cta:hover .shine{animation:shine .75s ease-out forwards}
 .cta:focus-visible{outline:2px solid #fff;outline-offset:3px}
-
-/* Tekrar oynat (final) */
-.replay{position:absolute;right:40px;bottom:12px;display:flex;align-items:center;gap:6px;font-size:11px;font-weight:600;letter-spacing:.14em;color:rgba(255,255,255,.5);text-decoration:none;opacity:0;z-index:4;pointer-events:none;transition:color .2s}
-.replay svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
-.replay:hover{color:#fff}
-.s5 .replay{animation:fadeIn .6s 1.3s ease-out forwards;pointer-events:auto}
 
 /* Tam alan tıklama (clickTag) */
 .exit{position:absolute;inset:0;z-index:2;text-decoration:none;color:transparent;font-size:0}
@@ -164,12 +138,10 @@ body{width:var(--w);height:var(--h);overflow:hidden;font-family:var(--font);-web
 /* ============================================================
    SAHNE DURUMLARI  (#ad üzerine JS'in eklediği sınıflar)
    s1: giriş · s3: impact · s3b: mesaj · s4: kullanım · s4out · s5: final · done
-   auto: otomatik oynatma devrede · interacted: kullanıcı dokundu
    ============================================================ */
 .s1 .logo{animation:logoIn .8s .15s cubic-bezier(.2,.8,.2,1) forwards}
 .s1 .gauge{animation:fadeIn .9s .25s ease-out forwards}
 .s1 .counter{animation:counterIn .9s .35s cubic-bezier(.2,.8,.2,1) forwards}
-.s1 .pedalWrap{animation:ctaIn .7s .6s cubic-bezier(.2,.9,.3,1.2) forwards}
 .s1 .glow{animation:glowIdle 3s .2s ease-in-out infinite alternate}
 
 .s3 .flash{animation:flash .65s ease-out forwards}
@@ -182,8 +154,6 @@ body{width:var(--w);height:var(--h);overflow:hidden;font-family:var(--font);-web
 .s3 .digits .ghost{opacity:0 !important}
 .s3 .unit{color:var(--yellow);animation:unitOut .95s cubic-bezier(.22,.9,.28,1) forwards}
 .s3 .logo{animation:logoOut .2s ease-out forwards}
-.s3 .pedalWrap{animation:pedalOut .3s ease-in forwards;pointer-events:none}
-.s3 .hint{opacity:0 !important}
 
 .s3b .digitsWrap{animation:dim .6s ease-out forwards}
 .s3b .unitWrap{animation:dim .6s ease-out forwards}
@@ -232,8 +202,6 @@ body{width:var(--w);height:var(--h);overflow:hidden;font-family:var(--font);-web
 @keyframes useOut{0%{opacity:1;transform:translateX(0) scaleX(1)}100%{opacity:0;transform:translateX(-620px) scaleX(2.4)}}
 @keyframes slideIn{to{opacity:1;transform:translateX(0)}}
 @keyframes ctaIn{to{opacity:1;transform:scale(1)}}
-@keyframes pedalOut{from{opacity:1;transform:scale(1)}to{opacity:0;transform:scale(.8)}}
-@keyframes hintIn{0%{opacity:0;transform:translateY(8px)}18%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-8px)}}
 @keyframes ghostIn{to{opacity:1}}
 @keyframes pulse{0%{opacity:.8;transform:scale(1)}100%{opacity:0;transform:scale(1.22)}}
 @keyframes shine{0%{left:-60px;opacity:0}20%{opacity:1}100%{left:120%;opacity:0}}
@@ -244,7 +212,7 @@ body{width:var(--w);height:var(--h);overflow:hidden;font-family:var(--font);-web
 </style>
 </head>
 <body>
-<div id="ad" class="ad" role="link" tabindex="0" aria-label="Superonline – Online’a Özel 1000 Mbps Fiber İnternet. Basılı tutarak hızlandır, Hemen Başvur.">
+<div id="ad" class="ad" role="link" aria-label="Superonline – Online’a Özel 1000 Mbps Fiber İnternet. Hemen Başvur.">
   <div class="bg">
     <div class="glow"></div>
     <div class="horizon"></div>
@@ -306,16 +274,6 @@ body{width:var(--w);height:var(--h);overflow:hidden;font-family:var(--font);-web
       </div>
     </div>
 
-    <!-- PEDAL: basılı tut → hızlan -->
-    <div class="pedalWrap">
-      <button class="pedal" id="pedal" type="button" aria-label="Basılı tut, hızlan">
-        <span class="fill" id="pedalFill"></span>
-        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5v3.5M6.3 5.3l2.4 2.4M17.7 5.3l-2.4 2.4"/><path d="M10 21.5v-9a2 2 0 0 1 4 0v3.2l3.4.7a2.6 2.6 0 0 1 2.1 2.6v2.5"/></svg>
-        <span class="lbl"><b>BASILI TUT</b> <span>· HIZLAN</span></span>
-      </button>
-    </div>
-    <div class="hint" id="hint">BIRAKMA!</div>
-
     <div class="ctaWrap">
       <a class="cta" id="cta" href="#" target="_blank" rel="noopener">
         <span class="shine"></span>
@@ -323,8 +281,6 @@ body{width:var(--w);height:var(--h);overflow:hidden;font-family:var(--font);-web
         <svg class="arrow" viewBox="0 0 24 24"><path d="M5 12h13M12 5l7 7-7 7"/></svg>
       </a>
     </div>
-
-    <a class="replay" id="replay" href="#" aria-label="Tekrar oynat"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>TEKRAR DENE</a>
   </div>
 
   <!-- Tüm alan tıklanabilir: clickTag / Enabler / doğrudan URL -->
@@ -351,30 +307,28 @@ var CONFIG = {
   logoInvert: false,          // true: logoyu tamamen beyaza çevirir (sarı işaret de beyaz olur)
   speedStart: 100,            // sayaç başlangıcı
   speedMax: 1000,             // sayaç hedefi
-  /* Etkileşim fiziği */
-  autoplayAfter: 4.0,         // sn – bu süre içinde etkileşim olmazsa otomatik oynar
-  accelBase: 110,             // Mbps/sn – basılı tutarken temel ivme
-  accelGain: 0.9,             // hız arttıkça ivme çarpanı (üstel his)
-  decay: 1.5,                 // bırakınca 100'e dönüş hızı (1/sn)
-  tapBoost: 90,               // pedala kısa dokunuşta anlık artış (Mbps)
-  loop: false,                // true: final karesinden sonra doğal döngü (yalnızca otomatik akış)
+  loop: false,                // true: final karesinden sonra doğal döngü
   loopHold: 4,                // döngüde final karesinin bekleme süresi (sn)
   maxLoops: 2                 // en fazla tekrar (30 sn kuralı için)
 };
 
-/* Impact sonrası sahne zamanları (impact anına göre, saniye) */
-var T = { tag: 0.95, uses: 2.5, usesOut: 4.35, final: 4.75, end: 6.8 };
+/* Sahne zamanları (saniye) */
+var T = {
+  accel: 2.4,   // sayaç hızlanmaya başlar
+  impact: 5.2,  // 1000 Mbps – wow moment
+  tag: 6.15,    // "Online’a Özel Fiber İnternet"
+  uses: 7.7,    // kullanım senaryoları
+  usesOut: 9.55,
+  final: 9.95,  // final / CTA
+  end: 12.0     // animasyon biter, final karesi sabit kalır
+};
 
-/* =========================== ELEMANLAR =========================== */
+/* =========================== TIKLAMA =========================== */
 var ad = document.getElementById('ad');
 var exitA = document.getElementById('exit');
 var ctaA  = document.getElementById('cta');
-var pedal = document.getElementById('pedal'), pedalFill = document.getElementById('pedalFill');
-var hint = document.getElementById('hint'), replay = document.getElementById('replay');
 exitA.href = CONFIG.url; ctaA.href = CONFIG.url;
 
-/* =========================== TIKLAMA =========================== */
-var suppressClick = false;
 function clickUrl(){
   if (typeof window.clickTag === 'string' && window.clickTag) return window.clickTag;
   if (typeof window.clickTAG === 'string' && window.clickTAG) return window.clickTAG;
@@ -382,7 +336,6 @@ function clickUrl(){
 }
 function onExit(e){
   e.preventDefault();
-  if (suppressClick) return; // basılı tutma sonrası gelen click'i yut
   var url = clickUrl();
   if (window.Enabler && typeof window.Enabler.exit === 'function') { window.Enabler.exit('CTA', url); return; }
   window.open(url, '_blank');
@@ -395,7 +348,7 @@ document.getElementById('price').textContent = CONFIG.price;
 document.getElementById('priceUnit').textContent = CONFIG.priceUnit;
 document.getElementById('terms').innerHTML = CONFIG.terms;
 
-/* Logo: base64; yüklenemezse tipografik yedek kalır */
+/* Logo: URL ya da base64; yüklenemezse tipografik yedek kalır */
 (function setLogo(){
   var box = document.getElementById('logo'), img = document.getElementById('logoImg');
   var src = CONFIG.logoPlate ? (CONFIG.logoColor || CONFIG.logoWhite) : (CONFIG.logoWhite || CONFIG.logoColor);
@@ -470,144 +423,80 @@ function updateStreaks(v, dt){
   }
 }
 
-/* =========================== ETKİLEŞİM =========================== */
+/* =========================== SAYAÇ / ZAMAN ÇİZGİSİ =========================== */
 var num = document.getElementById('num'), g1 = document.getElementById('g1'), g2 = document.getElementById('g2');
 var digits = document.getElementById('digits');
+var shown = -1, impactDone = false;
 
-var state = 'attract';           // attract | ramp | after
-var holding = false, throttle = 0, val = CONFIG.speedStart, tempo = 0;
-var interacted = false, auto = false, tImpact = null, sceneIdx = 0;
-var pressStart = 0, pressVal = 0, lastWasTap = false, hintCount = 0, shown = -1;
-var px = 0, py = 0; // imleç paralaksı
-
-function startHold(now){
-  if (state === 'after' || holding) return;
-  holding = true; pressStart = now; pressVal = val;
-  if (!interacted) { interacted = true; ad.classList.add('interacted'); }
-  pedal.classList.add('pressed');
+function speedAt(t){ // { val: Mbps, v: 0..1 tempo }
+  var s0 = CONFIG.speedStart, s1 = CONFIG.speedMax;
+  if (t < T.accel) { var q = t / T.accel; return { val: s0 + 30 * q, v: .06 + .06 * q }; }
+  if (t < T.impact) {
+    var p = (t - T.accel) / (T.impact - T.accel);
+    var e = .35 * p + .65 * p * p * p;
+    return { val: (s0 + 30) + (s1 - s0 - 30) * e, v: .12 + .88 * p * p };
+  }
+  if (t < T.final) return { val: s1, v: 1 - .28 * Math.min(1, (t - T.impact) / 1.0) };
+  var k = Math.min(1, (t - T.final) / 1.4);
+  return { val: s1, v: .72 * (1 - k) * (1 - k) + .02 * (1 - k) };
 }
-function endHold(now){
-  if (!holding) return;
-  holding = false; pedal.classList.remove('pressed');
-  var dur = now - pressStart, gain = val - pressVal;
-  lastWasTap = dur < 220 && gain < 25;
-  if (!lastWasTap) { suppressClick = true; setTimeout(function(){ suppressClick = false; }, 400); }
-  if (state !== 'after' && val > 300 && val < CONFIG.speedMax - 1 && hintCount < 3) { hintCount++; showHint(); }
-}
-function showHint(){ hint.classList.remove('show'); void hint.offsetWidth; hint.classList.add('show'); }
 
-ad.addEventListener('pointerdown', function(e){
-  if (e.button !== undefined && e.button !== 0) return;
-  if (e.target.closest && e.target.closest('.cta, .replay')) return;
-  startHold(performance.now());
-  if (e.pointerType !== 'mouse' && e.cancelable) e.preventDefault();
-});
-window.addEventListener('pointerup', function(){ endHold(performance.now()); });
-window.addEventListener('pointercancel', function(){ endHold(performance.now()); });
-ad.addEventListener('pointerleave', function(){ endHold(performance.now()); });
-ad.addEventListener('pointermove', function(e){
-  var r = ad.getBoundingClientRect();
-  px = Math.max(-.5, Math.min(.5, (e.clientX - r.left) / W - .5));
-  py = Math.max(-.5, Math.min(.5, (e.clientY - r.top) / H - .5));
-});
-/* Pedal: tıklama sayfaya gitmez; kısa dokunuş anlık ivme verir */
-pedal.addEventListener('click', function(e){
-  e.preventDefault(); e.stopPropagation();
-  if (state !== 'after' && lastWasTap) val = Math.min(CONFIG.speedMax, val + CONFIG.tapBoost);
-});
-/* Klavye: Boşluk / sağ ok basılı tut */
-function keyHold(e){ return e.key === ' ' || e.key === 'Spacebar' || e.key === 'ArrowRight'; }
-ad.addEventListener('keydown', function(e){ if (keyHold(e)) { e.preventDefault(); if (!e.repeat) startHold(performance.now()); } });
-ad.addEventListener('keyup', function(e){ if (keyHold(e)) { e.preventDefault(); endHold(performance.now()); } });
-window.addEventListener('blur', function(){ endHold(performance.now()); });
-
-/* Tekrar oynat */
-replay.addEventListener('click', function(e){
-  e.preventDefault(); e.stopPropagation();
-  resetAll();
-  if (stopped) { stopped = false; requestAnimationFrame(frame); }
-});
-
-/* =========================== ZAMAN ÇİZGİSİ =========================== */
-var afterScenes = [
+var scenes = [
+  { at: 0,         cls: 's1' },
+  { at: T.accel,   cls: 's2' },
+  { at: T.impact,  cls: 's3' },
   { at: T.tag,     cls: 's3b' },
   { at: T.uses,    cls: 's4' },
   { at: T.usesOut, cls: 's4out' },
   { at: T.final,   cls: 's5' },
   { at: T.end,     cls: 'done' }
 ];
-var ALL = ['s1','s3','s3b','s4','s4out','s5','done','auto','interacted','fadeout'];
-var loops = 0, holdUntil = 0, fading = false;
+var sceneIdx = 0, loops = 0, holdUntil = 0, fading = false;
+
 var reduced = false;
 try { reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (err) { reduced = false; }
+var offset = reduced ? (T.final + 0.2) : 0;
 
 var start = null, last = null, stopped = false;
-
-function triggerImpact(now){
-  state = 'after'; tImpact = now; sceneIdx = 0; throttle = 0;
-  val = CONFIG.speedMax; showVal(val); setGauge(val);
-  digits.style.transform = ''; g1.style.opacity = g2.style.opacity = 0;
-  pedal.classList.remove('pressed');
-  ad.classList.add('s3');
-}
-function showVal(v){ var iv = Math.round(v); if (iv !== shown) { shown = iv; num.textContent = iv; g1.textContent = iv; g2.textContent = iv; } }
-
 function resetAll(){
-  for (var i = 0; i < ALL.length; i++) ad.classList.remove(ALL[i]);
-  state = 'attract'; holding = false; throttle = 0; val = CONFIG.speedStart; tempo = 0;
-  interacted = false; auto = false; tImpact = null; sceneIdx = 0; hintCount = 0; shown = -1; fading = false;
-  start = null; last = null;
-  digits.style.transform = ''; g1.style.opacity = g2.style.opacity = 0; pedalFill.style.transform = 'scaleX(0)';
-  pedal.classList.remove('pressed'); hint.classList.remove('show');
-  for (var j = 0; j < streaks.length; j++) streaks[j].el.style.opacity = 0;
+  for (var i = 0; i < scenes.length; i++) ad.classList.remove(scenes[i].cls);
+  ad.classList.remove('fadeout');
+  sceneIdx = 0; shown = -1; impactDone = false; start = null; last = null; fading = false;
+  digits.style.transform = ''; g1.style.opacity = g2.style.opacity = 0;
   void ad.offsetWidth; // animasyonların yeniden başlaması için reflow
 }
 
 function frame(now){
-  if (start === null) { start = now; last = now; ad.classList.add('s1'); if (reduced) triggerImpact(now - (T.final + 0.3) * 1000); }
+  if (start === null) { start = now - offset * 1000; last = now; }
   var dt = Math.min(.05, (now - last) / 1000); last = now;
-  var t = (now - start) / 1000, v;
+  var t = (now - start) / 1000;
 
-  if (state !== 'after') {
-    if (!interacted && !auto && t >= CONFIG.autoplayAfter) { auto = true; ad.classList.add('auto'); }
-    var hold = holding || auto;
-    throttle = hold ? Math.min(1, throttle + dt / .45) : Math.max(0, throttle - dt / .3);
-    if (throttle > 0) val += throttle * (CONFIG.accelBase + CONFIG.accelGain * val) * dt;
-    if (!hold) val -= (val - CONFIG.speedStart) * CONFIG.decay * dt;
-    if (!hold && val < CONFIG.speedStart + 14) val = Math.max(val, CONFIG.speedStart + 12 * (.5 + .5 * Math.sin(t * 1.4))); // bekleme nefesi
-    if (val >= CONFIG.speedMax - .5) { triggerImpact(now); }
-    else {
-      state = throttle > 0 ? 'ramp' : 'attract';
-      tempo = Math.pow(Math.max(0, (val - CONFIG.speedStart) / (CONFIG.speedMax - CONFIG.speedStart)), .85);
-      v = .06 + .94 * tempo;
-      showVal(val);
-      digits.style.transform = 'scale(' + (1 + .15 * v).toFixed(4) + ')';
-      g1.style.transform = 'translateX(' + (-9 * v).toFixed(2) + 'px)'; g1.style.opacity = (.42 * tempo).toFixed(3);
-      g2.style.transform = 'translateX(' + (-19 * v).toFixed(2) + 'px)'; g2.style.opacity = (.2 * tempo).toFixed(3);
-      setGauge(val);
-      pedalFill.style.transform = 'scaleX(' + tempo.toFixed(3) + ')';
-    }
+  while (sceneIdx < scenes.length && t >= scenes[sceneIdx].at) { ad.classList.add(scenes[sceneIdx].cls); sceneIdx++; }
+
+  var s = speedAt(t), val = s.val, v = s.v;
+  var iv = Math.round(val);
+  if (iv !== shown) { shown = iv; num.textContent = iv; g1.textContent = iv; g2.textContent = iv; }
+
+  if (t < T.impact) {
+    digits.style.transform = 'scale(' + (1 + .15 * v).toFixed(4) + ')';
+    g1.style.transform = 'translateX(' + (-9 * v).toFixed(2) + 'px)'; g1.style.opacity = (.42 * v).toFixed(3);
+    g2.style.transform = 'translateX(' + (-19 * v).toFixed(2) + 'px)'; g2.style.opacity = (.2 * v).toFixed(3);
+    setGauge(val);
+  } else if (!impactDone) {
+    impactDone = true; digits.style.transform = ''; setGauge(CONFIG.speedMax);
   }
 
-  if (state === 'after') {
-    var te = (now - tImpact) / 1000;
-    while (sceneIdx < afterScenes.length && te >= afterScenes[sceneIdx].at) { ad.classList.add(afterScenes[sceneIdx].cls); sceneIdx++; }
-    if (te < T.final) v = 1 - .28 * Math.min(1, te);
-    else { var k = Math.min(1, (te - T.final) / 1.4); v = .72 * (1 - k) * (1 - k) + .02 * (1 - k); }
-
-    if (te >= T.end) {
-      if (CONFIG.loop && loops < CONFIG.maxLoops) {
-        if (!fading && te >= T.end + CONFIG.loopHold) { fading = true; ad.classList.add('fadeout'); holdUntil = te + .55; }
-        if (fading && te >= holdUntil) { loops++; resetAll(); }
-      } else if (v <= .03) {
-        for (var i = 0; i < streaks.length; i++) streaks[i].el.style.opacity = 0;
-        stopped = true; // final karesi sabit; rAF durur (Tekrar Dene yeniden başlatır)
-      }
-    }
-  }
-
-  streaksEl.style.transform = 'translate(' + (px * 10).toFixed(1) + 'px,' + (py * 8).toFixed(1) + 'px)';
   updateStreaks(v, dt);
+
+  if (t >= T.end) {
+    if (CONFIG.loop && loops < CONFIG.maxLoops) {
+      if (!fading && t >= T.end + CONFIG.loopHold) { fading = true; ad.classList.add('fadeout'); holdUntil = t + .55; }
+      if (fading && t >= holdUntil) { loops++; resetAll(); }
+    } else if (v <= .03) {
+      for (var i = 0; i < streaks.length; i++) streaks[i].el.style.opacity = 0;
+      stopped = true; // final karesi sabit; rAF durur
+    }
+  }
   if (!stopped) requestAnimationFrame(frame);
 }
 requestAnimationFrame(frame);

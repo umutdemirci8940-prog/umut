@@ -140,4 +140,4 @@ tools/smoke.js           Etkileşim duman testi
 
 ## Diğer çalışmalar
 
-- **Superonline – 1000 Mbps masthead (970×250):** `superonline/970x250/index.html` – "Hız kadraja sığmıyor" fikriyle, sayaç/hız göstergesi üzerine kurulu, tek dosyalık HTML5 masthead. Açıklama ve düzenlenebilir alanlar için bkz. [`superonline/README.md`](superonline/README.md).
+- **Superonline – 1000 Mbps masthead (970×250):** `superonline/970x250/index.html` (etkileşimli: basılı tut → hızlan) ve `superonline/970x250-autoplay/index.html` (otomatik) – "Hız kadraja sığmıyor" fikriyle, sayaç/hız göstergesi üzerine kurulu, tek dosyalık HTML5 masthead. Açıklama ve düzenlenebilir alanlar için bkz. [`superonline/README.md`](superonline/README.md).

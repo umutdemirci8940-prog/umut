@@ -1,55 +1,62 @@
 # Superonline – 1000 Mbps Masthead (970×250)
 
-"**HIZ KADRAJA SIĞMIYOR**" fikri üzerine kurulu, media-first, animasyonlu HTML5 masthead.
-Tek dosya: [`970x250/index.html`](970x250/index.html) – tüm CSS ve JS dosyanın içinde, Canvas yok, harici framework / CDN / görsel yok (logo ve ikonlar satır içi SVG/CSS).
+"**HIZ KADRAJA SIĞMIYOR**" fikri üzerine kurulu, media-first HTML5 masthead. İki sürüm:
+
+| Sürüm | Dosya | Ne yapar |
+|---|---|---|
+| **Etkileşimli (ana teslim)** | [`970x250/index.html`](970x250/index.html) | Kullanıcı **basılı tutarak** sayacı 1000 Mbps'e çıkarır; bırakınca hız düşer. 4 sn içinde etkileşim yoksa otomatik oynar. |
+| Otomatik | [`970x250-autoplay/index.html`](970x250-autoplay/index.html) | Aynı kurgu, etkileşimsiz, 12 sn'lik zamanlanmış akış. Etkileşime izin vermeyen yerleşimler için. |
+
+Her ikisi de tek dosya: tüm CSS ve JS içeride, Canvas yok, harici framework / CDN / görsel yok (logo base64, ikonlar satır içi SVG).
 
 Kampanya sayfası: <https://www.superonline.net/ev-interneti/fiber-internet/onlinea-ozel-fiber-hizlari-kampanyasi/1000-mbps>
 
-## Kurgu (≈12 sn, sonra final karesinde sabit)
+## Etkileşimli kurgu
 
-| Zaman | Sahne | Ne olur |
+| Durum | Ne olur |
+|---|---|
+| **Bekleme (attract)** | Logo, ortada yay biçimli hız göstergesi ve 100–112 arasında "nefes alan" sayaç; sağda nabız halkalı **"BASILI TUT · HIZLAN"** pedalı (final CTA'sının konumunda). İmleç banner üzerinde gezerken hız çizgileri hafifçe paralaks yapar. |
+| **Basılı tutma** | Pedala ya da banner'ın herhangi bir yerine basılı tutulunca sayaç üstel ivmeyle yükselir (≈2 sn'de 1000). Gösterge dolar, kademeler yanar, hız çizgileri hızlanıp uzar, rakamın arkasında sarı motion-blur hayaletleri belirir, pedalın içi dolar. Boşluk / sağ ok tuşu ve dokunmatik de çalışır. |
+| **Bırakma** | Hız 100'e doğru hızla düşer; 300'ün üstünde bırakılırsa pedalın üstünde kısa bir **"BIRAKMA!"** uyarısı çıkar (en fazla 3 kez). Pedala kısa dokunuşlar anlık +90 Mbps verir (hızlı tıklayarak da çıkılabilir). |
+| **1000 Mbps – wow moment** | Flaş, şok halkası, ışık süpürmesi, kamera sarsıntısı; "1000" sarıya dönüp 6,6 kat büyüyerek kadrajdan **taşar**, sonra üstten alta dayanan boyuta oturur; "Mbps" sağa itilir. Pedal kaybolur. |
+| **Devamı** | "Online'a Özel Fiber İnternet" → FİLM · OYUN · DOWNLOAD · UPLOAD · ÇOKLU CİHAZ → final: "1000 Mbps Fiber İnternet", "Online'a Özel", 950 TL/ay, koşullar, sarı **HEMEN BAŞVUR** (pedalın yerinde belirir) ve sağ altta küçük **TEKRAR DENE**. |
+| **Otomatik oynatma** | 4 sn içinde etkileşim yoksa pedal kendiliğinden basılı görünür ve aynı fizikle hızlanır: etkileşimsiz izleyici için toplam ≈13 sn, sonra final karesi sabit. |
+
+Tıklama kuralları: kısa tıklama (≤220 ms, hız kazanımı yok) her yerde kampanya sayfasını açar; basılı tutma sonrası bırakma tıklama sayılmaz. Pedal tıklaması sayfaya gitmez. CTA her zaman sayfaya gider.
+
+Ekran görüntüleri: [`preview/`](preview/) (etkileşimli), [`preview-autoplay/`](preview-autoplay/) (otomatik)
+
+| Bekleme | Basılı tutma | Hızlı |
 |---|---|---|
-| 0,0 – 2,4 sn | **Giriş** | Koyu lacivert/siyah premium zemin, sol üstte logo, ortada yay biçimli hız göstergesi ve "100 Mbps" sayacı. Sayaç yavaşça ilerler (100 → 130), hız çizgileri ağır akar. |
-| 2,4 – 5,2 sn | **Hızlanma** | Sayaç ivmelenerek 200 → 500 → 750 → 1000'e çıkar (küp eğrisi). Tempo değişkeni `v` sayaçla birlikte artar: hız çizgileri hızlanır, uzar ve parlar; rakamın arkasında sarı "motion blur" hayaletleri belirir; göstergedeki 100/200/500/750/1000 kademeleri geçildikçe yanar. |
-| 5,2 – 6,1 sn | **Wow moment** | Flaş, genişleyen şok halkası, ışık süpürmesi ve kısa kamera sarsıntısı. "1000" sarıya dönüp 6,6 kat büyüyerek kadrajdan **taşar**, sonra 4,9 kata (üstten alta dayanacak boyuta) oturur; "Mbps" sağa itilir. |
-| 6,1 – 7,7 sn | **Mesaj** | Dev rakam %13 opaklığa çekilir, üzerine "Online'a Özel Fiber İnternet" gelir; sağ üstte konsept satırı "HIZ KADRAJA SIĞMIYOR". |
-| 7,7 – 9,9 sn | **Kullanım** | FİLM · OYUN · DOWNLOAD · UPLOAD · ÇOKLU CİHAZ sağdan, yatayda esneyerek (scaleX) art arda sıraya dizilir; sonra topluca sola süpürülür. |
-| 9,9 – 12 sn | **Final / CTA** | Animasyon sakinleşir. Logo, "1000 Mbps Fiber İnternet", "Online'a Özel", fiyat (950 TL/ay), koşullar ve sarı "HEMEN BAŞVUR" butonu. Arka planda çizgi kontur "1000" dokusu. 12. saniyede rAF döngüsü durur, kare sabit kalır. |
+| ![](preview/01-attract.jpg) | ![](preview/02-hold.jpg) | ![](preview/03-hold-fast.jpg) |
 
-Ekran görüntüleri: [`preview/`](preview/)
-
-| Giriş | Hızlanma | Impact (flaş + halka) |
+| Taşma (peak) | Mesaj | Final |
 |---|---|---|
-| ![](preview/01-intro.jpg) | ![](preview/04-fast.jpg) | ![](preview/05-impact-flash.jpg) |
-
-| Işık süpürmesi | Taşma (peak) | Oturmuş "1000 Mbps" |
-|---|---|---|
-| ![](preview/05-impact-sweep.jpg) | ![](preview/05b-peak.jpg) | ![](preview/06-hero.jpg) |
-
-| Mesaj | Kullanım | Final |
-|---|---|---|
-| ![](preview/07-tag.jpg) | ![](preview/09-usesout.jpg) | ![](preview/10-final.jpg) |
+| ![](preview/05-impact-peak.jpg) | ![](preview/07-tag.jpg) | ![](preview/09-final.jpg) |
 
 ## Teknik
 
 - 970×250 sabit alan, `<meta name="ad.size">` etiketi mevcut.
-- Sahneler `#ad` üzerine eklenen sınıflarla (`s1`, `s3`, `s3b`, `s4`, `s4out`, `s5`, `done`) CSS keyframe'lerini tetikler; sayaç, gösterge yayı ve hız çizgileri `requestAnimationFrame` ile JS'ten sürülür (yalnızca `transform`/`opacity`, `will-change`, `contain:strict`).
-- Tıklama: tüm alan (`#exit`) ve CTA (`#cta`) tıklanabilir. `window.clickTag` / `clickTAG` tanımlıysa o URL, `Enabler` varsa `Enabler.exit('CTA', url)`, aksi hâlde `CONFIG.url` yeni sekmede açılır. `href` de kampanya URL'sini taşır.
-- Hover: CTA hafif yükselir, ok kayar, parlama süpürmesi geçer.
+- Sahneler `#ad` üzerine eklenen sınıflarla (`s1`, `s3`, `s3b`, `s4`, `s4out`, `s5`, `done`, `auto`, `interacted`) CSS keyframe'lerini tetikler; sayaç fiziği, gösterge yayı, pedal dolgusu ve hız çizgileri `requestAnimationFrame` ile JS'ten sürülür (yalnızca `transform`/`opacity`, `will-change`, `contain:strict`). Final karesinde rAF durur.
+- Giriş: Pointer Events (fare, dokunmatik, kalem), klavye (Boşluk / sağ ok), `touch-action:none`.
+- Tıklama: tüm alan (`#exit`) ve CTA (`#cta`). `window.clickTag` / `clickTAG` tanımlıysa o URL, `Enabler` varsa `Enabler.exit('CTA', url)`, aksi hâlde `CONFIG.url` yeni sekmede açılır. `href` de kampanya URL'sini taşır.
+- Hover: CTA hafif yükselir, ok kayar, parlama süpürmesi geçer; pedal parlar.
 - `prefers-reduced-motion` açıksa doğrudan final karesine yakın başlar.
-- Konsol hatası yok; Chromium'da Playwright ile doğrulandı (ekran görüntüleri, sabit final karesi, tıklama/clickTag/Enabler testleri).
+- Konsol hatası yok; Chromium'da Playwright ile doğrulandı: otomatik akış (impact 6,0 sn, final 10,8 sn, 12,8 sn'de sabit), basılı tutma (≈2 sn'de impact, tıklama bastırma), erken bırakma (hız düşüşü), kısa tıklama (sayfa açılır), pedal dokunuşları, klavye, Tekrar Dene, clickTag/Enabler.
 
 ## Kolay değiştirilecek alanlar (`970x250/index.html`)
 
 | Ne | Nerede |
 |---|---|
 | Fiyat, birim, koşul metni, kampanya URL'si | `<script>` başındaki `CONFIG` nesnesi (`price`, `priceUnit`, `terms`, `url`) |
+| Otomatik oynatma gecikmesi | `CONFIG.autoplayAfter` (sn) |
+| Etkileşim fiziği | `accelBase`, `accelGain` (ivme), `decay` (bırakınca düşüş), `tapBoost` (kısa dokunuş) |
 | Sayaç başlangıç / hedef değeri | `CONFIG.speedStart`, `CONFIG.speedMax` |
-| Döngü | `CONFIG.loop: true`, `loopHold`, `maxLoops` (final karesinden sonra doğal fade ile başa döner) |
-| Sahne zamanları | `T` nesnesi (`accel`, `impact`, `tag`, `uses`, `usesOut`, `final`, `end`) |
+| Impact sonrası sahne zamanları | `T` nesnesi (`tag`, `uses`, `usesOut`, `final`, `end`) |
+| Döngü (yalnızca otomatik akış) | `CONFIG.loop: true`, `loopHold`, `maxLoops` |
 | Renkler | `:root` değişkenleri (`--yellow`, `--bg0`, `--bg1`, `--ink` …) |
-| Logo | `CONFIG.logoWhite` (varsayılan, koyu zemin için negatif: yazı beyaz, işaret sarı) ve `CONFIG.logoColor` (orijinal renkli) base64 olarak gömülü; kaynak: Turkcell Superonline logo PNG (301×88, CDN). `logoHeight` yükseklik (px), `logoPlate: true` renkli logoyu beyaz plaka üzerinde gösterir, `logoInvert` tamamen beyaza çevirir. Görsel yüklenemezse `#logo` içindeki tipografik yedek görünür. |
-| Metinler | `.tag`, `.use`, `.headline`, `.sub`, `.kicker`, CTA metni doğrudan HTML'de |
+| Logo | `CONFIG.logoWhite` (koyu zemin için negatif: yazı beyaz, işaret sarı – varsayılan) ve `CONFIG.logoColor` (orijinal renkli) base64 gömülü; kaynak: Turkcell Superonline PNG (301×88, CDN). `logoHeight`, `logoPlate` (renkli logo beyaz plakada), `logoInvert`. Yüklenemezse `#logo` içindeki tipografik yedek görünür. |
+| Metinler | Pedal etiketi (`.pedal .lbl`), "BIRAKMA!" (`#hint`), `.tag`, `.use`, `.headline`, `.sub`, `.kicker`, CTA ve "TEKRAR DENE" doğrudan HTML'de |
 | Gösterge kademeleri | `TICKS` dizisi |
 | Hız çizgisi yoğunluğu | `makeStreaks()` içindeki `n` |
 
