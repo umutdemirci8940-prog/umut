@@ -1,17 +1,42 @@
 # Superonline – 1000 Mbps Masthead (970×250)
 
-"**HIZ KADRAJA SIĞMIYOR**" fikri üzerine kurulu, media-first HTML5 masthead. İki sürüm:
+"**HIZ KADRAJA SIĞMIYOR**" fikri üzerine kurulu, media-first HTML5 masthead çalışmaları. Üç sürüm:
 
-| Sürüm | Dosya | Ne yapar |
+| Sürüm | Dosya | Konsept |
 |---|---|---|
-| **Etkileşimli (ana teslim)** | [`970x250/index.html`](970x250/index.html) | Kullanıcı **basılı tutarak** sayacı 1000 Mbps'e çıkarır; bırakınca hız düşer. 4 sn içinde etkileşim yoksa otomatik oynar. |
-| Otomatik | [`970x250-autoplay/index.html`](970x250-autoplay/index.html) | Aynı kurgu, etkileşimsiz, 12 sn'lik zamanlanmış akış. Etkileşime izin vermeyen yerleşimler için. |
+| **KADRAJ (yeni konsept)** | [`970x250-kadraj/index.html`](970x250-kadraj/index.html) | Banner bir vizördür. Sarı zemin, siyah tipografi; köşe braketleri sayacı çerçevede tutmaya çalışır, 1000'de rakam kadrajı kırar. Etkileşim: **imleci sağa kaydır = hızlan**. |
+| Hız göstergesi – etkileşimli | [`970x250/index.html`](970x250/index.html) | Koyu lacivert zemin, sarı vurgu, yay göstergesi. Etkileşim: **basılı tut = hızlan**. |
+| Hız göstergesi – otomatik | [`970x250-autoplay/index.html`](970x250-autoplay/index.html) | Aynı kurgu, etkileşimsiz 12 sn'lik akış. |
 
-Her ikisi de tek dosya: tüm CSS ve JS içeride, Canvas yok, harici framework / CDN / görsel yok (logo base64, ikonlar satır içi SVG).
+Hepsi tek dosya: tüm CSS ve JS içeride, Canvas yok, harici framework / CDN / görsel yok (logo base64, ikonlar satır içi SVG). Etkileşimli sürümlerde 4 sn içinde etkileşim yoksa otomatik oynatma devreye girer.
 
 Kampanya sayfası: <https://www.superonline.net/ev-interneti/fiber-internet/onlinea-ozel-fiber-hizlari-kampanyasi/1000-mbps>
 
-## Etkileşimli kurgu
+## KADRAJ konsepti (`970x250-kadraj/`)
+
+| Durum | Ne olur |
+|---|---|
+| **Bekleme** | Superonline sarısı zemin. Sol üstte vizör HUD'u ("● REC · KADRAJ 970 × 250"), sağ üstte tek renk logo. Solda 132 px siyah sayaç "100 Mbps", etrafında ince siyah köşe braketleri ve orta çentikler. Altta 100 · 200 · 500 · 750 · 1000 kademeli hız rayı ve topuz; sağda "HIZLANMAK İÇİN SAĞA KAYDIR →". |
+| **Kaydırma** | İmleç (veya parmak) banner üzerinde sağa gittikçe topuz onu izler, sayaç üstel eğriyle yükselir. Rakam hafifçe büyür ve öne yatar (skew), arkasında siyah motion-blur hayaletleri; braketler rakamı takip ederek genişler, %35'ten sonra titremeye başlar; beyaz/koyu hız çizgileri hızlanır. İmleç çekilirse hız geri düşer. Ok tuşları da çalışır. |
+| **1000 – kadraj kırılır** | Braketler bir anda banner'ın köşelerine sıçrar (kadraj = banner), zemin siyaha döner, flaş; "1000" sarıya dönüp 3,4 kat büyüyerek dört yandan taşar, 2,75 katta üstten alta dayanarak oturur; braketler köşelerden dışarı fırlayıp kaybolur. |
+| **Mesaj** | Dev rakam %12'ye söner, üzerine "Online'a Özel Fiber İnternet". |
+| **Kullanım şeridi** | Ortada sarı bir şerit açılır; FİLM • OYUN • DOWNLOAD • UPLOAD • ÇOKLU CİHAZ siyah tipografiyle 1500 px/sn hızla akıp yavaşlayarak durur. |
+| **Final** | Şerit tüm banner'a açılır (sarı final zemini). Logo, "ONLINE'A ÖZEL" siyah etiket, "1000 Mbps Fiber İnternet", 950 TL/ay + koşullar, siyah "HEMEN BAŞVUR" pill (hover: yükselir, ok kayar, parlama), sağ altta "TEKRAR DENE". Arkada çizgi kontur "1000". |
+| **Otomatik** | 4 sn etkileşim yoksa topuz 2,4 sn'de kendiliğinden sağa kayar; etkileşimsiz izleyici için impact ≈ 6,6 sn, final ≈ 11,7 sn, 13,8 sn'de sabit. |
+
+Tıklama: her yerde tek tıklama kampanya sayfasını açar (kaydırma tıklama gerektirmediği için çakışma yoktur). Ekran görüntüleri: [`preview-kadraj/`](preview-kadraj/)
+
+| Bekleme | Kaydırma | Kadraj kırılır |
+|---|---|---|
+| ![](preview-kadraj/01-attract.jpg) | ![](preview-kadraj/03-slide-fast.jpg) | ![](preview-kadraj/04-impact-snap.jpg) |
+
+| Taşma | Şerit | Final |
+|---|---|---|
+| ![](preview-kadraj/06-hero.jpg) | ![](preview-kadraj/08-ticker.jpg) | ![](preview-kadraj/09-final.jpg) |
+
+KADRAJ'da ayarlanabilir alanlar (`CONFIG`): `autoplayAfter`, `railX0/railX1` (ray konumu), `curve` (ray → hız eğrisi), `follow` (takip hızı), `release` (bırakınca düşüş), `autoGlide` (otomatik kaydırma süresi), `words` (şerit kelimeleri), `logoDark` (tek renk koyu logo, base64), fiyat/koşul/URL; sahne zamanları `T`, şerit hızı `TICK_V0` / `TICK_DUR`.
+
+## Hız göstergesi konsepti – etkileşimli kurgu (`970x250/`)
 
 | Durum | Ne olur |
 |---|---|

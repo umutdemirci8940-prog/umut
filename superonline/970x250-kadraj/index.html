@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=970,height=250">
+<meta name="viewport" content="width=970">
+<title>Superonline – 1000 Mbps | KADRAJ | 970x250 Interactive Masthead</title>
+<style>
+/* ============================================================
+   SUPERONLINE · 1000 Mbps · KONSEPT "KADRAJ" · 970x250
+   Banner bir vizördür: köşe braketleri sayacı çerçevede tutmaya
+   çalışır, hız arttıkça titrer ve genişler; 1000'de rakam kadrajı
+   kırıp taşar. Sarı zemin → impact'te siyah → kullanım şeridi →
+   sarı final. Etkileşim: imleci / parmağı sağa kaydır = hızlan.
+   Tek dosya HTML5. Canvas yok, harici bağımlılık yok.
+   ------------------------------------------------------------
+   Kolay değiştirilecek alanlar:
+   - Renkler: :root değişkenleri
+   - Metinler: <body> içindeki metin düğümleri
+   - Süreler / fizik / fiyat / URL / logo: <script> içindeki CONFIG ve T
+   ============================================================ */
+:root{
+  --w:970px; --h:250px;
+  --yellow:#FFC40C;           /* Superonline sarısı – zemin */
+  --yellow2:#FFD24A;          /* açık ton */
+  --ink:#0B0B0C;              /* siyah – tipografi ve karanlık faz */
+  --ink70:rgba(11,11,12,.7);
+  --ink40:rgba(11,11,12,.4);
+  --white:#ffffff;
+  --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Liberation Sans","Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--ink)}
+body{width:var(--w);height:var(--h);overflow:hidden;font-family:var(--font);-webkit-font-smoothing:antialiased;text-rendering:geometricPrecision}
+#ad{position:relative;width:var(--w);height:var(--h);overflow:hidden;background:var(--yellow);contain:strict;user-select:none;-webkit-user-select:none;cursor:pointer;touch-action:none;color:var(--ink)}
+#ad::after{content:"";position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08);z-index:5}
+
+/* ---------- Zemin katmanları ---------- */
+.bg{position:absolute;inset:0;background:
+  radial-gradient(900px 320px at 28% 45%, var(--yellow2) 0%, rgba(255,210,74,0) 62%),
+  linear-gradient(90deg, rgba(0,0,0,.07) 0%, rgba(0,0,0,0) 12%, rgba(0,0,0,0) 88%, rgba(0,0,0,.07) 100%),
+  var(--yellow)}
+.bgDark{position:absolute;inset:0;background:radial-gradient(900px 320px at 50% 50%, #1a1a1c 0%, var(--ink) 70%);opacity:0}
+.streaks{position:absolute;inset:-12px;overflow:hidden;will-change:transform}
+.streak{position:absolute;left:0;top:0;height:2px;width:160px;border-radius:2px;transform-origin:100% 50%;will-change:transform,opacity;opacity:0;
+  background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.55) 70%,rgba(255,255,255,.95) 100%)}
+.streak.k{background:linear-gradient(90deg,rgba(11,11,12,0) 0%,rgba(11,11,12,.16) 70%,rgba(11,11,12,.32) 100%)}
+.streak.beam{height:16px;border-radius:16px;background:radial-gradient(ellipse at 100% 50%,rgba(255,255,255,.5) 0%,rgba(255,255,255,.14) 40%,rgba(255,255,255,0) 72%)}
+.dark .streak{background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.5) 70%,#fff 100%)}
+.dark .streak.k{background:linear-gradient(90deg,rgba(255,196,12,0) 0%,rgba(255,196,12,.6) 70%,var(--yellow) 100%)}
+.dark .streak.beam{background:radial-gradient(ellipse at 100% 50%,rgba(255,196,12,.4) 0%,rgba(255,196,12,.1) 40%,rgba(255,196,12,0) 72%)}
+/* Kullanım şeridi → finalde tam sarı zemin olur */
+.strip{position:absolute;inset:0;background:var(--yellow);opacity:0;clip-path:inset(124px 0 124px 0)}
+
+/* ---------- Sahne katmanı ---------- */
+.stage{position:absolute;inset:0}
+
+/* Logo (sol üst) – tek renk koyu sürüm */
+.logo{position:absolute;right:30px;top:20px;display:flex;align-items:center;opacity:0;min-height:30px}
+.logoImg{display:none;height:36px;width:auto;max-width:240px}
+.logo.hasImg .logoImg{display:block}
+.logo.hasImg .logoFallback{display:none}
+.logoFallback{font-size:20px;font-weight:800;letter-spacing:-.03em;color:var(--ink)}
+
+/* HUD (sağ üst) */
+.hud{position:absolute;left:28px;top:16px;display:flex;align-items:center;gap:16px;font-size:10px;font-weight:700;letter-spacing:.26em;color:var(--ink70);opacity:0;white-space:nowrap}
+.hud .rec{display:flex;align-items:center;gap:7px}
+.hud .rec i{width:7px;height:7px;border-radius:50%;background:var(--ink);animation:blink 1.1s steps(1) infinite}
+.hud .sep{width:1px;height:10px;background:var(--ink40)}
+
+/* Sayaç */
+.counter{position:absolute;left:120px;top:50%;height:132px;margin-top:-66px;display:flex;align-items:center;opacity:0}
+.digitsWrap{position:relative;height:132px;display:flex;align-items:center}
+.digits{position:relative;display:flex;align-items:center;font-size:132px;font-weight:900;letter-spacing:-.05em;line-height:1;color:var(--ink);white-space:nowrap;
+  font-variant-numeric:tabular-nums;font-feature-settings:"tnum";transform-origin:0 50%;will-change:transform;transition:color .25s}
+.digits .num{position:relative;z-index:2}
+.digits .ghost{position:absolute;left:0;top:0;height:100%;display:flex;align-items:center;color:var(--ink);opacity:0;will-change:transform,opacity;z-index:1}
+.unitWrap{margin-left:14px;align-self:flex-end;margin-bottom:20px;will-change:transform}
+.unit{font-size:20px;font-weight:800;letter-spacing:.08em;color:var(--ink70);line-height:1;will-change:transform,opacity;transition:color .25s}
+
+/* Vizör braketleri */
+.vf{position:absolute;left:0;top:0;width:100px;height:100px;opacity:0;pointer-events:none;will-change:transform}
+.vf .c{position:absolute;width:20px;height:20px;border:0 solid var(--ink)}
+.vf .tl{left:0;top:0;border-left-width:2px;border-top-width:2px}
+.vf .tr{right:0;top:0;border-right-width:2px;border-top-width:2px}
+.vf .bl{left:0;bottom:0;border-left-width:2px;border-bottom-width:2px}
+.vf .br{right:0;bottom:0;border-right-width:2px;border-bottom-width:2px}
+.vf .m{position:absolute;background:var(--ink);opacity:.55}
+.vf .mt{left:50%;top:-1px;width:2px;height:8px;margin-left:-1px}
+.vf .mb{left:50%;bottom:-1px;width:2px;height:8px;margin-left:-1px}
+.vf .ml{left:-1px;top:50%;width:8px;height:2px;margin-top:-1px}
+.vf .mr{right:-1px;top:50%;width:8px;height:2px;margin-top:-1px}
+.vf.snap{transition:left .22s cubic-bezier(.2,.8,.2,1),top .22s cubic-bezier(.2,.8,.2,1),width .22s cubic-bezier(.2,.8,.2,1),height .22s cubic-bezier(.2,.8,.2,1)}
+.vf.snap .c{border-color:var(--yellow)}
+.vf.snap .m{background:var(--yellow)}
+.vf.break .c{animation:cOut .5s .18s cubic-bezier(.5,0,.8,.3) forwards}
+.vf.break .m{animation:off .2s .18s forwards}
+.vf .tl{--dx:-90px;--dy:-90px}.vf .tr{--dx:90px;--dy:-90px}.vf .bl{--dx:-90px;--dy:90px}.vf .br{--dx:90px;--dy:90px}
+
+/* Ray (hız skalası + etkileşim) */
+.rail{position:absolute;left:120px;width:730px;top:218px;height:1px;background:rgba(11,11,12,.32);opacity:0}
+.railFill{position:absolute;left:0;top:-1px;width:100%;height:3px;background:var(--ink);transform-origin:0 50%;transform:scaleX(0);will-change:transform}
+.tick{position:absolute;top:-4px;width:1px;height:9px;background:rgba(11,11,12,.5)}
+.tick span{position:absolute;left:50%;top:12px;transform:translateX(-50%);font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--ink70);white-space:nowrap}
+.tick.on{background:var(--ink)}.tick.on span{color:var(--ink)}
+.knob{position:absolute;left:0;top:50%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 4px rgba(11,11,12,.14);will-change:transform;transition:box-shadow .2s}
+.knob::after{content:"";position:absolute;left:5px;top:5px;width:6px;height:6px;border-radius:50%;background:var(--yellow)}
+.interacted .knob,.auto .knob{box-shadow:0 0 0 7px rgba(11,11,12,.12)}
+.hint{position:absolute;right:120px;top:190px;display:flex;align-items:center;gap:8px;font-size:10.5px;font-weight:800;letter-spacing:.22em;color:var(--ink70);opacity:0;white-space:nowrap;pointer-events:none}
+.hint svg{width:16px;height:12px;stroke:var(--ink);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;animation:nudge 1.2s ease-in-out infinite}
+.s1 .hint{animation:fadeIn .6s 1s forwards}
+.interacted .hint,.auto .hint,.s3 .hint{animation:none;opacity:0;transition:opacity .3s}
+
+/* Impact */
+.flash{position:absolute;inset:0;opacity:0;pointer-events:none;background:radial-gradient(circle at 40% 50%,rgba(255,255,255,1) 0%,rgba(255,244,200,.85) 25%,rgba(255,196,12,0) 65%)}
+
+/* Mesaj (karanlık faz) */
+.tag{position:absolute;left:0;right:0;top:50%;margin-top:-24px;text-align:center;font-size:36px;font-weight:800;letter-spacing:-.02em;color:#fff;opacity:0;line-height:1.2}
+.tag em{font-style:normal;color:var(--yellow)}
+
+/* Kullanım şeridi kelimeleri */
+.ticker{position:absolute;left:0;top:50%;height:62px;margin-top:-31px;display:flex;align-items:center;white-space:nowrap;opacity:0;will-change:transform}
+.ticker span{display:inline-flex;align-items:center;font-size:30px;font-weight:900;letter-spacing:.04em;text-transform:uppercase;color:var(--ink);padding:0 26px}
+.ticker span::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--ink);margin-left:40px;opacity:.85}
+
+/* Final (sarı zemin) */
+.final{position:absolute;left:28px;top:0;height:250px;display:flex;flex-direction:column;justify-content:center;gap:10px;padding-top:8px}
+.final > *{opacity:0;transform:translateX(-22px)}
+.headline{font-size:44px;font-weight:900;letter-spacing:-.04em;line-height:1;color:var(--ink);white-space:nowrap}
+.sub{display:inline-flex;align-self:flex-start;align-items:center;height:22px;padding:0 10px;border-radius:4px;background:var(--ink);color:var(--yellow);font-size:11px;font-weight:800;letter-spacing:.24em;text-transform:uppercase}
+.offer{display:flex;align-items:baseline;gap:14px;margin-top:2px;white-space:nowrap}
+.price{font-size:30px;font-weight:900;letter-spacing:-.03em;color:var(--ink);line-height:1}
+.price small{font-size:15px;font-weight:700;letter-spacing:0;color:var(--ink70);margin-left:2px}
+.terms{font-size:12px;font-weight:600;color:var(--ink70);padding-left:14px;border-left:1px solid var(--ink40);line-height:1.3}
+.ghostNum{position:absolute;right:-24px;top:50%;font-size:300px;font-weight:900;letter-spacing:-.05em;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(11,11,12,.10);transform:translateY(-50%);opacity:0;pointer-events:none;white-space:nowrap}
+
+/* CTA – siyah pill */
+.ctaWrap{position:absolute;right:34px;top:50%;margin-top:-26px;opacity:0;transform:scale(.85);z-index:3;pointer-events:none}
+.s5 .ctaWrap{pointer-events:auto}
+.cta{position:relative;display:inline-flex;align-items:center;gap:12px;height:52px;padding:0 22px 0 26px;border-radius:26px;background:var(--ink);color:var(--yellow);
+  font-family:var(--font);font-size:15px;font-weight:800;letter-spacing:.14em;text-decoration:none;overflow:hidden;white-space:nowrap;
+  box-shadow:0 10px 26px rgba(11,11,12,.22);transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s}
+.cta .arrow{width:18px;height:18px;stroke:var(--yellow);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.cta .shine{position:absolute;top:-20px;bottom:-20px;left:-60px;width:40px;transform:skewX(-22deg);background:linear-gradient(90deg,rgba(255,196,12,0),rgba(255,196,12,.35),rgba(255,196,12,0));opacity:0}
+.cta:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 16px 34px rgba(11,11,12,.3)}
+.cta:hover .arrow{transform:translateX(4px)}
+.cta:hover .shine{animation:shine .75s ease-out forwards}
+.cta:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.replay{position:absolute;right:40px;bottom:12px;display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--ink40);text-decoration:none;opacity:0;z-index:4;pointer-events:none;transition:color .2s}
+.replay svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.replay:hover{color:var(--ink)}
+.s5 .replay{animation:fadeIn .6s 1.3s ease-out forwards;pointer-events:auto}
+
+/* Tam alan tıklama */
+.exit{position:absolute;inset:0;z-index:2;text-decoration:none;color:transparent;font-size:0}
+
+/* ============================================================
+   SAHNE DURUMLARI  (#ad üzerine JS'in eklediği sınıflar)
+   s1 giriş · s3 impact · s3b mesaj · s4 şerit · s4b şerit açılır · s5 final · done
+   dark karanlık faz · auto otomatik · interacted kullanıcı dokundu
+   ============================================================ */
+.s1 .logo{animation:logoIn .8s .15s cubic-bezier(.2,.8,.2,1) forwards}
+.s1 .hud{animation:fadeIn .7s .5s forwards}
+.s1 .counter{animation:counterIn .9s .3s cubic-bezier(.2,.8,.2,1) forwards}
+.s1 .vf{animation:fadeIn .5s .7s forwards}
+.s1 .rail{animation:fadeIn .7s .8s forwards}
+
+.s3 .flash{animation:flash .6s ease-out forwards}
+.s3 .bgDark{animation:fadeIn .22s .05s forwards}
+.s3 .stage{animation:shake .4s linear}
+.s3 .logo{animation:logoOut .15s forwards}
+.s3 .hud{animation:logoOut .15s forwards}
+.s3 .rail{animation:logoOut .2s forwards}
+.s3 .digits{color:var(--yellow);animation:heroIn 1s cubic-bezier(.22,.9,.28,1) forwards}
+.s3 .digits .ghost{opacity:0 !important}
+.s3 .unit{color:var(--yellow);animation:unitOut 1s cubic-bezier(.22,.9,.28,1) forwards}
+
+.s3b .digitsWrap{animation:dim .6s ease-out forwards}
+.s3b .unitWrap{animation:dim .5s ease-out forwards}
+.s3b .tag{animation:tagIn .75s cubic-bezier(.16,1,.3,1) forwards}
+
+.s4 .tag{animation:tagOut .4s cubic-bezier(.5,0,.8,.2) forwards}
+.s4 .strip{animation:stripIn .35s cubic-bezier(.2,.8,.2,1) forwards}
+.s4 .ticker{animation:fadeIn .25s .1s forwards}
+.s4 .digitsWrap{animation:dimOff .4s forwards}
+.s4 .unitWrap{animation:dimOff .4s forwards}
+
+.s4b .strip{animation:stripFull .6s cubic-bezier(.7,0,.2,1) forwards}
+.s4b .ticker{animation:off .3s forwards}
+
+.s5 .logo{animation:logoBack .6s .2s forwards}
+.s5 .ghostNum{animation:ghostIn 1.4s .3s ease-out forwards}
+.s5 .final .sub{animation:slideIn .7s .15s cubic-bezier(.16,1,.3,1) forwards}
+.s5 .final .headline{animation:slideIn .7s .3s cubic-bezier(.16,1,.3,1) forwards}
+.s5 .final .offer{animation:slideIn .7s .45s cubic-bezier(.16,1,.3,1) forwards}
+.s5 .ctaWrap{animation:ctaIn .65s .55s cubic-bezier(.2,.9,.3,1.25) forwards}
+.s5 .cta::after{content:"";position:absolute;inset:-3px;border-radius:30px;border:2px solid rgba(11,11,12,.5);animation:pulse 2.2s 1.4s ease-out 2}
+
+.fadeout .stage,.fadeout .strip,.fadeout .bgDark{animation:off .5s ease-in forwards}
+
+/* ---------- Keyframes ---------- */
+@keyframes fadeIn{to{opacity:1}}
+@keyframes off{to{opacity:0}}
+@keyframes blink{0%,60%{opacity:1}61%,100%{opacity:.15}}
+@keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(5px)}}
+@keyframes logoIn{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:none}}
+@keyframes logoOut{from{opacity:1}to{opacity:0}}
+@keyframes logoBack{from{opacity:0}to{opacity:1}}
+@keyframes counterIn{from{opacity:0;transform:translateX(-18px)}to{opacity:1;transform:none}}
+@keyframes flash{0%{opacity:0}10%{opacity:1}100%{opacity:0}}
+@keyframes shake{0%{transform:translate(0,0)}20%{transform:translate(-5px,3px)}40%{transform:translate(5px,-3px)}60%{transform:translate(-3px,2px)}80%{transform:translate(2px,-1px)}100%{transform:translate(0,0)}}
+@keyframes heroIn{0%{transform:scale(1.12)}55%{transform:translate(-40px,14px) scale(3.4)}100%{transform:translate(-60px,14px) scale(2.75)}}
+@keyframes unitOut{0%{transform:translate(0,0) scale(1);opacity:1}30%{opacity:0}55%{transform:translate(430px,60px) scale(1.4);opacity:0}100%{transform:translate(430px,60px) scale(1.4);opacity:1}}
+@keyframes cOut{to{transform:translate(var(--dx),var(--dy));opacity:0}}
+@keyframes dim{from{opacity:1}to{opacity:.12}}
+@keyframes dimOff{from{opacity:.12}to{opacity:0}}
+@keyframes tagIn{from{opacity:0;transform:translateY(22px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes tagOut{from{opacity:1;transform:translateY(0) scale(1)}to{opacity:0;transform:translateY(-26px) scale(1.02)}}
+@keyframes stripIn{from{opacity:1;clip-path:inset(124px 0 124px 0)}to{opacity:1;clip-path:inset(94px 0 94px 0)}}
+@keyframes stripFull{from{opacity:1;clip-path:inset(94px 0 94px 0)}to{opacity:1;clip-path:inset(0 0 0 0)}}
+@keyframes slideIn{to{opacity:1;transform:translateX(0)}}
+@keyframes ctaIn{to{opacity:1;transform:scale(1)}}
+@keyframes ghostIn{to{opacity:1}}
+@keyframes pulse{0%{opacity:.8;transform:scale(1)}100%{opacity:0;transform:scale(1.22)}}
+@keyframes shine{0%{left:-60px;opacity:0}20%{opacity:1}100%{left:120%;opacity:0}}
+
+@media (prefers-reduced-motion:reduce){
+  .stage *,.bg *,.strip{animation-duration:.01s !important;animation-delay:0s !important}
+}
+</style>
+</head>
+<body>
+<div id="ad" class="ad" role="link" tabindex="0" aria-label="Superonline – Online’a Özel 1000 Mbps Fiber İnternet. İmleci sağa kaydırarak hızlandır, Hemen Başvur.">
+  <div class="bg"></div>
+  <div class="bgDark"></div>
+  <div class="streaks" id="streaks"></div>
+  <div class="strip"></div>
+
+  <div class="stage">
+    <!-- LOGO: CONFIG.logoDark (base64). Yedek: tipografik wordmark -->
+    <div class="logo" id="logo">
+      <img class="logoImg" id="logoImg" alt="Superonline" decoding="async">
+      <span class="logoFallback" aria-hidden="true">superonline</span>
+    </div>
+
+    <div class="hud" aria-hidden="true"><span class="rec"><i></i>REC</span><span class="sep"></span><span>KADRAJ 970 × 250</span></div>
+
+    <div class="ghostNum" aria-hidden="true">1000</div>
+
+    <div class="counter" id="counter" aria-hidden="true">
+      <div class="digitsWrap">
+        <div class="digits" id="digits">
+          <span class="ghost g2" id="g2">100</span>
+          <span class="ghost g1" id="g1">100</span>
+          <span class="num" id="num">100</span>
+        </div>
+      </div>
+      <div class="unitWrap"><div class="unit" id="unit">Mbps</div></div>
+    </div>
+
+    <div class="vf" id="vf" aria-hidden="true">
+      <span class="c tl"></span><span class="c tr"></span><span class="c bl"></span><span class="c br"></span>
+      <span class="m mt"></span><span class="m mb"></span><span class="m ml"></span><span class="m mr"></span>
+    </div>
+
+    <div class="rail" id="rail" aria-hidden="true">
+      <div class="railFill" id="railFill"></div>
+      <div id="ticks"></div>
+      <div class="knob" id="knob"></div>
+    </div>
+    <div class="hint" aria-hidden="true">HIZLANMAK İÇİN SAĞA KAYDIR <svg viewBox="0 0 16 12"><path d="M1 6h13M9 1l5 5-5 5"/></svg></div>
+
+    <div class="flash"></div>
+
+    <div class="tag" aria-hidden="true"><em>Online’a Özel</em> Fiber İnternet</div>
+
+    <div class="ticker" id="ticker" aria-hidden="true"></div>
+
+    <div class="final" aria-hidden="true">
+      <div class="sub">Online’a Özel</div>
+      <div class="headline">1000 Mbps Fiber İnternet</div>
+      <div class="offer">
+        <div class="price"><span id="price">950 TL</span><small id="priceUnit">/ay</small></div>
+        <div class="terms" id="terms">12 ay taahhütlü · Modem ve tüm vergiler dahil<br>Kurulum ve aktivasyon ücretsiz</div>
+      </div>
+    </div>
+
+    <div class="ctaWrap">
+      <a class="cta" id="cta" href="#" target="_blank" rel="noopener">
+        <span class="shine"></span>
+        <span>HEMEN BAŞVUR</span>
+        <svg class="arrow" viewBox="0 0 24 24"><path d="M5 12h13M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <a class="replay" id="replay" href="#" aria-label="Tekrar oynat"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>TEKRAR DENE</a>
+  </div>
+
+  <!-- Tüm alan tıklanabilir: clickTag / Enabler / doğrudan URL -->
+  <a class="exit" id="exit" href="#" target="_blank" rel="noopener" aria-label="Kampanya sayfasına git">Superonline 1000 Mbps Fiber İnternet</a>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+/* =========================== AYARLAR =========================== */
+var CONFIG = {
+  url: 'https://www.superonline.net/ev-interneti/fiber-internet/onlinea-ozel-fiber-hizlari-kampanyasi/1000-mbps',
+  price: '950 TL',
+  priceUnit: '/ay',
+  terms: '12 ay taahhütlü · Modem ve tüm vergiler dahil<br>Kurulum ve aktivasyon ücretsiz',
+  /* Logo: Turkcell Superonline tek renk (koyu) sürüm, sarı zemin için. Kaynak PNG 301x88 (CDN). */
+  logoDark: 'data:image/png;base64,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',
+  logoHeight: 36,
+  speedStart: 100,
+  speedMax: 1000,
+  words: ['Film', 'Oyun', 'Download', 'Upload', 'Çoklu Cihaz'],
+  /* Etkileşim */
+  autoplayAfter: 4.0,         // sn – etkileşim yoksa otomatik oynar
+  railX0: 120, railX1: 850,   // ray başlangıç / bitiş (px)
+  curve: 1.5,                 // ray konumu → hız eğrisi (1 = doğrusal)
+  follow: 6,                  // hızın hedefe yaklaşma hızı (1/sn)
+  release: 1.1,               // imleç çekilince geri düşüş (1/sn)
+  autoGlide: 2.4,             // sn – otomatik kaydırma süresi
+  loop: false, loopHold: 4, maxLoops: 2
+};
+/* Impact sonrası sahne zamanları (saniye) */
+var T = { tag: 0.95, ticker: 2.4, stripFull: 4.6, final: 5.05, end: 7.2 };
+/* Şerit hızı */
+var TICK_V0 = 1500, TICK_DUR = 2.2;
+
+/* =========================== ELEMANLAR =========================== */
+var ad = document.getElementById('ad'), exitA = document.getElementById('exit'), ctaA = document.getElementById('cta');
+var num = document.getElementById('num'), g1 = document.getElementById('g1'), g2 = document.getElementById('g2');
+var digits = document.getElementById('digits'), vf = document.getElementById('vf');
+var knob = document.getElementById('knob'), railFill = document.getElementById('railFill'), ticker = document.getElementById('ticker');
+var replay = document.getElementById('replay');
+exitA.href = CONFIG.url; ctaA.href = CONFIG.url;
+
+/* =========================== TIKLAMA =========================== */
+function clickUrl(){
+  if (typeof window.clickTag === 'string' && window.clickTag) return window.clickTag;
+  if (typeof window.clickTAG === 'string' && window.clickTAG) return window.clickTAG;
+  return CONFIG.url;
+}
+function onExit(e){
+  e.preventDefault();
+  var url = clickUrl();
+  if (window.Enabler && typeof window.Enabler.exit === 'function') { window.Enabler.exit('CTA', url); return; }
+  window.open(url, '_blank');
+}
+exitA.addEventListener('click', onExit);
+ctaA.addEventListener('click', onExit);
+
+document.getElementById('price').textContent = CONFIG.price;
+document.getElementById('priceUnit').textContent = CONFIG.priceUnit;
+document.getElementById('terms').innerHTML = CONFIG.terms;
+
+(function setLogo(){
+  var box = document.getElementById('logo'), img = document.getElementById('logoImg');
+  if (!CONFIG.logoDark) return;
+  img.style.height = CONFIG.logoHeight + 'px';
+  img.onload = function(){ box.classList.add('hasImg'); };
+  img.onerror = function(){ box.classList.remove('hasImg'); };
+  img.src = CONFIG.logoDark;
+})();
+
+/* Kullanım şeridi kelimeleri (4 set) */
+(function buildTicker(){
+  var html = '';
+  for (var s = 0; s < 4; s++) for (var i = 0; i < CONFIG.words.length; i++) html += '<span>' + CONFIG.words[i] + '</span>';
+  ticker.innerHTML = html;
+})();
+
+/* =========================== RAY / KADEMELER =========================== */
+var RW = CONFIG.railX1 - CONFIG.railX0;
+function valToU(v){ return Math.pow(Math.max(0, (v - CONFIG.speedStart) / (CONFIG.speedMax - CONFIG.speedStart)), 1 / CONFIG.curve); }
+function uToVal(u){ return CONFIG.speedStart + (CONFIG.speedMax - CONFIG.speedStart) * Math.pow(Math.max(0, Math.min(1, u)), CONFIG.curve); }
+var TICKS = [100, 200, 500, 750, 1000], tickEls = [];
+(function buildTicks(){
+  var host = document.getElementById('ticks');
+  TICKS.forEach(function(v){
+    var el = document.createElement('div'); el.className = 'tick'; el.style.left = (valToU(v) * 100).toFixed(2) + '%';
+    el.innerHTML = '<span>' + v + '</span>'; host.appendChild(el); tickEls.push({ v: v, el: el, on: false });
+  });
+})();
+
+/* =========================== HIZ ÇİZGİLERİ =========================== */
+var W = 970, H = 250;
+var streaksEl = document.getElementById('streaks'), streaks = [];
+function rnd(a, b){ return a + Math.random() * (b - a); }
+(function makeStreaks(){
+  for (var i = 0; i < 20; i++) {
+    var el = document.createElement('div');
+    var beam = i % 7 === 0, dark = i % 3 === 0;
+    el.className = 'streak' + (beam ? ' beam' : (dark ? ' k' : ''));
+    var w = beam ? rnd(300, 520) : rnd(70, 240);
+    el.style.width = w + 'px';
+    if (!beam) el.style.height = (i % 4 === 0 ? 2.5 : 1.5) + 'px';
+    streaksEl.appendChild(el);
+    streaks.push({ el: el, w: w, x: rnd(-w, W), y: rnd(6, H - 8), sp: beam ? rnd(.35, .6) : rnd(.65, 1.45), a: beam ? rnd(.5, .8) : rnd(.45, 1) });
+  }
+})();
+function updateStreaks(v, dt){
+  var speed = 220 + 1500 * v, stretch = 1 + 2.4 * v, alpha = Math.min(1, .05 + 1.1 * v);
+  for (var i = 0; i < streaks.length; i++) {
+    var s = streaks[i];
+    s.x += speed * s.sp * dt;
+    if (s.x > W + 10) { s.x = -s.w * stretch - rnd(0, 500); s.y = rnd(6, H - 8); }
+    s.el.style.transform = 'translate3d(' + s.x.toFixed(1) + 'px,' + s.y.toFixed(1) + 'px,0) scaleX(' + stretch.toFixed(3) + ')';
+    s.el.style.opacity = (alpha * s.a).toFixed(3);
+  }
+}
+
+/* =========================== ETKİLEŞİM =========================== */
+var state = 'live';                 // live | after
+var u = 0, uTarget = 0, val = CONFIG.speedStart, tempo = 0;
+var pointerOn = false, interacted = false, auto = false, autoT0 = 0, autoU0 = 0;
+var tImpact = null, sceneIdx = 0, shown = -1, px = 0, py = 0;
+
+function setU(clientX){
+  var r = ad.getBoundingClientRect();
+  var x = clientX - r.left;
+  uTarget = Math.max(0, Math.min(1, (x - CONFIG.railX0) / RW));
+  if (!interacted) { interacted = true; ad.classList.add('interacted'); }
+}
+ad.addEventListener('pointermove', function(e){
+  if (state === 'after') return;
+  var r = ad.getBoundingClientRect();
+  px = Math.max(-.5, Math.min(.5, (e.clientX - r.left) / W - .5));
+  py = Math.max(-.5, Math.min(.5, (e.clientY - r.top) / H - .5));
+  if (e.pointerType === 'touch' && !e.pressure && e.buttons === 0) return;
+  pointerOn = true; setU(e.clientX);
+});
+ad.addEventListener('pointerdown', function(e){
+  if (state === 'after' || (e.button !== undefined && e.button !== 0)) return;
+  pointerOn = true; setU(e.clientX);
+  if (e.pointerType !== 'mouse' && e.cancelable) e.preventDefault();
+});
+ad.addEventListener('pointerleave', function(){ pointerOn = false; });
+window.addEventListener('pointerup', function(e){ if (e.pointerType !== 'mouse') pointerOn = false; });
+window.addEventListener('blur', function(){ pointerOn = false; });
+/* Klavye: sağ / sol ok */
+ad.addEventListener('keydown', function(e){
+  if (state === 'after') return;
+  if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+    e.preventDefault();
+    uTarget = Math.max(0, Math.min(1, uTarget + (e.key === 'ArrowRight' ? .05 : -.05)));
+    pointerOn = true; if (!interacted) { interacted = true; ad.classList.add('interacted'); }
+  }
+});
+replay.addEventListener('click', function(e){
+  e.preventDefault(); e.stopPropagation();
+  resetAll();
+  if (stopped) { stopped = false; requestAnimationFrame(frame); }
+});
+
+/* =========================== ZAMAN ÇİZGİSİ =========================== */
+var afterScenes = [
+  { at: T.tag,       cls: 's3b' },
+  { at: T.ticker,    cls: 's4' },
+  { at: T.stripFull, cls: 's4b' },
+  { at: T.final,     cls: 's5' },
+  { at: T.end,       cls: 'done' }
+];
+var ALL = ['s1','s3','s3b','s4','s4out','s4b','s5','done','dark','auto','interacted','fadeout'];
+var loops = 0, holdUntil = 0, fading = false, tickX = 0, tickV = 0;
+var reduced = false;
+try { reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (err) { reduced = false; }
+var start = null, last = null, stopped = false;
+
+function showVal(v){ var iv = Math.round(v); if (iv !== shown) { shown = iv; num.textContent = iv; g1.textContent = iv; g2.textContent = iv; } }
+
+var unitWrap = document.querySelector('.unitWrap');
+function layoutVF(v, sc, jitter){
+  var ar = ad.getBoundingClientRect(), dr = digits.getBoundingClientRect();
+  var pad = 16 + 6 * v;
+  unitWrap.style.transform = 'translateX(' + (dr.width - dr.width / sc).toFixed(1) + 'px)';
+  var jx = jitter ? (Math.random() - .5) * 2 * jitter : 0, jy = jitter ? (Math.random() - .5) * 2 * jitter : 0;
+  vf.style.left = (dr.left - ar.left - pad + jx).toFixed(1) + 'px';
+  vf.style.top = (dr.top - ar.top - pad + jy).toFixed(1) + 'px';
+  vf.style.width = (dr.width + pad * 2).toFixed(1) + 'px';
+  vf.style.height = (dr.height + pad * 2).toFixed(1) + 'px';
+}
+
+function triggerImpact(now){
+  state = 'after'; tImpact = now; sceneIdx = 0;
+  val = CONFIG.speedMax; showVal(val); u = 1;
+  digits.style.transform = ''; g1.style.opacity = g2.style.opacity = 0; unitWrap.style.transform = '';
+  knob.style.transform = 'translateX(' + RW + 'px)'; railFill.style.transform = 'scaleX(1)';
+  /* braketler önce banner kenarlarına sıçrar, sonra kırılıp dağılır */
+  vf.classList.add('snap');
+  vf.style.left = '12px'; vf.style.top = '12px'; vf.style.width = (W - 24) + 'px'; vf.style.height = (H - 24) + 'px';
+  setTimeout(function(){ vf.classList.add('break'); }, 200);
+  tickX = W; tickV = TICK_V0;
+  ad.classList.add('s3'); ad.classList.add('dark');
+}
+
+function resetAll(){
+  for (var i = 0; i < ALL.length; i++) ad.classList.remove(ALL[i]);
+  vf.classList.remove('snap'); vf.classList.remove('break');
+  state = 'live'; u = 0; uTarget = 0; val = CONFIG.speedStart; tempo = 0; pointerOn = false;
+  interacted = false; auto = false; tImpact = null; sceneIdx = 0; shown = -1; fading = false; start = null; last = null;
+  digits.style.transform = ''; g1.style.opacity = g2.style.opacity = 0; unitWrap.style.transform = '';
+  knob.style.transform = 'translateX(0)'; railFill.style.transform = 'scaleX(0)';
+  ticker.style.transform = 'translateX(' + W + 'px)';
+  for (var j = 0; j < streaks.length; j++) streaks[j].el.style.opacity = 0;
+  void ad.offsetWidth;
+}
+
+function frame(now){
+  if (start === null) { start = now; last = now; ad.classList.add('s1'); ticker.style.transform = 'translateX(' + W + 'px)'; if (reduced) triggerImpact(now - (T.final + .3) * 1000); }
+  var dt = Math.min(.05, (now - last) / 1000); last = now;
+  var t = (now - start) / 1000, v;
+
+  if (state === 'live') {
+    if (!interacted && !auto && t >= CONFIG.autoplayAfter) { auto = true; autoT0 = t; autoU0 = u; ad.classList.add('auto'); }
+    if (auto) { var q = Math.min(1, (t - autoT0) / CONFIG.autoGlide); uTarget = autoU0 + (1 - autoU0) * q * q * (3 - 2 * q); }
+    else if (!pointerOn) { uTarget = Math.max(0, uTarget - CONFIG.release * dt); }
+    u += (uTarget - u) * Math.min(1, CONFIG.follow * dt);
+    var target = uToVal(u);
+    val += (target - val) * Math.min(1, CONFIG.follow * dt);
+    if (!interacted && !auto) val = Math.max(val, CONFIG.speedStart + 10 * (.5 + .5 * Math.sin(t * 1.4))); // bekleme nefesi
+    if (val >= CONFIG.speedMax - 3 || u >= .995) { triggerImpact(now); }
+    else {
+      tempo = Math.pow(Math.max(0, (val - CONFIG.speedStart) / (CONFIG.speedMax - CONFIG.speedStart)), .85);
+      v = .05 + .95 * tempo;
+      showVal(val);
+      var sc = 1 + .12 * tempo;
+      digits.style.transform = 'scale(' + sc.toFixed(4) + ') skewX(' + (-7 * tempo).toFixed(2) + 'deg)';
+      g1.style.transform = 'translateX(' + (-10 * v).toFixed(2) + 'px)'; g1.style.opacity = (.28 * tempo).toFixed(3);
+      g2.style.transform = 'translateX(' + (-21 * v).toFixed(2) + 'px)'; g2.style.opacity = (.13 * tempo).toFixed(3);
+      knob.style.transform = 'translateX(' + (u * RW).toFixed(1) + 'px)'; railFill.style.transform = 'scaleX(' + u.toFixed(4) + ')';
+      for (var i = 0; i < tickEls.length; i++) { var on = val >= tickEls[i].v - .5; if (on !== tickEls[i].on) { tickEls[i].on = on; tickEls[i].el.className = on ? 'tick on' : 'tick'; } }
+      layoutVF(tempo, sc, tempo > .35 ? (tempo - .35) * 5 : 0);
+    }
+  }
+
+  if (state === 'after') {
+    var te = (now - tImpact) / 1000;
+    while (sceneIdx < afterScenes.length && te >= afterScenes[sceneIdx].at) { ad.classList.add(afterScenes[sceneIdx].cls); sceneIdx++; }
+    if (te < T.final) v = 1 - .3 * Math.min(1, te);
+    else { var k = Math.min(1, (te - T.final) / 1.2); v = .7 * (1 - k) * (1 - k); }
+    if (te >= T.ticker && te < T.stripFull + .4) {
+      var tt = te - T.ticker, p = Math.min(1, tt / TICK_DUR);
+      tickV = TICK_V0 * (1 - p) * (1 - p);
+      tickX -= tickV * dt;
+      ticker.style.transform = 'translateX(' + tickX.toFixed(1) + 'px)';
+    }
+    if (te >= T.end) {
+      if (CONFIG.loop && loops < CONFIG.maxLoops) {
+        if (!fading && te >= T.end + CONFIG.loopHold) { fading = true; ad.classList.add('fadeout'); holdUntil = te + .55; }
+        if (fading && te >= holdUntil) { loops++; resetAll(); }
+      } else if (v <= .02) {
+        for (var s = 0; s < streaks.length; s++) streaks[s].el.style.opacity = 0;
+        stopped = true;
+      }
+    }
+  }
+
+  streaksEl.style.transform = 'translate(' + (px * 10).toFixed(1) + 'px,' + (py * 8).toFixed(1) + 'px)';
+  updateStreaks(v, dt);
+  if (!stopped) requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
