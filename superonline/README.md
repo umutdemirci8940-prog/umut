@@ -48,9 +48,9 @@ Ekran görüntüleri: [`preview/`](preview/)
 | Döngü | `CONFIG.loop: true`, `loopHold`, `maxLoops` (final karesinden sonra doğal fade ile başa döner) |
 | Sahne zamanları | `T` nesnesi (`accel`, `impact`, `tag`, `uses`, `usesOut`, `final`, `end`) |
 | Renkler | `:root` değişkenleri (`--yellow`, `--bg0`, `--bg1`, `--ink` …) |
-| Logo | `#logo` kapsayıcısı – resmi Superonline SVG logosunu bu div'in içine yapıştırın (şu an tipografik yer tutucu) |
+| Logo | `CONFIG.logo` – varsayılan: `https://s.superonline.net/SiteAssets/Redesign/Superonline_2026_yeni_logo.png` (URL ya da base64 data URI verilebilir). `logoHeight` yükseklik (px), `logoPlate` koyu logo için beyaz plaka, `logoInvert` tek renkli koyu logoyu beyaza çevirir. Görsel yüklenemezse `#logo` içindeki tipografik yedek görünür. |
 | Metinler | `.tag`, `.use`, `.headline`, `.sub`, `.kicker`, CTA metni doğrudan HTML'de |
 | Gösterge kademeleri | `TICKS` dizisi |
 | Hız çizgisi yoğunluğu | `makeStreaks()` içindeki `n` |
 
-> **Doğrulama notu:** Bu banner'ın hazırlandığı ortamın ağ politikası `www.superonline.net` alan adına erişime izin vermedi. Fiyat (950 TL/ay), 12 ay taahhüt, "modem ve tüm vergiler dahil", "kurulum ve aktivasyon ücretsiz" bilgileri kampanya sayfasının arama motoru özetlerinden alındı; yayın öncesi sayfadaki güncel değerlerle karşılaştırılmalıdır. Logo sayfadan alınamadığı için tipografik yer tutucu kullanıldı.
+> **Doğrulama notu:** Bu banner'ın hazırlandığı ortamın ağ politikası `www.superonline.net` alan adına erişime izin vermedi. Fiyat (950 TL/ay), 12 ay taahhüt, "modem ve tüm vergiler dahil", "kurulum ve aktivasyon ücretsiz" bilgileri kampanya sayfasının arama motoru özetlerinden alındı; yayın öncesi sayfadaki güncel değerlerle karşılaştırılmalıdır. Logo olarak Superonline'ın kendi CDN'indeki 2026 logo PNG'si (`CONFIG.logo`) kullanılır; bu ortamdan `s.superonline.net` alan adına da erişilemediği için logonun koyu zemindeki görünümü (renk/plaka gereksinimi) doğrulanamadı, `logoPlate` / `logoInvert` seçenekleri bunun için hazırdır.

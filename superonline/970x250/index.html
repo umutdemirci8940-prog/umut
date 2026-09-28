@@ -14,7 +14,7 @@
    - Renkler: :root değişkenleri
    - Metinler: <body> içindeki data-* / metin düğümleri
    - Süreler / sahne zamanları: <script> içindeki T nesnesi
-   - Fiyat, taahhüt, URL: <script> içindeki CONFIG nesnesi
+   - Fiyat, taahhüt, URL, logo: <script> içindeki CONFIG nesnesi
    ============================================================ */
 :root{
   --w:970px; --h:250px;
@@ -54,10 +54,15 @@ body{width:var(--w);height:var(--h);overflow:hidden;font-family:var(--font);-web
 /* ---------- Sahne katmanı ---------- */
 .stage{position:absolute;inset:0}
 
-/* Logo (sol üst). Resmi SVG logoyu #logo içine yapıştırın. */
-.logo{position:absolute;left:28px;top:22px;display:flex;align-items:center;gap:8px;opacity:0}
+/* Logo (sol üst). Görsel CONFIG.logo'dan yüklenir; yüklenemezse tipografik yedek görünür. */
+.logo{position:absolute;left:28px;top:20px;display:flex;align-items:center;opacity:0;min-height:30px}
+.logoImg{display:none;height:28px;width:auto;max-width:240px}
+.logo.hasImg .logoImg{display:block}
+.logo.hasImg .logoFallback{display:none}
+.logo.plate .logoImg{background:#fff;border-radius:6px;padding:5px 9px;box-sizing:content-box}
+.logo.invert .logoImg{filter:brightness(0) invert(1)}
+.logoFallback{display:flex;align-items:center;gap:8px}
 .logo .word{font-size:21px;font-weight:800;letter-spacing:-.035em;color:#fff;line-height:1}
-.logo .word b{color:var(--yellow)}
 .logo .dot{width:7px;height:7px;border-radius:50%;background:var(--yellow);box-shadow:0 0 12px rgba(255,196,12,.9)}
 
 /* Hız göstergesi (SVG yay) */
@@ -216,8 +221,11 @@ body{width:var(--w);height:var(--h);overflow:hidden;font-family:var(--font);-web
   </div>
 
   <div class="stage">
-    <!-- LOGO: resmi Superonline SVG logosunu bu kapsayıcının içine koyun -->
-    <div class="logo" id="logo"><span class="dot"></span><span class="word">superonline</span></div>
+    <!-- LOGO: CONFIG.logo (URL veya base64 data URI). Yedek: tipografik wordmark -->
+    <div class="logo" id="logo">
+      <img class="logoImg" id="logoImg" alt="Superonline" decoding="async">
+      <span class="logoFallback" aria-hidden="true"><span class="dot"></span><span class="word">superonline</span></span>
+    </div>
 
     <div class="ghostNum" aria-hidden="true">1000</div>
 
@@ -289,6 +297,10 @@ var CONFIG = {
   price: '950 TL',            // kampanya sayfasındaki güncel aylık fiyat
   priceUnit: '/ay',
   terms: '12 ay taahhütlü · Modem ve tüm vergiler dahil<br>Kurulum ve aktivasyon ücretsiz',
+  logo: 'https://s.superonline.net/SiteAssets/Redesign/Superonline_2026_yeni_logo.png?v=20260308032141?20260928_04',
+  logoHeight: 28,             // px – logonun yüksekliği (genişlik orantılı)
+  logoPlate: false,           // true: koyu logo için beyaz plaka
+  logoInvert: false,          // true: tek renkli koyu logoyu beyaza çevirir
   speedStart: 100,            // sayaç başlangıcı
   speedMax: 1000,             // sayaç hedefi
   loop: false,                // true: final karesinden sonra doğal döngü
@@ -331,6 +343,18 @@ ctaA.addEventListener('click', onExit);
 document.getElementById('price').textContent = CONFIG.price;
 document.getElementById('priceUnit').textContent = CONFIG.priceUnit;
 document.getElementById('terms').innerHTML = CONFIG.terms;
+
+/* Logo: URL ya da base64; yüklenemezse tipografik yedek kalır */
+(function setLogo(){
+  var box = document.getElementById('logo'), img = document.getElementById('logoImg');
+  if (!CONFIG.logo) return;
+  img.style.height = CONFIG.logoHeight + 'px';
+  if (CONFIG.logoPlate) box.classList.add('plate');
+  if (CONFIG.logoInvert) box.classList.add('invert');
+  img.onload = function(){ box.classList.add('hasImg'); };
+  img.onerror = function(){ box.classList.remove('hasImg'); };
+  img.src = CONFIG.logo;
+})();
 
 /* =========================== GÖSTERGE =========================== */
 var CX = 440, CY = 172, R = 112, A0 = 160, SWEEP = 220; // ekran açıları (saat yönü)
