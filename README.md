@@ -137,3 +137,7 @@ tools/package.js         Teslim zip'i
 tools/capture.js         Playwright ile görüntü/video alma
 tools/smoke.js           Etkileşim duman testi
 ```
+
+## Diğer çalışmalar
+
+- **Superonline – 1000 Mbps masthead (970×250):** `superonline/970x250/index.html` – "Hız kadraja sığmıyor" fikriyle, sayaç/hız göstergesi üzerine kurulu, tek dosyalık HTML5 masthead. Açıklama ve düzenlenebilir alanlar için bkz. [`superonline/README.md`](superonline/README.md).

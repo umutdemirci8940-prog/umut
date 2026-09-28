@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=970,height=250">
+<meta name="viewport" content="width=970">
+<title>Superonline – 1000 Mbps Fiber İnternet | 970x250 Masthead</title>
+<style>
+/* ============================================================
+   SUPERONLINE · 1000 Mbps · "HIZ KADRAJA SIĞMIYOR" · 970x250
+   Tek dosya HTML5 masthead. Canvas yok, harici bağımlılık yok.
+   ------------------------------------------------------------
+   Kolay değiştirilecek alanlar:
+   - Renkler: :root değişkenleri
+   - Metinler: <body> içindeki data-* / metin düğümleri
+   - Süreler / sahne zamanları: <script> içindeki T nesnesi
+   - Fiyat, taahhüt, URL: <script> içindeki CONFIG nesnesi
+   ============================================================ */
+:root{
+  --w:970px; --h:250px;
+  --bg0:#05060a;            /* zemin – siyah/lacivert */
+  --bg1:#0b1020;            /* zemin – derin lacivert ton */
+  --navy:#101a33;
+  --yellow:#FFC40C;         /* Superonline sarısı */
+  --yellow2:#FFD95A;        /* parlama tonu */
+  --white:#ffffff;
+  --muted:rgba(255,255,255,.62);
+  --ink:#0b0f1c;            /* CTA yazı rengi */
+  --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Liberation Sans",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg0)}
+body{width:var(--w);height:var(--h);overflow:hidden;font-family:var(--font);-webkit-font-smoothing:antialiased;text-rendering:geometricPrecision}
+#ad{position:relative;width:var(--w);height:var(--h);overflow:hidden;background:var(--bg0);contain:strict;user-select:none;cursor:pointer}
+#ad::after{content:"";position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
+
+/* ---------- Arka plan katmanı ---------- */
+.bg{position:absolute;inset:0;overflow:hidden;background:
+  radial-gradient(1200px 260px at 50% 120%, #17224a 0%, rgba(23,34,74,0) 60%),
+  linear-gradient(90deg,var(--bg0) 0%,var(--bg1) 50%,var(--bg0) 100%)}
+.glow{position:absolute;left:50%;top:50%;width:820px;height:820px;margin:-410px 0 0 -410px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,196,12,.20) 0%,rgba(255,196,12,.06) 28%,rgba(255,196,12,0) 60%);
+  transform:scale(.55);opacity:.7;will-change:transform,opacity}
+.horizon{position:absolute;left:0;right:0;top:50%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.10) 30%,rgba(255,196,12,.35) 50%,rgba(255,255,255,.10) 70%,transparent);opacity:.6}
+.streaks{position:absolute;inset:0;overflow:hidden}
+.streak{position:absolute;left:0;top:0;height:2px;width:160px;border-radius:2px;transform-origin:100% 50%;will-change:transform,opacity;opacity:0;
+  background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.55) 70%,#fff 100%)}
+.streak.y{background:linear-gradient(90deg,rgba(255,196,12,0) 0%,rgba(255,196,12,.7) 70%,var(--yellow2) 100%)}
+.streak.beam{height:14px;border-radius:14px;background:radial-gradient(ellipse at 100% 50%,rgba(255,196,12,.45) 0%,rgba(255,196,12,.12) 40%,rgba(255,196,12,0) 72%)}
+.vignette{position:absolute;inset:0;pointer-events:none;background:
+  linear-gradient(90deg,rgba(5,6,10,.85) 0%,rgba(5,6,10,0) 14%,rgba(5,6,10,0) 86%,rgba(5,6,10,.85) 100%),
+  linear-gradient(180deg,rgba(5,6,10,.5) 0%,rgba(5,6,10,0) 25%,rgba(5,6,10,0) 75%,rgba(5,6,10,.55) 100%)}
+
+/* ---------- Sahne katmanı ---------- */
+.stage{position:absolute;inset:0}
+
+/* Logo (sol üst). Resmi SVG logoyu #logo içine yapıştırın. */
+.logo{position:absolute;left:28px;top:22px;display:flex;align-items:center;gap:8px;opacity:0}
+.logo .word{font-size:21px;font-weight:800;letter-spacing:-.035em;color:#fff;line-height:1}
+.logo .word b{color:var(--yellow)}
+.logo .dot{width:7px;height:7px;border-radius:50%;background:var(--yellow);box-shadow:0 0 12px rgba(255,196,12,.9)}
+
+/* Hız göstergesi (SVG yay) */
+.gauge{position:absolute;inset:0;width:970px;height:250px;opacity:0;transform-origin:440px 172px}
+.gauge .track{fill:none;stroke:rgba(255,255,255,.12);stroke-width:6;stroke-linecap:round}
+.gauge .haze{fill:none;stroke:rgba(255,196,12,.22);stroke-width:16;stroke-linecap:round}
+.gauge .prog{fill:none;stroke:var(--yellow);stroke-width:6;stroke-linecap:round}
+.gauge .tick{stroke:rgba(255,255,255,.22);stroke-width:2;stroke-linecap:round;transition:stroke .25s}
+.gauge .tick.on{stroke:var(--yellow)}
+.gauge .halo{fill:rgba(255,196,12,.28)}
+.gauge .head{fill:#fff;stroke:var(--yellow);stroke-width:3}
+
+/* Sayaç */
+.counter{position:absolute;left:calc(50% - 130px + 16px);top:50%;width:260px;height:90px;margin-top:-38px;opacity:0}
+.digitsWrap{position:absolute;left:0;top:0;width:170px;height:90px}
+.digits{position:absolute;inset:0;display:flex;align-items:center;justify-content:flex-end;font-size:72px;font-weight:900;letter-spacing:-.04em;line-height:1;color:#fff;
+  font-variant-numeric:tabular-nums;font-feature-settings:"tnum";transform-origin:50% 50%;will-change:transform;transition:color .35s;white-space:nowrap}
+.digits .num{position:relative;z-index:2}
+.digits .ghost{position:absolute;right:0;top:0;height:100%;display:flex;align-items:center;color:var(--yellow);opacity:0;will-change:transform,opacity;z-index:1}
+.unitWrap{position:absolute;left:180px;top:50%;margin-top:-13px;height:26px}
+.unit{font-size:22px;font-weight:700;letter-spacing:.02em;color:var(--muted);line-height:26px;transform-origin:0 50%;will-change:transform;transition:color .35s}
+
+/* Vurgu (impact) efektleri */
+.flash{position:absolute;inset:0;opacity:0;pointer-events:none;background:radial-gradient(circle at 47% 50%,rgba(255,255,255,.95) 0%,rgba(255,216,90,.75) 22%,rgba(255,196,12,0) 62%)}
+.ring{position:absolute;left:456px;top:125px;width:120px;height:120px;margin:-60px 0 0 -60px;border-radius:50%;border:2px solid var(--yellow);opacity:0;pointer-events:none;box-shadow:0 0 30px rgba(255,196,12,.5),inset 0 0 20px rgba(255,196,12,.35)}
+.sweep{position:absolute;left:-260px;top:-200px;width:220px;height:650px;opacity:0;pointer-events:none;transform:rotate(-24deg);background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.28) 45%,rgba(255,255,255,.55) 50%,rgba(255,255,255,.28) 55%,rgba(255,255,255,0))}
+
+/* Küçük konsept satırı (sağ üst) */
+.kicker{position:absolute;right:30px;top:24px;font-size:11px;font-weight:700;letter-spacing:.32em;color:var(--yellow);opacity:0;white-space:nowrap}
+
+/* "Online’a Özel Fiber İnternet" */
+.tag{position:absolute;left:0;right:0;top:50%;margin-top:-24px;text-align:center;font-size:36px;font-weight:800;letter-spacing:-.02em;color:#fff;opacity:0;line-height:1.2;
+  text-shadow:0 2px 24px rgba(5,6,10,.9),0 0 60px rgba(5,6,10,.8)}
+.tag em{font-style:normal;color:var(--yellow)}
+
+/* Kullanım senaryoları */
+.uses{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:0}
+.use{display:flex;align-items:center;gap:10px;padding:0 22px;font-size:22px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#fff;opacity:0;white-space:nowrap;
+  will-change:transform,opacity;transform-origin:100% 50%;position:relative;text-shadow:0 2px 18px rgba(5,6,10,.8)}
+.use + .use::before{content:"";position:absolute;left:0;top:50%;width:1px;height:26px;margin-top:-13px;background:rgba(255,255,255,.18)}
+.use svg{width:24px;height:24px;stroke:var(--yellow);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+/* Final */
+.final{position:absolute;left:28px;top:0;height:250px;display:flex;flex-direction:column;justify-content:center;gap:9px;padding-top:6px}
+.final > *{opacity:0;transform:translateX(-22px)}
+.headline{font-size:42px;font-weight:900;letter-spacing:-.035em;line-height:1;color:#fff;white-space:nowrap}
+.headline b{color:var(--yellow);font-weight:900}
+.sub{font-size:15px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--yellow)}
+.offer{display:flex;align-items:baseline;gap:14px;margin-top:4px;white-space:nowrap}
+.price{font-size:30px;font-weight:900;letter-spacing:-.03em;color:#fff;line-height:1}
+.price small{font-size:15px;font-weight:700;letter-spacing:0;color:var(--muted);margin-left:2px}
+.terms{font-size:12px;font-weight:500;color:var(--muted);letter-spacing:.01em;padding-left:14px;border-left:1px solid rgba(255,255,255,.18);line-height:1.3}
+
+/* CTA */
+.ctaWrap{position:absolute;right:34px;top:50%;margin-top:-26px;opacity:0;transform:scale(.85);z-index:3}
+.cta{position:relative;display:inline-flex;align-items:center;gap:12px;height:52px;padding:0 22px 0 26px;border-radius:26px;background:var(--yellow);color:var(--ink);
+  font-family:var(--font);font-size:15px;font-weight:800;letter-spacing:.14em;text-decoration:none;overflow:hidden;white-space:nowrap;z-index:3;
+  box-shadow:0 10px 30px rgba(255,196,12,.22),0 2px 0 rgba(0,0,0,.15);transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s,background .25s}
+.cta .arrow{width:18px;height:18px;stroke:var(--ink);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.cta .shine{position:absolute;top:-20px;bottom:-20px;left:-60px;width:40px;transform:skewX(-22deg);background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.75),rgba(255,255,255,0));opacity:0}
+.cta:hover{transform:translateY(-2px);background:var(--yellow2);box-shadow:0 16px 36px rgba(255,196,12,.35),0 2px 0 rgba(0,0,0,.15)}
+.cta:hover .arrow{transform:translateX(4px)}
+.cta:hover .shine{animation:shine .75s ease-out forwards}
+.cta:focus-visible{outline:2px solid #fff;outline-offset:3px}
+
+/* Tam alan tıklama (clickTag) */
+.exit{position:absolute;inset:0;z-index:2;text-decoration:none;color:transparent;font-size:0}
+
+/* Arka planda kalan dev "1000" (final için doku) */
+.ghostNum{position:absolute;right:-30px;top:50%;font-size:300px;font-weight:900;letter-spacing:-.05em;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.07);
+  transform:translateY(-50%);opacity:0;pointer-events:none;white-space:nowrap}
+
+/* ============================================================
+   SAHNE DURUMLARI  (#ad üzerine JS'in eklediği sınıflar)
+   s1: giriş · s3: impact · s3b: mesaj · s4: kullanım · s4out · s5: final · done
+   ============================================================ */
+.s1 .logo{animation:logoIn .8s .15s cubic-bezier(.2,.8,.2,1) forwards}
+.s1 .gauge{animation:fadeIn .9s .25s ease-out forwards}
+.s1 .counter{animation:counterIn .9s .35s cubic-bezier(.2,.8,.2,1) forwards}
+.s1 .glow{animation:glowIdle 3s .2s ease-in-out infinite alternate}
+
+.s3 .flash{animation:flash .65s ease-out forwards}
+.s3 .ring{animation:ring 1s cubic-bezier(.1,.7,.3,1) forwards}
+.s3 .sweep{animation:sweep .85s .08s cubic-bezier(.3,0,.2,1) forwards}
+.s3 .gauge{animation:gaugeOut .5s ease-in forwards}
+.s3 .glow{animation:glowBurst 1.2s cubic-bezier(.2,.8,.2,1) forwards}
+.s3 .stage{animation:shake .4s linear}
+.s3 .digits{color:var(--yellow);animation:heroIn .95s cubic-bezier(.22,.9,.28,1) forwards}
+.s3 .digits .ghost{opacity:0 !important}
+.s3 .unit{color:var(--yellow);animation:unitOut .95s cubic-bezier(.22,.9,.28,1) forwards}
+.s3 .logo{animation:logoOut .2s ease-out forwards}
+
+.s3b .digitsWrap{animation:dim .6s ease-out forwards}
+.s3b .unitWrap{animation:dim .6s ease-out forwards}
+.s3b .logo{animation:logoBack .6s .3s ease-out forwards}
+.s3b .kicker{animation:fadeIn .6s .4s ease-out forwards}
+.s3b .tag{animation:tagIn .75s cubic-bezier(.16,1,.3,1) forwards}
+
+.s4 .tag{animation:tagOut .45s cubic-bezier(.5,0,.8,.2) forwards}
+.s4 .use{animation:useIn .62s cubic-bezier(.16,1,.3,1) forwards;animation-delay:calc(var(--i) * .27s + .12s)}
+.s4out .use{animation:useOut .42s cubic-bezier(.6,0,.9,.3) forwards;animation-delay:calc(var(--i) * .045s)}
+
+.s5 .digitsWrap{animation:dimOff .5s ease-out forwards}
+.s5 .unitWrap{animation:dimOff .4s ease-out forwards}
+.s5 .kicker{animation:offKicker .4s ease-out forwards}
+.s5 .ghostNum{animation:ghostIn 1.4s .3s ease-out forwards}
+.s5 .final .headline{animation:slideIn .7s .15s cubic-bezier(.16,1,.3,1) forwards}
+.s5 .final .sub{animation:slideIn .7s .3s cubic-bezier(.16,1,.3,1) forwards}
+.s5 .final .offer{animation:slideIn .7s .45s cubic-bezier(.16,1,.3,1) forwards}
+.s5 .ctaWrap{animation:ctaIn .65s .55s cubic-bezier(.2,.9,.3,1.25) forwards}
+.s5 .cta::after{content:"";position:absolute;inset:-3px;border-radius:30px;border:2px solid rgba(255,196,12,.55);animation:pulse 2.2s 1.4s ease-out 2}
+
+.fadeout .stage,.fadeout .bg{animation:off .5s ease-in forwards}
+
+/* ---------- Keyframes ---------- */
+@keyframes fadeIn{to{opacity:1}}
+@keyframes off{to{opacity:0}}
+@keyframes offKicker{from{opacity:1}to{opacity:0}}
+@keyframes logoIn{from{opacity:0;transform:translateX(-12px)}to{opacity:1;transform:none}}
+@keyframes logoOut{from{opacity:1}to{opacity:0}}
+@keyframes logoBack{from{opacity:0}to{opacity:1}}
+@keyframes dimOff{from{opacity:.13}to{opacity:0}}
+@keyframes counterIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes glowIdle{from{transform:scale(.55);opacity:.6}to{transform:scale(.68);opacity:.85}}
+@keyframes glowBurst{0%{transform:scale(.7);opacity:.9}40%{transform:scale(1.35);opacity:1}100%{transform:scale(1.05);opacity:.55}}
+@keyframes flash{0%{opacity:0}12%{opacity:.95}100%{opacity:0}}
+@keyframes ring{0%{opacity:.9;transform:scale(.2)}100%{opacity:0;transform:scale(9)}}
+@keyframes sweep{0%{opacity:0;transform:translateX(0) rotate(-24deg)}15%{opacity:1}100%{opacity:0;transform:translateX(1500px) rotate(-24deg)}}
+@keyframes gaugeOut{from{opacity:1;transform:scale(1)}to{opacity:0;transform:scale(1.5)}}
+@keyframes shake{0%{transform:translate(0,0)}20%{transform:translate(-4px,2px)}40%{transform:translate(4px,-2px)}60%{transform:translate(-2px,1px)}80%{transform:translate(2px,-1px)}100%{transform:translate(0,0)}}
+@keyframes heroIn{0%{transform:scale(1.15)}58%{transform:translate(-40px,13px) scale(6.6)}100%{transform:translate(-62px,13px) scale(4.9)}}
+@keyframes unitOut{0%{transform:translateX(0) scale(1)}58%{transform:translateX(290px) scale(1.55)}100%{transform:translateX(262px) scale(1.4)}}
+@keyframes dim{from{opacity:1}to{opacity:.13}}
+@keyframes tagIn{from{opacity:0;transform:translateY(22px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes tagOut{from{opacity:1;transform:translateY(0) scale(1)}to{opacity:0;transform:translateY(-26px) scale(1.02)}}
+@keyframes useIn{0%{opacity:0;transform:translateX(560px) scaleX(2.2)}45%{opacity:1}100%{opacity:1;transform:translateX(0) scaleX(1)}}
+@keyframes useOut{0%{opacity:1;transform:translateX(0) scaleX(1)}100%{opacity:0;transform:translateX(-620px) scaleX(2.4)}}
+@keyframes slideIn{to{opacity:1;transform:translateX(0)}}
+@keyframes ctaIn{to{opacity:1;transform:scale(1)}}
+@keyframes ghostIn{to{opacity:1}}
+@keyframes pulse{0%{opacity:.8;transform:scale(1)}100%{opacity:0;transform:scale(1.22)}}
+@keyframes shine{0%{left:-60px;opacity:0}20%{opacity:1}100%{left:120%;opacity:0}}
+
+@media (prefers-reduced-motion:reduce){
+  .stage *,.bg *{animation-duration:.01s !important;animation-delay:0s !important}
+}
+</style>
+</head>
+<body>
+<div id="ad" class="ad" role="link" aria-label="Superonline – Online’a Özel 1000 Mbps Fiber İnternet. Hemen Başvur.">
+  <div class="bg">
+    <div class="glow"></div>
+    <div class="horizon"></div>
+    <div class="streaks" id="streaks"></div>
+    <div class="vignette"></div>
+  </div>
+
+  <div class="stage">
+    <!-- LOGO: resmi Superonline SVG logosunu bu kapsayıcının içine koyun -->
+    <div class="logo" id="logo"><span class="dot"></span><span class="word">superonline</span></div>
+
+    <div class="ghostNum" aria-hidden="true">1000</div>
+
+    <svg class="gauge" id="gauge" viewBox="0 0 970 250" aria-hidden="true">
+      <g id="ticks"></g>
+      <path class="track" id="track" d=""></path>
+      <path class="haze" id="haze" d=""></path>
+      <path class="prog" id="prog" d=""></path>
+      <circle class="halo" id="halo" r="11" cx="0" cy="0"></circle>
+      <circle class="head" id="head" r="5" cx="0" cy="0"></circle>
+    </svg>
+
+    <div class="counter" id="counter" aria-hidden="true">
+      <div class="digitsWrap">
+        <div class="digits" id="digits">
+          <span class="ghost g2" id="g2">100</span>
+          <span class="ghost g1" id="g1">100</span>
+          <span class="num" id="num">100</span>
+        </div>
+      </div>
+      <div class="unitWrap"><div class="unit" id="unit">Mbps</div></div>
+    </div>
+
+    <div class="flash"></div>
+    <div class="ring"></div>
+    <div class="sweep"></div>
+
+    <div class="kicker">HIZ KADRAJA SIĞMIYOR</div>
+
+    <div class="tag" aria-hidden="true"><em>Online’a Özel</em> Fiber İnternet</div>
+
+    <div class="uses" aria-hidden="true">
+      <div class="use" style="--i:0"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5M16 4v5"/><path d="M10 12.5v5l4-2.5z" fill="#FFC40C" stroke="none"/></svg>Film</div>
+      <div class="use" style="--i:1"><svg viewBox="0 0 24 24"><path d="M7 7h10a5 5 0 0 1 4.9 6l-.9 4.2a2.2 2.2 0 0 1-3.9.9L15.6 16H8.4l-1.5 2.1a2.2 2.2 0 0 1-3.9-.9L2.1 13A5 5 0 0 1 7 7z"/><path d="M8 10v4M6 12h4M15.5 11.5h.01M17.5 13.5h.01"/></svg>Oyun</div>
+      <div class="use" style="--i:2"><svg viewBox="0 0 24 24"><path d="M12 3v11M7.5 9.5L12 14l4.5-4.5"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>Download</div>
+      <div class="use" style="--i:3"><svg viewBox="0 0 24 24"><path d="M12 14V3M7.5 7.5L12 3l4.5 4.5"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>Upload</div>
+      <div class="use" style="--i:4"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="14" height="10" rx="1.5"/><path d="M6 18h6M9 14v4"/><rect x="17" y="8" width="5" height="10" rx="1.2"/><path d="M19.5 15.5h.01"/></svg>Çoklu Cihaz</div>
+    </div>
+
+    <div class="final" aria-hidden="true">
+      <div class="headline"><b>1000 Mbps</b> Fiber İnternet</div>
+      <div class="sub">Online’a Özel</div>
+      <div class="offer">
+        <div class="price"><span id="price">950 TL</span><small id="priceUnit">/ay</small></div>
+        <div class="terms" id="terms">12 ay taahhütlü · Modem ve tüm vergiler dahil<br>Kurulum ve aktivasyon ücretsiz</div>
+      </div>
+    </div>
+
+    <div class="ctaWrap">
+      <a class="cta" id="cta" href="#" target="_blank" rel="noopener">
+        <span class="shine"></span>
+        <span>HEMEN BAŞVUR</span>
+        <svg class="arrow" viewBox="0 0 24 24"><path d="M5 12h13M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Tüm alan tıklanabilir: clickTag / Enabler / doğrudan URL -->
+  <a class="exit" id="exit" href="#" target="_blank" rel="noopener" aria-label="Kampanya sayfasına git">Superonline 1000 Mbps Fiber İnternet</a>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+/* =========================== AYARLAR =========================== */
+var CONFIG = {
+  url: 'https://www.superonline.net/ev-interneti/fiber-internet/onlinea-ozel-fiber-hizlari-kampanyasi/1000-mbps',
+  price: '950 TL',            // kampanya sayfasındaki güncel aylık fiyat
+  priceUnit: '/ay',
+  terms: '12 ay taahhütlü · Modem ve tüm vergiler dahil<br>Kurulum ve aktivasyon ücretsiz',
+  speedStart: 100,            // sayaç başlangıcı
+  speedMax: 1000,             // sayaç hedefi
+  loop: false,                // true: final karesinden sonra doğal döngü
+  loopHold: 4,                // döngüde final karesinin bekleme süresi (sn)
+  maxLoops: 2                 // en fazla tekrar (30 sn kuralı için)
+};
+
+/* Sahne zamanları (saniye) */
+var T = {
+  accel: 2.4,   // sayaç hızlanmaya başlar
+  impact: 5.2,  // 1000 Mbps – wow moment
+  tag: 6.15,    // "Online’a Özel Fiber İnternet"
+  uses: 7.7,    // kullanım senaryoları
+  usesOut: 9.55,
+  final: 9.95,  // final / CTA
+  end: 12.0     // animasyon biter, final karesi sabit kalır
+};
+
+/* =========================== TIKLAMA =========================== */
+var ad = document.getElementById('ad');
+var exitA = document.getElementById('exit');
+var ctaA  = document.getElementById('cta');
+exitA.href = CONFIG.url; ctaA.href = CONFIG.url;
+
+function clickUrl(){
+  if (typeof window.clickTag === 'string' && window.clickTag) return window.clickTag;
+  if (typeof window.clickTAG === 'string' && window.clickTAG) return window.clickTAG;
+  return CONFIG.url;
+}
+function onExit(e){
+  e.preventDefault();
+  var url = clickUrl();
+  if (window.Enabler && typeof window.Enabler.exit === 'function') { window.Enabler.exit('CTA', url); return; }
+  window.open(url, '_blank');
+}
+exitA.addEventListener('click', onExit);
+ctaA.addEventListener('click', onExit);
+
+/* Metinleri CONFIG'ten uygula */
+document.getElementById('price').textContent = CONFIG.price;
+document.getElementById('priceUnit').textContent = CONFIG.priceUnit;
+document.getElementById('terms').innerHTML = CONFIG.terms;
+
+/* =========================== GÖSTERGE =========================== */
+var CX = 440, CY = 172, R = 112, A0 = 160, SWEEP = 220; // ekran açıları (saat yönü)
+function pt(r, deg){ var a = deg * Math.PI / 180; return [CX + r * Math.cos(a), CY + r * Math.sin(a)]; }
+var pA = pt(R, A0), pB = pt(R, A0 + SWEEP);
+var d = 'M' + pA[0].toFixed(2) + ' ' + pA[1].toFixed(2) + ' A' + R + ' ' + R + ' 0 1 1 ' + pB[0].toFixed(2) + ' ' + pB[1].toFixed(2);
+['track','haze','prog'].forEach(function(id){ document.getElementById(id).setAttribute('d', d); });
+var prog = document.getElementById('prog'), haze = document.getElementById('haze');
+var head = document.getElementById('head'), halo = document.getElementById('halo');
+var L = prog.getTotalLength();
+prog.style.strokeDasharray = L; haze.style.strokeDasharray = L;
+
+var TICKS = [100, 200, 500, 750, 1000], tickEls = [];
+var tg = document.getElementById('ticks');
+TICKS.forEach(function(v){
+  var f = v / CONFIG.speedMax, a = A0 + SWEEP * f;
+  var p1 = pt(R + 12, a), p2 = pt(R + 20, a);
+  var ln = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+  ln.setAttribute('x1', p1[0]); ln.setAttribute('y1', p1[1]); ln.setAttribute('x2', p2[0]); ln.setAttribute('y2', p2[1]);
+  ln.setAttribute('class', 'tick'); tg.appendChild(ln); tickEls.push({v: v, el: ln, on: false});
+});
+
+function setGauge(val){
+  var f = Math.max(0, Math.min(1, val / CONFIG.speedMax));
+  var off = L * (1 - f);
+  prog.style.strokeDashoffset = off; haze.style.strokeDashoffset = off;
+  var p = prog.getPointAtLength(L * f);
+  head.setAttribute('cx', p.x); head.setAttribute('cy', p.y);
+  halo.setAttribute('cx', p.x); halo.setAttribute('cy', p.y);
+  for (var i = 0; i < tickEls.length; i++) {
+    var on = val >= tickEls[i].v - 0.5;
+    if (on !== tickEls[i].on) { tickEls[i].on = on; tickEls[i].el.setAttribute('class', on ? 'tick on' : 'tick'); }
+  }
+}
+
+/* =========================== HIZ ÇİZGİLERİ =========================== */
+var W = 970, H = 250;
+var streaksEl = document.getElementById('streaks'), streaks = [];
+function rnd(a, b){ return a + Math.random() * (b - a); }
+(function makeStreaks(){
+  var n = 22;
+  for (var i = 0; i < n; i++) {
+    var el = document.createElement('div');
+    var beam = i % 7 === 0, yellow = i % 3 === 0;
+    el.className = 'streak' + (beam ? ' beam' : (yellow ? ' y' : ''));
+    var w = beam ? rnd(320, 520) : rnd(70, 240);
+    el.style.width = w + 'px';
+    if (!beam) el.style.height = (i % 4 === 0 ? 2.5 : 1.5) + 'px';
+    streaksEl.appendChild(el);
+    streaks.push({ el: el, w: w, x: rnd(-w, W), y: rnd(6, H - 8), sp: beam ? rnd(.35, .6) : rnd(.65, 1.45), a: beam ? rnd(.5, .8) : rnd(.45, 1) });
+  }
+})();
+function updateStreaks(v, dt){
+  var speed = 260 + 1500 * v, stretch = 1 + 2.4 * v, alpha = Math.min(1, .08 + 1.1 * v);
+  for (var i = 0; i < streaks.length; i++) {
+    var s = streaks[i];
+    s.x += speed * s.sp * dt;
+    if (s.x > W + 10) { s.x = -s.w * stretch - rnd(0, 500); s.y = rnd(6, H - 8); }
+    s.el.style.transform = 'translate3d(' + s.x.toFixed(1) + 'px,' + s.y.toFixed(1) + 'px,0) scaleX(' + stretch.toFixed(3) + ')';
+    s.el.style.opacity = (alpha * s.a).toFixed(3);
+  }
+}
+
+/* =========================== SAYAÇ / ZAMAN ÇİZGİSİ =========================== */
+var num = document.getElementById('num'), g1 = document.getElementById('g1'), g2 = document.getElementById('g2');
+var digits = document.getElementById('digits');
+var shown = -1, impactDone = false;
+
+function speedAt(t){ // { val: Mbps, v: 0..1 tempo }
+  var s0 = CONFIG.speedStart, s1 = CONFIG.speedMax;
+  if (t < T.accel) { var q = t / T.accel; return { val: s0 + 30 * q, v: .06 + .06 * q }; }
+  if (t < T.impact) {
+    var p = (t - T.accel) / (T.impact - T.accel);
+    var e = .35 * p + .65 * p * p * p;
+    return { val: (s0 + 30) + (s1 - s0 - 30) * e, v: .12 + .88 * p * p };
+  }
+  if (t < T.final) return { val: s1, v: 1 - .28 * Math.min(1, (t - T.impact) / 1.0) };
+  var k = Math.min(1, (t - T.final) / 1.4);
+  return { val: s1, v: .72 * (1 - k) * (1 - k) + .02 * (1 - k) };
+}
+
+var scenes = [
+  { at: 0,         cls: 's1' },
+  { at: T.accel,   cls: 's2' },
+  { at: T.impact,  cls: 's3' },
+  { at: T.tag,     cls: 's3b' },
+  { at: T.uses,    cls: 's4' },
+  { at: T.usesOut, cls: 's4out' },
+  { at: T.final,   cls: 's5' },
+  { at: T.end,     cls: 'done' }
+];
+var sceneIdx = 0, loops = 0, holdUntil = 0, fading = false;
+
+var reduced = false;
+try { reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (err) { reduced = false; }
+var offset = reduced ? (T.final + 0.2) : 0;
+
+var start = null, last = null, stopped = false;
+function resetAll(){
+  for (var i = 0; i < scenes.length; i++) ad.classList.remove(scenes[i].cls);
+  ad.classList.remove('fadeout');
+  sceneIdx = 0; shown = -1; impactDone = false; start = null; last = null; fading = false;
+  digits.style.transform = ''; g1.style.opacity = g2.style.opacity = 0;
+  void ad.offsetWidth; // animasyonların yeniden başlaması için reflow
+}
+
+function frame(now){
+  if (start === null) { start = now - offset * 1000; last = now; }
+  var dt = Math.min(.05, (now - last) / 1000); last = now;
+  var t = (now - start) / 1000;
+
+  while (sceneIdx < scenes.length && t >= scenes[sceneIdx].at) { ad.classList.add(scenes[sceneIdx].cls); sceneIdx++; }
+
+  var s = speedAt(t), val = s.val, v = s.v;
+  var iv = Math.round(val);
+  if (iv !== shown) { shown = iv; num.textContent = iv; g1.textContent = iv; g2.textContent = iv; }
+
+  if (t < T.impact) {
+    digits.style.transform = 'scale(' + (1 + .15 * v).toFixed(4) + ')';
+    g1.style.transform = 'translateX(' + (-9 * v).toFixed(2) + 'px)'; g1.style.opacity = (.42 * v).toFixed(3);
+    g2.style.transform = 'translateX(' + (-19 * v).toFixed(2) + 'px)'; g2.style.opacity = (.2 * v).toFixed(3);
+    setGauge(val);
+  } else if (!impactDone) {
+    impactDone = true; digits.style.transform = ''; setGauge(CONFIG.speedMax);
+  }
+
+  updateStreaks(v, dt);
+
+  if (t >= T.end) {
+    if (CONFIG.loop && loops < CONFIG.maxLoops) {
+      if (!fading && t >= T.end + CONFIG.loopHold) { fading = true; ad.classList.add('fadeout'); holdUntil = t + .55; }
+      if (fading && t >= holdUntil) { loops++; resetAll(); }
+    } else if (v <= .03) {
+      for (var i = 0; i < streaks.length; i++) streaks[i].el.style.opacity = 0;
+      stopped = true; // final karesi sabit; rAF durur
+    }
+  }
+  if (!stopped) requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
