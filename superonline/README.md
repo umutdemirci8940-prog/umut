@@ -4,7 +4,7 @@
 
 | Sürüm | Dosya | Konsept |
 |---|---|---|
-| **KADRAJ (yeni konsept)** | [`970x250-kadraj/index.html`](970x250-kadraj/index.html) | Banner bir vizördür. Sarı zemin, siyah tipografi; köşe braketleri sayacı çerçevede tutmaya çalışır, 1000'de rakam kadrajı kırar. Etkileşim: **imleci sağa kaydır = hızlan**. |
+| **KADRAJ (yeni konsept)** | [`970x250-kadraj/index.html`](970x250-kadraj/index.html) | Banner bir vizördür. Marka renkleri: lacivert zemin → sarı impact → beyaz final, sarı CTA; köşe braketleri sayacı çerçevede tutmaya çalışır, 1000'de rakam kadrajı kırar. Etkileşim: **imleci sağa kaydır = hızlan**. |
 | Hız göstergesi – etkileşimli | [`970x250/index.html`](970x250/index.html) | Koyu lacivert zemin, sarı vurgu, yay göstergesi. Etkileşim: **basılı tut = hızlan**. |
 | Hız göstergesi – otomatik | [`970x250-autoplay/index.html`](970x250-autoplay/index.html) | Aynı kurgu, etkileşimsiz 12 sn'lik akış. |
 
@@ -16,12 +16,12 @@ Kampanya sayfası: <https://www.superonline.net/ev-interneti/fiber-internet/onli
 
 | Durum | Ne olur |
 |---|---|
-| **Bekleme** | Superonline sarısı zemin. Sol üstte vizör HUD'u ("● REC · KADRAJ 970 × 250"), sağ üstte tek renk logo. Solda 132 px siyah sayaç "100 Mbps", etrafında ince siyah köşe braketleri ve orta çentikler. Altta 100 · 200 · 500 · 750 · 1000 kademeli hız rayı ve topuz; sağda "HIZLANMAK İÇİN SAĞA KAYDIR →". |
-| **Kaydırma** | İmleç (veya parmak) banner üzerinde sağa gittikçe topuz onu izler, sayaç üstel eğriyle yükselir. Rakam hafifçe büyür ve öne yatar (skew), arkasında siyah motion-blur hayaletleri; braketler rakamı takip ederek genişler, %35'ten sonra titremeye başlar; beyaz/koyu hız çizgileri hızlanır. İmleç çekilirse hız geri düşer. Ok tuşları da çalışır. |
-| **1000 – kadraj kırılır** | Braketler bir anda banner'ın köşelerine sıçrar (kadraj = banner), zemin siyaha döner, flaş; "1000" sarıya dönüp 3,4 kat büyüyerek dört yandan taşar, 2,75 katta üstten alta dayanarak oturur; braketler köşelerden dışarı fırlayıp kaybolur. |
-| **Mesaj** | Dev rakam %12'ye söner, üzerine "Online'a Özel Fiber İnternet". |
-| **Kullanım şeridi** | Ortada sarı bir şerit açılır; FİLM • OYUN • DOWNLOAD • UPLOAD • ÇOKLU CİHAZ siyah tipografiyle 1500 px/sn hızla akıp yavaşlayarak durur. |
-| **Final** | Şerit tüm banner'a açılır (sarı final zemini). Logo, "ONLINE'A ÖZEL" siyah etiket, "1000 Mbps Fiber İnternet", 950 TL/ay + koşullar, siyah "HEMEN BAŞVUR" pill (hover: yükselir, ok kayar, parlama), sağ altta "TEKRAR DENE". Arkada çizgi kontur "1000". |
+| **Bekleme** | Superonline laciverti zemin (#104AA1, logodan örneklendi). Sağ üstte negatif logo (beyaz yazı, sarı işaret). Solda 132 px beyaz sayaç "100 Mbps", etrafında ince sarı köşe braketleri ve orta çentikler. Altta 100 · 200 · 500 · 750 · 1000 kademeli hız rayı ve sarı topuz; sağda "HIZLANMAK İÇİN SAĞA KAYDIR →". |
+| **Kaydırma** | İmleç (veya parmak) banner üzerinde sağa gittikçe topuz onu izler, sayaç üstel eğriyle yükselir. Rakam hafifçe büyür ve öne yatar (skew), arkasında sarı motion-blur hayaletleri; braketler rakamı takip ederek genişler, %35'ten sonra titremeye başlar; beyaz/sarı hız çizgileri hızlanır. İmleç çekilirse hız geri düşer. Ok tuşları da çalışır. |
+| **1000 – kadraj kırılır** | Braketler bir anda banner'ın köşelerine sıçrar (kadraj = banner), zemin Superonline sarısına (#FFC40C) döner, flaş; "1000" lacivert olup 3,4 kat büyüyerek dört yandan taşar, 2,75 katta üstten alta dayanarak oturur; braketler köşelerden dışarı fırlayıp kaybolur. |
+| **Mesaj** | Dev rakam %12'ye söner, üzerine lacivert "Online'a Özel Fiber İnternet" ("Online'a Özel" beyaz kart üzerinde). |
+| **Kullanım şeridi** | Ortada beyaz bir şerit açılır; FİLM • OYUN • DOWNLOAD • UPLOAD • ÇOKLU CİHAZ lacivert tipografi ve sarı noktalarla 1500 px/sn hızla akıp yavaşlayarak durur. |
+| **Final** | Şerit tüm banner'a açılır (beyaz final zemini, sitedeki içerik alanı gibi). Orijinal renkli logo, sarı "ONLINE'A ÖZEL" etiketi, lacivert "1000 Mbps Fiber İnternet", 950 TL/ay + koşullar, sarı "HEMEN BAŞVUR" pill lacivert yazıyla (sitedeki buton gibi; hover: yükselir, ok kayar, parlama), sağ altta "TEKRAR DENE". Arkada çizgi kontur "1000". |
 | **Otomatik** | 4 sn etkileşim yoksa topuz 2,4 sn'de kendiliğinden sağa kayar; etkileşimsiz izleyici için impact ≈ 6,6 sn, final ≈ 11,7 sn, 13,8 sn'de sabit. |
 
 Tıklama: her yerde tek tıklama kampanya sayfasını açar (kaydırma tıklama gerektirmediği için çakışma yoktur). Ekran görüntüleri: [`preview-kadraj/`](preview-kadraj/)
@@ -32,9 +32,9 @@ Tıklama: her yerde tek tıklama kampanya sayfasını açar (kaydırma tıklama 
 
 | Taşma | Şerit | Final |
 |---|---|---|
-| ![](preview-kadraj/06-hero.jpg) | ![](preview-kadraj/08-ticker.jpg) | ![](preview-kadraj/09-final.jpg) |
+| ![](preview-kadraj/05-impact-peak.jpg) | ![](preview-kadraj/08-ticker.jpg) | ![](preview-kadraj/09-final.jpg) |
 
-KADRAJ'da ayarlanabilir alanlar (`CONFIG`): `autoplayAfter`, `railX0/railX1` (ray konumu), `curve` (ray → hız eğrisi), `follow` (takip hızı), `release` (bırakınca düşüş), `autoGlide` (otomatik kaydırma süresi), `words` (şerit kelimeleri), `logoDark` (tek renk koyu logo, base64), fiyat/koşul/URL; sahne zamanları `T`, şerit hızı `TICK_V0` / `TICK_DUR`.
+KADRAJ'da ayarlanabilir alanlar (`CONFIG`): `autoplayAfter`, `railX0/railX1` (ray konumu), `curve` (ray → hız eğrisi), `follow` (takip hızı), `release` (bırakınca düşüş), `autoGlide` (otomatik kaydırma süresi), `words` (şerit kelimeleri), `logoWhite` / `logoColor` (base64 logo sürümleri), fiyat/koşul/URL; renkler `:root` içinde `--navy` (#104AA1) ve `--yellow` (#FFC40C); sahne zamanları `T`, şerit hızı `TICK_V0` / `TICK_DUR`.
 
 ## Hız göstergesi konsepti – etkileşimli kurgu (`970x250/`)
 
@@ -85,4 +85,4 @@ Ekran görüntüleri: [`preview/`](preview/) (etkileşimli), [`preview-autoplay/
 | Gösterge kademeleri | `TICKS` dizisi |
 | Hız çizgisi yoğunluğu | `makeStreaks()` içindeki `n` |
 
-> **Doğrulama notu:** Bu banner'ın hazırlandığı ortamın ağ politikası `www.superonline.net` alan adına erişime izin vermedi. Fiyat (950 TL/ay), 12 ay taahhüt, "modem ve tüm vergiler dahil", "kurulum ve aktivasyon ücretsiz" bilgileri kampanya sayfasının arama motoru özetlerinden alındı; yayın öncesi sayfadaki güncel değerlerle karşılaştırılmalıdır. Logo, müşterinin CDN'e yüklediği Turkcell Superonline PNG'sinden alınıp base64 olarak gömüldü; koyu zemin için lacivert yazı beyaza çevrilmiş negatif sürüm üretildi (sarı işaret korundu), orijinal renkli sürüm `logoPlate` seçeneğiyle kullanılabilir.
+> **Doğrulama notu:** Bu banner'ın hazırlandığı ortamın ağ politikası `www.superonline.net` alan adına erişime izin vermedi; kampanya sayfasının renkleri doğrudan okunamadığı için KADRAJ paleti resmi logodan örneklenen lacivert (#104AA1) ve Superonline sarısı (#FFC40C) ile kuruldu (sayfa erişilebilir olduğunda `:root` değişkenleri birebir güncellenebilir). Fiyat (950 TL/ay), 12 ay taahhüt, "modem ve tüm vergiler dahil", "kurulum ve aktivasyon ücretsiz" bilgileri kampanya sayfasının arama motoru özetlerinden alındı; yayın öncesi sayfadaki güncel değerlerle karşılaştırılmalıdır. Logo, müşterinin CDN'e yüklediği Turkcell Superonline PNG'sinden alınıp base64 olarak gömüldü; koyu zemin için lacivert yazı beyaza çevrilmiş negatif sürüm üretildi (sarı işaret korundu), orijinal renkli sürüm `logoPlate` seçeneğiyle kullanılabilir.
