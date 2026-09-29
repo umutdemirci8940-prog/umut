@@ -4,7 +4,8 @@
 
 | Sürüm | Dosya | Konsept |
 |---|---|---|
-| **SİNEMA – "Biri Bizi Durdursun!" (KV tabanlı, en yeni)** | [`970x250-sinema/index.html`](970x250-sinema/index.html) | Kampanya görseli (oda + ışık girdabı) bulanık derinlik plakası, neon "1000 Mbps DOWNLOAD / 100 Mbps UPLOAD" lockup'ı ve "Sadece online'a özel" rozeti gömülü. Soğuk açılış, film başlığı gibi giren manşet, akan ışık şeritleri, mercek parlaması. Etkileşim: **imleç içeri girince ışık uyanır** ve sayaç 1000'e hızlanır; imleci izleyen ışık kuyruğu. |
+| **SİL, NETLEŞSİN (önerilen teslim)** | [`970x250-net/index.html`](970x250-net/index.html) | Kullanıcı bugünkü internetini görür: pikselli, "yükleniyor %" diye takılan bir kadraj. İmleci sağa sürdükçe kadrajı siler; altından net, ışıklı SüperFiber dünyası çıkar, sayaç 100 → 1000. İsteğe bağlı gerçek hız ölçümü ("SENİN HIZIN ~46 Mbps") ve finalde canlı "sen bakarken inen veri" sayacı. |
+| **SİNEMA – "Biri Bizi Durdursun!" (KV tabanlı)** | [`970x250-sinema/index.html`](970x250-sinema/index.html) | Kampanya görseli (oda + ışık girdabı) bulanık derinlik plakası, neon "1000 Mbps DOWNLOAD / 100 Mbps UPLOAD" lockup'ı ve "Sadece online'a özel" rozeti gömülü. Soğuk açılış, film başlığı gibi giren manşet, akan ışık şeritleri, mercek parlaması. Etkileşim: **imleç içeri girince ışık uyanır** ve sayaç 1000'e hızlanır; imleci izleyen ışık kuyruğu. |
 | **KADRAJ** | [`970x250-kadraj/index.html`](970x250-kadraj/index.html) | Banner bir vizördür. Marka renkleri: lacivert zemin → sarı impact → beyaz final, sarı CTA; köşe braketleri sayacı çerçevede tutmaya çalışır, 1000'de rakam kadrajı kırar. Etkileşim: **imleci sağa kaydır = hızlan**. |
 | Hız göstergesi – etkileşimli | [`970x250/index.html`](970x250/index.html) | Koyu lacivert zemin, sarı vurgu, yay göstergesi. Etkileşim: **basılı tut = hızlan**. |
 | Hız göstergesi – otomatik | [`970x250-autoplay/index.html`](970x250-autoplay/index.html) | Aynı kurgu, etkileşimsiz 12 sn'lik akış. |
@@ -12,6 +13,34 @@
 Hepsi tek dosya: tüm CSS ve JS içeride, Canvas yok, harici framework / CDN / görsel yok (logo ve KV sprite'ları base64, ikonlar satır içi SVG). Etkileşimli sürümlerde 4 sn içinde etkileşim yoksa otomatik oynatma devreye girer.
 
 Kampanya sayfası: <https://www.superonline.net/ev-interneti/fiber-internet/onlinea-ozel-fiber-hizlari-kampanyasi/1000-mbps>
+
+## SİL, NETLEŞSİN (`970x250-net/`) – hedef kitleye göre seçilen sürüm
+
+Ev interneti müşterisinin derdi soyut Mbps değil, takılan dizi ve bulanık görüntüdür. Bu sürüm farkı okutmaz, **yaşatır**: önce kullanıcının bugünkü interneti (pikselli plaka, tarama çizgileri, takılan "YÜKLENİYOR %37" göstergesi, ara sıra glitch, kırmızı noktalı "ŞİMDİKİ İNTERNETİN · 100 Mbps" etiketi), sonra imleçle silinen kadrajın altından net ve ışıklı SüperFiber dünyası. SİNEMA altyapısı (KV plakası, ışık şeritleri, gren, lockup, rozet, final) korunur.
+
+| Zaman | Sahne | Ne olur |
+|---|---|---|
+| 0 – 3,4 sn | **Açılış + soru** | Işık çizgisi, plaka; pikselli dünya belirir ve üstünde film başlığı gibi "İNTERNETİN BÖYLE Mİ GÖRÜNÜYOR?" · "Kadrajı sil, 1000 Mbps SüperFiber'le netleşsin." |
+| 3,4 sn → | **Silecek** | Solda 58 px'lik net şerit açılır (manşetin ilk harfleri keskin, gerisi bulanık): tam ekran bir öncesi/sonrası. Beyaz topuzlu parlak ayırıcı, üstünde hız chip'i ("100 Mbps"), altında koçluk pili "SAĞA SÜR, NETLEŞSİN →". Hayalet el 1,3 sn'de topuzu tutup biraz siler ve bırakır, 3 sn'de bir tekrar eder. |
+| Etkileşim | **Silme** | İmleç / parmak nereye giderse ayırıcı oraya kayar (izleme yumuşatılmış); chip, konuma göre üstel eğriyle 100 → 1000 arası hızı gösterir; ışık şeritleri hızlanır. Koçluk: "DEVAM ET" → "AZ KALDI!"; imleç çıkarsa ayırıcı geri kayar ve pil "GERİ GEL, BULANIKLAŞIYOR" der. Ok tuşları da çalışır. |
+| %94 | **Kadraj kırılır** | Yavaş dünya tamamen silinir, flaş + mercek parlaması + sarsıntı, "1000" 4,6 kat büyüyüp taşar. |
+| Devamı | **Lockup → kullanım → final** | Neon "1000 Mbps DOWNLOAD / 100 Mbps UPLOAD" sahneye çarpar, "Sadece online'a özel" rozeti, ışıklı kullanım etiketleri, KV finali: manşet, "950 TL/ay*", sarı "HEMEN BAŞVUR", dipnot, "TEKRAR İZLE". |
+| Final | **Canlı sayaç** | "↓ Sen bakarken 1000 Mbps ile **2,3 GB** inerdi": banner yüklendiğinden beri geçen sürede 1000 Mbps ile inecek veri (125 MB/sn) canlı akar; 30. saniyede donar (30 sn animasyon kuralı). |
+| Otomatik | | 6,2 sn içinde etkileşim yoksa hayalet el topuzu tutup 2,6 sn'de sonuna kadar siler: impact ≈ 8,8 sn, final ≈ 13 sn. |
+
+**Gerçek hız ölçümü (isteğe bağlı, kişiselleştirme):** Yayın ortamında sayfa ya da reklam sunucusu `window.SUPERONLINE_SPEEDTEST = { url: 'https://…/speedtest-1mb.jpg', bytes: 1048576 }` tanımlarsa banner açılışta bu görseli (cache-buster ile) indirip süreyi ölçer ve 5–700 Mbps aralığındaysa yavaş dünyanın etiketini "SENİN HIZIN · ~46 Mbps" yapar; sayaç da kullanıcının hızından başlar. Kişisel veri toplanmaz, sunucuya bir şey gönderilmez; yalnızca bir görselin indirilme süresi ölçülür. Tanım yoksa özellik sessizce kapalıdır ve "100 Mbps" gösterilir. Test dosyası CDN'de (ör. müşterinin S3 kovası) barındırılabilir; 1–2 MB önerilir.
+
+Tıklama: her yerde tek tıklama kampanya sayfasını açar. Ekran görüntüleri: [`preview-net/`](preview-net/)
+
+| Soru (pikselli dünya) | Silecek başlangıcı | Silme ortası |
+|---|---|---|
+| ![](preview-net/01-title.jpg) | ![](preview-net/02b-demo-hand.jpg) | ![](preview-net/03-wipe-mid.jpg) |
+
+| Az kaldı | Kişisel hız etiketi (simülasyon) | Final + canlı sayaç |
+|---|---|---|
+| ![](preview-net/04-wipe-almost.jpg) | ![](preview-net/02c-live-measured.jpg) | ![](preview-net/08-final.jpg) |
+
+Ayarlanabilir alanlar (`CONFIG`): `uMin` / `uMax` (ayırıcı sınırları), `curve`, `follow`, `release`, `autoplayAfter`, `autoGlide`, hayalet el (`demoStart` / `demoPeriod` / `demoLen` / `demoReach`), `coach` metinleri, `speedTest` / `speedTestMin` / `speedTestMax`, `liveMBps` / `liveStopAt`, fiyat, dipnot, URL, görseller (`plate`, `slow`, `lockup`, `badge`, `logoWhite`); `T0` ve `T` zamanları; `RIB` ışık şeritleri. Yavaş dünya metinleri (`.slowLabel`, "YÜKLENİYOR") ve açılış sorusu HTML'de.
 
 ## SİNEMA konsepti (`970x250-sinema/`)
 
