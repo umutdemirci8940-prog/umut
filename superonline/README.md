@@ -4,13 +4,42 @@
 
 | Sürüm | Dosya | Konsept |
 |---|---|---|
-| **KADRAJ (yeni konsept)** | [`970x250-kadraj/index.html`](970x250-kadraj/index.html) | Banner bir vizördür. Marka renkleri: lacivert zemin → sarı impact → beyaz final, sarı CTA; köşe braketleri sayacı çerçevede tutmaya çalışır, 1000'de rakam kadrajı kırar. Etkileşim: **imleci sağa kaydır = hızlan**. |
+| **SİNEMA – "Biri Bizi Durdursun!" (KV tabanlı, en yeni)** | [`970x250-sinema/index.html`](970x250-sinema/index.html) | Kampanya görseli (oda + ışık girdabı) bulanık derinlik plakası, neon "1000 Mbps DOWNLOAD / 100 Mbps UPLOAD" lockup'ı ve "Sadece online'a özel" rozeti gömülü. Soğuk açılış, film başlığı gibi giren manşet, akan ışık şeritleri, mercek parlaması. Etkileşim: **imleç içeri girince ışık uyanır** ve sayaç 1000'e hızlanır; imleci izleyen ışık kuyruğu. |
+| **KADRAJ** | [`970x250-kadraj/index.html`](970x250-kadraj/index.html) | Banner bir vizördür. Marka renkleri: lacivert zemin → sarı impact → beyaz final, sarı CTA; köşe braketleri sayacı çerçevede tutmaya çalışır, 1000'de rakam kadrajı kırar. Etkileşim: **imleci sağa kaydır = hızlan**. |
 | Hız göstergesi – etkileşimli | [`970x250/index.html`](970x250/index.html) | Koyu lacivert zemin, sarı vurgu, yay göstergesi. Etkileşim: **basılı tut = hızlan**. |
 | Hız göstergesi – otomatik | [`970x250-autoplay/index.html`](970x250-autoplay/index.html) | Aynı kurgu, etkileşimsiz 12 sn'lik akış. |
 
-Hepsi tek dosya: tüm CSS ve JS içeride, Canvas yok, harici framework / CDN / görsel yok (logo base64, ikonlar satır içi SVG). Etkileşimli sürümlerde 4 sn içinde etkileşim yoksa otomatik oynatma devreye girer.
+Hepsi tek dosya: tüm CSS ve JS içeride, Canvas yok, harici framework / CDN / görsel yok (logo ve KV sprite'ları base64, ikonlar satır içi SVG). Etkileşimli sürümlerde 4 sn içinde etkileşim yoksa otomatik oynatma devreye girer.
 
 Kampanya sayfası: <https://www.superonline.net/ev-interneti/fiber-internet/onlinea-ozel-fiber-hizlari-kampanyasi/1000-mbps>
+
+## SİNEMA konsepti (`970x250-sinema/`)
+
+Kampanya KV'sinden ("BİRİ BİZİ DURDURSUN! / 1000 Mbps SüperFiber alana 2 kat fazla upload hızı! / 950 TL/ay*") türetilen, film jeneriği gibi kurgulanmış sürüm. Görsel katmanlar: KV'nin bulanıklaştırılıp karartılmış hâli (derinlik plakası, 16 sn boyunca yavaş kamera yaklaşması ve imleçle paralaks), yavaşça süzülen ışık tozu, film greni, vinyet; üstünde SVG ile çizilen ve akan üç ışık şeridi (mavi / altın, glow filtreli), keskin sprite olarak neon lockup (screen blend, kenarları yumuşatılmış) ve rozet.
+
+| Zaman | Sahne | Ne olur |
+|---|---|---|
+| 0 – 1,5 sn | **Soğuk açılış** | Siyah kare; ince bir ışık çizgisi soldan sağa çizilir, plaka karanlıktan belirir, logo parıltıyla gelir, ışık şeritleri akmaya başlar. |
+| 0,9 – 3,4 sn | **Başlık kartı** | "BİRİ BİZİ DURDURSUN!" harf aralığı geniş ve bulanık gelip sıkışarak netleşir (film başlığı); altında "1000 Mbps SüperFiber alana 2 kat fazla upload hızı!". |
+| 3,4 sn → | **Sayaç / davet** | Başlık kaybolur, ortada "100 Mbps" ve nabız halkalı davet pili "İMLECİNLE IŞIĞI UYANDIR". |
+| Etkileşim | **Işığı uyandırma** | İmleç banner'a girince ışık kuyruğu (kuyruklu yıldız) belirir, sayaç üstel ivmeyle yükselir (≈2 sn'de 1000), şeritler hızlanıp parlar, rakam büyür, mavi/altın motion-blur hayaletleri, 200 / 500 / 750'de halka, kamera mikro-titreşimi. Pil: "HIZLANIYOR" → "1000'E AZ KALDI"; imleç çıkarsa ışık söner ve pil "GERİ GEL, IŞIK SÖNÜYOR" der. Dokunmatikte basılı tutma, klavyede Boşluk / sağ ok. |
+| 1000 | **Impact** | Beyaz flaş, anamorfik mercek parlaması (yatay ışık çizgisi + çekirdek), sarsıntı; "1000" 4,6 kat büyüyüp kadrajdan taşar. |
+| +0,9 sn | **Lockup** | KV'nin neon "1000 Mbps DOWNLOAD / 100 Mbps UPLOAD" lockup'ı bulanık ve parlak biçimde sahneye çarpar; +1,5 sn'de "Sadece online'a özel" rozeti sağ üstte belirir. |
+| +2,5 sn | **Kullanım** | FİLM · OYUN · DOWNLOAD · UPLOAD · ÇOKLU CİHAZ ışıklı etiketler olarak sağdan sıraya girer, sonra sola süpürülür. |
+| +4,5 sn | **Final** | KV düzeni: solda manşet + alt satır, "950 TL/ay*" mavi-sarı fiyat pili, sağda sarı "HEMEN BAŞVUR", rozet, altta yasal dipnot; "TEKRAR İZLE". Şeritler yavaş akışa iner, imleç kuyruğu finalde de çalışır. |
+| Otomatik | | 6,2 sn içinde etkileşim yoksa ışık kendiliğinden uyanır: impact ≈ 8,6 sn, final ≈ 13 sn, ≈ 15,5 sn'de sabit. |
+
+Tıklama: her yerde tek tıklama kampanya sayfasını açar (hover tabanlı etkileşim tıklamayla çakışmaz). Ekran görüntüleri: [`preview-sinema/`](preview-sinema/)
+
+| Başlık kartı | Işığı uyandırma | Impact |
+|---|---|---|
+| ![](preview-sinema/02-title.jpg) | ![](preview-sinema/11-hover-charge.jpg) | ![](preview-sinema/05-impact-hero.jpg) |
+
+| Lockup | Kullanım | Final |
+|---|---|---|
+| ![](preview-sinema/07-badge.jpg) | ![](preview-sinema/08-uses.jpg) | ![](preview-sinema/09-final.jpg) |
+
+SİNEMA'da ayarlanabilir alanlar (`CONFIG`): `plate` / `lockup` / `badge` / `logoWhite` (base64 görseller), `price`, `foot` (dipnot), `url`, `autoplayAfter`, `accelBase` / `accelGain` (ivme), `decay` (sönme), `coach` (pil metinleri); `T0` (açılış zamanları), `T` (impact sonrası); `RIB` dizisi (şerit yolları, renkleri, kalınlıkları). Görseller `tools`'suz, kampanya KV'sinden Chromium canvas ile üretildi: plaka 970×250 (blur 9 px, %74 parlaklık), lockup 347×217 (siyah taban), rozet 160×160.
 
 ## KADRAJ konsepti (`970x250-kadraj/`)
 
