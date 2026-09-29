@@ -106,10 +106,35 @@ body{width:var(--w);height:var(--h);overflow:hidden;font-family:var(--font);-web
 .knob{position:absolute;left:0;top:50%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:var(--yellow);box-shadow:0 0 0 4px rgba(255,196,12,.22);will-change:transform;transition:box-shadow .2s}
 .knob::after{content:"";position:absolute;left:5px;top:5px;width:6px;height:6px;border-radius:50%;background:var(--navy)}
 .interacted .knob,.auto .knob{box-shadow:0 0 0 7px rgba(255,196,12,.2)}
-.hint{position:absolute;right:120px;top:190px;display:flex;align-items:center;gap:8px;font-size:10.5px;font-weight:800;letter-spacing:.22em;color:rgba(255,255,255,.85);opacity:0;white-space:nowrap;pointer-events:none}
-.hint svg{width:16px;height:12px;stroke:var(--yellow);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;animation:nudge 1.2s ease-in-out infinite}
-.s1 .hint{animation:fadeIn .6s 1s forwards}
-.interacted .hint,.auto .hint,.s3 .hint{animation:none;opacity:0;transition:opacity .3s}
+.rail,.knob{cursor:grab}
+/* Ray boyunca yön veren ışık süpürmesi (etkileşime kadar) */
+.railShine{position:absolute;top:-3px;left:0;width:120px;height:7px;border-radius:4px;opacity:0;pointer-events:none;
+  background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.65),rgba(255,255,255,0));animation:railSweep 2.4s 1.2s ease-in-out infinite}
+.interacted .railShine,.auto .railShine{animation:none;opacity:0}
+/* Kademe ödülü */
+.tick span{transition:color .25s}
+.tick.pop span{animation:tickPop .6s cubic-bezier(.2,.9,.3,1.4)}
+.tick.pop::before{content:"";position:absolute;left:50%;top:50%;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;border:2px solid var(--yellow);animation:tickRing .6s ease-out forwards}
+/* Hayalet el: hareketi gösterir */
+.hand{position:absolute;left:0;top:-4px;width:30px;height:30px;margin-left:-6px;opacity:0;pointer-events:none;will-change:transform,opacity;filter:drop-shadow(0 4px 10px rgba(0,0,0,.35))}
+.hand svg{width:30px;height:30px;stroke:#fff;fill:rgba(16,74,161,.6);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.hand .tap{position:absolute;left:5px;top:-1px;width:12px;height:12px;border-radius:50%;border:2px solid var(--yellow);opacity:0}
+.hand.down .tap{animation:tickRing .7s ease-out infinite}
+/* İmleci izleyen ışık */
+.cursorGlow{position:absolute;left:0;top:0;width:280px;height:280px;margin:-140px 0 0 -140px;border-radius:50%;opacity:0;pointer-events:none;will-change:transform,opacity;transition:opacity .35s;
+  background:radial-gradient(circle,rgba(255,196,12,.22) 0%,rgba(255,196,12,.08) 35%,rgba(255,196,12,0) 65%)}
+.cursorGlow.on{opacity:1}
+/* Koçluk metni */
+.hint{position:absolute;right:120px;top:172px;display:flex;align-items:center;gap:9px;height:28px;padding:0 6px 0 13px;border-radius:14px;border:1px solid rgba(255,196,12,.55);background:rgba(8,44,102,.45);
+  font-size:10.5px;font-weight:800;letter-spacing:.2em;color:#fff;opacity:0;white-space:nowrap;pointer-events:none;transition:border-color .3s,background .3s}
+.hint svg{width:16px;height:12px;stroke:var(--yellow);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;animation:nudge 1.2s ease-in-out infinite}
+.hint.hot{border-color:var(--yellow);background:rgba(255,196,12,.18)}
+.hint.hot svg{animation-duration:.6s}
+.hint .txt{display:inline-block}
+.hint.swap .txt{animation:hintSwap .35s ease-out}
+.s1 .hint{animation:fadeIn .6s .9s forwards}
+.s3 .hint{animation:none;opacity:0;transition:opacity .2s}
+.s3 .cursorGlow,.s3 .hand{display:none}
 
 /* Impact */
 .flash{position:absolute;inset:0;opacity:0;pointer-events:none;background:radial-gradient(circle at 40% 50%,rgba(255,255,255,1) 0%,rgba(255,244,200,.85) 25%,rgba(255,196,12,0) 65%)}
@@ -200,6 +225,10 @@ body{width:var(--w);height:var(--h);overflow:hidden;font-family:var(--font);-web
 @keyframes fadeIn{to{opacity:1}}
 @keyframes off{to{opacity:0}}
 @keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(5px)}}
+@keyframes railSweep{0%{transform:translateX(-120px);opacity:0}12%{opacity:1}88%{opacity:1}100%{transform:translateX(740px);opacity:0}}
+@keyframes tickPop{0%{transform:translateX(-50%) scale(1)}45%{transform:translateX(-50%) scale(1.8)}100%{transform:translateX(-50%) scale(1)}}
+@keyframes tickRing{0%{transform:scale(.6);opacity:.9}100%{transform:scale(3.2);opacity:0}}
+@keyframes hintSwap{0%{opacity:0;transform:translateY(6px)}100%{opacity:1;transform:none}}
 @keyframes logoIn{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:none}}
 @keyframes logoOut{from{opacity:1}to{opacity:0}}
 @keyframes logoBack{from{opacity:0}to{opacity:1}}
@@ -259,12 +288,15 @@ body{width:var(--w);height:var(--h);overflow:hidden;font-family:var(--font);-web
       <span class="m mt"></span><span class="m mb"></span><span class="m ml"></span><span class="m mr"></span>
     </div>
 
+    <div class="cursorGlow" id="cursorGlow"></div>
     <div class="rail" id="rail" aria-hidden="true">
       <div class="railFill" id="railFill"></div>
+      <div class="railShine"></div>
       <div id="ticks"></div>
       <div class="knob" id="knob"></div>
+      <div class="hand" id="hand"><span class="tap"></span><svg viewBox="0 0 24 24"><path d="M22 14a8 8 0 0 1-8 8"/><path d="M18 11v-1a2 2 0 0 0-2-2a2 2 0 0 0-2 2"/><path d="M14 10V9a2 2 0 0 0-2-2a2 2 0 0 0-2 2v1"/><path d="M10 9.5V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v10"/><path d="M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg></div>
     </div>
-    <div class="hint" aria-hidden="true">HIZLANMAK İÇİN SAĞA KAYDIR <svg viewBox="0 0 16 12"><path d="M1 6h13M9 1l5 5-5 5"/></svg></div>
+    <div class="hint" id="hint" aria-hidden="true"><span class="txt" id="hintText">SAĞA KAYDIR, 1000’E ÇIK</span><svg viewBox="0 0 16 12"><path d="M1 6h13M9 1l5 5-5 5"/></svg></div>
 
     <div class="flash"></div>
 
@@ -320,6 +352,17 @@ var CONFIG = {
   follow: 6,                  // hızın hedefe yaklaşma hızı (1/sn)
   release: 1.1,               // imleç çekilince geri düşüş (1/sn)
   autoGlide: 2.4,             // sn – otomatik kaydırma süresi
+  /* Davet (attract) katmanı */
+  demoStart: 1.5,             // sn – hayalet el ilk gösterimi
+  demoPeriod: 3.0,            // sn – tekrar aralığı
+  demoLen: 1.7,               // sn – bir gösterim süresi
+  demoReach: 0.14,            // gösterimde topuzun gittiği ray oranı
+  coach: {                    // koçluk metinleri (ray konumuna göre)
+    start: 'SAĞA KAYDIR, 1000’E ÇIK',
+    go: 'DEVAM ET',
+    almost: 'AZ KALDI!',
+    release: 'BIRAKMA, SONUNA KADAR'
+  },
   loop: false, loopHold: 4, maxLoops: 2
 };
 /* Impact sonrası sahne zamanları (saniye) */
@@ -332,7 +375,8 @@ var ad = document.getElementById('ad'), exitA = document.getElementById('exit'),
 var num = document.getElementById('num'), g1 = document.getElementById('g1'), g2 = document.getElementById('g2');
 var digits = document.getElementById('digits'), vf = document.getElementById('vf');
 var knob = document.getElementById('knob'), railFill = document.getElementById('railFill'), ticker = document.getElementById('ticker');
-var replay = document.getElementById('replay');
+var replay = document.getElementById('replay'), hand = document.getElementById('hand'), glow = document.getElementById('cursorGlow');
+var hint = document.getElementById('hint'), hintText = document.getElementById('hintText');
 exitA.href = CONFIG.url; ctaA.href = CONFIG.url;
 
 /* =========================== TIKLAMA =========================== */
@@ -416,6 +460,15 @@ var state = 'live';                 // live | after
 var u = 0, uTarget = 0, val = CONFIG.speedStart, tempo = 0;
 var pointerOn = false, interacted = false, auto = false, autoT0 = 0, autoU0 = 0;
 var tImpact = null, sceneIdx = 0, shown = -1, px = 0, py = 0;
+var wake = 0, demoU = 0, demoOn = false, releaseUntil = 0, lastU = 0, coachKey = '';
+
+function setCoach(key){
+  if (key === coachKey) return; coachKey = key;
+  hintText.textContent = CONFIG.coach[key];
+  hint.classList.remove('swap'); void hint.offsetWidth; hint.classList.add('swap');
+  hint.classList.toggle('hot', key === 'almost' || key === 'release');
+}
+function popTick(i){ var el = tickEls[i].el; el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop'); }
 
 function setU(clientX){
   var r = ad.getBoundingClientRect();
@@ -428,6 +481,8 @@ ad.addEventListener('pointermove', function(e){
   var r = ad.getBoundingClientRect();
   px = Math.max(-.5, Math.min(.5, (e.clientX - r.left) / W - .5));
   py = Math.max(-.5, Math.min(.5, (e.clientY - r.top) / H - .5));
+  glow.style.transform = 'translate(' + (e.clientX - r.left).toFixed(1) + 'px,' + (e.clientY - r.top).toFixed(1) + 'px)';
+  glow.classList.add('on');
   if (e.pointerType === 'touch' && !e.pressure && e.buttons === 0) return;
   pointerOn = true; setU(e.clientX);
 });
@@ -436,7 +491,11 @@ ad.addEventListener('pointerdown', function(e){
   pointerOn = true; setU(e.clientX);
   if (e.pointerType !== 'mouse' && e.cancelable) e.preventDefault();
 });
-ad.addEventListener('pointerleave', function(){ pointerOn = false; });
+ad.addEventListener('pointerenter', function(){ if (state === 'live') wake = 1; });
+ad.addEventListener('pointerleave', function(){
+  pointerOn = false; glow.classList.remove('on');
+  if (state === 'live' && interacted && u > .15) releaseUntil = performance.now() + 1400;
+});
 window.addEventListener('pointerup', function(e){ if (e.pointerType !== 'mouse') pointerOn = false; });
 window.addEventListener('blur', function(){ pointerOn = false; });
 /* Klavye: sağ / sol ok */
@@ -490,6 +549,7 @@ function triggerImpact(now){
   /* braketler önce banner kenarlarına sıçrar, sonra kırılıp dağılır */
   vf.classList.add('snap');
   vf.style.left = '12px'; vf.style.top = '12px'; vf.style.width = (W - 24) + 'px'; vf.style.height = (H - 24) + 'px';
+  hand.style.opacity = 0; hand.classList.remove('down'); glow.classList.remove('on');
   setTimeout(function(){ vf.classList.add('break'); }, 200);
   tickX = W; tickV = TICK_V0;
   ad.classList.add('s3'); ad.classList.add('alt');
@@ -503,6 +563,9 @@ function resetAll(){
   digits.style.transform = ''; g1.style.opacity = g2.style.opacity = 0; unitWrap.style.transform = '';
   knob.style.transform = 'translateX(0)'; railFill.style.transform = 'scaleX(0)';
   ticker.style.transform = 'translateX(' + W + 'px)';
+  wake = 0; demoU = 0; demoOn = false; releaseUntil = 0; lastU = 0; coachKey = ''; setCoach('start');
+  hand.style.opacity = 0; hand.classList.remove('down'); glow.classList.remove('on');
+  for (var k = 0; k < tickEls.length; k++) tickEls[k].el.classList.remove('pop');
   for (var j = 0; j < streaks.length; j++) streaks[j].el.style.opacity = 0;
   void ad.offsetWidth;
 }
@@ -516,21 +579,45 @@ function frame(now){
     if (!interacted && !auto && t >= CONFIG.autoplayAfter) { auto = true; autoT0 = t; autoU0 = u; ad.classList.add('auto'); }
     if (auto) { var q = Math.min(1, (t - autoT0) / CONFIG.autoGlide); uTarget = autoU0 + (1 - autoU0) * q * q * (3 - 2 * q); }
     else if (!pointerOn) { uTarget = Math.max(0, uTarget - CONFIG.release * dt); }
+    /* Davet: hayalet el topuzu tutup biraz sağa çeker, bırakır – etkileşime ya da otomatik akışa kadar tekrar eder */
+    if (!interacted && !auto && t >= CONFIG.demoStart) {
+      var dp = ((t - CONFIG.demoStart) % CONFIG.demoPeriod) / CONFIG.demoLen;
+      if (dp <= 1) {
+        var wave = dp < .55 ? dp / .55 : 1 - (dp - .55) / .45;         // 0→1→0
+        wave = wave * wave * (3 - 2 * wave);
+        demoU = CONFIG.demoReach * wave; demoOn = true;
+        hand.style.opacity = Math.min(1, dp * 8, (1 - dp) * 6).toFixed(3);
+        hand.style.transform = 'translateX(' + (demoU * RW).toFixed(1) + 'px)';
+        if (dp > .1 && dp < .8) hand.classList.add('down'); else hand.classList.remove('down');
+        uTarget = Math.max(uTarget, demoU);
+      } else if (demoOn) { demoOn = false; hand.style.opacity = 0; hand.classList.remove('down'); }
+    } else if (auto) {
+      hand.style.opacity = 1; hand.classList.add('down'); hand.style.transform = 'translateX(' + (u * RW).toFixed(1) + 'px)';
+    } else if (demoOn || hand.style.opacity !== '0') { demoOn = false; hand.style.opacity = 0; hand.classList.remove('down'); }
     u += (uTarget - u) * Math.min(1, CONFIG.follow * dt);
+    /* Koçluk metni */
+    if (!auto) {
+      if (releaseUntil > now && u < lastU + .001) setCoach('release');
+      else if (u > .62) setCoach('almost');
+      else if (u > .22) setCoach('go');
+      else setCoach('start');
+    }
+    lastU = u;
+    wake = Math.max(0, wake - 1.6 * dt);
     var target = uToVal(u);
     val += (target - val) * Math.min(1, CONFIG.follow * dt);
     if (!interacted && !auto) val = Math.max(val, CONFIG.speedStart + 10 * (.5 + .5 * Math.sin(t * 1.4))); // bekleme nefesi
     if (val >= CONFIG.speedMax - 3 || u >= .995) { triggerImpact(now); }
     else {
       tempo = Math.pow(Math.max(0, (val - CONFIG.speedStart) / (CONFIG.speedMax - CONFIG.speedStart)), .85);
-      v = .05 + .95 * tempo;
+      v = Math.max(.05 + .95 * tempo, .05 + .28 * wake);
       showVal(val);
       var sc = 1 + .12 * tempo;
       digits.style.transform = 'scale(' + sc.toFixed(4) + ') skewX(' + (-7 * tempo).toFixed(2) + 'deg)';
       g1.style.transform = 'translateX(' + (-10 * v).toFixed(2) + 'px)'; g1.style.opacity = (.28 * tempo).toFixed(3);
       g2.style.transform = 'translateX(' + (-21 * v).toFixed(2) + 'px)'; g2.style.opacity = (.13 * tempo).toFixed(3);
       knob.style.transform = 'translateX(' + (u * RW).toFixed(1) + 'px)'; railFill.style.transform = 'scaleX(' + u.toFixed(4) + ')';
-      for (var i = 0; i < tickEls.length; i++) { var on = val >= tickEls[i].v - .5; if (on !== tickEls[i].on) { tickEls[i].on = on; tickEls[i].el.className = on ? 'tick on' : 'tick'; } }
+      for (var i = 0; i < tickEls.length; i++) { var on = val >= tickEls[i].v - .5; if (on !== tickEls[i].on) { tickEls[i].on = on; tickEls[i].el.classList.toggle('on', on); if (on && tickEls[i].v > CONFIG.speedStart) popTick(i); } }
       layoutVF(tempo, sc, tempo > .35 ? (tempo - .35) * 5 : 0);
     }
   }

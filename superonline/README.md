@@ -16,25 +16,25 @@ Kampanya sayfası: <https://www.superonline.net/ev-interneti/fiber-internet/onli
 
 | Durum | Ne olur |
 |---|---|
-| **Bekleme** | Superonline laciverti zemin (#104AA1, logodan örneklendi). Sağ üstte negatif logo (beyaz yazı, sarı işaret). Solda 132 px beyaz sayaç "100 Mbps", etrafında ince sarı köşe braketleri ve orta çentikler. Altta 100 · 200 · 500 · 750 · 1000 kademeli hız rayı ve sarı topuz; sağda "HIZLANMAK İÇİN SAĞA KAYDIR →". |
-| **Kaydırma** | İmleç (veya parmak) banner üzerinde sağa gittikçe topuz onu izler, sayaç üstel eğriyle yükselir. Rakam hafifçe büyür ve öne yatar (skew), arkasında sarı motion-blur hayaletleri; braketler rakamı takip ederek genişler, %35'ten sonra titremeye başlar; beyaz/sarı hız çizgileri hızlanır. İmleç çekilirse hız geri düşer. Ok tuşları da çalışır. |
+| **Bekleme (davet katmanı)** | Superonline laciverti zemin (#104AA1, logodan örneklendi). Sağ üstte negatif logo. Solda 132 px beyaz sayaç "100 Mbps", etrafında sarı köşe braketleri. Altta 100 · 200 · 500 · 750 · 1000 kademeli hız rayı ve sarı topuz. Ziyaretçiyi etkileşime çeken öğeler: **hayalet el** 1,5 sn'de belirip topuzu tutar, biraz sağa çeker ve bırakır (sayaç 100 → 135 → 100 tepki verir), 3 sn'de bir tekrar eder; ray boyunca sağa akan **ışık süpürmesi** yön verir; sağda sarı çerçeveli koçluk pili **"SAĞA KAYDIR, 1000'E ÇIK →"**; imleç banner'a girince hız çizgileri kısa bir "uyanma" yapar ve **imleci izleyen sarı ışık** belirir. |
+| **Kaydırma (koçluk)** | İmleç (veya parmak) banner üzerinde sağa gittikçe topuz onu izler, sayaç üstel eğriyle yükselir. Rakam hafifçe büyür ve öne yatar (skew), arkasında sarı motion-blur hayaletleri; braketler rakamı takip ederek genişler, %35'ten sonra titremeye başlar; hız çizgileri hızlanır. Koçluk pili ilerlemeye göre değişir: "DEVAM ET" (%22+) → "AZ KALDI!" (%62+, pil sarıya döner, ok hızlanır); 200 / 500 / 750 kademeleri geçilince etiket büyüyüp halka yayar (ödül). İmleç çekilirse hız düşer ve pil 1,4 sn "BIRAKMA, SONUNA KADAR" der. Ok tuşları da çalışır. |
 | **1000 – kadraj kırılır** | Braketler bir anda banner'ın köşelerine sıçrar (kadraj = banner), zemin Superonline sarısına (#FFC40C) döner, flaş; "1000" lacivert olup 3,4 kat büyüyerek dört yandan taşar, 2,75 katta üstten alta dayanarak oturur; braketler köşelerden dışarı fırlayıp kaybolur. |
 | **Mesaj** | Dev rakam %12'ye söner, üzerine lacivert "Online'a Özel Fiber İnternet" ("Online'a Özel" beyaz kart üzerinde). |
 | **Kullanım şeridi** | Ortada beyaz bir şerit açılır; FİLM • OYUN • DOWNLOAD • UPLOAD • ÇOKLU CİHAZ lacivert tipografi ve sarı noktalarla 1500 px/sn hızla akıp yavaşlayarak durur. |
 | **Final** | Şerit tüm banner'a açılır (beyaz final zemini, sitedeki içerik alanı gibi). Orijinal renkli logo, sarı "ONLINE'A ÖZEL" etiketi, lacivert "1000 Mbps Fiber İnternet", 950 TL/ay + koşullar, sarı "HEMEN BAŞVUR" pill lacivert yazıyla (sitedeki buton gibi; hover: yükselir, ok kayar, parlama), sağ altta "TEKRAR DENE". Arkada çizgi kontur "1000". |
-| **Otomatik** | 4 sn etkileşim yoksa topuz 2,4 sn'de kendiliğinden sağa kayar; etkileşimsiz izleyici için impact ≈ 6,6 sn, final ≈ 11,7 sn, 13,8 sn'de sabit. |
+| **Otomatik** | 4 sn etkileşim yoksa hayalet el topuzu tutup 2,4 sn'de sağa kaydırır (hareket bir kez daha gösterilmiş olur); etkileşimsiz izleyici için impact ≈ 6,6 sn, final ≈ 11,7 sn, 13,8 sn'de sabit. |
 
 Tıklama: her yerde tek tıklama kampanya sayfasını açar (kaydırma tıklama gerektirmediği için çakışma yoktur). Ekran görüntüleri: [`preview-kadraj/`](preview-kadraj/)
 
-| Bekleme | Kaydırma | Kadraj kırılır |
+| Davet (hayalet el) | Kaydırma (koçluk) | Kadraj kırılır |
 |---|---|---|
-| ![](preview-kadraj/01-attract.jpg) | ![](preview-kadraj/03-slide-fast.jpg) | ![](preview-kadraj/04-impact-snap.jpg) |
+| ![](preview-kadraj/01b-demo-hand.jpg) | ![](preview-kadraj/03-slide-fast.jpg) | ![](preview-kadraj/04-impact-snap.jpg) |
 
 | Taşma | Şerit | Final |
 |---|---|---|
 | ![](preview-kadraj/05-impact-peak.jpg) | ![](preview-kadraj/08-ticker.jpg) | ![](preview-kadraj/09-final.jpg) |
 
-KADRAJ'da ayarlanabilir alanlar (`CONFIG`): `autoplayAfter`, `railX0/railX1` (ray konumu), `curve` (ray → hız eğrisi), `follow` (takip hızı), `release` (bırakınca düşüş), `autoGlide` (otomatik kaydırma süresi), `words` (şerit kelimeleri), `logoWhite` / `logoColor` (base64 logo sürümleri), fiyat/koşul/URL; renkler `:root` içinde `--navy` (#104AA1) ve `--yellow` (#FFC40C); sahne zamanları `T`, şerit hızı `TICK_V0` / `TICK_DUR`.
+KADRAJ'da ayarlanabilir alanlar (`CONFIG`): `autoplayAfter`, `railX0/railX1` (ray konumu), `curve` (ray → hız eğrisi), `follow` (takip hızı), `release` (bırakınca düşüş), `autoGlide` (otomatik kaydırma süresi), davet katmanı `demoStart` / `demoPeriod` / `demoLen` / `demoReach` (hayalet el zamanlaması ve mesafesi), `coach` (koçluk metinleri: start / go / almost / release), `words` (şerit kelimeleri), `logoWhite` / `logoColor` (base64 logo sürümleri), fiyat/koşul/URL; renkler `:root` içinde `--navy` (#104AA1) ve `--yellow` (#FFC40C); sahne zamanları `T`, şerit hızı `TICK_V0` / `TICK_DUR`.
 
 ## Hız göstergesi konsepti – etkileşimli kurgu (`970x250/`)
 
