@@ -137,3 +137,9 @@ tools/package.js         Teslim zip'i
 tools/capture.js         Playwright ile görüntü/video alma
 tools/smoke.js           Etkileşim duman testi
 ```
+
+---
+
+## Diğer çalışmalar
+
+- **`aygaz/`** – Aygaz 100+ Oktan 970×250 masthead: onaylanan `Aygaz2.html`'in persona başına ayrı video oynatan revizyonu (`Aygaz3.html`) ve web için optimize edilmiş persona videoları. Ayrıntı: [`aygaz/README.md`](aygaz/README.md).
