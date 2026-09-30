@@ -97,6 +97,13 @@ Kaynak: `https://100oktan.aygaz.com.tr/nerede.html` (müşterinin gönderdiği g
 
 Sayılar sekme açılınca 0'dan sayar ve Türkçe biçimde (nokta binlik ayracı) gösterilir. "100+ Oktan Gücü" sekmesindeki "Aygaz Güvencesi" kartı da aynı kaynağa göre 1.700+ → 1.900+ olarak güncellendi. Önizleme: `preview-istasyon-bul.png`.
 
+## Metin revizeleri (müşteri geri bildirimi)
+
+- Aile personası sloganı: "Ailenizin Güvenliği ve Bütçe Dostu Otogaz" → **"Ailenize Güvenli, Bütçenize Dost Otogaz"** (anlatım bozukluğu düzeltildi; alternatifler için teslim notuna bakın).
+- Aile personası faydası: "%20-25 varan yakıt tasarrufu" → **"Benzine kıyasla %40'a varan tasarruf"** (marka yönlendirmesi).
+- "100+ Oktan Gücü" sekmesindeki "Maksimum Tasarruf" rozeti aynı iddiayla tutarlı olsun diye %45 → **%40**.
+- Bu metinler yalnızca "Sürücü Profilleri" sekmesindeki persona kartında, ilgili persona seçiliyken görünür (Aile açılışta varsayılan). Alt bardaki yazı persona rozetidir ("Güvenli & Konforlu Sürüş").
+
 ## Değişmeyenler
 
 Tasarım, metinler, sekmeler, hesaplayıcı, intro ve tıklama hedefleri onaylanan `Aygaz2.html` ile aynıdır. Logo (`100oktan.aygaz.com.tr`) ve poster (`aygaz.jpg`) hâlâ eski adreslerinden okunur; kampanya görseli geldiğinde `ASSETS.KEY_VISUAL_URL` ile değiştirilecektir.
