@@ -3,3 +3,7 @@ preview/.fontcache/
 preview/video/
 .DS_Store
 release/stage/
+
+# Aygaz DV360 derleme ara ürünleri (release/*.zip teslimdir)
+aygaz/dist/
+aygaz/.build/

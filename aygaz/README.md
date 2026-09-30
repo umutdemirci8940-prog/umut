@@ -25,7 +25,34 @@ Dosya adları müşterinin gönderdiği gibi bırakıldı; S3 büyük/küçük h
 - Dört `<video>` elemanı üst üste durur; sadece aktif olan `preload="auto"`, diğerleri `preload="metadata"` ile beklediği için ilk yüklemede yalnızca bir video indirilir.
 - Müşterinin videolarının alt kenarındaki yasal ibare ("Trafiğe kapalı alanda çekilmiştir…") görünür kalsın diye video `object-position: bottom` ile yerleştirildi ve oynat/ses düğmeleri sol alttan **sol üste** alındı.
 
-## Yayınlama (S3)
+## DV360 / CM360 yayın paketi
+
+`release/` altındaki zip'ler doğrudan DV360'a (veya CM360'a) HTML5 kreatif olarak yüklenir:
+
+| Paket | İçerik | Boyut |
+|---|---|---|
+| `release/aygaz-100oktan-970x250-dv360.zip` | index.html + JS/CSS + poster + **4 video paket içinde** | ~7,8 MB |
+| `release/aygaz-100oktan-970x250-dv360-s3video.zip` | Aynı kreatif, videolar S3'ten (`/Aygaz/Aile.mp4` …) | ~0,14 MB |
+
+Platformun HTML5 zip boyut sınırı videolu paketi kabul etmezse ikinci paket kullanılır; bu durumda dört mp4 S3'te `/Aygaz/` altına aynı adlarla yüklenmelidir.
+
+Paket özellikleri:
+
+- `<meta name="ad.size" content="width=970,height=250">`; tek `index.html`, dosyalar kök dizinde, üst klasör yok.
+- JSX önceden derlenmiş, Tailwind CSS statik; React/ReactDOM paket içinde. Tarayıcıda Babel veya Tailwind CDN yüklenmez (önizleme `Aygaz3.html` bunları CDN'den yükler).
+- Tıklama: `var clickTag = "<CM360 click tracker>"` `index.html` içinde tanımlıdır (`dv360.config.json` → `clickTag`). CTA ve istasyon düğmesi dahil tüm tıklamalar bu adrese gider; `${GDPR}` / `${GDPR_CONSENT_755}` makrolarını DV360 yayında doldurur. İstasyon düğmesi için ayrı tracker istenirse `clickTag1` alanına yazılır.
+- Ses kapalı başlar, kullanıcı tıklamasıyla açılır (otomatik sesli oynatma yok).
+- Logo `https://100oktan.aygaz.com.tr/assets/images/logo/logo-white.png` adresinden canlı yüklenir (bu ortamdan indirilemediği için pakete gömülemedi). PNG dosyası `assets/logo-white.png` olarak konursa derleme paket içine alır.
+
+Yeniden üretmek için (Node 18+):
+
+```bash
+cd aygaz
+npm install
+node build-dv360.js      # dist/dv360*, release/*.zip
+```
+
+## Yayınlama (S3, önizleme)
 
 `Aygaz3.html` videoları kendi bulunduğu klasörden okur. Yani S3'te `/Aygaz/` altına HTML ile birlikte dört mp4'ü aynı adlarla yüklemek yeterlidir:
 

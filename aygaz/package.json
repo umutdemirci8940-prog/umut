@@ -1,0 +1,16 @@
+{
+  "name": "aygaz-100oktan-masthead",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Aygaz 100+ Oktan 970x250 masthead – DV360/CM360 HTML5 paketi üretimi",
+  "scripts": {
+    "build": "node build-dv360.js"
+  },
+  "devDependencies": {
+    "@babel/standalone": "^7.26.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "tailwindcss": "^3.4.17"
+  },
+  "license": "UNLICENSED"
+}

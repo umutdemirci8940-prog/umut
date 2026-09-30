@@ -132,7 +132,9 @@
     );
 
     // --- Campaign Data Assets ---
-    const ASSETS = {
+    // Varsayılan varlık adresleri. Yayın paketi (build-dv360.js) bunları window.AYGAZ_ASSETS ile
+    // paket içindeki yerel dosyalara çevirir; bu dosya tek başına açıldığında aşağıdakiler kullanılır.
+    const ASSETS = Object.assign({
       LOGO_URL: 'https://100oktan.aygaz.com.tr/assets/images/logo/logo-white.png',
       // Persona videoları bu HTML ile aynı klasörden okunur (ör. S3'te /Aygaz/Aile.mp4).
       // Videolar başka bir yerde duracaksa klasör adresini buraya yazın, sonu "/" ile bitmeli:
@@ -140,6 +142,24 @@
       VIDEO_BASE: '',
       KEY_VISUAL_URL: 'https://splashdigital.s3.eu-west-1.amazonaws.com/Aygaz/aygaz.jpg',
       LOGO_NAME: 'Aygaz Otogaz'
+    }, window.AYGAZ_ASSETS || {});
+
+    // Tıklama çıkışları. DV360 / CM360 paketinde index.html içinde `var clickTag = ...` ve
+    // `var clickTag1 = ...` tanımlıdır; platform yayında bu değerleri kendi izleme adresleriyle değiştirir.
+    // clickTag tanımlı değilse (ör. bu önizleme dosyası) doğrudan site adresi açılır.
+    const EXITS = {
+      site:    { clickTag: 'clickTag',  url: 'https://100oktan.aygaz.com.tr/',             studioExit: 'Site' },
+      station: { clickTag: 'clickTag1', url: 'https://100oktan.aygaz.com.tr/nerede.html', studioExit: 'Istasyon' }
+    };
+    const openExit = (key) => {
+      const exit = EXITS[key] || EXITS.site;
+      if (window.Enabler && typeof window.Enabler.exit === 'function') { // Studio (rich media)
+        window.Enabler.exit(exit.studioExit, exit.url);
+        return;
+      }
+      // Çıkışa özel clickTag yoksa ana clickTag (tek click tracker) kullanılır
+      const tagged = window[exit.clickTag] || window.clickTag;
+      window.open(typeof tagged === 'string' && tagged ? tagged : exit.url, '_blank');
     };
 
     // Persona başlığı -> müşterinin gönderdiği video dosyası (dosya adları birebir, büyük/küçük harf dahil)
@@ -295,11 +315,9 @@
       }, [activeTab]);
 
       const handleCtaClick = (ctaName) => {
-        if (ctaName.toLowerCase().includes('istasyon') || ctaName.toLowerCase().includes('station') || activeTab === 'station') {
-          window.open('https://100oktan.aygaz.com.tr/nerede.html', '_blank');
-        } else {
-          window.open('https://100oktan.aygaz.com.tr/', '_blank');
-        }
+        const name = (ctaName || '').toLowerCase();
+        const isStation = name.includes('istasyon') || name.includes('station') || activeTab === 'station';
+        openExit(isStation ? 'station' : 'site');
       };
 
       const handlePersonaSelect = (personaId) => {
