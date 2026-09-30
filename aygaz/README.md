@@ -104,6 +104,10 @@ Sayılar sekme açılınca 0'dan sayar ve Türkçe biçimde (nokta binlik ayrac�
 - "100+ Oktan Gücü" sekmesindeki "Maksimum Tasarruf" rozeti aynı iddiayla tutarlı olsun diye %45 → **%40**.
 - Bu metinler yalnızca "Sürücü Profilleri" sekmesindeki persona kartında, ilgili persona seçiliyken görünür (Aile açılışta varsayılan). Alt bardaki yazı persona rozetidir ("Güvenli & Konforlu Sürüş").
 
+## Tasarruf Hesapla formülü
+
+`Aygaz3.html` → `CALC`: aylık benzin maliyeti = km/100 × 8,0 L × 43,50 TL; **tasarruf = benzin maliyeti × %40** ("Benzine kıyasla %40'a varan tasarruf" iddiasıyla birebir). Yıllık = aylık × 12. Benzin fiyatı ve tüketim varsayımdır, markanın onaylaması önerilir; değiştirmek için yalnızca `CALC` değerleri düzenlenir. Örnek: 1.500 km/ay → 5.220 TL benzin → 2.088 TL/ay → 25.056 TL/yıl.
+
 ## Değişmeyenler
 
 Tasarım, metinler, sekmeler, hesaplayıcı, intro ve tıklama hedefleri onaylanan `Aygaz2.html` ile aynıdır. Logo (`100oktan.aygaz.com.tr`) ve poster (`aygaz.jpg`) hâlâ eski adreslerinden okunur; kampanya görseli geldiğinde `ASSETS.KEY_VISUAL_URL` ile değiştirilecektir.

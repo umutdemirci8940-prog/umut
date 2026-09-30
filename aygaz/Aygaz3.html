@@ -256,6 +256,13 @@
     };
     const formatNumber = (n) => n.toLocaleString('tr-TR'); // 80.000 / 1.900
 
+    // Tasarruf Hesapla sekmesi varsayımları
+    const CALC = {
+      benzinLitreTL: 43.50,        // benzin litre fiyatı (TL) – varsayım
+      benzinTuketimL100km: 8.0,    // benzin tüketimi (L/100 km) – varsayım
+      tasarrufOrani: 0.40          // "Benzine kıyasla %40'a varan tasarruf"
+    };
+
     const OKTAN_BENEFITS = [
       {
         id: 'power',
@@ -420,12 +427,10 @@
         setIsMuted(nextMuted);
       };
 
-      // Calculation
-      const benzinLitre = 43.50;
-      const otogazLitre = 24.20;
-      const monthlyBenzinTL = (monthlyKm / 100) * 8.0 * benzinLitre;
-      const monthlyOtogazTL = (monthlyKm / 100) * 9.2 * otogazLitre;
-      const monthlySavingsTL = Math.round(monthlyBenzinTL - monthlyOtogazTL);
+      // Tasarruf Hesapla: marka iddiası "Benzine kıyasla %40'a varan tasarruf" esas alınır.
+      // Tasarruf = aylık benzin maliyeti x %40. Benzin fiyatı ve tüketim varsayımdır (marka onayı önerilir).
+      const monthlyBenzinTL = (monthlyKm / 100) * CALC.benzinTuketimL100km * CALC.benzinLitreTL;
+      const monthlySavingsTL = Math.round(monthlyBenzinTL * CALC.tasarrufOrani);
       const annualSavingsTL = monthlySavingsTL * 12;
 
       const getPersonaIcon = (iconName) => {
@@ -651,7 +656,7 @@
                     <div>
                       <div className="flex justify-between text-[11px] font-bold text-slate-300 mb-1">
                         <span>Aylık Ortalama Sürüş (KM)</span>
-                        <span className="text-amber-400 font-mono font-bold">{monthlyKm.toLocaleString()} km</span>
+                        <span className="text-amber-400 font-mono font-bold">{formatNumber(monthlyKm)} km</span>
                       </div>
                       <input
                         type="range"
@@ -665,7 +670,7 @@
                     </div>
 
                     <div className="text-[10px] text-slate-400">
-                      Benzin fiyatına kıyasla 100+ Oktan net bütçe avantajı.
+                      Benzine kıyasla %40'a varan tasarruf esas alınmıştır.
                     </div>
                   </div>
 
@@ -674,7 +679,7 @@
                       Tahmini Yıllık Tasarruf
                     </span>
                     <div className="text-xl font-black text-amber-400 my-0.5 font-mono">
-                      {annualSavingsTL.toLocaleString()} TL
+                      {formatNumber(annualSavingsTL)} TL
                     </div>
                     <span className="text-[10px] text-slate-200 font-semibold block">
                       Aygaz 100+ Oktan İle
