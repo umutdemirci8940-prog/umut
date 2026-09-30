@@ -106,7 +106,13 @@ Sayılar sekme açılınca 0'dan sayar ve Türkçe biçimde (nokta binlik ayrac�
 
 ## Tasarruf Hesapla formülü
 
-`Aygaz3.html` → `CALC`: aylık benzin maliyeti = km/100 × 8,0 L × 43,50 TL; **tasarruf = benzin maliyeti × %40** ("Benzine kıyasla %40'a varan tasarruf" iddiasıyla birebir). Yıllık = aylık × 12. Benzin fiyatı ve tüketim varsayımdır, markanın onaylaması önerilir; değiştirmek için yalnızca `CALC` değerleri düzenlenir. Örnek: 1.500 km/ay → 5.220 TL benzin → 2.088 TL/ay → 25.056 TL/yıl.
+`Aygaz3.html` → `CALC` (30.09.2026 güncel fiyatlar müşteriden): benzin 80,46 TL/L, otogaz 37,39 TL/L; tüketim varsayımı benzin 8,0 L/100 km, otogaz 9,2 L/100 km (+%15).
+
+- Aylık benzin maliyeti = km/100 × 8,0 × 80,46; aylık otogaz maliyeti = km/100 × 9,2 × 37,39.
+- **Tasarruf = min(benzin − otogaz, benzin × %40)**. Gerçek fark bugünkü fiyatlarla %46,6 olduğu için %40 sınırı devreye girer; fiyatlar değişip fark %40'ın altına inerse gerçek (daha düşük) değer gösterilir. Böylece "Benzine kıyasla %40'a varan tasarruf" iddiasıyla hiçbir zaman çelişmez.
+- Yıllık = aylık × 12. Örnek: 1.500 km/ay → benzin 9.655 TL → tasarruf 3.862 TL/ay → 46.344 TL/yıl.
+
+Fiyat güncellemek için yalnızca `CALC` değerleri düzenlenir ve `node build-dv360.js` çalıştırılır.
 
 ## Değişmeyenler
 

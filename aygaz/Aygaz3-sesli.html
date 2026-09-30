@@ -257,11 +257,13 @@
     };
     const formatNumber = (n) => n.toLocaleString('tr-TR'); // 80.000 / 1.900
 
-    // Tasarruf Hesapla sekmesi varsayımları
+    // Tasarruf Hesapla sekmesi girdileri
     const CALC = {
-      benzinLitreTL: 43.50,        // benzin litre fiyatı (TL) – varsayım
+      benzinLitreTL: 80.46,        // benzin litre fiyatı (TL) – 30.09.2026 güncel (müşteri)
+      otogazLitreTL: 37.39,        // otogaz litre fiyatı (TL) – 30.09.2026 güncel (müşteri)
       benzinTuketimL100km: 8.0,    // benzin tüketimi (L/100 km) – varsayım
-      tasarrufOrani: 0.40          // "Benzine kıyasla %40'a varan tasarruf"
+      otogazTuketimL100km: 9.2,    // otogaz tüketimi (L/100 km) – varsayım (+%15)
+      tasarrufOraniUst: 0.40       // "Benzine kıyasla %40'a varan tasarruf": gösterilen tasarrufun üst sınırı
     };
 
     const OKTAN_BENEFITS = [
@@ -428,10 +430,11 @@
         setIsMuted(nextMuted);
       };
 
-      // Tasarruf Hesapla: marka iddiası "Benzine kıyasla %40'a varan tasarruf" esas alınır.
-      // Tasarruf = aylık benzin maliyeti x %40. Benzin fiyatı ve tüketim varsayımdır (marka onayı önerilir).
+      // Tasarruf Hesapla: gerçek fiyat farkı (benzin - otogaz maliyeti) hesaplanır, marka iddiası
+      // "Benzine kıyasla %40'a varan tasarruf" ile tutarlı kalması için benzin maliyetinin %40'ı ile sınırlanır.
       const monthlyBenzinTL = (monthlyKm / 100) * CALC.benzinTuketimL100km * CALC.benzinLitreTL;
-      const monthlySavingsTL = Math.round(monthlyBenzinTL * CALC.tasarrufOrani);
+      const monthlyOtogazTL = (monthlyKm / 100) * CALC.otogazTuketimL100km * CALC.otogazLitreTL;
+      const monthlySavingsTL = Math.round(Math.min(monthlyBenzinTL - monthlyOtogazTL, monthlyBenzinTL * CALC.tasarrufOraniUst));
       const annualSavingsTL = monthlySavingsTL * 12;
 
       const getPersonaIcon = (iconName) => {
