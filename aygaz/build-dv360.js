@@ -109,6 +109,14 @@ function emit(name, { withVideos }) {
   console.log(`✔ ${name.padEnd(16)} ${(+total / 1024 / 1024).toFixed(2).padStart(6)} MB açık, ${(fs.statSync(zipPath).size / 1024 / 1024).toFixed(2).padStart(6)} MB zip → ${path.relative(root, zipPath)}`);
 }
 
+// Onay için sesli önizleme: Aygaz3.html + window.AYGAZ_OPTIONS.startUnmuted (yayın paketine girmez)
+const sesli = html
+  .replace('<title>', '<title>[SESLİ ÖNİZLEME] ')
+  .replace('<script type="text/babel">', '<script>window.AYGAZ_OPTIONS = { startUnmuted: true };</script>\n  <script type="text/babel">');
+if (sesli === html) throw new Error('Aygaz3-sesli.html üretilemedi');
+fs.writeFileSync(path.join(root, 'Aygaz3-sesli.html'), sesli);
+console.log('✔ Aygaz3-sesli.html (sesli önizleme, S3\'e videolarla aynı klasöre)');
+
 emit('dv360', { withVideos: true });
 emit('dv360-s3video', { withVideos: false });
 console.log(`   logo: ${localLogo ? 'paket içinde (assets/' + localLogo + ')' : 'canlı ' + cfg.logoUrl}`);

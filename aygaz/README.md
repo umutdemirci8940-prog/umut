@@ -25,6 +25,15 @@ Dosya adları müşterinin gönderdiği gibi bırakıldı; S3 büyük/küçük h
 - Dört `<video>` elemanı üst üste durur; sadece aktif olan `preload="auto"`, diğerleri `preload="metadata"` ile beklediği için ilk yüklemede yalnızca bir video indirilir.
 - Müşterinin videolarının alt kenarındaki yasal ibare ("Trafiğe kapalı alanda çekilmiştir…") görünür kalsın diye video `object-position: bottom` ile yerleştirildi ve oynat/ses düğmeleri sol alttan **sol üste** alındı.
 
+## Sesli onay sürümü: `Aygaz3-sesli.html`
+
+Müşteri onayı için `Aygaz3.html` ile aynı kreatif, tek farkı sesli başlamayı denemesi (`window.AYGAZ_OPTIONS.startUnmuted`). Tarayıcılar kullanıcı etkileşimi olmadan sesli otomatik oynatmaya izin vermediği için davranış şöyledir:
+
+- Tarayıcı izin verirse video sesli başlar.
+- Engellerse sessiz başlar, kontrollerin yanında "Ses için tıklayın" uyarısı görünür ve banner içindeki ilk tıklama ("Geç", persona, sekme…) sesi açar.
+
+Dosya S3'e videolarla aynı klasöre konur (`/Aygaz/Aygaz3-sesli.html`). Yayın paketlerine girmez; reklamda ses yalnızca kullanıcı tıklamasıyla açılır.
+
 ## DV360 / CM360 yayın paketi
 
 `release/` altındaki zip'ler doğrudan DV360'a (veya CM360'a) HTML5 kreatif olarak yüklenir:
