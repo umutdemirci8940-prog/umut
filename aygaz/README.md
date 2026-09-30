@@ -40,7 +40,7 @@ Paket özellikleri:
 
 - `<meta name="ad.size" content="width=970,height=250">`; tek `index.html`, dosyalar kök dizinde, üst klasör yok.
 - JSX önceden derlenmiş, Tailwind CSS statik; React/ReactDOM paket içinde. Tarayıcıda Babel veya Tailwind CDN yüklenmez (önizleme `Aygaz3.html` bunları CDN'den yükler).
-- Tıklama: `var clickTag = "<CM360 click tracker>"` `index.html` içinde tanımlıdır (`dv360.config.json` → `clickTag`). CTA ve istasyon düğmesi dahil tüm tıklamalar bu adrese gider; `${GDPR}` / `${GDPR_CONSENT_755}` makrolarını DV360 yayında doldurur. İstasyon düğmesi için ayrı tracker istenirse `clickTag1` alanına yazılır.
+- Tıklama: `var clickTag = "<CM360 click tracker>"` `index.html` içinde tanımlıdır (`dv360.config.json` → `clickTag`). "Şimdi İncele" CTA'sı bu adrese gider; `${GDPR}` / `${GDPR_CONSENT_755}` makrolarını DV360 yayında doldurur. İstasyon Bul sekmesindeki "Size En Yakın Aygaz İstasyonunu Haritada Bulun" satırı (sağındaki link dahil) ikinci çıkış `clickTag1` ile doğrudan `https://100oktan.aygaz.com.tr/nerede.html` adresine gider; DV360 iki clickTag'i de ayrı çıkış olarak algılar.
 - Ses kapalı başlar, kullanıcı tıklamasıyla açılır (otomatik sesli oynatma yok).
 - Logo `https://100oktan.aygaz.com.tr/assets/images/logo/logo-white.png` adresinden canlı yüklenir (bu ortamdan indirilemediği için pakete gömülemedi). PNG dosyası `assets/logo-white.png` olarak konursa derleme paket içine alır.
 

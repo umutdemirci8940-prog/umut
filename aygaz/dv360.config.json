@@ -1,8 +1,8 @@
 {
   "_comment": "DV360 / CM360 HTML5 paketi ayarları. build-dv360.js bu dosyayı okur.",
   "clickTag": "https://ad.doubleclick.net/ddm/trackclk/N192603.5327234SPLASH/B37005738.458040928;dc_trk_aid=652532145;dc_trk_cid=265077163;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;gdpr=${GDPR};gdpr_consent=${GDPR_CONSENT_755};ltd=;dc_tdv=1",
-  "clickTag1": null,
-  "_clickTag1": "İstasyon düğmesi için ayrı bir click tracker gelirse buraya yazın; boşsa istasyon düğmesi de clickTag'e gider.",
+  "clickTag1": "https://100oktan.aygaz.com.tr/nerede.html",
+  "_clickTag1": "İstasyon Bul sekmesindeki \"Size En Yakın Aygaz İstasyonunu Haritada Bulun\" satırı (link dahil) bu adrese gider. Boş bırakılırsa clickTag kullanılır.",
   "videoBaseS3": "https://splashdigital.s3.eu-west-1.amazonaws.com/Aygaz/",
   "logoUrl": "https://100oktan.aygaz.com.tr/assets/images/logo/logo-white.png",
   "packageName": "aygaz-100oktan-970x250"

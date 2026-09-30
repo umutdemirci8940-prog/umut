@@ -341,9 +341,11 @@
         }
       }, [activeTab]);
 
+      // Alt bardaki "Şimdi İncele" her sekmede ana çıkışa (clickTag / site) gider;
+      // yalnızca İstasyon Bul sekmesindeki harita satırı istasyon çıkışına (clickTag1 / nerede.html) gider.
       const handleCtaClick = (ctaName) => {
         const name = (ctaName || '').toLowerCase();
-        const isStation = name.includes('istasyon') || name.includes('station') || activeTab === 'station';
+        const isStation = name.includes('istasyon') || name.includes('station');
         openExit(isStation ? 'station' : 'site');
       };
 
