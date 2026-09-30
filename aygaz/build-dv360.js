@@ -47,7 +47,7 @@ execSync(`"${path.join(root, 'node_modules', '.bin', 'tailwindcss')}" -c "${path
 const css = fs.readFileSync(cssOut, 'utf8');
 
 // 3) index.html şablonu (clickTag'ler HTML içinde açıkça tanımlı: DV360/CM360 bunları tarar)
-function indexHtml({ videoBase, assetsNote }) {
+function indexHtml({ videoBase, assetsNote, startUnmuted }) {
   const clickTags = [`  var clickTag = ${JSON.stringify(cfg.clickTag)};`];
   if (cfg.clickTag1) clickTags.push(`  var clickTag1 = ${JSON.stringify(cfg.clickTag1)};`);
   const assets = { VIDEO_BASE: videoBase, KEY_VISUAL_URL: 'img/poster.jpg', LOGO_URL: localLogo ? 'img/' + localLogo : cfg.logoUrl };
@@ -57,12 +57,16 @@ function indexHtml({ videoBase, assetsNote }) {
     '<head>',
     '  <meta charset="UTF-8">',
     `  <meta name="ad.size" content="width=${AD.w},height=${AD.h}">`,
-    `  <title>Aygaz 100+ Oktan – ${AD.w}x${AD.h}</title>`,
+    `  <title>${startUnmuted ? '[SESLİ ONAY SÜRÜMÜ] ' : ''}Aygaz 100+ Oktan – ${AD.w}x${AD.h}</title>`,
     '  <script>',
     '  // Tıklama yönlendirmesi (CM360 click tracker). DV360 yayında ${GDPR} / ${GDPR_CONSENT_755} makrolarını doldurur.',
     ...clickTags,
     `  // ${assetsNote}`,
     `  window.AYGAZ_ASSETS = ${JSON.stringify(assets)};`,
+    ...(startUnmuted ? [
+      '  // ONAY SÜRÜMÜ: sesli başlamayı dener; tarayıcı engellerse ilk tıklamada ses açılır. Yayına bu paket verilmez.',
+      '  window.AYGAZ_OPTIONS = { startUnmuted: true };'
+    ] : []),
     '  </script>',
     '  <link rel="stylesheet" href="css/banner.css">',
     `  <style>html,body{margin:0;padding:0;width:${AD.w}px;height:${AD.h}px;overflow:hidden;background:#000D21;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;user-select:none;-webkit-user-select:none}#aygaz-masthead-root{width:${AD.w}px;height:${AD.h}px}</style>`,
@@ -78,7 +82,7 @@ function indexHtml({ videoBase, assetsNote }) {
   ].join('\n');
 }
 
-function emit(name, { withVideos }) {
+function emit(name, { withVideos, startUnmuted = false }) {
   const dist = path.join(root, 'dist', name);
   fs.rmSync(dist, { recursive: true, force: true });
   for (const d of ['js', 'css', 'img']) fs.mkdirSync(path.join(dist, d), { recursive: true });
@@ -98,7 +102,7 @@ function emit(name, { withVideos }) {
     videoBase = cfg.videoBaseS3;
     assetsNote = 'Videolar S3\'ten okunur: ' + cfg.videoBaseS3 + VIDEO_FILES.join(', ');
   }
-  fs.writeFileSync(path.join(dist, 'index.html'), indexHtml({ videoBase, assetsNote }));
+  fs.writeFileSync(path.join(dist, 'index.html'), indexHtml({ videoBase, assetsNote, startUnmuted }));
 
   // zip: dosyalar kök dizinde (üst klasör yok), tek .html
   fs.mkdirSync(releaseDir, { recursive: true });
@@ -119,5 +123,6 @@ console.log('✔ Aygaz3-sesli.html (sesli önizleme, S3\'e videolarla aynı klas
 
 emit('dv360', { withVideos: true });
 emit('dv360-s3video', { withVideos: false });
+emit('dv360-sesli', { withVideos: true, startUnmuted: true });   // müşteri onayı için, yayına verilmez
 console.log(`   logo: ${localLogo ? 'paket içinde (assets/' + localLogo + ')' : 'canlı ' + cfg.logoUrl}`);
 console.log(`   banner.js ${(Buffer.byteLength(appJs) / 1024).toFixed(0)} KB, banner.css ${(Buffer.byteLength(css) / 1024).toFixed(0)} KB, clickTag → ${cfg.clickTag.slice(0, 60)}…`);

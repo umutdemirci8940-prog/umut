@@ -42,6 +42,7 @@ Dosya S3'e videolarla aynı klasöre konur (`/Aygaz/Aygaz3-sesli.html`). Yayın 
 |---|---|---|
 | `release/aygaz-100oktan-970x250-dv360.zip` | index.html + JS/CSS + poster + **4 video paket içinde** | ~7,8 MB |
 | `release/aygaz-100oktan-970x250-dv360-s3video.zip` | Aynı kreatif, videolar S3'ten (`/Aygaz/Aile.mp4` …) | ~0,14 MB |
+| `release/aygaz-100oktan-970x250-dv360-sesli.zip` | **Müşteri onayı için** videolu paket, sesli başlar (engellenirse ilk tıklamada ses açılır). Yayına verilmez. | ~7,8 MB |
 
 Platformun HTML5 zip boyut sınırı videolu paketi kabul etmezse ikinci paket kullanılır; bu durumda dört mp4 S3'te `/Aygaz/` altına aynı adlarla yüklenmelidir.
 
