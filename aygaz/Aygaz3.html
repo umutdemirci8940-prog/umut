@@ -131,6 +131,28 @@
       </svg>
     );
 
+    const Globe = ({ className = "w-4 h-4" }) => (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+        <path d="M2 12h20"/>
+      </svg>
+    );
+
+    const MapIcon = ({ className = "w-4 h-4" }) => (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"/>
+        <path d="M15 5.764v15"/>
+        <path d="M9 3.236v15"/>
+      </svg>
+    );
+
+    const Flag = ({ className = "w-4 h-4" }) => (
+      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M4 22V4a1 1 0 0 1 .4-.8A6 6 0 0 1 8 2c3 0 5 2 7.333 2q2 0 3.067-.8A1 1 0 0 1 20 4v10a1 1 0 0 1-.4.8A6 6 0 0 1 16 16c-3 0-5-2-7.333-2A6 6 0 0 0 4 15"/>
+      </svg>
+    );
+
     // --- Campaign Data Assets ---
     // Varsayılan varlık adresleri. Yayın paketi (build-dv360.js) bunları window.AYGAZ_ASSETS ile
     // paket içindeki yerel dosyalara çevirir; bu dosya tek başına açıldığında aşağıdakiler kullanılır.
@@ -222,6 +244,13 @@
       }
     ];
 
+    // İstasyon Bul sekmesi – kaynak: https://100oktan.aygaz.com.tr/nerede.html
+    const STATION_STATS = {
+      worldLpgStations: 80000,   // Dünya genelinde LPG istasyonu
+      aygazStations: 1900        // Türkiye'de Aygaz istasyonu (1.900+)
+    };
+    const formatNumber = (n) => n.toLocaleString('tr-TR'); // 80.000 / 1.900
+
     const OKTAN_BENEFITS = [
       {
         id: 'power',
@@ -244,8 +273,8 @@
       {
         id: 'safety',
         title: 'Aygaz Güvencesi',
-        description: 'Türkiye genelinde 1.700+ denetimli istasyonda %100 emniyet garantisi.',
-        statValue: '1700+'
+        description: 'Türkiye genelinde 1.900+ denetimli istasyonda %100 emniyet garantisi.',
+        statValue: '1.900+'
       }
     ];
 
@@ -261,10 +290,9 @@
       const [introFading, setIntroFading] = useState(false);
       const [introStep, setIntroStep] = useState(0);
 
-      // Station counters
+      // Station counters (İstasyon Bul sekmesi açılınca 0'dan sayar)
+      const [worldCount, setWorldCount] = useState(0);
       const [stationCount, setStationCount] = useState(0);
-      const [cityCount, setCityCount] = useState(0);
-      const [qualityPercent, setQualityPercent] = useState(0);
 
       // Her persona için ayrı <video> elemanı; sadece aktif olan görünür ve oynar
       const videoRefs = useRef({});
@@ -293,7 +321,7 @@
       // Station counter animation
       useEffect(() => {
         if (activeTab === 'station') {
-          setStationCount(0); setCityCount(0); setQualityPercent(0);
+          setWorldCount(0); setStationCount(0);
           const duration = 1000;
           const startTime = performance.now();
 
@@ -302,9 +330,8 @@
             const progress = Math.min(elapsed / duration, 1);
             const easeProgress = 1 - Math.pow(1 - progress, 3);
 
-            setStationCount(Math.floor(easeProgress * 1732));
-            setCityCount(Math.floor(easeProgress * 81));
-            setQualityPercent(Math.floor(easeProgress * 100));
+            setWorldCount(Math.floor(easeProgress * STATION_STATS.worldLpgStations));
+            setStationCount(Math.floor(easeProgress * STATION_STATS.aygazStations));
 
             if (progress < 1) {
               requestAnimationFrame(animate);
@@ -629,27 +656,42 @@
                     </span>
                   </div>
 
-                  {/* Animated Counters Grid */}
+                  {/* Animated Counters Grid – veriler: 100oktan.aygaz.com.tr/nerede.html */}
                   <div className="grid grid-cols-3 gap-2 my-1">
-                    <div className="bg-[#000D21] p-2 rounded border border-slate-800 text-center flex flex-col justify-center">
-                      <div className="text-base font-black text-emerald-400 font-mono tracking-tight">
-                        {stationCount.toLocaleString()}+
+                    <div className="bg-[#000D21] px-2.5 py-1.5 rounded border border-slate-800 flex items-center gap-2">
+                      <div className="w-7 h-7 rounded-full bg-white flex items-center justify-center text-[#FF8A00] flex-shrink-0">
+                        <Globe className="w-4 h-4" />
                       </div>
-                      <div className="text-[9.5px] text-slate-300 font-semibold mt-0.5">Aygaz İstasyonu</div>
+                      <div className="min-w-0">
+                        <div className="text-base font-black text-emerald-400 font-mono tracking-tight leading-none">
+                          {formatNumber(worldCount)}
+                        </div>
+                        <div className="text-[9.5px] text-slate-300 font-semibold mt-1 leading-tight">Dünya Genelinde<br />LPG istasyonu</div>
+                      </div>
                     </div>
 
-                    <div className="bg-[#000D21] p-2 rounded border border-slate-800 text-center flex flex-col justify-center">
-                      <div className="text-base font-black text-sky-400 font-mono tracking-tight">
-                        {cityCount}
+                    <div className="bg-[#000D21] px-2.5 py-1.5 rounded border border-slate-800 flex items-center gap-2">
+                      <div className="w-7 h-7 rounded-full bg-white flex items-center justify-center text-[#FF8A00] flex-shrink-0">
+                        <MapIcon className="w-4 h-4" />
                       </div>
-                      <div className="text-[9.5px] text-slate-300 font-semibold mt-0.5">İl Genelinde Ağ</div>
+                      <div className="min-w-0">
+                        <div className="text-base font-black text-sky-400 font-mono tracking-tight leading-none">
+                          {formatNumber(stationCount)}+
+                        </div>
+                        <div className="text-[9.5px] text-slate-300 font-semibold mt-1 leading-tight">Türkiye'de<br />Aygaz istasyonu</div>
+                      </div>
                     </div>
 
-                    <div className="bg-[#000D21] p-2 rounded border border-slate-800 text-center flex flex-col justify-center">
-                      <div className="text-base font-black text-amber-400 font-mono tracking-tight">
-                        %{qualityPercent}
+                    <div className="bg-[#000D21] px-2.5 py-1.5 rounded border border-slate-800 flex items-center gap-2">
+                      <div className="w-7 h-7 rounded-full bg-white flex items-center justify-center text-[#FF8A00] flex-shrink-0">
+                        <Flag className="w-4 h-4" />
                       </div>
-                      <div className="text-[9.5px] text-slate-300 font-semibold mt-0.5">Yüksek Oktan Kalitesi</div>
+                      <div className="min-w-0">
+                        <div className="text-base font-black text-amber-400 tracking-tight leading-none">
+                          Aygaz
+                        </div>
+                        <div className="text-[9.5px] text-slate-300 font-semibold mt-1 leading-tight">100+ Oktan<br />Aygaz'ın tüm istasyonlarında!</div>
+                      </div>
                     </div>
                   </div>
 

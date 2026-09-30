@@ -75,6 +75,18 @@ ffmpeg -i Aile.mp4 -c:v libx264 -profile:v high -level 3.1 -preset slow -crf 23 
        -c:a aac -b:a 96k -ac 2 -movflags +faststart Aile.web.mp4
 ```
 
+## İstasyon Bul sekmesi verileri
+
+Kaynak: `https://100oktan.aygaz.com.tr/nerede.html` (müşterinin gönderdiği görsel). Değerler `Aygaz3.html` → `STATION_STATS` altında:
+
+| Kart | Değer | Etiket |
+|---|---|---|
+| Dünya | 80.000 | Dünya Genelinde LPG istasyonu |
+| Türkiye | 1.900+ | Türkiye'de Aygaz istasyonu |
+| 100+ Oktan | Aygaz | 100+ Oktan, Aygaz'ın tüm istasyonlarında! |
+
+Sayılar sekme açılınca 0'dan sayar ve Türkçe biçimde (nokta binlik ayracı) gösterilir. "100+ Oktan Gücü" sekmesindeki "Aygaz Güvencesi" kartı da aynı kaynağa göre 1.700+ → 1.900+ olarak güncellendi. Önizleme: `preview-istasyon-bul.png`.
+
 ## Değişmeyenler
 
 Tasarım, metinler, sekmeler, hesaplayıcı, intro ve tıklama hedefleri onaylanan `Aygaz2.html` ile aynıdır. Logo (`100oktan.aygaz.com.tr`) ve poster (`aygaz.jpg`) hâlâ eski adreslerinden okunur; kampanya görseli geldiğinde `ASSETS.KEY_VISUAL_URL` ile değiştirilecektir.
