@@ -55,6 +55,32 @@ fs.mkdirSync(out, { recursive: true });
     if (name === 'desktop') fs.writeFileSync(path.join(out, 'page.html'), await page.content());
     await page.screenshot({ path: path.join(out, `${name}.jpg`), fullPage: true, type: 'jpeg', quality: 70 });
     await page.screenshot({ path: path.join(out, `${name}-fold.jpg`), type: 'jpeg', quality: 80 });
+    if (name === 'mobile') {
+      // Sekmeleri tek tek açıp metinlerini kaydet
+      const tabs = {};
+      for (const t of ['Kampanya Bilgisi', 'Fiyatlar', 'Katılım Şartları', 'Tüm Detaylar', 'Sıkça Sorulan Sorular']) {
+        const el = page.getByText(t, { exact: true }).first();
+        if (await el.isVisible().catch(() => false)) {
+          await el.click().catch(() => {});
+          await page.waitForTimeout(1200);
+          await page.evaluate(() => document.querySelectorAll('[aria-expanded="false"]').forEach((b) => { try { b.click(); } catch (e) {} }));
+          await page.waitForTimeout(800);
+          tabs[t] = await page.evaluate(() => document.body.innerText);
+        }
+      }
+      fs.writeFileSync(path.join(out, 'tabs.json'), JSON.stringify(tabs, null, 1));
+      // Logo ve fayda görsellerini indir
+      const want = [...new Set(info.images.map((i) => i.src).filter((s) => /s\.superonline\.net/.test(s) && /logo|benefit|fast/i.test(s)))];
+      meta.files = [];
+      for (const u of want) {
+        try {
+          const r = await ctx.request.get(u);
+          const base = u.split('?')[0].split('/').pop();
+          fs.writeFileSync(path.join(out, base), await r.body());
+          meta.files.push(base);
+        } catch (e) { meta.fileError = String(e); }
+      }
+    }
     if (name === 'desktop' && info.logo) {
       try {
         const r = await ctx.request.get(info.logo);
@@ -67,5 +93,5 @@ fs.mkdirSync(out, { recursive: true });
   }
   fs.writeFileSync(path.join(out, 'meta.json'), JSON.stringify(meta, null, 2));
   await browser.close();
-  console.log(JSON.stringify({ status: meta.pages.desktop.status, title: meta.pages.desktop.title }, null, 1));
+  console.log(JSON.stringify({ files: meta.files, status: meta.pages.mobile.status, title: meta.pages.desktop.title }, null, 1));
 })().catch((e) => { console.error(e); process.exit(1); });
