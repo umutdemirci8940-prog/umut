@@ -1,6 +1,6 @@
 {
   "url": "https://www.superonline.net/ev-interneti/fiber-internet/onlinea-ozel-fiber-hizlari-kampanyasi/1000-mbps",
-  "visitedAt": "2026-10-01T13:15:36.980Z",
+  "visitedAt": "2026-10-01T13:17:42.097Z",
   "pages": {
     "desktop": {
       "status": 405,
@@ -174,25 +174,25 @@
           "h": 41
         },
         {
-          "src": "https://bat.bing.com/action/0?ti=187205850&tm=gtm002&Ver=2&mid=3f2f2fe7-dbab-4978-b778-d638bec8a6f5&bo=1&sid=382b4260bd9a11f18266cd5174456331&vid=382b3e60bd9a11f1bfec731ee2c63ef4&vids=1&msclkid=N&pi=0&lg=tr-TR&sw=390&sh=844&sc=24&nwd=1&tl=Superonline%20Online%E2%80%99a%20%C3%96zel%20Fiber%20H%C4%B1zlar%C4%B1%20Kampanyas%C4%B1%201000%20Mbps&p=https%3A%2F%2Fwww.superonline.net%2Fev-interneti%2Ffiber-internet%2Fonlinea-ozel-fiber-hizlari-kampanyasi%2F1000-mbps&r=&mtp=1&evt=pageLoad&sv=2&cdb=AQwR&rn=300361",
+          "src": "https://bat.bing.com/action/0?ti=187205850&tm=gtm002&Ver=2&mid=dff097e9-38d2-474b-a383-c44d6582f3b8&bo=1&sid=82be0b60bd9a11f191bc0796ff131c84&vid=82be1910bd9a11f1be08b393513198d1&vids=1&msclkid=N&pi=0&lg=tr-TR&sw=390&sh=844&sc=24&nwd=1&tl=Superonline%20Online%E2%80%99a%20%C3%96zel%20Fiber%20H%C4%B1zlar%C4%B1%20Kampanyas%C4%B1%201000%20Mbps&p=https%3A%2F%2Fwww.superonline.net%2Fev-interneti%2Ffiber-internet%2Fonlinea-ozel-fiber-hizlari-kampanyasi%2F1000-mbps&r=&mtp=1&evt=pageLoad&sv=2&cdb=AQwR&rn=843578",
           "alt": "",
           "w": 0,
           "h": 0
         },
         {
-          "src": "https://ib.adnxs.com/setuid?entity=315&code=mi0kgELnDKhSYRosW7uOWO_4IZEIEaDpgL5HOjJ4yL0&consent=1",
+          "src": "https://ib.adnxs.com/setuid?entity=315&code=wtzTrxS1wv2VboMTm0YHOhh1IcJYC8kPG3ogELDVpwA&consent=1",
           "alt": "",
           "w": 1,
           "h": 1
         },
         {
-          "src": "https://ams46.creativecdn.com/info?tk=O2KTuJtWdqLvLpC3f0gq5lyGW3fskbLh4Nj9IBO5PMx5ftogmQyzyIDhuswAbSfxS8TEMWX0NT5qv85PLgnUNgA",
+          "src": "https://ams46.creativecdn.com/info?tk=xq2kTr3Bb9bzrucUoZlPuqhJojKVhgHEhsKnoA36gA52zYc9KqZ5A2taDn_juQejmdNZiXZ-PSa6z8YQWApdtAA",
           "alt": "",
           "w": 1,
           "h": 1
         },
         {
-          "src": "https://cm.g.doubleclick.net/pixel?google_nid=rtb_house&google_cm&google_sc&google_ula=5153224&process_consent=T&google_hm=mi0kgELnDKhSYRosW7uOWO_4IZEIEaDpgL5HOjJ4yL0&pi=adx&tdc=ams",
+          "src": "https://cm.g.doubleclick.net/pixel?google_nid=rtb_house&google_cm&google_sc&google_ula=5153224&process_consent=T&google_hm=wtzTrxS1wv2VboMTm0YHOhh1IcJYC8kPG3ogELDVpwA&pi=adx&tdc=ams",
           "alt": "",
           "w": 1,
           "h": 1
@@ -202,11 +202,11 @@
       "colors": [
         [
           "rgb(255, 255, 255)",
-          57
+          56
         ],
         [
           "rgb(0, 0, 0)",
-          25
+          26
         ],
         [
           "rgb(22, 119, 255)",
@@ -225,10 +225,6 @@
           5
         ],
         [
-          "rgb(3, 78, 162)",
-          3
-        ],
-        [
           "rgb(157, 164, 174)",
           3
         ],
@@ -243,6 +239,18 @@
         [
           "rgb(255, 196, 12)",
           2
+        ],
+        [
+          "rgb(3, 78, 162)",
+          1
+        ],
+        [
+          "rgb(255, 197, 13)",
+          1
+        ],
+        [
+          "rgb(248, 202, 69)",
+          1
         ]
       ],
       "fonts": [
@@ -250,5 +258,14 @@
         "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\""
       ]
     }
-  }
+  },
+  "files": [
+    "Superonline_2026_yeni_logo.png",
+    "fast.white.svg",
+    "benefit.youtube.png",
+    "social.x.logo.svg",
+    "social.facebook.logo.svg",
+    "social.insta.logo.svg",
+    "social.youtube.logo.svg"
+  ]
 }
