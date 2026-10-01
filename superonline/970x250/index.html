@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="ad.size" content="width=970,height=250">
+<title>Kendini Geçen Reklam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap">
+<script>var clickTag = window.clickTag || "https://www.superonline.net/ev-interneti/fiber-internet/onlinea-ozel-fiber-hizlari-kampanyasi/1000-mbps?utm_source=mecra&utm_medium=display&utm_campaign=onlinea_ozel_1000&utm_content=970x250_kendini_gecen_reklam";</script>
+<style>
+/* 970x250 masthead · "Kendini Geçen Reklam"
+   Sahne 1 Oynatıcı: banner bir video reklamı gibi davranır, "Reklamı Geç" düğmesi çıkar.
+   Sahne 2 Sessizlik: reklam kendini geçer; YouTube Premium faydası.
+   Sahne 3 Bir sıfır: 100'ün sonuna sarı bir 0 düşer, fiyat 950 TL'de kalır.
+   Sahne 4 Teklif: logo, faydalar, fiyat, Hemen Başvur. */
+:root{
+  --navy:#034ea2; --navy-2:#0a63c9; --deep:#05142f; --night:#0a1c3f;
+  --yellow:#ffc72c; --ink:#0b1b3a; --mute:#5b6a85; --paper:#f4f6fa; --white:#fff; --yt:#ff0000;
+  --f:"Figtree","GreycliffCF",Arial,Helvetica,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:#e9edf3;display:grid;place-items:center;font-family:var(--f);overflow:hidden}
+#stage{position:relative;width:970px;height:250px;flex:none}
+#ad{position:absolute;left:0;top:0;width:970px;height:250px;overflow:hidden;cursor:pointer;background:var(--deep);color:var(--white);transform-origin:0 0;outline:none;border:1px solid rgba(0,0,0,.08)}
+#ad:focus-visible{box-shadow:inset 0 0 0 3px var(--yellow)}
+.scene{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .45s ease,visibility 0s linear .45s}
+.scene.on{opacity:1;visibility:visible;transition:opacity .45s ease,visibility 0s}
+
+/* ---------- Sahne 1 · Oynatıcı ---------- */
+#s1{background:var(--deep)}
+#s1 .frame{position:absolute;inset:0;background:
+  radial-gradient(420px 220px at 18% 30%,rgba(10,99,201,.55),transparent 70%),
+  radial-gradient(380px 200px at 82% 80%,rgba(255,199,44,.18),transparent 70%),
+  linear-gradient(120deg,#061736,#0a1c3f 60%,#071a39)}
+#s1 .grain{position:absolute;inset:0;opacity:.18;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.06) 0 1px,transparent 1px 3px)}
+#s1 .tag{position:absolute;left:18px;top:14px;display:flex;gap:8px;align-items:center;font:700 11px/1 var(--mono);letter-spacing:.06em}
+#s1 .tag b{background:var(--yellow);color:var(--ink);padding:4px 6px;border-radius:3px}
+#s1 .tag span{opacity:.75;font-variant-numeric:tabular-nums}
+#s1 .copy{position:absolute;left:60px;top:58px;width:560px}
+#s1 .copy .l1{font:800 44px/1.02 var(--f);letter-spacing:-.01em}
+#s1 .copy .l2{margin-top:12px;font:500 18px/1.35 var(--f);opacity:.8;max-width:470px}
+#s1 .bar{position:absolute;left:0;right:0;bottom:0;height:5px;background:rgba(255,255,255,.18)}
+#s1 .bar i{display:block;height:100%;width:0;background:var(--yellow)}
+#s1 .ctrls{position:absolute;left:18px;bottom:16px;display:flex;gap:14px;align-items:center;font:600 12px/1 var(--mono);opacity:.75}
+#s1 .ctrls svg{width:14px;height:14px;fill:#fff}
+#skip{position:absolute;right:0;bottom:26px;min-width:210px;height:52px;padding:0 18px 0 20px;border:1px solid rgba(255,255,255,.35);border-right:0;background:rgba(5,20,47,.82);color:#fff;font:700 15px/1 var(--f);display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:default;border-radius:4px 0 0 4px}
+#skip .wait{opacity:.8;font-weight:600;font-size:13.5px}
+#skip .go{display:none;align-items:center;gap:10px}
+#skip .go svg{width:18px;height:18px;fill:#fff}
+#skip.ready{cursor:pointer;border-color:#fff;background:rgba(5,20,47,.92)}
+#skip.ready .wait{display:none}#skip.ready .go{display:flex}
+#skip.ready{animation:nudge 1.4s ease-in-out .3s infinite}
+#skip:focus-visible{outline:3px solid var(--yellow);outline-offset:-3px}
+@keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(-6px)}}
+#s1 .num{display:inline-block;min-width:1ch;text-align:center;font-variant-numeric:tabular-nums}
+
+/* ---------- Sahne 2 · Sessizlik ---------- */
+#s2{background:var(--paper);color:var(--ink)}
+#s2 .empty{position:absolute;inset:18px;border:1.5px dashed #c9d2e0;border-radius:6px}
+#s2 .lab{position:absolute;left:34px;top:30px;font:700 11px/1 var(--mono);letter-spacing:.1em;color:var(--mute);text-transform:uppercase}
+#s2 .msg{position:absolute;left:0;right:0;top:66px;text-align:center}
+#s2 .m1{font:800 40px/1.05 var(--f);letter-spacing:-.01em}
+#s2 .m2{margin-top:14px;display:inline-flex;align-items:center;gap:12px;font:600 19px/1.3 var(--f);color:var(--ink)}
+#s2 .m2 img{width:34px;height:34px}
+#s2 .m2 b{font-weight:800}
+#s2 .m1,#s2 .m2{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease}
+#s2.on .m1{opacity:1;transform:none;transition-delay:.15s}
+#s2.on .m2{opacity:1;transform:none;transition-delay:.9s}
+
+/* ---------- Sahne 3 · Bir sıfır ---------- */
+#s3{background:linear-gradient(105deg,var(--navy) 0%,#0759b8 55%,#3d86d8 100%)}
+#s3 .speed{position:absolute;left:70px;top:22px;display:flex;align-items:flex-end;gap:14px}
+#s3 .digits{position:relative;display:flex;font:900 168px/1 var(--f);letter-spacing:-.04em;height:176px}
+#s3 .digits span{display:block}
+#s3 .zero{color:var(--yellow);transform:translateY(-240px) rotate(-14deg);opacity:0}
+#s3.drop .zero{animation:drop .75s cubic-bezier(.3,1.5,.6,1) forwards}
+@keyframes drop{0%{transform:translateY(-240px) rotate(-14deg);opacity:1}70%{transform:translateY(8px) rotate(3deg);opacity:1}100%{transform:none;opacity:1}}
+#s3 .unit{font:800 30px/1 var(--f);padding-bottom:26px;opacity:.95}
+#s3 .shake{animation:none}
+#s3.drop .digits .d{animation:thud .35s ease-out .5s}
+@keyframes thud{0%,100%{transform:none}40%{transform:translateY(5px)}}
+#s3 .price{position:absolute;right:56px;top:46px;width:262px;text-align:right}
+#s3 .price .was{font:700 12px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;opacity:.8}
+#s3 .price .p{margin-top:8px;font:900 76px/1 var(--f);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+#s3 .price .p small{font-size:22px;font-weight:700;margin-left:4px;letter-spacing:0}
+#s3 .stamp{position:absolute;right:0;top:118px;font:800 15px/1 var(--f);color:var(--ink);background:var(--yellow);padding:9px 12px;border-radius:4px;transform:rotate(-4deg) scale(.4);opacity:0;transition:transform .35s cubic-bezier(.3,1.6,.6,1),opacity .2s}
+#s3.drop .stamp{transform:rotate(-4deg) scale(1);opacity:1;transition-delay:.85s}
+#s3 .cap{position:absolute;left:74px;bottom:18px;font:700 19px/1 var(--f);opacity:0;transition:opacity .4s ease 1.1s}
+#s3.drop .cap{opacity:1}
+#s3 .cap b{color:var(--yellow)}
+
+/* ---------- Sahne 4 · Teklif ---------- */
+#s4{background:linear-gradient(100deg,var(--navy) 0%,#0759b8 62%,#2f7bd2 100%)}
+#s4 .logo{position:absolute;left:28px;top:22px;height:44px;width:auto}
+#s4 .tag{position:absolute;left:30px;top:84px;font:700 12px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--yellow)}
+#s4 h1{position:absolute;left:28px;top:104px;width:396px;font:900 34px/1.04 var(--f);letter-spacing:-.01em}
+#s4 h1 em{font-style:normal;color:var(--yellow)}
+#s4 .chips{position:absolute;left:436px;top:26px;width:270px;display:grid;gap:7px}
+#s4 .chip{display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:9px 10px;font:600 12.5px/1.2 var(--f);white-space:nowrap;opacity:0;transform:translateX(12px);transition:opacity .35s ease,transform .35s ease}
+#s4 .chip b{font-weight:800}
+#s4 .chip i{flex:none;width:8px;height:8px;border-radius:50%;background:var(--yellow)}
+#s4 .chip img{flex:none;width:18px;height:18px;margin:-2px -2px -2px -3px}
+#s4.on .chip{opacity:1;transform:none}
+#s4.on .chip:nth-child(1){transition-delay:.25s}#s4.on .chip:nth-child(2){transition-delay:.4s}#s4.on .chip:nth-child(3){transition-delay:.55s}#s4.on .chip:nth-child(4){transition-delay:.7s}
+#s4 .buy{position:absolute;right:24px;top:22px;width:224px;background:#fff;color:var(--ink);border-radius:12px;padding:14px 16px 16px;display:grid;gap:4px}
+#s4 .buy .k{font:700 11px/1.2 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+#s4 .buy .p{font:900 50px/1 var(--f);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+#s4 .buy .p small{font-size:17px;font-weight:700;letter-spacing:0;margin-left:3px}
+#s4 .buy .t{font:600 13px/1.25 var(--f);color:var(--mute)}
+#cta{margin-top:8px;height:44px;border:0;border-radius:8px;background:var(--yellow);color:var(--ink);font:800 16px/1 var(--f);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;position:relative;overflow:hidden}
+#cta:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+#cta::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.65) 50%,transparent 70%);transform:translateX(-120%)}
+#s4.on #cta::after{animation:shine 2.6s ease-in-out 1.2s infinite}
+@keyframes shine{0%{transform:translateX(-120%)}45%,100%{transform:translateX(120%)}}
+#s4 .legal{position:absolute;left:28px;right:290px;bottom:9px;font:500 9.5px/1.3 var(--f);opacity:.78}
+#replay{position:absolute;right:252px;bottom:10px;width:26px;height:26px;border-radius:50%;border:1px solid rgba(255,255,255,.45);background:transparent;color:#fff;display:grid;place-items:center;cursor:pointer;opacity:0;transition:opacity .3s}
+#replay svg{width:13px;height:13px;fill:currentColor}
+#s4.done #replay{opacity:1}
+#replay:focus-visible{outline:2px solid var(--yellow);outline-offset:2px}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="stage">
+<div id="ad" role="link" tabindex="0" aria-label="Turkcell Superonline Online'a Özel Fiber Hızları: 1000 Mbps, 100 Mbps fiyatına, 950 TL/Ay. Kampanya sayfasına git.">
+
+  <!-- Sahne 1 · Oynatıcı -->
+  <div class="scene" id="s1" aria-hidden="true">
+    <div class="frame"></div><div class="grain"></div>
+    <div class="tag"><b>REKLAM</b><span id="tc">0:00 / 0:15</span></div>
+    <div class="copy">
+      <div class="l1">Şu an bir reklam<br>izliyorsun.</div>
+      <div class="l2">Biliyoruz, sen de geçmeyi bekliyorsun.</div>
+    </div>
+    <div class="ctrls"><svg viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg><span>Superonline</span></div>
+    <button type="button" id="skip" tabindex="-1" aria-label="Reklamı geç"><span class="wait">Reklamı <span class="num" id="cd">3</span> sn sonra geçebilirsin</span><span class="go">Reklamı Geç <svg viewBox="0 0 24 24"><path d="M5 5l9 7-9 7zM16 5h3v14h-3z"/></svg></span></button>
+    <div class="bar"><i id="pb"></i></div>
+  </div>
+
+  <!-- Sahne 2 · Sessizlik -->
+  <div class="scene" id="s2" aria-hidden="true">
+    <div class="empty"></div>
+    <div class="lab">Bu alan şu an reklamsız</div>
+    <div class="msg">
+      <div class="m1">Geçtin. Ne güzel, değil mi?</div>
+      <div class="m2"><img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAASoSURBVHgB7ZttbBRFGMf/c3t3exRjQhrECldrVaQCvmCINhWtMaJWW21IEKKRaEgjatRPfvGzMUEJwaZQtMUqWhIQpa2kAYpIgGI1KCASMKmQtkEECrHacsft7ri7htyH7tzbWG537/kll7ubmf2wv8zuzDzPDOMmIHImAEIKEigJCZSEBEpCAiUhgZKQQElIoCQkUBISKAkJlIQESkICJSGBkgQhAT9/Dnp3J4xjR8BPHgcfvgBciZsVcDfXTQabUgwWLUOgcgGUqofN36XIBZZLPND49Sj0Dc3QNn8Ov6AsWorQm2+D3XJrVtdlJZBfHIbW+AG01rXmH3/GYYPLX0Ww4Q2wkpsyap+xQH5mCPGXl4Cbvc/vsPLbobZ3gE2fkb5tJgL50ADi9QvBz55BocBmlELd/I39nkzZLq3AWAyxxyrBT/ej0GAzZ0Ht2gNWNFnYJu005sq77xSkPAv+2wkk3nolZZuUPdD45TDiNQ+h0FG/7Ebg/irHupQ9UPu4CURqD8IeyH/vR6x6nm+nK1kRCiHy7Y9gZeXjqoQ9UO/uIHlXSSSgd33lWCUWuP87EEmMQz84lgsF8qFBEEkMc63vhFjgubMgkvBLw47l4lH48hgmGmXJiwg8+gQ8wZizD+EofDl6PSYUa2Q7eAxsWgn07dvsqYJxqA9uZtLgyLiy/AVUFeW/j/XzqWehbtuF8BZzwnrPffASropIKw9U2WvP8IctCMybDy/gypC+Ur8YasduhNs7wUrL4GZcnRNRFlQjcuAowi3tYBVz4EY8kVRSHn8akZ29CK/faMfp3ISnsnJKzTP2yB1u+gTsjgq4AU+mNZW6RYj09CG8ah1YWXZJoP8bT+eFlcXPI7LvZ4RWNuZtsPFFYj24dJkp8jAC8ytxrfHNzgSj7wD4wClca6R2JuQbbq7XjR3bobWYy8AjPyEfeFNgPGYGfLuQaFoFfuI48om3BGoaEo3vQ9/Yau/LcQOeEMhH/oK2oRn6px+BXzgPN+FqgfzvEWjNa6C3rgUfHYUbcaVAPnAaWnsb9M9abIluxlUCbXHrVkP7os0zGcH8CtQN+8v4fj8S6xth7NlplunwEmKBjE1sL4jFkFj9Hviff8DYu9vOvbob5lwqyonEZpW49sWdF4qKMOnk+EyleCk3pRhEEnbDjY7lQoHszrkgkogCuUKBiseyYxON8mC1Y7lYYG29nbslYA+oypN1jlXiR9iM9AYeWQjCyhI+B1Z+m2NdynhgqOF1ENbRhxXCupQCrW2tSk0dChllWQMCc+8V1qffpT82hlhttb3hutCwXmNqz0EwNSJskz6kb04g1bYtGZ/c8QvW/aqbOlPKs8goJ8KiN0P9epfwReo32Oy7oHb0mHO/aNq2GSeV2PSovfEnuPw1+BZzumLdn7p1h9kD0x/zsi/J5bQmP9WPxJqV0Ldugi9gVo75BQRfWoHA7OxWYDkJvAofHIDRuxd67z47lscvXQRG/3H3eWHrmVNVsOKpYDMrEJhztzlJrgWbOg25ICWQoCP/0pBASUigJCRQEhIoCQmUhARKQgIlIYGSkEBJSKAkJFASEigJCZSEBEryL0lNfgVohDWmAAAAAElFTkSuQmCC">Superonline'lılara <b>3 ay YouTube Premium</b> hediye.</div>
+    </div>
+  </div>
+
+  <!-- Sahne 3 · Bir sıfır -->
+  <div class="scene" id="s3" aria-hidden="true">
+    <div class="speed"><div class="digits"><span class="d">1</span><span class="d">0</span><span class="d">0</span><span class="zero">0</span></div><div class="unit">Mbps</div></div>
+    <div class="price"><div class="was">100 Mbps fiyatına</div><div class="p">950<small>TL/Ay</small></div><div class="stamp">Fiyat aynı kaldı</div></div>
+    <div class="cap">Bir sıfır fazlası. <b>Kuruş fazlası yok.</b></div>
+  </div>
+
+  <!-- Sahne 4 · Teklif -->
+  <div class="scene" id="s4" aria-hidden="true">
+    <img class="logo" alt="Turkcell Superonline" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAABXCAYAAAC+73jDAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAylpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDEwLjAtYzAwMCA3OS5kMjBlNDY2MzAsIDIwMjUvMTIvMDktMDI6MTE6MjMgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCAyNy40IChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjIyQUUzMTA3MTE5MDExRjE5RDVERTVFOEZBNTQyMDRCIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjIyQUUzMTA4MTE5MDExRjE5RDVERTVFOEZBNTQyMDRCIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MjJBRTMxMDUxMTkwMTFGMTlENURFNUU4RkE1NDIwNEIiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MjJBRTMxMDYxMTkwMTFGMTlENURFNUU4RkE1NDIwNEIiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6TeDX4AAAZKUlEQVR4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">
+    <div class="tag">Online'a Özel Fiber Hızları</div>
+    <h1>1000 Mbps,<br><em>100 Mbps fiyatına.</em></h1>
+    <div class="chips">
+      <div class="chip"><i></i><span>Üstelik <b>Upload 100 Mbps</b></span></div>
+      <div class="chip"><img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAASoSURBVHgB7ZttbBRFGMf/c3t3exRjQhrECldrVaQCvmCINhWtMaJWW21IEKKRaEgjatRPfvGzMUEJwaZQtMUqWhIQpa2kAYpIgGI1KCASMKmQtkEECrHacsft7ri7htyH7tzbWG537/kll7ubmf2wv8zuzDzPDOMmIHImAEIKEigJCZSEBEpCAiUhgZKQQElIoCQkUBISKAkJlIQESkICJSGBkgQhAT9/Dnp3J4xjR8BPHgcfvgBciZsVcDfXTQabUgwWLUOgcgGUqofN36XIBZZLPND49Sj0Dc3QNn8Ov6AsWorQm2+D3XJrVtdlJZBfHIbW+AG01rXmH3/GYYPLX0Ww4Q2wkpsyap+xQH5mCPGXl4Cbvc/vsPLbobZ3gE2fkb5tJgL50ADi9QvBz55BocBmlELd/I39nkzZLq3AWAyxxyrBT/ej0GAzZ0Ht2gNWNFnYJu005sq77xSkPAv+2wkk3nolZZuUPdD45TDiNQ+h0FG/7Ebg/irHupQ9UPu4CURqD8IeyH/vR6x6nm+nK1kRCiHy7Y9gZeXjqoQ9UO/uIHlXSSSgd33lWCUWuP87EEmMQz84lgsF8qFBEEkMc63vhFjgubMgkvBLw47l4lH48hgmGmXJiwg8+gQ8wZizD+EofDl6PSYUa2Q7eAxsWgn07dvsqYJxqA9uZtLgyLiy/AVUFeW/j/XzqWehbtuF8BZzwnrPffASropIKw9U2WvP8IctCMybDy/gypC+Ur8YasduhNs7wUrL4GZcnRNRFlQjcuAowi3tYBVz4EY8kVRSHn8akZ29CK/faMfp3ISnsnJKzTP2yB1u+gTsjgq4AU+mNZW6RYj09CG8ah1YWXZJoP8bT+eFlcXPI7LvZ4RWNuZtsPFFYj24dJkp8jAC8ytxrfHNzgSj7wD4wClca6R2JuQbbq7XjR3bobWYy8AjPyEfeFNgPGYGfLuQaFoFfuI48om3BGoaEo3vQ9/Yau/LcQOeEMhH/oK2oRn6px+BXzgPN+FqgfzvEWjNa6C3rgUfHYUbcaVAPnAaWnsb9M9abIluxlUCbXHrVkP7os0zGcH8CtQN+8v4fj8S6xth7NlplunwEmKBjE1sL4jFkFj9Hviff8DYu9vOvbob5lwqyonEZpW49sWdF4qKMOnk+EyleCk3pRhEEnbDjY7lQoHszrkgkogCuUKBiseyYxON8mC1Y7lYYG29nbslYA+oypN1jlXiR9iM9AYeWQjCyhI+B1Z+m2NdynhgqOF1ENbRhxXCupQCrW2tSk0dChllWQMCc+8V1qffpT82hlhttb3hutCwXmNqz0EwNSJskz6kb04g1bYtGZ/c8QvW/aqbOlPKs8goJ8KiN0P9epfwReo32Oy7oHb0mHO/aNq2GSeV2PSovfEnuPw1+BZzumLdn7p1h9kD0x/zsi/J5bQmP9WPxJqV0Ldugi9gVo75BQRfWoHA7OxWYDkJvAofHIDRuxd67z47lscvXQRG/3H3eWHrmVNVsOKpYDMrEJhztzlJrgWbOg25ICWQoCP/0pBASUigJCRQEhIoCQmUhARKQgIlIYGSkEBJSKAkJFASEigJCZSEBEryL0lNfgVohDWmAAAAAElFTkSuQmCC"><span><b>3 ay YouTube Premium</b> hediye</span></div>
+      <div class="chip"><i></i><span>Kurulum + aktivasyon <b>ücretsiz</b></span></div>
+      <div class="chip"><i></i><span>İptal bedelin <b>5.000 TL'ye kadar</b> bizden</span></div>
+    </div>
+    <div class="buy">
+      <span class="k">Online'a özel · 12 ay</span>
+      <span class="p">950<small>TL/Ay</small></span>
+      <span class="t">Limitsiz · Vergiler ve modem dahil</span>
+      <button type="button" id="cta" tabindex="-1">Hemen Başvur</button>
+    </div>
+    <button type="button" id="replay" tabindex="-1" aria-label="Tekrar oynat"><svg viewBox="0 0 24 24"><path d="M12 5V1L7 6l5 5V7a6 6 0 1 1-6 6H4a8 8 0 1 0 8-8z"/></svg></button>
+    <div class="legal">Yeni bireysel fiber müşterilerine, yalnızca superonline.net veya Turkcell Uygulaması'ndan başvuruda, 1 Ocak 2027'ye kadar. Fiyata vergiler ve 80 TL modem kullanım ücreti dahildir. Hız, adresteki altyapıya bağlıdır.</div>
+  </div>
+</div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var ad = document.getElementById('ad'), skip = document.getElementById('skip'), cta = document.getElementById('cta'), replay = document.getElementById('replay');
+  var S = [null, document.getElementById('s1'), document.getElementById('s2'), document.getElementById('s3'), document.getElementById('s4')];
+  var cd = document.getElementById('cd'), pb = document.getElementById('pb'), tc = document.getElementById('tc');
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var timers = [], raf = 0, cur = 0, born = Date.now();
+  var MAX = 30000; // Google Ads: animasyon 30 sn'yi geçmez
+
+  function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
+  function clear() { timers.forEach(clearTimeout); timers = []; cancelAnimationFrame(raf); }
+  function show(n) {
+    cur = n;
+    S.forEach(function (s, i) { if (!s) return; s.classList.toggle('on', i === n); s.setAttribute('aria-hidden', i === n ? 'false' : 'true'); });
+    skip.tabIndex = n === 1 && skip.classList.contains('ready') ? 0 : -1;
+    cta.tabIndex = replay.tabIndex = n === 4 ? 0 : -1;
+  }
+
+  // Sahne 1: oynatıcı, 3 sn sayaç, sonra "Reklamı Geç". Tıklanmazsa 6,2 sn'de kendini geçer.
+  function scene1() {
+    clear(); show(1);
+    S[3].classList.remove('drop'); S[4].classList.remove('done');
+    skip.classList.remove('ready'); skip.tabIndex = -1; cd.textContent = '3';
+    var t0 = performance.now();
+    (function tick(now) {
+      var e = now - t0, sec = Math.min(15, e / 1000);
+      pb.style.width = Math.min(100, e / 6200 * 100) + '%';
+      tc.textContent = '0:' + ('0' + Math.floor(sec)).slice(-2) + ' / 0:15';
+      var left = 3 - Math.floor(e / 1000);
+      if (left > 0) cd.textContent = left;
+      else if (!skip.classList.contains('ready')) { skip.classList.add('ready'); skip.tabIndex = 0; }
+      if (e < 6200) raf = requestAnimationFrame(tick); else scene2();
+    })(t0);
+  }
+  // Sahne 2: reklam kendini geçti
+  function scene2() { clear(); show(2); later(scene3, 3300); }
+  // Sahne 3: sıfır düşer, fiyat aynı kalır
+  function scene3() { clear(); show(3); later(function () { S[3].classList.add('drop'); }, 350); later(scene4, 3600); }
+  // Sahne 4: teklif; 30 sn içinde bir kez döngü yapar, sonra durur
+  function scene4() {
+    clear(); show(4);
+    later(function () {
+      if (Date.now() - born + 13500 < MAX) scene1(); else S[4].classList.add('done');
+    }, 6000);
+  }
+
+  function exit() {
+    if (window.Enabler && Enabler.exit) { Enabler.exit('Superonline'); return; }
+    window.open(window.clickTag || clickTag, '_blank');
+  }
+  skip.addEventListener('click', function (e) { e.stopPropagation(); if (skip.classList.contains('ready')) scene2(); });
+  replay.addEventListener('click', function (e) { e.stopPropagation(); born = Date.now(); scene1(); });
+  cta.addEventListener('click', function (e) { e.stopPropagation(); exit(); });
+  ad.addEventListener('click', exit);
+  ad.addEventListener('keydown', function (e) {
+    if (e.target !== ad) return;
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); exit(); }
+  });
+
+  // Önizleme: dar ekranda bannerı ölçekle (yayın ortamında 970x250 sabit kalır)
+  var stage = document.getElementById('stage');
+  function fit() {
+    var vw = document.documentElement.clientWidth, k = vw >= 970 ? 1 : Math.max(.3, (vw - 32) / 970);
+    ad.style.transform = k < 1 ? 'scale(' + k + ')' : '';
+    stage.style.width = 970 * k + 'px'; stage.style.height = 250 * k + 'px';
+  }
+  window.addEventListener('resize', fit); fit();
+
+  if (reduce) { show(4); S[4].classList.add('done'); }
+  else scene1();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="ad.size" content="width=970,height=250">
+<title>Kendini Geçen Reklam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap">
+<script>var clickTag = window.clickTag || "https://www.superonline.net/ev-interneti/fiber-internet/onlinea-ozel-fiber-hizlari-kampanyasi/1000-mbps?utm_source=mecra&utm_medium=display&utm_campaign=onlinea_ozel_1000&utm_content=970x250_kendini_gecen_reklam";</script>
+<style>
+/* 970x250 masthead · "Kendini Geçen Reklam"
+   Sahne 1 Oynatıcı: banner bir video reklamı gibi davranır, "Reklamı Geç" düğmesi çıkar.
+   Sahne 2 Sessizlik: reklam kendini geçer; YouTube Premium faydası.
+   Sahne 3 Bir sıfır: 100'ün sonuna sarı bir 0 düşer, fiyat 950 TL'de kalır.
+   Sahne 4 Teklif: logo, faydalar, fiyat, Hemen Başvur. */
+:root{
+  --navy:#034ea2; --navy-2:#0a63c9; --deep:#05142f; --night:#0a1c3f;
+  --yellow:#ffc72c; --ink:#0b1b3a; --mute:#5b6a85; --paper:#f4f6fa; --white:#fff; --yt:#ff0000;
+  --f:"Figtree","GreycliffCF",Arial,Helvetica,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:#e9edf3;display:grid;place-items:center;font-family:var(--f);overflow:hidden}
+#stage{position:relative;width:970px;height:250px;flex:none}
+#ad{position:absolute;left:0;top:0;width:970px;height:250px;overflow:hidden;cursor:pointer;background:var(--deep);color:var(--white);transform-origin:0 0;outline:none;border:1px solid rgba(0,0,0,.08)}
+#ad:focus-visible{box-shadow:inset 0 0 0 3px var(--yellow)}
+.scene{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .45s ease,visibility 0s linear .45s}
+.scene.on{opacity:1;visibility:visible;transition:opacity .45s ease,visibility 0s}
+
+/* ---------- Sahne 1 · Oynatıcı ---------- */
+#s1{background:var(--deep)}
+#s1 .frame{position:absolute;inset:0;background:
+  radial-gradient(420px 220px at 18% 30%,rgba(10,99,201,.55),transparent 70%),
+  radial-gradient(380px 200px at 82% 80%,rgba(255,199,44,.18),transparent 70%),
+  linear-gradient(120deg,#061736,#0a1c3f 60%,#071a39)}
+#s1 .grain{position:absolute;inset:0;opacity:.18;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.06) 0 1px,transparent 1px 3px)}
+#s1 .tag{position:absolute;left:18px;top:14px;display:flex;gap:8px;align-items:center;font:700 11px/1 var(--mono);letter-spacing:.06em}
+#s1 .tag b{background:var(--yellow);color:var(--ink);padding:4px 6px;border-radius:3px}
+#s1 .tag span{opacity:.75;font-variant-numeric:tabular-nums}
+#s1 .copy{position:absolute;left:60px;top:58px;width:560px}
+#s1 .copy .l1{font:800 44px/1.02 var(--f);letter-spacing:-.01em}
+#s1 .copy .l2{margin-top:12px;font:500 18px/1.35 var(--f);opacity:.8;max-width:470px}
+#s1 .bar{position:absolute;left:0;right:0;bottom:0;height:5px;background:rgba(255,255,255,.18)}
+#s1 .bar i{display:block;height:100%;width:0;background:var(--yellow)}
+#s1 .ctrls{position:absolute;left:18px;bottom:16px;display:flex;gap:14px;align-items:center;font:600 12px/1 var(--mono);opacity:.75}
+#s1 .ctrls svg{width:14px;height:14px;fill:#fff}
+#skip{position:absolute;right:0;bottom:26px;min-width:210px;height:52px;padding:0 18px 0 20px;border:1px solid rgba(255,255,255,.35);border-right:0;background:rgba(5,20,47,.82);color:#fff;font:700 15px/1 var(--f);display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:default;border-radius:4px 0 0 4px}
+#skip .wait{opacity:.8;font-weight:600;font-size:13.5px}
+#skip .go{display:none;align-items:center;gap:10px}
+#skip .go svg{width:18px;height:18px;fill:#fff}
+#skip.ready{cursor:pointer;border-color:#fff;background:rgba(5,20,47,.92)}
+#skip.ready .wait{display:none}#skip.ready .go{display:flex}
+#skip.ready{animation:nudge 1.4s ease-in-out .3s infinite}
+#skip:focus-visible{outline:3px solid var(--yellow);outline-offset:-3px}
+@keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(-6px)}}
+#s1 .num{display:inline-block;min-width:1ch;text-align:center;font-variant-numeric:tabular-nums}
+
+/* ---------- Sahne 2 · Sessizlik ---------- */
+#s2{background:var(--paper);color:var(--ink)}
+#s2 .empty{position:absolute;inset:18px;border:1.5px dashed #c9d2e0;border-radius:6px}
+#s2 .lab{position:absolute;left:34px;top:30px;font:700 11px/1 var(--mono);letter-spacing:.1em;color:var(--mute);text-transform:uppercase}
+#s2 .msg{position:absolute;left:0;right:0;top:66px;text-align:center}
+#s2 .m1{font:800 40px/1.05 var(--f);letter-spacing:-.01em}
+#s2 .m2{margin-top:14px;display:inline-flex;align-items:center;gap:12px;font:600 19px/1.3 var(--f);color:var(--ink)}
+#s2 .m2 img{width:34px;height:34px}
+#s2 .m2 b{font-weight:800}
+#s2 .m1,#s2 .m2{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease}
+#s2.on .m1{opacity:1;transform:none;transition-delay:.15s}
+#s2.on .m2{opacity:1;transform:none;transition-delay:.9s}
+
+/* ---------- Sahne 3 · Bir sıfır ---------- */
+#s3{background:linear-gradient(105deg,var(--navy) 0%,#0759b8 55%,#3d86d8 100%)}
+#s3 .speed{position:absolute;left:70px;top:22px;display:flex;align-items:flex-end;gap:14px}
+#s3 .digits{position:relative;display:flex;font:900 168px/1 var(--f);letter-spacing:-.04em;height:176px}
+#s3 .digits span{display:block}
+#s3 .zero{color:var(--yellow);transform:translateY(-240px) rotate(-14deg);opacity:0}
+#s3.drop .zero{animation:drop .75s cubic-bezier(.3,1.5,.6,1) forwards}
+@keyframes drop{0%{transform:translateY(-240px) rotate(-14deg);opacity:1}70%{transform:translateY(8px) rotate(3deg);opacity:1}100%{transform:none;opacity:1}}
+#s3 .unit{font:800 30px/1 var(--f);padding-bottom:26px;opacity:.95}
+#s3 .shake{animation:none}
+#s3.drop .digits .d{animation:thud .35s ease-out .5s}
+@keyframes thud{0%,100%{transform:none}40%{transform:translateY(5px)}}
+#s3 .price{position:absolute;right:56px;top:46px;width:262px;text-align:right}
+#s3 .price .was{font:700 12px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;opacity:.8}
+#s3 .price .p{margin-top:8px;font:900 76px/1 var(--f);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+#s3 .price .p small{font-size:22px;font-weight:700;margin-left:4px;letter-spacing:0}
+#s3 .stamp{position:absolute;right:0;top:118px;font:800 15px/1 var(--f);color:var(--ink);background:var(--yellow);padding:9px 12px;border-radius:4px;transform:rotate(-4deg) scale(.4);opacity:0;transition:transform .35s cubic-bezier(.3,1.6,.6,1),opacity .2s}
+#s3.drop .stamp{transform:rotate(-4deg) scale(1);opacity:1;transition-delay:.85s}
+#s3 .cap{position:absolute;left:74px;bottom:18px;font:700 19px/1 var(--f);opacity:0;transition:opacity .4s ease 1.1s}
+#s3.drop .cap{opacity:1}
+#s3 .cap b{color:var(--yellow)}
+
+/* ---------- Sahne 4 · Teklif ---------- */
+#s4{background:linear-gradient(100deg,var(--navy) 0%,#0759b8 62%,#2f7bd2 100%)}
+#s4 .logo{position:absolute;left:28px;top:22px;height:44px;width:auto}
+#s4 .tag{position:absolute;left:30px;top:84px;font:700 12px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--yellow)}
+#s4 h1{position:absolute;left:28px;top:104px;width:396px;font:900 34px/1.04 var(--f);letter-spacing:-.01em}
+#s4 h1 em{font-style:normal;color:var(--yellow)}
+#s4 .chips{position:absolute;left:436px;top:26px;width:270px;display:grid;gap:7px}
+#s4 .chip{display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:9px 10px;font:600 12.5px/1.2 var(--f);white-space:nowrap;opacity:0;transform:translateX(12px);transition:opacity .35s ease,transform .35s ease}
+#s4 .chip b{font-weight:800}
+#s4 .chip i{flex:none;width:8px;height:8px;border-radius:50%;background:var(--yellow)}
+#s4 .chip img{flex:none;width:18px;height:18px;margin:-2px -2px -2px -3px}
+#s4.on .chip{opacity:1;transform:none}
+#s4.on .chip:nth-child(1){transition-delay:.25s}#s4.on .chip:nth-child(2){transition-delay:.4s}#s4.on .chip:nth-child(3){transition-delay:.55s}#s4.on .chip:nth-child(4){transition-delay:.7s}
+#s4 .buy{position:absolute;right:24px;top:22px;width:224px;background:#fff;color:var(--ink);border-radius:12px;padding:14px 16px 16px;display:grid;gap:4px}
+#s4 .buy .k{font:700 11px/1.2 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+#s4 .buy .p{font:900 50px/1 var(--f);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+#s4 .buy .p small{font-size:17px;font-weight:700;letter-spacing:0;margin-left:3px}
+#s4 .buy .t{font:600 13px/1.25 var(--f);color:var(--mute)}
+#cta{margin-top:8px;height:44px;border:0;border-radius:8px;background:var(--yellow);color:var(--ink);font:800 16px/1 var(--f);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;position:relative;overflow:hidden}
+#cta:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+#cta::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.65) 50%,transparent 70%);transform:translateX(-120%)}
+#s4.on #cta::after{animation:shine 2.6s ease-in-out 1.2s infinite}
+@keyframes shine{0%{transform:translateX(-120%)}45%,100%{transform:translateX(120%)}}
+#s4 .legal{position:absolute;left:28px;right:290px;bottom:9px;font:500 9.5px/1.3 var(--f);opacity:.78}
+#replay{position:absolute;right:252px;bottom:10px;width:26px;height:26px;border-radius:50%;border:1px solid rgba(255,255,255,.45);background:transparent;color:#fff;display:grid;place-items:center;cursor:pointer;opacity:0;transition:opacity .3s}
+#replay svg{width:13px;height:13px;fill:currentColor}
+#s4.done #replay{opacity:1}
+#replay:focus-visible{outline:2px solid var(--yellow);outline-offset:2px}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="stage">
+<div id="ad" role="link" tabindex="0" aria-label="Turkcell Superonline Online'a Özel Fiber Hızları: 1000 Mbps, 100 Mbps fiyatına, 950 TL/Ay. Kampanya sayfasına git.">
+
+  <!-- Sahne 1 · Oynatıcı -->
+  <div class="scene" id="s1" aria-hidden="true">
+    <div class="frame"></div><div class="grain"></div>
+    <div class="tag"><b>REKLAM</b><span id="tc">0:00 / 0:15</span></div>
+    <div class="copy">
+      <div class="l1">Şu an bir reklam<br>izliyorsun.</div>
+      <div class="l2">Biliyoruz, sen de geçmeyi bekliyorsun.</div>
+    </div>
+    <div class="ctrls"><svg viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg><span>Superonline</span></div>
+    <button type="button" id="skip" tabindex="-1" aria-label="Reklamı geç"><span class="wait">Reklamı <span class="num" id="cd">3</span> sn sonra geçebilirsin</span><span class="go">Reklamı Geç <svg viewBox="0 0 24 24"><path d="M5 5l9 7-9 7zM16 5h3v14h-3z"/></svg></span></button>
+    <div class="bar"><i id="pb"></i></div>
+  </div>
+
+  <!-- Sahne 2 · Sessizlik -->
+  <div class="scene" id="s2" aria-hidden="true">
+    <div class="empty"></div>
+    <div class="lab">Bu alan şu an reklamsız</div>
+    <div class="msg">
+      <div class="m1">Geçtin. Ne güzel, değil mi?</div>
+      <div class="m2"><img alt="" src="__YT__">Superonline'lılara <b>3 ay YouTube Premium</b> hediye.</div>
+    </div>
+  </div>
+
+  <!-- Sahne 3 · Bir sıfır -->
+  <div class="scene" id="s3" aria-hidden="true">
+    <div class="speed"><div class="digits"><span class="d">1</span><span class="d">0</span><span class="d">0</span><span class="zero">0</span></div><div class="unit">Mbps</div></div>
+    <div class="price"><div class="was">100 Mbps fiyatına</div><div class="p">950<small>TL/Ay</small></div><div class="stamp">Fiyat aynı kaldı</div></div>
+    <div class="cap">Bir sıfır fazlası. <b>Kuruş fazlası yok.</b></div>
+  </div>
+
+  <!-- Sahne 4 · Teklif -->
+  <div class="scene" id="s4" aria-hidden="true">
+    <img class="logo" alt="Turkcell Superonline" src="__LOGO__">
+    <div class="tag">Online'a Özel Fiber Hızları</div>
+    <h1>1000 Mbps,<br><em>100 Mbps fiyatına.</em></h1>
+    <div class="chips">
+      <div class="chip"><i></i><span>Üstelik <b>Upload 100 Mbps</b></span></div>
+      <div class="chip"><img alt="" src="__YT__"><span><b>3 ay YouTube Premium</b> hediye</span></div>
+      <div class="chip"><i></i><span>Kurulum + aktivasyon <b>ücretsiz</b></span></div>
+      <div class="chip"><i></i><span>İptal bedelin <b>5.000 TL'ye kadar</b> bizden</span></div>
+    </div>
+    <div class="buy">
+      <span class="k">Online'a özel · 12 ay</span>
+      <span class="p">950<small>TL/Ay</small></span>
+      <span class="t">Limitsiz · Vergiler ve modem dahil</span>
+      <button type="button" id="cta" tabindex="-1">Hemen Başvur</button>
+    </div>
+    <button type="button" id="replay" tabindex="-1" aria-label="Tekrar oynat"><svg viewBox="0 0 24 24"><path d="M12 5V1L7 6l5 5V7a6 6 0 1 1-6 6H4a8 8 0 1 0 8-8z"/></svg></button>
+    <div class="legal">Yeni bireysel fiber müşterilerine, yalnızca superonline.net veya Turkcell Uygulaması'ndan başvuruda, 1 Ocak 2027'ye kadar. Fiyata vergiler ve 80 TL modem kullanım ücreti dahildir. Hız, adresteki altyapıya bağlıdır.</div>
+  </div>
+</div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var ad = document.getElementById('ad'), skip = document.getElementById('skip'), cta = document.getElementById('cta'), replay = document.getElementById('replay');
+  var S = [null, document.getElementById('s1'), document.getElementById('s2'), document.getElementById('s3'), document.getElementById('s4')];
+  var cd = document.getElementById('cd'), pb = document.getElementById('pb'), tc = document.getElementById('tc');
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var timers = [], raf = 0, cur = 0, born = Date.now();
+  var MAX = 30000; // Google Ads: animasyon 30 sn'yi geçmez
+
+  function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
+  function clear() { timers.forEach(clearTimeout); timers = []; cancelAnimationFrame(raf); }
+  function show(n) {
+    cur = n;
+    S.forEach(function (s, i) { if (!s) return; s.classList.toggle('on', i === n); s.setAttribute('aria-hidden', i === n ? 'false' : 'true'); });
+    skip.tabIndex = n === 1 && skip.classList.contains('ready') ? 0 : -1;
+    cta.tabIndex = replay.tabIndex = n === 4 ? 0 : -1;
+  }
+
+  // Sahne 1: oynatıcı, 3 sn sayaç, sonra "Reklamı Geç". Tıklanmazsa 6,2 sn'de kendini geçer.
+  function scene1() {
+    clear(); show(1);
+    S[3].classList.remove('drop'); S[4].classList.remove('done');
+    skip.classList.remove('ready'); skip.tabIndex = -1; cd.textContent = '3';
+    var t0 = performance.now();
+    (function tick(now) {
+      var e = now - t0, sec = Math.min(15, e / 1000);
+      pb.style.width = Math.min(100, e / 6200 * 100) + '%';
+      tc.textContent = '0:' + ('0' + Math.floor(sec)).slice(-2) + ' / 0:15';
+      var left = 3 - Math.floor(e / 1000);
+      if (left > 0) cd.textContent = left;
+      else if (!skip.classList.contains('ready')) { skip.classList.add('ready'); skip.tabIndex = 0; }
+      if (e < 6200) raf = requestAnimationFrame(tick); else scene2();
+    })(t0);
+  }
+  // Sahne 2: reklam kendini geçti
+  function scene2() { clear(); show(2); later(scene3, 3300); }
+  // Sahne 3: sıfır düşer, fiyat aynı kalır
+  function scene3() { clear(); show(3); later(function () { S[3].classList.add('drop'); }, 350); later(scene4, 3600); }
+  // Sahne 4: teklif; 30 sn içinde bir kez döngü yapar, sonra durur
+  function scene4() {
+    clear(); show(4);
+    later(function () {
+      if (Date.now() - born + 13500 < MAX) scene1(); else S[4].classList.add('done');
+    }, 6000);
+  }
+
+  function exit() {
+    if (window.Enabler && Enabler.exit) { Enabler.exit('Superonline'); return; }
+    window.open(window.clickTag || clickTag, '_blank');
+  }
+  skip.addEventListener('click', function (e) { e.stopPropagation(); if (skip.classList.contains('ready')) scene2(); });
+  replay.addEventListener('click', function (e) { e.stopPropagation(); born = Date.now(); scene1(); });
+  cta.addEventListener('click', function (e) { e.stopPropagation(); exit(); });
+  ad.addEventListener('click', exit);
+  ad.addEventListener('keydown', function (e) {
+    if (e.target !== ad) return;
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); exit(); }
+  });
+
+  // Önizleme: dar ekranda bannerı ölçekle (yayın ortamında 970x250 sabit kalır)
+  var stage = document.getElementById('stage');
+  function fit() {
+    var vw = document.documentElement.clientWidth, k = vw >= 970 ? 1 : Math.max(.3, (vw - 32) / 970);
+    ad.style.transform = k < 1 ? 'scale(' + k + ')' : '';
+    stage.style.width = 970 * k + 'px'; stage.style.height = 250 * k + 'px';
+  }
+  window.addEventListener('resize', fit); fit();
+
+  if (reduce) { show(4); S[4].classList.add('done'); }
+  else scene1();
+})();
+</script>
+</body>
+</html>
