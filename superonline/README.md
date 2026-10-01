@@ -19,3 +19,23 @@ Veriler `research/` klasöründeki gerçek site ziyaretinden alındı (GitHub Ac
 Derleme: `node build-970.js` · ekran görüntüleri: `node tools/capture-970.js` → `970x250/screens/`
 
 `teklif/index.html`: aynı konseptin mecra proje önerisi sayfası (Reklamsız Saat, Online'a Özel, Eski İnternetime, Ham Kayıt).
+
+---
+
+## Media-first alternatifler
+
+### "Aynı Anda" – `970x250-ayni-anda/index.html` (~34 KB)
+Gece, kesiti görünen bir ev. Dört odaya dokundukça (veya imleçle üzerine gelince) ışık yanar, ekranlarda medya oynar.
+- **Kanal değiştirme:** Açık bir odaya tekrar dokununca ekran değişir. Salon: 4K film / canlı maç / belgesel · Çocuk odası: online oyun / oyun indirme / canlı yayın · Çalışma odası: toplantı / online ders / sunum · Genç odası: video yükleme / foto yedekleme / hikâye paylaşımı. Banner bittikten sonra da çalışır.
+- Sağdaki "Evin bağlantısı · 1000 Mbps" çubuğu her odayla dolar; dördü açıkken "Hepsi açık. Hâlâ bol yer var." (Görsel temsil; payların Mbps karşılığı yok.)
+- Dokunulmazsa 3,6 sn'de odalar sırayla kendiliğinden yanar. Sonra "Herkes aynı anda. Kimse sıra beklemiyor." → teklif.
+- Oda tıklamaları çıkış tetiklemez; boş alanlar ve Hemen Başvur kampanya sayfasına gider. Odalar klavyeyle (Tab + Enter) kullanılabilir.
+
+### "Fener" – `970x250-fener/index.html` (~26 KB)
+Gece şehir silüeti (canvas). İmleç şehrin üzerinde gezindikçe çatılardan anı fenerleri yükselir; imleç fenerleri rüzgâr gibi iter.
+- Sayaç "Yüklenen anı" 100'e ulaşınca bütün fenerler gökyüzünde **100** yazar → "Üstelik Upload 100 Mbps." → teklif.
+- "100" oluştuktan sonra imleçle dağıtılabilir; fenerler yaylanarak yerlerine döner.
+- Dokunulmazsa fenerler kendiliğinden yükselir, 7,5 sn'de 100 tamamlanır. Klavyede Boşluk = fener bırak, Enter = çıkış.
+
+Ortak: 30 sn kuralı (tek tur, sonra teklif karesinde durur, tekrar oynat düğmesi), `clickTag` / `Enabler.exit`, `prefers-reduced-motion` için durağan son kare.
+Ekran görüntüleri: `node tools/capture-media.js` → `970x250-ayni-anda/screens/`, `970x250-fener/screens/`

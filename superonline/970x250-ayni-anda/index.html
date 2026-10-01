@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="ad.size" content="width=970,height=250">
+<title>Aynı Anda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap">
+<script>var clickTag = window.clickTag || "https://www.superonline.net/ev-interneti/fiber-internet/onlinea-ozel-fiber-hizlari-kampanyasi/1000-mbps?utm_source=mecra&utm_medium=display&utm_campaign=onlinea_ozel_1000&utm_content=970x250_ayni_anda";</script>
+<style>
+/* 970x250 media-first masthead · "Aynı Anda"
+   Gece, kesiti görünen bir ev. Dört odaya dokundukça ışık yanar, ekranlarda medya oynar.
+   Hepsi açıkken evin bağlantı çubuğunda hâlâ bol yer kalır. Sonra sağ panel teklife döner. */
+:root{
+  --navy:#034ea2; --sky1:#030b1f; --sky2:#0a1f4a; --wall:#0c1a36; --wall-2:#122546; --line:#1d3563;
+  --yellow:#ffc72c; --ink:#0b1b3a; --mute:#5b6a85; --white:#fff;
+  --warm:#ffb75e; --cool:#7fb2ff; --mint:#7ee0c3; --rose:#ff8fa3;
+  --f:"Figtree","GreycliffCF",Arial,Helvetica,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:#e9edf3;display:grid;place-items:center;font-family:var(--f);overflow:hidden}
+#stage{position:relative;width:970px;height:250px;flex:none}
+#ad{position:absolute;left:0;top:0;width:970px;height:250px;overflow:hidden;cursor:pointer;color:var(--white);transform-origin:0 0;outline:none;
+  background:radial-gradient(600px 220px at 30% 0%,#12306a 0%,transparent 70%),linear-gradient(180deg,var(--sky1),var(--sky2))}
+#ad:focus-visible{box-shadow:inset 0 0 0 3px var(--yellow)}
+.stars{position:absolute;inset:0 0 40% 0;background-image:
+  radial-gradient(1px 1px at 40px 30px,#fff8,transparent),radial-gradient(1px 1px at 180px 18px,#fff6,transparent),
+  radial-gradient(1.5px 1.5px at 300px 40px,#fff9,transparent),radial-gradient(1px 1px at 520px 22px,#fff7,transparent),
+  radial-gradient(1px 1px at 640px 12px,#fff6,transparent),radial-gradient(1.5px 1.5px at 860px 30px,#fff8,transparent),
+  radial-gradient(1px 1px at 760px 50px,#fff5,transparent);animation:tw 4s ease-in-out infinite alternate}
+@keyframes tw{to{opacity:.55}}
+.moon{position:absolute;left:640px;top:18px;width:26px;height:26px;border-radius:50%;box-shadow:inset -7px -2px 0 0 #f4e7c3;opacity:.9}
+
+/* Ev */
+#house{position:absolute;left:22px;top:40px;width:660px;height:210px}
+.roof{position:absolute;left:-6px;right:-6px;top:0;height:14px;background:#081430;border-radius:3px 3px 0 0;box-shadow:0 -1px 0 #1d3563 inset}
+.antenna{position:absolute;left:560px;top:-22px;width:2px;height:22px;background:#1d3563}
+.antenna::before{content:"";position:absolute;left:-6px;top:0;width:14px;height:2px;background:#1d3563}
+.rooms{position:absolute;left:0;right:0;top:14px;bottom:0;display:grid;grid-template-columns:repeat(4,1fr);gap:6px;background:#081430;padding:6px 6px 0}
+.room{position:relative;background:var(--wall);overflow:hidden;cursor:pointer;outline:none;border-radius:2px 2px 0 0}
+.room:focus-visible{box-shadow:inset 0 0 0 2px var(--yellow)}
+.room .light{position:absolute;inset:0;opacity:0;transition:opacity .6s ease}
+.room.on .light{opacity:1}
+.room .lamp{position:absolute;left:50%;top:0;width:2px;height:16px;background:#1d3563;transform:translateX(-50%)}
+.room .lamp::after{content:"";position:absolute;left:-7px;top:16px;width:16px;height:7px;border-radius:8px 8px 2px 2px;background:#25406f;transition:background .4s,box-shadow .4s}
+.room.on .lamp::after{background:#fff1c9;box-shadow:0 0 18px 6px rgba(255,214,140,.45)}
+.room .floor{position:absolute;left:0;right:0;bottom:0;height:22px;background:linear-gradient(#0a1631,#08122a)}
+.room .lbl{position:absolute;left:8px;bottom:5px;font:700 10px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:#7f91b3;transition:color .4s}
+.room.on .lbl{color:var(--yellow)}
+.room svg.sil{position:absolute;bottom:22px;fill:#050d22;transition:fill .5s}
+.room.on svg.sil{fill:#0a1430}
+.screen{position:absolute;background:#050d22;border:2px solid #1b2c50;border-radius:3px;overflow:hidden;transition:box-shadow .5s}
+.room.on .screen{box-shadow:0 0 22px 4px var(--glow,rgba(127,178,255,.4))}
+.screen .media{position:absolute;inset:0;opacity:0;transition:opacity .4s ease .25s}
+.room.on .screen .media{opacity:1}
+.hint{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);width:34px;height:34px;border-radius:50%;border:2px solid var(--yellow);opacity:0;pointer-events:none}
+.room.hinted .hint{animation:ping 1.2s ease-out infinite}
+@keyframes ping{0%{opacity:.9;transform:translate(-50%,-50%) scale(.5)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.6)}}
+
+/* Oda 1 · Salon: film */
+#r1{--glow:rgba(255,160,90,.5)}
+#r1 .light{background:radial-gradient(140px 120px at 50% 10%,rgba(255,196,120,.35),transparent 70%),linear-gradient(#2a2337,#1b1a33)}
+#r1 .screen{left:22px;top:44px;width:104px;height:58px}
+#r1 .media{background:linear-gradient(180deg,#ff9a5a 0%,#ff5e7e 45%,#3b2a6d 46%,#16163a 100%)}
+#r1:not([data-v="0"]) .media::before,#r1:not([data-v="0"]) .media::after{display:none}
+#r1 .media::before{content:"";position:absolute;left:30%;top:22%;width:16px;height:16px;border-radius:50%;background:#ffe2a8;box-shadow:0 0 12px #ffd38a;animation:sun 6s ease-in-out infinite alternate}
+#r1 .media::after{content:"";position:absolute;left:0;right:0;bottom:0;height:42%;background:repeating-linear-gradient(90deg,transparent 0 6px,rgba(255,255,255,.08) 6px 8px);animation:sea 1.4s linear infinite}
+@keyframes sun{to{transform:translate(38px,6px)}}
+@keyframes sea{to{background-position:8px 0}}
+/* Oda 2 · Oyun */
+#r2{--glow:rgba(126,224,195,.45)}
+#r2 .light{background:radial-gradient(140px 120px at 50% 10%,rgba(126,224,195,.22),transparent 70%),linear-gradient(#152a3a,#0f1f33)}
+#r2 .screen{left:30px;top:50px;width:90px;height:52px}
+#r2 .media{background:linear-gradient(#0b2a3a,#08202d)}
+#r2 .road{position:absolute;left:0;right:0;bottom:0;height:60%;background:linear-gradient(90deg,#14394a,#1c4a5e);clip-path:polygon(40% 0,60% 0,100% 100%,0 100%)}
+#r2 .road::after{content:"";position:absolute;left:49%;top:0;width:2%;height:200%;background:repeating-linear-gradient(#fff 0 5px,transparent 5px 11px);animation:dash .35s linear infinite}
+@keyframes dash{to{transform:translateY(11px)}}
+#r2 .car{position:absolute;left:42%;bottom:4px;width:14px;height:9px;border-radius:3px;background:var(--mint);animation:steer 1.6s ease-in-out infinite alternate}
+@keyframes steer{to{transform:translateX(10px)}}
+/* Oda 3 · Toplantı */
+#r3{--glow:rgba(127,178,255,.45)}
+#r3 .light{background:radial-gradient(140px 120px at 50% 10%,rgba(160,190,255,.25),transparent 70%),linear-gradient(#1b2643,#131d36)}
+#r3 .screen{left:38px;top:62px;width:76px;height:46px;border-bottom-width:5px}
+#r3 .media{display:grid;position:absolute;grid-template-columns:1fr 1fr;gap:2px;padding:2px;background:#0b1630}
+#r3 .media>i{border-radius:2px;position:relative;overflow:hidden}
+#r3 .media>i::after{content:"";position:absolute;left:50%;top:58%;width:10px;height:10px;border-radius:50% 50% 3px 3px;background:rgba(0,0,0,.25);transform:translate(-50%,-50%)}
+#r3 .media>i:nth-child(1){background:#3c5a99;animation:talk 2.4s infinite}
+#r3 .media>i:nth-child(2){background:#5a3c7a;animation:talk 2.4s .6s infinite}
+#r3 .media>i:nth-child(3){background:#2f6b6b;animation:talk 2.4s 1.2s infinite}
+#r3 .media>i:nth-child(4){background:#7a5a3c;animation:talk 2.4s 1.8s infinite}
+@keyframes talk{0%,20%{box-shadow:inset 0 0 0 2px var(--yellow)}25%,100%{box-shadow:none}}
+/* Oda 4 · Yükleme */
+#r4{--glow:rgba(255,143,163,.45)}
+#r4 .light{background:radial-gradient(140px 120px at 50% 10%,rgba(255,170,190,.22),transparent 70%),linear-gradient(#2a1d3a,#1a1733)}
+#r4 .screen{left:88px;top:72px;width:26px;height:44px;border-radius:5px}
+#r4 .media{background:linear-gradient(#ff8fa3,#7a5cff)}
+#r4 .up{position:absolute;left:78px;top:32px;width:46px;height:46px;opacity:0;transition:opacity .4s .3s}
+#r4.on .up{opacity:1}
+#r4 .up circle{fill:none;stroke-width:4}
+#r4 .up .track{stroke:rgba(255,255,255,.15)}
+#r4 .up .prog{stroke:var(--rose);stroke-linecap:round;stroke-dasharray:113;stroke-dashoffset:113;transform:rotate(-90deg);transform-origin:50% 50%}
+#r4.on .up .prog{animation:prog 1.6s ease-in-out infinite}
+#r4 .up path{fill:#fff}
+@keyframes prog{0%{stroke-dashoffset:113}70%,100%{stroke-dashoffset:0}}
+
+/* Sağ panel */
+#panel{position:absolute;left:700px;top:0;width:270px;height:250px;padding:22px 22px 18px 6px}
+.p{position:absolute;inset:22px 22px 18px 6px;opacity:0;visibility:hidden;transition:opacity .5s,visibility 0s .5s}
+.p.on{opacity:1;visibility:visible;transition:opacity .5s,visibility 0s}
+#p1 .k,#p2 .k{font:700 11px/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--yellow)}
+#p1 h2{margin-top:10px;font:800 26px/1.06 var(--f)}
+#p1 p{margin-top:10px;font:500 14px/1.35 var(--f);color:#b7c4dc}
+.meter{position:absolute;left:0;right:0;bottom:0}
+.meter .t{display:flex;justify-content:space-between;font:700 10.5px/1 var(--mono);letter-spacing:.06em;color:#b7c4dc;margin-bottom:7px}
+.meter .bar{height:12px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);display:flex;overflow:hidden}
+.meter .bar i{height:100%;width:0;transition:width .7s cubic-bezier(.2,.8,.2,1)}
+.meter .free{margin-top:7px;font:700 12.5px/1.2 var(--f);color:var(--yellow);opacity:0;transition:opacity .5s}
+.meter.full .free{opacity:1}
+#p2 h2{margin-top:10px;font:900 30px/1.02 var(--f)}
+#p2 p{margin-top:10px;font:600 14.5px/1.35 var(--f);color:#dfe7f5}
+/* Teklif */
+#p3{display:grid;align-content:start;gap:0}
+#p3 .logo{height:34px;width:auto;justify-self:start}
+#p3 .tag{margin-top:12px;font:700 10.5px/1.2 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--yellow)}
+#p3 h3{margin-top:5px;font:900 21px/1.08 var(--f)}
+#p3 .row{margin-top:10px;display:flex;align-items:center;gap:12px}
+#p3 .price{font:900 30px/1 var(--f);font-variant-numeric:tabular-nums}
+#p3 .price small{font-size:13px;font-weight:700;margin-left:2px}
+#cta{flex:1;height:40px;border:0;border-radius:8px;background:var(--yellow);color:var(--ink);font:800 15px/1 var(--f);cursor:pointer;position:relative;overflow:hidden}
+#cta:focus-visible{outline:3px solid #fff;outline-offset:2px}
+#cta::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.65) 50%,transparent 70%);transform:translateX(-120%)}
+#p3.on #cta::after{animation:shine 2.6s ease-in-out 1s infinite}
+@keyframes shine{0%{transform:translateX(-120%)}45%,100%{transform:translateX(120%)}}
+#p3 .legal{margin-top:9px;font:500 8.8px/1.3 var(--f);color:#a9b7d0}
+#replay{position:absolute;right:10px;bottom:10px;width:24px;height:24px;border-radius:50%;border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;display:grid;place-items:center;cursor:pointer;opacity:0;transition:opacity .3s}
+#replay svg{width:12px;height:12px;fill:currentColor}
+#ad.done #replay{opacity:1}
+
+/* Kanal değiştirme: odaya tekrar dokununca ekran içeriği değişir */
+.tip{position:absolute;left:36px;top:15px;font:700 10.5px/1 var(--mono);letter-spacing:.06em;color:var(--yellow);opacity:0;transition:opacity .4s;display:flex;align-items:center;gap:6px;pointer-events:none}
+.tip::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--yellow);animation:blink 1s infinite}
+@keyframes blink{50%{opacity:.2}}
+#ad.tipon .tip{opacity:1}
+.room .flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none}
+.room.zap .flash{animation:zap .25s ease-out}
+@keyframes zap{0%{opacity:.35}100%{opacity:0}}
+.room:not([data-v="0"]) .v0,.room:not([data-v="1"]) .v1,.room:not([data-v="2"]) .v2{display:none!important}
+/* Salon · maç */
+#r1 .v1{position:absolute;inset:0;background:repeating-linear-gradient(90deg,#2f8f46 0 13px,#2a8340 13px 26px)}
+#r1 .v1::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:#fff9}
+#r1 .v1::after{content:"";position:absolute;left:10%;top:40%;width:6px;height:6px;border-radius:50%;background:#fff;animation:ball 2.2s ease-in-out infinite alternate}
+@keyframes ball{50%{transform:translate(40px,-14px)}100%{transform:translate(80px,6px)}}
+/* Salon · belgesel */
+#r1 .v2{position:absolute;inset:0;background:linear-gradient(#1b6fa8,#0b2e5a)}
+#r1 .v2 b{position:absolute;width:7px;height:4px;border-radius:50%;background:#ffd166;animation:swim 3s linear infinite}
+#r1 .v2 b:nth-child(1){top:30%;left:-10%}#r1 .v2 b:nth-child(2){top:55%;left:-10%;animation-delay:1s;background:#ff9f68}#r1 .v2 b:nth-child(3){top:72%;left:-10%;animation-delay:2s}
+@keyframes swim{to{left:110%}}
+/* Oyun odası · indirme */
+#r2 .v1{position:absolute;inset:0;background:#0b1d33;padding:14px 8px}
+#r2 .v1 i{display:block;height:6px;border-radius:3px;background:rgba(255,255,255,.12);overflow:hidden}
+#r2 .v1 i::after{content:"";display:block;height:100%;width:0;background:var(--mint);animation:dl 1.8s ease-in-out infinite}
+#r2 .v1 em{display:block;margin-top:6px;font:700 7px/1 var(--mono);color:var(--mint);font-style:normal}
+@keyframes dl{to{width:100%}}
+/* Oyun odası · canlı yayın */
+#r2 .v2{position:absolute;inset:0;background:linear-gradient(135deg,#3a1d5c,#16213e)}
+#r2 .v2::before{content:"CANLI";position:absolute;left:5px;top:5px;font:700 7px/1 var(--mono);color:#fff;background:#e5243b;padding:2px 3px;border-radius:2px}
+#r2 .v2::after{content:"";position:absolute;right:6px;bottom:6px;width:18px;height:18px;border-radius:50%;background:#7ee0c3;box-shadow:0 0 0 3px rgba(126,224,195,.3);animation:pulse 1.2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 7px rgba(126,224,195,0)}}
+/* Çalışma · ders */
+#r3 .v1{position:absolute;inset:0;background:#f1f4f9;padding:6px}
+#r3 .v1 i{display:block;height:3px;margin:4px 0;background:#3c5a99;border-radius:2px;width:0;animation:write 2.4s ease-in-out infinite}
+#r3 .v1 i:nth-child(2){animation-delay:.4s}#r3 .v1 i:nth-child(3){animation-delay:.8s}
+@keyframes write{60%,100%{width:85%}}
+/* Çalışma · sunum */
+#r3 .v2{position:absolute;inset:0;background:#0b1630;display:flex;align-items:flex-end;gap:4px;padding:6px 10px}
+#r3 .v2 i{flex:1;background:var(--cool);border-radius:2px 2px 0 0;animation:grow 1.6s ease-in-out infinite alternate}
+#r3 .v2 i:nth-child(1){height:30%}#r3 .v2 i:nth-child(2){height:55%;animation-delay:.2s}#r3 .v2 i:nth-child(3){height:80%;background:var(--yellow);animation-delay:.4s}
+@keyframes grow{from{transform:scaleY(.6);transform-origin:bottom}to{transform:scaleY(1);transform-origin:bottom}}
+/* Genç odası */
+#r4[data-v="1"] .media{background:linear-gradient(#ffd166,#ff8fa3)}
+#r4[data-v="2"] .media{background:linear-gradient(#7ee0c3,#3c5a99)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="stage">
+<div id="ad" role="link" tabindex="0" aria-label="Turkcell Superonline: Evde herkes aynı anda. 1000 Mbps, 100 Mbps fiyatına, 950 TL/Ay. Kampanya sayfasına git.">
+  <div class="stars"></div><div class="moon"></div>
+  <div class="tip">Ekrana tekrar dokun: kanal değişir</div>
+
+  <div id="house">
+    <div class="antenna"></div><div class="roof"></div>
+    <div class="rooms">
+      <div class="room" id="r1" data-v="0" data-labels="4K film|Canlı maç|Belgesel" tabindex="-1" data-share="3" data-color="#ffb75e" aria-label="Salon: 4K film">
+        <div class="light"></div><div class="lamp"></div>
+        <div class="screen"><div class="media"><div class="v v1"></div><div class="v v2"><b></b><b></b><b></b></div></div></div>
+        <svg class="sil" style="left:14px" width="130" height="44" viewBox="0 0 130 44"><rect x="0" y="18" width="130" height="26" rx="6"/><rect x="6" y="8" width="118" height="16" rx="6"/><circle cx="44" cy="6" r="9"/><circle cx="84" cy="8" r="8"/></svg>
+        <div class="flash"></div><div class="floor"></div><span class="lbl">4K film</span><span class="hint"></span>
+      </div>
+      <div class="room" id="r2" data-v="0" data-labels="Online oyun|Oyun indirme|Canlı yayın" tabindex="-1" data-share="4" data-color="#7ee0c3" aria-label="Çocuk odası: online oyun">
+        <div class="light"></div><div class="lamp"></div>
+        <div class="screen"><div class="media"><div class="v v0"><div class="road"></div><div class="car"></div></div><div class="v v1"><i></i><em>İNDİRİLİYOR · 85 GB</em></div><div class="v v2"></div></div></div>
+        <svg class="sil" style="left:36px" width="80" height="48" viewBox="0 0 80 48"><rect x="0" y="6" width="80" height="5" rx="2"/><rect x="36" y="11" width="6" height="37"/><circle cx="40" cy="22" r="0"/><rect x="18" y="26" width="44" height="22" rx="10"/><circle cx="40" cy="20" r="9"/></svg>
+        <div class="flash"></div><div class="floor"></div><span class="lbl">Online oyun</span><span class="hint"></span>
+      </div>
+      <div class="room" id="r3" data-v="0" data-labels="Toplantı|Online ders|Sunum" tabindex="-1" data-share="2" data-color="#7fb2ff" aria-label="Çalışma odası: görüntülü toplantı">
+        <div class="light"></div><div class="lamp"></div>
+        <div class="screen"><div class="media"><i></i><i></i><i></i><i></i><div class="v v1"><i></i><i></i><i></i></div><div class="v v2"><i></i><i></i><i></i></div></div></div>
+        <svg class="sil" style="left:18px" width="116" height="40" viewBox="0 0 116 40"><rect x="0" y="0" width="116" height="5" rx="2"/><rect x="6" y="5" width="4" height="35"/><rect x="106" y="5" width="4" height="35"/><circle cx="18" cy="-8" r="0"/></svg>
+        <div class="flash"></div><div class="floor"></div><span class="lbl">Toplantı</span><span class="hint"></span>
+      </div>
+      <div class="room" id="r4" data-v="0" data-labels="Video yükleme|Foto yedekleme|Hikâye paylaşımı" tabindex="-1" data-share="2" data-color="#ff8fa3" aria-label="Genç odası: video yükleme">
+        <div class="light"></div><div class="lamp"></div>
+        <svg class="up" viewBox="0 0 46 46"><circle class="track" cx="23" cy="23" r="18"/><circle class="prog" cx="23" cy="23" r="18"/><path d="M23 13l7 8h-4.5v8h-5v-8H16z"/></svg>
+        <div class="screen"><div class="media"></div></div>
+        <svg class="sil" style="left:44px" width="70" height="80" viewBox="0 0 70 80"><circle cx="30" cy="12" r="11"/><path d="M12 80V40c0-10 8-16 18-16s18 6 18 16v40z"/><path d="M44 34l20 8-3 7-21-6z"/></svg>
+        <div class="flash"></div><div class="floor"></div><span class="lbl">Video yükleme</span><span class="hint"></span>
+      </div>
+    </div>
+  </div>
+
+  <div id="panel">
+    <div class="p on" id="p1">
+      <div class="k">Bu akşam evde</div>
+      <h2>Odalara dokun, ışıkları yak.</h2>
+      <p>Herkes kendi ekranında.</p>
+      <div class="meter" id="meter">
+        <div class="t"><span>Evin bağlantısı</span><span>1000 Mbps</span></div>
+        <div class="bar" id="bar"></div>
+        <div class="free">Hepsi açık. Hâlâ bol yer var.</div>
+      </div>
+    </div>
+    <div class="p" id="p2">
+      <div class="k">Aynı anda</div>
+      <h2>Herkes aynı anda. Kimse sıra beklemiyor.</h2>
+      <p>Üstelik Upload 100 Mbps.</p>
+    </div>
+    <div class="p" id="p3">
+      <img class="logo" alt="Turkcell Superonline" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAABXCAYAAAC+73jDAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAylpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDEwLjAtYzAwMCA3OS5kMjBlNDY2MzAsIDIwMjUvMTIvMDktMDI6MTE6MjMgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCAyNy40IChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjIyQUUzMTA3MTE5MDExRjE5RDVERTVFOEZBNTQyMDRCIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjIyQUUzMTA4MTE5MDExRjE5RDVERTVFOEZBNTQyMDRCIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MjJBRTMxMDUxMTkwMTFGMTlENURFNUU4RkE1NDIwNEIiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MjJBRTMxMDYxMTkwMTFGMTlENURFNUU4RkE1NDIwNEIiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6TeDX4AAAZKUlEQVR4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">
+      <div class="tag">Online'a Özel Fiber Hızları</div>
+      <h3>1000 Mbps,<br>100 Mbps fiyatına.</h3>
+      <div class="row"><span class="price">950<small>TL/Ay</small></span><button type="button" id="cta" tabindex="-1">Hemen Başvur</button></div>
+      <div class="legal">12 ay taahhüt. Yeni bireysel fiber müşterilerine, yalnızca online başvuruda, 1 Ocak 2027'ye kadar. Vergiler ve 80 TL modem ücreti dahil. Hız altyapıya bağlıdır.</div>
+    </div>
+  </div>
+  <button type="button" id="replay" tabindex="-1" aria-label="Tekrar oynat"><svg viewBox="0 0 24 24"><path d="M12 5V1L7 6l5 5V7a6 6 0 1 1-6 6H4a8 8 0 1 0 8-8z"/></svg></button>
+</div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var ad = document.getElementById('ad'), rooms = [].slice.call(document.querySelectorAll('.room'));
+  var bar = document.getElementById('bar'), meter = document.getElementById('meter');
+  var P = [document.getElementById('p1'), document.getElementById('p2'), document.getElementById('p3')];
+  var cta = document.getElementById('cta'), replay = document.getElementById('replay');
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var timers = [], touched = false, finished = false, zaps = 0;
+  function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
+  function clear() { timers.forEach(clearTimeout); timers = []; }
+  function panel(n) { P.forEach(function (p, i) { p.classList.toggle('on', i === n); }); cta.tabIndex = n === 2 ? 0 : -1; }
+
+  // Bağlantı çubuğu: her oda kendi rengiyle küçük bir pay alır (görsel temsil)
+  rooms.forEach(function (r) { var i = document.createElement('i'); i.style.background = r.dataset.color; r._seg = i; bar.appendChild(i); });
+
+  function light(r) {
+    if (r.classList.contains('on')) return;
+    r.classList.add('on'); r.classList.remove('hinted'); ad.classList.add('tipon');
+    r._seg.style.width = r.dataset.share + '%';
+    if (rooms.every(function (x) { return x.classList.contains('on'); })) allOn();
+    else if (touched) hintNext();
+  }
+  function hintNext() {
+    rooms.forEach(function (x) { x.classList.remove('hinted'); });
+    var n = rooms.filter(function (x) { return !x.classList.contains('on'); })[0];
+    if (n) n.classList.add('hinted');
+  }
+  function allOn() {
+    if (finished) return; finished = true; clear();
+    meter.classList.add('full');
+    later(function () { panel(1); }, 1700);
+    later(function () { panel(2); }, 4300);
+    later(function () { ad.classList.add('done'); replay.tabIndex = 0; }, 6000);
+  }
+  function auto() {
+    // Dokunulmazsa odalar sırayla kendiliğinden yanar
+    var i = 0;
+    (function next() {
+      if (touched || finished) return;
+      var off = rooms.filter(function (x) { return !x.classList.contains('on'); });
+      if (!off.length) return;
+      light(off[0]); i++;
+      later(next, 1150);
+    })();
+  }
+  function start() {
+    clear(); finished = false; touched = false;
+    ad.classList.remove('done'); replay.tabIndex = -1; meter.classList.remove('full');
+    ad.classList.remove('tipon'); rooms.forEach(function (r) { r.classList.remove('on', 'hinted'); r._seg.style.width = '0'; r.tabIndex = 0; r.dataset.v = 0; r.querySelector('.lbl').textContent = r.dataset.labels.split('|')[0]; });
+    panel(0);
+    later(function () { rooms[0].classList.add('hinted'); }, 700);
+    later(auto, 3600);
+  }
+
+  rooms.forEach(function (r) {
+    var labels = r.dataset.labels.split('|'), lbl = r.querySelector('.lbl');
+    function act(e) { if (e) e.stopPropagation(); touched = true; light(r); }
+    function zap(e) {
+      // Açık odaya dokunmak kanal değiştirir; banner bittikten sonra da çalışır
+      e.stopPropagation(); touched = true;
+      var v = (+r.dataset.v + 1) % labels.length; r.dataset.v = v; lbl.textContent = labels[v];
+      r.classList.remove('zap'); void r.offsetWidth; r.classList.add('zap');
+      zaps++;
+    }
+    r.addEventListener('mouseenter', function () { if (!finished) act(); });
+    r.addEventListener('click', function (e) { if (r.classList.contains('on')) zap(e); else act(e); });
+    r.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); if (r.classList.contains('on')) zap(e); else act(e); } });
+  });
+
+  function exit() {
+    if (window.Enabler && Enabler.exit) { Enabler.exit('Superonline'); return; }
+    window.open(window.clickTag || clickTag, '_blank');
+  }
+  cta.addEventListener('click', function (e) { e.stopPropagation(); exit(); });
+  replay.addEventListener('click', function (e) { e.stopPropagation(); start(); });
+  ad.addEventListener('click', exit);
+  ad.addEventListener('keydown', function (e) { if (e.target === ad && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); exit(); } });
+
+  var stage = document.getElementById('stage');
+  function fit() {
+    var vw = document.documentElement.clientWidth, k = vw >= 970 ? 1 : Math.max(.3, (vw - 32) / 970);
+    ad.style.transform = k < 1 ? 'scale(' + k + ')' : '';
+    stage.style.width = 970 * k + 'px'; stage.style.height = 250 * k + 'px';
+  }
+  window.addEventListener('resize', fit); fit();
+
+  if (reduce) { rooms.forEach(function (r) { r.classList.add('on'); r._seg.style.width = r.dataset.share + '%'; }); meter.classList.add('full'); panel(2); ad.classList.add('done'); finished = true; }
+  else start();
+})();
+</script>
+</body>
+</html>
