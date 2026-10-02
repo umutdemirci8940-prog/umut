@@ -30,7 +30,7 @@ var CONFIG = {
   landing: 'https://www.fersan.com.tr/marka/ferfresh',
   fit: 'blur',                 // 'blur' (dikey kaynak) | 'cover' (yatay kurgu)
   autoplayRoomMs: 5600,        // yer tutucu sahne süresi
-  autoToVideosAfter: 2,        // sahne 1'de kaç oda oynadıktan sonra sahne 2'ye geçilsin (0 = otomatik geçme)
+  autoToVideosMs: 15000,       // açılıştan kaç ms sonra video sahnesine otomatik geçilsin (0 = otomatik geçme)
   rooms: [
     { id:'mutfak',  label:'Mutfak',  title:'Mutfak tezgâhı',   claim:'Yağ lekelerini çözer',        color:'#e98a24',
       video:'', pattern:'tile',   base:['#fff8ec','#f3e3c6'], grout:'#e4cfaa', stain:'150,98,38' },
@@ -164,13 +164,19 @@ button{font:inherit;border:0;background:none;color:inherit;cursor:pointer}
   box-shadow:0 4px 12px -6px rgba(0,0,0,.45);transition:background .2s,color .2s,transform .2s}
 .rooms button:hover{transform:translateY(-2px);background:#fff}
 .rooms button.on{background:var(--green);color:#fff}
-.rooms button.vid{background:var(--navy);color:#fff;padding-left:8px}
-.rooms button.vid:hover{background:#12507a}
+.vbtn{position:absolute;right:10px;top:10px;z-index:9;display:inline-flex;align-items:center;gap:6px;background:var(--navy);color:#fff;
+  font-size:11.5px;font-weight:800;padding:6px 11px 6px 7px;border-radius:999px;box-shadow:0 4px 14px -6px rgba(0,0,0,.6);transition:background .2s,transform .2s}
+.vbtn:hover{background:#12507a;transform:translateY(-1px)}
+.vbtn i{width:18px;height:18px;border-radius:50%;background:var(--green);display:grid;place-items:center;font-style:normal;font-size:8px;padding-left:1px}
+.vbtn .cd{position:absolute;left:12px;right:12px;bottom:2px;height:2px;border-radius:2px;background:rgba(255,255,255,.2);overflow:hidden}
+.vbtn .cd b{position:absolute;inset:0;background:var(--green);transform-origin:0 50%;transform:scaleX(0)}
+.vbtn .cd b.run{animation:cd linear forwards}
+@keyframes cd{to{transform:scaleX(1)}}
 .rooms button .bar{position:absolute;left:0;bottom:0;height:3px;width:0;background:rgba(255,255,255,.75)}
 .rooms button.on .bar.run{animation:bar linear forwards}
 @keyframes bar{to{width:100%}}
 
-.replay{position:absolute;right:10px;top:10px;z-index:7;width:28px;height:28px;border-radius:50%;
+.replay{position:absolute;right:10px;bottom:10px;z-index:7;width:28px;height:28px;border-radius:50%;
   background:rgba(255,255,255,.85);display:grid;place-items:center;opacity:0;transition:.3s;box-shadow:0 3px 10px -4px rgba(0,0,0,.4)}
 .cleared .replay{opacity:1}
 .replay:hover{transform:rotate(-60deg)}
@@ -357,6 +363,7 @@ button{font:inherit;border:0;background:none;color:inherit;cursor:pointer}
       <svg viewBox="0 0 24 24" fill="none" stroke="#0a3552" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
     </button>
     <nav class="rooms" id="rooms" data-noexit aria-label="Yaşam alanları"></nav>
+    <button class="vbtn" id="vbtn" data-noexit aria-label="Tüm Ferfresh videolarını izle"><i>&#9654;</i>Videolar<span class="cd"><b id="cdBar"></b></span></button>
     <div class="toast" id="toast">Pırıl pırıl!</div>
   </section>
 
@@ -515,7 +522,7 @@ function ease(t){ return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2; }
 function makeScene(cv){
   var ctx=cv.getContext('2d'); ctx.scale(cv.width/W, cv.height/H);
   var baseC=off(), stainC=off(), b=baseC.getContext('2d'), st=stainC.getContext('2d');
-  var room=null, path=[], plen=0, prev=null, t0=0, running=false, held=-1, raf=0, onEnd=null, sparks=[], drops=[], foam=[], D=CONFIG.autoplayRoomMs;
+  var room=null, path=[], plen=0, prev=null, t0=0, running=false, held=-1, raf=0, endT=0, onEnd=null, sparks=[], drops=[], foam=[], D=CONFIG.autoplayRoomMs;
 
   function drawBase(r){
     var g=b.createLinearGradient(0,0,W,H); g.addColorStop(0,r.base[0]); g.addColorStop(1,r.base[1]);
@@ -636,12 +643,12 @@ function makeScene(cv){
     if (pos) sponge(pos[0],pos[1],Math.sin(now/90)*.12);
     if (sparks.done){ var se=e-4300; sparks.forEach(function(s){ var u=(se-s.d)/700; if(u>0&&u<1) star(ctx,s.x,s.y,s.r*Math.sin(u*Math.PI),Math.sin(u*Math.PI)); }); }
     if (e>=D){
-      if (onEnd && alive()){ running=false; onEnd(); return; }
-      if (!alive()){ running=false; drawClean(); return; }
+      if (onEnd || !alive()){ running=false; drawClean(); return; }
       restart();
     }
     raf=requestAnimationFrame(frame);
   }
+  function fin(){ running=false; cancelAnimationFrame(raf); if (onEnd && alive()) onEnd(); else drawClean(); }
   function restart(){ drawStains(room,Math.floor(Math.random()*1e6)); prev=null; drops=[]; foam=[]; sparks=[]; t0=performance.now(); }
   function drawClean(){
     ctx.clearRect(0,0,W,H); ctx.drawImage(baseC,0,0,W,H);
@@ -649,15 +656,16 @@ function makeScene(cv){
   }
   return {
     set:function(r){ room=r; drawBase(r); buildPath(r); },
-    clean:function(){ running=false; held=-1; cancelAnimationFrame(raf); drawClean(); },
+    clean:function(){ clearTimeout(endT); running=false; held=-1; cancelAnimationFrame(raf); drawClean(); },
     play:function(cb){
-      onEnd=cb||null; cancelAnimationFrame(raf); held=-1; running=true; restart();
-      if (reduce){ st.clearRect(0,0,W,H); drawClean(); running=false; setTimeout(function(){ cb&&alive()&&cb(); },D); return; }
+      onEnd=cb||null; clearTimeout(endT); cancelAnimationFrame(raf); held=-1; running=true; restart();
+      if (onEnd) endT=setTimeout(fin,D);
+      if (reduce){ st.clearRect(0,0,W,H); drawClean(); running=false; return; }
       raf=requestAnimationFrame(frame);
     },
-    stop:function(){ running=false; held=-1; cancelAnimationFrame(raf); },
-    pause:function(){ if (!running) return; held=performance.now()-t0; running=false; cancelAnimationFrame(raf); },
-    resume:function(){ if (held<0) return; t0=performance.now()-held; held=-1; running=true; raf=requestAnimationFrame(frame); },
+    stop:function(){ clearTimeout(endT); running=false; held=-1; cancelAnimationFrame(raf); },
+    pause:function(){ if (!running) return; clearTimeout(endT); held=performance.now()-t0; running=false; cancelAnimationFrame(raf); },
+    resume:function(){ if (held<0) return; t0=performance.now()-held; if (onEnd) endT=setTimeout(fin,Math.max(0,D-held)); held=-1; running=true; raf=requestAnimationFrame(frame); },
     running:function(){ return running; },
     progress:function(){ return held>=0 ? held/D : running ? Math.min(1,(performance.now()-t0)/D) : 1; },
     thumb:function(r,seed){
@@ -675,17 +683,13 @@ var S1=makeScene($('#scene'));
 var vMain=$('#vMain'), vBlur=$('#vBlur');
 stage.classList.add(CONFIG.fit==='cover'?'fit-cover':'fit-blur');
 var Rooms=(function(){
-  var nav=$('#rooms'), idx=0, auto=true, plays=0, switched=false, btns=[];
+  var nav=$('#rooms'), idx=0, auto=true, btns=[];
   CONFIG.rooms.forEach(function(r,i){
     var b=document.createElement('button'); b.type='button'; b.innerHTML=r.label+'<span class="bar"></span>';
     b.setAttribute('aria-label',r.title+' – '+r.claim);
     b.addEventListener('click',function(){ auto=false; Clean.finish(true); show(i,true); });
     nav.appendChild(b); btns.push(b);
   });
-  var vb=document.createElement('button'); vb.type='button'; vb.className='vid'; vb.innerHTML='&#9654; Videolar';
-  vb.setAttribute('aria-label','Tüm Ferfresh videolarını izle');
-  vb.addEventListener('click',function(){ switched=true; View.go(2); });
-  nav.appendChild(vb);
 
   function bar(ms){
     btns.forEach(function(b){ var s=b.querySelector('.bar'); s.classList.remove('run'); s.style.animationDuration=''; });
@@ -694,8 +698,6 @@ var Rooms=(function(){
   function next(){
     if (view!==1) return;
     if (auto && alive()){
-      plays++;
-      if (!switched && CONFIG.autoToVideosAfter && plays>=CONFIG.autoToVideosAfter){ switched=true; View.go(2); return; }
       show((idx+1)%CONFIG.rooms.length,true);
     } else show(idx,true);
   }
@@ -722,7 +724,7 @@ var Rooms=(function(){
   return {
     show:show, stop:stop,
     wake:function(){ if (stage.classList.contains('cleared') && !stage.classList.contains('has-video') && !S1.running()) show(idx,true); },
-    replayMode:function(){ auto=true; plays=0; }
+    replayMode:function(){ auto=true; }
   };
 })();
 
@@ -758,11 +760,12 @@ var Clean=(function(){
     if (last){ var dx=px-last[0], dy=py-last[1], n=Math.max(1,Math.ceil(Math.hypot(dx,dy)/6)); for (var s=1;s<=n;s++) wipe(last[0]+dx*s/n,last[1]+dy*s/n,30); }
     else wipe(px,py,30);
     last=[px,py];
-    if (++moves%8===0 && !done && ratio()>.5) finish();
+    lastScrub=Date.now();
+    if (++moves%8===0 && !done && ratio()>.4) finish();
   }
   function local(e){ var b=cv.getBoundingClientRect(); return [(e.clientX-b.left)*W/b.width,(e.clientY-b.top)*H/b.height]; }
   function moveCur(p){ cur.style.left=p[0]+'px'; cur.style.top=p[1]+'px'; }
-  var down=false;
+  var down=false, lastScrub=0;
   cv.addEventListener('pointerenter',function(){ stage.classList.add('hovering'); });
   cv.addEventListener('pointerleave',function(){ stage.classList.remove('hovering'); last=null; down=false; });
   cv.addEventListener('pointerdown',function(e){ down=true; touched=true; ghostOn=false; stage.classList.add('scrubbing'); last=null; var p=local(e); moveCur(p); stroke(p[0],p[1]); try{cv.setPointerCapture(e.pointerId);}catch(_){} });
@@ -775,6 +778,7 @@ var Clean=(function(){
     var t0=performance.now(), L=[0], tot=0;
     for (var i=1;i<pts.length;i++){ tot+=Math.hypot(pts[i][0]-pts[i-1][0],pts[i][1]-pts[i-1][1]); L.push(tot); }
     ghostOn=true; cur.classList.add('ghost'); last=null;
+    if (cb) setTimeout(function(){ if (ghostOn && !done && view===1){ ghostOn=false; cur.classList.remove('ghost'); cb(); } },dur+400);
     (function step(now){
       if (done || !ghostOn || view!==1){ cur.classList.remove('ghost'); return; }
       var u=Math.min(1,(now-t0)/dur), tgt=ease(u)*tot, k=1; while (k<L.length-1 && L[k]<tgt) k++;
@@ -784,12 +788,14 @@ var Clean=(function(){
     })(performance.now());
   }
   function ghost(){ if (touched||done||view!==1) return; animatePath([[80,70],[180,110],[150,160],[260,150],[330,190]],1700,null); }
-  function autoClean(){
-    if (touched||done||view!==1) return;
+  function autoClean(force){
+    if ((touched&&!force)||done||view!==1) return;
     var pts=[], rows=[30,75,120,165,210,240];
     rows.forEach(function(y,i){ pts.push(i%2?[424,y]:[20,y]); pts.push(i%2?[20,y]:[424,y]); });
     animatePath(pts,2200,function(){ finish(); });
   }
+  // kullanıcı silmeye başlayıp bıraktıysa 3 sn sonra kalanı otomatik temizle
+  setInterval(function(){ if (touched && !done && !down && view===1 && Date.now()-lastScrub>3000) autoClean(true); },1000);
   function burst(){
     for (var i=0;i<16;i++){ var s=document.createElement('span'); s.className='spark';
       var a=Math.random()*Math.PI*2, d=50+Math.random()*130, sc=.6+Math.random()*1.2;
@@ -813,7 +819,7 @@ var Clean=(function(){
     Rooms.show(0,false);
   }
   paint();
-  return { finish:finish, reset:reset, ghost:ghost, autoClean:autoClean };
+  return { finish:finish, reset:reset, ghost:ghost, autoClean:function(){ autoClean(false); }, busy:function(){ return down || Date.now()-lastScrub<1500; } };
 })();
 $('#replay').addEventListener('click',function(){ Clean.reset(); setTimeout(Clean.ghost,900); });
 
@@ -949,15 +955,30 @@ var View=(function(){
     if (busy || n===view) return;
     if (reduce){ swap(n); return; }
     busy=true; wp.style.display='block';
-    var e='cubic-bezier(.65,0,.35,1)';
-    wp.animate([{transform:'translateX(-1180px)'},{transform:'translateX(0)'}],{duration:480,easing:e,fill:'forwards'}).onfinish=function(){
+    var e='cubic-bezier(.65,0,.35,1)', can=!!wp.animate;
+    if (can) wp.animate([{transform:'translateX(-1180px)'},{transform:'translateX(0)'}],{duration:480,easing:e,fill:'forwards'});
+    else wp.style.transform='translateX(0)';
+    setTimeout(function(){
       swap(n);
-      wp.animate([{transform:'translateX(0)'},{transform:'translateX(1180px)'}],{duration:560,delay:120,easing:e,fill:'forwards'}).onfinish=function(){ wp.style.display='none'; busy=false; };
-    };
+      if (can) wp.animate([{transform:'translateX(0)'},{transform:'translateX(1180px)'}],{duration:560,delay:120,easing:e,fill:'forwards'});
+      setTimeout(function(){ wp.style.display='none'; busy=false; }, can?720:150);
+    },500);
   }
-  return { go:go };
+  // otomatik geçiş: açılıştan CONFIG.autoToVideosMs sonra (kullanıcı o an siliyorsa kısa ertelenir)
+  var autoDone=false, cdBar=$('#cdBar');
+  function arm(){
+    var ms=CONFIG.autoToVideosMs; if (!ms) return;
+    cdBar.style.animationDuration=ms+'ms'; cdBar.classList.add('run');
+    setTimeout(function check(){
+      if (autoDone || view!==1) return;
+      if (busy || Clean.busy()){ setTimeout(check,1500); return; }
+      autoDone=true; go(2);
+    },ms);
+  }
+  return { go:function(n){ if (n===2) autoDone=true; go(n); }, arm:arm };
 })();
 $('#again').addEventListener('click',function(){ View.go(1); });
+$('#vbtn').addEventListener('click',function(){ View.go(2); });
 
 /* ---------- Başlat ---------- */
 function start(){
@@ -965,6 +986,7 @@ function start(){
   requestAnimationFrame(function(){ $('#v1').classList.add('in'); });
   setTimeout(Clean.ghost,1400);
   setTimeout(Clean.autoClean,7000);
+  View.arm();
 }
 var started=false;
 function go(){ if(started) return; started=true; start(); }
