@@ -271,7 +271,8 @@
       otogazLitreTL: 43.29,        // otogaz litre fiyatı (TL)
       benzinTuketimL100km: 8.0,    // benzin tüketimi (L/100 km)
       otogazTuketimL100km: 9.6,    // otogaz tüketimi (L/100 km) = benzin x 1,20 (Aygaz)
-      tasarrufOraniUst: 0.40       // "Benzine kıyasla %40'a varan tasarruf": gösterilen tasarrufun üst sınırı
+      kitFiyatiTL: 56000,          // dönüşüm kiti (Aygaz aracındaki "Yaklaşık Kit Fiyatı" varsayılanı); fiyat.json "kit" ile değiştirilebilir
+      kmMin: 5000, kmMax: 50000, kmStep: 1000, kmVarsayilan: 18000   // yıllık mesafe kaydırıcısı
     };
     const formatTL = (n) => (+n).toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); // 84,50
     const formatDateTR = (d) => (/^\d{4}-\d{2}-\d{2}$/.test(d || '') ? d.split('-').reverse().join('.') : (d || '')); // 2026-10-02 -> 02.10.2026
@@ -311,9 +312,9 @@
       const [isMuted, setIsMuted] = useState(!OPTIONS.startUnmuted);
       // Sesli başlatma tarayıcı tarafından engellendiyse true: ilk tıklamada ses açılır
       const [soundBlocked, setSoundBlocked] = useState(false);
-      const [monthlyKm, setMonthlyKm] = useState(1500);
+      const [annualKm, setAnnualKm] = useState(CALC.kmVarsayilan);
       // Pompa fiyatları: gömülü yedekle başlar, fiyat.json okunabilirse güncellenir
-      const [prices, setPrices] = useState({ benzin: CALC.benzinLitreTL, otogaz: CALC.otogazLitreTL, tarih: CALC.fiyatTarihi, bolge: CALC.bolge, kaynak: 'gomulu' });
+      const [prices, setPrices] = useState({ benzin: CALC.benzinLitreTL, otogaz: CALC.otogazLitreTL, kit: CALC.kitFiyatiTL, tarih: CALC.fiyatTarihi, bolge: CALC.bolge, kaynak: 'gomulu' });
 
       // Intro Overlay state
       const [isIntroActive, setIsIntroActive] = useState(true);
@@ -355,7 +356,7 @@
         fetch(ASSETS.PRICE_URL, { cache: 'no-store', credentials: 'omit' })
           .then((r) => (r.ok ? r.json() : null))
           .then((j) => {
-            if (!cancelled && isValidPrices(j)) setPrices({ benzin: +j.benzin, otogaz: +j.otogaz, tarih: j.tarih || '', bolge: j.bolge || CALC.bolge, kaynak: 'fiyat.json' });
+            if (!cancelled && isValidPrices(j)) setPrices({ benzin: +j.benzin, otogaz: +j.otogaz, kit: (isFinite(+j.kit) && +j.kit > 0) ? +j.kit : CALC.kitFiyatiTL, tarih: j.tarih || '', bolge: j.bolge || CALC.bolge, kaynak: 'fiyat.json' });
           })
           .catch(() => {});
         return () => { cancelled = true; };
@@ -456,12 +457,16 @@
         setIsMuted(nextMuted);
       };
 
-      // Tasarruf Hesapla: gerçek fiyat farkı (benzin - otogaz maliyeti) hesaplanır, marka iddiası
-      // "Benzine kıyasla %40'a varan tasarruf" ile tutarlı kalması için benzin maliyetinin %40'ı ile sınırlanır.
-      const monthlyBenzinTL = (monthlyKm / 100) * CALC.benzinTuketimL100km * prices.benzin;
-      const monthlyOtogazTL = (monthlyKm / 100) * CALC.otogazTuketimL100km * prices.otogaz;
-      const monthlySavingsTL = Math.round(Math.min(monthlyBenzinTL - monthlyOtogazTL, monthlyBenzinTL * CALC.tasarrufOraniUst));
-      const annualSavingsTL = monthlySavingsTL * 12;
+      // Tasarruf Hesapla – Aygaz "Yakıt Tasarrufu Hesapla" aracıyla aynı yöntem:
+      // yıllık benzin maliyeti = km/100 x 8,0 L x benzin fiyatı; yıllık otogaz maliyeti = km/100 x 9,6 L x otogaz fiyatı;
+      // kazanç = fark; tasarruf oranı = kazanç / benzin maliyeti; geri dönüş süresi = kit fiyatı / kazanç x 12 ay
+      const annualBenzinTL = Math.round((annualKm / 100) * CALC.benzinTuketimL100km * prices.benzin);
+      const annualOtogazTL = Math.round((annualKm / 100) * CALC.otogazTuketimL100km * prices.otogaz);
+      const annualSavingsTL = annualBenzinTL - annualOtogazTL;
+      const savingsPct = annualBenzinTL > 0 ? Math.round((annualSavingsTL / annualBenzinTL) * 100) : 0;
+      const paybackMonths = annualSavingsTL > 0 ? Math.round((prices.kit / annualSavingsTL) * 12) : null;
+      const priceBasis = (prices.tarih ? formatDateTR(prices.tarih) + ' tarihli ' : '') + (prices.bolge ? prices.bolge + ' ' : '') +
+        'fiyatları: benzin ' + formatTL(prices.benzin) + ' TL/L, otogaz ' + formatTL(prices.otogaz) + ' TL/L';
 
       const getPersonaIcon = (iconName) => {
         switch (iconName) {
@@ -679,45 +684,57 @@
                 </div>
               )}
 
-              {/* TAB 3: CALCULATOR */}
+              {/* TAB 3: CALCULATOR – Aygaz "Yakıt Tasarrufu Hesapla" aracıyla aynı yöntem ve çıktılar */}
               {activeTab === 'calculator' && (
-                <div className="bg-[#001533] border border-slate-800 rounded-lg p-3 h-full flex items-center justify-between gap-4" data-fiyat-kaynak={prices.kaynak} data-fiyat-tarih={prices.tarih} data-benzin={prices.benzin} data-otogaz={prices.otogaz}>
-                  <div className="flex-1 space-y-2">
+                <div className="bg-[#001533] border border-slate-800 rounded-lg p-3 h-full flex items-stretch justify-between gap-3" data-fiyat-kaynak={prices.kaynak} data-fiyat-tarih={prices.tarih} data-benzin={prices.benzin} data-otogaz={prices.otogaz} data-kit={prices.kit}>
+                  <div className="flex-1 min-w-0 flex flex-col justify-between">
                     <div>
                       <div className="flex justify-between text-[11px] font-bold text-slate-300 mb-1">
-                        <span>Aylık Ortalama Sürüş (KM)</span>
-                        <span className="text-amber-400 font-mono font-bold">{formatNumber(monthlyKm)} km</span>
+                        <span>1 Yılda Yapılan Mesafe (KM)</span>
+                        <span className="text-amber-400 font-mono font-bold">{formatNumber(annualKm)} km</span>
                       </div>
                       <input
                         type="range"
-                        min="500"
-                        max="5000"
-                        step="250"
-                        value={monthlyKm}
-                        onChange={(e) => setMonthlyKm(Number(e.target.value))}
+                        min={CALC.kmMin}
+                        max={CALC.kmMax}
+                        step={CALC.kmStep}
+                        value={annualKm}
+                        onChange={(e) => setAnnualKm(Number(e.target.value))}
                         className="w-full h-1.5 bg-slate-800 rounded appearance-none cursor-pointer accent-[#FF5500]"
                       />
                     </div>
 
-                    <div className="text-[10px] text-slate-400 leading-tight">
-                      Benzine kıyasla %40'a varan tasarruf esas alınmıştır.
+                    <div className="grid grid-cols-2 gap-2">
+                      <div className="bg-[#000D21] border border-slate-800 rounded px-2 py-1">
+                        <div className="text-[9.5px] text-slate-400 font-semibold">Yıllık Benzin Tüketiminiz</div>
+                        <div className="text-xs font-black text-slate-100 font-mono" data-benzin-yillik={annualBenzinTL}>{formatNumber(annualBenzinTL)} TL</div>
+                      </div>
+                      <div className="bg-[#000D21] border border-slate-800 rounded px-2 py-1">
+                        <div className="text-[9.5px] text-slate-400 font-semibold">Yıllık Otogaz Tüketiminiz</div>
+                        <div className="text-xs font-black text-emerald-400 font-mono" data-otogaz-yillik={annualOtogazTL}>{formatNumber(annualOtogazTL)} TL</div>
+                      </div>
+                    </div>
+
+                    <div className="text-[9.5px] leading-tight">
+                      <span className="text-slate-300 font-semibold">Benzine kıyasla %40'a varan tasarruf.</span>
                       <br />
-                      <span className="text-slate-500">
-                        {(prices.tarih ? formatDateTR(prices.tarih) + ' tarihli ' : '') + (prices.bolge ? prices.bolge + ' ' : '')}fiyatları: benzin {formatTL(prices.benzin)} TL/L, otogaz {formatTL(prices.otogaz)} TL/L
-                      </span>
+                      <span className="text-slate-500">{priceBasis}; otogaz tüketimi benzine göre %20 fazla, dönüşüm kiti {formatNumber(prices.kit)} TL alınmıştır.</span>
                     </div>
                   </div>
 
-                  <div className="bg-gradient-to-br from-[#001D4A] to-[#003B7A] border border-sky-500/30 rounded p-2.5 text-center min-w-[180px]">
-                    <span className="text-[10px] font-bold text-sky-300 uppercase tracking-wider block">
-                      Tahmini Yıllık Tasarruf
-                    </span>
-                    <div className="text-xl font-black text-amber-400 my-0.5 font-mono">
-                      {formatNumber(annualSavingsTL)} TL
+                  <div className="bg-gradient-to-br from-[#001D4A] to-[#003B7A] border border-sky-500/30 rounded p-2.5 text-center min-w-[190px] flex flex-col justify-center">
+                    <span className="text-[10px] font-bold text-sky-300 uppercase tracking-wider block">Otogaz ile Yıllık Kazancınız</span>
+                    <div className="text-xl font-black text-amber-400 my-0.5 font-mono">{formatNumber(annualSavingsTL)} TL</div>
+                    <div className="grid grid-cols-2 gap-1.5 mt-1">
+                      <div className="bg-[#000D21]/60 rounded px-1 py-1">
+                        <div className="text-sm font-black text-sky-300 font-mono leading-none" data-oran={savingsPct}>%{savingsPct}</div>
+                        <div className="text-[9px] text-slate-300 font-semibold mt-0.5">Tasarruf Oranı</div>
+                      </div>
+                      <div className="bg-[#000D21]/60 rounded px-1 py-1">
+                        <div className="text-sm font-black text-emerald-400 font-mono leading-none" data-geri-donus={paybackMonths == null ? '' : paybackMonths}>{paybackMonths == null ? '—' : paybackMonths + ' Ay'}</div>
+                        <div className="text-[9px] text-slate-300 font-semibold mt-0.5">Geri Dönüş Süresi</div>
+                      </div>
                     </div>
-                    <span className="text-[10px] text-slate-200 font-semibold block">
-                      Aygaz 100+ Oktan İle
-                    </span>
                   </div>
                 </div>
               )}

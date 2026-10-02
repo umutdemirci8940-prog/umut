@@ -107,20 +107,30 @@ Sayılar sekme açılınca 0'dan sayar ve Türkçe biçimde (nokta binlik ayrac�
 
 ## Tasarruf Hesapla formülü
 
-Kaynak: Aygaz'ın kendi "Yakıt Tasarrufu Hesapla" aracı (aygaz.com.tr). `Aygaz3.html` → `CALC`:
+Aygaz'ın kendi "Yakıt Tasarrufu Hesapla" aracıyla (aygaz.com.tr / Aygaz uygulaması) **aynı yöntem ve aynı çıktılar**. `Aygaz3.html` → `CALC`:
 
-- Fiyatlar (02.10.2026, İstanbul Anadolu Yakası): benzin 84,50 TL/L (opet.com.tr), otogaz 43,29 TL/L (EPDK'ya bildirilen Aygaz tavan fiyatı).
-- Tüketim: benzin 8,0 L/100 km, otogaz 9,6 L/100 km. Aygaz'ın kendi hesabı otogazı benzine göre %20 fazla alır.
-- Aylık benzin maliyeti = km/100 × 8,0 × benzin fiyatı; aylık otogaz maliyeti = km/100 × 9,6 × otogaz fiyatı.
-- **Tasarruf = min(benzin − otogaz, benzin × %40)**: "Benzine kıyasla %40'a varan tasarruf" iddiasının üstüne çıkmaz. Bugünkü fiyatlarla fark %38,5 olduğu için gerçek değer gösterilir.
-- Yıllık = aylık × 12. Örnek: 1.500 km/ay → benzin 10.140 TL, otogaz 6.234 TL → 3.906 TL/ay → 46.872 TL/yıl.
+- Girdi: "1 Yılda Yapılan Mesafe" kaydırıcısı (5.000–50.000 km, varsayılan 18.000).
+- Fiyatlar (02.10.2026, İstanbul Anadolu Yakası): benzin 84,50 TL/L (opet.com.tr), otogaz 43,29 TL/L (EPDK'ya bildirilen Aygaz tavan fiyatı). Canlı değerler `fiyat.json`'dan gelir (aşağıda).
+- Tüketim: benzin 8,0 L/100 km, otogaz 9,6 L/100 km (Aygaz'ın aracı otogazı %20 fazla alır).
+- Dönüşüm kiti: 56.000 TL (Aygaz aracındaki "Yaklaşık Kit Fiyatı" varsayılanı; `fiyat.json` → `kit` ile değiştirilebilir).
+- Sekmede "Benzine kıyasla %40'a varan tasarruf." ifadesi ve fiyat dayanağı satırı görünür.
+
+| Çıktı | Formül | 18.000 km örneği |
+|---|---|---|
+| Yıllık Benzin Tüketiminiz | km/100 × 8,0 × benzin fiyatı | 121.680 TL |
+| Yıllık Otogaz Tüketiminiz | km/100 × 9,6 × otogaz fiyatı | 74.805 TL |
+| Otogaz ile Yıllık Kazancınız | benzin − otogaz | 46.875 TL |
+| Tasarruf Oranı | kazanç ÷ benzin maliyeti | %39 |
+| Geri Dönüş Süresi | kit fiyatı ÷ kazanç × 12 | 14 Ay |
+
+Doğrulama: Aygaz uygulamasına 1.500 km, 84,50 / 43,29, 8 L, 56.000 TL girildiğinde 10.140 / 6.234 / 3.906 TL, %39 ve 172 ay çıkar; aynı girdiyle bu formül birebir aynı sonuçları verir. Uygulamadaki "Aracın 100 km'de tasarrufu" kutusu (39 TL) yıllık kazancın yüzde biri olarak hesaplanıyor ve mesafeyle tutarsız olduğu için bannerda gösterilmedi. Önceki "%40 üst sınırı" kaldırıldı; uygulama gibi gerçek oran gösterilir.
 
 ### Güncel fiyatlar: `fiyat.json` (yeniden yükleme gerekmez)
 
 Kreatif açılırken `fiyat.json` dosyasını okur ve hesapta oradaki fiyatları kullanır; dosyaya ulaşamazsa veya içerik geçersizse (otogaz ≥ benzin, sayı değil, 0) sessizce `CALC` içindeki gömülü fiyatlara düşer. Böylece fiyat değişince **yalnızca S3'teki `fiyat.json` güncellenir**, DV360'daki kreatife dokunulmaz.
 
 ```json
-{ "tarih": "2026-10-02", "bolge": "İstanbul Anadolu Yakası", "benzin": 84.50, "otogaz": 43.29 }
+{ "tarih": "2026-10-02", "bolge": "İstanbul Anadolu Yakası", "benzin": 84.50, "otogaz": 43.29, "kit": 56000 }
 ```
 
 - Önizleme (`Aygaz3.html`, `Aygaz3-sesli.html`): HTML ile aynı klasördeki `fiyat.json` (S3'te `/Aygaz/fiyat.json`).
@@ -132,7 +142,7 @@ Kreatif açılırken `fiyat.json` dosyasını okur ve hesapta oradaki fiyatları
 ```
 
 - Dosya `cache: no-store` ile okunur; S3'te ek önbellek ayarı gerekmez. Kreatifin önünde CDN varsa dosyanın önbellek süresi kısa tutulmalıdır.
-- Hesaplayıcı sekmesinde dayanak satırı gösterilir: "02.10.2026 tarihli İstanbul Anadolu Yakası fiyatları: benzin 84,50 TL/L, otogaz 43,29 TL/L". Tarih, bölge ve fiyatlar `fiyat.json`'dan gelir (`tarih` YYYY-AA-GG biçiminde yazılırsa GG.AA.YYYY olarak gösterilir; `bolge` yoksa gömülü bölge adı kullanılır).
+- Hesaplayıcı sekmesinde dayanak satırı gösterilir: "02.10.2026 tarihli İstanbul Anadolu Yakası fiyatları: benzin 84,50 TL/L, otogaz 43,29 TL/L". Tarih, bölge, fiyatlar ve kit fiyatı `fiyat.json`'dan gelir (`tarih` YYYY-AA-GG biçiminde yazılırsa GG.AA.YYYY olarak gösterilir; `bolge` veya `kit` yoksa gömülü değerler kullanılır).
 - Hesaplayıcı kartındaki `data-fiyat-kaynak` özniteliği `fiyat.json` veya `gomulu` değerini taşır; tarayıcı denetçisinden hangi fiyatın kullanıldığı görülür.
 
 Otomatik güncelleme: `fiyat.json`'ı dolduracak zamanlanmış bir iş (ör. GitHub Actions) için güvenilir bir fiyat kaynağı gerekir; Aygaz uygulamasının kullandığı fiyat servisi alınabilirse günlük otomatik yazım kurulabilir.
