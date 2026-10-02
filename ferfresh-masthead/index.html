@@ -10,33 +10,61 @@
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
 <script>
 /* ==========================================================================
-   FERFRESH – 970x250 İNTERAKTİF MASTHEAD
-   Kurgu:
-   1) Ekran "kirli" bir katmanla kaplı gelir; kullanıcı sürükleyerek siler
-      (etkileşim olmazsa demo + otomatik temizlik devreye girer).
-   2) Temizlik bitince oda sekmeleri (Mutfak, Banyo, Cam, Çamaşır, Bulaşık)
-      arasında kampanya videoları oynar. Video tanımlı değilse her oda için
-      animasyonlu "ürün kullanımı" sahnesi oynar (yer tutucu).
-   3) Sağda ürün varyantları ve dönen fayda mesajları.
-   Dikey (9:16) TikTok/Reels videoları için: fit:'blur' → video ortada dikey,
+   FERFRESH – 970x250 İNTERAKTİF MASTHEAD (2 sahne)
+   SAHNE 1 – Oyun + içerik:
+     Ekran "kirli" gelir; kullanıcı sürükleyerek siler (etkileşim yoksa demo +
+     otomatik temizlik). Ardından oda sekmeleri (Mutfak, Banyo, Cam, Çamaşır,
+     Bulaşık) oynar; sağda ürün varyantları ve fayda mesajları.
+   GEÇİŞ – Köpüklü sünger silme efektiyle sahne 2'ye geçilir
+     (otomatik: 2 oda sahnesinden sonra · elle: "▶ Videolar" sekmesi).
+   SAHNE 2 – Video penceresi + kampanya mesajı:
+     Solda mesaj ve "Keşfet" (siteye yönlendirme), sağda video oynatıcı ve
+     20+ videoluk kaydırmalı oynatma listesi.
+   Videolar: CONFIG.videos[].src (ve isteğe bağlı poster). src boşsa o oda için
+   animasyonlu yer tutucu sahne oynar.
+   Dikey (9:16) TikTok/Reels videoları için fit:'blur' → video ortada dikey,
    arkasında aynı videonun bulanık kopyası yatay alanı doldurur.
    Yatay kurgusu yapılmış videolar için fit:'cover' kullanın.
    ========================================================================== */
 var CONFIG = {
   landing: 'https://www.fersan.com.tr/marka/ferfresh',
   fit: 'blur',                 // 'blur' (dikey kaynak) | 'cover' (yatay kurgu)
-  autoplayRoomMs: 5600,        // sahne/video başına süre (otomatik akışta)
+  autoplayRoomMs: 5600,        // yer tutucu sahne süresi
+  autoToVideosAfter: 2,        // sahne 1'de kaç oda oynadıktan sonra sahne 2'ye geçilsin (0 = otomatik geçme)
   rooms: [
-    { id:'mutfak',  label:'Mutfak',  title:'Mutfak tezgâhı',   claim:'Yağ lekelerini çözer',
+    { id:'mutfak',  label:'Mutfak',  title:'Mutfak tezgâhı',   claim:'Yağ lekelerini çözer',        color:'#e98a24',
       video:'', pattern:'tile',   base:['#fff8ec','#f3e3c6'], grout:'#e4cfaa', stain:'150,98,38' },
-    { id:'banyo',   label:'Banyo',   title:'Banyo & armatür',  claim:'Kireci kolayca giderir',
+    { id:'banyo',   label:'Banyo',   title:'Banyo & armatür',  claim:'Kireci kolayca giderir',      color:'#1fa6cc',
       video:'', pattern:'tile',   base:['#eef8fc','#d2eaf4'], grout:'#b5d6e5', stain:'160,150,118' },
-    { id:'cam',     label:'Cam',     title:'Cam & ayna',       claim:'İz bırakmadan parlatır',
+    { id:'cam',     label:'Cam',     title:'Cam & ayna',       claim:'İz bırakmadan parlatır',      color:'#3c86dc',
       video:'', pattern:'glass',  base:['#bfe6f7','#eef9fd'], grout:'#ffffff', stain:'120,128,126' },
-    { id:'camasir', label:'Çamaşır', title:'Çamaşır makinesi', claim:'Yumuşatır, kalıntıyı alır',
+    { id:'camasir', label:'Çamaşır', title:'Çamaşır makinesi', claim:'Yumuşatır, kalıntıyı alır',   color:'#8a6bd0',
       video:'', pattern:'fabric', base:['#f4f1fb','#e3ddf3'], grout:'#cfc6e8', stain:'176,150,70' },
-    { id:'bulasik', label:'Bulaşık', title:'Bulaşık makinesi', claim:'Bardak ve tabakları parlatır',
+    { id:'bulasik', label:'Bulaşık', title:'Bulaşık makinesi', claim:'Bardak ve tabakları parlatır', color:'#43a832',
       video:'', pattern:'plate',  base:['#2b7f9c','#1d5f78'], grout:'#ffffff', stain:'140,96,48' }
+  ],
+  /* Sahne 2 oynatma listesi – markanın dikey videolarıyla eşleştirin */
+  videos: [
+    { room:'mutfak',  title:'Ocak üstü yağ lekesi',        src:'', poster:'' },
+    { room:'banyo',   title:'Batarya kireci',              src:'', poster:'' },
+    { room:'cam',     title:'İz bırakmayan cam silme',     src:'', poster:'' },
+    { room:'camasir', title:'Doğal yumuşatıcı etkisi',     src:'', poster:'' },
+    { room:'bulasik', title:'Pırıl pırıl bardaklar',       src:'', poster:'' },
+    { room:'mutfak',  title:'Tezgâh ve kesme tahtası',     src:'', poster:'' },
+    { room:'banyo',   title:'Duşakabin camı',              src:'', poster:'' },
+    { room:'cam',     title:'Ayna parlatma',               src:'', poster:'' },
+    { room:'camasir', title:'Makine kireç bakımı',         src:'', poster:'' },
+    { room:'bulasik', title:'Makine içi temizlik',         src:'', poster:'' },
+    { room:'mutfak',  title:'Buzdolabı rafları',           src:'', poster:'' },
+    { room:'banyo',   title:'Fayans derzleri',             src:'', poster:'' },
+    { room:'cam',     title:'Pencere çerçevesi',           src:'', poster:'' },
+    { room:'camasir', title:'Havlu yumuşatma',             src:'', poster:'' },
+    { room:'bulasik', title:'Çaydanlık kireci',            src:'', poster:'' },
+    { room:'mutfak',  title:'Fırın kapağı',                src:'', poster:'' },
+    { room:'banyo',   title:'Lavabo parlatma',             src:'', poster:'' },
+    { room:'cam',     title:'Balkon camı',                 src:'', poster:'' },
+    { room:'camasir', title:'Beyazlar için',               src:'', poster:'' },
+    { room:'bulasik', title:'Tencere dipleri',             src:'', poster:'' }
   ],
   products: [
     { name:'Karbonatlı<br>Temizlik Sirkesi', size:'500 ml', tag:'KARBONATLI', lab:'#1e90d8', lab2:'#0b5aa3', cap:'#0b5aa3' },
@@ -55,24 +83,25 @@ html,body{width:970px;height:250px;overflow:hidden;background:#fff}
 body{font-family:'Nunito',system-ui,sans-serif;color:var(--navy);-webkit-font-smoothing:antialiased}
 button{font:inherit;border:0;background:none;color:inherit;cursor:pointer}
 
-#ad{position:relative;width:970px;height:250px;overflow:hidden;cursor:pointer;
-  display:grid;grid-template-columns:262px 444px 264px;border:1px solid #cfe3ea;
-  background:linear-gradient(100deg,#f3fcf8 0%,#e4f6f4 30%,#e2f3fb 70%,#eef9fd 100%)}
+#ad{position:relative;width:970px;height:250px;overflow:hidden;cursor:pointer;border:1px solid #cfe3ea;background:#eef9fd}
 #ad:focus-visible{outline:3px solid var(--aqua);outline-offset:-3px}
+.view{position:absolute;inset:0}
+.view:not(.on){display:none}
+.v1{display:grid;grid-template-columns:262px 444px 264px;
+  background:linear-gradient(100deg,#f3fcf8 0%,#e4f6f4 30%,#e2f3fb 70%,#eef9fd 100%)}
 
-/* ---------- Sol: marka ---------- */
-.brand{position:relative;padding:18px 18px 16px 22px;display:flex;flex-direction:column;overflow:hidden}
+/* ---------- Ortak: logo, başlık, CTA ---------- */
 .logo{display:flex;align-items:flex-end;gap:6px;opacity:0;transform:translateY(-8px);transition:.6s cubic-bezier(.2,.8,.2,1)}
 .logo .word{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:32px;line-height:.9;letter-spacing:-.5px}
 .logo .w1{color:var(--navy)} .logo .w2{color:var(--green)}
 .logo svg{width:20px;height:24px;margin-bottom:6px;margin-left:-4px}
 .logo .by{font-size:10px;font-weight:800;letter-spacing:1.4px;color:#5d7f93;margin-bottom:5px;margin-left:4px;text-transform:uppercase}
-h1{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:25px;line-height:1.02;margin-top:14px;letter-spacing:-.2px}
-h1 span{display:block;opacity:0;transform:translateY(12px);transition:.55s cubic-bezier(.2,.8,.2,1)}
-h1 em{font-style:normal;color:var(--green);position:relative}
-h1 em::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:7px;background:rgba(34,179,214,.25);border-radius:4px;z-index:-1}
+.hl{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:25px;line-height:1.02;margin-top:14px;letter-spacing:-.2px}
+.hl span{display:block;opacity:0;transform:translateY(12px);transition:.55s cubic-bezier(.2,.8,.2,1)}
+.hl em{font-style:normal;color:var(--green);position:relative}
+.hl em::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:7px;background:rgba(34,179,214,.25);border-radius:4px;z-index:-1}
 .sub{font-size:12.5px;line-height:1.3;color:#3d6075;margin-top:8px;font-weight:700;opacity:0;transition:.6s .1s}
-.cta{margin-top:auto;align-self:flex-start;display:inline-flex;align-items:center;gap:8px;
+.cta{display:inline-flex;align-items:center;gap:8px;
   background:linear-gradient(180deg,#50b93e,#2f8a22);color:#fff;font-weight:800;font-size:14px;
   padding:9px 16px 9px 18px;border-radius:999px;box-shadow:0 6px 16px -6px rgba(47,138,34,.7),inset 0 1px 0 rgba(255,255,255,.35);
   opacity:0;transform:scale(.85);transition:opacity .5s,transform .5s cubic-bezier(.3,1.6,.5,1),box-shadow .2s}
@@ -81,34 +110,36 @@ h1 em::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:7px;b
 .cta.pulse{animation:pulse 1.6s ease-in-out 3}
 @keyframes pulse{50%{box-shadow:0 0 0 8px rgba(67,168,50,.18),0 6px 16px -6px rgba(47,138,34,.7)}}
 .in .logo,.in .sub{opacity:1;transform:none}
-.in h1 span{opacity:1;transform:none}
-.in h1 span:nth-child(2){transition-delay:.12s}.in h1 span:nth-child(3){transition-delay:.24s}
+.in .hl span{opacity:1;transform:none}
+.in .hl span:nth-child(2){transition-delay:.12s}.in .hl span:nth-child(3){transition-delay:.24s}
 .in .cta{opacity:1;transform:none;transition-delay:.45s}
 
+/* ---------- Sahne 1 – Sol: marka ---------- */
+.brand{position:relative;padding:18px 18px 16px 22px;display:flex;flex-direction:column;overflow:hidden}
+.brand .cta{margin-top:auto;align-self:flex-start}
 .bubbles span{position:absolute;bottom:-30px;border-radius:50%;pointer-events:none;
   background:radial-gradient(circle at 32% 30%,rgba(255,255,255,.95),rgba(255,255,255,.25) 40%,rgba(34,179,214,.15) 70%,rgba(34,179,214,.35));
   box-shadow:inset 0 0 0 1px rgba(34,179,214,.25);animation:rise linear infinite}
 @keyframes rise{to{transform:translateY(-310px) translateX(14px)}}
 .still .bubbles span,.still .claims .c{animation-play-state:paused}
 
-/* ---------- Orta: sahne / video ---------- */
+/* ---------- Sahne 1 – Orta: oyun / video ---------- */
 .stage{position:relative;width:444px;height:250px;overflow:hidden;background:#0a3552}
-.stage video,.stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-#vBlur{object-fit:cover;filter:blur(18px) saturate(1.2) brightness(.85);transform:scale(1.15);opacity:0}
-#vMain{object-fit:contain;opacity:0}
-.fit-cover #vMain{object-fit:cover}
-.has-video #vMain{opacity:1}
-.has-video.fit-blur #vBlur{opacity:1}
-.has-video #scene{opacity:0}
-#scene{transition:opacity .35s}
+.stage video,.stage canvas,.player video,.player canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.vblur{object-fit:cover;filter:blur(18px) saturate(1.2) brightness(.85);transform:scale(1.15);opacity:0}
+.vmain{object-fit:contain;opacity:0}
+.fit-cover .vmain{object-fit:cover}
+.has-video .vmain{opacity:1}
+.has-video.fit-blur .vblur{opacity:1}
+.has-video .scene{opacity:0}
+.scene{transition:opacity .35s}
 
 #dirt{touch-action:none;cursor:none;transition:opacity .7s ease}
 .cleared #dirt{opacity:0;pointer-events:none}
 .sponge-cur{position:absolute;width:58px;height:38px;left:0;top:0;pointer-events:none;z-index:6;opacity:0;
   transform:translate(-50%,-50%) rotate(-12deg);transition:opacity .2s}
 .stage.hovering:not(.cleared) .sponge-cur,.sponge-cur.ghost{opacity:1}
-.hint{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:5;pointer-events:none;text-align:center;color:#fff;
-  transition:opacity .4s}
+.hint{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:5;pointer-events:none;text-align:center;color:#fff;transition:opacity .4s}
 .hint b{display:block;font-family:'Baloo 2',sans-serif;font-size:27px;line-height:1;text-shadow:0 2px 10px rgba(0,0,0,.35)}
 .hint small{display:inline-block;margin-top:8px;font-size:12px;font-weight:800;background:rgba(255,255,255,.2);
   border:1px solid rgba(255,255,255,.4);padding:5px 12px;border-radius:999px;backdrop-filter:blur(4px)}
@@ -122,17 +153,19 @@ h1 em::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:7px;b
 .cleared .cap{opacity:1;transform:none}
 .cap .t{background:rgba(10,53,82,.85);color:#fff;font-weight:800;font-size:11.5px;padding:5px 10px;border-radius:999px;letter-spacing:.2px}
 .cap .c{background:#fff;color:var(--green2);font-weight:800;font-size:11.5px;padding:5px 10px;border-radius:999px;box-shadow:0 3px 10px -4px rgba(0,0,0,.4)}
-.cap .c.swap{animation:pop .45s cubic-bezier(.3,1.6,.5,1)}
+.swap{animation:pop .45s cubic-bezier(.3,1.6,.5,1)}
 @keyframes pop{from{transform:scale(.6);opacity:0}}
 
 .rooms{position:absolute;left:0;right:0;bottom:10px;z-index:7;display:flex;justify-content:center;gap:5px;
   opacity:0;transform:translateY(10px);transition:.45s .2s}
 .cleared .rooms{opacity:1;transform:none}
-.rooms button{position:relative;overflow:hidden;font-size:11.5px;font-weight:800;color:var(--navy);
-  background:rgba(255,255,255,.82);backdrop-filter:blur(6px);padding:6px 11px;border-radius:999px;
+.rooms button{position:relative;overflow:hidden;font-size:11px;font-weight:800;color:var(--navy);
+  background:rgba(255,255,255,.82);backdrop-filter:blur(6px);padding:6px 9px;border-radius:999px;
   box-shadow:0 4px 12px -6px rgba(0,0,0,.45);transition:background .2s,color .2s,transform .2s}
 .rooms button:hover{transform:translateY(-2px);background:#fff}
 .rooms button.on{background:var(--green);color:#fff}
+.rooms button.vid{background:var(--navy);color:#fff;padding-left:8px}
+.rooms button.vid:hover{background:#12507a}
 .rooms button .bar{position:absolute;left:0;bottom:0;height:3px;width:0;background:rgba(255,255,255,.75)}
 .rooms button.on .bar.run{animation:bar linear forwards}
 @keyframes bar{to{width:100%}}
@@ -153,30 +186,29 @@ h1 em::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:7px;b
 .spark::before{content:"";position:absolute;inset:0;background:#fff;
   clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%);filter:drop-shadow(0 0 4px #bff3ff)}
 
-/* ---------- Sağ: ürün ---------- */
+/* ---------- Sahne 1 – Sağ: ürün ---------- */
 .product{position:relative;display:flex;align-items:center;padding:0 14px 0 6px;overflow:hidden}
 .product::before{content:"";position:absolute;left:-40px;top:50%;width:220px;height:220px;margin-top:-110px;border-radius:50%;
   background:radial-gradient(circle,rgba(255,255,255,.95),rgba(255,255,255,0) 68%)}
 .bottle{position:relative;width:96px;height:214px;flex:none;transform-origin:50% 100%;
   opacity:0;transform:translateY(30px) rotate(6deg);transition:opacity .6s .2s,transform .8s .2s cubic-bezier(.3,1.4,.5,1)}
 .in .bottle{opacity:1;transform:none}
-.bottle svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 10px 10px rgba(10,53,82,.22))}
+.bottle svg,.mini svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 10px 10px rgba(10,53,82,.22))}
 .bottle.wob{animation:wob .7s ease}
 @keyframes wob{25%{transform:rotate(-6deg)}55%{transform:rotate(4deg)}80%{transform:rotate(-2deg)}}
-.bottle .fizz circle{animation:fizz 2.4s linear infinite;opacity:0}
+.fizz circle{animation:fizz 2.4s linear infinite;opacity:0}
 @keyframes fizz{0%{opacity:0;transform:translateY(0)}15%{opacity:.9}100%{opacity:0;transform:translateY(-70px)}}
 .label-fill{fill:var(--lab);transition:fill .5s}.label-fill2{fill:var(--lab2);transition:fill .5s}.cap-fill{fill:var(--cap);transition:fill .5s}
 
 .info{position:relative;flex:1;padding-left:8px;display:flex;flex-direction:column;gap:7px;opacity:0;transform:translateX(12px);transition:.6s .35s}
 .in .info{opacity:1;transform:none}
-.info .kick{font-size:10px;font-weight:800;letter-spacing:1.5px;color:#5d7f93;text-transform:uppercase}
+.kick{font-size:10px;font-weight:800;letter-spacing:1.5px;color:#5d7f93;text-transform:uppercase}
 .info .pname{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:19px;line-height:1;margin-top:-2px;min-height:38px}
 .info .pname small{font-family:'Nunito',sans-serif;font-size:11px;color:#5d7f93;font-weight:800;margin-left:2px}
-.pname.swap{animation:pop .45s cubic-bezier(.3,1.6,.5,1)}
 .claims{position:relative;height:44px}
 .claims .c{position:absolute;left:0;right:0;top:0;display:flex;align-items:center;gap:7px;font-size:11.5px;font-weight:800;line-height:1.15;color:var(--navy);
-  opacity:0;transform:translateY(8px);transition:.4s}
-.claims .c.on{opacity:1;transform:none}
+  opacity:0;transform:translateY(-6px);transition:opacity .2s,transform .2s}
+.claims .c.on{opacity:1;transform:none;transition:opacity .35s .2s,transform .35s .2s}
 .claims .c i{flex:none;width:22px;height:22px;border-radius:50%;background:var(--green);display:grid;place-items:center}
 .claims .c i svg{width:12px;height:12px}
 .vars{display:flex;align-items:center;gap:6px}
@@ -186,17 +218,111 @@ h1 em::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:7px;b
 .buy{font-size:12px;font-weight:800;color:var(--green2);display:inline-flex;align-items:center;gap:4px;align-self:flex-start;
   border-bottom:2px solid rgba(67,168,50,.35);padding-bottom:1px;transition:border-color .2s}
 .buy:hover{border-color:var(--green2)}
-
 .legal{position:absolute;right:8px;bottom:4px;font-size:8.5px;color:#7d97a6;font-weight:700;pointer-events:none}
 
+/* ---------- Sahne 2: kampanya mesajı + video penceresi ---------- */
+.v2{background:linear-gradient(100deg,#f3fcf8 0%,#e4f6f4 40%,#e2f3fb 100%)}
+.v2 .bubbles span{animation-duration:9s}
+.v2 .copy{position:absolute;left:24px;top:18px;bottom:18px;width:318px;display:flex;flex-direction:column}
+.v2 .logo .word{font-size:28px}
+.v2 .hl{font-size:30px;margin-top:16px;line-height:.98}
+.v2 .sub{font-size:12.5px;max-width:300px}
+.v2 .acts{margin-top:auto;display:flex;align-items:center;gap:14px}
+.v2 .cta{font-size:15px;padding:10px 18px 10px 22px}
+.again{font-size:12px;font-weight:800;color:var(--navy);display:inline-flex;align-items:center;gap:5px;opacity:0;transition:opacity .5s .6s}
+.again svg{width:13px;height:13px;transition:transform .3s}
+.again:hover svg{transform:rotate(-80deg)}
+.again span{border-bottom:2px solid rgba(10,53,82,.2)}
+.in .again{opacity:1}
+
+.edge{position:absolute;left:414px;top:0;bottom:0;width:100px;background:var(--green);clip-path:polygon(78px 0,92px 0,14px 100%,0 100%);
+  transform:translateX(560px);transition:transform .7s cubic-bezier(.7,0,.2,1)}
+.panel{position:absolute;left:428px;top:0;right:0;bottom:0;clip-path:polygon(78px 0,100% 0,100% 100%,0 100%);
+  background:radial-gradient(circle at 62% 18%,#17608b 0%,#0a3552 55%,#072840 100%);
+  transform:translateX(560px);transition:transform .7s .06s cubic-bezier(.7,0,.2,1)}
+.panel::after{content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 92% 88%,rgba(34,179,214,.35),transparent 30%),radial-gradient(circle at 30% 100%,rgba(67,168,50,.25),transparent 35%)}
+.in .edge,.in .panel{transform:none}
+
+.duo{position:absolute;left:326px;bottom:-10px;width:140px;height:176px;z-index:2;pointer-events:none}
+.mini{position:absolute;bottom:0;opacity:0;transform:translateY(40px);transition:opacity .5s,transform .8s cubic-bezier(.3,1.4,.5,1)}
+.mini.a{left:0;width:70px;height:156px;transition-delay:.5s}
+.mini.b{left:52px;width:78px;height:174px;transition-delay:.65s}
+.in .mini{opacity:1;transform:none}
+.in .mini.a{transform:rotate(-6deg)}
+
+.player{position:absolute;left:480px;top:20px;width:373px;height:210px;border-radius:14px;overflow:hidden;background:#06243a;z-index:3;
+  box-shadow:0 18px 40px -12px rgba(0,0,0,.6),0 0 0 3px rgba(255,255,255,.92);
+  opacity:0;transform:translateY(16px) scale(.96);transition:opacity .5s .45s,transform .6s .45s cubic-bezier(.3,1.3,.5,1)}
+.in .player{opacity:1;transform:none}
+.badge{position:absolute;left:458px;top:9px;z-index:5;background:var(--green);color:#fff;font-weight:800;font-size:10.5px;letter-spacing:.8px;
+  padding:5px 9px;border-radius:7px;box-shadow:0 6px 14px -6px rgba(0,0,0,.5);transform:rotate(-7deg) scale(0);transition:transform .5s .9s cubic-bezier(.3,1.8,.5,1)}
+.in .badge{transform:rotate(-7deg)}
+.ptop{position:absolute;left:0;right:0;top:0;z-index:2;display:flex;align-items:center;gap:7px;padding:10px 12px 22px 30px;
+  background:linear-gradient(180deg,rgba(6,30,48,.75),rgba(6,30,48,0));color:#fff;pointer-events:none}
+.ptop .room{font-size:9.5px;font-weight:800;letter-spacing:1px;padding:3px 7px;border-radius:5px;background:var(--green)}
+.ptop .ttl{font-size:12.5px;font-weight:800;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 1px 4px rgba(0,0,0,.4)}
+.ptop .cnt{font-size:10.5px;font-weight:800;opacity:.85;font-variant-numeric:tabular-nums}
+.pbot{position:absolute;left:0;right:0;bottom:0;z-index:2;display:flex;align-items:center;gap:4px;padding:18px 10px 9px;
+  background:linear-gradient(0deg,rgba(6,30,48,.75),rgba(6,30,48,0));color:#fff;opacity:0;transform:translateY(6px);transition:.25s}
+.player:hover .pbot,.player.paused .pbot{opacity:1;transform:none}
+.pbot button{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;transition:background .2s}
+.pbot button:hover{background:rgba(255,255,255,.18)}
+.pbot svg{width:15px;height:15px;fill:#fff}
+.pbot .site{margin-left:auto;font-size:11.5px;font-weight:800;background:#fff;color:var(--navy);padding:5px 10px;border-radius:999px}
+.pbot .site:hover{background:var(--green);color:#fff}
+.ico-pause,.paused .ico-play{display:block}.ico-play,.paused .ico-pause{display:none}
+.ico-unmuted,.muted .ico-muted{display:block}.ico-muted,.muted .ico-unmuted{display:none}
+.no-audio #pMute{opacity:.35;pointer-events:none}
+.pbar{position:absolute;left:0;right:0;bottom:0;height:3px;z-index:3;background:rgba(255,255,255,.2)}
+.pbar i{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--green)}
+.bigplay{position:absolute;left:50%;top:50%;z-index:3;width:56px;height:56px;margin:-28px 0 0 -28px;border-radius:50%;
+  background:rgba(255,255,255,.92);display:grid;place-items:center;opacity:0;transform:scale(.6);transition:.25s;pointer-events:none;
+  box-shadow:0 8px 24px -8px rgba(0,0,0,.6)}
+.bigplay svg{width:22px;height:22px;fill:var(--navy);margin-left:3px}
+.paused .bigplay{opacity:1;transform:none;pointer-events:auto}
+
+.plist{position:absolute;left:864px;top:20px;width:94px;height:210px;z-index:3;display:flex;flex-direction:column;gap:4px;
+  opacity:0;transform:translateX(16px);transition:.5s .65s}
+.in .plist{opacity:1;transform:none}
+.plist .arr{height:18px;border-radius:6px;background:rgba(255,255,255,.12);display:grid;place-items:center;transition:background .2s}
+.plist .arr:hover{background:rgba(255,255,255,.25)}
+.plist .arr svg{width:12px;height:12px;stroke:#fff;fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.track{flex:1;overflow:hidden;display:flex;flex-direction:column;gap:6px;padding:2px;scroll-behavior:smooth}
+.thumb{position:relative;flex:none;width:90px;height:51px;border-radius:8px;overflow:hidden;opacity:.55;
+  box-shadow:0 0 0 2px transparent;transition:opacity .2s,box-shadow .2s}
+.thumb:hover{opacity:.9}
+.thumb.on{opacity:1;box-shadow:0 0 0 2px var(--green)}
+.thumb canvas,.thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.thumb span{position:absolute;font-size:8.5px;font-weight:800;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.8)}
+.thumb .l{left:5px;bottom:3px}
+.thumb .n{right:5px;top:3px;opacity:.9}
+.thumb .pl{left:50%;top:50%;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50%;background:rgba(255,255,255,.85);display:grid;place-items:center}
+.thumb .pl::before{content:"";border-left:6px solid var(--navy);border-top:4px solid transparent;border-bottom:4px solid transparent;margin-left:2px}
+.thumb.on .pl{display:none}
+
+/* ---------- Geçiş: köpüklü sünger silme ---------- */
+.wipe{position:absolute;top:-10px;bottom:-10px;left:-80px;width:1130px;z-index:50;display:none;pointer-events:none;
+  background:radial-gradient(circle at 12% 30%,rgba(34,179,214,.18) 0 22px,transparent 23px),radial-gradient(circle at 40% 80%,rgba(34,179,214,.14) 0 34px,transparent 35px),
+    radial-gradient(circle at 70% 25%,rgba(67,168,50,.14) 0 28px,transparent 29px),linear-gradient(90deg,#e6f8f2,#ffffff 50%,#dcf3fb)}
+.wipe::after{content:"";position:absolute;right:-38px;top:0;bottom:0;width:40px;
+  background:radial-gradient(circle at 0 12%,#fff 0 18px,transparent 19px),radial-gradient(circle at 0 34%,#fff 0 22px,transparent 23px),
+  radial-gradient(circle at 0 58%,#fff 0 17px,transparent 18px),radial-gradient(circle at 0 82%,#fff 0 21px,transparent 22px)}
+.wipe .wl{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:'Baloo 2',sans-serif;font-weight:800;font-size:46px;line-height:1}
+.wipe .wl b{color:var(--navy)}.wipe .wl i{font-style:normal;color:var(--green)}
+.wipe svg{position:absolute;right:-20px;top:50%;width:84px;height:56px;margin-top:-28px;transform:rotate(-14deg);z-index:2;filter:drop-shadow(0 8px 10px rgba(0,0,0,.25))}
+
 @media (prefers-reduced-motion:reduce){
-  .bubbles,.bottle .fizz{display:none}
+  .bubbles,.fizz{display:none}
   *{transition-duration:.01s!important;animation-duration:.01s!important}
 }
 </style>
 </head>
 <body>
 <div id="ad" role="link" tabindex="0" aria-label="Ferfresh – doğal gücüyle her yer pırıl pırıl. Ürünleri keşfet.">
+
+<!-- ============================ SAHNE 1 ============================ -->
+<div class="view v1 on" id="v1">
 
   <!-- SOL: Marka -->
   <section class="brand">
@@ -206,16 +332,16 @@ h1 em::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:7px;b
       <svg viewBox="0 0 20 24" aria-hidden="true"><path d="M10 1C10 1 2 10 2 15a8 8 0 0 0 16 0C18 10 10 1 10 1Z" fill="#22b3d6"/><path d="M6.5 15.5a3.6 3.6 0 0 0 3.6 3.6" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>
       <span class="by">by Fersan</span>
     </div>
-    <h1><span>Doğanın gücüyle</span><span>her yer</span><span><em>pırıl pırıl!</em></span></h1>
+    <h1 class="hl"><span>Doğanın gücüyle</span><span>her yer</span><span><em>pırıl pırıl!</em></span></h1>
     <p class="sub">Fermantasyonla üretilen, katkısız temizlik sirkesi.</p>
     <button class="cta" data-exit="cta">Ürünleri Keşfet <i>&rarr;</i></button>
   </section>
 
-  <!-- ORTA: Sahne / Video -->
+  <!-- ORTA: Oyun / Video -->
   <section class="stage" id="stage">
-    <video id="vBlur" muted playsinline loop preload="none" aria-hidden="true"></video>
-    <video id="vMain" muted playsinline loop preload="none"></video>
-    <canvas id="scene" width="888" height="500" aria-hidden="true"></canvas>
+    <video class="vblur" id="vBlur" muted playsinline loop preload="none" aria-hidden="true"></video>
+    <video class="vmain" id="vMain" muted playsinline loop preload="none"></video>
+    <canvas class="scene" id="scene" width="888" height="500" aria-hidden="true"></canvas>
     <canvas id="dirt" width="444" height="250" data-noexit aria-label="Kirli yüzey – temizlemek için sürükleyin"></canvas>
     <svg class="sponge-cur" id="cur" viewBox="0 0 58 38" aria-hidden="true">
       <rect x="2" y="6" width="54" height="30" rx="8" fill="#ffd63f"/><rect x="2" y="2" width="54" height="11" rx="5" fill="#3aa856"/>
@@ -258,7 +384,7 @@ h1 em::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:7px;b
         </g>
         <text x="50" y="129" text-anchor="middle" font-family="Baloo 2,sans-serif" font-weight="800" font-size="16" fill="#fff" textLength="62" lengthAdjust="spacingAndGlyphs">ferfresh</text>
         <text x="50" y="142" text-anchor="middle" font-family="Nunito,sans-serif" font-weight="800" font-size="7.4" fill="#fff" textLength="64" lengthAdjust="spacingAndGlyphs">TEMİZLİK SİRKESİ</text>
-        <text id="bTag" x="50" y="174" text-anchor="middle" font-family="Nunito,sans-serif" font-weight="800" font-size="7.6" fill="#fff" letter-spacing=".8">KARBONATLI</text>
+        <text class="btag" x="50" y="174" text-anchor="middle" font-family="Nunito,sans-serif" font-weight="800" font-size="7.6" fill="#fff" letter-spacing=".8">KARBONATLI</text>
         <path d="M44 152 c0 -6 6 -9 6 -9 s6 3 6 9 a6 6 0 0 1 -12 0z" fill="#fff" opacity=".9"/>
         <rect x="38" y="20" width="24" height="20" rx="2" fill="#e8f6fb" stroke="#9fd2e6"/>
         <rect class="cap-fill" x="34" y="2" width="32" height="22" rx="5"/>
@@ -276,12 +402,72 @@ h1 em::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:7px;b
   </section>
 </div>
 
+<!-- ============================ SAHNE 2 ============================ -->
+<div class="view v2" id="v2" aria-hidden="true">
+  <div class="bubbles" aria-hidden="true"></div>
+  <div class="copy">
+    <div class="logo" aria-label="Ferfresh">
+      <span class="word"><span class="w1">fer</span><span class="w2">fresh</span></span>
+      <svg viewBox="0 0 20 24" aria-hidden="true"><path d="M10 1C10 1 2 10 2 15a8 8 0 0 0 16 0C18 10 10 1 10 1Z" fill="#22b3d6"/><path d="M6.5 15.5a3.6 3.6 0 0 0 3.6 3.6" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>
+      <span class="by">by Fersan</span>
+    </div>
+    <h2 class="hl"><span>Temizliğin doğal hâli</span><span>şimdi <em>videolarda!</em></span></h2>
+    <p class="sub">Mutfaktan banyoya 20+ pratik temizlik videosu. İzle, sana uygun ürünü keşfet.</p>
+    <div class="acts">
+      <button class="cta" data-exit="discover">Keşfet <i>&rarr;</i></button>
+      <button class="again" id="again" data-noexit>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#0a3552" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+        <span>Oyunu tekrar oyna</span>
+      </button>
+    </div>
+  </div>
+  <div class="edge" aria-hidden="true"></div>
+  <div class="panel" aria-hidden="true"></div>
+  <div class="duo" id="duo" aria-hidden="true"></div>
+
+  <span class="badge" id="badge">20+ VİDEO</span>
+  <div class="player paused" id="player" data-exit="video" aria-label="Ferfresh videoları">
+    <video class="vblur" id="pBlur" muted playsinline preload="none" aria-hidden="true"></video>
+    <video class="vmain" id="pMain" muted playsinline preload="none"></video>
+    <canvas class="scene" id="pScene" width="746" height="420" aria-hidden="true"></canvas>
+    <div class="ptop"><span class="room" id="pRoom">MUTFAK</span><span class="ttl" id="pTitle"></span><span class="cnt" id="pCnt">01 / 20</span></div>
+    <button class="bigplay" id="pBig" data-noexit aria-label="Oynat"><svg viewBox="0 0 24 24"><path d="M6 4l15 8-15 8z"/></svg></button>
+    <div class="pbot">
+      <button id="pPlay" data-noexit aria-label="Oynat / duraklat">
+        <svg class="ico-pause" viewBox="0 0 24 24"><rect x="5" y="4" width="5" height="16" rx="1.5"/><rect x="14" y="4" width="5" height="16" rx="1.5"/></svg>
+        <svg class="ico-play" viewBox="0 0 24 24"><path d="M6 4l15 8-15 8z"/></svg>
+      </button>
+      <button id="pMute" data-noexit aria-label="Sesi aç / kapat">
+        <svg class="ico-muted" viewBox="0 0 24 24"><path d="M3 9h4l5-4v14l-5-4H3z"/><path d="M16 9l5 6M21 9l-5 6" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>
+        <svg class="ico-unmuted" viewBox="0 0 24 24"><path d="M3 9h4l5-4v14l-5-4H3z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+      </button>
+      <span class="site" data-exit="video_site">Tümünü sitede izle &#8599;</span>
+    </div>
+    <div class="pbar"><i id="pProg"></i></div>
+  </div>
+  <div class="plist" data-noexit>
+    <button class="arr" id="pUp" aria-label="Önceki videolar"><svg viewBox="0 0 24 24"><path d="M6 15l6-6 6 6"/></svg></button>
+    <div class="track" id="track"></div>
+    <button class="arr" id="pDown" aria-label="Sonraki videolar"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
+  </div>
+</div>
+
+<!-- Geçiş -->
+<div class="wipe" id="wipe" aria-hidden="true">
+  <div class="wl"><b>fer</b><i>fresh</i></div>
+  <svg viewBox="0 0 58 38"><rect x="2" y="6" width="54" height="30" rx="8" fill="#ffd63f"/><rect x="2" y="2" width="54" height="11" rx="5" fill="#3aa856"/>
+    <circle cx="14" cy="24" r="2.2" fill="#e8b81f"/><circle cx="30" cy="28" r="2" fill="#e8b81f"/><circle cx="44" cy="22" r="2.4" fill="#e8b81f"/></svg>
+</div>
+</div>
+
 <script>
 (function(){
 'use strict';
 var $ = function(s){return document.querySelector(s);};
-var ad=$('#ad'), stage=$('#stage'), W=444, H=250;
+var ad=$('#ad'), stage=$('#stage'), W=444, H=250, view=1;
 var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+function roomById(id){ for (var i=0;i<CONFIG.rooms.length;i++) if (CONFIG.rooms[i].id===id) return CONFIG.rooms[i]; return CONFIG.rooms[0]; }
+function pad(n){ return (n<10?'0':'')+n; }
 
 /* ---------- Tıklama / çıkış ---------- */
 function exitUrl(){ return (typeof window.clickTag==='string' && window.clickTag) || CONFIG.landing; }
@@ -298,17 +484,21 @@ ad.addEventListener('keydown',function(e){ if(e.key==='Enter' && e.target===ad) 
 /* ---------- 30 sn kuralı: etkileşim yoksa animasyonlar durur ---------- */
 var lastAct = Date.now();
 function alive(){ return Date.now()-lastAct < 30000; }
-function poke(){ lastAct=Date.now(); ad.classList.remove('still'); Scene.wake(); }
+function poke(){
+  var was=alive(); lastAct=Date.now(); ad.classList.remove('still');
+  if (!was){ if (view===1) Rooms.wake(); else Player.wake(); }
+}
 ['pointerdown','keydown'].forEach(function(ev){ ad.addEventListener(ev,poke); });
 setInterval(function(){ if(!alive()) ad.classList.add('still'); },1000);
 
 /* ---------- Kabarcıklar ---------- */
-var bub=$('.bubbles');
-for (var i=0;i<9;i++){
-  var s=document.createElement('span'), z=8+Math.random()*18;
-  s.style.cssText='width:'+z+'px;height:'+z+'px;left:'+(Math.random()*240)+'px;animation-duration:'+(6+Math.random()*6)+'s;animation-delay:-'+(Math.random()*8)+'s;opacity:'+(.5+Math.random()*.5);
-  bub.appendChild(s);
-}
+[].forEach.call(document.querySelectorAll('.bubbles'),function(bub,k){
+  for (var i=0;i<9;i++){
+    var s=document.createElement('span'), z=8+Math.random()*18;
+    s.style.cssText='width:'+z+'px;height:'+z+'px;left:'+(Math.random()*(k?400:240))+'px;animation-duration:'+(6+Math.random()*6)+'s;animation-delay:-'+(Math.random()*8)+'s;opacity:'+(.5+Math.random()*.5);
+    bub.appendChild(s);
+  }
+});
 
 /* ---------- Yardımcılar ---------- */
 function rng(seed){ return function(){ seed|=0; seed=seed+0x6D2B79F5|0; var t=Math.imul(seed^seed>>>15,1|seed); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
@@ -319,12 +509,13 @@ function star(x,cx,cy,r,a){ x.save(); x.globalAlpha=a; x.translate(cx,cy); x.fil
 function ease(t){ return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2; }
 
 /* ==========================================================================
-   SAHNE – video yoksa her oda için "ürün kullanımı" animasyonu
+   SAHNE ÜRETİCİ – video yoksa her oda için "ürün kullanımı" animasyonu
+   (444x250 mantıksal alanda çizer, verilen tuvale ölçekler)
    ========================================================================== */
-var Scene=(function(){
-  var cv=$('#scene'), ctx=cv.getContext('2d'); ctx.scale(2,2);
+function makeScene(cv){
+  var ctx=cv.getContext('2d'); ctx.scale(cv.width/W, cv.height/H);
   var baseC=off(), stainC=off(), b=baseC.getContext('2d'), st=stainC.getContext('2d');
-  var room=null, path=[], plen=0, prev=null, t0=0, running=false, raf=0, onEnd=null, sparks=[], drops=[], foam=[], D=CONFIG.autoplayRoomMs;
+  var room=null, path=[], plen=0, prev=null, t0=0, running=false, held=-1, raf=0, onEnd=null, sparks=[], drops=[], foam=[], D=CONFIG.autoplayRoomMs;
 
   function drawBase(r){
     var g=b.createLinearGradient(0,0,W,H); g.addColorStop(0,r.base[0]); g.addColorStop(1,r.base[1]);
@@ -409,16 +600,17 @@ var Scene=(function(){
     ctx.restore();
   }
   function bottleIcon(x,y,a){
+    var cs=getComputedStyle(ad);
     ctx.save(); ctx.globalAlpha=a; ctx.translate(x,y);
     ctx.fillStyle='#fff'; rr(ctx,-14,-26,28,56,9); ctx.fill();
-    ctx.fillStyle=getComputedStyle(ad).getPropertyValue('--lab')||'#1e90d8'; rr(ctx,-14,-6,28,24,3); ctx.fill();
-    ctx.fillStyle=getComputedStyle(ad).getPropertyValue('--cap')||'#0b5aa3'; rr(ctx,-9,-36,18,12,3); ctx.fill();
+    ctx.fillStyle=cs.getPropertyValue('--lab')||'#1e90d8'; rr(ctx,-14,-6,28,24,3); ctx.fill();
+    ctx.fillStyle=cs.getPropertyValue('--cap')||'#0b5aa3'; rr(ctx,-9,-36,18,12,3); ctx.fill();
     ctx.fillStyle='#fff'; ctx.font='800 7px Nunito,sans-serif'; ctx.textAlign='center'; ctx.fillText('ferfresh',0,8);
     ctx.restore();
   }
   function frame(now){
     if (!running) return;
-    var e=now-t0, t=e/D;
+    var e=now-t0;
     ctx.clearRect(0,0,W,H); ctx.drawImage(baseC,0,0,W,H);
     // 1) sprey: şişe girer, damlacıklar yüzeye düşer
     if (e>350 && e<1500){
@@ -444,7 +636,7 @@ var Scene=(function(){
     if (pos) sponge(pos[0],pos[1],Math.sin(now/90)*.12);
     if (sparks.done){ var se=e-4300; sparks.forEach(function(s){ var u=(se-s.d)/700; if(u>0&&u<1) star(ctx,s.x,s.y,s.r*Math.sin(u*Math.PI),Math.sin(u*Math.PI)); }); }
     if (e>=D){
-      if (onEnd && alive()){ var cb=onEnd; cb(); return; }
+      if (onEnd && alive()){ running=false; onEnd(); return; }
       if (!alive()){ running=false; drawClean(); return; }
       restart();
     }
@@ -457,55 +649,85 @@ var Scene=(function(){
   }
   return {
     set:function(r){ room=r; drawBase(r); buildPath(r); },
-    clean:function(){ running=false; cancelAnimationFrame(raf); drawClean(); },
-    play:function(cb){ onEnd=cb||null; cancelAnimationFrame(raf); running=true; restart(); if (reduce){ st.clearRect(0,0,W,H); drawClean(); running=false; setTimeout(function(){ cb&&alive()&&cb(); },D); return; } raf=requestAnimationFrame(frame); },
-    stop:function(){ running=false; cancelAnimationFrame(raf); },
-    wake:function(){ if (!running && room && stage.classList.contains('cleared') && !stage.classList.contains('has-video')) Rooms.resume(); }
+    clean:function(){ running=false; held=-1; cancelAnimationFrame(raf); drawClean(); },
+    play:function(cb){
+      onEnd=cb||null; cancelAnimationFrame(raf); held=-1; running=true; restart();
+      if (reduce){ st.clearRect(0,0,W,H); drawClean(); running=false; setTimeout(function(){ cb&&alive()&&cb(); },D); return; }
+      raf=requestAnimationFrame(frame);
+    },
+    stop:function(){ running=false; held=-1; cancelAnimationFrame(raf); },
+    pause:function(){ if (!running) return; held=performance.now()-t0; running=false; cancelAnimationFrame(raf); },
+    resume:function(){ if (held<0) return; t0=performance.now()-held; held=-1; running=true; raf=requestAnimationFrame(frame); },
+    running:function(){ return running; },
+    progress:function(){ return held>=0 ? held/D : running ? Math.min(1,(performance.now()-t0)/D) : 1; },
+    thumb:function(r,seed){
+      drawBase(r); drawStains(r,seed);
+      var c=document.createElement('canvas'); c.width=180; c.height=102; var x=c.getContext('2d');
+      x.drawImage(baseC,0,0,180,102); x.globalAlpha=.8; x.drawImage(stainC,0,0,180,102); return c;
+    }
   };
-})();
+}
 
 /* ==========================================================================
-   ODALAR + VİDEO
+   SAHNE 1 – ODALAR + VİDEO
    ========================================================================== */
+var S1=makeScene($('#scene'));
 var vMain=$('#vMain'), vBlur=$('#vBlur');
 stage.classList.add(CONFIG.fit==='cover'?'fit-cover':'fit-blur');
 var Rooms=(function(){
-  var nav=$('#rooms'), idx=0, auto=true, timer=0, btns=[];
+  var nav=$('#rooms'), idx=0, auto=true, plays=0, switched=false, btns=[];
   CONFIG.rooms.forEach(function(r,i){
     var b=document.createElement('button'); b.type='button'; b.innerHTML=r.label+'<span class="bar"></span>';
     b.setAttribute('aria-label',r.title+' – '+r.claim);
     b.addEventListener('click',function(){ auto=false; Clean.finish(true); show(i,true); });
     nav.appendChild(b); btns.push(b);
   });
+  var vb=document.createElement('button'); vb.type='button'; vb.className='vid'; vb.innerHTML='&#9654; Videolar';
+  vb.setAttribute('aria-label','Tüm Ferfresh videolarını izle');
+  vb.addEventListener('click',function(){ switched=true; View.go(2); });
+  nav.appendChild(vb);
+
   function bar(ms){
     btns.forEach(function(b){ var s=b.querySelector('.bar'); s.classList.remove('run'); s.style.animationDuration=''; });
     if (!ms) return; var s=btns[idx].querySelector('.bar'); void s.offsetWidth; s.style.animationDuration=ms+'ms'; s.classList.add('run');
   }
-  function next(){ if (auto && alive()) show((idx+1)%CONFIG.rooms.length,true); else show(idx,true); }
+  function next(){
+    if (view!==1) return;
+    if (auto && alive()){
+      plays++;
+      if (!switched && CONFIG.autoToVideosAfter && plays>=CONFIG.autoToVideosAfter){ switched=true; View.go(2); return; }
+      show((idx+1)%CONFIG.rooms.length,true);
+    } else show(idx,true);
+  }
   function show(i,play){
     idx=i; var r=CONFIG.rooms[i];
     btns.forEach(function(b,k){ b.classList.toggle('on',k===i); });
     $('#capT').textContent=r.title; var c=$('#capC'); c.textContent=r.claim; c.classList.remove('swap'); void c.offsetWidth; c.classList.add('swap');
-    clearTimeout(timer); vMain.onended=null;
-    Scene.set(r);
-    if (!play){ Scene.clean(); return; }
+    vMain.onended=null;
+    S1.set(r);
+    if (!play){ S1.clean(); bar(0); return; }
     if (r.video){
       vMain.loop=!auto; vBlur.loop=true;
       vMain.src=r.video; if (CONFIG.fit==='blur') vBlur.src=r.video;
       var p=vMain.play();
-      var ok=function(){ Scene.stop(); stage.classList.add('has-video'); if(CONFIG.fit==='blur') vBlur.play().catch(function(){});
+      var ok=function(){ S1.stop(); stage.classList.add('has-video'); if(CONFIG.fit==='blur') vBlur.play().catch(function(){});
         if (auto){ vMain.onended=next; bar(0); } };
       var fail=function(){ stage.classList.remove('has-video'); runScene(); };
       vMain.onerror=fail;
       if (p && p.then) p.then(ok,fail); else ok();
     } else { stage.classList.remove('has-video'); vMain.removeAttribute('src'); vBlur.removeAttribute('src'); runScene(); }
   }
-  function runScene(){ bar(auto?CONFIG.autoplayRoomMs:0); Scene.play(auto?next:null); }
-  return { show:show, resume:function(){ show(idx,true); } };
+  function runScene(){ bar(auto?CONFIG.autoplayRoomMs:0); S1.play(auto?next:null); }
+  function stop(){ S1.stop(); vMain.pause(); vBlur.pause(); bar(0); }
+  return {
+    show:show, stop:stop,
+    wake:function(){ if (stage.classList.contains('cleared') && !stage.classList.contains('has-video') && !S1.running()) show(idx,true); },
+    replayMode:function(){ auto=true; plays=0; }
+  };
 })();
 
 /* ==========================================================================
-   KİRLİ KATMAN – sürükleyerek temizleme
+   SAHNE 1 – KİRLİ KATMAN (sürükleyerek temizleme)
    ========================================================================== */
 var Clean=(function(){
   var cv=$('#dirt'), x=cv.getContext('2d',{willReadFrequently:true}), cur=$('#cur'), done=false, moves=0, touched=false, ghostOn=false;
@@ -519,7 +741,7 @@ var Clean=(function(){
       x.fillStyle=rg; x.beginPath(); x.arc(px,py,r,0,7); x.fill(); }
     for (var j=0;j<500;j++){ x.fillStyle='rgba('+(R()<.5?'40,32,20':'200,185,150')+','+(.15+R()*.3)+')'; x.fillRect(R()*W,R()*H,1+R()*2,1+R()*2); }
     x.strokeStyle='rgba(50,40,26,.25)'; x.lineWidth=14; x.lineCap='round';
-    for (var k=0;k<5;k++){ x.beginPath(); var sx=R()*W; x.moveTo(sx,R()*H); x.quadraticCurveTo(R()*W,R()*H,R()*W,R()*H); x.stroke(); }
+    for (var k=0;k<5;k++){ x.beginPath(); x.moveTo(R()*W,R()*H); x.quadraticCurveTo(R()*W,R()*H,R()*W,R()*H); x.stroke(); }
   }
   function wipe(px,py,r){
     x.globalCompositeOperation='destination-out';
@@ -549,25 +771,24 @@ var Clean=(function(){
     if (down || e.pointerType==='mouse'){ touched=true; ghostOn=false; stage.classList.add('scrubbing'); stroke(p[0],p[1]); } });
   window.addEventListener('pointerup',function(){ down=false; last=null; });
 
-  function animatePath(pts,dur,cb,isGhost){
+  function animatePath(pts,dur,cb){
     var t0=performance.now(), L=[0], tot=0;
     for (var i=1;i<pts.length;i++){ tot+=Math.hypot(pts[i][0]-pts[i-1][0],pts[i][1]-pts[i-1][1]); L.push(tot); }
-    if (isGhost){ ghostOn=true; cur.classList.add('ghost'); }
-    last=null;
+    ghostOn=true; cur.classList.add('ghost'); last=null;
     (function step(now){
-      if (done || (isGhost && !ghostOn)){ cur.classList.remove('ghost'); return; }
+      if (done || !ghostOn || view!==1){ cur.classList.remove('ghost'); return; }
       var u=Math.min(1,(now-t0)/dur), tgt=ease(u)*tot, k=1; while (k<L.length-1 && L[k]<tgt) k++;
       var a=pts[k-1], b=pts[k], f=(tgt-L[k-1])/((L[k]-L[k-1])||1), p=[a[0]+(b[0]-a[0])*f, a[1]+(b[1]-a[1])*f];
       moveCur(p); stroke(p[0],p[1]);
-      if (u<1) requestAnimationFrame(step); else { cur.classList.remove('ghost'); last=null; cb&&cb(); }
+      if (u<1) requestAnimationFrame(step); else { cur.classList.remove('ghost'); last=null; ghostOn=false; cb&&cb(); }
     })(performance.now());
   }
-  function ghost(){ if (touched||done) return; animatePath([[80,70],[180,110],[150,160],[260,150],[330,190]],1700,null,true); }
+  function ghost(){ if (touched||done||view!==1) return; animatePath([[80,70],[180,110],[150,160],[260,150],[330,190]],1700,null); }
   function autoClean(){
-    if (touched||done) return;
+    if (touched||done||view!==1) return;
     var pts=[], rows=[30,75,120,165,210,240];
     rows.forEach(function(y,i){ pts.push(i%2?[424,y]:[20,y]); pts.push(i%2?[20,y]:[424,y]); });
-    animatePath(pts,2200,function(){ finish(); },true);
+    animatePath(pts,2200,function(){ finish(); });
   }
   function burst(){
     for (var i=0;i<16;i++){ var s=document.createElement('span'); s.className='spark';
@@ -580,23 +801,24 @@ var Clean=(function(){
   function finish(silent){
     if (done) return; done=true; ghostOn=false;
     stage.classList.add('cleared'); stage.classList.remove('scrubbing');
-    $('.cta').classList.add('pulse');
+    $('.brand .cta').classList.add('pulse');
     if (silent) return;
-    Scene.clean(); burst();
-    setTimeout(function(){ Rooms.show(0,true); },1400);
+    S1.clean(); burst();
+    setTimeout(function(){ if (view===1) Rooms.show(0,true); },1400);
   }
   function reset(){
-    done=false; touched=false; moves=0; last=null; paint();
-    Scene.stop(); stage.classList.remove('cleared','has-video','scrubbing'); vMain.pause(); vBlur.pause();
+    done=false; touched=false; ghostOn=false; moves=0; last=null; paint();
+    $('#toast').classList.remove('show'); $('.brand .cta').classList.remove('pulse');
+    Rooms.stop(); stage.classList.remove('cleared','has-video','scrubbing');
     Rooms.show(0,false);
   }
   paint();
   return { finish:finish, reset:reset, ghost:ghost, autoClean:autoClean };
 })();
-$('#replay').addEventListener('click',function(){ Clean.reset(); });
+$('#replay').addEventListener('click',function(){ Clean.reset(); setTimeout(Clean.ghost,900); });
 
 /* ==========================================================================
-   ÜRÜN – varyantlar + dönen faydalar
+   SAHNE 1 – ÜRÜN (varyantlar + dönen faydalar)
    ========================================================================== */
 (function(){
   var vars=$('#vars'), cl=$('#claims'), bottle=$('#bottle'), cur=0, ci=0, userPicked=false;
@@ -611,7 +833,7 @@ $('#replay').addEventListener('click',function(){ Clean.reset(); });
   function pick(i){
     cur=i; var p=CONFIG.products[i];
     ad.style.setProperty('--lab',p.lab); ad.style.setProperty('--lab2',p.lab2); ad.style.setProperty('--cap',p.cap);
-    $('#bTag').textContent=p.tag; lbl.textContent=p.size;
+    bottle.querySelector('.btag').textContent=p.tag; lbl.textContent=p.size;
     var n=$('#pname'); n.innerHTML=p.name+' <small>'+p.size+'</small>'; n.classList.remove('swap'); void n.offsetWidth; n.classList.add('swap');
     [].forEach.call(vars.querySelectorAll('button'),function(b,k){ b.classList.toggle('on',k===i); });
     wob();
@@ -620,14 +842,127 @@ $('#replay').addEventListener('click',function(){ Clean.reset(); });
   bottle.addEventListener('pointerenter',wob);
   bottle.addEventListener('click',function(){ userPicked=true; pick((cur+1)%CONFIG.products.length); });
   lbl.textContent=CONFIG.products[0].size;
-  setInterval(function(){ if(!alive()) return; var c=cl.children; c[ci].classList.remove('on'); ci=(ci+1)%c.length; c[ci].classList.add('on'); },2600);
-  setInterval(function(){ if(!alive()||userPicked) return; pick((cur+1)%CONFIG.products.length); },7000);
+  setInterval(function(){ if(!alive()||view!==1) return; var c=cl.children; c[ci].classList.remove('on'); ci=(ci+1)%c.length; c[ci].classList.add('on'); },2600);
+  setInterval(function(){ if(!alive()||userPicked||view!==1) return; pick((cur+1)%CONFIG.products.length); },7000);
+
+  // Sahne 2 için iki varyant şişesi (aynı vektör çizimin kopyaları)
+  var duo=$('#duo'), src=bottle.querySelector('svg');
+  ['a','b'].forEach(function(cls,k){
+    var p=CONFIG.products[k%CONFIG.products.length], m=document.createElement('div'); m.className='mini '+cls;
+    m.style.setProperty('--lab',p.lab); m.style.setProperty('--lab2',p.lab2); m.style.setProperty('--cap',p.cap);
+    // kopyadaki id'leri benzersizleştir (gizli sahnedeki clipPath'e bağlanmasın)
+    m.innerHTML=src.outerHTML.replace(/\b(pet|liq|bodyClip)\b/g,'$1_'+cls);
+    m.querySelector('.btag').textContent=p.tag; duo.appendChild(m);
+  });
 })();
+
+/* ==========================================================================
+   SAHNE 2 – VİDEO OYNATICI + OYNATMA LİSTESİ
+   ========================================================================== */
+var Player=(function(){
+  var player=$('#player'), pm=$('#pMain'), pb=$('#pBlur'), track=$('#track'), prog=$('#pProg');
+  var sc=makeScene($('#pScene')), tm=makeScene(document.createElement('canvas'));
+  var list=CONFIG.videos, idx=0, thumbs=[], userPaused=false, hasVideo=false, raf=0, muted=true;
+  player.classList.add(CONFIG.fit==='cover'?'fit-cover':'fit-blur','muted');
+  $('#badge').textContent=list.length+(list.length>=20?'+':'')+' VİDEO';
+
+  list.forEach(function(v,i){
+    var r=roomById(v.room), b=document.createElement('button'); b.type='button'; b.className='thumb';
+    b.setAttribute('aria-label',(i+1)+'. video: '+r.label+' – '+v.title);
+    if (v.poster){ var im=new Image(); im.src=v.poster; im.alt=''; b.appendChild(im); } else b.appendChild(tm.thumb(r,i*97+13));
+    b.insertAdjacentHTML('beforeend','<span class="l">'+r.label+'</span><span class="n">'+pad(i+1)+'</span><span class="pl"></span>');
+    b.addEventListener('click',function(){ userPaused=false; play(i); });
+    track.appendChild(b); thumbs.push(b);
+  });
+  $('#pUp').addEventListener('click',function(){ track.scrollTop-=114; });
+  $('#pDown').addEventListener('click',function(){ track.scrollTop+=114; });
+  track.addEventListener('wheel',function(e){ e.preventDefault(); track.scrollTop+=e.deltaY; },{passive:false});
+
+  function setBar(f){ prog.style.width=(Math.max(0,Math.min(1,f||0))*100)+'%'; }
+  function tick(){ cancelAnimationFrame(raf); (function f(){ setBar(sc.progress()); if (sc.running()) raf=requestAnimationFrame(f); })(); }
+  function next(){ if (view===2 && alive()) play((idx+1)%list.length); }
+
+  function play(i){
+    idx=i; var v=list[i], r=roomById(v.room);
+    var rm=$('#pRoom'); rm.textContent=r.label.toLocaleUpperCase('tr'); rm.style.background=r.color||'';
+    var tt=$('#pTitle'); tt.textContent=v.title; tt.classList.remove('swap'); void tt.offsetWidth; tt.classList.add('swap');
+    $('#pCnt').textContent=pad(i+1)+' / '+pad(list.length);
+    thumbs.forEach(function(t,k){ t.classList.toggle('on',k===i); });
+    var t=thumbs[i]; track.scrollTop=t.offsetTop-track.offsetTop-(track.clientHeight-t.offsetHeight)/2;
+    player.classList.remove('paused'); setBar(0);
+    pm.onended=pm.ontimeupdate=pm.onerror=null; cancelAnimationFrame(raf);
+    sc.set(r);
+    if (v.src){
+      pm.src=v.src; pm.muted=muted; if (CONFIG.fit==='blur') pb.src=v.src;
+      var p=pm.play();
+      var ok=function(){ hasVideo=true; sc.stop(); player.classList.add('has-video'); player.classList.remove('no-audio');
+        if (CONFIG.fit==='blur') pb.play().catch(function(){});
+        pm.ontimeupdate=function(){ if (pm.duration) setBar(pm.currentTime/pm.duration); };
+        pm.onended=next; };
+      var fail=function(){ runScene(); };
+      pm.onerror=fail;
+      if (p && p.then) p.then(ok,fail); else ok();
+    } else runScene();
+  }
+  function runScene(){
+    hasVideo=false; player.classList.remove('has-video'); player.classList.add('no-audio');
+    pm.pause(); pb.pause(); pm.removeAttribute('src'); pb.removeAttribute('src');
+    sc.play(next); tick();
+  }
+  function pause(){ userPaused=true; player.classList.add('paused'); if (hasVideo){ pm.pause(); pb.pause(); } else { sc.pause(); cancelAnimationFrame(raf); } }
+  function resume(){
+    userPaused=false; player.classList.remove('paused');
+    if (hasVideo){ pm.play().catch(function(){}); if (CONFIG.fit==='blur') pb.play().catch(function(){}); }
+    else if (sc.progress()<1){ sc.resume(); tick(); } else play(idx);
+  }
+  function toggle(){ if (player.classList.contains('paused')) resume(); else pause(); }
+  $('#pPlay').addEventListener('click',toggle);
+  $('#pBig').addEventListener('click',resume);
+  $('#pMute').addEventListener('click',function(){ muted=!muted; pm.muted=muted; player.classList.toggle('muted',muted); });
+
+  return {
+    start:function(){ userPaused=false; play(idx); },
+    stop:function(){ sc.stop(); cancelAnimationFrame(raf); pm.pause(); pb.pause(); player.classList.add('paused'); },
+    wake:function(){ if (!userPaused && !hasVideo && !sc.running()) play(idx); }
+  };
+})();
+
+/* ==========================================================================
+   SAHNE GEÇİŞİ
+   ========================================================================== */
+var View=(function(){
+  var v1=$('#v1'), v2=$('#v2'), wp=$('#wipe'), busy=false;
+  function swap(n){
+    view=n;
+    v1.classList.toggle('on',n===1); v2.classList.toggle('on',n===2);
+    v1.setAttribute('aria-hidden',n!==1); v2.setAttribute('aria-hidden',n!==2);
+    if (n===2){
+      Rooms.stop(); v2.classList.remove('in'); void v2.offsetWidth; v2.classList.add('in');
+      setTimeout(function(){ if (view===2) Player.start(); }, reduce?0:700);
+    } else {
+      Player.stop(); Rooms.replayMode(); Clean.reset();
+      v1.classList.remove('in'); void v1.offsetWidth; v1.classList.add('in');
+      setTimeout(Clean.ghost,900); setTimeout(Clean.autoClean,6500);
+    }
+  }
+  function go(n){
+    if (busy || n===view) return;
+    if (reduce){ swap(n); return; }
+    busy=true; wp.style.display='block';
+    var e='cubic-bezier(.65,0,.35,1)';
+    wp.animate([{transform:'translateX(-1180px)'},{transform:'translateX(0)'}],{duration:480,easing:e,fill:'forwards'}).onfinish=function(){
+      swap(n);
+      wp.animate([{transform:'translateX(0)'},{transform:'translateX(1180px)'}],{duration:560,delay:120,easing:e,fill:'forwards'}).onfinish=function(){ wp.style.display='none'; busy=false; };
+    };
+  }
+  return { go:go };
+})();
+$('#again').addEventListener('click',function(){ View.go(1); });
 
 /* ---------- Başlat ---------- */
 function start(){
   Rooms.show(0,false);
-  requestAnimationFrame(function(){ ad.classList.add('in'); });
+  requestAnimationFrame(function(){ $('#v1').classList.add('in'); });
   setTimeout(Clean.ghost,1400);
   setTimeout(Clean.autoClean,7000);
 }
