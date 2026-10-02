@@ -266,12 +266,15 @@
     // Bu fiyatlar yedektir; PRICE_URL'deki fiyat.json okunabilirse oradaki güncel değerler kullanılır.
     const CALC = {
       fiyatTarihi: '2026-10-02',
+      bolge: 'İstanbul Anadolu Yakası',
       benzinLitreTL: 84.50,        // benzin litre fiyatı (TL)
       otogazLitreTL: 43.29,        // otogaz litre fiyatı (TL)
       benzinTuketimL100km: 8.0,    // benzin tüketimi (L/100 km)
       otogazTuketimL100km: 9.6,    // otogaz tüketimi (L/100 km) = benzin x 1,20 (Aygaz)
       tasarrufOraniUst: 0.40       // "Benzine kıyasla %40'a varan tasarruf": gösterilen tasarrufun üst sınırı
     };
+    const formatTL = (n) => (+n).toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); // 84,50
+    const formatDateTR = (d) => (/^\d{4}-\d{2}-\d{2}$/.test(d || '') ? d.split('-').reverse().join('.') : (d || '')); // 2026-10-02 -> 02.10.2026
     const isValidPrices = (j) => j && isFinite(+j.benzin) && isFinite(+j.otogaz) && +j.benzin > 0 && +j.otogaz > 0 && +j.otogaz < +j.benzin;
 
     const OKTAN_BENEFITS = [
@@ -310,7 +313,7 @@
       const [soundBlocked, setSoundBlocked] = useState(false);
       const [monthlyKm, setMonthlyKm] = useState(1500);
       // Pompa fiyatları: gömülü yedekle başlar, fiyat.json okunabilirse güncellenir
-      const [prices, setPrices] = useState({ benzin: CALC.benzinLitreTL, otogaz: CALC.otogazLitreTL, tarih: CALC.fiyatTarihi, kaynak: 'gomulu' });
+      const [prices, setPrices] = useState({ benzin: CALC.benzinLitreTL, otogaz: CALC.otogazLitreTL, tarih: CALC.fiyatTarihi, bolge: CALC.bolge, kaynak: 'gomulu' });
 
       // Intro Overlay state
       const [isIntroActive, setIsIntroActive] = useState(true);
@@ -352,7 +355,7 @@
         fetch(ASSETS.PRICE_URL, { cache: 'no-store', credentials: 'omit' })
           .then((r) => (r.ok ? r.json() : null))
           .then((j) => {
-            if (!cancelled && isValidPrices(j)) setPrices({ benzin: +j.benzin, otogaz: +j.otogaz, tarih: j.tarih || '', kaynak: 'fiyat.json' });
+            if (!cancelled && isValidPrices(j)) setPrices({ benzin: +j.benzin, otogaz: +j.otogaz, tarih: j.tarih || '', bolge: j.bolge || CALC.bolge, kaynak: 'fiyat.json' });
           })
           .catch(() => {});
         return () => { cancelled = true; };
@@ -696,8 +699,12 @@
                       />
                     </div>
 
-                    <div className="text-[10px] text-slate-400">
+                    <div className="text-[10px] text-slate-400 leading-tight">
                       Benzine kıyasla %40'a varan tasarruf esas alınmıştır.
+                      <br />
+                      <span className="text-slate-500">
+                        {(prices.tarih ? formatDateTR(prices.tarih) + ' tarihli ' : '') + (prices.bolge ? prices.bolge + ' ' : '')}fiyatları: benzin {formatTL(prices.benzin)} TL/L, otogaz {formatTL(prices.otogaz)} TL/L
+                      </span>
                     </div>
                   </div>
 

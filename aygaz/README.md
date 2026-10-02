@@ -120,7 +120,7 @@ Kaynak: Aygaz'ın kendi "Yakıt Tasarrufu Hesapla" aracı (aygaz.com.tr). `Aygaz
 Kreatif açılırken `fiyat.json` dosyasını okur ve hesapta oradaki fiyatları kullanır; dosyaya ulaşamazsa veya içerik geçersizse (otogaz ≥ benzin, sayı değil, 0) sessizce `CALC` içindeki gömülü fiyatlara düşer. Böylece fiyat değişince **yalnızca S3'teki `fiyat.json` güncellenir**, DV360'daki kreatife dokunulmaz.
 
 ```json
-{ "tarih": "2026-10-02", "benzin": 84.50, "otogaz": 43.29 }
+{ "tarih": "2026-10-02", "bolge": "İstanbul Anadolu Yakası", "benzin": 84.50, "otogaz": 43.29 }
 ```
 
 - Önizleme (`Aygaz3.html`, `Aygaz3-sesli.html`): HTML ile aynı klasördeki `fiyat.json` (S3'te `/Aygaz/fiyat.json`).
@@ -132,6 +132,7 @@ Kreatif açılırken `fiyat.json` dosyasını okur ve hesapta oradaki fiyatları
 ```
 
 - Dosya `cache: no-store` ile okunur; S3'te ek önbellek ayarı gerekmez. Kreatifin önünde CDN varsa dosyanın önbellek süresi kısa tutulmalıdır.
+- Hesaplayıcı sekmesinde dayanak satırı gösterilir: "02.10.2026 tarihli İstanbul Anadolu Yakası fiyatları: benzin 84,50 TL/L, otogaz 43,29 TL/L". Tarih, bölge ve fiyatlar `fiyat.json`'dan gelir (`tarih` YYYY-AA-GG biçiminde yazılırsa GG.AA.YYYY olarak gösterilir; `bolge` yoksa gömülü bölge adı kullanılır).
 - Hesaplayıcı kartındaki `data-fiyat-kaynak` özniteliği `fiyat.json` veya `gomulu` değerini taşır; tarayıcı denetçisinden hangi fiyatın kullanıldığı görülür.
 
 Otomatik güncelleme: `fiyat.json`'ı dolduracak zamanlanmış bir iş (ör. GitHub Actions) için güvenilir bir fiyat kaynağı gerekir; Aygaz uygulamasının kullandığı fiyat servisi alınabilirse günlük otomatik yazım kurulabilir.
