@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=970,height=250">
+<meta name="viewport" content="width=970,height=250">
+<title>Ferfresh Masthead 970x250</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+<script>
+/* ==========================================================================
+   FERFRESH – 970x250 İNTERAKTİF MASTHEAD
+   Kurgu:
+   1) Ekran "kirli" bir katmanla kaplı gelir; kullanıcı sürükleyerek siler
+      (etkileşim olmazsa demo + otomatik temizlik devreye girer).
+   2) Temizlik bitince oda sekmeleri (Mutfak, Banyo, Cam, Çamaşır, Bulaşık)
+      arasında kampanya videoları oynar. Video tanımlı değilse her oda için
+      animasyonlu "ürün kullanımı" sahnesi oynar (yer tutucu).
+   3) Sağda ürün varyantları ve dönen fayda mesajları.
+   Dikey (9:16) TikTok/Reels videoları için: fit:'blur' → video ortada dikey,
+   arkasında aynı videonun bulanık kopyası yatay alanı doldurur.
+   Yatay kurgusu yapılmış videolar için fit:'cover' kullanın.
+   ========================================================================== */
+var CONFIG = {
+  landing: 'https://www.fersan.com.tr/marka/ferfresh',
+  fit: 'blur',                 // 'blur' (dikey kaynak) | 'cover' (yatay kurgu)
+  autoplayRoomMs: 5600,        // sahne/video başına süre (otomatik akışta)
+  rooms: [
+    { id:'mutfak',  label:'Mutfak',  title:'Mutfak tezgâhı',   claim:'Yağ lekelerini çözer',
+      video:'', pattern:'tile',   base:['#fff8ec','#f3e3c6'], grout:'#e4cfaa', stain:'150,98,38' },
+    { id:'banyo',   label:'Banyo',   title:'Banyo & armatür',  claim:'Kireci kolayca giderir',
+      video:'', pattern:'tile',   base:['#eef8fc','#d2eaf4'], grout:'#b5d6e5', stain:'160,150,118' },
+    { id:'cam',     label:'Cam',     title:'Cam & ayna',       claim:'İz bırakmadan parlatır',
+      video:'', pattern:'glass',  base:['#bfe6f7','#eef9fd'], grout:'#ffffff', stain:'120,128,126' },
+    { id:'camasir', label:'Çamaşır', title:'Çamaşır makinesi', claim:'Yumuşatır, kalıntıyı alır',
+      video:'', pattern:'fabric', base:['#f4f1fb','#e3ddf3'], grout:'#cfc6e8', stain:'176,150,70' },
+    { id:'bulasik', label:'Bulaşık', title:'Bulaşık makinesi', claim:'Bardak ve tabakları parlatır',
+      video:'', pattern:'plate',  base:['#2b7f9c','#1d5f78'], grout:'#ffffff', stain:'140,96,48' }
+  ],
+  products: [
+    { name:'Karbonatlı<br>Temizlik Sirkesi', size:'500 ml', tag:'KARBONATLI', lab:'#1e90d8', lab2:'#0b5aa3', cap:'#0b5aa3' },
+    { name:'Beyaz<br>Sirke',                 size:'1 L',    tag:'BEYAZ SİRKE', lab:'#55b437', lab2:'#2c8a1f', cap:'#2c8a1f' }
+  ],
+  claims: ['Doğal fermantasyonla üretilir','Kimyasal kalıntı bırakmaz','Kireç ve yağı çözer','Katkı maddesi içermez']
+};
+</script>
+<style>
+:root{
+  --navy:#0a3552; --green:#43a832; --green2:#2f8a22; --aqua:#22b3d6; --mint:#e8f8f1;
+  --lab:#1e90d8; --lab2:#0b5aa3; --cap:#0b5aa3;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:970px;height:250px;overflow:hidden;background:#fff}
+body{font-family:'Nunito',system-ui,sans-serif;color:var(--navy);-webkit-font-smoothing:antialiased}
+button{font:inherit;border:0;background:none;color:inherit;cursor:pointer}
+
+#ad{position:relative;width:970px;height:250px;overflow:hidden;cursor:pointer;
+  display:grid;grid-template-columns:262px 444px 264px;border:1px solid #cfe3ea;
+  background:linear-gradient(100deg,#f3fcf8 0%,#e4f6f4 30%,#e2f3fb 70%,#eef9fd 100%)}
+#ad:focus-visible{outline:3px solid var(--aqua);outline-offset:-3px}
+
+/* ---------- Sol: marka ---------- */
+.brand{position:relative;padding:18px 18px 16px 22px;display:flex;flex-direction:column;overflow:hidden}
+.logo{display:flex;align-items:flex-end;gap:6px;opacity:0;transform:translateY(-8px);transition:.6s cubic-bezier(.2,.8,.2,1)}
+.logo .word{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:32px;line-height:.9;letter-spacing:-.5px}
+.logo .w1{color:var(--navy)} .logo .w2{color:var(--green)}
+.logo svg{width:20px;height:24px;margin-bottom:6px;margin-left:-4px}
+.logo .by{font-size:10px;font-weight:800;letter-spacing:1.4px;color:#5d7f93;margin-bottom:5px;margin-left:4px;text-transform:uppercase}
+h1{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:25px;line-height:1.02;margin-top:14px;letter-spacing:-.2px}
+h1 span{display:block;opacity:0;transform:translateY(12px);transition:.55s cubic-bezier(.2,.8,.2,1)}
+h1 em{font-style:normal;color:var(--green);position:relative}
+h1 em::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:7px;background:rgba(34,179,214,.25);border-radius:4px;z-index:-1}
+.sub{font-size:12.5px;line-height:1.3;color:#3d6075;margin-top:8px;font-weight:700;opacity:0;transition:.6s .1s}
+.cta{margin-top:auto;align-self:flex-start;display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(180deg,#50b93e,#2f8a22);color:#fff;font-weight:800;font-size:14px;
+  padding:9px 16px 9px 18px;border-radius:999px;box-shadow:0 6px 16px -6px rgba(47,138,34,.7),inset 0 1px 0 rgba(255,255,255,.35);
+  opacity:0;transform:scale(.85);transition:opacity .5s,transform .5s cubic-bezier(.3,1.6,.5,1),box-shadow .2s}
+.cta i{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.25);font-style:normal;transition:transform .25s}
+.cta:hover i{transform:translateX(3px)}
+.cta.pulse{animation:pulse 1.6s ease-in-out 3}
+@keyframes pulse{50%{box-shadow:0 0 0 8px rgba(67,168,50,.18),0 6px 16px -6px rgba(47,138,34,.7)}}
+.in .logo,.in .sub{opacity:1;transform:none}
+.in h1 span{opacity:1;transform:none}
+.in h1 span:nth-child(2){transition-delay:.12s}.in h1 span:nth-child(3){transition-delay:.24s}
+.in .cta{opacity:1;transform:none;transition-delay:.45s}
+
+.bubbles span{position:absolute;bottom:-30px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle at 32% 30%,rgba(255,255,255,.95),rgba(255,255,255,.25) 40%,rgba(34,179,214,.15) 70%,rgba(34,179,214,.35));
+  box-shadow:inset 0 0 0 1px rgba(34,179,214,.25);animation:rise linear infinite}
+@keyframes rise{to{transform:translateY(-310px) translateX(14px)}}
+.still .bubbles span,.still .claims .c{animation-play-state:paused}
+
+/* ---------- Orta: sahne / video ---------- */
+.stage{position:relative;width:444px;height:250px;overflow:hidden;background:#0a3552}
+.stage video,.stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+#vBlur{object-fit:cover;filter:blur(18px) saturate(1.2) brightness(.85);transform:scale(1.15);opacity:0}
+#vMain{object-fit:contain;opacity:0}
+.fit-cover #vMain{object-fit:cover}
+.has-video #vMain{opacity:1}
+.has-video.fit-blur #vBlur{opacity:1}
+.has-video #scene{opacity:0}
+#scene{transition:opacity .35s}
+
+#dirt{touch-action:none;cursor:none;transition:opacity .7s ease}
+.cleared #dirt{opacity:0;pointer-events:none}
+.sponge-cur{position:absolute;width:58px;height:38px;left:0;top:0;pointer-events:none;z-index:6;opacity:0;
+  transform:translate(-50%,-50%) rotate(-12deg);transition:opacity .2s}
+.stage.hovering:not(.cleared) .sponge-cur,.sponge-cur.ghost{opacity:1}
+.hint{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:5;pointer-events:none;text-align:center;color:#fff;
+  transition:opacity .4s}
+.hint b{display:block;font-family:'Baloo 2',sans-serif;font-size:27px;line-height:1;text-shadow:0 2px 10px rgba(0,0,0,.35)}
+.hint small{display:inline-block;margin-top:8px;font-size:12px;font-weight:800;background:rgba(255,255,255,.2);
+  border:1px solid rgba(255,255,255,.4);padding:5px 12px;border-radius:999px;backdrop-filter:blur(4px)}
+.hint .arrows{display:block;margin:6px auto 0;width:120px;height:18px}
+.hint .arrows path{stroke:#fff;stroke-width:2.5;fill:none;stroke-linecap:round;stroke-dasharray:6 6;animation:dash 1s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-24}}
+.scrubbing .hint,.cleared .hint{opacity:0}
+
+.cap{position:absolute;left:12px;top:12px;z-index:4;display:flex;align-items:center;gap:8px;pointer-events:none;
+  opacity:0;transform:translateY(-6px);transition:.4s}
+.cleared .cap{opacity:1;transform:none}
+.cap .t{background:rgba(10,53,82,.85);color:#fff;font-weight:800;font-size:11.5px;padding:5px 10px;border-radius:999px;letter-spacing:.2px}
+.cap .c{background:#fff;color:var(--green2);font-weight:800;font-size:11.5px;padding:5px 10px;border-radius:999px;box-shadow:0 3px 10px -4px rgba(0,0,0,.4)}
+.cap .c.swap{animation:pop .45s cubic-bezier(.3,1.6,.5,1)}
+@keyframes pop{from{transform:scale(.6);opacity:0}}
+
+.rooms{position:absolute;left:0;right:0;bottom:10px;z-index:7;display:flex;justify-content:center;gap:5px;
+  opacity:0;transform:translateY(10px);transition:.45s .2s}
+.cleared .rooms{opacity:1;transform:none}
+.rooms button{position:relative;overflow:hidden;font-size:11.5px;font-weight:800;color:var(--navy);
+  background:rgba(255,255,255,.82);backdrop-filter:blur(6px);padding:6px 11px;border-radius:999px;
+  box-shadow:0 4px 12px -6px rgba(0,0,0,.45);transition:background .2s,color .2s,transform .2s}
+.rooms button:hover{transform:translateY(-2px);background:#fff}
+.rooms button.on{background:var(--green);color:#fff}
+.rooms button .bar{position:absolute;left:0;bottom:0;height:3px;width:0;background:rgba(255,255,255,.75)}
+.rooms button.on .bar.run{animation:bar linear forwards}
+@keyframes bar{to{width:100%}}
+
+.replay{position:absolute;right:10px;top:10px;z-index:7;width:28px;height:28px;border-radius:50%;
+  background:rgba(255,255,255,.85);display:grid;place-items:center;opacity:0;transition:.3s;box-shadow:0 3px 10px -4px rgba(0,0,0,.4)}
+.cleared .replay{opacity:1}
+.replay:hover{transform:rotate(-60deg)}
+.replay svg{width:15px;height:15px}
+
+.toast{position:absolute;left:50%;top:44%;z-index:8;pointer-events:none;transform:translate(-50%,-50%) scale(.4);opacity:0;
+  font-family:'Baloo 2',sans-serif;font-weight:800;font-size:40px;color:#fff;white-space:nowrap;
+  text-shadow:0 3px 0 var(--green2),0 8px 24px rgba(10,53,82,.5)}
+.toast.show{animation:toast 1.5s cubic-bezier(.3,1.5,.5,1) forwards}
+@keyframes toast{0%{opacity:0;transform:translate(-50%,-50%) scale(.4)}20%{opacity:1;transform:translate(-50%,-50%) scale(1)}
+  75%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-70%) scale(.95)}}
+.spark{position:absolute;z-index:8;pointer-events:none;width:16px;height:16px;margin:-8px 0 0 -8px}
+.spark::before{content:"";position:absolute;inset:0;background:#fff;
+  clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%);filter:drop-shadow(0 0 4px #bff3ff)}
+
+/* ---------- Sağ: ürün ---------- */
+.product{position:relative;display:flex;align-items:center;padding:0 14px 0 6px;overflow:hidden}
+.product::before{content:"";position:absolute;left:-40px;top:50%;width:220px;height:220px;margin-top:-110px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.95),rgba(255,255,255,0) 68%)}
+.bottle{position:relative;width:96px;height:214px;flex:none;transform-origin:50% 100%;
+  opacity:0;transform:translateY(30px) rotate(6deg);transition:opacity .6s .2s,transform .8s .2s cubic-bezier(.3,1.4,.5,1)}
+.in .bottle{opacity:1;transform:none}
+.bottle svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 10px 10px rgba(10,53,82,.22))}
+.bottle.wob{animation:wob .7s ease}
+@keyframes wob{25%{transform:rotate(-6deg)}55%{transform:rotate(4deg)}80%{transform:rotate(-2deg)}}
+.bottle .fizz circle{animation:fizz 2.4s linear infinite;opacity:0}
+@keyframes fizz{0%{opacity:0;transform:translateY(0)}15%{opacity:.9}100%{opacity:0;transform:translateY(-70px)}}
+.label-fill{fill:var(--lab);transition:fill .5s}.label-fill2{fill:var(--lab2);transition:fill .5s}.cap-fill{fill:var(--cap);transition:fill .5s}
+
+.info{position:relative;flex:1;padding-left:8px;display:flex;flex-direction:column;gap:7px;opacity:0;transform:translateX(12px);transition:.6s .35s}
+.in .info{opacity:1;transform:none}
+.info .kick{font-size:10px;font-weight:800;letter-spacing:1.5px;color:#5d7f93;text-transform:uppercase}
+.info .pname{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:19px;line-height:1;margin-top:-2px;min-height:38px}
+.info .pname small{font-family:'Nunito',sans-serif;font-size:11px;color:#5d7f93;font-weight:800;margin-left:2px}
+.pname.swap{animation:pop .45s cubic-bezier(.3,1.6,.5,1)}
+.claims{position:relative;height:44px}
+.claims .c{position:absolute;left:0;right:0;top:0;display:flex;align-items:center;gap:7px;font-size:11.5px;font-weight:800;line-height:1.15;color:var(--navy);
+  opacity:0;transform:translateY(8px);transition:.4s}
+.claims .c.on{opacity:1;transform:none}
+.claims .c i{flex:none;width:22px;height:22px;border-radius:50%;background:var(--green);display:grid;place-items:center}
+.claims .c i svg{width:12px;height:12px}
+.vars{display:flex;align-items:center;gap:6px}
+.vars button{width:20px;height:20px;border-radius:50%;box-shadow:0 0 0 2px #fff,0 2px 6px -2px rgba(0,0,0,.4);transition:transform .2s}
+.vars button.on{transform:scale(1.18);box-shadow:0 0 0 2px #fff,0 0 0 4px var(--navy)}
+.vars span{font-size:10.5px;font-weight:800;color:#5d7f93;margin-left:3px}
+.buy{font-size:12px;font-weight:800;color:var(--green2);display:inline-flex;align-items:center;gap:4px;align-self:flex-start;
+  border-bottom:2px solid rgba(67,168,50,.35);padding-bottom:1px;transition:border-color .2s}
+.buy:hover{border-color:var(--green2)}
+
+.legal{position:absolute;right:8px;bottom:4px;font-size:8.5px;color:#7d97a6;font-weight:700;pointer-events:none}
+
+@media (prefers-reduced-motion:reduce){
+  .bubbles,.bottle .fizz{display:none}
+  *{transition-duration:.01s!important;animation-duration:.01s!important}
+}
+</style>
+</head>
+<body>
+<div id="ad" role="link" tabindex="0" aria-label="Ferfresh – doğal gücüyle her yer pırıl pırıl. Ürünleri keşfet.">
+
+  <!-- SOL: Marka -->
+  <section class="brand">
+    <div class="bubbles" aria-hidden="true"></div>
+    <div class="logo" aria-label="Ferfresh">
+      <span class="word"><span class="w1">fer</span><span class="w2">fresh</span></span>
+      <svg viewBox="0 0 20 24" aria-hidden="true"><path d="M10 1C10 1 2 10 2 15a8 8 0 0 0 16 0C18 10 10 1 10 1Z" fill="#22b3d6"/><path d="M6.5 15.5a3.6 3.6 0 0 0 3.6 3.6" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>
+      <span class="by">by Fersan</span>
+    </div>
+    <h1><span>Doğanın gücüyle</span><span>her yer</span><span><em>pırıl pırıl!</em></span></h1>
+    <p class="sub">Fermantasyonla üretilen, katkısız temizlik sirkesi.</p>
+    <button class="cta" data-exit="cta">Ürünleri Keşfet <i>&rarr;</i></button>
+  </section>
+
+  <!-- ORTA: Sahne / Video -->
+  <section class="stage" id="stage">
+    <video id="vBlur" muted playsinline loop preload="none" aria-hidden="true"></video>
+    <video id="vMain" muted playsinline loop preload="none"></video>
+    <canvas id="scene" width="888" height="500" aria-hidden="true"></canvas>
+    <canvas id="dirt" width="444" height="250" data-noexit aria-label="Kirli yüzey – temizlemek için sürükleyin"></canvas>
+    <svg class="sponge-cur" id="cur" viewBox="0 0 58 38" aria-hidden="true">
+      <rect x="2" y="6" width="54" height="30" rx="8" fill="#ffd63f"/><rect x="2" y="2" width="54" height="11" rx="5" fill="#3aa856"/>
+      <circle cx="14" cy="24" r="2.2" fill="#e8b81f"/><circle cx="30" cy="28" r="2" fill="#e8b81f"/><circle cx="44" cy="22" r="2.4" fill="#e8b81f"/>
+    </svg>
+    <div class="hint">
+      <b>Sil, farkı gör!</b>
+      <svg class="arrows" viewBox="0 0 120 18"><path d="M4 9 Q 30 -4 60 9 T 116 9"/></svg>
+      <small>&#9995; Sürükleyerek temizle</small>
+    </div>
+    <div class="cap"><span class="t" id="capT">Mutfak tezgâhı</span><span class="c" id="capC">Yağ lekelerini çözer</span></div>
+    <button class="replay" id="replay" data-noexit aria-label="Yeniden kirlet ve tekrar dene">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#0a3552" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+    </button>
+    <nav class="rooms" id="rooms" data-noexit aria-label="Yaşam alanları"></nav>
+    <div class="toast" id="toast">Pırıl pırıl!</div>
+  </section>
+
+  <!-- SAĞ: Ürün -->
+  <section class="product">
+    <div class="bottle" id="bottle" data-noexit>
+      <svg viewBox="0 0 100 220" aria-hidden="true">
+        <defs>
+          <linearGradient id="pet" x1="0" x2="1"><stop offset="0" stop-color="#d9f2fb"/><stop offset=".45" stop-color="#ffffff"/><stop offset="1" stop-color="#bfe4f2"/></linearGradient>
+          <linearGradient id="liq" x1="0" x2="1"><stop offset="0" stop-color="#e9f9ff" stop-opacity=".9"/><stop offset=".5" stop-color="#f7fdff" stop-opacity=".7"/><stop offset="1" stop-color="#cdeefa" stop-opacity=".9"/></linearGradient>
+          <clipPath id="bodyClip"><path d="M40 38 L60 38 Q60 52 72 60 Q86 70 86 88 L86 200 Q86 214 72 214 L28 214 Q14 214 14 200 L14 88 Q14 70 28 60 Q40 52 40 38 Z"/></clipPath>
+        </defs>
+        <path d="M40 38 L60 38 Q60 52 72 60 Q86 70 86 88 L86 200 Q86 214 72 214 L28 214 Q14 214 14 200 L14 88 Q14 70 28 60 Q40 52 40 38 Z" fill="url(#pet)" stroke="#9fd2e6" stroke-width="1"/>
+        <g clip-path="url(#bodyClip)">
+          <rect x="10" y="74" width="80" height="150" fill="url(#liq)"/>
+          <path d="M10 74 Q30 70 50 74 T90 74" stroke="#bfe8f6" stroke-width="2" fill="none"/>
+          <g class="fizz" fill="#ffffff" stroke="#a9dcef" stroke-width=".6">
+            <circle cx="26" cy="206" r="2.2" style="animation-delay:0s"/><circle cx="74" cy="200" r="1.8" style="animation-delay:.6s"/>
+            <circle cx="34" cy="196" r="1.5" style="animation-delay:1.2s"/><circle cx="66" cy="208" r="2" style="animation-delay:1.8s"/>
+          </g>
+          <rect class="label-fill" x="10" y="102" width="80" height="80"/>
+          <path class="label-fill2" d="M10 160 Q50 148 90 160 L90 182 L10 182 Z"/>
+          <path d="M10 102 Q50 112 90 102" stroke="#fff" stroke-width="2.2" fill="none" opacity=".9"/>
+          <rect x="20" y="40" width="7" height="170" rx="3.5" fill="#fff" opacity=".55"/>
+        </g>
+        <text x="50" y="129" text-anchor="middle" font-family="Baloo 2,sans-serif" font-weight="800" font-size="16" fill="#fff" textLength="62" lengthAdjust="spacingAndGlyphs">ferfresh</text>
+        <text x="50" y="142" text-anchor="middle" font-family="Nunito,sans-serif" font-weight="800" font-size="7.4" fill="#fff" textLength="64" lengthAdjust="spacingAndGlyphs">TEMİZLİK SİRKESİ</text>
+        <text id="bTag" x="50" y="174" text-anchor="middle" font-family="Nunito,sans-serif" font-weight="800" font-size="7.6" fill="#fff" letter-spacing=".8">KARBONATLI</text>
+        <path d="M44 152 c0 -6 6 -9 6 -9 s6 3 6 9 a6 6 0 0 1 -12 0z" fill="#fff" opacity=".9"/>
+        <rect x="38" y="20" width="24" height="20" rx="2" fill="#e8f6fb" stroke="#9fd2e6"/>
+        <rect class="cap-fill" x="34" y="2" width="32" height="22" rx="5"/>
+        <g stroke="#fff" stroke-opacity=".35" stroke-width="1.4"><path d="M40 6v14M46 6v14M52 6v14M58 6v14"/></g>
+      </svg>
+    </div>
+    <div class="info">
+      <span class="kick">Ferfresh</span>
+      <div class="pname" id="pname">Karbonatlı<br>Temizlik Sirkesi <small>500 ml</small></div>
+      <div class="claims" id="claims"></div>
+      <div class="vars" id="vars" data-noexit></div>
+      <button class="buy" data-exit="buy">Online satın al &rarr;</button>
+    </div>
+    <span class="legal">Fersan güvencesiyle</span>
+  </section>
+</div>
+
+<script>
+(function(){
+'use strict';
+var $ = function(s){return document.querySelector(s);};
+var ad=$('#ad'), stage=$('#stage'), W=444, H=250;
+var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- Tıklama / çıkış ---------- */
+function exitUrl(){ return (typeof window.clickTag==='string' && window.clickTag) || CONFIG.landing; }
+function exit(id){
+  if (window.Enabler && Enabler.exit) { Enabler.exit(id||'main'); return; }
+  window.open(exitUrl(),'_blank');
+}
+ad.addEventListener('click',function(e){
+  if (e.target.closest('[data-noexit]')) return;
+  var b=e.target.closest('[data-exit]'); exit(b?b.getAttribute('data-exit'):'main');
+});
+ad.addEventListener('keydown',function(e){ if(e.key==='Enter' && e.target===ad) exit('main'); });
+
+/* ---------- 30 sn kuralı: etkileşim yoksa animasyonlar durur ---------- */
+var lastAct = Date.now();
+function alive(){ return Date.now()-lastAct < 30000; }
+function poke(){ lastAct=Date.now(); ad.classList.remove('still'); Scene.wake(); }
+['pointerdown','keydown'].forEach(function(ev){ ad.addEventListener(ev,poke); });
+setInterval(function(){ if(!alive()) ad.classList.add('still'); },1000);
+
+/* ---------- Kabarcıklar ---------- */
+var bub=$('.bubbles');
+for (var i=0;i<9;i++){
+  var s=document.createElement('span'), z=8+Math.random()*18;
+  s.style.cssText='width:'+z+'px;height:'+z+'px;left:'+(Math.random()*240)+'px;animation-duration:'+(6+Math.random()*6)+'s;animation-delay:-'+(Math.random()*8)+'s;opacity:'+(.5+Math.random()*.5);
+  bub.appendChild(s);
+}
+
+/* ---------- Yardımcılar ---------- */
+function rng(seed){ return function(){ seed|=0; seed=seed+0x6D2B79F5|0; var t=Math.imul(seed^seed>>>15,1|seed); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+function off(){ var c=document.createElement('canvas'); c.width=W*2; c.height=H*2; var x=c.getContext('2d'); x.scale(2,2); return c; }
+function rr(x,a,b,w,h,r){ x.beginPath(); x.moveTo(a+r,b); x.arcTo(a+w,b,a+w,b+h,r); x.arcTo(a+w,b+h,a,b+h,r); x.arcTo(a,b+h,a,b,r); x.arcTo(a,b,a+w,b,r); x.closePath(); }
+function star(x,cx,cy,r,a){ x.save(); x.globalAlpha=a; x.translate(cx,cy); x.fillStyle='#fff'; x.shadowColor='#bff3ff'; x.shadowBlur=8;
+  x.beginPath(); for(var k=0;k<8;k++){ var rad=k%2?r*.28:r, an=k*Math.PI/4; x.lineTo(Math.cos(an)*rad,Math.sin(an)*rad);} x.closePath(); x.fill(); x.restore(); }
+function ease(t){ return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2; }
+
+/* ==========================================================================
+   SAHNE – video yoksa her oda için "ürün kullanımı" animasyonu
+   ========================================================================== */
+var Scene=(function(){
+  var cv=$('#scene'), ctx=cv.getContext('2d'); ctx.scale(2,2);
+  var baseC=off(), stainC=off(), b=baseC.getContext('2d'), st=stainC.getContext('2d');
+  var room=null, path=[], plen=0, prev=null, t0=0, running=false, raf=0, onEnd=null, sparks=[], drops=[], foam=[], D=CONFIG.autoplayRoomMs;
+
+  function drawBase(r){
+    var g=b.createLinearGradient(0,0,W,H); g.addColorStop(0,r.base[0]); g.addColorStop(1,r.base[1]);
+    b.fillStyle=g; b.fillRect(0,0,W,H);
+    if (r.pattern==='tile'){
+      var sz=56;
+      for (var y=0;y<H;y+=sz) for (var x=-(sz/2)*((y/sz)%2);x<W;x+=sz){
+        var tg=b.createLinearGradient(x,y,x+sz,y+sz); tg.addColorStop(0,'rgba(255,255,255,.55)'); tg.addColorStop(.5,'rgba(255,255,255,0)'); tg.addColorStop(1,'rgba(0,0,0,.04)');
+        b.fillStyle=tg; b.fillRect(x+2,y+2,sz-4,sz-4);
+      }
+      b.strokeStyle=r.grout; b.lineWidth=3;
+      for (var y2=0;y2<=H;y2+=sz){ b.beginPath(); b.moveTo(0,y2); b.lineTo(W,y2); b.stroke(); }
+      for (var y3=0;y3<H;y3+=sz) for (var x3=-(sz/2)*((y3/sz)%2);x3<=W;x3+=sz){ b.beginPath(); b.moveTo(x3,y3); b.lineTo(x3,y3+sz); b.stroke(); }
+    } else if (r.pattern==='glass'){
+      b.fillStyle='#fff3b0'; b.beginPath(); b.arc(340,70,26,0,7); b.fill();
+      b.fillStyle='#9fd68a'; b.beginPath(); b.ellipse(120,270,240,90,0,0,7); b.fill();
+      b.fillStyle='#78c060'; b.beginPath(); b.ellipse(380,280,220,100,0,0,7); b.fill();
+      b.fillStyle='rgba(255,255,255,.35)';
+      [[40,0,60],[110,0,26],[260,0,70]].forEach(function(s){ b.beginPath(); b.moveTo(s[0],H); b.lineTo(s[0]+s[2],H); b.lineTo(s[0]+s[2]+120,0); b.lineTo(s[0]+120,0); b.fill(); });
+      b.fillStyle='#fff'; b.fillRect(0,0,W,12); b.fillRect(0,H-12,W,12); b.fillRect(0,0,12,H); b.fillRect(W-12,0,12,H); b.fillRect(W/2-6,0,12,H);
+      b.fillStyle='rgba(10,53,82,.08)'; b.fillRect(12,12,W-24,3); b.fillRect(W/2+6,12,3,H-24);
+    } else if (r.pattern==='fabric'){
+      b.globalAlpha=.09; b.strokeStyle='#5a4b8a'; b.lineWidth=1;
+      for (var fy=0;fy<H;fy+=5){ b.beginPath(); b.moveTo(0,fy); b.lineTo(W,fy); b.stroke(); }
+      for (var fx=0;fx<W;fx+=5){ b.beginPath(); b.moveTo(fx,0); b.lineTo(fx,H); b.stroke(); }
+      b.globalAlpha=1;
+      for (var k=0;k<3;k++){ var fg=b.createLinearGradient(0,40+k*80,0,90+k*80); fg.addColorStop(0,'rgba(255,255,255,0)'); fg.addColorStop(.5,'rgba(90,75,138,.12)'); fg.addColorStop(1,'rgba(255,255,255,.25)');
+        b.fillStyle=fg; b.beginPath(); b.moveTo(0,40+k*80); for(var q=0;q<=W;q+=20) b.lineTo(q,40+k*80+Math.sin(q/50+k)*10); b.lineTo(W,90+k*80); b.lineTo(0,90+k*80); b.fill(); }
+    } else if (r.pattern==='plate'){
+      b.fillStyle='rgba(0,0,0,.18)'; b.beginPath(); b.ellipse(W/2+6,H/2+10,110,104,0,0,7); b.fill();
+      var pg=b.createRadialGradient(W/2-30,H/2-40,10,W/2,H/2,110); pg.addColorStop(0,'#ffffff'); pg.addColorStop(1,'#dfe9ee');
+      b.fillStyle=pg; b.beginPath(); b.arc(W/2,H/2,108,0,7); b.fill();
+      b.strokeStyle='rgba(10,53,82,.08)'; b.lineWidth=2; b.beginPath(); b.arc(W/2,H/2,78,0,7); b.stroke();
+      b.strokeStyle='#22b3d6'; b.lineWidth=3; b.beginPath(); b.arc(W/2,H/2,100,0,7); b.stroke();
+      b.fillStyle='rgba(255,255,255,.18)'; for (var gx=0;gx<W;gx+=36){ b.fillRect(gx,0,2,H); }
+    }
+  }
+  function drawStains(r,seed){
+    var R=rng(seed); st.globalCompositeOperation='source-over'; st.clearRect(0,0,W,H);
+    if (r.pattern==='glass'){
+      st.fillStyle='rgba(205,210,212,.62)'; st.fillRect(12,12,W-24,H-24);
+      for (var i=0;i<160;i++){ st.fillStyle='rgba('+r.stain+','+(.2+R()*.35)+')'; st.beginPath(); st.arc(14+R()*(W-28),14+R()*(H-28),.8+R()*3.2,0,7); st.fill(); }
+      st.strokeStyle='rgba('+r.stain+',.35)'; st.lineWidth=5; st.lineCap='round';
+      for (var j=0;j<6;j++){ var sx=30+R()*380; st.beginPath(); st.moveTo(sx,20+R()*40); st.quadraticCurveTo(sx+30,120,sx-10+R()*40,200+R()*30); st.stroke(); }
+      return;
+    }
+    var n=r.pattern==='plate'?6:8;
+    for (var k=0;k<n;k++){
+      var cx,cy;
+      if (r.pattern==='plate'){ var a=R()*7, d=R()*80; cx=W/2+Math.cos(a)*d; cy=H/2+Math.sin(a)*d; }
+      else { cx=30+R()*(W-60); cy=30+R()*(H-60); }
+      for (var m=0;m<9;m++){
+        var px=cx+(R()-.5)*50, py=cy+(R()-.5)*34, rad=6+R()*20, al=.35+R()*.45;
+        var g=st.createRadialGradient(px,py,0,px,py,rad); g.addColorStop(0,'rgba('+r.stain+','+al+')'); g.addColorStop(.7,'rgba('+r.stain+','+(al*.6)+')'); g.addColorStop(1,'rgba('+r.stain+',0)');
+        st.fillStyle=g; st.beginPath(); st.arc(px,py,rad,0,7); st.fill();
+      }
+      for (var p=0;p<14;p++){ st.fillStyle='rgba('+r.stain+','+(.3+R()*.4)+')'; st.beginPath(); st.arc(cx+(R()-.5)*90,cy+(R()-.5)*60,.8+R()*2.2,0,7); st.fill(); }
+    }
+  }
+  function buildPath(r){
+    path=[]; var rows=r.pattern==='plate'?[70,110,150,190]:[48,96,144,192,232];
+    var x0=r.pattern==='plate'?118:30, x1=r.pattern==='plate'?326:414;
+    rows.forEach(function(y,i){ if(i%2){ path.push([x1,y]); path.push([x0,y]); } else { path.push([x0,y]); path.push([x1,y]); } });
+    plen=0; for (var i=1;i<path.length;i++) plen+=Math.hypot(path[i][0]-path[i-1][0],path[i][1]-path[i-1][1]);
+  }
+  function at(t){
+    var target=t*plen, acc=0;
+    for (var i=1;i<path.length;i++){ var a=path[i-1], c=path[i], l=Math.hypot(c[0]-a[0],c[1]-a[1]);
+      if (acc+l>=target){ var u=(target-acc)/l; return [a[0]+(c[0]-a[0])*u, a[1]+(c[1]-a[1])*u]; } acc+=l; }
+    return path[path.length-1].slice();
+  }
+  function erase(x,y){
+    st.globalCompositeOperation='destination-out';
+    var g=st.createRadialGradient(x,y,0,x,y,40); g.addColorStop(0,'rgba(0,0,0,1)'); g.addColorStop(.6,'rgba(0,0,0,.9)'); g.addColorStop(1,'rgba(0,0,0,0)');
+    st.fillStyle=g; st.beginPath(); st.arc(x,y,40,0,7); st.fill(); st.globalCompositeOperation='source-over';
+  }
+  function sponge(x,y,rot){
+    ctx.save(); ctx.translate(x,y); ctx.rotate(rot); ctx.shadowColor='rgba(0,0,0,.25)'; ctx.shadowBlur=10; ctx.shadowOffsetY=5;
+    ctx.fillStyle='#ffd63f'; rr(ctx,-32,-16,64,36,9); ctx.fill(); ctx.shadowColor='transparent';
+    ctx.fillStyle='#3aa856'; rr(ctx,-32,-20,64,13,6); ctx.fill();
+    ctx.fillStyle='#e8b81f'; [[-16,8],[2,12],[18,5]].forEach(function(p){ ctx.beginPath(); ctx.arc(p[0],p[1],2.4,0,7); ctx.fill(); });
+    ctx.restore();
+  }
+  function bottleIcon(x,y,a){
+    ctx.save(); ctx.globalAlpha=a; ctx.translate(x,y);
+    ctx.fillStyle='#fff'; rr(ctx,-14,-26,28,56,9); ctx.fill();
+    ctx.fillStyle=getComputedStyle(ad).getPropertyValue('--lab')||'#1e90d8'; rr(ctx,-14,-6,28,24,3); ctx.fill();
+    ctx.fillStyle=getComputedStyle(ad).getPropertyValue('--cap')||'#0b5aa3'; rr(ctx,-9,-36,18,12,3); ctx.fill();
+    ctx.fillStyle='#fff'; ctx.font='800 7px Nunito,sans-serif'; ctx.textAlign='center'; ctx.fillText('ferfresh',0,8);
+    ctx.restore();
+  }
+  function frame(now){
+    if (!running) return;
+    var e=now-t0, t=e/D;
+    ctx.clearRect(0,0,W,H); ctx.drawImage(baseC,0,0,W,H);
+    // 1) sprey: şişe girer, damlacıklar yüzeye düşer
+    if (e>350 && e<1500){
+      var a=Math.min(1,(e-350)/250)*Math.min(1,(1500-e)/250);
+      if (drops.length<70 && e<1150) for (var d=0;d<4;d++) drops.push({x:60+Math.random()*(W-120),y:30+Math.random()*(H-60),r:1.5+Math.random()*3,b:now});
+      var cone=ctx.createRadialGradient(W-60,40,0,W-60,40,260); cone.addColorStop(0,'rgba(255,255,255,.55)'); cone.addColorStop(1,'rgba(255,255,255,0)');
+      ctx.save(); ctx.globalAlpha=a*.8; ctx.fillStyle=cone; ctx.beginPath(); ctx.moveTo(W-66,44); ctx.lineTo(40,10); ctx.lineTo(80,H-10); ctx.closePath(); ctx.fill(); ctx.restore();
+    }
+    // 2) silme
+    var wt=Math.max(0,Math.min(1,(e-1500)/2800)), pos=null;
+    if (wt>0 && wt<1){
+      pos=at(ease(wt));
+      if (prev){ var dx=pos[0]-prev[0], dy=pos[1]-prev[1], n=Math.max(1,Math.ceil(Math.hypot(dx,dy)/5)); for (var s=1;s<=n;s++) erase(prev[0]+dx*s/n, prev[1]+dy*s/n); }
+      else erase(pos[0],pos[1]);
+      prev=pos;
+      if (Math.random()<.6) foam.push({x:pos[0]+(Math.random()-.5)*50,y:pos[1]+(Math.random()-.5)*30,r:2+Math.random()*4,b:now});
+    }
+    if (wt>=1 && !sparks.done){ st.clearRect(0,0,W,H); sparks.done=true; for (var k=0;k<9;k++) sparks.push({x:30+Math.random()*(W-60),y:25+Math.random()*(H-80),r:7+Math.random()*9,d:Math.random()*500}); }
+    ctx.drawImage(stainC,0,0,W,H);
+    drops.forEach(function(p){ var age=(now-p.b)/250, fade=wt>0?Math.max(0,1-wt*1.6):1; ctx.fillStyle='rgba(255,255,255,'+(.75*Math.min(1,age)*fade)+')'; ctx.beginPath(); ctx.arc(p.x,p.y,p.r*Math.min(1,age),0,7); ctx.fill(); });
+    foam=foam.filter(function(p){ var a=1-(now-p.b)/700; if(a<=0) return false; ctx.fillStyle='rgba(255,255,255,'+(a*.9)+')'; ctx.strokeStyle='rgba(34,179,214,'+(a*.5)+')'; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,7); ctx.fill(); ctx.stroke(); return true; });
+    if (e>250 && e<1650){ var ba=Math.min(1,(e-250)/200)*Math.min(1,(1650-e)/200); bottleIcon(W-46+(1-ba)*30,96,ba); }
+    if (pos) sponge(pos[0],pos[1],Math.sin(now/90)*.12);
+    if (sparks.done){ var se=e-4300; sparks.forEach(function(s){ var u=(se-s.d)/700; if(u>0&&u<1) star(ctx,s.x,s.y,s.r*Math.sin(u*Math.PI),Math.sin(u*Math.PI)); }); }
+    if (e>=D){
+      if (onEnd && alive()){ var cb=onEnd; cb(); return; }
+      if (!alive()){ running=false; drawClean(); return; }
+      restart();
+    }
+    raf=requestAnimationFrame(frame);
+  }
+  function restart(){ drawStains(room,Math.floor(Math.random()*1e6)); prev=null; drops=[]; foam=[]; sparks=[]; t0=performance.now(); }
+  function drawClean(){
+    ctx.clearRect(0,0,W,H); ctx.drawImage(baseC,0,0,W,H);
+    [[70,60,12],[300,48,9],[380,170,13],[150,180,8],[230,110,10]].forEach(function(s){ star(ctx,s[0],s[1],s[2],.95); });
+  }
+  return {
+    set:function(r){ room=r; drawBase(r); buildPath(r); },
+    clean:function(){ running=false; cancelAnimationFrame(raf); drawClean(); },
+    play:function(cb){ onEnd=cb||null; cancelAnimationFrame(raf); running=true; restart(); if (reduce){ st.clearRect(0,0,W,H); drawClean(); running=false; setTimeout(function(){ cb&&alive()&&cb(); },D); return; } raf=requestAnimationFrame(frame); },
+    stop:function(){ running=false; cancelAnimationFrame(raf); },
+    wake:function(){ if (!running && room && stage.classList.contains('cleared') && !stage.classList.contains('has-video')) Rooms.resume(); }
+  };
+})();
+
+/* ==========================================================================
+   ODALAR + VİDEO
+   ========================================================================== */
+var vMain=$('#vMain'), vBlur=$('#vBlur');
+stage.classList.add(CONFIG.fit==='cover'?'fit-cover':'fit-blur');
+var Rooms=(function(){
+  var nav=$('#rooms'), idx=0, auto=true, timer=0, btns=[];
+  CONFIG.rooms.forEach(function(r,i){
+    var b=document.createElement('button'); b.type='button'; b.innerHTML=r.label+'<span class="bar"></span>';
+    b.setAttribute('aria-label',r.title+' – '+r.claim);
+    b.addEventListener('click',function(){ auto=false; Clean.finish(true); show(i,true); });
+    nav.appendChild(b); btns.push(b);
+  });
+  function bar(ms){
+    btns.forEach(function(b){ var s=b.querySelector('.bar'); s.classList.remove('run'); s.style.animationDuration=''; });
+    if (!ms) return; var s=btns[idx].querySelector('.bar'); void s.offsetWidth; s.style.animationDuration=ms+'ms'; s.classList.add('run');
+  }
+  function next(){ if (auto && alive()) show((idx+1)%CONFIG.rooms.length,true); else show(idx,true); }
+  function show(i,play){
+    idx=i; var r=CONFIG.rooms[i];
+    btns.forEach(function(b,k){ b.classList.toggle('on',k===i); });
+    $('#capT').textContent=r.title; var c=$('#capC'); c.textContent=r.claim; c.classList.remove('swap'); void c.offsetWidth; c.classList.add('swap');
+    clearTimeout(timer); vMain.onended=null;
+    Scene.set(r);
+    if (!play){ Scene.clean(); return; }
+    if (r.video){
+      vMain.loop=!auto; vBlur.loop=true;
+      vMain.src=r.video; if (CONFIG.fit==='blur') vBlur.src=r.video;
+      var p=vMain.play();
+      var ok=function(){ Scene.stop(); stage.classList.add('has-video'); if(CONFIG.fit==='blur') vBlur.play().catch(function(){});
+        if (auto){ vMain.onended=next; bar(0); } };
+      var fail=function(){ stage.classList.remove('has-video'); runScene(); };
+      vMain.onerror=fail;
+      if (p && p.then) p.then(ok,fail); else ok();
+    } else { stage.classList.remove('has-video'); vMain.removeAttribute('src'); vBlur.removeAttribute('src'); runScene(); }
+  }
+  function runScene(){ bar(auto?CONFIG.autoplayRoomMs:0); Scene.play(auto?next:null); }
+  return { show:show, resume:function(){ show(idx,true); } };
+})();
+
+/* ==========================================================================
+   KİRLİ KATMAN – sürükleyerek temizleme
+   ========================================================================== */
+var Clean=(function(){
+  var cv=$('#dirt'), x=cv.getContext('2d',{willReadFrequently:true}), cur=$('#cur'), done=false, moves=0, touched=false, ghostOn=false;
+  function paint(){
+    x.globalCompositeOperation='source-over'; x.clearRect(0,0,W,H);
+    var g=x.createLinearGradient(0,0,W,H); g.addColorStop(0,'rgba(112,96,70,.94)'); g.addColorStop(1,'rgba(86,76,60,.95)');
+    x.fillStyle=g; x.fillRect(0,0,W,H);
+    var R=rng(7);
+    for (var i=0;i<90;i++){ var px=R()*W, py=R()*H, r=10+R()*40, dark=R()<.6;
+      var rg=x.createRadialGradient(px,py,0,px,py,r); rg.addColorStop(0,dark?'rgba(60,48,30,.45)':'rgba(170,150,110,.25)'); rg.addColorStop(1,'rgba(0,0,0,0)');
+      x.fillStyle=rg; x.beginPath(); x.arc(px,py,r,0,7); x.fill(); }
+    for (var j=0;j<500;j++){ x.fillStyle='rgba('+(R()<.5?'40,32,20':'200,185,150')+','+(.15+R()*.3)+')'; x.fillRect(R()*W,R()*H,1+R()*2,1+R()*2); }
+    x.strokeStyle='rgba(50,40,26,.25)'; x.lineWidth=14; x.lineCap='round';
+    for (var k=0;k<5;k++){ x.beginPath(); var sx=R()*W; x.moveTo(sx,R()*H); x.quadraticCurveTo(R()*W,R()*H,R()*W,R()*H); x.stroke(); }
+  }
+  function wipe(px,py,r){
+    x.globalCompositeOperation='destination-out';
+    var g=x.createRadialGradient(px,py,0,px,py,r); g.addColorStop(0,'rgba(0,0,0,1)'); g.addColorStop(.65,'rgba(0,0,0,.85)'); g.addColorStop(1,'rgba(0,0,0,0)');
+    x.fillStyle=g; x.beginPath(); x.arc(px,py,r,0,7); x.fill();
+  }
+  function ratio(){
+    var d=x.getImageData(0,0,W,H).data, n=0, c=0;
+    for (var i=3;i<d.length;i+=4*12){ n++; if (d[i]<70) c++; }
+    return c/n;
+  }
+  var last=null;
+  function stroke(px,py){
+    if (last){ var dx=px-last[0], dy=py-last[1], n=Math.max(1,Math.ceil(Math.hypot(dx,dy)/6)); for (var s=1;s<=n;s++) wipe(last[0]+dx*s/n,last[1]+dy*s/n,30); }
+    else wipe(px,py,30);
+    last=[px,py];
+    if (++moves%8===0 && !done && ratio()>.5) finish();
+  }
+  function local(e){ var b=cv.getBoundingClientRect(); return [(e.clientX-b.left)*W/b.width,(e.clientY-b.top)*H/b.height]; }
+  function moveCur(p){ cur.style.left=p[0]+'px'; cur.style.top=p[1]+'px'; }
+  var down=false;
+  cv.addEventListener('pointerenter',function(){ stage.classList.add('hovering'); });
+  cv.addEventListener('pointerleave',function(){ stage.classList.remove('hovering'); last=null; down=false; });
+  cv.addEventListener('pointerdown',function(e){ down=true; touched=true; ghostOn=false; stage.classList.add('scrubbing'); last=null; var p=local(e); moveCur(p); stroke(p[0],p[1]); try{cv.setPointerCapture(e.pointerId);}catch(_){} });
+  cv.addEventListener('pointermove',function(e){ var p=local(e); moveCur(p);
+    // fareyle üzerinde gezinmek de siler (masthead'de tıklamadan keşif)
+    if (down || e.pointerType==='mouse'){ touched=true; ghostOn=false; stage.classList.add('scrubbing'); stroke(p[0],p[1]); } });
+  window.addEventListener('pointerup',function(){ down=false; last=null; });
+
+  function animatePath(pts,dur,cb,isGhost){
+    var t0=performance.now(), L=[0], tot=0;
+    for (var i=1;i<pts.length;i++){ tot+=Math.hypot(pts[i][0]-pts[i-1][0],pts[i][1]-pts[i-1][1]); L.push(tot); }
+    if (isGhost){ ghostOn=true; cur.classList.add('ghost'); }
+    last=null;
+    (function step(now){
+      if (done || (isGhost && !ghostOn)){ cur.classList.remove('ghost'); return; }
+      var u=Math.min(1,(now-t0)/dur), tgt=ease(u)*tot, k=1; while (k<L.length-1 && L[k]<tgt) k++;
+      var a=pts[k-1], b=pts[k], f=(tgt-L[k-1])/((L[k]-L[k-1])||1), p=[a[0]+(b[0]-a[0])*f, a[1]+(b[1]-a[1])*f];
+      moveCur(p); stroke(p[0],p[1]);
+      if (u<1) requestAnimationFrame(step); else { cur.classList.remove('ghost'); last=null; cb&&cb(); }
+    })(performance.now());
+  }
+  function ghost(){ if (touched||done) return; animatePath([[80,70],[180,110],[150,160],[260,150],[330,190]],1700,null,true); }
+  function autoClean(){
+    if (touched||done) return;
+    var pts=[], rows=[30,75,120,165,210,240];
+    rows.forEach(function(y,i){ pts.push(i%2?[424,y]:[20,y]); pts.push(i%2?[20,y]:[424,y]); });
+    animatePath(pts,2200,function(){ finish(); },true);
+  }
+  function burst(){
+    for (var i=0;i<16;i++){ var s=document.createElement('span'); s.className='spark';
+      var a=Math.random()*Math.PI*2, d=50+Math.random()*130, sc=.6+Math.random()*1.2;
+      s.style.left=(W/2)+'px'; s.style.top=(H/2-10)+'px'; stage.appendChild(s);
+      s.animate([{transform:'translate(0,0) scale(0) rotate(0)',opacity:1},{transform:'translate('+Math.cos(a)*d+'px,'+Math.sin(a)*d*.6+'px) scale('+sc+') rotate(90deg)',opacity:1,offset:.6},{transform:'translate('+Math.cos(a)*d*1.1+'px,'+Math.sin(a)*d*.66+'px) scale(0) rotate(160deg)',opacity:0}],{duration:1100+Math.random()*400,easing:'cubic-bezier(.2,.8,.3,1)'}).onfinish=(function(n){return function(){ n.remove(); };})(s);
+    }
+    var t=$('#toast'); t.classList.remove('show'); void t.offsetWidth; t.classList.add('show');
+  }
+  function finish(silent){
+    if (done) return; done=true; ghostOn=false;
+    stage.classList.add('cleared'); stage.classList.remove('scrubbing');
+    $('.cta').classList.add('pulse');
+    if (silent) return;
+    Scene.clean(); burst();
+    setTimeout(function(){ Rooms.show(0,true); },1400);
+  }
+  function reset(){
+    done=false; touched=false; moves=0; last=null; paint();
+    Scene.stop(); stage.classList.remove('cleared','has-video','scrubbing'); vMain.pause(); vBlur.pause();
+    Rooms.show(0,false);
+  }
+  paint();
+  return { finish:finish, reset:reset, ghost:ghost, autoClean:autoClean };
+})();
+$('#replay').addEventListener('click',function(){ Clean.reset(); });
+
+/* ==========================================================================
+   ÜRÜN – varyantlar + dönen faydalar
+   ========================================================================== */
+(function(){
+  var vars=$('#vars'), cl=$('#claims'), bottle=$('#bottle'), cur=0, ci=0, userPicked=false;
+  var check='<svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.3 5 8.6 9.6 3.6"/></svg>';
+  CONFIG.claims.forEach(function(t,i){ var d=document.createElement('div'); d.className='c'+(i===0?' on':''); d.innerHTML='<i>'+check+'</i><span>'+t+'</span>'; cl.appendChild(d); });
+  CONFIG.products.forEach(function(p,i){
+    var b=document.createElement('button'); b.type='button'; b.style.background='linear-gradient(135deg,'+p.lab+','+p.lab2+')';
+    b.setAttribute('aria-label',p.name.replace('<br>',' ')+' '+p.size); if(i===0) b.className='on';
+    b.addEventListener('click',function(){ userPicked=true; pick(i); }); vars.appendChild(b);
+  });
+  var lbl=document.createElement('span'); vars.appendChild(lbl);
+  function pick(i){
+    cur=i; var p=CONFIG.products[i];
+    ad.style.setProperty('--lab',p.lab); ad.style.setProperty('--lab2',p.lab2); ad.style.setProperty('--cap',p.cap);
+    $('#bTag').textContent=p.tag; lbl.textContent=p.size;
+    var n=$('#pname'); n.innerHTML=p.name+' <small>'+p.size+'</small>'; n.classList.remove('swap'); void n.offsetWidth; n.classList.add('swap');
+    [].forEach.call(vars.querySelectorAll('button'),function(b,k){ b.classList.toggle('on',k===i); });
+    wob();
+  }
+  function wob(){ bottle.classList.remove('wob'); void bottle.offsetWidth; bottle.classList.add('wob'); }
+  bottle.addEventListener('pointerenter',wob);
+  bottle.addEventListener('click',function(){ userPicked=true; pick((cur+1)%CONFIG.products.length); });
+  lbl.textContent=CONFIG.products[0].size;
+  setInterval(function(){ if(!alive()) return; var c=cl.children; c[ci].classList.remove('on'); ci=(ci+1)%c.length; c[ci].classList.add('on'); },2600);
+  setInterval(function(){ if(!alive()||userPicked) return; pick((cur+1)%CONFIG.products.length); },7000);
+})();
+
+/* ---------- Başlat ---------- */
+function start(){
+  Rooms.show(0,false);
+  requestAnimationFrame(function(){ ad.classList.add('in'); });
+  setTimeout(Clean.ghost,1400);
+  setTimeout(Clean.autoClean,7000);
+}
+var started=false;
+function go(){ if(started) return; started=true; start(); }
+if (window.Enabler){ if (Enabler.isInitialized()) go(); else Enabler.addEventListener('init',go); }
+else if (document.fonts && document.fonts.ready){ document.fonts.ready.then(go); setTimeout(go,1200); }
+else window.addEventListener('load',go);
+})();
+</script>
+</body>
+</html>
