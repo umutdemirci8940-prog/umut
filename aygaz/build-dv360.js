@@ -50,7 +50,7 @@ const css = fs.readFileSync(cssOut, 'utf8');
 function indexHtml({ videoBase, assetsNote, startUnmuted }) {
   const clickTags = [`  var clickTag = ${JSON.stringify(cfg.clickTag)};`];
   if (cfg.clickTag1) clickTags.push(`  var clickTag1 = ${JSON.stringify(cfg.clickTag1)};`);
-  const assets = { VIDEO_BASE: videoBase, KEY_VISUAL_URL: 'img/poster.jpg', LOGO_URL: localLogo ? 'img/' + localLogo : cfg.logoUrl };
+  const assets = { VIDEO_BASE: videoBase, KEY_VISUAL_URL: 'img/poster.jpg', LOGO_URL: localLogo ? 'img/' + localLogo : cfg.logoUrl, PRICE_URL: cfg.priceUrl || '' };
   return [
     '<!DOCTYPE html>',
     '<html lang="tr">',

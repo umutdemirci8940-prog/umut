@@ -68,6 +68,7 @@ node build-dv360.js      # dist/dv360*, release/*.zip
 
 ```
 Aygaz/Aygaz3.html
+Aygaz/fiyat.json
 Aygaz/Aile.mp4
 Aygaz/Beyazyaka.mp4
 Aygaz/Taksi.mp4
@@ -106,13 +107,34 @@ Sayılar sekme açılınca 0'dan sayar ve Türkçe biçimde (nokta binlik ayrac�
 
 ## Tasarruf Hesapla formülü
 
-`Aygaz3.html` → `CALC` (30.09.2026 güncel fiyatlar müşteriden): benzin 80,46 TL/L, otogaz 37,39 TL/L; tüketim varsayımı benzin 8,0 L/100 km, otogaz 9,2 L/100 km (+%15).
+Kaynak: Aygaz'ın kendi "Yakıt Tasarrufu Hesapla" aracı (aygaz.com.tr). `Aygaz3.html` → `CALC`:
 
-- Aylık benzin maliyeti = km/100 × 8,0 × 80,46; aylık otogaz maliyeti = km/100 × 9,2 × 37,39.
-- **Tasarruf = min(benzin − otogaz, benzin × %40)**. Gerçek fark bugünkü fiyatlarla %46,6 olduğu için %40 sınırı devreye girer; fiyatlar değişip fark %40'ın altına inerse gerçek (daha düşük) değer gösterilir. Böylece "Benzine kıyasla %40'a varan tasarruf" iddiasıyla hiçbir zaman çelişmez.
-- Yıllık = aylık × 12. Örnek: 1.500 km/ay → benzin 9.655 TL → tasarruf 3.862 TL/ay → 46.344 TL/yıl.
+- Fiyatlar (02.10.2026, İstanbul Anadolu Yakası): benzin 84,50 TL/L (opet.com.tr), otogaz 43,29 TL/L (EPDK'ya bildirilen Aygaz tavan fiyatı).
+- Tüketim: benzin 8,0 L/100 km, otogaz 9,6 L/100 km. Aygaz'ın kendi hesabı otogazı benzine göre %20 fazla alır.
+- Aylık benzin maliyeti = km/100 × 8,0 × benzin fiyatı; aylık otogaz maliyeti = km/100 × 9,6 × otogaz fiyatı.
+- **Tasarruf = min(benzin − otogaz, benzin × %40)**: "Benzine kıyasla %40'a varan tasarruf" iddiasının üstüne çıkmaz. Bugünkü fiyatlarla fark %38,5 olduğu için gerçek değer gösterilir.
+- Yıllık = aylık × 12. Örnek: 1.500 km/ay → benzin 10.140 TL, otogaz 6.234 TL → 3.906 TL/ay → 46.872 TL/yıl.
 
-Fiyat güncellemek için yalnızca `CALC` değerleri düzenlenir ve `node build-dv360.js` çalıştırılır.
+### Güncel fiyatlar: `fiyat.json` (yeniden yükleme gerekmez)
+
+Kreatif açılırken `fiyat.json` dosyasını okur ve hesapta oradaki fiyatları kullanır; dosyaya ulaşamazsa veya içerik geçersizse (otogaz ≥ benzin, sayı değil, 0) sessizce `CALC` içindeki gömülü fiyatlara düşer. Böylece fiyat değişince **yalnızca S3'teki `fiyat.json` güncellenir**, DV360'daki kreatife dokunulmaz.
+
+```json
+{ "tarih": "2026-10-02", "benzin": 84.50, "otogaz": 43.29 }
+```
+
+- Önizleme (`Aygaz3.html`, `Aygaz3-sesli.html`): HTML ile aynı klasördeki `fiyat.json` (S3'te `/Aygaz/fiyat.json`).
+- Yayın paketleri: `dv360.config.json` → `priceUrl` (`https://splashdigital.s3.eu-west-1.amazonaws.com/Aygaz/fiyat.json`). Boş bırakılırsa hiç denenmez.
+- S3 bucket'ında CORS açık olmalı (Bucket → Permissions → CORS):
+
+```json
+[{ "AllowedOrigins": ["*"], "AllowedMethods": ["GET", "HEAD"], "AllowedHeaders": ["*"], "MaxAgeSeconds": 3000 }]
+```
+
+- Dosya `cache: no-store` ile okunur; S3'te ek önbellek ayarı gerekmez. Kreatifin önünde CDN varsa dosyanın önbellek süresi kısa tutulmalıdır.
+- Hesaplayıcı kartındaki `data-fiyat-kaynak` özniteliği `fiyat.json` veya `gomulu` değerini taşır; tarayıcı denetçisinden hangi fiyatın kullanıldığı görülür.
+
+Otomatik güncelleme: `fiyat.json`'ı dolduracak zamanlanmış bir iş (ör. GitHub Actions) için güvenilir bir fiyat kaynağı gerekir; Aygaz uygulamasının kullandığı fiyat servisi alınabilirse günlük otomatik yazım kurulabilir.
 
 ## Değişmeyenler
 

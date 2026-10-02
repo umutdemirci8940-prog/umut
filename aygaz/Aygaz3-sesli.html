@@ -164,6 +164,9 @@
       // VIDEO_BASE: 'https://splashdigital.s3.eu-west-1.amazonaws.com/Aygaz/'
       VIDEO_BASE: '',
       KEY_VISUAL_URL: 'https://splashdigital.s3.eu-west-1.amazonaws.com/Aygaz/aygaz.jpg',
+      // Güncel pompa fiyatları: {"tarih":"2026-10-02","benzin":84.50,"otogaz":43.29}. Bu HTML ile aynı
+      // klasörden okunur; ulaşılamazsa CALC içindeki gömülü fiyatlar kullanılır. '' verilirse hiç denenmez.
+      PRICE_URL: 'fiyat.json',
       LOGO_NAME: 'Aygaz Otogaz'
     }, window.AYGAZ_ASSETS || {});
 
@@ -257,14 +260,19 @@
     };
     const formatNumber = (n) => n.toLocaleString('tr-TR'); // 80.000 / 1.900
 
-    // Tasarruf Hesapla sekmesi girdileri
+    // Tasarruf Hesapla sekmesi girdileri – kaynak: Aygaz "Yakıt Tasarrufu Hesapla" (aygaz.com.tr)
+    // Fiyatlar 02.10.2026, İstanbul Anadolu Yakası: benzin opet.com.tr, otogaz EPDK'ya bildirilen Aygaz tavan fiyatı.
+    // Tüketim: Aygaz'ın kendi hesabı otogazı benzine göre %20 fazla alır (8,0 -> 9,6 L/100 km).
+    // Bu fiyatlar yedektir; PRICE_URL'deki fiyat.json okunabilirse oradaki güncel değerler kullanılır.
     const CALC = {
-      benzinLitreTL: 80.46,        // benzin litre fiyatı (TL) – 30.09.2026 güncel (müşteri)
-      otogazLitreTL: 37.39,        // otogaz litre fiyatı (TL) – 30.09.2026 güncel (müşteri)
-      benzinTuketimL100km: 8.0,    // benzin tüketimi (L/100 km) – varsayım
-      otogazTuketimL100km: 9.2,    // otogaz tüketimi (L/100 km) – varsayım (+%15)
+      fiyatTarihi: '2026-10-02',
+      benzinLitreTL: 84.50,        // benzin litre fiyatı (TL)
+      otogazLitreTL: 43.29,        // otogaz litre fiyatı (TL)
+      benzinTuketimL100km: 8.0,    // benzin tüketimi (L/100 km)
+      otogazTuketimL100km: 9.6,    // otogaz tüketimi (L/100 km) = benzin x 1,20 (Aygaz)
       tasarrufOraniUst: 0.40       // "Benzine kıyasla %40'a varan tasarruf": gösterilen tasarrufun üst sınırı
     };
+    const isValidPrices = (j) => j && isFinite(+j.benzin) && isFinite(+j.otogaz) && +j.benzin > 0 && +j.otogaz > 0 && +j.otogaz < +j.benzin;
 
     const OKTAN_BENEFITS = [
       {
@@ -301,6 +309,8 @@
       // Sesli başlatma tarayıcı tarafından engellendiyse true: ilk tıklamada ses açılır
       const [soundBlocked, setSoundBlocked] = useState(false);
       const [monthlyKm, setMonthlyKm] = useState(1500);
+      // Pompa fiyatları: gömülü yedekle başlar, fiyat.json okunabilirse güncellenir
+      const [prices, setPrices] = useState({ benzin: CALC.benzinLitreTL, otogaz: CALC.otogazLitreTL, tarih: CALC.fiyatTarihi, kaynak: 'gomulu' });
 
       // Intro Overlay state
       const [isIntroActive, setIsIntroActive] = useState(true);
@@ -333,6 +343,19 @@
         return () => {
           clearTimeout(timer1); clearTimeout(timer2); clearTimeout(timer3); clearTimeout(timer4);
         };
+      }, []);
+
+      // Güncel fiyatları oku (başarısızsa sessizce gömülü değerlerde kalır)
+      useEffect(() => {
+        if (!ASSETS.PRICE_URL || typeof fetch !== 'function') return;
+        let cancelled = false;
+        fetch(ASSETS.PRICE_URL, { cache: 'no-store', credentials: 'omit' })
+          .then((r) => (r.ok ? r.json() : null))
+          .then((j) => {
+            if (!cancelled && isValidPrices(j)) setPrices({ benzin: +j.benzin, otogaz: +j.otogaz, tarih: j.tarih || '', kaynak: 'fiyat.json' });
+          })
+          .catch(() => {});
+        return () => { cancelled = true; };
       }, []);
 
       // Sesli başlatma (yalnızca OPTIONS.startUnmuted): engellenirse sessiz oynat, ilk tıklamada aç
@@ -432,8 +455,8 @@
 
       // Tasarruf Hesapla: gerçek fiyat farkı (benzin - otogaz maliyeti) hesaplanır, marka iddiası
       // "Benzine kıyasla %40'a varan tasarruf" ile tutarlı kalması için benzin maliyetinin %40'ı ile sınırlanır.
-      const monthlyBenzinTL = (monthlyKm / 100) * CALC.benzinTuketimL100km * CALC.benzinLitreTL;
-      const monthlyOtogazTL = (monthlyKm / 100) * CALC.otogazTuketimL100km * CALC.otogazLitreTL;
+      const monthlyBenzinTL = (monthlyKm / 100) * CALC.benzinTuketimL100km * prices.benzin;
+      const monthlyOtogazTL = (monthlyKm / 100) * CALC.otogazTuketimL100km * prices.otogaz;
       const monthlySavingsTL = Math.round(Math.min(monthlyBenzinTL - monthlyOtogazTL, monthlyBenzinTL * CALC.tasarrufOraniUst));
       const annualSavingsTL = monthlySavingsTL * 12;
 
@@ -655,7 +678,7 @@
 
               {/* TAB 3: CALCULATOR */}
               {activeTab === 'calculator' && (
-                <div className="bg-[#001533] border border-slate-800 rounded-lg p-3 h-full flex items-center justify-between gap-4">
+                <div className="bg-[#001533] border border-slate-800 rounded-lg p-3 h-full flex items-center justify-between gap-4" data-fiyat-kaynak={prices.kaynak} data-fiyat-tarih={prices.tarih} data-benzin={prices.benzin} data-otogaz={prices.otogaz}>
                   <div className="flex-1 space-y-2">
                     <div>
                       <div className="flex justify-between text-[11px] font-bold text-slate-300 mb-1">

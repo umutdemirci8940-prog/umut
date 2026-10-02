@@ -5,5 +5,7 @@
   "_clickTag1": "İstasyon Bul sekmesindeki \"Size En Yakın Aygaz İstasyonunu Haritada Bulun\" satırı (link dahil) bu adrese gider. Boş bırakılırsa clickTag kullanılır.",
   "videoBaseS3": "https://splashdigital.s3.eu-west-1.amazonaws.com/Aygaz/",
   "logoUrl": "https://100oktan.aygaz.com.tr/assets/images/logo/logo-white.png",
-  "packageName": "aygaz-100oktan-970x250"
+  "packageName": "aygaz-100oktan-970x250",
+  "priceUrl": "https://splashdigital.s3.eu-west-1.amazonaws.com/Aygaz/fiyat.json",
+  "_priceUrl": "Yayın paketinin okuduğu güncel fiyat dosyası (S3'te CORS açık olmalı). Boş bırakılırsa gömülü fiyatlar kullanılır."
 }
