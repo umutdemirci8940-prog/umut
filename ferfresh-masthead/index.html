@@ -10,61 +10,56 @@
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
 <script>
 /* ==========================================================================
-   FERFRESH – 970x250 İNTERAKTİF MASTHEAD (2 sahne)
-   SAHNE 1 – Oyun + içerik:
-     Ekran "kirli" gelir; kullanıcı sürükleyerek siler (etkileşim yoksa demo +
-     otomatik temizlik). Ardından oda sekmeleri (Mutfak, Banyo, Cam, Çamaşır,
-     Bulaşık) oynar; sağda ürün varyantları ve fayda mesajları.
-   GEÇİŞ – Köpüklü sünger silme efektiyle sahne 2'ye geçilir
-     (otomatik: 2 oda sahnesinden sonra · elle: "▶ Videolar" sekmesi).
-   SAHNE 2 – Video penceresi + kampanya mesajı:
-     Solda mesaj ve "Keşfet" (siteye yönlendirme), sağda video oynatıcı ve
-     20+ videoluk kaydırmalı oynatma listesi.
-   Videolar: CONFIG.videos[].src (ve isteğe bağlı poster). src boşsa o oda için
-   animasyonlu yer tutucu sahne oynar.
-   Dikey (9:16) TikTok/Reels videoları için fit:'blur' → video ortada dikey,
-   arkasında aynı videonun bulanık kopyası yatay alanı doldurur.
-   Yatay kurgusu yapılmış videolar için fit:'cover' kullanın.
+   FERFRESH – 970x250 İNTERAKTİF MASTHEAD
+   Tek bir KAMPANYA FİLMİ iki sahnede kesintisiz oynar:
+
+   SAHNE 1 – Oyun: Ekran kirli gelir; kullanıcı sürükleyerek siler ve altta
+     oynayan kampanya filmini ortaya çıkarır. Oda sekmeleri filmin
+     bölümleridir (tıklayınca o bölüme atlar). Sağdaki ürün, filmde o an
+     kullanılan ürünle eşleşir.
+   GEÇİŞ – Köpüklü sünger silme efekti (otomatik: autoToVideosMs · elle:
+     "▶ Filmi izle" butonu). Film aynı saniyeden devam eder.
+   SAHNE 2 – Film penceresi: Solda kampanya mesajı + "Keşfet"; sağda büyük
+     film penceresi, bölüm listesi, tıklanabilir bölümlü zaman çubuğu ve
+     "Bu sahnede: <ürün> · İncele" alışveriş etiketi.
+
+   FİLM KAYNAĞI (CONFIG.campaign):
+   a) Önerilen: 20+ dikey içerikten kurgulanmış tek dosya → campaign.src.
+      Bölümler chapters[].start (saniye) ile işaretlenir.
+   b) Alternatif: campaign.src boşsa her bölümün kendi klibi chapters[].src
+      sırayla, tek film gibi art arda oynar (süre klipten okunur).
+   c) Hiçbiri yoksa her bölüm için animasyonlu yer tutucu sahne oynar.
+   Dikey (9:16) kaynak için fit:'blur' → ortada dikey video, arkasında aynı
+   videonun bulanık kopyası. Yatay kurgu için fit:'cover'.
    ========================================================================== */
 var CONFIG = {
   landing: 'https://www.fersan.com.tr/marka/ferfresh',
   fit: 'blur',                 // 'blur' (dikey kaynak) | 'cover' (yatay kurgu)
-  autoplayRoomMs: 5600,        // yer tutucu sahne süresi
-  autoToVideosMs: 15000,       // açılıştan kaç ms sonra video sahnesine otomatik geçilsin (0 = otomatik geçme)
+  autoToVideosMs: 15000,       // açılıştan kaç ms sonra film sahnesine geçilsin (0 = otomatik geçme)
+  campaign: {
+    src: '',                   // tek parça kampanya filmi (mp4)
+    poster: '',
+    duration: 0,               // boşsa videodan okunur
+    chapterSec: 6,             // video yokken her bölümün yer tutucu süresi (sn)
+    chapters: [
+      { room:'mutfak',  title:'Tezgâhta yağ lekesi',   product:0, start:0,  src:'', poster:'' },
+      { room:'banyo',   title:'Bataryada kireç',       product:0, start:6,  src:'', poster:'' },
+      { room:'cam',     title:'İz bırakmayan camlar',  product:1, start:12, src:'', poster:'' },
+      { room:'camasir', title:'Doğal yumuşaklık',      product:1, start:18, src:'', poster:'' },
+      { room:'bulasik', title:'Pırıl pırıl bardaklar', product:1, start:24, src:'', poster:'' }
+    ]
+  },
   rooms: [
-    { id:'mutfak',  label:'Mutfak',  title:'Mutfak tezgâhı',   claim:'Yağ lekelerini çözer',        color:'#e98a24',
-      video:'', pattern:'tile',   base:['#fff8ec','#f3e3c6'], grout:'#e4cfaa', stain:'150,98,38' },
-    { id:'banyo',   label:'Banyo',   title:'Banyo & armatür',  claim:'Kireci kolayca giderir',      color:'#1fa6cc',
-      video:'', pattern:'tile',   base:['#eef8fc','#d2eaf4'], grout:'#b5d6e5', stain:'160,150,118' },
-    { id:'cam',     label:'Cam',     title:'Cam & ayna',       claim:'İz bırakmadan parlatır',      color:'#3c86dc',
-      video:'', pattern:'glass',  base:['#bfe6f7','#eef9fd'], grout:'#ffffff', stain:'120,128,126' },
-    { id:'camasir', label:'Çamaşır', title:'Çamaşır makinesi', claim:'Yumuşatır, kalıntıyı alır',   color:'#8a6bd0',
-      video:'', pattern:'fabric', base:['#f4f1fb','#e3ddf3'], grout:'#cfc6e8', stain:'176,150,70' },
+    { id:'mutfak',  label:'Mutfak',  title:'Mutfak tezgâhı',   claim:'Yağ lekelerini çözer',         color:'#e98a24',
+      pattern:'tile',   base:['#fff8ec','#f3e3c6'], grout:'#e4cfaa', stain:'150,98,38' },
+    { id:'banyo',   label:'Banyo',   title:'Banyo & armatür',  claim:'Kireci kolayca giderir',       color:'#1fa6cc',
+      pattern:'tile',   base:['#eef8fc','#d2eaf4'], grout:'#b5d6e5', stain:'160,150,118' },
+    { id:'cam',     label:'Cam',     title:'Cam & ayna',       claim:'İz bırakmadan parlatır',       color:'#3c86dc',
+      pattern:'glass',  base:['#bfe6f7','#eef9fd'], grout:'#ffffff', stain:'120,128,126' },
+    { id:'camasir', label:'Çamaşır', title:'Çamaşır makinesi', claim:'Yumuşatır, kalıntıyı alır',    color:'#8a6bd0',
+      pattern:'fabric', base:['#f4f1fb','#e3ddf3'], grout:'#cfc6e8', stain:'176,150,70' },
     { id:'bulasik', label:'Bulaşık', title:'Bulaşık makinesi', claim:'Bardak ve tabakları parlatır', color:'#43a832',
-      video:'', pattern:'plate',  base:['#2b7f9c','#1d5f78'], grout:'#ffffff', stain:'140,96,48' }
-  ],
-  /* Sahne 2 oynatma listesi – markanın dikey videolarıyla eşleştirin */
-  videos: [
-    { room:'mutfak',  title:'Ocak üstü yağ lekesi',        src:'', poster:'' },
-    { room:'banyo',   title:'Batarya kireci',              src:'', poster:'' },
-    { room:'cam',     title:'İz bırakmayan cam silme',     src:'', poster:'' },
-    { room:'camasir', title:'Doğal yumuşatıcı etkisi',     src:'', poster:'' },
-    { room:'bulasik', title:'Pırıl pırıl bardaklar',       src:'', poster:'' },
-    { room:'mutfak',  title:'Tezgâh ve kesme tahtası',     src:'', poster:'' },
-    { room:'banyo',   title:'Duşakabin camı',              src:'', poster:'' },
-    { room:'cam',     title:'Ayna parlatma',               src:'', poster:'' },
-    { room:'camasir', title:'Makine kireç bakımı',         src:'', poster:'' },
-    { room:'bulasik', title:'Makine içi temizlik',         src:'', poster:'' },
-    { room:'mutfak',  title:'Buzdolabı rafları',           src:'', poster:'' },
-    { room:'banyo',   title:'Fayans derzleri',             src:'', poster:'' },
-    { room:'cam',     title:'Pencere çerçevesi',           src:'', poster:'' },
-    { room:'camasir', title:'Havlu yumuşatma',             src:'', poster:'' },
-    { room:'bulasik', title:'Çaydanlık kireci',            src:'', poster:'' },
-    { room:'mutfak',  title:'Fırın kapağı',                src:'', poster:'' },
-    { room:'banyo',   title:'Lavabo parlatma',             src:'', poster:'' },
-    { room:'cam',     title:'Balkon camı',                 src:'', poster:'' },
-    { room:'camasir', title:'Beyazlar için',               src:'', poster:'' },
-    { room:'bulasik', title:'Tencere dipleri',             src:'', poster:'' }
+      pattern:'plate',  base:['#2b7f9c','#1d5f78'], grout:'#ffffff', stain:'140,96,48' }
   ],
   products: [
     { name:'Karbonatlı<br>Temizlik Sirkesi', size:'500 ml', tag:'KARBONATLI', lab:'#1e90d8', lab2:'#0b5aa3', cap:'#0b5aa3' },
@@ -113,6 +108,18 @@ button{font:inherit;border:0;background:none;color:inherit;cursor:pointer}
 .in .hl span{opacity:1;transform:none}
 .in .hl span:nth-child(2){transition-delay:.12s}.in .hl span:nth-child(3){transition-delay:.24s}
 .in .cta{opacity:1;transform:none;transition-delay:.45s}
+.swap{animation:pop .45s cubic-bezier(.3,1.6,.5,1)}
+@keyframes pop{from{transform:scale(.6);opacity:0}}
+
+/* ---------- Kampanya filmi (iki sahne arasında taşınan tek medya katmanı) ---------- */
+#media{position:absolute;inset:0;overflow:hidden;background:#06243a}
+#media video,#media canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+#fBlur{object-fit:cover;filter:blur(18px) saturate(1.2) brightness(.85);transform:scale(1.15);opacity:0}
+#fMain{object-fit:contain;opacity:0}
+#media.fit-cover #fMain{object-fit:cover}
+#media.has-video #fMain{opacity:1}
+#media.has-video.fit-blur #fBlur{opacity:1}
+#media.has-video #fScene{opacity:0}
 
 /* ---------- Sahne 1 – Sol: marka ---------- */
 .brand{position:relative;padding:18px 18px 16px 22px;display:flex;flex-direction:column;overflow:hidden}
@@ -123,23 +130,14 @@ button{font:inherit;border:0;background:none;color:inherit;cursor:pointer}
 @keyframes rise{to{transform:translateY(-310px) translateX(14px)}}
 .still .bubbles span,.still .claims .c{animation-play-state:paused}
 
-/* ---------- Sahne 1 – Orta: oyun / video ---------- */
+/* ---------- Sahne 1 – Orta: oyun + film ---------- */
 .stage{position:relative;width:444px;height:250px;overflow:hidden;background:#0a3552}
-.stage video,.stage canvas,.player video,.player canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-.vblur{object-fit:cover;filter:blur(18px) saturate(1.2) brightness(.85);transform:scale(1.15);opacity:0}
-.vmain{object-fit:contain;opacity:0}
-.fit-cover .vmain{object-fit:cover}
-.has-video .vmain{opacity:1}
-.has-video.fit-blur .vblur{opacity:1}
-.has-video .scene{opacity:0}
-.scene{transition:opacity .35s}
-
-#dirt{touch-action:none;cursor:none;transition:opacity .7s ease}
+#dirt{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none;cursor:none;transition:opacity .7s ease}
 .cleared #dirt{opacity:0;pointer-events:none}
 .sponge-cur{position:absolute;width:58px;height:38px;left:0;top:0;pointer-events:none;z-index:6;opacity:0;
   transform:translate(-50%,-50%) rotate(-12deg);transition:opacity .2s}
 .stage.hovering:not(.cleared) .sponge-cur,.sponge-cur.ghost{opacity:1}
-.hint{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:5;pointer-events:none;text-align:center;color:#fff;transition:opacity .4s}
+.hint{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:5;pointer-events:none;text-align:center;color:#fff;transition:opacity .4s;white-space:nowrap}
 .hint b{display:block;font-family:'Baloo 2',sans-serif;font-size:27px;line-height:1;text-shadow:0 2px 10px rgba(0,0,0,.35)}
 .hint small{display:inline-block;margin-top:8px;font-size:12px;font-weight:800;background:rgba(255,255,255,.2);
   border:1px solid rgba(255,255,255,.4);padding:5px 12px;border-radius:999px;backdrop-filter:blur(4px)}
@@ -153,17 +151,17 @@ button{font:inherit;border:0;background:none;color:inherit;cursor:pointer}
 .cleared .cap{opacity:1;transform:none}
 .cap .t{background:rgba(10,53,82,.85);color:#fff;font-weight:800;font-size:11.5px;padding:5px 10px;border-radius:999px;letter-spacing:.2px}
 .cap .c{background:#fff;color:var(--green2);font-weight:800;font-size:11.5px;padding:5px 10px;border-radius:999px;box-shadow:0 3px 10px -4px rgba(0,0,0,.4)}
-.swap{animation:pop .45s cubic-bezier(.3,1.6,.5,1)}
-@keyframes pop{from{transform:scale(.6);opacity:0}}
 
 .rooms{position:absolute;left:0;right:0;bottom:10px;z-index:7;display:flex;justify-content:center;gap:5px;
-  opacity:0;transform:translateY(10px);transition:.45s .2s}
-.cleared .rooms{opacity:1;transform:none}
+  opacity:0;transform:translateY(10px);transition:.45s .2s;pointer-events:none}
+.cleared .rooms{opacity:1;transform:none;pointer-events:auto}
 .rooms button{position:relative;overflow:hidden;font-size:11px;font-weight:800;color:var(--navy);
-  background:rgba(255,255,255,.82);backdrop-filter:blur(6px);padding:6px 9px;border-radius:999px;
+  background:rgba(255,255,255,.82);backdrop-filter:blur(6px);padding:6px 10px;border-radius:999px;
   box-shadow:0 4px 12px -6px rgba(0,0,0,.45);transition:background .2s,color .2s,transform .2s}
 .rooms button:hover{transform:translateY(-2px);background:#fff}
 .rooms button.on{background:var(--green);color:#fff}
+.rooms button .bar{position:absolute;left:0;bottom:0;height:3px;width:0;background:rgba(255,255,255,.8)}
+
 .vbtn{position:absolute;right:10px;top:10px;z-index:9;display:inline-flex;align-items:center;gap:6px;background:var(--navy);color:#fff;
   font-size:11.5px;font-weight:800;padding:6px 11px 6px 7px;border-radius:999px;box-shadow:0 4px 14px -6px rgba(0,0,0,.6);transition:background .2s,transform .2s}
 .vbtn:hover{background:#12507a;transform:translateY(-1px)}
@@ -172,13 +170,10 @@ button{font:inherit;border:0;background:none;color:inherit;cursor:pointer}
 .vbtn .cd b{position:absolute;inset:0;background:var(--green);transform-origin:0 50%;transform:scaleX(0)}
 .vbtn .cd b.run{animation:cd linear forwards}
 @keyframes cd{to{transform:scaleX(1)}}
-.rooms button .bar{position:absolute;left:0;bottom:0;height:3px;width:0;background:rgba(255,255,255,.75)}
-.rooms button.on .bar.run{animation:bar linear forwards}
-@keyframes bar{to{width:100%}}
 
 .replay{position:absolute;right:10px;bottom:10px;z-index:7;width:28px;height:28px;border-radius:50%;
-  background:rgba(255,255,255,.85);display:grid;place-items:center;opacity:0;transition:.3s;box-shadow:0 3px 10px -4px rgba(0,0,0,.4)}
-.cleared .replay{opacity:1}
+  background:rgba(255,255,255,.85);display:grid;place-items:center;opacity:0;transition:.3s;box-shadow:0 3px 10px -4px rgba(0,0,0,.4);pointer-events:none}
+.cleared .replay{opacity:1;pointer-events:auto}
 .replay:hover{transform:rotate(-60deg)}
 .replay svg{width:15px;height:15px}
 
@@ -209,6 +204,7 @@ button{font:inherit;border:0;background:none;color:inherit;cursor:pointer}
 .info{position:relative;flex:1;padding-left:8px;display:flex;flex-direction:column;gap:7px;opacity:0;transform:translateX(12px);transition:.6s .35s}
 .in .info{opacity:1;transform:none}
 .kick{font-size:10px;font-weight:800;letter-spacing:1.5px;color:#5d7f93;text-transform:uppercase}
+.kick b{color:var(--green2)}
 .info .pname{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:19px;line-height:1;margin-top:-2px;min-height:38px}
 .info .pname small{font-family:'Nunito',sans-serif;font-size:11px;color:#5d7f93;font-weight:800;margin-left:2px}
 .claims{position:relative;height:44px}
@@ -226,7 +222,7 @@ button{font:inherit;border:0;background:none;color:inherit;cursor:pointer}
 .buy:hover{border-color:var(--green2)}
 .legal{position:absolute;right:8px;bottom:4px;font-size:8.5px;color:#7d97a6;font-weight:700;pointer-events:none}
 
-/* ---------- Sahne 2: kampanya mesajı + video penceresi ---------- */
+/* ---------- Sahne 2: kampanya mesajı + film penceresi ---------- */
 .v2{background:linear-gradient(100deg,#f3fcf8 0%,#e4f6f4 40%,#e2f3fb 100%)}
 .v2 .bubbles span{animation-duration:9s}
 .v2 .copy{position:absolute;left:24px;top:18px;bottom:18px;width:318px;display:flex;flex-direction:column}
@@ -256,56 +252,64 @@ button{font:inherit;border:0;background:none;color:inherit;cursor:pointer}
 .mini.b{left:52px;width:78px;height:174px;transition-delay:.65s}
 .in .mini{opacity:1;transform:none}
 .in .mini.a{transform:rotate(-6deg)}
+.mini.hot{filter:drop-shadow(0 0 10px rgba(255,255,255,.9))}
 
-.player{position:absolute;left:480px;top:20px;width:373px;height:210px;border-radius:14px;overflow:hidden;background:#06243a;z-index:3;
+.player{position:absolute;left:484px;top:30px;width:340px;height:191px;border-radius:14px;overflow:hidden;background:#06243a;z-index:3;
   box-shadow:0 18px 40px -12px rgba(0,0,0,.6),0 0 0 3px rgba(255,255,255,.92);
   opacity:0;transform:translateY(16px) scale(.96);transition:opacity .5s .45s,transform .6s .45s cubic-bezier(.3,1.3,.5,1)}
 .in .player{opacity:1;transform:none}
-.badge{position:absolute;left:458px;top:9px;z-index:5;background:var(--green);color:#fff;font-weight:800;font-size:10.5px;letter-spacing:.8px;
+.badge{position:absolute;left:462px;top:16px;z-index:5;background:var(--green);color:#fff;font-weight:800;font-size:10px;letter-spacing:.8px;
   padding:5px 9px;border-radius:7px;box-shadow:0 6px 14px -6px rgba(0,0,0,.5);transform:rotate(-7deg) scale(0);transition:transform .5s .9s cubic-bezier(.3,1.8,.5,1)}
 .in .badge{transform:rotate(-7deg)}
-.ptop{position:absolute;left:0;right:0;top:0;z-index:2;display:flex;align-items:center;gap:7px;padding:10px 12px 22px 30px;
-  background:linear-gradient(180deg,rgba(6,30,48,.75),rgba(6,30,48,0));color:#fff;pointer-events:none}
-.ptop .room{font-size:9.5px;font-weight:800;letter-spacing:1px;padding:3px 7px;border-radius:5px;background:var(--green)}
-.ptop .ttl{font-size:12.5px;font-weight:800;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 1px 4px rgba(0,0,0,.4)}
-.ptop .cnt{font-size:10.5px;font-weight:800;opacity:.85;font-variant-numeric:tabular-nums}
-.pbot{position:absolute;left:0;right:0;bottom:0;z-index:2;display:flex;align-items:center;gap:4px;padding:18px 10px 9px;
-  background:linear-gradient(0deg,rgba(6,30,48,.75),rgba(6,30,48,0));color:#fff;opacity:0;transform:translateY(6px);transition:.25s}
-.player:hover .pbot,.player.paused .pbot{opacity:1;transform:none}
-.pbot button{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;transition:background .2s}
-.pbot button:hover{background:rgba(255,255,255,.18)}
-.pbot svg{width:15px;height:15px;fill:#fff}
-.pbot .site{margin-left:auto;font-size:11.5px;font-weight:800;background:#fff;color:var(--navy);padding:5px 10px;border-radius:999px}
-.pbot .site:hover{background:var(--green);color:#fff}
+.ptop{position:absolute;left:0;right:0;top:0;z-index:2;display:flex;align-items:center;gap:7px;padding:10px 12px 22px 34px;
+  background:linear-gradient(180deg,rgba(6,30,48,.78),rgba(6,30,48,0));color:#fff;pointer-events:none}
+.ptop .room{font-size:9.5px;font-weight:800;letter-spacing:1px;padding:3px 7px;border-radius:5px;background:var(--green);transition:background .3s}
+.ptop .ttl{font-size:12px;font-weight:800;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 1px 4px rgba(0,0,0,.4)}
+.ptop .tm{font-size:10.5px;font-weight:800;opacity:.85;font-variant-numeric:tabular-nums}
+.pbot{position:absolute;left:0;right:0;bottom:0;z-index:2;display:flex;align-items:center;gap:2px;padding:22px 8px 18px;
+  background:linear-gradient(0deg,rgba(6,30,48,.8),rgba(6,30,48,0));color:#fff}
+.pbot>button:not(.shop){width:26px;height:26px;border-radius:50%;display:grid;place-items:center;transition:background .2s}
+.pbot>button:not(.shop):hover{background:rgba(255,255,255,.18)}
+.pbot svg{width:14px;height:14px;fill:#fff}
+.shop{margin-left:auto;display:inline-flex;align-items:center;gap:6px;max-width:250px;background:#fff;color:var(--navy);
+  font-size:10.5px;font-weight:800;padding:4px 10px 4px 4px;border-radius:999px;box-shadow:0 4px 12px -4px rgba(0,0,0,.5);transition:background .2s,color .2s}
+.shop:hover{background:var(--green);color:#fff}
+.shop .dot{width:18px;height:18px;border-radius:50%;flex:none;display:grid;place-items:center}
+.shop .dot svg{width:10px;height:12px;fill:#fff}
+.shop span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.shop em{font-style:normal;opacity:.7;font-weight:700}
 .ico-pause,.paused .ico-play{display:block}.ico-play,.paused .ico-pause{display:none}
 .ico-unmuted,.muted .ico-muted{display:block}.ico-muted,.muted .ico-unmuted{display:none}
 .no-audio #pMute{opacity:.35;pointer-events:none}
-.pbar{position:absolute;left:0;right:0;bottom:0;height:3px;z-index:3;background:rgba(255,255,255,.2)}
-.pbar i{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--green)}
-.bigplay{position:absolute;left:50%;top:50%;z-index:3;width:56px;height:56px;margin:-28px 0 0 -28px;border-radius:50%;
+.segs{position:absolute;left:10px;right:10px;bottom:4px;height:12px;z-index:3;display:flex;align-items:center;gap:3px;cursor:pointer}
+.segs .sg{position:relative;height:4px;border-radius:2px;background:rgba(255,255,255,.28);overflow:hidden;transition:height .15s}
+.segs:hover .sg{height:6px}
+.segs .sg i{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--green)}
+.bigplay{position:absolute;left:50%;top:50%;z-index:3;width:54px;height:54px;margin:-27px 0 0 -27px;border-radius:50%;
   background:rgba(255,255,255,.92);display:grid;place-items:center;opacity:0;transform:scale(.6);transition:.25s;pointer-events:none;
   box-shadow:0 8px 24px -8px rgba(0,0,0,.6)}
 .bigplay svg{width:22px;height:22px;fill:var(--navy);margin-left:3px}
 .paused .bigplay{opacity:1;transform:none;pointer-events:auto}
 
-.plist{position:absolute;left:864px;top:20px;width:94px;height:210px;z-index:3;display:flex;flex-direction:column;gap:4px;
+.chap{position:absolute;left:836px;top:22px;width:124px;height:206px;z-index:3;display:flex;flex-direction:column;gap:4px;
   opacity:0;transform:translateX(16px);transition:.5s .65s}
-.in .plist{opacity:1;transform:none}
-.plist .arr{height:18px;border-radius:6px;background:rgba(255,255,255,.12);display:grid;place-items:center;transition:background .2s}
-.plist .arr:hover{background:rgba(255,255,255,.25)}
-.plist .arr svg{width:12px;height:12px;stroke:#fff;fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
-.track{flex:1;overflow:hidden;display:flex;flex-direction:column;gap:6px;padding:2px;scroll-behavior:smooth}
-.thumb{position:relative;flex:none;width:90px;height:51px;border-radius:8px;overflow:hidden;opacity:.55;
-  box-shadow:0 0 0 2px transparent;transition:opacity .2s,box-shadow .2s}
-.thumb:hover{opacity:.9}
-.thumb.on{opacity:1;box-shadow:0 0 0 2px var(--green)}
-.thumb canvas,.thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.thumb span{position:absolute;font-size:8.5px;font-weight:800;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.8)}
-.thumb .l{left:5px;bottom:3px}
-.thumb .n{right:5px;top:3px;opacity:.9}
-.thumb .pl{left:50%;top:50%;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50%;background:rgba(255,255,255,.85);display:grid;place-items:center}
-.thumb .pl::before{content:"";border-left:6px solid var(--navy);border-top:4px solid transparent;border-bottom:4px solid transparent;margin-left:2px}
-.thumb.on .pl{display:none}
+.in .chap{opacity:1;transform:none}
+.chap h3{font-size:9px;font-weight:800;letter-spacing:1.6px;color:rgba(255,255,255,.6);margin:0 0 1px 2px}
+.ch{position:relative;display:flex;align-items:center;gap:6px;height:35px;padding:3px;border-radius:8px;color:#fff;text-align:left;
+  background:rgba(255,255,255,.06);transition:background .2s}
+.ch:hover{background:rgba(255,255,255,.14)}
+.ch.on{background:rgba(255,255,255,.18)}
+.ch .th{position:relative;flex:none;width:46px;height:29px;border-radius:5px;overflow:hidden}
+.ch .th canvas,.ch .th img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.ch.on .th{box-shadow:0 0 0 2px var(--green)}
+.ch .th::after{content:"";position:absolute;left:50%;top:50%;margin:-5px 0 0 -3px;border-left:8px solid rgba(255,255,255,.95);border-top:5px solid transparent;border-bottom:5px solid transparent;filter:drop-shadow(0 1px 2px rgba(0,0,0,.6))}
+.ch.on .th::after{display:none}
+.ch .tx{display:flex;flex-direction:column;line-height:1.1;min-width:0}
+.ch .tx b{font-size:11px;font-weight:800}
+.ch .tx small{font-size:9px;font-weight:700;opacity:.65;font-variant-numeric:tabular-nums}
+.ch .pr{position:absolute;left:55px;right:8px;bottom:4px;height:2px;border-radius:2px;background:rgba(255,255,255,.15);overflow:hidden;opacity:0}
+.ch.on .pr{opacity:1}
+.ch .pr i{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--green)}
 
 /* ---------- Geçiş: köpüklü sünger silme ---------- */
 .wipe{position:absolute;top:-10px;bottom:-10px;left:-80px;width:1130px;z-index:50;display:none;pointer-events:none;
@@ -327,6 +331,13 @@ button{font:inherit;border:0;background:none;color:inherit;cursor:pointer}
 <body>
 <div id="ad" role="link" tabindex="0" aria-label="Ferfresh – doğal gücüyle her yer pırıl pırıl. Ürünleri keşfet.">
 
+<!-- Kampanya filmi: tek medya katmanı, sahneler arasında taşınır -->
+<div id="media" aria-label="Ferfresh kampanya filmi">
+  <video id="fBlur" muted playsinline preload="auto" aria-hidden="true"></video>
+  <video id="fMain" muted playsinline preload="auto"></video>
+  <canvas id="fScene" width="888" height="500" aria-hidden="true"></canvas>
+</div>
+
 <!-- ============================ SAHNE 1 ============================ -->
 <div class="view v1 on" id="v1">
 
@@ -343,11 +354,9 @@ button{font:inherit;border:0;background:none;color:inherit;cursor:pointer}
     <button class="cta" data-exit="cta">Ürünleri Keşfet <i>&rarr;</i></button>
   </section>
 
-  <!-- ORTA: Oyun / Video -->
+  <!-- ORTA: Oyun + kampanya filmi -->
   <section class="stage" id="stage">
-    <video class="vblur" id="vBlur" muted playsinline loop preload="none" aria-hidden="true"></video>
-    <video class="vmain" id="vMain" muted playsinline loop preload="none"></video>
-    <canvas class="scene" id="scene" width="888" height="500" aria-hidden="true"></canvas>
+    <!-- #media buraya yerleşir -->
     <canvas id="dirt" width="444" height="250" data-noexit aria-label="Kirli yüzey – temizlemek için sürükleyin"></canvas>
     <svg class="sponge-cur" id="cur" viewBox="0 0 58 38" aria-hidden="true">
       <rect x="2" y="6" width="54" height="30" rx="8" fill="#ffd63f"/><rect x="2" y="2" width="54" height="11" rx="5" fill="#3aa856"/>
@@ -356,18 +365,18 @@ button{font:inherit;border:0;background:none;color:inherit;cursor:pointer}
     <div class="hint">
       <b>Sil, farkı gör!</b>
       <svg class="arrows" viewBox="0 0 120 18"><path d="M4 9 Q 30 -4 60 9 T 116 9"/></svg>
-      <small>&#9995; Sürükleyerek temizle</small>
+      <small>&#9995; Sürükle, kampanya filmini ortaya çıkar</small>
     </div>
     <div class="cap"><span class="t" id="capT">Mutfak tezgâhı</span><span class="c" id="capC">Yağ lekelerini çözer</span></div>
     <button class="replay" id="replay" data-noexit aria-label="Yeniden kirlet ve tekrar dene">
       <svg viewBox="0 0 24 24" fill="none" stroke="#0a3552" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
     </button>
-    <nav class="rooms" id="rooms" data-noexit aria-label="Yaşam alanları"></nav>
-    <button class="vbtn" id="vbtn" data-noexit aria-label="Tüm Ferfresh videolarını izle"><i>&#9654;</i>Videolar<span class="cd"><b id="cdBar"></b></span></button>
+    <nav class="rooms" id="rooms" data-noexit aria-label="Film bölümleri"></nav>
+    <button class="vbtn" id="vbtn" data-noexit aria-label="Kampanya filmini büyük izle"><i>&#9654;</i>Filmi izle<span class="cd"><b id="cdBar"></b></span></button>
     <div class="toast" id="toast">Pırıl pırıl!</div>
   </section>
 
-  <!-- SAĞ: Ürün -->
+  <!-- SAĞ: Ürün (filmdeki ürünle eşleşir) -->
   <section class="product">
     <div class="bottle" id="bottle" data-noexit>
       <svg viewBox="0 0 100 220" aria-hidden="true">
@@ -399,7 +408,7 @@ button{font:inherit;border:0;background:none;color:inherit;cursor:pointer}
       </svg>
     </div>
     <div class="info">
-      <span class="kick">Ferfresh</span>
+      <span class="kick" id="kick">Filmdeki ürün</span>
       <div class="pname" id="pname">Karbonatlı<br>Temizlik Sirkesi <small>500 ml</small></div>
       <div class="claims" id="claims"></div>
       <div class="vars" id="vars" data-noexit></div>
@@ -418,8 +427,8 @@ button{font:inherit;border:0;background:none;color:inherit;cursor:pointer}
       <svg viewBox="0 0 20 24" aria-hidden="true"><path d="M10 1C10 1 2 10 2 15a8 8 0 0 0 16 0C18 10 10 1 10 1Z" fill="#22b3d6"/><path d="M6.5 15.5a3.6 3.6 0 0 0 3.6 3.6" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>
       <span class="by">by Fersan</span>
     </div>
-    <h2 class="hl"><span>Temizliğin doğal hâli</span><span>şimdi <em>videolarda!</em></span></h2>
-    <p class="sub">Mutfaktan banyoya 20+ pratik temizlik videosu. İzle, sana uygun ürünü keşfet.</p>
+    <h2 class="hl"><span>Evin her köşesinde</span><span><em>doğal ferahlık!</em></span></h2>
+    <p class="sub">Ferfresh kampanya filmini izle; mutfaktan banyoya doğal temizliği keşfet.</p>
     <div class="acts">
       <button class="cta" data-exit="discover">Keşfet <i>&rarr;</i></button>
       <button class="again" id="again" data-noexit>
@@ -432,12 +441,10 @@ button{font:inherit;border:0;background:none;color:inherit;cursor:pointer}
   <div class="panel" aria-hidden="true"></div>
   <div class="duo" id="duo" aria-hidden="true"></div>
 
-  <span class="badge" id="badge">20+ VİDEO</span>
-  <div class="player paused" id="player" data-exit="video" aria-label="Ferfresh videoları">
-    <video class="vblur" id="pBlur" muted playsinline preload="none" aria-hidden="true"></video>
-    <video class="vmain" id="pMain" muted playsinline preload="none"></video>
-    <canvas class="scene" id="pScene" width="746" height="420" aria-hidden="true"></canvas>
-    <div class="ptop"><span class="room" id="pRoom">MUTFAK</span><span class="ttl" id="pTitle"></span><span class="cnt" id="pCnt">01 / 20</span></div>
+  <span class="badge">KAMPANYA FİLMİ</span>
+  <div class="player" id="player" data-exit="video">
+    <!-- #media buraya taşınır -->
+    <div class="ptop"><span class="room" id="pRoom">MUTFAK</span><span class="ttl" id="pTitle"></span><span class="tm" id="pTime">0:00 / 0:30</span></div>
     <button class="bigplay" id="pBig" data-noexit aria-label="Oynat"><svg viewBox="0 0 24 24"><path d="M6 4l15 8-15 8z"/></svg></button>
     <div class="pbot">
       <button id="pPlay" data-noexit aria-label="Oynat / duraklat">
@@ -448,14 +455,13 @@ button{font:inherit;border:0;background:none;color:inherit;cursor:pointer}
         <svg class="ico-muted" viewBox="0 0 24 24"><path d="M3 9h4l5-4v14l-5-4H3z"/><path d="M16 9l5 6M21 9l-5 6" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>
         <svg class="ico-unmuted" viewBox="0 0 24 24"><path d="M3 9h4l5-4v14l-5-4H3z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
       </button>
-      <span class="site" data-exit="video_site">Tümünü sitede izle &#8599;</span>
+      <button class="shop" id="shop" data-exit="product"><span class="dot" id="shopDot"><svg viewBox="0 0 10 12"><path d="M3.5 0h3v2h-3zM3 2.5h4l1.5 2V12h-7V4.5z"/></svg></span><span><em>Bu sahnede:</em> <b id="shopName">Karbonatlı Temizlik Sirkesi</b> · İncele &rarr;</span></button>
     </div>
-    <div class="pbar"><i id="pProg"></i></div>
+    <div class="segs" id="segs" data-noexit aria-label="Film zaman çubuğu"></div>
   </div>
-  <div class="plist" data-noexit>
-    <button class="arr" id="pUp" aria-label="Önceki videolar"><svg viewBox="0 0 24 24"><path d="M6 15l6-6 6 6"/></svg></button>
-    <div class="track" id="track"></div>
-    <button class="arr" id="pDown" aria-label="Sonraki videolar"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
+  <div class="chap" data-noexit>
+    <h3>BÖLÜMLER</h3>
+    <div id="chapList" style="display:flex;flex-direction:column;gap:4px"></div>
   </div>
 </div>
 
@@ -474,7 +480,8 @@ var $ = function(s){return document.querySelector(s);};
 var ad=$('#ad'), stage=$('#stage'), W=444, H=250, view=1;
 var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
 function roomById(id){ for (var i=0;i<CONFIG.rooms.length;i++) if (CONFIG.rooms[i].id===id) return CONFIG.rooms[i]; return CONFIG.rooms[0]; }
-function pad(n){ return (n<10?'0':'')+n; }
+function fmt(s){ s=Math.max(0,Math.floor(s)); return Math.floor(s/60)+':'+(s%60<10?'0':'')+(s%60); }
+function plain(h){ return h.replace(/<br\s*\/?>/g,' '); }
 
 /* ---------- Tıklama / çıkış ---------- */
 function exitUrl(){ return (typeof window.clickTag==='string' && window.clickTag) || CONFIG.landing; }
@@ -491,10 +498,7 @@ ad.addEventListener('keydown',function(e){ if(e.key==='Enter' && e.target===ad) 
 /* ---------- 30 sn kuralı: etkileşim yoksa animasyonlar durur ---------- */
 var lastAct = Date.now();
 function alive(){ return Date.now()-lastAct < 30000; }
-function poke(){
-  var was=alive(); lastAct=Date.now(); ad.classList.remove('still');
-  if (!was){ if (view===1) Rooms.wake(); else Player.wake(); }
-}
+function poke(){ var was=alive(); lastAct=Date.now(); ad.classList.remove('still'); if (!was) Film.wake(); }
 ['pointerdown','keydown'].forEach(function(ev){ ad.addEventListener(ev,poke); });
 setInterval(function(){ if(!alive()) ad.classList.add('still'); },1000);
 
@@ -514,15 +518,16 @@ function rr(x,a,b,w,h,r){ x.beginPath(); x.moveTo(a+r,b); x.arcTo(a+w,b,a+w,b+h,
 function star(x,cx,cy,r,a){ x.save(); x.globalAlpha=a; x.translate(cx,cy); x.fillStyle='#fff'; x.shadowColor='#bff3ff'; x.shadowBlur=8;
   x.beginPath(); for(var k=0;k<8;k++){ var rad=k%2?r*.28:r, an=k*Math.PI/4; x.lineTo(Math.cos(an)*rad,Math.sin(an)*rad);} x.closePath(); x.fill(); x.restore(); }
 function ease(t){ return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2; }
+function clamp(v,a,b){ return Math.max(a,Math.min(b,v)); }
 
 /* ==========================================================================
-   SAHNE ÜRETİCİ – video yoksa her oda için "ürün kullanımı" animasyonu
-   (444x250 mantıksal alanda çizer, verilen tuvale ölçekler)
+   YER TUTUCU FİLM SAHNESİ – video yoksa bölüm için "ürün kullanımı" animasyonu.
+   renderAt(ms) zamana göre çizer → ileri/geri sarma desteklenir.
    ========================================================================== */
 function makeScene(cv){
   var ctx=cv.getContext('2d'); ctx.scale(cv.width/W, cv.height/H);
   var baseC=off(), stainC=off(), b=baseC.getContext('2d'), st=stainC.getContext('2d');
-  var room=null, path=[], plen=0, prev=null, t0=0, running=false, held=-1, raf=0, endT=0, onEnd=null, sparks=[], drops=[], foam=[], D=CONFIG.autoplayRoomMs;
+  var room=null, seed=1, path=[], plen=0, lastE=-1, lastWt=0, drops=[], sparks=[], foam=[];
 
   function drawBase(r){
     var g=b.createLinearGradient(0,0,W,H); g.addColorStop(0,r.base[0]); g.addColorStop(1,r.base[1]);
@@ -560,8 +565,8 @@ function makeScene(cv){
       b.fillStyle='rgba(255,255,255,.18)'; for (var gx=0;gx<W;gx+=36){ b.fillRect(gx,0,2,H); }
     }
   }
-  function drawStains(r,seed){
-    var R=rng(seed); st.globalCompositeOperation='source-over'; st.clearRect(0,0,W,H);
+  function drawStains(r,sd){
+    var R=rng(sd); st.globalCompositeOperation='source-over'; st.clearRect(0,0,W,H);
     if (r.pattern==='glass'){
       st.fillStyle='rgba(205,210,212,.62)'; st.fillRect(12,12,W-24,H-24);
       for (var i=0;i<160;i++){ st.fillStyle='rgba('+r.stain+','+(.2+R()*.35)+')'; st.beginPath(); st.arc(14+R()*(W-28),14+R()*(H-28),.8+R()*3.2,0,7); st.fill(); }
@@ -594,10 +599,10 @@ function makeScene(cv){
       if (acc+l>=target){ var u=(target-acc)/l; return [a[0]+(c[0]-a[0])*u, a[1]+(c[1]-a[1])*u]; } acc+=l; }
     return path[path.length-1].slice();
   }
-  function erase(x,y){
+  function erase(p){
     st.globalCompositeOperation='destination-out';
-    var g=st.createRadialGradient(x,y,0,x,y,40); g.addColorStop(0,'rgba(0,0,0,1)'); g.addColorStop(.6,'rgba(0,0,0,.9)'); g.addColorStop(1,'rgba(0,0,0,0)');
-    st.fillStyle=g; st.beginPath(); st.arc(x,y,40,0,7); st.fill(); st.globalCompositeOperation='source-over';
+    var g=st.createRadialGradient(p[0],p[1],0,p[0],p[1],40); g.addColorStop(0,'rgba(0,0,0,1)'); g.addColorStop(.6,'rgba(0,0,0,.9)'); g.addColorStop(1,'rgba(0,0,0,0)');
+    st.fillStyle=g; st.beginPath(); st.arc(p[0],p[1],40,0,7); st.fill(); st.globalCompositeOperation='source-over';
   }
   function sponge(x,y,rot){
     ctx.save(); ctx.translate(x,y); ctx.rotate(rot); ctx.shadowColor='rgba(0,0,0,.25)'; ctx.shadowBlur=10; ctx.shadowOffsetY=5;
@@ -606,130 +611,174 @@ function makeScene(cv){
     ctx.fillStyle='#e8b81f'; [[-16,8],[2,12],[18,5]].forEach(function(p){ ctx.beginPath(); ctx.arc(p[0],p[1],2.4,0,7); ctx.fill(); });
     ctx.restore();
   }
-  function bottleIcon(x,y,a){
-    var cs=getComputedStyle(ad);
+  function bottleIcon(x,y,a,p){
     ctx.save(); ctx.globalAlpha=a; ctx.translate(x,y);
     ctx.fillStyle='#fff'; rr(ctx,-14,-26,28,56,9); ctx.fill();
-    ctx.fillStyle=cs.getPropertyValue('--lab')||'#1e90d8'; rr(ctx,-14,-6,28,24,3); ctx.fill();
-    ctx.fillStyle=cs.getPropertyValue('--cap')||'#0b5aa3'; rr(ctx,-9,-36,18,12,3); ctx.fill();
+    ctx.fillStyle=p.lab; rr(ctx,-14,-6,28,24,3); ctx.fill();
+    ctx.fillStyle=p.cap; rr(ctx,-9,-36,18,12,3); ctx.fill();
     ctx.fillStyle='#fff'; ctx.font='800 7px Nunito,sans-serif'; ctx.textAlign='center'; ctx.fillText('ferfresh',0,8);
     ctx.restore();
   }
-  function frame(now){
-    if (!running) return;
-    var e=now-t0;
-    ctx.clearRect(0,0,W,H); ctx.drawImage(baseC,0,0,W,H);
-    // 1) sprey: şişe girer, damlacıklar yüzeye düşer
-    if (e>350 && e<1500){
-      var a=Math.min(1,(e-350)/250)*Math.min(1,(1500-e)/250);
-      if (drops.length<70 && e<1150) for (var d=0;d<4;d++) drops.push({x:60+Math.random()*(W-120),y:30+Math.random()*(H-60),r:1.5+Math.random()*3,b:now});
-      var cone=ctx.createRadialGradient(W-60,40,0,W-60,40,260); cone.addColorStop(0,'rgba(255,255,255,.55)'); cone.addColorStop(1,'rgba(255,255,255,0)');
-      ctx.save(); ctx.globalAlpha=a*.8; ctx.fillStyle=cone; ctx.beginPath(); ctx.moveTo(W-66,44); ctx.lineTo(40,10); ctx.lineTo(80,H-10); ctx.closePath(); ctx.fill(); ctx.restore();
-    }
-    // 2) silme
-    var wt=Math.max(0,Math.min(1,(e-1500)/2800)), pos=null;
-    if (wt>0 && wt<1){
-      pos=at(ease(wt));
-      if (prev){ var dx=pos[0]-prev[0], dy=pos[1]-prev[1], n=Math.max(1,Math.ceil(Math.hypot(dx,dy)/5)); for (var s=1;s<=n;s++) erase(prev[0]+dx*s/n, prev[1]+dy*s/n); }
-      else erase(pos[0],pos[1]);
-      prev=pos;
-      if (Math.random()<.6) foam.push({x:pos[0]+(Math.random()-.5)*50,y:pos[1]+(Math.random()-.5)*30,r:2+Math.random()*4,b:now});
-    }
-    if (wt>=1 && !sparks.done){ st.clearRect(0,0,W,H); sparks.done=true; for (var k=0;k<9;k++) sparks.push({x:30+Math.random()*(W-60),y:25+Math.random()*(H-80),r:7+Math.random()*9,d:Math.random()*500}); }
-    ctx.drawImage(stainC,0,0,W,H);
-    drops.forEach(function(p){ var age=(now-p.b)/250, fade=wt>0?Math.max(0,1-wt*1.6):1; ctx.fillStyle='rgba(255,255,255,'+(.75*Math.min(1,age)*fade)+')'; ctx.beginPath(); ctx.arc(p.x,p.y,p.r*Math.min(1,age),0,7); ctx.fill(); });
-    foam=foam.filter(function(p){ var a=1-(now-p.b)/700; if(a<=0) return false; ctx.fillStyle='rgba(255,255,255,'+(a*.9)+')'; ctx.strokeStyle='rgba(34,179,214,'+(a*.5)+')'; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,7); ctx.fill(); ctx.stroke(); return true; });
-    if (e>250 && e<1650){ var ba=Math.min(1,(e-250)/200)*Math.min(1,(1650-e)/200); bottleIcon(W-46+(1-ba)*30,96,ba); }
-    if (pos) sponge(pos[0],pos[1],Math.sin(now/90)*.12);
-    if (sparks.done){ var se=e-4300; sparks.forEach(function(s){ var u=(se-s.d)/700; if(u>0&&u<1) star(ctx,s.x,s.y,s.r*Math.sin(u*Math.PI),Math.sin(u*Math.PI)); }); }
-    if (e>=D){
-      if (onEnd || !alive()){ running=false; drawClean(); return; }
-      restart();
-    }
-    raf=requestAnimationFrame(frame);
-  }
-  function fin(){ running=false; cancelAnimationFrame(raf); if (onEnd && alive()) onEnd(); else drawClean(); }
-  function restart(){ drawStains(room,Math.floor(Math.random()*1e6)); prev=null; drops=[]; foam=[]; sparks=[]; t0=performance.now(); }
-  function drawClean(){
-    ctx.clearRect(0,0,W,H); ctx.drawImage(baseC,0,0,W,H);
-    [[70,60,12],[300,48,9],[380,170,13],[150,180,8],[230,110,10]].forEach(function(s){ star(ctx,s[0],s[1],s[2],.95); });
-  }
+  var prod=CONFIG.products[0];
   return {
-    set:function(r){ room=r; drawBase(r); buildPath(r); },
-    clean:function(){ clearTimeout(endT); running=false; held=-1; cancelAnimationFrame(raf); drawClean(); },
-    play:function(cb){
-      onEnd=cb||null; clearTimeout(endT); cancelAnimationFrame(raf); held=-1; running=true; restart();
-      if (onEnd) endT=setTimeout(fin,D);
-      if (reduce){ st.clearRect(0,0,W,H); drawClean(); running=false; return; }
-      raf=requestAnimationFrame(frame);
+    setChapter:function(r,sd,p){
+      room=r; seed=sd; prod=p||prod; drawBase(r); buildPath(r);
+      var R=rng(sd*7+3); drops=[]; sparks=[];
+      for (var i=0;i<64;i++) drops.push({x:60+R()*(W-120),y:30+R()*(H-60),r:1.5+R()*3,t:350+R()*800});
+      for (var k=0;k<9;k++) sparks.push({x:30+R()*(W-60),y:25+R()*(H-80),r:7+R()*9,d:R()*500});
+      lastE=-1;
     },
-    stop:function(){ clearTimeout(endT); running=false; held=-1; cancelAnimationFrame(raf); },
-    pause:function(){ if (!running) return; clearTimeout(endT); held=performance.now()-t0; running=false; cancelAnimationFrame(raf); },
-    resume:function(){ if (held<0) return; t0=performance.now()-held; if (onEnd) endT=setTimeout(fin,Math.max(0,D-held)); held=-1; running=true; raf=requestAnimationFrame(frame); },
-    running:function(){ return running; },
-    progress:function(){ return held>=0 ? held/D : running ? Math.min(1,(performance.now()-t0)/D) : 1; },
-    thumb:function(r,seed){
-      drawBase(r); drawStains(r,seed);
-      var c=document.createElement('canvas'); c.width=180; c.height=102; var x=c.getContext('2d');
-      x.drawImage(baseC,0,0,180,102); x.globalAlpha=.8; x.drawImage(stainC,0,0,180,102); return c;
+    renderAt:function(e){
+      if (!room) return;
+      if (lastE<0 || e<lastE){ drawStains(room,seed); lastWt=0; foam=[]; }
+      var wt=clamp((e-1500)/2800,0,1), pos=null;
+      if (wt>lastWt){
+        var a0=ease(lastWt), a1=ease(wt), n=Math.max(1,Math.ceil((a1-a0)*plen/5));
+        for (var s=1;s<=n;s++) erase(at(a0+(a1-a0)*s/n));
+        if (wt<1 && e-lastE<250){ var fp=at(a1); for (var f=0;f<2;f++) foam.push({x:fp[0]+(Math.random()-.5)*50,y:fp[1]+(Math.random()-.5)*30,r:2+Math.random()*4,b:e}); }
+        lastWt=wt;
+      }
+      if (wt>=1) st.clearRect(0,0,W,H);
+      if (wt>0 && wt<1) pos=at(ease(wt));
+      ctx.clearRect(0,0,W,H); ctx.drawImage(baseC,0,0,W,H);
+      if (e>350 && e<1500){
+        var ca=Math.min(1,(e-350)/250)*Math.min(1,(1500-e)/250);
+        var cone=ctx.createRadialGradient(W-60,40,0,W-60,40,260); cone.addColorStop(0,'rgba(255,255,255,.55)'); cone.addColorStop(1,'rgba(255,255,255,0)');
+        ctx.save(); ctx.globalAlpha=ca*.8; ctx.fillStyle=cone; ctx.beginPath(); ctx.moveTo(W-66,44); ctx.lineTo(40,10); ctx.lineTo(80,H-10); ctx.closePath(); ctx.fill(); ctx.restore();
+      }
+      ctx.drawImage(stainC,0,0,W,H);
+      var fade=wt>0?Math.max(0,1-wt*1.6):1;
+      if (fade>0) drops.forEach(function(p){ if (e<p.t) return; var age=Math.min(1,(e-p.t)/250); ctx.fillStyle='rgba(255,255,255,'+(.75*age*fade)+')'; ctx.beginPath(); ctx.arc(p.x,p.y,p.r*age,0,7); ctx.fill(); });
+      foam=foam.filter(function(p){ var a=1-(e-p.b)/700; if(a<=0||a>1) return false; ctx.fillStyle='rgba(255,255,255,'+(a*.9)+')'; ctx.strokeStyle='rgba(34,179,214,'+(a*.5)+')'; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,7); ctx.fill(); ctx.stroke(); return true; });
+      if (e>250 && e<1650){ var ba=Math.min(1,(e-250)/200)*Math.min(1,(1650-e)/200); bottleIcon(W-46+(1-ba)*30,96,ba,prod); }
+      if (pos) sponge(pos[0],pos[1],Math.sin(e/90)*.12);
+      var se=e-4300; if (se>0) sparks.forEach(function(s){ var u=(se-s.d)/700; if(u>0&&u<1) star(ctx,s.x,s.y,s.r*Math.sin(u*Math.PI),Math.sin(u*Math.PI)); });
+      lastE=e;
+    },
+    thumb:function(r,sd){
+      drawBase(r); drawStains(r,sd);
+      var c=document.createElement('canvas'); c.width=92; c.height=58; var x=c.getContext('2d');
+      x.drawImage(baseC,0,0,92,58); x.globalAlpha=.8; x.drawImage(stainC,0,0,92,58); return c;
     }
   };
 }
 
 /* ==========================================================================
-   SAHNE 1 – ODALAR + VİDEO
+   FİLM – tek kampanya filmi (tek dosya · art arda klipler · yer tutucu)
    ========================================================================== */
-var S1=makeScene($('#scene'));
-var vMain=$('#vMain'), vBlur=$('#vBlur');
-stage.classList.add(CONFIG.fit==='cover'?'fit-cover':'fit-blur');
-var Rooms=(function(){
-  var nav=$('#rooms'), idx=0, auto=true, btns=[];
-  CONFIG.rooms.forEach(function(r,i){
-    var b=document.createElement('button'); b.type='button'; b.innerHTML=r.label+'<span class="bar"></span>';
-    b.setAttribute('aria-label',r.title+' – '+r.claim);
-    b.addEventListener('click',function(){ auto=false; Clean.finish(true); show(i,true); });
-    nav.appendChild(b); btns.push(b);
-  });
+var Film=(function(){
+  var C=CONFIG.campaign, media=$('#media'), vm=$('#fMain'), vb=$('#fBlur'), sc=makeScene($('#fScene'));
+  var blur=CONFIG.fit==='blur', single=!!C.src, segs=[], total=0, t=0, idx=-1, playing=false, base=0, userPaused=false;
+  var L={ch:[],time:[],state:[],layout:[]};
+  media.classList.add(blur?'fit-blur':'fit-cover');
+  if (C.poster) vm.poster=C.poster;
+  C.chapters.forEach(function(c){ segs.push({c:c, room:roomById(c.room), d:c.dur||C.chapterSec||6, fail:false}); });
 
-  function bar(ms){
-    btns.forEach(function(b){ var s=b.querySelector('.bar'); s.classList.remove('run'); s.style.animationDuration=''; });
-    if (!ms) return; var s=btns[idx].querySelector('.bar'); void s.offsetWidth; s.style.animationDuration=ms+'ms'; s.classList.add('run');
+  function layout(){
+    total=0;
+    segs.forEach(function(s,i){
+      if (single){ s.start=s.c.start||0; var nx=segs[i+1]; s.dur=nx ? Math.max(.5,(nx.c.start||0)-s.start) : Math.max(.5,(C.duration||s.start+(C.chapterSec||6))-s.start); total=Math.max(total,s.start+s.dur); }
+      else { s.start=total; s.dur=s.d; total+=s.d; }
+    });
+    emit('layout');
   }
-  function next(){
-    if (view!==1) return;
-    if (auto && alive()){
-      show((idx+1)%CONFIG.rooms.length,true);
-    } else show(idx,true);
+  function emit(k,v){ L[k].forEach(function(f){ f(v); }); }
+  function segAt(T){ for (var i=segs.length-1;i>=0;i--) if (T>=segs[i].start) return i; return 0; }
+  function real(s){ return !s.fail && (single || !!s.c.src); }
+  function vtime(){ var s=segs[idx]; return single ? vm.currentTime : s.start+vm.currentTime; }
+  function setVT(local){ try{ vm.currentTime=local; if (blur) vb.currentTime=local; }catch(_){} }
+  function vplay(){ vm.play().catch(function(){}); if (blur) vb.play().catch(function(){}); }
+  function vpause(){ vm.pause(); vb.pause(); }
+
+  function fallback(s){
+    if (single){ single=false; segs.forEach(function(x){ x.fail=true; }); } else s.fail=true;
+    media.classList.remove('has-video'); vpause(); layout(); activate(segAt(t),true);
   }
-  function show(i,play){
-    idx=i; var r=CONFIG.rooms[i];
-    btns.forEach(function(b,k){ b.classList.toggle('on',k===i); });
-    $('#capT').textContent=r.title; var c=$('#capC'); c.textContent=r.claim; c.classList.remove('swap'); void c.offsetWidth; c.classList.add('swap');
-    vMain.onended=null;
-    S1.set(r);
-    if (!play){ S1.clean(); bar(0); return; }
-    if (r.video){
-      vMain.loop=!auto; vBlur.loop=true;
-      vMain.src=r.video; if (CONFIG.fit==='blur') vBlur.src=r.video;
-      var p=vMain.play();
-      var ok=function(){ S1.stop(); stage.classList.add('has-video'); if(CONFIG.fit==='blur') vBlur.play().catch(function(){});
-        if (auto){ vMain.onended=next; bar(0); } };
-      var fail=function(){ stage.classList.remove('has-video'); runScene(); };
-      vMain.onerror=fail;
-      if (p && p.then) p.then(ok,fail); else ok();
-    } else { stage.classList.remove('has-video'); vMain.removeAttribute('src'); vBlur.removeAttribute('src'); runScene(); }
+  function activate(i,force){
+    var s=segs[i], changed=i!==idx; idx=i;
+    if (real(s)){
+      var src=single?C.src:s.c.src;
+      if (vm.getAttribute('src')!==src){
+        vm.setAttribute('src',src); if (blur) vb.setAttribute('src',src);
+        vm.onloadedmetadata=function(){ if (vm.duration && isFinite(vm.duration)){ if (single){ if(!C.duration){ C.duration=vm.duration; layout(); } } else if (!s.c.dur){ s.d=vm.duration; layout(); } } };
+        vm.onerror=function(){ fallback(s); };
+        if (!single) setVT(0);
+      }
+      media.classList.add('has-video');
+      if (playing) vplay();
+    } else {
+      media.classList.remove('has-video'); vpause();
+      sc.setChapter(s.room,i+1,CONFIG.products[s.c.product||0]);
+      sc.renderAt((t-s.start)*1000);
+    }
+    if (changed||force) emit('ch',i);
   }
-  function runScene(){ bar(auto?CONFIG.autoplayRoomMs:0); S1.play(auto?next:null); }
-  function stop(){ S1.stop(); vMain.pause(); vBlur.pause(); bar(0); }
+  function seek(T){
+    t=clamp(T,0,Math.max(0,total-.05)); var i=segAt(t), s=segs[i];
+    if (i!==idx || (!single && real(s))) activate(i);
+    if (real(s)){ var local=single?t:t-s.start; if (vm.readyState>=1) setVT(local); else vm.addEventListener('loadedmetadata',function h(){ vm.removeEventListener('loadedmetadata',h); setVT(local); }); }
+    else sc.renderAt((t-s.start)*1000);
+    base=performance.now()-t*1000; emit('time',t);
+  }
+  function end(){ if (alive()){ seek(0); if (playing && real(segs[idx])) vplay(); } else pause(false); }
+  function tick(){
+    if (!playing || idx<0) return;
+    var s=segs[idx], now=performance.now();
+    if (real(s) && media.classList.contains('has-video')){
+      if (vm.readyState>=2){ t=vtime(); base=now-t*1000; } else return;
+      if (single){ if (vm.ended || t>=total-.05) return end(); var ni=segAt(t); if (ni!==idx) activate(ni); }
+      else if (vm.ended || (vm.duration && vm.currentTime>=vm.duration-.05)){ if (idx>=segs.length-1) return end(); t=segs[idx+1].start; base=now-t*1000; activate(idx+1); vplay(); }
+    } else {
+      t=(now-base)/1000;
+      if (t>=s.start+s.dur){ if (idx>=segs.length-1) return end(); activate(idx+1); s=segs[idx]; if (real(s)){ vplay(); return; } }
+      sc.renderAt(clamp((t-s.start)*1000,0,s.dur*1000));
+    }
+    emit('time',t);
+  }
+  (function loop(){ tick(); requestAnimationFrame(loop); })();
+  setInterval(tick,200);   // rAF kısıtlansa da film akışı sürsün
+
+  function play(){ userPaused=false; playing=true; base=performance.now()-t*1000; if (real(segs[idx])) vplay(); emit('state',true); }
+  function pause(user){ if (user) userPaused=true; playing=false; vpause(); emit('state',false); }
+
+  layout(); activate(0,true); sc.renderAt(0);
   return {
-    show:show, stop:stop,
-    wake:function(){ if (stage.classList.contains('cleared') && !stage.classList.contains('has-video') && !S1.running()) show(idx,true); },
-    replayMode:function(){ auto=true; }
+    segs:function(){ return segs; }, total:function(){ return total; }, time:function(){ return t; }, idx:function(){ return idx; },
+    isPlaying:function(){ return playing; }, hasAudio:function(){ return real(segs[idx]) && media.classList.contains('has-video'); },
+    on:function(k,f){ L[k].push(f); },
+    play:play, pause:function(){ pause(true); }, toggle:function(){ if (playing) pause(true); else play(); },
+    seek:seek, seekChapter:function(i){ seek(segs[i].start+.01); },
+    mute:function(m){ vm.muted=m; },
+    mount:function(el){ el.insertBefore(media, el.firstChild); if (playing && real(segs[idx])) vplay(); },
+    wake:function(){ if (!playing && !userPaused) play(); },
+    refresh:function(){ emit('ch',idx); emit('layout'); emit('time',t); }
   };
 })();
 
 /* ==========================================================================
-   SAHNE 1 – KİRLİ KATMAN (sürükleyerek temizleme)
+   SAHNE 1 – BÖLÜM SEKMELERİ (filmdeki konuma göre)
+   ========================================================================== */
+var Chips=(function(){
+  var nav=$('#rooms'), btns=[];
+  Film.segs().forEach(function(s,i){
+    var b=document.createElement('button'); b.type='button'; b.innerHTML=s.room.label+'<span class="bar"></span>';
+    b.setAttribute('aria-label','Filmde '+s.room.title+' bölümüne git');
+    b.addEventListener('click',function(){ Clean.finish(true); Film.seekChapter(i); Film.play(); });
+    nav.appendChild(b); btns.push(b);
+  });
+  Film.on('ch',function(i){
+    var s=Film.segs()[i], r=s.room;
+    btns.forEach(function(b,k){ b.classList.toggle('on',k===i); b.querySelector('.bar').style.width='0'; });
+    $('#capT').textContent=r.title; var c=$('#capC'); c.textContent=r.claim; c.classList.remove('swap'); void c.offsetWidth; c.classList.add('swap');
+  });
+  Film.on('time',function(t){
+    var i=Film.idx(), s=Film.segs()[i]; if (!btns[i]) return;
+    btns[i].querySelector('.bar').style.width=(clamp((t-s.start)/s.dur,0,1)*100)+'%';
+  });
+})();
+
+/* ==========================================================================
+   SAHNE 1 – KİRLİ KATMAN (sürükleyerek temizleme → filmi ortaya çıkarır)
    ========================================================================== */
 var Clean=(function(){
   var cv=$('#dirt'), x=cv.getContext('2d',{willReadFrequently:true}), cur=$('#cur'), done=false, moves=0, touched=false, ghostOn=false;
@@ -755,17 +804,15 @@ var Clean=(function(){
     for (var i=3;i<d.length;i+=4*12){ n++; if (d[i]<70) c++; }
     return c/n;
   }
-  var last=null;
+  var last=null, down=false, lastScrub=0;
   function stroke(px,py){
     if (last){ var dx=px-last[0], dy=py-last[1], n=Math.max(1,Math.ceil(Math.hypot(dx,dy)/6)); for (var s=1;s<=n;s++) wipe(last[0]+dx*s/n,last[1]+dy*s/n,30); }
     else wipe(px,py,30);
-    last=[px,py];
-    lastScrub=Date.now();
+    last=[px,py]; lastScrub=Date.now();
     if (++moves%8===0 && !done && ratio()>.4) finish();
   }
   function local(e){ var b=cv.getBoundingClientRect(); return [(e.clientX-b.left)*W/b.width,(e.clientY-b.top)*H/b.height]; }
   function moveCur(p){ cur.style.left=p[0]+'px'; cur.style.top=p[1]+'px'; }
-  var down=false, lastScrub=0;
   cv.addEventListener('pointerenter',function(){ stage.classList.add('hovering'); });
   cv.addEventListener('pointerleave',function(){ stage.classList.remove('hovering'); last=null; down=false; });
   cv.addEventListener('pointerdown',function(e){ down=true; touched=true; ghostOn=false; stage.classList.add('scrubbing'); last=null; var p=local(e); moveCur(p); stroke(p[0],p[1]); try{cv.setPointerCapture(e.pointerId);}catch(_){} });
@@ -775,21 +822,21 @@ var Clean=(function(){
   window.addEventListener('pointerup',function(){ down=false; last=null; });
 
   function animatePath(pts,dur,cb){
-    var t0=performance.now(), L=[0], tot=0;
-    for (var i=1;i<pts.length;i++){ tot+=Math.hypot(pts[i][0]-pts[i-1][0],pts[i][1]-pts[i-1][1]); L.push(tot); }
+    var t0=performance.now(), Ls=[0], tot=0;
+    for (var i=1;i<pts.length;i++){ tot+=Math.hypot(pts[i][0]-pts[i-1][0],pts[i][1]-pts[i-1][1]); Ls.push(tot); }
     ghostOn=true; cur.classList.add('ghost'); last=null;
     if (cb) setTimeout(function(){ if (ghostOn && !done && view===1){ ghostOn=false; cur.classList.remove('ghost'); cb(); } },dur+400);
     (function step(now){
       if (done || !ghostOn || view!==1){ cur.classList.remove('ghost'); return; }
-      var u=Math.min(1,(now-t0)/dur), tgt=ease(u)*tot, k=1; while (k<L.length-1 && L[k]<tgt) k++;
-      var a=pts[k-1], b=pts[k], f=(tgt-L[k-1])/((L[k]-L[k-1])||1), p=[a[0]+(b[0]-a[0])*f, a[1]+(b[1]-a[1])*f];
+      var u=Math.min(1,(now-t0)/dur), tgt=ease(u)*tot, k=1; while (k<Ls.length-1 && Ls[k]<tgt) k++;
+      var a=pts[k-1], b=pts[k], f=(tgt-Ls[k-1])/((Ls[k]-Ls[k-1])||1), p=[a[0]+(b[0]-a[0])*f, a[1]+(b[1]-a[1])*f];
       moveCur(p); stroke(p[0],p[1]);
       if (u<1) requestAnimationFrame(step); else { cur.classList.remove('ghost'); last=null; ghostOn=false; cb&&cb(); }
     })(performance.now());
   }
   function ghost(){ if (touched||done||view!==1) return; animatePath([[80,70],[180,110],[150,160],[260,150],[330,190]],1700,null); }
   function autoClean(force){
-    if ((touched&&!force)||done||view!==1) return;
+    if ((touched&&!force)||done||view!==1||ghostOn) return;
     var pts=[], rows=[30,75,120,165,210,240];
     rows.forEach(function(y,i){ pts.push(i%2?[424,y]:[20,y]); pts.push(i%2?[20,y]:[424,y]); });
     animatePath(pts,2200,function(){ finish(); });
@@ -800,7 +847,8 @@ var Clean=(function(){
     for (var i=0;i<16;i++){ var s=document.createElement('span'); s.className='spark';
       var a=Math.random()*Math.PI*2, d=50+Math.random()*130, sc=.6+Math.random()*1.2;
       s.style.left=(W/2)+'px'; s.style.top=(H/2-10)+'px'; stage.appendChild(s);
-      s.animate([{transform:'translate(0,0) scale(0) rotate(0)',opacity:1},{transform:'translate('+Math.cos(a)*d+'px,'+Math.sin(a)*d*.6+'px) scale('+sc+') rotate(90deg)',opacity:1,offset:.6},{transform:'translate('+Math.cos(a)*d*1.1+'px,'+Math.sin(a)*d*.66+'px) scale(0) rotate(160deg)',opacity:0}],{duration:1100+Math.random()*400,easing:'cubic-bezier(.2,.8,.3,1)'}).onfinish=(function(n){return function(){ n.remove(); };})(s);
+      if (s.animate) s.animate([{transform:'translate(0,0) scale(0) rotate(0)',opacity:1},{transform:'translate('+Math.cos(a)*d+'px,'+Math.sin(a)*d*.6+'px) scale('+sc+') rotate(90deg)',opacity:1,offset:.6},{transform:'translate('+Math.cos(a)*d*1.1+'px,'+Math.sin(a)*d*.66+'px) scale(0) rotate(160deg)',opacity:0}],{duration:1100+Math.random()*400,easing:'cubic-bezier(.2,.8,.3,1)',fill:'forwards'});
+      setTimeout((function(n){ return function(){ n.remove(); }; })(s),1600);
     }
     var t=$('#toast'); t.classList.remove('show'); void t.offsetWidth; t.classList.add('show');
   }
@@ -808,151 +856,138 @@ var Clean=(function(){
     if (done) return; done=true; ghostOn=false;
     stage.classList.add('cleared'); stage.classList.remove('scrubbing');
     $('.brand .cta').classList.add('pulse');
-    if (silent) return;
-    S1.clean(); burst();
-    setTimeout(function(){ if (view===1) Rooms.show(0,true); },1400);
+    if (!silent) burst();
   }
   function reset(){
     done=false; touched=false; ghostOn=false; moves=0; last=null; paint();
     $('#toast').classList.remove('show'); $('.brand .cta').classList.remove('pulse');
-    Rooms.stop(); stage.classList.remove('cleared','has-video','scrubbing');
-    Rooms.show(0,false);
+    stage.classList.remove('cleared','scrubbing');
   }
   paint();
   return { finish:finish, reset:reset, ghost:ghost, autoClean:function(){ autoClean(false); }, busy:function(){ return down || Date.now()-lastScrub<1500; } };
 })();
-$('#replay').addEventListener('click',function(){ Clean.reset(); setTimeout(Clean.ghost,900); });
+$('#replay').addEventListener('click',function(){ Clean.reset(); Film.seek(0); Film.play(); setTimeout(Clean.ghost,900); });
 
 /* ==========================================================================
-   SAHNE 1 – ÜRÜN (varyantlar + dönen faydalar)
+   SAHNE 1 – ÜRÜN (filmdeki ürünle eşleşir · varyant seçimi · dönen faydalar)
    ========================================================================== */
-(function(){
-  var vars=$('#vars'), cl=$('#claims'), bottle=$('#bottle'), cur=0, ci=0, userPicked=false;
+var Product=(function(){
+  var vars=$('#vars'), cl=$('#claims'), bottle=$('#bottle'), cur=-1, ci=0, userPicked=0;
   var check='<svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.3 5 8.6 9.6 3.6"/></svg>';
   CONFIG.claims.forEach(function(t,i){ var d=document.createElement('div'); d.className='c'+(i===0?' on':''); d.innerHTML='<i>'+check+'</i><span>'+t+'</span>'; cl.appendChild(d); });
   CONFIG.products.forEach(function(p,i){
     var b=document.createElement('button'); b.type='button'; b.style.background='linear-gradient(135deg,'+p.lab+','+p.lab2+')';
-    b.setAttribute('aria-label',p.name.replace('<br>',' ')+' '+p.size); if(i===0) b.className='on';
-    b.addEventListener('click',function(){ userPicked=true; pick(i); }); vars.appendChild(b);
+    b.setAttribute('aria-label',plain(p.name)+' '+p.size);
+    b.addEventListener('click',function(){ userPicked=Date.now(); pick(i,true); }); vars.appendChild(b);
   });
   var lbl=document.createElement('span'); vars.appendChild(lbl);
-  function pick(i){
-    cur=i; var p=CONFIG.products[i];
+  function pick(i,manual){
+    if (i===cur) return; cur=i; var p=CONFIG.products[i];
     ad.style.setProperty('--lab',p.lab); ad.style.setProperty('--lab2',p.lab2); ad.style.setProperty('--cap',p.cap);
     bottle.querySelector('.btag').textContent=p.tag; lbl.textContent=p.size;
+    $('#kick').innerHTML=manual?'Ferfresh':'<b>&#9679;</b> Filmdeki ürün';
     var n=$('#pname'); n.innerHTML=p.name+' <small>'+p.size+'</small>'; n.classList.remove('swap'); void n.offsetWidth; n.classList.add('swap');
     [].forEach.call(vars.querySelectorAll('button'),function(b,k){ b.classList.toggle('on',k===i); });
     wob();
   }
   function wob(){ bottle.classList.remove('wob'); void bottle.offsetWidth; bottle.classList.add('wob'); }
   bottle.addEventListener('pointerenter',wob);
-  bottle.addEventListener('click',function(){ userPicked=true; pick((cur+1)%CONFIG.products.length); });
-  lbl.textContent=CONFIG.products[0].size;
+  bottle.addEventListener('click',function(){ userPicked=Date.now(); pick((cur+1)%CONFIG.products.length,true); });
   setInterval(function(){ if(!alive()||view!==1) return; var c=cl.children; c[ci].classList.remove('on'); ci=(ci+1)%c.length; c[ci].classList.add('on'); },2600);
-  setInterval(function(){ if(!alive()||userPicked||view!==1) return; pick((cur+1)%CONFIG.products.length); },7000);
+  // filmle eşleşme: kullanıcı son 8 sn'de elle seçmediyse filmdeki ürünü göster
+  Film.on('ch',function(i){ if (Date.now()-userPicked>8000) pick(Film.segs()[i].c.product||0,false); });
 
   // Sahne 2 için iki varyant şişesi (aynı vektör çizimin kopyaları)
-  var duo=$('#duo'), src=bottle.querySelector('svg');
+  var duo=$('#duo'), src=bottle.querySelector('svg'), minis=[];
   ['a','b'].forEach(function(cls,k){
     var p=CONFIG.products[k%CONFIG.products.length], m=document.createElement('div'); m.className='mini '+cls;
     m.style.setProperty('--lab',p.lab); m.style.setProperty('--lab2',p.lab2); m.style.setProperty('--cap',p.cap);
     // kopyadaki id'leri benzersizleştir (gizli sahnedeki clipPath'e bağlanmasın)
     m.innerHTML=src.outerHTML.replace(/\b(pet|liq|bodyClip)\b/g,'$1_'+cls);
-    m.querySelector('.btag').textContent=p.tag; duo.appendChild(m);
+    m.querySelector('.btag').textContent=p.tag; duo.appendChild(m); minis.push(m);
   });
+  Film.on('ch',function(i){ var pi=Film.segs()[i].c.product||0; minis.forEach(function(m,k){ m.classList.toggle('hot',k===pi); }); });
+  pick(0,false);
+  return { pick:pick };
 })();
 
 /* ==========================================================================
-   SAHNE 2 – VİDEO OYNATICI + OYNATMA LİSTESİ
+   SAHNE 2 – FİLM PENCERESİ (bölümler, zaman çubuğu, alışveriş etiketi)
    ========================================================================== */
-var Player=(function(){
-  var player=$('#player'), pm=$('#pMain'), pb=$('#pBlur'), track=$('#track'), prog=$('#pProg');
-  var sc=makeScene($('#pScene')), tm=makeScene(document.createElement('canvas'));
-  var list=CONFIG.videos, idx=0, thumbs=[], userPaused=false, hasVideo=false, raf=0, muted=true;
-  player.classList.add(CONFIG.fit==='cover'?'fit-cover':'fit-blur','muted');
-  $('#badge').textContent=list.length+(list.length>=20?'+':'')+' VİDEO';
-
-  list.forEach(function(v,i){
-    var r=roomById(v.room), b=document.createElement('button'); b.type='button'; b.className='thumb';
-    b.setAttribute('aria-label',(i+1)+'. video: '+r.label+' – '+v.title);
-    if (v.poster){ var im=new Image(); im.src=v.poster; im.alt=''; b.appendChild(im); } else b.appendChild(tm.thumb(r,i*97+13));
-    b.insertAdjacentHTML('beforeend','<span class="l">'+r.label+'</span><span class="n">'+pad(i+1)+'</span><span class="pl"></span>');
-    b.addEventListener('click',function(){ userPaused=false; play(i); });
-    track.appendChild(b); thumbs.push(b);
+(function(){
+  var player=$('#player'), segsEl=$('#segs'), list=$('#chapList'), tm=makeScene(document.createElement('canvas'));
+  var bars=[], items=[];
+  player.classList.add('muted','paused');
+  function build(){
+    segsEl.innerHTML=''; bars=[];
+    var segs=Film.segs(), total=Film.total();
+    segs.forEach(function(s,i){
+      var g=document.createElement('div'); g.className='sg'; g.style.flex=String(s.dur); g.innerHTML='<i></i>';
+      g.title=s.room.label+' · '+fmt(s.start);
+      segsEl.appendChild(g); bars.push(g.firstChild);
+      if (items[i]) items[i].querySelector('small').textContent=fmt(s.start)+' – '+fmt(s.start+s.dur);
+    });
+    $('#pTime').textContent=fmt(Film.time())+' / '+fmt(total);
+  }
+  Film.segs().forEach(function(s,i){
+    var b=document.createElement('button'); b.type='button'; b.className='ch';
+    b.setAttribute('aria-label',s.room.label+' bölümüne git: '+s.c.title);
+    b.innerHTML='<span class="th"></span><span class="tx"><b>'+s.room.label+'</b><small></small></span><span class="pr"><i></i></span>';
+    var th=b.querySelector('.th');
+    if (s.c.poster){ var im=new Image(); im.src=s.c.poster; im.alt=''; th.appendChild(im); } else th.appendChild(tm.thumb(s.room,i+1));
+    b.addEventListener('click',function(){ Film.seekChapter(i); Film.play(); });
+    list.appendChild(b); items.push(b);
   });
-  $('#pUp').addEventListener('click',function(){ track.scrollTop-=114; });
-  $('#pDown').addEventListener('click',function(){ track.scrollTop+=114; });
-  track.addEventListener('wheel',function(e){ e.preventDefault(); track.scrollTop+=e.deltaY; },{passive:false});
-
-  function setBar(f){ prog.style.width=(Math.max(0,Math.min(1,f||0))*100)+'%'; }
-  function tick(){ cancelAnimationFrame(raf); (function f(){ setBar(sc.progress()); if (sc.running()) raf=requestAnimationFrame(f); })(); }
-  function next(){ if (view===2 && alive()) play((idx+1)%list.length); }
-
-  function play(i){
-    idx=i; var v=list[i], r=roomById(v.room);
+  build(); Film.on('layout',build);
+  // zaman çubuğu: tıkla → o noktaya git
+  segsEl.addEventListener('click',function(e){
+    var r=segsEl.getBoundingClientRect(), segs=Film.segs(), x=e.clientX-r.left, acc=0, gap=3, wsum=r.width-gap*(segs.length-1), tot=Film.total();
+    for (var i=0;i<segs.length;i++){ var w=wsum*segs[i].dur/tot; if (x<=acc+w || i===segs.length-1){ Film.seek(segs[i].start+clamp((x-acc)/w,0,.99)*segs[i].dur); Film.play(); return; } acc+=w+gap; }
+  });
+  Film.on('ch',function(i){
+    var s=Film.segs()[i], r=s.room, p=CONFIG.products[s.c.product||0];
     var rm=$('#pRoom'); rm.textContent=r.label.toLocaleUpperCase('tr'); rm.style.background=r.color||'';
-    var tt=$('#pTitle'); tt.textContent=v.title; tt.classList.remove('swap'); void tt.offsetWidth; tt.classList.add('swap');
-    $('#pCnt').textContent=pad(i+1)+' / '+pad(list.length);
-    thumbs.forEach(function(t,k){ t.classList.toggle('on',k===i); });
-    var t=thumbs[i]; track.scrollTop=t.offsetTop-track.offsetTop-(track.clientHeight-t.offsetHeight)/2;
-    player.classList.remove('paused'); setBar(0);
-    pm.onended=pm.ontimeupdate=pm.onerror=null; cancelAnimationFrame(raf);
-    sc.set(r);
-    if (v.src){
-      pm.src=v.src; pm.muted=muted; if (CONFIG.fit==='blur') pb.src=v.src;
-      var p=pm.play();
-      var ok=function(){ hasVideo=true; sc.stop(); player.classList.add('has-video'); player.classList.remove('no-audio');
-        if (CONFIG.fit==='blur') pb.play().catch(function(){});
-        pm.ontimeupdate=function(){ if (pm.duration) setBar(pm.currentTime/pm.duration); };
-        pm.onended=next; };
-      var fail=function(){ runScene(); };
-      pm.onerror=fail;
-      if (p && p.then) p.then(ok,fail); else ok();
-    } else runScene();
-  }
-  function runScene(){
-    hasVideo=false; player.classList.remove('has-video'); player.classList.add('no-audio');
-    pm.pause(); pb.pause(); pm.removeAttribute('src'); pb.removeAttribute('src');
-    sc.play(next); tick();
-  }
-  function pause(){ userPaused=true; player.classList.add('paused'); if (hasVideo){ pm.pause(); pb.pause(); } else { sc.pause(); cancelAnimationFrame(raf); } }
-  function resume(){
-    userPaused=false; player.classList.remove('paused');
-    if (hasVideo){ pm.play().catch(function(){}); if (CONFIG.fit==='blur') pb.play().catch(function(){}); }
-    else if (sc.progress()<1){ sc.resume(); tick(); } else play(idx);
-  }
-  function toggle(){ if (player.classList.contains('paused')) resume(); else pause(); }
-  $('#pPlay').addEventListener('click',toggle);
-  $('#pBig').addEventListener('click',resume);
-  $('#pMute').addEventListener('click',function(){ muted=!muted; pm.muted=muted; player.classList.toggle('muted',muted); });
-
-  return {
-    start:function(){ userPaused=false; play(idx); },
-    stop:function(){ sc.stop(); cancelAnimationFrame(raf); pm.pause(); pb.pause(); player.classList.add('paused'); },
-    wake:function(){ if (!userPaused && !hasVideo && !sc.running()) play(idx); }
-  };
+    var tt=$('#pTitle'); tt.textContent=s.c.title; tt.classList.remove('swap'); void tt.offsetWidth; tt.classList.add('swap');
+    items.forEach(function(it,k){ it.classList.toggle('on',k===i); it.querySelector('.pr i').style.width='0'; });
+    $('#shopName').textContent=plain(p.name); $('#shopDot').style.background=p.lab;
+    var sh=$('#shop'); sh.setAttribute('data-exit','product_'+(s.c.product||0)); sh.classList.remove('swap'); void sh.offsetWidth; sh.classList.add('swap');
+  });
+  Film.on('time',function(t){
+    var segs=Film.segs(), i=Film.idx();
+    segs.forEach(function(s,k){ if (bars[k]) bars[k].style.width=(k<i?100:k>i?0:clamp((t-s.start)/s.dur,0,1)*100)+'%'; });
+    if (items[i]) items[i].querySelector('.pr i').style.width=(clamp((t-segs[i].start)/segs[i].dur,0,1)*100)+'%';
+    $('#pTime').textContent=fmt(t)+' / '+fmt(Film.total());
+    player.classList.toggle('no-audio',!Film.hasAudio());
+  });
+  Film.on('state',function(on){ player.classList.toggle('paused',!on); });
+  $('#pPlay').addEventListener('click',Film.toggle);
+  $('#pBig').addEventListener('click',Film.play);
+  var muted=true;
+  $('#pMute').addEventListener('click',function(){ muted=!muted; Film.mute(muted); player.classList.toggle('muted',muted); });
 })();
 
 /* ==========================================================================
-   SAHNE GEÇİŞİ
+   SAHNE GEÇİŞİ – film aynı saniyeden devam eder
    ========================================================================== */
 var View=(function(){
-  var v1=$('#v1'), v2=$('#v2'), wp=$('#wipe'), busy=false;
+  var v1=$('#v1'), v2=$('#v2'), wp=$('#wipe'), busy=false, autoDone=false;
   function swap(n){
     view=n;
     v1.classList.toggle('on',n===1); v2.classList.toggle('on',n===2);
     v1.setAttribute('aria-hidden',n!==1); v2.setAttribute('aria-hidden',n!==2);
     if (n===2){
-      Rooms.stop(); v2.classList.remove('in'); void v2.offsetWidth; v2.classList.add('in');
-      setTimeout(function(){ if (view===2) Player.start(); }, reduce?0:700);
+      Clean.finish(true);
+      Film.mount($('#player')); Film.play();
+      v2.classList.remove('in'); void v2.offsetWidth; v2.classList.add('in');
     } else {
-      Player.stop(); Rooms.replayMode(); Clean.reset();
+      Film.mount(stage); Clean.reset(); Film.seek(0); Film.play();
       v1.classList.remove('in'); void v1.offsetWidth; v1.classList.add('in');
       setTimeout(Clean.ghost,900); setTimeout(Clean.autoClean,6500);
     }
   }
   function go(n){
     if (busy || n===view) return;
+    if (n===2) autoDone=true;
     if (reduce){ swap(n); return; }
     busy=true; wp.style.display='block';
     var e='cubic-bezier(.65,0,.35,1)', can=!!wp.animate;
@@ -965,24 +1000,23 @@ var View=(function(){
     },500);
   }
   // otomatik geçiş: açılıştan CONFIG.autoToVideosMs sonra (kullanıcı o an siliyorsa kısa ertelenir)
-  var autoDone=false, cdBar=$('#cdBar');
   function arm(){
-    var ms=CONFIG.autoToVideosMs; if (!ms) return;
-    cdBar.style.animationDuration=ms+'ms'; cdBar.classList.add('run');
+    var ms=CONFIG.autoToVideosMs, cd=$('#cdBar'); if (!ms) return;
+    cd.style.animationDuration=ms+'ms'; cd.classList.add('run');
     setTimeout(function check(){
       if (autoDone || view!==1) return;
       if (busy || Clean.busy()){ setTimeout(check,1500); return; }
-      autoDone=true; go(2);
+      go(2);
     },ms);
   }
-  return { go:function(n){ if (n===2) autoDone=true; go(n); }, arm:arm };
+  return { go:go, arm:arm };
 })();
 $('#again').addEventListener('click',function(){ View.go(1); });
 $('#vbtn').addEventListener('click',function(){ View.go(2); });
 
 /* ---------- Başlat ---------- */
 function start(){
-  Rooms.show(0,false);
+  Film.refresh(); Film.mount(stage); Film.play();
   requestAnimationFrame(function(){ $('#v1').classList.add('in'); });
   setTimeout(Clean.ghost,1400);
   setTimeout(Clean.autoClean,7000);
