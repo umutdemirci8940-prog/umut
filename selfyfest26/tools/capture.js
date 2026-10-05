@@ -24,8 +24,14 @@ const shots = path.join(root, 'preview');
   await page.mouse.move(885, 118); await page.waitForTimeout(600); await snap('05-hover-cta');
   // etkileşim kontrolleri
   const pageAfterNav = await page.evaluate(() => document.querySelector('.card .name').textContent);
-  await page.locator('.stop').first().click(); await page.waitForTimeout(900);
+  await page.mouse.move(600, 120); await page.click('#prev'); await page.waitForTimeout(900);
   const first = await page.evaluate(() => document.querySelector('.card .name').textContent);
+  // tarih şeridini sola sürükle → 2. sayfa, tıklama çıkışı tetiklenmemeli
+  await page.mouse.move(600, 236); await page.mouse.down(); await page.mouse.move(520, 236, { steps: 8 }); await page.mouse.up();
+  await page.waitForTimeout(900);
+  const dragged = await page.evaluate(() => [document.querySelector('.card .name').textContent, window.__opened || null]);
+  await page.screenshot({ path: path.join(shots, '06-serit-surukleme.jpg'), quality: 88, type: 'jpeg' });
+  if (dragged[0] !== 'FATMA TURGUT' || dragged[1]) { errors.push('sürükleme: ' + dragged); }
   await page.mouse.click(600, 30); const opened = await page.evaluate(() => window.__opened);
   console.log({ pageAfterNav, first, opened, errors });
   if (errors.length || !opened || first !== 'MURAT DALKILIÇ') process.exitCode = 1;

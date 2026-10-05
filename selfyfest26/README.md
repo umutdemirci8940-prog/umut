@@ -4,8 +4,8 @@ Yönlenen sayfa: [selfy.com.tr/kampanyalar/selfyfest26](https://www.selfy.com.tr
 
 | Dosya | Açıklama |
 |---|---|
-| `dist/970x250/index.html` | Yayına hazır tek dosya (120 KB; görseller + fontlar gömülü, harici istek yok) |
-| `dist/selfyfest26-970x250.zip` | Google Ads / CM360 / DV360 yükleme paketi (77 KB) |
+| `dist/970x250/index.html` | Yayına hazır tek dosya (121 KB; görseller + fontlar gömülü, harici istek yok) |
+| `dist/selfyfest26-970x250.zip` | Google Ads / CM360 / DV360 yükleme paketi (78 KB) |
 | `preview/*.jpg`, `preview/masthead.mp4` | Sunum için ekran görüntüleri ve kayıt |
 
 ![Sayfa 1](preview/02-sayfa1.jpg)
@@ -21,7 +21,7 @@ Yönlenen sayfa: [selfy.com.tr/kampanyalar/selfyfest26](https://www.selfy.com.tr
 ## Etkileşim
 
 - **Karta gelince:** Sahne ışıkları o sanatçıya döner, fotoğraf yakınlaşır, ekolayzır çubukları oynar. Bilgi kutusu dönerek günün akışını gösterir: "KONSER 20.00 / Etkinlikler 12.00'de başlıyor / 3x3 Basketbol · HADO · DJ".
-- **Tur rotası (alt şerit):** 6 durak (6 Rize → 23 İstanbul); tıklayınca ilgili sayfaya gider, üzerine gelince ilgili kart vurgulanır. İlerleme çizgisi turu takip eder.
+- **Tarih şeridi (alt slider):** "6 EKİM RİZE" biçimindeki tarihler kartların tam altına hizalı; sayfa değişince kartlarla birlikte kayar. Fareyle sürüklenebilir, mobilde kaydırılabilir; tarihe tıklayınca ilgili sayfaya gider, üzerine gelince ilgili kart döner. Altındaki ilerleme çubuğu turu takip eder.
 - **"Sıradaki durak" sayacı:** Gerçek tarihe göre hesaplanır ("YARIN!", "BUGÜN!", "5 GÜN KALDI"). Kartlarda "SIRADAKİ / YARIN / GERÇEKLEŞTİ" rozetleri de tarihe göre değişir; kampanya boyunca kreatif güncel kalır.
 - **Fare:** İmleç sahnede bir spot ışığı gibi gezer; kalabalık ve ışıklar hafif paralaks yapar. CTA'ya gelince konfeti patlar.
 - **Oklar, klavye (← →, Enter), mobilde kaydırma.**
