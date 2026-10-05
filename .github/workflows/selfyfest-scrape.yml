@@ -1,0 +1,42 @@
+name: Selfy Fest sayfasını tara
+
+# Bulut oturumu selfy.com.tr'ye erişemediği için sayfa GitHub sunucusunda ziyaret edilir,
+# metin / ekran görüntüsü / görseller selfyfest26/source/ altına kaydedilip dala push'lanır.
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - selfyfest26/tools/scrape.js
+      - selfyfest26/tools/scrape.trigger
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Playwright + Chromium kur
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Sayfayı tara
+        run: node selfyfest26/tools/scrape.js
+      - name: Özet
+        run: |
+          head -c 6000 selfyfest26/source/page.txt
+          ls -la selfyfest26/source/img
+      - name: Sonuçları dala push'la
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A selfyfest26/source
+          git commit -m "Selfy Fest '26 kampanya sayfası kaynakları (GitHub Actions)" || { echo "Değişiklik yok"; exit 0; }
+          git pull --rebase
+          git push
