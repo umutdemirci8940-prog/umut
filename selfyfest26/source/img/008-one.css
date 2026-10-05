@@ -1,0 +1,297 @@
+.modal-sdt{
+    position: fixed;
+    top: 1.5rem;
+    left: 0;
+    width: 100%;
+    min-height: 86px;
+    background-color: rgba(249, 197, 15, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    padding: 16px 20px;
+    box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.5);
+    z-index: 4;
+}
+.modal-sdt p{
+    color: black!important;
+    font-weight: 400;
+    text-align: center;
+}
+.modal-sdt p strong{
+    color: rgba(57, 1, 129, 1)!important;
+    text-decoration: underline;
+    font-weight: 700;
+}
+.modal-sdt p a,.modal-sdt p{
+    font-size: clamp(16px, calc(13.6px + 0.5vw), 20px)!important;
+}
+
+.services .tag-content .item .image{
+    position: relative;
+}
+.services .tag-content .item .image::after{
+    content:'SÜRESİ DOLDU';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.06em;
+    color: #390181;
+    width: 163px;
+    height: 38px;
+    background-color: rgba(249, 197, 15, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.services .tag-content .item .image img{
+    opacity: .5;
+}
+.card-footer .card-row .suresi-dolan{
+    width: 100%;
+    height: 50px;
+    background-color: #F9C50F!important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.06em;
+    color: #390181!important;
+}
+@media screen and (max-width: 900px) {
+    .modal-sdt{
+        top: 1.4rem;
+        position: absolute;
+    }
+    .services .tag-content .item .image::after{
+        top: unset;
+        bottom: 0;
+    }
+}
+
+
+    .tariff-slider-section{
+        position: relative;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        height: auto;
+        padding-top: .8rem;
+        padding-bottom: .8rem;
+    }
+    .tariff-slider-section .selfy-slider-outer{
+        position: relative;
+        width: 15.6rem;
+        display: none;
+        justify-content: flex-start;
+        flex-direction: column;
+        gap: 0.53rem;
+    }
+    .tariff-slider-section .selfy-slider-outer.active{
+        display: flex;
+    }
+    .tariff-slider-section .selfy-slider-inner{
+        display: flex;
+        justify-content: flex-start;
+        gap: clamp(0.2rem, calc(-0.1773rem + 4.1666666667vw), 0.533rem);
+        width: 14.4rem;
+        overflow-x: hidden;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+    }
+    .tariff-slider-section .selfy-slider-inner::-webkit-scrollbar {
+        display: none;
+    }
+    .tariff-slider-section .selfy-slider-inner .item{
+        min-width: clamp(3.3rem, calc(2rem + 13.8333333333vw), 4.4rem);
+        /*height: clamp(5.37rem, calc(3.33rem + 22.5vw), 7.17rem);
+        background: linear-gradient(180deg, #FF983A 0%, #FF7A00 100%);*/
+        scroll-snap-align: start;
+    }
+    /*.tariff-slider-section .selfy-slider-outer .selfy-slider-buttons{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: inherit;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }*/
+    .tariff-slider-section .selfy-slider-outer .selfy-slider-buttons{
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 0.2rem;
+    }
+    .tariff-slider-section .selfy-slider-outer .selfy-slider-buttons .button{
+        display: none;
+        justify-content: center;
+        align-items: center;
+        width: .933rem;
+        height: .933rem;
+        border-radius: 50%;
+        border: 2px solid #FF983A;
+        cursor: pointer;
+    }
+    .tariff-slider-section .selfy-slider-outer .selfy-slider-buttons .button.active{
+        display: flex;   
+    }
+    .tariff-slider-section .selfy-slider-outer .selfy-slider-buttons .button.button-prev img{
+         transform: rotate(180deg);
+    }
+    .tariff-slider-section .selfy-slider-outer .comment{
+        font-size: .26rem;
+        color: rgba(255, 152, 58, 1);
+    }
+    .tariff-slider-section .selfy-slider-outer .btn-see-all{
+        max-width: 6.26rem;
+        width: 100%;
+        height: .746rem;
+        border-radius: 1.33rem;
+        background-color: rgba(255, 152, 58, 1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: .213rem;
+    }
+    .tariff-slider-section .section-title{
+        font-weight: 600;
+        color: white;
+        z-index: 2;
+        cursor: default;
+        width: 15.6rem;
+        padding: .3rem 0;
+    }
+    .tariff-slider-section .section-title h2{
+        font-size: clamp(.64rem, calc(.156rem + 5.3333333333vw), 1.07rem);
+        line-height: .9em;
+        letter-spacing: -.02em;
+    }
+    .tariff-slider-section .tabs{
+        display: flex;
+        justify-content: flex-start;
+        border-bottom: 8px solid rgba(255, 255, 255, 0.3);
+        width: 15.6rem;
+        margin: .32rem 0;
+        gap: .3rem;
+    }
+    .tariff-slider-section .tabs .tab{
+        position: relative;
+        width: 2.96rem;
+        padding: .1rem;
+        font-size: .4rem;
+        color: rgba(255, 255, 255, 0.3);
+        text-align: center;
+        cursor: pointer;
+        transation: all .25s linear;
+    }
+    .tariff-slider-section .tabs .tab.active{
+        color: rgba(255, 255, 255, 1);
+    }
+    .tariff-slider-section .tabs .tab.active::before{
+        content: '';
+        position: absolute;
+        bottom:0;
+        left: 50%;
+        transform: translate(-50%, 100%);
+        background-color: rgba(255, 152, 58, 1);
+        height: 8px;
+        width: 100%;
+    }
+    .color-blue{
+        background: blue!important;
+    }
+    @media screen and (max-width: 900px){
+        .tariff-slider-section .section-title{
+            width: unset;
+            padding: 0.3rem 0.3rem;
+        }
+        .tariff-slider-section .tabs{
+            width: 100%;
+        }
+        .tariff-slider-section .tabs .tab{
+            text-align: unset;
+            padding: .2rem .1rem;
+        }
+        .tariff-slider-section .selfy-slider-group{
+            width: inherit;
+            padding: 12px;
+        }
+        .tariff-slider-section .selfy-slider-outer{
+            width: inherit;
+        }
+        .tariff-slider-section .selfy-slider-inner{
+            width: inherit;
+            overflow-x: scroll;
+        }
+        .tariff-slider-section .selfy-slider-inner .item{
+            min-width: 330px!important;
+        }
+        .tariff-slider-section .selfy-slider-outer .selfy-slider-buttons{
+            display: none;
+        }
+    }
+.fa-twitter:before {
+    content: ""!important;
+    background-image: url(/assets/icons/X-logo-white.svg);
+    background-size: 26px 26px;
+    background-repeat: no-repeat;
+    width: 26px;
+    height: 26px;
+    display: block;
+}
+
+
+        .absolute-bottom-text {
+        	position: absolute;
+    	    max-width: 50em;
+            width: 100%;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            color: white;
+            /*padding-left: 24px;*/
+            text-align: left;
+            display: flex;
+            gap: 12px;
+        }
+        .absolute-bottom-text::before {
+        	content: url("/assets/icons/icon-notification.svg");
+        	width: 24px;
+        	height: 24px;
+        }
+        .absolute-bottom-text a{
+        	color: #ff8200;
+        }
+        .telsiz-kullanim-ucretleri-detay {
+            margin-top: .2em;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        .telsiz-kullanim-ucretleri-detay * {
+            font-size: 14px!important;
+        }

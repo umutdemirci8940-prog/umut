@@ -1,0 +1,651 @@
+{
+ "url": "https://www.selfy.com.tr/kampanyalar/selfyfest26",
+ "title": "SelfyFest26 Başlıyor!",
+ "imgs": [
+  {
+   "src": "https://ads.programattik.com/pixel?id=102&type=img",
+   "alt": "",
+   "w": 0,
+   "h": 0
+  },
+  {
+   "src": "https://rtb2.programattik.com/universalPixel?account=1&seg=cnlmiign",
+   "alt": "",
+   "w": 1,
+   "h": 1
+  },
+  {
+   "src": "https://www.selfy.com.tr/assets/images/planning-weather-lightning-24.svg",
+   "alt": "",
+   "w": 24,
+   "h": 24
+  },
+  {
+   "src": "https://cdn-mikro.turktelekom.com.tr/api/Image/optimize?ImageUrl=https://www.selfy.com.tr/assets/images/header-bg.png&Format=3&AutoScale=true&Quality=90&Width=374&Height=374&CacheDuration=24",
+   "alt": "",
+   "w": 0,
+   "h": 0
+  },
+  {
+   "src": "https://www.selfy.com.tr/assets/icons/logo.svg",
+   "alt": "Selfy Logo",
+   "w": 206,
+   "h": 150
+  },
+  {
+   "src": "https://cdn-mikro.turktelekom.com.tr/api/Image/optimize?ImageUrl=https://www.selfy.com.tr/assets/icons/icon-magnify.png&Format=3&AutoScale=true&Quality=90&Width=374&Height=374&CacheDuration=24",
+   "alt": "Ara İkonu",
+   "w": 0,
+   "h": 0
+  },
+  {
+   "src": "https://cdn-mikro.turktelekom.com.tr/api/Image/optimize?ImageUrl=https://www.selfy.com.tr/assets/icons/mevcut-musteri.png&Format=3&AutoScale=true&Quality=90&Width=374&Height=374&CacheDuration=24",
+   "alt": "Türk Telekomlu",
+   "w": 0,
+   "h": 0
+  },
+  {
+   "src": "https://cdn-mikro.turktelekom.com.tr/api/Image/optimize?ImageUrl=https://www.selfy.com.tr/assets/icons/mevcut-musteri-active.png&Format=3&AutoScale=true&Quality=90&Width=374&Height=374&CacheDuration=24",
+   "alt": "Türk Telekomlu",
+   "w": 0,
+   "h": 0
+  },
+  {
+   "src": "https://cdn-mikro.turktelekom.com.tr/api/Image/optimize?ImageUrl=https://www.selfy.com.tr/assets/icons/yeni-musteri.png&Format=3&AutoScale=true&Quality=90&Width=374&Height=374&CacheDuration=24",
+   "alt": "Türk Telekomlu Değilim",
+   "w": 0,
+   "h": 0
+  },
+  {
+   "src": "https://cdn-mikro.turktelekom.com.tr/api/Image/optimize?ImageUrl=https://www.selfy.com.tr/assets/icons/yeni-musteri-active.png&Format=3&AutoScale=true&Quality=90&Width=374&Height=374&CacheDuration=24",
+   "alt": "Türk Telekomlu Değilim",
+   "w": 0,
+   "h": 0
+  },
+  {
+   "src": "https://cdn-mikro.turktelekom.com.tr/api/Image/optimize?ImageUrl=https://www.selfy.com.tr/assets/icons/mevcut-musteri-dark.png&Format=3&AutoScale=true&Quality=90&Width=374&Height=374&CacheDuration=24",
+   "alt": "Türk Telekomlu",
+   "w": 0,
+   "h": 0
+  },
+  {
+   "src": "https://cdn-mikro.turktelekom.com.tr/api/Image/optimize?ImageUrl=https://www.selfy.com.tr/assets/icons/mevcut-musteri-active.png&Format=3&AutoScale=true&Quality=90&Width=374&Height=374&CacheDuration=24",
+   "alt": "Türk Telekomlu",
+   "w": 0,
+   "h": 0
+  },
+  {
+   "src": "https://cdn-mikro.turktelekom.com.tr/api/Image/optimize?ImageUrl=https://www.selfy.com.tr/assets/icons/yeni-musteri-dark.png&Format=3&AutoScale=true&Quality=90&Width=374&Height=374&CacheDuration=24",
+   "alt": "Türk Telekomlu Değilim",
+   "w": 0,
+   "h": 0
+  },
+  {
+   "src": "https://cdn-mikro.turktelekom.com.tr/api/Image/optimize?ImageUrl=https://www.selfy.com.tr/assets/icons/yeni-musteri-active.png&Format=3&AutoScale=true&Quality=90&Width=374&Height=374&CacheDuration=24",
+   "alt": "Türk Telekomlu Değilim",
+   "w": 0,
+   "h": 0
+  },
+  {
+   "src": "https://cdn-mikro.turktelekom.com.tr/api/Image/optimize?ImageUrl=https://www.selfy.com.tr/assets/icons/icon-magnify.png&Format=3&AutoScale=true&Quality=90&Width=374&Height=374&CacheDuration=24",
+   "alt": "Ara İkonu",
+   "w": 0,
+   "h": 0
+  },
+  {
+   "src": "https://cdn-mikro.turktelekom.com.tr/api/Image/optimize?ImageUrl=https://www.selfy.com.tr/assets/icons/icon-magnify-hover.png&Format=3&AutoScale=true&Quality=90&Width=374&Height=374&CacheDuration=24",
+   "alt": "Ara İkonu",
+   "w": 0,
+   "h": 0
+  },
+  {
+   "src": "https://cdn-mikro.turktelekom.com.tr/api/Image/optimize?ImageUrl=https://www.selfy.com.tr/assets/icons/icon-magnify-clicked.png&Format=3&AutoScale=true&Quality=90&Width=374&Height=374&CacheDuration=24",
+   "alt": "Ara İkonu",
+   "w": 0,
+   "h": 0
+  },
+  {
+   "src": "https://cdn-mikro.turktelekom.com.tr/api/Image/optimize?ImageUrl=https://www.selfy.com.tr/assets/icons/icon-magnify-white.png&Format=3&AutoScale=true&Quality=90&Width=374&Height=374&CacheDuration=24",
+   "alt": "Ara İkonu",
+   "w": 0,
+   "h": 0
+  },
+  {
+   "src": "https://cdn-mikro.turktelekom.com.tr/api/Image/optimize?ImageUrl=https://www.selfy.com.tr/assets/icons/icon-tl.png&Format=3&AutoScale=true&Quality=90&Width=374&Height=374&CacheDuration=24",
+   "alt": "TL Ikonu",
+   "w": 0,
+   "h": 0
+  },
+  {
+   "src": "https://cdn-mikro.turktelekom.com.tr/api/Image/optimize?ImageUrl=https://www.selfy.com.tr/assets/icons/icon-magnify-white.png&Format=3&AutoScale=true&Quality=90&Width=374&Height=374&CacheDuration=24",
+   "alt": "",
+   "w": 0,
+   "h": 0
+  },
+  {
+   "src": "https://www.selfy.com.tr/media/jyccfcyi/fest26.webp",
+   "alt": "",
+   "w": 694,
+   "h": 915
+  },
+  {
+   "src": "https://www.selfy.com.tr/assets/images/turk-telekom-online.svg",
+   "alt": "Online Islemler Buton",
+   "w": 159,
+   "h": 48
+  },
+  {
+   "src": "https://cdn-mikro.turktelekom.com.tr/api/Image/optimize?ImageUrl=https://www.selfy.com.tr/assets/icons/comment-icon.png&Format=3&AutoScale=true&Quality=90&Width=374&Height=374&CacheDuration=24",
+   "alt": "",
+   "w": 0,
+   "h": 0
+  },
+  {
+   "src": "https://cdn-mikro.turktelekom.com.tr/api/Image/optimize?ImageUrl=https://www.selfy.com.tr/media/patn1sqe/facebook-f-brands.png&Format=3&AutoScale=true&Quality=90&Width=374&Height=374&CacheDuration=24",
+   "alt": "Facebook Ikon",
+   "w": 0,
+   "h": 0
+  },
+  {
+   "src": "https://cdn-mikro.turktelekom.com.tr/api/Image/optimize?ImageUrl=https://www.selfy.com.tr/media/yiibjrtn/x-logo-purple.png&Format=3&AutoScale=true&Quality=90&Width=374&Height=374&CacheDuration=24",
+   "alt": "Facebook Ikon",
+   "w": 0,
+   "h": 0
+  },
+  {
+   "src": "https://cdn-mikro.turktelekom.com.tr/api/Image/optimize?ImageUrl=https://www.selfy.com.tr/media/44tne3dt/instagram-brands.png&Format=3&AutoScale=true&Quality=90&Width=374&Height=374&CacheDuration=24",
+   "alt": "Facebook Ikon",
+   "w": 0,
+   "h": 0
+  },
+  {
+   "src": "https://cdn-mikro.turktelekom.com.tr/api/Image/optimize?ImageUrl=https://www.selfy.com.tr/media/0yqnoago/youtube-brands.png&Format=3&AutoScale=true&Quality=90&Width=374&Height=374&CacheDuration=24",
+   "alt": "Facebook Ikon",
+   "w": 0,
+   "h": 0
+  },
+  {
+   "src": "https://cdn-mikro.turktelekom.com.tr/api/Image/optimize?ImageUrl=https://www.selfy.com.tr/assets/js/readabler/img/erisebilirlik.png&Format=3&AutoScale=true&Quality=90&Width=374&Height=374&CacheDuration=24",
+   "alt": "",
+   "w": 0,
+   "h": 0
+  },
+  {
+   "src": "https://www.selfy.com.tr/media/3rte2jhs/tt-logo.svg",
+   "alt": "Türk Telekom Logo",
+   "w": 300,
+   "h": 98
+  },
+  {
+   "src": "https://cdn-mikro.turktelekom.com.tr/api/Image/optimize?ImageUrl=https://www.selfy.com.tr/assets/images/cofee.png&Format=3&AutoScale=true&Quality=90&Width=374&Height=374&CacheDuration=24",
+   "alt": "",
+   "w": 0,
+   "h": 0
+  },
+  {
+   "src": "https://cdn-mikro.turktelekom.com.tr/api/Image/optimize?ImageUrl=https://www.selfy.com.tr/assets/images/glasses.png&Format=3&AutoScale=true&Quality=90&Width=374&Height=374&CacheDuration=24",
+   "alt": "",
+   "w": 0,
+   "h": 0
+  },
+  {
+   "src": "https://cdn-mikro.turktelekom.com.tr/api/Image/optimize?ImageUrl=https://www.selfy.com.tr/assets/icons/popup-close.png&Format=3&AutoScale=true&Quality=90&Width=374&Height=374&CacheDuration=24",
+   "alt": "Kapat",
+   "w": 0,
+   "h": 0
+  },
+  {
+   "src": "https://cdn-mikro.turktelekom.com.tr/api/Image/optimize?ImageUrl=https://www.selfy.com.tr/assets/icons/popup-close.png&Format=3&AutoScale=true&Quality=90&Width=374&Height=374&CacheDuration=24",
+   "alt": "Kapat",
+   "w": 0,
+   "h": 0
+  }
+ ],
+ "bgs": [
+  "url(\"https://www.selfy.com.tr/assets/images/header-bar-bg.png\")",
+  "url(\"https://www.selfy.com.tr/media/4rcomery/arkaplan.jpg?quality=80&format=webp&rnd=133470386710100000\")",
+  "url(\"https://www.selfy.com.tr/assets/css/Icons/icon-announcement-left.png\")",
+  "url(\"https://www.selfy.com.tr/assets/css/Icons/icon-announcement-right.png\")",
+  "linear-gradient(rgb(255, 255, 255), rgba(255, 255, 255, 0))"
+ ],
+ "colors": [
+  [
+   "rgb(255, 255, 255)",
+   530
+  ],
+  [
+   "rgb(0, 0, 0)",
+   201
+  ],
+  [
+   "rgb(51, 51, 51)",
+   136
+  ],
+  [
+   "rgb(0, 0, 238)",
+   39
+  ],
+  [
+   "rgb(33, 150, 243)",
+   26
+  ],
+  [
+   "rgb(255, 131, 0)",
+   13
+  ],
+  [
+   "rgb(46, 2, 118)",
+   13
+  ],
+  [
+   "rgb(160, 120, 202)",
+   12
+  ],
+  [
+   "rgb(79, 0, 152)",
+   10
+  ],
+  [
+   "rgb(99, 33, 169)",
+   7
+  ],
+  [
+   "rgb(80, 0, 153)",
+   6
+  ],
+  [
+   "rgb(170, 170, 170)",
+   5
+  ],
+  [
+   "rgb(45, 2, 117)",
+   3
+  ],
+  [
+   "rgb(80, 1, 152)",
+   2
+  ],
+  [
+   "rgba(255, 255, 255, 0.4)",
+   2
+  ],
+  [
+   "rgb(236, 236, 236)",
+   2
+  ],
+  [
+   "rgb(66, 1, 138)",
+   1
+  ],
+  [
+   "rgb(255, 130, 0)",
+   1
+  ],
+  [
+   "rgba(0, 0, 0, 0.9)",
+   1
+  ],
+  [
+   "rgba(2, 83, 238, 0.5)",
+   1
+  ]
+ ],
+ "fonts": [
+  "Mulish",
+  "Anton",
+  "Anton-HeavyCondensed",
+  "Mulish-Regular",
+  "sans-serif",
+  "Arial",
+  "-apple-system, BlinkMacSystemFont, \"avenir next\", avenir, \"helvetica neue\", helvetica, ubuntu, roboto, noto, \"segoe ui\", arial, sans-serif"
+ ],
+ "links": [
+  {
+   "t": "Online İşlemler",
+   "h": "https://onlineislemler.turktelekom.com.tr/"
+  },
+  {
+   "t": "TL Yükle",
+   "h": "https://onlineislemler.turktelekom.com.tr/lira-yukleme"
+  },
+  {
+   "t": "Fatura Öde",
+   "h": "https://onlineislemler.turktelekom.com.tr/fatura-sorgulama-odeme/mobil"
+  },
+  {
+   "t": "Mobil Paket Al",
+   "h": "https://onlineislemler.turktelekom.com.tr/kredi-karti-paket-satin-alma"
+  },
+  {
+   "t": "ANA SAYFA",
+   "h": "https://www.selfy.com.tr/"
+  },
+  {
+   "t": "FATURALI",
+   "h": "https://www.selfy.com.tr/kampanyalar/selfyfest26#"
+  },
+  {
+   "t": "TÜRK TELEKOMLUYUM",
+   "h": "https://www.selfy.com.tr/mevcut-musteri/faturali-kampanyalar-ve-tarifeler"
+  },
+  {
+   "t": "TÜRK TELEKOMLU DEĞİLİM",
+   "h": "https://www.selfy.com.tr/yeni-musteri/faturali-kampanyalar-ve-tarifeler"
+  },
+  {
+   "t": "FATURASIZ",
+   "h": "https://www.selfy.com.tr/kampanyalar/selfyfest26#"
+  },
+  {
+   "t": "TÜRK TELEKOMLUYUM",
+   "h": "https://www.selfy.com.tr/mevcut-musteri/faturasiz-paketler"
+  },
+  {
+   "t": "TÜRK TELEKOMLU DEĞİLİM",
+   "h": "https://www.selfy.com.tr/yeni-musteri/faturasiz-paketler"
+  },
+  {
+   "t": "KAMPANYALAR",
+   "h": "https://www.selfy.com.tr/kampanyalar"
+  },
+  {
+   "t": "SELFY NEDİR?",
+   "h": "https://www.selfy.com.tr/kampanyalar/selfyfest26#"
+  },
+  {
+   "t": "Selfy Hakkında",
+   "h": "https://www.selfy.com.tr/selfy-nedir"
+  },
+  {
+   "t": "Nasıl Selfy'li Olurum?",
+   "h": "https://www.selfy.com.tr/nasil-selfyli-olurum"
+  },
+  {
+   "t": "SSS",
+   "h": "https://www.selfy.com.tr/sikca-sorulan-sorular"
+  },
+  {
+   "t": "HEMEN BAŞVUR",
+   "h": "https://www.selfy.com.tr/hemen-basvur"
+  },
+  {
+   "t": "HEMEN BAŞVUR",
+   "h": "https://www.selfy.com.tr/hemen-basvur"
+  },
+  {
+   "t": "TL Yükle",
+   "h": "https://onlineislemler.turktelekom.com.tr/lira-yukleme"
+  },
+  {
+   "t": "Online İşlemler",
+   "h": "https://turktelekom.com.tr/m/mobil"
+  },
+  {
+   "t": "Ara",
+   "h": "javascript:void(0)"
+  },
+  {
+   "t": "İnternet",
+   "h": "javascript:void(0)"
+  },
+  {
+   "t": "Kampanya",
+   "h": "javascript:void(0)"
+  },
+  {
+   "t": "Online İşlemler",
+   "h": "javascript:void(0)"
+  },
+  {
+   "t": "Sosyal",
+   "h": "javascript:void(0)"
+  },
+  {
+   "t": "Lords Mobile",
+   "h": "javascript:void(0)"
+  },
+  {
+   "t": "Nero",
+   "h": "javascript:void(0)"
+  },
+  {
+   "t": "Yorum Yap",
+   "h": "https://www.selfy.com.tr/selfy-dunyasinda-ne-gormek-istersiniz"
+  },
+  {
+   "t": "Ana Sayfa",
+   "h": "https://www.selfy.com.tr/"
+  },
+  {
+   "t": "Selfy Nedir?",
+   "h": "https://www.selfy.com.tr/selfy-nedir"
+  },
+  {
+   "t": "Sıkça Sorulan Sorular",
+   "h": "https://www.selfy.com.tr/sikca-sorulan-sorular"
+  },
+  {
+   "t": "Süresi Dolan Teklifler",
+   "h": "https://www.selfy.com.tr/suresi-dolan-teklifler"
+  },
+  {
+   "t": "Duyurular",
+   "h": "javascript:void(0)"
+  },
+  {
+   "t": "Gizlilik ve Güvenlik",
+   "h": "javascript:void(0)"
+  },
+  {
+   "t": "Aydınlatma Metni",
+   "h": "javascript:void(0)"
+  },
+  {
+   "t": "Çerez Politikası",
+   "h": "https://www.selfy.com.tr/cerez-politikasi"
+  },
+  {
+   "t": "Çerez Ayarları",
+   "h": "https://www.selfy.com.tr/kampanyalar/selfyfest26#"
+  },
+  {
+   "t": "Erişilebilirlik",
+   "h": ""
+  },
+  {
+   "t": "www.ttyatirimciiliskileri.com.tr",
+   "h": "http://www.ttyatirimciiliskileri.com.tr/"
+  },
+  {
+   "t": "ttnetkvkk@hs03.kep.tr",
+   "h": "mailto:ttnetkvkk@hs03.kep.tr"
+  },
+  {
+   "t": "ttnetkvkk@turktelekom.com.tr",
+   "h": "mailto:ttnetkvkk@turktelekom.com.tr"
+  },
+  {
+   "t": "ttmobilkvkk@turktelekom.com.tr",
+   "h": "mailto:ttmobilkvkk@turktelekom.com.tr"
+  },
+  {
+   "t": "Tamam",
+   "h": "javascript:void(0)"
+  },
+  {
+   "t": "Tamam",
+   "h": "javascript:void(0)"
+  },
+  {
+   "t": "Tamam",
+   "h": "javascript:void(0)"
+  }
+ ],
+ "files": [
+  {
+   "file": "001-jquery-ui.min.css",
+   "url": "https://www.selfy.com.tr/assets/css/jquery-ui.min.css?d=639268163150000000",
+   "bytes": 2014
+  },
+  {
+   "file": "002-owl.theme.default.min.css",
+   "url": "https://www.selfy.com.tr/assets/css/owl.theme.default.min.css?d=639268163150000000",
+   "bytes": 1018
+  },
+  {
+   "file": "003-one.min.css",
+   "url": "https://www.selfy.com.tr/assets/css/one.min.css?d=639268163150000000",
+   "bytes": 214
+  },
+  {
+   "file": "004-campaign-details-responsive.min.css",
+   "url": "https://www.selfy.com.tr/assets/css/campaign-details-responsive.min.css?d=639268163150000000",
+   "bytes": 3868
+  },
+  {
+   "file": "005-apply-form.min.css",
+   "url": "https://www.selfy.com.tr/assets/css/apply-form.min.css",
+   "bytes": 3191
+  },
+  {
+   "file": "006-owl.carousel.min.css",
+   "url": "https://www.selfy.com.tr/assets/css/owl.carousel.min.css?d=639268163150000000",
+   "bytes": 4746
+  },
+  {
+   "file": "007-card-responsive.min.css",
+   "url": "https://www.selfy.com.tr/assets/css/card-responsive.min.css?d=639268163150000000",
+   "bytes": 10224
+  },
+  {
+   "file": "008-one.css",
+   "url": "https://www.selfy.com.tr/css/one.css",
+   "bytes": 8439
+  },
+  {
+   "file": "009-planning-weather-lightning-24.svg",
+   "url": "https://www.selfy.com.tr/assets/images/planning-weather-lightning-24.svg",
+   "bytes": 465
+  },
+  {
+   "file": "010-card.min.css",
+   "url": "https://www.selfy.com.tr/assets/css/card.min.css?d=639268163150000000",
+   "bytes": 18699
+  },
+  {
+   "file": "011-campaign-details.min.css",
+   "url": "https://www.selfy.com.tr/assets/css/campaign-details.min.css?d=639268163150000000",
+   "bytes": 22847
+  },
+  {
+   "file": "012-font-awesome.css",
+   "url": "https://www.selfy.com.tr/assets/css/font-awesome.css?d=639268163150000000",
+   "bytes": 30986
+  },
+  {
+   "file": "013-sweetalert.min.css",
+   "url": "https://www.selfy.com.tr/assets/css/sweetalert.min.css",
+   "bytes": 37017
+  },
+  {
+   "file": "014-jquery.mCustomScrollbar.min.css",
+   "url": "https://www.selfy.com.tr/assets/css/jquery.mCustomScrollbar.min.css?d=639268163150000000",
+   "bytes": 39347
+  },
+  {
+   "file": "015-Responsive.min.css",
+   "url": "https://www.selfy.com.tr/assets/css/Responsive.min.css?d=639268163150000000",
+   "bytes": 59505
+  },
+  {
+   "file": "016-readabler.min.css",
+   "url": "https://www.selfy.com.tr/assets/js/readabler/css/readabler.min.css",
+   "bytes": 71719
+  },
+  {
+   "file": "017-Site.min.css",
+   "url": "https://www.selfy.com.tr/assets/css/Site.min.css?d=639268163150000000",
+   "bytes": 120181
+  },
+  {
+   "file": "018-logo.svg",
+   "url": "https://www.selfy.com.tr/assets/icons/logo.svg",
+   "bytes": 2712
+  },
+  {
+   "file": "019-tt-logo.svg",
+   "url": "https://www.selfy.com.tr/media/3rte2jhs/tt-logo.svg",
+   "bytes": 7229
+  },
+  {
+   "file": "020-header-bar-bg.png",
+   "url": "https://www.selfy.com.tr/assets/images/header-bar-bg.png",
+   "bytes": 531
+  },
+  {
+   "file": "021-X-logo-white.svg",
+   "url": "https://www.selfy.com.tr/assets/icons/X-logo-white.svg",
+   "bytes": 429
+  },
+  {
+   "file": "022-turk-telekom-online.svg",
+   "url": "https://www.selfy.com.tr/assets/images/turk-telekom-online.svg",
+   "bytes": 17835
+  },
+  {
+   "file": "023-arkaplan.jpg",
+   "url": "https://www.selfy.com.tr/media/4rcomery/arkaplan.jpg?quality=80&format=webp&rnd=133470386710100000",
+   "bytes": 25753
+  },
+  {
+   "file": "024-Anton.woff2",
+   "url": "https://www.selfy.com.tr/assets/webfonts/Anton.woff2",
+   "bytes": 31172
+  },
+  {
+   "file": "025-Mulish-Black.woff2",
+   "url": "https://www.selfy.com.tr/assets/webfonts/Mulish-Black.woff2",
+   "bytes": 39720
+  },
+  {
+   "file": "026-Mulish-Bold.woff2",
+   "url": "https://www.selfy.com.tr/assets/webfonts/Mulish-Bold.woff2",
+   "bytes": 39060
+  },
+  {
+   "file": "027-Anton.woff",
+   "url": "https://www.selfy.com.tr/assets/webfonts/Anton.woff",
+   "bytes": 43256
+  },
+  {
+   "file": "028-Mulish-Regular.woff2",
+   "url": "https://www.selfy.com.tr/assets/webfonts/Mulish-Regular.woff2",
+   "bytes": 39332
+  },
+  {
+   "file": "029-fontawesome-webfont.woff2",
+   "url": "https://www.selfy.com.tr/assets/css/Fonts/fontawesome-webfont.woff2?v=4.7.0",
+   "bytes": 77160
+  },
+  {
+   "file": "030-fest26.webp",
+   "url": "https://www.selfy.com.tr/media/jyccfcyi/fest26.webp",
+   "bytes": 134540
+  },
+  {
+   "file": "031-Mulish-Regular.ttf",
+   "url": "https://www.selfy.com.tr/assets/webfonts/Mulish-Regular.ttf",
+   "bytes": 105860
+  },
+  {
+   "file": "032-css2.css",
+   "url": "https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap",
+   "bytes": 10989
+  },
+  {
+   "file": "033-efilli-logo-animated.svg",
+   "url": "https://assets.efilli.com/efilli-logo-animated.svg",
+   "bytes": 2131
+  }
+ ]
+}
