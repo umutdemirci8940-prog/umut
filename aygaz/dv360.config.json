@@ -7,5 +7,7 @@
   "logoUrl": "https://100oktan.aygaz.com.tr/assets/images/logo/logo-white.png",
   "packageName": "aygaz-100oktan-970x250",
   "priceUrl": "https://splashdigital.s3.eu-west-1.amazonaws.com/Aygaz/fiyat.json",
-  "_priceUrl": "Yayın paketinin okuduğu güncel fiyat dosyası (S3'te CORS açık olmalı). Boş bırakılırsa gömülü fiyatlar kullanılır."
+  "_priceUrl": "Yayın paketinin okuduğu güncel fiyat dosyası (S3'te CORS açık olmalı). Boş bırakılırsa gömülü fiyatlar kullanılır.",
+  "impressionPixel": "https://ad.doubleclick.net/ddm/trackimp/N192603.5327234SPLASH/B37005738.458040928;dc_trk_aid=652532145;dc_trk_cid=265077163;ord=[timestamp];dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;gdpr=${GDPR};gdpr_consent=${GDPR_CONSENT_755};ltd=;dc_tdv=1?",
+  "_impressionPixel": "CM360 gösterim sayacı (1x1). Yalnızca yayın paketlerine (dv360, dv360-s3video) eklenir; [timestamp] her yüklemede rastgele sayıyla değiştirilir."
 }

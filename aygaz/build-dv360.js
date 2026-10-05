@@ -76,6 +76,20 @@ function indexHtml({ videoBase, assetsNote, startUnmuted }) {
     '  <script src="js/react.production.min.js"></script>',
     '  <script src="js/react-dom.production.min.js"></script>',
     '  <script src="js/banner.js"></script>',
+    ...(cfg.impressionPixel && !startUnmuted ? [
+      '  <script>',
+      '  // Gösterim sayacı (CM360 trackimp, 1x1). [timestamp] her yüklemede rastgele sayı (cache-buster) ile değiştirilir;',
+      '  // ${GDPR} / ${GDPR_CONSENT_755} makrolarını DV360 yayında doldurur.',
+      '  (function () {',
+      '    var src = ' + JSON.stringify(cfg.impressionPixel) + '.replace("[timestamp]", String(Date.now()) + String(Math.floor(Math.random() * 1000000)));',
+      '    var img = new Image(1, 1);',
+      '    img.alt = "Advertisement"; img.setAttribute("attributionsrc", ""); img.setAttribute("border", "0");',
+      '    img.style.cssText = "position:absolute;top:0;left:0;width:1px;height:1px;border:0;pointer-events:none";',
+      '    img.src = src;',
+      '    document.body.appendChild(img);',
+      '  })();',
+      '  </script>'
+    ] : []),
     '</body>',
     '</html>',
     ''
@@ -124,5 +138,6 @@ console.log('✔ Aygaz3-sesli.html (sesli önizleme, S3\'e videolarla aynı klas
 emit('dv360', { withVideos: true });
 emit('dv360-s3video', { withVideos: false });
 emit('dv360-sesli', { withVideos: true, startUnmuted: true });   // müşteri onayı için, yayına verilmez
+console.log(`   gösterim pikseli: ${cfg.impressionPixel ? 'yayın paketlerinde (dv360, dv360-s3video)' : 'yok'}`);
 console.log(`   logo: ${localLogo ? 'paket içinde (assets/' + localLogo + ')' : 'canlı ' + cfg.logoUrl}`);
 console.log(`   banner.js ${(Buffer.byteLength(appJs) / 1024).toFixed(0)} KB, banner.css ${(Buffer.byteLength(css) / 1024).toFixed(0)} KB, clickTag → ${cfg.clickTag.slice(0, 60)}…`);

@@ -52,6 +52,7 @@ Paket özellikleri:
 - JSX önceden derlenmiş, Tailwind CSS statik; React/ReactDOM paket içinde. Tarayıcıda Babel veya Tailwind CDN yüklenmez (önizleme `Aygaz3.html` bunları CDN'den yükler).
 - Tıklama: `var clickTag = "<CM360 click tracker>"` `index.html` içinde tanımlıdır (`dv360.config.json` → `clickTag`). "Şimdi İncele" CTA'sı bu adrese gider; `${GDPR}` / `${GDPR_CONSENT_755}` makrolarını DV360 yayında doldurur. İstasyon Bul sekmesindeki "Size En Yakın Aygaz İstasyonunu Haritada Bulun" satırı (sağındaki link dahil) ikinci çıkış `clickTag1` ile doğrudan `https://100oktan.aygaz.com.tr/nerede.html` adresine gider; DV360 iki clickTag'i de ayrı çıkış olarak algılar.
 - Ses kapalı başlar, kullanıcı tıklamasıyla açılır (otomatik sesli oynatma yok).
+- Gösterim sayacı: CM360 `trackimp` 1×1 pikseli `index.html` sonunda JavaScript ile eklenir (`dv360.config.json` → `impressionPixel`). `[timestamp]` her yüklemede rastgele sayıyla değiştirilir (cache-buster), `${GDPR}` / `${GDPR_CONSENT_755}` makroları olduğu gibi kalır. Piksel yalnızca yayın paketlerinde (dv360, dv360-s3video) vardır; onay (sesli) ve önizleme sürümlerinde gösterim sayılmaz.
 - Logo `https://100oktan.aygaz.com.tr/assets/images/logo/logo-white.png` adresinden canlı yüklenir (bu ortamdan indirilemediği için pakete gömülemedi). PNG dosyası `assets/logo-white.png` olarak konursa derleme paket içine alır.
 
 Yeniden üretmek için (Node 18+):
