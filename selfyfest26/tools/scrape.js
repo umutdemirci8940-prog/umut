@@ -24,13 +24,16 @@ fs.mkdirSync(imgDir, { recursive: true });
     if (!/image|font|css/.test(ct) && !/\.(png|jpe?g|webp|gif|svg|avif|woff2?|ttf|otf|css)(\?|$)/i.test(r.url())) return;
     try { const b = await r.body(); if (b.length > 200) seen.set(r.url(), { b, ct }); } catch {}
   });
-  await page.goto(URL, { waitUntil: 'networkidle', timeout: 90000 });
+  try { await page.goto(URL, { waitUntil: 'domcontentloaded', timeout: 120000 }); }
+  catch (e) { console.error('goto:', e.message.split('\n')[0]); }
+  await page.waitForLoadState('networkidle', { timeout: 30000 }).catch(() => console.error('networkidle beklenmedi'));
   for (let y = 0; y < 15000; y += 600) { await page.mouse.wheel(0, 600); await page.waitForTimeout(250); }
   await page.waitForTimeout(2000);
   await page.screenshot({ path: path.join(out, 'page.png'), fullPage: true });
   await ctx.newPage().then(async (m) => {
     await m.setViewportSize({ width: 390, height: 844 });
-    await m.goto(URL, { waitUntil: 'networkidle', timeout: 90000 }).catch(() => {});
+    await m.goto(URL, { waitUntil: 'domcontentloaded', timeout: 60000 }).catch(() => {});
+    await m.waitForTimeout(5000);
     await m.screenshot({ path: path.join(out, 'page-mobile.png'), fullPage: true }).catch(() => {});
   });
   fs.writeFileSync(path.join(out, 'page.html'), await page.content());

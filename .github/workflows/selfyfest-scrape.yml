@@ -26,12 +26,19 @@ jobs:
         run: |
           npm install --no-save --no-package-lock playwright@1.56.1
           npx playwright install --with-deps chromium
+      - name: HTTP yoklaması
+        continue-on-error: true
+        run: |
+          mkdir -p selfyfest26/source
+          curl -sS -L -m 60 -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/141 Safari/537.36" -o selfyfest26/source/raw.html -w "HTTP %{http_code} %{size_download}B %{time_total}s\n" https://www.selfy.com.tr/kampanyalar/selfyfest26 || true
       - name: Sayfayı tara
-        run: node selfyfest26/tools/scrape.js
+        timeout-minutes: 8
+        run: node selfyfest26/tools/scrape.js || echo "tarama başarısız"
+
       - name: Özet
         run: |
-          head -c 6000 selfyfest26/source/page.txt
-          ls -la selfyfest26/source/img
+          head -c 6000 selfyfest26/source/page.txt || true
+          ls -la selfyfest26/source selfyfest26/source/img || true
       - name: Sonuçları dala push'la
         run: |
           git config user.name "github-actions[bot]"
