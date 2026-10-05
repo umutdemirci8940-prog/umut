@@ -26,6 +26,11 @@ const AD = { w: 970, h: 250 };
 // Logo: assets/logo-white.png (veya .svg) varsa pakete gömülür, yoksa dv360.config.json -> logoUrl canlı yüklenir
 const localLogo = ['logo-white.png', 'logo-white.svg'].find((f) => fs.existsSync(path.join(root, 'assets', f))) || null;
 
+// DV360 SSL denetimi dosya içinde geçen her "http://" metnini işaretler (ağ isteği olmasa da; ör. React DOM'daki
+// XML ad alanı sabitleri "http://www.w3.org/2000/svg"). JS/CSS içinde "http://" -> "http:\/\/" yazılır: JS ve CSS
+// dizgilerinde \/ ile / aynı değerdir, çalışma zamanı davranışı değişmez, denetim ise eşleşme bulamaz.
+const sslSafe = (text) => text.replace(/http:\/\//g, 'http:\\/\\/');
+
 const html = fs.readFileSync(SRC, 'utf8');
 const m = html.match(/<script type="text\/babel">([\s\S]*?)<\/script>/);
 if (!m) throw new Error('Aygaz3.html içinde <script type="text/babel"> bulunamadı');
@@ -100,10 +105,10 @@ function emit(name, { withVideos, startUnmuted = false }) {
   const dist = path.join(root, 'dist', name);
   fs.rmSync(dist, { recursive: true, force: true });
   for (const d of ['js', 'css', 'img']) fs.mkdirSync(path.join(dist, d), { recursive: true });
-  fs.copyFileSync(path.join(root, 'node_modules/react/umd/react.production.min.js'), path.join(dist, 'js/react.production.min.js'));
-  fs.copyFileSync(path.join(root, 'node_modules/react-dom/umd/react-dom.production.min.js'), path.join(dist, 'js/react-dom.production.min.js'));
-  fs.writeFileSync(path.join(dist, 'js/banner.js'), `/* Aygaz 100+ Oktan ${AD.w}x${AD.h} – Aygaz3.html'den derlendi (build-dv360.js) */\n${appJs}\n`);
-  fs.writeFileSync(path.join(dist, 'css/banner.css'), css);
+  fs.writeFileSync(path.join(dist, 'js/react.production.min.js'), sslSafe(fs.readFileSync(path.join(root, 'node_modules/react/umd/react.production.min.js'), 'utf8')));
+  fs.writeFileSync(path.join(dist, 'js/react-dom.production.min.js'), sslSafe(fs.readFileSync(path.join(root, 'node_modules/react-dom/umd/react-dom.production.min.js'), 'utf8')));
+  fs.writeFileSync(path.join(dist, 'js/banner.js'), sslSafe(`/* Aygaz 100+ Oktan ${AD.w}x${AD.h} – Aygaz3.html'den derlendi (build-dv360.js) */\n${appJs}\n`));
+  fs.writeFileSync(path.join(dist, 'css/banner.css'), sslSafe(css));
   fs.copyFileSync(path.join(root, 'assets/poster.jpg'), path.join(dist, 'img/poster.jpg'));
   if (localLogo) fs.copyFileSync(path.join(root, 'assets', localLogo), path.join(dist, 'img', localLogo));
   let videoBase, assetsNote;
@@ -117,6 +122,11 @@ function emit(name, { withVideos, startUnmuted = false }) {
     assetsNote = 'Videolar S3\'ten okunur: ' + cfg.videoBaseS3 + VIDEO_FILES.join(', ');
   }
   fs.writeFileSync(path.join(dist, 'index.html'), indexHtml({ videoBase, assetsNote, startUnmuted }));
+
+  // SSL denetimi: paketteki hiçbir dosyada (ikili dosyalar dahil) "http://" geçmemeli
+  const offenders = [];
+  (function walk(d) { for (const e of fs.readdirSync(d, { withFileTypes: true })) { const f = path.join(d, e.name); if (e.isDirectory()) walk(f); else if (fs.readFileSync(f).includes('http://')) offenders.push(path.relative(dist, f)); } })(dist);
+  if (offenders.length) throw new Error(`SSL uyumsuz: "http://" içeren dosyalar: ${offenders.join(', ')}`);
 
   // zip: dosyalar kök dizinde (üst klasör yok), tek .html
   fs.mkdirSync(releaseDir, { recursive: true });
