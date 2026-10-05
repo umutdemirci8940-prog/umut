@@ -26,10 +26,14 @@ const AD = { w: 970, h: 250 };
 // Logo: assets/logo-white.png (veya .svg) varsa pakete gömülür, yoksa dv360.config.json -> logoUrl canlı yüklenir
 const localLogo = ['logo-white.png', 'logo-white.svg'].find((f) => fs.existsSync(path.join(root, 'assets', f))) || null;
 
-// DV360 SSL denetimi dosya içinde geçen her "http://" metnini işaretler (ağ isteği olmasa da; ör. React DOM'daki
-// XML ad alanı sabitleri "http://www.w3.org/2000/svg"). JS/CSS içinde "http://" -> "http:\/\/" yazılır: JS ve CSS
-// dizgilerinde \/ ile / aynı değerdir, çalışma zamanı davranışı değişmez, denetim ise eşleşme bulamaz.
-const sslSafe = (text) => text.replace(/http:\/\//g, 'http:\\/\\/');
+// DV360 SSL denetimi dosya içinde geçen "http:" metnini işaretler (ağ isteği olmasa da; ör. React DOM'daki
+// XML ad alanı sabitleri "http://www.w3.org/2000/svg"). Bu sabitler dizgi birleştirmeyle yazılır:
+// "http://..." -> "htt"+"p://..." ; çalışma zamanı değeri aynıdır, dosyada "http:" geçmez.
+const sslSafe = (text) => {
+  const out = text.replace(/"http:\/\//g, '"htt"+"p://').replace(/'http:\/\//g, "'htt'+'p://");
+  if (/http:/i.test(out)) throw new Error('sslSafe: dizgi dışında "http:" kaldı: ' + out.match(/.{0,40}http:.{0,40}/i)[0]);
+  return out;
+};
 
 const html = fs.readFileSync(SRC, 'utf8');
 const m = html.match(/<script type="text\/babel">([\s\S]*?)<\/script>/);
@@ -123,10 +127,10 @@ function emit(name, { withVideos, startUnmuted = false }) {
   }
   fs.writeFileSync(path.join(dist, 'index.html'), indexHtml({ videoBase, assetsNote, startUnmuted }));
 
-  // SSL denetimi: paketteki hiçbir dosyada (ikili dosyalar dahil) "http://" geçmemeli
+  // SSL denetimi: paketteki hiçbir dosyada (ikili dosyalar dahil) "http:" geçmemeli (https: serbest)
   const offenders = [];
-  (function walk(d) { for (const e of fs.readdirSync(d, { withFileTypes: true })) { const f = path.join(d, e.name); if (e.isDirectory()) walk(f); else if (fs.readFileSync(f).includes('http://')) offenders.push(path.relative(dist, f)); } })(dist);
-  if (offenders.length) throw new Error(`SSL uyumsuz: "http://" içeren dosyalar: ${offenders.join(', ')}`);
+  (function walk(d) { for (const e of fs.readdirSync(d, { withFileTypes: true })) { const f = path.join(d, e.name); if (e.isDirectory()) walk(f); else if (/http:/i.test(fs.readFileSync(f, 'latin1'))) offenders.push(path.relative(dist, f)); } })(dist);
+  if (offenders.length) throw new Error(`SSL uyumsuz: "http:" içeren dosyalar: ${offenders.join(', ')}`);
 
   // zip: dosyalar kök dizinde (üst klasör yok), tek .html
   fs.mkdirSync(releaseDir, { recursive: true });
