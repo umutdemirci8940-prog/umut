@@ -163,6 +163,9 @@
       // Videolar başka bir yerde duracaksa klasör adresini buraya yazın, sonu "/" ile bitmeli:
       // VIDEO_BASE: 'https://splashdigital.s3.eu-west-1.amazonaws.com/Aygaz/'
       VIDEO_BASE: '',
+      // 'file': <video src="...mp4">. 'js': videolar base64 kodlu .js dosyalarından (Aile.mp4.js) yüklenir ve
+      // tarayıcıda Blob'a çevrilir; DV360 paketi bu modu kullanır (zip içinde video dosyası kabul edilmediği için).
+      VIDEO_MODE: 'file',
       KEY_VISUAL_URL: 'https://splashdigital.s3.eu-west-1.amazonaws.com/Aygaz/aygaz.jpg',
       // Güncel pompa fiyatları: {"tarih":"2026-10-02","benzin":84.50,"otogaz":43.29}. Bu HTML ile aynı
       // klasörden okunur; ulaşılamazsa CALC içindeki gömülü fiyatlar kullanılır. '' verilirse hiç denenmez.
@@ -201,6 +204,12 @@
       'Filo Yöneticisi': 'filoyoneticisi.mp4'
     };
     const videoUrlFor = (persona) => ASSETS.VIDEO_BASE + PERSONA_VIDEOS[persona.title];
+    const base64ToObjectUrl = (b64, mime) => {
+      const bin = atob(b64);
+      const bytes = new Uint8Array(bin.length);
+      for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+      return URL.createObjectURL(new Blob([bytes], { type: mime }));
+    };
 
     const PERSONAS = [
       {
@@ -328,6 +337,35 @@
       // Her persona için ayrı <video> elemanı; sadece aktif olan görünür ve oynar
       const videoRefs = useRef({});
       const getVideo = (id) => videoRefs.current[id] || null;
+      // Görünürlük: reklam ekranda en az %25 görünmüyorsa video indirilmez ve oynatılmaz (veri maliyeti + CPU).
+      // IntersectionObserver yoksa hep görünür sayılır.
+      const rootRef = useRef(null);
+      const [inView, setInView] = useState(typeof IntersectionObserver === 'undefined');
+      const triedUnmutedRef = useRef(false);
+      // Video kaynakları persona bazında, ihtiyaç anında yüklenir (görünür + seçili). 'js' modunda base64 -> Blob URL.
+      const [videoSrcs, setVideoSrcs] = useState({});
+      const loadingRef = useRef({});
+      const ensureVideoSrc = (persona) => {
+        if (videoSrcs[persona.id] || loadingRef.current[persona.id]) return;
+        loadingRef.current[persona.id] = true;
+        const file = PERSONA_VIDEOS[persona.title];
+        if (ASSETS.VIDEO_MODE === 'js') {
+          const script = document.createElement('script');
+          script.src = ASSETS.VIDEO_BASE + file.replace(/\.mp4$/i, '') + '.js'; // Aile.mp4 -> video/Aile.js
+          script.onload = () => {
+            const data = window.AYGAZ_VIDEO_DATA || {};
+            const b64 = data[file];
+            if (!b64) { loadingRef.current[persona.id] = false; return; }
+            const url = base64ToObjectUrl(b64, 'video/mp4');
+            delete data[file]; // base64 metni serbest bırak
+            setVideoSrcs((m) => Object.assign({}, m, { [persona.id]: url }));
+          };
+          script.onerror = () => { loadingRef.current[persona.id] = false; };
+          document.head.appendChild(script);
+        } else {
+          setVideoSrcs((m) => Object.assign({}, m, { [persona.id]: videoUrlFor(persona) }));
+        }
+      };
       const activePersona = PERSONAS.find(p => p.id === activePersonaId) || PERSONAS[0];
 
       // Run Intro animation sequence on mount
@@ -362,21 +400,35 @@
         return () => { cancelled = true; };
       }, []);
 
-      // Sesli başlatma (yalnızca OPTIONS.startUnmuted): engellenirse sessiz oynat, ilk tıklamada aç
+      // Görünürlük gözlemcisi
       useEffect(() => {
-        if (!OPTIONS.startUnmuted) return;
-        const first = getVideo(PERSONAS[0].id);
-        if (!first) return;
-        first.muted = false;
-        first.play().then(() => {
-          setSoundBlocked(false);
-        }).catch(() => {
-          first.muted = true;
-          setIsMuted(true);
-          setSoundBlocked(true);
-          first.play().catch(() => {});
-        });
+        if (typeof IntersectionObserver === 'undefined' || !rootRef.current) return;
+        const io = new IntersectionObserver((entries) => setInView(entries.some((e) => e.isIntersecting)), { threshold: 0.25 });
+        io.observe(rootRef.current);
+        return () => io.disconnect();
       }, []);
+
+      // Tek oynatma denetleyicisi: görünürlük + kullanıcı niyeti (oynat/duraklat) + seçili persona.
+      // Videolar preload="none" ile durur; ilk play() çağrısına kadar hiç veri indirilmez.
+      useEffect(() => {
+        const video = getVideo(activePersonaId);
+        if (!video) return;
+        if (!inView || !isPlaying) { video.pause(); return; }
+        if (!videoSrcs[activePersonaId]) { ensureVideoSrc(activePersona); return; } // yüklenince effect yeniden çalışır
+        if (OPTIONS.startUnmuted && !triedUnmutedRef.current) {
+          // Sesli başlatmayı dene; tarayıcı engellerse sessiz oynat, ilk tıklamada ses açılır
+          triedUnmutedRef.current = true;
+          video.muted = false;
+          video.play().then(() => setSoundBlocked(false)).catch(() => {
+            video.muted = true;
+            setIsMuted(true);
+            setSoundBlocked(true);
+            video.play().catch(() => {});
+          });
+          return;
+        }
+        video.play().catch(() => {});
+      }, [inView, isPlaying, activePersonaId, videoSrcs]);
 
       const unmuteAll = () => {
         PERSONAS.forEach((p) => { const v = getVideo(p.id); if (v) v.muted = false; });
@@ -421,31 +473,20 @@
       };
 
       const handlePersonaSelect = (personaId) => {
-        const next = getVideo(personaId);
         if (personaId !== activePersonaId) {
           const current = getVideo(activePersonaId);
           if (current) current.pause();
+          const next = getVideo(personaId);
           if (next) {
             try { next.currentTime = 0; } catch (e) { /* metadata henüz yüklenmediyse zaten baştan başlar */ }
           }
           setActivePersonaId(personaId);
         }
-        if (next) {
-          next.play().catch(() => {});
-          setIsPlaying(true);
-        }
+        setIsPlaying(true); // görünürse denetleyici effect oynatır
       };
 
       const togglePlay = () => {
-        const video = getVideo(activePersonaId);
-        if (!video) return;
-        if (isPlaying) {
-          video.pause();
-          setIsPlaying(false);
-        } else {
-          video.play().catch(() => {});
-          setIsPlaying(true);
-        }
+        setIsPlaying((playing) => !playing);
       };
 
       const toggleMute = () => {
@@ -484,6 +525,7 @@
           className="relative bg-[#000D21] rounded-none overflow-hidden shadow-2xl border border-slate-800/90 font-sans text-white select-none"
           style={{ width: '970px', height: '250px', minWidth: '970px', minHeight: '250px' }}
           onPointerDownCapture={handleFirstInteraction}
+          ref={rootRef}
         >
           {/* Top Header Branding Bar (Height: 38px) */}
           <div className="absolute top-0 left-0 right-0 h-[38px] bg-[#00122E] border-b border-slate-800 px-3.5 flex items-center justify-between z-20">
@@ -551,19 +593,18 @@
             
             {/* Left Column: Video Player (340px) */}
             <div className="w-[340px] h-full relative bg-slate-950 border-r border-slate-800 flex-shrink-0 group overflow-hidden">
-              {PERSONAS.map((p, idx) => {
+              {PERSONAS.map((p) => {
                 const isActive = p.id === activePersonaId;
                 return (
                   <video
                     key={p.id}
                     ref={(el) => { videoRefs.current[p.id] = el; }}
-                    src={videoUrlFor(p)}
+                    src={videoSrcs[p.id]}
                     poster={ASSETS.KEY_VISUAL_URL}
-                    autoPlay={idx === 0}
                     loop
                     muted={isMuted}
                     playsInline
-                    preload={isActive ? 'auto' : 'metadata'}
+                    preload="none"
                     aria-hidden={!isActive}
                     data-persona={p.title}
                     className={`absolute inset-0 w-full h-full object-cover object-bottom transition-opacity duration-300 ${

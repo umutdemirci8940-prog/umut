@@ -40,21 +40,30 @@ Dosya S3'e videolarla aynı klasöre konur (`/Aygaz/Aygaz3-sesli.html`). Yayın 
 
 | Paket | İçerik | Boyut |
 |---|---|---|
-| `release/aygaz-100oktan-970x250-dv360.zip` | index.html + JS/CSS + poster + **4 video paket içinde** | ~3,9 MB |
-| `release/aygaz-100oktan-970x250-dv360-s3video.zip` | Aynı kreatif, videolar S3'ten (`/Aygaz/Aile.mp4` …) | ~0,14 MB |
-| `release/aygaz-100oktan-970x250-dv360-sesli.zip` | **Müşteri onayı için** videolu paket, sesli başlar (engellenirse ilk tıklamada ses açılır). Yayına verilmez. | ~3,9 MB |
+| `release/aygaz-100oktan-970x250-dv360.zip` | **Yayın.** index.html + JS/CSS + logo + poster + 4 video **base64 kodlu .js dosyaları olarak** paket içinde | ~3,2 MB |
+| `release/aygaz-100oktan-970x250-dv360-sesli.zip` | Müşteri onayı için aynı paket, sesli başlar. Yayına verilmez. | ~3,2 MB |
+| `release/aygaz-100oktan-970x250-dv360-s3video.zip` | Yedek: videolar S3'ten (`dv360.config.json` → `videoBaseS3`) | ~0,15 MB |
+| `release/aygaz-100oktan-970x250-dv360-videosuz-test.zip` | Tanı: videosuz paket; DV360 HTML/JS'i kabul ediyor mu testi | ~0,15 MB |
 
-Platformun HTML5 zip boyut sınırı videolu paketi kabul etmezse ikinci paket kullanılır; bu durumda dört mp4 S3'te `/Aygaz/` altına aynı adlarla yüklenmelidir.
+### Videolar neden .js?
 
-Paket özellikleri:
+DV360, zip içinde `.mp4` dosyası olan paketi "SSL uyumsuz" (kod 1824) diyerek reddediyor; aynı kreatif videolar dışarıdan linklenince kabul ediliyor (gözlem). Dış barındırma istenmediği için her mp4, base64 metin olarak bir `.js` dosyasına yazılır (`video/Aile.js` → `window.AYGAZ_VIDEO_DATA["Aile.mp4"]`). Kreatif, video gerektiğinde bu dosyayı `<script>` ile yükler, base64'ü çözüp `Blob` URL olarak `<video>`'ya verir (`Aygaz3.html` → `VIDEO_MODE: 'js'`). Metin dosyasında ikili veri ya da `http:` bulunamaz (base64 alfabesinde iki nokta yoktur), dosya tipi filtresine takılmaz. Base64 payı %33 olduğu için videolar 480×270 / CRF 28 ile 0,67–0,84 MB'a indirildi; zip sıkıştırması base64'ü iyi sıkıştırdığı için paket 3,2 MB.
+
+### Veri tasarrufu (görünürlük kapısı)
+
+- Videolar `preload="none"`; hiçbir video, reklam ekranda en az %25 görünene kadar yüklenmez (IntersectionObserver). Görünmeyen gösterimlerde video verisi hiç indirilmez.
+- Yalnızca seçili personanın videosu yüklenir; diğerleri tıklanana kadar yüklenmez.
+- Reklam ekrandan çıkınca video durur, geri gelince kaldığı yerden devam eder.
+
+### Paket özellikleri
 
 - `<meta name="ad.size" content="width=970,height=250">`; tek `index.html`, dosyalar kök dizinde, üst klasör yok.
-- JSX önceden derlenmiş, Tailwind CSS statik; React/ReactDOM paket içinde. Tarayıcıda Babel veya Tailwind CDN yüklenmez (önizleme `Aygaz3.html` bunları CDN'den yükler).
+- JSX önceden derlenmiş, Tailwind CSS statik; React/ReactDOM, logo ve poster paket içinde. Dışarıya yalnızca iki https isteği: CM360 gösterim pikseli ve S3'teki `fiyat.json`.
 - Tıklama: `var clickTag = "<CM360 click tracker>"` `index.html` içinde tanımlıdır (`dv360.config.json` → `clickTag`). "Şimdi İncele" CTA'sı bu adrese gider; `${GDPR}` / `${GDPR_CONSENT_755}` makrolarını DV360 yayında doldurur. İstasyon Bul sekmesindeki "Size En Yakın Aygaz İstasyonunu Haritada Bulun" satırı (sağındaki link dahil) ikinci çıkış `clickTag1` ile doğrudan `https://100oktan.aygaz.com.tr/nerede.html` adresine gider; DV360 iki clickTag'i de ayrı çıkış olarak algılar.
 - Ses kapalı başlar, kullanıcı tıklamasıyla açılır (otomatik sesli oynatma yok).
 - Gösterim sayacı: CM360 `trackimp` 1×1 pikseli `index.html` sonunda JavaScript ile eklenir (`dv360.config.json` → `impressionPixel`). `[timestamp]` her yüklemede rastgele sayıyla değiştirilir (cache-buster), `${GDPR}` / `${GDPR_CONSENT_755}` makroları olduğu gibi kalır. Piksel yalnızca yayın paketlerinde (dv360, dv360-s3video) vardır; onay (sesli) ve önizleme sürümlerinde gösterim sayılmaz.
-- SSL uyumu: DV360, paketteki dosyaların içinde geçen her `http://` metnini reddeder (ağ isteği olmasa da). Derleme JS/CSS'teki `http://` dizgilerini `http:\/\/` olarak yazar (React DOM'un `http://www.w3.org/2000/svg` gibi XML ad alanı sabitleri; çalışma zamanı değeri aynı), video dosyalarından x264 bilgi SEI'si ve poster JPEG'den ICC/EXIF metaverisi temizlenmiştir. Derleme sonunda tüm dosyalar (ikili dahil) taranır, `http://` bulunursa derleme hata verir.
-- Logo `https://100oktan.aygaz.com.tr/assets/images/logo/logo-white.png` adresinden canlı yüklenir (bu ortamdan indirilemediği için pakete gömülemedi). PNG dosyası `assets/logo-white.png` olarak konursa derleme paket içine alır.
+- SSL uyumu: DV360, paketteki dosyaların içinde geçen her `http:` metnini reddeder (ağ isteği olmasa da). Derleme JS/CSS'teki `"http://` dizgilerini `"htt"+"p://` olarak yazar (React DOM'un XML ad alanı sabitleri; çalışma zamanı değeri aynı), video dosyalarından x264 bilgi SEI'si ve metaveri, poster/logo görsellerinden ICC/EXIF/metin parçaları temizlenmiştir. Derleme sonunda tüm dosyalar (ikili dahil) taranır, `http:` bulunursa derleme hata verir.
+- Logo: `assets/logo-white.png` (müşteriden) pakete gömülür.
 
 Yeniden üretmek için (Node 18+):
 

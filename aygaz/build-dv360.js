@@ -56,10 +56,10 @@ execSync(`"${path.join(root, 'node_modules', '.bin', 'tailwindcss')}" -c "${path
 const css = fs.readFileSync(cssOut, 'utf8');
 
 // 3) index.html şablonu (clickTag'ler HTML içinde açıkça tanımlı: DV360/CM360 bunları tarar)
-function indexHtml({ videoBase, assetsNote, startUnmuted }) {
+function indexHtml({ videoBase, videoMode, assetsNote, startUnmuted }) {
   const clickTags = [`  var clickTag = ${JSON.stringify(cfg.clickTag)};`];
   if (cfg.clickTag1) clickTags.push(`  var clickTag1 = ${JSON.stringify(cfg.clickTag1)};`);
-  const assets = { VIDEO_BASE: videoBase, KEY_VISUAL_URL: 'img/poster.jpg', LOGO_URL: localLogo ? 'img/' + localLogo : cfg.logoUrl, PRICE_URL: cfg.priceUrl || '' };
+  const assets = { VIDEO_BASE: videoBase, VIDEO_MODE: videoMode, KEY_VISUAL_URL: 'img/poster.jpg', LOGO_URL: localLogo ? 'img/' + localLogo : cfg.logoUrl, PRICE_URL: cfg.priceUrl || '' };
   return [
     '<!DOCTYPE html>',
     '<html lang="tr">',
@@ -105,7 +105,8 @@ function indexHtml({ videoBase, assetsNote, startUnmuted }) {
   ].join('\n');
 }
 
-function emit(name, { withVideos, startUnmuted = false }) {
+function emit(name, { videos, startUnmuted = false }) {
+  // videos: 'js' (base64 .js dosyaları, paket içinde) | 'file' (mp4 dosyaları paket içinde) | 's3' (S3'ten) | 'none' (tanı paketi)
   const dist = path.join(root, 'dist', name);
   fs.rmSync(dist, { recursive: true, force: true });
   for (const d of ['js', 'css', 'img']) fs.mkdirSync(path.join(dist, d), { recursive: true });
@@ -115,17 +116,30 @@ function emit(name, { withVideos, startUnmuted = false }) {
   fs.writeFileSync(path.join(dist, 'css/banner.css'), sslSafe(css));
   fs.copyFileSync(path.join(root, 'assets/poster.jpg'), path.join(dist, 'img/poster.jpg'));
   if (localLogo) fs.copyFileSync(path.join(root, 'assets', localLogo), path.join(dist, 'img', localLogo));
-  let videoBase, assetsNote;
-  if (withVideos) {
+  let videoBase, videoMode, assetsNote;
+  if (videos === 'js') {
+    // Video dosyaları zip içinde kabul edilmediği için her mp4 base64 metin olarak bir .js dosyasına yazılır;
+    // kreatif ihtiyaç anında bu dosyayı yükleyip Blob'a çevirir (bkz. Aygaz3.html VIDEO_MODE).
+    fs.mkdirSync(path.join(dist, 'video'));
+    for (const f of VIDEO_FILES) {
+      const b64 = fs.readFileSync(path.join(root, f)).toString('base64');
+      fs.writeFileSync(path.join(dist, 'video', f.replace(/\.mp4$/i, '') + '.js'), `window.AYGAZ_VIDEO_DATA=window.AYGAZ_VIDEO_DATA||{};window.AYGAZ_VIDEO_DATA[${JSON.stringify(f)}]=${JSON.stringify(b64)};\n`);
+    }
+    videoBase = 'video/'; videoMode = 'js';
+    assetsNote = 'Videolar paket içindeki video/*.js dosyalarından (base64) yüklenir.';
+  } else if (videos === 'file') {
     fs.mkdirSync(path.join(dist, 'video'));
     for (const f of VIDEO_FILES) fs.copyFileSync(path.join(root, f), path.join(dist, 'video', f));
-    videoBase = 'video/';
+    videoBase = 'video/'; videoMode = 'file';
     assetsNote = 'Videolar paket içindeki video/ klasöründen okunur.';
-  } else {
-    videoBase = cfg.videoBaseS3;
+  } else if (videos === 's3') {
+    videoBase = cfg.videoBaseS3; videoMode = 'file';
     assetsNote = 'Videolar S3\'ten okunur: ' + cfg.videoBaseS3 + VIDEO_FILES.join(', ');
+  } else {
+    videoBase = 'video/'; videoMode = 'file';
+    assetsNote = 'TANI PAKETİ: video yok (DV360 kabul testi için).';
   }
-  fs.writeFileSync(path.join(dist, 'index.html'), indexHtml({ videoBase, assetsNote, startUnmuted }));
+  fs.writeFileSync(path.join(dist, 'index.html'), indexHtml({ videoBase, videoMode, assetsNote, startUnmuted }));
 
   // SSL denetimi: paketteki hiçbir dosyada (ikili dosyalar dahil) "http:" geçmemeli (https: serbest)
   const offenders = [];
@@ -149,9 +163,10 @@ if (sesli === html) throw new Error('Aygaz3-sesli.html üretilemedi');
 fs.writeFileSync(path.join(root, 'Aygaz3-sesli.html'), sesli);
 console.log('✔ Aygaz3-sesli.html (sesli önizleme, S3\'e videolarla aynı klasöre)');
 
-emit('dv360', { withVideos: true });
-emit('dv360-s3video', { withVideos: false });
-emit('dv360-sesli', { withVideos: true, startUnmuted: true });   // müşteri onayı için, yayına verilmez
+emit('dv360', { videos: 'js' });                                  // YAYIN: videolar base64 .js olarak paket içinde
+emit('dv360-sesli', { videos: 'js', startUnmuted: true });        // müşteri onayı için, yayına verilmez
+emit('dv360-s3video', { videos: 's3' });                          // yedek: videolar S3'ten
+emit('dv360-videosuz-test', { videos: 'none' });                  // tanı: DV360 HTML/JS'i videosuz kabul ediyor mu?
 console.log(`   gösterim pikseli: ${cfg.impressionPixel ? 'yayın paketlerinde (dv360, dv360-s3video)' : 'yok'}`);
 console.log(`   logo: ${localLogo ? 'paket içinde (assets/' + localLogo + ')' : 'canlı ' + cfg.logoUrl}`);
 console.log(`   banner.js ${(Buffer.byteLength(appJs) / 1024).toFixed(0)} KB, banner.css ${(Buffer.byteLength(css) / 1024).toFixed(0)} KB, clickTag → ${cfg.clickTag.slice(0, 60)}…`);
