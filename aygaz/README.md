@@ -45,7 +45,7 @@ Dosya S3'e videolarla aynı klasöre konur (`/Aygaz/Aygaz3-sesli.html`). Yayın 
 | `release/aygaz-100oktan-970x250-dv360-s3video.zip` | Yedek: videolar S3'ten (`dv360.config.json` → `videoBaseS3`) | ~0,15 MB |
 | `release/aygaz-100oktan-970x250-dv360-videosuz-test.zip` | Tanı: videosuz paket; DV360 HTML/JS'i kabul ediyor mu testi | ~0,15 MB |
 
-### Videolar neden .js?
+### Videolar neden .js? (DV360 bu paketi kabul etti, 05.10.2026)
 
 DV360, zip içinde `.mp4` dosyası olan paketi "SSL uyumsuz" (kod 1824) diyerek reddediyor; aynı kreatif videolar dışarıdan linklenince kabul ediliyor (gözlem). Dış barındırma istenmediği için her mp4, base64 metin olarak bir `.js` dosyasına yazılır (`video/Aile.js` → `window.AYGAZ_VIDEO_DATA["Aile.mp4"]`). Kreatif, video gerektiğinde bu dosyayı `<script>` ile yükler, base64'ü çözüp `Blob` URL olarak `<video>`'ya verir (`Aygaz3.html` → `VIDEO_MODE: 'js'`). Metin dosyasında ikili veri ya da `http:` bulunamaz (base64 alfabesinde iki nokta yoktur), dosya tipi filtresine takılmaz. Base64 payı %33 olduğu için videolar 480×270 / CRF 28 ile 0,67–0,84 MB'a indirildi; zip sıkıştırması base64'ü iyi sıkıştırdığı için paket 3,2 MB.
 
