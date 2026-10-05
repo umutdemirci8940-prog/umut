@@ -120,13 +120,13 @@ body{font-family:'Mulish',Arial,sans-serif;color:#fff;-webkit-font-smoothing:ant
 #ad:hover .nav{opacity:1}
 
 #route{position:absolute;left:0;right:0;top:227px;height:18px;z-index:7}
-#route .line{position:absolute;left:11px;right:75px;top:8px;height:2px;background:rgba(255,255,255,.25);border-radius:2px}
+#route .line{position:absolute;left:2px;right:2px;top:18px;height:2px;background:rgba(255,255,255,.25);border-radius:2px}
 #route .fill{position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,var(--orange-2),var(--pink));border-radius:2px;transition:width .8s cubic-bezier(.3,.7,.2,1)}
 .stop{position:absolute;top:0;width:86px;height:18px;cursor:pointer}
-.stop i{position:absolute;left:6px;top:4px;width:10px;height:10px;border-radius:50%;background:#2a0a66;border:2px solid rgba(255,255,255,.7);transition:all .3s}
-.stop span{position:absolute;left:21px;top:3px;font:400 11px/1 'Anton';letter-spacing:.05em;white-space:nowrap;color:rgba(255,255,255,.55);transition:color .3s;
+.stop i{position:absolute;left:2px;top:4px;width:10px;height:10px;border-radius:50%;background:#2a0a66;border:2px solid rgba(255,255,255,.7);transition:all .3s}
+.stop span{position:absolute;left:14px;top:4px;font:400 10px/1 'Anton';letter-spacing:.01em;white-space:nowrap;color:rgba(255,255,255,.55);transition:color .3s;
   text-shadow:0 1px 3px rgba(0,0,0,.6)}
-.stop span em{font-style:normal;color:var(--orange-2);margin-right:3px}
+.stop span em{font-style:normal;color:var(--orange-2);margin-right:2px}
 .stop:hover span{color:#fff}
 .stop.act i{background:var(--orange);border-color:#fff;box-shadow:0 0 10px var(--orange)}
 .stop.act span{color:#fff}
@@ -296,7 +296,7 @@ body{font-family:'Mulish',Arial,sans-serif;color:#fff;-webkit-font-smoothing:ant
   var stops = A.map(function(a, i){
     var el = document.createElement('div'); el.className = 'stop' + (i === nextIdx ? ' next' : '');
     el.style.left = (i * 86) + 'px';
-    el.innerHTML = '<i></i><span><em>' + a.day + '</em>' + a.city + '</span>';
+    el.innerHTML = '<i></i><span><em>' + a.day + ' ' + DATA.monthName + '</em>' + a.city + '</span>';
     el.setAttribute('role', 'button'); el.setAttribute('aria-label', a.city + ' ' + a.day + ' ' + DATA.monthName + ' ' + a.name);
     el.addEventListener('click', function(e){ e.stopPropagation(); userNav(Math.floor(i / PER)); });
     el.addEventListener('mouseenter', function(){ var c = slots[i % PER]; if (Math.floor(i / PER) === page && c) c.classList.add('focus'); });
@@ -309,7 +309,7 @@ body{font-family:'Mulish',Arial,sans-serif;color:#fff;-webkit-font-smoothing:ant
     stops.forEach(function(el, i){
       el.classList.toggle('act', i >= first && i <= last);
     });
-    fill.style.width = (last * 86) + 'px';
+    fill.style.width = ((last + 1) * 86 - 6) + 'px';
   }
 
   /* ---- gezinme ---- */
