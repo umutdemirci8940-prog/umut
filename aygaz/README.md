@@ -40,9 +40,9 @@ Dosya S3'e videolarla aynı klasöre konur (`/Aygaz/Aygaz3-sesli.html`). Yayın 
 
 | Paket | İçerik | Boyut |
 |---|---|---|
-| `release/aygaz-100oktan-970x250-dv360.zip` | index.html + JS/CSS + poster + **4 video paket içinde** | ~7,8 MB |
+| `release/aygaz-100oktan-970x250-dv360.zip` | index.html + JS/CSS + poster + **4 video paket içinde** | ~3,9 MB |
 | `release/aygaz-100oktan-970x250-dv360-s3video.zip` | Aynı kreatif, videolar S3'ten (`/Aygaz/Aile.mp4` …) | ~0,14 MB |
-| `release/aygaz-100oktan-970x250-dv360-sesli.zip` | **Müşteri onayı için** videolu paket, sesli başlar (engellenirse ilk tıklamada ses açılır). Yayına verilmez. | ~7,8 MB |
+| `release/aygaz-100oktan-970x250-dv360-sesli.zip` | **Müşteri onayı için** videolu paket, sesli başlar (engellenirse ilk tıklamada ses açılır). Yayına verilmez. | ~3,9 MB |
 
 Platformun HTML5 zip boyut sınırı videolu paketi kabul etmezse ikinci paket kullanılır; bu durumda dört mp4 S3'te `/Aygaz/` altına aynı adlarla yüklenmelidir.
 
@@ -80,11 +80,11 @@ Videolar başka bir klasörde/CDN'de duracaksa `Aygaz3.html` içinde `ASSETS.VID
 
 ## Bu klasördeki videolar
 
-Müşterinin gönderdiği orijinaller 640×360, 25 fps, ~10,5 Mbps (dosya başına ~20 MB) idi. Buradaki kopyalar aynı çözünürlük ve sürede, web için yeniden kodlanmış hâlidir (H.264 High, CRF 23, AAC 96 kb/s, faststart): dosya başına 1,8–2,3 MB. Bannerdaki 340 px'lik oynatıcıda görsel fark yoktur; istenirse orijinaller de aynı adlarla yüklenebilir, HTML değişmez.
+Müşterinin gönderdiği orijinaller 640×360, 25 fps, ~10,5 Mbps (dosya başına ~20 MB) idi. Buradaki kopyalar DV360'ın HTML5 paket boyutu için yeniden kodlandı: **480×270**, H.264 High, CRF 26, preset slower, AAC 64 kb/s, faststart; dosya başına 0,8–1,0 MB, dört video toplam ~3,7 MB, videolu zip ~3,9 MB. Bannerdaki 340 px'lik oynatıcıda önceki 640p sürümden görsel fark yoktur; yasal ibare okunaklıdır. Orijinaller aynı adlarla yüklenirse HTML değişmez.
 
 ```bash
-ffmpeg -i Aile.mp4 -c:v libx264 -profile:v high -level 3.1 -preset slow -crf 23 -pix_fmt yuv420p -g 50 \
-       -c:a aac -b:a 96k -ac 2 -movflags +faststart Aile.web.mp4
+ffmpeg -i Aile.mp4 -vf "scale=480:-2:flags=lanczos" -c:v libx264 -profile:v high -level 3.1 -preset slower -crf 26 \
+       -pix_fmt yuv420p -g 50 -c:a aac -b:a 64k -ac 2 -movflags +faststart Aile.web.mp4
 ```
 
 ## İstasyon Bul sekmesi verileri
