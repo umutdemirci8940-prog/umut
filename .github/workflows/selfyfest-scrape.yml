@@ -4,10 +4,6 @@ name: Selfy Fest sayfasını tara
 # metin / ekran görüntüsü / görseller selfyfest26/source/ altına kaydedilip dala push'lanır.
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - selfyfest26/tools/scrape.js
-      - selfyfest26/tools/scrape.trigger
 
 permissions:
   contents: write
