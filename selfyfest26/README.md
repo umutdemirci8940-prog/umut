@@ -4,8 +4,8 @@ Yönlenen sayfa: [selfy.com.tr/kampanyalar/selfyfest26](https://www.selfy.com.tr
 
 | Dosya | Açıklama |
 |---|---|
-| `dist/970x250/index.html` | Yayına hazır tek dosya (146 KB; görseller + fontlar gömülü, harici istek yok) |
-| `dist/selfyfest26-970x250.zip` | Google Ads / CM360 / DV360 yükleme paketi (79 KB) |
+| `dist/970x250/index.html` | Yayına hazır tek dosya (120 KB; görseller + fontlar gömülü, harici istek yok) |
+| `dist/selfyfest26-970x250.zip` | Google Ads / CM360 / DV360 yükleme paketi (77 KB) |
 | `preview/*.jpg`, `preview/masthead.mp4` | Sunum için ekran görüntüleri ve kayıt |
 
 ![Sayfa 1](preview/02-sayfa1.jpg)
@@ -31,7 +31,7 @@ Yönlenen sayfa: [selfy.com.tr/kampanyalar/selfyfest26](https://www.selfy.com.tr
 ## Teknik
 
 - Fontlar sitedekiyle aynı: **Anton** (başlık) ve **Mulish** (metin). Siteden alınıp Türkçe karakter setine indirgendi (`pyftsubset`) ve base64 gömüldü.
-- Görseller kampanya afişinden (fest26.webp) kırpıldı: 6 sanatçı (WebP), arka plan halka/ışık dokusu. Logo sitedeki `logo.svg`. Sponsor şeridi müşterinin GIF'inden alındı.
+- Görseller kampanya afişinden (fest26.webp) kırpıldı: 6 sanatçı (WebP), arka plan halka/ışık dokusu. Afişteki büyük şehir etiketleri `tools/clean_chips.py` ile fotoğraflardan silindi (yalnızca etiket pikselleri değiştirilir, sanatçılar korunur); yerine küçük etiketler kullanıldı. Logo sitedeki `logo.svg`. Sponsor şeridi müşterinin GIF'inden alındı.
 - `<meta name="ad.size">`, `clickTag`, `role="link"`, aria etiketleri, `prefers-reduced-motion` desteği.
 - Kodda dış istek yok; yalnızca Chrome/Safari/Firefox'un yerleşik özellikleri kullanılır (canvas, CSS 3B).
 
