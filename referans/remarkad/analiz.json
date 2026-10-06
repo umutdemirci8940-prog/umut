@@ -1,0 +1,137 @@
+{
+ "scripts": [
+  "font https://remarkad.com.tr/assets/fonts/InstrumentSerif-Regular.woff",
+  "font https://remarkad.com.tr/assets/fonts/InstrumentSans-Regular.woff",
+  "stylesheet https://remarkad.com.tr/css/styles.min.css?v=20758e57",
+  "script https://remarkad.com.tr/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js",
+  "script https://remarkad.com.tr/js/main.min.js?v=41fcdce8",
+  "script https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495",
+  "font https://remarkad.com.tr/assets/fonts/InstrumentSans-Bold.woff"
+ ],
+ "globals": [],
+ "title": "RemarkAd | We make advertising do more",
+ "fonts": [
+  "\"Times New Roman\"",
+  "\"Instrument Serif\", \"Times New Roman\", serif",
+  "\"Instrument Sans\", \"Segoe UI\", sans-serif"
+ ],
+ "colors": [
+  [
+   "rgb(255, 255, 255)",
+   580
+  ],
+  [
+   "rgb(27, 36, 48)",
+   158
+  ],
+  [
+   "rgb(13, 20, 27)",
+   72
+  ],
+  [
+   "rgb(205, 232, 250)",
+   67
+  ],
+  [
+   "rgb(111, 163, 199)",
+   54
+  ],
+  [
+   "rgb(0, 0, 0)",
+   43
+  ],
+  [
+   "rgba(255, 255, 255, 0.9)",
+   36
+  ],
+  [
+   "rgb(225, 227, 233)",
+   18
+  ],
+  [
+   "rgba(111, 163, 199, 0.14)",
+   14
+  ],
+  [
+   "rgb(46, 111, 149)",
+   12
+  ],
+  [
+   "rgba(0, 0, 0, 0.76)",
+   8
+  ],
+  [
+   "rgb(4, 8, 11)",
+   8
+  ],
+  [
+   "rgb(221, 224, 232)",
+   6
+  ],
+  [
+   "rgb(18, 26, 37)",
+   6
+  ],
+  [
+   "rgb(4, 9, 12)",
+   5
+  ],
+  [
+   "rgb(20, 64, 95)",
+   5
+  ],
+  [
+   "rgb(13, 34, 51)",
+   4
+  ],
+  [
+   "rgb(5, 8, 11)",
+   4
+  ],
+  [
+   "rgba(210, 216, 222, 0.86)",
+   4
+  ],
+  [
+   "rgb(230, 185, 152)",
+   4
+  ]
+ ],
+ "headings": [
+  "H1: WE MAKE\nADVERTISING\nDO MORE.",
+  "H2: ADS SHOULDN'T\nJUST BE SEEN.",
+  "H2: MEDIA",
+  "H2: CREATIVE",
+  "H2: DATA",
+  "H2: TECHNOLOGY",
+  "H2: REMARKAD",
+  "H2: BEYOND\nTHE AD.",
+  "H2: LET'S MAKE\nSOMETHING\nPEOPLE ACTUALLY USE.",
+  "H3: The whole story.",
+  "H3: Quick configurator",
+  "H3: How it works",
+  "H3: Waterfront park opening moves to spring"
+ ],
+ "sections": [
+  "HEADER. h=114",
+  "SECTION. h=1656",
+  "SECTION. h=2160",
+  "SECTION. h=900",
+  "SECTION. h=900",
+  "SECTION. h=900",
+  "SECTION. h=900",
+  "SECTION. h=2160",
+  "SECTION.ra-brands h=738",
+  "SECTION. h=900",
+  "SECTION. h=900",
+  "FOOTER. h=69"
+ ],
+ "videos": [
+  "CANVAS ",
+  "CANVAS ",
+  "CANVAS ",
+  "CANVAS ",
+  "CANVAS ",
+  "CANVAS "
+ ]
+}
