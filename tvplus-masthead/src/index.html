@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=970,height=250">
+<meta name="viewport" content="width=970,height=250">
+<title>TV+ Masthead 970x250</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+<script>
+  // Reklam ağı tıklama değişkeni (Google Ads / DCM); ağ tarafından ezilebilir.
+  var clickTag = window.clickTag || "https://tvplus.com.tr/";
+</script>
+<style>
+:root{
+  /* Marka renkleri – TV+ kurumsal kılavuzuna göre güncellenebilir */
+  --bg:#070a16; --bg2:#121a3a; --ink:#fff; --muted:#b9c1dc;
+  --accent:#ffc900; --accent-ink:#141414; --blue:#2f6bff; --live:#ff3b4a;
+  --font:"Outfit",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:970px;height:250px;overflow:hidden;background:var(--bg)}
+body{font-family:var(--font);color:var(--ink);-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+button:focus-visible,.cta:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+#ad{position:relative;width:970px;height:250px;overflow:hidden;cursor:pointer;
+  background:
+    radial-gradient(420px 260px at 520px 120px,rgba(47,107,255,.35),transparent 70%),
+    radial-gradient(300px 200px at 40px 240px,rgba(255,201,0,.14),transparent 70%),
+    linear-gradient(110deg,var(--bg) 0%,var(--bg2) 55%,var(--bg) 100%)}
+#ad::after{content:"";position:absolute;inset:0;border:1px solid rgba(255,255,255,.14);pointer-events:none}
+
+/* ---------- Sol: marka ---------- */
+.brand{position:absolute;left:0;top:0;width:250px;height:250px;padding:20px 0 0 24px}
+.logo{font-weight:800;font-size:34px;line-height:34px;letter-spacing:-1.5px}
+.logo b{color:var(--accent)}
+.sync{position:absolute;left:96px;top:27px;display:none;align-items:center;gap:5px;
+  font-size:10px;font-weight:600;letter-spacing:.8px;padding:4px 8px;border-radius:20px;
+  background:rgba(255,59,74,.16);color:#ffb3b9;border:1px solid rgba(255,59,74,.45)}
+.tvsync .sync{display:inline-flex}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--live);animation:blink 1.1s infinite}
+.head{margin-top:12px;font-size:30px;line-height:1.04;font-weight:800;letter-spacing:-.8px;min-height:63px;white-space:pre-line}
+.head em{font-style:normal;color:var(--accent)}
+.sub{margin-top:8px;width:212px;font-size:12px;line-height:1.38;color:var(--muted);min-height:50px}
+.swap{transition:opacity .22s,transform .22s}
+.swap.out{opacity:0;transform:translateY(5px)}
+.cta{position:absolute;left:24px;bottom:18px;height:38px;padding:0 18px 0 20px;border-radius:30px;
+  display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:var(--accent-ink);
+  font-weight:800;font-size:14px;box-shadow:0 6px 22px rgba(255,201,0,.28);transition:transform .2s,box-shadow .2s}
+.cta svg{transition:transform .2s}
+.cta:hover{transform:translateY(-1px);box-shadow:0 8px 28px rgba(255,201,0,.45)}
+.cta:hover svg{transform:translateX(3px)}
+.cta.pulse{animation:pulse 1.6s ease-out 2}
+
+/* ---------- Kumanda ---------- */
+.remote{position:absolute;left:256px;top:22px;width:72px;display:flex;flex-direction:column;gap:6px}
+.remote .lbl{font-size:9px;letter-spacing:1.4px;color:#7f89ad;text-align:center;font-weight:600}
+.ch{height:43px;border-radius:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;
+  transition:background .2s,border-color .2s,transform .15s,color .2s}
+.ch b{font-size:16px;font-weight:800}
+.ch span{font-size:8.5px;letter-spacing:.6px;margin-top:3px;color:#c8cfe6;font-weight:600}
+.ch:hover{background:rgba(255,255,255,.13);transform:translateX(2px)}
+.ch.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.ch.on span{color:var(--accent-ink)}
+
+/* ---------- Cihaz + ekran ---------- */
+.stage{position:absolute;left:336px;top:0;width:374px;height:250px}
+.device{position:absolute;left:50%;top:116px;width:340px;height:190px;
+  transform:translate(-50%,-50%) scale(1);transition:transform .55s cubic-bezier(.6,0,.2,1)}
+.bezel{position:absolute;inset:-6px;border-radius:9px;background:#05060b;
+  border:1px solid rgba(255,255,255,.18);box-shadow:0 14px 40px rgba(0,0,0,.55),0 0 0 1px #000;
+  transition:inset .55s cubic-bezier(.6,0,.2,1),border-radius .55s}
+.stand{position:absolute;left:50%;top:194px;width:110px;height:14px;transform:translateX(-50%);transition:opacity .3s}
+.stand::before{content:"";position:absolute;left:47px;top:0;width:16px;height:8px;background:#1a1f33}
+.stand::after{content:"";position:absolute;left:0;bottom:0;width:110px;height:5px;border-radius:3px;background:#1a1f33}
+.notch{position:absolute;left:-12px;top:50%;width:5px;height:34px;margin-top:-17px;border-radius:4px;background:#1b2036;opacity:0;transition:opacity .3s}
+.device[data-d="tablet"]{transform:translate(-50%,-50%) scale(.86)}
+.device[data-d="tablet"] .bezel{inset:-14px;border-radius:20px}
+.device[data-d="mobile"]{transform:translate(-50%,-50%) scale(.82)}
+.device[data-d="mobile"] .bezel{inset:-10px -22px;border-radius:30px}
+.device:not([data-d="tv"]) .stand{opacity:0}
+.device[data-d="mobile"] .notch{opacity:1}
+
+.screen{position:absolute;inset:0;overflow:hidden;border-radius:3px;background:#000;transition:border-radius .55s}
+.device[data-d="tablet"] .screen{border-radius:8px}
+.device[data-d="mobile"] .screen{border-radius:16px}
+.pane{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .15s}
+.pane.on{opacity:1;visibility:visible}
+.scan{position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 3px)}
+#noise{position:absolute;inset:0;width:100%;height:100%;opacity:0;pointer-events:none;image-rendering:pixelated}
+#noise.on{opacity:1}
+.power{position:absolute;inset:0;background:#000;pointer-events:none;display:flex;align-items:center;justify-content:center}
+.power i{width:100%;height:2px;background:#fff;box-shadow:0 0 18px #9bb6ff;transform:scaleX(0)}
+.power.go i{animation:crt .55s ease-out forwards}
+.power.done{opacity:0;transition:opacity .25s .05s}
+.osd{position:absolute;left:10px;top:9px;font:600 11px/1 ui-monospace,Menlo,Consolas,monospace;letter-spacing:1px;
+  color:#9dff9d;text-shadow:0 0 6px rgba(120,255,120,.6);transition:opacity .4s;pointer-events:none}
+.osd.hide{opacity:0}
+.prog{position:absolute;left:10px;right:10px;bottom:7px;height:3px;border-radius:2px;background:rgba(255,255,255,.18);pointer-events:none}
+.prog i{display:block;height:100%;width:0;border-radius:2px;background:var(--accent)}
+.continue{position:absolute;left:50%;top:8px;white-space:nowrap;font-size:9.5px;font-weight:600;color:#fff;background:rgba(0,0,0,.55);
+  padding:3px 7px;border-radius:10px;opacity:0;transform:translate(-50%,-4px);transition:all .3s;pointer-events:none}
+.continue.on{opacity:1;transform:translate(-50%,0)}
+.live{display:inline-flex;align-items:center;gap:4px;font-size:9.5px;font-weight:800;letter-spacing:.8px;
+  padding:3px 7px;border-radius:4px;background:var(--live)}
+.live .dot{background:#fff}
+
+/* SPOR */
+.p-spor{background:#0b3d23}
+.p-spor svg.venue{position:absolute;inset:0}
+.venue g{opacity:0;transition:opacity .35s}
+.venue g.on{opacity:1}
+.p-spor .live{position:absolute;right:10px;top:8px}
+.league{position:absolute;left:0;right:0;top:44px;text-align:center}
+.league b{display:block;font-size:30px;font-weight:800;letter-spacing:-.5px;text-shadow:0 2px 14px rgba(0,0,0,.6)}
+.league small{font-size:10.5px;color:#e4f2e8;letter-spacing:.4px}
+.chips{position:absolute;left:12px;right:12px;bottom:16px;display:flex;flex-wrap:wrap;gap:5px;justify-content:center}
+.chip{font-size:10px;font-weight:600;padding:4px 9px;border-radius:20px;background:rgba(0,0,0,.45);
+  border:1px solid rgba(255,255,255,.22);transition:background .2s,color .2s}
+.chip:hover{background:rgba(255,255,255,.2)}
+.chip.on{background:#fff;color:#111}
+
+/* DİZİ & FİLM */
+.p-dizi{background:radial-gradient(260px 160px at 50% 0,#4b1f7a,#14081f 75%)}
+.rail{position:absolute;left:0;top:30px;display:flex;gap:10px;animation:rail 14s linear infinite;padding-left:10px}
+.p-dizi:hover .rail{animation-play-state:paused}
+.poster{position:relative;flex:0 0 72px;height:104px;border-radius:7px;overflow:hidden;
+  box-shadow:0 8px 18px rgba(0,0,0,.5);transition:transform .25s}
+.poster:hover{transform:translateY(-6px) scale(1.06)}
+.poster::before{content:"";position:absolute;width:90px;height:90px;border-radius:50%;left:-20px;top:-26px;background:rgba(255,255,255,.18)}
+.poster::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.75),transparent 55%)}
+.poster span{position:absolute;left:6px;right:6px;bottom:7px;z-index:1;font-size:9px;font-weight:800;letter-spacing:.6px}
+.poster em{position:absolute;z-index:1;top:7px;left:0;white-space:nowrap;font-style:normal;font-size:7px;font-weight:800;letter-spacing:.4px;
+  padding:2px 5px;background:var(--accent);color:var(--accent-ink);border-radius:0 3px 3px 0}
+.dizi-foot{position:absolute;left:0;right:0;bottom:15px;text-align:center;font-size:10.5px;color:#e6dcf5}
+.dizi-foot b{color:#fff}
+
+/* CANLI TV */
+.p-canli{background:#060a1c}
+.grid{position:absolute;left:8px;top:8px;display:grid;grid-template-columns:repeat(13,22px);gap:3px}
+.grid i{height:16px;border-radius:3px;background:rgba(80,120,255,.13);transition:background .4s}
+.grid i.lit{background:rgba(80,140,255,.55)}
+.counter{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:radial-gradient(140px 80px at 50% 50%,rgba(6,10,28,.92),rgba(6,10,28,.2))}
+.counter b{font-size:56px;line-height:.95;font-weight:800;color:var(--accent);letter-spacing:-2px;font-variant-numeric:tabular-nums}
+.counter span{font-size:12px;font-weight:600;letter-spacing:.3px}
+.epg{position:absolute;left:10px;right:10px;bottom:15px;display:flex;gap:4px;font-size:9px}
+.epg div{flex:1;padding:4px 6px;border-radius:4px;background:rgba(255,255,255,.08);color:#c9d0ea;white-space:nowrap;overflow:hidden}
+.epg div:first-child{flex:1.4;background:rgba(47,107,255,.35);color:#fff}
+
+/* BELGESEL */
+.p-belgesel{background:linear-gradient(180deg,#ff9a5a 0%,#ffcf7d 46%,#ffe6b0 60%)}
+.p-belgesel .layer{position:absolute;left:-20px;right:-20px;bottom:-6px;transition:transform .25s ease-out}
+.sun{position:absolute;left:200px;top:34px;width:46px;height:46px;border-radius:50%;background:#fff3cc;box-shadow:0 0 40px #fff0b3}
+.birds{position:absolute;left:70px;top:36px;animation:fly 9s linear infinite}
+.doc-title{position:absolute;left:12px;bottom:16px;text-shadow:0 2px 10px rgba(0,0,0,.5)}
+.doc-title b{display:block;font-size:22px;font-weight:800}
+.doc-title small{font-size:10px;color:#e6f2ff}
+
+/* KAPANIŞ */
+.p-end{background:radial-gradient(220px 140px at 50% 40%,rgba(255,201,0,.28),transparent 70%),#0a0e20;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.p-end h2{font-size:34px;font-weight:800;letter-spacing:-1px}
+.p-end h2 b{color:var(--accent)}
+.p-end p{font-size:10.5px;color:#cfd5ec;margin:4px 0 10px;max-width:290px;line-height:1.35}
+.tags{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;max-width:300px}
+.tags button{font-size:10px;font-weight:600;padding:4px 9px;border-radius:20px;border:1px solid rgba(255,255,255,.25);transition:all .2s}
+.tags button:hover{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+
+/* ---------- Sağ: QR + cihazlar ---------- */
+.side{position:absolute;left:722px;top:0;width:248px;height:250px;padding:20px 22px 0 0}
+.qr{display:flex;gap:11px;align-items:center}
+.qrbox{position:relative;flex:0 0 92px;height:92px;padding:6px;border-radius:12px;background:#fff;
+  transition:transform .3s,box-shadow .3s;transform-origin:left center}
+.qrbox::after{content:"";position:absolute;left:6px;right:6px;top:6px;height:2px;background:var(--live);
+  box-shadow:0 0 8px var(--live);animation:scan 2.4s ease-in-out infinite;opacity:.55}
+.qrbox svg{display:block;width:80px;height:80px}
+.qr:hover .qrbox{transform:scale(1.08);box-shadow:0 0 0 4px rgba(255,201,0,.6)}
+.tvsync .qrbox{box-shadow:0 0 0 3px var(--accent)}
+.qrtxt small{display:block;font-size:10px;font-weight:600;letter-spacing:.8px;color:var(--accent);margin-bottom:3px}
+.qrtxt p{font-size:12.5px;line-height:1.3;font-weight:600}
+.devs{margin-top:16px}
+.devs .lbl{font-size:9.5px;letter-spacing:1.2px;color:#8a94b8;font-weight:600;margin-bottom:6px}
+.devrow{display:flex;gap:6px}
+.dev{flex:1;height:44px;border-radius:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:9.5px;font-weight:600;color:#c8cfe6;
+  transition:all .2s}
+.dev svg{width:22px;height:16px;stroke:currentColor;fill:none;stroke-width:1.6}
+.dev:hover{background:rgba(255,255,255,.13);color:#fff}
+.dev.on{border-color:var(--accent);color:var(--accent);background:rgba(255,201,0,.08)}
+.foot{position:absolute;left:0;right:22px;bottom:16px;font-size:10px;color:#9aa3c4;line-height:1.35}
+.foot b{color:#fff;font-weight:600}
+
+@keyframes blink{50%{opacity:.25}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,201,0,.6)}100%{box-shadow:0 0 0 14px rgba(255,201,0,0)}}
+@keyframes crt{0%{transform:scale(0,1)}60%{transform:scale(1,1)}100%{transform:scale(1,90);opacity:.0}}
+@keyframes rail{to{transform:translateX(-492px)}}
+@keyframes fly{from{transform:translateX(-80px)}to{transform:translateX(380px)}}
+@keyframes scan{0%,100%{top:8px}50%{top:84px}}
+@media (prefers-reduced-motion:reduce){
+  .rail,.birds,.qrbox::after,.dot{animation:none}
+  .device,.bezel,.swap{transition:none}
+}
+</style>
+</head>
+<body>
+<div id="ad" aria-label="TV+ – Hepsi TV+'ta! Reklam, tıklayınca tvplus.com.tr açılır">
+
+  <!-- Sol: marka -->
+  <div class="brand">
+    <div class="logo" aria-label="TV+">tv<b>+</b></div>
+    <div class="sync"><i class="dot"></i>ŞU AN TV'DE</div>
+    <h1 class="head swap" id="head">Hepsi
+<em>TV+'ta!</em></h1>
+    <p class="sub swap" id="sub">150'den fazla canlı TV kanalı, diziler, filmler, maçlar, belgeseller…</p>
+    <button class="cta" id="cta" type="button">Hemen İzle
+      <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 7h8M7.5 3.5 11 7l-3.5 3.5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+
+  <!-- Kumanda: kanal tuşları -->
+  <div class="remote" role="tablist" aria-label="Kanallar">
+    <div class="lbl">KANAL</div>
+    <button class="ch" role="tab" data-ch="0"><b>1</b><span>SPOR</span></button>
+    <button class="ch" role="tab" data-ch="1"><b>2</b><span>DİZİ·FİLM</span></button>
+    <button class="ch" role="tab" data-ch="2"><b>3</b><span>CANLI TV</span></button>
+    <button class="ch" role="tab" data-ch="3"><b>4</b><span>BELGESEL</span></button>
+  </div>
+
+  <!-- Orta: cihaz -->
+  <div class="stage">
+    <div class="device" id="device" data-d="tv">
+      <div class="bezel"></div>
+      <div class="stand"></div>
+      <div class="notch"></div>
+      <div class="screen" id="screen" aria-live="polite">
+
+        <!-- 1 SPOR -->
+        <div class="pane p-spor" data-pane="0">
+          <svg class="venue" viewBox="0 0 340 190" preserveAspectRatio="none" aria-hidden="true">
+            <g data-v="pitch" class="on">
+              <rect width="340" height="190" fill="#0d5a32"/>
+              <g opacity=".22" fill="#000"><rect x="0" width="34" height="190"/><rect x="68" width="34" height="190"/><rect x="136" width="34" height="190"/><rect x="204" width="34" height="190"/><rect x="272" width="34" height="190"/></g>
+              <g fill="none" stroke="#fff" stroke-opacity=".45" stroke-width="1.5"><rect x="10" y="10" width="320" height="170"/><line x1="170" y1="10" x2="170" y2="180"/><circle cx="170" cy="95" r="30"/><rect x="10" y="55" width="40" height="80"/><rect x="290" y="55" width="40" height="80"/></g>
+            </g>
+            <g data-v="court">
+              <rect width="340" height="190" fill="#8a4b1f"/>
+              <g opacity=".14" stroke="#000" stroke-width="1"><path d="M0 24H340M0 48H340M0 72H340M0 96H340M0 120H340M0 144H340M0 168H340"/></g>
+              <g fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="1.5"><rect x="10" y="10" width="320" height="170"/><line x1="170" y1="10" x2="170" y2="180"/><circle cx="170" cy="95" r="22"/><rect x="10" y="68" width="56" height="54"/><rect x="274" y="68" width="56" height="54"/><path d="M10 28a92 70 0 0 1 0 134M330 28a92 70 0 0 0 0 134"/></g>
+            </g>
+            <g data-v="octagon">
+              <rect width="340" height="190" fill="#15161c"/>
+              <circle cx="170" cy="95" r="120" fill="url(#spot)"/>
+              <polygon points="130,15 210,15 260,55 260,135 210,175 130,175 80,135 80,55" fill="#24262f" stroke="#c9ccd6" stroke-opacity=".55" stroke-width="2"/>
+              <polygon points="140,30 200,30 242,62 242,128 200,160 140,160 98,128 98,62" fill="none" stroke="#e01b2d" stroke-opacity=".5" stroke-width="1.5"/>
+            </g>
+            <defs><radialGradient id="spot"><stop offset="0" stop-color="#fff" stop-opacity=".18"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>
+          </svg>
+          <span class="live"><i class="dot"></i>CANLI</span>
+          <div class="league"><b id="lgName">LaLiga</b><small id="lgSub">Tüm sezon canlı TV+'ta</small></div>
+          <div class="chips" id="chips"></div>
+        </div>
+
+        <!-- 2 DİZİ & FİLM -->
+        <div class="pane p-dizi" data-pane="1">
+          <div class="rail" id="rail"></div>
+          <div class="dizi-foot"><b>İlk kez TV+'ta</b> yapımlar · <b>HBO Max</b> ve daha fazlası</div>
+        </div>
+
+        <!-- 3 CANLI TV -->
+        <div class="pane p-canli" data-pane="2">
+          <div class="grid" id="grid"></div>
+          <div class="counter"><b id="count">0</b><span>canlı TV kanalı</span></div>
+          <div class="epg"><div>● Şimdi canlı</div><div>Haber</div><div>Spor</div><div>Çocuk</div><div>Müzik</div></div>
+        </div>
+
+        <!-- 4 BELGESEL -->
+        <div class="pane p-belgesel" data-pane="3" id="doc">
+          <div class="sun layer-sun"></div>
+          <svg class="birds" width="60" height="20" viewBox="0 0 60 20" aria-hidden="true"><path d="M2 8q5-5 10 0q5-5 10 0M30 4q4-4 8 0q4-4 8 0M18 16q3-3 6 0q3-3 6 0" stroke="#5b3b2a" stroke-width="1.6" fill="none"/></svg>
+          <svg class="layer" data-depth="6" viewBox="0 0 380 120" width="380" height="120" aria-hidden="true"><path d="M0 120V70l40-30 30 20 50-45 40 35 35-25 50 40 40-30 45 35 50-30v80z" fill="#c8735a"/></svg>
+          <svg class="layer" data-depth="12" viewBox="0 0 380 100" width="380" height="100" aria-hidden="true"><path d="M0 100V60l55-35 45 30 40-20 60 40 45-30 50 25 40-20 45 25v25z" fill="#7a3f49"/></svg>
+          <svg class="layer" data-depth="22" viewBox="0 0 380 70" width="380" height="70" aria-hidden="true"><path d="M0 70V35q30-20 70-10t80 8q50-22 100-8t70 5q30-14 60-6v46z" fill="#2c1a2e"/><path d="M290 32l6-16 6 16zM300 30l5-12 5 12zM60 30l6-14 6 14z" fill="#2c1a2e"/></svg>
+          <div class="doc-title"><b>Belgeseller</b><small>Doğa · Tarih · Bilim · Keşif</small></div>
+        </div>
+
+        <!-- KAPANIŞ -->
+        <div class="pane p-end" data-pane="4">
+          <h2>Hepsi <b>TV+'ta!</b></h2>
+          <p id="endTxt">150'den fazla canlı TV kanalı, popüler platformların sevilen dizileri, filmleri, maçlar, belgeseller…</p>
+          <div class="tags">
+            <button data-go="0">Maçlar</button><button data-go="1">Diziler</button><button data-go="1">Filmler</button>
+            <button data-go="3">Belgeseller</button><button data-go="2">150+ Canlı Kanal</button>
+          </div>
+        </div>
+
+        <div class="scan"></div>
+        <canvas id="noise" width="170" height="95"></canvas>
+        <div class="osd" id="osd">CH 01 SPOR</div>
+        <div class="continue" id="cont">▶ Kaldığın yerden devam</div>
+        <div class="prog"><i id="prog"></i></div>
+        <div class="power" id="power"><i></i></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sağ: QR + cihaz seçici -->
+  <div class="side">
+    <div class="qr" id="qr">
+      <div class="qrbox">
+        <svg viewBox="0 0 37 37" shape-rendering="crispEdges" role="img" aria-label="tvplus.com.tr QR kodu"><path stroke="#0b1030" d="{{QR}}"/></svg>
+      </div>
+      <div class="qrtxt">
+        <small id="qrKicker">TELEFONUNLA TARA</small>
+        <p id="qrTxt">Telefonunda izlemeye hemen başla.</p>
+      </div>
+    </div>
+    <div class="devs">
+      <div class="lbl">HER EKRANDA KESİNTİSİZ</div>
+      <div class="devrow" role="group" aria-label="Cihaz seç">
+        <button class="dev on" data-dev="tv"><svg viewBox="0 0 22 16"><rect x="1" y="1" width="20" height="11" rx="1.5"/><path d="M7 15h8M11 12v3"/></svg>Televizyon</button>
+        <button class="dev" data-dev="tablet"><svg viewBox="0 0 22 16"><rect x="3" y="1" width="16" height="14" rx="2"/><path d="M10 12.5h2"/></svg>Tablet</button>
+        <button class="dev" data-dev="mobile"><svg viewBox="0 0 22 16"><rect x="1" y="3.5" width="20" height="9" rx="2.5"/><path d="M4 6.5v3"/></svg>Mobil</button>
+      </div>
+    </div>
+    <p class="foot"><b>Turkcell hattı gerekmez.</b> TV+ herkese açık.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  // ---------------- Yapılandırma ----------------
+  var BASE = "https://tvplus.com.tr/";
+  var UTM = "utm_source=masthead&utm_medium=display&utm_campaign=hepsi-tvplusta";
+  var CHANNELS = [
+    { osd: "CH 01 SPOR",      path: "spor",     dur: 5600,
+      head: "Dev maçlar\n<em>TV+'ta!</em>",       sub: "LaLiga, Serie A, Şampiyonlar Ligi, NBA, Euroleague ve UFC canlı." },
+    { osd: "CH 02 DİZİ·FİLM", path: "dizi-film", dur: 4000,
+      head: "İlk kez\n<em>TV+'ta!</em>",          sub: "Yeni dizi ve filmler ilk kez burada. HBO Max ve daha fazlası." },
+    { osd: "CH 03 CANLI TV",  path: "canli-tv", dur: 4000,
+      head: "150+ kanal\n<em>tek yerde!</em>",    sub: "Ulusal, haber, spor, çocuk… 150'den fazla canlı TV kanalı." },
+    { osd: "CH 04 BELGESEL",  path: "belgesel", dur: 4000,
+      head: "Dünyayı\n<em>keşfet!</em>",          sub: "Doğadan tarihe, bilimden keşfe en iyi belgeseller." },
+    { osd: "TV+",             path: "",         dur: 0,
+      head: "Hepsi\n<em>TV+'ta!</em>",            sub: "150'den fazla canlı TV kanalı, diziler, filmler, maçlar, belgeseller…" }
+  ];
+  var LEAGUES = [
+    { n: "LaLiga", v: "pitch", c: "#0d5a32" }, { n: "Serie A", v: "pitch", c: "#0b4f5c" },
+    { n: "Şampiyonlar Ligi", v: "pitch", c: "#13235e" }, { n: "NBA", v: "court", c: "#8a4b1f" },
+    { n: "Euroleague", v: "court", c: "#7a3a18" }, { n: "UFC", v: "octagon", c: "#15161c" }
+  ];
+  var POSTERS = [
+    ["DRAM", "#c0392b,#3d0b0b", 1], ["GERİLİM", "#16a085,#062b26", 0], ["KOMEDİ", "#f39c12,#4a2a00", 0],
+    ["AKSİYON", "#2f6bff,#0a1640", 1], ["BİLİM KURGU", "#8e44ad,#1d0b2a", 0], ["ROMANTİK", "#e84393,#3a0a22", 0]
+  ];
+
+  // TV-tetiklemeli mod: ad server makrosu (?tvsync=1&kanal=...) ya da window.TVPLUS_TVSYNC
+  var q = new URLSearchParams(location.search);
+  var TVSYNC = q.get("tvsync") === "1" || window.TVPLUS_TVSYNC === true;
+  var TV_CHANNEL = (q.get("kanal") || window.TVPLUS_CHANNEL || "").slice(0, 24);
+  var REDUCED = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // ---------------- Yardımcılar ----------------
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var ad = $("#ad"), head = $("#head"), sub = $("#sub"), osd = $("#osd"), prog = $("#prog");
+  var panes = $$(".pane"), chs = $$(".ch"), devs = $$(".dev"), device = $("#device");
+
+  function exitUrl(path) {
+    var base = (typeof clickTag === "string" && clickTag) ? clickTag : BASE;
+    if (base === BASE && path) base = BASE + path;
+    return base + (base.indexOf("?") > -1 ? "&" : "?") + UTM + "&utm_content=" + (path || "genel") + (TVSYNC ? "-tvsync" : "");
+  }
+  function exit(path) {
+    var url = exitUrl(path);
+    if (window.Enabler && Enabler.exitOverride) Enabler.exitOverride("TVPlus_" + (path || "genel"), url);
+    else window.open(url, "_blank");
+  }
+
+  // ---------------- Statik içerik üretimi ----------------
+  var chipsEl = $("#chips");
+  LEAGUES.forEach(function (l, i) {
+    var b = document.createElement("button");
+    b.className = "chip"; b.textContent = l.n; b.dataset.lg = i; chipsEl.appendChild(b);
+  });
+  var rail = $("#rail"), html = "";
+  for (var k = 0; k < 2; k++) POSTERS.forEach(function (p) {
+    var c = p[1].split(",");
+    html += '<div class="poster" style="background:linear-gradient(160deg,' + c[0] + ',' + c[1] + ')">' +
+      (p[2] ? "<em>İLK KEZ TV+'TA</em>" : "") + "<span>" + p[0] + "</span></div>";
+  });
+  rail.innerHTML = html;
+  var grid = $("#grid"), cells = [];
+  for (var g = 0; g < 13 * 6; g++) { var i = document.createElement("i"); grid.appendChild(i); cells.push(i); }
+
+  if (TVSYNC) {
+    ad.classList.add("tvsync");
+    var ref = TV_CHANNEL ? TV_CHANNEL + " ve " : "Bu kanal ve ";
+    $("#endTxt").textContent = ref + "150'den fazla canlı TV kanalı, popüler platformların sevilen dizileri, filmleri, maçlar, belgeseller…";
+    CHANNELS[4].sub = ref + "150'den fazla canlı kanal, diziler, filmler, maçlar…";
+    $("#qrKicker").textContent = "TV'DEKİ QR BURADA";
+    $("#qrTxt").textContent = "Reklamda kaçırdıysan şimdi tara, hemen izle.";
+  }
+
+  // ---------------- Durum ----------------
+  var cur = -1, auto = true, timers = [], lgIdx = 0, lgTimer = null, cntTimer = null, gridTimer = null;
+  var progStart = 0, progDur = 1, rafId = 0;
+
+  function clearAuto() { timers.forEach(clearTimeout); timers = []; }
+  function stopAuto() { if (!auto) return; auto = false; clearAuto(); prog.style.width = "0"; }
+
+  // TV paraziti
+  var nc = $("#noise"), nctx = nc.getContext("2d"), nimg = nctx.createImageData(170, 95), nRaf = 0;
+  function noise(ms, done) {
+    if (REDUCED) { done(); return; }
+    var end = performance.now() + ms; nc.classList.add("on");
+    cancelAnimationFrame(nRaf);
+    (function f(t) {
+      var d = nimg.data;
+      for (var p = 0; p < d.length; p += 4) { var v = Math.random() * 255 | 0; d[p] = d[p + 1] = d[p + 2] = v; d[p + 3] = 255; }
+      nctx.putImageData(nimg, 0, 0);
+      if (t < end) nRaf = requestAnimationFrame(f); else { nc.classList.remove("on"); done(); }
+    })(performance.now());
+  }
+
+  function setText(c) {
+    head.classList.add("out"); sub.classList.add("out");
+    setTimeout(function () {
+      head.innerHTML = c.head; sub.textContent = c.sub;
+      head.classList.remove("out"); sub.classList.remove("out");
+    }, 200);
+  }
+
+  var osdTimer;
+  function go(n, opts) {
+    opts = opts || {};
+    n = (n + 5) % 5;
+    if (n === cur && !opts.force) return;
+    var c = CHANNELS[n];
+    noise(opts.quick ? 140 : 260, function () {
+      panes.forEach(function (p) { p.classList.toggle("on", +p.dataset.pane === n); });
+      leave(cur); cur = n; enter(n);
+    });
+    chs.forEach(function (b) { var on = +b.dataset.ch === n; b.classList.toggle("on", on); b.setAttribute("aria-selected", on); });
+    osd.textContent = c.osd; osd.classList.remove("hide");
+    clearTimeout(osdTimer); osdTimer = setTimeout(function () { osd.classList.add("hide"); }, 1700);
+    setText(c);
+    if (n === 4) $("#cta").classList.add("pulse"); else $("#cta").classList.remove("pulse");
+    if (auto && c.dur) { startProg(c.dur); timers.push(setTimeout(function () { if (auto) go(n + 1); }, c.dur)); }
+    else if (auto && n === 4) { auto = false; prog.style.width = "100%"; }
+  }
+
+  function startProg(d) {
+    progStart = performance.now(); progDur = d; cancelAnimationFrame(rafId);
+    (function f(t) {
+      if (!auto) return;
+      prog.style.width = Math.min(100, (t - progStart) / progDur * 100) + "%";
+      if (t - progStart < progDur) rafId = requestAnimationFrame(f);
+    })(progStart);
+  }
+
+  // Kanal giriş/çıkış efektleri
+  function setLeague(i) {
+    lgIdx = (i + LEAGUES.length) % LEAGUES.length;
+    var l = LEAGUES[lgIdx];
+    $("#lgName").textContent = l.n;
+    $("#lgSub").textContent = l.v === "octagon" ? "Büyük dövüş geceleri canlı" : l.v === "court" ? "Basketbolun zirvesi canlı" : "Tüm sezon canlı TV+'ta";
+    $$(".venue > g[data-v]").forEach(function (g) { g.classList.toggle("on", g.dataset.v === l.v); });
+    $(".venue > g[data-v='pitch'] > rect").setAttribute("fill", l.v === "pitch" ? l.c : "#0d5a32");
+    $$(".chip").forEach(function (b) { b.classList.toggle("on", +b.dataset.lg === lgIdx); });
+  }
+  function enter(n) {
+    if (n === 0) {
+      setLeague(0);
+      if (auto) lgTimer = setInterval(function () { setLeague(lgIdx + 1); }, 880);
+    }
+    if (n === 2) {
+      var v = 0, t0 = performance.now();
+      cntTimer = setInterval(function () {
+        v = Math.min(150, Math.round((performance.now() - t0) / 1100 * 150));
+        $("#count").textContent = v + (v >= 150 ? "+" : "");
+        if (v >= 150) clearInterval(cntTimer);
+      }, 30);
+      gridTimer = setInterval(function () {
+        cells[Math.random() * cells.length | 0].classList.add("lit");
+        var off = cells[Math.random() * cells.length | 0]; if (Math.random() < .35) off.classList.remove("lit");
+      }, 25);
+    }
+  }
+  function leave(n) {
+    if (n === 0) clearInterval(lgTimer);
+    if (n === 2) { clearInterval(cntTimer); clearInterval(gridTimer); }
+  }
+
+  // Cihaz değiştirme – içerik ve ilerleme kaldığı yerden sürer
+  var contTimer;
+  function setDevice(d) {
+    device.dataset.d = d;
+    devs.forEach(function (b) { var on = b.dataset.dev === d; b.classList.toggle("on", on); b.setAttribute("aria-pressed", on); });
+    var cont = $("#cont"); cont.classList.add("on");
+    clearTimeout(contTimer); contTimer = setTimeout(function () { cont.classList.remove("on"); }, 1600);
+  }
+
+  // ---------------- Olaylar ----------------
+  chs.forEach(function (b) {
+    b.addEventListener("click", function (e) { e.stopPropagation(); stopAuto(); go(+b.dataset.ch); });
+    b.addEventListener("mouseenter", function () { stopAuto(); go(+b.dataset.ch, { quick: true }); });
+  });
+  chipsEl.addEventListener("click", function (e) {
+    var b = e.target.closest(".chip"); if (!b) return;
+    e.stopPropagation(); stopAuto(); clearInterval(lgTimer); setLeague(+b.dataset.lg);
+  });
+  $$(".tags button").forEach(function (b) {
+    b.addEventListener("click", function (e) { e.stopPropagation(); stopAuto(); go(+b.dataset.go); });
+  });
+  devs.forEach(function (b) {
+    b.addEventListener("click", function (e) { e.stopPropagation(); setDevice(b.dataset.dev); });
+  });
+  $("#cta").addEventListener("click", function (e) { e.stopPropagation(); exit(CHANNELS[Math.max(cur, 0)].path); });
+  $("#qr").addEventListener("click", function (e) { e.stopPropagation(); exit("qr"); });
+  ad.addEventListener("click", function () { exit(CHANNELS[Math.max(cur, 0)].path); });
+
+  // Klavye: kumanda gibi 1-4, ↑/↓ kanal, ←/→ lig
+  document.addEventListener("keydown", function (e) {
+    var k = e.key;
+    if (k >= "1" && k <= "4") { stopAuto(); go(+k - 1); }
+    else if (k === "ArrowUp" || k === "PageUp") { stopAuto(); go(cur + 1); e.preventDefault(); }
+    else if (k === "ArrowDown" || k === "PageDown") { stopAuto(); go(cur - 1); e.preventDefault(); }
+    else if ((k === "ArrowRight" || k === "ArrowLeft") && cur === 0) { stopAuto(); clearInterval(lgTimer); setLeague(lgIdx + (k === "ArrowRight" ? 1 : -1)); }
+  });
+
+  // Belgesel: fare ile paralaks
+  var doc = $("#doc"), layers = $$(".layer", doc), sun = $(".sun", doc);
+  doc.addEventListener("mousemove", function (e) {
+    var r = doc.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+    layers.forEach(function (l) { var d = +l.dataset.depth; l.style.transform = "translate(" + (-x * d) + "px," + (-y * d * .4) + "px)"; });
+    sun.style.transform = "translate(" + (x * 10) + "px," + (y * 6) + "px)";
+  });
+
+  // Mobil: kaydırma ile kanal değiştirme
+  var sx = null;
+  $("#screen").addEventListener("touchstart", function (e) { sx = e.touches[0].clientX; }, { passive: true });
+  $("#screen").addEventListener("touchend", function (e) {
+    if (sx === null) return; var dx = e.changedTouches[0].clientX - sx; sx = null;
+    if (Math.abs(dx) > 30) { stopAuto(); go(cur + (dx < 0 ? 1 : -1)); }
+  });
+
+  // ---------------- Başlat: ekran açılışı ----------------
+  function start() {
+    var pw = $("#power");
+    if (REDUCED) { pw.classList.add("done"); go(0, { force: true }); return; }
+    pw.classList.add("go");
+    setTimeout(function () { pw.classList.add("done"); go(0, { force: true }); }, 520);
+  }
+  if (document.readyState === "complete") start(); else window.addEventListener("load", start);
+  // Güvenlik: 30 sn'de her durumda kapanış karesinde dur
+  setTimeout(function () { if (auto) { stopAuto(); go(4); } }, 30000);
+})();
+</script>
+</body>
+</html>
