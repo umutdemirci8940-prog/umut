@@ -1,0 +1,54 @@
+name: Wings masthead – Akbank logosunu çek ve göm
+
+# Bulut oturumunun ağ politikası akbank.com'a erişemediği için logo GitHub'ın sunucusunda
+# indirilir, masthead'e satır içi SVG olarak gömülür, ekran görüntüleri yenilenir ve dala push'lanır.
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'akbank-wings/tools/embed-logo.js'
+      - '.github/workflows/akbank-wings-logo.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  logo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Logoyu indir
+        run: |
+          mkdir -p akbank-wings/assets
+          curl -fsSL --compressed --retry 3 \
+            -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0 Safari/537.36" \
+            -H "Accept: image/svg+xml,image/*;q=0.8,*/*;q=0.5" -H "Referer: https://www.akbank.com/" \
+            -o akbank-wings/assets/logo.svg https://www.akbank.com/SiteAssets/img/logo.svg
+          head -c 400 akbank-wings/assets/logo.svg; echo
+          grep -qi "<svg" akbank-wings/assets/logo.svg || { echo "İndirilen dosya SVG değil"; exit 1; }
+
+      - name: Logoyu masthead'e göm
+        run: node akbank-wings/tools/embed-logo.js
+
+      - name: Playwright + Chromium kur
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+
+      - name: Ekran görüntüleri
+        run: node akbank-wings/tools/capture.js
+
+      - name: Sonuçları dala push'la
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A akbank-wings/assets akbank-wings/970x250 akbank-wings/screens
+          git commit -m "Wings masthead: resmi Akbank logosu gömüldü (GitHub Actions)" || { echo "Değişiklik yok"; exit 0; }
+          git push

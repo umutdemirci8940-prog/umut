@@ -21,7 +21,14 @@
 
 ## Düzenleme
 Bütün metinler, rakamlar, kart seviyesi (`tier`), hedef URL ve süreler dosyadaki `CONFIG` nesnesinde.
-**Not:** akbank.com bu ortamdan erişilemedi. Ayrıcalık rakamları (transferde %75'e varan, restoranda %15'e varan, 1,5 kat mil, son dakika bilet) Wings'in kamuya açık mevcut ayrıcalıklarından alındı ve **yer tutucu** olarak kullanıldı. Lansman ürününün kesin metinleri ve hukuk onayı ile güncellenmelidir. Kanat işareti soyut bir yer tutucudur, yayından önce resmi Wings/Akbank logo dosyalarıyla değiştirilmelidir.
+**Not:** akbank.com bu ortamdan erişilemedi. Ayrıcalık rakamları (transferde %75'e varan, restoranda %15'e varan, 1,5 kat mil, son dakika bilet) Wings'in kamuya açık mevcut ayrıcalıklarından alındı ve **yer tutucu** olarak kullanıldı. Lansman ürününün kesin metinleri ve hukuk onayı ile güncellenmelidir. Kart üzerindeki kanat işareti soyut bir yer tutucudur, yayından önce resmi Wings logosuyla değiştirilmelidir.
+
+## Akbank logosu
+Logo, `https://www.akbank.com/SiteAssets/img/logo.svg` adresindeki resmi dosyadır. `tools/embed-logo.js` bu dosyayı masthead'deki `LOGO:START` / `LOGO:END` işaretlerinin arasına satır içi SVG olarak gömer. Böylece banner tek dosya olarak kalır. Koyu zeminde okunsun diye koyu/siyah dolgular fildişine çevrilir, kırmızı alanlar olduğu gibi korunur.
+
+Bulut oturumu akbank.com'a erişemediği için indirme işi GitHub Actions'ta yapılır (`.github/workflows/akbank-wings-logo.yml`). İş akışı gömme betiği değiştiğinde kendiliğinden çalışır, *Actions → "Wings masthead – Akbank logosunu çek ve göm" → Run workflow* ile elle de başlatılabilir. Logo gömülene kadar banner'da yazı ile "Akbank" görünür.
+
+Yerelde (normal internet erişimiyle): `node akbank-wings/tools/embed-logo.js`
 
 Ekran görüntülerini yenilemek için: `NODE_PATH=$(npm root -g) node akbank-wings/tools/capture.js`
 
