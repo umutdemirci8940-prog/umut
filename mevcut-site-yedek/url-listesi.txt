@@ -1,0 +1,62 @@
+https://www.splashdigital.com.tr
+https://www.splashdigital.com.tr/
+https://www.splashdigital.com.tr/about-us/
+https://www.splashdigital.com.tr/comments/feed/
+https://www.splashdigital.com.tr/contact-us/
+https://www.splashdigital.com.tr/feed/
+https://www.splashdigital.com.tr/hedeflemeler-ve-raporlama/
+https://www.splashdigital.com.tr/hizmetlerimiz/
+https://www.splashdigital.com.tr/is-ortaklarimiz/
+https://www.splashdigital.com.tr/kullanici-ve-yazilim-gelistirme/
+https://www.splashdigital.com.tr/markalarimiz/
+https://www.splashdigital.com.tr/medya-ve-reklam-planlama/
+https://www.splashdigital.com.tr/oasis-network-ve-uretim/
+https://www.splashdigital.com.tr/pazarlama-ve-danismanlik/
+https://www.splashdigital.com.tr/projelerimiz/
+https://www.splashdigital.com.tr/web-ve-mobil-gelistirme/
+https://www.splashdigital.com.tr/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=6.1.7' type='text/css' media='all' />
+https://www.splashdigital.com.tr/wp-content/plugins/contact-form-7/includes/js/index.js?ver=6.1.7
+https://www.splashdigital.com.tr/wp-content/plugins/contact-form-7/includes/swv/js/index.js?ver=6.1.7
+https://www.splashdigital.com.tr/wp-content/plugins/formidable/css/formidableforms.css?ver=9121531' type='text/css' media='all' />
+https://www.splashdigital.com.tr/wp-content/plugins/revslider/public/assets/css/rs6.css?ver=6.5.19' type='text/css' media='all' />
+https://www.splashdigital.com.tr/wp-content/plugins/revslider/public/assets/js/rbtools.min.js?ver=6.5.18
+https://www.splashdigital.com.tr/wp-content/plugins/revslider/public/assets/js/rs6.min.js?ver=6.5.19
+https://www.splashdigital.com.tr/wp-content/plugins/simply-gallery-block/blocks/pgc_sgb.min.style.css?ver=3.4.4' type='text/css' media='all' />
+https://www.splashdigital.com.tr/wp-content/themes/constructo
+https://www.splashdigital.com.tr/wp-content/themes/constructo/css/core.css?ver=6.8.10' type='text/css' media='all' />
+https://www.splashdigital.com.tr/wp-content/themes/constructo/css/font-awesome.min.css?ver=6.8.10' type='text/css' media='all' />
+https://www.splashdigital.com.tr/wp-content/themes/constructo/css/swipebox.css?ver=6.8.10' type='text/css' media='all' />
+https://www.splashdigital.com.tr/wp-content/themes/constructo/css/wordpress.css?ver=6.8.10' type='text/css' media='all' />
+https://www.splashdigital.com.tr/wp-content/themes/constructo/custom.css?ver=6.8.10' type='text/css' media='all' />
+https://www.splashdigital.com.tr/wp-content/themes/constructo/js/bootstrap/bootstrap.min.js?ver=6.8.10
+https://www.splashdigital.com.tr/wp-content/themes/constructo/js/countto.js?ver=6.8.10
+https://www.splashdigital.com.tr/wp-content/themes/constructo/js/doubletaptogo.js?ver=6.8.10
+https://www.splashdigital.com.tr/wp-content/themes/constructo/js/fullwidth-slider.js?ver=6.8.10
+https://www.splashdigital.com.tr/wp-content/themes/constructo/js/functions.js?ver=4.2.2
+https://www.splashdigital.com.tr/wp-content/themes/constructo/js/jquery.swipebox.js?ver=6.8.10
+https://www.splashdigital.com.tr/wp-content/themes/constructo/js/owl/assets/owl.carousel.css?ver=6.8.10' type='text/css' media='all' />
+https://www.splashdigital.com.tr/wp-content/themes/constructo/js/owl/owl.carousel.js?ver=6.8.10
+https://www.splashdigital.com.tr/wp-content/themes/constructo/js/parallax.js?ver=6.8.10
+https://www.splashdigital.com.tr/wp-content/themes/constructo/js/quantity_woo23.js?ver=6.8.10
+https://www.splashdigital.com.tr/wp-content/themes/constructo/js/waypoints.js?ver=6.8.10
+https://www.splashdigital.com.tr/wp-content/themes/constructo/style.css?ver=6.8.10' type='text/css' media='all' />
+https://www.splashdigital.com.tr/wp-content/uploads/2025/09/Splash-Logo-1.png
+https://www.splashdigital.com.tr/wp-includes/css/dist/block-library/style.min.css?ver=6.8.10' type='text/css' media='all' />
+https://www.splashdigital.com.tr/wp-includes/js/dist/hooks.min.js?ver=4d63a3d491d11ffd8ac6
+https://www.splashdigital.com.tr/wp-includes/js/dist/i18n.min.js?ver=5e580eb46a90c2b997e6
+https://www.splashdigital.com.tr/wp-includes/js/imagesloaded.min.js?ver=5.0.0
+https://www.splashdigital.com.tr/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1
+https://www.splashdigital.com.tr/wp-includes/js/jquery/jquery.min.js?ver=3.7.1
+https://www.splashdigital.com.tr/wp-json/
+https://www.splashdigital.com.tr/wp-sitemap-index.xsl
+https://www.splashdigital.com.tr/wp-sitemap-posts-page-1.xml
+https://www.splashdigital.com.tr/wp-sitemap-posts-pgc_simply_gallery-1.xml
+https://www.splashdigital.com.tr/wp-sitemap-posts-portfolio-1.xml
+https://www.splashdigital.com.tr/wp-sitemap-posts-post-1.xml
+https://www.splashdigital.com.tr/wp-sitemap-posts-team-1.xml
+https://www.splashdigital.com.tr/wp-sitemap-taxonomies-category-1.xml
+https://www.splashdigital.com.tr/wp-sitemap-taxonomies-portfolio_category-1.xml
+https://www.splashdigital.com.tr/wp-sitemap-taxonomies-post_tag-1.xml
+https://www.splashdigital.com.tr/wp-sitemap-users-1.xml
+https://www.splashdigital.com.tr/xmlrpc.php
+https://www.splashdigital.com.tr/xmlrpc.php?rsd
