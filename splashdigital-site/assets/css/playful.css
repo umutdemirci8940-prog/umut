@@ -1,0 +1,215 @@
+/* =========================================================
+   Splash Digital – eğlenceli (oyuncaklı) animasyon katmanı
+   style.css'in üzerine yüklenir. Kapatmak için index.html'den
+   playful.css ve playful.js satırlarını silmeniz yeterli.
+   ========================================================= */
+:root {
+  --c-blue: #127dc5;
+  --c-sky: #4cc3ff;
+  --c-yellow: #ffc93c;
+  --c-coral: #ff6b6b;
+  --c-mint: #22c7a9;
+  --c-purple: #8b5cf6;
+  --bounce: cubic-bezier(.34, 1.56, .64, 1);
+}
+
+/* ---------- Kaydırma ilerleme çubuğu ---------- */
+.progress { position: fixed; inset: 0 0 auto; height: 4px; z-index: 60; pointer-events: none; }
+.progress span { display: block; height: 100%; width: 100%; transform-origin: left; transform: scaleX(var(--sp, 0));
+  background: linear-gradient(90deg, var(--c-blue), var(--c-sky), var(--c-mint), var(--c-yellow), var(--c-coral), var(--c-purple)); }
+
+/* ---------- Açılış: damla düşer, sıçrar ---------- */
+.loader__drop { position: absolute; left: 50%; top: 50%; width: 26px; height: 34px; margin: -17px 0 0 -13px; background: var(--c-blue);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; clip-path: path('M13 0C17 9 26 16 26 23a13 11 0 0 1-26 0C0 16 9 9 13 0z');
+  animation: dropFall .55s cubic-bezier(.55, 0, 1, .45) both; }
+@keyframes dropFall { 0% { transform: translateY(-55vh) scaleY(1.2); } 90% { transform: translateY(0) scaleY(1.2); opacity: 1; } 100% { transform: translateY(0) scale(1.6, .3); opacity: 0; } }
+.loader__ring { animation-delay: .5s; }
+.loader__ring--2 { animation-delay: .8s; }
+.loader__ring--3 { animation-delay: 1.1s; }
+.loader img { animation-delay: .55s; animation-timing-function: var(--bounce); }
+
+/* ---------- Hero oyuncakları ---------- */
+.toys { position: absolute; inset: 0; }
+.toy { position: absolute; overflow: visible; will-change: transform; }
+.toy > * { transform-box: fill-box; transform-origin: center; }
+.toy--drop { width: 44px; left: 2.2%; top: 34%; fill: var(--c-sky); animation: floaty 7s ease-in-out infinite; }
+.toy--drop2 { width: 30px; right: 7%; top: 70%; fill: var(--c-blue); animation: floaty 6s ease-in-out -2s infinite; }
+.toy--star { width: 46px; left: 46%; top: 13%; fill: var(--c-yellow); }
+.toy--star path { animation: spinSlow 9s linear infinite; }
+.toy--ring { width: 54px; left: 41%; bottom: 20%; fill: none; stroke: var(--c-coral); stroke-width: 6; animation: floaty 8s ease-in-out -4s infinite; }
+.toy--squiggle { width: 110px; right: 4%; top: 15%; fill: none; stroke: var(--c-mint); stroke-width: 6; stroke-linecap: round; }
+.toy--squiggle path { stroke-dasharray: 160; animation: wiggleDash 3.5s ease-in-out infinite alternate; }
+.toy--plus { width: 30px; left: 3%; bottom: 30%; fill: none; stroke: var(--c-purple); stroke-width: 6; stroke-linecap: round; }
+.toy--plus path { animation: spinSlow 6s linear infinite reverse; }
+.toy--half { width: 58px; right: 38%; top: 80%; fill: var(--c-yellow); opacity: .9; animation: rock 4s ease-in-out infinite; }
+.toy--dots { width: 64px; right: 14%; bottom: 12%; fill: var(--c-blue); opacity: .25; }
+@keyframes floaty { 0%, 100% { translate: 0 0; rotate: -6deg; } 50% { translate: 0 -18px; rotate: 6deg; } }
+@keyframes spinSlow { to { rotate: 360deg; } }
+@keyframes rock { 0%, 100% { rotate: -14deg; } 50% { rotate: 14deg; } }
+@keyframes wiggleDash { from { stroke-dashoffset: 160; } to { stroke-dashoffset: 0; } }
+.js .toy { opacity: 0; scale: .3; transition: opacity .6s, scale .8s var(--bounce); }
+.hero.is-ready .toy { opacity: 1; scale: 1; }
+.hero.is-ready .toy:nth-child(2) { transition-delay: .1s; } .hero.is-ready .toy:nth-child(3) { transition-delay: .2s; }
+.hero.is-ready .toy:nth-child(4) { transition-delay: .3s; } .hero.is-ready .toy:nth-child(5) { transition-delay: .4s; }
+.hero.is-ready .toy:nth-child(6) { transition-delay: .5s; } .hero.is-ready .toy:nth-child(7) { transition-delay: .6s; }
+.hero.is-ready .toy:nth-child(8) { transition-delay: .7s; }
+
+/* Başlık: zıplayarak gelen kelimeler + kendini çizen dalgalı çizgi */
+.hero__title .w > span { transition-timing-function: var(--bounce); transition-duration: .8s; }
+.hero__title { position: relative; isolation: isolate; }
+.hero__title .grad { position: relative; white-space: nowrap; }
+.hero__title .grad::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: -.12em; height: .28em; pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 20' preserveAspectRatio='none'%3E%3Cpath d='M2 12 C 22 2 38 2 58 12 S 98 22 118 12 S 158 2 178 12 S 196 16 198 12' fill='none' stroke='%23ffc93c' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E") left center / 100% 100% no-repeat;
+  clip-path: inset(0 100% 0 0); transition: clip-path 1s .9s cubic-bezier(.65, 0, .35, 1); z-index: -1;
+}
+.hero__title.is-in .grad::after { clip-path: inset(0 0 0 0); }
+@media (max-width: 600px) { .hero__title .grad { white-space: normal; } }
+
+/* Dönen rozet */
+.badge-spin { position: absolute; right: -2%; top: -4%; width: 112px; height: 112px; border-radius: 50%; background: #fff; box-shadow: 0 10px 30px -14px rgba(12, 27, 46, .35); display: grid; place-items: center; z-index: 2; }
+.badge-spin svg:first-child { position: absolute; inset: 6px; width: calc(100% - 12px); height: calc(100% - 12px); animation: spinSlow 14s linear infinite; }
+.badge-spin text { font: 700 10.4px/1 var(--font-head); letter-spacing: .14em; fill: var(--text); }
+.badge-spin__drop { width: 26px; fill: var(--c-blue); animation: floaty 3s ease-in-out infinite; }
+.badge-spin:hover svg:first-child { animation-duration: 3s; }
+
+/* Ağ görseli: renkli düğümler */
+.node { transition: transform .3s var(--bounce); }
+.node::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 8px; vertical-align: 1px; background: var(--nc, var(--c-blue)); }
+.node:nth-of-type(1) { --nc: var(--c-blue); } .node:nth-of-type(2) { --nc: var(--c-mint); } .node:nth-of-type(3) { --nc: var(--c-coral); }
+.node:nth-of-type(4) { --nc: var(--c-purple); } .node:nth-of-type(5) { --nc: var(--c-yellow); } .node:nth-of-type(6) { --nc: var(--c-sky); }
+.node:hover { animation-play-state: paused; scale: 1.12; }
+
+/* ---------- Çapraz bantlar ---------- */
+.bands { position: relative; height: 128px; margin-top: 8px; }
+.bands .marquee { position: absolute; left: -4%; right: -4%; top: 50%; border: 0; padding: 16px 0; background: var(--c-blue); transform: translateY(-50%) rotate(-2.2deg); box-shadow: 0 10px 30px -18px rgba(18, 125, 197, .8); }
+.bands .marquee__track { color: #fff; font-weight: 600; }
+.bands .marquee__track i { color: var(--c-yellow); }
+.bands .marquee--yellow { background: var(--c-yellow); transform: translateY(-50%) rotate(2.2deg); box-shadow: none; }
+.bands .marquee--yellow .marquee__track { color: var(--text); }
+.bands .marquee--yellow .marquee__track i { color: var(--c-coral); }
+.marquee__track--rev { animation-direction: reverse; }
+
+/* ---------- Bölüm başlıkları: fosforlu kalem ---------- */
+.split .hl > span { position: relative; z-index: 0; }
+.split .hl > span::before { content: ''; position: absolute; left: -.06em; right: -.06em; bottom: .04em; height: .36em; background: var(--hl, var(--c-yellow)); opacity: .6; border-radius: .18em; z-index: -1; transform: scaleX(0) skewX(-12deg); transform-origin: left; transition: transform .7s .5s cubic-bezier(.65, 0, .35, 1); }
+.split.is-in .hl > span::before { transform: scaleX(1) skewX(-12deg); }
+.split .w.hl { padding-inline: .06em; margin-inline: -.06em; }
+.eyebrow .dot { animation: hop 2.4s var(--bounce) infinite; }
+@keyframes hop { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-6px); } }
+
+/* ---------- Butonlar: jöle efekti ---------- */
+.btn:hover { animation: jelly .6s both; }
+.btn:active { scale: .94; }
+@keyframes jelly { 0% { scale: 1 1; } 30% { scale: 1.08 .92; } 45% { scale: .95 1.05; } 60% { scale: 1.03 .97; } 75% { scale: .99 1.01; } 100% { scale: 1 1; } }
+.btn--primary { background: var(--c-blue); }
+
+/* ---------- Rakamlar ---------- */
+.stat b { transition: transform .5s var(--bounce); display: block; width: max-content; transform-origin: left bottom; }
+.stat.is-counted b { animation: pop .6s var(--bounce); }
+@keyframes pop { 0% { transform: scale(1); } 40% { transform: scale(1.18) rotate(-3deg); } 100% { transform: scale(1); } }
+.stat::before { content: ''; display: block; width: 34px; height: 8px; border-radius: 6px; margin-bottom: 16px; background: var(--sc, var(--c-blue)); }
+.stat:nth-child(1) { --sc: var(--c-blue); } .stat:nth-child(2) { --sc: var(--c-yellow); } .stat:nth-child(3) { --sc: var(--c-coral); } .stat:nth-child(4) { --sc: var(--c-mint); }
+
+/* ---------- Hizmet kartları: 3D eğilme + kıpır ikon ---------- */
+.services { perspective: 1000px; }
+.service { transform-style: preserve-3d; transition: transform .25s ease-out, box-shadow .35s, border-color .35s; }
+.service:hover { transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-4px); }
+.service__icon { transition: transform .4s var(--bounce), background .3s; }
+.service:hover .service__icon { animation: wiggle .7s ease-in-out; }
+@keyframes wiggle { 0%, 100% { rotate: 0deg; } 20% { rotate: -12deg; } 40% { rotate: 10deg; } 60% { rotate: -6deg; } 80% { rotate: 3deg; } }
+.service:nth-child(6n+1) .service__icon { background: #e6f3fc; } .service:nth-child(6n+1) .service__icon svg { stroke: var(--c-blue); }
+.service:nth-child(6n+2) .service__icon { background: #fff4d6; } .service:nth-child(6n+2) .service__icon svg { stroke: #d99a00; }
+.service:nth-child(6n+3) .service__icon { background: #ffe7e7; } .service:nth-child(6n+3) .service__icon svg { stroke: #e04848; }
+.service:nth-child(6n+4) .service__icon { background: #dcf7f1; } .service:nth-child(6n+4) .service__icon svg { stroke: #11a189; }
+.service:nth-child(6n+5) .service__icon { background: #efe8ff; } .service:nth-child(6n+5) .service__icon svg { stroke: var(--c-purple); }
+.service:nth-child(6n+6) .service__icon { background: #e3f6ff; } .service:nth-child(6n+6) .service__icon svg { stroke: #1b9fd8; }
+
+/* Hizmet anlatımı: numara rozeti */
+.story__no { display: inline-block; padding: 7px 12px; border-radius: 999px; background: #fff4d6; color: #a87700; width: max-content; }
+.story__dots li.is-active { background: linear-gradient(90deg, var(--c-blue), var(--c-mint)); }
+
+/* ---------- Süreç: ilerleyen damla ---------- */
+.steps__line { height: 2px; background: repeating-linear-gradient(90deg, var(--line-2) 0 8px, transparent 8px 14px); }
+.steps__line span { background: linear-gradient(90deg, var(--c-blue), var(--c-mint)); }
+.steps__line::after { content: ''; position: absolute; top: -9px; left: calc(var(--p, 0) * 100%); width: 16px; height: 20px; margin-left: -8px; background: var(--c-blue);
+  clip-path: path('M8 0C11 6 16 9 16 13a8 7 0 0 1-16 0C0 9 5 6 8 0z'); transition: left .1s linear; }
+.step__no { transition: transform .5s var(--bounce), background .3s, color .3s, border-color .3s; }
+.step.is-in .step__no { animation: pop .7s var(--bounce) both; }
+.step:nth-child(2) .step__no { --stc: var(--c-blue); } .step:nth-child(3) .step__no { --stc: var(--c-yellow); }
+.step:nth-child(4) .step__no { --stc: var(--c-coral); } .step:nth-child(5) .step__no { --stc: var(--c-mint); }
+.step:hover .step__no { background: var(--stc); border-color: var(--stc); color: #fff; transform: rotate(-8deg) scale(1.1); }
+
+/* ---------- Projeler: yığın kart + çıkartma ---------- */
+.projects-band__mosaic img { transition: transform .5s var(--bounce); }
+.projects-band__mosaic:hover img:nth-child(1) { transform: rotate(-2.5deg) scale(1.03); }
+.projects-band__mosaic:hover img:nth-child(2) { transform: rotate(3deg) translateY(-6px); }
+.projects-band__mosaic:hover img:nth-child(3) { transform: rotate(-3deg) translateY(6px); }
+.sticker { position: absolute; right: -14px; top: -18px; width: 96px; height: 96px; border-radius: 50%; background: var(--c-coral); color: #fff; display: grid; place-items: center; text-align: center;
+  font: 700 13px/1.15 var(--font-head); box-shadow: 0 10px 24px -10px rgba(255, 107, 107, .8); rotate: 12deg; animation: stickerBob 3s ease-in-out infinite; z-index: 2; }
+@keyframes stickerBob { 0%, 100% { rotate: 12deg; scale: 1; } 50% { rotate: -6deg; scale: 1.06; } }
+
+/* ---------- Markalar ve iş ortakları: zıplama ---------- */
+.brand, .partner { transition: transform .4s var(--bounce), box-shadow .25s, border-color .25s; }
+.brand:hover, .partner:hover { transform: translateY(-8px) rotate(-3deg); }
+.brand:nth-child(even):hover, .partner:nth-child(even):hover { transform: translateY(-8px) rotate(3deg); }
+
+/* ---------- Hakkımızda: alıntı kartı + görsel ---------- */
+.about__media::before { content: ''; position: absolute; left: -22px; top: -22px; width: 120px; height: 120px; border-radius: 50%;
+  background: radial-gradient(circle, var(--c-yellow) 2.5px, transparent 3px) 0 0 / 16px 16px; opacity: .8; z-index: -1; animation: floaty 9s ease-in-out infinite; }
+.about__media { isolation: isolate; }
+.about__quote { border-left-color: var(--c-coral); rotate: -1.5deg; transition: rotate .4s var(--bounce); }
+.about__media:hover .about__quote { rotate: 1.5deg; }
+.vm__item { transition: transform .4s var(--bounce); }
+.vm__item:hover { transform: translateY(-5px) rotate(-1deg); }
+.vm__item:nth-child(2) h3 { color: #e04848; }
+
+/* ---------- Kinetik bant: renkli yıldızlar ---------- */
+.kinetic__row i { display: inline-block; animation: spinSlow 6s linear infinite; }
+.kinetic__row:nth-child(2) i { color: var(--c-coral); }
+
+/* ---------- Manifesto: renkli vurgular ---------- */
+.mw--em.is-lit { color: var(--c-blue); background: linear-gradient(transparent 62%, rgba(255, 201, 60, .55) 62%); }
+
+/* ---------- Tıklama damlaları ---------- */
+.splash-drop { position: fixed; left: 0; top: 0; width: 12px; height: 15px; margin: -7px 0 0 -6px; z-index: 300; pointer-events: none;
+  clip-path: path('M6 0C8 5 12 8 12 10a6 5.5 0 0 1-12 0C0 8 4 5 6 0z'); }
+.splash-ring { position: fixed; left: 0; top: 0; width: 16px; height: 16px; margin: -8px; border-radius: 50%; border: 2px solid var(--c-blue); z-index: 300; pointer-events: none; }
+
+/* ---------- WhatsApp: nabız ---------- */
+.wa::after { content: ''; position: absolute; inset: 0; border-radius: 50%; border: 2px solid #25d366; animation: waPulse 2.4s ease-out infinite; }
+@keyframes waPulse { 0% { opacity: .8; transform: scale(1); } 100% { opacity: 0; transform: scale(1.7); } }
+.wa svg { animation: waWiggle 5s ease-in-out infinite; }
+@keyframes waWiggle { 0%, 88%, 100% { rotate: 0deg; } 91% { rotate: -14deg; } 94% { rotate: 12deg; } 97% { rotate: -6deg; } }
+
+/* ---------- Footer dalgası ---------- */
+.footer-wave { height: 70px; margin-top: -1px; background: var(--bg-2); line-height: 0; overflow: hidden; }
+.footer-wave svg { width: 200%; height: 100%; display: block; }
+.footer-wave .w1 { fill: #1d3557; opacity: .35; animation: waveSlide 12s linear infinite; }
+.footer-wave .w2 { fill: var(--navy); animation: waveSlide 8s linear infinite reverse; }
+@keyframes waveSlide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.contact + * { }
+
+/* ---------- Mobil ---------- */
+@media (max-width: 900px) {
+  .badge-spin { width: 88px; height: 88px; right: 0; top: -6%; }
+  .badge-spin text { font-size: 10.6px; }
+  .toy--star { left: 70%; top: 10%; }
+  .toy--squiggle { width: 80px; top: auto; bottom: 46%; }
+  .toy--half, .toy--dots { display: none; }
+  .bands { height: 108px; }
+  .sticker { width: 80px; height: 80px; font-size: 11.5px; right: -6px; }
+}
+@media (max-width: 600px) {
+  .toy--drop { width: 40px; left: 80%; top: 14%; }
+  .toy--ring, .toy--plus, .toy--star { display: none; }
+}
+
+/* ---------- Hareketi azalt ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .toy, .js .toy { opacity: 1 !important; scale: 1 !important; }
+  .hero__title .grad::after { clip-path: none !important; }
+  .split .hl > span::before { transform: scaleX(1) skewX(-12deg) !important; }
+  .splash-drop, .splash-ring { display: none !important; }
+  .loader__drop { display: none; }
+}

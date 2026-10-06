@@ -129,7 +129,8 @@
 
   var P = [];
   for (var i = 0; i < COUNT; i++) {
-    P.push({ x: (Math.random() - 0.5) * 2.4, y: (Math.random() - 0.5) * 2.4, vx: 0, vy: 0, s: 0.6 + Math.random() * 1.4, o: Math.random() * Math.PI * 2 });
+    var PAL = ['18,125,197', '18,125,197', '18,125,197', '76,195,255', '255,201,60', '255,107,107', '34,199,169', '139,92,246'];
+    P.push({ x: (Math.random() - 0.5) * 2.4, y: (Math.random() - 0.5) * 2.4, vx: 0, vy: 0, s: 0.6 + Math.random() * 1.4, o: Math.random() * Math.PI * 2, c: PAL[Math.floor(Math.random() * PAL.length)] });
   }
 
   var active = 0, mouse = { x: 9, y: 9 }, visible = false;
@@ -181,8 +182,8 @@
       if (dd < 0.06) { var f = (0.06 - dd) * 0.9; p.vx += dx * f; p.vy += dy * f; }
       p.vx *= 0.82; p.vy *= 0.82; p.x += p.vx; p.y += p.vy;
       var sp = Math.min(Math.abs(p.vx) + Math.abs(p.vy), 0.08) * 8;
-      ctx.fillStyle = 'rgba(' + (18 + sp * 30 | 0) + ',' + (125 + sp * 40 | 0) + ',' + (197 + sp * 30 | 0) + ',' + (0.35 + p.s * 0.3) + ')';
-      ctx.fillRect(cx + p.x * sc, cy + p.y * sc, p.s * 1.6, p.s * 1.6);
+      ctx.fillStyle = 'rgba(' + p.c + ',' + Math.min(0.5 + p.s * 0.3 + sp * 0.2, 1) + ')';
+      ctx.beginPath(); ctx.arc(cx + p.x * sc, cy + p.y * sc, p.s * 1.1, 0, 6.283); ctx.fill();
     }
   })();
 })();

@@ -23,6 +23,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/playful.css">
 
   <script type="application/ld+json">
   {
@@ -49,8 +50,11 @@
 <body>
   <a class="skip" href="#main">İçeriğe geç</a>
 
+  <div class="progress" aria-hidden="true"><span></span></div>
+
   <!-- Açılış animasyonu -->
   <div class="loader" aria-hidden="true">
+    <span class="loader__drop"></span>
     <span class="loader__ring"></span><span class="loader__ring loader__ring--2"></span><span class="loader__ring loader__ring--3"></span>
     <img src="assets/img/logo.png" alt="" width="220" height="101">
   </div>
@@ -84,6 +88,16 @@
         <span class="blob blob--2"></span>
         <span class="blob blob--3"></span>
         <div class="grid-lines"></div>
+        <div class="toys">
+          <svg class="toy toy--drop" data-depth="40" viewBox="0 0 60 80"><path d="M30 2C40 22 56 36 56 52a26 26 0 0 1-52 0C4 36 20 22 30 2z"/><ellipse cx="20" cy="54" rx="5" ry="8" fill="#fff" opacity=".45"/></svg>
+          <svg class="toy toy--star" data-depth="-30" viewBox="0 0 60 60"><path d="M30 3l7.6 17.4L56 22l-14 12.6L46 53 30 43.4 14 53l4-18.4L4 22l18.4-1.6z"/></svg>
+          <svg class="toy toy--ring" data-depth="25" viewBox="0 0 60 60"><circle cx="30" cy="30" r="22"/></svg>
+          <svg class="toy toy--squiggle" data-depth="-45" viewBox="0 0 120 40"><path d="M4 20c12-16 22-16 28 0s16 16 28 0 16-16 28 0 16 16 28 0"/></svg>
+          <svg class="toy toy--plus" data-depth="35" viewBox="0 0 40 40"><path d="M20 4v32M4 20h32"/></svg>
+          <svg class="toy toy--half" data-depth="-20" viewBox="0 0 60 32"><path d="M2 30a28 28 0 0 1 56 0z"/></svg>
+          <svg class="toy toy--drop2" data-depth="55" viewBox="0 0 60 80"><path d="M30 2C40 22 56 36 56 52a26 26 0 0 1-52 0C4 36 20 22 30 2z"/></svg>
+          <svg class="toy toy--dots" data-depth="15" viewBox="0 0 60 60"><g><circle cx="8" cy="8" r="4"/><circle cx="30" cy="8" r="4"/><circle cx="52" cy="8" r="4"/><circle cx="8" cy="30" r="4"/><circle cx="30" cy="30" r="4"/><circle cx="52" cy="30" r="4"/><circle cx="8" cy="52" r="4"/><circle cx="30" cy="52" r="4"/><circle cx="52" cy="52" r="4"/></g></svg>
+        </div>
       </div>
       <div class="container hero__inner">
         <div class="hero__copy">
@@ -120,6 +134,11 @@
             <circle class="ring ring--2" cx="200" cy="200" r="96"/>
           </svg>
           <div class="network__core"><b>300+</b><span>platform<br>iş birliği</span></div>
+          <div class="badge-spin">
+            <svg viewBox="0 0 120 120"><defs><path id="bc" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs>
+              <text><textPath href="#bc" textLength="286" lengthAdjust="spacing">SPLASH DIGITAL • YARATICI AJANS •</textPath></text></svg>
+            <svg class="badge-spin__drop" viewBox="0 0 60 80"><path d="M30 2C40 22 56 36 56 52a26 26 0 0 1-52 0C4 36 20 22 30 2z"/></svg>
+          </div>
           <span class="node" style="--x:50%;--y:12%">Finans</span>
           <span class="node" style="--x:83%;--y:31%">Teknoloji</span>
           <span class="node" style="--x:83%;--y:69%">Spor</span>
@@ -129,11 +148,19 @@
         </div>
       </div>
 
-      <div class="marquee" aria-hidden="true">
+      <div class="bands" aria-hidden="true">
+      <div class="marquee marquee--yellow">
+        <div class="marquee__track marquee__track--rev">
+          <span>Etkileşim</span><i>●</i><span>Dönüşüm</span><i>●</i><span>Yaratıcılık</span><i>●</i><span>Ölçülebilir Sonuç</span><i>●</i><span>Rich Media</span><i>●</i><span>Masthead</span><i>●</i>
+          <span>Etkileşim</span><i>●</i><span>Dönüşüm</span><i>●</i><span>Yaratıcılık</span><i>●</i><span>Ölçülebilir Sonuç</span><i>●</i><span>Rich Media</span><i>●</i><span>Masthead</span><i>●</i>
+        </div>
+      </div>
+      <div class="marquee">
         <div class="marquee__track">
           <span>Veri Odaklı Stratejiler</span><i>✦</i><span>Medya ve Reklam Planlama</span><i>✦</i><span>Splash Network</span><i>✦</i><span>Rich Media</span><i>✦</i><span>Masaüstü & Mobil</span><i>✦</i><span>Pazarlama ve Danışmanlık</span><i>✦</i><span>Yazılım Geliştirme</span><i>✦</i>
           <span>Veri Odaklı Stratejiler</span><i>✦</i><span>Medya ve Reklam Planlama</span><i>✦</i><span>Splash Network</span><i>✦</i><span>Rich Media</span><i>✦</i><span>Masaüstü & Mobil</span><i>✦</i><span>Pazarlama ve Danışmanlık</span><i>✦</i><span>Yazılım Geliştirme</span><i>✦</i>
         </div>
+      </div>
       </div>
     </section>
 
@@ -295,6 +322,7 @@
           <img src="assets/img/projects/watsons.jpg" alt="" loading="lazy" width="900" height="600">
           <img src="assets/img/projects/nivea.jpg" alt="" loading="lazy" width="900" height="600">
           <span class="projects-band__badge">İnteraktif proje örnekleri</span>
+          <span class="sticker">Tıkla &amp;<br>keşfet!</span>
         </a>
       </div>
     </section>
@@ -566,6 +594,9 @@
   </main>
 
   <!-- ================= FOOTER ================= -->
+  <div class="footer-wave" aria-hidden="true">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path class="w1" d="M0 60 C 240 10 480 110 720 60 S 1200 10 1440 60 V120 H0Z"/><path class="w2" d="M0 80 C 240 40 480 120 720 80 S 1200 40 1440 80 V120 H0Z"/></svg>
+  </div>
   <footer class="footer">
     <div class="container footer__inner">
       <div class="footer__brand">
@@ -609,5 +640,6 @@
 
   <script src="assets/js/main.js" defer></script>
   <script src="assets/js/story.js" defer></script>
+  <script src="assets/js/playful.js" defer></script>
 </body>
 </html>
