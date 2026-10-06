@@ -1,5 +1,16 @@
 # TV+ – "Hepsi TV+'ta!" İnteraktif Masthead (970 × 250)
 
+İki alternatif konsept var:
+
+| | Konsept | Dosya | Paket |
+|---|---|---|---|
+| **A** | Kumanda sende (kanal zapping) | `dist/index.html` | `dist/tvplus-masthead-970x250.zip` |
+| **B** | 150+ ekranlık mozaik | `dist/mozaik/index.html` | `dist/tvplus-masthead-mozaik-970x250.zip` |
+
+Konsept B aşağıda, [ayrı bölümde](#konsept-b--150-ekranlık-mozaik) anlatılıyor.
+
+## Konsept A – Kumanda sende
+
 Konsept: **"Kumanda sende."** Masthead'in ortasında bir ekran var, solunda kumanda tuşları. Kullanıcı kanal değiştirdikçe TV paraziti ve kanal göstergesi (OSD) ile TV+'ın dört dünyası arasında geçiş yapıyor. Sağdaki QR, TV spotundaki QR ile aynı görsel dili taşıyor. Cihaz seçici aynı yayını TV, tablet ve mobil arasında "kaldığın yerden" taşıyor.
 
 | Dosya | Açıklama |
@@ -79,3 +90,34 @@ index.html?tvsync=1&kanal=<kanal adı>       // veya window.TVPLUS_TVSYNC = true
 - [ ] **Derin bağlantılar:** `/spor`, `/dizi-film`, `/canli-tv`, `/belgesel` yolları gerçek kategori sayfalarıyla eşleştirilmeli (`CHANNELS[].path`).
 - [ ] **Hak kullanımı:** Lig ve platform adları yalnızca metin olarak geçiyor; logo, poster veya maç görüntüsü kullanılmadı. Gerçek içerik görseli eklenecekse hak onayı alınmalı.
 - [ ] **Font:** Google Fonts (Outfit) kullanılıyor. Harici kaynağı kabul etmeyen ağlar için sistem fontuna düşer.
+
+---
+
+## Konsept B – 150+ ekranlık mozaik
+
+`dist/mozaik/index.html` · 25 KB · tek dosya. Görsel dosyası yok; mozaik canvas ile çiziliyor.
+
+Fikir: **"Her kare bir kanal."** Yüzlerce küçük ekran karesi (her biri bir kategorinin renginde ve TV gibi hafifçe titreyerek) uçuşup TV+ logosunu oluşturuyor. Sonra kareler kategorilere ayrılıyor ve yeniden logoda birleşiyor. "Hepsi TV+'ta" mesajı, içeriklerin tek bir markada toplanmasıyla görselleşiyor.
+
+| Toplanma | Logo | Kategoriler |
+|---|---|---|
+| ![](screens/mozaik/01-toplanma.png) | ![](screens/mozaik/02-logo.png) | ![](screens/mozaik/03-kategoriler.png) |
+
+| Kategori üzerine gelme | "Bana bir şey öner" | TV-sync modu |
+|---|---|---|
+| ![](screens/mozaik/04-kategori-hover.png) | ![](screens/mozaik/08-oneri.png) | ![](screens/mozaik/09-tvsync.png) |
+
+### Akış (~11 sn)
+1. Dağınık kareler uçuşarak **tv+** logosunu oluşturur ("150+ kanal. Tek ekran.").
+2. Kareler renklerine göre beş sütuna ayrılır: Spor, Dizi, Film, Belgesel, Canlı TV ("Ne istersen tek yerde.").
+3. Yeniden logoda birleşir: "Hepsi TV+'ta!". CTA ve öneri düğmesi nabız atar.
+
+### Etkileşimler
+- **Mercek:** Fare karelerin üzerinde gezdikçe yakındaki kareler büyür ve parlar. Kareye gelince hangi kategoriden olduğu görünür.
+- **Dağıt:** Logo modunda tıklayınca kareler şok dalgasıyla dağılır ve kendiliğinden yeniden birleşir.
+- **Kategorilere ayır / Logoyu birleştir:** Düğmeyle iki görünüm arasında geçilir. Kategori sütununun üzerine gelince sol metin o kategorinin içeriğini yazar (ör. "LaLiga, Serie A, Şampiyonlar Ligi, NBA, Euroleague, UFC"); tıklayınca o kategori sayfası açılır.
+- **"Bana bir şey öner" ruleti:** Vurgu kareler arasında yavaşlayarak dolaşır, bir karede durur ve o kategoriden bir öneri kartı açılır. Kartta "<Kategori> izle →" ve "Başka öner" var. Klavyede `R`/boşluk ile de çalışır.
+- QR, TV-sync modu (`?tvsync=1&kanal=…`), `clickTag`/`Enabler` ve kategoriye göre UTM (`utm_content=mozaik-<kategori>`) Konsept A ile aynı şekilde çalışır.
+
+### Not
+Öneri kartları gerçek yapım adı içermiyor; genel ifadeler kullanılıyor ("Şampiyonlar Ligi heyecanı canlı yayınla TV+'ta"). Kampanya döneminin gerçek içerikleri (hak onayıyla) `CATS[].recs` dizisine yazılabilir. Yayın takvimine bağlı bir veri akışından da doldurulabilir; o zaman "Bu akşam: …" gibi güncel öneriler çıkar.

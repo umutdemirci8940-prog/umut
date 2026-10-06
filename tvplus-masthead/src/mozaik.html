@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=970,height=250">
+<meta name="viewport" content="width=970,height=250">
+<title>TV+ Mozaik Masthead</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+<script>var clickTag = window.clickTag || "https://tvplus.com.tr/";</script>
+<style>
+:root{
+  --bg:#05060d; --ink:#fff; --muted:#aab2cf; --accent:#ffc900; --accent-ink:#141414; --live:#ff3b4a;
+  --font:"Outfit",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:970px;height:250px;overflow:hidden;background:var(--bg)}
+body{font-family:var(--font);color:var(--ink);-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+#ad{position:relative;width:970px;height:250px;overflow:hidden;cursor:pointer;
+  background:radial-gradient(380px 220px at 480px 125px,#141a3a,transparent 75%),var(--bg)}
+#ad::after{content:"";position:absolute;inset:0;border:1px solid rgba(255,255,255,.14);pointer-events:none}
+
+/* Sol */
+.brand{position:absolute;left:0;top:0;width:236px;height:250px;padding:20px 0 0 24px;z-index:2}
+.logo{font-weight:800;font-size:30px;line-height:30px;letter-spacing:-1.4px}
+.logo b{color:var(--accent)}
+.sync{position:absolute;left:88px;top:24px;display:none;align-items:center;gap:5px;font-size:10px;font-weight:600;
+  letter-spacing:.8px;padding:4px 8px;border-radius:20px;background:rgba(255,59,74,.16);color:#ffb3b9;border:1px solid rgba(255,59,74,.45)}
+.tvsync .sync{display:inline-flex}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--live);animation:blink 1.1s infinite}
+.head{margin-top:14px;font-size:29px;line-height:1.05;font-weight:800;letter-spacing:-.8px;white-space:pre-line;min-height:61px}
+.head em{font-style:normal;color:var(--accent)}
+.sub{margin-top:8px;width:200px;font-size:12px;line-height:1.38;color:var(--muted);min-height:50px}
+.swap{transition:opacity .25s,transform .25s}
+.swap.out{opacity:0;transform:translateY(5px)}
+.cta{position:absolute;left:24px;bottom:18px;height:38px;padding:0 18px 0 20px;border-radius:30px;display:inline-flex;align-items:center;gap:8px;
+  background:var(--accent);color:var(--accent-ink);font-weight:800;font-size:14px;box-shadow:0 6px 22px rgba(255,201,0,.28);transition:transform .2s}
+.cta:hover{transform:translateY(-1px)}
+.cta.pulse{animation:pulse 1.6s ease-out 2}
+
+/* Mozaik */
+.mosaic{position:absolute;left:236px;top:0;width:488px;height:250px}
+#cv{position:absolute;inset:0;width:488px;height:250px}
+.labels{position:absolute;left:0;right:0;bottom:6px;height:18px;opacity:0;transition:opacity .4s;pointer-events:none}
+.labels.on{opacity:1}
+.labels span{position:absolute;transform:translateX(-50%);font-size:11px;font-weight:800;letter-spacing:.3px;white-space:nowrap}
+.tip{position:absolute;pointer-events:none;padding:6px 9px;border-radius:8px;background:rgba(8,10,22,.92);border:1px solid rgba(255,255,255,.18);
+  font-size:10.5px;line-height:1.3;max-width:180px;opacity:0;transform:translateY(4px);transition:opacity .15s,transform .15s;z-index:3}
+.tip.on{opacity:1;transform:none}
+.tip b{display:block;font-size:11.5px}
+.toggle{position:absolute;right:8px;top:8px;z-index:3;font-size:10px;font-weight:600;padding:5px 10px;border-radius:20px;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);transition:background .2s}
+.toggle:hover{background:rgba(255,255,255,.18)}
+.hint{position:absolute;left:10px;top:9px;font-size:9.5px;color:#7d86a8;letter-spacing:.3px;transition:opacity .4s;pointer-events:none}
+.card{position:absolute;left:50%;top:50%;width:270px;padding:16px 16px 14px;border-radius:14px;z-index:4;
+  background:linear-gradient(150deg,var(--c,#333),#0b0d1a 78%);border:1px solid rgba(255,255,255,.22);
+  box-shadow:0 18px 50px rgba(0,0,0,.7);transform:translate(-50%,-50%) scale(.6);opacity:0;pointer-events:none;
+  transition:transform .35s cubic-bezier(.2,1.4,.4,1),opacity .2s}
+.card.on{opacity:1;transform:translate(-50%,-50%) scale(1);pointer-events:auto}
+.card small{font-size:9.5px;font-weight:800;letter-spacing:1.2px;opacity:.85}
+.card h3{font-size:19px;line-height:1.12;margin:5px 0 4px;font-weight:800}
+.card p{font-size:11px;color:#dfe3f3;line-height:1.35}
+.card .row{display:flex;gap:6px;margin-top:11px}
+.card .row button{height:30px;padding:0 14px;border-radius:20px;font-size:12px;font-weight:800}
+.card .go{background:var(--accent);color:var(--accent-ink)}
+.card .again{border:1px solid rgba(255,255,255,.3)}
+.card .x{position:absolute;right:8px;top:6px;font-size:16px;opacity:.7}
+
+/* Sağ */
+.side{position:absolute;left:730px;top:0;width:240px;height:250px;padding:22px 22px 0 6px;z-index:2}
+.kick{font-size:10px;font-weight:600;letter-spacing:1.2px;color:var(--accent)}
+.dice{margin-top:7px;width:100%;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;gap:9px;
+  font-size:14px;font-weight:800;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.28);transition:all .2s}
+.dice svg{width:22px;height:22px;transition:transform .5s}
+.dice:hover{background:#fff;color:#111;border-color:#fff}
+.dice:hover svg{transform:rotate(180deg)}
+.dice.pulse{animation:pulseW 1.6s ease-out 3}
+.qr{margin-top:16px;display:flex;gap:10px;align-items:center}
+.qrbox{flex:0 0 74px;height:74px;padding:5px;border-radius:10px;background:#fff;transition:transform .25s}
+.qr:hover .qrbox{transform:scale(1.06)}
+.tvsync .qrbox{box-shadow:0 0 0 3px var(--accent)}
+.qrbox svg{display:block;width:64px;height:64px}
+.qr p{font-size:12px;line-height:1.3;font-weight:600}
+.qr p small{display:block;font-size:9.5px;letter-spacing:.8px;color:var(--muted);margin-bottom:2px}
+.foot{position:absolute;left:6px;right:22px;bottom:16px;font-size:10px;color:#9aa3c4}
+.foot b{color:#fff;font-weight:600}
+
+@keyframes blink{50%{opacity:.25}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,201,0,.6)}100%{box-shadow:0 0 0 14px rgba(255,201,0,0)}}
+@keyframes pulseW{0%{box-shadow:0 0 0 0 rgba(255,255,255,.45)}100%{box-shadow:0 0 0 12px rgba(255,255,255,0)}}
+</style>
+</head>
+<body>
+<div id="ad" aria-label="TV+ – Hepsi TV+'ta! Reklam, tıklayınca tvplus.com.tr açılır">
+  <div class="brand">
+    <div class="logo" aria-label="TV+">tv<b>+</b></div>
+    <div class="sync"><i class="dot"></i>ŞU AN TV'DE</div>
+    <h1 class="head swap" id="head">150+ kanal.
+<em>Tek ekran.</em></h1>
+    <p class="sub swap" id="sub">Her kare bir kanal, bir maç, bir dizi, bir film…</p>
+    <button class="cta" id="cta" type="button">Hemen İzle
+      <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 7h8M7.5 3.5 11 7l-3.5 3.5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+
+  <div class="mosaic" id="mosaic">
+    <canvas id="cv" width="488" height="250" aria-hidden="true"></canvas>
+    <div class="hint" id="hint">Karelerin üzerinde gezin · tıkla, dağıt</div>
+    <button class="toggle" id="toggle" type="button">Kategorilere ayır ⇄</button>
+    <div class="labels" id="labels"></div>
+    <div class="tip" id="tip"></div>
+    <div class="card" id="card" role="dialog" aria-live="polite">
+      <button class="x" id="cardX" type="button" aria-label="Kapat">×</button>
+      <small id="cKick">BUGÜN İÇİN ÖNERİMİZ</small>
+      <h3 id="cTitle"></h3>
+      <p id="cTxt"></p>
+      <div class="row"><button class="go" id="cGo" type="button">İzle →</button><button class="again" id="cAgain" type="button">Başka öner</button></div>
+    </div>
+  </div>
+
+  <div class="side">
+    <div class="kick">NE İZLESEM?</div>
+    <button class="dice" id="dice" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8.5" cy="8.5" r="1.3" fill="currentColor"/><circle cx="15.5" cy="15.5" r="1.3" fill="currentColor"/><circle cx="12" cy="12" r="1.3" fill="currentColor"/><circle cx="15.5" cy="8.5" r="1.3" fill="currentColor"/><circle cx="8.5" cy="15.5" r="1.3" fill="currentColor"/></svg>
+      Bana bir şey öner
+    </button>
+    <div class="qr" id="qr">
+      <div class="qrbox"><svg viewBox="0 0 37 37" shape-rendering="crispEdges" role="img" aria-label="tvplus.com.tr QR kodu"><path stroke="#0b1030" d="{{QR}}"/></svg></div>
+      <p><small id="qrKick">TELEFONUNLA TARA</small><span id="qrTxt">Hemen izlemeye başla.</span></p>
+    </div>
+    <p class="foot"><b>Turkcell hattı gerekmez.</b> Herkese açık.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var BASE = "https://tvplus.com.tr/";
+  var UTM = "utm_source=masthead&utm_medium=display&utm_campaign=hepsi-tvplusta";
+  // Kategoriler: renk, etiket, açıklama, derin bağlantı, öneri kartları
+  var CATS = [
+    { k: "spor", n: "Spor", c: "#22c55e", d: "LaLiga, Serie A, Şampiyonlar Ligi, NBA, Euroleague, UFC",
+      recs: [["Devler sahada", "Şampiyonlar Ligi heyecanı canlı yayınla TV+'ta."], ["Basketbol gecesi", "NBA ve Euroleague maçları canlı TV+'ta."],
+             ["Kafes kapısı kapanıyor", "UFC'nin büyük dövüş geceleri canlı TV+'ta."], ["Avrupa futbolu", "LaLiga ve Serie A'nın tüm sezonu TV+'ta."]] },
+    { k: "dizi", n: "Dizi", c: "#a855f7", d: "İlk kez TV+'ta yayınlanan yeni diziler",
+      recs: [["Herkesten önce izle", "Bazı yeni diziler ilk kez TV+'ta yayında."], ["Bir bölüm daha?", "Popüler platformların sevilen dizileri tek yerde."]] },
+    { k: "film", n: "Film", c: "#ef4444", d: "HBO Max başta olmak üzere popüler platformların filmleri",
+      recs: [["Film gecesi hazır", "HBO Max iş birliğiyle sevilen filmler TV+'ta."], ["İlk kez burada", "Bazı filmler ilk kez TV+'ta izleyiciyle buluşuyor."]] },
+    { k: "belgesel", n: "Belgesel", c: "#f59e0b", d: "Doğa, tarih, bilim ve keşif",
+      recs: [["Dünyayı keşfet", "Doğadan tarihe, bilimden keşfe belgeseller TV+'ta."]] },
+    { k: "canli-tv", n: "Canlı TV", c: "#3b82f6", d: "150'den fazla canlı TV kanalı",
+      recs: [["150+ kanal, tek uygulama", "Ulusal, haber, spor, çocuk… 150'den fazla canlı kanal."]] }
+  ];
+  var TEXT = {
+    intro: ["150+ kanal.\n<em>Tek ekran.</em>", "Her kare bir kanal, bir maç, bir dizi, bir film…"],
+    cats:  ["Ne istersen\n<em>tek yerde.</em>", "Maçlar, diziler, filmler, belgeseller ve canlı TV. Bir kategoriye dokun."],
+    end:   ["Hepsi\n<em>TV+'ta!</em>", "150'den fazla canlı TV kanalı, diziler, filmler, maçlar, belgeseller…"]
+  };
+  var q = new URLSearchParams(location.search);
+  var TVSYNC = q.get("tvsync") === "1" || window.TVPLUS_TVSYNC === true;
+  var TV_CHANNEL = (q.get("kanal") || window.TVPLUS_CHANNEL || "").slice(0, 24);
+  var REDUCED = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  var $ = function (s) { return document.querySelector(s); };
+  var ad = $("#ad"), head = $("#head"), sub = $("#sub"), tip = $("#tip"), card = $("#card"), labelsEl = $("#labels");
+  if (TVSYNC) {
+    ad.classList.add("tvsync");
+    TEXT.end[1] = (TV_CHANNEL || "Bu kanal") + " ve 150'den fazla canlı kanal, diziler, filmler, maçlar…";
+    $("#qrKick").textContent = "TV'DEKİ QR BURADA"; $("#qrTxt").textContent = "Kaçırdıysan şimdi tara.";
+  }
+
+  function exitUrl(path) {
+    var base = (typeof clickTag === "string" && clickTag) ? clickTag : BASE;
+    if (base === BASE && path) base = BASE + path;
+    return base + (base.indexOf("?") > -1 ? "&" : "?") + UTM + "&utm_content=mozaik-" + (path || "genel") + (TVSYNC ? "-tvsync" : "");
+  }
+  function exit(path) {
+    var url = exitUrl(path);
+    if (window.Enabler && Enabler.exitOverride) Enabler.exitOverride("TVPlus_" + (path || "genel"), url);
+    else window.open(url, "_blank");
+  }
+  function setText(t) {
+    head.classList.add("out"); sub.classList.add("out");
+    setTimeout(function () { head.innerHTML = t[0]; sub.textContent = t[1]; head.classList.remove("out"); sub.classList.remove("out"); }, 220);
+  }
+
+  // ---------------- Mozaik ----------------
+  var W = 488, H = 250, P = 9, S = 7;              // alan, kare aralığı, kare boyu
+  var COLS = Math.floor((W - 16) / P), ROWS = Math.floor((H - 22) / P);
+  var OX = Math.round((W - COLS * P + (P - S)) / 2), OY = 8;
+  var cv = $("#cv"), dpr = Math.min(window.devicePixelRatio || 1, 2), ctx = cv.getContext("2d");
+  cv.width = W * dpr; cv.height = H * dpr; ctx.scale(dpr, dpr);
+  var tiles = [], mode = "intro", mouse = null, hoverCat = -1, pick = -1, catLayout = [];
+
+  function cellXY(c, r) { return { x: OX + c * P, y: OY + r * P }; }
+
+  // "tv+" yazısını ızgaraya örnekleyerek logo maskesi üretir
+  function logoCells() {
+    var oc = document.createElement("canvas"), sc = 10; oc.width = COLS * sc; oc.height = ROWS * sc;
+    var o = oc.getContext("2d"), fs = ROWS * sc * 1.18;
+    o.font = "800 " + fs + "px " + getComputedStyle(document.body).fontFamily;
+    var w = o.measureText("tv+").width, maxW = COLS * sc * .9;
+    if (w > maxW) { fs *= maxW / w; o.font = "800 " + fs + "px " + getComputedStyle(document.body).fontFamily; w = o.measureText("tv+").width; }
+    o.textBaseline = "alphabetic"; o.fillStyle = "#fff";
+    o.fillText("tv+", (oc.width - w) / 2, oc.height * .86);
+    var data = o.getImageData(0, 0, oc.width, oc.height).data, out = [];
+    for (var r = 0; r < ROWS; r++) for (var c = 0; c < COLS; c++) {
+      var i = ((r * sc + sc / 2) * oc.width + (c * sc + sc / 2)) * 4;
+      if (data[i + 3] > 120) out.push({ c: c, r: r, plus: c * sc > (oc.width + w) / 2 - w * .3 });
+    }
+    return out;
+  }
+
+  function build() {
+    var cells = logoCells();
+    tiles = cells.map(function (cl, i) {
+      var cat = cl.plus ? -1 : (Math.random() * CATS.length | 0);
+      var p = cellXY(cl.c, cl.r);
+      return { lx: p.x, ly: p.y, x: Math.random() * W, y: Math.random() * H, tx: p.x, ty: p.y, cat: cat, plus: cl.plus,
+               ph: Math.random() * 6.28, sp: .6 + Math.random() * 2, delay: Math.random() * 600, a: 0 };
+    });
+    // "+" kareleri vurgu rengiyle; kategorilere bölünürken onlara da kategori atanır
+    tiles.forEach(function (t) { if (t.cat < 0) t.pc = Math.random() * CATS.length | 0; });
+    layoutCats();
+  }
+
+  // Kategori düzeni: her kategori bir sütun bloğu (alttan yukarı dolar)
+  function layoutCats() {
+    var groups = CATS.map(function () { return []; });
+    tiles.forEach(function (t) { groups[t.cat < 0 ? t.pc : t.cat].push(t); });
+    var gap = 4, bw = Math.floor((COLS - 4 * gap) / CATS.length) - 2, total = bw * CATS.length + gap * (CATS.length - 1);
+    var c0 = Math.floor((COLS - total) / 2), bottom = ROWS - 2;
+    catLayout = [];
+    groups.forEach(function (g, gi) {
+      var cs = c0 + gi * (bw + gap);
+      g.forEach(function (t, k) {
+        var p = cellXY(cs + (k % bw), bottom - Math.floor(k / bw));
+        t.cx = p.x; t.cy = p.y;
+      });
+      var top = bottom - Math.ceil(g.length / bw) + 1;
+      catLayout.push({ x0: OX + cs * P - 3, x1: OX + (cs + bw) * P, y0: OY + top * P - 3, y1: OY + (bottom + 1) * P, mid: OX + (cs + bw / 2) * P - 1 });
+    });
+    labelsEl.innerHTML = CATS.map(function (c, i) {
+      return '<span style="left:' + catLayout[i].mid + 'px;color:' + c.c + '">' + c.n + "</span>";
+    }).join("");
+  }
+
+  var t0 = performance.now();
+  function setMode(m) {
+    mode = m; t0 = performance.now();
+    tiles.forEach(function (t) {
+      if (m === "cats") { t.tx = t.cx; t.ty = t.cy; } else { t.tx = t.lx; t.ty = t.ly; }
+      t.delay = Math.random() * 450;
+    });
+    labelsEl.classList.toggle("on", m === "cats");
+    $("#toggle").textContent = m === "cats" ? "Logoyu birleştir ⇄" : "Kategorilere ayır ⇄";
+    $("#hint").textContent = m === "cats" ? "Bir kategoriye dokun, hemen izle" : "Karelerin üzerinde gezin · tıkla, dağıt";
+    hideTip();
+  }
+
+  function hex(c, a) { var n = parseInt(c.slice(1), 16); return "rgba(" + (n >> 16) + "," + (n >> 8 & 255) + "," + (n & 255) + "," + a + ")"; }
+
+  function draw(now) {
+    ctx.clearRect(0, 0, W, H);
+    // Arka plandaki boş "ekran" ızgarası
+    ctx.fillStyle = "rgba(255,255,255,.035)";
+    for (var r = 0; r < ROWS; r++) for (var c = 0; c < COLS; c++) ctx.fillRect(OX + c * P, OY + r * P, S, S);
+    var el = now - t0;
+    for (var i = 0; i < tiles.length; i++) {
+      var t = tiles[i];
+      if (el > t.delay || REDUCED) { var k = REDUCED ? 1 : .13; t.x += (t.tx - t.x) * k; t.y += (t.ty - t.y) * k; t.a += (1 - t.a) * .08; }
+      var cat = t.cat < 0 ? (mode === "cats" ? t.pc : -1) : t.cat;
+      var col = cat < 0 ? "#ffc900" : CATS[cat].c;
+      // Her kare küçük bir ekran gibi titrer
+      var flick = .62 + .38 * Math.sin(now / 1000 * t.sp + t.ph);
+      var sc = 1, glow = 0;
+      if (mouse && !REDUCED) {
+        var dx = t.x + S / 2 - mouse.x, dy = t.y + S / 2 - mouse.y, d = Math.sqrt(dx * dx + dy * dy);
+        var f = Math.max(0, 1 - d / 46); sc = 1 + f * 1.1; glow = f;
+      }
+      var dim = 1;
+      if (mode === "cats" && hoverCat > -1 && cat !== hoverCat) dim = .25;
+      if (pick > -1) dim = i === pick ? 1 : .3;
+      var a = t.a * dim * Math.min(1, flick + glow);
+      var s = S * sc * (i === pick ? 1.9 : 1), x = t.x + S / 2 - s / 2, y = t.y + S / 2 - s / 2;
+      ctx.fillStyle = hex(col, a);
+      ctx.fillRect(x, y, s, s);
+      if (i === pick || glow > .6) { ctx.strokeStyle = "rgba(255,255,255," + (i === pick ? .95 : glow * .6) + ")"; ctx.lineWidth = 1; ctx.strokeRect(x - .5, y - .5, s + 1, s + 1); }
+      // Ekran parlaması
+      ctx.fillStyle = "rgba(255,255,255," + (.12 * a) + ")"; ctx.fillRect(x, y, s, s * .35);
+    }
+    requestAnimationFrame(draw);
+  }
+
+  // ---------------- Etkileşim ----------------
+  var mosaic = $("#mosaic");
+  function nearest(mx, my) {
+    var best = -1, bd = 1e9;
+    for (var i = 0; i < tiles.length; i++) {
+      var dx = tiles[i].x + S / 2 - mx, dy = tiles[i].y + S / 2 - my, d = dx * dx + dy * dy;
+      if (d < bd) { bd = d; best = i; }
+    }
+    return bd < 64 ? best : -1;
+  }
+  function catAt(mx, my) {
+    for (var i = 0; i < catLayout.length; i++) { var L = catLayout[i]; if (mx >= L.x0 && mx <= L.x1 && my >= L.y0 - 6 && my <= H) return i; }
+    return -1;
+  }
+  function showTip(i, mx, my) {
+    var c = CATS[i];
+    tip.innerHTML = '<b style="color:' + c.c + '">' + c.n + "</b>" + c.d;
+    tip.style.left = Math.min(W - 190, Math.max(4, mx + 12)) + "px";
+    tip.style.top = (my > 130 ? my - 60 : my + 14) + "px";
+    tip.classList.add("on");
+  }
+  function hideTip() { tip.classList.remove("on"); }
+
+  mosaic.addEventListener("mousemove", function (e) {
+    var r = mosaic.getBoundingClientRect(), mx = e.clientX - r.left, my = e.clientY - r.top;
+    mouse = { x: mx, y: my };
+    if (card.classList.contains("on") || rolling) return;
+    if (mode === "cats") {
+      hoverCat = catAt(mx, my);
+      if (hoverCat > -1) { showTip(hoverCat, mx, my); sub.textContent = CATS[hoverCat].d; } else hideTip();
+      mosaic.style.cursor = hoverCat > -1 ? "pointer" : "default";
+    } else {
+      var n = nearest(mx, my), t = tiles[n];
+      if (t) showTip(t.cat < 0 ? t.pc : t.cat, mx, my); else hideTip();
+    }
+  });
+  mosaic.addEventListener("mouseleave", function () { mouse = null; hoverCat = -1; hideTip(); });
+  mosaic.addEventListener("click", function (e) {
+    if (e.target.closest("button,.card")) return;
+    e.stopPropagation(); stopAuto();
+    var r = mosaic.getBoundingClientRect(), mx = e.clientX - r.left, my = e.clientY - r.top;
+    if (mode === "cats") { var ci = catAt(mx, my); if (ci > -1) exit(CATS[ci].k); return; }
+    // Şok dalgası: kareler dağılır, sonra logoya geri döner
+    tiles.forEach(function (t) {
+      var dx = t.x - mx, dy = t.y - my, d = Math.sqrt(dx * dx + dy * dy) || 1, f = Math.max(0, 1 - d / 160) * 70;
+      t.x += dx / d * f + (Math.random() - .5) * f * .4; t.y += dy / d * f + (Math.random() - .5) * f * .4;
+    });
+  });
+  $("#toggle").addEventListener("click", function (e) {
+    e.stopPropagation(); stopAuto(); closeCard();
+    setMode(mode === "cats" ? "logo" : "cats"); setText(mode === "cats" ? TEXT.cats : TEXT.end);
+  });
+
+  // "Bana bir şey öner" ruleti
+  var rolling = false, rec = null;
+  function roll() {
+    if (rolling || !tiles.length) return;
+    stopAuto(); closeCard(); hideTip(); rolling = true;
+    var steps = 18, i = 0, delay = 45;
+    (function step() {
+      pick = Math.random() * tiles.length | 0;
+      if (++i < steps) { delay *= 1.14; setTimeout(step, REDUCED ? 0 : delay); }
+      else setTimeout(function () { rolling = false; openCard(tiles[pick]); }, 260);
+    })();
+  }
+  function openCard(t) {
+    var ci = t.cat < 0 ? t.pc : t.cat, c = CATS[ci], r = c.recs[Math.random() * c.recs.length | 0];
+    rec = c;
+    card.style.setProperty("--c", c.c);
+    $("#cKick").textContent = c.n.toUpperCase() + " · BUGÜN İÇİN ÖNERİMİZ";
+    $("#cTitle").textContent = r[0]; $("#cTxt").textContent = r[1];
+    $("#cGo").textContent = c.n + " izle →";
+    card.classList.add("on");
+  }
+  function closeCard() { card.classList.remove("on"); pick = -1; }
+  $("#dice").addEventListener("click", function (e) { e.stopPropagation(); roll(); });
+  $("#cAgain").addEventListener("click", function (e) { e.stopPropagation(); roll(); });
+  $("#cardX").addEventListener("click", function (e) { e.stopPropagation(); closeCard(); });
+  $("#cGo").addEventListener("click", function (e) { e.stopPropagation(); exit(rec ? rec.k : ""); });
+  card.addEventListener("click", function (e) { e.stopPropagation(); });
+  $("#cta").addEventListener("click", function (e) { e.stopPropagation(); exit(rec ? rec.k : (mode === "cats" && hoverCat > -1 ? CATS[hoverCat].k : "")); });
+  $("#qr").addEventListener("click", function (e) { e.stopPropagation(); exit("qr"); });
+  ad.addEventListener("click", function () { exit(""); });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeCard();
+    if (e.key === " " || e.key.toLowerCase() === "r") { e.preventDefault(); roll(); }
+  });
+
+  // ---------------- Otomatik akış (~13 sn) ----------------
+  var timers = [], auto = true;
+  function stopAuto() { if (!auto) return; auto = false; timers.forEach(clearTimeout); }
+  function at(ms, fn) { timers.push(setTimeout(function () { if (auto) fn(); }, ms)); }
+  function start() {
+    build(); requestAnimationFrame(draw);
+    setMode("logo");                                         // dağınık kareler logoda birleşir
+    at(4600, function () { setMode("cats"); setText(TEXT.cats); });
+    at(9800, function () { setMode("logo"); setText(TEXT.end); });
+    at(11200, function () { $("#cta").classList.add("pulse"); $("#dice").classList.add("pulse"); auto = false; });
+  }
+  var started = false;
+  function go() { if (started) return; started = true; start(); }
+  // Font yüklenince logo maskesi doğru çıkar; yüklenmezse sistem fontuyla devam
+  if (document.fonts && document.fonts.load) {
+    document.fonts.load("800 100px Outfit").then(go, go);
+    setTimeout(go, 1200);
+  } else window.addEventListener("load", go);
+})();
+</script>
+</body>
+</html>
