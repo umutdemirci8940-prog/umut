@@ -5,6 +5,9 @@
  * Dosya yoksa https://www.akbank.com/SiteAssets/img/logo.svg adresinden indirmeyi dener.
  * Koyu zemin için: koyu renkli dolgular fildişine çevrilir, kırmızı ve diğer renkli alanlar korunur.
  *
+ * Logo, akbank-wings altındaki LOGO:START / LOGO:END işaretli bütün index.html dosyalarına gömülür.
+ * "LOGO:START:light" ile işaretlenen açık zeminli çalışmalarda renkler olduğu gibi bırakılır.
+ *
  * Kullanım: node akbank-wings/tools/embed-logo.js
  */
 const fs = require('fs');
@@ -13,7 +16,6 @@ const path = require('path');
 const root = path.join(__dirname, '..');
 const LOGO_URL = 'https://www.akbank.com/SiteAssets/img/logo.svg';
 const logoFile = path.join(root, 'assets', 'logo.svg');
-const htmlFile = path.join(root, '970x250', 'index.html');
 const IVORY = '#f4efe4';
 
 async function getSvg() {
@@ -46,7 +48,7 @@ function isDarkNeutral(rgb) {
   return lum < 0.35 && sat < 0.35;
 }
 
-function sanitize(svg) {
+function sanitize(svg, recolor) {
   svg = svg.replace(/<\?xml[\s\S]*?\?>/g, '').replace(/<!DOCTYPE[\s\S]*?>/gi, '').replace(/<!--[\s\S]*?-->/g, '')
     .replace(/<script[\s\S]*?<\/script>/gi, '').replace(/\son\w+="[^"]*"/gi, '').trim();
   if (!/^<svg[\s>]/i.test(svg)) throw new Error('Geçerli bir SVG değil');
@@ -62,8 +64,9 @@ function sanitize(svg) {
   svg = svg.replace(open, tag);
   // id çakışmalarını önle (sayfadaki gradyanlarla)
   svg = svg.replace(/\bid="([^"]+)"/g, 'id="akb-$1"').replace(/url\(#([^)]+)\)/g, 'url(#akb-$1)').replace(/(xlink:)?href="#([^"]+)"/g, '$1href="#akb-$2"');
-  // Koyu nötr renkleri koyu zeminde okunur yap
   let changed = 0;
+  if (!recolor) return { svg, changed };
+  // Koyu nötr renkleri koyu zeminde okunur yap
   svg = svg.replace(/(fill|stroke|stop-color)(=")([^"]+)(")/gi, (all, a, b, c, d) => {
     const rgb = parseColor(c); if (rgb && isDarkNeutral(rgb)) { changed++; return a + b + IVORY + d; } return all;
   });
@@ -76,11 +79,19 @@ function sanitize(svg) {
 }
 
 (async () => {
-  const { svg, changed } = sanitize(await getSvg());
-  let html = fs.readFileSync(htmlFile, 'utf8');
-  const re = /(<!-- LOGO:START[^>]*-->)[\s\S]*?(\s*<!-- LOGO:END -->)/;
-  if (!re.test(html)) throw new Error('LOGO işaretleri bulunamadı');
-  html = html.replace(re, `$1\n    <div class="bank"><span class="logo">${svg}</span></div>$2`);
-  fs.writeFileSync(htmlFile, html);
-  console.log(`Logo gömüldü (${Buffer.byteLength(svg)} bayt, koyu zemine uyarlanan renk: ${changed}).`);
+  const raw = await getSvg();
+  const files = fs.readdirSync(root, { withFileTypes: true })
+    .filter((d) => d.isDirectory())
+    .map((d) => path.join(root, d.name, 'index.html'))
+    .filter((f) => fs.existsSync(f) && fs.readFileSync(f, 'utf8').includes('<!-- LOGO:START'));
+  if (!files.length) throw new Error('LOGO işaretli dosya bulunamadı');
+  const re = /(<!-- LOGO:START(:light)?[^>]*-->)[\s\S]*?(\s*<!-- LOGO:END -->)/;
+  for (const f of files) {
+    let html = fs.readFileSync(f, 'utf8');
+    const light = html.match(re)[2] === ':light';
+    const { svg, changed } = sanitize(raw, !light);
+    html = html.replace(re, (all, a, b, c) => `${a}\n    <div class="bank"><span class="logo">${svg}</span></div>${c}`);
+    fs.writeFileSync(f, html);
+    console.log(`${path.relative(root, f)}: logo gömüldü (${Buffer.byteLength(svg)} bayt, ${light ? 'açık zemin' : 'koyu zemine uyarlanan renk: ' + changed}).`);
+  }
 })().catch((e) => { console.error(e.message); process.exit(1); });

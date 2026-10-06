@@ -1,5 +1,16 @@
 # Wings – Q4 lansman, 970×250 interaktif masthead
 
+İki ayrı konsept var:
+
+| Konsept | Dosya | Fikir |
+|---|---|---|
+| **A · Siyah & Altın** | `970x250/index.html` | Koyu zemin, imlece göre eğilen 3B kart, açılıp kapanan 4 ayrıcalık paneli |
+| **B · Biniş Kartı** | `970x250-binis-karti/index.html` | Açık zemin, havalimanı kalkış panosu (split-flap) ve "kaydır, biniş yap" etkileşimli biniş kartı |
+
+---
+
+## Konsept A · Siyah & Altın
+
 `970x250/index.html`: tek dosya, satır içi CSS + JS, görsel dosyası yok (kart ve ikonlar vektör). Boyutu yaklaşık 20 KB; fontlar Google Fonts'tan geliyor.
 
 | Açılış | Otomatik döngü (Fine Dining) | Üzerine gelme (Mil) |
@@ -33,3 +44,29 @@ Yerelde (normal internet erişimiyle): `node akbank-wings/tools/embed-logo.js`
 Ekran görüntülerini yenilemek için: `NODE_PATH=$(npm root -g) node akbank-wings/tools/capture.js`
 
 Hedefleme önerileri: [HEDEFLEME.md](HEDEFLEME.md)
+
+---
+
+## Konsept B · Biniş Kartı (`970x250-binis-karti/index.html`)
+
+| Pano dönüyor | Otomatik döngü | Kaydırma | Biniş onaylandı |
+|---|---|---|---|
+| ![](screens/970x250-binis-karti/01-pano-donuyor.jpg) | ![](screens/970x250-binis-karti/03-transfer.jpg) | ![](screens/970x250-binis-karti/05-kaydiriliyor.jpg) | ![](screens/970x250-binis-karti/06-binis-onaylandi.jpg) |
+
+Açık fildişi zemin, Bodoni başlık ve Akbank kırmızısıyla editoryal bir dil. Bu çalışmada logo kendi kırmızısıyla, olduğu gibi kullanılır.
+
+**Kurgu**
+1. **0–2 sn:** Ortadaki kalkış panosunun harfleri tek tek dönerek (split-flap) ayrıcalıkları yazar: Lounge & Fast Track, Havalimanı Transferi, Fine Dining, Wings Mil × 1,5. Biniş kartı sağdan kayarak gelir.
+2. **Otomatik döngü:** Her 3,6 sn'de bir sonraki satır "BİNİŞ" durumuna geçer. Biniş kartındaki varış kodu (LNG / TRF / DIN / MIL), ayrıcalık metni ve kapı numarası bu satıra göre değişir. Döngü 30 sn'de durur.
+3. **Kaydır, biniş yap:** Kart koçanındaki kırmızı uçak tutamacı sağa kaydırılınca (ya da tıklanınca) kart "ONAYLANDI" damgasını alır ve tutamacın yerine **"Davetinizi alın"** CTA'sı gelir.
+
+**Etkileşim**
+- **Pano:** Satırın üzerine gelinince ya da odaklanınca o ayrıcalık seçilir. Kapalı bir satıra tıklamak onu seçer, çıkış tetiklemez.
+- **Tutamaç:** Fare, dokunmatik ve kalemle sürüklenebilir (Pointer Events), klavyede → ya da Enter ile çalışır. Sürükleme yolun %82'sini geçmezse geri yaylanır.
+- **Saat:** Panodaki saat, izleyicinin yerel saatini gösterir.
+- **Çıkış:** Çıkış adları `Wings_Binis_Exit` ve CTA'dan sonra `Wings_Binis_CTA`. UTM'deki `utm_content` alanına seçili ayrıcalık yazılır, biniş yapıldıysa sonuna `_binis` eklenir.
+- **Ölçüm:** `hover`, `row_<ad>`, `drag_start`, `boarded_<ad>` ve `exit` olayları gönderilir.
+
+İçerik ve süreler dosyadaki `CONFIG.rows` altında. Pano satır başına en fazla 20 karakter gösterir.
+
+Ekran görüntüleri ve etkileşim testi (sürükleme + CTA): `NODE_PATH=$(npm root -g) node akbank-wings/tools/capture.js 970x250-binis-karti`

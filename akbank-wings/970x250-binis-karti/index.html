@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=970,height=250">
+<meta name="viewport" content="width=970,height=250">
+<title>Wings – Biniş Kartı – 970x250 Masthead</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;1,6..96,500&family=IBM+Plex+Mono:wght@500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>
+  /* Reklam sunucusu clickTag'i (Google Ads / CM360) – yayında ağ tarafından ezilir. */
+  var clickTag = window.clickTag || "";
+</script>
+<style>
+  :root {
+    --paper: #f3eee4;
+    --paper-2: #e9e2d4;
+    --ink: #111114;
+    --ink-2: #2a2a2f;
+    --mute: #7d776c;
+    --red: #dc0005;            /* Akbank logosundaki kırmızı */
+    --flap: #17171b;
+    --flap-txt: #f5f0e6;
+    --amber: #f2c14e;
+    --serif: "Bodoni Moda", "Didot", "Times New Roman", serif;
+    --mono: "IBM Plex Mono", "Courier New", monospace;
+    --sans: "Manrope", "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 970px; height: 250px; overflow: hidden; background: var(--paper); }
+
+  #ad {
+    position: relative; width: 970px; height: 250px; overflow: hidden; cursor: pointer; outline: none;
+    font-family: var(--sans); color: var(--ink);
+    background:
+      radial-gradient(500px 240px at 0% 0%, rgba(255,255,255,.7), transparent 70%),
+      repeating-linear-gradient(0deg, rgba(0,0,0,.012) 0 1px, transparent 1px 3px),
+      linear-gradient(90deg, var(--paper), #efe8db);
+    border: 1px solid #d9d1c1;
+  }
+  #ad:focus-visible { box-shadow: inset 0 0 0 2px var(--ink); }
+
+  /* ---------- Sol: marka & mesaj ---------- */
+  .brand { position: absolute; left: 26px; top: 24px; width: 214px; z-index: 2; }
+  .bank { display: flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; }
+  .bank i { width: 14px; height: 2px; background: var(--red); display: inline-block; }
+  .bank b { color: var(--red); font-weight: 800; }
+  .bank .logo { display: block; height: 13px; width: auto; }
+  .bank .logo svg { display: block; height: 100%; width: auto; }
+  .wordmark { margin-top: 12px; font-family: var(--serif); font-weight: 600; font-size: 42px; line-height: .9; letter-spacing: -.01em; color: var(--ink); }
+  .wordmark small { display: inline-block; margin-left: 6px; font: 700 9.5px/1 var(--sans); letter-spacing: .32em; vertical-align: 6px; color: var(--ink); border: 1px solid var(--ink); padding: 4px 4px 4px 7px; }
+  .headline { margin-top: 12px; font-family: var(--serif); font-size: 19px; line-height: 1.18; font-weight: 500; }
+  .headline em { font-style: italic; color: var(--red); }
+  .sub { margin-top: 8px; font-size: 10.5px; line-height: 1.45; color: var(--mute); }
+  .legal { position: absolute; left: 26px; bottom: 10px; width: 220px; font-size: 7.5px; line-height: 1.35; color: #9b9487; }
+
+  .reveal { opacity: 0; transform: translateY(8px); transition: opacity .7s ease, transform .7s ease; }
+  .ready .reveal { opacity: 1; transform: none; }
+
+  /* ---------- Orta: kalkış panosu ---------- */
+  .board { position: absolute; left: 256px; top: 16px; width: 440px; height: 218px; z-index: 2;
+    background: linear-gradient(180deg, #1f1f24, #0f0f12); border-radius: 6px; padding: 12px 14px 0;
+    box-shadow: 0 18px 30px -16px rgba(0,0,0,.55), inset 0 0 0 1px rgba(255,255,255,.06);
+    opacity: 0; transform: translateY(10px); transition: opacity .7s ease .2s, transform .7s ease .2s; }
+  .ready .board { opacity: 1; transform: none; }
+  .bhead { display: flex; align-items: center; justify-content: space-between; color: var(--flap-txt); }
+  .bhead .t { display: flex; align-items: center; gap: 8px; font: 600 10px/1 var(--sans); letter-spacing: .28em; text-transform: uppercase; }
+  .bhead .t svg { width: 15px; height: 15px; color: var(--amber); }
+  .bhead .clock { font: 600 11px/1 var(--mono); color: var(--amber); letter-spacing: .08em; }
+  .cols { display: flex; margin-top: 10px; padding-bottom: 5px; border-bottom: 1px solid rgba(255,255,255,.08);
+    font: 600 7.5px/1 var(--sans); letter-spacing: .24em; color: #8d877b; text-transform: uppercase; }
+  .cols span:nth-child(1) { width: 70px; } .cols span:nth-child(2) { width: 264px; } .cols span:nth-child(3) { width: 30px; }
+
+  .row { position: relative; display: flex; align-items: center; height: 34px; border-bottom: 1px solid rgba(255,255,255,.05); cursor: pointer; }
+  .row::before { content: ""; position: absolute; left: -14px; top: 4px; bottom: 4px; width: 3px; background: var(--red); transform: scaleY(0); transition: transform .3s ease; }
+  .row.on::before { transform: scaleY(1); }
+  .row:focus-visible { outline: 1px solid var(--amber); outline-offset: -1px; }
+  .cells { display: flex; gap: 1px; }
+  .seg-time { width: 70px; } .seg-dest { width: 264px; } .seg-gate { width: 30px; }
+  .f { position: relative; display: inline-block; width: 12px; height: 22px; border-radius: 2px; overflow: hidden;
+    background: linear-gradient(180deg, #2a2a30 0 50%, #222227 50% 100%);
+    font: 600 12px/22px var(--mono); text-align: center; color: var(--flap-txt); }
+  .f::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: rgba(0,0,0,.65); }
+  .f.flip { animation: flap .07s linear; }
+  @keyframes flap { 0% { transform: scaleY(1); } 50% { transform: scaleY(.55); filter: brightness(.7); } 100% { transform: scaleY(1); } }
+  .row.on .f { color: var(--amber); }
+  .seg-gate .f { color: var(--amber); }
+  .status { width: 44px; text-align: right; white-space: nowrap; font: 700 6.5px/1 var(--sans); letter-spacing: .06em; color: #7a756b; text-transform: uppercase; }
+  .row.on .status { color: #5ad18a; }
+  .row.on .status::before { content: ""; display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: #5ad18a; margin-right: 4px; vertical-align: 1px; animation: blink 1.2s ease-in-out infinite; }
+  @keyframes blink { 50% { opacity: .2; } }
+  .btip { position: absolute; left: 14px; bottom: 8px; font: 500 8px/1 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: #8d877b; }
+
+  /* ---------- Sağ: biniş kartı ---------- */
+  .pass { position: absolute; right: 14px; top: 14px; width: 252px; height: 222px; z-index: 3;
+    filter: drop-shadow(0 14px 18px rgba(0,0,0,.18));
+    opacity: 0; transform: translateX(40px) rotate(3deg); transition: opacity .8s ease .5s, transform .9s cubic-bezier(.16,.84,.24,1) .5s; }
+  .ready .pass { opacity: 1; transform: none; }
+  .ticket { position: absolute; inset: 0; border-radius: 8px; background: #fffdf8; overflow: hidden;
+    /* yan çentikler */
+    -webkit-mask: radial-gradient(circle 8px at 0 156px, transparent 98%, #000) , radial-gradient(circle 8px at 100% 156px, transparent 98%, #000);
+    -webkit-mask-composite: source-in; mask-composite: intersect;
+    mask: radial-gradient(circle 8px at 0 156px, transparent 98%, #000), radial-gradient(circle 8px at 100% 156px, transparent 98%, #000); }
+  .tk-head { height: 30px; background: var(--ink); color: var(--paper); display: flex; align-items: center; justify-content: space-between; padding: 0 12px; }
+  .tk-head b { font: 700 8.5px/1 var(--sans); letter-spacing: .3em; }
+  .tk-head span { font-family: var(--serif); font-size: 15px; font-weight: 600; }
+  .tk-head span small { font: 700 6.5px/1 var(--sans); letter-spacing: .3em; margin-left: 4px; color: var(--amber); vertical-align: 2px; }
+  .route { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px 0; }
+  .route .ap { font: 600 24px/1 var(--mono); letter-spacing: .02em; }
+  .route .ap small { display: block; margin-top: 3px; font: 600 6.5px/1 var(--sans); letter-spacing: .24em; color: var(--mute); }
+  .route .ap.to { text-align: right; color: var(--red); }
+  .route .line { flex: 1; margin: 0 8px; height: 1px; border-top: 1px dashed #c9c1b1; position: relative; top: -6px; }
+  .route .line svg { position: absolute; left: 50%; top: -8px; width: 16px; height: 16px; margin-left: -8px; color: var(--ink); background: #fffdf8; padding: 0 2px; }
+  .benefit { padding: 8px 14px 0; height: 62px; }
+  .benefit .big { font-family: var(--serif); font-size: 23px; font-weight: 600; line-height: 1; }
+  .benefit .big em { font-style: italic; font-weight: 500; font-size: .7em; color: var(--mute); }
+  .benefit .txt { margin-top: 4px; font-size: 10px; line-height: 1.35; color: var(--ink-2); }
+  .swap { transition: opacity .25s ease, transform .25s ease; }
+  .swap.out { opacity: 0; transform: translateY(4px); }
+  .fields { display: flex; gap: 0; padding: 0 14px; }
+  .fields div { flex: 1; font: 600 6.5px/1 var(--sans); letter-spacing: .2em; color: var(--mute); text-transform: uppercase; }
+  .fields div b { display: block; margin-top: 3px; font: 600 10px/1 var(--mono); letter-spacing: .04em; color: var(--ink); }
+  .perf { position: absolute; left: 12px; right: 12px; top: 156px; border-top: 1.5px dashed #d5ccbb; }
+
+  /* koçan: kaydır-bin */
+  .stub { position: absolute; left: 0; right: 0; top: 157px; bottom: 0; padding: 0 12px; display: flex; flex-direction: column; justify-content: center; }
+  .track { position: relative; height: 38px; border-radius: 19px; background: var(--paper-2); overflow: hidden; touch-action: none; }
+  .track .fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0; border-radius: 19px; background: var(--ink); }
+  .track .lbl { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding-left: 26px;
+    font: 700 9px/1 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--ink-2); pointer-events: none; }
+  .track .lbl i { font-style: normal; margin-left: 6px; animation: nudge 1.4s ease-in-out infinite; }
+  @keyframes nudge { 50% { transform: translateX(4px); } }
+  .knob { position: absolute; left: 3px; top: 3px; width: 32px; height: 32px; border-radius: 50%; background: var(--red); color: #fff;
+    display: grid; place-items: center; cursor: grab; box-shadow: 0 3px 8px rgba(220,0,5,.35); z-index: 2; }
+  .knob svg { width: 16px; height: 16px; }
+  .knob:active { cursor: grabbing; }
+  .knob.hint { animation: hintSlide 2.6s ease-in-out infinite; }
+  @keyframes hintSlide { 0%, 55%, 100% { transform: translateX(0); } 70% { transform: translateX(26px); } 85% { transform: translateX(0); } }
+  .stub small { margin-top: 5px; text-align: center; font: 500 7px/1 var(--sans); letter-spacing: .18em; color: var(--mute); text-transform: uppercase; }
+
+  /* biniş tamamlandı */
+  .cta { position: absolute; inset: 0; border-radius: 19px; display: flex; align-items: center; justify-content: center; gap: 8px;
+    background: var(--red); color: #fff; font: 700 10px/1 var(--sans); letter-spacing: .2em; text-transform: uppercase;
+    opacity: 0; pointer-events: none; transition: opacity .35s ease .15s; }
+  .cta { text-decoration: none; }
+  .cta svg { width: 14px; height: 14px; }
+  .boarded .cta { opacity: 1; pointer-events: auto; }
+  .boarded .knob, .boarded .lbl { opacity: 0; transition: opacity .2s; }
+  .stamp { position: absolute; left: 72px; top: 40px; z-index: 4; padding: 5px 8px; border: 2px solid var(--red); border-radius: 4px;
+    font: 700 10px/1 var(--mono); letter-spacing: .14em; color: var(--red); transform: rotate(-12deg) scale(2.2); opacity: 0; pointer-events: none; }
+  .boarded .stamp { animation: stamp .45s cubic-bezier(.2,1.6,.4,1) forwards; }
+  @keyframes stamp { to { opacity: .9; transform: rotate(-12deg) scale(1); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .2s !important; transition-delay: 0s !important; }
+  }
+</style>
+</head>
+<body>
+<div id="ad" role="link" tabindex="0" aria-label="Wings ayrıcalıklarını keşfedin – yeni sekmede açılır">
+
+  <!-- Sol -->
+  <div class="brand">
+    <div class="reveal" style="transition-delay:.1s">
+    <!-- LOGO:START:light – tools/embed-logo.js resmi Akbank logosunu (SVG) buraya satır içi gömer -->
+    <div class="bank"><span class="logo"><svg role="img" aria-label="Akbank" focusable="false" viewBox="0 0 250 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M15.7775 0.199951L0 27.4H9.79301L12.0864 23.3595H30.6623L32.9557 27.4H42.9425L27.1619 0.199951H15.7775ZM80.7487 0.199951H69.2086L59.0662 9.7992H54.4413V0.199951H45.5821V27.4H54.4413V17.5688H60.1907L71.1113 27.4H83.1977L66.8771 12.8264L80.7487 0.199951ZM117.472 13.179C119.025 12.3245 120.737 10.7299 120.737 7.46769C120.737 2.99841 117.513 0.199951 112.148 0.199951H85.6087V27.4H113.044C118.485 27.4 122.37 24.8366 122.37 19.8241C122.37 15.5105 119.495 13.6459 117.475 13.179M139.075 0.199951L123.297 27.4H133.09L135.384 23.3595H153.96L156.253 27.4H166.24L150.462 0.199951H139.078H139.075ZM197.131 19.1634L181.703 0.199951H168.879V27.4H177.583V8.43651L193.011 27.4H205.834V0.199951H197.131V19.1634ZM232.802 12.8295L246.677 0.199951H235.137L224.995 9.7992H220.37V0.199951H211.511V27.4H220.37V17.5688H226.122L237.043 27.4H249.129L232.809 12.8264L232.802 12.8295ZM94.309 6.72757H109.346C110.979 6.72757 112.107 7.31204 112.107 8.7478C112.107 10.1836 110.979 10.6918 109.346 10.6918H94.309V6.72757ZM15.7775 16.9081L21.3744 7.03886L27.0094 16.9081H15.7775ZM139.078 16.9081L144.675 7.03886L150.31 16.9081H139.081H139.078ZM110.401 20.8723H94.3122V16.5206H110.401C112.148 16.5206 113.431 17.1432 113.431 18.6965C113.431 20.2498 112.148 20.8723 110.401 20.8723Z" fill="#DC0005"/>
+</svg></span></div>
+    <!-- LOGO:END -->
+    </div>
+    <div class="wordmark reveal" style="transition-delay:.25s">Wings<small id="tierWord">BLACK</small></div>
+    <h1 class="headline reveal" style="transition-delay:.45s">Bir sonraki ayrıcalığınız <em>kapıda.</em></h1>
+    <p class="sub reveal" style="transition-delay:.65s">Panodan bir ayrıcalık seçin, biniş kartınızı kaydırın.</p>
+  </div>
+  <p class="legal reveal" style="transition-delay:.9s">Ayrıcalıklar kart tipine ve kampanya dönemine göre değişir. Ayrıntılar akbank.com'da.</p>
+
+  <!-- Orta: kalkış panosu -->
+  <div class="board" id="board">
+    <div class="bhead">
+      <div class="t"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M2.5 19h19v2h-19zM22 9.6c-.2-.8-1-1.3-1.8-1.1L14.8 10 7.9 3.5l-1.9.5 4.1 7.2-5 1.3-2-1.6-1.4.4 1.8 3.2.8 1.3 1.6-.4 5.3-1.4 4.4-1.2 5.3-1.4c.8-.3 1.3-1.1 1.1-1.9z"/></svg>Kalkışlar · Ayrıcalıklar</div>
+      <div class="clock" id="clock">00:00</div>
+    </div>
+    <div class="cols"><span>Saat</span><span>Ayrıcalık</span><span>Kapı</span><span>Durum</span></div>
+    <div id="rows" role="tablist" aria-label="Wings ayrıcalıkları"></div>
+    <div class="btip" id="btip">Bir satırın üzerine gelin</div>
+  </div>
+
+  <!-- Sağ: biniş kartı -->
+  <div class="pass" id="pass">
+    <div class="ticket">
+      <div class="tk-head"><b>BİNİŞ KARTI</b><span>Wings<small id="tierPass">BLACK</small></span></div>
+      <div class="route">
+        <div class="ap">IST<small>İSTANBUL</small></div>
+        <div class="line"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z" transform="rotate(90 12 12)"/></svg></div>
+        <div class="ap to swap" id="toCode">LNG<small id="toName">AYRICALIK</small></div>
+      </div>
+      <div class="benefit swap" id="benefit"><div class="big" id="big"></div><div class="txt" id="txt"></div></div>
+      <div class="fields">
+        <div>Yolcu<b>SAYIN ÜYE</b></div>
+        <div>Kapı<b id="gate">A1</b></div>
+        <div>Koltuk<b>1A</b></div>
+      </div>
+      <div class="perf"></div>
+      <div class="stub" id="stub">
+        <div class="track" id="track">
+          <div class="fill" id="fill"></div>
+          <div class="lbl">Kaydırın, biniş yapın<i>→</i></div>
+          <div class="knob hint" id="knob" role="slider" tabindex="0" aria-label="Biniş için kaydırın" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z" transform="rotate(90 12 12)"/></svg>
+          </div>
+          <a class="cta" id="cta" href="#">Davetinizi alın
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a>
+        </div>
+        <small id="stubNote">Biniş kartınız hazır</small>
+      </div>
+    </div>
+    <div class="stamp">ONAYLANDI ✓</div>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ================== İÇERİK (lansman metinleri buradan güncellenir) ==================
+     Not: Rakamlar Wings'in kamuya açık mevcut ayrıcalıklarından alınmıştır ve
+     yer tutucudur; yayın öncesi Akbank ürün/hukuk onayı ile güncellenmelidir. */
+  var CONFIG = {
+    tier: 'BLACK',
+    landing: 'https://www.akbank.com/kartlar/kredi-kartlari/wings',
+    utm: 'utm_source=display&utm_medium=masthead&utm_campaign=wings_lansman_q4&utm_term=binis_karti',
+    autoplay: 3600,
+    maxAnimMs: 30000,
+    rows: [
+      { key: 'lounge',   time: '07:45', dest: 'LOUNGE & FAST TRACK',  gate: 'A1', code: 'LNG', name: 'LOUNGE',
+        big: 'Dünya genelinde', txt: 'havalimanlarında lounge ve Fast Track ayrıcalığı' },
+      { key: 'transfer', time: '09:10', dest: 'HAVALİMANI TRANSFERİ', gate: 'B2', code: 'TRF', name: 'TRANSFER',
+        big: '%75<em>’e varan</em>', txt: 'havalimanı transferlerinde indirim' },
+      { key: 'dining',   time: '20:30', dest: 'FINE DINING',          gate: 'C3', code: 'DIN', name: 'RESTORAN',
+        big: '%15<em>’e varan</em>', txt: 'dünyanın her yerindeki restoranlarda indirim' },
+      { key: 'mil',      time: '22:00', dest: 'WINGS MİL × 1,5',      gate: 'D4', code: 'MIL', name: 'WINGS MİL',
+        big: '1,5 <em>kat</em>', txt: 'restoran, seyahat ve havayolu harcamalarında mil' }
+    ]
+  };
+
+  var $ = function (id) { return document.getElementById(id); };
+  var ad = $('ad'), rowsEl = $('rows');
+  var startTs = Date.now();
+  ['tierWord', 'tierPass'].forEach(function (id) { var el = $(id); if (el) el.textContent = CONFIG.tier; });
+
+  /* ---------- Ölçüm ---------- */
+  var seen = {};
+  function track(name) {
+    if (seen[name]) return; seen[name] = 1;
+    try { if (window.Enabler && Enabler.counter) Enabler.counter(name); } catch (e) {}
+    if (window.console && console.debug) console.debug('[wings] ' + name);
+  }
+
+  /* ---------- Saat (yerel) ---------- */
+  function tick() { var d = new Date(); $('clock').textContent = ('0' + d.getHours()).slice(-2) + ':' + ('0' + d.getMinutes()).slice(-2); }
+  tick(); setInterval(tick, 15000);
+
+  /* ---------- Split-flap pano ---------- */
+  var CHARS = ' ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZ0123456789:&,×%.-';
+  function pad(s, n) { s = s.toLocaleUpperCase('tr'); while (s.length < n) s += ' '; return s.slice(0, n); }
+  function cellsFor(n) { var h = ''; for (var i = 0; i < n; i++) h += '<span class="f"> </span>'; return h; }
+  var rows = CONFIG.rows.map(function (r, i) {
+    var el = document.createElement('div');
+    el.className = 'row'; el.tabIndex = 0; el.setAttribute('role', 'tab');
+    el.setAttribute('aria-label', r.dest + ' – ' + r.txt);
+    el.innerHTML = '<div class="cells seg-time">' + cellsFor(5) + '</div>' +
+                   '<div class="cells seg-dest">' + cellsFor(20) + '</div>' +
+                   '<div class="cells seg-gate">' + cellsFor(2) + '</div>' +
+                   '<span class="status">' + (i === 0 ? 'Biniş' : 'Zamanında') + '</span>';
+    rowsEl.appendChild(el);
+    return { el: el, data: r, cells: Array.prototype.slice.call(el.querySelectorAll('.f')),
+             target: pad(r.time, 5) + pad(r.dest, 20) + pad(r.gate, 2) };
+  });
+
+  /* Her hücre karakter setinde ileri sayarak hedefe "çevrilir". */
+  function flipTo(row, delay) {
+    row.cells.forEach(function (cell, k) {
+      var target = row.target[k], idx = CHARS.indexOf(cell.textContent);
+      var steps = target === ' ' ? 0 : 4 + Math.floor(Math.random() * 7);
+      setTimeout(function step() {
+        if (steps-- > 0) { idx = (idx + 1) % CHARS.length; cell.textContent = CHARS[idx] === ' ' ? ' ' : CHARS[idx]; }
+        else { cell.textContent = target === ' ' ? ' ' : target; return; }
+        cell.classList.remove('flip'); void cell.offsetWidth; cell.classList.add('flip');
+        setTimeout(step, 55);
+      }, delay + k * 18);
+    });
+  }
+
+  /* ---------- Seçim → biniş kartı ---------- */
+  var cur = -1, timer = null, paused = false, stopped = false, boarded = false;
+  function select(i, user) {
+    i = (i + rows.length) % rows.length;
+    if (i === cur) return;
+    rows.forEach(function (r, k) {
+      r.el.classList.toggle('on', k === i);
+      r.el.setAttribute('aria-selected', k === i ? 'true' : 'false');
+      r.el.querySelector('.status').textContent = k === i ? 'Biniş' : 'Zamanında';
+    });
+    cur = i;
+    var d = rows[i].data;
+    var swaps = [$('toCode'), $('benefit')];
+    swaps.forEach(function (el) { el.classList.add('out'); });
+    setTimeout(function () {
+      $('toCode').firstChild.nodeValue = d.code;
+      $('toName').textContent = d.name;
+      $('big').innerHTML = d.big; $('txt').textContent = d.txt; $('gate').textContent = d.gate;
+      swaps.forEach(function (el) { el.classList.remove('out'); });
+    }, 220);
+    if (user) track('row_' + d.key);
+  }
+  function schedule() {
+    clearTimeout(timer);
+    if (paused || stopped) return;
+    if (Date.now() - startTs > CONFIG.maxAnimMs) { stopped = true; $('knob').classList.remove('hint'); return; }
+    timer = setTimeout(function () { select(cur + 1); schedule(); }, CONFIG.autoplay);
+  }
+
+  rows.forEach(function (r, i) {
+    r.el.addEventListener('mouseenter', function () { select(i, true); });
+    r.el.addEventListener('focus', function () { select(i, true); });
+    r.el.addEventListener('click', function (e) { if (cur !== i) { e.stopPropagation(); select(i, true); } });
+  });
+  ad.addEventListener('mouseenter', function () { paused = true; clearTimeout(timer); track('hover'); });
+  ad.addEventListener('mouseleave', function () { paused = false; schedule(); });
+
+  /* ---------- Kaydır-bin ---------- */
+  var trackEl = $('track'), knob = $('knob'), fill = $('fill');
+  var dragging = false, x0 = 0, pos = 0, moved = false;
+  function maxX() { return trackEl.clientWidth - knob.offsetWidth - 6; }
+  function setPos(p) {
+    pos = Math.max(0, Math.min(maxX(), p));
+    knob.style.transform = 'translateX(' + pos + 'px)';
+    fill.style.width = pos > 0 ? (pos + 38) + 'px' : '0';
+    knob.setAttribute('aria-valuenow', Math.round(pos / maxX() * 100));
+  }
+  function board() {
+    if (boarded) return; boarded = true; stopped = true; clearTimeout(timer);
+    setPos(maxX()); $('pass').classList.add('boarded'); trackEl.classList.add('boarded'); ad.classList.add('boarded');
+    $('stubNote').textContent = 'Biniş onaylandı · İyi yolculuklar';
+    track('boarded_' + (rows[cur] ? rows[cur].data.key : 'genel'));
+  }
+  function release() {
+    if (!dragging) return; dragging = false;
+    knob.style.transition = 'transform .35s cubic-bezier(.2,.9,.3,1.2)'; fill.style.transition = 'width .35s cubic-bezier(.2,.9,.3,1.2)';
+    if (pos > maxX() * 0.82) board(); else setPos(0);
+    setTimeout(function () { knob.style.transition = ''; fill.style.transition = ''; }, 380);
+  }
+  knob.addEventListener('pointerdown', function (e) {
+    if (boarded) return;
+    dragging = true; moved = false; x0 = e.clientX - pos; knob.classList.remove('hint');
+    knob.setPointerCapture && knob.setPointerCapture(e.pointerId);
+    e.stopPropagation(); e.preventDefault(); track('drag_start');
+  });
+  knob.addEventListener('pointermove', function (e) { if (!dragging) return; moved = true; setPos(e.clientX - x0); });
+  knob.addEventListener('pointerup', release);
+  knob.addEventListener('pointercancel', release);
+  knob.addEventListener('click', function (e) { e.stopPropagation(); if (!moved && !boarded) board(); });
+  trackEl.addEventListener('click', function (e) { if (!boarded) { e.stopPropagation(); board(); } });
+  knob.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight' || e.key === 'Enter' || e.key === ' ') { e.stopPropagation(); e.preventDefault(); board(); }
+  });
+
+  /* ---------- Klavye (pano) ---------- */
+  ad.addEventListener('keydown', function (e) {
+    if (e.target === knob) return;
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { stopped = true; select(cur + 1, true); e.preventDefault(); }
+    else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { stopped = true; select(cur - 1, true); e.preventDefault(); }
+    else if (e.key === 'Enter') { exit(); e.preventDefault(); }
+  });
+
+  /* ---------- Çıkış ---------- */
+  function exit() {
+    track('exit');
+    try { if (window.Enabler && Enabler.exit) { Enabler.exit(boarded ? 'Wings_Binis_CTA' : 'Wings_Binis_Exit'); return; } } catch (e) {}
+    var url = clickTag || (CONFIG.landing + (CONFIG.landing.indexOf('?') > -1 ? '&' : '?') + CONFIG.utm +
+      '&utm_content=' + (rows[cur] ? rows[cur].data.key : 'genel') + (boarded ? '_binis' : ''));
+    window.open(url, '_blank');
+  }
+  ad.addEventListener('click', function (e) { e.preventDefault(); exit(); });
+
+  /* ---------- Başlat ---------- */
+  function start() {
+    if (ad.classList.contains('ready')) return;
+    ad.classList.add('ready');
+    rows.forEach(function (r, i) { flipTo(r, 500 + i * 260); });
+    setTimeout(function () { select(0); schedule(); }, 1900);
+  }
+  var go = function () { requestAnimationFrame(function () { requestAnimationFrame(start); }); };
+  if (document.fonts && document.fonts.ready) {
+    Promise.race([document.fonts.ready, new Promise(function (r) { setTimeout(r, 1200); })]).then(go);
+  } else { window.addEventListener('load', go); }
+  setTimeout(start, 2500);
+})();
+</script>
+</body>
+</html>
