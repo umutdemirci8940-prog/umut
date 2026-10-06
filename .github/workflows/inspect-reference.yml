@@ -1,0 +1,106 @@
+name: Referans siteyi incele (remarkad.com.tr)
+
+# Bulut oturumu referans siteye erişemediği için site GitHub sunucusunda açılır;
+# kaydırma sırasında kareler, tam sayfa görüntüler, render HTML ve kütüphane listesi dala push'lanır.
+on:
+  workflow_dispatch:
+  push:
+    branches: ['claude/**']
+    paths: ['.github/workflows/inspect-reference.yml']
+
+permissions:
+  contents: write
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Playwright kur
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+
+      - name: Siteyi aç, kaydır, kaydet
+        run: |
+          mkdir -p referans/remarkad
+          cat > /tmp/inspect.js <<'EOF'
+          const { chromium } = require('playwright');
+          const fs = require('fs');
+          const OUT = 'referans/remarkad';
+          const URL = 'https://remarkad.com.tr/';
+          (async () => {
+            const b = await chromium.launch();
+            const info = {};
+            for (const [n, w, h] of [['masaustu', 1440, 900], ['mobil', 390, 844]]) {
+              const ctx = await b.newContext({ viewport: { width: w, height: h }, userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0 Safari/537.36' });
+              const p = await ctx.newPage();
+              const reqs = [];
+              p.on('request', r => { const t = r.resourceType(); if (t === 'script' || t === 'stylesheet' || t === 'font' || t === 'media') reqs.push(t + ' ' + r.url()); });
+              try {
+                await p.goto(URL, { waitUntil: 'networkidle', timeout: 60000 });
+              } catch (e) { console.log('goto', e.message); }
+              await p.waitForTimeout(3000);
+              // açılış animasyonu kareleri
+              for (let i = 0; i < 4; i++) { await p.screenshot({ path: `${OUT}/${n}-acilis-${i}.png` }); await p.waitForTimeout(700); }
+              const total = await p.evaluate(() => document.documentElement.scrollHeight);
+              let y = 0, k = 0;
+              while (y < total && k < 40) {
+                y += Math.round(h * 0.7);
+                await p.mouse.wheel(0, Math.round(h * 0.7));
+                await p.waitForTimeout(1100);
+                await p.screenshot({ path: `${OUT}/${n}-kaydir-${String(k).padStart(2, '0')}.png` });
+                k++;
+              }
+              if (n === 'masaustu') {
+                // menü hover / imleç
+                await p.mouse.move(w / 2, h / 2); await p.waitForTimeout(400);
+                fs.writeFileSync(`${OUT}/render.html`, await p.content());
+                info.scripts = reqs;
+                info.globals = await p.evaluate(() => ['gsap', 'ScrollTrigger', 'Lenis', 'LocomotiveScroll', 'Swiper', 'THREE', 'AOS', 'anime', 'barba', 'SplitType', 'Splitting', 'jQuery', 'elementorFrontend', 'lottie', 'bodymovin', 'Webflow', 'WOW'].filter(k => typeof window[k] !== 'undefined'));
+                info.title = await p.title();
+                info.fonts = await p.evaluate(() => [...new Set([...document.querySelectorAll('h1,h2,h3,p,a,body')].map(e => getComputedStyle(e).fontFamily))]);
+                info.colors = await p.evaluate(() => { const c = {}; document.querySelectorAll('*').forEach(e => { const s = getComputedStyle(e); [s.color, s.backgroundColor].forEach(v => { if (v && v !== 'rgba(0, 0, 0, 0)') c[v] = (c[v] || 0) + 1; }); }); return Object.entries(c).sort((a, b) => b[1] - a[1]).slice(0, 20); });
+                info.headings = await p.evaluate(() => [...document.querySelectorAll('h1,h2,h3')].map(e => e.tagName + ': ' + e.innerText.trim().slice(0, 120)));
+                info.sections = await p.evaluate(() => [...document.querySelectorAll('section, header, footer, [class*=section]')].slice(0, 60).map(e => e.tagName + '.' + (e.className || '').toString().slice(0, 80) + ' h=' + e.offsetHeight));
+                info.videos = await p.evaluate(() => [...document.querySelectorAll('video, iframe, canvas, lottie-player')].map(e => e.tagName + ' ' + (e.src || e.currentSrc || '')));
+              }
+              await p.evaluate(() => window.scrollTo(0, 0)); await p.waitForTimeout(800);
+              await p.screenshot({ path: `${OUT}/${n}-tam.png`, fullPage: true }).catch(e => console.log(e.message));
+              await ctx.close();
+            }
+            fs.writeFileSync(`${OUT}/analiz.json`, JSON.stringify(info, null, 1));
+            console.log(JSON.stringify(info, null, 1));
+            await b.close();
+          })();
+          EOF
+          node /tmp/inspect.js
+          ls -la referans/remarkad
+
+      - name: Görselleri küçült
+        run: |
+          sudo apt-get install -y -qq jpegoptim >/dev/null 2>&1 || true
+          python3 -m pip install --quiet pillow
+          python3 - <<'PY'
+          import glob, os
+          from PIL import Image
+          for f in glob.glob('referans/remarkad/*.png'):
+              im = Image.open(f).convert('RGB')
+              if im.height > 12000:
+                  im = im.crop((0, 0, im.width, 12000))
+              im.save(f[:-4] + '.jpg', quality=72, optimize=True)
+              os.remove(f)
+          PY
+          du -sh referans/remarkad
+
+      - name: Sonuçları dala push'la
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A referans
+          git commit -m "Referans site incelemesi: remarkad.com.tr (GitHub Actions)" || { echo "Değişiklik yok"; exit 0; }
+          for i in 1 2 3; do git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin HEAD:"${GITHUB_REF_NAME}" && break; sleep 5; done
