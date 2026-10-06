@@ -1,0 +1,166 @@
+/* =========================================================
+   Splash Digital – teknolojik animasyon katmanı
+   style.css'in üzerine yüklenir.
+   ========================================================= */
+:root {
+  --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --sky: #3fb3f0;
+  --ok: #16a37f;
+}
+@property --ang { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+
+/* Teknik etiketler mono yazı tipiyle */
+.eyebrow, .story__no, .service__no, .step__no, .work__tag, .adslot__tag, .kpi small, .adstage__note { font-family: var(--mono); letter-spacing: .06em; }
+.eyebrow { letter-spacing: .1em; font-size: 12px; }
+.eyebrow::before { content: '//'; color: #9fb3c8; margin-right: -2px; }
+.eyebrow .dot { display: none; }
+
+/* ---------- Kaydırma ilerleme çizgisi ---------- */
+.progress { position: fixed; inset: 0 0 auto; height: 2px; z-index: 60; pointer-events: none; }
+.progress span { display: block; height: 100%; transform-origin: left; transform: scaleX(var(--sp, 0)); background: linear-gradient(90deg, var(--brand), var(--sky)); box-shadow: 0 0 10px rgba(63, 179, 240, .7); }
+
+/* ---------- Hero arka planı: veri ağı + imleç ışığı ---------- */
+.datanet { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero__spot {
+  position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .4s;
+  background-image: linear-gradient(rgba(18, 125, 197, .14) 1px, transparent 1px), linear-gradient(90deg, rgba(18, 125, 197, .14) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(240px circle at var(--mx, 50%) var(--my, 50%), #000 0%, transparent 100%);
+  mask-image: radial-gradient(240px circle at var(--mx, 50%) var(--my, 50%), #000 0%, transparent 100%);
+}
+.hero:hover .hero__spot { opacity: 1; }
+
+/* ---------- Format çözücü satırı ---------- */
+.hero__formats { font: 500 clamp(1rem, 1.5vw, 1.2rem)/1.4 var(--mono); color: var(--text); margin: -6px 0 22px; display: flex; align-items: center; gap: 8px; }
+.hero__prompt { color: var(--brand); font-weight: 600; }
+.decode { color: var(--brand); padding: 3px 8px; border-radius: 6px; background: var(--brand-soft); }
+.decode .g { color: #8aa3bc; }
+.caret { width: 9px; height: 1.15em; background: var(--brand); animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.hero__lead { margin-bottom: 32px; }
+
+/* ---------- Reklam sahnesi ---------- */
+.adstage { position: relative; width: min(100%, 560px); aspect-ratio: 1 / .86; margin-inline: auto; }
+.browser { position: absolute; left: 0; top: 6%; width: 86%; border-radius: 14px; background: #fff; border: 1px solid var(--line); box-shadow: 0 30px 60px -30px rgba(12, 27, 46, .35), 0 2px 6px rgba(12, 27, 46, .05); overflow: hidden; animation: hover 7s ease-in-out infinite; }
+.browser__bar { display: flex; align-items: center; gap: 6px; padding: 10px 12px; border-bottom: 1px solid var(--line); background: #f8fafc; }
+.browser__bar i { width: 9px; height: 9px; border-radius: 50%; background: #dfe6ee; }
+.browser__bar i:nth-child(1) { background: #ff8f8f; } .browser__bar i:nth-child(2) { background: #ffd36b; } .browser__bar i:nth-child(3) { background: #6fd39b; }
+.browser__url { margin-left: 10px; flex: 1; display: flex; align-items: center; gap: 6px; font: 500 11px/1 var(--mono); color: var(--muted); background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; }
+.browser__url svg { width: 11px; height: 11px; fill: none; stroke: var(--ok); stroke-width: 2.4; }
+.browser__body { padding: 12px; display: grid; gap: 12px; }
+
+.adslot { position: relative; overflow: hidden; border-radius: 8px; background: #e9eff5; }
+.adslot--mast { aspect-ratio: 970 / 250; }
+.adreel, .adreel img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.adreel img { object-fit: cover; opacity: 0; animation: reel 12s infinite; }
+.adreel img:nth-child(2) { animation-delay: 3s; } .adreel img:nth-child(3) { animation-delay: 6s; } .adreel img:nth-child(4) { animation-delay: 9s; }
+@keyframes reel { 0% { opacity: 0; transform: scale(1.08); } 4%, 25% { opacity: 1; transform: scale(1); } 29%, 100% { opacity: 0; transform: scale(1); } }
+.adreel--v img { animation-duration: 9s; }
+.adreel--v img:nth-child(2) { animation-delay: 3s; } .adreel--v img:nth-child(3) { animation-delay: 6s; }
+.adreel--v img { animation-name: reelV; }
+@keyframes reelV { 0% { opacity: 0; transform: translateY(12%); } 5%, 33% { opacity: 1; transform: none; } 38%, 100% { opacity: 0; } }
+.adslot__tag { position: absolute; left: 6px; top: 6px; font-size: 8.5px; font-weight: 600; color: #fff; background: rgba(12, 27, 46, .65); padding: 3px 6px; border-radius: 4px; backdrop-filter: blur(4px); z-index: 2; }
+.adslot__cta { position: absolute; left: 10px; bottom: 10px; z-index: 2; font: 600 11px/1 var(--font-body); color: #fff; background: var(--brand); padding: 7px 12px; border-radius: 999px; box-shadow: 0 0 0 0 rgba(18, 125, 197, .6); }
+.adslot__cta.is-hit { animation: hit .6s ease-out; }
+@keyframes hit { 0% { box-shadow: 0 0 0 0 rgba(18, 125, 197, .7); transform: scale(.92); } 100% { box-shadow: 0 0 0 16px rgba(18, 125, 197, 0); transform: scale(1); } }
+.adslot__scan { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .45), transparent); width: 40%; animation: scan 3s ease-in-out infinite; }
+@keyframes scan { from { transform: translateX(-120%); } to { transform: translateX(320%); } }
+
+.skel { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 10px; }
+.skel__col { display: grid; gap: 6px; align-content: start; }
+.skel b { display: block; height: 42px; border-radius: 6px; background: #eef2f6; }
+.skel i { display: block; height: 7px; border-radius: 4px; background: #eef2f6; }
+.skel .w90 { width: 90%; } .skel .w80 { width: 80%; } .skel .w70 { width: 70%; } .skel .w60 { width: 60%; } .skel .w50 { width: 50%; } .skel .w40 { width: 40%; }
+
+.phone { position: absolute; right: 0; bottom: 4%; width: 31%; aspect-ratio: 9 / 18.5; border-radius: 22px; background: #0e1a29; padding: 6px; box-shadow: 0 30px 50px -24px rgba(12, 27, 46, .55); animation: hover 6s ease-in-out -2s infinite; }
+.phone__screen { position: relative; height: 100%; border-radius: 17px; background: #fff; overflow: hidden; padding: 22px 8px 8px; display: grid; grid-template-rows: auto 1fr auto; gap: 8px; }
+.phone__notch { position: absolute; left: 50%; top: 6px; width: 34%; height: 9px; margin-left: -17%; border-radius: 6px; background: #0e1a29; }
+.skel--m { grid-template-columns: 1fr; gap: 5px; }
+.adslot--mob { min-height: 0; }
+@keyframes hover { 0%, 100% { translate: 0 0; } 50% { translate: 0 -8px; } }
+
+.kpi { position: absolute; z-index: 3; background: rgba(255, 255, 255, .92); backdrop-filter: blur(8px); border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; box-shadow: 0 16px 34px -18px rgba(12, 27, 46, .35); min-width: 130px; }
+.kpi small { display: flex; align-items: center; gap: 6px; font-size: 10px; color: var(--muted); text-transform: uppercase; }
+.kpi b { display: block; font: 700 20px/1.2 var(--font-head); color: var(--text); margin-top: 3px; font-variant-numeric: tabular-nums; }
+.kpi svg { display: block; width: 100%; height: 30px; margin-top: 4px; }
+.kpi__line { fill: none; stroke: var(--brand); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.kpi__area { fill: rgba(18, 125, 197, .12); }
+.kpi--view { left: -6%; bottom: 22%; animation: hover 5s ease-in-out -1s infinite; }
+.kpi--eng { right: 22%; top: -2%; animation: hover 6s ease-in-out -3s infinite; }
+.kpi--imp { left: 32%; bottom: -2%; min-width: 150px; animation: hover 5.5s ease-in-out -2s infinite; }
+.kpi__bars { display: flex; align-items: flex-end; gap: 3px; height: 30px; margin-top: 4px; }
+.kpi__bars i { flex: 1; border-radius: 2px; background: linear-gradient(180deg, var(--sky), var(--brand)); height: var(--h, 40%); transition: height .6s cubic-bezier(.2, .8, .2, 1); }
+.live { width: 7px; height: 7px; border-radius: 50%; background: #e5484d; box-shadow: 0 0 0 0 rgba(229, 72, 77, .6); animation: live 1.6s infinite; }
+@keyframes live { 0% { box-shadow: 0 0 0 0 rgba(229, 72, 77, .6); } 100% { box-shadow: 0 0 0 8px rgba(229, 72, 77, 0); } }
+
+.vcursor { position: absolute; z-index: 4; left: 0; top: 0; width: 20px; height: 20px; pointer-events: none; filter: drop-shadow(0 2px 3px rgba(0, 0, 0, .25)); transition: transform 1.1s cubic-bezier(.65, 0, .35, 1); }
+.vcursor svg { width: 100%; height: 100%; fill: #0c1b2e; stroke: #fff; stroke-width: 1.4; stroke-linejoin: round; }
+.vcursor.is-click svg { animation: press .3s ease; }
+@keyframes press { 50% { transform: scale(.8); } }
+.adstage__note { position: absolute; left: 0; bottom: -6%; font-size: 10px; color: #9aabbd; }
+
+/* ---------- Rakamlar: mini grafikler ---------- */
+.stat__spark { display: block; width: 110px; height: 26px; margin-top: 12px; overflow: visible; }
+.stat__spark path { fill: none; stroke: var(--brand); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 220; stroke-dashoffset: 220; transition: stroke-dashoffset 1.6s cubic-bezier(.65, 0, .35, 1); }
+.stat__spark circle { fill: var(--brand); opacity: 0; transition: opacity .3s 1.5s; }
+.stat.is-in .stat__spark path { stroke-dashoffset: 0; }
+.stat.is-in .stat__spark circle { opacity: 1; animation: live 1.6s 1.6s infinite; }
+
+/* ---------- Hizmet kartları: dönen tarama kenarı ---------- */
+.service { isolation: isolate; }
+.service::after {
+  content: ''; position: absolute; inset: -1px; border-radius: inherit; padding: 1px; pointer-events: none; opacity: 0; transition: opacity .3s;
+  background: conic-gradient(from var(--ang), transparent 0 70%, var(--sky) 85%, var(--brand) 92%, transparent 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude;
+  animation: spinAng 3s linear infinite;
+}
+.service:hover::after { opacity: 1; }
+@keyframes spinAng { to { --ang: 360deg; } }
+.service__icon { position: relative; overflow: hidden; }
+.service__icon::after { content: ''; position: absolute; left: 0; right: 0; height: 40%; top: -40%; background: linear-gradient(180deg, transparent, rgba(18, 125, 197, .25), transparent); }
+.service:hover .service__icon::after { animation: iconScan 1.2s ease-in-out infinite; }
+@keyframes iconScan { to { top: 100%; } }
+
+/* Hizmet anlatımı: HUD çerçevesi */
+.story__cv { --c: rgba(18, 125, 197, .45);
+  background:
+    linear-gradient(var(--c), var(--c)) left top / 22px 2px no-repeat, linear-gradient(var(--c), var(--c)) left top / 2px 22px no-repeat,
+    linear-gradient(var(--c), var(--c)) right top / 22px 2px no-repeat, linear-gradient(var(--c), var(--c)) right top / 2px 22px no-repeat,
+    linear-gradient(var(--c), var(--c)) left bottom / 22px 2px no-repeat, linear-gradient(var(--c), var(--c)) left bottom / 2px 22px no-repeat,
+    linear-gradient(var(--c), var(--c)) right bottom / 22px 2px no-repeat, linear-gradient(var(--c), var(--c)) right bottom / 2px 22px no-repeat,
+    radial-gradient(rgba(18, 125, 197, .12) 1px, transparent 1.3px) 0 0 / 22px 22px; }
+.story__no { color: var(--brand); }
+
+/* ---------- Süreç: akan veri paketi ---------- */
+.steps__line { background: repeating-linear-gradient(90deg, var(--line-2) 0 6px, transparent 6px 12px); }
+.steps__line span { background: linear-gradient(90deg, var(--brand), var(--sky)); }
+.steps__line::after { content: ''; position: absolute; top: -4px; left: calc(var(--p, 0) * 100%); width: 9px; height: 9px; margin-left: -4px; border-radius: 50%; background: var(--sky); box-shadow: 0 0 0 4px rgba(63, 179, 240, .2), 0 0 14px 2px rgba(63, 179, 240, .8); }
+.steps__line i { position: absolute; top: -2px; width: 22px; height: 5px; border-radius: 3px; background: linear-gradient(90deg, transparent, var(--brand)); animation: packet 2.4s linear infinite; }
+.steps__line i:nth-child(3) { animation-delay: .8s; } .steps__line i:nth-child(4) { animation-delay: 1.6s; }
+@keyframes packet { from { left: 0; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } to { left: calc(100% - 22px); opacity: 0; } }
+.step.is-in .step__no { background: var(--brand); color: #fff; border-color: var(--brand); transition: background .4s .3s, color .4s .3s, border-color .4s .3s; }
+
+/* ---------- Projeler bandı: tarama efekti ---------- */
+.projects-band__mosaic { isolation: isolate; }
+.projects-band__mosaic::after { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 2px; z-index: 2; pointer-events: none; background: linear-gradient(90deg, transparent, var(--sky), transparent); box-shadow: 0 0 12px var(--sky); opacity: 0; }
+.projects-band__mosaic:hover::after { opacity: 1; animation: scanY 1.6s linear infinite; }
+@keyframes scanY { from { top: 0; } to { top: 100%; } }
+
+/* ---------- Mobil ---------- */
+@media (max-width: 900px) {
+  .adstage { width: min(100%, 460px); margin-top: 8px; }
+  .kpi { min-width: 112px; padding: 8px 10px; }
+  .kpi b { font-size: 16px; }
+  .kpi--view { left: -2%; }
+  .hero__spot { display: none; }
+}
+@media (max-width: 600px) {
+  .kpi--eng { right: 30%; top: -6%; }
+  .kpi--imp { left: 26%; bottom: -6%; }
+  .adstage__note { display: none; }
+  .hero__formats { font-size: .95rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .adreel img:first-child { opacity: 1; }
+  .stat__spark path { stroke-dashoffset: 0; }
+}
