@@ -50,6 +50,9 @@ class _KiymetAppState extends State<KiymetApp> with WidgetsBindingObserver {
     return MaterialApp(
       title: 'Kıymet',
       debugShowCheckedModeBanner: false,
+      // Android 12+ "esneme" efekti boş ekranda yazıları uzamış gibi gösteriyordu.
+      // Aşağı çekip yenileme bundan etkilenmez.
+      scrollBehavior: const MaterialScrollBehavior().copyWith(overscroll: false),
       theme: buildTheme(Brightness.light),
       darkTheme: buildTheme(Brightness.dark),
       locale: const Locale('tr', 'TR'),
