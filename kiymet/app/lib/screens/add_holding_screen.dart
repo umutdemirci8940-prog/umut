@@ -125,18 +125,70 @@ class _HoldingFormState extends State<_HoldingForm> {
   final _cost = TextEditingController();
   DateTime _date = DateTime.now();
 
+  /// Alış fiyatı alanının altındaki açıklama (kaynak, tarih veya hata).
+  String? _priceNote;
+  bool _loadingPrice = false;
+  int _priceRequest = 0;
+
   @override
   void initState() {
     super.initState();
-    // Alış fiyatını varsayılan olarak güncel fiyatla doldur.
+    _qty.addListener(_refresh);
+    _cost.addListener(_refresh);
+    _fillLivePrice();
+  }
+
+  void _refresh() => setState(() {});
+
+  static String _formatInput(double v) =>
+      NumberFormat(v >= 1 ? '0.##' : '0.########', 'tr_TR').format(v);
+
+  bool _isToday(DateTime d) {
+    final now = DateTime.now();
+    return d.year == now.year && d.month == now.month && d.day == now.day;
+  }
+
+  /// Bugün için alış fiyatını güncel fiyatla doldurur.
+  void _fillLivePrice() {
+    _priceRequest++;
     final price = context.read<AppState>().prices[widget.instrument.id];
+    _loadingPrice = false;
     if (price != null) {
-      _cost.text = NumberFormat('0.##', 'tr_TR').format(price.price);
+      _cost.text = _formatInput(price.price);
+      _priceNote = 'Güncel fiyat otomatik dolduruldu, değiştirebilirsiniz.';
+    } else {
+      _priceNote = null;
     }
+  }
+
+  /// Seçilen tarihteki kapanış fiyatını çekip alış fiyatına yazar.
+  Future<void> _fillHistoricalPrice(DateTime date) async {
+    final request = ++_priceRequest;
+    setState(() {
+      _loadingPrice = true;
+      _priceNote = 'O günün fiyatı getiriliyor…';
+    });
+    final result = await context.read<AppState>().history.priceOn(widget.instrument.id, date);
+    if (!mounted || request != _priceRequest) return; // bu arada başka tarih seçildi
+    setState(() {
+      _loadingPrice = false;
+      if (result == null) {
+        _priceNote = 'Bu tarih için fiyat bulunamadı, lütfen elle girin.';
+        return;
+      }
+      _cost.text = _formatInput(result.price);
+      final sameDay = result.date.year == date.year && result.date.month == date.month && result.date.day == date.day;
+      final day = DateFormat('d MMMM y', 'tr_TR').format(result.date);
+      _priceNote = sameDay
+          ? '$day kapanış fiyatı (${result.source}). Değiştirebilirsiniz.'
+          : 'Piyasa kapalıydı; $day kapanış fiyatı kullanıldı (${result.source}).';
+    });
   }
 
   @override
   void dispose() {
+    _qty.removeListener(_refresh);
+    _cost.removeListener(_refresh);
     _qty.dispose();
     _cost.dispose();
     super.dispose();
@@ -157,7 +209,13 @@ class _HoldingFormState extends State<_HoldingForm> {
       lastDate: DateTime.now(),
       locale: const Locale('tr', 'TR'),
     );
-    if (picked != null) setState(() => _date = picked);
+    if (picked == null) return;
+    setState(() => _date = picked);
+    if (_isToday(picked)) {
+      setState(_fillLivePrice);
+    } else {
+      await _fillHistoricalPrice(picked);
+    }
   }
 
   Future<void> _save() async {
@@ -183,6 +241,9 @@ class _HoldingFormState extends State<_HoldingForm> {
       _ => 'Miktar (${i.unit})',
     };
     final inputFormat = [FilteringTextInputFormatter.allow(RegExp(r'[0-9.,]'))];
+    final qty = parseAmount(_qty.text);
+    final cost = parseAmount(_cost.text);
+    final total = (qty != null && cost != null) ? qty * cost : null;
 
     return Scaffold(
       appBar: AppBar(
@@ -211,19 +272,6 @@ class _HoldingFormState extends State<_HoldingForm> {
               validator: _validate,
             ),
             const SizedBox(height: 16),
-            TextFormField(
-              controller: _cost,
-              keyboardType: const TextInputType.numberWithOptions(decimal: true),
-              inputFormatters: inputFormat,
-              decoration: InputDecoration(
-                labelText: 'Birim alış fiyatı (₺)',
-                helperText: '1 ${i.unit} için ödediğiniz tutar',
-                border: const OutlineInputBorder(),
-                suffixText: '₺',
-              ),
-              validator: _validate,
-            ),
-            const SizedBox(height: 16),
             ListTile(
               contentPadding: EdgeInsets.zero,
               leading: const Icon(Icons.event),
@@ -232,11 +280,46 @@ class _HoldingFormState extends State<_HoldingForm> {
               trailing: const Icon(Icons.chevron_right),
               onTap: _pickDate,
             ),
-            const SizedBox(height: 8),
             Text(
-              'Alış tarihi, enflasyona göre gerçek getirinizi hesaplamak için kullanılır.',
+              'Tarihi seçince o günün fiyatı otomatik gelir. Tarih, enflasyona göre gerçek getirinizi hesaplamak için de kullanılır.',
               style: Theme.of(context).textTheme.bodySmall,
             ),
+            const SizedBox(height: 16),
+            TextFormField(
+              controller: _cost,
+              keyboardType: const TextInputType.numberWithOptions(decimal: true),
+              inputFormatters: inputFormat,
+              decoration: InputDecoration(
+                labelText: 'Birim alış fiyatı (₺)',
+                helperText: _priceNote ?? '1 ${i.unit} için ödediğiniz tutar',
+                helperMaxLines: 2,
+                border: const OutlineInputBorder(),
+                suffixIcon: _loadingPrice
+                    ? const Padding(
+                        padding: EdgeInsets.all(14),
+                        child: SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2)),
+                      )
+                    : const Padding(padding: EdgeInsets.only(right: 12), child: Center(widthFactor: 1, child: Text('₺'))),
+              ),
+              validator: _validate,
+            ),
+            if (total != null) ...[
+              const SizedBox(height: 16),
+              Container(
+                padding: const EdgeInsets.all(14),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Row(
+                  children: [
+                    const Text('Toplam tutar'),
+                    const Spacer(),
+                    Text(formatTl(total), style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 16)),
+                  ],
+                ),
+              ),
+            ],
             const SizedBox(height: 24),
             FilledButton.icon(
               onPressed: _save,

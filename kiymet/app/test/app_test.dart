@@ -60,7 +60,12 @@ void main() {
     await tester.pumpAndSettle();
 
     await tester.enterText(find.widgetWithText(TextFormField, 'Adet'), '2');
+    // Bugünün fiyatı otomatik dolmuş olmalı
+    expect(find.text('Güncel fiyat otomatik dolduruldu, değiştirebilirsiniz.'), findsOneWidget);
     await tester.enterText(find.widgetWithText(TextFormField, 'Birim alış fiyatı (₺)'), '9.500');
+    await tester.pump();
+    expect(find.text('Toplam tutar'), findsOneWidget);
+    expect(find.text('₺19.000,00'), findsOneWidget);
     await tester.tap(find.text('Kaydet'));
     await tester.runAsync(() => Future.delayed(const Duration(milliseconds: 50)));
     await tester.pumpAndSettle();

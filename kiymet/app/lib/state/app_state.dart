@@ -10,18 +10,23 @@ import '../services/backend_market_data.dart';
 import '../services/direct_market_data.dart';
 import '../services/holdings_repository.dart';
 import '../services/market_data.dart';
+import '../services/price_history.dart';
 
 /// KIYMET_API verilmişse Kıymet veri servisine, verilmemişse doğrudan herkese açık kaynaklara bağlanır.
 MarketData defaultMarketData() =>
     apiBaseUrl.isEmpty ? DirectMarketData() : BackendMarketData(ApiClient());
 
 class AppState extends ChangeNotifier {
-  AppState({MarketData? data, HoldingsRepository? repository})
+  AppState({MarketData? data, HoldingsRepository? repository, PriceHistory? history})
       : _data = data ?? defaultMarketData(),
-        _repo = repository ?? HoldingsRepository();
+        _repo = repository ?? HoldingsRepository(),
+        history = history ?? PriceHistory();
 
   final MarketData _data;
   final HoldingsRepository _repo;
+
+  /// Alış tarihindeki fiyatı otomatik doldurmak için.
+  final PriceHistory history;
   final List<StreamSubscription> _subs = [];
 
   List<Instrument> _instruments = [];
