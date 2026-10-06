@@ -1,0 +1,141 @@
+/* =========================================================
+   Splash Digital – rafine katman (tipografi + hizmet 3D sahneleri)
+   En son yüklenir.
+   ========================================================= */
+:root {
+  --font-head: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --font-body: 'Instrument Sans', 'Helvetica Neue', Arial, sans-serif;
+  --serif: 'Instrument Serif', Georgia, serif;
+  --radius: 14px;
+  --radius-sm: 10px;
+}
+
+/* ---------- Tipografi ---------- */
+body { font-family: var(--font-body); font-size: 16.5px; line-height: 1.65; letter-spacing: -.003em; }
+h1, h2, h3, h4 { font-family: var(--font-head); font-stretch: 112%; font-weight: 650; letter-spacing: -.035em; }
+h2 { font-size: clamp(2.1rem, 4.2vw, 3.5rem); line-height: 1.04; }
+h3 { font-stretch: 106%; font-weight: 600; letter-spacing: -.02em; }
+.hero__title { font-stretch: 116%; font-weight: 700; letter-spacing: -.045em; line-height: .98; }
+.serif, .hero__title .serif .w > span { font-family: var(--serif); font-style: italic; font-weight: 400; font-stretch: normal; letter-spacing: -.01em; }
+.hero__title .serif { color: var(--brand); padding-right: .04em; }
+.hero__title .serif .w > span { background: none; -webkit-text-fill-color: currentColor; color: var(--brand); }
+.hero__lead, .section__head p { font-size: 1.08rem; }
+.stat b, .kpi b, .about__badge b, .network__core b { font-family: var(--font-head); font-stretch: 112%; }
+
+/* Etiketler: kod işareti yerine ince çizgi */
+.eyebrow { font-family: var(--font-body); font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; gap: 12px; }
+.eyebrow::before { content: ''; width: 26px; height: 1px; background: currentColor; opacity: .6; margin: 0; }
+.service__no, .step__no, .story__no { font-family: var(--font-head); letter-spacing: 0; }
+
+/* Biçim dili: daha az yuvarlak, daha az "hap" */
+.btn { border-radius: 10px; font-family: var(--font-body); font-weight: 600; letter-spacing: -.005em; }
+.btn--sm { border-radius: 9px; }
+.service, .vm__item, .brand, .partner, .form, .map, .fmt__tab, .cta-band__card { border-radius: var(--radius); }
+.nav { font-weight: 500; }
+
+/* Rakamlar: iki sütun */
+.stats__grid { grid-template-columns: repeat(2, 1fr); }
+.stat { padding-block: 44px; }
+.stat b { font-size: clamp(2.8rem, 5vw, 4.2rem); font-weight: 700; }
+@media (max-width: 900px) { .stats__grid { grid-template-columns: repeat(2, 1fr); } .stat:nth-child(n+3) { border-top: 0; } }
+
+/* =========================================================
+   Sağladığımız çözümler – 3D sahneler
+   ========================================================= */
+.section--dark .service { padding: 0 0 28px; overflow: hidden; }
+.section--dark .service > *:not(.sv):not(.tilt__glare) { margin-left: 26px; margin-right: 26px; }
+.section--dark .service__icon { display: none; }
+.section--dark .service__no { top: 16px; right: 18px; z-index: 3; color: rgba(255, 255, 255, .45); font-size: 13px; }
+.section--dark .service h3 { margin-top: 22px; }
+.sv { position: relative; height: 170px; display: grid; place-items: center; overflow: hidden; perspective: 700px;
+  background: radial-gradient(70% 90% at 50% 100%, rgba(63, 179, 240, .2), transparent 70%), linear-gradient(180deg, rgba(255, 255, 255, .02), rgba(255, 255, 255, 0));
+  border-bottom: 1px solid rgba(255, 255, 255, .07); }
+.sv::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(124, 200, 245, .07) 1px, transparent 1px), linear-gradient(90deg, rgba(124, 200, 245, .07) 1px, transparent 1px); background-size: 22px 22px; -webkit-mask-image: radial-gradient(circle at 50% 60%, #000, transparent 75%); mask-image: radial-gradient(circle at 50% 60%, #000, transparent 75%); }
+.sv-scene { position: relative; width: 150px; height: 150px; transform-style: preserve-3d; }
+.service:hover .sv-scene { animation-duration: 6s !important; }
+
+/* 1 · Veri: izometrik çubuklar */
+.sv--data svg { width: 230px; height: 150px; overflow: visible; position: relative; }
+.sv-grid path { fill: rgba(124, 200, 245, .06); stroke: rgba(124, 200, 245, .25); }
+.sv-bar { transform-box: fill-box; transform-origin: 50% 100%; animation: barGrow 4.8s cubic-bezier(.2, .8, .2, 1) var(--d) infinite; }
+.sv-bar .t { fill: #9fe0ff; } .sv-bar .l { fill: url(#bl); } .sv-bar .r { fill: url(#bt); }
+@keyframes barGrow { 0% { transform: scaleY(.15); opacity: .4; } 25%, 80% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(.15); opacity: .4; } }
+.sv-trend { fill: none; stroke: #ffd166; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 220; stroke-dashoffset: 220; animation: trend 4.8s ease-in-out .5s infinite; filter: drop-shadow(0 0 6px rgba(255, 209, 102, .7)); }
+.sv-dot { fill: #ffd166; opacity: 0; animation: dotOn 4.8s ease-in-out .5s infinite; }
+@keyframes trend { 0% { stroke-dashoffset: 220; } 35%, 80% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+@keyframes dotOn { 0%, 30% { opacity: 0; } 38%, 80% { opacity: 1; } 100% { opacity: 0; } }
+
+/* 2 · Medya planlama: yörünge */
+.sv--orbit .sv-scene { transform: rotateX(68deg) rotateZ(0deg); animation: orbitScene 14s linear infinite; }
+@keyframes orbitScene { to { transform: rotateX(68deg) rotateZ(360deg); } }
+.sv--orbit .core { position: absolute; left: 50%; top: 50%; z-index: 2; width: 36px; height: 36px; margin: -18px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #bfeaff, #3fb3f0 45%, #0e5b98); box-shadow: 0 0 30px rgba(63, 179, 240, .8); }
+.sv--orbit .ring { position: absolute; left: 50%; top: 50%; border-radius: 50%; border: 1.5px solid rgba(124, 200, 245, .45); transform-style: preserve-3d; }
+.sv--orbit .r1 { width: 80px; height: 80px; margin: -40px; animation: spinZ 5s linear infinite; }
+.sv--orbit .r2 { width: 118px; height: 118px; margin: -59px; border-style: dashed; animation: spinZ 8s linear infinite reverse; }
+.sv--orbit .r3 { width: 150px; height: 150px; margin: -75px; border-color: rgba(124, 200, 245, .25); animation: spinZ 12s linear infinite; }
+.sv--orbit .ring b { position: absolute; left: 50%; top: -5px; width: 10px; height: 10px; margin-left: -5px; border-radius: 50%; background: #ffd166; box-shadow: 0 0 12px #ffd166; transform: rotateX(-68deg); }
+.sv--orbit .r2 b { background: #7cd4ff; box-shadow: 0 0 12px #7cd4ff; }
+.sv--orbit .r3 b { background: #ff8fa3; box-shadow: 0 0 12px #ff8fa3; width: 8px; height: 8px; }
+@keyframes spinZ { to { transform: rotateZ(360deg); } }
+
+/* 3 · Network: tel kafes küre */
+.sv--globe .sv-scene { width: 120px; height: 120px; transform: rotateX(-14deg); }
+.sv--globe .globe { position: absolute; inset: 0; transform-style: preserve-3d; animation: globeSpin 12s linear infinite; }
+.sv--globe .globe i { position: absolute; inset: 0; border-radius: 50%; border: 1px solid rgba(124, 200, 245, .55); }
+.sv--globe .globe i:nth-child(1) { transform: rotateY(0deg); } .sv--globe .globe i:nth-child(2) { transform: rotateY(30deg); } .sv--globe .globe i:nth-child(3) { transform: rotateY(60deg); }
+.sv--globe .globe i:nth-child(4) { transform: rotateY(90deg); } .sv--globe .globe i:nth-child(5) { transform: rotateY(120deg); } .sv--globe .globe i:nth-child(6) { transform: rotateY(150deg); }
+.sv--globe .globe u { position: absolute; left: 50%; top: 50%; border-radius: 50%; border: 1px solid rgba(124, 200, 245, .4); text-decoration: none; }
+.sv--globe .globe u:nth-of-type(1) { width: 120px; height: 120px; margin: -60px; transform: rotateX(90deg); }
+.sv--globe .globe u:nth-of-type(2) { width: 104px; height: 104px; margin: -52px; transform: rotateX(90deg) translateZ(30px); }
+.sv--globe .globe u:nth-of-type(3) { width: 104px; height: 104px; margin: -52px; transform: rotateX(90deg) translateZ(-30px); }
+@keyframes globeSpin { to { transform: rotateY(360deg); } }
+.sv--globe .ping { position: absolute; width: 8px; height: 8px; border-radius: 50%; background: #ffd166; box-shadow: 0 0 0 0 rgba(255, 209, 102, .7); animation: ping 2.4s ease-out infinite; }
+.sv--globe .p1 { left: 22%; top: 30%; } .sv--globe .p2 { left: 68%; top: 22%; animation-delay: .8s; background: #7cd4ff; } .sv--globe .p3 { left: 58%; top: 70%; animation-delay: 1.6s; background: #ff8fa3; }
+@keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(255, 209, 102, .7); } 100% { box-shadow: 0 0 0 16px rgba(255, 209, 102, 0); } }
+
+/* 4 · Masaüstü & mobil: izometrik cihazlar */
+.sv--devices .sv-scene { width: 170px; height: 120px; transform: rotateX(56deg) rotateZ(-38deg); }
+.sv--devices .dv { position: absolute; border-radius: 6px; background: linear-gradient(135deg, #12304f, #0b1f36); border: 1.5px solid rgba(124, 200, 245, .55); box-shadow: -10px 10px 20px rgba(0, 0, 0, .45); padding: 8px; display: grid; gap: 5px; align-content: start; transform-style: preserve-3d; }
+.sv--devices .dv i { display: block; height: 5px; border-radius: 3px; background: rgba(124, 200, 245, .45); }
+.sv--devices .dv i:nth-child(2) { width: 70%; } .sv--devices .dv i:nth-child(3) { width: 50%; }
+.sv--devices .dv b { display: block; height: 22px; border-radius: 4px; background: linear-gradient(90deg, #3fb3f0, #8b5cf6); margin-top: 3px; }
+.sv--devices .dv--desk { left: 0; top: 0; width: 120px; height: 82px; animation: lift1 5s ease-in-out infinite; }
+.sv--devices .dv--tab { left: 70px; top: 40px; width: 64px; height: 76px; animation: lift2 5s ease-in-out infinite; }
+.sv--devices .dv--phone { left: 128px; top: 62px; width: 36px; height: 64px; border-radius: 8px; padding: 6px 5px; animation: lift3 5s ease-in-out infinite; }
+.sv--devices .dv--phone b { height: 16px; }
+@keyframes lift1 { 0%, 100% { transform: translateZ(0); } 50% { transform: translateZ(10px); } }
+@keyframes lift2 { 0%, 100% { transform: translateZ(18px); } 50% { transform: translateZ(34px); } }
+@keyframes lift3 { 0%, 100% { transform: translateZ(36px); } 50% { transform: translateZ(56px); } }
+
+/* 5 · Pazarlama: 3D huni */
+.sv--funnel .sv-scene { width: 160px; height: 150px; transform: rotateX(62deg); }
+.sv--funnel .f { position: absolute; left: 50%; top: 50%; border-radius: 50%; border: 1.5px solid rgba(124, 200, 245, .6); background: radial-gradient(circle, rgba(63, 179, 240, .12), transparent 70%); }
+.sv--funnel .f1 { width: 150px; height: 150px; margin: -75px; transform: translateZ(60px); }
+.sv--funnel .f2 { width: 116px; height: 116px; margin: -58px; transform: translateZ(30px); }
+.sv--funnel .f3 { width: 84px; height: 84px; margin: -42px; transform: translateZ(0); }
+.sv--funnel .f4 { width: 54px; height: 54px; margin: -27px; transform: translateZ(-30px); }
+.sv--funnel .f5 { width: 26px; height: 26px; margin: -13px; transform: translateZ(-60px); background: radial-gradient(circle, #ffd166, rgba(255, 209, 102, .2)); border-color: #ffd166; box-shadow: 0 0 18px #ffd166; }
+.sv--funnel .pt { position: absolute; left: 50%; top: 50%; width: 7px; height: 7px; border-radius: 50%; background: #7cd4ff; box-shadow: 0 0 8px #7cd4ff; animation: drop 3.2s ease-in infinite; }
+.sv--funnel .t1 { --x: -56px; } .sv--funnel .t2 { --x: 40px; animation-delay: .8s; } .sv--funnel .t3 { --x: 10px; animation-delay: 1.6s; background: #ff8fa3; box-shadow: 0 0 8px #ff8fa3; } .sv--funnel .t4 { --x: -24px; animation-delay: 2.4s; }
+@keyframes drop { 0% { transform: translate3d(var(--x), 0, 80px); opacity: 0; } 15% { opacity: 1; } 100% { transform: translate3d(0, 0, -60px); opacity: 0; } }
+
+/* 6 · Yazılım: eğik kod penceresi */
+.sv--code .sv-scene { width: 200px; height: 130px; transform: rotateY(-22deg) rotateX(12deg); animation: codeTilt 7s ease-in-out infinite; }
+@keyframes codeTilt { 50% { transform: rotateY(-8deg) rotateX(6deg); } }
+.sv--code .win { position: absolute; inset: 0; border-radius: 10px; background: #0a1a2e; border: 1px solid rgba(124, 200, 245, .4); box-shadow: -18px 22px 40px rgba(0, 0, 0, .5); overflow: hidden; }
+.sv--code .win__bar { display: flex; gap: 5px; padding: 8px 10px; border-bottom: 1px solid rgba(255, 255, 255, .07); }
+.sv--code .win__bar i { width: 7px; height: 7px; border-radius: 50%; background: rgba(255, 255, 255, .2); }
+.sv--code .win__bar i:first-child { background: #ff6b6b; } .sv--code .win__bar i:nth-child(2) { background: #ffd166; } .sv--code .win__bar i:nth-child(3) { background: #3ddc97; }
+.sv--code .win__code { padding: 10px 12px; font: 500 10px/1.75 var(--mono); color: #cfe3f5; }
+.sv--code .win__code p { margin: 0; white-space: nowrap; overflow: hidden; width: 0; animation: type 6s steps(28) infinite; }
+.sv--code .win__code p:nth-child(2) { animation-delay: .9s; } .sv--code .win__code p:nth-child(3) { animation-delay: 1.8s; }
+.sv--code .win__code .k { color: #c792ea; font-style: normal; } .sv--code .win__code .s { color: #ffd166; font-style: normal; }
+.sv--code .cur { width: 7px !important; height: 12px; background: #7cd4ff; animation: blink 1s steps(1) infinite !important; }
+@keyframes type { 0% { width: 0; } 30%, 85% { width: 100%; } 100% { width: 100%; opacity: 0; } }
+.sv--code .tag3d { position: absolute; right: -18px; top: -14px; font: 700 18px/1 var(--mono); color: #0b1726; background: #7cd4ff; padding: 7px 9px; border-radius: 8px; transform: translateZ(50px); box-shadow: 0 10px 24px -8px rgba(124, 212, 255, .8); }
+
+@media (prefers-reduced-motion: reduce) {
+  .sv *, .sv-scene { animation: none !important; }
+  .sv--code .win__code p { width: 100%; }
+  .sv-trend { stroke-dashoffset: 0; }
+}
