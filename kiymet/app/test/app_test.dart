@@ -9,6 +9,7 @@ import 'package:kiymet/main.dart';
 import 'package:kiymet/models/models.dart';
 import 'package:kiymet/services/market_data.dart';
 import 'package:kiymet/state/app_state.dart';
+import 'package:kiymet/widgets/format.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -65,7 +66,7 @@ void main() {
     await tester.enterText(find.widgetWithText(TextFormField, 'Birim alış fiyatı (₺)'), '9.500');
     await tester.pump();
     expect(find.text('Toplam tutar'), findsOneWidget);
-    expect(find.text('₺19.000,00'), findsOneWidget);
+    expect(find.text(formatTl(19000)), findsOneWidget);
     await tester.tap(find.text('Kaydet'));
     await tester.runAsync(() => Future.delayed(const Duration(milliseconds: 50)));
     await tester.pumpAndSettle();

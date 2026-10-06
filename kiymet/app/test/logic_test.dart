@@ -95,6 +95,10 @@ void main() {
     expect(parseAmount('1.250,50'), 1250.5);
     expect(parseAmount('0,5'), 0.5);
     expect(parseAmount('0.5'), 0.5);
+    expect(parseAmount('9.500'), 9500);
+    expect(parseAmount('1.250.000'), 1250000);
+    expect(parseAmount('0.500'), 0.5);
+    expect(parseAmount('2.75'), 2.75);
     expect(parseAmount('12'), 12);
     expect(parseAmount(''), isNull);
     expect(parseAmount('abc'), isNull);

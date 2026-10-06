@@ -115,11 +115,18 @@ class PortfolioSummary {
   }
 }
 
-/// "1.250,50" ve "0.5" gibi Türkçe/İngilizce sayı girişlerini çözer.
+final _thousandsOnly = RegExp(r'^[1-9]\d{0,2}(\.\d{3})+$');
+
+/// "1.250,50", "9.500" (Türkçe binlik) ve "0.5" (ondalık nokta) gibi girişleri çözer.
 double? parseAmount(String input) {
   var s = input.trim().replaceAll(' ', '');
   if (s.isEmpty) return null;
-  if (s.contains(',')) s = s.replaceAll('.', '').replaceAll(',', '.');
+  if (s.contains(',')) {
+    s = s.replaceAll('.', '').replaceAll(',', '.');
+  } else if (_thousandsOnly.hasMatch(s)) {
+    // Virgül yoksa ve noktalar üçlü gruplar ayırıyorsa Türkçe binlik ayırıcıdır.
+    s = s.replaceAll('.', '');
+  }
   final v = double.tryParse(s);
   return (v == null || v.isNaN || v.isInfinite) ? null : v;
 }
