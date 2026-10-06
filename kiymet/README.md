@@ -8,7 +8,7 @@ kripto ve BIST hisselerini tek ekranda takip eden; toplam değeri, kâr/zararı 
 |---|---|
 | `app/` | Flutter uygulaması (Android + iOS) |
 | `backend/` | Node.js canlı fiyat servisi (WebSocket) |
-| `release/kiymet.apk` | GitHub Actions'ın derlediği Android test APK'sı |
+X
 
 ## Test APK'sı
 
