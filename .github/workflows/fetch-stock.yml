@@ -1,0 +1,58 @@
+name: Stok fotoğraf adaylarını indir (Unsplash)
+
+# Bulut oturumu Unsplash'e erişemediği için aday fotoğraflar GitHub sunucusunda indirilir.
+# Unsplash Lisansı: ticari kullanım dahil ücretsiz, atıf zorunlu değil.
+on:
+  workflow_dispatch:
+  push:
+    branches: ['claude/**']
+    paths: ['.github/workflows/fetch-stock.yml']
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+      - name: Fotoğrafları indir
+        run: |
+          mkdir -p kaynak/stok-adaylar
+          cd kaynak/stok-adaylar
+          for id in \
+            photo-1552664730-d307ca884978 photo-1460925895917-afdab827c52f photo-1551288049-bebda4e38f71 \
+            photo-1522071820081-009f0129c71c photo-1531297484001-80022131f5a1 photo-1504384308090-c894fdcc538d \
+            photo-1556761175-b413da4baf72 photo-1519389950473-47ba0277781c photo-1497366216548-37526070297c \
+            photo-1550751827-4bd374c3f58b photo-1518770660439-4636190af475 photo-1558655146-d09347e92766 \
+            photo-1611162617474-5b21e879e113 photo-1563986768609-322da13575f3 photo-1533750349088-cd871a92f312 \
+            photo-1542744173-8e7e53415bb0 photo-1600880292203-757bb62b4baf photo-1573164713988-8665fc963095 \
+            photo-1517245386807-bb43f82c33c4 photo-1553877522-43269d4ea984 photo-1559136555-9303baea8ebd \
+            photo-1551434678-e076c223a692 photo-1543286386-713bdd548da4 photo-1498050108023-c5249f4df085 \
+            photo-1504868584819-f8e8b4b6d7e3 photo-1557804506-669a67965ba0 photo-1556155092-490a1ba16284 \
+            photo-1512486130939-2c4f79935e4f photo-1520607162513-77705c0f0d4a photo-1576091160550-2173dba999ef; do
+            curl -sSL --fail -m 30 -o "$id.jpg" "https://images.unsplash.com/$id?w=1600&q=80&fm=jpg&fit=max" || echo "yok: $id"
+          done
+          ls -la
+          find . -size -5k -delete
+      - name: İnceleme için küçük kopyalar
+        run: |
+          python3 -m pip install --quiet pillow
+          python3 - <<'PY'
+          import glob, os
+          from PIL import Image
+          os.makedirs('kaynak/stok-adaylar/kucuk', exist_ok=True)
+          for f in sorted(glob.glob('kaynak/stok-adaylar/*.jpg')):
+              im = Image.open(f).convert('RGB'); im.thumbnail((480, 480))
+              im.save(os.path.join('kaynak/stok-adaylar/kucuk', os.path.basename(f)), quality=80)
+          PY
+      - name: Dala push'la
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A kaynak/stok-adaylar
+          git commit -m "Stok fotoğraf adayları (Unsplash, GitHub Actions)" || exit 0
+          for i in 1 2 3; do git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin HEAD:"${GITHUB_REF_NAME}" && break; sleep 5; done
