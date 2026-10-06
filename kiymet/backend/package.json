@@ -1,0 +1,20 @@
+{
+  "name": "kiymet-backend",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Kıymet canlı fiyat servisi: kripto, altın/gümüş, döviz, BIST hisseleri ve enflasyon verisini toplayıp WebSocket ile dağıtır",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "DATA_MODE=demo node --watch src/server.js",
+    "test": "node --test \"test/**/*.test.js\""
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  },
+  "license": "UNLICENSED"
+}

@@ -1,0 +1,82 @@
+name: Kıymet Android APK
+
+# Bulut oturumunda Android SDK indirilemediği için APK GitHub'ın sunucusunda derlenir,
+# testlerden geçerse kiymet/release/kiymet.apk olarak dala geri push'lanır.
+on:
+  push:
+    paths:
+      - 'kiymet/app/**'
+      - 'kiymet/backend/**'
+      - '.github/workflows/kiymet-apk.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kiymet-apk-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Backend testleri
+        working-directory: kiymet/backend
+        run: |
+          npm ci
+          npm test
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: '3.47.6'
+          cache: true
+
+      - name: Analiz ve testler
+        working-directory: kiymet/app
+        run: |
+          flutter pub get
+          flutter analyze
+          flutter test
+
+      - name: APK derle
+        working-directory: kiymet/app
+        run: flutter build apk --release
+
+      - name: APK'yı yerleştir
+        run: |
+          mkdir -p kiymet/release
+          cp kiymet/app/build/app/outputs/flutter-apk/app-release.apk kiymet/release/kiymet.apk
+          ls -lh kiymet/release
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kiymet-apk
+          path: kiymet/release/kiymet.apk
+          if-no-files-found: error
+
+      - name: APK'yı dala push'la
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add kiymet/release/kiymet.apk
+          git commit -m "Kıymet test APK'sı (GitHub Actions, ${GITHUB_SHA::7})" || { echo "Değişiklik yok"; exit 0; }
+          for i in 1 2 3; do
+            git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            sleep $((i * 5))
+          done
+          exit 1
