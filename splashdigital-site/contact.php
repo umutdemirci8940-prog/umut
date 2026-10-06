@@ -3,6 +3,11 @@
  * Splash Digital – iletişim formu
  * Hosting'in PHP mail() fonksiyonunu kullanır (cPanel / Plesk hostinglerde varsayılan olarak açıktır).
  * Alıcı adreslerini aşağıdan değiştirebilirsiniz.
+ *
+ * ÖNEMLİ (Google Workspace kullanıldığı için): Hosting sunucusundan giden formların Gmail'de spam'e
+ * düşmemesi için alan adının SPF (TXT) kaydına hosting sunucusunu ekleyin. Örnek:
+ *   v=spf1 include:_spf.google.com include:<hosting-firmasinin-spf-adresi> ~all
+ * Hosting firmanız SPF adresini/IP'sini destek ekibinden söyleyebilir.
  */
 declare(strict_types=1);
 
