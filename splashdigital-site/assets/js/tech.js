@@ -132,6 +132,7 @@
       }
     })();
   }
+  window.SDdataNet = dataNet;
   var hero = d.querySelector('.hero');
   if (hero) dataNet(hero, d.getElementById('datanet'), { spot: true });
   var contact = d.getElementById('iletisim');
@@ -248,14 +249,4 @@
     eEl.textContent = eng.toFixed(1).replace('.', ',');
   }
 
-  /* ---------- Hizmet kartları: hafif 3D eğim ---------- */
-  if (fine) {
-    d.querySelectorAll('.service').forEach(function (card) {
-      card.addEventListener('pointermove', function (e) {
-        var r = card.getBoundingClientRect();
-        card.style.transform = 'perspective(900px) rotateX(' + (((e.clientY - r.top) / r.height - .5) * -6).toFixed(2) + 'deg) rotateY(' + (((e.clientX - r.left) / r.width - .5) * 6).toFixed(2) + 'deg) translateY(-4px)';
-      });
-      card.addEventListener('pointerleave', function () { card.style.transform = ''; });
-    });
-  }
 })();
