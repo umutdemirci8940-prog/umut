@@ -1,19 +1,89 @@
-/* Splash Digital – site etkileşimleri */
+/* Splash Digital – site etkileşimleri ve animasyonları */
 (function () {
   'use strict';
   var d = document;
+  var root = d.documentElement;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
   // Yıl
   var y = d.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
 
-  // Header gölgesi
-  var header = d.querySelector('.header');
-  function onScroll() { if (header) header.classList.toggle('is-scrolled', window.scrollY > 20); }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  /* ---------- Başlıkları kelimelere böl ---------- */
+  function splitWords(el) {
+    var i = 0;
+    (function walk(node) {
+      Array.prototype.slice.call(node.childNodes).forEach(function (n) {
+        if (n.nodeType === 3) {
+          var frag = d.createDocumentFragment();
+          n.textContent.split(/(\s+)/).forEach(function (part) {
+            if (!part) return;
+            if (/^\s+$/.test(part)) { frag.appendChild(d.createTextNode(part)); return; }
+            var w = d.createElement('span'); w.className = 'w';
+            var inner = d.createElement('span'); inner.textContent = part; inner.style.setProperty('--i', i++);
+            w.appendChild(inner); frag.appendChild(w);
+          });
+          n.parentNode.replaceChild(frag, n);
+        } else if (n.nodeType === 1 && n.tagName !== 'BR') {
+          walk(n);
+        }
+      });
+    })(el);
+  }
+  var splitTargets = d.querySelectorAll('.hero__title, .section__head h2, .about__text h2, .contact__info h2');
+  splitTargets.forEach(function (el) { el.classList.add('split'); splitWords(el); });
 
-  // Mobil menü
+  /* ---------- Açılış ---------- */
+  var hero = d.querySelector('.hero');
+  var heroTitle = d.querySelector('.hero__title');
+  function startHero() {
+    if (hero) hero.classList.add('is-ready');
+    if (heroTitle) heroTitle.classList.add('is-in');
+  }
+  var loader = d.querySelector('.loader');
+  var seen = root.classList.contains('intro-seen');
+  if (loader && !seen && !reduce) {
+    var done = false;
+    var finish = function () {
+      if (done) return; done = true;
+      loader.classList.add('is-leaving');
+      setTimeout(startHero, 250);
+      setTimeout(function () { loader.classList.add('is-done'); }, 850);
+      try { sessionStorage.setItem('sd-intro', '1'); } catch (e) {}
+    };
+    // Sayfa yüklenince (en az 1,3 sn, en çok 3 sn) kapanır
+    var t0 = Date.now();
+    window.addEventListener('load', function () { setTimeout(finish, Math.max(0, 1300 - (Date.now() - t0))); });
+    setTimeout(finish, 3000);
+  } else {
+    if (loader) loader.classList.add('is-done');
+    requestAnimationFrame(startHero);
+  }
+
+  /* ---------- Yumuşak kaydırma (Lenis, varsa) ---------- */
+  var lenis = null;
+  function initLenis() {
+    if (lenis || reduce || !window.Lenis || !finePointer) return;
+    lenis = new window.Lenis({ duration: 1.1, smoothWheel: true });
+    (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(performance.now());
+    d.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        var id = a.getAttribute('href');
+        var target = id.length > 1 ? d.querySelector(id) : d.body;
+        if (!target) return;
+        e.preventDefault();
+        lenis.scrollTo(target, { offset: id === '#top' ? 0 : -70 });
+        history.replaceState(null, '', id);
+      });
+    });
+  }
+  if (window.Lenis) initLenis(); else window.addEventListener('load', initLenis);
+
+  /* ---------- Header ---------- */
+  var header = d.querySelector('.header');
+
+  /* ---------- Mobil menü ---------- */
   var burger = d.getElementById('burger');
   var nav = d.getElementById('nav');
   if (burger && nav) {
@@ -30,7 +100,7 @@
     });
   }
 
-  // Aktif menü bağlantısı
+  /* ---------- Aktif menü bağlantısı ---------- */
   var links = Array.prototype.slice.call(d.querySelectorAll('.nav a[href^="#"]'));
   var sections = links.map(function (a) { return d.querySelector(a.getAttribute('href')); }).filter(Boolean);
   if ('IntersectionObserver' in window && sections.length) {
@@ -43,8 +113,8 @@
     sections.forEach(function (s) { navIO.observe(s); });
   }
 
-  // Kayan görünürlük animasyonu
-  var reveals = d.querySelectorAll('.reveal');
+  /* ---------- Görünürlük animasyonları ---------- */
+  var reveals = d.querySelectorAll('.reveal, .split:not(.hero__title)');
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
@@ -52,39 +122,167 @@
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     reveals.forEach(function (el, i) {
-      el.style.transitionDelay = (i % 4) * 70 + 'ms';
+      if (el.classList.contains('reveal')) el.style.transitionDelay = (i % 4) * 70 + 'ms';
       io.observe(el);
     });
   } else {
     reveals.forEach(function (el) { el.classList.add('is-in'); });
   }
 
-  // Sayaçlar
+  /* ---------- Sayaçlar ---------- */
   function animateCount(el) {
     var end = parseInt(el.getAttribute('data-count'), 10) || 0;
     var pre = el.getAttribute('data-prefix') || '';
     var suf = el.getAttribute('data-suffix') || '';
-    var t0 = null, dur = 1600;
+    var t0 = null, dur = 1800;
     function step(t) {
       if (!t0) t0 = t;
       var p = Math.min((t - t0) / dur, 1);
-      var v = Math.round(end * (1 - Math.pow(1 - p, 3)));
-      el.textContent = pre + v.toLocaleString('tr-TR') + suf;
+      el.textContent = pre + Math.round(end * (1 - Math.pow(1 - p, 3))).toLocaleString('tr-TR') + suf;
       if (p < 1) requestAnimationFrame(step);
     }
     requestAnimationFrame(step);
   }
-  var counters = d.querySelectorAll('[data-count]');
-  if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if ('IntersectionObserver' in window && !reduce) {
     var cio = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (en.isIntersecting) { animateCount(en.target); cio.unobserve(en.target); }
       });
     }, { threshold: 0.6 });
-    counters.forEach(function (c) { cio.observe(c); });
+    d.querySelectorAll('[data-count]').forEach(function (c) { cio.observe(c); });
   }
 
-  // Hizmet kartlarında imleç ışığı
+  /* ---------- Kaydırmaya bağlı efektler (tek rAF döngüsü) ---------- */
+  var kinetic = Array.prototype.slice.call(d.querySelectorAll('.kinetic__row'));
+  var workImgs = Array.prototype.slice.call(d.querySelectorAll('.work__media img'));
+  var stepsLine = d.querySelector('.steps__line span');
+  var stepsEl = d.querySelector('.steps');
+  var blobs = Array.prototype.slice.call(d.querySelectorAll('.hero .blob'));
+  var ticking = false;
+  function onScroll() {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }
+  function update() {
+    ticking = false;
+    var sy = window.scrollY, vh = window.innerHeight;
+    if (header) header.classList.toggle('is-scrolled', sy > 20);
+    if (reduce) return;
+    kinetic.forEach(function (row) {
+      var r = row.parentNode.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > vh) return;
+      var sp = parseFloat(row.getAttribute('data-speed')) || 0.3;
+      row.style.transform = 'translate3d(' + ((r.top - vh) * sp) + 'px,0,0)';
+    });
+    workImgs.forEach(function (img) {
+      var r = img.parentNode.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > vh) return;
+      var p = (r.top + r.height / 2 - vh / 2) / vh; // -1..1
+      img.style.setProperty('--py', (p * -24).toFixed(1) + 'px');
+    });
+    if (stepsLine && stepsEl) {
+      var sr = stepsEl.getBoundingClientRect();
+      var prog = Math.min(Math.max((vh * 0.85 - sr.top) / (sr.height + vh * 0.35), 0), 1);
+      stepsLine.parentNode.style.setProperty('--p', prog.toFixed(3));
+    }
+    if (sy < vh) blobs.forEach(function (b, i) { b.style.translate = '0 ' + (sy * (0.15 + i * 0.1)).toFixed(0) + 'px'; });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  update();
+
+  /* ---------- Hero: su dalgası kanvası ---------- */
+  var cv = d.getElementById('ripples');
+  if (cv && cv.getContext && !reduce) {
+    var ctx = cv.getContext('2d');
+    var rings = [], W = 0, H = 0, dpr = Math.min(window.devicePixelRatio || 1, 2), lastDrop = 0, visible = true;
+    var resize = function () {
+      var r = cv.getBoundingClientRect();
+      W = r.width; H = r.height;
+      cv.width = W * dpr; cv.height = H * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+    resize();
+    window.addEventListener('resize', resize);
+    var drop = function (x, yy, strong) {
+      rings.push({ x: x, y: yy, r: 2, a: strong ? 0.55 : 0.32, v: strong ? 3.2 : 2.2 });
+      if (rings.length > 40) rings.shift();
+    };
+    hero.addEventListener('pointermove', function (e) {
+      var now = performance.now();
+      if (now - lastDrop < 90) return;
+      lastDrop = now;
+      var r = cv.getBoundingClientRect();
+      drop(e.clientX - r.left, e.clientY - r.top, false);
+    });
+    hero.addEventListener('pointerdown', function (e) {
+      var r = cv.getBoundingClientRect();
+      drop(e.clientX - r.left, e.clientY - r.top, true);
+      setTimeout(function () { drop(e.clientX - r.left, e.clientY - r.top, true); }, 160);
+    });
+    var auto = setInterval(function () { if (visible && !d.hidden) drop(Math.random() * W, Math.random() * H * 0.9, false); }, 1400);
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { visible = e[0].isIntersecting; }).observe(hero);
+    (function loop() {
+      requestAnimationFrame(loop);
+      if (!visible) return;
+      ctx.clearRect(0, 0, W, H);
+      for (var i = rings.length - 1; i >= 0; i--) {
+        var g = rings[i];
+        g.r += g.v; g.v *= 0.992; g.a *= 0.975;
+        if (g.a < 0.01) { rings.splice(i, 1); continue; }
+        ctx.beginPath(); ctx.arc(g.x, g.y, g.r, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(125,227,255,' + g.a + ')'; ctx.lineWidth = 1.4; ctx.stroke();
+        if (g.r > 14) {
+          ctx.beginPath(); ctx.arc(g.x, g.y, g.r * 0.62, 0, Math.PI * 2);
+          ctx.strokeStyle = 'rgba(43,182,245,' + (g.a * 0.6) + ')'; ctx.lineWidth = 1; ctx.stroke();
+        }
+      }
+    })();
+    void auto;
+  }
+
+  /* ---------- Özel imleç ---------- */
+  var cursor = d.querySelector('.cursor');
+  if (cursor && finePointer && !reduce) {
+    var dot = cursor.querySelector('.cursor__dot'), ring = cursor.querySelector('.cursor__ring'), label = cursor.querySelector('.cursor__label');
+    var mx = -100, my = -100, rx = -100, ry = -100;
+    d.addEventListener('pointermove', function (e) {
+      mx = e.clientX; my = e.clientY;
+      dot.style.transform = 'translate3d(' + mx + 'px,' + my + 'px,0)';
+    }, { passive: true });
+    (function follow() {
+      rx += (mx - rx) * 0.18; ry += (my - ry) * 0.18;
+      ring.style.transform = 'translate3d(' + rx + 'px,' + ry + 'px,0)';
+      requestAnimationFrame(follow);
+    })();
+    d.addEventListener('pointerover', function (e) {
+      var lab = e.target.closest('[data-cursor]');
+      var link = e.target.closest('a, button, label, summary, input, textarea, select');
+      cursor.classList.toggle('is-label', !!lab);
+      label.textContent = lab ? lab.getAttribute('data-cursor') : '';
+      cursor.classList.toggle('is-link', !lab && !!link);
+    });
+    d.addEventListener('pointerleave', function () { cursor.classList.add('is-hidden'); });
+    d.addEventListener('pointerenter', function () { cursor.classList.remove('is-hidden'); });
+    d.querySelectorAll('iframe').forEach(function (f) {
+      f.addEventListener('mouseenter', function () { cursor.classList.add('is-hidden'); });
+      f.addEventListener('mouseleave', function () { cursor.classList.remove('is-hidden'); });
+    });
+  }
+
+  /* ---------- Manyetik butonlar ---------- */
+  if (finePointer && !reduce) {
+    d.querySelectorAll('.btn, .wa, .socials a').forEach(function (el) {
+      el.classList.add('magnet');
+      el.addEventListener('pointermove', function (e) {
+        var r = el.getBoundingClientRect();
+        var x = (e.clientX - r.left - r.width / 2) * 0.25, yy = (e.clientY - r.top - r.height / 2) * 0.35;
+        el.style.transform = 'translate(' + x + 'px,' + yy + 'px)';
+      });
+      el.addEventListener('pointerleave', function () { el.style.transform = ''; });
+    });
+  }
+
+  /* ---------- Hizmet kartlarında ışık ---------- */
   d.querySelectorAll('.service').forEach(function (card) {
     card.addEventListener('pointermove', function (e) {
       var r = card.getBoundingClientRect();
@@ -93,31 +291,43 @@
     });
   });
 
-  // Markalar: kayan şerit + "tümünü göster"
-  var grid = d.getElementById('brandGrid');
-  var marquee = d.getElementById('brandMarquee');
-  var toggle = d.getElementById('brandToggle');
-  if (grid) {
-    var brands = grid.querySelectorAll('.brand');
-    if (marquee && brands.length) {
+  /* ---------- Projeler: "tümünü göster" ---------- */
+  function toggler(gridId, btnId, limitDesk, limitMob, label) {
+    var grid = d.getElementById(gridId), btn = d.getElementById(btnId);
+    if (!grid || !btn) return null;
+    var count = grid.children.length;
+    var limit = window.innerWidth <= 600 ? limitMob : limitDesk;
+    if (count <= limit) { btn.style.display = 'none'; return grid; }
+    var setText = function (open) { btn.textContent = open ? 'Daha az göster' : label + ' (' + count + ')'; };
+    setText(false);
+    btn.addEventListener('click', function () {
+      var open = grid.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open);
+      setText(open);
+      if (!open) (lenis ? lenis.scrollTo(grid, { offset: -120 }) : grid.scrollIntoView({ behavior: 'smooth' }));
+      onScroll();
+    });
+    return grid;
+  }
+  toggler('workGrid', 'workToggle', 9, 6, 'Tüm projeleri göster');
+  var brandGrid = toggler('brandGrid', 'brandToggle', 18, 12, 'Tüm markaları göster');
+
+  /* ---------- Marka şeritleri ---------- */
+  if (brandGrid) {
+    var all = Array.prototype.slice.call(brandGrid.querySelectorAll('.brand'));
+    var fill = function (id, list) {
+      var track = d.getElementById(id);
+      if (!track || !list.length) return;
       var frag = d.createDocumentFragment();
-      var picks = Array.prototype.slice.call(brands, 0, 40);
-      picks.concat(picks).forEach(function (b) { frag.appendChild(b.cloneNode(true)); });
-      marquee.appendChild(frag);
-    }
-    if (toggle) {
-      if (brands.length <= 18) toggle.parentNode.style.display = 'none';
-      toggle.addEventListener('click', function () {
-        var open = grid.classList.toggle('is-open');
-        toggle.setAttribute('aria-expanded', open);
-        toggle.textContent = open ? 'Daha az göster' : 'Tüm markaları göster (' + brands.length + ')';
-        if (!open) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-      toggle.textContent = 'Tüm markaları göster (' + brands.length + ')';
-    }
+      list.concat(list).forEach(function (b) { var c = b.cloneNode(true); c.querySelector('img').loading = 'lazy'; frag.appendChild(c); });
+      track.appendChild(frag);
+    };
+    var half = Math.ceil(all.length / 2);
+    fill('brandMarquee', all.slice(0, half));
+    fill('brandMarquee2', all.slice(half));
   }
 
-  // Görsel yüklenemezse kartı sade tut
+  /* ---------- Görsel yüklenemezse ---------- */
   d.querySelectorAll('.brand img, .partner img').forEach(function (img) {
     img.addEventListener('error', function () { var f = img.closest('figure'); if (f) f.style.display = 'none'; });
   });
@@ -125,7 +335,7 @@
     img.addEventListener('error', function () { img.style.visibility = 'hidden'; });
   });
 
-  // İletişim formu
+  /* ---------- İletişim formu ---------- */
   var form = d.getElementById('contactForm');
   var status = d.getElementById('formStatus');
   if (form) {
@@ -149,19 +359,19 @@
       var old = btn.innerHTML;
       btn.textContent = 'Gönderiliyor...';
       fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
-        .then(function (r) { return r.json().catch(function () { return { ok: r.ok }; }); })
+        .then(function (r) { return r.json().catch(function () { return { ok: false }; }); })
         .then(function (res) {
           if (res && res.ok) {
             status.className = 'form__status ok';
             status.textContent = 'Teşekkürler! Mesajınız bize ulaştı, en kısa sürede dönüş yapacağız.';
             form.reset();
           } else {
-            throw new Error((res && res.message) || 'error');
+            throw new Error((res && res.message) || '');
           }
         })
         .catch(function (err) {
           status.className = 'form__status err';
-          status.textContent = (err && err.message && err.message !== 'error' && err.message.indexOf('fetch') < 0)
+          status.textContent = (err && err.message && !/fetch|network/i.test(err.message))
             ? err.message
             : 'Mesaj gönderilemedi. Lütfen sales@splashdigital.com.tr adresine e-posta gönderin veya +90 535 605 53 92 numarasını arayın.';
         })

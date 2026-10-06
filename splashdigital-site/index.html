@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="tr">
+<html lang="tr" class="no-js">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,6 +17,7 @@
   <meta property="og:image" content="https://www.splashdigital.com.tr/assets/img/og-image.jpg">
   <meta name="twitter:card" content="summary_large_image">
 
+  <script>document.documentElement.className="js";try{if(sessionStorage.getItem("sd-intro"))document.documentElement.classList.add("intro-seen")}catch(e){}</script>
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,11 +49,18 @@
 <body>
   <a class="skip" href="#main">İçeriğe geç</a>
 
+  <!-- Açılış animasyonu -->
+  <div class="loader" aria-hidden="true">
+    <span class="loader__ring"></span><span class="loader__ring loader__ring--2"></span><span class="loader__ring loader__ring--3"></span>
+    <img src="assets/img/logo.png" alt="" width="220" height="101">
+  </div>
+  <div class="cursor" aria-hidden="true"><span class="cursor__dot"></span><span class="cursor__ring"><b class="cursor__label"></b></span></div>
+
   <!-- ================= HEADER ================= -->
   <header class="header" id="top">
     <div class="container header__inner">
       <a href="#top" class="logo" aria-label="Splash Digital ana sayfa">
-        <img src="assets/img/logo.png" alt="Splash Digital" width="170" height="44" onerror="this.onerror=null;this.src='assets/img/logo.svg'">
+        <img src="assets/img/logo.png" alt="Splash Digital" width="170" height="78" onerror="this.onerror=null;this.src='assets/img/logo.svg'">
       </a>
       <nav class="nav" id="nav" aria-label="Ana menü">
         <a href="#hizmetler">Hizmetler</a>
@@ -72,6 +80,7 @@
     <!-- ================= HERO ================= -->
     <section class="hero">
       <div class="hero__bg" aria-hidden="true">
+        <canvas class="ripples" id="ripples"></canvas>
         <span class="blob blob--1"></span>
         <span class="blob blob--2"></span>
         <span class="blob blob--3"></span>
@@ -80,7 +89,7 @@
       <div class="container hero__inner">
         <div class="hero__copy">
           <p class="eyebrow reveal"><span class="dot"></span> Strateji + Yaratıcılık = Etkili Sonuçlar</p>
-          <h1 class="hero__title reveal">
+          <h1 class="hero__title split">
             Markanızı<br>
             <span class="grad">geleceğe taşıyan</span><br>
             dijital ajans.
@@ -174,6 +183,12 @@
       </div>
     </section>
 
+    <!-- Kaydırmayla akan büyük yazı bandı -->
+    <div class="kinetic" aria-hidden="true">
+      <div class="kinetic__row" data-speed="-0.35"><span>Strateji</span><i>✦</i><span class="o">Yaratıcılık</span><i>✦</i><span>Medya</span><i>✦</i><span class="o">Teknoloji</span><i>✦</i><span>Strateji</span><i>✦</i><span class="o">Yaratıcılık</span><i>✦</i><span>Medya</span><i>✦</i><span class="o">Teknoloji</span></div>
+      <div class="kinetic__row" data-speed="0.35"><span class="o">Rich Media</span><i>✦</i><span>Splash Network</span><i>✦</i><span class="o">Etkileşim</span><i>✦</i><span>Dönüşüm</span><i>✦</i><span class="o">Rich Media</span><i>✦</i><span>Splash Network</span><i>✦</i><span class="o">Etkileşim</span><i>✦</i><span>Dönüşüm</span></div>
+    </div>
+
     <!-- ================= SERVICES ================= -->
     <section class="section section--alt" id="hizmetler">
       <div class="container">
@@ -188,37 +203,37 @@
             <span class="service__no">01</span>
             <div class="service__icon"><svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h16M8 15l4-4 3 3 5-6"/></svg></div>
             <h3>Veri Odaklı Stratejiler</h3>
-            <p>Markaların büyüme hedeflerine ulaşması için doğru mesajı doğru kitleye ulaştırmaya odaklanıyoruz. Kullanıcı davranışlarını derinlemesine analiz ederek, stratejilerinize en uygun sonuçları elde etmenize destek oluyoruz.</p>
+            <p>Markaların büyüme hedeflerine ulaşması için doğru mesajı doğru kitleye ulaştırmaya odaklanıyoruz. Kullanıcı davranışlarını derinlemesine analiz ederek, stratejilerinize en uygun sonuçları elde etmenize destek oluyoruz. İnteraktif çözümlerimiz etkileşimi kolaylaştırırken dönüşüm oranlarını artırır; detaylı raporlama ve analizlerle kampanya süreçlerinizi daha verimli hale getiriyoruz.</p>
           </article>
           <article class="service reveal" id="medya-ve-reklam-planlama">
             <span class="service__no">02</span>
             <div class="service__icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4M7 13h4M7 17h8"/></svg></div>
             <h3>Medya ve Reklam Planlama</h3>
-            <p>Markanızın ihtiyaçlarına özel çözümlerle stratejik bir yol haritası oluşturuyoruz. Kullanıcı davranışlarını ve platform dinamiklerini analiz ederek, farklı kanallar üzerinden hedef kitlenize en etkili şekilde ulaşıyoruz.</p>
+            <p>Markanızın ihtiyaçlarına özel çözümlerle stratejik bir yol haritası oluşturuyoruz. Kullanıcı davranışlarını ve platform dinamiklerini analiz ederek, farklı kanallar üzerinden hedef kitlenize en etkili şekilde ulaşıyoruz. Akıllı bildirimler ve interaktif kurgularla, kullanıcılar pasif kalsa bile etkileşim yaratacak çözümler geliştiriyoruz.</p>
           </article>
           <article class="service reveal" id="network-ve-uretim">
             <span class="service__no">03</span>
             <div class="service__icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="4" cy="5" r="2"/><circle cx="20" cy="5" r="2"/><circle cx="4" cy="19" r="2"/><circle cx="20" cy="19" r="2"/><path d="M6 6.5l4 3.5M18 6.5l-4 3.5M6 17.5l4-3.5M18 17.5l-4-3.5"/></svg></div>
             <h3>Network &amp; Üretim Hizmetleri</h3>
-            <p>Güçlü bağlantılar, büyük başarıların anahtarıdır. Geniş partner ağımız ve 300’ün üzerinde platform iş birliğimizle markalara etkili çözümler sunuyoruz. Splash Network ve içerik üretim hizmetlerimizle markanızı doğru mecralarda görünür kılıyoruz.</p>
+            <p>Güçlü bağlantılar, büyük başarıların anahtarıdır. Geniş partner ağımız ve 300’ün üzerinde platform iş birliğimizle markalara etkili çözümler sunuyoruz. Splash Network ve içerik üretim hizmetlerimiz sayesinde, işletmenizin ihtiyaçlarına özel stratejiler geliştiriyor, hedeflerinizi en verimli şekilde hayata geçirmenize destek oluyoruz.</p>
           </article>
           <article class="service reveal" id="masaustu-ve-mobil">
             <span class="service__no">04</span>
             <div class="service__icon"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="15" height="11" rx="2"/><path d="M6 19h7M9.5 15v4"/><rect x="17" y="8" width="5" height="12" rx="1.5"/></svg></div>
             <h3>Masaüstü ve Mobil Entegrasyonlar</h3>
-            <p>Dijital dünyada hız ve etki fark yaratır. Markanızın dijital dönüşümünü hızlandıracak çözümler sunuyor; masaüstü ve mobil platformlarda kullanıcı dostu ve ölçeklenebilir tasarımlar geliştiriyoruz.</p>
+            <p>Dijital dünyada hız ve etki fark yaratır. Markanızın dijital dönüşümünü hızlandıracak çözümler sunuyoruz. Masaüstü ve mobil platformlarda kullanıcı dostu ve ölçeklenebilir tasarımlar geliştiriyor, hedef kitlenize sorunsuz ve etkili bir deneyim yaşatıyoruz.</p>
           </article>
           <article class="service reveal" id="pazarlama-ve-danismanlik">
             <span class="service__no">05</span>
             <div class="service__icon"><svg viewBox="0 0 24 24"><path d="M3 11l15-6v14L3 13z"/><path d="M7 13v5a2 2 0 0 0 4 0v-4"/><path d="M21 9v4"/></svg></div>
             <h3>Pazarlama ve Danışmanlık</h3>
-            <p>Markanızın büyüme yolculuğunda doğru stratejilerle fark yaratın. Sektörel analizler ve hedef kitle odaklı planlamalarla, markanızı daha geniş kitlelere ulaştırmak için yanınızdayız.</p>
+            <p>Markanızın büyüme yolculuğunda doğru stratejilerle fark yaratın. Markanızı daha geniş kitlelere ulaştırmak ve hedeflerinize uygun etkili çözümler geliştirmek için yanınızdayız. Sektörel analizler, hedef kitle odaklı stratejiler ve veri destekli raporlamalarla her adımda sizi en iyi şekilde yönlendiriyoruz.</p>
           </article>
           <article class="service reveal" id="yazilim-gelistirme">
             <span class="service__no">06</span>
             <div class="service__icon"><svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg></div>
             <h3>Yazılım Geliştirme</h3>
-            <p>İnovasyonun merkezinde dijital çözümler var. Kullanıcı dostu arayüzler, yüksek performanslı altyapılar ve kişiye özel çözümlerle işletmenizin dijital dönüşümünü hızlandıracak özel yazılımlar geliştiriyoruz.</p>
+            <p>İnovasyonun merkezinde dijital çözümler var. İşletmenizin dijital dönüşümünü hızlandıracak özel yazılımlar geliştiriyoruz. Kullanıcı dostu arayüzler, yüksek performanslı altyapılar ve kişiye özel çözümlerle, her türlü dijital ihtiyacınıza yönelik özgün projeler sunuyoruz.</p>
           </article>
         </div>
       </div>
@@ -231,7 +246,7 @@
           <p class="eyebrow"><span class="dot"></span> İş Akışı</p>
           <h2>Nasıl çalışıyoruz?</h2>
         </div>
-        <ol class="steps">
+        <ol class="steps"><li class="steps__line" aria-hidden="true"><span></span></li>
           <li class="step reveal">
             <span class="step__no">01</span>
             <h3>Ön Görüşme</h3>
@@ -267,30 +282,112 @@
           <p>Etkileşimli rich media reklamlar, interaktif deneyimler ve kreatif prodüksiyonlar. Bir projeye tıklayarak canlı örneği inceleyebilirsiniz.</p>
         </div>
 
-        <div class="works">
-          <a class="work reveal" href="https://splashdigital.s3.eu-west-1.amazonaws.com/websitesi/Honda_Hrv/index.html" target="_blank" rel="noopener">
-            <div class="work__media"><img src="assets/img/projects/honda.png" alt="Honda HR-V projesi" loading="lazy"></div>
-            <div class="work__body"><span class="work__tag">Otomotiv · Rich Media</span><h3>HONDA</h3><span class="work__link">Projeyi Gör →</span></div>
+        <div class="works" id="workGrid">
+          <a class="work" href="https://splashdigital.s3.eu-west-1.amazonaws.com/websitesi/Honda_Hrv/index.html" target="_blank" rel="noopener" data-cursor="Gör">
+            <div class="work__media"><img src="assets/img/projects/hondacrv.jpg" alt="HONDA – HR-V" loading="lazy" width="900" height="600"></div>
+            <div class="work__body"><span class="work__tag">Otomotiv · Rich Media</span><h3>HONDA</h3><span class="work__sub">HR-V</span><span class="work__link">Projeyi Gör →</span></div>
           </a>
-          <a class="work reveal" href="https://splashdigital.s3.eu-west-1.amazonaws.com/Pegasus/Sept/Paris_Imkan_Film.html" target="_blank" rel="noopener">
-            <div class="work__media"><img src="assets/img/projects/pegasus.jpg" alt="Pegasus Paris kampanyası" loading="lazy"></div>
-            <div class="work__body"><span class="work__tag">Havacılık · Video</span><h3>PEGASUS</h3><span class="work__link">Projeyi Gör →</span></div>
+          <a class="work" href="https://splashdigital.s3.eu-west-1.amazonaws.com/Pegasus/Sept/Paris_Imkan_Film.html" target="_blank" rel="noopener" data-cursor="Gör">
+            <div class="work__media"><img src="assets/img/projects/pegasus.jpg" alt="PEGASUS – Paris İmkân Filmi" loading="lazy" width="900" height="600"></div>
+            <div class="work__body"><span class="work__tag">Havacılık · Rich Media</span><h3>PEGASUS</h3><span class="work__sub">Paris İmkân Filmi</span><span class="work__link">Projeyi Gör →</span></div>
           </a>
-          <a class="work reveal" href="https://splashdigital.s3.eu-west-1.amazonaws.com/websitesi/Proplan+Ornek.jpeg" target="_blank" rel="noopener">
-            <div class="work__media"><img src="assets/img/projects/purina.jpg" alt="Purina Pro Plan projesi" loading="lazy"></div>
-            <div class="work__body"><span class="work__tag">FMCG · Display</span><h3>PURINA</h3><span class="work__link">Projeyi Gör →</span></div>
+          <a class="work" href="https://splashdigital.s3.eu-west-1.amazonaws.com/websitesi/Banvit.png" target="_blank" rel="noopener" data-cursor="Gör">
+            <div class="work__media"><img src="assets/img/projects/banvit.jpg" alt="BANVİT – Display" loading="lazy" width="900" height="600"></div>
+            <div class="work__body"><span class="work__tag">Gıda · Display</span><h3>BANVİT</h3><span class="work__sub">Display</span><span class="work__link">Projeyi Gör →</span></div>
           </a>
-          <a class="work reveal" href="https://splashdigital.s3.eu-west-1.amazonaws.com/websitesi/Watsons_20yil/index.html" target="_blank" rel="noopener">
-            <div class="work__media"><img src="assets/img/projects/watsons.jpg" alt="Watsons 20. yıl projesi" loading="lazy"></div>
-            <div class="work__body"><span class="work__tag">Perakende · Rich Media</span><h3>WATSONS</h3><span class="work__link">Projeyi Gör →</span></div>
+          <a class="work" href="https://splashdigital.s3.eu-west-1.amazonaws.com/websitesi/Proplan+Ornek.jpeg" target="_blank" rel="noopener" data-cursor="Gör">
+            <div class="work__media"><img src="assets/img/projects/purina.jpg" alt="PURINA – Pro Plan" loading="lazy" width="900" height="600"></div>
+            <div class="work__body"><span class="work__tag">Evcil Hayvan · Display</span><h3>PURINA</h3><span class="work__sub">Pro Plan</span><span class="work__link">Projeyi Gör →</span></div>
           </a>
-          <a class="work reveal" href="https://splashdigital.s3.eu-west-1.amazonaws.com/websitesi/Nivea_interaktif/index.html" target="_blank" rel="noopener">
-            <div class="work__media"><img src="assets/img/projects/nivea.jpg" alt="Nivea interaktif projesi" loading="lazy"></div>
-            <div class="work__body"><span class="work__tag">Kozmetik · İnteraktif</span><h3>NIVEA</h3><span class="work__link">Projeyi Gör →</span></div>
+          <a class="work" href="https://splashdigital.s3.eu-west-1.amazonaws.com/websitesi/Watsons_20yil/index.html" target="_blank" rel="noopener" data-cursor="Gör">
+            <div class="work__media"><img src="assets/img/projects/watsons.jpg" alt="WATSONS – 20. Yıl" loading="lazy" width="900" height="600"></div>
+            <div class="work__body"><span class="work__tag">Perakende · Rich Media</span><h3>WATSONS</h3><span class="work__sub">20. Yıl</span><span class="work__link">Projeyi Gör →</span></div>
           </a>
-          <a class="work reveal" href="https://splashdigital.s3.eu-west-1.amazonaws.com/websitesi/Lego_1.png" target="_blank" rel="noopener">
-            <div class="work__media"><img src="assets/img/projects/lego.jpg" alt="Lego projesi" loading="lazy"></div>
-            <div class="work__body"><span class="work__tag">Oyuncak · Display</span><h3>LEGO</h3><span class="work__link">Projeyi Gör →</span></div>
+          <a class="work" href="https://splashdigital.s3.eu-west-1.amazonaws.com/websitesi/Nivea_interaktif/index.html" target="_blank" rel="noopener" data-cursor="Gör">
+            <div class="work__media"><img src="assets/img/projects/nivea.jpg" alt="NIVEA – İnteraktif" loading="lazy" width="900" height="600"></div>
+            <div class="work__body"><span class="work__tag">Kozmetik · Rich Media</span><h3>NIVEA</h3><span class="work__sub">İnteraktif</span><span class="work__link">Projeyi Gör →</span></div>
+          </a>
+          <a class="work" href="https://splashdigital.s3.eu-west-1.amazonaws.com/websitesi/Lego_1.png" target="_blank" rel="noopener" data-cursor="Gör">
+            <div class="work__media"><img src="assets/img/projects/lego.jpg" alt="LEGO – Display" loading="lazy" width="900" height="600"></div>
+            <div class="work__body"><span class="work__tag">Oyuncak · Display</span><h3>LEGO</h3><span class="work__sub">Display</span><span class="work__link">Projeyi Gör →</span></div>
+          </a>
+          <a class="work" href="https://splashdigital.s3.eu-west-1.amazonaws.com/websitesi/Cook.png" target="_blank" rel="noopener" data-cursor="Gör">
+            <div class="work__media"><img src="assets/img/projects/cook.jpg" alt="COOK – Display" loading="lazy" width="900" height="600"></div>
+            <div class="work__body"><span class="work__tag">Gıda · Display</span><h3>COOK</h3><span class="work__sub">Display</span><span class="work__link">Projeyi Gör →</span></div>
+          </a>
+          <a class="work" href="https://splashdigital.s3.eu-west-1.amazonaws.com/websitesi/Terra_Mobil_1.png" target="_blank" rel="noopener" data-cursor="Gör">
+            <div class="work__media"><img src="assets/img/projects/terra-pizza.jpg" alt="TERRA PIZZA – Mobil" loading="lazy" width="900" height="600"></div>
+            <div class="work__body"><span class="work__tag">Restoran · Display</span><h3>TERRA PIZZA</h3><span class="work__sub">Mobil</span><span class="work__link">Projeyi Gör →</span></div>
+          </a>
+          <a class="work" href="https://splashdigital.s3.eu-west-1.amazonaws.com/Ornekcalisma/Ornekcalisma_2.mp4" target="_blank" rel="noopener" data-cursor="Gör">
+            <div class="work__media"><img src="assets/img/projects/renault.jpg" alt="RENAULT – Video" loading="lazy" width="900" height="600"></div>
+            <div class="work__body"><span class="work__tag">Otomotiv · Video</span><h3>RENAULT</h3><span class="work__sub">Video</span><span class="work__link">Projeyi Gör →</span></div>
+          </a>
+          <a class="work" href="https://splashdigital.s3.eu-west-1.amazonaws.com/Fellas/Fellas_Demo.html" target="_blank" rel="noopener" data-cursor="Gör">
+            <div class="work__media"><img src="assets/img/projects/fellas.jpg" alt="FELLAS – Demo" loading="lazy" width="900" height="600"></div>
+            <div class="work__body"><span class="work__tag">Restoran · Rich Media</span><h3>FELLAS</h3><span class="work__sub">Demo</span><span class="work__link">Projeyi Gör →</span></div>
+          </a>
+          <a class="work" href="https://splashdigital.s3.eu-west-1.amazonaws.com/Pegasus/Sept/Misir_I%CC%87mkan+Filmi.html" target="_blank" rel="noopener" data-cursor="Gör">
+            <div class="work__media"><img src="assets/img/projects/pegasus.jpg" alt="PEGASUS – Mısır İmkân Filmi" loading="lazy" width="900" height="600"></div>
+            <div class="work__body"><span class="work__tag">Havacılık · Rich Media</span><h3>PEGASUS</h3><span class="work__sub">Mısır İmkân Filmi</span><span class="work__link">Projeyi Gör →</span></div>
+          </a>
+          <a class="work" href="https://splashdigital.s3.eu-west-1.amazonaws.com/websitesi/Honda_Civic_v2/index.html" target="_blank" rel="noopener" data-cursor="Gör">
+            <div class="work__media"><img src="assets/img/projects/hondacivic.jpg" alt="HONDA – Civic" loading="lazy" width="900" height="600"></div>
+            <div class="work__body"><span class="work__tag">Otomotiv · Rich Media</span><h3>HONDA</h3><span class="work__sub">Civic</span><span class="work__link">Projeyi Gör →</span></div>
+          </a>
+          <a class="work" href="https://splashdigital.s3.eu-west-1.amazonaws.com/websitesi/Yves/index.html" target="_blank" rel="noopener" data-cursor="Gör">
+            <div class="work__media"><img src="assets/img/projects/yves-rocher.jpg" alt="YVES ROCHER – Rich Media" loading="lazy" width="900" height="600"></div>
+            <div class="work__body"><span class="work__tag">Kozmetik · Rich Media</span><h3>YVES ROCHER</h3><span class="work__sub">Rich Media</span><span class="work__link">Projeyi Gör →</span></div>
+          </a>
+          <a class="work" href="https://splashdigital.s3.eu-west-1.amazonaws.com/websitesi/I%CC%87lacsizyasam_1/index.html" target="_blank" rel="noopener" data-cursor="Gör">
+            <div class="work__media"><img src="assets/img/projects/ilacsiz-yasam.jpg" alt="İLAÇSIZ YAŞAM – Rich Media" loading="lazy" width="900" height="600"></div>
+            <div class="work__body"><span class="work__tag">Sağlık · Rich Media</span><h3>İLAÇSIZ YAŞAM</h3><span class="work__sub">Rich Media</span><span class="work__link">Projeyi Gör →</span></div>
+          </a>
+          <a class="work" href="https://splashdigital.s3.eu-west-1.amazonaws.com/Ornekcalisma/noteornek.mp4" target="_blank" rel="noopener" data-cursor="Gör">
+            <div class="work__media"><img src="assets/img/projects/notekozmetik.jpg" alt="NOTE – Video" loading="lazy" width="900" height="600"></div>
+            <div class="work__body"><span class="work__tag">Kozmetik · Video</span><h3>NOTE</h3><span class="work__sub">Video</span><span class="work__link">Projeyi Gör →</span></div>
+          </a>
+          <a class="work" href="https://splashdigital.s3.eu-west-1.amazonaws.com/websitesi/Lego_2.png" target="_blank" rel="noopener" data-cursor="Gör">
+            <div class="work__media"><img src="assets/img/projects/lego.jpg" alt="LEGO – Display 2" loading="lazy" width="900" height="600"></div>
+            <div class="work__body"><span class="work__tag">Oyuncak · Display</span><h3>LEGO</h3><span class="work__sub">Display 2</span><span class="work__link">Projeyi Gör →</span></div>
+          </a>
+          <a class="work" href="https://splashdigital.s3.eu-west-1.amazonaws.com/websitesi/Banvit_Ramazan/index.html" target="_blank" rel="noopener" data-cursor="Gör">
+            <div class="work__media"><img src="assets/img/projects/banvit.jpg" alt="BANVİT – Ramazan" loading="lazy" width="900" height="600"></div>
+            <div class="work__body"><span class="work__tag">Gıda · Rich Media</span><h3>BANVİT</h3><span class="work__sub">Ramazan</span><span class="work__link">Projeyi Gör →</span></div>
+          </a>
+          <a class="work" href="https://splashdigital.s3.eu-west-1.amazonaws.com/interaktif/ilacsiz/index.html" target="_blank" rel="noopener" data-cursor="Gör">
+            <div class="work__media"><img src="assets/img/projects/ilacsiz-yasam.jpg" alt="İLAÇSIZ YAŞAM – İnteraktif" loading="lazy" width="900" height="600"></div>
+            <div class="work__body"><span class="work__tag">Sağlık · Rich Media</span><h3>İLAÇSIZ YAŞAM</h3><span class="work__sub">İnteraktif</span><span class="work__link">Projeyi Gör →</span></div>
+          </a>
+          <a class="work" href="https://splashdigital.s3.eu-west-1.amazonaws.com/Ornekcalisma/Elidorornekcalisma.mp4" target="_blank" rel="noopener" data-cursor="Gör">
+            <div class="work__media"><img src="assets/img/projects/elidor.jpg" alt="ELIDOR – Video" loading="lazy" width="900" height="600"></div>
+            <div class="work__body"><span class="work__tag">Kozmetik · Video</span><h3>ELIDOR</h3><span class="work__sub">Video</span><span class="work__link">Projeyi Gör →</span></div>
+          </a>
+          <a class="work" href="https://splashdigital.s3.eu-west-1.amazonaws.com/websitesi/Honda_NX500/index.html" target="_blank" rel="noopener" data-cursor="Gör">
+            <div class="work__media"><img src="assets/img/projects/hondanx500.jpg" alt="HONDA – NX500" loading="lazy" width="900" height="600"></div>
+            <div class="work__body"><span class="work__tag">Otomotiv · Rich Media</span><h3>HONDA</h3><span class="work__sub">NX500</span><span class="work__link">Projeyi Gör →</span></div>
+          </a>
+          <a class="work" href="https://splashdigital.s3.eu-west-1.amazonaws.com/Ornekcalisma/Ornekcalisma_1.mp4" target="_blank" rel="noopener" data-cursor="Gör">
+            <div class="work__media"><img src="assets/img/projects/suryapi-1.jpg" alt="SUR YAPI – Video" loading="lazy" width="900" height="600"></div>
+            <div class="work__body"><span class="work__tag">Gayrimenkul · Video</span><h3>SUR YAPI</h3><span class="work__sub">Video</span><span class="work__link">Projeyi Gör →</span></div>
+          </a>
+          <a class="work" href="https://splashdigital.s3.eu-west-1.amazonaws.com/websitesi/Baymak_Ornek.jpeg" target="_blank" rel="noopener" data-cursor="Gör">
+            <div class="work__media"><img src="assets/img/projects/baymak.jpg" alt="BAYMAK – Display" loading="lazy" width="900" height="600"></div>
+            <div class="work__body"><span class="work__tag">Isıtma · Display</span><h3>BAYMAK</h3><span class="work__sub">Display</span><span class="work__link">Projeyi Gör →</span></div>
+          </a>
+          <a class="work" href="https://splashdigital.s3.eu-west-1.amazonaws.com/Ornekcalisma/Ornekcalisma_4.mp4" target="_blank" rel="noopener" data-cursor="Gör">
+            <div class="work__media"><img src="assets/img/projects/renault.jpg" alt="RENAULT – Video 2" loading="lazy" width="900" height="600"></div>
+            <div class="work__body"><span class="work__tag">Otomotiv · Video</span><h3>RENAULT</h3><span class="work__sub">Video 2</span><span class="work__link">Projeyi Gör →</span></div>
+          </a>
+          <a class="work" href="https://splashdigital.s3.eu-west-1.amazonaws.com/websitesi/Honda_Civic/index.html" target="_blank" rel="noopener" data-cursor="Gör">
+            <div class="work__media"><img src="assets/img/projects/hondacivic.jpg" alt="HONDA – Civic Rich Media" loading="lazy" width="900" height="600"></div>
+            <div class="work__body"><span class="work__tag">Otomotiv · Rich Media</span><h3>HONDA</h3><span class="work__sub">Civic Rich Media</span><span class="work__link">Projeyi Gör →</span></div>
+          </a>
+        </div>
+        <div class="works__more">
+          <button class="btn btn--ghost" id="workToggle" type="button" aria-expanded="false" aria-controls="workGrid">Tüm projeleri göster</button>
+          <a class="btn btn--primary" href="splash-digital-portfolyo.pdf" download>Portfolyoyu İndir (PDF)
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"/></svg>
           </a>
         </div>
       </div>
@@ -307,10 +404,153 @@
       </div>
       <div class="logo-marquee" aria-hidden="true">
         <div class="logo-marquee__track" id="brandMarquee"></div>
+        <div class="logo-marquee__track logo-marquee__track--rev" id="brandMarquee2"></div>
       </div>
       <div class="container">
         <div class="brands" id="brandGrid">
-<!--BRANDS-->
+          <figure class="brand"><img src="assets/img/brands/a90.png" alt="A90" title="A90" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/akbank.png" alt="Akbank" title="Akbank" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/albaraka.png" alt="Albaraka" title="Albaraka" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/allianz.png" alt="Allianz" title="Allianz" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/altinbas.png" alt="Altınbaş" title="Altınbaş" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/anabank.png" alt="Anadolubank" title="Anadolubank" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/apple.png" alt="Apple" title="Apple" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/arzum.png" alt="Arzum" title="Arzum" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/arcelik.png" alt="Arçelik" title="Arçelik" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/audi.png" alt="Audi" title="Audi" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/aygaz.png" alt="Aygaz" title="Aygaz" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/azkarbon.png" alt="Az Karbon" title="Az Karbon" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/bparmak.png" alt="Bal Parmak" title="Bal Parmak" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/bayer.png" alt="Bayer" title="Bayer" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/bebelac.png" alt="Bebelac" title="Bebelac" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/beko.png" alt="Beko" title="Beko" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/beymen.png" alt="Beymen" title="Beymen" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/biletinial.png" alt="Biletinial" title="Biletinial" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/btoptan.png" alt="Bizim Toptan" title="Bizim Toptan" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/bim.png" alt="BİM" title="BİM" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/bmw.png" alt="BMW" title="BMW" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/borusan.png" alt="Borusan" title="Borusan" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/bosch.png" alt="Bosch" title="Bosch" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/brita.png" alt="Brita" title="Brita" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/budget.png" alt="Budget" title="Budget" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/ck.png" alt="Calvin Klein" title="Calvin Klein" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/canped.png" alt="Canped" title="Canped" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/caudalie.png" alt="Caudalie" title="Caudalie" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/chery.png" alt="Chery" title="Chery" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/civil.png" alt="Civil" title="Civil" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/cocacola.png" alt="Coca-Cola" title="Coca-Cola" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/corny.png" alt="Corny" title="Corny" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/cs.png" alt="CS" title="CS" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/ct.png" alt="CT" title="CT" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/dacia.png" alt="Dacia" title="Dacia" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/danone.png" alt="Danone" title="Danone" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/dardanel.png" alt="Dardanel" title="Dardanel" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/dermoskin.png" alt="Dermoskin" title="Dermoskin" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/disney.png" alt="Disney" title="Disney" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/dogtas.png" alt="Doğtaş" title="Doğtaş" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/dogus.png" alt="Doğuş" title="Doğuş" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/droutker.png" alt="Dr. Oetker" title="Dr. Oetker" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/enza.png" alt="Enza Home" title="Enza Home" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/este.png" alt="Este" title="Este" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/eti.png" alt="Eti" title="Eti" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/ets.png" alt="ETS Tur" title="ETS Tur" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/evofone.png" alt="Evofone" title="Evofone" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/fashfed.png" alt="Fashfed" title="Fashfed" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/ferrero.png" alt="Ferrero" title="Ferrero" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/fiat.png" alt="Fiat" title="Fiat" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/fiba.png" alt="Fiba" title="Fiba" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/fide.png" alt="Fide" title="Fide" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/ford.png" alt="Ford" title="Ford" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/ford-trucks.png" alt="Ford Trucks" title="Ford Trucks" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/fuzul.png" alt="Fuzul" title="Fuzul" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/gbbva.png" alt="Garanti BBVA" title="Garanti BBVA" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/gizia.png" alt="Gizia" title="Gizia" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/golf.png" alt="Golf" title="Golf" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/hm.png" alt="H&amp;M" title="H&amp;M" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/hemington.png" alt="Hemington" title="Hemington" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/henkel.png" alt="Henkel" title="Henkel" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/herobaby.png" alt="Hero Baby" title="Hero Baby" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/honda.png" alt="Honda" title="Honda" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/hunnap.png" alt="Hunnap" title="Hunnap" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/hyundai.png" alt="Hyundai" title="Hyundai" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/ing.png" alt="ING" title="ING" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/idas.png" alt="İdaş" title="İdaş" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/jaguar.png" alt="Jaguar" title="Jaguar" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/jbl.png" alt="JBL" title="JBL" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/karaca.png" alt="Karaca" title="Karaca" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/kelebek.png" alt="Kelebek" title="Kelebek" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/kt.png" alt="KT" title="KT" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/karcher.png" alt="Kärcher" title="Kärcher" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/lr.png" alt="Land Rover" title="Land Rover" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/lova.png" alt="Lova" title="Lova" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/ltb.png" alt="LTB" title="LTB" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/lufi.png" alt="Lufi" title="Lufi" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/m-coco.png" alt="M-Coco" title="M-Coco" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/mcard.png" alt="Mastercard" title="Mastercard" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/mavi.png" alt="Mavi" title="Mavi" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/mercedes.png" alt="Mercedes-Benz" title="Mercedes-Benz" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/meta.png" alt="Meta" title="Meta" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/metromarket.png" alt="Metro Market" title="Metro Market" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/migros.png" alt="Migros" title="Migros" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/misli.png" alt="Misli" title="Misli" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/mmmarket.png" alt="MM Market" title="MM Market" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/mondelez.png" alt="Mondelez" title="Mondelez" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/ms.png" alt="MS" title="MS" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/nkolay.png" alt="N Kolay" title="N Kolay" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/neova.png" alt="Neova" title="Neova" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/nesine.png" alt="Nesine" title="Nesine" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/nestle.png" alt="Nestlé" title="Nestlé" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/nisantasi.png" alt="Nişantaşı" title="Nişantaşı" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/note.png" alt="Note" title="Note" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/nutella.png" alt="Nutella" title="Nutella" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/obag.png" alt="O bag" title="O bag" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/omix.png" alt="Omix" title="Omix" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/pandora.png" alt="Pandora" title="Pandora" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/papara.png" alt="Papara" title="Papara" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/parasut.png" alt="Paraşüt" title="Paraşüt" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/philips.png" alt="Philips" title="Philips" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/pluxee.png" alt="Pluxee" title="Pluxee" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/pinar.png" alt="Pınar" title="Pınar" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/qnb.png" alt="QNB" title="QNB" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/ramsey.png" alt="Ramsey" title="Ramsey" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/reno.png" alt="Renault" title="Renault" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/saatsaat.png" alt="Saat&amp;Saat" title="Saat&amp;Saat" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/sahibinden.png" alt="sahibinden.com" title="sahibinden.com" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/samsung.png" alt="Samsung" title="Samsung" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/sariyer.png" alt="Sarıyer" title="Sarıyer" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/seat.png" alt="SEAT" title="SEAT" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/setur.png" alt="Setur" title="Setur" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/shell.png" alt="Shell" title="Shell" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/siemens.png" alt="Siemens" title="Siemens" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/sleepy.png" alt="Sleepy" title="Sleepy" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/solgar.png" alt="Solgar" title="Solgar" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/sompo.png" alt="Sompo Sigorta" title="Sompo Sigorta" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/tabii.png" alt="tabii" title="tabii" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/tchibo.png" alt="Tchibo" title="Tchibo" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/teb.png" alt="TEB" title="TEB" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/technomobile.png" alt="Technomobile" title="Technomobile" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/tefal.png" alt="Tefal" title="Tefal" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/tekfen.png" alt="Tekfen" title="Tekfen" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/teknosa.png" alt="Teknosa" title="Teknosa" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/th.png" alt="TH" title="TH" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/ticimax.png" alt="Ticimax" title="Ticimax" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/titanic.png" alt="Titanic" title="Titanic" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/tib.png" alt="TİB" title="TİB" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/troy.png" alt="TROY" title="TROY" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/turkcell.png" alt="Turkcell" title="Turkcell" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/tt.png" alt="Türk Telekom" title="Türk Telekom" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/turkiyefinans.png" alt="Türkiye Finans" title="Türkiye Finans" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/uludag.png" alt="Uludağ" title="Uludağ" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/vestel.png" alt="Vestel" title="Vestel" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/vodafone.png" alt="Vodafone" title="Vodafone" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/vw.png" alt="Volkswagen" title="Volkswagen" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/warmhouse.png" alt="Warmhouse" title="Warmhouse" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/watsons.png" alt="Watsons" title="Watsons" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/weebaby.png" alt="Wee Baby" title="Wee Baby" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/xiaomi.png" alt="Xiaomi" title="Xiaomi" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/yvesrocher.png" alt="Yves Rocher" title="Yves Rocher" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/zen.png" alt="Zen" title="Zen" loading="lazy" width="120" height="120"></figure>
+          <figure class="brand"><img src="assets/img/brands/sisecam.png" alt="Şişecam" title="Şişecam" loading="lazy" width="120" height="120"></figure>
         </div>
         <div class="brands__more">
           <button class="btn btn--ghost" id="brandToggle" type="button" aria-expanded="false" aria-controls="brandGrid">Tüm markaları göster</button>
@@ -327,7 +567,19 @@
           <p>Yayıncılar, platformlar ve teknoloji iş ortaklarımızla geniş bir dijital ekosistemde çalışıyoruz.</p>
         </div>
         <div class="partners">
-<!--PARTNERS-->
+          <figure class="partner reveal"><img src="assets/img/partners/is-ortagi-01.jpg" alt="İş ortağı 1" loading="lazy"></figure>
+          <figure class="partner reveal"><img src="assets/img/partners/is-ortagi-02.jpg" alt="İş ortağı 2" loading="lazy"></figure>
+          <figure class="partner reveal"><img src="assets/img/partners/is-ortagi-03.jpg" alt="İş ortağı 3" loading="lazy"></figure>
+          <figure class="partner reveal"><img src="assets/img/partners/is-ortagi-04.jpg" alt="İş ortağı 4" loading="lazy"></figure>
+          <figure class="partner reveal"><img src="assets/img/partners/is-ortagi-05.jpg" alt="İş ortağı 5" loading="lazy"></figure>
+          <figure class="partner reveal"><img src="assets/img/partners/is-ortagi-06.jpg" alt="İş ortağı 6" loading="lazy"></figure>
+          <figure class="partner reveal"><img src="assets/img/partners/is-ortagi-07.jpg" alt="İş ortağı 7" loading="lazy"></figure>
+          <figure class="partner reveal"><img src="assets/img/partners/is-ortagi-08.jpg" alt="İş ortağı 8" loading="lazy"></figure>
+          <figure class="partner reveal"><img src="assets/img/partners/is-ortagi-09.jpg" alt="İş ortağı 9" loading="lazy"></figure>
+          <figure class="partner reveal"><img src="assets/img/partners/is-ortagi-10.jpg" alt="İş ortağı 10" loading="lazy"></figure>
+          <figure class="partner reveal"><img src="assets/img/partners/is-ortagi-11.jpg" alt="İş ortağı 11" loading="lazy"></figure>
+          <figure class="partner reveal"><img src="assets/img/partners/is-ortagi-12.jpg" alt="İş ortağı 12" loading="lazy"></figure>
+          <figure class="partner reveal"><img src="assets/img/partners/is-ortagi-13.jpg" alt="İş ortağı 13" loading="lazy"></figure>
         </div>
       </div>
     </section>
@@ -411,7 +663,7 @@
   <footer class="footer">
     <div class="container footer__inner">
       <div class="footer__brand">
-        <img src="assets/img/logo.png" alt="Splash Digital" width="150" height="39" loading="lazy" onerror="this.onerror=null;this.src='assets/img/logo.svg'">
+        <img src="assets/img/logo.png" alt="Splash Digital" width="150" height="69" loading="lazy" onerror="this.onerror=null;this.src='assets/img/logo.svg'">
         <p>Splash Digital olarak, dijital reklam ve medya alanında yenilikçi çözümler sunuyoruz.</p>
       </div>
       <div class="footer__col">
@@ -449,6 +701,7 @@
     <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7c-2 0-4-.6-5.7-1.6l-.4-.2-3.9 1 1-3.8-.3-.4A10.7 10.7 0 1 1 16 26.7zm5.9-8c-.3-.2-1.9-1-2.2-1-.3-.1-.5-.2-.7.1l-1 1.3c-.2.2-.4.2-.7.1a8.8 8.8 0 0 1-4.4-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.3 1.4 3.5c.2.2 2.4 3.7 5.8 5.2 2.2.9 3 1 4.1.8.7-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5l-.6-.4z"/></svg>
   </a>
 
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
   <script src="assets/js/main.js" defer></script>
 </body>
 </html>

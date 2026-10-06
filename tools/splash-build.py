@@ -7,6 +7,7 @@ Yeni marka eklemek için logoyu assets/img/brands/ içine koyup betiği tekrar �
 Görünen adı değiştirmek için aşağıdaki NAMES sözlüğünü güncelleyin.
 """
 import html
+import json
 import os
 import re
 
@@ -56,12 +57,36 @@ def name_of(f):
     return NAMES.get(stem.lower(), stem.replace('-', ' ').title())
 
 
+def kind(url):
+    u = url.lower()
+    if u.endswith('.mp4'):
+        return 'Video'
+    if u.endswith(('.png', '.jpg', '.jpeg')):
+        return 'Display'
+    return 'Rich Media'
+
+
+def projects():
+    data = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'splash-projects.json'), encoding='utf-8'))
+    out = []
+    for i, p in enumerate(data):
+        t, s, u = html.escape(p['t']), html.escape(p['s']), html.escape(p['u'])
+        out.append(
+            f'          <a class="work" href="{u}" target="_blank" rel="noopener" data-cursor="Gör">\n'
+            f'            <div class="work__media"><img src="assets/img/projects/{html.escape(p["i"])}" alt="{t} – {s}" loading="lazy" width="900" height="600"></div>\n'
+            f'            <div class="work__body"><span class="work__tag">{html.escape(p["c"])} · {kind(p["u"])}</span>'
+            f'<h3>{t}</h3><span class="work__sub">{s}</span><span class="work__link">Projeyi Gör →</span></div>\n'
+            f'          </a>')
+    return '\n'.join(out), len(data)
+
+
 def main():
+    proj, nproj = projects()
     brands = files('brands')
     partners = files('partners')
     b = '\n'.join(
         f'          <figure class="brand"><img src="assets/img/brands/{html.escape(f)}" alt="{html.escape(name_of(f))}" '
-        f'title="{html.escape(name_of(f))}" loading="lazy" width="150" height="150"></figure>'
+        f'title="{html.escape(name_of(f))}" loading="lazy" width="120" height="120"></figure>'
         for f in sorted(brands, key=lambda f: name_of(f).lower())
     )
     p = '\n'.join(
@@ -74,7 +99,10 @@ def main():
                  lambda m: m.group(1) + (b or '<!--BRANDS-->') + m.group(2), src, flags=re.S)
     src = re.sub(r'(<div class="partners">\n).*?(\n\s*</div>\n\s*</div>\n\s*</section>)',
                  lambda m: m.group(1) + (p or '<!--PARTNERS-->') + m.group(2), src, count=1, flags=re.S)
+    src = re.sub(r'(<div class="works" id="workGrid">\n).*?(\n\s*</div>\n\s*<div class="works__more">)',
+                 lambda m: m.group(1) + proj + m.group(2), src, flags=re.S)
     open(INDEX, 'w', encoding='utf-8').write(src)
+    print(f'{nproj} proje yazıldı.')
     print(f'{len(brands)} marka, {len(partners)} iş ortağı yazıldı.')
 
 
