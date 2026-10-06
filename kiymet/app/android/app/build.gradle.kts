@@ -29,11 +29,28 @@ android {
         versionName = flutter.versionName
     }
 
+    signingConfigs {
+        // Mağaza anahtarı ortam değişkenleriyle verilirse o, verilmezse sabit test anahtarı kullanılır.
+        // Sabit anahtar sayesinde her yeni test APK'sı eskisinin üzerine kurulabilir.
+        create("release") {
+            val storePath = System.getenv("KIYMET_KEYSTORE")
+            if (storePath != null) {
+                storeFile = file(storePath)
+                storePassword = System.getenv("KIYMET_KEYSTORE_PASSWORD")
+                keyAlias = System.getenv("KIYMET_KEY_ALIAS")
+                keyPassword = System.getenv("KIYMET_KEY_PASSWORD")
+            } else {
+                storeFile = rootProject.file("test-signing/kiymet-test.jks")
+                storePassword = "kiymet-test"
+                keyAlias = "kiymet-test"
+                keyPassword = "kiymet-test"
+            }
+        }
+    }
+
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.getByName("release")
         }
     }
 }

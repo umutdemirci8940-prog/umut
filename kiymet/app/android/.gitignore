@@ -12,3 +12,5 @@ GeneratedPluginRegistrant.java
 key.properties
 **/*.keystore
 **/*.jks
+# Yalnızca test APK imzası (bkz. test-signing/README.md)
+!test-signing/kiymet-test.jks
