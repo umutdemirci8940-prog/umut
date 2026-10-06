@@ -14,6 +14,7 @@ permissions:
 jobs:
   mirror:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
         with:
@@ -24,22 +25,21 @@ jobs:
           OUT=mevcut-site-yedek/site
           mkdir -p "$OUT"
           UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0 Safari/537.36"
-          for u in https://splashdigital.com.tr/ https://www.splashdigital.com.tr/; do
-            wget --mirror --page-requisites --adjust-extension --convert-links \
-              --no-parent -e robots=off --timeout=30 --tries=2 --wait=0.3 \
-              --level=4 --user-agent="$UA" --restrict-file-names=windows \
-              --span-hosts --domains=splashdigital.com.tr,www.splashdigital.com.tr \
-              -P "$OUT" "$u" || true
-          done
+          # Sonsuz WordPress bağlantılarına (feed, ?p=, wp-json, sayfalama) girmemesi için filtreli ve süre sınırlı
+          timeout 600 wget --mirror --page-requisites --adjust-extension --convert-links \
+            --no-parent -e robots=off --timeout=20 --tries=2 \
+            --level=2 --user-agent="$UA" --restrict-file-names=windows \
+            --reject-regex '(\?|/feed/|/wp-json/|/xmlrpc|/comments/|/page/[0-9]|/author/|/tag/|/category/|replytocom|/wp-login)' \
+            -P "$OUT" https://www.splashdigital.com.tr/ || true
           # sitemap'teki tüm sayfalar
           for sm in sitemap.xml sitemap_index.xml wp-sitemap.xml page-sitemap.xml post-sitemap.xml; do
             curl -sSL -A "$UA" "https://splashdigital.com.tr/$sm" -o "mevcut-site-yedek/$sm" || true
           done
           grep -hoE 'https?://[^<"]+' mevcut-site-yedek/*.xml 2>/dev/null | grep splashdigital | sort -u > mevcut-site-yedek/url-listesi.txt || true
           if [ -s mevcut-site-yedek/url-listesi.txt ]; then
-            wget --page-requisites --adjust-extension --convert-links -e robots=off \
+            timeout 300 wget --page-requisites --adjust-extension --convert-links -e robots=off \
               --timeout=30 --tries=2 --user-agent="$UA" --restrict-file-names=windows \
-              -P "$OUT" -i mevcut-site-yedek/url-listesi.txt || true
+              -P "$OUT" -i mevcut-site-yedek/url-listesi.txt --reject-regex '(\?|/feed/|/wp-json/)' || true
           fi
           # bilinen tüm sayfalar
           for p in "" projelerimiz hizmetlerimiz about-us contact-us markalarimiz is-ortaklarimiz \
@@ -47,7 +47,7 @@ jobs:
                    web-ve-mobil-gelistirme pazarlama-ve-danismanlik kullanici-ve-yazilim-gelistirme; do
             echo "https://www.splashdigital.com.tr/$p/"
           done > mevcut-site-yedek/sayfalar.txt
-          wget --page-requisites --adjust-extension --convert-links -e robots=off \
+          timeout 300 wget --page-requisites --adjust-extension --convert-links -e robots=off \
             --timeout=30 --tries=2 --user-agent="$UA" --restrict-file-names=windows \
             -P "$OUT" -i mevcut-site-yedek/sayfalar.txt || true
           # boş xml'leri temizle
@@ -77,7 +77,7 @@ jobs:
           curl -sSL -A "$UA" https://www.splashdigital.com.tr/ | grep -oE "https?://[^\"' )]*Splash-Logo[^\"' )]*" | sort -u >> mevcut-site-yedek/medya-listesi.txt || true
           sort -u -o mevcut-site-yedek/medya-listesi.txt mevcut-site-yedek/medya-listesi.txt
           wc -l mevcut-site-yedek/medya-listesi.txt
-          wget -x -nH -e robots=off --timeout=30 --tries=2 --user-agent="$UA" \
+          timeout 900 wget -x -nH -nc -e robots=off --timeout=30 --tries=2 --user-agent="$UA" \
             -P mevcut-site-yedek/medya -i mevcut-site-yedek/medya-listesi.txt || true
           du -sh mevcut-site-yedek/medya; find mevcut-site-yedek/medya -type f | wc -l
           du -sh mevcut-site-yedek
@@ -157,4 +157,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A mevcut-site-yedek
           git commit -m "splashdigital.com.tr mevcut site yedeği (GitHub Actions)" || { echo "Değişiklik yok"; exit 0; }
-          git push
+          git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          git push origin HEAD:"${GITHUB_REF_NAME}"
