@@ -6,6 +6,7 @@
 |---|---|---|
 | **A · Siyah & Altın** | `970x250/index.html` | Koyu zemin, imlece göre eğilen 3B kart, açılıp kapanan 4 ayrıcalık paneli |
 | **B · Biniş Kartı** | `970x250-binis-karti/index.html` | Açık zemin, havalimanı kalkış panosu (split-flap) ve "kaydır, biniş yap" etkileşimli biniş kartı |
+| **C · Davetiye** | `970x250-davetiye/index.html` | Bordo zemin, mühürlü davetiye kartı, kazınınca "Wings Black davetlisiniz" mesajını açan altın varak |
 
 ---
 
@@ -35,7 +36,7 @@ Bütün metinler, rakamlar, kart seviyesi (`tier`), hedef URL ve süreler dosyad
 **Not:** akbank.com bu ortamdan erişilemedi. Ayrıcalık rakamları (transferde %75'e varan, restoranda %15'e varan, 1,5 kat mil, son dakika bilet) Wings'in kamuya açık mevcut ayrıcalıklarından alındı ve **yer tutucu** olarak kullanıldı. Lansman ürününün kesin metinleri ve hukuk onayı ile güncellenmelidir. Kart üzerindeki kanat işareti soyut bir yer tutucudur, yayından önce resmi Wings logosuyla değiştirilmelidir.
 
 ## Akbank logosu
-Logo, `https://www.akbank.com/SiteAssets/img/logo.svg` adresindeki resmi dosyadır. `tools/embed-logo.js` bu dosyayı masthead'deki `LOGO:START` / `LOGO:END` işaretlerinin arasına satır içi SVG olarak gömer. Böylece banner tek dosya olarak kalır. Koyu zeminde okunsun diye koyu/siyah dolgular fildişine çevrilir, kırmızı alanlar olduğu gibi korunur.
+Logo, `https://www.akbank.com/SiteAssets/img/logo.svg` adresindeki resmi dosyadır. `tools/embed-logo.js` bu dosyayı masthead'deki `LOGO:START` / `LOGO:END` işaretlerinin arasına satır içi SVG olarak gömer. Böylece banner tek dosya olarak kalır. Koyu zeminde okunsun diye koyu/siyah dolgular fildişine çevrilir, kırmızı alanlar olduğu gibi korunur. İşaretin sonuna eklenen mod her çalışmanın zeminine göre seçilir: `LOGO:START` koyu zemin (A), `LOGO:START:light` açık zeminde orijinal renkler (B), `LOGO:START:mono` tek renk fildişi / negatif logo (C).
 
 Bulut oturumu akbank.com'a erişemediği için indirme işi GitHub Actions'ta yapılır (`.github/workflows/akbank-wings-logo.yml`). İş akışı gömme betiği değiştiğinde kendiliğinden çalışır, *Actions → "Wings masthead – Akbank logosunu çek ve göm" → Run workflow* ile elle de başlatılabilir. Logo gömülene kadar banner'da yazı ile "Akbank" görünür.
 
@@ -70,3 +71,29 @@ Açık fildişi zemin, Bodoni başlık ve Akbank kırmızısıyla editoryal bir 
 İçerik ve süreler dosyadaki `CONFIG.rows` altında. Pano satır başına en fazla 20 karakter gösterir.
 
 Ekran görüntüleri ve etkileşim testi (sürükleme + CTA): `NODE_PATH=$(npm root -g) node akbank-wings/tools/capture.js 970x250-binis-karti`
+
+
+---
+
+## Konsept C · Davetiye (`970x250-davetiye/index.html`)
+
+| Davetiye | Kazınıyor | Davet açıldı |
+|---|---|---|
+| ![](screens/970x250-davetiye/02-ipucu-kazima.jpg) | ![](screens/970x250-davetiye/03-kaziniyor.jpg) | ![](screens/970x250-davetiye/05-davet-acildi.jpg) |
+
+Bordo kadife zemin üzerinde mühürlü, fildişi bir davetiye kartı. Logo bu zeminde kırmızı okunmadığı için tek renk fildişi (negatif) kullanılır.
+
+**Kurgu**
+1. **0–1,5 sn:** Davetiye hafif dönerek yerine oturur ve Akbank kırmızısı mühür kartın köşesine basılır.
+2. **2,6 sn:** Kazıma alanını tanıtmak için altın varakta otomatik olarak kısa bir kavis kazınır. Sağdaki metin ve madeni para animasyonu kullanıcıyı kazımaya çağırır.
+3. **Kazıma:** Fareyle üzerinden geçmek (masaüstü) ya da parmakla sürmek (mobil) varağı kazır; imleç madeni para şeklindedir. Varağın %50'si kazınınca kalanı erir, altın pullar saçılır ve **"Wings Black davetlisiniz."** mesajı açılır.
+4. **Açılış sonrası:** Sağda üç ayrıcalık sırayla belirir ve **"Daveti kabul edin"** CTA'sı gelir.
+5. **Etkileşim olmazsa:** Kimse kazımazsa davetiye 14. saniyede kendiliğinden açılır, böylece etkileşime girmeyen izleyici de mesajı görür. Kullanıcı kazımaya başladıysa otomatik açılma iptal edilir.
+
+**Etkileşim ve ölçüm**
+- Kazıma alanındaki tıklamalar reklam çıkışını tetiklemez. Klavyede kazıma alanına odaklanıp Enter'a basmak davetiyeyi açar.
+- Çıkış adları `Wings_Davetiye_Exit` ve `Wings_Davetiye_CTA`. UTM'deki `utm_content` alanı `kapali`, `kazindi` ya da `otomatik` olur; böylece kazıyan kullanıcı ile otomatik açılanı görenler ayrı ölçülür.
+- Olaylar: `hover`, `scratch_start`, `reveal_user`, `reveal_auto`, `exit`.
+- `CONFIG` ayarları: `revealAt` (açılma eşiği), `demoAt` (ipucu zamanı), `autoRevealMs` (otomatik açılma, 0 = kapalı), `perks` (ayrıcalık listesi).
+
+Ekran görüntüleri ve etkileşim testi (kazıma, CTA, otomatik açılma): `NODE_PATH=$(npm root -g) node akbank-wings/tools/capture.js 970x250-davetiye`

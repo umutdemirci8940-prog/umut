@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=970,height=250">
+<meta name="viewport" content="width=970,height=250">
+<title>Wings – Davetiye – 970x250 Masthead</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>
+  /* Reklam sunucusu clickTag'i (Google Ads / CM360) – yayında ağ tarafından ezilir. */
+  var clickTag = window.clickTag || "";
+</script>
+<style>
+  :root {
+    --wine: #3a0a0e;
+    --wine-2: #5a1016;
+    --wine-3: #23050a;
+    --ivory: #f7f1e4;
+    --paper: #fbf7ee;
+    --ink: #2a1a16;
+    --mute: #8a7a6c;
+    --gold: #d2b06f;
+    --gold-hi: #f3e1b0;
+    --gold-lo: #8f6b2e;
+    --red: #dc0005;
+    --serif: "Playfair Display", "Didot", "Times New Roman", serif;
+    --sans: "Manrope", "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 970px; height: 250px; overflow: hidden; background: var(--wine); }
+
+  #ad {
+    position: relative; width: 970px; height: 250px; overflow: hidden; cursor: pointer; outline: none;
+    font-family: var(--sans); color: var(--ivory);
+    background:
+      radial-gradient(360px 220px at 52% 50%, rgba(255,190,150,.10), transparent 70%),
+      repeating-linear-gradient(115deg, rgba(255,255,255,.012) 0 2px, transparent 2px 6px),
+      radial-gradient(120% 140% at 50% 50%, var(--wine-2) 0%, var(--wine) 45%, var(--wine-3) 100%);
+  }
+  #ad:focus-visible { box-shadow: inset 0 0 0 2px var(--gold); }
+
+  .reveal { opacity: 0; transform: translateY(8px); transition: opacity .7s ease, transform .7s ease; }
+  .ready .reveal { opacity: 1; transform: none; }
+
+  /* ---------- Sol ---------- */
+  .brand { position: absolute; left: 26px; top: 26px; width: 250px; }
+  .bank { display: flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; }
+  .bank i { width: 14px; height: 2px; background: var(--ivory); display: inline-block; }
+  .bank b { color: var(--ivory); font-weight: 800; }
+  .bank .logo { display: block; height: 13px; width: auto; }
+  .bank .logo svg { display: block; height: 100%; width: auto; }
+  .wordmark { margin-top: 12px; font-family: var(--serif); font-weight: 600; font-size: 40px; line-height: .95; color: var(--ivory); }
+  .wordmark small { display: inline-block; margin-left: 8px; font: 700 9px/1 var(--sans); letter-spacing: .34em; vertical-align: 8px; color: var(--gold); }
+  .headline { margin-top: 12px; font-family: var(--serif); font-size: 20px; line-height: 1.2; font-weight: 500; }
+  .headline em { color: var(--gold-hi); }
+  .sub { margin-top: 8px; font-size: 10.5px; line-height: 1.45; color: rgba(247,241,228,.62); max-width: 230px; }
+  .legal { position: absolute; left: 26px; bottom: 10px; width: 250px; font-size: 7.5px; line-height: 1.35; color: rgba(247,241,228,.42); }
+
+  /* ---------- Orta: davetiye kartı ---------- */
+  .card { position: absolute; left: 292px; top: 18px; width: 402px; height: 214px; z-index: 2;
+    background:
+      radial-gradient(120% 90% at 0% 0%, #fffdf8, transparent 60%),
+      linear-gradient(160deg, var(--paper), #f1e8d6);
+    border-radius: 3px; color: var(--ink);
+    box-shadow: 0 24px 34px -18px rgba(0,0,0,.75), 0 2px 0 rgba(255,255,255,.4) inset;
+    opacity: 0; transform: translateY(26px) rotate(-2.5deg); transition: opacity .9s ease .2s, transform 1.1s cubic-bezier(.16,.84,.24,1) .2s; }
+  .ready .card { opacity: 1; transform: rotate(-.6deg); }
+  .card::before { content: ""; position: absolute; inset: 8px; border: 1px solid rgba(175,140,72,.55); pointer-events: none; }
+  .card::after  { content: ""; position: absolute; inset: 11px; border: .5px solid rgba(175,140,72,.35); pointer-events: none; }
+  .c-top { position: absolute; left: 0; right: 0; top: 20px; text-align: center; font: 700 8px/1 var(--sans); letter-spacing: .44em; color: var(--gold-lo); }
+  .c-top::before, .c-top::after { content: ""; display: inline-block; width: 30px; height: 1px; background: rgba(143,107,46,.5); vertical-align: 3px; margin: 0 10px; }
+  .c-hello { position: absolute; left: 0; right: 0; top: 36px; text-align: center; font: italic 500 19px/1 var(--serif); }
+  .c-text { position: absolute; left: 40px; right: 40px; top: 62px; text-align: center; font-size: 10px; line-height: 1.45; color: #5d4c40; }
+
+  /* kazı alanı */
+  .scratch { position: absolute; left: 44px; top: 104px; width: 314px; height: 72px; border-radius: 4px; overflow: hidden;
+    box-shadow: 0 0 0 1px rgba(143,107,46,.35); }
+  .prize { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 14px;
+    background: radial-gradient(120% 140% at 50% 50%, #fff9ea, #f3e6c8); }
+  .prize .k { font: 700 7.5px/1.5 var(--sans); letter-spacing: .3em; color: var(--gold-lo); text-align: right; }
+  .prize .v { font-family: var(--serif); font-size: 25px; font-weight: 600; line-height: 1; color: var(--ink); }
+  .prize .v em { display: block; font-size: 15px; font-weight: 500; color: var(--red); margin-top: 3px; }
+  .prize .div { width: 1px; height: 40px; background: rgba(143,107,46,.4); }
+  canvas#foil { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none;
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ccircle cx='16' cy='16' r='13' fill='%23d2b06f' stroke='%238f6b2e' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='8.5' fill='none' stroke='%23f3e1b0' stroke-width='1.2'/%3E%3C/svg%3E") 16 16, crosshair;
+    transition: opacity .7s ease; }
+  .revealed canvas#foil { opacity: 0; pointer-events: none; }
+  .c-foot { position: absolute; left: 0; right: 0; bottom: 20px; text-align: center; font: 600 7.5px/1 var(--sans); letter-spacing: .32em; color: var(--mute); text-transform: uppercase; transition: opacity .4s; }
+
+  /* mühür */
+  .seal { position: absolute; right: -16px; bottom: -16px; width: 62px; height: 62px; z-index: 3;
+    opacity: 0; transform: scale(1.6) rotate(-20deg); transition: opacity .35s ease 1.2s, transform .45s cubic-bezier(.2,1.5,.4,1) 1.2s; }
+  .ready .seal { opacity: 1; transform: scale(1) rotate(-8deg); }
+  .seal svg { width: 100%; height: 100%; filter: drop-shadow(0 4px 5px rgba(0,0,0,.4)); }
+
+  /* altın pullar */
+  .spark { position: absolute; left: 50%; top: 50%; width: 5px; height: 5px; border-radius: 1px; background: var(--gold-hi); pointer-events: none; opacity: 0; z-index: 5; }
+  .burst .spark { animation: spark 1.1s cubic-bezier(.15,.7,.3,1) forwards; }
+  @keyframes spark { 0% { opacity: 1; transform: translate(-50%,-50%) rotate(0); } 100% { opacity: 0; transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) rotate(var(--r)); } }
+
+  /* ---------- Sağ ---------- */
+  .side { position: absolute; left: 722px; top: 24px; width: 226px; height: 202px; }
+  .state { position: absolute; inset: 0; transition: opacity .5s ease, transform .5s ease; }
+  .before .kick { font: 700 8px/1 var(--sans); letter-spacing: .32em; color: var(--gold); text-transform: uppercase; }
+  .before h2 { margin-top: 10px; font: 500 20px/1.2 var(--serif); }
+  .before p { margin-top: 8px; font-size: 10.5px; line-height: 1.45; color: rgba(247,241,228,.66); }
+  .coin { position: relative; margin-top: 16px; width: 120px; height: 40px; }
+  .coin svg { position: absolute; left: 0; top: 4px; width: 32px; height: 32px; animation: rub 1.8s ease-in-out infinite; }
+  .coin span { position: absolute; left: 0; top: 18px; height: 6px; width: 110px; border-radius: 3px;
+    background: repeating-linear-gradient(90deg, rgba(210,176,111,.5) 0 6px, transparent 6px 10px); }
+  @keyframes rub { 0%, 100% { transform: translateX(0) rotate(0); } 50% { transform: translateX(80px) rotate(40deg); } }
+
+  .after { opacity: 0; transform: translateY(10px); pointer-events: none; }
+  .revealed .before { opacity: 0; transform: translateY(-10px); pointer-events: none; }
+  .revealed .after { opacity: 1; transform: none; pointer-events: auto; transition-delay: .35s; }
+  .after .kick { font: 700 8px/1 var(--sans); letter-spacing: .32em; color: var(--gold); text-transform: uppercase; }
+  .after ul { list-style: none; margin-top: 10px; }
+  .after li { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid rgba(210,176,111,.2); font-size: 10.5px; line-height: 1.3;
+    opacity: 0; transform: translateX(10px); transition: opacity .5s ease, transform .5s ease; }
+  .after li b { color: var(--gold-hi); font-weight: 700; }
+  .after li svg { flex: 0 0 18px; width: 18px; height: 18px; color: var(--gold); }
+  .revealed .after li { opacity: 1; transform: none; }
+  .revealed .after li:nth-child(1) { transition-delay: .55s; }
+  .revealed .after li:nth-child(2) { transition-delay: .7s; }
+  .revealed .after li:nth-child(3) { transition-delay: .85s; }
+  .cta { position: absolute; left: 0; bottom: 0; display: inline-flex; align-items: center; gap: 10px; height: 34px; padding: 0 16px 0 18px;
+    background: linear-gradient(100deg, var(--gold-lo), var(--gold-hi) 50%, var(--gold)); color: var(--wine-3); text-decoration: none;
+    font: 700 10px/1 var(--sans); letter-spacing: .18em; text-transform: uppercase; border-radius: 2px;
+    opacity: 0; transform: translateY(6px); transition: opacity .5s ease 1.05s, transform .5s ease 1.05s, box-shadow .3s; }
+  .cta svg { width: 14px; height: 14px; transition: transform .3s; }
+  .revealed .cta { opacity: 1; transform: none; }
+  .cta:hover { box-shadow: 0 0 0 4px rgba(210,176,111,.2); }
+  .cta:hover svg { transform: translateX(3px); }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .2s !important; transition-delay: 0s !important; }
+  }
+</style>
+</head>
+<body>
+<div id="ad" role="link" tabindex="0" aria-label="Wings davetiyesi – ayrıcalıkları keşfedin, yeni sekmede açılır">
+
+  <!-- Sol -->
+  <div class="brand">
+    <div class="reveal" style="transition-delay:.1s">
+    <!-- LOGO:START:mono – tools/embed-logo.js resmi Akbank logosunu (SVG) buraya satır içi gömer -->
+    <div class="bank"><span class="logo"><svg role="img" aria-label="Akbank" focusable="false" viewBox="0 0 250 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M15.7775 0.199951L0 27.4H9.79301L12.0864 23.3595H30.6623L32.9557 27.4H42.9425L27.1619 0.199951H15.7775ZM80.7487 0.199951H69.2086L59.0662 9.7992H54.4413V0.199951H45.5821V27.4H54.4413V17.5688H60.1907L71.1113 27.4H83.1977L66.8771 12.8264L80.7487 0.199951ZM117.472 13.179C119.025 12.3245 120.737 10.7299 120.737 7.46769C120.737 2.99841 117.513 0.199951 112.148 0.199951H85.6087V27.4H113.044C118.485 27.4 122.37 24.8366 122.37 19.8241C122.37 15.5105 119.495 13.6459 117.475 13.179M139.075 0.199951L123.297 27.4H133.09L135.384 23.3595H153.96L156.253 27.4H166.24L150.462 0.199951H139.078H139.075ZM197.131 19.1634L181.703 0.199951H168.879V27.4H177.583V8.43651L193.011 27.4H205.834V0.199951H197.131V19.1634ZM232.802 12.8295L246.677 0.199951H235.137L224.995 9.7992H220.37V0.199951H211.511V27.4H220.37V17.5688H226.122L237.043 27.4H249.129L232.809 12.8264L232.802 12.8295ZM94.309 6.72757H109.346C110.979 6.72757 112.107 7.31204 112.107 8.7478C112.107 10.1836 110.979 10.6918 109.346 10.6918H94.309V6.72757ZM15.7775 16.9081L21.3744 7.03886L27.0094 16.9081H15.7775ZM139.078 16.9081L144.675 7.03886L150.31 16.9081H139.081H139.078ZM110.401 20.8723H94.3122V16.5206H110.401C112.148 16.5206 113.431 17.1432 113.431 18.6965C113.431 20.2498 112.148 20.8723 110.401 20.8723Z" fill="#f4efe4"/>
+</svg></span></div>
+    <!-- LOGO:END -->
+    </div>
+    <div class="wordmark reveal" style="transition-delay:.25s">Wings<small id="tierWord">BLACK</small></div>
+    <h1 class="headline reveal" style="transition-delay:.45s">Bazı ayrıcalıklar <em>davetle</em> başlar.</h1>
+    <p class="sub reveal" style="transition-delay:.65s">Yalnızca seçkin bir çevreye özel hazırlanan yeni ayrıcalığımız sizi bekliyor.</p>
+  </div>
+  <p class="legal reveal" style="transition-delay:.9s">Ayrıcalıklar kart tipine ve kampanya dönemine göre değişir. Ayrıntılar akbank.com'da.</p>
+
+  <!-- Orta: davetiye -->
+  <div class="card" id="card">
+    <div class="c-top">DAVETİYE</div>
+    <div class="c-hello">Sayın Misafirimiz,</div>
+    <div class="c-text">Seçkin bir yaşamın tüm duraklarında yanınızda olacak yeni ayrıcalığımızı ilk keşfedenlerden biri olmanızı dileriz.</div>
+    <div class="scratch" id="scratch">
+      <div class="prize" aria-live="polite">
+        <div class="k">SİZE<br>ÖZEL</div>
+        <div class="div"></div>
+        <div class="v">Wings <span id="tierPrize">Black</span><em>davetlisiniz.</em></div>
+      </div>
+      <canvas id="foil" aria-label="Altın alanı kazıyın" role="img"></canvas>
+    </div>
+    <div class="c-foot" id="cfoot">Altın alanı kazıyın</div>
+    <div class="seal" aria-hidden="true">
+      <svg viewBox="0 0 64 64">
+        <defs>
+          <radialGradient id="wax" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#ff3b3b"/><stop offset=".55" stop-color="#c00006"/><stop offset="1" stop-color="#7a0004"/></radialGradient>
+        </defs>
+        <path d="M32 2c5 0 7 3 11 4s8 0 10 4 1 7 3 10 5 6 4 11-4 6-4 10 2 8-1 11-7 2-10 4-5 6-10 6-7-4-11-5-8 1-11-3-1-7-3-10-6-6-5-11 4-6 4-10-2-8 1-11 7-2 10-4 6-6 11-6z" fill="url(#wax)"/>
+        <circle cx="32" cy="32" r="19" fill="none" stroke="rgba(0,0,0,.25)" stroke-width="2"/>
+        <circle cx="32" cy="32" r="19" fill="none" stroke="rgba(255,160,160,.35)" stroke-width="1" transform="translate(-.8 -.8)"/>
+        <text x="32" y="40" text-anchor="middle" font-family="Playfair Display, serif" font-size="22" font-weight="600" fill="rgba(90,0,3,.75)">W</text>
+        <text x="31.3" y="39.3" text-anchor="middle" font-family="Playfair Display, serif" font-size="22" font-weight="600" fill="rgba(255,170,170,.45)">W</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Sağ -->
+  <div class="side">
+    <div class="state before">
+      <div class="kick">Size özel bir davet</div>
+      <h2>Davetiyenizdeki altın alanı kazıyın.</h2>
+      <p>Wings'in seçkin dünyasında sizi neyin beklediğini keşfedin.</p>
+      <div class="coin" aria-hidden="true"><span></span>
+        <svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="13" fill="#d2b06f" stroke="#8f6b2e" stroke-width="2"/><circle cx="16" cy="16" r="8.5" fill="none" stroke="#f3e1b0" stroke-width="1.2"/></svg>
+      </div>
+    </div>
+    <div class="state after">
+      <div class="kick">Davetinizle gelen ayrıcalıklar</div>
+      <ul id="perks"></ul>
+      <a class="cta" id="cta" href="#">Daveti kabul edin
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ================== İÇERİK (lansman metinleri buradan güncellenir) ==================
+     Not: Rakamlar Wings'in kamuya açık mevcut ayrıcalıklarından alınmıştır ve
+     yer tutucudur; yayın öncesi Akbank ürün/hukuk onayı ile güncellenmelidir. */
+  var CONFIG = {
+    tier: 'Black',
+    landing: 'https://www.akbank.com/kartlar/kredi-kartlari/wings',
+    utm: 'utm_source=display&utm_medium=masthead&utm_campaign=wings_lansman_q4&utm_term=davetiye',
+    revealAt: 0.5,          // kazınan oran bu değeri geçince davetiye açılır
+    demoAt: 2600,           // ipucu olarak otomatik kısa bir kazıma (ms); 0 = kapalı
+    autoRevealMs: 14000,    // hiç etkileşim olmazsa davetiye kendiliğinden açılır; 0 = kapalı
+    perks: [
+      { icon: 'plane', html: 'Dünya genelinde <b>lounge &amp; Fast Track</b>' },
+      { icon: 'car',   html: 'Transferlerde <b>%75’e varan</b> indirim' },
+      { icon: 'dine',  html: 'Restoranlarda <b>%15’e varan</b> indirim' }
+    ]
+  };
+  var ICONS = {
+    plane: '<path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z" fill="currentColor"/>',
+    car:   '<path d="M5 16h14M6.5 16l1.6-5.2A2 2 0 0 1 10 9.4h4a2 2 0 0 1 1.9 1.4L17.5 16M4 16v3h3v-2M20 16v3h-3v-2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>',
+    dine:  '<path d="M7 3v8a3 3 0 0 0 6 0V3M10 3v19M18 3c-2 2-3 5-3 8h3v11" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>'
+  };
+
+  var $ = function (id) { return document.getElementById(id); };
+  var ad = $('ad'), scratchEl = $('scratch'), cv = $('foil');
+  $('tierWord').textContent = CONFIG.tier.toLocaleUpperCase('tr');
+  $('tierPrize').textContent = CONFIG.tier;
+  $('perks').innerHTML = CONFIG.perks.map(function (p) {
+    return '<li><svg viewBox="0 0 24 24">' + ICONS[p.icon] + '</svg><span>' + p.html + '</span></li>';
+  }).join('');
+
+  /* ---------- Ölçüm ---------- */
+  var seen = {};
+  function track(name) {
+    if (seen[name]) return; seen[name] = 1;
+    try { if (window.Enabler && Enabler.counter) Enabler.counter(name); } catch (e) {}
+    if (window.console && console.debug) console.debug('[wings] ' + name);
+  }
+
+  /* ---------- Altın varak ---------- */
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  var W = scratchEl.clientWidth, H = scratchEl.clientHeight;
+  cv.width = W * dpr; cv.height = H * dpr;
+  var ctx = cv.getContext('2d', { willReadFrequently: true });
+  ctx.scale(dpr, dpr);
+  function paintFoil() {
+    var g = ctx.createLinearGradient(0, 0, W, H);
+    g.addColorStop(0, '#8f6b2e'); g.addColorStop(.28, '#e8cf93'); g.addColorStop(.5, '#f6e7bd');
+    g.addColorStop(.72, '#c9a35a'); g.addColorStop(1, '#8f6b2e');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+    // fırçalanmış metal dokusu
+    for (var i = 0; i < 900; i++) {
+      ctx.fillStyle = 'rgba(' + (Math.random() < .5 ? '255,248,220' : '110,80,30') + ',' + (Math.random() * .18).toFixed(3) + ')';
+      ctx.fillRect(Math.random() * W, Math.random() * H, 1 + Math.random() * 14, .6);
+    }
+    // ince çerçeve ve kabartma yazı
+    ctx.strokeStyle = 'rgba(110,80,30,.45)'; ctx.lineWidth = 1; ctx.strokeRect(5.5, 5.5, W - 11, H - 11);
+    ctx.font = '700 10px Manrope, Arial, sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    var label = 'K A Z I Y I N';
+    ctx.fillStyle = 'rgba(255,250,230,.75)'; ctx.fillText(label, W / 2 + .7, H / 2 + .7);
+    ctx.fillStyle = 'rgba(110,78,26,.85)'; ctx.fillText(label, W / 2, H / 2);
+    ctx.font = 'italic 500 9px "Playfair Display", serif'; ctx.fillStyle = 'rgba(110,78,26,.7)';
+    ctx.fillText('size özel', W / 2, H / 2 + 15);
+  }
+
+  /* ---------- Kazıma ---------- */
+  var revealed = false, interacted = false, last = null, strokes = 0, demoRaf = 0, autoTimer = null;
+  function scratchTo(x, y) {
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.lineWidth = 30;
+    ctx.beginPath();
+    if (last) { ctx.moveTo(last.x, last.y); ctx.lineTo(x, y); ctx.stroke(); }
+    else { ctx.arc(x, y, 15, 0, Math.PI * 2); ctx.fill(); }
+    ctx.globalCompositeOperation = 'source-over';
+    last = { x: x, y: y };
+    if (++strokes % 6 === 0) check();
+  }
+  /* Kazınan oranı seyrek örneklemeyle ölçer. */
+  function ratio() {
+    var data = ctx.getImageData(0, 0, cv.width, cv.height).data, clear = 0, total = 0, step = 4 * 12;
+    for (var i = 3; i < data.length; i += step) { total++; if (data[i] < 40) clear++; }
+    return clear / total;
+  }
+  function check() { if (!revealed && ratio() >= CONFIG.revealAt) reveal(true); }
+
+  function reveal(user) {
+    if (revealed) return; revealed = true;
+    cancelAnimationFrame(demoRaf); clearTimeout(autoTimer);
+    ad.classList.add('revealed'); $('cfoot').textContent = 'Davetiniz onaylandı';
+    burst();
+    track(user ? 'reveal_user' : 'reveal_auto');
+  }
+  function burst() {
+    var host = scratchEl;
+    for (var i = 0; i < 26; i++) {
+      var s = document.createElement('i'); s.className = 'spark';
+      var a = Math.random() * Math.PI * 2, d = 50 + Math.random() * 110;
+      s.style.setProperty('--dx', Math.cos(a) * d + 'px'); s.style.setProperty('--dy', Math.sin(a) * d * .55 + 'px');
+      s.style.setProperty('--r', (Math.random() * 540 - 270) + 'deg');
+      s.style.animationDelay = (Math.random() * .15).toFixed(2) + 's';
+      if (i % 3 === 0) s.style.background = '#c9a35a';
+      host.appendChild(s);
+    }
+    scratchEl.style.overflow = 'visible';
+    requestAnimationFrame(function () { host.classList.add('burst'); });
+  }
+
+  function local(e) { var r = cv.getBoundingClientRect(); return { x: (e.clientX - r.left) * W / r.width, y: (e.clientY - r.top) * H / r.height }; }
+  var down = false;
+  cv.addEventListener('pointerdown', function (e) {
+    if (revealed) return;
+    down = true; last = null; e.stopPropagation(); e.preventDefault();
+    if (!interacted) { interacted = true; cancelAnimationFrame(demoRaf); clearTimeout(autoTimer); track('scratch_start'); }
+    cv.setPointerCapture && cv.setPointerCapture(e.pointerId);
+    var p = local(e); scratchTo(p.x, p.y);
+  });
+  /* Fare ile basılı tutmadan da kazınır (masaüstünde daha akıcı). */
+  cv.addEventListener('pointermove', function (e) {
+    if (revealed) return;
+    if (e.pointerType === 'mouse' && !down) {
+      if (!interacted) { interacted = true; cancelAnimationFrame(demoRaf); clearTimeout(autoTimer); track('scratch_start'); }
+    } else if (!down) return;
+    var p = local(e); scratchTo(p.x, p.y);
+  });
+  function up() { down = false; last = null; check(); }
+  cv.addEventListener('pointerup', up); cv.addEventListener('pointercancel', up);
+  cv.addEventListener('pointerleave', function () { if (!down) last = null; });
+  cv.addEventListener('click', function (e) { if (!revealed) e.stopPropagation(); });
+  // klavye erişimi: kazı alanı odaktayken Enter/boşluk davetiyeyi açar
+  cv.tabIndex = 0;
+  cv.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); reveal(true); } });
+
+  /* Otomatik ipucu: varakta kısa bir kavis kazınır. */
+  function demo() {
+    if (interacted || revealed) return;
+    var t0 = performance.now(), dur = 1100; last = null;
+    (function frame(now) {
+      if (interacted || revealed) return;
+      var t = Math.min(1, (now - t0) / dur);
+      scratchTo(18 + t * 92, H / 2 + Math.sin(t * Math.PI * 3) * 16);
+      if (t < 1) demoRaf = requestAnimationFrame(frame); else last = null;
+    })(t0);
+  }
+
+  /* ---------- Çıkış ---------- */
+  function exit() {
+    track('exit');
+    try { if (window.Enabler && Enabler.exit) { Enabler.exit(revealed ? 'Wings_Davetiye_CTA' : 'Wings_Davetiye_Exit'); return; } } catch (e) {}
+    var url = clickTag || (CONFIG.landing + (CONFIG.landing.indexOf('?') > -1 ? '&' : '?') + CONFIG.utm + '&utm_content=' + (revealed ? (interacted ? 'kazindi' : 'otomatik') : 'kapali'));
+    window.open(url, '_blank');
+  }
+  ad.addEventListener('click', function (e) { e.preventDefault(); exit(); });
+  ad.addEventListener('keydown', function (e) { if (e.target === ad && e.key === 'Enter') { e.preventDefault(); exit(); } });
+  ad.addEventListener('mouseenter', function () { track('hover'); });
+
+  /* ---------- Başlat ---------- */
+  function start() {
+    if (ad.classList.contains('ready')) return;
+    paintFoil();
+    ad.classList.add('ready');
+    if (CONFIG.demoAt) setTimeout(demo, CONFIG.demoAt);
+    if (CONFIG.autoRevealMs) autoTimer = setTimeout(function () { if (!interacted) reveal(false); }, CONFIG.autoRevealMs);
+  }
+  var go = function () { requestAnimationFrame(function () { requestAnimationFrame(start); }); };
+  if (document.fonts && document.fonts.ready) {
+    Promise.race([document.fonts.ready, new Promise(function (r) { setTimeout(r, 1200); })]).then(go);
+  } else { window.addEventListener('load', go); }
+  setTimeout(start, 2500);
+})();
+</script>
+</body>
+</html>

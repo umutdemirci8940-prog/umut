@@ -55,6 +55,28 @@ const fontCss = fs.readFileSync(cssFile, 'utf8');
     const popups = []; page.context().on('page', (p) => popups.push(p.url()));
     await page.click('#cta'); await page.waitForTimeout(500);
     if (!popups.length) errors.push('CTA tıklaması yeni sekme açmadı'); else console.log('CTA → ' + popups[0]);
+  } else if (work === '970x250-davetiye') {
+    await page.waitForTimeout(1300); await shot('01-davetiye');
+    await page.waitForTimeout(2800); await shot('02-ipucu-kazima');
+    const c = await page.locator('#foil').boundingBox();
+    await page.mouse.move(c.x + 20, c.y + 15); await page.mouse.down();
+    for (let i = 0; i <= 6; i++) await page.mouse.move(c.x + 20 + i * 30, c.y + (i % 2 ? c.height - 12 : 12), { steps: 5 });
+    await page.mouse.up(); await page.mouse.move(5, 295); await page.waitForTimeout(200); await shot('03-kaziniyor');
+    await page.mouse.move(c.x + 200, c.y + 12); await page.mouse.down();
+    for (let i = 0; i <= 8; i++) await page.mouse.move(c.x + 200 + (i % 2 ? 100 : 0), c.y + 12 + i * 6, { steps: 4 });
+    for (let i = 0; i <= 8; i++) await page.mouse.move(c.x + 10 + i * 36, c.y + c.height / 2 + (i % 2 ? 22 : -22), { steps: 4 });
+    await page.mouse.up(); await page.mouse.move(5, 295);
+    await page.waitForTimeout(450); await shot('04-acilis-pullar');
+    await page.waitForTimeout(1400); await shot('05-davet-acildi');
+    const ok = await page.evaluate(() => document.getElementById('ad').classList.contains('revealed'));
+    if (!ok) errors.push('Kazıma ile davetiye açılmadı');
+    const popups = []; page.context().on('page', (p) => popups.push(p.url()));
+    await page.click('#cta'); await page.waitForTimeout(500);
+    if (!popups.length) errors.push('CTA tıklaması yeni sekme açmadı'); else console.log('CTA → ' + popups[0]);
+    // etkileşimsiz senaryo: otomatik açılma
+    const p2 = await ctx.newPage(); await p2.goto('file://' + file); await p2.waitForTimeout(15500);
+    if (!(await p2.evaluate(() => document.getElementById('ad').classList.contains('revealed')))) errors.push('Otomatik açılma çalışmadı');
+    await p2.screenshot({ path: path.join(out, '06-otomatik-acilis.jpg'), type: 'jpeg', quality: 88, clip: { x: 0, y: 0, width: 970, height: 250 } });
   } else {
     await page.waitForTimeout(900); await shot('01-acilis');
     await page.waitForTimeout(2800); await shot('02-seyahat');
