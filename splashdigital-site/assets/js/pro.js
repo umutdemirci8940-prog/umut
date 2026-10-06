@@ -34,7 +34,7 @@
       fmt.classList.add('is-switching');
       fmt.setAttribute('data-active', k);
       tabs.forEach(function (t, j) { t.classList.toggle('is-active', j === i); t.setAttribute('aria-selected', j === i ? 'true' : 'false'); });
-      fmt.querySelectorAll('.fmt__img').forEach(function (im) { im.classList.toggle('is-active', im.getAttribute('data-fmt') === k); });
+      fmt.querySelectorAll('.cr').forEach(function (im) { im.classList.toggle('is-active', im.getAttribute('data-fmt') === k); });
       fmt.querySelectorAll('.fmt__info').forEach(function (p) { p.classList.toggle('is-active', p.getAttribute('data-fmt') === k); });
       if (label) label.textContent = LABELS[k] || '';
       setTimeout(function () {
