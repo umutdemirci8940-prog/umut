@@ -1,0 +1,160 @@
+name: Mevcut splashdigital.com.tr sitesini yedekle
+
+# Bulut oturumunun ağ politikası splashdigital.com.tr'ye erişemediği için site
+# GitHub'ın kendi sunucusunda indirilir ve dala geri push'lanır.
+on:
+  workflow_dispatch:
+  push:
+    branches: ['claude/**']
+    paths: ['.github/workflows/mirror-splash.yml', 'tools/splash-assets.txt']
+
+permissions:
+  contents: write
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Siteyi indir (wget mirror)
+        run: |
+          OUT=mevcut-site-yedek/site
+          mkdir -p "$OUT"
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0 Safari/537.36"
+          for u in https://splashdigital.com.tr/ https://www.splashdigital.com.tr/; do
+            wget --mirror --page-requisites --adjust-extension --convert-links \
+              --no-parent -e robots=off --timeout=30 --tries=2 --wait=0.3 \
+              --level=4 --user-agent="$UA" --restrict-file-names=windows \
+              --span-hosts --domains=splashdigital.com.tr,www.splashdigital.com.tr \
+              -P "$OUT" "$u" || true
+          done
+          # sitemap'teki tüm sayfalar
+          for sm in sitemap.xml sitemap_index.xml wp-sitemap.xml page-sitemap.xml post-sitemap.xml; do
+            curl -sSL -A "$UA" "https://splashdigital.com.tr/$sm" -o "mevcut-site-yedek/$sm" || true
+          done
+          grep -hoE 'https?://[^<"]+' mevcut-site-yedek/*.xml 2>/dev/null | grep splashdigital | sort -u > mevcut-site-yedek/url-listesi.txt || true
+          if [ -s mevcut-site-yedek/url-listesi.txt ]; then
+            wget --page-requisites --adjust-extension --convert-links -e robots=off \
+              --timeout=30 --tries=2 --user-agent="$UA" --restrict-file-names=windows \
+              -P "$OUT" -i mevcut-site-yedek/url-listesi.txt || true
+          fi
+          # bilinen tüm sayfalar
+          for p in "" projelerimiz hizmetlerimiz about-us contact-us markalarimiz is-ortaklarimiz \
+                   hedeflemeler-ve-raporlama medya-ve-reklam-planlama oasis-network-ve-uretim \
+                   web-ve-mobil-gelistirme pazarlama-ve-danismanlik kullanici-ve-yazilim-gelistirme; do
+            echo "https://www.splashdigital.com.tr/$p/"
+          done > mevcut-site-yedek/sayfalar.txt
+          wget --page-requisites --adjust-extension --convert-links -e robots=off \
+            --timeout=30 --tries=2 --user-agent="$UA" --restrict-file-names=windows \
+            -P "$OUT" -i mevcut-site-yedek/sayfalar.txt || true
+          # boş xml'leri temizle
+          find mevcut-site-yedek -maxdepth 1 -name '*.xml' -size -200c -delete || true
+
+      - name: WordPress içerik verisi (REST API) ve medya kütüphanesi
+        run: |
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0 Safari/537.36"
+          J=mevcut-site-yedek/wp-json; mkdir -p "$J"
+          for t in pages posts media categories tags; do
+            for pg in 1 2 3 4 5; do
+              curl -sSL -A "$UA" "https://www.splashdigital.com.tr/wp-json/wp/v2/$t?per_page=100&page=$pg" -o "$J/$t-$pg.json" || true
+              python3 -c "import json,sys;d=json.load(open('$J/$t-$pg.json'));sys.exit(0 if isinstance(d,list) and d else 1)" 2>/dev/null || { rm -f "$J/$t-$pg.json"; break; }
+            done
+          done
+          ls -la "$J"
+          # medya kütüphanesindeki tüm orijinal dosyalar + sayfalardan toplanan görsel listesi
+          python3 - <<'PY' > mevcut-site-yedek/medya-listesi.txt
+          import json, glob
+          urls = set(l.strip() for l in open('tools/splash-assets.txt') if l.strip())
+          for f in glob.glob('mevcut-site-yedek/wp-json/media-*.json'):
+              for m in json.load(open(f)):
+                  if m.get('source_url'): urls.add(m['source_url'])
+          print('\n'.join(sorted(urls)))
+          PY
+          # site logosu (tema ayarlarından)
+          curl -sSL -A "$UA" https://www.splashdigital.com.tr/ | grep -oE "https?://[^\"' )]*Splash-Logo[^\"' )]*" | sort -u >> mevcut-site-yedek/medya-listesi.txt || true
+          sort -u -o mevcut-site-yedek/medya-listesi.txt mevcut-site-yedek/medya-listesi.txt
+          wc -l mevcut-site-yedek/medya-listesi.txt
+          wget -x -nH -e robots=off --timeout=30 --tries=2 --user-agent="$UA" \
+            -P mevcut-site-yedek/medya -i mevcut-site-yedek/medya-listesi.txt || true
+          du -sh mevcut-site-yedek/medya; find mevcut-site-yedek/medya -type f | wc -l
+          du -sh mevcut-site-yedek
+          find "$OUT" -type f | head -300
+
+      - name: Metin, iletişim bilgisi ve görsel özetini çıkar
+        run: |
+          pip install --quiet beautifulsoup4
+          python3 - <<'PY'
+          import os, re, json
+          from bs4 import BeautifulSoup
+          root = 'mevcut-site-yedek/site'
+          pages, emails, phones, socials, images = [], set(), set(), set(), set()
+          for d, _, fs in os.walk(root):
+              for f in fs:
+                  p = os.path.join(d, f)
+                  if not f.endswith(('.html', '.htm')):
+                      if f.lower().endswith(('.png','.jpg','.jpeg','.webp','.svg','.gif')):
+                          images.add(os.path.relpath(p, root))
+                      continue
+                  html = open(p, encoding='utf-8', errors='ignore').read()
+                  s = BeautifulSoup(html, 'html.parser')
+                  for a in s.find_all('a', href=True):
+                      h = a['href']
+                      if h.startswith('mailto:'): emails.add(h[7:].split('?')[0])
+                      if h.startswith('tel:'): phones.add(h[4:])
+                      if re.search(r'(instagram|facebook|linkedin|twitter|x\.com|youtube|tiktok|behance|wa\.me|whatsapp)', h): socials.add(h)
+                  emails |= set(re.findall(r'[\w.+-]+@[\w-]+\.[\w.]+', s.get_text(' ')))
+                  phones |= set(re.findall(r'(?:\+90|0)\s?\(?\d{3}\)?\s?\d{3}\s?\d{2}\s?\d{2}', s.get_text(' ')))
+                  title = s.title.get_text(strip=True) if s.title else ''
+                  desc = (s.find('meta', attrs={'name': 'description'}) or {}).get('content', '') if s.find('meta', attrs={'name': 'description'}) else ''
+                  for t in s(['script', 'style', 'noscript', 'svg']): t.decompose()
+                  heads = [h.get_text(' ', strip=True) for h in s.find_all(['h1','h2','h3','h4'])]
+                  text = re.sub(r'\n\s*\n+', '\n\n', s.get_text('\n', strip=True))
+                  pages.append({'file': os.path.relpath(p, root), 'title': title, 'description': desc, 'headings': heads, 'text': text})
+          with open('mevcut-site-yedek/ICERIK.md', 'w', encoding='utf-8') as o:
+              o.write('# splashdigital.com.tr içerik dökümü\n\n')
+              o.write('## E-postalar\n' + '\n'.join('- '+e for e in sorted(emails)) + '\n\n')
+              o.write('## Telefonlar\n' + '\n'.join('- '+e for e in sorted(phones)) + '\n\n')
+              o.write('## Sosyal medya\n' + '\n'.join('- '+e for e in sorted(socials)) + '\n\n')
+              o.write('## Görseller\n' + '\n'.join('- '+e for e in sorted(images)) + '\n\n')
+              for pg in pages:
+                  o.write(f"\n---\n\n## Sayfa: {pg['file']}\n\n**Başlık:** {pg['title']}\n\n**Açıklama:** {pg['description']}\n\n**Başlıklar:**\n" + '\n'.join('- '+h for h in pg['headings']) + '\n\n**Metin:**\n\n' + pg['text'] + '\n')
+          json.dump({'emails': sorted(emails), 'phones': sorted(phones), 'socials': sorted(socials), 'pages': [p['file'] for p in pages], 'images': sorted(images)}, open('mevcut-site-yedek/ozet.json','w',encoding='utf-8'), ensure_ascii=False, indent=1)
+          print(open('mevcut-site-yedek/ozet.json', encoding='utf-8').read())
+          PY
+
+      - name: Playwright ile ekran görüntüsü
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+          node -e "
+          const { chromium } = require('playwright');
+          (async () => {
+            const b = await chromium.launch();
+            for (const [n, w, h] of [['masaustu', 1440, 900], ['mobil', 390, 844]]) {
+              const p = await b.newPage({ viewport: { width: w, height: h } });
+              try {
+                await p.goto('https://splashdigital.com.tr/', { waitUntil: 'networkidle', timeout: 60000 });
+                await p.waitForTimeout(2500);
+                await p.screenshot({ path: 'mevcut-site-yedek/ekran-' + n + '.png', fullPage: true });
+                if (n === 'masaustu') require('fs').writeFileSync('mevcut-site-yedek/render.html', await p.content());
+              } catch (e) { console.log('Ekran görüntüsü alınamadı:', e.message); }
+            }
+            await b.close();
+          })();
+          "
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: splashdigital-mevcut-site-yedek
+          path: mevcut-site-yedek
+
+      - name: Sonuçları dala push'la
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A mevcut-site-yedek
+          git commit -m "splashdigital.com.tr mevcut site yedeği (GitHub Actions)" || { echo "Değişiklik yok"; exit 0; }
+          git push
