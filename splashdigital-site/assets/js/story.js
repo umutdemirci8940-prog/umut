@@ -181,7 +181,7 @@
       if (dd < 0.06) { var f = (0.06 - dd) * 0.9; p.vx += dx * f; p.vy += dy * f; }
       p.vx *= 0.82; p.vy *= 0.82; p.x += p.vx; p.y += p.vy;
       var sp = Math.min(Math.abs(p.vx) + Math.abs(p.vy), 0.08) * 8;
-      ctx.fillStyle = 'rgba(' + (125 - sp * 60 | 0) + ',' + (227 - sp * 40 | 0) + ',255,' + (0.45 + p.s * 0.3) + ')';
+      ctx.fillStyle = 'rgba(' + (18 + sp * 30 | 0) + ',' + (125 + sp * 40 | 0) + ',' + (197 + sp * 30 | 0) + ',' + (0.35 + p.s * 0.3) + ')';
       ctx.fillRect(cx + p.x * sc, cy + p.y * sc, p.s * 1.6, p.s * 1.6);
     }
   })();

@@ -14,7 +14,9 @@ ErrorDocument 404 /404.html
   # Eski WordPress adreslerini yeni bölümlere yönlendir (Google sıralamasını korur)
   RewriteRule ^(about-us|hakkimizda)/?$ /#hakkimizda [NE,L,R=301]
   RewriteRule ^(contact-us|iletisim)/?$ /#iletisim [NE,L,R=301]
-  RewriteRule ^projelerimiz/?$ /#projeler [NE,L,R=301]
+  # Projeler: www.splashdigital.com.tr/projeler → projeler.pdf (adres çubuğunda /projeler kalır)
+  RewriteRule ^projeler/?$ /projeler.pdf [L]
+  RewriteRule ^projelerimiz/?$ /projeler [L,R=301]
   RewriteRule ^hizmetlerimiz/?$ /#hizmetler [NE,L,R=301]
   RewriteRule ^markalarimiz/?$ /#markalar [NE,L,R=301]
   RewriteRule ^is-ortaklarimiz/?$ /#is-ortaklari [NE,L,R=301]
@@ -45,6 +47,13 @@ ErrorDocument 404 /404.html
   ExpiresByType image/webp "access plus 6 months"
   ExpiresByType image/svg+xml "access plus 6 months"
 </IfModule>
+
+# PDF'ler indirilmeden tarayıcıda açılsın
+<FilesMatch "\.pdf$">
+  <IfModule mod_headers.c>
+    Header set Content-Disposition "inline; filename=\"Splash-Digital-Projeler.pdf\""
+  </IfModule>
+</FilesMatch>
 
 # Güvenlik başlıkları
 <IfModule mod_headers.c>

@@ -2,7 +2,7 @@
 """Splash Digital PDF portfolyosu üretir.
 
 Kullanım:  python3 tools/splash-portfolio.py && node tools/splash-portfolio-pdf.js
-Çıktı:     splashdigital-site/splash-digital-portfolyo.pdf
+Çıktı:     portfolyo/splash-digital-portfolyo.pdf
 
 Proje listesi tools/splash-projects.json, markalar ve iş ortakları
 splashdigital-site/assets/img/ klasörlerinden okunur. Proje eklemek için JSON'u güncelleyip tekrar çalıştırın.

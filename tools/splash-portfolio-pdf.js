@@ -5,7 +5,7 @@ const { chromium } = require('playwright');
 
 (async () => {
   const src = path.join(__dirname, 'portfolio', 'portfolyo.html');
-  const out = process.argv[2] || path.join(__dirname, '..', 'splashdigital-site', 'splash-digital-portfolyo.pdf');
+  const out = process.argv[2] || path.join(__dirname, '..', 'portfolyo', 'splash-digital-portfolyo.pdf');
   const browser = await chromium.launch();
   const page = await browser.newPage();
   await page.goto('file://' + src, { waitUntil: 'networkidle' });

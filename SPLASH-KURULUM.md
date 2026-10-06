@@ -32,11 +32,12 @@ v=spf1 include:_spf.google.com include:<hosting-firmasinin-spf-adresi> ~all
 - [ ] `https://www.splashdigital.com.tr` açılıyor, kilit simgesi var
 - [ ] `https://www.splashdigital.com.tr/markalarimiz/` → sayfadaki Markalar bölümüne yönleniyor
 - [ ] İletişim formundan test mesajı gönderin → sales@ ve umut@ adreslerine ulaşmalı (spam klasörünü de kontrol edin)
-- [ ] Portfolyo PDF iniyor
+- [ ] `https://www.splashdigital.com.tr/projeler` adresi proje PDF'ini tarayıcıda açıyor (ajanslara gönderilecek link bu)
+- [ ] `https://www.splashdigital.com.tr/projelerimiz/` → `/projeler` adresine yönleniyor
 - [ ] Google Search Console'da `sitemap.xml` gönderin
 
 ## Güncelleme
-- Proje eklemek: görseli `splashdigital-site/assets/img/projects/` içine koyun, `tools/splash-projects.json` dosyasına satır ekleyin,
-  `python3 tools/splash-build.py` (site) ve `python3 tools/splash-portfolio.py && node tools/splash-portfolio-pdf.js` (PDF) çalıştırın.
+- **Projeler PDF'ini güncellemek:** yeni PDF'i hosting'de `public_html/projeler.pdf` dosyasının üzerine **aynı adla** yükleyin.
+  Link (`/projeler`) değişmez; ajanslara gönderdiğiniz bağlantılar otomatik olarak yeni dosyayı açar.
 - Marka eklemek: logoyu `splashdigital-site/assets/img/brands/` içine koyup `python3 tools/splash-build.py`.
 - Metinler doğrudan `splashdigital-site/index.html` içinde düzenlenebilir.

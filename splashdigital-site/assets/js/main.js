@@ -211,10 +211,10 @@
         g.r += g.v; g.v *= 0.992; g.a *= 0.975;
         if (g.a < 0.01) { rings.splice(i, 1); continue; }
         ctx.beginPath(); ctx.arc(g.x, g.y, g.r, 0, Math.PI * 2);
-        ctx.strokeStyle = 'rgba(125,227,255,' + g.a + ')'; ctx.lineWidth = 1.4; ctx.stroke();
+        ctx.strokeStyle = 'rgba(18,125,197,' + (g.a * 0.55) + ')'; ctx.lineWidth = 1.2; ctx.stroke();
         if (g.r > 14) {
           ctx.beginPath(); ctx.arc(g.x, g.y, g.r * 0.62, 0, Math.PI * 2);
-          ctx.strokeStyle = 'rgba(43,182,245,' + (g.a * 0.6) + ')'; ctx.lineWidth = 1; ctx.stroke();
+          ctx.strokeStyle = 'rgba(18,125,197,' + (g.a * 0.3) + ')'; ctx.lineWidth = 1; ctx.stroke();
         }
       }
     })();
@@ -252,11 +252,11 @@
 
   /* ---------- Manyetik butonlar ---------- */
   if (finePointer && !reduce) {
-    d.querySelectorAll('.btn, .wa, .socials a').forEach(function (el) {
+    d.querySelectorAll('.btn--primary, .wa').forEach(function (el) {
       el.classList.add('magnet');
       el.addEventListener('pointermove', function (e) {
         var r = el.getBoundingClientRect();
-        var x = (e.clientX - r.left - r.width / 2) * 0.25, yy = (e.clientY - r.top - r.height / 2) * 0.35;
+        var x = (e.clientX - r.left - r.width / 2) * 0.12, yy = (e.clientY - r.top - r.height / 2) * 0.18;
         el.style.transform = 'translate(' + x + 'px,' + yy + 'px)';
       });
       el.addEventListener('pointerleave', function () { el.style.transform = ''; });
