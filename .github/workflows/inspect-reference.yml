@@ -28,7 +28,7 @@ jobs:
       - name: Siteyi aç, kaydır, kaydet
         run: |
           mkdir -p referans/remarkad
-          cat > /tmp/inspect.js <<'EOF'
+          cat > ./inspect-tmp.js <<'EOF'
           const { chromium } = require('playwright');
           const fs = require('fs');
           const OUT = 'referans/remarkad';
@@ -78,7 +78,7 @@ jobs:
             await b.close();
           })();
           EOF
-          node /tmp/inspect.js
+          node ./inspect-tmp.js
           ls -la referans/remarkad
 
       - name: Görselleri küçült
