@@ -54,7 +54,7 @@
   cards.forEach(function (c, i) { html += '<li' + (i === 0 ? ' class="is-active"' : '') + '><span>' + c.querySelector('h3').textContent + '</span></li>'; });
   html += '</ol></div>';
   story.innerHTML = html;
-  story.style.height = (N * 85 + 100) + 'vh';
+  story.style.height = (N * 45 + 100) + 'vh';
   story.removeAttribute('aria-hidden');
   d.documentElement.classList.add('has-story');
 

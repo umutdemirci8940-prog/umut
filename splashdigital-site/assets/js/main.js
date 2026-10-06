@@ -61,25 +61,6 @@
     requestAnimationFrame(startHero);
   }
 
-  /* ---------- Yumuşak kaydırma (Lenis, varsa) ---------- */
-  var lenis = null;
-  function initLenis() {
-    if (lenis || reduce || !window.Lenis || !finePointer) return;
-    lenis = new window.Lenis({ duration: 1.1, smoothWheel: true });
-    (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(performance.now());
-    d.querySelectorAll('a[href^="#"]').forEach(function (a) {
-      a.addEventListener('click', function (e) {
-        var id = a.getAttribute('href');
-        var target = id.length > 1 ? d.querySelector(id) : d.body;
-        if (!target) return;
-        e.preventDefault();
-        lenis.scrollTo(target, { offset: id === '#top' ? 0 : -70 });
-        history.replaceState(null, '', id);
-      });
-    });
-  }
-  if (window.Lenis) initLenis(); else window.addEventListener('load', initLenis);
-
   /* ---------- Header ---------- */
   var header = d.querySelector('.header');
 
@@ -304,7 +285,7 @@
       var open = grid.classList.toggle('is-open');
       btn.setAttribute('aria-expanded', open);
       setText(open);
-      if (!open) (lenis ? lenis.scrollTo(grid, { offset: -120 }) : grid.scrollIntoView({ behavior: 'smooth' }));
+      if (!open) grid.scrollIntoView({ behavior: 'smooth' });
       onScroll();
     });
     return grid;
