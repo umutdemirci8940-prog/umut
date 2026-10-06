@@ -146,6 +146,48 @@
 .projects-band__mosaic:hover::after { opacity: 1; animation: scanY 1.6s linear infinite; }
 @keyframes scanY { from { top: 0; } to { top: 100%; } }
 
+/* ---------- İletişim ve footer: veri ağı arka planı ---------- */
+.datanet--section, .datanet--footer { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+.contact .contact__inner { z-index: 1; }
+.footer { position: relative; overflow: hidden; }
+.footer > .container { position: relative; z-index: 1; }
+
+/* ---------- Bölüm etiketleri ---------- */
+.eyebrow__txt { white-space: pre; }
+
+/* ---------- Logolar: dalga gibi belirme ---------- */
+.js .cascade > * { opacity: 0; transform: translateY(18px) scale(.96); transition: opacity .5s var(--d, 0ms), transform .6s cubic-bezier(.2, .8, .2, 1) var(--d, 0ms), border-color .25s, box-shadow .25s; }
+.js .cascade.is-on > * { opacity: 1; transform: none; }
+
+/* ---------- Hakkımızda: HUD çerçevesi + tarama ---------- */
+.about__media { --c: rgba(18, 125, 197, .55); }
+.about__media::before { content: ''; position: absolute; inset: -12px; pointer-events: none; z-index: 2;
+  background:
+    linear-gradient(var(--c), var(--c)) left top / 26px 2px no-repeat, linear-gradient(var(--c), var(--c)) left top / 2px 26px no-repeat,
+    linear-gradient(var(--c), var(--c)) right top / 26px 2px no-repeat, linear-gradient(var(--c), var(--c)) right top / 2px 26px no-repeat,
+    linear-gradient(var(--c), var(--c)) left bottom / 26px 2px no-repeat, linear-gradient(var(--c), var(--c)) left bottom / 2px 26px no-repeat,
+    linear-gradient(var(--c), var(--c)) right bottom / 26px 2px no-repeat, linear-gradient(var(--c), var(--c)) right bottom / 2px 26px no-repeat; }
+.about__media::after { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 2px; z-index: 1; pointer-events: none; border-radius: 2px;
+  background: linear-gradient(90deg, transparent, var(--sky), transparent); box-shadow: 0 0 14px 2px rgba(63, 179, 240, .7); animation: scanImg 4.5s ease-in-out infinite; }
+@keyframes scanImg { 0% { top: 2%; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { top: 96%; opacity: 0; } }
+
+/* ---------- Projeler bandı: sürekli tarama + yavaş yakınlaşma ---------- */
+.projects-band__mosaic img { animation: kenburns 14s ease-in-out infinite alternate; }
+.projects-band__mosaic img:nth-child(2) { animation-delay: -5s; } .projects-band__mosaic img:nth-child(3) { animation-delay: -9s; }
+@keyframes kenburns { from { transform: scale(1); } to { transform: scale(1.08); } }
+.projects-band__mosaic::after { opacity: 1; animation: scanY 3.2s linear infinite; }
+.projects-band__mosaic:hover::after { animation-duration: 1.4s; }
+
+/* ---------- İletişim formu: dönen ışık kenarı ---------- */
+.form { position: relative; isolation: isolate; }
+.form::before { content: ''; position: absolute; inset: -1px; border-radius: inherit; padding: 1px; pointer-events: none; z-index: -1;
+  background: conic-gradient(from var(--ang), transparent 0 75%, var(--sky) 88%, var(--brand) 94%, transparent 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude;
+  animation: spinAng 5s linear infinite; }
+.contact__list svg { animation: iconGlow 3s ease-in-out infinite; }
+.contact__list li:nth-child(2) svg { animation-delay: 1s; } .contact__list li:nth-child(3) svg { animation-delay: 2s; }
+@keyframes iconGlow { 0%, 100% { box-shadow: 0 0 0 0 rgba(18, 125, 197, 0); } 50% { box-shadow: 0 0 0 6px rgba(18, 125, 197, .1); } }
+
 /* ---------- Mobil ---------- */
 @media (max-width: 900px) {
   .adstage { width: min(100%, 460px); margin-top: 8px; }
@@ -162,5 +204,6 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .adreel img:first-child { opacity: 1; }
+  .about__media::after, .projects-band__mosaic::after { display: none; }
   .stat__spark path { stroke-dashoffset: 0; }
 }
