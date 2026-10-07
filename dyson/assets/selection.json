@@ -1,0 +1,12 @@
+{
+  "floor": {
+    "video": "assets/selected/floor-film.mp4",
+    "poster": "assets/selected/floor-poster.jpg",
+    "image": "assets/selected/floor-thumb.jpg"
+  },
+  "hair": {
+    "video": "assets/selected/hair-film.mp4",
+    "poster": "assets/selected/hair-poster.jpg",
+    "image": "assets/selected/hair-thumb.jpg"
+  }
+}

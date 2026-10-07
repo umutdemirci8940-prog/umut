@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="ad.size" content="width=970,height=250">
+<title>{{TITLE}}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script>var clickTag = "{{URL}}";</script>
+<style>
+:root { --bg:#0b0b0c; --fg:#f4f2ee; --mute:#a7a39d; --line:rgba(255,255,255,.16); --hair-accent:#b9764e; --heat:#ffa04d; --laser:#3dff6e; }
+* { box-sizing:border-box; }
+html, body { margin:0; background:transparent; color:var(--fg); }
+body { font-family:Jost, Futura, 'Century Gothic', system-ui, sans-serif; -webkit-font-smoothing:antialiased; }
+button { font:inherit; color:inherit; }
+
+/* 970 × 250 Billboard */
+.mh { position:relative; width:970px; height:250px; overflow:hidden; background:radial-gradient(90% 160% at 70% 45%, #1e1d1f 0%, #0b0b0c 58%, #070707 100%); isolation:isolate; user-select:none; -webkit-user-select:none; border:1px solid #000; }
+.mh::before { content:''; position:absolute; inset:0; z-index:-1; transition:opacity 1s;
+  background:radial-gradient(28% 75% at 66% 50%, color-mix(in srgb, var(--hair-accent) 34%, transparent), transparent 70%), radial-gradient(22% 50% at 84% 45%, color-mix(in srgb, var(--heat) 18%, transparent), transparent 70%); }
+.mh[data-stage="floor"]::before { opacity:0; }
+.mh::after { content:''; position:absolute; inset:0; z-index:-1; opacity:0; transition:opacity 1s; background:radial-gradient(40% 80% at 70% 90%, rgba(61,255,110,.10), transparent 70%); }
+.mh[data-stage="floor"]::after { opacity:1; }
+#gl { position:absolute; inset:0; width:100%; height:100%; display:block; cursor:grab; touch-action:pan-y; }
+.mh.grabbing #gl { cursor:grabbing; }
+.mh[data-stage="floor"][data-mode="sweep"] #gl { cursor:crosshair; touch-action:none; }
+.panel { position:absolute; left:0; top:0; bottom:0; width:340px; z-index:1; pointer-events:none; background:linear-gradient(90deg, rgba(8,8,9,.92) 0%, rgba(8,8,9,.75) 70%, rgba(8,8,9,0) 100%); }
+
+/* Üst satır: logo + sekmeler */
+.top { position:absolute; left:18px; top:12px; display:flex; align-items:center; gap:14px; z-index:3; }
+.logo { font-weight:600; font-size:23px; letter-spacing:-.04em; line-height:1; color:#fff; text-decoration:none; }
+.tabs { display:flex; gap:2px; padding:3px; border:1px solid var(--line); border-radius:999px; background:rgba(20,20,22,.6); backdrop-filter:blur(10px); }
+.tab { position:relative; display:flex; align-items:center; gap:6px; padding:4px 10px; border:0; border-radius:999px; background:transparent; color:var(--mute); font-size:11.5px; cursor:pointer; transition:background .3s, color .3s; overflow:hidden; }
+.tab[aria-selected="true"] { background:#f4f2ee; color:#111; }
+.tab .thumb { width:16px; height:16px; border-radius:50%; background:#fff center/contain no-repeat; }
+.tab .prog { position:absolute; left:10px; right:10px; bottom:2px; height:1.5px; background:currentColor; opacity:0; border-radius:2px; transform-origin:left; }
+.tab[aria-selected="true"] .prog { opacity:.35; animation:prog 9s linear forwards; }
+.mh.touched .tab .prog { display:none; }
+@keyframes prog { from { transform:scaleX(0); } to { transform:scaleX(1); } }
+
+/* Metin + kontrol sütunu */
+.cat { padding:4px 10px; border:1px solid var(--line); border-radius:999px; font-size:11px; color:var(--mute); letter-spacing:.02em; }
+.fthumb { display:none; width:26px; height:18px; border-radius:4px; background:#222 center/cover no-repeat; margin-left:-6px; }
+.fthumb[style] { display:inline-block; }
+.copy { position:absolute; left:18px; top:50px; bottom:14px; width:300px; display:flex; flex-direction:column; gap:7px; z-index:2; opacity:0; transform:translateY(8px); transition:opacity .5s, transform .5s; pointer-events:none; }
+.mh.ready[data-stage="hair"] .copy[data-for="hair"], .mh.ready[data-stage="floor"] .copy[data-for="floor"] { opacity:1; transform:none; pointer-events:auto; transition-delay:.2s; }
+.eyebrow { font-size:9.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--mute); }
+h2 { margin:-2px 0 2px; font-weight:500; font-size:22px; line-height:1.04; letter-spacing:-.015em; }
+.seg { display:flex; flex-wrap:nowrap; gap:4px; }
+.seg button { padding:3px 9px; border-radius:999px; border:1px solid var(--line); background:rgba(255,255,255,.04); font-size:11px; line-height:1.35; cursor:pointer; display:inline-flex; align-items:center; gap:5px; white-space:nowrap; transition:background .2s, border-color .2s, color .2s; }
+.seg button:hover { border-color:rgba(255,255,255,.45); }
+.seg button[aria-pressed="true"] { background:#f4f2ee; color:#111; border-color:#f4f2ee; }
+.seg button i { width:6px; height:6px; border-radius:50%; background:var(--c); box-shadow:0 0 6px var(--c); }
+.row { display:flex; gap:12px; align-items:center; }
+.sw { display:flex; gap:6px; align-items:center; }
+.sw button { width:17px; height:17px; border-radius:50%; border:1.5px solid transparent; cursor:pointer; padding:0; background:linear-gradient(135deg, var(--a) 0 50%, var(--b) 50% 100%); box-shadow:inset 0 0 0 1px rgba(255,255,255,.25); transition:transform .2s, border-color .2s; }
+.sw button[aria-pressed="true"] { border-color:#fff; transform:scale(1.15); }
+.swname { font-size:10px; color:var(--mute); white-space:nowrap; }
+.toggle { display:inline-flex; align-items:center; gap:6px; padding:0; border:0; background:none; cursor:pointer; font-size:10.5px; color:#ddd; white-space:nowrap; }
+.toggle b { width:24px; height:14px; border-radius:999px; background:#3a3a3d; position:relative; transition:background .25s; }
+.toggle b::after { content:''; position:absolute; top:2px; left:2px; width:10px; height:10px; border-radius:50%; background:#fff; transition:transform .25s; }
+.toggle[aria-pressed="true"] b { background:var(--hair-accent); }
+.toggle[aria-pressed="true"] b::after { transform:translateX(10px); }
+.cta { margin-top:auto; display:flex; gap:8px; align-items:center; }
+.btn { display:inline-flex; align-items:center; gap:8px; padding:7px 15px; border-radius:999px; border:0; background:#f4f2ee; color:#111; font-size:12.5px; font-weight:500; cursor:pointer; text-decoration:none; transition:transform .2s, background .2s; }
+.btn:hover { transform:translateY(-1px); background:#fff; }
+.btn svg { transition:transform .2s; }
+.btn:hover svg { transform:translateX(3px); }
+.btn.ghost { background:transparent; color:var(--fg); border:1px solid var(--line); }
+.btn.ghost:hover { border-color:#fff; }
+.note { font-size:10px; color:var(--mute); }
+
+/* Alt orta kontrol çubuğu */
+.dock { position:absolute; left:372px; bottom:10px; z-index:2; display:flex; align-items:center; gap:8px; padding:3px 3px 3px 11px; border-radius:999px; border:1px solid var(--line); background:rgba(14,14,16,.66); backdrop-filter:blur(12px); opacity:0; transform:translateY(6px); transition:opacity .5s, transform .5s; pointer-events:none; }
+.dock[data-for="floor"] { padding-left:3px; }
+.dock .lab { font-size:9px; letter-spacing:.14em; text-transform:uppercase; color:var(--mute); white-space:nowrap; }
+.mh.ready[data-stage="hair"] .dock[data-for="hair"], .mh.ready[data-stage="floor"] .dock[data-for="floor"] { opacity:1; transform:none; pointer-events:auto; transition-delay:.35s; }
+
+/* HUD'lar (sağ üst) */
+.hud { position:absolute; right:10px; top:10px; z-index:2; padding:8px 11px; border-radius:12px; border:1px solid var(--line); background:rgba(14,14,16,.62); backdrop-filter:blur(12px); width:146px; opacity:0; transform:translateY(-6px); transition:opacity .5s, transform .5s; pointer-events:none; }
+.mh.ready[data-stage="hair"] .hud-hair, .mh.ready[data-stage="floor"] .hud-floor { opacity:1; transform:none; pointer-events:auto; transition-delay:.35s; }
+.hud small { display:block; font-size:8.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--mute); }
+.temp { display:flex; align-items:baseline; gap:2px; font-size:26px; line-height:1.05; font-variant-numeric:tabular-nums; }
+.temp sup { font-size:12px; color:var(--heat); }
+.tbar { height:3px; border-radius:3px; background:#2a2a2d; margin:5px 0; overflow:hidden; }
+.tbar i { display:block; height:100%; width:calc(var(--v, .5) * 100%); background:linear-gradient(90deg, #7cc7ff, #ffd27a, #ff6a2b); transition:width .3s; }
+#nuralState { font-size:9.5px; color:#ccc; display:flex; align-items:center; gap:5px; white-space:nowrap; }
+#nuralState::before { content:''; flex:none; width:6px; height:6px; border-radius:50%; background:#666; }
+#nuralState[data-on="true"]::before { background:var(--laser); box-shadow:0 0 6px var(--laser); }
+.hud-floor { width:168px; }
+.total { font-size:22px; line-height:1.05; font-variant-numeric:tabular-nums; }
+.bin { display:grid; grid-template-columns:54px 1fr 30px; align-items:center; gap:5px; font-size:8.5px; color:#bbb; margin-top:3px; }
+.bin b { height:4px; border-radius:4px; background:#26262a; overflow:hidden; }
+.bin b i { display:block; height:100%; width:0; transition:width .3s; }
+.bin:nth-child(1) b i { background:#ffd84d; } .bin:nth-child(2) b i { background:#ff9a3d; } .bin:nth-child(3) b i { background:#ff5a8a; } .bin:nth-child(4) b i { background:#9a7bff; }
+.bin em { font-style:normal; text-align:right; font-variant-numeric:tabular-nums; color:#eee; }
+.reset { margin-top:4px; background:none; border:0; padding:0; color:var(--mute); font-size:9px; cursor:pointer; text-decoration:underline; text-underline-offset:2px; }
+
+/* Hotspot + kart */
+#hotspots { position:absolute; inset:0; pointer-events:none; z-index:2; }
+.hs { position:absolute; left:-11px; top:-11px; width:22px; height:22px; border-radius:50%; border:0; padding:0; background:transparent; cursor:pointer; transition:opacity .3s; }
+.hs span { position:absolute; inset:5px; border-radius:50%; background:#fff; animation:pulse 2.2s infinite; }
+.hs span::after { content:'+'; position:absolute; inset:0; display:grid; place-items:center; color:#111; font-size:11px; font-weight:600; line-height:1; transition:transform .3s; }
+.hs.on span::after { transform:rotate(45deg); }
+.hs:focus-visible { outline:2px solid #fff; outline-offset:1px; }
+@keyframes pulse { 0% { box-shadow:0 0 0 0 rgba(255,255,255,.55); } 70% { box-shadow:0 0 0 9px rgba(255,255,255,0); } 100% { box-shadow:0 0 0 0 rgba(255,255,255,0); } }
+.card { position:absolute; left:0; top:0; z-index:4; width:214px; padding:10px 12px; border-radius:12px; background:rgba(244,242,238,.97); color:#111; box-shadow:0 12px 28px rgba(0,0,0,.45); opacity:0; transition:opacity .25s; }
+.card.show { opacity:1; }
+.card h3 { margin:0 20px 4px 0; font-size:12.5px; font-weight:600; }
+.card p { margin:0; font-size:11px; line-height:1.4; color:#333; }
+.card .x { position:absolute; right:7px; top:7px; width:18px; height:18px; border-radius:50%; border:0; background:#e2dfd9; cursor:pointer; font-size:12px; line-height:1; padding:0; }
+
+.hint { position:absolute; left:372px; top:14px; z-index:2; display:flex; align-items:center; gap:6px; font-size:10.5px; color:#bdb9b2; pointer-events:none; transition:opacity .6s; }
+.hint svg { animation:sway 2.4s ease-in-out infinite; }
+@keyframes sway { 50% { transform:translateX(6px); } }
+.mh.touched .hint { opacity:0; }
+.hint [data-for] { display:none; }
+.mh[data-stage="hair"] .hint [data-for="hair"], .mh[data-stage="floor"][data-mode="sweep"] .hint [data-for="sweep"], .mh[data-stage="floor"][data-mode="inspect"] .hint [data-for="inspect"] { display:inline; }
+
+#video { position:absolute; inset:0; z-index:6; background:rgba(0,0,0,.9); display:grid; place-items:center; }
+#video[hidden] { display:none; }
+#video video { max-width:96%; max-height:92%; border-radius:8px; }
+#video button { position:absolute; right:10px; top:10px; }
+.legal { position:absolute; right:10px; bottom:6px; z-index:3; font-size:8.5px; color:#77736e; letter-spacing:.04em; }
+@media (prefers-reduced-motion: reduce) { .hs span { animation:none; } .hint svg { animation:none; } }
+</style>
+</head>
+<body>
+<div class="mh" id="mh" data-stage="{{STAGE}}" role="region" aria-label="Dyson reklamı – {{TITLE}}">
+  <canvas id="gl" aria-label="Döndürülebilir 3D ürün modeli"></canvas>
+  <div class="panel"></div>
+
+  <div class="top">
+    <a class="logo" href="https://www.dyson.com.tr/" data-exit="hair" data-label="Logo" aria-label="dyson">dyson</a>
+    <span class="cat">{{CATEGORY}}</span>
+  </div>
+  <div class="legal">Reklam</div>
+
+<!--hair-->
+  <section class="copy" data-for="hair" aria-label="Dyson Supersonic Nural">
+    <div class="eyebrow" lang="en">Dyson Supersonic Nural™</div>
+    <h2>Saçınızı hisseden<br>saç kurutma makinesi.</h2>
+    <div class="seg" id="heats" aria-label="Isı ayarı"></div>
+    <div class="row">
+      <div class="sw" id="hairSwatches" aria-label="Renk"></div><span class="swname" id="hairSwName">Nikel / Bakır</span>
+      <button class="toggle" id="nural" type="button" aria-pressed="true"><b></b>Saç derisi koruma</button>
+    </div>
+    <div class="cta">
+      <a class="btn" href="https://www.dyson.com.tr/products/hair-care" data-exit="hair" data-label="CTA_Hair">Keşfedin <svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+      <button class="btn ghost film" type="button"><span class="fthumb"></span>▶ Filmi izleyin</button>
+    </div>
+  </section>
+<!--/hair--><!--floor-->
+  <section class="copy" data-for="floor" aria-label="Dyson V12 Detect Slim">
+    <div class="eyebrow" lang="en">Dyson V12 Detect™ Slim</div>
+    <h2>Görmediğiniz<br>tozu görün.</h2>
+    <div class="row"><div class="seg" id="powers" aria-label="Güç modu"></div><span class="note" id="powerInfo">Emiş gücü otomatik ayarlanır</span></div>
+    <div class="row"><div class="sw" id="floorSwatches" aria-label="Renk"></div><span class="swname" id="floorSwName">Sarı / Nikel</span></div>
+    <div class="cta">
+      <a class="btn" href="https://www.dyson.com.tr/products/cord-free" data-exit="floor" data-label="CTA_Floor">Keşfedin <svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+      <button class="btn ghost film" type="button"><span class="fthumb"></span>▶ Filmi izleyin</button>
+    </div>
+  </section>
+<!--/floor--><!--hair-->
+  <div class="dock" data-for="hair"><span class="lab">Başlık</span><div class="seg" id="attachments"></div></div>
+<!--/hair--><!--floor-->
+  <div class="dock" data-for="floor"><div class="seg">
+    <button type="button" data-mode="sweep" aria-pressed="true">Lazerle süpür</button>
+    <button type="button" data-mode="inspect" aria-pressed="false">3D incele</button>
+  </div></div>
+<!--/floor--><!--hair-->
+  <div class="hud hud-hair" aria-live="polite">
+    <small>Hava sıcaklığı</small>
+    <div class="temp"><span id="temp">80</span><sup>°C</sup></div>
+    <div class="tbar" id="tempBar"><i></i></div>
+    <div id="nuralState">Mesafe güvenli</div>
+  </div>
+<!--/hair--><!--floor-->
+  <div class="hud hud-floor">
+    <small>Toplanan partikül</small>
+    <div class="total" id="total">0</div>
+    <div class="bins" id="bins"></div>
+    <button class="reset" id="reset" type="button">Zemini yeniden tozla</button>
+  </div>
+<!--/floor-->
+
+  <div id="hotspots"></div>
+  <div class="card" id="card" hidden role="dialog" aria-live="polite"><button class="x" id="cardClose" type="button" aria-label="Kapat">×</button><h3 id="cardTitle"></h3><p id="cardText"></p></div>
+
+  <div class="hint" aria-hidden="true">
+    <svg width="16" height="16" viewBox="0 0 24 24"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V11m0-1.5a1.5 1.5 0 0 1 3 0V12m0-1a1.5 1.5 0 0 1 3 0v4.5A5.5 5.5 0 0 1 12.5 21h-1a5.5 5.5 0 0 1-4.6-2.5L4.4 14.6a1.5 1.5 0 0 1 2.4-1.8L9 15" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span data-for="hair">Sürükleyip döndürün · <b>+</b> noktalarını keşfedin</span>
+    <span data-for="sweep">İmleci zeminde gezdirerek süpürün</span>
+    <span data-for="inspect">Sürükleyip döndürün · <b>+</b> noktalarını keşfedin</span>
+  </div>
+
+  <div id="video" hidden><video playsinline controls preload="none"></video><button class="btn" id="videoClose" type="button">Kapat ×</button></div>
+</div>
+<!--ASSETS-->
+<script>/*BUNDLE*/</script>
+</body>
+</html>
