@@ -11,10 +11,11 @@ const { chromium } = require('playwright');
 
 // Cloudflare engellerse sırayla diğer Dyson alan adları denenir.
 const PAGES = {
-  haircare: ['https://www.dyson.com.tr/products/hair-care', 'https://www.dyson.com/hair-care', 'https://www.dyson.co.uk/hair-care', 'https://www.dyson.de/haarpflege'],
+  haircare: ['https://www.dyson.com.tr/products/hair-care', 'https://www.dyson.com.tr/products/hair-care/hair-dryers', 'https://www.dyson.co.uk/hair-care/hair-dryers', 'https://www.dyson.com.au/hair-care', 'https://www.dyson.in/hair-care', 'https://www.dyson.ie/hair-care', 'https://www.dyson.com/hair-care'],
   floorcare: ['https://www.dyson.com.tr/products/cord-free', 'https://www.dyson.com/vacuum-cleaners/cordless', 'https://www.dyson.co.uk/vacuum-cleaners/cordless', 'https://www.dyson.de/staubsauger/kabellose-staubsauger'],
 };
 const OUT = path.join(__dirname, '..', 'assets', 'raw');
+const ONLY = process.env.ONLY ? process.env.ONLY.split(',') : null; // örn. ONLY=haircare
 const MAX_IMG = 40, MAX_VID = 4;
 
 (async () => {
@@ -25,7 +26,11 @@ const MAX_IMG = 40, MAX_VID = 4;
     userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0 Safari/537.36',
   });
   const index = {};
+  const prev = fs.existsSync(path.join(OUT, 'index.json')) ? JSON.parse(fs.readFileSync(path.join(OUT, 'index.json'), 'utf8')) : {};
+  Object.assign(index, prev);
   for (const [key, urls] of Object.entries(PAGES)) {
+   if (ONLY && !ONLY.includes(key)) continue;
+   delete index[key];
    for (const url of urls) {
     const dir = path.join(OUT, key);
     fs.mkdirSync(dir, { recursive: true });
