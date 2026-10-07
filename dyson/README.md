@@ -4,7 +4,7 @@ Dyson Türkiye için iki ayrı, birbirinden bağımsız **970×250 Billboard** m
 
 | Masthead | Dosya | Tıklama adresi | Paket |
 |---|---|---|---|
-| Saç bakımı – Dyson Supersonic Nural™ | `dist/haircare/index.html` | https://www.dyson.com.tr/products/hair-care | `dist/zip/dyson-haircare-970x250.zip` (filmli, 793 KB) · `…-lite.zip` (68 KB) |
+| Saç bakımı – Dyson Supersonic Nural™ | `dist/haircare/index.html` | https://www.dyson.com.tr/products/hair-care | `dist/zip/dyson-haircare-970x250.zip` (filmli, 813 KB) · `…-lite.zip` (89 KB) |
 | Kablosuz süpürge – Dyson V12 Detect™ Slim | `dist/cordfree/index.html` | https://www.dyson.com.tr/products/cord-free | `dist/zip/dyson-cordfree-970x250.zip` (filmli, 1,3 MB) · `…-lite.zip` (49 KB) |
 
 **Tek dosyalık teslim:** `teslim/haircare/index.html` ve `teslim/cordfree/index.html` – film dahil her şey dosyanın içinde, çift tıklayınca tarayıcıda çalışır.
@@ -25,7 +25,7 @@ Tıklama adresleri **parametresizdir** (UTM / takip parametresi yok). İkisini y
 - 3D model sürükleyerek çevrilir (±60°, esnek sınır), bırakınca öne döner; boştayken salınır, imleci takip eder. Hava halkası derinliği olan bir silindir, sap yuvarlak gövde olarak şekillenir.
 - Hava akışı halkanın 3D yönünü takip eder: ürün döndükçe akış da döner.
 - **Isı ayarı** (Soğuk 28°C / Düşük 60°C / Orta 80°C / Yüksek 100°C): hava çıkış halkasından fışkıran hava akışının ve ısıtıcı ışığının rengi değişir.
-- **Manyetik başlıklar** – setteki 5 başlığın orijinal fotoğrafları (Yoğunlaştırıcı, Difüzör, Geniş dişli tarak, Nazik hava, Kabarma önleyici): seçilen başlık vitrine "manyetik" olarak oturur, hava akışının biçimi değişir.
+- **Manyetik başlıklar** – setteki 5 başlık (Yoğunlaştırıcı, Difüzör, Geniş dişli tarak, Nazik hava, Kabarma önleyici) kendi orijinal fotoğraflarından 3D modellenmiştir. Seçilen başlık önden gelip hava çıkışına mıknatıs gibi yaylanarak **takılır**; ürün profili gösterecek şekilde yana döner, hava akışı başlığın ağzından ve başlığa özgü biçimde çıkar. Başka başlık seçilince önce mevcut başlık çıkar; "Başlıksız" çıkarır.
 - **Saç derisi koruma (Nural™)**: imleç halkaya (başa) yaklaştıkça sıcaklık göstergesi otomatik düşer.
 - **Özellik noktaları (+)** fotoğrafın üzerinde: Air Multiplier™, akıllı ısı kontrolü, Nural™ sensör, Hyperdymium™ motor, çıkarılabilir filtre.
 
@@ -37,7 +37,7 @@ Tıklama adresleri **parametresizdir** (UTM / takip parametresi yok). İkisini y
 
 **Ortak**
 - **Film**: dyson.com.tr kategori sayfalarındaki resmi filmler ("▶ Filmi izleyin"), masthead içinde açılır.
-- Harici kütüphane yoktur: 3D çizim saf WebGL (~6 KB, `src/product3d.js`), efektler 2D canvas; filmsiz paketler 49–68 KB'tır.
+- Harici kütüphane yoktur: 3D çizim saf WebGL (~6 KB, `src/product3d.js`), efektler 2D canvas; filmsiz paketler 49–89 KB'tır.
 - Klavye ile gezinme, `Esc` ile kapatma, `prefers-reduced-motion` desteği; ekranda değilken çizim durur.
 
 ## Siteden alınan materyaller
@@ -48,7 +48,7 @@ Kullanılanlar (`assets/selection.json` → `assets/selected/`):
 - Saç bakımı: `plp-updated-hairdryers` filmi (11 sn) + filmden poster/küçük görsel; sayfadaki Supersonic Nural™ "Erik/Bakır" rengi.
 - Kablosuz süpürge: `PLP-Cordfree_MegaEdit` filmi (19 sn) + lazer başlık karesinden poster/küçük görsel; sayfada öne çıkan V12 Detect™ Slim.
 
-Ürün fotoğrafları Dyson'ın görsel sunucusundan şeffaf PNG olarak alınır (`tools/fetch-dyson-products.js` → `assets/products/`): Supersonic Nural™ seti (492345) ve V12 Detect™ Slim (494876). `tools/cut-products.py` ana ürünü ve başlıkları ayırır, fotoğraftaki hazır tozu/aksesuarları temizler. `tools/depth-maps.py` 3D için yüksek çözünürlüklü doku ve derinlik haritası üretir (borular silindir kesitli, Nural halkası öne doğru silindir). Dyson'ın Türkiye ürün sayfalarında AR/3D model dosyası bulunmadığı `tools/fetch-dyson-3d.js` ile doğrulandı.
+Ürün fotoğrafları Dyson'ın görsel sunucusundan şeffaf PNG olarak alınır (`tools/fetch-dyson-products.js` → `assets/products/`): Supersonic Nural™ seti (492345) ve V12 Detect™ Slim (494876). `tools/cut-products.py` ana ürünü ve başlıkları ayırır, fotoğraftaki hazır tozu/aksesuarları temizler. `tools/depth-maps.py` 3D için yüksek çözünürlüklü doku ve derinlik haritası üretir (ürün ve 5 başlık) (borular silindir kesitli, Nural halkası öne doğru silindir). Dyson'ın Türkiye ürün sayfalarında AR/3D model dosyası bulunmadığı `tools/fetch-dyson-3d.js` ile doğrulandı.
 
 ## Derleme
 
@@ -65,7 +65,7 @@ Kaynaklar: `src/data.js` (metinler, adresler, özellik kartları ve fotoğraf ü
 
 ## Yayın notları
 
-- **Boyut:** filmsiz zip'ler 49–68 KB'tır; Google Ads'in 150 KB HTML5 sınırının rahatça altındadır. Filmli sürümler (video `media/film.mp4`) doğrudan yayıncı alımları, DV360 / CM360 rich media gibi daha geniş sınırlı yerleşimler içindir.
+- **Boyut:** filmsiz zip'ler 49–89 KB'tır; Google Ads'in 150 KB HTML5 sınırının rahatça altındadır. Filmli sürümler (video `media/film.mp4`) doğrudan yayıncı alımları, DV360 / CM360 rich media gibi daha geniş sınırlı yerleşimler içindir.
 - **clickTag:** her dosyada `var clickTag = "<parametresiz adres>"` tanımlıdır; reklam sunucusu kendi değerini atarsa o kullanılır. Studio'da `Enabler` varsa `Enabler.exit` çağrılır.
 - **Yazı tipi:** Google Fonts – Jost (Dyson'ın Futura çizgisine yakın). Harici font kabul etmeyen ağlarda `@font-face` ile gömülebilir.
 - **Ürün iddiaları** (110.000 / 125.000 rpm, saniyede 40'tan fazla sıcaklık ölçümü, saniyede 15.000 partikül sayımı, %99,99 / 0,3 mikron, 60 dk) Dyson'ın kamuya açık ürün bilgilerine dayanır; yayın öncesi marka onayı önerilir. Isı derece değerleri Supersonic ailesinin resmi kademeleridir.

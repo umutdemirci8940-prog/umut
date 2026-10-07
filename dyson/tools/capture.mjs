@@ -24,7 +24,7 @@ async function open(name) {
 let p = await open('haircare');
 await shot(p, 'haircare-1-acilis');
 await p.click('[data-heat="3"]'); await p.click('[data-att="concentrator"]'); await p.mouse.move(5, 5); await p.waitForTimeout(5000);
-await p.locator('.hs[data-key="multiplier"]').click({ force: true }); await p.waitForTimeout(400);
+await p.locator('.hs[data-key="magnetic"]').click({ force: true }); await p.waitForTimeout(400);
 ok(await p.locator('#card.show').count() === 1, 'haircare: hotspot kartı açılıyor');
 await shot(p, 'haircare-2-yogunlastirici-hotspot');
 await p.click('#cardClose'); await p.click('[data-att="diffuser"]'); await p.click('[data-heat="0"]'); await p.mouse.move(5, 5); await p.waitForTimeout(4000);
