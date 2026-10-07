@@ -28,7 +28,7 @@ export const DATA = {
         { key: 'flyaway', label: 'Kabarma önleyici', note: 'Uçuşan telleri bastırarak parlak bitiş', flow: { sx: 0.6, sy: 0.3, speed: 1.2, size: 0.8, side: true } },
       ],
       // Ürün fotoğrafı üzerindeki özellik noktaları (0–1, görsel genişliği/yüksekliği oranı)
-      spots: { multiplier: [0.1, 0.07], heat: [0.5, 0.135], nural: [0.9, 0.08], motor: [0.5, 0.5], filter: [0.5, 0.74] },
+      spots: { multiplier: [0.1, 0.07], heat: [0.5, 0.135], nural: [0.9, 0.08], motor: [0.5, 0.5], filter: [0.5, 0.66] },
       features: {
         filter: { title: 'Çıkarılabilir filtre', text: 'Paslanmaz çelik filtre kolayca çıkarılıp temizlenir; performans ilk günkü gibi korunur.' },
         multiplier: { title: 'Air Multiplier™ teknolojisi', text: 'Hava akışını yaklaşık üç katına çıkararak yüksek hızlı, kontrollü bir hava jeti oluşturur.' },

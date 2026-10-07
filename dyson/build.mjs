@@ -1,4 +1,4 @@
-// İki ayrı 970×250 masthead derler (orijinal ürün fotoğrafları + 2D canvas efektleri) (her biri kendi index.html'inde, tek ürün):
+// İki ayrı 970×250 masthead derler (orijinal ürün fotoğraflarından 3D modeller + 2D canvas efektleri) (her biri kendi index.html'inde, tek ürün):
 //   dist/haircare/index.html  – Dyson Supersonic Nural (saç bakımı)
 //   dist/cordfree/index.html  – Dyson V12 Detect Slim (kablosuz süpürge)
 // Tüm kod ve görseller satır içidir. assets/selection.json'daki siteden alınmış materyaller
@@ -25,11 +25,11 @@ const dataUri = (rel) => { const f = path.join(root, rel); const ext = path.extn
 const cut = JSON.parse(fs.readFileSync(path.join(root, 'assets/cut/meta.json'), 'utf8'));
 function productAssets(stage) {
   if (stage === 'hair') {
-    const m = cut.dryer;
-    return { product: { src: dataUri(m.file), w: m.w, h: m.h, ring: m.ring }, atts: Object.fromEntries(Object.entries(cut.attachments).map(([k, v]) => [k, dataUri(v.file)])) };
+    const m = cut.mesh.nural;
+    return { product: { tex: dataUri(m.tex), depth: dataUri(m.depth), w: m.w, h: m.h, depthPx: m.depthPx, ring: m.ring }, atts: Object.fromEntries(Object.entries(cut.attachments).map(([k, v]) => [k, dataUri(v.file)])) };
   }
-  const m = cut.vacuum;
-  return { product: { src: dataUri(m.file), w: m.w, h: m.h, head: m.head } };
+  const m = cut.mesh.v12;
+  return { product: { tex: dataUri(m.tex), depth: dataUri(m.depth), w: m.w, h: m.h, depthPx: m.depthPx, head: cut.vacuum.head } };
 }
 let hasZip = true; try { execSync('zip -v', { stdio: 'ignore' }); } catch { hasZip = false; }
 fs.mkdirSync(path.join(dist, 'zip'), { recursive: true });

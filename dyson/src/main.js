@@ -1,11 +1,13 @@
-// Dyson 970×250 masthead – orijinal ürün fotoğrafları + canlı efektler (2D canvas, harici kütüphane yok)
+// Dyson 970×250 masthead – orijinal ürün fotoğraflarından 3D modeller (WebGL) + canlı efektler (2D canvas)
 import { DATA } from './data.js';
+import { createProduct } from './product3d.js';
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
 const lerp = (a, b, t) => a + (b - a) * t;
 const damp = (a, b, k, dt) => lerp(a, b, 1 - Math.exp(-k * dt));
+const elastic = (v, lim) => lim * Math.tanh(v / lim); // sınıra yaklaştıkça direnç
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const ONLY = window.__MH_STAGE__ === 'floor' ? 'floor' : 'hair';
@@ -13,7 +15,7 @@ const ASSETS = (window.__MH_ASSETS__ || {})[ONLY] || {};
 const D = DATA.stages[ONLY];
 const W = 970, H = 250;
 
-const mh = $('#mh'), hit = $('#hit'), prod = $('#prod'), tilt = $('#tilt'), img = $('#prodImg'), sheen = $('#sheen');
+const mh = $('#mh'), hit = $('#hit'), glc = $('#gl'), hsLayer = $('#hotspots');
 const fx = $('#fx'), floorC = $('#floor');
 const dpr = Math.min(window.devicePixelRatio || 1, 2);
 for (const c of [fx, floorC]) { c.width = W * dpr; c.height = H * dpr; }
@@ -27,26 +29,24 @@ function exit(label) {
   window.open(window.clickTag || D.url, '_blank', 'noopener');
 }
 
-/* ─────────────── Ürün fotoğrafı ─────────────── */
-const P = ASSETS.product || {}; // { src, w, h, ...meta }
-img.src = P.src || '';
-img.alt = D.product;
-sheen.style.webkitMaskImage = sheen.style.maskImage = `url(${P.src})`;
+/* ─────────────── Ürün (fotoğraftan 3D) ─────────────── */
+const P = ASSETS.product || {}; // { tex, depth, w, h, depthPx, ring | head }
 const aspect = P.w && P.h ? P.w / P.h : 0.27;
+let view = null; // createProduct() ile oluşur
 
-/** Ürün kutusu (sahne koordinatı): x,y sol üst; w,h boyut; rot derece */
+/** Ürün kutusu (sahne koordinatı): x,y sol üst; w,h boyut; rot derece (ekran düzleminde) */
 const box = { x: 0, y: 0, w: 0, h: 0, rot: 0 };
+let pivotX = 0.5, pivotY = 0.5;
 function placeProd() {
-  prod.style.width = box.w + 'px'; prod.style.height = box.h + 'px';
-  tilt.style.width = box.w + 'px'; tilt.style.height = box.h + 'px';
-  prod.style.transform = `translate(${box.x}px, ${box.y}px) rotate(${box.rot}deg)`;
-  prod.style.transformOrigin = `${(P.head ? P.head.x : 0.5) * 100}% ${(P.head ? P.head.y : 0.5) * 100}%`;
+  if (!view) return;
+  view.setBox(box, pivotX, pivotY);
+  view.setRotation(S.ry, S.rx, box.rot);
 }
 
 /* ─────────────── Durum ─────────────── */
 const S = {
   heat: 2, nural: true, att: 'none', power: 1, mode: 'sweep',
-  rx: 0, ry: 0, dragY: 0, dragX: 0, dragging: false, lastX: 0, lastY: 0,
+  rx: 0, ry: 0, dragY: 0, dragX: 0, spin: 0, dragging: false, lastX: 0, lastY: 0,
   px: 640, py: 125, pointerIn: false, interacted: false, idle: 0, t: 0, dist: 0.5,
   hx: 700, hy: 215, vx: 0, // süpürge başlığı (sahne koordinatı)
 };
@@ -61,12 +61,12 @@ function buildUI() {
     $('#powers').innerHTML = D.powers.map((p, i) => `<button type="button" data-pow="${i}" aria-pressed="${i === S.power}">${p.label}</button>`).join('');
     $('#bins').innerHTML = D.bins.map((b, i) => `<div class="bin"><span>${b.label}</span><b><i data-bar="${i}"></i></b><em data-cnt="${i}">0</em></div>`).join('');
   }
-  // + noktaları fotoğrafın içinde: eğilme/ölçeklemeyle birlikte tam yerinde kalır
+  // + noktaları: 3D modelin yüzeyine her karede izdüşürülür
   for (const [k, [fxp, fyp]] of Object.entries(D.spots)) {
     const f = D.features[k]; if (!f) continue;
     const b = document.createElement('button'); b.type = 'button'; b.className = 'hs'; b.dataset.key = k;
-    b.style.left = fxp * 100 + '%'; b.style.top = fyp * 100 + '%';
-    b.setAttribute('aria-label', f.title); b.innerHTML = '<span></span>'; tilt.appendChild(b);
+    b.dataset.fx = fxp; b.dataset.fy = fyp;
+    b.setAttribute('aria-label', f.title); b.innerHTML = '<span></span>'; hsLayer.appendChild(b);
   }
   if (!ASSETS.video) $$('.film').forEach((b) => b.remove());
   else if (ASSETS.image) $$('.fthumb').forEach((t) => { t.style.backgroundImage = `url(${ASSETS.image})`; });
@@ -135,7 +135,7 @@ hit.addEventListener('pointermove', (e) => {
   S.pointerIn = true; S.idle = 0;
   if (sweeping()) { if (e.pointerType === 'mouse' || S.dragging) markInteract(); return; }
   if (!S.dragging) return;
-  S.dragY = clamp(S.dragY + (x - S.lastX) * 0.35, -32, 32); S.dragX = clamp(S.dragX - (y - S.lastY) * 0.25, -16, 16);
+  S.spin += (x - S.lastX) * 0.7; S.dragX = clamp(S.dragX - (y - S.lastY) * 0.3, -20, 20);
   S.lastX = x; S.lastY = y;
 });
 const endDrag = () => { S.dragging = false; mh.classList.remove('grabbing'); };
@@ -146,11 +146,14 @@ function sweeping() { return ONLY === 'floor' && S.mode === 'sweep'; }
 
 /* ─────────────── Hotspot yerleşimi ─────────────── */
 function placeHotspots() {
-  const show = ONLY === 'hair' || S.mode === 'inspect';
-  const m = mh.getBoundingClientRect();
+  const show = view && (ONLY === 'hair' || S.mode === 'inspect');
   for (const b of hsEls) {
-    let on = show;
-    if (on) { const r = b.getBoundingClientRect(), x = r.left + r.width / 2 - m.left, y = r.top + r.height / 2 - m.top; on = x > 345 && x < m.width - 6 && y > 6 && y < m.height - 6; }
+    let on = show, x = 0, y = 0;
+    if (on) {
+      const p = view.project(+b.dataset.fx, +b.dataset.fy, 0.004);
+      x = p.x; y = p.y; on = p.facing > 0.2 && x > 345 && x < W - 6 && y > 6 && y < H - 6;
+      b.style.transform = `translate(${x}px, ${y}px)`;
+    }
     if (b._on === on) continue; b._on = on;
     b.style.opacity = on ? 1 : 0; b.style.pointerEvents = on ? 'auto' : 'none'; b.tabIndex = on ? 0 : -1;
   }
@@ -161,20 +164,12 @@ function nearHotspot(x, y) {
 }
 
 /* ═══════════════ SAÇ BAKIMI ═══════════════ */
-let glowHue, glowLit, attShow, attFlow = D.attachments ? D.attachments[0].flow : null;
+let attShow, attFlow = D.attachments ? D.attachments[0].flow : null;
 const AIR = [];
 function initHair() {
   // Ürün: halka üstte, filtre görünür, kablo kadraj dışına taşar
   box.h = 272; box.w = box.h * aspect; box.x = 560 - box.w / 2; box.y = 12;
-  placeProd();
-  const ring = P.ring || { cx: 0.5, cy: 0.135, r: 0.135 };
-  for (const [cls, k] of [['hue', 0.36], ['lit', 0.62]]) {
-    const d = document.createElement('div'); d.className = 'glow ' + cls;
-    const size = ring.r * box.h * 2 * k;
-    Object.assign(d.style, { left: ring.cx * 100 + '%', top: ring.cy * 100 + '%', width: size + 'px', height: size + 'px' });
-    tilt.appendChild(d);
-    if (cls === 'hue') glowHue = d; else glowLit = d;
-  }
+  pivotX = 0.5; pivotY = 0.3; // halka ile sap arasından döner
   attShow = $('#attShow');
   const n = reduced ? 120 : 260;
   for (let i = 0; i < n; i++) AIR.push({ life: Math.random(), a: 0, r: 0, v: 0, s: 1, max: 1 });
@@ -184,7 +179,6 @@ function applyHeat() {
   if (ONLY !== 'hair') return;
   const h = D.heats[S.heat];
   mh.style.setProperty('--heat', h.color);
-  if (glowLit) glowLit.style.opacity = 0.35 + h.level * 0.22;
 }
 function setAtt(key) {
   S.att = key;
@@ -200,19 +194,22 @@ function setAtt(key) {
 let burstT = 0; function burst() { burstT = 1; }
 
 function ringScreen() {
-  const ring = P.ring || { cx: 0.5, cy: 0.135, r: 0.135 };
-  const r = img.getBoundingClientRect(), m = mh.getBoundingClientRect(), s = W / m.width;
-  return { x: (r.left - m.left + ring.cx * r.width) * s, y: (r.top - m.top + ring.cy * r.height) * s, R: ring.r * r.height * s };
+  const ring = P.ring || { cx: 0.5, cy: 0.13, r: 0.13 };
+  const c = view.project(ring.cx, ring.cy), top = view.project(ring.cx, ring.cy - ring.r * 0.98), side = view.project(ring.cx + ring.r / aspect * 0.98, ring.cy);
+  const R = Math.hypot(top.x - c.x, top.y - c.y), Rx = Math.hypot(side.x - c.x, side.y - c.y);
+  const f = view.forward(ring.cx, ring.cy);
+  return { x: c.x, y: c.y, R, fx: Rx / Math.max(1, R), dir: f, facing: c.facing };
 }
 function frameHair(dt) {
-  // Eğim: imleç + sürükleme (sürükleme yavaşça sıfıra döner)
-  if (!S.dragging) { S.dragY = damp(S.dragY, 0, 1.6, dt); S.dragX = damp(S.dragX, 0, 1.6, dt); }
-  const idleSway = S.pointerIn ? 0 : Math.sin(S.t * 0.7) * 6;
-  const ty = clamp((S.pointerIn ? (S.px - 560) / 22 : idleSway) + S.dragY, -34, 34);
-  const tx = clamp((S.pointerIn ? -(S.py - 110) / 18 : 0) + S.dragX, -18, 18);
-  S.ry = damp(S.ry, ty, 5, dt); S.rx = damp(S.rx, tx, 5, dt);
-  tilt.style.transform = `rotateY(${S.ry}deg) rotateX(${S.rx}deg) translateY(${Math.sin(S.t * 1.3) * 2}px)`;
-  sheen.style.setProperty('--sx', `${50 + S.ry * 2.2}%`);
+  // Dönüş: sürükleyerek çevrilir, bırakınca öne döner; boştayken üç çeyrek açıyla salınır
+  if (!S.dragging) { S.spin = damp(S.spin, 0, 1.8, dt); S.dragX = damp(S.dragX, 0, 1.6, dt); }
+  const idleSway = S.pointerIn ? 0 : Math.sin(S.t * 0.55) * 28;
+  // fotoğraftan üretilen model en inandırıcı ±60° aralığında: sürükleme esnek sınırlı
+  const ty = elastic((S.pointerIn && !S.nearHs ? clamp((S.px - 560) / 9, -35, 35) : idleSway) + S.spin, 60);
+  const tx = clamp((S.pointerIn ? -(S.py - 110) / 14 : 0) + S.dragX, -22, 22);
+  S.ry = damp(S.ry, ty, 6, dt); S.rx = damp(S.rx, tx, 5, dt);
+  box.y = 12 + Math.sin(S.t * 1.3) * 2;
+  placeProd(); view.render();
 
   const ring = ringScreen();
   // Nural: imleç halkaya yaklaştıkça "baş yakın"
@@ -234,18 +231,27 @@ function frameHair(dt) {
     }
     const L = p.life, rad = p.r + Math.min(230, p.v * L * (0.4 + L));
     const ca = Math.cos(p.a), sa = Math.sin(p.a);
-    let x = ring.x + ca * rad * f.sx, y = ring.y + sa * rad * f.sy;
-    if (f.comb) x = ring.x + Math.round(ca * rad * f.sx / 10) * 10; // tarak dişleri boyunca çizgiler
+    // halka düzlemi dönünce yatay yarıçap kısalır; akış ürünün ön yönüne doğru ilerler
+    const push = p.v * L * 0.9;
+    let x = ring.x + ca * rad * f.sx * ring.fx + ring.dir.x * push, y = ring.y + sa * rad * f.sy + ring.dir.y * push;
+    if (f.comb) x = ring.x + Math.round(ca * rad * f.sx * ring.fx / 10) * 10 + ring.dir.x * push;
     const tail = 10 + p.v * 0.05 * p.s;
-    const alpha = Math.sin(L * Math.PI) * (0.28 + burstT * 0.4);
+    const alpha = Math.sin(L * Math.PI) * (0.28 + burstT * 0.4) * (ring.facing > 0 ? 1 : 0.35);
     g.strokeStyle = col; g.globalAlpha = alpha; g.lineWidth = 1.1 * p.s * (0.6 + L);
-    g.beginPath(); g.moveTo(x, y); g.lineTo(x - ca * tail * f.sx, y - sa * tail * f.sy); g.stroke();
+    g.beginPath(); g.moveTo(x, y); g.lineTo(x - ca * tail * f.sx * ring.fx - ring.dir.x * 0.15, y - sa * tail * f.sy - ring.dir.y * 0.15); g.stroke();
+  }
+  // Isıtıcı ışığı: halka merkezinde ısı renginde parıltı (ön yüz görünürken)
+  if (ring.facing > 0) {
+    const gl = g.createRadialGradient(ring.x, ring.y, 0, ring.x, ring.y, ring.R * 0.75);
+    gl.addColorStop(0, col); gl.addColorStop(1, 'rgba(0,0,0,0)');
+    g.globalAlpha = (0.25 + h.level * 0.15) * ring.facing; g.fillStyle = gl;
+    g.beginPath(); g.ellipse(ring.x, ring.y, ring.R * 0.75 * ring.fx, ring.R * 0.75, 0, 0, Math.PI * 2); g.fill();
   }
   // Air Multiplier: halkadan genişleyen nabız halkaları
   for (let k = 0; k < 3; k++) {
     const q = ((S.t * 0.8 * f.speed + k / 3) % 1);
     g.globalAlpha = (1 - q) * 0.22; g.strokeStyle = col; g.lineWidth = 1.5;
-    g.beginPath(); g.ellipse(ring.x, ring.y, ring.R * (1 + q * 2.6) * f.sx, ring.R * (1 + q * 2.6) * f.sy, 0, 0, Math.PI * 2); g.stroke();
+    g.beginPath(); g.ellipse(ring.x + ring.dir.x * q * 60, ring.y + ring.dir.y * q * 60, ring.R * (1 + q * 2.6) * f.sx * ring.fx + 0.1, ring.R * (1 + q * 2.6) * f.sy, 0, 0, Math.PI * 2); g.stroke();
   }
   g.restore();
 
@@ -311,7 +317,6 @@ function setMode(m) {
   S.mode = m; mh.dataset.mode = m;
   if (ONLY !== 'floor') return;
   pressed('[data-mode]', $(`[data-mode="${m}"]`));
-  prod.classList.add('ease'); clearTimeout(setMode.t); setMode.t = setTimeout(() => prod.classList.remove('ease'), 750);
   closeCard();
 }
 function vacBox(hx, hy) {
@@ -334,23 +339,27 @@ function frameFloor(dt) {
   S.vx = damp(S.vx, (S.hx - ox) / Math.max(dt, 1e-3), 6, dt);
 
   const b = vacBox(S.hx, S.hy);
+  if (!S.dragging) { S.spin = damp(S.spin, 0, 1.8, dt); S.dragX = damp(S.dragX, 0, 1.6, dt); }
   if (inspect) {
-    // yakından: tam yükseklik, ortada, eğilebilir
-    // yakından: gövdeye odaklan (başlık kadraj dışında kalır)
-    const h = 430, w = h * aspect; Object.assign(box, { x: 655 - w * 0.72, y: 10, w, h, rot: 0 });
-    if (!S.dragging) { S.dragY = damp(S.dragY, 0, 1.6, dt); S.dragX = damp(S.dragX, 0, 1.6, dt); }
-    S.ry = damp(S.ry, clamp((S.pointerIn ? (S.px - 640) / 24 : Math.sin(S.t * 0.7) * 6) + S.dragY, -30, 30), 5, dt);
-    S.rx = damp(S.rx, clamp((S.pointerIn ? -(S.py - 120) / 45 : 0) + S.dragX, -8, 8), 5, dt);
+    // yakından: gövdeye odaklan (başlık kadraj dışında kalır), sürükleyerek 360°
+    const h = 430, w = h * aspect;
+    S.ib = S.ib || { ...box }; // yumuşak geçiş
+    for (const [k2, v2] of Object.entries({ x: 655 - w * 0.72, y: 10, w, h })) S.ib[k2] = damp(S.ib[k2] ?? v2, v2, 5, dt);
+    Object.assign(box, S.ib, { rot: damp(box.rot, 0, 5, dt) });
+    pivotX = damp(pivotX, 0.72, 5, dt); pivotY = damp(pivotY, 0.22, 5, dt);
+    S.ry = damp(S.ry, elastic((S.pointerIn && !S.nearHs ? clamp((S.px - 640) / 8, -40, 40) : Math.sin(S.t * 0.6) * 30) + S.spin, 60), 5, dt);
+    S.rx = damp(S.rx, clamp((S.pointerIn ? -(S.py - 120) / 30 : 0) + S.dragX, -12, 12), 5, dt);
   } else {
+    S.ib = null;
     Object.assign(box, { x: b.x, y: b.y, w: b.w, h: b.h, rot: clamp(-S.vx * 0.012, -7, 7) });
-    S.ry = damp(S.ry, 0, 5, dt); S.rx = damp(S.rx, 0, 5, dt);
+    pivotX = P.head.x; pivotY = P.head.y;
+    // hareket yönüne göre 3D dönüş (başlık ekseninde)
+    S.ry = damp(S.ry, elastic(S.vx * 0.07, 40), 4, dt); S.rx = damp(S.rx, 0, 5, dt);
   }
   placeProd();
-  tilt.style.transform = `rotateY(${S.ry}deg) rotateX(${S.rx}deg)`;
-  sheen.style.setProperty('--sx', `${50 + S.ry * 2 + Math.sin(S.t * 0.5) * 8}%`);
 
   // Lazer: başlığın sol ucundaki yayıcıdan sola-öne doğru yelpaze
-  const k = b.k, ex = b.x + 0.02 * b.w, ey = b.y + 0.905 * b.h;
+  const k = b.k, em = view.project(0.03, 0.905), ex = em.x, ey = em.y;
   const L = 300 * k, a0 = Math.PI * 0.86, a1 = Math.PI * 1.17, flat = 0.42;
   const laserOn = !inspect;
   if (laserOn) {
@@ -368,7 +377,8 @@ function frameFloor(dt) {
 
   // Emiş hattı: silindirin alt kenarı (sol uç → sağ uç)
   const r = D.powers[S.power].radius;
-  const sx0 = b.x + 0.02 * b.w, sy0 = b.y + 0.93 * b.h, sx1 = b.x + 0.5 * b.w, sy1 = b.y + 0.995 * b.h;
+  const q0 = view.project(0.02, 0.93), q1 = view.project(0.5, 0.995);
+  const sx0 = q0.x, sy0 = q0.y, sx1 = q1.x, sy1 = q1.y;
   const segDx = sx1 - sx0, segDy = sy1 - sy0, segL2 = segDx * segDx + segDy * segDy;
   const cx = (sx0 + sx1) / 2, cy = (sy0 + sy1) / 2;
   gf.save();
@@ -409,6 +419,7 @@ function frameFloor(dt) {
   sg.addColorStop(0, 'rgba(0,0,0,.55)'); sg.addColorStop(1, 'rgba(0,0,0,0)');
   gf.fillStyle = sg; gf.beginPath(); gf.ellipse(cx, cy + 3 * k, 75 * k, 14 * k, 0.12, 0, Math.PI * 2); gf.fill(); gf.restore();
 
+  view.render();
   if ((hudT += dt) > 0.1) {
     hudT = 0;
     $('#total').textContent = collected.toLocaleString('tr-TR');
@@ -426,12 +437,13 @@ function frame(now) {
   if (!visible || document.hidden) return;
   S.t += dt; S.idle += dt;
   g.clearRect(0, 0, W, H);
+  if (!view) return;
   if (ONLY === 'hair') frameHair(dt); else frameFloor(dt);
   placeHotspots();
 }
 
 if (ONLY === 'hair') initHair(); else initFloor();
 mh.dataset.stage = ONLY;
-const start = () => { requestAnimationFrame(() => mh.classList.add('ready')); requestAnimationFrame(frame); };
-if (img.complete) start(); else { img.onload = start; img.onerror = start; }
+createProduct(glc, P, W, H, dpr).then((v) => { view = v; mh.classList.add('ready'); }).catch((e) => { console.error(e); mh.classList.add('ready'); });
+requestAnimationFrame(frame);
 window.__MH__ = { S, setMode, get collected() { return collected; } };

@@ -53,5 +53,38 @@
       "left": 0.0022371364653243847,
       "right": 0.5011185682326622
     }
+  },
+  "mesh": {
+    "nural": {
+      "tex": "assets/cut/nural-tex.webp",
+      "depth": "assets/cut/nural-depth.png",
+      "w": 207,
+      "h": 800,
+      "depthPx": 63.86,
+      "bbox": [
+        494,
+        189,
+        701,
+        989
+      ],
+      "ring": {
+        "cx": 0.5,
+        "cy": 0.12875,
+        "r": 0.12875
+      }
+    },
+    "v12": {
+      "tex": "assets/cut/v12-tex.webp",
+      "depth": "assets/cut/v12-depth.png",
+      "w": 447,
+      "h": 1005,
+      "depthPx": 65.02065974409581,
+      "bbox": [
+        597,
+        101,
+        1044,
+        1106
+      ]
+    }
   }
 }
