@@ -67,3 +67,13 @@ for (const [name, m] of Object.entries(MASTHEADS)) {
 }
 fs.rmSync(path.join(dist, 'index.html'), { force: true });
 fs.rmSync(path.join(dist, 'media'), { recursive: true, force: true });
+
+// Tek dosyalık teslim: film dosyanın içine gömülür → teslim/<ad>/index.html tek başına açılır
+for (const name of Object.keys(MASTHEADS)) {
+  let html = fs.readFileSync(path.join(dist, name, 'index.html'), 'utf8');
+  const film = path.join(dist, name, 'media', 'film.mp4');
+  if (fs.existsSync(film)) html = html.replace('"media/film.mp4"', () => `"data:video/mp4;base64,${fs.readFileSync(film).toString('base64')}"`);
+  fs.mkdirSync(path.join(root, 'teslim', name), { recursive: true });
+  fs.writeFileSync(path.join(root, 'teslim', name, 'index.html'), html);
+  console.log(`✔ teslim/${name}/index.html  ${(Buffer.byteLength(html) / 1024).toFixed(0)} KB (tek dosya, film gömülü)`);
+}

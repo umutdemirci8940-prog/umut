@@ -15,7 +15,7 @@ async function open(name) {
   page.on('pageerror', (e) => errors.push(name + ': ' + e.message));
   page.on('console', (m) => { if (m.type() === 'error') errors.push(name + ': ' + m.text()); });
   await page.addInitScript(() => { window.__opened = []; window.open = (u) => { window.__opened.push(u); }; });
-  await page.goto('file://' + path.join(root, 'dist', name, 'index.html'));
+  await page.goto('file://' + path.join(root, process.env.DIR || 'dist', name, 'index.html'));
   await page.waitForTimeout(2500);
   return page;
 }
