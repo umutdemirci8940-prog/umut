@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
   push:
     branches: ['claude/**']
-    paths: ['dyson/tools/fetch-dyson-assets.js', 'dyson/tools/fetch-dyson-products.js', '.github/workflows/dyson-assets.yml']
+    paths: ['dyson/tools/fetch-dyson-assets.js', 'dyson/tools/fetch-dyson-products.js', 'dyson/tools/fetch-dyson-3d.js', '.github/workflows/dyson-assets.yml']
 
 permissions:
   contents: write
@@ -19,14 +19,16 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Ürün fotoğrafları (şeffaf PNG)
-        run: node dyson/tools/fetch-dyson-products.js
-      - name: Özet
-        run: cat dyson/assets/products/index.json | head -c 6000
+      - name: Playwright + Chromium kur
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Ürün sayfalarında 3D / AR modelleri ara
+        run: xvfb-run -a node dyson/tools/fetch-dyson-3d.js
       - name: Dala push'la
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A dyson/assets/products
-          git commit -m "Dyson ürün fotoğrafları – şeffaf PNG (GitHub Actions)" || { echo "Değişiklik yok"; exit 0; }
+          git add -A dyson/assets/3d
+          git commit -m "Dyson 3D/AR model taraması (GitHub Actions)" || { echo "Değişiklik yok"; exit 0; }
           git pull --rebase origin "${GITHUB_REF_NAME}" && git push
