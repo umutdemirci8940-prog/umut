@@ -1,17 +1,4 @@
 {
-  "haircare": {
-    "url": "https://www.dyson.com.tr/products/hair-care",
-    "status": 403,
-    "title": "Attention Required! | Cloudflare",
-    "images": [],
-    "videos": [],
-    "text": [
-      "Sorry, you have been blocked",
-      "You are unable to access dyson.com.tr",
-      "Why have I been blocked?",
-      "What can I do to resolve this?"
-    ]
-  },
   "floorcare": {
     "url": "https://www.dyson.com.tr/products/cord-free",
     "status": 200,
@@ -175,6 +162,201 @@
       "Profesyonel İşletmelerProfesyonel İşletmeler",
       "DestekDestek",
       "HakkımızdaHakkımızda"
+    ]
+  },
+  "haircare": {
+    "url": "https://www.dyson.com.tr/products/hair-care/hair-dryers",
+    "status": 200,
+    "title": "Dyson Supersonic™ saç kurutma makineleri",
+    "images": [
+      {
+        "file": "img-01.jpg",
+        "url": "https://dyson-h.assetsadobe2.com/is/image/content/dam/dyson/leap-petite-global/products/hair-care/supersonic-r/2025/overview/WEB_505_Overview_Product_hero.jpg?$responsive$&cropPathE=desktop&fit=stretch,1&wid=1920",
+        "alt": "Dyson Supersonic r saç kurutma makinesi ve Profesyonel şekillendirici başlık kullanarak saçını şekillendiren bir model.",
+        "bytes": 88512
+      },
+      {
+        "file": "img-02.jpg",
+        "url": "https://dyson-h.assetsadobe2.com/is/image/content/dam/dyson/products/beauty/hair-dryers/supersonic-origin/carousels/Web_EntrySkus_605C_PLP_Carousel_3.jpg?$responsive$&cropPathE=desktop&fit=stretch,1&wid=1920",
+        "alt": "Bukleleri için Dyson Supersonic saç kurutma makinesini kullanan bir model.",
+        "bytes": 72393
+      },
+      {
+        "file": "img-03.png",
+        "url": "https://dyson-h.assetsadobe2.com/is/image/content/dam/dyson/motifs/master/pc/dyson-supersonic/supersonic-travel-light.png?scl=1&fmt=png-alpha",
+        "alt": "Dyson Supersonic Travel logo.",
+        "bytes": 11193
+      },
+      {
+        "file": "img-04.jpg",
+        "url": "https://dyson-h.assetsadobe2.com/is/image/content/dam/dyson/products/beauty/hair-dryers/supersonic-travel/carousels/Web_HairDryers_PLP_921_Module_2_Meet_The_Range_Carousel_Hero_Card.jpg?$responsive$&cropPathE=desktop&fit=stretch,1&wid=1920",
+        "alt": "Dyson Supersonic Travel saç kurutma makinesi ile saçını kurutan bir model.",
+        "bytes": 71764
+      },
+      {
+        "file": "img-05.png",
+        "url": "https://dyson-h.assetsadobe2.com/is/image/content/dam/dyson/motifs/master/pc/dyson-supersonic/supersonic-r.png?scl=1&fmt=png-alpha",
+        "alt": "Dyson Supersonic r logo.",
+        "bytes": 8172
+      },
+      {
+        "file": "img-06.jpg",
+        "url": "https://dyson-h.assetsadobe2.com/is/image/content/dam/dyson/products/beauty/hair-dryers/supersonic-origin/carousels/Web-h1-range-plp-HairDryers_1.jpg?$responsive$&cropPathE=desktop&fit=stretch,1&wid=1920",
+        "alt": "Dyson Supersonic r saç şekillendirme ve kurutma seti ile saçını kurutan bir model.",
+        "bytes": 42494
+      },
+      {
+        "file": "img-07.jpg",
+        "url": "https://dyson-h.assetsadobe2.com/is/image/content/dam/dyson/leap-petite-global/markets/turkey/pc/492345-01-hero-travel-serum.jpg",
+        "alt": "Dyson Supersonic Nural™ saç kurutma makinesi (Plum Copper)",
+        "bytes": 57212
+      },
+      {
+        "file": "img-08.jpg",
+        "url": "https://dyson-h.assetsadobe2.com/is/image/content/dam/dyson/images/products/primary/122781-01.png",
+        "alt": "Dyson Supersonic r™ saç kurutma makinesi - Düz+Dalgalı (Jasper Plum)",
+        "bytes": 31799
+      },
+      {
+        "file": "img-09.jpg",
+        "url": "https://dyson-h.assetsadobe2.com/is/image/content/dam/dyson/products/beauty/hair-dryers/supersonic-travel/carousels/Web_Overview_921_Module_4_Carousel_Card_4.jpg?$responsive$&cropPathE=desktop&fit=stretch,1&wid=1920",
+        "alt": "Dyson Supersonic Travel saç kurutma makinesinin içindeki teknolojinin ve hava akımının kesit görünümü.",
+        "bytes": 40624
+      },
+      {
+        "file": "img-10.png",
+        "url": "https://dyson-h.assetsadobe2.com/is/image/content/dam/dyson/motifs/master/pc/dyson-supersonic/supersonic-travel-centralised-light.png?scl=1&fmt=png-alpha",
+        "alt": "Dyson Supersonic Travel logo",
+        "bytes": 11498
+      },
+      {
+        "file": "img-11.jpg",
+        "url": "https://dyson-h.assetsadobe2.com/is/image/content/dam/dyson/products/beauty/hair-dryers/supersonic-travel/carousels/Web_HairDryers_PLP_921_Module_4_Carousel_Hero_Card.jpg?$responsive$&cropPathE=desktop&fit=stretch,1&wid=1920",
+        "alt": "Dyson Supersonic Travel hair dryer with the cable shaped to resemble an aeroplane.",
+        "bytes": 64135
+      },
+      {
+        "file": "img-12.jpg",
+        "url": "https://dyson-h.assetsadobe2.com/is/image/content/dam/dyson/products/beauty/hair-dryers/supersonic-travel/carousels/Web_PDP_921_Module_3_Carousel_Card_1.jpg?$responsive$&cropPathE=desktop&fit=stretch,1&wid=1920",
+        "alt": "Uçak şeklini andıran kablosu ile Dyson Supersonic Travel saç kurutma makinesi.",
+        "bytes": 43661
+      },
+      {
+        "file": "img-13.jpg",
+        "url": "https://dyson-h.assetsadobe2.com/is/image/content/dam/dyson/products/beauty/hair-dryers/supersonic-r/carousels/Web-h1-technology-plp-hairdryers-technology_4.jpg?$responsive$&cropPathE=desktop&fit=stretch,1&wid=1920",
+        "alt": "Bir model, saçını kurutmak için Dyson Supersonic saç kurutma makinesini kullanıyor.",
+        "bytes": 48473
+      },
+      {
+        "file": "img-14.jpg",
+        "url": "https://dyson-h.assetsadobe2.com/is/image/content/dam/dyson/products/beauty/hair-dryers/supersonic-r/carousels/Web-h1-technology-plp-hairdryers-technology-1.jpg?$responsive$&cropPathE=desktop&fit=stretch,1&wid=1920",
+        "alt": "Etrafındaki farklı başlıklarla Dyson Supersonic r saç kurutma makinesi.",
+        "bytes": 19147
+      },
+      {
+        "file": "img-15.jpg",
+        "url": "https://dyson-h.assetsadobe2.com/is/image/content/dam/dyson/products/beauty/hair-dryers/supersonic-r/carousels/Web-h1-technology-plp-hairdryers-technology_2.jpg?$responsive$&cropPathE=desktop&fit=stretch,1&wid=1920",
+        "alt": "Dyson Supersonic r saç kurutma makinesinin ısıtıcı folyoları gösteren kesit görünümü.",
+        "bytes": 48245
+      },
+      {
+        "file": "img-16.png",
+        "url": "https://www.dyson.com.tr/static/version1790867174/frontend/Dyson/commerce/tr_TR/images/icons/sprite-flags.png",
+        "alt": "",
+        "bytes": 14409
+      },
+      {
+        "file": "img-17.jpg",
+        "url": "https://dyson-h.assetsadobe2.com/is/image//content/dam/dyson/leap-petite-global/ForBusiness/personal-care/505d/plp/WEB_505_PLP_Category_card_all_shop.jpg?wid=295",
+        "alt": "Dyson Güzellik aksesuarları serisi.",
+        "bytes": 12523
+      },
+      {
+        "file": "img-18.jpg",
+        "url": "https://dyson-h.assetsadobe2.com/is/image/content/dam/dyson/leap-petite-global/campaigns/hair-care/q1-gifting/2025/mothers-day/as/explore-dyson/553-PDP-Category-Cards-hairclips.jpg?wid=295",
+        "alt": "Bir modelin saçını bölümlere ayırmak için kullanılan Dyson saç tokaları.",
+        "bytes": 13316
+      },
+      {
+        "file": "img-19.jpg",
+        "url": "https://dyson-h.assetsadobe2.com/is/image/content/dam/dyson/images/carousel-tiles/beauty/Web_Phase1_Gift-guide-page_Nav_card_308F.jpg?wid=295",
+        "alt": "Çeşitli aksesuarlarla birlikte Dyson Airwrap saç şekillendirme ve kurutma seti.",
+        "bytes": 11638
+      }
+    ],
+    "videos": [
+      {
+        "file": "video-1.mp4",
+        "url": "https://www.dyson.video/dyson/_renditions_/c38/c38494d8-541d-4925-b2f8-1fbbc4db735b/avs/plp-updated-hairdryers-0x540-2000k.mp4",
+        "bytes": 746809
+      },
+      {
+        "file": "video-2.mp4",
+        "url": "https://www.dyson.video/cdn-cgi/media/mode=video/https://video-eu.assetsadobe.com/dyson/_renditions_/c38/c38494d8-541d-4925-b2f8-1fbbc4db735b/avs/plp-updated-hairdryers-0x540-2000k.mp4",
+        "bytes": 746809
+      }
+    ],
+    "text": [
+      "Keşfet",
+      "Daha fazlası",
+      "Keşfet",
+      "Daha fazlası",
+      "Keşfet",
+      "Daha fazlası",
+      "Keşfet",
+      "Daha fazlası",
+      "Keşfet",
+      "Daha fazlası",
+      "Keşfet",
+      "Daha fazlası",
+      "En Çok Arananlar",
+      "Saç kurutma makineleri",
+      "Ürünlerle tanışın",
+      "Aşırı ısı olmadan, hızlı kurutma",
+      "Her an daha sağlıklı görünen saçlar",
+      "Dyson'ın en hafif,1 en hassas ve en güçlü saç kurutma makinesi",
+      "3 kat daha güçlü saç derisi bariyeri için saç derisi koruma modu2",
+      "Aşırı ısı olmadan, hızlı kurutma",
+      "Her an daha sağlıklı görünen saçlar",
+      "Dyson'ın en hafif,1 en hassas ve en güçlü saç kurutma makinesi",
+      "3 kat daha güçlü saç derisi bariyeri için saç derisi koruma modu2",
+      "Aşırı ısı olmadan, hızlı kurutma",
+      "Tüm saç kurutma makinelerini inceleyin",
+      "Öne Çıkanlar",
+      "Dyson Supersonic Nural™ saç kurutma makinesi (Plum Copper)",
+      "Dyson Supersonic r™ saç kurutma makinesi - Düz+Dalgalı (Jasper Plum)",
+      "10 ürün",
+      "10 ürün",
+      "Saç tipiniz",
+      "Kullanım şekli",
+      "Renk seçeneği",
+      "Ağırlık",
+      "Teknoloji",
+      "Stok Durumu",
+      "Dyson Supersonic Nural™ saç kurutma makinesi (Plum Copper)",
+      "Dyson Supersonic™ Travel saç kurutma makinesi (Prusya mavisi/Parlak bakır)",
+      "Dyson Supersonic™ Travel saç kurutma makinesi (Ceramic Pink)",
+      "Dyson Supersonic Nural™ saç kurutma makinesi (Prusya mavisi/Parlak bakır)",
+      "Dyson Supersonic Nural™ saç kurutma makinesi (Ceramic Pink)",
+      "Dyson Supersonic™ saç kurutma makinesi Düz+Dalgalı (Prusya mavisi/Bakır)",
+      "Dyson Supersonic r™ Professional saç kurutma makinesi",
+      "Dyson Supersonic r™ saç kurutma makinesi - Kıvırcık+Bukleli (Ceramic Pink)",
+      "Dyson Supersonic r™ saç kurutma makinesi - Düz+Dalgalı (Jasper Plum)",
+      "Dyson Supersonic r™ saç kurutma makinesi - Kıvırcık+Bukleli (Jasper Plum)",
+      "10 ürün",
+      "Saçın doğal parlaklığını korur",
+      "%32 daha küçük. %25 daha hafif.3 Gücünden ödün vermeden.",
+      "Seyahate hazır",
+      "Nerede olursanız olun, daha sağlıklı görünen saçlar",
+      "Stiliniz, her yerde sizinle",
+      "Saçın doğal parlaklığını korur",
+      "%32 daha küçük. %25 daha hafif.3 Gücünden ödün vermeden.",
+      "Seyahate hazır",
+      "Nerede olursanız olun, daha sağlıklı görünen saçlar",
+      "Stiliniz, her yerde sizinle",
+      "Saçın doğal parlaklığını korur",
+      "Daha pürüzsüz bir görünüm için odaklı kurutma. Daha fazla parlaklık. Aşırı ısı olmadan.",
+      "Odaklı şekillendirme"
     ]
   }
 }
