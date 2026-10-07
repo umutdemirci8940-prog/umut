@@ -1,0 +1,344 @@
+{
+ "url": "https://www.tabii.com/tr",
+ "fetchedAt": "2026-10-07T12:16:09.697Z",
+ "status": 200,
+ "title": "tabii - TV Programları Filmleri ve Dizileri İzle",
+ "themeColor": null,
+ "ogImage": "https://cms-tabii-assets.tabii.com/thumbnails/23963_781e9dee-cbd8-491a-b166-0b1df25b3bd0_720.jpeg",
+ "description": "tabii, tüm aile izleyebileceğin yerli ve yabancı dizi, film, belgesel, çocuk programları ve tabii orijinallerini sunuyor. Dilediğin zaman, dilediğin yerde izle.",
+ "logoCandidates": [
+  {
+   "tag": "img",
+   "cls": "max-h-full undefined",
+   "alt": "tabii",
+   "src": "https://cms-tabii-public-static.tabii.com/assets/tabii.svg",
+   "box": [
+    56,
+    25,
+    130,
+    41
+   ],
+   "color": "rgb(255, 255, 255)",
+   "svg": null
+  },
+  {
+   "tag": "svg",
+   "cls": "size-full fill-current",
+   "alt": null,
+   "src": null,
+   "box": [
+    1101,
+    33,
+    24,
+    24
+   ],
+   "color": "rgb(255, 255, 255)",
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 48 48\" width=\"1em\" height=\"1em\" fill=\"#8C8C8C\" class=\"size-full fill-current\"><path d=\"M24 1.5C11.6 1.5 1.5 11.6 1.5 24S11.6 46.5 24 46.5 46.5 36.4 46.5 24 36.4 1.5 24 1.5zm8.5 16.6h11.2c.6 1.9.9 3.9.9 5.9 0 2-.3 4-.9 5.9H32.5c.2-1.9.3-3.9.3-5.9 0-2-.1-4-.3-5.9zM17.2 24c0-2 .1-4 .3-5.9h13c.2 1.9.3 3.9.3 5.9s-.1 4-.3 5.9h-13c-.2-1.9-.3-3.9-.3-5.9zm15-7.9c-.4-2.9-1-5.5-1.8-7.7-.7-1.9-1.5-3.4-2.4-4.5 6.8 1.3 12.3 5.9 15 12.2H32.2zm-3.6-7c.7 2 1.3 4.4 1.7 7H17.7c.4-2.6 1-5 1.7-7 .7-1.8 1.5-3.3 2.3-4.3 1.5-1.8 3-1.8 4.6 0 .8 1 1.6 2.5 2.3 4.3zM20 3.9c-.9 1.1-1.7 2.7-2.4 4.6-.8 2.2-1.4 4.8-1.8 7.7H5c2.7-6.4 8.2-11 15-12.3zM4.3 18.1h11.2c-.2 1.9-.3 3.9-.3 5.9 0 2 .1 4 .3 5.9H4.3C3.7 28 3.5 26 3.5 24c0-2 .2-4 .8-5.9zm11.5 13.8c.4 2.9 1 5.5 1.8 7.7.7 1.9 1.5 3.4 2.4 4.6-6.8-1.4-12.3-6-15-12.3h10.8zm3.6 7c-.7-2-1.3-4.4-1.7-7h12.5c-.4 2.6-1 5-1.7 7-.7 1.8-1.5 3.3-2.3 4.3-1.5 1.8-3 1.8-4.6 0-.7-1-1.5-2.5-2.2-4.3zm8.6 5.2c.9-1.1 1.7-2.7 2.4-4.6.8-2.2 1.4-4.8 1.8-7.7H43c-2.7 6.4-8.2 11-15 12.3z\" fill=\"''\"></path></svg>"
+  },
+  {
+   "tag": "img",
+   "cls": "max-h-full w-[110px]",
+   "alt": "tabii",
+   "src": "https://cms-tabii-public-static.tabii.com/assets/tabii.svg",
+   "box": [
+    48,
+    5373,
+    110,
+    34
+   ],
+   "color": "rgb(0, 0, 0)",
+   "svg": null
+  }
+ ],
+ "colors": [
+  {
+   "c": "rgb(0, 0, 0)",
+   "w": 1101
+  },
+  {
+   "c": "rgb(128, 128, 128)",
+   "w": 283
+  },
+  {
+   "c": "rgb(250, 250, 250)",
+   "w": 119
+  },
+  {
+   "c": "rgb(255, 255, 255)",
+   "w": 45
+  },
+  {
+   "c": "rgb(212, 212, 216)",
+   "w": 43
+  },
+  {
+   "c": "rgb(140, 140, 140)",
+   "w": 31
+  },
+  {
+   "c": "rgb(0, 255, 153)",
+   "w": 19
+  },
+  {
+   "c": "rgb(21, 22, 24)",
+   "w": 11
+  },
+  {
+   "c": "rgba(255, 255, 255, 0.1)",
+   "w": 3
+  },
+  {
+   "c": "rgb(165, 239, 199)",
+   "w": 2
+  },
+  {
+   "c": "rgb(89, 89, 89)",
+   "w": 1
+  },
+  {
+   "c": "rgb(28, 25, 23)",
+   "w": 1
+  },
+  {
+   "c": "rgb(2, 138, 73)",
+   "w": 1
+  }
+ ],
+ "buttons": [
+  {
+   "text": "Türkçe",
+   "bg": "rgba(0, 0, 0, 0)",
+   "color": "rgb(255, 255, 255)",
+   "radius": "0px",
+   "font": "poppins, \"poppins Fallback\"",
+   "weight": "500"
+  },
+  {
+   "text": "Giriş Yap",
+   "bg": "rgba(0, 0, 0, 0)",
+   "color": "rgb(255, 255, 255)",
+   "radius": "4px",
+   "font": "poppins, \"poppins Fallback\"",
+   "weight": "600"
+  },
+  {
+   "text": "Şimdi Üye Ol",
+   "bg": "rgb(255, 255, 255)",
+   "color": "rgb(28, 25, 23)",
+   "radius": "4px",
+   "font": "poppins, \"poppins Fallback\"",
+   "weight": "600"
+  },
+  {
+   "text": "Giriş Yap",
+   "bg": "rgba(0, 0, 0, 0)",
+   "color": "rgb(255, 255, 255)",
+   "radius": "4px",
+   "font": "poppins, \"poppins Fallback\"",
+   "weight": "700"
+  },
+  {
+   "text": "Başla",
+   "bg": "rgb(0, 255, 153)",
+   "color": "rgb(28, 25, 23)",
+   "radius": "0px 8px 8px 0px",
+   "font": "poppins, \"poppins Fallback\"",
+   "weight": "600"
+  },
+  {
+   "text": "Dizi",
+   "bg": "rgba(0, 0, 0, 0)",
+   "color": "rgb(0, 255, 153)",
+   "radius": "0px",
+   "font": "poppins, \"poppins Fallback\"",
+   "weight": "500"
+  },
+  {
+   "text": "Film",
+   "bg": "rgba(0, 0, 0, 0)",
+   "color": "rgb(140, 140, 140)",
+   "radius": "0px",
+   "font": "poppins, \"poppins Fallback\"",
+   "weight": "400"
+  },
+  {
+   "text": "Belgesel",
+   "bg": "rgba(0, 0, 0, 0)",
+   "color": "rgb(140, 140, 140)",
+   "radius": "0px",
+   "font": "poppins, \"poppins Fallback\"",
+   "weight": "400"
+  },
+  {
+   "text": "Çocuk",
+   "bg": "rgba(0, 0, 0, 0)",
+   "color": "rgb(140, 140, 140)",
+   "radius": "0px",
+   "font": "poppins, \"poppins Fallback\"",
+   "weight": "400"
+  }
+ ],
+ "fontFamilies": [
+  [
+   "poppins, \"poppins Fallback\"",
+   1615
+  ]
+ ],
+ "cssVars": {
+  "--poppins-font": "'poppins', 'poppins Fallback'"
+ },
+ "headings": [
+  "Benzersiz Türkçe Orijinaller, Sınırsız Eğlence",
+  "Persona",
+  "Gassal",
+  "Siyah Bere",
+  "Yüzde İki",
+  "Yankı: İkinci Perde",
+  "Çırak",
+  "Kız Babası",
+  "Rüya Gibi İstanbul",
+  "Mevlânâ Celâleddîn-i Rûmî",
+  "Marnalı",
+  "Sürgünler",
+  "Derin Mor",
+  "Şeytan Adası'nda Esir Türk: Polis Cemil",
+  "Cihangir Cumhuriyeti",
+  "Yeşil Deniz Milenyum",
+  "Tozkoparan İskender Gölge",
+  "Son Gün",
+  "Akif",
+  "Aşkımız Yeter",
+  "Dayton",
+  "İbn-i Sina",
+  "Kızıl Elma: Bir Fetih Öyküsü",
+  "Sınırsız Eğlence: Filmler, Diziler, Programlar ve Çok Daha Fazlası",
+  "Gassal",
+  "Çırak",
+  "Mevlânâ Celâleddîn-i Rûmî",
+  "Siyah Bere",
+  "Marnalı",
+  "Yeşil Deniz Milenyum",
+  "Yankı: İkinci Perde",
+  "Yüzde İki",
+  "Hay Sultan",
+  "Son Gün",
+  "Hür",
+  "Organizasyon Bizim İşimiz",
+  "Kız Babası",
+  "Teşkilat",
+  "Mehmed: Fetihler Sultanı",
+  "Leyla ile Mecnun"
+ ],
+ "icons": [
+  {
+   "rel": "shortcut icon",
+   "href": "https://www.tabii.com/favicon.svg",
+   "sizes": null
+  },
+  {
+   "rel": "apple-touch-icon",
+   "href": "https://www.tabii.com/favicon.svg",
+   "sizes": null
+  },
+  {
+   "rel": "android-touch-icon",
+   "href": "https://www.tabii.com/favicon.svg",
+   "sizes": null
+  },
+  {
+   "rel": "shortcut icon",
+   "href": "https://www.tabii.com/favicon.svg",
+   "sizes": null
+  },
+  {
+   "rel": "apple-touch-icon",
+   "href": "https://www.tabii.com/favicon.svg",
+   "sizes": null
+  },
+  {
+   "rel": "android-touch-icon",
+   "href": "https://www.tabii.com/favicon.svg",
+   "sizes": null
+  }
+ ],
+ "fontUrls": [
+  "https://www.tabii.com/_next/static/media/b2efb5cde74c2f1a-s.p.ttf",
+  "https://www.tabii.com/_next/static/media/4b4ebe20759bdbf2-s.p.ttf",
+  "https://www.tabii.com/_next/static/media/502635913515117a-s.p.ttf",
+  "https://www.tabii.com/_next/static/media/98512bf8da1afe43-s.p.ttf",
+  "https://www.tabii.com/_next/static/media/7572a9b5289f55fe-s.p.ttf",
+  "https://www.tabii.com/_next/static/media/8001a01b32b71ef5-s.p.ttf",
+  "https://www.tabii.com/_next/static/media/34a634e1e94d3514-s.p.ttf",
+  "https://www.tabii.com/_next/static/media/a52d0bf095c248da-s.p.ttf"
+ ],
+ "logoUrls": [
+  "https://www.googleadservices.com/ccm/conversion/11164926310/?random=1791375372307&cv=11&fst=1791375372307&fmt=3&bg=ffffff&guid=ON&async=1&en=conversion&gtm=45be6a51v9116611657z8899699928za20gzb899699928zd899699928xeaxf1&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616985~115938466~115938468~117776795~118897920~118897930~119318177~119381664~120213116~120385422~120469145~120469153~121046263~121046271~121125487&u_w=1440&u_h=900&url=https%3A%2F%2Fwww.tabii.com%2Ftr&rcb=2&label=zOJzCL3toY8aEOaC7csp&capi=1&frm=0&tiba=tabii%20-%20TV%20Programlar%C4%B1%20Filmleri%20ve%20Dizileri%20%C4%B0zle&bttype=purchase&value=0&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1838989928.1791375371&uaa=x86&uab=64&uafvl=HeadlessChrome%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0%7CChromium%3B141.0.7390.37&uamb=0&uam=&uap=Windows&uapv=10.0&uaw=0&ec_mode=a&oid=GG_1363886294.1791375372&oidsrc=3&ecsid2=1903103131.1791375372&_tu=CBA&gcl_ctr=1~0~0~0&category=acrcp_v1_512&em=tv.1&emd=tvd.1",
+  "https://www.google.com/pagead/1p-user-list/11164926310/?random=1791375372266&cv=11&fst=1791374400000&bg=ffffff&guid=ON&async=1&gtm=45be6a51v9116611657z8899699928za20gzb899699928zd899699928xeaxf1&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616985~115938466~115938468~117776795~118897920~118897930~119318177~119381664~120213116~120385422~120469145~120469153~121046263~121046271~121125487&u_w=1440&u_h=900&url=https%3A%2F%2Fwww.tabii.com%2Ftr&rcb=2&label=UDumCOTh7ZwYEOaC7csp&frm=0&tiba=tabii%20-%20TV%20Programlar%C4%B1%20Filmleri%20ve%20Dizileri%20%C4%B0zle&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1838989928.1791375371&uaa=x86&uab=64&uafvl=HeadlessChrome%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0%7CChromium%3B141.0.7390.37&uamb=0&uam=&uap=Windows&uapv=10.0&uaw=0&_tu=CA&ept=9&rfmt=3&fmt=3&is_vtc=1&cid=CAQS4gEAQM4h3K0TXtWcFkkw6yc4LBzR0lE387o5BNbHvhQRsfXg-zhYs61aWd4-f8je5WkoqBYQd7eHuQqb27rnSNuZ5q3_KQ4XlOpRCjM8GF9vUOBLhY7ks8EbmYZuxv4sVN3A25m08Ea4k89R4DyRtNNQGxMkiveVJSdWOcEDZEIZn8xvvKAKqxnrOt5c_e6ADRq83hBmo_kPTIv_balegjkcN0GIJAJktBsRwrToX_GsyjsbrsrG45Mcjd9gOK78e2hHCFNe9A3E41cqHQKa6Vi6tGHp3hgN6PDUXPI3DPVCjITH&random=3395765879&rmt_tld=0&ipr=y"
+ ],
+ "saved": [
+  {
+   "from": "https://cms-tabii-public-static.tabii.com/assets/tabii.svg",
+   "file": "logo-img-0.svg"
+  },
+  {
+   "from": "https://www.googleadservices.com/ccm/conversion/11164926310/?random=1791375372307&cv=11&fst=1791375372307&fmt=3&bg=ffffff&guid=ON&async=1&en=conversion&gtm=45be6a51v9116611657z8899699928za20gzb899699928zd899699928xeaxf1&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616985~115938466~115938468~117776795~118897920~118897930~119318177~119381664~120213116~120385422~120469145~120469153~121046263~121046271~121125487&u_w=1440&u_h=900&url=https%3A%2F%2Fwww.tabii.com%2Ftr&rcb=2&label=zOJzCL3toY8aEOaC7csp&capi=1&frm=0&tiba=tabii%20-%20TV%20Programlar%C4%B1%20Filmleri%20ve%20Dizileri%20%C4%B0zle&bttype=purchase&value=0&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1838989928.1791375371&uaa=x86&uab=64&uafvl=HeadlessChrome%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0%7CChromium%3B141.0.7390.37&uamb=0&uam=&uap=Windows&uapv=10.0&uaw=0&ec_mode=a&oid=GG_1363886294.1791375372&oidsrc=3&ecsid2=1903103131.1791375372&_tu=CBA&gcl_ctr=1~0~0~0&category=acrcp_v1_512&em=tv.1&emd=tvd.1",
+   "file": "logo-img-1.bin"
+  },
+  {
+   "from": "https://www.google.com/pagead/1p-user-list/11164926310/?random=1791375372266&cv=11&fst=1791374400000&bg=ffffff&guid=ON&async=1&gtm=45be6a51v9116611657z8899699928za20gzb899699928zd899699928xeaxf1&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616985~115938466~115938468~117776795~118897920~118897930~119318177~119381664~120213116~120385422~120469145~120469153~121046263~121046271~121125487&u_w=1440&u_h=900&url=https%3A%2F%2Fwww.tabii.com%2Ftr&rcb=2&label=UDumCOTh7ZwYEOaC7csp&frm=0&tiba=tabii%20-%20TV%20Programlar%C4%B1%20Filmleri%20ve%20Dizileri%20%C4%B0zle&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1838989928.1791375371&uaa=x86&uab=64&uafvl=HeadlessChrome%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0%7CChromium%3B141.0.7390.37&uamb=0&uam=&uap=Windows&uapv=10.0&uaw=0&_tu=CA&ept=9&rfmt=3&fmt=3&is_vtc=1&cid=CAQS4gEAQM4h3K0TXtWcFkkw6yc4LBzR0lE387o5BNbHvhQRsfXg-zhYs61aWd4-f8je5WkoqBYQd7eHuQqb27rnSNuZ5q3_KQ4XlOpRCjM8GF9vUOBLhY7ks8EbmYZuxv4sVN3A25m08Ea4k89R4DyRtNNQGxMkiveVJSdWOcEDZEIZn8xvvKAKqxnrOt5c_e6ADRq83hBmo_kPTIv_balegjkcN0GIJAJktBsRwrToX_GsyjsbrsrG45Mcjd9gOK78e2hHCFNe9A3E41cqHQKa6Vi6tGHp3hgN6PDUXPI3DPVCjITH&random=3395765879&rmt_tld=0&ipr=y",
+   "file": "logo-img-2.bin"
+  },
+  {
+   "from": "https://www.tabii.com/favicon.svg",
+   "file": "icon-3.svg"
+  },
+  {
+   "from": "https://www.tabii.com/favicon.svg",
+   "file": "icon-4.svg"
+  },
+  {
+   "from": "https://www.tabii.com/favicon.svg",
+   "file": "icon-5.svg"
+  },
+  {
+   "from": "https://www.tabii.com/favicon.svg",
+   "file": "icon-6.svg"
+  },
+  {
+   "from": "https://www.tabii.com/favicon.svg",
+   "file": "icon-7.svg"
+  },
+  {
+   "from": "https://www.tabii.com/favicon.svg",
+   "file": "icon-8.svg"
+  },
+  {
+   "from": "https://cms-tabii-assets.tabii.com/thumbnails/23963_781e9dee-cbd8-491a-b166-0b1df25b3bd0_720.jpeg",
+   "file": "og-image.jpeg"
+  },
+  {
+   "from": "https://www.tabii.com/_next/static/media/b2efb5cde74c2f1a-s.p.ttf",
+   "file": "fonts/b2efb5cde74c2f1a-s.p.ttf"
+  },
+  {
+   "from": "https://www.tabii.com/_next/static/media/4b4ebe20759bdbf2-s.p.ttf",
+   "file": "fonts/4b4ebe20759bdbf2-s.p.ttf"
+  },
+  {
+   "from": "https://www.tabii.com/_next/static/media/502635913515117a-s.p.ttf",
+   "file": "fonts/502635913515117a-s.p.ttf"
+  },
+  {
+   "from": "https://www.tabii.com/_next/static/media/98512bf8da1afe43-s.p.ttf",
+   "file": "fonts/98512bf8da1afe43-s.p.ttf"
+  },
+  {
+   "from": "https://www.tabii.com/_next/static/media/7572a9b5289f55fe-s.p.ttf",
+   "file": "fonts/7572a9b5289f55fe-s.p.ttf"
+  },
+  {
+   "from": "https://www.tabii.com/_next/static/media/8001a01b32b71ef5-s.p.ttf",
+   "file": "fonts/8001a01b32b71ef5-s.p.ttf"
+  }
+ ]
+}
