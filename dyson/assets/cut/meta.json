@@ -1,0 +1,57 @@
+{
+  "dryer": {
+    "file": "assets/cut/nural.webp",
+    "w": 151,
+    "h": 560,
+    "bytes": 19854,
+    "ring": {
+      "cx": 0.5,
+      "cy": 0.13485221674876846,
+      "r": 0.13485221674876846
+    }
+  },
+  "attachments": {
+    "diffuser": {
+      "file": "assets/cut/att-diffuser.webp",
+      "w": 94,
+      "h": 120,
+      "bytes": 3900
+    },
+    "comb": {
+      "file": "assets/cut/att-comb.webp",
+      "w": 199,
+      "h": 120,
+      "bytes": 5084
+    },
+    "concentrator": {
+      "file": "assets/cut/att-concentrator.webp",
+      "w": 103,
+      "h": 120,
+      "bytes": 2514
+    },
+    "gentle": {
+      "file": "assets/cut/att-gentle.webp",
+      "w": 32,
+      "h": 120,
+      "bytes": 1814
+    },
+    "flyaway": {
+      "file": "assets/cut/att-flyaway.webp",
+      "w": 127,
+      "h": 120,
+      "bytes": 4020
+    }
+  },
+  "vacuum": {
+    "file": "assets/cut/v12.webp",
+    "w": 338,
+    "h": 760,
+    "bytes": 26390,
+    "head": {
+      "x": 0.2516778523489933,
+      "y": 0.9990049751243781,
+      "left": 0.0022371364653243847,
+      "right": 0.5011185682326622
+    }
+  }
+}

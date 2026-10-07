@@ -1,7 +1,7 @@
-// İki ayrı 970×250 masthead derler (her biri kendi index.html'inde, tek ürün):
+// İki ayrı 970×250 masthead derler (orijinal ürün fotoğrafları + 2D canvas efektleri) (her biri kendi index.html'inde, tek ürün):
 //   dist/haircare/index.html  – Dyson Supersonic Nural (saç bakımı)
 //   dist/cordfree/index.html  – Dyson V12 Detect Slim (kablosuz süpürge)
-// three.js dahil tüm kod satır içidir. assets/selection.json'daki siteden alınmış materyaller
+// Tüm kod ve görseller satır içidir. assets/selection.json'daki siteden alınmış materyaller
 // (film, poster, küçük görsel) ilgili masthead'e eklenir: görseller base64, video media/ klasörüne.
 import { build } from 'esbuild';
 import fs from 'node:fs';
@@ -21,6 +21,16 @@ const tpl = fs.readFileSync(path.join(root, 'src/template.html'), 'utf8');
 const selFile = path.join(root, 'assets', 'selection.json');
 const sel = fs.existsSync(selFile) ? JSON.parse(fs.readFileSync(selFile, 'utf8')) : {};
 const dataUri = (rel) => { const f = path.join(root, rel); const ext = path.extname(f).slice(1).replace('jpg', 'jpeg'); return `data:image/${ext};base64,${fs.readFileSync(f).toString('base64')}`; };
+// Orijinal ürün fotoğrafları (tools/cut-products.py çıktısı)
+const cut = JSON.parse(fs.readFileSync(path.join(root, 'assets/cut/meta.json'), 'utf8'));
+function productAssets(stage) {
+  if (stage === 'hair') {
+    const m = cut.dryer;
+    return { product: { src: dataUri(m.file), w: m.w, h: m.h, ring: m.ring }, atts: Object.fromEntries(Object.entries(cut.attachments).map(([k, v]) => [k, dataUri(v.file)])) };
+  }
+  const m = cut.vacuum;
+  return { product: { src: dataUri(m.file), w: m.w, h: m.h, head: m.head } };
+}
 let hasZip = true; try { execSync('zip -v', { stdio: 'ignore' }); } catch { hasZip = false; }
 fs.mkdirSync(path.join(dist, 'zip'), { recursive: true });
 
@@ -45,7 +55,7 @@ for (const [name, m] of Object.entries(MASTHEADS)) {
   const out = path.join(dist, name);
   fs.rmSync(out, { recursive: true, force: true });
   fs.mkdirSync(out, { recursive: true });
-  const a = sel[m.stage] || {}, assets = {};
+  const a = sel[m.stage] || {}, assets = productAssets(m.stage);
   if (a.image) assets.image = dataUri(a.image);
   if (a.poster) assets.poster = dataUri(a.poster);
   if (a.video) {
@@ -60,7 +70,7 @@ for (const [name, m] of Object.entries(MASTHEADS)) {
   // Filmli sürüm 150 KB'ı aşar; Google Ads gibi sınırlı ağlar için filmsiz "lite" zip de üretilir
   if (assets.video) {
     const tmp = path.join(dist, '.lite'); fs.rmSync(tmp, { recursive: true, force: true }); fs.mkdirSync(tmp);
-    fs.writeFileSync(path.join(tmp, 'index.html'), render(m, {}));
+    fs.writeFileSync(path.join(tmp, 'index.html'), render(m, productAssets(m.stage)));
     console.log(`  └ filmsiz sürüm${zipDir(tmp, `dyson-${name}-970x250-lite.zip`)}`);
     fs.rmSync(tmp, { recursive: true, force: true });
   }

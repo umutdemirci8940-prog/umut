@@ -18,13 +18,19 @@ export const DATA = {
         { key: 'mid', label: 'Orta', temp: 80, color: '#ffa04d', level: 2 },
         { key: 'high', label: 'Yüksek', temp: 100, color: '#ff6a2b', level: 3 },
       ],
+      // Orijinal başlık fotoğrafları (assets/cut/att-*.webp); hava akışı biçimi: sx/sy yayılım, hız, boyut
       attachments: [
-        { key: 'none', label: 'Başlıksız' },
-        { key: 'concentrator', label: 'Yoğunlaştırıcı' },
-        { key: 'smoothing', label: 'Pürüzsüzleştirici' },
-        { key: 'diffuser', label: 'Difüzör' },
+        { key: 'none', label: 'Başlıksız', flow: { sx: 1, sy: 1, speed: 1, size: 1 } },
+        { key: 'concentrator', label: 'Yoğunlaştırıcı', note: 'Hassas şekillendirme için yassı, odaklı hava', flow: { sx: 1.25, sy: 0.22, speed: 1.35, size: 0.8 } },
+        { key: 'diffuser', label: 'Difüzör', note: 'Bukleler için yumuşak, dağıtılmış hava', flow: { sx: 1.5, sy: 1.5, speed: 0.45, size: 1.8 } },
+        { key: 'comb', label: 'Geniş dişli tarak', note: 'Kıvırcık ve dalgalı saçta kurutarak tarar', flow: { sx: 1.1, sy: 0.55, speed: 0.8, size: 1.2, comb: true } },
+        { key: 'gentle', label: 'Nazik hava', note: 'Saç derisine dostu, geniş ve sakin akış', flow: { sx: 1.7, sy: 1.7, speed: 0.35, size: 2.1 } },
+        { key: 'flyaway', label: 'Kabarma önleyici', note: 'Uçuşan telleri bastırarak parlak bitiş', flow: { sx: 0.6, sy: 0.3, speed: 1.2, size: 0.8, side: true } },
       ],
+      // Ürün fotoğrafı üzerindeki özellik noktaları (0–1, görsel genişliği/yüksekliği oranı)
+      spots: { multiplier: [0.1, 0.07], heat: [0.5, 0.135], nural: [0.9, 0.08], motor: [0.5, 0.5], filter: [0.5, 0.74] },
       features: {
+        filter: { title: 'Çıkarılabilir filtre', text: 'Paslanmaz çelik filtre kolayca çıkarılıp temizlenir; performans ilk günkü gibi korunur.' },
         multiplier: { title: 'Air Multiplier™ teknolojisi', text: 'Hava akışını yaklaşık üç katına çıkararak yüksek hızlı, kontrollü bir hava jeti oluşturur.' },
         heat: { title: 'Akıllı ısı kontrolü', text: 'Hava sıcaklığı saniyede 40 kereden fazla ölçülür; aşırı ısı hasarına karşı saçın doğal parlaklığı korunur.' },
         nural: { title: 'Nural™ saç derisi koruma', text: 'Mesafe sensörü cihaz başınıza yaklaştığında ısıyı otomatik olarak düşürür.' },
@@ -51,6 +57,7 @@ export const DATA = {
         { label: '20–60µm', min: 0.2 },
         { label: '10–20µm', min: 0 },
       ],
+      spots: { laser: [0.03, 0.905], piezo: [0.6, 0.22], lcd: [0.95, 0.1], motor: [0.7, 0.07], battery: [0.9, 0.19], hepa: [0.82, 0.025] },
       features: {
         laser: { title: 'Lazer toz algılama', text: 'Eğik açılı yeşil lazer, sert zeminlerde gözle görülmeyen tozu ortaya çıkarır.' },
         piezo: { title: 'Piezo sensör', text: 'Toz partiküllerini saniyede 15.000 kez sayar ve boyutlarına göre ölçer; emiş gücünü otomatik ayarlar.' },

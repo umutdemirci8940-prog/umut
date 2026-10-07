@@ -23,11 +23,11 @@ async function open(name) {
 // Saç bakımı
 let p = await open('haircare');
 await shot(p, 'haircare-1-acilis');
-await p.click('[data-heat="3"]'); await p.click('[data-att="concentrator"]'); await p.click('[data-sw="1"]'); await p.waitForTimeout(1500);
+await p.click('[data-heat="3"]'); await p.click('[data-att="concentrator"]'); await p.waitForTimeout(1500);
 await p.locator('.hs[data-key="multiplier"]').click({ force: true }); await p.waitForTimeout(400);
 ok(await p.locator('#card.show').count() === 1, 'haircare: hotspot kartı açılıyor');
 await shot(p, 'haircare-2-yogunlastirici-hotspot');
-await p.click('#cardClose'); await p.click('[data-att="diffuser"]'); await p.click('[data-heat="0"]'); await p.click('[data-sw="2"]');
+await p.click('#cardClose'); await p.click('[data-att="diffuser"]'); await p.click('[data-heat="0"]');
 const b = await p.locator('#mh').boundingBox();
 await p.mouse.move(b.x + 650, b.y + 120); await p.mouse.down(); await p.mouse.move(b.x + 760, b.y + 140, { steps: 8 }); await p.mouse.up(); await p.waitForTimeout(800);
 await shot(p, 'haircare-3-difuzor-soguk');
@@ -43,9 +43,9 @@ for (let i = 0; i < 50; i++) { await p.mouse.move(c.x + 560 + 260 * Math.sin(i /
 await p.waitForTimeout(500);
 ok(+(await p.textContent('#total')).replace(/\D/g, '') > 0, 'cordfree: süpürünce partikül sayacı artıyor');
 await shot(p, 'cordfree-1-lazerle-supur');
-await p.click('[data-pow="2"]'); await p.click('[data-fsw="1"]'); await p.click('[data-mode="inspect"]'); await p.waitForTimeout(3500);
-await p.locator('.hs[data-key="laser"]').click({ force: true }); await p.waitForTimeout(400);
-await shot(p, 'cordfree-2-3d-incele');
+await p.click('[data-pow="2"]'); await p.click('[data-mode="inspect"]'); await p.waitForTimeout(3500);
+await p.locator('.hs[data-key="piezo"]').click({ force: true }); await p.waitForTimeout(400);
+await shot(p, 'cordfree-2-yakindan-incele');
 ok(await p.locator('.film').count() === 1, 'cordfree: film düğmesi var');
 await p.click('#cardClose').catch(() => {}); await p.click('.film'); await p.waitForTimeout(800);
 ok(await p.locator('#video:not([hidden])').count() === 1, 'cordfree: film katmanı açılıyor');
