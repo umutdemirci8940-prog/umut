@@ -1,55 +1,63 @@
 # tabii – "yeni sezonda 4Dörtlük" · 970×250 interaktif masthead
 
-Dosya: `970x250/index.html` (tek dosya, satır içi CSS/JS/SVG, görsel yok, ~20 KB).
+Teslim dosyası: `970x250/index.html`. Tek dosya; 13 afiş içine gömülü, toplam ~108 KB (Google Ads 150 KB sınırının altında).
 
-| Açılış | Kareler (1/4) | Üzerine gelme | 4/4 + tür seçimi |
-|---|---|---|---|
-| ![](screens/01-acilis.png) | ![](screens/02-kareler.png) | ![](screens/05-hover.png) | ![](screens/04-tur.png) |
+| Açılış | Ana kare | Tür seçimi (Dönem) |
+|---|---|---|
+| ![](screens/01-acilis.png) | ![](screens/02-ana.png) | ![](screens/04-tur-donem.png) |
 
-## Araştırma özeti
+## Kurgu
 
-**tabii.com/tr'den çekilenler** (`assets/site/`, GitHub Actions ile; bulut oturumu siteye erişemiyor):
-- Logo: `tabii-logo.svg` (resmî Illustrator çıktısı; sekiz köşeli yıldız + "tabii" yazısı). Bannerda satır içi SVG olarak kullanılıyor.
-- Renkler: marka yeşili **#00FF99**, zemin **#000000** / **#151618**, metin **#FAFAFA**. Site CTA'sı ("Başla") yeşil zemin, koyu metin, 8 px köşe.
-- Font: **Poppins** (sitenin tek fontu, 400–800). Bannerda Google Fonts'tan yükleniyor.
-- Site başlıkları: "Benzersiz Türkçe Orijinaller, Sınırsız Eğlence", "Bizi Birleştiren Hikayeler". Öne çıkan orijinaller: Persona, Gassal, Siyah Bere, Yüzde İki, Yankı: İkinci Perde, Çırak, Marnalı, Cihangir Cumhuriyeti, Mevlânâ Celâleddîn-i Rûmî.
-- Yeniden çekmek için: `.github/workflows/tabii-fetch.yml` (Actions sekmesinden çalıştırılabilir).
+**Arka plan: afiş duvarı.** tabii.com ana sayfasındaki kolaj dilinden yola çıkıldı. 13 orijinal yapımın afişi, 12° eğik ve sütunlar ters yönde ağır ağır kayan bir duvarda yer alıyor. Solda metin için koyu geçiş, sağda öne çıkan kartın arkasında yeşil ışık var.
 
-**Genel:**
+1. **Açılış (0–3 sn):** Briefteki dört sütun sırayla belirir: Hikâye · Karakter · Prodüksiyon · Teknoloji. Her birinin yanında yeşil bir kare çıkar, altında "hiçbir detay eksik değil" yazar.
+2. **Ana kare:** Solda tabii logosu, "yeni sezonda **4Dörtlük.**" ana mesajı ve tür çipleri. Sağda öne çıkan yapım kartı yer alır: afiş, sezon rozeti, tür, ad, "Dört dörtlük gizem. Sadece tabii'de." ve "Hemen İzle" butonu.
+3. **Döngü:** Yapımlar 2,6 sn arayla değişir, 30. saniyede ilk yapımda durur. Duvar da 30. saniyede durur (IAB kuralı).
 
-- **Marka:** tabii, TRT'nin uluslararası dijital platformu. Logo, 8 kareden oluşan kaleydoskop deseni ve yeşil rengi; küçük harfli "tabii" yazımı. Motto: "bizi birleştiren hikâyeler".
-- **Katalog:** 60+ orijinal yapım, 600+ film/dizi, 22 bin saati aşkın içerik; çoklu dil, altyazı ve dublaj.
-- **Güncel orijinaller:** Gassal, Marnalı, Çırak, Cihangir Cumhuriyeti, Muhabir (komedi); yeni sezonlarıyla Mevlana Celaleddin-i Rumi, Hay Sultan, Yeşil Deniz Milenyum, Küçük Dahi İbn-i Sina, Mahsusa: Trablusgarb.
-- **Format:** IAB Billboard 970×250. İlk yükleme için önerilen sınır 200 KB (Google Ads HTML5 için 150 KB), animasyon en fazla 30 sn, ses yalnızca kullanıcı başlatırsa.
+## Etkileşim
 
-## Konsept: "Dört kareyi tamamla"
+- **Tür çipleri** (Dram, Aksiyon, Komedi, Gizem, Dönem): Seçilen türün yapımı karta gelir. Duvarda o türün afişleri yeşil çerçeveyle öne çıkar, diğerleri kararır.
+- **Duvardaki afişler:** Üzerine gelinen afiş öne çıkan karta taşınır.
+- **Kart:** Fareyle 3B eğim ve parlama efekti. Kart tıklanınca `Enabler.exitOverride` ile o dizinin tabii sayfasına gider (Studio/DV360). Google Ads'te clickTag kullanılır.
+- **Oklar, ← → tuşları ve mobilde kaydırma:** Yapımlar arasında gezinme.
+- **Kullanıcı devraldığında** otomatik döngü durur.
+- **Çıkış:** Alanın geri kalanına veya CTA'ya tıklanınca `clickTag` / `Enabler.exit` çalışır.
+- `prefers-reduced-motion` açıksa hareketler kapanır.
 
-Açılışta tabii'nin sekiz köşeli yıldızı dönerek gelir, ortasında "4" belirir. Ardından dört kart mekaniği başlar. Briefteki dört sütun (**hikâye, karakter, prodüksiyon, teknoloji**) dört kart oluyor. Kullanıcı kartların üzerine geldikçe her kart tamamlanıyor, sağdaki halka 0/4'ten 4/4'e doluyor. Dört kart da tamamlanınca halka "dört dörtlük" durumuna geçiyor, ana mesaj damgalanıyor ve CTA nabız atıyor.
+## Yapımlar ve türler
 
-İkinci katman **tür seçici**: Dram, Aksiyon, Komedi, Gizem, Dönem. Her tür, arka plan ışığını ve alt metni değiştiriyor ("Dört dörtlük gizem. Her bölümde yeni bir sır.").
+`tools/build.py` içindeki `SHOWS` listesi gösterim sırasını, türü ve rozeti belirler:
 
-### Akış (etkileşim olmazsa)
-
-| Zaman | Olay |
+| Tür | Yapımlar |
 |---|---|
-| 0–2,2 sn | Açılış: tabii yıldızı dönerek gelir, içinde "4" belirir. "Yeni karakterler. Yeni dünyalar. Yeni heyecanlar." |
-| 2,2 sn | Ana yerleşim: tabii, "yeni sezonda 4Dörtlük.", kartlar, halka, CTA |
-| 3,6–7,8 sn | Kartlar sırayla açılıp tamamlanır (1/4 → 4/4) |
-| 7,8 sn | 4/4 anı: halka dalgası, kare konfeti, başlık damgası, CTA nabzı |
-| ~10–29 sn | Türler 2,4 sn arayla döner; 30. saniyede durur |
+| Dram | Gassal (3. sezon), Çırak, Rüya Gibi İstanbul |
+| Aksiyon | Siyah Bere, Marnalı, Yankı: İkinci Perde |
+| Komedi | Kız Babası, Yeşil Deniz Milenyum (3. sezon), Yüzde İki (2. sezon) |
+| Gizem | Persona, Son Gün |
+| Dönem | Mevlânâ Celâleddîn-i Rûmî (3. sezon), Hay Sultan |
 
-Kullanıcı bir karta dokunduğu anda otomatik akış durur ve kontrol kullanıcıya geçer.
+> Tür eşleşmeleri ve sezon rozetleri afişlerden ve genel bilgiden çıkarıldı; yayın öncesi tabii ekibiyle teyit edilmeli.
 
-## Etkileşim ve teknik
+## Marka (tabii.com/tr'den)
 
-- Kartlar: üzerine gelme, odaklanma veya dokunma (mobil) ile açılır ve tamamlanır.
-- Tıklama: alanın tamamı çıkış yapar. Önce `Enabler.exit` (Studio/DV360) denenir, sonra `window.clickTag` (Google Ads/CM360). Kartlar ve tür çipleri tıklamayı yutar.
-- Klavye: Tab ile kartlar ve çipler gezilir, Enter ile çıkış yapılır. `prefers-reduced-motion` açıksa animasyonlar kapanır.
-- Font: Google Fonts üzerinden *Poppins* (sitenin fontu; yüklenmezse sistem fontu).
-- Renkler `:root` içinde (`--green`, `--ink`), tür renkleri `GENRES` dizisinde.
+- **Logo:** resmî `tabii.svg` (`assets/site/tabii-logo.svg`), satır içi SVG.
+- **Renkler:** yeşil `#00FF99`, zemin `#000` / `#151618`, metin `#FAFAFA`.
+- **Font:** Poppins (Google Fonts).
+- **CTA:** yeşil zemin, siyah metin, 8 px köşe (sitedeki "Başla" butonu gibi).
+- **Afişler:** `assets/site/posters/` (600×901 orijinaller, `posters.json` içinde ad ve sayfa adresi).
 
-## Yayın öncesi yapılacaklar
+## Derleme
 
-1. **clickTag:** Varsayılan hedef `tabii.com/tr` (UTM'li). Kampanya URL'si ile güncellenmeli.
-2. **"4. yaş" ifadesi:** tabii Türkiye'de 7 Mayıs 2023'te yayına başladı. Ekim 2026 itibarıyla platform 3 yaşını doldurmuş, 4. yılında. Briefteki "4. yaşını geride bırakırken" ifadesi teyit edilmeli. Bannerda yaş vurgusu yok, yalnızca "4Dörtlük" kullanıldı.
-3. İstenirse kartlara dizi görselleri (key art) eklenebilir. Her kart bir türün öne çıkan yapımını gösterebilir, ancak dosya boyutu 150 KB sınırına dikkat edilerek.
+```bash
+python3 tabii-4dortluk/tools/build.py          # src/masthead.html + afişler → 970x250/index.html
+python3 tabii-4dortluk/tools/build.py --w=160 --q=55   # daha küçük dosya gerekirse
+```
+
+Bu bulut oturumu tabii.com'a erişemiyor; varlıklar GitHub Actions'ta `.github/workflows/tabii-fetch.yml` ile çekiliyor (`tools/fetch-site.js`, `tools/fetch-posters.js`). Afişleri güncellemek için iş akışını Actions sekmesinden çalıştırıp ardından `build.py`'yi çalıştırmak yeterli.
+
+## Yayın öncesi
+
+1. **clickTag:** Varsayılan `tabii.com/tr` (UTM'li); kampanya URL'si girilmeli.
+2. **Tür/sezon bilgileri:** Yukarıdaki tablo teyit edilmeli.
+3. **"4. yaş" ifadesi:** tabii 7 Mayıs 2023'te yayına başladı; Ekim 2026'da 3 yaşında, 4. yılında. Briefteki ifade teyit edilmeli. Bannerda yaş vurgusu yok.
+4. **Yayıncı kuralları:** Font Google Fonts'tan yükleniyor. Harici kaynak kabul etmeyen yayıncılar için Poppins `@font-face` ile gömülebilir (~+25 KB).

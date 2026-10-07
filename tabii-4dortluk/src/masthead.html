@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=970,height=250">
+<meta name="viewport" content="width=970,height=250">
+<title>tabii – yeni sezonda 4Dörtlük · 970x250</title>
+<script>var clickTag = window.clickTag || "https://www.tabii.com/tr?utm_source=display&utm_medium=masthead&utm_campaign=4dortluk";</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* Marka: tabii.com/tr – yeşil #00FF99, zemin #000 / #151618, metin #FAFAFA, font Poppins */
+  :root{--green:#00ff99;--ink:#000;--ink2:#151618;--txt:#fafafa;--mute:rgba(250,250,250,.66);--ease:cubic-bezier(.2,.8,.2,1)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:970px;height:250px;overflow:hidden;background:#000}
+  body{font-family:"Poppins","Segoe UI",system-ui,sans-serif;color:var(--txt);-webkit-font-smoothing:antialiased}
+  #ad{position:relative;width:970px;height:250px;overflow:hidden;cursor:pointer;background:#000;outline:none}
+  #ad::after{content:"";position:absolute;inset:0;border:1px solid rgba(255,255,255,.12);pointer-events:none;z-index:50}
+  #ad:focus-visible::after{border-color:var(--green)}
+
+  /* ---------- AFİŞ DUVARI ---------- */
+  .wall{position:absolute;left:-40px;top:-260px;width:1160px;height:760px;display:flex;gap:10px;
+        transform:rotate(-12deg);transform-origin:50% 50%;opacity:0;transition:opacity 1.2s var(--ease)}
+  .wall.in{opacity:1}
+  .col{display:flex;flex-direction:column;gap:10px;flex:0 0 92px;animation:up var(--d,70s) linear infinite}
+  .col:nth-child(even){animation-name:down}
+  .paused .col{animation-play-state:paused}
+  @keyframes up{from{transform:translateY(0)}to{transform:translateY(calc(-50% - 5px))}}
+  @keyframes down{from{transform:translateY(calc(-50% - 5px))}to{transform:translateY(0)}}
+  .pc{position:relative;width:92px;height:138px;border-radius:6px;overflow:hidden;flex:0 0 auto;background:#151618;
+      outline:1px solid rgba(0,255,153,.18);outline-offset:-1px;
+      transition:opacity .6s var(--ease),filter .6s var(--ease),outline-color .4s,transform .4s var(--ease)}
+  .pc img{width:100%;height:100%;object-fit:cover;display:block}
+  .wall.focus .pc{opacity:.5;filter:saturate(.55) brightness(.85)}
+  .wall.focus .pc.hl{opacity:1;filter:none;outline:1.5px solid rgba(0,255,153,.7);outline-offset:-1.5px}
+  .wall.focus .pc.cur{outline:2.5px solid var(--green);outline-offset:-2.5px;box-shadow:0 0 18px rgba(0,255,153,.5)}
+  .pc:hover{transform:scale(1.06)}
+
+  .shade{position:absolute;inset:0;pointer-events:none;
+         background:
+          radial-gradient(260px 200px at 735px 125px,rgba(0,255,153,.16),transparent 70%),
+          linear-gradient(90deg,#000 0%,rgba(0,0,0,.95) 30%,rgba(0,0,0,.5) 43%,rgba(0,0,0,.22) 53%,rgba(0,0,0,.6) 63%,rgba(0,0,0,.9) 72%,#000 100%),
+          linear-gradient(0deg,rgba(0,0,0,.55),transparent 35%,transparent 70%,rgba(0,0,0,.45))}
+
+  /* ---------- AÇILIŞ: dört sütun ---------- */
+  #intro{position:absolute;inset:0;z-index:30;display:flex;flex-direction:column;align-items:center;justify-content:center;
+         background:radial-gradient(500px 220px at 50% 50%,rgba(0,0,0,.55),rgba(0,0,0,.92));transition:opacity .6s var(--ease),visibility .6s}
+  #intro.out{opacity:0;visibility:hidden}
+  .pillars{display:flex;gap:34px}
+  .pillar{display:flex;align-items:center;gap:10px;font-size:24px;font-weight:700;letter-spacing:-.4px;
+          opacity:0;transform:translateY(12px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+  .pillar.on{opacity:1;transform:none}
+  .pillar i{width:14px;height:14px;border-radius:3px;background:var(--green);transform:scale(0) rotate(-90deg);transition:transform .45s .15s var(--ease)}
+  .pillar.on i{transform:none}
+  .introSum{margin-top:18px;font-size:13px;letter-spacing:4px;text-transform:uppercase;color:var(--green);font-weight:600;
+            opacity:0;transition:opacity .5s var(--ease)}
+  .introSum.on{opacity:1}
+
+  /* ---------- SOL: marka + mesaj ---------- */
+  .left{position:absolute;left:32px;top:22px;width:340px;height:210px;z-index:10}
+  .logo{height:30px;width:auto;display:block}
+  .kicker{margin-top:16px;font-size:12px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--mute)}
+  .head{font-size:60px;font-weight:800;line-height:.98;letter-spacing:-2.6px;margin-top:2px;white-space:nowrap}
+  .head b{color:var(--green);font-weight:800;display:inline-block}
+  .head .dot{color:var(--green)}
+  .head.stamp b{animation:stamp .8s var(--ease)}
+  @keyframes stamp{30%{transform:scale(1.3) rotate(-8deg)}100%{transform:none}}
+  .sub{margin-top:8px;font-size:12.5px;line-height:1.45;color:var(--mute)}
+  .sub strong{color:var(--txt);font-weight:600}
+  .chips{position:absolute;left:0;bottom:0;display:flex;gap:6px}
+  .chip{font:600 11px/1 "Poppins",system-ui,sans-serif;color:var(--txt);background:rgba(255,255,255,.07);
+        border:1px solid rgba(255,255,255,.16);border-radius:6px;padding:7px 10px 6px;cursor:pointer;transition:all .3s var(--ease)}
+  .chip:hover{border-color:rgba(255,255,255,.45)}
+  .chip.on{background:var(--green);border-color:var(--green);color:#000}
+  .chip:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+
+  /* ---------- SAĞ: öne çıkan yapım ---------- */
+  .feat{position:absolute;right:24px;top:22px;width:316px;height:206px;display:flex;gap:16px;z-index:10}
+  .card{position:relative;flex:0 0 136px;height:206px;border-radius:8px;overflow:hidden;background:#151618;
+        box-shadow:0 0 0 2px var(--green),0 18px 40px rgba(0,0,0,.6),0 0 40px rgba(0,255,153,.25);
+        transform:perspective(600px) rotateY(var(--ry,0deg)) rotateX(var(--rx,0deg));transition:transform .25s ease-out}
+  .card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.08);
+            transition:opacity .6s var(--ease),transform 1.6s var(--ease)}
+  .card img.on{opacity:1;transform:none}
+  .card .badge{position:absolute;left:8px;top:8px;z-index:2;font-size:10px;font-weight:700;letter-spacing:.2px;
+               background:var(--green);color:#000;border-radius:3px;padding:3px 6px 2px}
+  .card .glare{position:absolute;inset:0;z-index:2;pointer-events:none;
+               background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.22) 50%,transparent 65%);transform:translateX(-130%)}
+  .card.sw .glare{animation:glare .9s var(--ease)}
+  @keyframes glare{to{transform:translateX(130%)}}
+  .info{flex:1;display:flex;flex-direction:column;min-width:0;padding-top:4px}
+  .genre{font-size:10.5px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--green)}
+  .title{margin-top:6px;font-size:21px;font-weight:700;line-height:1.12;letter-spacing:-.5px;min-height:48px}
+  .title.long{font-size:16px;line-height:1.18}
+  .meta{margin-top:6px;font-size:11px;color:var(--mute);line-height:1.4}
+  .swap{transition:opacity .3s var(--ease),transform .3s var(--ease)}
+  .swap.hide{opacity:0;transform:translateY(6px)}
+  .nav{display:flex;gap:6px;margin-top:10px}
+  .nav button{width:26px;height:26px;border-radius:6px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);
+              color:#fff;cursor:pointer;display:grid;place-items:center;transition:all .25s}
+  .nav button:hover{border-color:var(--green);color:var(--green)}
+  .nav button:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+  .nav svg{width:10px;height:10px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+  .count{font-size:10.5px;color:var(--mute);align-self:center;margin-left:4px;font-variant-numeric:tabular-nums}
+  .cta{margin-top:auto;height:40px;border:0;border-radius:8px;background:var(--green);color:#000;cursor:pointer;
+       font:700 14px/1 "Poppins",system-ui,sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;
+       transition:transform .25s var(--ease),background .25s;box-shadow:0 0 0 0 rgba(0,255,153,.5)}
+  .cta:hover{background:#5cffbd;transform:translateY(-1px)}
+  .cta.pulse{animation:pulse 1.6s ease-out 2}
+  @keyframes pulse{to{box-shadow:0 0 0 14px rgba(0,255,153,0)}}
+  .cta svg{width:11px;height:11px;fill:#000}
+
+  .reveal{opacity:0;transform:translateY(12px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+  .ready .reveal{opacity:1;transform:none}
+  .ready .d1{transition-delay:.08s}.ready .d2{transition-delay:.16s}.ready .d3{transition-delay:.26s}.ready .d4{transition-delay:.36s}.ready .d5{transition-delay:.46s}
+
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01s!important;animation-iteration-count:1!important;transition-duration:.01s!important}
+  }
+</style>
+</head>
+<body>
+<div id="ad" role="link" tabindex="0" aria-label="tabii yeni sezonda 4Dörtlük. Hemen izlemek için tıklayın.">
+  <div class="wall" id="wall" aria-hidden="true"></div>
+  <div class="shade"></div>
+
+  <div id="intro" aria-hidden="true">
+    <div class="pillars">
+      <div class="pillar"><i></i>Hikâye</div>
+      <div class="pillar"><i></i>Karakter</div>
+      <div class="pillar"><i></i>Prodüksiyon</div>
+      <div class="pillar"><i></i>Teknoloji</div>
+    </div>
+    <div class="introSum">hiçbir detay eksik değil</div>
+  </div>
+
+  <div class="left">
+    <svg class="logo reveal" viewBox="0 0 135 42.3" role="img" aria-label="tabii"><path fill="#00FF99" d="M39.3,21.2l3.3-8.3l-9.3-3.6L29.6,0l-8.3,3.3L12.9,0L9.3,9.2L0,12.9l3.3,8.3L0,29.5l9.3,3.6l3.6,9.2l8.3-3.3l8.3,3.3l3.6-9.2l9.3-3.6L39.3,21.2z M23.1,27.4l-1.8,4.5l-1.8-4.5l-7.3,2.9l2.9-7.3l-4.5-1.8l4.5-1.8l-2.9-7.3l7.3,2.9l1.8-4.5l1.8,4.5l7.3-2.9l-2.9,7.3l4.5,1.8L27.5,23l2.9,7.3L23.1,27.4z"/><path fill="#fff" d="M119.6,6.6v5.9h6.1V6.6H119.6z M119.6,14.3v21.4h6.1V14.3H119.6z M128.9,6.6v5.9h6.1V6.6H128.9z M128.9,14.3v21.4h6.1V14.3H128.9z M66.4,19.5v-5.6h-5.9V6.5h-6.1V30c0,3.1,2.5,5.6,5.6,5.6h6.3V30h-5.9V19.5z M84.9,13.9v2.4c-1.8-1.6-4.1-2.5-6.6-2.5c-5.8,0-10.4,5-10.4,11.2s4.7,11.2,10.4,11.2c2.5,0,4.8-0.9,6.6-2.5v2.1H91V13.9H84.9z M84.9,30.1H74.3V19.5h10.6V30.1z M106.5,13.8c-2.5,0-4.8,0.9-6.6,2.5V6.6h-6.1v29.1h6.1v-2.1c1.8,1.6,4.1,2.5,6.6,2.5c5.8,0,10.4-5,10.4-11.2C116.9,18.8,112.2,13.8,106.5,13.8z M110.5,30.1H99.9V19.5h10.6V30.1z"/></svg>
+    <div class="kicker reveal d1">yeni sezonda</div>
+    <div class="head reveal d2" id="head"><b>4</b>Dörtlük<span class="dot">.</span></div>
+    <p class="sub reveal d3">Hikâyeden karaktere, prodüksiyondan teknolojiye<br><strong>hiçbir detayı eksik olmayan</strong> yeni sezon.</p>
+    <div class="chips reveal d4" id="chips" role="group" aria-label="Tür seç"></div>
+  </div>
+
+  <div class="feat">
+    <div class="card reveal d3" id="card" role="button" tabindex="0" aria-label="Öne çıkan yapım">
+      <span class="badge swap" id="badge">Yeni sezon</span><span class="glare"></span>
+    </div>
+    <div class="info reveal d5">
+      <div class="genre swap" id="genre">&nbsp;</div>
+      <div class="title swap" id="title">&nbsp;</div>
+      <div class="meta swap" id="meta">Sadece tabii'de</div>
+      <div class="nav">
+        <button id="prev" aria-label="Önceki yapım"><svg viewBox="0 0 10 10"><path d="M6.5 1.5L3 5l3.5 3.5"/></svg></button>
+        <button id="next" aria-label="Sonraki yapım"><svg viewBox="0 0 10 10"><path d="M3.5 1.5L7 5 3.5 8.5"/></svg></button>
+        <span class="count" id="count"></span>
+      </div>
+      <button class="cta" id="cta" aria-label="Hemen izle"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1l9 5-9 5z"/></svg>Hemen İzle</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* build.js bu satırı afiş verisiyle doldurur: [{t, g, u, img}] */
+var SHOWS = /*SHOWS*/[];
+var GENRES = ['Dram','Aksiyon','Komedi','Gizem','Dönem'];
+var GENRE_LINE = ['Dört dörtlük dram','Dört dörtlük aksiyon','Dört dörtlük komedi','Dört dörtlük gizem','Dört dörtlük dönem hikâyesi'];
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  var ad=$('ad'), wall=$('wall'), card=$('card'), chipsEl=$('chips'), head=$('head'), cta=$('cta');
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var cur=-1, auto=null, user=false, t0=0, started=false;
+
+  /* ---- afiş duvarı ---- */
+  var COLS=11, STEP=[1,5,2,7,3,8,4,9,6,10,11], cells=[];
+  for(var c=0;c<COLS;c++){
+    var col=document.createElement('div');col.className='col';col.style.setProperty('--d',(150+(c%3)*25)+'s');
+    col.style.marginTop=(-(c*47)%138)+'px';
+    var list=[];for(var k=0;k<SHOWS.length;k++)list.push((c*5+k*STEP[c])%SHOWS.length);
+    list.concat(list).forEach(function(i){
+      var d=document.createElement('div');d.className='pc';d.dataset.i=i;
+      var im=document.createElement('img');im.alt='';im.src=SHOWS[i].img;im.decoding='async';d.appendChild(im);
+      d.addEventListener('mouseenter',function(){stopAuto();show(+this.dataset.i)});
+      col.appendChild(d);cells.push(d);
+    });
+    wall.appendChild(col);
+  }
+
+  /* ---- kart görselleri ---- */
+  var imgs=SHOWS.map(function(s){var im=document.createElement('img');im.src=s.img;im.alt=s.t;card.appendChild(im);return im});
+
+  /* ---- tür çipleri ---- */
+  var chips=GENRES.map(function(g,k){
+    var b=document.createElement('button');b.className='chip';b.textContent=g;
+    b.addEventListener('click',function(e){e.stopPropagation();stopAuto();pickGenre(k)});
+    b.addEventListener('mouseenter',function(){stopAuto();pickGenre(k)});
+    chipsEl.appendChild(b);return b;
+  });
+  function pickGenre(k){
+    if(cur>=0&&SHOWS[cur].g===k)return;
+    for(var i=0;i<SHOWS.length;i++)if(SHOWS[i].g===k){show(i);return}
+  }
+
+  /* ---- öne çıkan yapım ---- */
+  function swapText(id,txt){var el=$(id);el.classList.add('hide');setTimeout(function(){el.innerHTML=txt;el.classList.remove('hide')},220)}
+  function show(i){
+    if(i===cur)return;
+    var s=SHOWS[i];cur=i;
+    imgs.forEach(function(im,k){im.classList.toggle('on',k===i)});
+    card.classList.remove('sw');void card.offsetWidth;card.classList.add('sw');
+    card.setAttribute('aria-label',s.t);
+    swapText('genre',GENRES[s.g]);swapText('title',s.t);swapText('meta',GENRE_LINE[s.g]+'. Sadece tabii\'de.');swapText('badge',s.m||'Yeni sezon');
+    $('title').classList.toggle('long',s.t.length>16);
+    $('count').textContent=String(i+1).padStart(2,'0')+' / '+String(SHOWS.length).padStart(2,'0');
+    chips.forEach(function(b,k){b.classList.toggle('on',k===s.g)});
+    wall.classList.add('focus');
+    cells.forEach(function(d){var k=+d.dataset.i;d.classList.toggle('hl',SHOWS[k].g===s.g);d.classList.toggle('cur',k===i)});
+  }
+  function step(d){show((cur+d+SHOWS.length)%SHOWS.length)}
+  function stopAuto(){user=true;clearInterval(auto)}
+
+  /* ---- 3B eğim ---- */
+  card.addEventListener('mousemove',function(e){
+    var r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+    card.style.setProperty('--ry',(x*16)+'deg');card.style.setProperty('--rx',(-y*12)+'deg');
+  });
+  card.addEventListener('mouseleave',function(){card.style.setProperty('--ry','0deg');card.style.setProperty('--rx','0deg')});
+  card.addEventListener('mouseenter',stopAuto);
+
+  /* ---- tıklama / çıkış ---- */
+  function exit(name,url){
+    if(window.Enabler&&Enabler.exit){
+      if(url&&Enabler.exitOverride)Enabler.exitOverride(name,url);else Enabler.exit(name||'Masthead_Exit');return;
+    }
+    window.open(window.clickTag||clickTag,'_blank');
+  }
+  ad.addEventListener('click',function(){exit('Masthead_Exit')});
+  ad.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target===ad)exit('Masthead_Exit')});
+  card.addEventListener('click',function(e){e.stopPropagation();var s=SHOWS[cur];exit('Show_'+(s&&s.t),s&&s.u)});
+  card.addEventListener('keydown',function(e){if(e.key==='Enter'){e.stopPropagation();card.click()}});
+  cta.addEventListener('click',function(e){e.stopPropagation();exit('CTA_Exit')});
+  $('prev').addEventListener('click',function(e){e.stopPropagation();stopAuto();step(-1)});
+  $('next').addEventListener('click',function(e){e.stopPropagation();stopAuto();step(1)});
+  ad.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){stopAuto();step(1)}if(e.key==='ArrowLeft'){stopAuto();step(-1)}});
+  // dokunmatik: kartta kaydırma
+  var sx=null;card.addEventListener('touchstart',function(e){sx=e.touches[0].clientX},{passive:true});
+  card.addEventListener('touchend',function(e){if(sx===null)return;var dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>30){stopAuto();step(dx<0?1:-1)}sx=null});
+
+  /* ---- zaman çizelgesi ---- */
+  function start(){
+    if(started)return;started=true;t0=Date.now();
+    wall.classList.add('in');
+    var P=[].slice.call(document.querySelectorAll('.pillar'));
+    P.forEach(function(p,i){setTimeout(function(){p.classList.add('on')},250+i*420)});
+    setTimeout(function(){document.querySelector('.introSum').classList.add('on')},2000);
+    setTimeout(function(){
+      $('intro').classList.add('out');ad.classList.add('ready');
+      show(0);
+      setTimeout(function(){head.classList.add('stamp');cta.classList.add('pulse')},700);
+      auto=setInterval(function(){
+        if(user)return;
+        if(Date.now()-t0>29000){clearInterval(auto);show(0);return}
+        step(1);
+      },2600);
+    },reduce?300:3100);
+    // 30 sn sonra duvar durur (IAB animasyon sınırı)
+    setTimeout(function(){ad.classList.add('paused')},30000);
+  }
+  if(document.readyState==='complete')start();else window.addEventListener('load',start);
+  setTimeout(start,1500);
+})();
+</script>
+</body>
+</html>
