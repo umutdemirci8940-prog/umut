@@ -26,7 +26,8 @@ const cut = JSON.parse(fs.readFileSync(path.join(root, 'assets/cut/meta.json'), 
 function productAssets(stage) {
   if (stage === 'hair') {
     const m = cut.mesh.nural;
-    return { product: { tex: dataUri(m.tex), depth: dataUri(m.depth), w: m.w, h: m.h, depthPx: m.depthPx, ring: m.ring }, atts: Object.fromEntries(Object.entries(cut.attachments).map(([k, v]) => [k, dataUri(v.file)])) };
+    return { product: { tex: dataUri(m.tex), depth: dataUri(m.depth), w: m.w, h: m.h, depthPx: m.depthPx, ring: m.ring }, atts: Object.fromEntries(Object.entries(cut.attachments).map(([k, v]) => [k, dataUri(v.file)])),
+      attMesh: Object.fromEntries(Object.entries(cut.mesh.atts).map(([k, v]) => [k, { tex: dataUri(v.tex), depth: dataUri(v.depth), w: v.w, h: v.h, depthPx: v.depthPx, collar: v.collar, outlet: v.outlet, scale: 1.6 }])) }; // başlıklar fotoğrafta küçük: yaka çıkışa otursun
   }
   const m = cut.mesh.v12;
   return { product: { tex: dataUri(m.tex), depth: dataUri(m.depth), w: m.w, h: m.h, depthPx: m.depthPx, head: cut.vacuum.head } };

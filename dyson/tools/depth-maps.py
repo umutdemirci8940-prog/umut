@@ -81,3 +81,27 @@ depth, _ = circular_depth(mask, window_scale=1.4)
 meta['mesh']['v12'] = export('v12', im, mask, depth, 1100)
 json.dump(meta, open(os.path.join(OUT, 'meta.json'), 'w'), indent=2)
 print(json.dumps(meta['mesh'], indent=1))
+
+# ── Manyetik başlıklar (aynı set fotoğrafından): yan görünüş, takılan uç (yaka) solda
+im = Image.open(os.path.join(SRC, '492345-01.png')).convert('RGBA')
+a = np.array(im)[:, :, 3] > 12
+lab, n = ndimage.label(ndimage.binary_closing(a, iterations=3))
+objs = ndimage.find_objects(lab); sizes = ndimage.sum(np.ones_like(lab), lab, range(1, n + 1))
+big = sorted([i for i in range(n) if sizes[i] > 3000], key=lambda i: objs[i][1].start)
+rest = sorted(big[1:], key=lambda i: (round(objs[i][0].start / 150), objs[i][1].start))
+names = ['diffuser', 'comb', 'concentrator', 'gentle', 'flyaway']
+meta['mesh']['atts'] = {}
+for key, i in zip(names, rest):
+    mask = (lab == i + 1) & a
+    depth, _ = circular_depth(mask, window_scale=1.6)
+    m = export(f'att-{key}', im, mask, depth, 360)
+    # yaka (takılan uç): en soldaki %7'lik sütunlardaki opak satırlar
+    al = np.array(Image.open(os.path.join(OUT, f'att-{key}-tex.webp')))[:, :, 3] > 128
+    cols = max(2, int(al.shape[1] * 0.07))
+    rows = np.where(al[:, :cols].any(1))[0]
+    m['collar'] = {'v': float((rows[0] + rows[-1]) / 2 / al.shape[0]), 'h': float((rows[-1] - rows[0]) / al.shape[0])}
+    rows2 = np.where(al[:, -cols:].any(1))[0]
+    m['outlet'] = {'v': float((rows2[0] + rows2[-1]) / 2 / al.shape[0]), 'h': float((rows2[-1] - rows2[0]) / al.shape[0])}
+    meta['mesh']['atts'][key] = m
+json.dump(meta, open(os.path.join(OUT, 'meta.json'), 'w'), indent=2)
+print(json.dumps(meta['mesh']['atts'], indent=1))

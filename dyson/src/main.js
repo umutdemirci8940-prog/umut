@@ -68,6 +68,10 @@ function buildUI() {
     b.dataset.fx = fxp; b.dataset.fy = fyp;
     b.setAttribute('aria-label', f.title); b.innerHTML = '<span></span>'; hsLayer.appendChild(b);
   }
+  if (ONLY === 'hair' && D.features.magnetic) { // takılı başlığın üzerindeki nokta
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'hs'; b.dataset.key = 'magnetic'; b.dataset.special = 'att';
+    b.setAttribute('aria-label', D.features.magnetic.title); b.innerHTML = '<span></span>'; hsLayer.appendChild(b);
+  }
   if (!ASSETS.video) $$('.film').forEach((b) => b.remove());
   else if (ASSETS.image) $$('.fthumb').forEach((t) => { t.style.backgroundImage = `url(${ASSETS.image})`; });
 }
@@ -150,7 +154,11 @@ function placeHotspots() {
   for (const b of hsEls) {
     let on = show, x = 0, y = 0;
     if (on) {
-      const p = view.project(+b.dataset.fx, +b.dataset.fy, 0.004);
+      const ap = b.dataset.special ? view.attachPoints() : null;
+      if (b.dataset.special && (!ap || view.attached.slide > 0.05)) { on = false; }
+      const p = b.dataset.special ? (ap ? ap.collar : { x: -99, y: -99, facing: 0 }) : view.project(+b.dataset.fx, +b.dataset.fy, 0.004);
+      if (b.dataset.special) p.facing = 1;
+      else if (ONLY === 'hair' && view.attached && ['multiplier', 'heat', 'nural'].includes(b.dataset.key)) p.facing = 0; // başlığın arkasında kalır
       x = p.x; y = p.y; on = p.facing > 0.2 && x > 345 && x < W - 6 && y > 6 && y < H - 6;
       b.style.transform = `translate(${x}px, ${y}px)`;
     }
@@ -164,13 +172,12 @@ function nearHotspot(x, y) {
 }
 
 /* ═══════════════ SAÇ BAKIMI ═══════════════ */
-let attShow, attFlow = D.attachments ? D.attachments[0].flow : null;
+let attFlow = D.attachments ? D.attachments[0].flow : null;
 const AIR = [];
 function initHair() {
   // Ürün: halka üstte, filtre görünür, kablo kadraj dışına taşar
   box.h = 272; box.w = box.h * aspect; box.x = 560 - box.w / 2; box.y = 12;
   pivotX = 0.5; pivotY = 0.3; // halka ile sap arasından döner
-  attShow = $('#attShow');
   const n = reduced ? 120 : 260;
   for (let i = 0; i < n; i++) AIR.push({ life: Math.random(), a: 0, r: 0, v: 0, s: 1, max: 1 });
   applyHeat();
@@ -180,16 +187,25 @@ function applyHeat() {
   const h = D.heats[S.heat];
   mh.style.setProperty('--heat', h.color);
 }
-function setAtt(key) {
+let attAnim = null; // { from, to, t, key }
+async function setAtt(key) {
   S.att = key;
   const a = D.attachments.find((x) => x.key === key); attFlow = a.flow;
-  const src = (ASSETS.atts || {})[key];
-  attShow.classList.remove('on');
-  if (key !== 'none' && src) {
-    $('img', attShow).src = src; $('span', attShow).textContent = a.label;
-    void attShow.offsetWidth; attShow.classList.add('on');
-  }
+  const mesh = ASSETS.attMesh || {};
+  if (view.attached) { attAnim = { from: view.attached.slide, to: 0.9, t: 0, then: key }; return; } // önce çıkar
+  if (key !== 'none' && mesh[key]) { await view.loadPart(key, mesh[key]); await view.attach(key); attAnim = { from: 0.9, to: 0, t: 0 }; }
   burst();
+}
+function stepAttach(dt) {
+  if (!attAnim) return;
+  attAnim.t = Math.min(1, attAnim.t + dt / 0.55);
+  const t = attAnim.t, back = attAnim.to === 0 ? 1 + 2.4 * Math.pow(t - 1, 3) + 1.4 * Math.pow(t - 1, 2) : t * t; // takılırken yaylanarak oturur
+  view.setSlide(lerp(attAnim.from, attAnim.to, back));
+  if (t >= 1) {
+    const next = attAnim.then; attAnim = null;
+    if (next !== undefined) { view.attach(null).then(() => setAtt(next)); }
+    else burst();
+  }
 }
 let burstT = 0; function burst() { burstT = 1; }
 
@@ -203,15 +219,22 @@ function ringScreen() {
 function frameHair(dt) {
   // Dönüş: sürükleyerek çevrilir, bırakınca öne döner; boştayken üç çeyrek açıyla salınır
   if (!S.dragging) { S.spin = damp(S.spin, 0, 1.8, dt); S.dragX = damp(S.dragX, 0, 1.6, dt); }
-  const idleSway = S.pointerIn ? 0 : Math.sin(S.t * 0.55) * 28;
+  // başlık takılıyken profil görünsün diye ürün yana döner
+  const att = view.attached, center = att ? -52 : 0;
+  const idleSway = S.pointerIn ? 0 : Math.sin(S.t * 0.55) * (att ? 12 : 28);
   // fotoğraftan üretilen model en inandırıcı ±60° aralığında: sürükleme esnek sınırlı
-  const ty = elastic((S.pointerIn && !S.nearHs ? clamp((S.px - 560) / 9, -35, 35) : idleSway) + S.spin, 60);
+  const ty = elastic(center + (S.pointerIn && !S.nearHs ? clamp((S.px - 560) / 9, -35, 35) * (att ? 0.4 : 1) : idleSway) + S.spin, 62);
+  stepAttach(dt);
   const tx = clamp((S.pointerIn ? -(S.py - 110) / 14 : 0) + S.dragX, -22, 22);
   S.ry = damp(S.ry, ty, 6, dt); S.rx = damp(S.rx, tx, 5, dt);
   box.y = 12 + Math.sin(S.t * 1.3) * 2;
   placeProd(); view.render();
 
   const ring = ringScreen();
+  const ap = view.attachPoints();
+  if (ap) { // takılı başlık: hava başlığın ağzından çıkar
+    ring.x = ap.outlet.x; ring.y = ap.outlet.y; ring.R = Math.max(6, ap.outletR * box.w * 0.9);
+  }
   // Nural: imleç halkaya yaklaştıkça "baş yakın"
   const d = S.pointerIn ? Math.hypot(S.px - ring.x, S.py - ring.y) : 120 + Math.sin(S.t * 0.6) * 90;
   S.dist = damp(S.dist, clamp(1 - (d - 30) / 200, 0, 1), 4, dt);
@@ -444,6 +467,12 @@ function frame(now) {
 
 if (ONLY === 'hair') initHair(); else initFloor();
 mh.dataset.stage = ONLY;
-createProduct(glc, P, W, H, dpr).then((v) => { view = v; mh.classList.add('ready'); }).catch((e) => { console.error(e); mh.classList.add('ready'); });
+createProduct(glc, P, W, H, dpr).then((v) => {
+  view = v; mh.classList.add('ready');
+  if (ONLY === 'hair') { // başlıklar hava çıkışının merkezine takılır; hepsi önceden hazırlanır
+    v.setMount((P.ring || { cx: 0.5 }).cx, (P.ring || { cy: 0.13 }).cy);
+    for (const [k, m] of Object.entries(ASSETS.attMesh || {})) v.loadPart(k, m);
+  }
+}).catch((e) => { console.error(e); mh.classList.add('ready'); });
 requestAnimationFrame(frame);
 window.__MH__ = { S, setMode, get collected() { return collected; } };

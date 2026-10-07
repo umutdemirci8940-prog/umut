@@ -85,6 +85,113 @@
         1044,
         1106
       ]
+    },
+    "atts": {
+      "diffuser": {
+        "tex": "assets/cut/att-diffuser-tex.webp",
+        "depth": "assets/cut/att-diffuser-depth.png",
+        "w": 154,
+        "h": 201,
+        "depthPx": 61.28541997748829,
+        "bbox": [
+          727,
+          265,
+          881,
+          466
+        ],
+        "collar": {
+          "v": 0.4975124378109453,
+          "h": 0.24875621890547264
+        },
+        "outlet": {
+          "v": 0.4975124378109453,
+          "h": 0.6169154228855721
+        }
+      },
+      "comb": {
+        "tex": "assets/cut/att-comb-tex.webp",
+        "depth": "assets/cut/att-comb-depth.png",
+        "w": 199,
+        "h": 115,
+        "depthPx": 37.03513370106453,
+        "bbox": [
+          911,
+          308,
+          1110,
+          423
+        ],
+        "collar": {
+          "v": 0.4956521739130435,
+          "h": 0.41739130434782606
+        },
+        "outlet": {
+          "v": 0.4956521739130435,
+          "h": 0.782608695652174
+        }
+      },
+      "concentrator": {
+        "tex": "assets/cut/att-concentrator-tex.webp",
+        "depth": "assets/cut/att-concentrator-depth.png",
+        "w": 124,
+        "h": 146,
+        "depthPx": 54.39471424230352,
+        "bbox": [
+          726,
+          509,
+          850,
+          655
+        ],
+        "collar": {
+          "v": 0.4965753424657534,
+          "h": 0.4041095890410959
+        },
+        "outlet": {
+          "v": 0.4965753424657534,
+          "h": 0.9794520547945206
+        }
+      },
+      "gentle": {
+        "tex": "assets/cut/att-gentle-tex.webp",
+        "depth": "assets/cut/att-gentle-depth.png",
+        "w": 30,
+        "h": 146,
+        "depthPx": 13.87051299514292,
+        "bbox": [
+          896,
+          509,
+          926,
+          655
+        ],
+        "collar": {
+          "v": 0.5,
+          "h": 0.821917808219178
+        },
+        "outlet": {
+          "v": 0.4965753424657534,
+          "h": 0.6506849315068494
+        }
+      },
+      "flyaway": {
+        "tex": "assets/cut/att-flyaway-tex.webp",
+        "depth": "assets/cut/att-flyaway-depth.png",
+        "w": 149,
+        "h": 140,
+        "depthPx": 33.57055166377303,
+        "bbox": [
+          962,
+          530,
+          1111,
+          670
+        ],
+        "collar": {
+          "v": 0.35,
+          "h": 0.4
+        },
+        "outlet": {
+          "v": 0.6464285714285715,
+          "h": 0.40714285714285714
+        }
+      }
     }
   }
 }
