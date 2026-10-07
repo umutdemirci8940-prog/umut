@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
   push:
     branches: [claude/charming-ramanujan-ub8q4r]
-    paths: [tabii-4dortluk/tools/fetch-site.js, .github/workflows/tabii-fetch.yml]
+    paths: [tabii-4dortluk/tools/fetch-site.js, tabii-4dortluk/tools/fetch-posters.js, .github/workflows/tabii-fetch.yml]
 
 permissions:
   contents: write
@@ -27,6 +27,8 @@ jobs:
           npx playwright install --with-deps chromium
       - name: tabii.com/tr varlıklarını çek
         run: node tabii-4dortluk/tools/fetch-site.js
+      - name: Dizi/film afişlerini çek
+        run: node tabii-4dortluk/tools/fetch-posters.js
       - name: Sonuçları dala push'la
         run: |
           git config user.name "github-actions[bot]"
