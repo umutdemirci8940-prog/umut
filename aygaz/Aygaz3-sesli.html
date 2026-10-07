@@ -185,8 +185,24 @@
       site:    { clickTag: 'clickTag',  url: 'https://100oktan.aygaz.com.tr/',             studioExit: 'Site' },
       station: { clickTag: 'clickTag1', url: 'https://100oktan.aygaz.com.tr/nerede.html', studioExit: 'Istasyon' }
     };
+    // Olay pikselleri (CM360 "tracking ad" gösterim etiketleri): yayın paketinin index.html'i window.AYGAZ_EVENT_PIXELS
+    // tanımlar (olay adı -> trackimp URL'si). [timestamp] her atışta rastgele sayıyla değiştirilir; tanımsız olaylar atlanır.
+    // Olaylar (persona id: aile, beyaz_yaka, taksici, patron):
+    //   video_start_<id>, video_q25_<id>, video_q50_<id>, video_q75_<id>, video_complete_<id>  (gösterim başına her video için bir kez)
+    //   persona_<id> (persona düğmesine her basış), tab_<sekme>, unmute (bir kez), pause, cta_click, station_click
+    const EVENT_PIXELS = window.AYGAZ_EVENT_PIXELS || {};
+    const firedOnce = {};
+    const trackEvent = (name, once) => {
+      const url = EVENT_PIXELS[name];
+      if (!url) return;
+      if (once) { if (firedOnce[name]) return; firedOnce[name] = true; }
+      const img = new Image(1, 1);
+      img.src = String(url).replace('[timestamp]', String(Date.now()) + String(Math.floor(Math.random() * 1000000)));
+    };
+
     const openExit = (key) => {
       const exit = EXITS[key] || EXITS.site;
+      trackEvent(key === 'station' ? 'station_click' : 'cta_click');
       if (window.Enabler && typeof window.Enabler.exit === 'function') { // Studio (rich media)
         window.Enabler.exit(exit.studioExit, exit.url);
         return;
@@ -434,6 +450,7 @@
         PERSONAS.forEach((p) => { const v = getVideo(p.id); if (v) v.muted = false; });
         setIsMuted(false);
         setSoundBlocked(false);
+        trackEvent('unmute', true);
       };
 
       // Sesli başlatma engellendiyse banner içindeki ilk tıklama (Geç, persona, sekme…) sesi açar
@@ -473,6 +490,7 @@
       };
 
       const handlePersonaSelect = (personaId) => {
+        trackEvent('persona_' + personaId);
         if (personaId !== activePersonaId) {
           const current = getVideo(activePersonaId);
           if (current) current.pause();
@@ -486,11 +504,32 @@
       };
 
       const togglePlay = () => {
+        if (isPlaying) trackEvent('pause');
         setIsPlaying((playing) => !playing);
+      };
+
+      const selectTab = (tab) => {
+        setActiveTab(tab);
+        trackEvent('tab_' + tab);
+      };
+
+      // Video olayları persona bazında: ilk oynatma ve çeyrekler gösterim başına her video için bir kez
+      // (video döngüde olduğu için 'ended' yerine süre eşiği kullanılır)
+      const handleVideoPlay = (e) => { trackEvent('video_start_' + e.currentTarget.dataset.personaId, true); };
+      const handleVideoTime = (e) => {
+        const v = e.currentTarget;
+        if (!v.duration) return;
+        const id = v.dataset.personaId;
+        const r = v.currentTime / v.duration;
+        if (r >= 0.98) trackEvent('video_complete_' + id, true);
+        else if (r >= 0.75) trackEvent('video_q75_' + id, true);
+        else if (r >= 0.5) trackEvent('video_q50_' + id, true);
+        else if (r >= 0.25) trackEvent('video_q25_' + id, true);
       };
 
       const toggleMute = () => {
         const nextMuted = !isMuted;
+        if (!nextMuted) trackEvent('unmute', true);
         PERSONAS.forEach((p) => {
           const video = getVideo(p.id);
           if (video) video.muted = nextMuted;
@@ -542,7 +581,7 @@
             {/* Navigation Tabs */}
             <div className="flex items-center gap-1.5 text-[11px] font-bold">
               <button
-                onClick={() => setActiveTab('personas')}
+                onClick={() => selectTab('personas')}
                 className={`px-3 py-1 rounded transition-all cursor-pointer ${
                   activeTab === 'personas' 
                     ? 'bg-[#004791] text-white shadow-sm border border-sky-400/30' 
@@ -553,7 +592,7 @@
               </button>
 
               <button
-                onClick={() => setActiveTab('benefits')}
+                onClick={() => selectTab('benefits')}
                 className={`px-3 py-1 rounded transition-all cursor-pointer ${
                   activeTab === 'benefits' 
                     ? 'bg-[#004791] text-white shadow-sm border border-sky-400/30' 
@@ -564,7 +603,7 @@
               </button>
 
               <button
-                onClick={() => setActiveTab('calculator')}
+                onClick={() => selectTab('calculator')}
                 className={`px-3 py-1 rounded transition-all cursor-pointer ${
                   activeTab === 'calculator' 
                     ? 'bg-[#FF5500] text-white font-extrabold shadow-sm' 
@@ -575,7 +614,7 @@
               </button>
 
               <button
-                onClick={() => setActiveTab('station')}
+                onClick={() => selectTab('station')}
                 className={`px-3 py-1 rounded transition-all cursor-pointer ${
                   activeTab === 'station' 
                     ? 'bg-emerald-600 text-white shadow-sm' 
@@ -605,8 +644,11 @@
                     muted={isMuted}
                     playsInline
                     preload="none"
+                    onPlay={handleVideoPlay}
+                    onTimeUpdate={handleVideoTime}
                     aria-hidden={!isActive}
                     data-persona={p.title}
+                    data-persona-id={p.id}
                     className={`absolute inset-0 w-full h-full object-cover object-bottom transition-opacity duration-300 ${
                       isActive ? 'opacity-100 z-[1]' : 'opacity-0 z-0 pointer-events-none'
                     }`}

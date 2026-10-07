@@ -10,5 +10,7 @@
   "_priceUrl": "Yayın paketinin okuduğu güncel fiyat dosyası (S3'te CORS açık olmalı). Boş bırakılırsa gömülü fiyatlar kullanılır.",
   "impressionPixel": "https://ad.doubleclick.net/ddm/trackimp/N192603.5327234SPLASH/B37005738.458040928;dc_trk_aid=652532145;dc_trk_cid=265077163;ord=[timestamp];dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;gdpr=${GDPR};gdpr_consent=${GDPR_CONSENT_755};ltd=;dc_tdv=1?",
   "_impressionPixel": "CM360 gösterim sayacı (1x1). Yalnızca yayın paketlerine (dv360, dv360-s3video) eklenir; [timestamp] her yüklemede rastgele sayıyla değiştirilir.",
-  "_videoBaseS3": "Yayın paketinin (dv360-s3video) video klasörü; dört mp4 buraya aynı adlarla yüklenir. Sonu / ile bitmeli."
+  "_videoBaseS3": "Yayın paketinin (dv360-s3video) video klasörü; dört mp4 buraya aynı adlarla yüklenir. Sonu / ile bitmeli.",
+  "eventPixels": {},
+  "_eventPixels": "Olay pikselleri (CM360 tracking ad trackimp URL'leri, [timestamp] dahil). Persona id'leri: aile, beyaz_yaka, taksici, patron. Anahtarlar: video_start_<id>, video_q25_<id>, video_q50_<id>, video_q75_<id>, video_complete_<id> (gösterim başına her video için bir kez), persona_<id> (her basış), tab_personas, tab_benefits, tab_calculator, tab_station, unmute, pause, cta_click, station_click. Boş bırakılan olaylar atılmaz. Yalnızca yayın paketlerine girer."
 }

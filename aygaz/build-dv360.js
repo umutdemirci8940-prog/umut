@@ -72,6 +72,10 @@ function indexHtml({ videoBase, videoMode, assetsNote, startUnmuted }) {
     ...clickTags,
     `  // ${assetsNote}`,
     `  window.AYGAZ_ASSETS = ${JSON.stringify(assets)};`,
+    ...(!startUnmuted && cfg.eventPixels && Object.keys(cfg.eventPixels).length ? [
+      '  // Olay pikselleri (CM360 tracking ad): video başlatma/çeyrekler, ses açma, persona ve sekme seçimleri',
+      `  window.AYGAZ_EVENT_PIXELS = ${JSON.stringify(cfg.eventPixels)};`
+    ] : []),
     ...(startUnmuted ? [
       '  // ONAY SÜRÜMÜ: sesli başlamayı dener; tarayıcı engellerse ilk tıklamada ses açılır. Yayına bu paket verilmez.',
       '  window.AYGAZ_OPTIONS = { startUnmuted: true };'
@@ -167,6 +171,7 @@ emit('dv360', { videos: 'js' });                                  // YAYIN: vide
 emit('dv360-sesli', { videos: 'js', startUnmuted: true });        // müşteri onayı için, yayına verilmez
 emit('dv360-s3video', { videos: 's3' });                          // yedek: videolar S3'ten
 emit('dv360-videosuz-test', { videos: 'none' });                  // tanı: DV360 HTML/JS'i videosuz kabul ediyor mu?
+console.log(`   olay pikselleri: ${cfg.eventPixels && Object.keys(cfg.eventPixels).length ? Object.keys(cfg.eventPixels).join(', ') : 'tanımlı değil (dv360.config.json -> eventPixels)'}`);
 console.log(`   gösterim pikseli: ${cfg.impressionPixel ? 'yayın paketlerinde (dv360, dv360-s3video)' : 'yok'}`);
 console.log(`   logo: ${localLogo ? 'paket içinde (assets/' + localLogo + ')' : 'canlı ' + cfg.logoUrl}`);
 console.log(`   banner.js ${(Buffer.byteLength(appJs) / 1024).toFixed(0)} KB, banner.css ${(Buffer.byteLength(css) / 1024).toFixed(0)} KB, clickTag → ${cfg.clickTag.slice(0, 60)}…`);
