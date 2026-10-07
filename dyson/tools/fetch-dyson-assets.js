@@ -9,22 +9,24 @@ const fs = require('fs');
 const path = require('path');
 const { chromium } = require('playwright');
 
+// Cloudflare engellerse sırayla diğer Dyson alan adları denenir.
 const PAGES = {
-  haircare: 'https://www.dyson.com.tr/products/hair-care',
-  floorcare: 'https://www.dyson.com.tr/products/cord-free',
+  haircare: ['https://www.dyson.com.tr/products/hair-care', 'https://www.dyson.com/hair-care', 'https://www.dyson.co.uk/hair-care', 'https://www.dyson.de/haarpflege'],
+  floorcare: ['https://www.dyson.com.tr/products/cord-free', 'https://www.dyson.com/vacuum-cleaners/cordless', 'https://www.dyson.co.uk/vacuum-cleaners/cordless', 'https://www.dyson.de/staubsauger/kabellose-staubsauger'],
 };
 const OUT = path.join(__dirname, '..', 'assets', 'raw');
 const MAX_IMG = 40, MAX_VID = 4;
 
 (async () => {
   fs.mkdirSync(OUT, { recursive: true });
-  const browser = await chromium.launch({ args: ['--disable-blink-features=AutomationControlled'] });
+  const browser = await chromium.launch({ headless: !process.env.HEADED, args: ['--disable-blink-features=AutomationControlled'] });
   const ctx = await browser.newContext({
     locale: 'tr-TR', viewport: { width: 1600, height: 1000 },
     userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0 Safari/537.36',
   });
   const index = {};
-  for (const [key, url] of Object.entries(PAGES)) {
+  for (const [key, urls] of Object.entries(PAGES)) {
+   for (const url of urls) {
     const dir = path.join(OUT, key);
     fs.mkdirSync(dir, { recursive: true });
     const page = await ctx.newPage();
@@ -83,9 +85,11 @@ const MAX_IMG = 40, MAX_VID = 4;
         } catch (e) { /* atla */ }
       }
     } catch (e) { entry.error = String(e); }
-    index[key] = entry;
-    console.log(key, entry.status, entry.title, `${entry.images.length} görsel, ${entry.videos.length} video`, entry.error || '');
+    console.log(key, url, entry.status, entry.title, `${entry.images.length} görsel, ${entry.videos.length} video`, entry.error || '');
     await page.close();
+    if (!index[key] || entry.images.length > index[key].images.length) index[key] = entry;
+    if (entry.images.length >= 5) break;
+   }
   }
   fs.writeFileSync(path.join(OUT, 'index.json'), JSON.stringify(index, null, 2));
   await browser.close();

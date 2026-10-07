@@ -24,7 +24,7 @@ jobs:
           npm install --no-save --no-package-lock playwright@1.56.1
           npx playwright install --with-deps chromium
       - name: Sayfaları aç, görsel ve videoları topla
-        run: node dyson/tools/fetch-dyson-assets.js
+        run: HEADED=1 xvfb-run -a node dyson/tools/fetch-dyson-assets.js
       - name: Özet
         run: cat dyson/assets/raw/index.json | head -c 6000
       - name: Dala push'la
