@@ -5,7 +5,7 @@
 <meta name="ad.size" content="width=970,height=250">
 <meta name="viewport" content="width=970,height=250">
 <title>Selfy Fest '26 – 970x250 Masthead</title>
-<script>var clickTag = "{{CLICK_URL}}";</script>
+<script>var clickTag = {{CLICK_URL}};</script>
 <style>
 {{FONTS}}
 :root{
@@ -459,5 +459,6 @@ body{font-family:'Mulish',Arial,sans-serif;color:#fff;-webkit-font-smoothing:ant
   if (document.readyState === 'complete') whenFonts(start); else window.addEventListener('load', function(){ whenFonts(start); });
 })();
 </script>
+{{TRACKING}}
 </body>
 </html>

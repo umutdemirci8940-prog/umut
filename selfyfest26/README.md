@@ -6,6 +6,7 @@ Yönlenen sayfa: [selfy.com.tr/kampanyalar/selfyfest26](https://www.selfy.com.tr
 |---|---|
 | `dist/970x250/index.html` | Yayına hazır tek dosya (121 KB; görseller + fontlar gömülü, harici istek yok) |
 | `dist/selfyfest26-970x250.zip` | Google Ads / CM360 / DV360 yükleme paketi (78 KB) |
+| `dist/selfyfest26-970x250-dv360.zip` | **DV360 paketi – Gemius gösterim pikseli + Gemius clickTag ile** (78 KB; `dist/dv360/index.html`) |
 | `preview/*.jpg`, `preview/masthead.mp4` | Sunum için ekran görüntüleri ve kayıt |
 
 ![Sayfa 1](preview/02-sayfa1.jpg)
@@ -34,6 +35,12 @@ Yönlenen sayfa: [selfy.com.tr/kampanyalar/selfyfest26](https://www.selfy.com.tr
 - Görseller kampanya afişinden (fest26.webp) kırpıldı: 6 sanatçı (WebP), arka plan halka/ışık dokusu. Afişteki büyük şehir etiketleri `tools/clean_chips.py` ile fotoğraflardan silindi (yalnızca etiket pikselleri değiştirilir, sanatçılar korunur); yerine küçük etiketler kullanıldı. Logo sitedeki `logo.svg`. Sponsor şeridi müşterinin GIF'inden alındı.
 - `<meta name="ad.size">`, `clickTag`, `role="link"`, aria etiketleri, `prefers-reduced-motion` desteği.
 - Kodda dış istek yok; yalnızca Chrome/Safari/Firefox'un yerleşik özellikleri kullanılır (canvas, CSS 3B).
+
+## DV360 / Gemius
+
+- `clickTag` değişkeni Gemius `hitredir` adresidir (`src/data.js` → `dv360.clickTag`). DV360 bu değişkeni okur; tıklamada `window.open(clickTag)` açılır.
+- Gemius gösterim pikseli (`dv360.impression`) banner yüklenince bir kez çağrılır; `[TIMESTAMP]` her gösterimde zaman damgası + rastgele sayı ile doldurulur (önbellek kırıcı).
+- Oklar, tarih şeridi ve sürükleme tıklama saymaz; yalnızca bannerın kendisine tıklama çıkış yapar.
 
 ## Düzenleme
 

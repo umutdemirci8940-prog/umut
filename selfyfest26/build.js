@@ -37,22 +37,44 @@ const FONTS = [
 ].join('\n');
 
 const tpl = fs.readFileSync(path.join(root, 'src', 'masthead.html'), 'utf8');
-const html = tpl
-  .replace('{{FONTS}}', () => FONTS)
-  .replace('{{CLICK_URL}}', data.url)
-  .replace('{{LOGO}}', () => LOGO)
-  .replace('{{SPONSORS}}', () => SPONSORS)
-  .replace('{{DATA}}', () => JSON.stringify(DATA).replace(/</g, '\\u003c'));
+const js = (v) => JSON.stringify(v).replace(/</g, '\\u003c');
 
-const out = path.join(root, 'dist', '970x250');
-fs.mkdirSync(out, { recursive: true });
-fs.writeFileSync(path.join(out, 'index.html'), html);
-const kb = Buffer.byteLength(html) / 1024;
-let zipNote = '';
-try {
-  const zip = path.join(root, 'dist', 'selfyfest26-970x250.zip');
-  fs.rmSync(zip, { force: true });
-  execSync(`zip -q -j "${zip}" "${path.join(out, 'index.html')}"`);
-  zipNote = ` → ${path.relative(process.cwd(), zip)} (${(fs.statSync(zip).size / 1024).toFixed(1)} KB)`;
-} catch { zipNote = ' (zip bulunamadı)'; }
-console.log(`✔ 970x250 masthead ${kb.toFixed(1)} KB${zipNote}${kb > 150 ? '  ⚠ 150 KB üstü' : ''}`);
+// Gemius gösterim pikseli: [TIMESTAMP] her gösterimde önbellek kırıcıyla doldurulur, bir kez çağrılır
+const impressionScript = (url) => `<script>(function(){var u=${js(url)}.replace('[TIMESTAMP]',String(Date.now())+String(Math.floor(Math.random()*1e6)));` +
+  `var i=new Image(1,1);i.alt='';i.style.cssText='position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;border:0';` +
+  `i.src=u;(document.body||document.documentElement).appendChild(i);})();</script>`;
+
+function render({ clickUrl, tracking }) {
+  const d = Object.assign({}, DATA, { url: clickUrl });
+  delete d.dv360;
+  return tpl
+    .replace('{{FONTS}}', () => FONTS)
+    .replace('{{CLICK_URL}}', () => js(clickUrl))
+    .replace('{{LOGO}}', () => LOGO)
+    .replace('{{SPONSORS}}', () => SPONSORS)
+    .replace('{{DATA}}', () => js(d))
+    .replace('{{TRACKING}}', () => tracking || '');
+}
+
+let hasZip = true;
+try { execSync('zip -v', { stdio: 'ignore' }); } catch { hasZip = false; }
+
+const VARIANTS = [
+  { dir: '970x250', zip: 'selfyfest26-970x250.zip', label: 'standart', clickUrl: data.url },
+  { dir: 'dv360', zip: 'selfyfest26-970x250-dv360.zip', label: 'DV360 + Gemius', clickUrl: data.dv360.clickTag, tracking: impressionScript(data.dv360.impression) },
+];
+for (const v of VARIANTS) {
+  const html = render(v);
+  const out = path.join(root, 'dist', v.dir);
+  fs.mkdirSync(out, { recursive: true });
+  fs.writeFileSync(path.join(out, 'index.html'), html);
+  const kb = Buffer.byteLength(html) / 1024;
+  let zipNote = ' (zip bulunamadı)';
+  if (hasZip) {
+    const zip = path.join(root, 'dist', v.zip);
+    fs.rmSync(zip, { force: true });
+    execSync(`zip -q -j "${zip}" "${path.join(out, 'index.html')}"`);
+    zipNote = ` → ${path.relative(process.cwd(), zip)} (${(fs.statSync(zip).size / 1024).toFixed(1)} KB)`;
+  }
+  console.log(`✔ 970x250 ${v.label.padEnd(15)} ${kb.toFixed(1)} KB${zipNote}${kb > 150 ? '  ⚠ 150 KB üstü' : ''}`);
+}
