@@ -1,0 +1,180 @@
+{
+  "haircare": {
+    "url": "https://www.dyson.com.tr/products/hair-care",
+    "status": 403,
+    "title": "Attention Required! | Cloudflare",
+    "images": [],
+    "videos": [],
+    "text": [
+      "Sorry, you have been blocked",
+      "You are unable to access dyson.com.tr",
+      "Why have I been blocked?",
+      "What can I do to resolve this?"
+    ]
+  },
+  "floorcare": {
+    "url": "https://www.dyson.com.tr/products/cord-free",
+    "status": 200,
+    "title": "Dyson Kablosuz Süpürgeler | Dyson Türkiye",
+    "images": [
+      {
+        "file": "img-01.jpg",
+        "url": "https://dyson-h.assetsadobe2.com/is/image/content/dam/dyson/leap-petite-global/products/vacuum-cleaners/cordless/plp-cordless-fallback.jpg?$responsive$&cropPathE=desktop&fit=stretch,1&wid=1920",
+        "alt": "Dyson kablosuz süpürge",
+        "bytes": 45312
+      },
+      {
+        "file": "img-02.jpg",
+        "url": "https://dyson-h.assetsadobe2.com/is/image/content/dam/dyson/products/home/floorcare/cordless/piston-animal/carousels/Web-692B-PLP-Module2-4.jpg?$responsive$&cropPathE=desktop&fit=stretch,1&wid=1920",
+        "alt": "A cutaway of a Dyson V16 Piston Animal cordless vacuum showing the filtration system.",
+        "bytes": 51453
+      },
+      {
+        "file": "img-03.jpg",
+        "url": "https://dyson-h.assetsadobe2.com/is/image/content/dam/dyson/products/home/floorcare/cordless/piston-animal/carousels/Web-692B-PLP-Module2-1.jpg?$responsive$&cropPathE=desktop&fit=stretch,1&wid=1920",
+        "alt": "",
+        "bytes": 68802
+      },
+      {
+        "file": "img-04.jpg",
+        "url": "https://dyson-h.assetsadobe2.com/is/image/content/dam/dyson/products/home/floorcare/cordless/piston-animal/carousels/Web-692B-PLP-Module2-2.jpg?$responsive$&cropPathE=desktop&fit=stretch,1&wid=1920",
+        "alt": "",
+        "bytes": 85207
+      },
+      {
+        "file": "img-05.jpg",
+        "url": "https://dyson-h.assetsadobe2.com/is/image/content/dam/dyson/products/home/floorcare/cordless/piston-animal/carousels/Web-692B-PLP-Module2-3.jpg?$responsive$&cropPathE=desktop&fit=stretch,1&wid=1920",
+        "alt": "",
+        "bytes": 57156
+      },
+      {
+        "file": "img-06.jpg",
+        "url": "https://dyson-h.assetsadobe2.com/is/image/content/dam/dyson/leap-petite-global/markets/turkey/fc/492969-01-972214-08-975454-02-hero.png",
+        "alt": "Dyson V16 Piston Animal Submarine™ kablosuz süpürge (Mat siyah/Bakır)",
+        "bytes": 26730
+      },
+      {
+        "file": "img-07.jpg",
+        "url": "https://dyson-h.assetsadobe2.com/is/image/content/dam/dyson/images/products/primary/494876-01.png",
+        "alt": "Dyson V12 Detect Slim Absolute kablosuz süpürge ",
+        "bytes": 57537
+      },
+      {
+        "file": "img-08.jpg",
+        "url": "https://dyson-h.assetsadobe2.com/is/image/content/dam/dyson/campaigns/mydyson-care/Care%20Turkey_Deep%20Cleaning%20Carousel__1.jpg?$responsive$&cropPathE=desktop&fit=stretch,1&wid=1920",
+        "alt": "A Dyson vacuum engine and head completely dissassembled",
+        "bytes": 31582
+      },
+      {
+        "file": "img-09.jpg",
+        "url": "https://dyson-h.assetsadobe2.com/is/image/content/dam/dyson/leap-petite-global/campaigns/mydyson/fc/FC-M2-banner-category.jpg?$responsive$&cropPathE=desktop&fit=stretch,1&wid=1920",
+        "alt": "Dyson kablosuz süpürgenin içini gösteren MyDyson uygulamasına sahip telefon.",
+        "bytes": 36891
+      },
+      {
+        "file": "img-10.jpg",
+        "url": "https://dyson-h.assetsadobe2.com/is/image/content/dam/dyson/leap-petite-global/products/floorcare/tools/669/sub-category-page/9.Still%20Looking_FC_TOOLS_015_v4.jpg?$responsive$&cropPathE=desktop&fit=stretch,1&wid=1920",
+        "alt": "Dyson vacuum accessories cleaning a sofa",
+        "bytes": 145929
+      },
+      {
+        "file": "img-11.jpg",
+        "url": "https://www.dyson.com.tr/media/cms/money-back-guarantee-turkey.jpg",
+        "alt": "14 gün içinde iade",
+        "bytes": 22816
+      },
+      {
+        "file": "img-12.png",
+        "url": "https://www.dyson.com.tr/static/version1790867174/frontend/Dyson/commerce/tr_TR/images/icons/sprite.png",
+        "alt": "",
+        "bytes": 37991
+      },
+      {
+        "file": "img-13.png",
+        "url": "https://www.dyson.com.tr/static/version1790867174/frontend/Dyson/commerce/tr_TR/images/icons/sprite-flags.png",
+        "alt": "",
+        "bytes": 14409
+      },
+      {
+        "file": "img-14.jpg",
+        "url": "https://dyson-h.assetsadobe2.com/is/image/content/dam/dyson/leap-petite-global/products/vacuum-cleaners/cordless/plp-cordless-fallback.jpg",
+        "alt": "",
+        "bytes": 76548
+      }
+    ],
+    "videos": [
+      {
+        "file": "video-1.mp4",
+        "url": "https://www.dyson.video/dyson/_renditions_/2df/2df1240b-cd62-4af7-b86b-129a02496e40/avs/PLP-Cordfree_MegaEdit_692B-West-1440x0-2000k.mp4",
+        "bytes": 1354848
+      },
+      {
+        "file": "video-2.mp4",
+        "url": "https://www.dyson.video/cdn-cgi/media/mode=video/https://video-eu.assetsadobe.com/dyson/_renditions_/2df/2df1240b-cd62-4af7-b86b-129a02496e40/avs/PLP-Cordfree_MegaEdit_692B-West-1440x0-2000k.mp4",
+        "bytes": 1354848
+      }
+    ],
+    "text": [
+      "Keşfet",
+      "Daha fazlası",
+      "Keşfet",
+      "Daha fazlası",
+      "Keşfet",
+      "Daha fazlası",
+      "Keşfet",
+      "Daha fazlası",
+      "Keşfet",
+      "Daha fazlası",
+      "Keşfet",
+      "Daha fazlası",
+      "En Çok Arananlar",
+      "Kablosuz Süpürgeler",
+      "Dyson süpürgelerde bulunan teknolojileri keşfedin",
+      "Gelişmiş HEPA filtre sistemi",
+      "Yeni Dyson Hyperdymium™ 900w motor",
+      "Tüm zeminlere otomatik olarak uyum sağlar2",
+      "Dynamic Cyclones ayrıştırma sistemi",
+      "Gelişmiş HEPA filtre sistemi",
+      "Yeni Dyson Hyperdymium™ 900w motor",
+      "Tüm zeminlere otomatik olarak uyum sağlar2",
+      "Dynamic Cyclones ayrıştırma sistemi",
+      "Gelişmiş HEPA filtre sistemi",
+      "Öne Çıkan Fırsatlar",
+      "Dyson V16 Piston Animal Submarine™ kablosuz süpürge (Mat siyah/Bakır)",
+      "Dyson V12 Detect Slim Absolute kablosuz süpürge",
+      "10 ürün",
+      "10 ürün",
+      "Tip",
+      "Kullanım şekli",
+      "Çalışma süresi",
+      "Renk seçeneği",
+      "Hazne hacmi",
+      "Ağırlık",
+      "Teknoloji",
+      "Stok Durumu",
+      "Dyson V16 Piston Animal Submarine™ kablosuz süpürge (Mat siyah/Bakır)",
+      "Dyson V16 Piston Animal kablosuz süpürge  (Mat siyah/Bakır)",
+      "Dyson V15 Detect™ Absolute kablosuz süpürge",
+      "Dyson V12 Detect Slim Absolute kablosuz süpürge",
+      "Dyson V12s Detect Slim Submarine™ kablosuz süpürge + Detaylı Temizlik Seti",
+      "Dyson V10 Konical™ kablosuz süpürge",
+      "Dyson V8 Cyclone kablosuz süpürge",
+      "Dyson Cyclone V10 Submarine™ kablosuz süpürge",
+      "Dyson PencilVac™ Fluffycones kablosuz süpürge",
+      "Dyson Car+Boat kablosuz el süpürgesi",
+      "10 ürün",
+      "MyDyson™ Care kablosuz süpürgebakım programı",
+      "MyDyson™ uygulamasıyla Dyson'ınızdan daha fazla yararlanın",
+      "Sıkça sorulan sorular",
+      "Hâlâ makineniz için doğru aksesuarı mı arıyorsunuz?",
+      "Ücretsiz kargo",
+      "14 gün içinde iade",
+      "Vade farksız 9 taksit fırsatı",
+      "2 yıl garanti",
+      "ÜrünlerÜrünler",
+      "Profesyonel İşletmelerProfesyonel İşletmeler",
+      "DestekDestek",
+      "HakkımızdaHakkımızda"
+    ]
+  }
+}
