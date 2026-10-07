@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=970,height=250">
+<meta name="viewport" content="width=970,height=250">
+<title>tabii – yeni sezonda 4Dörtlük · 970x250</title>
+<script>var clickTag = window.clickTag || "https://www.tabii.com/tr?utm_source=display&utm_medium=masthead&utm_campaign=4dortluk";</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  /* Marka renkleri: tabii yeşili + koyu zemin. Resmî kurumsal kimlik kılavuzundaki HEX ile değiştirin. */
+  :root{
+    --green:#1ee38a; --green-d:#0fae67; --ink:#07110d; --ink2:#0d1c16;
+    --white:#ffffff; --mute:rgba(255,255,255,.62);
+    --accent:#1ee38a; /* tür seçimine göre değişir */
+    --ease:cubic-bezier(.2,.8,.2,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:970px;height:250px;overflow:hidden;background:var(--ink)}
+  body{font-family:"Sora","Segoe UI",system-ui,sans-serif;color:var(--white);-webkit-font-smoothing:antialiased}
+  #ad{position:relative;width:970px;height:250px;overflow:hidden;cursor:pointer;
+      background:radial-gradient(520px 260px at 0% 0%,rgba(30,227,138,.16),transparent 70%),
+                 radial-gradient(600px 300px at 100% 100%,color-mix(in srgb,var(--accent) 22%,transparent),transparent 70%),
+                 linear-gradient(120deg,var(--ink) 0%,var(--ink2) 100%);
+      transition:background .8s var(--ease);border:1px solid #1a2a23}
+  #ad:focus-visible{outline:2px solid var(--green);outline-offset:-2px}
+
+  /* Arka plan: kaleydoskop kare deseni */
+  .grid{position:absolute;inset:0;pointer-events:none;opacity:.5;
+        background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+        background-size:25px 25px;mask-image:linear-gradient(90deg,#000 0%,transparent 45%,transparent 70%,#000 100%)}
+  .glow{position:absolute;width:340px;height:340px;right:-80px;top:-60px;border-radius:50%;
+        background:radial-gradient(circle,color-mix(in srgb,var(--accent) 35%,transparent),transparent 65%);
+        filter:blur(10px);transition:background .8s var(--ease);pointer-events:none}
+
+  /* ---------- AÇILIŞ ---------- */
+  #intro{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:28px;z-index:20;
+         background:var(--ink);transition:opacity .5s var(--ease),visibility .5s}
+  #intro.out{opacity:0;visibility:hidden}
+  .burst{position:relative;width:132px;height:132px}
+  .burst i{position:absolute;width:62px;height:62px;border-radius:14px;background:var(--green);
+           transform:scale(0) rotate(-45deg);animation:pop .7s var(--ease) forwards}
+  .burst i:nth-child(1){left:0;top:0;animation-delay:.05s}
+  .burst i:nth-child(2){right:0;top:0;animation-delay:.18s;background:#fff}
+  .burst i:nth-child(3){left:0;bottom:0;animation-delay:.31s;background:#fff}
+  .burst i:nth-child(4){right:0;bottom:0;animation-delay:.44s}
+  @keyframes pop{to{transform:scale(1) rotate(0)}}
+  .burst b{position:absolute;inset:0;display:grid;place-items:center;font-size:84px;font-weight:800;color:var(--ink);
+           opacity:0;animation:fade .4s .75s forwards;letter-spacing:-4px}
+  .introTxt{font-size:30px;font-weight:800;line-height:1.1;letter-spacing:-.5px}
+  .introTxt span{display:block;opacity:0;transform:translateY(14px);animation:up .5s var(--ease) forwards}
+  .introTxt span:nth-child(1){animation-delay:.55s}
+  .introTxt span:nth-child(2){animation-delay:.75s}
+  .introTxt span:nth-child(3){animation-delay:.95s;color:var(--green)}
+  @keyframes up{to{opacity:1;transform:none}}
+  @keyframes fade{to{opacity:1}}
+
+  /* ---------- SOL: marka + mesaj ---------- */
+  .left{position:absolute;left:28px;top:24px;width:262px;height:202px;display:flex;flex-direction:column}
+  .brand{display:flex;align-items:center;gap:8px;font-weight:800;font-size:30px;letter-spacing:-1px;line-height:1}
+  .brand .mark{display:grid;grid-template-columns:repeat(2,9px);gap:2px}
+  .brand .mark i{width:9px;height:9px;border-radius:2px;background:var(--green)}
+  .brand .mark i:nth-child(2),.brand .mark i:nth-child(3){background:#fff}
+  .kicker{margin-top:18px;font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--mute)}
+  .head{margin-top:4px;font-size:38px;font-weight:800;line-height:1;letter-spacing:-1.5px}
+  .head .four{display:inline-grid;place-items:center;width:40px;height:44px;margin-right:2px;border-radius:9px;
+              background:var(--green);color:var(--ink);transform:translateY(-2px)}
+  .head .dot{color:var(--green)}
+  .head.stamp .four{animation:stamp .7s var(--ease)}
+  @keyframes stamp{0%{transform:translateY(-2px) scale(1)}35%{transform:translateY(-2px) scale(1.35) rotate(-8deg)}100%{transform:translateY(-2px) scale(1)}}
+  .tag{margin-top:auto;font-size:12.5px;line-height:1.45;color:var(--mute);min-height:36px}
+  .tag b{color:var(--white);font-weight:600}
+
+  /* ---------- ORTA: 4 kare ---------- */
+  .tiles{position:absolute;left:304px;top:20px;width:462px;height:168px;display:flex;gap:8px}
+  .tile{position:relative;flex:1 1 0;min-width:0;border-radius:14px;overflow:hidden;cursor:pointer;
+        background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02));
+        border:1px solid rgba(255,255,255,.1);padding:13px 10px;display:flex;flex-direction:column;
+        transition:border-color .35s,background .35s,transform .5s var(--ease),opacity .5s;
+        opacity:0;transform:translateY(18px)}
+  .tile.in{opacity:1;transform:none}
+  .tile.open{border-color:color-mix(in srgb,var(--green) 70%,transparent);
+             background:linear-gradient(160deg,rgba(30,227,138,.2),rgba(30,227,138,.04))}
+  .tile:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+  .tile .n{font-size:11px;font-weight:600;letter-spacing:1.5px;color:var(--mute)}
+  .tile svg{width:38px;height:38px;margin-top:12px;stroke:var(--white);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:stroke .35s,height .45s var(--ease),opacity .3s,margin .45s}
+  .tile.open svg{height:0;opacity:0;margin-top:0}
+  .tile.done svg{stroke:var(--green)}
+  .tile h3{margin-top:auto;font-size:13.5px;font-weight:800;letter-spacing:-.4px;white-space:nowrap}
+  .tile p{font-size:10.5px;line-height:1.38;color:var(--mute);max-height:0;opacity:0;overflow:hidden;
+          transition:max-height .45s var(--ease),opacity .35s,margin .45s;white-space:normal}
+  .tile.open p{max-height:76px;opacity:1;margin-top:5px}
+  .tile .chk{position:absolute;right:10px;top:10px;width:20px;height:20px;border-radius:50%;
+             border:1.5px solid rgba(255,255,255,.3);display:grid;place-items:center;transition:all .35s var(--ease)}
+  .tile .chk::after{content:"";width:8px;height:4px;border-left:2px solid var(--ink);border-bottom:2px solid var(--ink);
+                    transform:rotate(-45deg) translate(1px,-1px) scale(0);transition:transform .3s .1s var(--ease)}
+  .tile.done .chk{background:var(--green);border-color:var(--green)}
+  .tile.done .chk::after{transform:rotate(-45deg) translate(1px,-1px) scale(1)}
+  .tile .shine{position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.18) 50%,transparent 70%);
+               transform:translateX(-120%);pointer-events:none}
+  .tile.flash .shine{animation:shine .8s var(--ease)}
+  @keyframes shine{to{transform:translateX(120%)}}
+
+  /* tür seçici */
+  .genres{position:absolute;left:304px;top:198px;width:462px;display:flex;gap:6px;align-items:center}
+  .genres span{font-size:10.5px;color:var(--mute);margin-right:2px;letter-spacing:.5px}
+  .chip{font:600 11.5px/1 "Sora",system-ui,sans-serif;color:var(--white);background:rgba(255,255,255,.06);
+        border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:7px 11px;cursor:pointer;transition:all .3s var(--ease)}
+  .chip:hover{border-color:rgba(255,255,255,.4)}
+  .chip.on{background:var(--accent);border-color:var(--accent);color:var(--ink)}
+  .chip:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+
+  /* ---------- SAĞ: sayaç + CTA ---------- */
+  .right{position:absolute;right:24px;top:20px;width:168px;height:210px;display:flex;flex-direction:column;align-items:center}
+  .ring{position:relative;width:118px;height:118px}
+  .ring svg{width:118px;height:118px;transform:rotate(-90deg)}
+  .ring .seg{fill:none;stroke:rgba(255,255,255,.12);stroke-width:9;stroke-linecap:round;transition:stroke .45s var(--ease)}
+  .ring .seg.on{stroke:var(--green)}
+  .ring .ctr{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1}
+  .ring .ctr b{font-size:34px;font-weight:800;letter-spacing:-1px;transition:transform .4s var(--ease)}
+  .ring .ctr b small{font-size:18px;color:var(--mute);font-weight:600}
+  .ring .ctr em{font-style:normal;font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:var(--mute);margin-top:5px}
+  .ring.full .ctr b{color:var(--green)}
+  .ring.full{animation:ringpop .8s var(--ease)}
+  @keyframes ringpop{40%{transform:scale(1.12)}100%{transform:scale(1)}}
+  .ring.full::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:2px solid var(--green);animation:wave 1.2s var(--ease) forwards}
+  @keyframes wave{from{opacity:.9;transform:scale(.9)}to{opacity:0;transform:scale(1.22)}}
+  .hint{margin-top:10px;font-size:11px;color:var(--mute);text-align:center;min-height:15px;transition:opacity .3s}
+  .cta{margin-top:auto;width:100%;font:800 15px/1 "Sora",system-ui,sans-serif;color:var(--ink);background:var(--green);border:0;
+       border-radius:999px;padding:13px 0;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;
+       box-shadow:0 0 0 0 rgba(30,227,138,.55);transition:transform .25s var(--ease),background .25s}
+  .cta:hover{transform:translateY(-1px);background:#45f0a2}
+  .cta.pulse{animation:pulse 1.6s ease-out 3}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(30,227,138,.55)}100%{box-shadow:0 0 0 16px rgba(30,227,138,0)}}
+  .cta svg{width:12px;height:12px;fill:var(--ink)}
+
+  /* konfeti kareleri (4/4 anı) */
+  .confetti{position:absolute;inset:0;pointer-events:none;z-index:5}
+  .confetti i{position:absolute;width:8px;height:8px;border-radius:2px;background:var(--green);opacity:0}
+
+  .reveal{opacity:0;transform:translateY(10px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+  .ready .reveal{opacity:1;transform:none}
+  .ready .r2{transition-delay:.12s}.ready .r3{transition-delay:.24s}.ready .r4{transition-delay:.36s}
+
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01s!important;animation-delay:0s!important;transition-duration:.01s!important}
+  }
+</style>
+</head>
+<body>
+<div id="ad" role="link" tabindex="0" aria-label="tabii yeni sezonda 4Dörtlük. Hemen izlemek için tıklayın.">
+  <div class="grid"></div>
+  <div class="glow"></div>
+  <div class="confetti" id="confetti"></div>
+
+  <!-- AÇILIŞ -->
+  <div id="intro" aria-hidden="true">
+    <div class="burst"><i></i><i></i><i></i><i></i><b>4</b></div>
+    <div class="introTxt"><span>Yeni karakterler.</span><span>Yeni dünyalar.</span><span>Yeni heyecanlar.</span></div>
+  </div>
+
+  <!-- SOL -->
+  <div class="left">
+    <div class="brand reveal" aria-label="tabii">
+      <span class="mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>tabii
+    </div>
+    <div class="kicker reveal r2">yeni sezonda</div>
+    <div class="head reveal r3" id="head"><span class="four">4</span>Dörtlük<span class="dot">.</span></div>
+    <p class="tag reveal r4" id="tag">Hikâyeden teknolojiye, <b>hiçbir detay eksik değil.</b> Dört kareyi tamamla.</p>
+  </div>
+
+  <!-- ORTA -->
+  <div class="tiles" id="tiles" role="group" aria-label="Dört dörtlük yayıncılık">
+    <div class="tile" tabindex="0" data-i="0" role="button" aria-label="Hikâye">
+      <span class="n">01</span><span class="chk"></span>
+      <svg viewBox="0 0 24 24"><path d="M3 5.5C5.5 4 8.5 4 12 6c3.5-2 6.5-2 9-.5V19c-2.5-1.5-5.5-1.5-9 .5-3.5-2-6.5-2-9-.5z"/><path d="M12 6v13.5"/></svg>
+      <h3>Hikâye</h3><p>Özenle kurgulanmış, merakı hiç düşmeyen anlatılar.</p>
+      <span class="shine"></span>
+    </div>
+    <div class="tile" tabindex="0" data-i="1" role="button" aria-label="Karakter">
+      <span class="n">02</span><span class="chk"></span>
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.2-4.2 4.3-6.5 8-6.5s6.8 2.3 8 6.5"/></svg>
+      <h3>Karakter</h3><p>Yeni yüzler, unutulmaz roller, güçlü kadrolar.</p>
+      <span class="shine"></span>
+    </div>
+    <div class="tile" tabindex="0" data-i="2" role="button" aria-label="Prodüksiyon">
+      <span class="n">03</span><span class="chk"></span>
+      <svg viewBox="0 0 24 24"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M3 9l2.5-5 4 1-2.5 5M9.5 5l4 1-2.5 4M15.5 6.5l4 1L17 11"/></svg>
+      <h3>Prodüksiyon</h3><p>Sinema kalitesinde çekimler, yeni dünyalar.</p>
+      <span class="shine"></span>
+    </div>
+    <div class="tile" tabindex="0" data-i="3" role="button" aria-label="Teknoloji">
+      <span class="n">04</span><span class="chk"></span>
+      <svg viewBox="0 0 24 24"><rect x="2.5" y="4" width="19" height="13" rx="2"/><path d="M8 21h8M12 17v4M10 8.5l4.5 2.5-4.5 2.5z"/></svg>
+      <h3>Teknoloji</h3><p>Yüksek görüntü; çoklu dil, altyazı ve dublaj.</p>
+      <span class="shine"></span>
+    </div>
+  </div>
+
+  <div class="genres reveal r4" id="genres" role="group" aria-label="Tür seç">
+    <span>TÜR SEÇ</span>
+    <button class="chip" data-g="0">Dram</button>
+    <button class="chip" data-g="1">Aksiyon</button>
+    <button class="chip" data-g="2">Komedi</button>
+    <button class="chip" data-g="3">Gizem</button>
+    <button class="chip" data-g="4">Dönem</button>
+  </div>
+
+  <!-- SAĞ -->
+  <div class="right reveal r3">
+    <div class="ring" id="ring" aria-live="polite">
+      <svg viewBox="0 0 118 118" aria-hidden="true">
+        <circle class="seg" cx="59" cy="59" r="50" pathLength="100" stroke-dasharray="21 79" stroke-dashoffset="-2"/>
+        <circle class="seg" cx="59" cy="59" r="50" pathLength="100" stroke-dasharray="21 79" stroke-dashoffset="-27"/>
+        <circle class="seg" cx="59" cy="59" r="50" pathLength="100" stroke-dasharray="21 79" stroke-dashoffset="-52"/>
+        <circle class="seg" cx="59" cy="59" r="50" pathLength="100" stroke-dasharray="21 79" stroke-dashoffset="-77"/>
+      </svg>
+      <div class="ctr"><b id="count">0<small>/4</small></b><em id="ctrLbl">tamamla</em></div>
+    </div>
+    <div class="hint" id="hint">Kartların üzerine gel</div>
+    <button class="cta" id="cta" aria-label="Hemen izle">
+      <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1l9 5-9 5z"/></svg>Hemen İzle
+    </button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var ad=document.getElementById('ad'), tiles=[].slice.call(document.querySelectorAll('.tile')),
+      segs=[].slice.call(document.querySelectorAll('.seg')), chips=[].slice.call(document.querySelectorAll('.chip')),
+      ring=document.getElementById('ring'), count=document.getElementById('count'), ctrLbl=document.getElementById('ctrLbl'),
+      hint=document.getElementById('hint'), head=document.getElementById('head'), tag=document.getElementById('tag'),
+      cta=document.getElementById('cta'), conf=document.getElementById('confetti'), root=document.documentElement;
+
+  var GENRES=[
+    {c:'#ff5a6e', t:'<b>Dört dörtlük dram.</b> Kalbe dokunan hikâyeler yeni sezonda.'},
+    {c:'#ff9f1c', t:'<b>Dört dörtlük aksiyon.</b> Nefes kesen sahneler yeni sezonda.'},
+    {c:'#ffd23f', t:'<b>Dört dörtlük komedi.</b> Kahkahanın adresi yeni sezonda.'},
+    {c:'#8b7bff', t:'<b>Dört dörtlük gizem.</b> Her bölümde yeni bir sır.'},
+    {c:'#d4a85a', t:'<b>Dört dörtlük dönem.</b> Tarihin büyüleyici dünyaları.'}
+  ];
+
+  var done=[false,false,false,false], doneN=0, complete=false, userTook=false, timers=[], genreTimer=null, gi=-1, t0=Date.now();
+  function later(fn,ms){timers.push(setTimeout(fn,ms))}
+  function stopAuto(){userTook=true;timers.forEach(clearTimeout);timers=[]}
+
+  /* ---- tıklama / çıkış ---- */
+  function exit(){
+    if(window.Enabler&&Enabler.exit){Enabler.exit('Masthead_Exit');return}
+    window.open(window.clickTag||clickTag,'_blank');
+  }
+  ad.addEventListener('click',exit);
+  ad.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target===ad)exit()});
+  cta.addEventListener('click',function(e){e.stopPropagation();exit()});
+
+  /* ---- kareler ---- */
+  function open(i){tiles.forEach(function(t,k){t.classList.toggle('open',k===i)})}
+  function mark(i){
+    if(done[i])return;
+    done[i]=true;doneN++;
+    tiles[i].classList.add('done','flash');segs[i].classList.add('on');
+    setTimeout(function(){tiles[i].classList.remove('flash')},850);
+    count.innerHTML=doneN+'<small>/4</small>';
+    hint.textContent=doneN<4?(4-doneN)+' kare kaldı':'';
+    if(doneN===4)finish();
+  }
+  tiles.forEach(function(t,i){
+    t.addEventListener('mouseenter',function(){stopAuto();open(i);mark(i)});
+    t.addEventListener('focus',function(){stopAuto();open(i);mark(i)});
+    t.addEventListener('click',function(e){e.stopPropagation();stopAuto();open(i);mark(i)});
+  });
+  document.getElementById('tiles').addEventListener('mouseleave',function(){if(complete)open(-1)});
+
+  /* ---- türler ---- */
+  function genre(k){
+    gi=k;chips.forEach(function(c,j){c.classList.toggle('on',j===k)});
+    root.style.setProperty('--accent',GENRES[k].c);tag.innerHTML=GENRES[k].t;
+  }
+  chips.forEach(function(c,k){
+    c.addEventListener('click',function(e){e.stopPropagation();clearInterval(genreTimer);genre(k)});
+    c.addEventListener('mouseenter',function(){clearInterval(genreTimer);genre(k)});
+  });
+
+  /* ---- 4/4 ---- */
+  function finish(){
+    complete=true;ring.classList.add('full');ctrLbl.textContent='dört dörtlük';
+    head.classList.remove('stamp');void head.offsetWidth;head.classList.add('stamp');
+    cta.classList.add('pulse');confetti();
+    setTimeout(function(){open(-1)},userTook?1800:900);
+    tag.innerHTML='<b>tabii yeni sezonda 4Dörtlük.</b> Dram, aksiyon, komedi, gizem ve dönem hikâyeleri.';
+    // tür döngüsü: 30 sn sınırına kadar
+    setTimeout(function(){
+      var k=0;genre(k);
+      genreTimer=setInterval(function(){
+        if(Date.now()-t0>29000){clearInterval(genreTimer);genre(0);return}
+        k=(k+1)%GENRES.length;genre(k);
+      },2400);
+    },2600);
+  }
+  function confetti(){
+    if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    var cols=['#1ee38a','#ffffff','#1ee38a','#ffffff'];
+    for(var n=0;n<28;n++){
+      var i=document.createElement('i'),x=880-Math.random()*60,y=80;
+      i.style.left=x+'px';i.style.top=y+'px';i.style.background=cols[n%4];conf.appendChild(i);
+      var dx=(Math.random()-.6)*360,dy=(Math.random()-.5)*220,r=Math.random()*540;
+      i.animate([{opacity:1,transform:'translate(0,0) rotate(0)'},{opacity:0,transform:'translate('+dx+'px,'+dy+'px) rotate('+r+'deg) scale(.4)'}],
+                {duration:1100+Math.random()*600,easing:'cubic-bezier(.2,.8,.2,1)',fill:'forwards'});
+    }
+    setTimeout(function(){conf.innerHTML=''},2000);
+  }
+
+  /* ---- zaman çizelgesi ---- */
+  var started=false;
+  function start(){
+    if(started)return;started=true;t0=Date.now();
+    later(function(){document.getElementById('intro').classList.add('out');ad.classList.add('ready')},2200);
+    tiles.forEach(function(t,i){later(function(){t.classList.add('in')},2500+i*110)});
+    // kullanıcı etkileşmezse kareler kendiliğinden tamamlanır
+    [3600,5000,6400,7800].forEach(function(ms,i){later(function(){open(i);mark(i)},ms)});
+  }
+  // kullanıcı tile'lardan önce banner'a girerse otomatik akış sürer; kareye dokunduğu an kontrol ona geçer
+  if(document.readyState==='complete')start();else window.addEventListener('load',start);
+  // fontlar gecikirse de akış başlasın
+  setTimeout(start,1500);
+})();
+</script>
+</body>
+</html>
