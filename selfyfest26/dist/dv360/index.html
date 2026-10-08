@@ -355,7 +355,6 @@ body{font-family:'Mulish',Arial,sans-serif;color:#fff;-webkit-font-smoothing:ant
   /* ---- tıklama çıkışı ---- */
   function exit(){
     var url = (typeof window.clickTag === 'string' && /^https?:/.test(window.clickTag)) ? window.clickTag : DATA.url;
-    if (window.Enabler && Enabler.exit) { try { Enabler.exit('Masthead'); return; } catch (e) {} }
     window.open(url, '_blank');
   }
   ad.addEventListener('click', function(){ if (ad._swiped) { ad._swiped = false; return; } exit(); });

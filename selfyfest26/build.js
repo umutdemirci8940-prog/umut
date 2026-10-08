@@ -61,10 +61,16 @@ try { execSync('zip -v', { stdio: 'ignore' }); } catch { hasZip = false; }
 
 const VARIANTS = [
   { dir: '970x250', zip: 'selfyfest26-970x250.zip', label: 'standart', clickUrl: data.url },
-  { dir: 'dv360', zip: 'selfyfest26-970x250-dv360.zip', label: 'DV360 + Gemius', clickUrl: data.dv360.clickTag, tracking: impressionScript(data.dv360.impression) },
+  // DV360 koddaki Enabler.exit('...') adlarını ayrı "exit" olarak listeler ve her birine açılış sayfası ister;
+  // tek çıkış (clickTag) kalsın diye Studio satırı bu pakette çıkarılır.
+  { dir: 'dv360', zip: 'selfyfest26-970x250-dv360.zip', label: 'DV360 + Gemius', clickUrl: data.dv360.clickTag, tracking: impressionScript(data.dv360.impression), noEnabler: true },
 ];
 for (const v of VARIANTS) {
-  const html = render(v);
+  let html = render(v);
+  if (v.noEnabler) {
+    html = html.replace(/^.*Enabler\.exit.*\n/m, '');
+    if (/Enabler/.test(html)) throw new Error('DV360 paketinde Enabler kaldı');
+  }
   const out = path.join(root, 'dist', v.dir);
   fs.mkdirSync(out, { recursive: true });
   fs.writeFileSync(path.join(out, 'index.html'), html);
