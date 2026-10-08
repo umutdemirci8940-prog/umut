@@ -1,0 +1,66 @@
+/* =========================================================
+   Splash Digital – giriş animasyonu ve etki sahnesi
+   ========================================================= */
+@property --hole { syntax: '<length>'; inherits: false; initial-value: 0px; }
+
+/* ---------- Giriş ---------- */
+html.intro-on, html.intro-on body { overflow: hidden; }
+.intro { position: fixed; inset: 0; z-index: 400; display: none; color: #fff;
+  background: radial-gradient(80% 70% at 50% 50%, #0d2442 0%, #061325 55%, #030a14 100%); }
+.js .intro { display: block; }
+.js.intro-seen .intro { display: none; }
+.intro__cv { position: absolute; inset: 0; width: 100%; height: 100%; }
+.intro::after { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .5;
+  background-image: linear-gradient(rgba(124, 200, 245, .05) 1px, transparent 1px), linear-gradient(90deg, rgba(124, 200, 245, .05) 1px, transparent 1px); background-size: 60px 60px;
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, #000, transparent 70%); mask-image: radial-gradient(circle at 50% 50%, #000, transparent 70%); }
+.intro__brand { position: absolute; left: 50%; top: 50%; z-index: 2; transform: translate(-50%, -50%); text-align: center; width: min(92vw, 640px); pointer-events: none; }
+.intro__brand img { width: min(300px, 64vw); height: auto; margin: 0 auto 18px; filter: brightness(0) invert(1); opacity: 0; transform: translateY(14px) scale(.96); transition: opacity .9s, transform 1.1s cubic-bezier(.2, .8, .2, 1); }
+.intro__brand p { margin: 0; font: 500 clamp(1rem, 2.2vw, 1.35rem)/1.4 var(--font-body, sans-serif); color: #b9d3ea; opacity: 0; transform: translateY(12px); transition: opacity .9s .25s, transform 1.1s .25s cubic-bezier(.2, .8, .2, 1); }
+.intro__brand em { font-family: var(--serif, Georgia, serif); font-style: italic; font-size: 1.18em; color: #7cd4ff; }
+.intro.is-brand .intro__brand img, .intro.is-brand .intro__brand p { opacity: 1; transform: none; }
+.intro__meta { position: absolute; left: 28px; bottom: 26px; z-index: 2; display: flex; gap: 18px; align-items: baseline; font: 500 12px/1 var(--mono, monospace); color: #7f9ab6; letter-spacing: .08em; text-transform: uppercase; }
+.intro__count { font-size: 13px; color: #cfe6fa; min-width: 34px; }
+.intro__skip { position: absolute; right: 24px; bottom: 20px; z-index: 3; background: transparent; border: 1px solid rgba(255, 255, 255, .25); color: #cfe6fa; font: 600 12px/1 var(--font-body, sans-serif); letter-spacing: .12em; text-transform: uppercase; padding: 10px 16px; border-radius: 8px; cursor: pointer; transition: border-color .2s, background .2s; }
+.intro__skip:hover { border-color: #fff; background: rgba(255, 255, 255, .06); }
+.intro.is-impact { animation: introShake .45s ease-out; }
+@keyframes introShake { 20% { transform: translate(2px, -2px); } 40% { transform: translate(-2px, 1px); } 60% { transform: translate(1px, 2px); } 80% { transform: translate(-1px, -1px); } }
+/* Siteye geçiş: ortadan genişleyen delik */
+.intro.is-revealing { -webkit-mask-image: radial-gradient(circle at 50% 50%, transparent var(--hole), #000 calc(var(--hole) + 2px)); mask-image: radial-gradient(circle at 50% 50%, transparent var(--hole), #000 calc(var(--hole) + 2px)); animation: hole .85s cubic-bezier(.7, 0, .25, 1) forwards; }
+.intro.is-revealing .intro__brand, .intro.is-revealing .intro__meta, .intro.is-revealing .intro__skip { opacity: 0; transition: opacity .3s; }
+@keyframes hole { to { --hole: 150vmax; } }
+.intro.is-done { display: none !important; }
+@media (max-width: 600px) { .intro__meta span:last-child { display: none; } .intro__meta { left: 18px; } .intro__skip { right: 16px; } }
+
+/* ---------- Etki sahnesi (kaydırmalı) ---------- */
+.impact { position: relative; background: #050d1a; color: #fff; }
+.impact.is-pinned { height: 300vh; }
+.impact__sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; display: grid; place-items: center;
+  background: radial-gradient(70% 60% at 50% 50%, #0c2340 0%, #061325 60%, #040b16 100%); }
+.impact__cv { position: absolute; inset: 0; width: 100%; height: 100%; }
+.impact__sticky::after { content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0) 7%, rgba(255, 255, 255, 0) 93%, #fff 100%); opacity: 0; }
+.impact__lines { position: relative; z-index: 2; width: min(1100px, 100% - 40px); height: 3.4em; font-size: clamp(2.1rem, 5.6vw, 5rem); text-align: center; pointer-events: none; }
+.impact__line { position: absolute; left: 0; right: 0; top: 50%; margin: 0; transform: translateY(calc(-50% + 40px)); opacity: 0; filter: blur(6px);
+  font: 700 1em/1.04 var(--font-head, sans-serif); font-stretch: 114%; letter-spacing: -.045em; text-wrap: balance;
+  transition: opacity .7s, transform .9s cubic-bezier(.2, .8, .2, 1), filter .7s; text-shadow: 0 10px 40px rgba(5, 13, 26, .8); }
+.impact__line em { font-family: var(--serif, Georgia, serif); font-style: italic; font-weight: 400; font-stretch: normal; color: #7cd4ff; letter-spacing: -.01em; }
+.impact__line.is-active { opacity: 1; transform: translateY(-50%); filter: none; }
+.impact__line.is-past { opacity: 0; transform: translateY(calc(-50% - 40px)); filter: blur(6px); }
+.impact__steps { position: absolute; left: 32px; top: 50%; transform: translateY(-50%); z-index: 2; display: grid; gap: 10px; }
+.impact__steps i { width: 3px; height: 34px; border-radius: 2px; background: rgba(255, 255, 255, .15); transition: background .4s; }
+.impact__steps i.is-on { background: #7cd4ff; box-shadow: 0 0 10px rgba(124, 212, 255, .6); }
+.impact__hint { position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%); z-index: 2; font: 600 11px/1 var(--font-body, sans-serif); letter-spacing: .2em; text-transform: uppercase; color: #7f9ab6; display: flex; flex-direction: column; align-items: center; gap: 10px; opacity: calc(1 - var(--ip, 0) * 4); }
+.impact__hint::after { content: ''; width: 1px; height: 34px; background: linear-gradient(#7cd4ff, transparent); animation: hintDrop 1.6s ease-in-out infinite; }
+@keyframes hintDrop { 0% { transform: scaleY(0); transform-origin: top; } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
+
+/* Hareketi azalt: sabit, tüm satırlar görünür */
+.impact.is-static .impact__sticky { position: relative; height: auto; padding: 120px 0; }
+.impact.is-static .impact__lines { height: auto; display: grid; gap: 18px; }
+.impact.is-static .impact__line { position: static; opacity: 1; transform: none; filter: none; }
+.impact.is-static .impact__hint, .impact.is-static .impact__steps { display: none; }
+
+@media (max-width: 700px) {
+  .impact.is-pinned { height: 260vh; }
+  .impact__steps { left: 14px; }
+  .impact__lines { height: 4.4em; }
+}

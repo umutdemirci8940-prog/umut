@@ -41,23 +41,15 @@
     if (hero) hero.classList.add('is-ready');
     if (heroTitle) heroTitle.classList.add('is-in');
   }
-  var loader = d.querySelector('.loader');
+  // Giriş animasyonu (intro.js) bitince hero başlar
+  var intro = d.getElementById('intro');
   var seen = root.classList.contains('intro-seen');
-  if (loader && !seen && !reduce) {
-    var done = false;
-    var finish = function () {
-      if (done) return; done = true;
-      loader.classList.add('is-leaving');
-      setTimeout(startHero, 250);
-      setTimeout(function () { loader.classList.add('is-done'); }, 850);
-      try { sessionStorage.setItem('sd-intro', '1'); } catch (e) {}
-    };
-    // Sayfa yüklenince (en az 1,3 sn, en çok 3 sn) kapanır
-    var t0 = Date.now();
-    window.addEventListener('load', function () { setTimeout(finish, Math.max(0, 1300 - (Date.now() - t0))); });
-    setTimeout(finish, 3000);
+  if (intro && !seen && !reduce) {
+    var started = false;
+    var go = function () { if (started) return; started = true; startHero(); };
+    d.addEventListener('sd:intro-done', go);
+    setTimeout(go, 8000);
   } else {
-    if (loader) loader.classList.add('is-done');
     requestAnimationFrame(startHero);
   }
 
