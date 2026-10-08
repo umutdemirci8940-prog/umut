@@ -55,14 +55,18 @@
 
   <div class="progress" aria-hidden="true"><span></span></div>
 
-  <!-- Giriş animasyonu -->
+  <!-- Giriş animasyonu: programatik açık artırma -->
   <div class="intro" id="intro" aria-hidden="true">
-    <canvas class="intro__cv"></canvas>
-    <div class="intro__brand">
-      <img src="assets/img/logo.png" alt="" width="260" height="120">
-      <p>Reklamı görünür değil, <em>etkili</em> kılıyoruz.</p>
+    <div class="intro__world">
+      <div class="islot islot--g1" style="--w:728;--h:90;--x:-40;--y:-330;--z:30;--i:0"><b class="islot__lbl">728×90</b><span class="islot__bid">Teklif bekleniyor</span><span class="islot__ad"><em>VOLTA</em><i>Yeni sezon</i></span></div>
+      <div class="islot islot--g2" style="--w:160;--h:600;--x:-590;--y:20;--z:70;--i:1"><b class="islot__lbl">160×600</b><span class="islot__bid">Teklif bekleniyor</span><span class="islot__ad"><em>ARCX</em><i>İzle</i></span></div>
+      <div class="islot islot--g3" style="--w:300;--h:250;--x:-250;--y:40;--z:110;--i:2"><b class="islot__lbl">300×250</b><span class="islot__bid">Teklif bekleniyor</span><span class="islot__ad"><em>LUMÉ</em><i>Keşfet</i></span></div>
+      <div class="islot islot--g4" style="--w:300;--h:600;--x:470;--y:40;--z:50;--i:3"><b class="islot__lbl">300×600</b><span class="islot__bid">Teklif bekleniyor</span><span class="islot__ad"><em>SKYWAY</em><i>Uç</i></span></div>
+      <div class="islot islot--g5" style="--w:336;--h:280;--x:90;--y:-50;--z:90;--i:4"><b class="islot__lbl">336×280</b><span class="islot__bid">Teklif bekleniyor</span><span class="islot__ad"><em>Lezzetli</em><i>Tarif</i></span></div>
+      <div class="islot islot--g6" style="--w:320;--h:50;--x:120;--y:300;--z:130;--i:5"><b class="islot__lbl">320×50</b><span class="islot__bid">Teklif bekleniyor</span><span class="islot__ad"><em>Eşleştir</em><i>Oyna</i></span></div>
+      <div class="intro__card"><img src="assets/img/logo.png" alt="" width="260" height="120"><p>Her gösterimi <em>bir deneyime</em> dönüştürüyoruz.</p></div>
     </div>
-    <div class="intro__meta"><span class="intro__count">000</span><span>Splash Digital · İstanbul</span></div>
+    <div class="intro__meta"><span class="intro__dot"></span><span class="intro__status">Gerçek zamanlı açık artırma</span><span class="intro__count">0 ms</span></div>
     <button class="intro__skip" type="button">Geç</button>
   </div>
 
@@ -185,15 +189,57 @@
     </section>
 
     <!-- ================= ETKİ SAHNESİ (kaydırmalı) ================= -->
-    <section class="impact" id="impact" aria-label="Yaklaşımımız">
+    <section class="impact" id="impact" data-stage="0" aria-label="Yaklaşımımız">
       <div class="impact__sticky">
-        <canvas class="impact__cv" aria-hidden="true"></canvas>
-        <div class="impact__lines">
-          <p class="impact__line is-active">Reklam yalnızca <em>görülmek</em> için değil.</p>
-          <p class="impact__line">Etkileşim <em>yaratmak</em> için var.</p>
-          <p class="impact__line">Ve ölçülebilir <em>sonuç</em> üretmek için.</p>
+        <div class="container impact__grid">
+          <div class="impact__copy">
+            <p class="impact__tag"><span class="impact__num">01</span> / 03 · <span class="impact__lbl">Dikkat</span></p>
+            <div class="impact__lines">
+              <p class="impact__line is-active">Bir reklamın şansı <em>bir saniyeden</em> kısa.</p>
+              <p class="impact__line">O anı <em>dokunulabilir</em> bir deneyime çeviriyoruz.</p>
+              <p class="impact__line">Sonra her etkileşimi <em>ölçüyoruz.</em></p>
+            </div>
+            <div class="impact__bar" aria-hidden="true"><span></span></div>
+          </div>
+          <div class="impact__stage" aria-hidden="true">
+            <div class="ph">
+              <div class="ph__body">
+                <div class="ph__screen">
+                  <div class="ph__feed">
+                    <div class="fp"><i></i><b></b><b></b><s></s></div>
+                    <div class="fp"><i></i><b></b><b></b><s></s></div>
+                    <div class="fp fp--slot"><span>Sponsorlu</span></div>
+                    <div class="fp"><i></i><b></b><b></b><s></s></div>
+                    <div class="fp"><i></i><b></b><b></b><s></s></div>
+                    <div class="fp"><i></i><b></b><b></b><s></s></div>
+                  </div>
+                </div>
+              </div>
+              <div class="ph__ad">
+                <div class="ph__face ph__front">
+                  <span class="ad__sp">Sponsorlu · LUMÉ</span>
+                  <div class="ad__prod"><i></i><i></i><i></i></div>
+                  <p class="ad__h">Yeni sezon<br><em>ışıltısı</em></p>
+                  <span class="ad__swipe"><i></i>Kaydır ve keşfet</span>
+                  <span class="ad__cta">Keşfet</span>
+                  <span class="ad__tap"></span>
+                  <span class="ad__focus"><i></i><i></i><i></i><i></i></span>
+                </div>
+                <div class="ph__face ph__back">
+                  <span class="ad__sp">Kampanya raporu · canlı</span>
+                  <div class="mt"><span>Görünürlük</span><b data-to="94.2">0</b><u style="--v:.94"></u></div>
+                  <div class="mt"><span>Tıklama oranı</span><b data-to="3.8">0</b><u style="--v:.62"></u></div>
+                  <div class="mt"><span>Etkileşim süresi</span><b data-to="21" data-suf=" sn">0</b><u style="--v:.78"></u></div>
+                  <div class="mt__chart"><i style="--h:.35"></i><i style="--h:.5"></i><i style="--h:.42"></i><i style="--h:.66"></i><i style="--h:.58"></i><i style="--h:.8"></i><i style="--h:.92"></i></div>
+                </div>
+              </div>
+              <span class="ph__timer"><svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="15"/></svg><b>0,8 sn</b></span>
+              <span class="ph__chip ph__chip--a">Dokun</span>
+              <span class="ph__chip ph__chip--b">Kaydır</span>
+              <span class="ph__chip ph__chip--c">Oyna</span>
+            </div>
+          </div>
         </div>
-        <div class="impact__steps" aria-hidden="true"><i class="is-on"></i><i></i><i></i></div>
         <span class="impact__hint" aria-hidden="true">Kaydırın</span>
       </div>
     </section>
