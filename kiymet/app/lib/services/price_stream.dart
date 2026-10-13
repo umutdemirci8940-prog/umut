@@ -79,7 +79,9 @@ class PriceStream {
     final msg = jsonDecode(data as String) as Map<String, dynamic>;
     final list = msg['prices'] as List?;
     if (list == null) return;
-    _prices.add([for (final p in list) Price.fromJson(p as Map<String, dynamic>)]);
+    _prices.add([
+      for (final p in list) Price.fromJson(p as Map<String, dynamic>),
+    ]);
   }
 
   void _scheduleReconnect() {

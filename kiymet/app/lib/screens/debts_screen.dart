@@ -31,7 +31,9 @@ class _DebtsScreenState extends State<DebtsScreen> {
         const SliverAppBar(floating: true, title: Text('Alacak & Borç')),
         SliverPadding(
           padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
-          sliver: SliverToBoxAdapter(child: _DebtSummaryCard(summary: summary, hasCpi: !app.cpi.isEmpty)),
+          sliver: SliverToBoxAdapter(
+            child: _DebtSummaryCard(summary: summary, hasCpi: !app.cpi.isEmpty),
+          ),
         ),
         SliverPadding(
           padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
@@ -39,7 +41,10 @@ class _DebtsScreenState extends State<DebtsScreen> {
             child: SegmentedButton<DebtDirection>(
               segments: [
                 for (final d in DebtDirection.values)
-                  ButtonSegment(value: d, label: Text('${d.plural} (${summary.of(d).length})')),
+                  ButtonSegment(
+                    value: d,
+                    label: Text('${d.plural} (${summary.of(d).length})'),
+                  ),
               ],
               selected: {_direction},
               showSelectedIcon: false,
@@ -48,7 +53,10 @@ class _DebtsScreenState extends State<DebtsScreen> {
           ),
         ),
         if (items.isEmpty)
-          SliverFillRemaining(hasScrollBody: false, child: _Empty(direction: _direction))
+          SliverFillRemaining(
+            hasScrollBody: false,
+            child: _Empty(direction: _direction),
+          )
         else ...[
           SliverList.builder(
             itemCount: items.length,
@@ -68,13 +76,24 @@ class _DebtSummaryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget metric(String label, String value, {Color color = Colors.white}) => Expanded(
+    Widget metric(String label, String value, {Color color = Colors.white}) =>
+        Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(label, style: const TextStyle(color: Colors.white70, fontSize: 12)),
+              Text(
+                label,
+                style: const TextStyle(color: Colors.white70, fontSize: 12),
+              ),
               const SizedBox(height: 2),
-              Text(value, style: TextStyle(color: color, fontSize: 17, fontWeight: FontWeight.w600)),
+              Text(
+                value,
+                style: TextStyle(
+                  color: color,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
             ],
           ),
         );
@@ -92,11 +111,15 @@ class _DebtSummaryCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Net alacak (bugünkü değerle)', style: TextStyle(color: Colors.white70)),
+          const Text(
+            'Net alacak (bugünkü değerle)',
+            style: TextStyle(color: Colors.white70),
+          ),
           const SizedBox(height: 4),
           Text(
             formatSignedTl(summary.net),
-            style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: Colors.white, fontWeight: FontWeight.w700),
+            style: Theme.of(context).textTheme.headlineMedium
+                ?.copyWith(color: Colors.white, fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 16),
           Row(
@@ -105,20 +128,31 @@ class _DebtSummaryCard extends StatelessWidget {
               metric('Borçlarım', formatTl(summary.totalBorrowed)),
             ],
           ),
-          if (summary.lentInflationLoss > 0 || summary.borrowedInflationGain > 0) ...[
+          if (summary.lentInflationLoss > 0 ||
+              summary.borrowedInflationGain > 0) ...[
             const SizedBox(height: 12),
             Row(
               children: [
-                metric('Alacakların enflasyon kaybı', '−${formatTl(summary.lentInflationLoss)}',
-                    color: const Color(0xFFFF8A8A)),
-                metric('Borçların eriyen kısmı', formatTl(summary.borrowedInflationGain),
-                    color: const Color(0xFF5BE39A)),
+                if (summary.lentInflationLoss > 0)
+                  metric(
+                    'Alacakların enflasyon kaybı',
+                    '−${formatTl(summary.lentInflationLoss)}',
+                    color: const Color(0xFFFF8A8A),
+                  ),
+                if (summary.borrowedInflationGain > 0)
+                  metric(
+                    'Borçların eriyen kısmı',
+                    formatTl(summary.borrowedInflationGain),
+                    color: const Color(0xFF5BE39A),
+                  ),
               ],
             ),
           ] else if (!hasCpi) ...[
             const SizedBox(height: 12),
-            const Text('Enflasyon verisi yüklenince TL alacakların değer kaybı gösterilecek.',
-                style: TextStyle(color: Colors.white60, fontSize: 12)),
+            const Text(
+              'Enflasyon verisi yüklenince TL alacakların değer kaybı gösterilecek.',
+              style: TextStyle(color: Colors.white60, fontSize: 12),
+            ),
           ],
         ],
       ),
@@ -135,8 +169,12 @@ class _DebtTile extends StatelessWidget {
     final app = context.read<AppState>();
     final d = valuation.debt;
     final asset = app.debtAsset(d.assetId);
-    final amountText = d.isCash ? formatTl(d.amount) : '${formatQty(d.amount)} ${asset.unit} ${asset.name}';
-    final dateText = d.date == null ? 'Tarih yok' : DateFormat('d MMM y', 'tr_TR').format(d.date!);
+    final amountText = d.isCash
+        ? formatTl(d.amount)
+        : '${formatQty(d.amount)} ${asset.unit} ${asset.name}';
+    final dateText = d.date == null
+        ? 'Tarih yok'
+        : DateFormat('d MMM y', 'tr_TR').format(d.date!);
     final loss = valuation.inflationLoss;
     final lent = d.direction == DebtDirection.lent;
 
@@ -149,17 +187,29 @@ class _DebtTile extends StatelessWidget {
         color: KiymetColors.up,
         child: const Row(
           mainAxisSize: MainAxisSize.min,
-          children: [Text('Kapandı', style: TextStyle(color: Colors.white)), SizedBox(width: 8), Icon(Icons.check, color: Colors.white)],
+          children: [
+            Text('Kapandı', style: TextStyle(color: Colors.white)),
+            SizedBox(width: 8),
+            Icon(Icons.check, color: Colors.white),
+          ],
         ),
       ),
       confirmDismiss: (_) => showDialog<bool>(
         context: context,
         builder: (ctx) => AlertDialog(
           title: Text(lent ? 'Alacak tahsil edildi mi?' : 'Borç ödendi mi?'),
-          content: Text('${d.person} · $amountText\nKayıt listeden kaldırılacak.'),
+          content: Text(
+            '${d.person} · $amountText\nKayıt listeden kaldırılacak.',
+          ),
           actions: [
-            TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Vazgeç')),
-            FilledButton(onPressed: () => Navigator.pop(ctx, true), child: const Text('Evet, kaldır')),
+            TextButton(
+              onPressed: () => Navigator.pop(ctx, false),
+              child: const Text('Vazgeç'),
+            ),
+            FilledButton(
+              onPressed: () => Navigator.pop(ctx, true),
+              child: const Text('Evet, kaldır'),
+            ),
           ],
         ),
       ),
@@ -170,8 +220,15 @@ class _DebtTile extends StatelessWidget {
         leading: d.isCash
             ? CircleAvatar(
                 backgroundColor: KiymetColors.gold.withValues(alpha: 0.15),
-                child: Text(d.person.isEmpty ? '?' : d.person.characters.first.toUpperCase(),
-                    style: const TextStyle(color: KiymetColors.gold, fontWeight: FontWeight.w700)),
+                child: Text(
+                  d.person.isEmpty
+                      ? '?'
+                      : d.person.characters.first.toUpperCase(),
+                  style: const TextStyle(
+                    color: KiymetColors.gold,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
               )
             : AssetIcon(asset),
         title: Text(d.person, maxLines: 1, overflow: TextOverflow.ellipsis),
@@ -181,13 +238,20 @@ class _DebtTile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Text(
-              valuation.currentValue == null ? 'Fiyat bekleniyor' : formatTl(valuation.currentValue!),
+              valuation.currentValue == null
+                  ? 'Fiyat bekleniyor'
+                  : formatTl(valuation.currentValue!),
               style: const TextStyle(fontWeight: FontWeight.w600),
             ),
             if (loss != null && loss > 0)
               Text(
-                lent ? 'Enflasyon kaybı −${formatTl(loss)}' : 'Eriyen ${formatTl(loss)}',
-                style: TextStyle(color: lent ? KiymetColors.down : KiymetColors.up, fontSize: 12),
+                lent
+                    ? 'Enflasyon kaybı −${formatTl(loss)}'
+                    : 'Eriyen ${formatTl(loss)}',
+                style: TextStyle(
+                  color: lent ? KiymetColors.down : KiymetColors.up,
+                  fontSize: 12,
+                ),
               ),
           ],
         ),
@@ -208,9 +272,16 @@ class _Empty extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(lent ? Icons.call_made : Icons.call_received, size: 56, color: KiymetColors.gold),
+          Icon(
+            lent ? Icons.call_made : Icons.call_received,
+            size: 56,
+            color: KiymetColors.gold,
+          ),
           const SizedBox(height: 12),
-          Text(lent ? 'Kimseye borç vermemişsin' : 'Kimseye borcun yok', style: Theme.of(context).textTheme.titleMedium),
+          Text(
+            lent ? 'Kimseye borç vermemişsin' : 'Kimseye borcun yok',
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
           const SizedBox(height: 8),
           Text(
             lent

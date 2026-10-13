@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 600" width="2000" height="600">
+  <!-- Kıymet yatay logo (koyu zemin için). Yazı tipi: Inter Display Bold -->
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0" stop-color="#22395C"/>
+      <stop offset="0.55" stop-color="#12213A"/>
+      <stop offset="1" stop-color="#080F1C"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFF1B0"/>
+      <stop offset="0.28" stop-color="#F2CB55"/>
+      <stop offset="0.62" stop-color="#D19E25"/>
+      <stop offset="1" stop-color="#8E6510"/>
+    </linearGradient>
+    <linearGradient id="goldInner" x1="0.2" y1="0" x2="0.8" y2="1">
+      <stop offset="0" stop-color="#F9DC7A"/>
+      <stop offset="0.5" stop-color="#E2B33A"/>
+      <stop offset="1" stop-color="#B9871B"/>
+    </linearGradient>
+    <linearGradient id="rimShade" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#FFE9A0"/>
+      <stop offset="1" stop-color="#7A560C"/>
+    </linearGradient>
+    <linearGradient id="ink" gradientUnits="userSpaceOnUse" x1="0" y1="280" x2="0" y2="680">
+      <stop offset="0" stop-color="#14243D"/>
+      <stop offset="1" stop-color="#0A1424"/>
+    </linearGradient>
+    <filter id="drop" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="22" stdDeviation="26" flood-color="#000" flood-opacity="0.45"/>
+    </filter>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="60"/>
+    </filter>
+    <path id="K" d="M384 348 H440 Q452 348 452 360 V487 L598.7 340.7 L563 305 L712 284 L691 433 L655 397 L518 534 L660 676 H547 L452 581 V664 Q452 676 440 676 H384 Q372 676 372 664 V360 Q372 348 384 348 Z"/>
+  </defs>
+  <defs>
+    <linearGradient id="wordGold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFE9A3"/><stop offset="0.55" stop-color="#E7B941"/><stop offset="1" stop-color="#B8861C"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(40 40) scale(0.508)">
+  <g id="mark" filter="url(#drop)" transform="translate(512 512) scale(1.08) translate(-512 -512)">
+    <!-- sikke: dış kenar, kenar gölgesi, iç yüzey -->
+    <circle cx="512" cy="512" r="352" fill="url(#gold)"/>
+    <circle cx="512" cy="512" r="318" fill="url(#rimShade)"/>
+    <circle cx="512" cy="512" r="304" fill="url(#goldInner)"/>
+    <circle cx="512" cy="512" r="304" fill="none" stroke="#FFF4C4" stroke-opacity="0.35" stroke-width="3"/>
+    <!-- sikke dişleri -->
+    <circle cx="512" cy="512" r="335" fill="none" stroke="#9A6E12" stroke-opacity="0.35" stroke-width="10" stroke-dasharray="4 14"/>
+
+    <!-- K: tek parça harf; üst kol yükselen ok -->
+    <g transform="translate(-30 22)">
+      <g fill="#FFF3C2" opacity="0.55" transform="translate(0 6)"><use href="#K"/></g>
+      <use href="#K" fill="url(#ink)"/>
+    </g>
+    <!-- parlama -->
+    <path d="M300 380 A240 240 0 0 1 470 238" fill="none" stroke="#FFFBE6" stroke-opacity="0.55" stroke-width="14" stroke-linecap="round"/>
+  </g>
+  </g>
+  <text x="600" y="345" font-family="Inter Display, Inter, sans-serif" font-weight="800" font-size="230" letter-spacing="-6" fill="url(#wordGold)">Kıymet</text>
+  <text x="608" y="450" font-family="Inter, sans-serif" font-weight="500" font-size="62" letter-spacing="2" fill="#C9D3E3">Tüm kıymetlerin tek yerde</text>
+</svg>

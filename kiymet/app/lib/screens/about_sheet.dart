@@ -10,9 +10,26 @@ void showAboutKiymet(BuildContext context) {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Kıymet', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700)),
-          SizedBox(height: 4),
-          Text('Tüm kıymetlerin tek yerde.'),
+          Row(
+            children: [
+              Image(
+                image: AssetImage('assets/icon/mark.png'),
+                width: 48,
+                height: 48,
+              ),
+              SizedBox(width: 12),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Kıymet',
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
+                  ),
+                  Text('Tüm kıymetlerin tek yerde.'),
+                ],
+              ),
+            ],
+          ),
           SizedBox(height: 16),
           Text(
             '• Varlıkların yalnızca bu cihazda saklanır, hiçbir sunucuya gönderilmez.\n'
@@ -21,7 +38,10 @@ void showAboutKiymet(BuildContext context) {
             '• Kıymet bir yatırım danışmanlığı hizmeti değildir. Burada yer alan bilgiler yatırım tavsiyesi değildir.',
           ),
           SizedBox(height: 16),
-          Text('Test sürümü', style: TextStyle(fontWeight: FontWeight.w600)),
+          Text(
+            'Veri kaynakları: BtcTurk, TCMB, Binance, gold-api.com, Yahoo Finance, OECD, BIS.',
+            style: TextStyle(fontSize: 12),
+          ),
         ],
       ),
     ),

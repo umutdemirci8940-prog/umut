@@ -37,25 +37,36 @@ class PortfolioScreen extends StatelessWidget {
           ),
           SliverPadding(
             padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
-            sliver: SliverToBoxAdapter(child: _SummaryCard(summary: summary, hasCpi: !app.cpi.isEmpty)),
+            sliver: SliverToBoxAdapter(
+              child: _SummaryCard(summary: summary, hasCpi: !app.cpi.isEmpty),
+            ),
           ),
           if (summary.valueByType.isNotEmpty)
             SliverPadding(
               padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
-              sliver: SliverToBoxAdapter(child: _AllocationBar(summary: summary)),
+              sliver: SliverToBoxAdapter(
+                child: _AllocationBar(summary: summary),
+              ),
             ),
           if (summary.isEmpty)
-            const SliverFillRemaining(hasScrollBody: false, child: _EmptyState())
+            const SliverFillRemaining(
+              hasScrollBody: false,
+              child: _EmptyState(),
+            )
           else ...[
             SliverPadding(
               padding: const EdgeInsets.fromLTRB(16, 16, 16, 4),
               sliver: SliverToBoxAdapter(
-                child: Text('Varlıklarım', style: Theme.of(context).textTheme.titleMedium),
+                child: Text(
+                  'Varlıklarım',
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
               ),
             ),
             SliverList.builder(
               itemCount: summary.items.length,
-              itemBuilder: (context, i) => _HoldingTile(valuation: summary.items[i]),
+              itemBuilder: (context, i) =>
+                  _HoldingTile(valuation: summary.items[i]),
             ),
             const SliverToBoxAdapter(child: SizedBox(height: 96)),
           ],
@@ -83,16 +94,22 @@ class _SummaryCard extends StatelessWidget {
           end: Alignment.bottomRight,
         ),
       ),
-      child: DefaultTextStyle(
+      child: DefaultTextStyle.merge(
         style: const TextStyle(color: Colors.white),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Toplam varlık', style: TextStyle(color: Colors.white70)),
+            const Text(
+              'Toplam varlık',
+              style: TextStyle(color: Colors.white70),
+            ),
             const SizedBox(height: 4),
             Text(
               formatTl(summary.totalValue),
-              style: text.headlineMedium?.copyWith(color: Colors.white, fontWeight: FontWeight.w700),
+              style: text.headlineMedium?.copyWith(
+                color: Colors.white,
+                fontWeight: FontWeight.w700,
+              ),
             ),
             const SizedBox(height: 4),
             if (summary.dailyChangePct != null)
@@ -106,8 +123,12 @@ class _SummaryCard extends StatelessWidget {
                 Expanded(
                   child: _Metric(
                     label: 'Toplam kâr/zarar',
-                    value: summary.pnlPct == null ? '—' : formatSignedTl(summary.pnl),
-                    sub: summary.pnlPct == null ? null : formatPct(summary.pnlPct!),
+                    value: summary.pnlPct == null
+                        ? '—'
+                        : formatSignedTl(summary.pnl),
+                    sub: summary.pnlPct == null
+                        ? null
+                        : formatPct(summary.pnlPct!),
                     color: _onDark(summary.pnl),
                   ),
                 ),
@@ -118,9 +139,13 @@ class _SummaryCard extends StatelessWidget {
                         ? formatPct(summary.realReturnPct!)
                         : (hasCpi ? '—' : 'Yakında'),
                     sub: summary.realReturnPct != null
-                        ? (summary.realReturnPct! >= 0 ? 'Enflasyonu yendin' : 'Enflasyonun gerisinde')
+                        ? (summary.realReturnPct! >= 0
+                              ? 'Enflasyonu yendin'
+                              : 'Enflasyonun gerisinde')
                         : (hasCpi ? null : 'TÜFE verisi bağlanınca'),
-                    color: summary.realReturnPct == null ? Colors.white : _onDark(summary.realReturnPct!),
+                    color: summary.realReturnPct == null
+                        ? Colors.white
+                        : _onDark(summary.realReturnPct!),
                   ),
                 ),
               ],
@@ -138,11 +163,18 @@ class _SummaryCard extends StatelessWidget {
     );
   }
 
-  Color _onDark(double v) => v > 0 ? const Color(0xFF5BE39A) : (v < 0 ? const Color(0xFFFF8A8A) : Colors.white);
+  Color _onDark(double v) => v > 0
+      ? const Color(0xFF5BE39A)
+      : (v < 0 ? const Color(0xFFFF8A8A) : Colors.white);
 }
 
 class _Metric extends StatelessWidget {
-  const _Metric({required this.label, required this.value, this.sub, required this.color});
+  const _Metric({
+    required this.label,
+    required this.value,
+    this.sub,
+    required this.color,
+  });
   final String label;
   final String value;
   final String? sub;
@@ -153,10 +185,27 @@ class _Metric extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: const TextStyle(color: Colors.white70, fontSize: 12)),
+        Text(
+          label,
+          style: const TextStyle(color: Colors.white70, fontSize: 12),
+        ),
         const SizedBox(height: 2),
-        Text(value, style: TextStyle(color: color, fontSize: 17, fontWeight: FontWeight.w600)),
-        if (sub != null) Text(sub!, style: TextStyle(color: color.withValues(alpha: 0.85), fontSize: 12)),
+        Text(
+          value,
+          style: TextStyle(
+            color: color,
+            fontSize: 17,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        if (sub != null)
+          Text(
+            sub!,
+            style: TextStyle(
+              color: color.withValues(alpha: 0.85),
+              fontSize: 12,
+            ),
+          ),
       ],
     );
   }
@@ -176,8 +225,9 @@ class _AllocationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final total = summary.totalValue;
-    final entries = summary.valueByType.entries.where((e) => e.value > 0).toList()
-      ..sort((a, b) => b.value.compareTo(a.value));
+    final entries =
+        summary.valueByType.entries.where((e) => e.value > 0).toList()
+          ..sort((a, b) => b.value.compareTo(a.value));
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -213,10 +263,15 @@ class _AllocationBar extends StatelessWidget {
                       Container(
                         width: 10,
                         height: 10,
-                        decoration: BoxDecoration(color: _typeColors[e.key], shape: BoxShape.circle),
+                        decoration: BoxDecoration(
+                          color: _typeColors[e.key],
+                          shape: BoxShape.circle,
+                        ),
                       ),
                       const SizedBox(width: 6),
-                      Text('${e.key.label} %${(e.value / total * 100).toStringAsFixed(0)}'),
+                      Text(
+                        '${e.key.label} %${(e.value / total * 100).toStringAsFixed(0)}',
+                      ),
                     ],
                   ),
               ],
@@ -252,10 +307,18 @@ class _HoldingTile extends StatelessWidget {
         context: context,
         builder: (ctx) => AlertDialog(
           title: const Text('Varlık silinsin mi?'),
-          content: Text('${formatQty(h.quantity)} ${instrument.unit} ${instrument.name}'),
+          content: Text(
+            '${formatQty(h.quantity)} ${instrument.unit} ${instrument.name}',
+          ),
           actions: [
-            TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Vazgeç')),
-            FilledButton(onPressed: () => Navigator.pop(ctx, true), child: const Text('Sil')),
+            TextButton(
+              onPressed: () => Navigator.pop(ctx, false),
+              child: const Text('Vazgeç'),
+            ),
+            FilledButton(
+              onPressed: () => Navigator.pop(ctx, true),
+              child: const Text('Sil'),
+            ),
           ],
         ),
       ),
@@ -263,25 +326,37 @@ class _HoldingTile extends StatelessWidget {
       child: ListTile(
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
         leading: AssetIcon(instrument),
-        title: Text(instrument.name, maxLines: 1, overflow: TextOverflow.ellipsis),
+        title: Text(
+          instrument.name,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
         subtitle: Text('${formatQty(h.quantity)} ${instrument.unit} · $date'),
         trailing: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Text(
-              valuation.value == null ? 'Fiyat bekleniyor' : formatTl(valuation.value!),
+              valuation.value == null
+                  ? 'Fiyat bekleniyor'
+                  : formatTl(valuation.value!),
               style: const TextStyle(fontWeight: FontWeight.w600),
             ),
             if (valuation.pnlPct != null)
               Text(
                 '${formatSignedTl(valuation.pnl!)} (${formatPct(valuation.pnlPct!)})',
-                style: TextStyle(color: changeColor(context, valuation.pnl), fontSize: 12),
+                style: TextStyle(
+                  color: changeColor(context, valuation.pnl),
+                  fontSize: 12,
+                ),
               ),
             if (valuation.realReturnPct != null)
               Text(
                 'Reel ${formatPct(valuation.realReturnPct!)}',
-                style: TextStyle(color: changeColor(context, valuation.realReturnPct), fontSize: 11),
+                style: TextStyle(
+                  color: changeColor(context, valuation.realReturnPct),
+                  fontSize: 11,
+                ),
               ),
           ],
         ),
@@ -300,9 +375,12 @@ class _EmptyState extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Icon(Icons.savings_outlined, size: 64, color: KiymetColors.gold),
+          Image.asset('assets/icon/mark.png', width: 96, height: 96),
           const SizedBox(height: 16),
-          Text('Tüm kıymetlerin tek yerde', style: Theme.of(context).textTheme.titleLarge),
+          Text(
+            'Tüm kıymetlerin tek yerde',
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
           const SizedBox(height: 8),
           const Text(
             'Altın, döviz, hisse ve kripto varlıklarını ekle; toplam değerini ve gerçek getirini anlık takip et.',

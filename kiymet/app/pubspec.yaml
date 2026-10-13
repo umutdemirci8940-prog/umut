@@ -61,6 +61,19 @@ dev_dependencies:
 flutter:
   assets:
     - assets/data/cpi_tr.json
+    - assets/icon/mark.png
+
+  # Inter (SIL OFL 1.1) — bkz. assets/fonts/LICENSE-Inter.txt
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter-Regular.otf
+        - asset: assets/fonts/Inter-Medium.otf
+          weight: 500
+        - asset: assets/fonts/Inter-SemiBold.otf
+          weight: 600
+        - asset: assets/fonts/Inter-Bold.otf
+          weight: 700
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
@@ -102,6 +115,6 @@ flutter_launcher_icons:
   android: true
   ios: true
   image_path: assets/icon/icon.png
-  adaptive_icon_background: "#0E1A2B"
+  adaptive_icon_background: "#101D33"
   adaptive_icon_foreground: assets/icon/icon_foreground.png
   remove_alpha_ios: true

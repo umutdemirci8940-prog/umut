@@ -11,6 +11,8 @@ include: package:flutter_lints/flutter.yaml
 
 analyzer:
   exclude:
+    # Mağaza ekran görüntüsü üreticisi (test dışı araç)
+    - test_store/**
     - build/**
     - android/**
     - ios/**

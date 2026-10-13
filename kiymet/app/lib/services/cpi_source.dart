@@ -12,8 +12,8 @@ import '../logic/inflation.dart';
 /// Ardından (en fazla 12 saatte bir) OECD'den güncel veri çekilmeye çalışılır.
 class CpiSource {
   CpiSource({http.Client? client, AssetBundle? bundle})
-      : _client = client ?? http.Client(),
-        _bundle = bundle ?? rootBundle;
+    : _client = client ?? http.Client(),
+      _bundle = bundle ?? rootBundle;
 
   static const asset = 'assets/data/cpi_tr.json';
   static const _prefsKey = 'cpi.v1';
@@ -29,7 +29,9 @@ class CpiSource {
 
   Future<CpiSeries> load() async {
     _series ??= await _loadLocal();
-    final stale = _lastFetch == null || DateTime.now().difference(_lastFetch!) > const Duration(hours: 12);
+    final stale =
+        _lastFetch == null ||
+        DateTime.now().difference(_lastFetch!) > const Duration(hours: 12);
     if (stale) {
       _lastFetch = DateTime.now();
       try {
@@ -52,17 +54,25 @@ class CpiSource {
     try {
       final prefs = await SharedPreferences.getInstance();
       final raw = prefs.getString(_prefsKey);
-      if (raw != null) saved = CpiSeries.fromJson(jsonDecode(raw) as Map<String, dynamic>);
+      if (raw != null) {
+        saved = CpiSeries.fromJson(jsonDecode(raw) as Map<String, dynamic>);
+      }
     } catch (_) {}
     try {
-      bundled = CpiSeries.fromJson(jsonDecode(await _bundle.loadString(asset)) as Map<String, dynamic>);
+      bundled = CpiSeries.fromJson(
+        jsonDecode(await _bundle.loadString(asset)) as Map<String, dynamic>,
+      );
     } catch (_) {}
     return isNewer(saved, bundled) ? saved : bundled;
   }
 
   Future<CpiSeries> _fetch() async {
-    final res = await _client.get(url, headers: {'User-Agent': 'Kiymet/1.0'}).timeout(const Duration(seconds: 15));
-    if (res.statusCode != 200) throw http.ClientException('${res.statusCode}', url);
+    final res = await _client
+        .get(url, headers: {'User-Agent': 'Kiymet/1.0'})
+        .timeout(const Duration(seconds: 15));
+    if (res.statusCode != 200) {
+      throw http.ClientException('${res.statusCode}', url);
+    }
     return parseOecdCsv(utf8.decode(res.bodyBytes));
   }
 }

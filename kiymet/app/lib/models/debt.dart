@@ -39,22 +39,22 @@ class Debt {
   bool get isCash => assetId == cashTryId;
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'person': person,
-        'direction': direction.name,
-        'assetId': assetId,
-        'amount': amount,
-        if (date != null) 'date': date!.toIso8601String(),
-        if (note != null) 'note': note,
-      };
+    'id': id,
+    'person': person,
+    'direction': direction.name,
+    'assetId': assetId,
+    'amount': amount,
+    if (date != null) 'date': date!.toIso8601String(),
+    if (note != null) 'note': note,
+  };
 
   factory Debt.fromJson(Map<String, dynamic> json) => Debt(
-        id: json['id'] as String,
-        person: json['person'] as String,
-        direction: DebtDirection.values.byName(json['direction'] as String),
-        assetId: json['assetId'] as String,
-        amount: (json['amount'] as num).toDouble(),
-        date: json['date'] == null ? null : DateTime.parse(json['date'] as String),
-        note: json['note'] as String?,
-      );
+    id: json['id'] as String,
+    person: json['person'] as String,
+    direction: DebtDirection.values.byName(json['direction'] as String),
+    assetId: json['assetId'] as String,
+    amount: (json['amount'] as num).toDouble(),
+    date: json['date'] == null ? null : DateTime.parse(json['date'] as String),
+    note: json['note'] as String?,
+  );
 }

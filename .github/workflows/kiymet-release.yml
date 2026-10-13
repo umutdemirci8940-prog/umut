@@ -1,0 +1,133 @@
+name: Kıymet mağaza sürümü (App Store + Google Play)
+
+# Tetikleme: git tag kiymet-v1.0.0 && git push origin kiymet-v1.0.0
+# Gerekli GitHub Secrets (Settings → Secrets and variables → Actions):
+#   iOS:     APPLE_TEAM_ID, ASC_KEY_ID, ASC_ISSUER_ID, ASC_KEY_P8
+#   Android: KIYMET_UPLOAD_KEYSTORE_BASE64, KIYMET_KEYSTORE_PASSWORD, KIYMET_KEY_ALIAS, KIYMET_KEY_PASSWORD
+# Ayrıntılar: kiymet/YAYIN_REHBERI.md
+on:
+  push:
+    tags: ['kiymet-v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  ios:
+    runs-on: macos-latest
+    env:
+      APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+      ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+      ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+      ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
+    steps:
+      - name: Secret kontrolü
+        run: |
+          for v in APPLE_TEAM_ID ASC_KEY_ID ASC_ISSUER_ID ASC_KEY_P8; do
+            [ -n "${!v}" ] || { echo "::error::$v secret'ı tanımlı değil (bkz. kiymet/YAYIN_REHBERI.md)"; exit 1; }
+          done
+
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: '3.47.6'
+          cache: true
+
+      - name: Enflasyon verisi ve testler
+        working-directory: kiymet/app
+        run: |
+          python3 tool/fetch_cpi.py assets/data/cpi_tr.json
+          flutter pub get
+          flutter test
+
+      - name: App Store Connect API anahtarı
+        run: |
+          mkdir -p "$HOME/.appstoreconnect/private_keys"
+          printf '%s' "$ASC_KEY_P8" > "$HOME/.appstoreconnect/private_keys/AuthKey_${ASC_KEY_ID}.p8"
+
+      - name: Flutter derlemesi (imzasız hazırlık)
+        working-directory: kiymet/app
+        run: flutter build ios --release --no-codesign --build-number=${{ github.run_number }}
+
+      - name: Arşivle ve imzala (otomatik imzalama, API anahtarıyla)
+        working-directory: kiymet/app/ios
+        run: |
+          xcodebuild -workspace Runner.xcworkspace -scheme Runner -configuration Release \
+            -destination 'generic/platform=iOS' -archivePath "$RUNNER_TEMP/Runner.xcarchive" archive \
+            DEVELOPMENT_TEAM="$APPLE_TEAM_ID" CODE_SIGN_STYLE=Automatic \
+            -allowProvisioningUpdates \
+            -authenticationKeyPath "$HOME/.appstoreconnect/private_keys/AuthKey_${ASC_KEY_ID}.p8" \
+            -authenticationKeyID "$ASC_KEY_ID" -authenticationKeyIssuerID "$ASC_ISSUER_ID"
+
+      - name: App Store Connect'e yükle
+        run: |
+          cat > "$RUNNER_TEMP/ExportOptions.plist" <<PLIST
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0"><dict>
+            <key>method</key><string>app-store-connect</string>
+            <key>destination</key><string>upload</string>
+            <key>teamID</key><string>${APPLE_TEAM_ID}</string>
+            <key>signingStyle</key><string>automatic</string>
+            <key>uploadSymbols</key><true/>
+          </dict></plist>
+          PLIST
+          xcodebuild -exportArchive -archivePath "$RUNNER_TEMP/Runner.xcarchive" \
+            -exportOptionsPlist "$RUNNER_TEMP/ExportOptions.plist" -exportPath "$RUNNER_TEMP/export" \
+            -allowProvisioningUpdates \
+            -authenticationKeyPath "$HOME/.appstoreconnect/private_keys/AuthKey_${ASC_KEY_ID}.p8" \
+            -authenticationKeyID "$ASC_KEY_ID" -authenticationKeyIssuerID "$ASC_ISSUER_ID"
+          echo "Yükleme tamam. App Store Connect → TestFlight'ta 10-30 dk içinde 'İşleniyor' olarak görünür."
+
+  android:
+    runs-on: ubuntu-latest
+    env:
+      KIYMET_UPLOAD_KEYSTORE_BASE64: ${{ secrets.KIYMET_UPLOAD_KEYSTORE_BASE64 }}
+      KIYMET_KEYSTORE_PASSWORD: ${{ secrets.KIYMET_KEYSTORE_PASSWORD }}
+      KIYMET_KEY_ALIAS: ${{ secrets.KIYMET_KEY_ALIAS }}
+      KIYMET_KEY_PASSWORD: ${{ secrets.KIYMET_KEY_PASSWORD }}
+    steps:
+      - name: Secret kontrolü
+        run: |
+          # Play'e ilk yüklenen anahtar kalıcı olur; test anahtarıyla asla mağaza derlemesi yapılmaz.
+          for v in KIYMET_UPLOAD_KEYSTORE_BASE64 KIYMET_KEYSTORE_PASSWORD KIYMET_KEY_ALIAS KIYMET_KEY_PASSWORD; do
+            [ -n "${!v}" ] || { echo "::error::$v secret'ı tanımlı değil (bkz. kiymet/YAYIN_REHBERI.md)"; exit 1; }
+          done
+
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: '3.47.6'
+          cache: true
+
+      - name: Enflasyon verisi ve testler
+        working-directory: kiymet/app
+        run: |
+          python3 tool/fetch_cpi.py assets/data/cpi_tr.json
+          flutter pub get
+          flutter test
+
+      - name: Yükleme anahtarı
+        run: |
+          printf '%s' "$KIYMET_UPLOAD_KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/upload.jks"
+          echo "KIYMET_KEYSTORE=$RUNNER_TEMP/upload.jks" >> "$GITHUB_ENV"
+
+      - name: AAB derle
+        working-directory: kiymet/app
+        run: flutter build appbundle --release --build-number=${{ github.run_number }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kiymet-aab
+          path: kiymet/app/build/app/outputs/bundle/release/app-release.aab
+          if-no-files-found: error

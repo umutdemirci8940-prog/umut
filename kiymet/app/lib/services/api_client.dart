@@ -11,18 +11,24 @@ import '../models/models.dart';
 const apiBaseUrl = String.fromEnvironment('KIYMET_API');
 
 class ApiClient {
-  ApiClient({http.Client? client, this.baseUrl = apiBaseUrl}) : _client = client ?? http.Client();
+  ApiClient({http.Client? client, this.baseUrl = apiBaseUrl})
+    : _client = client ?? http.Client();
 
   final http.Client _client;
   final String baseUrl;
 
   Uri get webSocketUri {
     final base = Uri.parse(baseUrl);
-    return base.replace(scheme: base.scheme == 'https' ? 'wss' : 'ws', path: '/ws');
+    return base.replace(
+      scheme: base.scheme == 'https' ? 'wss' : 'ws',
+      path: '/ws',
+    );
   }
 
   Future<Map<String, dynamic>> _get(String path) async {
-    final res = await _client.get(Uri.parse('$baseUrl$path')).timeout(const Duration(seconds: 10));
+    final res = await _client
+        .get(Uri.parse('$baseUrl$path'))
+        .timeout(const Duration(seconds: 10));
     if (res.statusCode != 200) {
       throw http.ClientException('${res.statusCode} $path');
     }
@@ -39,8 +45,12 @@ class ApiClient {
 
   Future<List<Price>> prices() async {
     final body = await _get('/prices');
-    return [for (final p in body['prices'] as List) Price.fromJson(p as Map<String, dynamic>)];
+    return [
+      for (final p in body['prices'] as List)
+        Price.fromJson(p as Map<String, dynamic>),
+    ];
   }
 
-  Future<CpiSeries> inflation() async => CpiSeries.fromJson(await _get('/inflation'));
+  Future<CpiSeries> inflation() async =>
+      CpiSeries.fromJson(await _get('/inflation'));
 }

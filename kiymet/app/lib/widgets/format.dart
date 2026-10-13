@@ -3,17 +3,30 @@ import 'package:intl/intl.dart';
 
 import '../theme.dart';
 
-final _tl = NumberFormat.currency(locale: 'tr_TR', symbol: '₺', decimalDigits: 2);
-final _tlCompact = NumberFormat.currency(locale: 'tr_TR', symbol: '₺', decimalDigits: 0);
+final _tl = NumberFormat.currency(
+  locale: 'tr_TR',
+  symbol: '₺',
+  decimalDigits: 2,
+);
+final _tlCompact = NumberFormat.currency(
+  locale: 'tr_TR',
+  symbol: '₺',
+  decimalDigits: 0,
+);
 final _qty = NumberFormat.decimalPattern('tr_TR')..maximumFractionDigits = 8;
 
-String formatTl(double value) => value.abs() >= 100000 ? _tlCompact.format(value) : _tl.format(value);
+String formatTl(double value) =>
+    value.abs() >= 100000 ? _tlCompact.format(value) : _tl.format(value);
 
 /// Küçük fiyatlı kripto paralar (ör. 0,0004 ₺) için daha fazla basamak gösterir.
 String formatPrice(double value) {
   if (value >= 1) return formatTl(value);
   final digits = value >= 0.01 ? 4 : 8;
-  return NumberFormat.currency(locale: 'tr_TR', symbol: '₺', decimalDigits: digits).format(value);
+  return NumberFormat.currency(
+    locale: 'tr_TR',
+    symbol: '₺',
+    decimalDigits: digits,
+  ).format(value);
 }
 
 String formatQty(double value) => _qty.format(value);
@@ -29,7 +42,9 @@ String formatSignedTl(double value) {
 }
 
 Color changeColor(BuildContext context, double? value) {
-  if (value == null || value == 0) return Theme.of(context).colorScheme.onSurfaceVariant;
+  if (value == null || value == 0) {
+    return Theme.of(context).colorScheme.onSurfaceVariant;
+  }
   return value > 0 ? KiymetColors.up : KiymetColors.down;
 }
 
@@ -48,7 +63,11 @@ class ChangeChip extends StatelessWidget {
       ),
       child: Text(
         pct == null ? '—' : formatPct(pct!),
-        style: TextStyle(color: color, fontWeight: FontWeight.w600, fontSize: 12.5),
+        style: TextStyle(
+          color: color,
+          fontWeight: FontWeight.w600,
+          fontSize: 12.5,
+        ),
       ),
     );
   }

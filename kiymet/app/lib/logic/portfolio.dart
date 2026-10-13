@@ -107,8 +107,9 @@ class PortfolioSummary {
       totalValue: totalValue,
       totalCost: totalCost,
       dailyChange: daily,
-      realReturnPct:
-          realComplete && inflatedCost > 0 ? (realValue / inflatedCost - 1) * 100 : null,
+      realReturnPct: realComplete && inflatedCost > 0
+          ? (realValue / inflatedCost - 1) * 100
+          : null,
       valueByType: byType,
       missingPrices: missing,
     );

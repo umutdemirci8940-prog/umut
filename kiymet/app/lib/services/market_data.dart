@@ -24,7 +24,13 @@ abstract class MarketData {
   void dispose();
 }
 
-Price makePrice(String id, double price, {double? prevClose, required String source, bool delayed = false}) {
+Price makePrice(
+  String id,
+  double price, {
+  double? prevClose,
+  required String source,
+  bool delayed = false,
+}) {
   final prev = (prevClose != null && prevClose > 0) ? prevClose : null;
   return Price(
     id: id,

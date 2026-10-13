@@ -1,8 +1,8 @@
 /// Aylık TÜFE endeksi (TCMB EVDS). Reel getiri hesabında kullanılır.
 class CpiSeries {
   CpiSeries(Map<String, double> byMonth)
-      : _byMonth = Map.unmodifiable(byMonth),
-        _months = (byMonth.keys.toList()..sort());
+    : _byMonth = Map.unmodifiable(byMonth),
+      _months = (byMonth.keys.toList()..sort());
 
   factory CpiSeries.fromJson(Map<String, dynamic> json) {
     final map = <String, double>{};
@@ -22,12 +22,15 @@ class CpiSeries {
   int get length => _months.length;
 
   Map<String, dynamic> toJson() => {
-        'series': [for (final m in _months) {'month': m, 'index': _byMonth[m]}],
-      };
+    'series': [
+      for (final m in _months) {'month': m, 'index': _byMonth[m]},
+    ],
+  };
   String? get latestMonth => _months.isEmpty ? null : _months.last;
   double? get latestIndex => isEmpty ? null : _byMonth[_months.last];
 
-  static String monthKey(DateTime d) => '${d.year}-${d.month.toString().padLeft(2, '0')}';
+  static String monthKey(DateTime d) =>
+      '${d.year}-${d.month.toString().padLeft(2, '0')}';
 
   /// Tarihin ait olduğu ayın endeksi. Ay henüz açıklanmadıysa en son endeks,
   /// seriden önceyse null döner.

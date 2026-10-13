@@ -56,15 +56,17 @@ class _AddDebtScreenState extends State<AddDebtScreen> {
   Future<void> _save() async {
     if (!_form.currentState!.validate()) return;
     final note = _note.text.trim();
-    await context.read<AppState>().addDebt(Debt(
-          id: DateTime.now().microsecondsSinceEpoch.toString(),
-          person: _person.text.trim(),
-          direction: _direction,
-          assetId: _assetId,
-          amount: parseAmount(_amount.text)!,
-          date: _knowsDate ? _date : null,
-          note: note.isEmpty ? null : note,
-        ));
+    await context.read<AppState>().addDebt(
+      Debt(
+        id: DateTime.now().microsecondsSinceEpoch.toString(),
+        person: _person.text.trim(),
+        direction: _direction,
+        assetId: _assetId,
+        amount: parseAmount(_amount.text)!,
+        date: _knowsDate ? _date : null,
+        note: note.isEmpty ? null : note,
+      ),
+    );
     if (mounted) Navigator.of(context).pop();
   }
 
@@ -87,8 +89,16 @@ class _AddDebtScreenState extends State<AddDebtScreen> {
           children: [
             SegmentedButton<DebtDirection>(
               segments: const [
-                ButtonSegment(value: DebtDirection.lent, label: Text('Ben verdim'), icon: Icon(Icons.call_made)),
-                ButtonSegment(value: DebtDirection.borrowed, label: Text('Ben aldım'), icon: Icon(Icons.call_received)),
+                ButtonSegment(
+                  value: DebtDirection.lent,
+                  label: Text('Ben verdim'),
+                  icon: Icon(Icons.call_made),
+                ),
+                ButtonSegment(
+                  value: DebtDirection.borrowed,
+                  label: Text('Ben aldım'),
+                  icon: Icon(Icons.call_received),
+                ),
               ],
               selected: {_direction},
               onSelectionChanged: (s) => setState(() => _direction = s.first),
@@ -102,24 +112,39 @@ class _AddDebtScreenState extends State<AddDebtScreen> {
                 prefixIcon: const Icon(Icons.person_outline),
                 border: const OutlineInputBorder(),
               ),
-              validator: (v) => (v == null || v.trim().isEmpty) ? 'İsim girin' : null,
+              validator: (v) =>
+                  (v == null || v.trim().isEmpty) ? 'İsim girin' : null,
             ),
             const SizedBox(height: 16),
             DropdownButtonFormField<String>(
               initialValue: _assetId,
               isExpanded: true,
-              decoration: const InputDecoration(labelText: 'Cinsi', border: OutlineInputBorder()),
+              decoration: const InputDecoration(
+                labelText: 'Cinsi',
+                border: OutlineInputBorder(),
+              ),
               items: [
                 for (final a in assets)
-                  DropdownMenuItem(value: a.id, child: Text(a.id == cashTryId ? 'Türk Lirası (₺)' : '${a.name} (${a.unit})')),
+                  DropdownMenuItem(
+                    value: a.id,
+                    child: Text(
+                      a.id == cashTryId
+                          ? 'Türk Lirası (₺)'
+                          : '${a.name} (${a.unit})',
+                    ),
+                  ),
               ],
               onChanged: (v) => setState(() => _assetId = v ?? cashTryId),
             ),
             const SizedBox(height: 16),
             TextFormField(
               controller: _amount,
-              keyboardType: const TextInputType.numberWithOptions(decimal: true),
-              inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9.,]'))],
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp(r'[0-9.,]')),
+              ],
               decoration: InputDecoration(
                 labelText: isCash ? 'Tutar (₺)' : 'Miktar (${asset.unit})',
                 helperText: !isCash && amount != null && price != null
@@ -138,9 +163,11 @@ class _AddDebtScreenState extends State<AddDebtScreen> {
             SwitchListTile(
               contentPadding: EdgeInsets.zero,
               title: const Text('Tarihini hatırlıyorum'),
-              subtitle: Text(isCash
-                  ? 'Tarih girersen enflasyon karşısındaki değer kaybı hesaplanır.'
-                  : 'Tarih girersen o günkü değeriyle karşılaştırılır.'),
+              subtitle: Text(
+                isCash
+                    ? 'Tarih girersen enflasyon karşısındaki değer kaybı hesaplanır.'
+                    : 'Tarih girersen o günkü değeriyle karşılaştırılır.',
+              ),
               value: _knowsDate,
               onChanged: (v) => setState(() => _knowsDate = v),
             ),
@@ -167,7 +194,9 @@ class _AddDebtScreenState extends State<AddDebtScreen> {
               onPressed: _save,
               icon: const Icon(Icons.check),
               label: const Text('Kaydet'),
-              style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(52)),
+              style: FilledButton.styleFrom(
+                minimumSize: const Size.fromHeight(52),
+              ),
             ),
           ],
         ),

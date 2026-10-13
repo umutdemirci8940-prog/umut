@@ -14,13 +14,17 @@ class HoldingsRepository {
     final raw = prefs.getString(_key);
     if (raw == null) return [];
     return [
-      for (final item in jsonDecode(raw) as List) Holding.fromJson(item as Map<String, dynamic>),
+      for (final item in jsonDecode(raw) as List)
+        Holding.fromJson(item as Map<String, dynamic>),
     ];
   }
 
   Future<void> save(List<Holding> holdings) async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_key, jsonEncode([for (final h in holdings) h.toJson()]));
+    await prefs.setString(
+      _key,
+      jsonEncode([for (final h in holdings) h.toJson()]),
+    );
   }
 }
 
@@ -32,11 +36,17 @@ class DebtsRepository {
     final prefs = await SharedPreferences.getInstance();
     final raw = prefs.getString(_key);
     if (raw == null) return [];
-    return [for (final item in jsonDecode(raw) as List) Debt.fromJson(item as Map<String, dynamic>)];
+    return [
+      for (final item in jsonDecode(raw) as List)
+        Debt.fromJson(item as Map<String, dynamic>),
+    ];
   }
 
   Future<void> save(List<Debt> debts) async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_key, jsonEncode([for (final d in debts) d.toJson()]));
+    await prefs.setString(
+      _key,
+      jsonEncode([for (final d in debts) d.toJson()]),
+    );
   }
 }

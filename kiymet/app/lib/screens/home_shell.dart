@@ -27,19 +27,18 @@ class _HomeShellState extends State<HomeShell> {
       ),
       floatingActionButton: switch (_index) {
         0 => FloatingActionButton.extended(
-            onPressed: () => Navigator.of(context).push(
-              MaterialPageRoute(builder: (_) => const AddHoldingScreen()),
-            ),
-            icon: const Icon(Icons.add),
-            label: const Text('Varlık ekle'),
-          ),
+          onPressed: () => Navigator.of(
+            context,
+          ).push(MaterialPageRoute(builder: (_) => const AddHoldingScreen())),
+          icon: const Icon(Icons.add),
+          label: const Text('Varlık ekle'),
+        ),
         1 => FloatingActionButton.extended(
-            onPressed: () => Navigator.of(context).push(
-              MaterialPageRoute(builder: (_) => const AddDebtScreen()),
-            ),
-            icon: const Icon(Icons.add),
-            label: const Text('Alacak / borç ekle'),
-          ),
+          onPressed: () => Navigator.of(context)
+              .push(MaterialPageRoute(builder: (_) => const AddDebtScreen())),
+          icon: const Icon(Icons.add),
+          label: const Text('Alacak / borç ekle'),
+        ),
         _ => null,
       },
       bottomNavigationBar: NavigationBar(

@@ -24,10 +24,10 @@ class AppState extends ChangeNotifier {
     HoldingsRepository? repository,
     DebtsRepository? debtsRepository,
     PriceHistory? history,
-  })  : _data = data ?? defaultMarketData(),
-        _repo = repository ?? HoldingsRepository(),
-        _debtsRepo = debtsRepository ?? DebtsRepository(),
-        history = history ?? PriceHistory();
+  }) : _data = data ?? defaultMarketData(),
+       _repo = repository ?? HoldingsRepository(),
+       _debtsRepo = debtsRepository ?? DebtsRepository(),
+       history = history ?? PriceHistory();
 
   final MarketData _data;
   final HoldingsRepository _repo;
@@ -57,21 +57,31 @@ class AppState extends ChangeNotifier {
   bool get loading => _loading;
   String? get error => _error;
 
-  PortfolioSummary get summary => _summary ??= PortfolioSummary.compute(_holdings, _prices, _cpi);
+  PortfolioSummary get summary =>
+      _summary ??= PortfolioSummary.compute(_holdings, _prices, _cpi);
 
   List<Debt> get debts => List.unmodifiable(_debts);
-  DebtSummary get debtSummary => _debtSummary ??= DebtSummary.compute(_debts, _prices, _cpi);
+  DebtSummary get debtSummary =>
+      _debtSummary ??= DebtSummary.compute(_debts, _prices, _cpi);
 
   /// Alacak/borç için seçilebilecek cinsler: TL, döviz ve altın/gümüş.
   List<Instrument> get debtAssets => [
-        const Instrument(id: cashTryId, type: AssetType.currency, code: 'TRY', name: 'Türk Lirası', unit: '₺'),
-        ...instrumentsOf(AssetType.currency),
-        ...instrumentsOf(AssetType.metal),
-      ];
+    const Instrument(
+      id: cashTryId,
+      type: AssetType.currency,
+      code: 'TRY',
+      name: 'Türk Lirası',
+      unit: '₺',
+    ),
+    ...instrumentsOf(AssetType.currency),
+    ...instrumentsOf(AssetType.metal),
+  ];
 
-  Instrument debtAsset(String id) => debtAssets.where((i) => i.id == id).firstOrNull ?? instrument(id);
+  Instrument debtAsset(String id) =>
+      debtAssets.where((i) => i.id == id).firstOrNull ?? instrument(id);
 
-  Instrument instrument(String id) => _instrumentById[id] ?? Instrument.placeholder(id);
+  Instrument instrument(String id) =>
+      _instrumentById[id] ?? Instrument.placeholder(id);
 
   List<Instrument> instrumentsOf(AssetType type) =>
       _instruments.where((i) => i.type == type).toList();
@@ -81,10 +91,12 @@ class AppState extends ChangeNotifier {
     _debts = await _debtsRepo.load();
     _subs
       ..add(_data.prices.listen(_applyPrices))
-      ..add(_data.status.listen((s) {
-        _status = s;
-        notifyListeners();
-      }));
+      ..add(
+        _data.status.listen((s) {
+          _status = s;
+          notifyListeners();
+        }),
+      );
     _data
       ..start()
       ..watch(_holdings.map((h) => h.instrumentId));
@@ -94,7 +106,11 @@ class AppState extends ChangeNotifier {
   /// Katalog, enflasyon ve son fiyatları sunucudan yeniden çeker.
   Future<void> refresh() async {
     try {
-      final results = await Future.wait([_data.instruments(), _data.inflation(), _data.snapshot()]);
+      final results = await Future.wait([
+        _data.instruments(),
+        _data.inflation(),
+        _data.snapshot(),
+      ]);
       _instruments = results[0] as List<Instrument>;
       _instrumentById
         ..clear()

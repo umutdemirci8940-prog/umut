@@ -5,7 +5,14 @@
 const gramsPerTroyOunce = 31.1034768;
 
 class MetalProduct {
-  const MetalProduct(this.code, this.name, this.unit, this.weight, this.purity, {this.silver = false});
+  const MetalProduct(
+    this.code,
+    this.name,
+    this.unit,
+    this.weight,
+    this.purity, {
+    this.silver = false,
+  });
   final String code;
   final String name;
   final String unit;
@@ -34,7 +41,9 @@ const metalProducts = [
 ];
 
 double? pureGramTry(double? ounceUsd, double? usdTry) {
-  if (ounceUsd == null || usdTry == null || ounceUsd <= 0 || usdTry <= 0) return null;
+  if (ounceUsd == null || usdTry == null || ounceUsd <= 0 || usdTry <= 0) {
+    return null;
+  }
   return ounceUsd * usdTry / gramsPerTroyOunce;
 }
 

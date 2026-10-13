@@ -35,13 +35,25 @@ class _AddHoldingScreenState extends State<AddHoldingScreen> {
     final q = _query.trim().toUpperCase();
     final items = app
         .instrumentsOf(_type)
-        .where((i) => q.isEmpty || i.code.contains(q) || i.name.toUpperCase().contains(q))
+        .where(
+          (i) =>
+              q.isEmpty ||
+              i.code.contains(q) ||
+              i.name.toUpperCase().contains(q),
+        )
         .toList();
     if (_type == AssetType.crypto) {
-      items.sort((a, b) => a.featured == b.featured ? a.code.compareTo(b.code) : (a.featured ? -1 : 1));
+      final rest = items.where((i) => !i.featured).toList()
+        ..sort((a, b) => a.code.compareTo(b.code));
+      items
+        ..removeWhere((i) => !i.featured)
+        ..addAll(rest);
     }
     // Listede olmayan BIST hissesi kodu yazıldıysa onu da eklenebilir göster.
-    final customStock = _type == AssetType.stock && isValidStockCode(q) && !items.any((i) => i.code == q);
+    final customStock =
+        _type == AssetType.stock &&
+        isValidStockCode(q) &&
+        !items.any((i) => i.code == q);
 
     return Scaffold(
       appBar: AppBar(title: const Text('Varlık ekle')),
@@ -52,7 +64,8 @@ class _AddHoldingScreenState extends State<AddHoldingScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: SegmentedButton<AssetType>(
               segments: [
-                for (final t in AssetType.values) ButtonSegment(value: t, label: Text(t.label)),
+                for (final t in AssetType.values)
+                  ButtonSegment(value: t, label: Text(t.label)),
               ],
               selected: {_type},
               showSelectedIcon: false,
@@ -69,7 +82,9 @@ class _AddHoldingScreenState extends State<AddHoldingScreen> {
                 key: ValueKey(_type),
                 decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.search),
-                  hintText: _type == AssetType.stock ? 'Hisse kodu (ör. THYAO)' : 'Coin ara (ör. BTC)',
+                  hintText: _type == AssetType.stock
+                      ? 'Hisse kodu (ör. THYAO)'
+                      : 'Coin ara (ör. BTC)',
                   border: const OutlineInputBorder(),
                   isDense: true,
                 ),
@@ -85,20 +100,26 @@ class _AddHoldingScreenState extends State<AddHoldingScreen> {
                   ListTile(
                     leading: const Icon(Icons.add_circle_outline),
                     title: Text('$q hissesini ekle'),
-                    onTap: () => setState(() => _selected = Instrument(
-                          id: 'STOCK:$q',
-                          type: AssetType.stock,
-                          code: q,
-                          name: q,
-                          unit: 'lot',
-                        )),
+                    onTap: () => setState(
+                      () => _selected = Instrument(
+                        id: 'STOCK:$q',
+                        type: AssetType.stock,
+                        code: q,
+                        name: q,
+                        unit: 'lot',
+                      ),
+                    ),
                   ),
                 for (final i in items)
                   ListTile(
                     leading: AssetIcon(i),
                     title: Text(i.name),
-                    subtitle: Text(i.type == AssetType.metal ? 'Birim: ${i.unit}' : i.code),
-                    trailing: app.prices[i.id] == null ? null : Text(formatPrice(app.prices[i.id]!.price)),
+                    subtitle: Text(
+                      i.type == AssetType.metal ? 'Birim: ${i.unit}' : i.code,
+                    ),
+                    trailing: app.prices[i.id] == null
+                        ? null
+                        : Text(formatPrice(app.prices[i.id]!.price)),
                     onTap: () => setState(() => _selected = i),
                   ),
               ],
@@ -168,8 +189,13 @@ class _HoldingFormState extends State<_HoldingForm> {
       _loadingPrice = true;
       _priceNote = 'O günün fiyatı getiriliyor…';
     });
-    final result = await context.read<AppState>().history.priceOn(widget.instrument.id, date);
-    if (!mounted || request != _priceRequest) return; // bu arada başka tarih seçildi
+    final result = await context.read<AppState>().history.priceOn(
+      widget.instrument.id,
+      date,
+    );
+    if (!mounted || request != _priceRequest) {
+      return; // bu arada başka tarih seçildi
+    }
     setState(() {
       _loadingPrice = false;
       if (result == null) {
@@ -177,7 +203,10 @@ class _HoldingFormState extends State<_HoldingForm> {
         return;
       }
       _cost.text = _formatInput(result.price);
-      final sameDay = result.date.year == date.year && result.date.month == date.month && result.date.day == date.day;
+      final sameDay =
+          result.date.year == date.year &&
+          result.date.month == date.month &&
+          result.date.day == date.day;
       final day = DateFormat('d MMMM y', 'tr_TR').format(result.date);
       _priceNote = sameDay
           ? '$day kapanış fiyatı (${result.source}). Değiştirebilirsiniz.'
@@ -221,13 +250,15 @@ class _HoldingFormState extends State<_HoldingForm> {
   Future<void> _save() async {
     if (!_form.currentState!.validate()) return;
     final app = context.read<AppState>();
-    await app.addHolding(Holding(
-      id: DateTime.now().microsecondsSinceEpoch.toString(),
-      instrumentId: widget.instrument.id,
-      quantity: parseAmount(_qty.text)!,
-      unitCost: parseAmount(_cost.text)!,
-      purchaseDate: _date,
-    ));
+    await app.addHolding(
+      Holding(
+        id: DateTime.now().microsecondsSinceEpoch.toString(),
+        instrumentId: widget.instrument.id,
+        quantity: parseAmount(_qty.text)!,
+        unitCost: parseAmount(_cost.text)!,
+        purchaseDate: _date,
+      ),
+    );
     if (mounted) Navigator.of(context).pop();
   }
 
@@ -259,16 +290,26 @@ class _HoldingFormState extends State<_HoldingForm> {
               children: [
                 AssetIcon(i, size: 48),
                 const SizedBox(width: 12),
-                Expanded(child: Text(i.name, style: Theme.of(context).textTheme.titleLarge)),
+                Expanded(
+                  child: Text(
+                    i.name,
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                ),
               ],
             ),
             const SizedBox(height: 24),
             TextFormField(
               controller: _qty,
               autofocus: true,
-              keyboardType: const TextInputType.numberWithOptions(decimal: true),
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
               inputFormatters: inputFormat,
-              decoration: InputDecoration(labelText: qtyLabel, border: const OutlineInputBorder()),
+              decoration: InputDecoration(
+                labelText: qtyLabel,
+                border: const OutlineInputBorder(),
+              ),
               validator: _validate,
             ),
             const SizedBox(height: 16),
@@ -287,7 +328,9 @@ class _HoldingFormState extends State<_HoldingForm> {
             const SizedBox(height: 16),
             TextFormField(
               controller: _cost,
-              keyboardType: const TextInputType.numberWithOptions(decimal: true),
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
               inputFormatters: inputFormat,
               decoration: InputDecoration(
                 labelText: 'Birim alış fiyatı (₺)',
@@ -297,9 +340,16 @@ class _HoldingFormState extends State<_HoldingForm> {
                 suffixIcon: _loadingPrice
                     ? const Padding(
                         padding: EdgeInsets.all(14),
-                        child: SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2)),
+                        child: SizedBox(
+                          width: 18,
+                          height: 18,
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        ),
                       )
-                    : const Padding(padding: EdgeInsets.only(right: 12), child: Center(widthFactor: 1, child: Text('₺'))),
+                    : const Padding(
+                        padding: EdgeInsets.only(right: 12),
+                        child: Center(widthFactor: 1, child: Text('₺')),
+                      ),
               ),
               validator: _validate,
             ),
@@ -315,7 +365,13 @@ class _HoldingFormState extends State<_HoldingForm> {
                   children: [
                     const Text('Toplam tutar'),
                     const Spacer(),
-                    Text(formatTl(total), style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 16)),
+                    Text(
+                      formatTl(total),
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 16,
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -325,7 +381,9 @@ class _HoldingFormState extends State<_HoldingForm> {
               onPressed: _save,
               icon: const Icon(Icons.check),
               label: const Text('Kaydet'),
-              style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(52)),
+              style: FilledButton.styleFrom(
+                minimumSize: const Size.fromHeight(52),
+              ),
             ),
           ],
         ),

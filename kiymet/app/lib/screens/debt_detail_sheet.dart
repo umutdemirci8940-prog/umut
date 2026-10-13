@@ -30,16 +30,19 @@ class _DebtDetail extends StatelessWidget {
     final text = Theme.of(context).textTheme;
 
     Widget row(String label, String value, {Color? color}) => Padding(
-          padding: const EdgeInsets.symmetric(vertical: 6),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(child: Text(label)),
-              const SizedBox(width: 12),
-              Text(value, style: TextStyle(fontWeight: FontWeight.w600, color: color)),
-            ],
+      padding: const EdgeInsets.symmetric(vertical: 6),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(child: Text(label)),
+          const SizedBox(width: 12),
+          Text(
+            value,
+            style: TextStyle(fontWeight: FontWeight.w600, color: color),
           ),
-        );
+        ],
+      ),
+    );
 
     return SafeArea(
       child: SingleChildScrollView(
@@ -47,23 +50,47 @@ class _DebtDetail extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(d.person, style: text.headlineSmall?.copyWith(fontWeight: FontWeight.w700)),
+            Text(
+              d.person,
+              style: text.headlineSmall?.copyWith(fontWeight: FontWeight.w700),
+            ),
             Text(
               '${d.direction.label} · ${d.isCash ? formatTl(d.amount) : '${formatQty(d.amount)} ${asset.unit} ${asset.name}'}',
               style: text.bodyLarge,
             ),
             if (d.note != null && d.note!.isNotEmpty) ...[
               const SizedBox(height: 4),
-              Text(d.note!, style: text.bodyMedium?.copyWith(fontStyle: FontStyle.italic)),
+              Text(
+                d.note!,
+                style: text.bodyMedium?.copyWith(fontStyle: FontStyle.italic),
+              ),
             ],
             const Divider(height: 28),
-            row('Tarih', d.date == null ? 'Bilinmiyor' : DateFormat('d MMMM y', 'tr_TR').format(d.date!)),
-            row('Bugünkü değeri', valuation.currentValue == null ? '—' : formatTl(valuation.currentValue!)),
+            row(
+              'Tarih',
+              d.date == null
+                  ? 'Bilinmiyor'
+                  : DateFormat('d MMMM y', 'tr_TR').format(d.date!),
+            ),
+            row(
+              'Bugünkü değeri',
+              valuation.currentValue == null
+                  ? '—'
+                  : formatTl(valuation.currentValue!),
+            ),
             if (valuation.inflationAdjusted != null) ...[
-              row('Enflasyona göre bugünkü karşılığı', formatTl(valuation.inflationAdjusted!)),
+              row(
+                'Enflasyona göre bugünkü karşılığı',
+                formatTl(valuation.inflationAdjusted!),
+              ),
               row(
                 lent ? 'Enflasyon kaybı' : 'Enflasyonla eriyen kısım',
-                '${formatTl(valuation.inflationLoss!)} (alım gücünün %${valuation.purchasingPowerLostPct!.toStringAsFixed(1)}\'i)',
+                formatTl(valuation.inflationLoss!),
+                color: lent ? KiymetColors.down : KiymetColors.up,
+              ),
+              row(
+                'Alım gücü kaybı',
+                '%${NumberFormat('0.0', 'tr_TR').format(valuation.purchasingPowerLostPct!)}',
                 color: lent ? KiymetColors.down : KiymetColors.up,
               ),
               const SizedBox(height: 4),
@@ -74,12 +101,18 @@ class _DebtDetail extends StatelessWidget {
                 style: text.bodySmall,
               ),
             ] else if (d.isCash && d.date != null)
-              Text('Bu tarih için enflasyon verisi henüz yok.', style: text.bodySmall),
+              Text(
+                'Bu tarih için enflasyon verisi henüz yok.',
+                style: text.bodySmall,
+              ),
             if (d.date != null) _Comparisons(valuation: valuation),
             if (d.date == null)
               Padding(
                 padding: const EdgeInsets.only(top: 8),
-                child: Text('Tarih eklersen enflasyon kaybı ve altın/dolar karşılaştırması gösterilir.', style: text.bodySmall),
+                child: Text(
+                  'Tarih eklersen enflasyon kaybı ve altın/dolar karşılaştırması gösterilir.',
+                  style: text.bodySmall,
+                ),
               ),
           ],
         ),
@@ -112,7 +145,11 @@ class _ComparisonsState extends State<_Comparisons> {
     return _ComparisonData(
       goldThen: results[0]?.price,
       usdThen: results[1]?.price,
-      assetThen: d.isCash ? 1 : results.length > 2 ? results[2]?.price : null,
+      assetThen: d.isCash
+          ? 1
+          : results.length > 2
+          ? results[2]?.price
+          : null,
     );
   }
 
@@ -130,15 +167,23 @@ class _ComparisonsState extends State<_Comparisons> {
         if (!snap.hasData) {
           return const Padding(
             padding: EdgeInsets.symmetric(vertical: 20),
-            child: Row(children: [
-              SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2)),
-              SizedBox(width: 12),
-              Text('O günün altın ve dolar fiyatları getiriliyor…'),
-            ]),
+            child: Row(
+              children: [
+                SizedBox(
+                  width: 18,
+                  height: 18,
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                ),
+                SizedBox(width: 12),
+                Text('O günün altın ve dolar fiyatları getiriliyor…'),
+              ],
+            ),
           );
         }
         final data = snap.data!;
-        final tlThen = data.assetThen == null ? null : d.amount * data.assetThen!;
+        final tlThen = data.assetThen == null
+            ? null
+            : d.amount * data.assetThen!;
         final lines = <Widget>[];
 
         if (!d.isCash && tlThen != null) {
@@ -146,22 +191,29 @@ class _ComparisonsState extends State<_Comparisons> {
         }
         if (tlThen != null && data.goldThen != null && goldNow != null) {
           final grams = tlThen / data.goldThen!;
-          lines.add(_line(
-            'O gün ${formatQty(double.parse(grams.toStringAsFixed(2)))} gram altın ediyordu',
-            'bugün ${formatTl(grams * goldNow)}',
-          ));
+          lines.add(
+            _line(
+              'O gün ${formatQty(double.parse(grams.toStringAsFixed(2)))} gram altın ediyordu',
+              'bugün ${formatTl(grams * goldNow)}',
+            ),
+          );
         }
         if (tlThen != null && data.usdThen != null && usdNow != null) {
           final usd = tlThen / data.usdThen!;
-          lines.add(_line(
-            'O gün \$${NumberFormat('#,##0', 'tr_TR').format(usd)} ediyordu',
-            'bugün ${formatTl(usd * usdNow)}',
-          ));
+          lines.add(
+            _line(
+              'O gün \$${NumberFormat('#,##0', 'tr_TR').format(usd)} ediyordu',
+              'bugün ${formatTl(usd * usdNow)}',
+            ),
+          );
         }
         if (lines.isEmpty) {
           return Padding(
             padding: const EdgeInsets.only(top: 12),
-            child: Text('O günün altın/dolar fiyatlarına ulaşılamadı.', style: text.bodySmall),
+            child: Text(
+              'O günün altın/dolar fiyatlarına ulaşılamadı.',
+              style: text.bodySmall,
+            ),
           );
         }
         return Column(
@@ -172,7 +224,10 @@ class _ComparisonsState extends State<_Comparisons> {
             const SizedBox(height: 4),
             ...lines,
             const SizedBox(height: 4),
-            Text('Altın has değeri ve TCMB kuru üzerinden yaklaşık hesaplanmıştır.', style: text.bodySmall),
+            Text(
+              'Altın has değeri ve TCMB kuru üzerinden yaklaşık hesaplanmıştır.',
+              style: text.bodySmall,
+            ),
           ],
         );
       },
@@ -180,15 +235,15 @@ class _ComparisonsState extends State<_Comparisons> {
   }
 
   Widget _line(String label, String value) => Padding(
-        padding: const EdgeInsets.symmetric(vertical: 6),
-        child: Row(
-          children: [
-            Expanded(child: Text(label)),
-            const SizedBox(width: 12),
-            Text(value, style: const TextStyle(fontWeight: FontWeight.w600)),
-          ],
-        ),
-      );
+    padding: const EdgeInsets.symmetric(vertical: 6),
+    child: Row(
+      children: [
+        Expanded(child: Text(label)),
+        const SizedBox(width: 12),
+        Text(value, style: const TextStyle(fontWeight: FontWeight.w600)),
+      ],
+    ),
+  );
 }
 
 class _ComparisonData {

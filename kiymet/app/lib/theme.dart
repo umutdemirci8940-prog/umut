@@ -15,6 +15,7 @@ ThemeData buildTheme(Brightness brightness) {
   final dark = brightness == Brightness.dark;
   return ThemeData(
     useMaterial3: true,
+    fontFamily: 'Inter',
     colorScheme: scheme,
     scaffoldBackgroundColor: dark ? KiymetColors.navy : const Color(0xFFF7F5EF),
     appBarTheme: AppBarTheme(
@@ -22,6 +23,7 @@ ThemeData buildTheme(Brightness brightness) {
       elevation: 0,
       centerTitle: false,
       titleTextStyle: TextStyle(
+        fontFamily: 'Inter',
         fontSize: 22,
         fontWeight: FontWeight.w700,
         color: scheme.onSurface,
