@@ -11,13 +11,18 @@ import '../models/models.dart';
 import '../services/api_client.dart';
 import '../services/backend_market_data.dart';
 import '../services/direct_market_data.dart';
+import '../services/feed_market_data.dart';
 import '../services/holdings_repository.dart';
 import '../services/market_data.dart';
 import '../services/price_history.dart';
 
-/// KIYMET_API verilmişse Kıymet veri servisine, verilmemişse doğrudan herkese açık kaynaklara bağlanır.
-MarketData defaultMarketData() =>
-    apiBaseUrl.isEmpty ? DirectMarketData() : BackendMarketData(ApiClient());
+/// Öncelik: KIYMET_FEED (mağaza sürümü, ücretsiz ve lisansa uygun fiyat yayını) →
+/// KIYMET_API (Kıymet veri servisi) → doğrudan kaynaklar (yalnızca geliştirme/test).
+MarketData defaultMarketData() {
+  if (feedBaseUrl.isNotEmpty) return FeedMarketData();
+  if (apiBaseUrl.isNotEmpty) return BackendMarketData(ApiClient());
+  return DirectMarketData();
+}
 
 class AppState extends ChangeNotifier {
   AppState({
@@ -28,7 +33,7 @@ class AppState extends ChangeNotifier {
   }) : _data = data ?? defaultMarketData(),
        _repo = repository ?? HoldingsRepository(),
        _debtsRepo = debtsRepository ?? DebtsRepository(),
-       history = history ?? PriceHistory();
+       history = history ?? PriceHistory(feedBaseUrl: feedBaseUrl);
 
   final MarketData _data;
   final HoldingsRepository _repo;
@@ -83,6 +88,19 @@ class AppState extends ChangeNotifier {
 
   Instrument instrument(String id) =>
       _instrumentById[id] ?? Instrument.placeholder(id);
+
+  /// Gösterilecek varlık türleri: katalogda (veri kaynağında) bulunanlar.
+  List<AssetType> get visibleTypes {
+    final present = _instruments.map((i) => i.type).toSet();
+    final types = visibleAssetTypes.where(present.contains).toList();
+    return types.isEmpty ? visibleAssetTypes : types;
+  }
+
+  /// Uygulamada gösterilecek veri kaynağı ibaresi.
+  String get attribution => switch (_data) {
+        final FeedMarketData f => f.attribution,
+        _ => 'Kaynaklar: TCMB, BtcTurk, Binance, gold-api.com, OECD, BIS',
+      };
 
   List<Instrument> instrumentsOf(AssetType type) =>
       _instruments.where((i) => i.type == type).toList();

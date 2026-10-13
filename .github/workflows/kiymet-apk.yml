@@ -60,7 +60,8 @@ jobs:
       - name: APK derle
         working-directory: kiymet/app
         # İşlemci türüne göre ayrı APK'lar: dosya boyutu ~1/3'e iner.
-        run: flutter build apk --release --split-per-abi
+        # KIYMET_FEED (Settings → Variables) tanımlıysa test APK'sı da mağaza veri kaynağını kullanır
+        run: flutter build apk --release --split-per-abi --dart-define=KIYMET_FEED=${{ vars.KIYMET_FEED }}
 
       - name: APK'yı yerleştir
         run: |
@@ -110,7 +111,7 @@ jobs:
         working-directory: kiymet/app
         run: |
           flutter pub get
-          flutter build ios --simulator --debug
+          flutter build ios --simulator --debug --dart-define=KIYMET_FEED=${{ vars.KIYMET_FEED }}
 
       - name: Paketle
         run: |

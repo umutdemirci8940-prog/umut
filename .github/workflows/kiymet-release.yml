@@ -4,6 +4,8 @@ name: Kıymet mağaza sürümü (App Store + Google Play)
 # Gerekli GitHub Secrets (Settings → Secrets and variables → Actions):
 #   iOS:     APPLE_TEAM_ID, ASC_KEY_ID, ASC_ISSUER_ID, ASC_KEY_P8
 #   Android: KIYMET_UPLOAD_KEYSTORE_BASE64, KIYMET_KEYSTORE_PASSWORD, KIYMET_KEY_ALIAS, KIYMET_KEY_PASSWORD
+# Gerekli değişken (Settings → Variables): KIYMET_FEED = https://<kullanıcı>.github.io/kiymet-site/data
+#   Mağaza sürümü yalnızca bu ücretsiz ve lisansa uygun fiyat yayınını kullanır.
 # Ayrıntılar: kiymet/YAYIN_REHBERI.md
 on:
   push:
@@ -21,10 +23,11 @@ jobs:
       ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
       ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
       ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
+      KIYMET_FEED: ${{ vars.KIYMET_FEED }}
     steps:
       - name: Secret kontrolü
         run: |
-          for v in APPLE_TEAM_ID ASC_KEY_ID ASC_ISSUER_ID ASC_KEY_P8; do
+          for v in APPLE_TEAM_ID ASC_KEY_ID ASC_ISSUER_ID ASC_KEY_P8 KIYMET_FEED; do
             [ -n "${!v}" ] || { echo "::error::$v secret'ı tanımlı değil (bkz. kiymet/YAYIN_REHBERI.md)"; exit 1; }
           done
 
@@ -50,7 +53,7 @@ jobs:
 
       - name: Flutter derlemesi (imzasız hazırlık)
         working-directory: kiymet/app
-        run: flutter build ios --release --no-codesign --build-number=${{ github.run_number }}
+        run: flutter build ios --release --no-codesign --build-number=${{ github.run_number }} --dart-define=KIYMET_FEED=$KIYMET_FEED
 
       - name: Arşivle ve imzala (otomatik imzalama, API anahtarıyla)
         working-directory: kiymet/app/ios
@@ -89,11 +92,12 @@ jobs:
       KIYMET_KEYSTORE_PASSWORD: ${{ secrets.KIYMET_KEYSTORE_PASSWORD }}
       KIYMET_KEY_ALIAS: ${{ secrets.KIYMET_KEY_ALIAS }}
       KIYMET_KEY_PASSWORD: ${{ secrets.KIYMET_KEY_PASSWORD }}
+      KIYMET_FEED: ${{ vars.KIYMET_FEED }}
     steps:
       - name: Secret kontrolü
         run: |
           # Play'e ilk yüklenen anahtar kalıcı olur; test anahtarıyla asla mağaza derlemesi yapılmaz.
-          for v in KIYMET_UPLOAD_KEYSTORE_BASE64 KIYMET_KEYSTORE_PASSWORD KIYMET_KEY_ALIAS KIYMET_KEY_PASSWORD; do
+          for v in KIYMET_UPLOAD_KEYSTORE_BASE64 KIYMET_KEYSTORE_PASSWORD KIYMET_KEY_ALIAS KIYMET_KEY_PASSWORD KIYMET_FEED; do
             [ -n "${!v}" ] || { echo "::error::$v secret'ı tanımlı değil (bkz. kiymet/YAYIN_REHBERI.md)"; exit 1; }
           done
 
@@ -124,7 +128,7 @@ jobs:
 
       - name: AAB derle
         working-directory: kiymet/app
-        run: flutter build appbundle --release --build-number=${{ github.run_number }}
+        run: flutter build appbundle --release --build-number=${{ github.run_number }} --dart-define=KIYMET_FEED=$KIYMET_FEED
 
       - uses: actions/upload-artifact@v4
         with:

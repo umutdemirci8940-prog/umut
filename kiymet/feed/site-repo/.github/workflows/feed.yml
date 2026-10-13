@@ -1,0 +1,60 @@
+name: Fiyatları yayınla
+
+# Kıymet fiyat yayıncısı: 15 dakikada bir ücretsiz ve kullanım koşulları uygun kaynaklardan
+# fiyatları toplar; gizlilik/destek sayfalarıyla birlikte GitHub Pages'e yayınlar.
+# Secret: EVDS_API_KEY · Değişkenler (Settings → Variables): GOLD_SERIES, GOLD_PURITY,
+# SILVER_SERIES, ENABLE_CRYPTO (kripto için yazılı onay gelince 1 yapın)
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fiyatları topla
+        env:
+          EVDS_API_KEY: ${{ secrets.EVDS_API_KEY }}
+          GOLD_SERIES: ${{ vars.GOLD_SERIES }}
+          GOLD_PURITY: ${{ vars.GOLD_PURITY || '0.995' }}
+          SILVER_SERIES: ${{ vars.SILVER_SERIES }}
+          ENABLE_CRYPTO: ${{ vars.ENABLE_CRYPTO || '0' }}
+        run: |
+          mkdir -p _site
+          cp -r site/* _site/
+          python3 feed/build_feed.py --out _site/data \
+            --history-url "https://${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}/data/history.json"
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - id: deploy
+        uses: actions/deploy-pages@v4
+
+  discover:
+    # Elle çalıştırıldığında EVDS'deki altın/gümüş serilerini listeler (GOLD_SERIES seçmek için)
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - env:
+          EVDS_API_KEY: ${{ secrets.EVDS_API_KEY }}
+        run: python3 feed/build_feed.py --discover

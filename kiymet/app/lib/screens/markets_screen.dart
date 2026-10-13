@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../config.dart';
 import '../models/models.dart';
 import '../services/market_data.dart';
 import '../state/app_state.dart';
@@ -15,8 +14,10 @@ class MarketsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final status = context.select<AppState, StreamStatus>((a) => a.status);
+    final types = context.select<AppState, List<AssetType>>((a) => a.visibleTypes);
     return DefaultTabController(
-      length: visibleAssetTypes.length,
+      key: ValueKey(types.length),
+      length: types.length,
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
@@ -25,11 +26,11 @@ class MarketsScreen extends StatelessWidget {
           bottom: TabBar(
             isScrollable: true,
             tabAlignment: TabAlignment.start,
-            tabs: [for (final t in visibleAssetTypes) Tab(text: t.label)],
+            tabs: [for (final t in types) Tab(text: t.label)],
           ),
         ),
         body: TabBarView(
-          children: [for (final t in visibleAssetTypes) _MarketList(type: t)],
+          children: [for (final t in types) _MarketList(type: t)],
         ),
       ),
     );

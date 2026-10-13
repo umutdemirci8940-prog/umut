@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../state/app_state.dart';
 
 void showAboutKiymet(BuildContext context) {
   showModalBottomSheet(
@@ -38,12 +41,17 @@ void showAboutKiymet(BuildContext context) {
             '• Kıymet bir yatırım danışmanlığı hizmeti değildir. Burada yer alan bilgiler yatırım tavsiyesi değildir.',
           ),
           SizedBox(height: 16),
-          Text(
-            'Veri kaynakları: TCMB, BtcTurk, Binance, gold-api.com, OECD, BIS.',
-            style: TextStyle(fontSize: 12),
-          ),
+          _Attribution(),
         ],
       ),
     ),
   );
+}
+
+class _Attribution extends StatelessWidget {
+  const _Attribution();
+
+  @override
+  Widget build(BuildContext context) =>
+      Text(context.read<AppState>().attribution, style: const TextStyle(fontSize: 12));
 }

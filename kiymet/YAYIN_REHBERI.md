@@ -24,46 +24,48 @@ Bu rehber, Kıymet'i mağazalara çıkarmak için gereken her adımı sırayla a
 
 ---
 
-## 1. Veri lisansları
+## 1. Veri kaynakları: ücretsiz ve yasal
 
-**Karar (A):** İlk sürümde **BIST hisseleri kapalı** (`lib/config.dart` → `stocksEnabled`).
-Lisanslı bir kaynak bağlandığında `--dart-define=KIYMET_STOCKS=true` ile tek ayarla açılır.
-Mağaza adı, metinler ve görseller buna göre güncellendi (borsa/hisse ifadesi yok).
+Mağaza sürümü yalnızca **Kıymet fiyat yayınını** kullanır. Yayın, herkese açık `kiymet-site`
+reposunda GitHub Actions ile 15 dakikada bir üretilip GitHub Pages'te yayınlanır (ücretsiz).
+Mağaza derlemesi `KIYMET_FEED` değişkeni olmadan başlamaz.
 
-| Veri | Kaynak | Durum |
-|---|---|---|
-| Döviz | TCMB | ✅ Resmî, herkese açık |
-| Enflasyon | OECD, BIS | ✅ Herkese açık, kaynak belirtilerek |
-| BIST hisseleri | – | ⏸ İlk sürümde kapalı |
-| Kripto | BtcTurk / Binance herkese açık API | ⚠️ Ticari kullanım izni teyit edilemedi |
-| Altın/gümüş | Binance PAXG, gold-api.com | ⚠️ Ticari kullanım izni teyit edilemedi |
+| Veri | Kaynak | Koşul | Durum |
+|---|---|---|---|
+| Döviz | TCMB gösterge kurları | Resmî, herkese açık | ✅ |
+| Altın (gram, çeyrek, yarım, tam, Cumhuriyet, ayar) | **TCMB EVDS** günlük fiyat | "Kaynak gösterilerek ticari amaçla dahi kullanılabilir" | ✅ (ücretsiz EVDS anahtarı gerekli) |
+| Gümüş | TCMB EVDS (seri varsa) | Aynı | Seri kontrol edilecek |
+| Enflasyon | OECD + BIS | Kaynak gösterilerek | ✅ |
+| Kripto | CoinPaprika | Ücretsiz plan; ticari kullanım için **önceden bildirim** | ⏸ Bildirim/onaydan sonra `ENABLE_CRYPTO=1` |
+| BIST hisseleri | Ücretsiz ve lisanslı kaynak yok | Borsa İstanbul verisi lisanslı | ⏸ Kapalı |
 
-**Kripto ve altın için yapılacak (yayından önce):**
-1. **BtcTurk'e yazılı izin talebi:** Türk borsası, kaynak gösterilerek (“Fiyatlar: BtcTurk”) gösterim izni isteyebiliriz.
-   Onlar için ücretsiz tanıtım olduğundan olumlu dönme ihtimali yüksek. Talep e-postası taslağı aşağıda.
-2. **Altın için ticari kullanıma açıkça izin veren bir kaynak:** ör. metalcharts.org (ücretsiz plan dahil
-   ticari kullanıma izinli olduğunu belirtiyor), ya da ücretli bir metal fiyat API'si. Seçilen kaynağa ben geçiririm.
-3. Alternatif: CoinGecko'nun ücretli planı, "Data provided by CoinGecko" ibaresiyle ticari kullanıma izin veriyor.
+Uygulama yalnızca yayında bulunan varlıkları gösterir. Kripto açıldığında **uygulama güncellemesi gerekmez**.
+Altın fiyatı **günlük** resmî fiyattır (saniyelik altın verisi ücretsiz ve yasal olarak bulunamıyor).
 
-### BtcTurk izin talebi: e-posta taslağı
+### Yapılacaklar
+1. **EVDS anahtarı [SİZ, ücretsiz]:** https://evds3.tcmb.gov.tr → Üye ol → Profil → API anahtarı.
+2. **`kiymet-site` reposu [BEN, izninizle]:** Herkese açık repo, site + yayıncı dosyaları. Ardından
+   repo ayarlarında Pages → Source: **GitHub Actions**; Secrets: `EVDS_API_KEY`.
+3. **Altın serisinin seçimi [BEN]:** `kiymet-site` → Actions → "Fiyatları yayınla" → Run workflow;
+   "discover" işi EVDS'deki altın/gümüş serilerini listeler, doğru seriyi `GOLD_SERIES` değişkenine yazarız.
+4. **`umut` reposuna değişken:** Settings → Variables → `KIYMET_FEED` = `https://umutdemirci8940-prog.github.io/kiymet-site/data`
+5. **Kripto için bildirim [SİZ]:** CoinPaprika'ya ticari kullanım bildirimi (taslak aşağıda). Onay gelince `ENABLE_CRYPTO=1`.
+
+### CoinPaprika bildirim e-postası taslağı (support@coinpaprika.com)
 ```
-Konu: Herkese açık piyasa verisi API'sinin mobil uygulamada gösterimi için izin talebi
+Subject: Notice of commercial use – CoinPaprika free API (Kıymet mobile app)
 
-Merhaba,
+Hello,
 
-"Kıymet" adlı kişisel finans uygulamasını (iOS/Android) geliştiriyorum. Uygulama, kullanıcıların
-kendi girdikleri altın, döviz ve kripto varlıklarının güncel TL değerini gösteriyor; alım-satım,
-emir iletimi veya saklama hizmeti sunmuyor.
+As required by your API Terms of Use, I would like to notify you of commercial use of the
+CoinPaprika free API. "Kıymet" is a free personal-finance app (iOS/Android) that shows users the
+current TRY value of crypto assets they enter themselves. We call /v1/tickers/{id}?quotes=TRY for
+about 10 coins every 15 minutes from a single server and display "Source: CoinPaprika" in the app.
 
-Kripto para TL fiyatlarını (son fiyat ve 24 saatlik değişim) api.btcturk.com/api/v2/ticker
-uç noktasından, dakikada en fazla birkaç istekle alıp uygulamada "Fiyatlar: BtcTurk" kaynak
-ibaresiyle göstermek istiyoruz.
+Please let us know if this use is acceptable or if any additional conditions apply.
 
-Bu kullanım için yazılı izninizi rica eder, varsa uymamız gereken koşulları (kaynak gösterme,
-istek sınırı, ticari lisans) öğrenmek isteriz.
-
-Saygılarımla,
-<Ad Soyad> · <e-posta> · <telefon>
+Best regards,
+<Name> · <e-mail>
 ```
 
 ---

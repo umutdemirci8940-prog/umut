@@ -25,10 +25,14 @@ class HistoricalPrice {
 /// - Altın: Binance PAXG/USDT (yoksa Yahoo GC=F) × USD/TRY, gümüş: Yahoo SI=F × USD/TRY
 /// - BIST: Yahoo Finance (TEST SÜRÜMÜ: ticari yayın için lisanslı kaynakla değiştirilmeli)
 class PriceHistory {
-  PriceHistory({http.Client? client}) : _client = client ?? http.Client();
+  /// [feedBaseUrl] verilirse (mağaza sürümü) altın ve kripto geçmişi yalnızca Kıymet fiyat
+  /// yayınının history.json dosyasından, döviz TCMB arşivinden alınır.
+  PriceHistory({http.Client? client, this.feedBaseUrl = ''}) : _client = client ?? http.Client();
 
   final http.Client _client;
+  final String feedBaseUrl;
   final Map<String, Future<HistoricalPrice?>> _cache = {};
+  Future<Map<String, dynamic>>? _feedHistory;
 
   static const _headers = {
     'User-Agent': 'Mozilla/5.0 (Kiymet)',
@@ -53,6 +57,14 @@ class PriceHistory {
     final parts = id.split(':');
     if (parts.length != 2) return null;
     final code = parts[1];
+    if (feedBaseUrl.isNotEmpty) {
+      return switch (parts[0]) {
+        'FX' => _fx(code, day),
+        'METAL' => _feedMetal(code, day),
+        'CRYPTO' => _feedValue(id, day, 'Kıymet'),
+        _ => null,
+      };
+    }
     return switch (parts[0]) {
       'FX' => _fx(code, day),
       'CRYPTO' => _crypto(code, day),
@@ -60,6 +72,38 @@ class PriceHistory {
       'STOCK' => _yahooTry('$code.IS', day, 'Yahoo Finance'),
       _ => null,
     };
+  }
+
+  /// Yayındaki günlük kapanışlar: { id: { 'YYYY-MM-DD': fiyat } }
+  Future<HistoricalPrice?> _feedValue(String id, DateTime day, String source) async {
+    _feedHistory ??= _client
+        .get(Uri.parse('$feedBaseUrl/history.json'))
+        .timeout(const Duration(seconds: 20))
+        .then((r) => r.statusCode == 200
+            ? (jsonDecode(utf8.decode(r.bodyBytes)) as Map<String, dynamic>)
+            : <String, dynamic>{});
+    final series = ((await _feedHistory)!['series'] as Map<String, dynamic>?)?[id] as Map<String, dynamic>?;
+    if (series == null) return null;
+    for (var back = 0; back < 7; back++) {
+      final d = day.subtract(Duration(days: back));
+      final v = series['${d.year}-${_pad2(d.month)}-${_pad2(d.day)}'];
+      if (v is num) return HistoricalPrice(price: v.toDouble(), date: d, source: source);
+    }
+    return null;
+  }
+
+  /// Altın ürünleri: günlük gram (24 ayar) fiyatından katsayıyla türetilir.
+  Future<HistoricalPrice?> _feedMetal(String code, DateTime day) async {
+    final product = metalProducts.where((m) => m.code == code).firstOrNull;
+    if (product == null) return null;
+    if (product.silver) return _feedValue('METAL:GRAM_GUMUS', day, 'TCMB EVDS');
+    final gram = await _feedValue('METAL:GRAM_ALTIN', day, 'TCMB EVDS');
+    if (gram == null) return null;
+    return HistoricalPrice(
+      price: gram.price / 0.995 * product.weight * product.purity,
+      date: gram.date,
+      source: 'TCMB EVDS',
+    );
   }
 
   Future<dynamic> _getJson(Uri uri) async {
