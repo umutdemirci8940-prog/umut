@@ -34,7 +34,7 @@ class CpiSource {
       _lastFetch = DateTime.now();
       try {
         final fresh = await _fetch();
-        if (fresh.length >= (_series?.length ?? 0) && fresh.length > 100) {
+        if (fresh.length > 100 && isNewer(fresh, _series!)) {
           _series = fresh;
           final prefs = await SharedPreferences.getInstance();
           await prefs.setString(_prefsKey, jsonEncode(fresh.toJson()));
@@ -46,17 +46,18 @@ class CpiSource {
     return _series!;
   }
 
+  /// Cihazda kayıtlı indirme ile uygulamaya gömülü dosyadan daha güncel olanı.
   Future<CpiSeries> _loadLocal() async {
+    var saved = CpiSeries.empty, bundled = CpiSeries.empty;
     try {
       final prefs = await SharedPreferences.getInstance();
-      final saved = prefs.getString(_prefsKey);
-      if (saved != null) return CpiSeries.fromJson(jsonDecode(saved) as Map<String, dynamic>);
+      final raw = prefs.getString(_prefsKey);
+      if (raw != null) saved = CpiSeries.fromJson(jsonDecode(raw) as Map<String, dynamic>);
     } catch (_) {}
     try {
-      return CpiSeries.fromJson(jsonDecode(await _bundle.loadString(asset)) as Map<String, dynamic>);
-    } catch (_) {
-      return CpiSeries.empty;
-    }
+      bundled = CpiSeries.fromJson(jsonDecode(await _bundle.loadString(asset)) as Map<String, dynamic>);
+    } catch (_) {}
+    return isNewer(saved, bundled) ? saved : bundled;
   }
 
   Future<CpiSeries> _fetch() async {
@@ -64,6 +65,14 @@ class CpiSource {
     if (res.statusCode != 200) throw http.ClientException('${res.statusCode}', url);
     return parseOecdCsv(utf8.decode(res.bodyBytes));
   }
+}
+
+/// [a], [b]'den daha yeni bir aya kadar uzanıyorsa (eşitse daha uzunsa) true.
+bool isNewer(CpiSeries a, CpiSeries b) {
+  if (a.isEmpty) return false;
+  if (b.isEmpty) return true;
+  final cmp = a.latestMonth!.compareTo(b.latestMonth!);
+  return cmp > 0 || (cmp == 0 && a.length > b.length);
 }
 
 /// OECD SDMX "csvfile" yanıtından TIME_PERIOD / OBS_VALUE sütunlarını okur.

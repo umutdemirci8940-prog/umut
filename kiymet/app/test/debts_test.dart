@@ -78,6 +78,15 @@ void main() {
     expect(s.inflationFactorSince(DateTime(2024, 1, 5)), closeTo(2073.9 / 1984.02, 1e-12));
   });
 
+  test('daha güncel seri seçilir', () {
+    final old = CpiSeries({'2025-11': 1, '2025-12': 2});
+    final extended = CpiSeries({'2025-12': 2, '2026-08': 3});
+    expect(isNewer(extended, old), isTrue);
+    expect(isNewer(old, extended), isFalse);
+    expect(isNewer(CpiSeries.empty, old), isFalse);
+    expect(isNewer(old, CpiSeries.empty), isTrue);
+  });
+
   test('OECD CSV beklenmeyen biçimde boş seri döner', () {
     expect(parseOecdCsv('<html>hata</html>').isEmpty, isTrue);
   });
