@@ -46,6 +46,10 @@ jobs:
           flutter-version: '3.47.6'
           cache: true
 
+      - name: Enflasyon verisini indir (OECD TÜFE)
+        working-directory: kiymet/app
+        run: python3 tool/fetch_cpi.py assets/data/cpi_tr.json
+
       - name: Analiz ve testler
         working-directory: kiymet/app
         run: |
@@ -79,7 +83,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add kiymet/release/*.apk
+          git add kiymet/release/*.apk kiymet/app/assets/data/cpi_tr.json
           git commit -m "Kıymet test APK'sı (GitHub Actions, ${GITHUB_SHA::7})" || { echo "Değişiklik yok"; exit 0; }
           for i in 1 2 3; do
             git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0

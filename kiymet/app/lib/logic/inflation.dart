@@ -19,6 +19,11 @@ class CpiSeries {
   final List<String> _months;
 
   bool get isEmpty => _months.isEmpty;
+  int get length => _months.length;
+
+  Map<String, dynamic> toJson() => {
+        'series': [for (final m in _months) {'month': m, 'index': _byMonth[m]}],
+      };
   String? get latestMonth => _months.isEmpty ? null : _months.last;
   double? get latestIndex => isEmpty ? null : _byMonth[_months.last];
 

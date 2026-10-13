@@ -2,8 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 
+import '../logic/debts.dart';
 import '../logic/inflation.dart';
 import '../logic/portfolio.dart';
+import '../models/debt.dart';
 import '../models/models.dart';
 import '../services/api_client.dart';
 import '../services/backend_market_data.dart';
@@ -17,13 +19,19 @@ MarketData defaultMarketData() =>
     apiBaseUrl.isEmpty ? DirectMarketData() : BackendMarketData(ApiClient());
 
 class AppState extends ChangeNotifier {
-  AppState({MarketData? data, HoldingsRepository? repository, PriceHistory? history})
-      : _data = data ?? defaultMarketData(),
+  AppState({
+    MarketData? data,
+    HoldingsRepository? repository,
+    DebtsRepository? debtsRepository,
+    PriceHistory? history,
+  })  : _data = data ?? defaultMarketData(),
         _repo = repository ?? HoldingsRepository(),
+        _debtsRepo = debtsRepository ?? DebtsRepository(),
         history = history ?? PriceHistory();
 
   final MarketData _data;
   final HoldingsRepository _repo;
+  final DebtsRepository _debtsRepo;
 
   /// Alış tarihindeki fiyatı otomatik doldurmak için.
   final PriceHistory history;
@@ -36,6 +44,8 @@ class AppState extends ChangeNotifier {
   CpiSeries _cpi = CpiSeries.empty;
   StreamStatus _status = StreamStatus.connecting;
   PortfolioSummary? _summary;
+  List<Debt> _debts = [];
+  DebtSummary? _debtSummary;
   bool _loading = true;
   String? _error;
 
@@ -49,6 +59,18 @@ class AppState extends ChangeNotifier {
 
   PortfolioSummary get summary => _summary ??= PortfolioSummary.compute(_holdings, _prices, _cpi);
 
+  List<Debt> get debts => List.unmodifiable(_debts);
+  DebtSummary get debtSummary => _debtSummary ??= DebtSummary.compute(_debts, _prices, _cpi);
+
+  /// Alacak/borç için seçilebilecek cinsler: TL, döviz ve altın/gümüş.
+  List<Instrument> get debtAssets => [
+        const Instrument(id: cashTryId, type: AssetType.currency, code: 'TRY', name: 'Türk Lirası', unit: '₺'),
+        ...instrumentsOf(AssetType.currency),
+        ...instrumentsOf(AssetType.metal),
+      ];
+
+  Instrument debtAsset(String id) => debtAssets.where((i) => i.id == id).firstOrNull ?? instrument(id);
+
   Instrument instrument(String id) => _instrumentById[id] ?? Instrument.placeholder(id);
 
   List<Instrument> instrumentsOf(AssetType type) =>
@@ -56,6 +78,7 @@ class AppState extends ChangeNotifier {
 
   Future<void> init() async {
     _holdings = await _repo.load();
+    _debts = await _debtsRepo.load();
     _subs
       ..add(_data.prices.listen(_applyPrices))
       ..add(_data.status.listen((s) {
@@ -103,6 +126,7 @@ class AppState extends ChangeNotifier {
 
   void _invalidate() {
     _summary = null;
+    _debtSummary = null;
     notifyListeners();
   }
 
@@ -117,6 +141,18 @@ class AppState extends ChangeNotifier {
     _holdings = _holdings.where((h) => h.id != id).toList();
     _invalidate();
     await _repo.save(_holdings);
+  }
+
+  Future<void> addDebt(Debt debt) async {
+    _debts = [..._debts, debt];
+    _invalidate();
+    await _debtsRepo.save(_debts);
+  }
+
+  Future<void> removeDebt(String id) async {
+    _debts = _debts.where((d) => d.id != id).toList();
+    _invalidate();
+    await _debtsRepo.save(_debts);
   }
 
   void onAppPaused() => _data.pause();

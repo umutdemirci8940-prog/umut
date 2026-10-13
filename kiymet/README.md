@@ -22,9 +22,10 @@ Uygulama iki modda çalışır:
 
 1. **Doğrudan mod (varsayılan, test sürümü):** Sunucu gerekmez. Fiyatlar telefondan herkese açık
    kaynaklardan çekilir: BtcTurk (kripto, USDT/TRY), Binance PAXG ve gold-api.com (ons altın/gümüş),
-   TCMB (döviz), Yahoo Finance (BIST, gecikmeli). **Bu kaynakların bir kısmı ticari yayın için
-   lisanslı değildir; mağazaya çıkmadan önce sunucu moduna geçilmelidir.** Enflasyon verisi bu
-   modda yoktur, reel getiri "Yakında" görünür.
+   TCMB (döviz), Yahoo Finance (BIST, gecikmeli), OECD (Türkiye aylık TÜFE). **Bu kaynakların bir
+   kısmı ticari yayın için lisanslı değildir; mağazaya çıkmadan önce sunucu moduna geçilmelidir.**
+   TÜFE serisi derleme sırasında `tool/fetch_cpi.py` ile uygulamaya gömülür, uygulama açılışta
+   günceller.
 2. **Sunucu modu (yayın için):** `backend/` servisi lisanslı kaynaklardan (Twelve Data, EODHD,
    TCMB EVDS) veri toplar, altın türlerini hesaplar ve WebSocket ile tüm kullanıcılara dağıtır.
    ```bash
@@ -47,6 +48,12 @@ Uygulama iki modda çalışır:
 | 22 / 18 / 14 ayar | 1 g | 0,916 / 0,750 / 0,585 |
 
 Kuyumcu fiyatları işçilik ve makas nedeniyle bu değerden farklıdır; uygulamada bu açıkça belirtilir.
+
+## Alacak & borç
+
+Verilen/alınan TL, döviz veya altın kaydedilir. TL kayıtlarda tarih biliniyorsa:
+`Bugünkü karşılık = Tutar × TÜFE_bugün / TÜFE_verildiği ay`, `Enflasyon kaybı = Karşılık − Tutar`.
+Detayda o günkü tutarın gram altın ve dolar karşılığı bugünkü değerleriyle karşılaştırılır.
 
 ## Reel getiri
 

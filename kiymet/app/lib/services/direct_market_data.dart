@@ -7,6 +7,7 @@ import '../logic/catalog.dart';
 import '../logic/inflation.dart';
 import '../logic/metals.dart';
 import '../models/models.dart';
+import 'cpi_source.dart';
 import 'market_data.dart';
 
 /// Sunucu olmadan, herkese açık kaynaklardan cihazda fiyat toplar.
@@ -18,10 +19,14 @@ import 'market_data.dart';
 /// - Ons gümüş: gold-api.com
 /// - Döviz: TCMB gösterge kurları (günlük)
 /// - BIST: Yahoo Finance (resmî olmayan uç nokta, 15 dk+ gecikmeli; ticari kullanıma uygun değil)
+/// - Enflasyon: OECD Türkiye aylık TÜFE (anahtarsız, herkese açık)
 class DirectMarketData implements MarketData {
-  DirectMarketData({http.Client? client}) : _client = client ?? http.Client();
+  DirectMarketData({http.Client? client, CpiSource? cpi})
+      : _client = client ?? http.Client(),
+        _cpi = cpi ?? CpiSource();
 
   final http.Client _client;
+  final CpiSource _cpi;
   final _prices = StreamController<List<Price>>.broadcast();
   final _status = StreamController<StreamStatus>.broadcast();
   final Map<String, Price> _last = {};
@@ -48,9 +53,8 @@ class DirectMarketData implements MarketData {
   @override
   Future<List<Price>> snapshot() async => _last.values.toList();
 
-  /// Enflasyon verisi (TCMB EVDS) API anahtarı gerektirdiği için yalnızca sunucu modunda gelir.
   @override
-  Future<CpiSeries> inflation() async => CpiSeries.empty;
+  Future<CpiSeries> inflation() => _cpi.load();
 
   @override
   void start() {

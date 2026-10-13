@@ -75,6 +75,23 @@ void main() {
     expect(state.summary.totalValue, 21000);
     expect(find.text('Çeyrek Altın'), findsOneWidget);
 
+    // Alacak & Borç sekmesi: TL alacak ekle
+    await tester.tap(find.text('Alacak & Borç'));
+    await tester.pumpAndSettle();
+    expect(find.text('Kimseye borç vermemişsin'), findsOneWidget);
+    await tester.tap(find.text('Alacak / borç ekle'));
+    await tester.pumpAndSettle();
+    await tester.enterText(find.widgetWithText(TextFormField, 'Kime verdin?'), 'Ahmet');
+    await tester.enterText(find.widgetWithText(TextFormField, 'Tutar (₺)'), '10.000');
+    await tester.ensureVisible(find.text('Kaydet'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Kaydet'));
+    await tester.runAsync(() => Future.delayed(const Duration(milliseconds: 50)));
+    await tester.pumpAndSettle();
+    expect(state.debts.single.amount, 10000);
+    expect(find.text('Ahmet'), findsOneWidget);
+    expect(state.debtSummary.net, 10000);
+
     // Piyasalar sekmesi
     await tester.tap(find.text('Piyasalar'));
     await tester.pumpAndSettle();
