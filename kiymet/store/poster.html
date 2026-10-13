@@ -59,12 +59,12 @@
 <div id="dev"></div>
 <script>
 const POSTERS = [
-  { shot: '01_portfoy', title: 'Tüm <em>kıymetlerin</em><br>tek yerde', sub: 'Altın, döviz, hisse ve kripto<br>tek ekranda, canlı fiyatlarla.' },
+  { shot: '01_portfoy', title: 'Tüm <em>kıymetlerin</em><br>tek yerde', sub: 'Altın, döviz ve kripto<br>tek ekranda, canlı fiyatlarla.' },
   { shot: '06_alacak_detay', title: 'Enflasyon ne kadar<br><em>eritti?</em>', sub: 'Verdiğin borcun bugünkü<br>gerçek değerini gör.', dim: true },
   { shot: '02_piyasalar_altin', title: 'Çeyrekten bileziğe<br><em>her altın</em>', sub: 'Gram, çeyrek, yarım, tam, Cumhuriyet<br>ve ayar altınlar anlık.' },
   { shot: '05_alacak_borc', title: 'Alacağını<br><em>unutma</em>', sub: 'Kime ne verdin, bugün kaç TL ediyor;<br>hepsi kayıtlı.' },
   { shot: '04_varlik_ekle', title: 'Alış fiyatı<br><em>otomatik</em>', sub: 'Tarihi seç, o günün fiyatı gelsin;<br>toplam tutar hemen hesaplansın.' },
-  { shot: '03_piyasalar_kripto', title: 'Kripto ve borsa<br><em>da burada</em>', sub: "Bitcoin'den THYAO'ya<br>tüm varlıkların bir arada." },
+  { shot: '03_piyasalar_kripto', title: 'Kripto paralar<br><em>da burada</em>', sub: "Bitcoin, Ethereum, Solana<br>ve onlarca kripto para anlık." },
 ];
 const SIZES = {
   ios:     { w: 1320, h: 2868, devW: 1010, devTop: 700 },
@@ -89,7 +89,7 @@ if (q.get('size') === 'feature') {
   document.getElementById('head').innerHTML =
     `<img class="logo-h" src="../brand/export/logo-horizontal.png">
      <h1>Paranın <em>gerçek</em> değerini gör</h1>
-     <p class="sub">Altın, döviz, hisse, kripto ve alacaklar tek yerde.</p>`;
+     <p class="sub">Altın, döviz, kripto ve alacaklar tek yerde.</p>`;
   const dev = document.getElementById('dev');
   dev.innerHTML = `<div class="device" style="left:auto;right:${70*u}px;transform:rotate(-8deg);--devW:${300}px;--devTop:${40}px;top:${40}px">
      <div class="screen"><img class="shot" src="screens-raw/01_portfoy.png">${statusBar}</div></div>`;

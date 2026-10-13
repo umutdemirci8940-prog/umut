@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+import '../config.dart';
 import '../logic/portfolio.dart';
 import '../models/models.dart';
 import '../state/app_state.dart';
@@ -383,7 +384,9 @@ class _EmptyState extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           const Text(
-            'Altın, döviz, hisse ve kripto varlıklarını ekle; toplam değerini ve gerçek getirini anlık takip et.',
+            stocksEnabled
+                ? 'Altın, döviz, hisse ve kripto varlıklarını ekle; toplam değerini ve gerçek getirini anlık takip et.'
+                : 'Altın, döviz ve kripto varlıklarını ekle; toplam değerini ve gerçek getirini anlık takip et.',
             textAlign: TextAlign.center,
           ),
         ],

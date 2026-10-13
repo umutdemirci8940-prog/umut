@@ -160,7 +160,7 @@ void main() {
         h('METAL:GRAM_ALTIN', 40, 2450, DateTime(2024, 6, 3)).toJson(),
         h('FX:USD', 1500, 34.0, DateTime(2024, 8, 20)).toJson(),
         h('METAL:GRAM_GUMUS', 600, 33.5, DateTime(2024, 6, 10)).toJson(),
-        h('STOCK:THYAO', 250, 290, DateTime(2025, 3, 10)).toJson(),
+        h('CRYPTO:ETH', 0.8, 105000, DateTime(2025, 3, 10)).toJson(),
         h('CRYPTO:BTC', 0.045, 3500000, DateTime(2025, 1, 15)).toJson(),
         h('METAL:AYAR22', 25, 2900, DateTime(2025, 2, 1)).toJson(),
       ]),

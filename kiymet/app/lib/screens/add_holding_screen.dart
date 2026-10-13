@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+import '../config.dart';
 import '../logic/catalog.dart';
 import '../logic/portfolio.dart';
 import '../models/models.dart';
@@ -64,7 +65,7 @@ class _AddHoldingScreenState extends State<AddHoldingScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: SegmentedButton<AssetType>(
               segments: [
-                for (final t in AssetType.values)
+                for (final t in visibleAssetTypes)
                   ButtonSegment(value: t, label: Text(t.label)),
               ],
               selected: {_type},

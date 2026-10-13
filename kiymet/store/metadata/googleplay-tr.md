@@ -1,28 +1,27 @@
-# Google Play Console — Türkçe (tr-TR)
+# Google Play Console: Türkçe (tr-TR)
 
-## Uygulama adı (en fazla 30) — 27 karakter
-
-```
-Kıymet: Altın, Döviz, Borsa
-```
-
-## Kısa açıklama (en fazla 80) — 71 karakter
+## Uygulama adı (en fazla 30): 28 karakter ✅
 
 ```
-Altın, döviz, hisse, kripto ve alacaklarını takip et; reel getirini gör
+Kıymet: Altın, Döviz, Kripto
 ```
 
-## Tam açıklama (en fazla 4000) — 1386 karakter
+## Kısa açıklama (en fazla 80): 75 karakter ✅
 
 ```
-Kıymet; altın, döviz, hisse ve kripto birikimlerini tek ekranda toplar, canlı fiyatlarla bugünkü değerini ve enflasyona göre gerçek getirini gösterir.
+Altın, döviz, kripto ve alacaklarını takip et; enflasyona göre getirini gör
+```
+
+## Tam açıklama (en fazla 4000): 1352 karakter ✅
+
+```
+Kıymet; altın, döviz ve kripto birikimlerini tek ekranda toplar, canlı fiyatlarla bugünkü değerini ve enflasyona göre gerçek getirini gösterir.
 
 TÜM KIYMETLERİN TEK YERDE
 • Gram, çeyrek, yarım, tam, Cumhuriyet, Gremse altın; 22, 18 ve 14 ayar altın
 • Gram gümüş
 • Dolar, euro, sterlin, İsviçre frangı
 • Bitcoin, Ethereum ve onlarca kripto para
-• Borsa İstanbul hisseleri
 
 GERÇEK GETİRİNİ GÖR
 Paran büyüdü mü, yoksa enflasyona mı yenildi? Kıymet her varlığın alış tarihinden bugüne TÜFE'yi hesaba katarak reel getirisini gösterir: "Enflasyonu yendin" ya da "Enflasyonun gerisinde".
@@ -45,7 +44,7 @@ Not: Fiyatlar bilgilendirme amaçlıdır; gecikmeli veya yaklaşık olabilir. Al
 | Alan | Değer |
 |---|---|
 | Uygulama kategorisi | Finans |
-| Etiketler | Kişisel finans, Yatırım |
+| Etiketler | Kişisel finans |
 | İçerik derecelendirmesi | Anketi doldurun (şiddet/kumar vb. hepsi "Hayır") → 3+ / Herkes |
 | Hedef kitle | 18 yaş ve üzeri |
 | Reklam içeriyor mu | Hayır |

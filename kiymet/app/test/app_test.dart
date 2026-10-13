@@ -95,6 +95,8 @@ void main() {
     // Piyasalar sekmesi
     await tester.tap(find.text('Piyasalar'));
     await tester.pumpAndSettle();
+    // İlk sürümde hisse sekmesi yok (lisanslı kaynak bağlanana kadar)
+    expect(find.text('Hisse'), findsNothing);
     expect(find.text('Çeyrek Altın'), findsWidgets);
   });
 }

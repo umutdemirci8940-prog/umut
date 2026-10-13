@@ -39,7 +39,7 @@ void showAboutKiymet(BuildContext context) {
           ),
           SizedBox(height: 16),
           Text(
-            'Veri kaynakları: BtcTurk, TCMB, Binance, gold-api.com, Yahoo Finance, OECD, BIS.',
+            'Veri kaynakları: TCMB, BtcTurk, Binance, gold-api.com, OECD, BIS.',
             style: TextStyle(fontSize: 12),
           ),
         ],

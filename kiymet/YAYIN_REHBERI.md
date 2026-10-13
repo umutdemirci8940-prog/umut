@@ -24,23 +24,47 @@ Bu rehber, Kıymet'i mağazalara çıkarmak için gereken her adımı sırayla a
 
 ---
 
-## 1. Yayından önce verilmesi gereken karar: veri lisansları ⚠️
+## 1. Veri lisansları
 
-Test sürümü bazı fiyatları **ticari yayın için lisanslı olmayan** kaynaklardan alıyor:
+**Karar (A):** İlk sürümde **BIST hisseleri kapalı** (`lib/config.dart` → `stocksEnabled`).
+Lisanslı bir kaynak bağlandığında `--dart-define=KIYMET_STOCKS=true` ile tek ayarla açılır.
+Mağaza adı, metinler ve görseller buna göre güncellendi (borsa/hisse ifadesi yok).
 
-| Veri | Şu anki kaynak | Durum |
+| Veri | Kaynak | Durum |
 |---|---|---|
 | Döviz | TCMB | ✅ Resmî, herkese açık |
 | Enflasyon | OECD, BIS | ✅ Herkese açık, kaynak belirtilerek |
-| Kripto | BtcTurk, Binance herkese açık API | ⚠️ Kullanım koşulları kontrol edilmeli |
-| Altın/gümüş | Binance PAXG, gold-api.com | ⚠️ Ticari kullanım koşulları kontrol edilmeli |
-| **BIST hisseleri** | **Yahoo Finance (resmî olmayan)** | ❌ **Ticari yayına uygun değil** |
+| BIST hisseleri | – | ⏸ İlk sürümde kapalı |
+| Kripto | BtcTurk / Binance herkese açık API | ⚠️ Ticari kullanım izni teyit edilemedi |
+| Altın/gümüş | Binance PAXG, gold-api.com | ⚠️ Ticari kullanım izni teyit edilemedi |
 
-**Seçenekler:**
-- **A. Hızlı başlangıç (önerilen):** İlk sürümde hisse sekmesini kapatırız. Kripto ve altın için ticari kullanıma izin veren uygun maliyetli bir API'ye geçeriz. Hisseleri lisans alınınca ekleriz.
-- **B. Tam sürüm:** Lisanslı veri sağlayıcılara (ör. Twelve Data, EODHD + BIST yeniden dağıtım lisansı) abone olunur, `backend/` sunucusu yayına alınır (aylık sunucu ve veri maliyeti).
+**Kripto ve altın için yapılacak (yayından önce):**
+1. **BtcTurk'e yazılı izin talebi:** Türk borsası, kaynak gösterilerek (“Fiyatlar: BtcTurk”) gösterim izni isteyebiliriz.
+   Onlar için ücretsiz tanıtım olduğundan olumlu dönme ihtimali yüksek. Talep e-postası taslağı aşağıda.
+2. **Altın için ticari kullanıma açıkça izin veren bir kaynak:** ör. metalcharts.org (ücretsiz plan dahil
+   ticari kullanıma izinli olduğunu belirtiyor), ya da ücretli bir metal fiyat API'si. Seçilen kaynağa ben geçiririm.
+3. Alternatif: CoinGecko'nun ücretli planı, "Data provided by CoinGecko" ibaresiyle ticari kullanıma izin veriyor.
 
-👉 Kararınızı bildirin, kod tarafını ben ayarlayayım.
+### BtcTurk izin talebi: e-posta taslağı
+```
+Konu: Herkese açık piyasa verisi API'sinin mobil uygulamada gösterimi için izin talebi
+
+Merhaba,
+
+"Kıymet" adlı kişisel finans uygulamasını (iOS/Android) geliştiriyorum. Uygulama, kullanıcıların
+kendi girdikleri altın, döviz ve kripto varlıklarının güncel TL değerini gösteriyor; alım-satım,
+emir iletimi veya saklama hizmeti sunmuyor.
+
+Kripto para TL fiyatlarını (son fiyat ve 24 saatlik değişim) api.btcturk.com/api/v2/ticker
+uç noktasından, dakikada en fazla birkaç istekle alıp uygulamada "Fiyatlar: BtcTurk" kaynak
+ibaresiyle göstermek istiyoruz.
+
+Bu kullanım için yazılı izninizi rica eder, varsa uymamız gereken koşulları (kaynak gösterme,
+istek sınırı, ticari lisans) öğrenmek isteriz.
+
+Saygılarımla,
+<Ad Soyad> · <e-posta> · <telefon>
+```
 
 ---
 
@@ -75,7 +99,7 @@ Apple ve Google, **herkese açık** bir gizlilik politikası adresi ister.
 1. **Bundle ID kaydı:** developer.apple.com → Certificates, Identifiers & Profiles → Identifiers → **+** →
    App IDs → App → Description: `Kiymet`, Bundle ID (Explicit): **`app.kiymet.kiymet`** → Register.
 2. **Uygulama kaydı:** appstoreconnect.apple.com → Uygulamalarım → **+** → Yeni Uygulama:
-   Platform iOS · Ad: `Kıymet: Altın, Döviz, Borsa` · Birincil dil: Türkçe · Bundle ID: `app.kiymet.kiymet` · SKU: `kiymet-ios`.
+   Platform iOS · Ad: `Kıymet: Altın, Döviz, Kripto` · Birincil dil: Türkçe · Bundle ID: `app.kiymet.kiymet` · SKU: `kiymet-ios`.
 3. **API anahtarı (otomatik yükleme için):** App Store Connect → Kullanıcılar ve Erişim → Entegrasyonlar →
    App Store Connect API → Ekip Anahtarları → **+** → Ad: `GitHub`, Erişim: **Admin** → Oluştur.
    - `.p8` dosyasını indirin (**yalnızca bir kez indirilebilir**).
@@ -131,7 +155,7 @@ App Store Connect → Kıymet → **1.0 Sürümü Hazırlanıyor**:
 ---
 
 ## 9. Google Play **[SİZ + BEN]**
-1. Play Console → **Uygulama oluştur**: Ad `Kıymet: Altın, Döviz, Borsa`, dil Türkçe, Uygulama, Ücretsiz.
+1. Play Console → **Uygulama oluştur**: Ad `Kıymet: Altın, Döviz, Kripto`, dil Türkçe, Uygulama, Ücretsiz.
 2. **Uygulama içeriği** bölümleri (metadata dosyasındaki tabloya göre): Gizlilik politikası, Reklamlar (yok),
    Uygulama erişimi (tüm özellikler kısıtlamasız), İçerik derecelendirmesi, Hedef kitle (18+),
    Veri güvenliği (veri toplanmıyor), Finansal özellikler (kişisel finans/portföy takibi).
@@ -151,4 +175,4 @@ App Store Connect → Kıymet → **1.0 Sürümü Hazırlanıyor**:
 | "Beta/Test" ifadeleri | Uygulamadan kaldırıldı ✅ |
 | Eksik işlev / çökme | Testlerden geçiyor; TestFlight'ta mutlaka deneyin |
 | Finans uygulamasında yanıltıcı ifade | "Yatırım tavsiyesi değildir" uyarıları mevcut ✅ |
-| Veri kaynağı lisansı | 1. adımdaki karar |
+| Veri kaynağı lisansı | 1. adım: hisseler kapalı; kripto/altın izinleri |

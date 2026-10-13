@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 
+import '../config.dart';
 import '../logic/debts.dart';
 import '../logic/inflation.dart';
 import '../logic/portfolio.dart';
@@ -111,7 +112,9 @@ class AppState extends ChangeNotifier {
         _data.inflation(),
         _data.snapshot(),
       ]);
-      _instruments = results[0] as List<Instrument>;
+      _instruments = (results[0] as List<Instrument>)
+          .where((i) => stocksEnabled || i.type != AssetType.stock)
+          .toList();
       _instrumentById
         ..clear()
         ..addEntries(_instruments.map((i) => MapEntry(i.id, i)));

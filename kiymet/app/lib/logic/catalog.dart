@@ -1,3 +1,4 @@
+import '../config.dart';
 import '../models/models.dart';
 import 'metals.dart';
 
@@ -83,7 +84,8 @@ List<Instrument> buildCatalog({
         unit: c,
         featured: cryptoNames.containsKey(c),
       ),
-    for (final s in stockCodes)
+    if (stocksEnabled)
+      for (final s in stockCodes)
       Instrument(
         id: 'STOCK:$s',
         type: AssetType.stock,

@@ -1,40 +1,39 @@
-# App Store Connect — Türkçe (tr)
+# App Store Connect: Türkçe (tr)
 
-## Uygulama adı (en fazla 30) — 27 karakter
+## Uygulama adı (en fazla 30): 28 karakter ✅
 
 ```
-Kıymet: Altın, Döviz, Borsa
+Kıymet: Altın, Döviz, Kripto
 ```
 
-## Alt başlık (en fazla 30) — 27 karakter
+## Alt başlık (en fazla 30): 27 karakter ✅
 
 ```
 Birikim ve enflasyon takibi
 ```
 
-## Tanıtım metni (en fazla 170) — 133 karakter
+## Tanıtım metni (en fazla 170): 126 karakter ✅
 
 ```
-Altın, döviz, hisse ve kripto birikimlerin tek ekranda. Enflasyona göre gerçek getirini ve verdiğin borçların ne kadar eridiğini gör.
+Altın, döviz ve kripto birikimlerin tek ekranda. Enflasyona göre gerçek getirini ve verdiğin borçların ne kadar eridiğini gör.
 ```
 
-## Anahtar kelimeler (en fazla 100) — 99 karakter
+## Anahtar kelimeler (en fazla 100): 97 karakter ✅
 
 ```
-altın,çeyrek,gram,döviz,dolar,borsa,bist,hisse,kripto,bitcoin,portföy,enflasyon,birikim,alacak,borç
+altın,çeyrek,gram,döviz,dolar,euro,kur,gümüş,kripto,bitcoin,portföy,enflasyon,birikim,alacak,borç
 ```
 
-## Açıklama (en fazla 4000) — 1386 karakter
+## Açıklama (en fazla 4000): 1352 karakter ✅
 
 ```
-Kıymet; altın, döviz, hisse ve kripto birikimlerini tek ekranda toplar, canlı fiyatlarla bugünkü değerini ve enflasyona göre gerçek getirini gösterir.
+Kıymet; altın, döviz ve kripto birikimlerini tek ekranda toplar, canlı fiyatlarla bugünkü değerini ve enflasyona göre gerçek getirini gösterir.
 
 TÜM KIYMETLERİN TEK YERDE
 • Gram, çeyrek, yarım, tam, Cumhuriyet, Gremse altın; 22, 18 ve 14 ayar altın
 • Gram gümüş
 • Dolar, euro, sterlin, İsviçre frangı
 • Bitcoin, Ethereum ve onlarca kripto para
-• Borsa İstanbul hisseleri
 
 GERÇEK GETİRİNİ GÖR
 Paran büyüdü mü, yoksa enflasyona mı yenildi? Kıymet her varlığın alış tarihinden bugüne TÜFE'yi hesaba katarak reel getirisini gösterir: "Enflasyonu yendin" ya da "Enflasyonun gerisinde".
@@ -51,10 +50,10 @@ GİZLİLİĞİN SENDE
 Not: Fiyatlar bilgilendirme amaçlıdır; gecikmeli veya yaklaşık olabilir. Altın fiyatları ons fiyatı ve dolar kurundan hesaplanan teorik has değeridir, kuyumcu fiyatlarından farklı olabilir. Kıymet bir yatırım danışmanlığı hizmeti değildir; uygulamadaki bilgiler yatırım tavsiyesi değildir.
 ```
 
-## Bu sürümdeki yenilikler
+## Bu sürümdeki yenilikler (en fazla 4000): 104 karakter ✅
 
 ```
-Kıymet'in ilk sürümü: altın, döviz, hisse ve kripto takibi, enflasyona göre reel getiri, alacak ve borç takibi.
+Kıymet'in ilk sürümü: altın, döviz ve kripto takibi, enflasyona göre reel getiri, alacak ve borç takibi.
 ```
 
 
@@ -77,10 +76,10 @@ Kıymet'in ilk sürümü: altın, döviz, hisse ve kripto takibi, enflasyona gö
 ## İnceleme ekibine not (App Review Information → Notes)
 
 ```
-Kıymet, kullanıcının kendi girdiği altın, döviz, hisse ve kripto varlıklarını ve
-kişisel alacak/borç kayıtlarını takip eden bir kişisel finans uygulamasıdır.
-Üyelik/giriş yoktur; tüm veriler yalnızca cihazda saklanır. Uygulama alım-satım,
-ödeme, borç verme veya yatırım danışmanlığı hizmeti sunmaz. Fiyatlar herkese açık
-piyasa verisi kaynaklarından bilgilendirme amacıyla gösterilir.
+Kıymet, kullanıcının kendi girdiği altın, döviz ve kripto varlıklarını ve kişisel
+alacak/borç kayıtlarını takip eden bir kişisel finans uygulamasıdır. Üyelik/giriş
+yoktur; tüm veriler yalnızca cihazda saklanır. Uygulama alım-satım, ödeme, borç
+verme veya yatırım danışmanlığı hizmeti sunmaz. Fiyatlar bilgilendirme amacıyla
+gösterilir.
 Denemek için: Portföyüm > Varlık ekle > Çeyrek Altın > adet girin > Kaydet.
 ```

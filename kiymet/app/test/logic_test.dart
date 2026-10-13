@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:kiymet/logic/catalog.dart';
 import 'package:kiymet/logic/inflation.dart';
 import 'package:kiymet/logic/metals.dart';
 import 'package:kiymet/logic/portfolio.dart';
@@ -119,5 +120,11 @@ void main() {
     expect(back.instrumentId, h.instrumentId);
     expect(back.quantity, 3);
     expect(back.purchaseDate, h.purchaseDate);
+  });
+
+  test('hisseler varsayılan olarak katalogda yok', () {
+    final catalog = buildCatalog(extraStocks: ['THYAO']);
+    expect(catalog.where((i) => i.type == AssetType.stock), isEmpty);
+    expect(catalog.any((i) => i.id == 'METAL:CEYREK'), isTrue);
   });
 }

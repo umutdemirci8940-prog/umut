@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
+import '../config.dart';
 import '../logic/catalog.dart';
 import '../logic/inflation.dart';
 import '../logic/metals.dart';
@@ -67,7 +68,7 @@ class DirectMarketData implements MarketData {
     _every(const Duration(seconds: 5), _pollCrypto);
     _every(const Duration(seconds: 30), _pollMetals);
     _every(const Duration(minutes: 30), _pollFx);
-    _every(const Duration(seconds: 60), _pollStocks);
+    if (stocksEnabled) _every(const Duration(seconds: 60), _pollStocks);
     _every(const Duration(seconds: 10), _updateStatus, immediate: false);
   }
 
@@ -110,7 +111,7 @@ class DirectMarketData implements MarketData {
         added = _extraStocks.add(parts[1]) || added;
       }
     }
-    if (added && _active) _pollStocks();
+    if (added && _active && stocksEnabled) _pollStocks();
   }
 
   @override
