@@ -72,10 +72,10 @@
   .rp .ground:after { content: ""; position: absolute; left: 0; right: 0; top: 1px; height: 14px; background: linear-gradient(180deg, rgba(83,37,13,.06), rgba(83,37,13,0)); }
   .rp .item { bottom: 24px; display: flex; flex-direction: column; align-items: center; filter: drop-shadow(0 8px 6px rgba(83,37,13,.22)); }
   .rp .item img { display: block; }
-  .rp .ptag { position: absolute; padding: 5px 8px 6px; border-radius: 8px; background: #fff; box-shadow: 0 8px 18px -6px rgba(83,37,13,.35); transform-origin: 50% 100%; white-space: nowrap; }
+  .rp .ptag { position: absolute; padding: 4px 7px 5px; max-width: 112px; white-space: normal; border-radius: 8px; background: #fff; box-shadow: 0 8px 18px -6px rgba(83,37,13,.35); transform-origin: 50% 100%; white-space: nowrap; }
   .rp .ptag .b { font: 600 7.5px/1 "Outfit", sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--red); }
-  .rp .ptag .n { margin-top: 2px; font: 600 9px/1.15 "Outfit", sans-serif; color: var(--brown); }
-  .rp .ptag .p { margin-top: 2px; font: 800 15px/1 "Outfit", sans-serif; color: var(--red); letter-spacing: -.5px; }
+  .rp .ptag .n { margin-top: 2px; font: 600 8.5px/1.15 "Outfit", sans-serif; color: var(--brown); }
+  .rp .ptag .p { margin-top: 2px; font: 800 14px/1 "Outfit", sans-serif; color: var(--red); letter-spacing: -.5px; }
   .rp .ptag .p small { font-size: 9px; font-weight: 700; margin-left: 1px; }
   .rp .ptag .stripe { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; border-radius: 0 0 8px 8px; background: var(--orange); }
   .rp .sun { position: absolute; left: 300px; top: -90px; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle, rgba(255,190,80,.35), rgba(255,190,80,0) 65%); pointer-events: none; }
@@ -124,29 +124,29 @@
   // Each spread: left page copy + right page pop-up items (x = left px, h = image height px, tag position)
   var SPREADS = [
     { cat: "Bebek Giyim", sub: "Civil Baby · 6–18 ay montlar, 1.2 – 2.5 tog uyku tulumları", from: 550,
-      items: [ { img: "bebek_mont", x: 40, h: 170, tag: { l: 24, t: 14 }, b: "Civil Baby", n: "6-18 Ay Mont", p: "550" },
-               { img: "bebek_uyku", x: 322, h: 158, tag: { l: 346, t: 8 }, b: "Civil Baby", n: "Uyku Tulumu", p: "650" } ] },
+      items: [ { img: "bebek_mont", x: 40, h: 170, tag: { l: 24, t: 6 }, b: "Civil Baby", n: "6-18 Ay Mont", p: "550" },
+               { img: "bebek_uyku", x: 322, h: 158, tag: { l: 346, t: 6 }, b: "Civil Baby", n: "Uyku Tulumu", p: "650" } ] },
     { cat: "Kız & Erkek Çocuk", sub: "2–9 yaş kazaklar, 2–13 yaş montlar ve uyku tulumları", from: 350,
-      items: [ { img: "kazak", x: 22, h: 140, tag: { l: 20, t: 10 }, b: "Civil", n: "Çocuk Kazak 2-9 Yaş", p: "350" },
-               { img: "cocuk_mont", x: 244, h: 150, tag: { l: 236, t: 6 }, b: "Civil", n: "Çocuk Mont 2-13 Yaş", p: "750" },
-               { img: "cocuk_uyku", x: 318, h: 120, tag: { l: 350, t: 52 }, b: "Civil", n: "Uyku Tulumu", p: "750" } ] },
+      items: [ { img: "kazak", x: 22, h: 140, tag: { l: 20, t: 6 }, b: "Civil", n: "Çocuk Kazak 2-9 Yaş", p: "350" },
+               { img: "cocuk_mont", x: 244, h: 150, tag: { l: 196, t: 6 }, b: "Civil", n: "Çocuk Mont 2-13 Yaş", p: "750" },
+               { img: "cocuk_uyku", x: 318, h: 120, tag: { l: 352, t: 6 }, b: "Civil", n: "Uyku Tulumu", p: "750" } ] },
     { cat: "Panduflar", sub: "Kauçuk sert tabanlı ve aksesuarlı kaymaz panduflar", from: 150,
-      items: [ { img: "erkek_panduf", x: 40, h: 130, tag: { l: 30, t: 12 }, b: "Civil", n: "Erkek Çocuk Panduf", p: "350" },
-               { img: "erkek_panduf2", x: 196, h: 100, tag: { l: 176, t: 92 }, b: "Civil", n: "Aksesuarlı Panduf", p: "150" },
-               { img: "kiz_panduf", x: 300, h: 130, tag: { l: 318, t: 12 }, b: "Civil", n: "Kız Çocuk Panduf", p: "350" },
+      items: [ { img: "erkek_panduf", x: 40, h: 130, tag: { l: 30, t: 6 }, b: "Civil", n: "Erkek Çocuk Panduf", p: "350" },
+               { img: "erkek_panduf2", x: 196, h: 100, tag: { l: 172, t: 6 }, b: "Civil", n: "Aksesuarlı Panduf", p: "150" },
+               { img: "kiz_panduf", x: 300, h: 130, tag: { l: 318, t: 6 }, b: "Civil", n: "Kız Çocuk Panduf", p: "350" },
                { img: "kiz_panduf2", x: 414, h: 96, tag: null } ] },
     { cat: "Oyuncaklar", sub: "Dolu akülü araba ve Halley Oyuncak peluş hayvanlar", from: 390,
-      items: [ { img: "akulu", x: 34, h: 128, tag: { l: 48, t: 16 }, b: "Dolu", n: "Akülü Araba 12V", p: "9.990" },
-               { img: "pelus35", x: 292, h: 92, tag: { l: 270, t: 10 }, b: "Halley Oyuncak", n: "Peluş Hayvanlar 35 cm", p: "390" },
-               { img: "pelus70", x: 384, h: 150, tag: { l: 386, t: 36 }, b: "Halley Oyuncak", n: "Peluş 70 cm", p: "590" } ] },
+      items: [ { img: "akulu", x: 34, h: 128, tag: { l: 36, t: 6 }, b: "Dolu", n: "Akülü Araba 12V", p: "9.990" },
+               { img: "pelus35", x: 292, h: 92, tag: { l: 214, t: 6 }, b: "Halley Oyuncak", n: "Peluş Hayvanlar 35 cm", p: "390" },
+               { img: "pelus70", x: 384, h: 150, tag: { l: 366, t: 6 }, b: "Halley Oyuncak", n: "Peluş 70 cm", p: "590" } ] },
     { cat: "Bebek Ekipmanları", sub: "Mama sandalyesi, bebek arabaları ve oyun parkı", from: 1200,
-      items: [ { img: "mama", x: 36, h: 160, tag: { l: 22, t: 8 }, b: "Dolu", n: "Nuve Mama Sandalyesi", p: "1.200" },
-               { img: "araba", x: 150, h: 170, tag: { l: 134, t: 4 }, b: "Prava", n: "Comfort Plus Araba", p: "4.500" },
-               { img: "park", x: 258, h: 118, tag: { l: 250, t: 40 }, b: "Kanz", n: "Love Oyun Parkı", p: "3.500" },
-               { img: "travel", x: 350, h: 142, tag: { l: 340, t: 8 }, b: "Kraft", n: "Kenya Travel Sistem", p: "19.500" } ] },
+      items: [ { img: "mama", x: 36, h: 160, tag: { l: 12, t: 6 }, b: "Dolu", n: "Nuve Mama Sandalyesi", p: "1.200" },
+               { img: "araba", x: 150, h: 170, tag: { l: 130, t: 6 }, b: "Prava", n: "Comfort Plus Araba", p: "4.500" },
+               { img: "park", x: 258, h: 118, tag: { l: 246, t: 6 }, b: "Kanz", n: "Love Oyun Parkı", p: "3.500" },
+               { img: "travel", x: 350, h: 142, tag: { l: 358, t: 6 }, b: "Kraft", n: "Kenya Travel Sistem", p: "19.500" } ] },
     { cat: "Bebek Bakım", sub: "Dalin şampuan ve Sleepy Naturel ultra paket bezler", from: 165,
-      items: [ { img: "dalin", x: 90, h: 150, tag: { l: 30, t: 14 }, b: "Dalin", n: "Şampuan Klasik 900 ml", p: "165" },
-               { img: "sleepy", x: 186, h: 128, tag: { l: 320, t: 10 }, b: "Sleepy", n: "Naturel Ultra Paket", p: "395" } ] }
+      items: [ { img: "dalin", x: 90, h: 150, tag: { l: 30, t: 6 }, b: "Dalin", n: "Şampuan Klasik 900 ml", p: "165" },
+               { img: "sleepy", x: 186, h: 128, tag: { l: 320, t: 6 }, b: "Sleepy", n: "Naturel Ultra Paket", p: "395" } ] }
   ];
   var COLS = ["#e63d1e", "#ffb020", "#2e9e5b", "#ffd84d"];
   function fmt(n) { return n.toLocaleString("tr-TR"); }
@@ -160,7 +160,7 @@
   }
   function rightPage(s, n) {
     var items = s.items.map(function (it, i) {
-      var h = '<div class="pop item" style="left:' + it.x + 'px;transition-delay:' + (.1 + i * .12) + 's"><img src="' + A[it.img] + '" style="height:' + it.h + 'px" alt="' + (it.n || "") + '"></div>';
+      var h = '<div class="pop item" style="left:' + it.x + 'px;transition-delay:' + (.1 + i * .12) + 's"><img src="' + A[it.img] + '" style="height:' + Math.min(it.h, 136) + 'px" alt="' + (it.n || "") + '"></div>';
       if (it.tag) h += '<div class="pop ptag" style="left:' + it.tag.l + 'px;top:' + it.tag.t + 'px;transition-delay:' + (.45 + i * .12) + 's"><div class="b">' + it.b + '</div><div class="n">' + it.n + '</div><div class="p">' + it.p + ' TL</div><div class="stripe"></div></div>';
       return h;
     }).join("");
