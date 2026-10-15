@@ -3,8 +3,10 @@
 /**
  * Tek dosyalık sunum sayfası üretir: preview/index.html
  * Üç banner srcdoc ile gömülüdür; klasör/zip gerektirmeden açılır ve her bannerın index.html'i indirilebilir.
- * Kullanım: node altinyildiz/tools/package.js  (önce node altinyildiz/build.js)
+ * Kullanım: node altinyildiz/tools/package.js [--artifact]  (önce node altinyildiz/build.js)
+ *   --artifact: claude.ai Artifact olarak yayınlanacak sürüm (indirme bağlantısız, iskeletsiz) → preview/artifact.html
  */
+const ART = process.argv.includes('--artifact');
 const fs = require('fs');
 const path = require('path');
 const ROOT = path.join(__dirname, '..');
@@ -22,23 +24,27 @@ const cards = B.map((b) => {
   const kb = (Buffer.byteLength(html) / 1024).toFixed(0);
   return `<section class="card">
   <header><span class="no">${b.no}</span><div><h2>${b.name}</h2><p class="tag">${b.tag} · 970×250 · ${kb} KB</p></div>
-  <div class="act"><button data-r="${b.id}">↻ Yeniden oynat</button><a download="altinyildiz-${b.id}-970x250.html" href="data:text/html;base64,${Buffer.from(html).toString('base64')}">↓ HTML</a></div></header>
+  <div class="act"><button data-r="${b.id}">↻ Yeniden oynat</button>${ART ? '' : `<a download="altinyildiz-${b.id}-970x250.html" href="data:text/html;base64,${Buffer.from(html).toString('base64')}">↓ HTML</a>`}</div></header>
   <div class="frame"><div class="scale"><iframe id="f-${b.id}" title="${b.name}" width="970" height="250" scrolling="no" srcdoc="${esc(html)}"></iframe></div></div>
   <p class="desc">${b.desc}</p>
 </section>`;
 }).join('\n');
 
-const page = `<!doctype html>
+const head = ART ? `<title>Altınyıldız Masthead Seti</title>
+<meta name="claude:viewport-fit-sides" content="cover">` : `<!doctype html>
 <html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Altınyıldız Masthead Seti</title>
+<title>Altınyıldız Masthead Seti</title>`;
+const page = `${head}
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&family=Urbanist:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#f3efe7;--ink:#14213d;--mute:#6c6f78;--line:#ddd3c3;--card:#fff;--gold:#a07c3a}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1324;--ink:#f1ece2;--mute:#a3a7b3;--line:#263252;--card:#141c33;--gold:#e7cf98}}
-:root[data-theme="dark"]{--bg:#0d1324;--ink:#f1ece2;--mute:#a3a7b3;--line:#263252;--card:#141c33;--gold:#e7cf98}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1324;--ink:#f1ece2;--mute:#a3a7b3;--line:#263252;--card:#141c33;--gold:#e7cf98;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0d1324;--ink:#f1ece2;--mute:#a3a7b3;--line:#263252;--card:#141c33;--gold:#e7cf98;color-scheme:dark}
 *{box-sizing:border-box;margin:0}
-body{background:var(--bg);color:var(--ink);font:400 15px/1.55 "Urbanist",system-ui,sans-serif;padding:40px 16px 64px}
+body{background:var(--bg);color:var(--ink);font:400 15px/1.55 "Urbanist",system-ui,sans-serif;padding-block:40px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1{text-wrap:balance}
+.act button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 main{max-width:1010px;margin:0 auto}
 .k{font:600 11px/1 "Urbanist";letter-spacing:.3em;color:var(--gold);text-transform:uppercase}
 h1{font:600 italic clamp(30px,5vw,46px)/1.05 "Cormorant Garamond",Georgia,serif;margin:10px 0 10px}
@@ -57,10 +63,10 @@ iframe{display:block;border:0;width:970px;height:250px}
 .desc{margin-top:12px;color:var(--mute);font-size:14px}
 .notes{margin-top:32px;color:var(--mute);font-size:13.5px}
 .notes li{margin:4px 0 4px 18px}
-</style></head><body><main>
+</style>${ART ? '' : '</head><body>'}<main>
 <div class="k">Altınyıldız Classics · First Media Masthead</div>
 <h1>Sonbahar / Kış 2026 interaktif masthead seti</h1>
-<p class="lead">Üç adet 970×250 interaktif çalışma. Ürün fotoğrafları, logo, fiyatlar ve ayrıcalıklar altinyildizclassics.com’dan alındı (15.10.2026). Bannerlarla oynayın: tıklama çıkışları bu önizlemede yeni sekme açar.</p>
+<p class="lead">Üç adet 970×250 interaktif çalışma. Ürün fotoğrafları, logo, fiyatlar ve ayrıcalıklar altinyildizclassics.com’dan alındı (15.10.2026). Bannerlarla oynayabilirsiniz; tıklama çıkışları yayında altinyildizclassics.com’a gider.</p>
 ${cards}
 <ul class="notes">
 <li>Her banner tek dosya (görseller gömülü), zip’i 95 KB’ın altında: Google Ads / CM360 / DV360 için hazır. clickTag ve kategori bazlı clickTag1–4 tanımlı.</li>
@@ -73,7 +79,8 @@ function fit(){document.querySelectorAll('.frame').forEach(function(f){var s=Mat
 window.addEventListener('resize',fit);fit();
 document.querySelectorAll('[data-r]').forEach(function(b){b.addEventListener('click',function(){var f=document.getElementById('f-'+b.dataset.r);var s=f.srcdoc;f.srcdoc='';setTimeout(function(){f.srcdoc=s;},30);});});
 </script>
-</body></html>`;
+${ART ? '' : '</body></html>'}`;
 fs.mkdirSync(path.join(ROOT, 'preview'), { recursive: true });
-fs.writeFileSync(path.join(ROOT, 'preview', 'index.html'), page);
-console.log('✔ preview/index.html', (Buffer.byteLength(page) / 1024).toFixed(0) + ' KB');
+const outFile = path.join(ROOT, 'preview', ART ? 'artifact.html' : 'index.html');
+fs.writeFileSync(outFile, page);
+console.log('✔', path.relative(ROOT, outFile), (Buffer.byteLength(page) / 1024).toFixed(0) + ' KB');
