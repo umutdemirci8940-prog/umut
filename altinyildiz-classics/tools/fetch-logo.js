@@ -14,14 +14,18 @@ fs.mkdirSync(out, { recursive: true });
   await page.goto('https://www.altinyildizclassics.com/', { waitUntil: 'domcontentloaded', timeout: 60000 });
   await page.waitForTimeout(4000);
   const handle = await page.evaluateHandle(() => {
-    const use = document.querySelector('use[href="#logo"], use[*|href="#logo"]');
-    if (use) return use.closest('svg');
+    const vis = (e) => { const r = e.getBoundingClientRect(); return r.width > 60 && r.height > 8 && r.top >= 0 && r.top < 120; };
+    const uses = [...document.querySelectorAll('use')].filter((u) => /#logo$/.test(u.getAttribute('href') || u.getAttribute('xlink:href') || ''));
+    const svg = uses.map((u) => u.closest('svg')).find((s) => s && vis(s));
+    if (svg) return svg;
     // yedek: ekranın üst ortasındaki en geniş svg/img
     const c = [...document.querySelectorAll('header svg, header img')].map((e) => ({ e, r: e.getBoundingClientRect() }))
-      .filter((o) => o.r.top < 80 && Math.abs(o.r.left + o.r.width / 2 - innerWidth / 2) < 200).sort((a, b) => b.r.width - a.r.width);
+      .filter((o) => o.r.width > 60 && o.r.top >= 0 && o.r.top < 80 && Math.abs(o.r.left + o.r.width / 2 - innerWidth / 2) < 200).sort((a, b) => b.r.width - a.r.width);
     return c[0] && c[0].e;
   });
   const el = handle.asElement();
+  if (!el) throw new Error('logo bulunamadı');
+  await page.evaluate(() => window.scrollTo(0, 0));
   const box = await el.boundingBox();
   console.log('logo kutusu', box);
   // Arka planı şeffaf yapıp yalnızca logoyu çek (çevresindeki öğeleri gizle)
