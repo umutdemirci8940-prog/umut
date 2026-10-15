@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=970,height=250">
+<meta name="viewport" content="width=970,height=250">
+<title>Milli Piyango – Yılbaşı 2027 Masthead 970x250</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,700&family=Rubik:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#d0142f;--red-d:#8a0b20;--red-dd:#4c0512;
+  --cream:#fff4dc;--cream-d:#f1dfb6;
+  --blue:#1b3fae;--blue-d:#0c2370;--blue-l:#3f66e0;
+  --gold:#f5c451;--gold-d:#c58f22;
+  --ink:#14204a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:970px;height:250px;overflow:hidden;background:#3d0410}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+
+#ad{position:relative;width:970px;height:250px;overflow:hidden;font-family:Rubik,system-ui,sans-serif;color:var(--cream);
+  background:
+    radial-gradient(ellipse 34% 80% at 50% 120%,rgba(255,92,92,.45),transparent 70%),
+    radial-gradient(ellipse 30% 90% at 86% 40%,rgba(255,196,90,.18),transparent 70%),
+    radial-gradient(ellipse 30% 90% at 12% 50%,rgba(255,196,90,.16),transparent 70%),
+    linear-gradient(160deg,#b3122a 0%,#7c0a1d 55%,#45050f 100%);
+  -webkit-font-smoothing:antialiased}
+/* ince kumaş/simli doku */
+#ad::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.22;
+  background:repeating-linear-gradient(115deg,rgba(255,255,255,.05) 0 2px,transparent 2px 7px)}
+#fx{position:absolute;inset:0;width:970px;height:250px;pointer-events:none;z-index:6}
+
+/* Tıklanabilir arka plan (çıkış) */
+.hit{position:absolute;inset:0;z-index:1;display:block;outline:none}
+.hit:focus-visible{box-shadow:inset 0 0 0 3px var(--gold)}
+
+/* Üst ışık zinciri */
+.lights{position:absolute;left:0;top:0;width:970px;height:26px;z-index:2;pointer-events:none}
+.lights i{position:absolute;width:6px;height:9px;border-radius:50% 50% 45% 45%;background:var(--gold);
+  box-shadow:0 0 8px 2px rgba(245,196,81,.75);animation:tw 1.6s ease-in-out infinite alternate}
+.lights i:nth-child(3n){background:#fff6d8;box-shadow:0 0 8px 2px rgba(255,246,216,.7);animation-delay:.5s}
+.lights i:nth-child(3n+1){animation-delay:1s}
+@keyframes tw{from{opacity:.35}to{opacity:1}}
+
+/* ---------- ROZET (Yılbaşı demek… Milli Piyango demek!) ---------- */
+.badge{position:absolute;z-index:4;top:12px;left:372px;width:226px;height:226px;pointer-events:none;
+  transform:scale(.2) rotate(-25deg);opacity:0;
+  transition:left .8s cubic-bezier(.7,0,.2,1),transform .8s cubic-bezier(.3,1.5,.5,1),opacity .4s}
+.s-intro .badge{transform:scale(1.08) rotate(-4deg);opacity:1}
+.s-main .badge{left:16px;transform:scale(1) rotate(-4deg);opacity:1}
+.s-main .badge .wob{animation:wob 4s ease-in-out 1s infinite}
+@keyframes wob{0%,100%{transform:rotate(0)}50%{transform:rotate(3deg) scale(1.02)}}
+.wob{position:absolute;inset:0}
+.dia{position:absolute;left:34px;top:34px;width:158px;height:158px;border-radius:34px;transform:rotate(45deg);padding:11px;
+  background:linear-gradient(135deg,#ff6b78 0%,#e01a36 22%,#a90d24 55%,#ff4d5f 75%,#7a0a1c 100%);
+  box-shadow:0 14px 26px rgba(0,0,0,.45),inset 0 2px 3px rgba(255,255,255,.6),inset 0 -4px 8px rgba(0,0,0,.35)}
+.dia::after{content:"";position:absolute;inset:4px;border-radius:30px;border:2px solid rgba(245,196,81,.75)}
+.dia-in{width:100%;height:100%;border-radius:24px;border:3px solid var(--gold);
+  background:radial-gradient(circle at 40% 35%,#fffaf0,#fbecc9 60%,#efd9a8);box-shadow:inset 0 0 12px rgba(150,90,20,.35)}
+.b-txt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding-top:4px}
+.b-s{font:italic 700 11.5px/1 Fraunces,Georgia,serif;color:var(--red);margin-bottom:3px}
+.b-l{font:900 35px/.86 Fraunces,Georgia,serif;color:var(--blue);letter-spacing:-.5px;
+  text-shadow:0 1px 0 #fff,0 3px 0 var(--blue-d),0 5px 6px rgba(12,35,112,.35)}
+.b-d{margin-top:6px;font:800 13px/1 Rubik,sans-serif;color:var(--red);letter-spacing:.3px;position:relative}
+.b-d::after{content:"";position:absolute;left:-4px;right:-4px;bottom:-4px;height:3px;border-radius:3px;background:var(--gold)}
+.flake{position:absolute;width:22px;height:22px;stroke:#fff;stroke-width:2.2;stroke-linecap:round;fill:none;
+  filter:drop-shadow(0 1px 1px rgba(0,0,0,.35))}
+.fw{position:absolute;right:46px;top:46px;width:30px;height:30px;stroke:var(--gold-d);stroke-width:1.6;fill:none;opacity:.9}
+
+/* ---------- ORTA: Ya bize çıkarsa? ---------- */
+.mid{position:absolute;z-index:3;left:262px;top:0;width:382px;height:250px;pointer-events:none;
+  opacity:0;transform:translateY(14px);transition:opacity .5s .35s,transform .6s .35s}
+.s-main .mid{opacity:1;transform:none}
+.pick,.res{position:absolute;inset:0;transition:opacity .4s,transform .45s}
+.res{opacity:0;transform:translateX(24px);visibility:hidden}
+.show-res .pick{opacity:0;transform:translateX(-24px);visibility:hidden}
+.show-res .res{opacity:1;transform:none;visibility:visible}
+.eyebrow{position:absolute;top:32px;left:0;font:500 13px/1 Rubik,sans-serif;color:var(--cream-d);letter-spacing:.2px}
+.eyebrow b{color:var(--gold);font-weight:800}
+.h1{position:absolute;top:50px;left:-2px;font:900 43px/1 Fraunces,Georgia,serif;color:var(--cream);letter-spacing:-.6px;
+  text-shadow:0 3px 0 var(--red-dd),0 6px 14px rgba(0,0,0,.35)}
+.h1 em{font-style:italic;color:var(--gold)}
+.sub{position:absolute;top:104px;left:0;font:400 13.5px/1.2 Rubik,sans-serif;color:#ffe3c2}
+.chips{position:absolute;top:130px;left:0;display:flex;gap:8px}
+.chip{pointer-events:auto;position:relative;width:88px;height:72px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  background:linear-gradient(180deg,rgba(255,244,220,.16),rgba(255,244,220,.06));border:1.5px solid rgba(245,196,81,.55);
+  color:var(--cream);font:700 12px/1.05 Rubik,sans-serif;text-align:center;
+  box-shadow:0 6px 14px rgba(0,0,0,.22);transition:transform .2s,background .2s,color .2s,border-color .2s}
+.chip svg{width:26px;height:26px;stroke:var(--gold);stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:stroke .2s}
+.chip:hover,.chip:focus-visible,.chip.glow{transform:translateY(-4px);background:linear-gradient(180deg,#ffe08a,var(--gold));color:var(--ink);border-color:#fff3c4;outline:none}
+.chip:hover svg,.chip:focus-visible svg,.chip.glow svg{stroke:var(--blue-d)}
+.chip.on{background:linear-gradient(180deg,#ffe08a,var(--gold));color:var(--ink)}
+.chip.on svg{stroke:var(--blue-d)}
+.tap{position:absolute;right:-4px;top:-8px;font:800 9px/1 Rubik;padding:4px 6px;border-radius:9px;background:var(--blue);color:#fff;letter-spacing:.4px;
+  box-shadow:0 3px 8px rgba(0,0,0,.3);opacity:0;transform:scale(.6);transition:.25s}
+.chip.glow .tap{opacity:1;transform:scale(1)}
+
+/* Aile grubu sohbeti */
+.chat{position:absolute;top:24px;left:0;width:330px;border-radius:14px;overflow:hidden;background:#efe7dc;color:#1f2a2a;
+  box-shadow:0 12px 26px rgba(0,0,0,.35);transform:rotate(-1.2deg)}
+.chat-h{display:flex;align-items:center;gap:8px;padding:7px 10px;background:#0f6b5f;color:#fff}
+.av{width:22px;height:22px;border-radius:50%;background:var(--gold);color:var(--red-d);font:800 9px/22px Rubik;text-align:center;font-style:normal}
+.chat-h b{font:700 12px/1 Rubik}
+.chat-h small{font:400 10px/1 Rubik;opacity:.8;margin-left:auto}
+.chat-b{padding:8px 10px 9px;min-height:50px;background:
+  radial-gradient(circle at 20% 30%,rgba(0,0,0,.04) 1px,transparent 1.5px) 0 0/12px 12px,#efe7dc}
+.bub{display:inline-block;max-width:306px;background:#fff;border-radius:2px 10px 10px 10px;padding:5px 9px 6px;box-shadow:0 1px 1px rgba(0,0,0,.12);position:relative}
+.who{display:block;font:700 11px/1.2 Rubik}
+.msg{font:400 12.5px/1.3 Rubik;color:#1f2a2a}
+.bub time{font:400 9px/1 Rubik;color:#7c8b8a;margin-left:8px;white-space:nowrap}
+.bub time i{color:#3ba4e0;font-style:normal;letter-spacing:-2px}
+.typing{display:inline-flex;gap:3px;background:#fff;border-radius:2px 10px 10px 10px;padding:9px 10px}
+.typing i{width:6px;height:6px;border-radius:50%;background:#9aa;animation:dot 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes dot{0%,100%{opacity:.3;transform:none}50%{opacity:1;transform:translateY(-2px)}}
+.h2{position:absolute;top:126px;left:0;font:900 27px/1.05 Fraunces,Georgia,serif;color:var(--cream);letter-spacing:-.3px;
+  text-shadow:0 2px 0 var(--red-dd),0 5px 12px rgba(0,0,0,.3)}
+.h2 span{color:var(--gold)}
+.again{pointer-events:auto;position:absolute;top:190px;left:0;font:600 11.5px/1 Rubik;color:var(--cream-d);
+  padding:6px 10px;border-radius:20px;border:1px solid rgba(255,244,220,.35);transition:.2s}
+.again:hover,.again:focus-visible{background:rgba(255,244,220,.14);color:#fff;outline:none}
+
+/* ---------- SAĞ: Yılbaşı bileti + CTA ---------- */
+.right{position:absolute;z-index:3;left:664px;top:0;width:290px;height:250px;pointer-events:none;
+  opacity:0;transform:translateX(30px);transition:opacity .5s .55s,transform .7s .55s cubic-bezier(.2,1.3,.4,1)}
+.s-main .right{opacity:1;transform:none}
+.tk-wrap{position:absolute;left:4px;top:22px;width:282px;height:114px;filter:drop-shadow(0 10px 16px rgba(0,0,0,.45));
+  transform:rotate(-2.5deg);animation:float 4s ease-in-out infinite}
+@keyframes float{0%,100%{transform:rotate(-2.5deg) translateY(0)}50%{transform:rotate(-1.5deg) translateY(-3px)}}
+.ticket{pointer-events:auto;position:relative;width:100%;height:100%;display:block;text-align:left;color:var(--blue-d);border-radius:10px;
+  background:
+    repeating-radial-gradient(circle at 80% 60%,rgba(27,63,174,.06) 0 2px,transparent 2px 7px),
+    linear-gradient(135deg,#fffaf0,#fbecc9);
+  -webkit-mask:radial-gradient(circle 10px at 0 64%,#0000 96%,#000) left/51% 100% no-repeat,radial-gradient(circle 10px at 100% 64%,#0000 96%,#000) right/51% 100% no-repeat;
+          mask:radial-gradient(circle 10px at 0 64%,#0000 96%,#000) left/51% 100% no-repeat,radial-gradient(circle 10px at 100% 64%,#0000 96%,#000) right/51% 100% no-repeat;
+  transition:transform .2s}
+.ticket:hover,.ticket:focus-visible{transform:scale(1.03);outline:none}
+.t-top{display:flex;justify-content:space-between;align-items:center;height:26px;padding:0 12px;
+  background:linear-gradient(90deg,var(--blue-d),var(--blue));color:var(--gold);font:800 10px/1 Rubik;letter-spacing:.8px}
+.t-top span:last-child{color:#fff;font-weight:700;letter-spacing:.5px}
+.t-mid{display:flex;align-items:center;gap:10px;padding:9px 12px 0}
+.t-lbl{font:700 8.5px/1.25 Rubik;letter-spacing:.8px;color:var(--red);width:36px}
+.digits{display:flex;gap:4px}
+.digits b{width:30px;height:40px;border-radius:6px;display:flex;align-items:center;justify-content:center;
+  background:#fff;border:1.5px solid rgba(27,63,174,.25);box-shadow:inset 0 -3px 0 rgba(27,63,174,.08);
+  font:800 27px/1 Rubik;color:var(--blue);font-variant-numeric:tabular-nums}
+.digits b.set{animation:pop .35s cubic-bezier(.3,1.8,.5,1)}
+@keyframes pop{0%{transform:scale(1.35);color:var(--red)}100%{transform:none}}
+.t-bot{position:absolute;left:0;right:0;bottom:0;height:24px;display:flex;justify-content:space-between;align-items:center;padding:0 14px;
+  border-top:1.5px dashed rgba(27,63,174,.35);font:700 9.5px/1 Rubik;letter-spacing:.5px;color:var(--blue-d)}
+.t-bot em{font-style:normal;color:var(--red);font-weight:800}
+.t-hint{position:absolute;z-index:2;pointer-events:none;right:-6px;top:-9px;font:800 8.5px/1 Rubik;letter-spacing:.5px;color:#fff;background:var(--red);
+  padding:4px 6px;border-radius:8px;transform:rotate(6deg);animation:hint 1.6s ease-in-out infinite}
+@keyframes hint{0%,100%{transform:rotate(6deg) scale(1)}50%{transform:rotate(6deg) scale(1.1)}}
+.tag{position:absolute;left:4px;top:150px;width:282px;text-align:center;font:500 13px/1 Rubik;color:#ffe3c2}
+.tag b{color:var(--gold);font-weight:800}
+.cta{pointer-events:auto;position:absolute;left:12px;top:170px;width:266px;height:44px;border-radius:24px;display:flex;align-items:center;justify-content:center;gap:8px;
+  background:linear-gradient(180deg,#4b74f0,var(--blue) 55%,var(--blue-d));color:#fff;text-decoration:none;
+  font:800 15px/1 Rubik;letter-spacing:.1px;border:2px solid var(--gold);
+  box-shadow:0 6px 0 #071649,0 12px 20px rgba(0,0,0,.4);overflow:hidden;transition:transform .15s,box-shadow .15s}
+.cta svg{width:18px;height:18px;stroke:var(--gold);stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
+.cta:hover,.cta:focus-visible{transform:translateY(-2px);outline:none}
+.cta:hover svg{transform:translateX(4px)}
+.cta:active{transform:translateY(4px);box-shadow:0 2px 0 #071649,0 6px 10px rgba(0,0,0,.4)}
+.cta::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;transform:skewX(-20deg);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);animation:shine 3.2s ease-in-out 2s infinite}
+@keyframes shine{0%{left:-60%}35%,100%{left:130%}}
+.cta.pulse{animation:pulse 1.2s ease-in-out 3}
+@keyframes pulse{0%,100%{transform:none}50%{transform:scale(1.06)}}
+
+/* Yasal ibare */
+.legal{position:absolute;z-index:3;left:262px;bottom:9px;display:flex;align-items:center;gap:7px;pointer-events:none;
+  font:400 9px/1.2 Rubik;color:rgba(255,236,214,.78);opacity:0;transition:opacity .5s .8s}
+.s-main .legal{opacity:1}
+.legal b{flex:none;width:22px;height:22px;border-radius:50%;border:1.5px solid rgba(255,236,214,.8);display:flex;align-items:center;justify-content:center;font:800 8.5px/1 Rubik;color:#fff}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.15s!important}
+}
+</style>
+</head>
+<body>
+<div id="ad" class="s-pre">
+  <a class="hit" id="hit" href="#" aria-label="Milli Piyango yılbaşı biletini online al"></a>
+  <div class="lights" id="lights" aria-hidden="true"></div>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-flake" viewBox="0 0 24 24"><path d="M12 2v20M3.3 7l17.4 10M3.3 17L20.7 7M12 2l-2.5 2.5M12 2l2.5 2.5M12 22l-2.5-2.5M12 22l2.5-2.5"/></symbol>
+  </svg>
+
+  <!-- Rozet -->
+  <div class="badge" id="badge" aria-label="Yılbaşı demek Milli Piyango demek">
+    <div class="wob">
+      <div class="dia"><div class="dia-in"></div></div>
+      <svg class="fw" viewBox="0 0 30 30" aria-hidden="true"><path d="M15 15l0-11M15 15l8-8M15 15l11 0M15 15l8 8M15 15l-4-10M15 15l10-3M15 15l3 10"/></svg>
+      <div class="b-txt">
+        <span class="b-s">Yılbaşı demek...</span>
+        <span class="b-l">Milli</span>
+        <span class="b-l">Piyango</span>
+        <span class="b-d">demek!</span>
+      </div>
+      <svg class="flake" style="left:4px;top:101px"><use href="#i-flake"/></svg>
+      <svg class="flake" style="left:102px;top:2px;width:18px;height:18px"><use href="#i-flake"/></svg>
+      <svg class="flake" style="right:16px;bottom:30px;width:18px;height:18px"><use href="#i-flake"/></svg>
+    </div>
+  </div>
+
+  <!-- Orta panel -->
+  <section class="mid" id="mid">
+    <div class="pick" id="pick">
+      <p class="eyebrow">Yıl olmuş <b>2027</b>, sofrada hâlâ aynı soru:</p>
+      <h1 class="h1">Ya bize <em>çıkarsa?</em></h1>
+      <p class="sub">Hayalini seç, yeni yıl onu sana yaklaştırsın.</p>
+      <div class="chips" role="group" aria-label="Hayalini seç">
+        <button class="chip" data-k="ev"><i class="tap">SEÇ</i>
+          <svg viewBox="0 0 24 24"><path d="M3 11.5L12 4l9 7.5"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg>Yeni bir ev</button>
+        <button class="chip" data-k="araba"><i class="tap">SEÇ</i>
+          <svg viewBox="0 0 24 24"><path d="M5 11l1.6-4.2A2 2 0 0 1 8.5 5.5h7a2 2 0 0 1 1.9 1.3L19 11"/><rect x="3" y="11" width="18" height="6" rx="2"/><circle cx="7.5" cy="17.5" r="1.8"/><circle cx="16.5" cy="17.5" r="1.8"/></svg>Hayalimdeki<br>araba</button>
+        <button class="chip" data-k="tur"><i class="tap">SEÇ</i>
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3.2 3.5 3.2 14.5 0 18M12 3c-3.2 3.5-3.2 14.5 0 18"/></svg>Dünya turu</button>
+        <button class="chip" data-k="borc"><i class="tap">SEÇ</i>
+          <svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/><path d="M9 14l2.2 2.2L16 11.5"/></svg>Borçsuz<br>bir yıl</button>
+      </div>
+    </div>
+
+    <div class="res" id="res" aria-live="polite">
+      <div class="chat">
+        <div class="chat-h"><i class="av">AG</i><b>Aile Grubu</b><small>31 Aralık · 23:58</small></div>
+        <div class="chat-b" id="chatB"></div>
+      </div>
+      <p class="h2" id="h2"></p>
+      <button class="again" id="again">↺ Başka bir hayal seç</button>
+    </div>
+  </section>
+
+  <!-- Sağ panel -->
+  <section class="right">
+    <div class="tk-wrap">
+      <button class="ticket" id="ticket" aria-label="Bilete dokun, yılbaşı bilet numaranı çek">
+        <div class="t-top"><span>MİLLİ PİYANGO</span><span>YILBAŞI ÖZEL ÇEKİLİŞİ</span></div>
+        <div class="t-mid"><div class="t-lbl">BİLET<br>NO</div><div class="digits" id="digits"><b>2</b><b>0</b><b>2</b><b>7</b><b>3</b><b>1</b></div></div>
+        <div class="t-bot"><span id="drawDate">ÇEKİLİŞ: 31 ARALIK</span><em>BÜYÜK İKRAMİYE</em></div>
+      </button>
+      <i class="t-hint" id="tHint">DOKUN, NUMARANI ÇEK!</i>
+    </div>
+    <p class="tag">Yılbaşı geleneğini <b>online’da</b> yaşa.</p>
+    <a class="cta" id="cta" href="#">Hemen yılbaşı biletini al
+      <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </section>
+
+  <p class="legal"><b>18+</b><span>18 yaşından küçükler şans oyunlarına katılamaz. Şans oyunlarını sorumlu oyna.</span></p>
+
+  <canvas id="fx" width="970" height="250" aria-hidden="true"></canvas>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ===== Ayarlar – metinler, çıkış adresi ve dinamik kreatif (DCO) eşlemeleri ===== */
+  var CFG = {
+    exitUrl: 'https://www.millipiyangoonline.com/',
+    utm: 'utm_source=display&utm_medium=masthead&utm_campaign=yilbasi_2027',
+    drawDate: 'ÇEKİLİŞ: 31 ARALIK',
+    introMs: 2600,
+    stopAfterMs: 30000, // Google Ads / DV360: animasyon en fazla 30 sn
+    dreams: {
+      ev:    { who: 'Annem',   color: '#c2185b', msg: 'Bize çıkarsa ben önce bir ev alırım.', line: 'Hayalindeki ev' },
+      araba: { who: 'Abim',    color: '#1565c0', msg: 'Ben o arabayı alır, herkesi gezdiririm.',     line: 'Hayalindeki araba' },
+      tur:   { who: 'Elif',    color: '#6a1b9a', msg: 'Ben direkt dünya turuna çıkıyorum!', line: 'O dünya turu' },
+      borc:  { who: 'Babam',   color: '#2e7d32', msg: 'Önce bütün borçları kapatalım.',        line: 'Borçsuz bir yıl' }
+    },
+    order: ['ev', 'araba', 'tur', 'borc']
+  };
+
+  var ad = document.getElementById('ad');
+  var mid = document.getElementById('mid');
+  var chatB = document.getElementById('chatB');
+  var h2 = document.getElementById('h2');
+  var digitsEl = document.getElementById('digits').children;
+  var chips = [].slice.call(document.querySelectorAll('.chip'));
+  var cta = document.getElementById('cta');
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var t0 = Date.now();
+  var timers = [];
+  var auto = true;
+  var current = null;
+  var typingTimer = null;
+
+  document.getElementById('drawDate').textContent = CFG.drawDate;
+
+  function later(fn, ms) { var id = setTimeout(fn, ms); timers.push(id); return id; }
+  function stopAuto() { auto = false; timers.forEach(clearTimeout); timers = []; chips.forEach(function (c) { c.classList.remove('glow'); }); }
+
+  /* ===== DCO: ?dream=ev|araba|tur|borc veya window.MP_DREAM (ör. araç ilgisi → araba) ===== */
+  var qs = {};
+  location.search.replace(/[?&]([^=&]+)=([^&]*)/g, function (_, k, v) { qs[k] = decodeURIComponent(v); });
+  var dco = (window.MP_DREAM || qs.dream || '').toLowerCase();
+  if (!CFG.dreams[dco]) dco = '';
+
+  /* ===== Çıkış (clickTag / Studio Enabler / UTM'li adres) ===== */
+  function exitUrl(src) {
+    var u = CFG.exitUrl + (CFG.exitUrl.indexOf('?') > -1 ? '&' : '?') + CFG.utm + '&utm_content=' + (current || 'genel') + '_' + src;
+    return u;
+  }
+  function exit(e, src) {
+    if (e) { e.preventDefault(); e.stopPropagation(); }
+    if (window.Enabler && Enabler.exit) { Enabler.exit(src === 'cta' ? 'CTA' : 'Background'); return; }
+    var url = (typeof window.clickTag === 'string' && window.clickTag) || exitUrl(src);
+    window.open(url, '_blank');
+  }
+  document.getElementById('hit').addEventListener('click', function (e) { exit(e, 'bg'); });
+  cta.addEventListener('click', function (e) { exit(e, 'cta'); });
+  ad.addEventListener('keydown', function (e) { if (e.key === 'Enter' && e.target === ad) exit(e, 'bg'); });
+
+  /* ===== Işık zinciri ===== */
+  (function () {
+    var L = document.getElementById('lights'), n = 42;
+    for (var i = 0; i < n; i++) {
+      var x = 8 + i * (954 / (n - 1));
+      var seg = (x % 240) / 240;              // her 240 px'de bir sarkan zincir
+      var y = 2 + Math.sin(seg * Math.PI) * 11;
+      var b = document.createElement('i');
+      b.style.left = x + 'px'; b.style.top = y + 'px';
+      b.style.animationDelay = (Math.random() * 1.6).toFixed(2) + 's';
+      L.appendChild(b);
+    }
+  })();
+
+  /* ===== Bilet numarası çekme ===== */
+  var rolling = false;
+  function roll(cb) {
+    if (rolling) return; rolling = true;
+    var fin = [], n = digitsEl.length, done = 0;
+    for (var i = 0; i < n; i++) fin.push(Math.floor(Math.random() * 10));
+    [].forEach.call(digitsEl, function (b, i) {
+      b.classList.remove('set');
+      var iv = setInterval(function () { b.textContent = Math.floor(Math.random() * 10); }, 55);
+      setTimeout(function () {
+        clearInterval(iv); b.textContent = fin[i]; void b.offsetWidth; b.classList.add('set');
+        if (++done === n) { rolling = false; if (cb) cb(); }
+      }, reduce ? 80 : 420 + i * 170);
+    });
+  }
+  document.getElementById('ticket').addEventListener('click', function (e) {
+    e.stopPropagation(); stopAuto();
+    document.getElementById('tHint').textContent = 'ŞANSIN BOL OLSUN!';
+    roll(function () { burst(810, 80, 70); cta.classList.remove('pulse'); void cta.offsetWidth; cta.classList.add('pulse'); });
+  });
+
+  /* ===== Hayal seçimi → aile grubu mesajı + kişisel başlık ===== */
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function showDream(k, fromUser) {
+    var d = CFG.dreams[k]; if (!d) return;
+    current = k;
+    chips.forEach(function (c) { c.classList.toggle('on', c.dataset.k === k); });
+    mid.classList.add('show-res');
+    h2.innerHTML = '<span>' + esc(d.line) + '</span><br>o kadar da uzak değil.';
+    clearTimeout(typingTimer);
+    chatB.innerHTML = '<span class="typing"><i></i><i></i><i></i></span>';
+    typingTimer = setTimeout(function () {
+      chatB.innerHTML = '<span class="bub"><b class="who" style="color:' + d.color + '">' + esc(d.who) + '</b>' +
+        '<span class="msg">' + esc(d.msg) + '</span><time>23:58 <i>✓✓</i></time></span>';
+    }, reduce ? 0 : 650);
+    roll();
+    if (fromUser) burst(450, 150, 46);
+  }
+  function showPick() { mid.classList.remove('show-res'); chips.forEach(function (c) { c.classList.remove('on'); }); }
+
+  chips.forEach(function (c) {
+    c.addEventListener('click', function (e) { e.stopPropagation(); stopAuto(); showDream(c.dataset.k, true); });
+  });
+  document.getElementById('again').addEventListener('click', function (e) { e.stopPropagation(); stopAuto(); showPick(); });
+  ad.addEventListener('pointerenter', function () { if (auto && Date.now() - t0 > CFG.introMs + 600) stopAuto(); });
+
+  /* ===== Kurgu zaman çizelgesi ===== */
+  function start() {
+    ad.className = 's-intro';
+    burst(485, 125, 90);
+    later(function () {
+      ad.className = 's-main';
+      if (dco) { auto = false; showDream(dco, false); return; }
+      // Seçim ipucu: kartlar sırayla parlar
+      CFG.order.forEach(function (k, i) {
+        later(function () { chips.forEach(function (c) { c.classList.toggle('glow', c.dataset.k === k); }); }, 500 + i * 380);
+      });
+      later(function () { chips.forEach(function (c) { c.classList.remove('glow'); }); }, 500 + CFG.order.length * 380);
+      // Otomatik demo: her hayal 3,6 sn
+      var base = 2400;
+      CFG.order.forEach(function (k, i) { later(function () { if (auto) showDream(k, false); }, base + i * 3600); });
+      later(function () { if (auto) { showPick(); cta.classList.add('pulse'); } }, base + CFG.order.length * 3600);
+    }, CFG.introMs);
+  }
+
+  /* ===== Kar + konfeti (tek canvas) ===== */
+  var cv = document.getElementById('fx'), cx = cv.getContext('2d');
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  cv.width = 970 * dpr; cv.height = 250 * dpr; cx.scale(dpr, dpr);
+  var snow = [], conf = [], COLORS = ['#f5c451', '#fff4dc', '#3f66e0', '#ff6b78', '#ffe08a'];
+  for (var i = 0; i < (reduce ? 0 : 70); i++) snow.push({ x: Math.random() * 970, y: Math.random() * 250, r: .6 + Math.random() * 1.8, s: .25 + Math.random() * .6, w: Math.random() * 6.28 });
+  function burst(x, y, n) {
+    if (reduce) return;
+    for (var i = 0; i < n; i++) {
+      var a = Math.random() * Math.PI * 2, v = 2 + Math.random() * 5;
+      conf.push({ x: x, y: y, vx: Math.cos(a) * v * 1.4, vy: Math.sin(a) * v - 3, r: Math.random() * 6.28, vr: (Math.random() - .5) * .4,
+        w: 4 + Math.random() * 5, h: 2 + Math.random() * 3, c: COLORS[i % COLORS.length], life: 90 + Math.random() * 50 });
+    }
+    if (!raf) raf = requestAnimationFrame(tick);
+  }
+  var raf = 0, snowOn = !reduce;
+  function tick() {
+    raf = 0;
+    cx.clearRect(0, 0, 970, 250);
+    var elapsed = Date.now() - t0;
+    if (snowOn && elapsed > CFG.stopAfterMs) snowOn = false;
+    if (snowOn) {
+      cx.fillStyle = 'rgba(255,255,255,.75)';
+      for (var i = 0; i < snow.length; i++) {
+        var f = snow[i]; f.y += f.s; f.w += .02; f.x += Math.sin(f.w) * .3;
+        if (f.y > 252) { f.y = -4; f.x = Math.random() * 970; }
+        cx.beginPath(); cx.arc(f.x, f.y, f.r, 0, 6.283); cx.fill();
+      }
+    }
+    for (var j = conf.length - 1; j >= 0; j--) {
+      var p = conf[j]; p.vy += .14; p.vx *= .985; p.x += p.vx; p.y += p.vy; p.r += p.vr; p.life--;
+      if (p.life <= 0 || p.y > 270) { conf.splice(j, 1); continue; }
+      cx.save(); cx.translate(p.x, p.y); cx.rotate(p.r); cx.globalAlpha = Math.min(1, p.life / 30);
+      cx.fillStyle = p.c; cx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h * Math.abs(Math.cos(p.r * 2))); cx.restore();
+    }
+    if (snowOn || conf.length) raf = requestAnimationFrame(tick);
+  }
+
+  /* Gömülü iframe'lerde de güvenli başlatma: fontları kısa süre bekle */
+  function go() { t0 = Date.now(); if (!raf) raf = requestAnimationFrame(tick); start(); }
+  if (document.fonts && document.fonts.ready) {
+    var started = false, once = function () { if (!started) { started = true; go(); } };
+    document.fonts.ready.then(once); setTimeout(once, 1200);
+  } else go();
+})();
+</script>
+</body>
+</html>
