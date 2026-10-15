@@ -30,9 +30,9 @@ module.exports = {
         { x: 57, y: 27, label: 'Klasik Gömlek', url: u('klasik-gomlek-c') },
       ],
       products: [
-        { img: 'is1', name: 'Armürlü Beyaz Gömlek', meta: 'Ütü Gerektirmeyen · Slim Fit', url: u('erkek-utu-gerektirmeyen-slim-fit-klasik-yaka-100-pamuk-armurlu-beyaz-gomlek-6-p') },
-        { img: 'is2', name: 'Oxford Gri Gömlek', meta: 'Kolay Ütülenebilir · Slim Fit', url: u('erkek-dugmeli-yaka-kolay-utulenebilir-pamuklu-slim-fit-dar-kesim-oxford-gri-gomlek-p') },
-        { img: 'is3', name: 'Gofre Desen Travel Gömlek', meta: 'Tailored Slim Fit', url: u('erkek-tailored-slim-fit-dar-kesim-dugmeli-yaka-gofre-desenli-travel-lacivert-gomlek-p') },
+        { img: 'is1', name: 'Armürlü Gömlek', meta: 'Non-Iron · Slim Fit', url: u('erkek-utu-gerektirmeyen-slim-fit-klasik-yaka-100-pamuk-armurlu-beyaz-gomlek-6-p') },
+        { img: 'is2', name: 'Oxford Gömlek', meta: 'Kolay Ütü · Slim Fit', url: u('erkek-dugmeli-yaka-kolay-utulenebilir-pamuklu-slim-fit-dar-kesim-oxford-gri-gomlek-p') },
+        { img: 'is3', name: 'Travel Gömlek', meta: 'Tailored Slim Fit', url: u('erkek-tailored-slim-fit-dar-kesim-dugmeli-yaka-gofre-desenli-travel-lacivert-gomlek-p') },
       ],
     },
     {
@@ -44,9 +44,9 @@ module.exports = {
         { x: 30, y: 44, label: 'Smokin', url: u('smokin-c') },
       ],
       products: [
-        { img: 'davet1', name: 'Ata Yaka Beyaz Gömlek', meta: '%100 Pamuk · Slim Fit', url: u('erkek-slim-fit-dar-kesim-100-pamuk-ata-yaka-beyaz-gomlek-7-p') },
-        { img: 'davet2', name: 'Kırışmayan Ata Yaka Gömlek', meta: '%100 Pamuk · Slim Fit', url: u('erkek-slim-fit-dar-kesim-ata-yaka-kolay-kirismayan-100-pamuk-beyaz-gomlek-p') },
-        { img: 'davet3', name: 'Non-Iron Siyah Gömlek', meta: 'Tailored Slim Fit', url: u('erkek-utu-gerektirmeyen-non-iron-tailored-slim-fit-dar-kesim-100-pamuk-siyah-gomlek-p') },
+        { img: 'davet1', name: 'Ata Yaka Gömlek', meta: '%100 Pamuk', url: u('erkek-slim-fit-dar-kesim-100-pamuk-ata-yaka-beyaz-gomlek-7-p') },
+        { img: 'davet2', name: 'Kırışmaz Gömlek', meta: 'Ata Yaka · Slim Fit', url: u('erkek-slim-fit-dar-kesim-ata-yaka-kolay-kirismayan-100-pamuk-beyaz-gomlek-p') },
+        { img: 'davet3', name: 'Siyah Gömlek', meta: 'Non-Iron · Tailored', url: u('erkek-utu-gerektirmeyen-non-iron-tailored-slim-fit-dar-kesim-100-pamuk-siyah-gomlek-p') },
       ],
     },
     {
@@ -54,13 +54,13 @@ module.exports = {
       sub: 'Yeni sezon koleksiyonu', note: '',
       url: u('yeni-sezon-c'),
       hotspots: [
-        { x: 31, y: 70, label: 'Ceket', url: u('ceket-c') },
+        { x: 33, y: 47, label: 'Ceket', url: u('ceket-c') },
         { x: 81, y: 44, label: 'Gömlek Ceket', url: u('gomlek-ceket-c') },
       ],
       products: [
-        { img: 'hs1', name: 'Anti-Pilling Bordo Polar', meta: 'Soğuk Geçirmez · Standart Fit', url: u('erkek-anti-pilling-tuylenme-yapmayan-standart-fit-bato-yaka-soguk-gecirmez-sweatshirt-bordo-polar-p') },
-        { img: 'hs2', name: 'Lacivert Sweatshirt', meta: 'Pamuklu · 2 İplik', url: u('erkek-pamuklu-standart-fit-normal-kesim-2-iplik-bisiklet-yaka-lacivert-sweatshirt-p') },
-        { img: 'hs3', name: 'Jakarlı Triko Tişört', meta: '%100 Pamuk · Standart Fit', url: u('erkek-100-pamuk-standart-fit-bisiklet-yaka-jakarli-triko-gri-tisort-p') },
+        { img: 'hs1', name: 'Bordo Polar', meta: 'Anti-Pilling', url: u('erkek-anti-pilling-tuylenme-yapmayan-standart-fit-bato-yaka-soguk-gecirmez-sweatshirt-bordo-polar-p') },
+        { img: 'hs2', name: 'Sweatshirt', meta: 'Pamuklu · 2 İplik', url: u('erkek-pamuklu-standart-fit-normal-kesim-2-iplik-bisiklet-yaka-lacivert-sweatshirt-p') },
+        { img: 'hs3', name: 'Triko Tişört', meta: 'Jakarlı · %100 Pamuk', url: u('erkek-100-pamuk-standart-fit-bisiklet-yaka-jakarli-triko-gri-tisort-p') },
       ],
     },
   ],

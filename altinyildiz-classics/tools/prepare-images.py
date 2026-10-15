@@ -25,7 +25,7 @@ if os.path.exists(logo):
     im = Image.open(logo).convert('RGBA')
     bbox = im.getchannel('A').getbbox()
     if bbox: im = im.crop(bbox)
-    h = 40  # 2x, bannerda 20px yükseklik
+    h = 64  # bannerda 20px (sol panel) ve 30px (açılış) yükseklik, 2x ekranlar için
     im = im.resize((round(im.width * h / im.height), h), Image.LANCZOS)
     im.save(os.path.join(OUT, 'logo.png'), optimize=True)
 for f in sorted(os.listdir(OUT)):
