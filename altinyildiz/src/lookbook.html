@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=970,height=250">
+<title>Altınyıldız Classics – Pop-up Lookbook 970x250</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500;1,600&family=Urbanist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+/*@CLICKTAGS@*/
+</script>
+<style>
+  :root { --navy: #14213d; --navy-2: #1d2a48; --gold: #c9a35a; --gold-l: #e7cf98; --gold-d: #8a6a32; --paper: #f5f0e7; --ink: #1d2a48; --mute: #7a7466;
+    --bounce: cubic-bezier(.34,1.56,.64,1); --flip: cubic-bezier(.45,.05,.25,1); }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 970px; height: 250px; overflow: hidden; background: #0d1629; }
+  #ad { position: relative; width: 970px; height: 250px; overflow: hidden; font-family: "Urbanist", "Helvetica Neue", Arial, sans-serif; color: var(--ink); user-select: none; -webkit-user-select: none;
+    background: radial-gradient(ellipse 70% 120% at 50% 40%, #24345a 0%, #16223e 55%, #0b1324 100%); }
+  /* tvid / yün dokusu */
+  #ad:before { content: ""; position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(45deg, rgba(255,255,255,.022) 0 2px, transparent 2px 7px), repeating-linear-gradient(-45deg, rgba(0,0,0,.08) 0 2px, transparent 2px 7px); }
+  #glow { position: absolute; left: 185px; top: -120px; width: 600px; height: 400px; border-radius: 50%; background: radial-gradient(ellipse, rgba(231,207,152,.22), rgba(231,207,152,0) 65%); pointer-events: none; }
+  img { display: block; -webkit-user-drag: none; }
+
+  /* ---------- kitap ---------- */
+  #bookWrap { position: absolute; inset: 0; transform: translateY(260px); transition: transform 1s var(--bounce); }
+  #bookWrap.in { transform: translateY(0); }
+  #bookShadow { position: absolute; left: 470px; top: 18px; width: 30px; height: 218px; box-shadow: 0 18px 50px 18px rgba(0,0,0,.5); border-radius: 50%; opacity: 0; transition: opacity 1s; }
+  #bookWrap.open #bookShadow { opacity: 1; }
+  #book { position: absolute; left: 0; top: 12px; width: 970px; height: 226px; perspective: 1800px; }
+  .base { position: absolute; left: 485px; top: 0; width: 485px; height: 226px; background: #e8e0d2; border-radius: 0 8px 8px 0; box-shadow: 0 12px 30px rgba(0,0,0,.4); }
+  .sheet { position: absolute; left: 485px; top: 0; width: 485px; height: 226px; transform-origin: 0 50%; transform-style: preserve-3d; transition: transform 1.15s var(--flip); cursor: pointer; }
+  .sheet.flipped { transform: rotateY(-180deg); }
+  .face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; overflow: hidden; background: var(--paper); }
+  .face:before { content: ""; position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(0deg, rgba(120,100,70,.035) 0 1px, transparent 1px 3px), repeating-linear-gradient(90deg, rgba(120,100,70,.03) 0 1px, transparent 1px 4px); }
+  .face.back { transform: rotateY(180deg); }
+  .face.right { border-radius: 0 8px 8px 0; box-shadow: inset 14px 0 24px -14px rgba(20,33,61,.35); }
+  .face.left { border-radius: 8px 0 0 8px; box-shadow: inset -14px 0 24px -14px rgba(20,33,61,.35); }
+  .sheen { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,0), rgba(0,0,0,.2)); opacity: 0; transition: opacity .6s; pointer-events: none; }
+  .sheet.turning .sheen { opacity: 1; }
+
+  /* kapak: lacivert kumaş cilt + altın varak */
+  .cover { background: var(--navy-2); box-shadow: inset 0 0 0 10px #1a2541, inset 0 0 0 11px rgba(231,207,152,.55), inset 0 0 0 14px #1a2541, inset 0 0 0 15px rgba(231,207,152,.25); }
+  .cover:before { background: repeating-linear-gradient(45deg, rgba(255,255,255,.035) 0 2px, transparent 2px 6px), repeating-linear-gradient(-45deg, rgba(0,0,0,.12) 0 2px, transparent 2px 6px); }
+  .cover .spine { position: absolute; left: 0; top: 0; bottom: 0; width: 24px; background: linear-gradient(90deg, #0c1427, #152039 60%, #1a2541); }
+  .cover .lg { position: absolute; left: 0; right: 0; top: 40px; display: flex; justify-content: center; }
+  .cover .lg .ay-logo { width: 220px; }
+  .cover .gold { background: linear-gradient(180deg, #f6e2a8, #c9a35a 55%, #9c7a3c); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .cover .t1 { position: absolute; left: 0; right: 0; top: 96px; text-align: center; font: 500 9.5px/1 "Urbanist", sans-serif; letter-spacing: .42em; color: var(--gold-l); }
+  .cover .t2 { position: absolute; left: 0; right: 0; top: 112px; text-align: center; font: 600 italic 36px/1 "Cormorant Garamond", serif; }
+  .cover .st { position: absolute; left: 50%; top: 158px; width: 22px; margin-left: -11px; }
+  .cover .hintOpen { position: absolute; left: 0; right: 0; bottom: 20px; text-align: center; font: 500 8.5px/1 "Urbanist", sans-serif; letter-spacing: .32em; color: rgba(231,207,152,.8); animation: blink 1.6s ease-in-out infinite; }
+  @keyframes blink { 50% { opacity: .35 } }
+
+  /* sol sayfa */
+  .lp { position: absolute; inset: 0; padding: 24px 30px 0 38px; }
+  .lp .k { font: 500 8.5px/1 "Urbanist", sans-serif; letter-spacing: .34em; color: var(--gold-d); }
+  .lp .k i { display: inline-block; width: 22px; height: 1px; background: var(--gold-d); vertical-align: middle; margin-right: 8px; }
+  .lp .ttl { margin-top: 10px; font: 600 italic 40px/.9 "Cormorant Garamond", serif; color: var(--c); }
+  .lp .cat { margin-top: 8px; font: 600 13px/1.1 "Urbanist", sans-serif; color: var(--ink); letter-spacing: .02em; }
+  .lp .nm { margin-top: 4px; width: 250px; font: 400 10.5px/1.25 "Urbanist", sans-serif; color: var(--mute); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .lp .pr { margin-top: 8px; white-space: nowrap; }
+  .lp .pr b { font: 700 28px/1 "Urbanist", sans-serif; letter-spacing: -1px; color: var(--navy); }
+  .lp .pr span { font: 400 11px/1 "Urbanist", sans-serif; color: var(--mute); margin-left: 4px; }
+  .lp .pr s { font: 400 11px/1 "Urbanist", sans-serif; color: #a39c8d; margin-left: 6px; }
+  .lp .cta { position: absolute; left: 38px; bottom: 22px; height: 32px; padding: 0 16px; display: inline-flex; align-items: center; gap: 7px; border-radius: 999px; background: var(--navy); color: var(--gold-l); font: 600 11.5px/1 "Urbanist", sans-serif; letter-spacing: .05em; box-shadow: 0 3px 0 #0a1222, 0 6px 12px rgba(20,33,61,.3); cursor: pointer; transition: transform .12s, box-shadow .12s; white-space: nowrap; }
+  .lp .cta:hover { transform: translateY(-2px); box-shadow: 0 5px 0 #0a1222, 0 8px 14px rgba(20,33,61,.35); }
+  .lp .cta:active { transform: translateY(2px); box-shadow: 0 1px 0 #0a1222; }
+  .lp .pg { position: absolute; right: 30px; top: 24px; font: 400 9px/1 "Urbanist", sans-serif; letter-spacing: .2em; color: var(--mute); }
+  .lp .thumbs { position: absolute; right: 30px; bottom: 20px; display: flex; gap: 6px; }
+  .lp .thumbs img { width: 40px; height: 54px; object-fit: cover; object-position: 50% 15%; border-radius: 3px; box-shadow: 0 0 0 2px #fff, 0 4px 8px rgba(20,33,61,.25); cursor: pointer; transition: transform .2s var(--bounce); }
+  .lp .thumbs img:hover { transform: translateY(-4px) rotate(-3deg); }
+
+  /* sağ sayfa: pop-up sahne */
+  .rp { position: absolute; inset: 0; perspective: 900px; }
+  .pop { position: absolute; transform-origin: 50% 100%; transform: rotateX(-88deg); opacity: 0; transition: transform .9s var(--bounce), opacity .3s; }
+  .on .pop { transform: rotateX(0); opacity: 1; }
+  .rp .ground { position: absolute; left: 30px; right: 30px; bottom: 26px; height: 1px; background: rgba(20,33,61,.18); }
+  .rp .ground:after { content: ""; position: absolute; left: 0; right: 0; top: 1px; height: 14px; background: linear-gradient(180deg, rgba(20,33,61,.07), transparent); }
+  .rp .photo { left: 262px; bottom: 26px; padding: 5px 5px 16px; background: #fff; border-radius: 2px; box-shadow: 0 10px 18px -6px rgba(20,33,61,.45); }
+  .rp .photo img { width: 116px; height: 158px; object-fit: cover; object-position: 50% 15%; }
+  .rp .photo:after { content: ""; position: absolute; left: 50%; top: -7px; width: 40px; height: 14px; margin-left: -20px; background: rgba(231,207,152,.75); transform: rotate(-4deg); box-shadow: 0 1px 2px rgba(0,0,0,.15); }
+  .rp .photo .cap { position: absolute; left: 0; right: 0; bottom: 4px; text-align: center; font: 500 7.5px/1 "Urbanist", sans-serif; letter-spacing: .2em; color: var(--mute); }
+  /* kumaş kartelası harfleri */
+  .rp .tile { width: 32px; height: 36px; border-radius: 3px; background: var(--c); box-shadow: inset 0 0 0 2px rgba(255,255,255,.08), 0 3px 0 rgba(0,0,0,.25), 0 6px 10px -4px rgba(0,0,0,.35); overflow: hidden; }
+  .rp .tile:before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, rgba(255,255,255,.08) 0 2px, transparent 2px 5px), repeating-linear-gradient(-45deg, rgba(0,0,0,.12) 0 2px, transparent 2px 5px); }
+  .rp .tile:after { content: ""; position: absolute; inset: 3px; border: 1px dashed rgba(231,207,152,.65); border-radius: 2px; }
+  .rp .tile b { position: absolute; inset: 0; display: grid; place-items: center; font: 700 18px/1 "Cormorant Garamond", serif; color: var(--gold-l); text-shadow: 0 1px 0 rgba(0,0,0,.35); z-index: 1; }
+  .rp .tile:nth-child(odd) { --tilt: -3deg; }
+  /* askı etiketi */
+  .rp .tag { left: 54px; bottom: 112px; width: 112px; padding: 10px 10px 9px 14px; border-radius: 4px; background: var(--navy); color: #fff; box-shadow: 0 8px 18px -6px rgba(20,33,61,.5); transform-origin: 50% 100%; }
+  .rp .tag:before { content: ""; position: absolute; left: 5px; top: 50%; width: 5px; height: 5px; margin-top: -2.5px; border-radius: 50%; background: var(--paper); }
+  .rp .tag .n { font: 500 8px/1.1 "Urbanist", sans-serif; letter-spacing: .14em; color: var(--gold-l); }
+  .rp .tag .p { margin-top: 4px; font: 700 18px/1 "Urbanist", sans-serif; letter-spacing: -.5px; white-space: nowrap; }
+  .rp .tag .p small { font-size: 10px; font-weight: 500; margin-left: 2px; }
+  .rp .star { position: absolute; }
+  .rp .next { position: absolute; right: 22px; bottom: 8px; display: flex; align-items: center; gap: 6px; font: 600 8.5px/1 "Urbanist", sans-serif; letter-spacing: .22em; color: var(--mute); }
+  .rp .next svg { width: 13px; height: 13px; animation: nudge 1.4s ease-in-out infinite; }
+  @keyframes nudge { 50% { transform: translateX(4px) } }
+  .rp .curl { position: absolute; right: 0; bottom: 0; width: 34px; height: 34px; background: linear-gradient(225deg, #0b1324 0 48%, #d9cfbe 50%, #f5f0e7 70%); border-radius: 0 0 8px 0; box-shadow: -3px -3px 8px rgba(0,0,0,.15); }
+  .rp .final { position: absolute; left: 0; right: 0; top: 50px; text-align: center; }
+
+  /* ---------- HUD ---------- */
+  #dots { position: absolute; left: 0; right: 0; bottom: 2px; text-align: center; opacity: 0; transition: opacity .6s; }
+  #dots span { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.3); margin: 0 3px; transition: background .3s, transform .3s; }
+  #dots span.on { background: var(--gold-l); transform: scale(1.3); }
+  #bookWrap.open ~ #dots { opacity: 1; }
+  .nav { position: absolute; top: 105px; width: 26px; height: 26px; border-radius: 50%; background: rgba(245,240,231,.92); color: var(--navy); display: grid; place-items: center; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,.35); opacity: 0; transition: opacity .5s, transform .15s; z-index: 30; }
+  .nav svg { width: 12px; height: 12px; }
+  .nav:hover { transform: scale(1.1); }
+  #prev { left: 6px; } #next { right: 6px; }
+  #bookWrap.open ~ .nav { opacity: 1; }
+  /* kapalıyken sol taraf: marka mesajı */
+  #intro { position: absolute; left: 0; top: 0; width: 485px; height: 250px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: #fff; transition: opacity .6s; pointer-events: none; }
+  #intro .a { font: 500 9.5px/1 "Urbanist", sans-serif; letter-spacing: .4em; color: var(--gold-l); }
+  #intro .b { margin-top: 10px; font: 600 italic 34px/1 "Cormorant Garamond", serif; }
+  #intro .c { margin-top: 10px; font: 300 12px/1.4 "Urbanist", sans-serif; color: rgba(255,255,255,.75); }
+  #intro .c b { font-weight: 600; color: var(--gold-l); }
+  #bookWrap.open ~ #intro { opacity: 0; }
+  #legal { position: absolute; left: 0; right: 0; bottom: 3px; text-align: right; padding-right: 12px; font: 400 6.5px/1.2 "Urbanist", sans-serif; color: rgba(255,255,255,.4); pointer-events: none; }
+  #fx { position: absolute; left: 0; top: 0; pointer-events: none; z-index: 40; }
+</style>
+</head>
+<body>
+<div id="ad" role="region" aria-label="Altınyıldız Classics Sonbahar/Kış 2026 lookbook">
+  <div id="glow"></div>
+  <div id="bookWrap">
+    <div id="bookShadow"></div>
+    <div id="book"></div>
+  </div>
+  <div id="intro"><div class="a">ALTINYILDIZ CLASSICS</div><div class="b">Kışın yeni renkleri</div><div class="c">Sonbahar / Kış 2026 lookbook'u<br><b>sayfa sayfa</b> keşfet →</div></div>
+  <div id="dots"></div>
+  <div id="prev" class="nav" role="button" aria-label="Önceki sayfa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></div>
+  <div id="next" class="nav" role="button" aria-label="Sonraki sayfa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></div>
+  <canvas id="fx" width="970" height="250"></canvas>
+  <div id="legal">/*@LEGAL@*/</div>
+</div>
+
+<script>/*@SHARED@*/</script>
+<script>
+var DATA = /*@DATA@*/{};
+(function () {
+  "use strict";
+  var $ = function (id) { return document.getElementById(id); };
+  var SPREADS = DATA.cats.map(function (c, i) { return { c: c, n: i, sel: 0 }; });
+  var ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+  var burst = AY.fx($("fx"));
+  var TOTAL = SPREADS.length;
+
+  function leftPage(s) {
+    var c = s.c, it = c.items[0];
+    return '<div class="lp" style="--c:' + c.tone + '" data-sp="' + s.n + '"><div class="k"><i></i>KIŞIN YENİ RENKLERİ</div>' +
+      '<div class="ttl">' + c.tonename + '</div><div class="cat">' + c.label + '</div><div class="nm" data-nm>' + it.name + '</div>' +
+      '<div class="pr"><b data-pr>' + AY.tl(it.price) + ' TL</b>' + (it.oldPrice ? '<s data-old>' + AY.tl(it.oldPrice) + ' TL</s>' : '<s data-old></s>') + '</div>' +
+      '<div class="thumbs">' + c.items.map(function (x, k) { return '<img src="' + x.img + '" alt="' + x.name.replace(/"/g, "") + '" data-pick="' + k + '">'; }).join("") + '</div>' +
+      '<div class="cta" data-go="' + s.n + '">Koleksiyona Git <b>→</b></div><div class="pg">' + (s.n + 1) + ' / ' + TOTAL + '</div></div>';
+  }
+  function rightPage(s) {
+    var c = s.c, it = c.items[0], word = c.word.split("");
+    var tiles = word.map(function (ch, i) {
+      return '<div class="pop tile" style="left:' + (30 + i * 36) + 'px;bottom:26px;transition-delay:' + (.25 + i * .07) + 's"><b>' + ch + '</b></div>';
+    }).join("");
+    return '<div class="rp" style="--c:' + c.tone + '"><div class="ground"></div>' +
+      '<div class="pop star" style="left:40px;top:26px;width:18px;height:18px;transition-delay:.8s">' + AY.star("#c9a35a") + '</div>' +
+      '<div class="pop star" style="left:250px;top:40px;width:12px;height:12px;transition-delay:.9s">' + AY.star(c.tone) + '</div>' +
+      '<div class="pop star" style="left:448px;top:30px;width:14px;height:14px;transition-delay:1s">' + AY.star("#e7cf98") + '</div>' +
+      '<div class="pop photo" style="transition-delay:.1s"><img data-ph src="' + it.img + '" alt="' + it.name.replace(/"/g, "") + '"><div class="cap">' + c.chip.toUpperCase() + '</div></div>' +
+      tiles +
+      '<div class="pop tag" style="transition-delay:.5s"><div class="n">YENİ SEZON</div><div class="p"><span data-tp>' + AY.tl(it.price) + '</span><small>TL</small></div></div>' +
+      (s.n < TOTAL - 1 ? '<div class="next">SAYFAYI ÇEVİR ' + ARROW + '</div><div class="curl"></div>' : '<div class="next" style="letter-spacing:.16em">ALTINYILDIZ CLASSICS ✦</div>') +
+      '</div>';
+  }
+
+  /* ---------- kitabı kur ---------- */
+  var book = $("book"), sheets = [];
+  book.innerHTML = '<div class="base"></div>';
+  var cover = document.createElement("div"); cover.className = "sheet";
+  cover.innerHTML = '<div class="face right cover"><div class="spine"></div><div class="lg">' + AY.logo("#e7cf98") + '</div>' +
+    '<div class="t1">SONBAHAR / KIŞ 2026</div><div class="t2 gold">Lookbook</div><div class="st">' + AY.star("#c9a35a") + '</div><div class="hintOpen">AÇMAK İÇİN DOKUN</div><div class="sheen"></div></div>' +
+    '<div class="face back left">' + leftPage(SPREADS[0]) + '<div class="sheen"></div></div>';
+  book.appendChild(cover); sheets.push(cover);
+  for (var n = 0; n < TOTAL; n++) {
+    var sh = document.createElement("div"); sh.className = "sheet";
+    sh.innerHTML = '<div class="face right">' + rightPage(SPREADS[n]) + '<div class="sheen"></div></div>' +
+      (n < TOTAL - 1 ? '<div class="face back left">' + leftPage(SPREADS[n + 1]) + '<div class="sheen"></div></div>' : '<div class="face back left"></div>');
+    book.appendChild(sh); sheets.push(sh);
+  }
+  var dots = $("dots"); SPREADS.forEach(function () { dots.appendChild(document.createElement("span")); });
+
+  /* ---------- sayfa çevirme ---------- */
+  var flipped = 0;
+  function zsort() { var N = sheets.length; sheets.forEach(function (s, i) { s.style.zIndex = i < flipped ? i + 1 : N - i + 1; }); }
+  zsort();
+  function activate() {
+    sheets.forEach(function (s, i) { s.classList.toggle("on", i === flipped && flipped > 0); });
+    Array.prototype.forEach.call(dots.children, function (d, i) { d.classList.toggle("on", i === flipped - 1); });
+  }
+  var busy = false;
+  function flip(dir) {
+    if (busy) return;
+    var target = flipped + dir;
+    if (target < 1 || target > TOTAL) return;
+    busy = true;
+    var s = dir > 0 ? sheets[flipped] : sheets[flipped - 1];
+    s.style.zIndex = 50; s.classList.add("turning");
+    sheets.forEach(function (x) { x.classList.remove("on"); });
+    if (dir > 0) s.classList.add("flipped"); else s.classList.remove("flipped");
+    flipped = target;
+    if (flipped === 1) $("bookWrap").classList.add("open");
+    setTimeout(function () { s.classList.remove("turning"); zsort(); activate(); busy = false; if (dir > 0) burst(485 + 360, 110, 16); }, 1150);
+  }
+
+  /* Küçük resme tıklayınca: o spread'in fotoğrafı, adı ve fiyatı değişir */
+  function pick(sp, k) {
+    var c = SPREADS[sp].c, it = c.items[k]; SPREADS[sp].sel = k;
+    book.querySelectorAll('.lp[data-sp="' + sp + '"]').forEach(function (lp) {
+      lp.querySelector("[data-nm]").textContent = it.name;
+      lp.querySelector("[data-pr]").textContent = AY.tl(it.price) + " TL";
+      lp.querySelector("[data-old]").textContent = it.oldPrice ? AY.tl(it.oldPrice) + " TL" : "";
+    });
+    var rp = sheets[sp + 1].querySelector(".rp");
+    var ph = rp.querySelector(".photo");
+    ph.style.transition = "none"; ph.style.transform = "rotateX(-70deg)"; void ph.offsetWidth;
+    ph.style.transition = ""; ph.style.transform = "";
+    rp.querySelector("[data-ph]").src = it.img;
+    rp.querySelector("[data-tp]").textContent = AY.tl(it.price);
+    burst(485 + 360, 100, 8);
+  }
+
+  book.addEventListener("click", function (e) {
+    var t = e.target;
+    var go = t.closest ? t.closest("[data-go]") : null;
+    touched();
+    if (go) { e.stopPropagation(); AY.exit(+go.dataset.go + 1); return; }
+    if (t.dataset && t.dataset.pick !== undefined) { var lp = t.closest(".lp"); pick(+lp.dataset.sp, +t.dataset.pick); return; }
+    if (t.closest && t.closest(".photo") && flipped > 0) { AY.exit(flipped); return; }
+    var r = book.getBoundingClientRect();
+    if (e.clientX - r.left >= 485) flip(1); else flip(-1);
+  });
+  $("next").addEventListener("click", function (e) { e.stopPropagation(); touched(); flip(1); });
+  $("prev").addEventListener("click", function (e) { e.stopPropagation(); touched(); flip(-1); });
+  document.addEventListener("keydown", function (e) { if (e.key === "ArrowRight") { touched(); flip(1); } else if (e.key === "ArrowLeft") { touched(); flip(-1); } });
+  // Sürükleyerek sayfa çevirme (mobil)
+  var sx = null;
+  book.addEventListener("touchstart", function (e) { sx = e.touches[0].clientX; }, { passive: true });
+  book.addEventListener("touchend", function (e) { if (sx === null) return; var dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 40) { touched(); flip(dx < 0 ? 1 : -1); } sx = null; });
+
+  /* ---------- açılış + otomatik sayfalama (≤30 sn) ---------- */
+  var idle = true, autoT = null, t0 = Date.now();
+  function touched() { idle = false; AY.wake(); clearTimeout(autoT); autoT = setTimeout(function () { idle = true; auto(); }, 9000); }
+  function auto() {
+    if (!idle || Date.now() - t0 > 27000) return;
+    if (flipped < TOTAL) { flip(1); autoT = setTimeout(auto, 4400); }
+  }
+  AY.ready(function () {
+    setTimeout(function () { $("bookWrap").classList.add("in"); }, 200);
+    setTimeout(function () { if (idle) { flip(1); autoT = setTimeout(auto, 4400); } }, 2200);
+  });
+})();
+</script>
+</body>
+</html>

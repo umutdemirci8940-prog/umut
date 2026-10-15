@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=970,height=250">
+<title>Altınyıldız Classics – Yıldız Vinci 970x250</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500;1,600&family=Urbanist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+/*@CLICKTAGS@*/
+</script>
+<style>
+  :root { --navy: #14213d; --navy-2: #1d2a48; --gold: #c9a35a; --gold-l: #e7cf98; --gold-d: #8a6a32; --bordo: #6e2233; --bordo-d: #4a1522; --cream: #f5f0e7;
+    --bounce: cubic-bezier(.34,1.56,.64,1); }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 970px; height: 250px; overflow: hidden; background: var(--navy); }
+  #ad { position: relative; width: 970px; height: 250px; overflow: hidden; cursor: pointer; font-family: "Urbanist", "Helvetica Neue", Arial, sans-serif; color: #fff; user-select: none; -webkit-user-select: none;
+    background: radial-gradient(ellipse 60% 140% at 47% 50%, #27396a 0%, #172442 50%, #0d1529 100%); }
+  #ad:before { content: ""; position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(45deg, rgba(255,255,255,.02) 0 2px, transparent 2px 7px), repeating-linear-gradient(-45deg, rgba(0,0,0,.08) 0 2px, transparent 2px 7px); }
+  img { display: block; -webkit-user-drag: none; }
+  button { font: inherit; border: 0; background: none; color: inherit; cursor: pointer; }
+
+  /* ---------- sol: marka + mesaj ---------- */
+  #left { position: absolute; left: 26px; top: 22px; width: 220px; }
+  #left .ay-logo { width: 196px; }
+  #h1 { margin-top: 22px; font: 600 31px/.98 "Cormorant Garamond", Georgia, serif; }
+  #h1 em { font-style: italic; font-weight: 600; background: linear-gradient(180deg, #f6e2a8, #c9a35a 60%, #a07c3a); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  #sub { margin-top: 10px; font: 300 11.5px/1.4 "Urbanist", sans-serif; color: rgba(255,255,255,.78); }
+  #sub b { font-weight: 600; color: var(--gold-l); }
+  #keys { margin-top: 12px; display: flex; gap: 6px; align-items: center; font: 500 8.5px/1 "Urbanist", sans-serif; letter-spacing: .18em; color: rgba(231,207,152,.8); }
+  #keys kbd { display: inline-grid; place-items: center; min-width: 18px; height: 18px; padding: 0 4px; border: 1px solid rgba(231,207,152,.5); border-radius: 4px; font: 600 9px/1 "Urbanist", sans-serif; letter-spacing: 0; color: var(--gold-l); }
+  #left > * { opacity: 0; transform: translateX(-12px); transition: opacity .6s, transform .7s var(--bounce); }
+  .in #left > * { opacity: 1; transform: none; }
+  .in #left > :nth-child(2) { transition-delay: .15s; } .in #left > :nth-child(3) { transition-delay: .3s; } .in #left > :nth-child(4) { transition-delay: .45s; }
+
+  /* ---------- orta: vinç makinesi ---------- */
+  #m { position: absolute; left: 262px; top: 0; width: 400px; height: 250px; cursor: default; transform: translateY(260px); transition: transform .9s var(--bounce) .1s; }
+  .in #m { transform: none; }
+  #cab { position: absolute; left: 0; top: 0; width: 400px; height: 250px; border-radius: 14px 14px 0 0; background: linear-gradient(180deg, #7d2738, var(--bordo) 40%, var(--bordo-d)); box-shadow: inset 0 0 0 2px rgba(231,207,152,.55), inset 0 0 0 5px var(--bordo-d), 0 0 40px rgba(0,0,0,.45); }
+  #marq { position: absolute; left: 10px; right: 10px; top: 4px; height: 24px; border-radius: 10px 10px 4px 4px; background: linear-gradient(180deg, #1d2a48, #101a33); display: flex; align-items: center; justify-content: center; font: 700 11px/1 "Urbanist", sans-serif; letter-spacing: .38em; color: var(--gold-l); text-shadow: 0 0 8px rgba(231,207,152,.6); }
+  #bulbs { position: absolute; left: 14px; right: 14px; top: 0; height: 4px; display: flex; justify-content: space-between; }
+  #bulbs i { width: 4px; height: 4px; border-radius: 50%; background: #ffe7a0; box-shadow: 0 0 6px #ffd76a; animation: bulb 1s steps(1) infinite; }
+  #bulbs i:nth-child(even) { animation-delay: .5s; }
+  @keyframes bulb { 50% { opacity: .25; box-shadow: none; } }
+  #glass { position: absolute; left: 12px; top: 30px; width: 376px; height: 172px; overflow: hidden; border-radius: 4px; cursor: crosshair;
+    background: linear-gradient(180deg, #2a3c66 0%, #1b2847 70%, #142039 100%); box-shadow: inset 0 0 0 2px rgba(231,207,152,.45), inset 0 10px 30px rgba(0,0,0,.35); }
+  #glass:after { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 9; background: linear-gradient(115deg, rgba(255,255,255,.14) 0 8%, transparent 8% 30%, rgba(255,255,255,.06) 30% 34%, transparent 34%); }
+  #rail { position: absolute; left: 8px; right: 8px; top: 6px; height: 4px; border-radius: 2px; background: linear-gradient(180deg, #f0d99c, #9c7a3c); z-index: 6; }
+  #floor { position: absolute; left: 0; right: 0; bottom: 0; height: 6px; background: linear-gradient(180deg, #0e1730, #0a1124); }
+  #wall { position: absolute; left: 314px; top: 122px; width: 5px; height: 50px; background: linear-gradient(90deg, #e7cf98, #9c7a3c); border-radius: 2px 2px 0 0; z-index: 4; }
+  #chute { position: absolute; left: 319px; top: 122px; width: 57px; height: 50px; background: linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.55)); z-index: 1; }
+  #chute span { position: absolute; left: 0; right: 0; bottom: 8px; text-align: center; font: 700 7.5px/1 "Urbanist", sans-serif; letter-spacing: .24em; color: var(--gold-l); opacity: .8; }
+  #chute:before { content: ""; position: absolute; left: 50%; top: 14px; width: 0; height: 0; margin-left: -6px; border: 6px solid transparent; border-top-color: rgba(231,207,152,.7); animation: dn 1.2s ease-in-out infinite; }
+  @keyframes dn { 50% { transform: translateY(5px); } }
+
+  /* pençe */
+  #claw { position: absolute; left: 0; top: 0; width: 0; z-index: 7; pointer-events: none; }
+  #carr { position: absolute; left: -16px; top: 3px; width: 32px; height: 10px; border-radius: 3px; background: linear-gradient(180deg, #f0d99c, #a07c3a); box-shadow: 0 2px 3px rgba(0,0,0,.35); }
+  #cable { position: absolute; left: -1px; top: 12px; width: 2px; background: linear-gradient(90deg, #c9c3b4, #6d6a62); }
+  #head { position: absolute; left: -23px; width: 46px; height: 44px; overflow: visible; }
+
+  /* kapsüller */
+  .cap { position: absolute; width: 38px; height: 38px; margin: -19px 0 0 -19px; border-radius: 50%; z-index: 3; will-change: transform; }
+  .cap .in { position: absolute; inset: 0; border-radius: 50%; overflow: hidden; background: #f3eee6; box-shadow: 0 3px 6px rgba(0,0,0,.4); }
+  .cap .in img { position: absolute; left: 2px; top: 2px; width: 34px; height: 34px; border-radius: 50%; object-fit: cover; object-position: 50% 8%; }
+  .cap .dome { position: absolute; left: 0; right: 0; top: 0; height: 15px; background: var(--c); border-bottom: 2px solid rgba(255,255,255,.55); }
+  .cap .dome:before { content: ""; position: absolute; left: 7px; top: 4px; width: 9px; height: 4px; border-radius: 50%; background: rgba(255,255,255,.55); transform: rotate(-25deg); }
+  .cap .dome i { position: absolute; left: 50%; top: 2px; width: 9px; height: 9px; margin-left: -4.5px; }
+  .cap .shine { position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle at 30% 70%, rgba(255,255,255,.35), transparent 40%); box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.4), inset -3px -4px 6px rgba(0,0,0,.25); }
+  #glass .cap { cursor: pointer; }
+
+  #msg { position: absolute; left: 0; right: 62px; top: 84px; text-align: center; font: 600 12px/1 "Urbanist", sans-serif; color: var(--gold-l); text-shadow: 0 2px 6px rgba(0,0,0,.6); opacity: 0; transform: scale(.8); transition: opacity .25s, transform .3s var(--bounce); z-index: 8; pointer-events: none; }
+  #msg.show { opacity: 1; transform: none; }
+
+  /* kontrol paneli */
+  #deck { position: absolute; left: 12px; right: 12px; top: 206px; height: 40px; display: flex; align-items: center; gap: 8px; padding: 0 8px; border-radius: 6px; background: linear-gradient(180deg, #101a33, #0b1326); box-shadow: inset 0 0 0 1px rgba(231,207,152,.3); }
+  .arr { width: 30px; height: 26px; border-radius: 6px; display: grid; place-items: center; background: linear-gradient(180deg, #2d3f6b, #1b2847); box-shadow: 0 3px 0 #0a1124, inset 0 0 0 1px rgba(231,207,152,.35); color: var(--gold-l); transition: transform .08s, box-shadow .08s; }
+  .arr svg { width: 12px; height: 12px; }
+  .arr:active, .arr.dn { transform: translateY(2px); box-shadow: 0 1px 0 #0a1124, inset 0 0 0 1px rgba(231,207,152,.6); }
+  #stick { position: relative; width: 34px; height: 26px; margin: 0 4px; }
+  #stick:before { content: ""; position: absolute; left: 7px; bottom: 0; width: 20px; height: 7px; border-radius: 50%; background: #070d1c; }
+  #stick b { position: absolute; left: 15px; bottom: 3px; width: 4px; height: 18px; background: #9a9890; transform-origin: 50% 100%; transition: transform .12s; }
+  #stick b:after { content: ""; position: absolute; left: -5px; top: -9px; width: 14px; height: 14px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #ff8a8a, #b3162b 70%); }
+  #stick.l b { transform: rotate(-22deg); } #stick.r b { transform: rotate(22deg); }
+  #tries { flex: 1; text-align: center; font: 500 8px/1.2 "Urbanist", sans-serif; letter-spacing: .2em; color: rgba(231,207,152,.75); }
+  #grab { position: relative; height: 30px; padding: 0 16px; border-radius: 999px; font: 700 12px/1 "Urbanist", sans-serif; letter-spacing: .14em; color: var(--navy);
+    background: radial-gradient(circle at 40% 30%, #fff1c6, #e2b54e 55%, #a07c3a); box-shadow: 0 4px 0 #6e5226, 0 0 18px rgba(231,207,152,.35); transition: transform .08s, box-shadow .08s; }
+  #grab:active, #grab.dn { transform: translateY(3px); box-shadow: 0 1px 0 #6e5226; }
+  #grab:after { content: ""; position: absolute; inset: -4px; border-radius: 999px; border: 2px solid var(--gold-l); opacity: 0; }
+  #grab.hint:after { animation: ring 1.3s ease-out infinite; }
+  @keyframes ring { from { opacity: .9; transform: scale(.9); } to { opacity: 0; transform: scale(1.35); } }
+
+  /* ---------- sağ: ödül paneli ---------- */
+  #right { position: absolute; left: 680px; top: 0; width: 290px; height: 250px; padding: 22px 22px 0 10px; }
+  #pre, #win { position: absolute; left: 10px; top: 20px; width: 262px; transition: opacity .4s, transform .5s var(--bounce); }
+  #pre .t { font: 600 italic 22px/1 "Cormorant Garamond", serif; color: var(--gold-l); }
+  #pre ul { list-style: none; margin-top: 12px; }
+  #pre li { display: flex; align-items: center; gap: 9px; margin-top: 8px; font: 400 11.5px/1.25 "Urbanist", sans-serif; color: rgba(255,255,255,.85); }
+  #pre li i { flex: none; width: 14px; height: 14px; }
+  #pre li b { color: #fff; font-weight: 600; }
+  #pre .mini { display: flex; gap: 6px; margin-top: 14px; }
+  #pre .mini img { width: 34px; height: 44px; border-radius: 3px; object-fit: cover; object-position: 50% 15%; box-shadow: 0 0 0 1.5px rgba(231,207,152,.6); }
+  #win { opacity: 0; transform: translateX(30px); pointer-events: none; }
+  .won #pre { opacity: 0; transform: translateX(-30px); pointer-events: none; }
+  .won #win { opacity: 1; transform: none; pointer-events: auto; }
+  #win .row { display: flex; gap: 12px; }
+  #win .ph { position: relative; flex: none; width: 82px; height: 112px; border-radius: 4px; overflow: hidden; background: #ece6dc; box-shadow: 0 0 0 2px var(--gold-l), 0 8px 16px rgba(0,0,0,.4); }
+  #win .ph img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 15%; }
+  #win .ph .lid { position: absolute; left: -6px; right: -6px; top: -6px; height: 62px; border-radius: 50% 50% 0 0 / 70% 70% 0 0; background: var(--c, #6e2233); transform-origin: 0 100%; transition: transform .7s var(--bounce) .25s; box-shadow: inset 0 -3px 0 rgba(255,255,255,.4); }
+  .won #win .ph .lid { transform: translate(-30px, -50px) rotate(-70deg); opacity: 0; transition: transform .7s var(--bounce) .25s, opacity .3s .7s; }
+  #win .yay { font: 700 10px/1 "Urbanist", sans-serif; letter-spacing: .3em; color: var(--gold-l); }
+  #win .nm { margin-top: 6px; font: 600 italic 17px/1.05 "Cormorant Garamond", serif; color: #fff; max-height: 36px; overflow: hidden; }
+  #win .pr { margin-top: 5px; font: 600 18px/1 "Urbanist", sans-serif; letter-spacing: -.3px; white-space: nowrap; }
+  #win .pr s { font-size: 11px; font-weight: 400; color: rgba(255,255,255,.5); margin-left: 4px; }
+  #code { margin-top: 8px; display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border: 1.5px dashed var(--gold-l); border-radius: 5px; font: 700 11px/1 "Urbanist", sans-serif; letter-spacing: .1em; color: var(--gold-l); background: rgba(231,207,152,.08); }
+  #code small { font-weight: 500; font-size: 8px; letter-spacing: .14em; color: rgba(231,207,152,.7); }
+  #code.ok { background: var(--gold-l); color: var(--navy); }
+  #code.ok small { color: var(--navy); }
+  #win .off { margin-top: 4px; font: 400 9.5px/1.2 "Urbanist", sans-serif; color: rgba(255,255,255,.7); }
+  .cta { position: absolute; left: 10px; top: 186px; display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 18px; border-radius: 999px; font: 600 12.5px/1 "Urbanist", sans-serif; letter-spacing: .04em; color: var(--navy); cursor: pointer;
+    background: linear-gradient(180deg, #f0d99c, #c9a35a); box-shadow: 0 3px 0 #8a6a32, 0 8px 16px -6px rgba(0,0,0,.6); transition: transform .15s, box-shadow .15s; white-space: nowrap; }
+  .cta:hover { transform: translateY(-2px); box-shadow: 0 5px 0 #8a6a32, 0 10px 18px -6px rgba(0,0,0,.6); }
+  .cta b { transition: transform .2s; display: inline-block; } .cta:hover b { transform: translateX(4px); }
+  #again { position: absolute; left: 172px; top: 198px; font: 500 9.5px/1 "Urbanist", sans-serif; letter-spacing: .12em; color: rgba(231,207,152,.85); text-decoration: underline; text-underline-offset: 3px; opacity: 0; pointer-events: none; transition: opacity .3s; }
+  .won #again { opacity: 1; pointer-events: auto; }
+  #demo { position: absolute; left: 10px; top: 4px; font: 600 7.5px/1 "Urbanist", sans-serif; letter-spacing: .26em; color: var(--navy); background: var(--gold-l); padding: 3px 6px; border-radius: 3px; opacity: 0; transition: opacity .3s; }
+  .demo #demo { opacity: 1; }
+
+  /* yıldız maskot – vincin tepesinde */
+  #mascot { position: absolute; left: 606px; top: -2px; width: 46px; height: 46px; z-index: 12; cursor: pointer; }
+  #mascot .bob { width: 100%; height: 100%; animation: bob 2.6s ease-in-out infinite; filter: drop-shadow(0 4px 6px rgba(0,0,0,.45)); }
+  @keyframes bob { 50% { transform: translateY(-4px) rotate(8deg); } }
+  #mascot.cheer .bob { animation: cheer .8s var(--bounce) 2; }
+  @keyframes cheer { 40% { transform: translateY(-14px) rotate(-12deg) scale(1.15); } }
+
+  #legal { position: absolute; left: 680px; right: 10px; bottom: 5px; font: 400 6.5px/1.25 "Urbanist", sans-serif; color: rgba(255,255,255,.4); pointer-events: none; }
+  #fx { position: absolute; left: 0; top: 0; pointer-events: none; z-index: 30; }
+</style>
+</head>
+<body>
+<div id="ad" role="region" aria-label="Altınyıldız Classics Yıldız Vinci oyunu">
+  <div id="left">
+    <div id="logo"></div>
+    <div id="h1">Altın yıldızını<br><em>yakala!</em></div>
+    <div id="sub">Vinci yönlendir, kapsülü kap: sezonun parçası ve <b>sürpriz ayrıcalığın</b> çıksın.</div>
+    <div id="keys"><kbd>◀</kbd><kbd>▶</kbd> YÖNLENDİR <kbd>␣</kbd> YAKALA</div>
+  </div>
+
+  <div id="m">
+    <div id="cab"></div>
+    <div id="marq">✦ YILDIZ VİNCİ ✦</div>
+    <div id="bulbs" class="amb"></div>
+    <div id="glass">
+      <div id="rail"></div>
+      <div id="chute"><span>ÇIKIŞ</span></div>
+      <div id="wall"></div>
+      <div id="floor"></div>
+      <div id="caps"></div>
+      <div id="claw"><div id="carr"></div><div id="cable"></div>
+        <svg id="head" viewBox="0 0 46 44"><defs><linearGradient id="cg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#f6e2a8"/><stop offset="1" stop-color="#9c7a3c"/></linearGradient></defs>
+          <g id="armL"><path d="M17 10 L7 25 Q4 34 13 41" fill="none" stroke="#8a6a32" stroke-width="5" stroke-linecap="round"/><path d="M17 10 L7 25 Q4 34 13 41" fill="none" stroke="url(#cg)" stroke-width="3" stroke-linecap="round"/></g>
+          <g id="armR"><path d="M29 10 L39 25 Q42 34 33 41" fill="none" stroke="#8a6a32" stroke-width="5" stroke-linecap="round"/><path d="M29 10 L39 25 Q42 34 33 41" fill="none" stroke="url(#cg)" stroke-width="3" stroke-linecap="round"/></g>
+          <rect x="12" y="0" width="22" height="13" rx="4" fill="url(#cg)" stroke="#8a6a32" stroke-width="1"/><circle cx="23" cy="7" r="3" fill="#14213d"/><circle cx="23" cy="7" r="1.4" fill="#e7cf98"/>
+        </svg>
+      </div>
+      <div id="msg"></div>
+    </div>
+    <div id="deck">
+      <button class="arr" id="bl" aria-label="Sola"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <button class="arr" id="br" aria-label="Sağa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+      <div id="stick"><b></b></div>
+      <div id="tries">CAMA DOKUN · VİNÇ İNSİN</div>
+      <button id="grab" class="hint">YAKALA</button>
+    </div>
+  </div>
+  <div id="mascot" title="Yıldız"><div class="bob amb"></div></div>
+
+  <div id="right">
+    <div id="demo">DEMO · ŞİMDİ SIRA SENDE</div>
+    <div id="pre">
+      <div class="t">Kapsüllerde neler var?</div>
+      <ul id="perks"></ul>
+      <div class="mini" id="mini"></div>
+    </div>
+    <div id="win">
+      <div class="row">
+        <div class="ph"><img id="wimg" alt=""><div class="lid"></div></div>
+        <div>
+          <div class="yay">TEBRİKLER! ✦</div>
+          <div class="nm" id="wnm"></div>
+          <div class="pr" id="wpr"></div>
+          <button id="code"><span id="ctext"></span><small id="chint">KOPYALA</small></button>
+          <div class="off" id="woff"></div>
+        </div>
+      </div>
+    </div>
+    <div class="cta" id="cta">Koleksiyonu Keşfet <b>→</b></div>
+    <button id="again">↻ Tekrar oyna</button>
+  </div>
+  <div id="legal">/*@LEGAL@*/</div>
+  <canvas id="fx" width="970" height="250"></canvas>
+</div>
+
+<script>/*@SHARED@*/</script>
+<script>
+var DATA = /*@DATA@*/{};
+(function () {
+  "use strict";
+  var $ = function (id) { return document.getElementById(id); };
+  var ad = $("ad"), glass = $("glass"), claw = $("claw"), cable = $("cable"), head = $("head"), armL = $("armL"), armR = $("armR"), msg = $("msg");
+  var burst = AY.fx($("fx"));
+  var CATS = DATA.cats, PRIZES = DATA.prizes;
+  $("logo").innerHTML = AY.logo("#e7cf98");
+  $("mascot").firstChild.innerHTML = AY.mascot();
+  for (var b = 0; b < 26; b++) $("bulbs").appendChild(document.createElement("i"));
+  $("perks").innerHTML = DATA.perks.map(function (p) { return "<li><i>" + AY.star("#e2b54e") + "</i><span>" + p + "</span></li>"; }).join("");
+  $("mini").innerHTML = CATS.map(function (c) { return '<img src="' + c.items[0].img + '" alt="' + c.label + '">'; }).join("");
+
+  /* ---------- kapsüller ---------- */
+  var SPOTS = [[32,153],[72,153],[112,153],[152,153],[192,153],[232,153],[272,153],[52,119],[132,119],[172,119],[252,119]];
+  var TONES = ["#6e2233", "#1d2a48", "#6b4630", "#6b6a44", "#c9a35a"];
+  var caps = [];
+  function fill() {
+    $("caps").innerHTML = ""; caps = [];
+    var pool = [];
+    CATS.forEach(function (c, ci) { c.items.forEach(function (it, ii) { pool.push({ ci: ci, ii: ii }); }); });
+    SPOTS.forEach(function (p, i) {
+      var pick = pool[(i * 3) % pool.length], el = document.createElement("div");
+      var tone = TONES[i % TONES.length], it = CATS[pick.ci].items[pick.ii];
+      el.className = "cap"; el.style.setProperty("--c", tone);
+      el.innerHTML = '<div class="in"><img src="' + it.img + '" alt=""><div class="dome"><i>' + AY.star("#f3d98c") + '</i></div><div class="shine"></div></div>';
+      var c = { el: el, x: p[0], y: p[1], r: (Math.random() - .5) * 50, ci: pick.ci, ii: pick.ii, tone: tone, prize: PRIZES[i % PRIZES.length], gone: false };
+      place(c); $("caps").appendChild(el); caps.push(c);
+      el.style.transform += " scale(0)"; setTimeout(function () { el.style.transition = "transform .45s cubic-bezier(.34,1.56,.64,1)"; place(c); setTimeout(function () { el.style.transition = ""; }, 500); }, 60 + i * 50);
+    });
+  }
+  function place(c) { c.el.style.left = c.x + "px"; c.el.style.top = c.y + "px"; c.el.style.transform = "rotate(" + c.r + "deg)"; }
+
+  /* ---------- pençe durumu ---------- */
+  var X = 180, L = 10, OPEN = 4, held = null, busy = false, dir = 0, played = false, demo = false;
+  var XMIN = 30, XMAX = 347, CHUTE = 347;
+  function draw() {
+    claw.style.left = X + "px"; cable.style.height = L + "px"; head.style.top = (12 + L) + "px";
+    armL.setAttribute("transform", "rotate(" + OPEN + " 17 10)"); armR.setAttribute("transform", "rotate(" + (-OPEN) + " 29 10)");
+    if (held) { held.x = X; held.y = 12 + L + 30; place(held); }
+  }
+  function tw(ms, fn, ease) {
+    return new Promise(function (res) {
+      var t0 = performance.now();
+      (function step(t) { var k = Math.min(1, (t - t0) / ms); fn(ease ? ease(k) : k); draw(); if (k < 1) requestAnimationFrame(step); else res(); })(t0);
+    });
+  }
+  var io = function (k) { return k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2; };
+  var out = function (k) { return 1 - Math.pow(1 - k, 3); };
+  function wait(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+  function say(t, ms) { msg.textContent = t; msg.classList.add("show"); clearTimeout(say.t); say.t = setTimeout(function () { msg.classList.remove("show"); }, ms || 1600); }
+  function moveTo(x, ms) { var a = X; x = Math.max(XMIN, Math.min(XMAX, x)); $("stick").className = x < a ? "l" : x > a ? "r" : ""; return tw(ms || Math.max(200, Math.abs(x - a) * 4), function (k) { X = a + (x - a) * k; }, io).then(function () { $("stick").className = ""; }); }
+
+  // Basılı tutarak hareket
+  var lastT = 0;
+  (function loop(t) {
+    var dt = Math.min(.04, (t - (lastT || t)) / 1000); lastT = t;
+    if (dir && !busy) { X = Math.max(XMIN, Math.min(XMAX, X + dir * 170 * dt)); draw(); }
+    requestAnimationFrame(loop);
+  })(0);
+
+  async function drop() {
+    if (busy) return;
+    busy = true; $("grab").classList.remove("hint");
+    var target = null;
+    caps.forEach(function (c) { if (!c.gone && Math.abs(c.x - X) < 24 && (!target || c.y < target.y)) target = c; });
+    // üstte başka kapsül varsa (alttakini kapamaz) en üsttekini seç
+    if (target) caps.forEach(function (c) { if (!c.gone && c !== target && Math.abs(c.x - target.x) < 34 && c.y < target.y) target = c; });
+    await tw(220, function (k) { OPEN = 4 + 26 * k; });
+    var a = L, depth = target ? target.y - 42 : 118, ax = X;
+    await tw(800, function (k) { L = a + (depth - a) * k; if (target) X = ax + (target.x - ax) * k; }, out);
+    await tw(260, function (k) { OPEN = 30 - (target ? 28 : 42) * k; });
+    if (target) { held = target; target.gone = true; target.el.style.zIndex = 8; target.r = 0; settle(target); }
+    await wait(120);
+    a = L;
+    await tw(800, function (k) { L = a + (10 - a) * k; }, io);
+    if (!held) { await tw(200, function (k) { OPEN = -12 + 16 * k; }); say("Iskaladın! Bir daha dene ✦"); busy = false; return; }
+    await moveTo(CHUTE, 900);
+    await tw(200, function (k) { OPEN = 2 + 26 * k; });
+    var c = held; held = null;
+    var y0 = c.y;
+    await tw(420, function (k) { c.y = y0 + (215 - y0) * k * k; c.r = 120 * k; place(c); });
+    c.el.style.display = "none";
+    await tw(200, function (k) { OPEN = 28 - 24 * k; });
+    win(c);
+    await moveTo(180, 700);
+    busy = false;
+    if (caps.every(function (k) { return k.gone; })) setTimeout(fill, 600);
+  }
+  // Tutulan kapsül düşerken üstündeki diğer kapsüller yerine oturur (basit yerçekimi)
+  function settle(gone) {
+    caps.forEach(function (c) {
+      if (c.gone || c.y >= gone.y || Math.abs(c.x - gone.x) > 34) return;
+      var supported = caps.some(function (o) { return !o.gone && o !== c && o.y > c.y && Math.abs(o.x - c.x) < 34; });
+      if (!supported) { c.el.style.transition = "top .35s cubic-bezier(.5,0,.75,0)"; c.y = 153; c.x = c.x; place(c); setTimeout(function () { c.el.style.transition = ""; }, 400); }
+    });
+  }
+
+  /* ---------- ödül ---------- */
+  var current = null;
+  function win(c) {
+    var cat = CATS[c.ci], it = cat.items[c.ii], p = c.prize;
+    current = { cat: c.ci, item: it, prize: p };
+    $("right").style.setProperty("--c", c.tone);
+    $("wimg").src = it.img; $("wnm").textContent = it.name;
+    $("wpr").innerHTML = AY.tl(it.price) + " TL" + (it.oldPrice ? "<s>" + AY.tl(it.oldPrice) + " TL</s>" : "");
+    if (p && p.code) { $("code").style.display = ""; $("ctext").textContent = p.code; $("chint").textContent = "KOPYALA"; $("code").classList.remove("ok"); $("woff").textContent = p.text; }
+    else { $("code").style.display = "none"; $("woff").textContent = p ? p.text : ""; }
+    $("right").classList.remove("won"); void $("right").offsetWidth; $("right").classList.add("won");
+    $("cta").innerHTML = "Hemen Al <b>→</b>";
+    ad.classList.toggle("demo", demo);
+    $("mascot").classList.remove("cheer"); void $("mascot").offsetWidth; $("mascot").classList.add("cheer");
+    burst(262 + 12 + CHUTE, 180, 22, 2.6); setTimeout(function () { burst(740, 70, 30, 3); }, 350);
+    played = true;
+  }
+
+  /* ---------- kontroller ---------- */
+  function user() { if (demo) { demo = false; ad.classList.remove("demo"); } played = true; clearTimeout(demoT); AY.wake(); }
+  function hold(el, d) {
+    function on(e) { e.preventDefault(); e.stopPropagation(); user(); dir = d; el.classList.add("dn"); $("stick").className = d < 0 ? "l" : "r"; }
+    function off() { if (dir === d) dir = 0; el.classList.remove("dn"); $("stick").className = ""; }
+    el.addEventListener("mousedown", on); el.addEventListener("touchstart", on, { passive: false });
+    el.addEventListener("mouseup", off); el.addEventListener("mouseleave", off); el.addEventListener("touchend", off);
+    el.addEventListener("click", function (e) { e.stopPropagation(); });
+  }
+  hold($("bl"), -1); hold($("br"), 1);
+  $("grab").addEventListener("click", function (e) { e.stopPropagation(); user(); drop(); });
+  // Cama dokun: vinç oraya gider ve iner (mobil dostu)
+  glass.addEventListener("click", function (e) {
+    e.stopPropagation(); if (busy) return; user();
+    var r = glass.getBoundingClientRect(), x = e.clientX - r.left;
+    busy = true; moveTo(Math.min(x, 300)).then(function () { busy = false; drop(); });
+  });
+  $("deck").addEventListener("click", function (e) { e.stopPropagation(); });
+  $("m").addEventListener("click", function (e) { e.stopPropagation(); });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowLeft" || e.key === "ArrowRight") { user(); dir = e.key === "ArrowLeft" ? -1 : 1; e.preventDefault(); }
+    else if (e.key === " " || e.key === "Enter") { user(); drop(); e.preventDefault(); }
+  });
+  document.addEventListener("keyup", function (e) { if (e.key === "ArrowLeft" || e.key === "ArrowRight") dir = 0; });
+  $("code").addEventListener("click", function (e) {
+    e.stopPropagation(); if (!current || !current.prize) return;
+    AY.copy(current.prize.code); $("code").classList.add("ok"); $("chint").textContent = "KOPYALANDI ✓";
+  });
+  $("again").addEventListener("click", function (e) { e.stopPropagation(); user(); $("right").classList.remove("won"); ad.classList.remove("demo"); $("cta").innerHTML = "Koleksiyonu Keşfet <b>→</b>"; $("grab").classList.add("hint"); });
+  $("cta").addEventListener("click", function (e) { e.stopPropagation(); AY.exit(current ? current.cat + 1 : 0); });
+  $("mascot").addEventListener("click", function (e) { e.stopPropagation(); user(); $("mascot").classList.remove("cheer"); void $("mascot").offsetWidth; $("mascot").classList.add("cheer"); say("Hadi, bir kapsül kap! ✦", 1800); });
+  ad.addEventListener("click", function () { AY.exit(current ? current.cat + 1 : 0); });
+
+  /* ---------- açılış + demo turu (etkileşim yoksa) ---------- */
+  var demoT = null;
+  async function runDemo() {
+    if (played || busy) return;
+    demo = true;
+    var t = caps.filter(function (c) { return !c.gone; }).sort(function (a, b) { return a.y - b.y || a.x - b.x; })[0];
+    busy = true; await moveTo(t.x, 900); busy = false;
+    if (!demo) return;
+    await drop();
+    $("grab").classList.add("hint");
+  }
+  AY.ready(function () {
+    ad.classList.add("in");
+    fill(); draw();
+    setTimeout(function () { say("Vinci yönlendir, YAKALA'ya bas!", 2200); }, 1300);
+    demoT = setTimeout(runDemo, 4200);
+  });
+})();
+</script>
+</body>
+</html>

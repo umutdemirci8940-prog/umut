@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=970,height=250">
+<title>Altınyıldız Classics – Askılı Vitrin 970x250</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,500;1,600&family=Urbanist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  // Reklam sunucusu bu adresleri ezebilir (clickTag = genel, clickTag1..4 = kategoriler)
+/*@CLICKTAGS@*/
+</script>
+<style>
+  :root { --navy: #14213d; --navy-2: #1d2a48; --gold: #c9a35a; --gold-l: #e7cf98; --cream: #f4efe6; --ink: #1d2a48; --bounce: cubic-bezier(.34,1.56,.64,1); }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 970px; height: 250px; overflow: hidden; background: var(--cream); }
+  #ad { position: relative; width: 970px; height: 250px; overflow: hidden; cursor: pointer; font-family: "Urbanist", "Helvetica Neue", Arial, sans-serif; color: var(--ink); user-select: none; -webkit-user-select: none;
+    background: var(--cream); border: 1px solid #ddd3c3; }
+  /* balıksırtı kumaş dokusu – markanın kumaş mirasına selam */
+  #ad:before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .55;
+    background: repeating-linear-gradient(45deg, rgba(29,42,72,.035) 0 3px, transparent 3px 9px), repeating-linear-gradient(-45deg, rgba(29,42,72,.03) 0 3px, transparent 3px 9px);
+    -webkit-mask: linear-gradient(90deg, #000 0 50%, transparent 50% 100%) 0 0 / 18px 18px; mask: linear-gradient(90deg, #000 0 50%, transparent 50% 100%) 0 0 / 18px 18px; }
+  img { display: block; -webkit-user-drag: none; }
+
+  /* ---------- sol: marka ---------- */
+  #brand { position: absolute; left: 26px; top: 22px; width: 200px; }
+  #brand .ay-logo { opacity: 0; transform: translateY(-8px); transition: opacity .6s, transform .6s var(--bounce); }
+  #brand .ay-logo { width: 180px; }
+  #kick { margin-top: 26px; font: 500 9.5px/1 "Urbanist", sans-serif; letter-spacing: .34em; color: var(--gold); opacity: 0; transition: opacity .6s .2s; }
+  #head { margin-top: 8px; font: 600 33px/.98 "Cormorant Garamond", Georgia, serif; color: var(--navy); opacity: 0; transform: translateX(-12px); transition: opacity .6s .3s, transform .7s .3s var(--bounce); }
+  #head em { font-style: italic; font-weight: 500; color: var(--gold); }
+  #palette { margin-top: 12px; display: flex; gap: 6px; align-items: center; opacity: 0; transition: opacity .6s .5s; }
+  #palette i { width: 12px; height: 12px; border-radius: 50%; box-shadow: inset 0 -2px 0 rgba(0,0,0,.18), 0 0 0 1.5px #fff; }
+  #palette span { font: 500 9px/1 "Urbanist", sans-serif; color: #6c6f78; margin-left: 3px; white-space: nowrap; }
+  .in #brand .ay-logo, .in #kick, .in #head, .in #palette { opacity: 1; transform: none; }
+
+  /* ---------- orta: askılı vitrin ---------- */
+  #rack { position: absolute; left: 238px; top: 0; width: 360px; height: 250px; }
+  #rail { position: absolute; left: 6px; right: 6px; top: 16px; height: 6px; border-radius: 3px; background: linear-gradient(180deg, #f0d99c, #b8924f 60%, #8a6a32); box-shadow: 0 2px 4px rgba(0,0,0,.18); }
+  #rail:before, #rail:after { content: ""; position: absolute; top: -10px; width: 4px; height: 12px; background: #8a6a32; border-radius: 2px; }
+  #rail:before { left: 14px; } #rail:after { right: 14px; }
+  .hang { position: absolute; top: 12px; transform-origin: 50% 0; will-change: transform; }
+  .hang .hook { position: absolute; left: 50%; top: 0; width: 22px; height: 22px; margin-left: -11px; border: 3px solid #b8924f; border-bottom-color: transparent; border-left-color: transparent; border-radius: 50%; transform: rotate(-45deg); }
+  .hang .stem { position: absolute; left: 50%; top: 9px; width: 3px; height: 14px; margin-left: -1.5px; background: #b8924f; }
+  .hang .card { position: absolute; left: 0; top: 22px; background: #fff; padding: 5px 5px 18px; border-radius: 3px; box-shadow: 0 10px 22px -8px rgba(20,33,61,.45), 0 1px 0 rgba(0,0,0,.05); }
+  .hang .card .ph { position: relative; overflow: hidden; background: #ebe6de; border-radius: 2px; }
+  .hang .card .ph img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; transition: opacity .35s; }
+  .hang .card .clip { position: absolute; left: 50%; top: -6px; width: 34px; height: 12px; margin-left: -17px; border-radius: 3px; background: linear-gradient(180deg, #e9cf8f, #a8843f); box-shadow: 0 1px 2px rgba(0,0,0,.25); }
+  .hang .card .nm { position: absolute; left: 6px; right: 6px; bottom: 4px; font: 500 8.5px/1 "Urbanist", sans-serif; letter-spacing: .08em; color: #6c6f78; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: center; text-transform: uppercase; }
+  #h0 { left: 122px; z-index: 3; } #h0 .card { width: 128px; } #h0 .ph { width: 118px; height: 160px; }
+  #h1, #h2 { z-index: 1; filter: saturate(.85); } #h1 { left: 22px; top: 22px; } #h2 { left: 258px; top: 22px; }
+  #h1 .card, #h2 .card { width: 92px; padding-bottom: 6px; } #h1 .ph, #h2 .ph { width: 82px; height: 118px; } #h1 .nm, #h2 .nm { display: none; }
+  #h1 .card:after, #h2 .card:after { content: ""; position: absolute; inset: 0; background: rgba(244,239,230,.28); }
+  /* fiyat etiketi (hang tag) */
+  #tag { position: absolute; left: 236px; top: 64px; z-index: 4; transform-origin: 6px 0; will-change: transform; }
+  #tag .str { position: absolute; left: 4px; top: -26px; width: 1px; height: 30px; background: #9b8a6c; transform: rotate(-30deg); transform-origin: 0 100%; }
+  #tag .t { position: relative; width: 70px; padding: 9px 6px 7px; background: var(--navy); color: #fff; text-align: center; border-radius: 3px 3px 6px 6px; box-shadow: 0 6px 12px -4px rgba(20,33,61,.5); clip-path: polygon(14% 0, 86% 0, 100% 14%, 100% 100%, 0 100%, 0 14%); }
+  #tag .t:before { content: ""; position: absolute; left: 50%; top: 4px; width: 5px; height: 5px; margin-left: -2.5px; border-radius: 50%; background: var(--cream); }
+  #tag .k { font: 500 7px/1 "Urbanist", sans-serif; letter-spacing: .2em; color: var(--gold-l); margin-top: 4px; }
+  #tag .p { font: 600 15px/1 "Urbanist", sans-serif; margin-top: 4px; white-space: nowrap; letter-spacing: -.02em; }
+  #tag .p small { font-size: 9px; font-weight: 500; }
+  #hint { margin-top: 14px; font: 600 8.5px/1 "Urbanist", sans-serif; letter-spacing: .2em; color: #8b8e96; text-transform: uppercase; opacity: 0; transition: opacity .6s .7s; }
+  .in #hint { opacity: 1; }
+  #hint b { color: var(--gold); font-weight: 600; }
+
+  /* ---------- sağ: teklif paneli ---------- */
+  #panel { position: absolute; left: 604px; top: 0; width: 366px; height: 250px; background: var(--navy); color: #fff; padding: 18px 0 0 22px; }
+  #panel:before { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 80% 90% at 85% 30%, rgba(201,163,90,.18), transparent 70%); }
+  #panel:after { content: ""; position: absolute; left: -14px; top: 0; bottom: 0; width: 14px; background: linear-gradient(90deg, transparent, rgba(20,33,61,.18)); }
+  #chips { position: relative; display: flex; gap: 6px; flex-wrap: nowrap; }
+  .chip { position: relative; overflow: hidden; font: 500 11.5px/1 "Urbanist", sans-serif; color: var(--gold-l); background: transparent; border: 1px solid rgba(231,207,152,.55); border-radius: 999px; padding: 7px 11px 8px; cursor: pointer; transition: color .25s, background .25s, transform .2s, border-color .25s; white-space: nowrap; }
+  .chip:hover { transform: translateY(-1px); border-color: var(--gold-l); }
+  .chip span { position: relative; z-index: 1; }
+  .chip i { position: absolute; left: 0; bottom: 0; height: 2px; width: 0; background: rgba(20,33,61,.55); }
+  .chip.on { color: var(--navy); background: var(--gold-l); border-color: var(--gold-l); }
+  .chip.on.run i { animation: fill var(--dur, 4s) linear forwards; }
+  @keyframes fill { from { width: 0 } to { width: 100% } }
+  #offer { position: relative; margin-top: 22px; }
+  #label { font: 600 italic 22px/1.05 "Cormorant Garamond", Georgia, serif; color: var(--gold-l); white-space: nowrap; }
+  #pname { margin-top: 5px; font: 400 11px/1.2 "Urbanist", sans-serif; color: rgba(255,255,255,.7); width: 228px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: .02em; }
+  #price { margin-top: 8px; font: 600 42px/1 "Urbanist", sans-serif; letter-spacing: -1.5px; white-space: nowrap; }
+  #price small { font-size: 18px; font-weight: 500; letter-spacing: 0; margin-left: 4px; }
+  #old { display: inline-block; margin-left: 8px; font: 400 13px/1 "Urbanist", sans-serif; color: rgba(255,255,255,.5); text-decoration: line-through; letter-spacing: 0; vertical-align: 6px; }
+  #offer.swap #label, #offer.swap #pname { animation: rise .45s cubic-bezier(.2,.8,.2,1); }
+  @keyframes rise { from { opacity: 0; transform: translateY(8px) } to { opacity: 1; transform: none } }
+  #cta { position: absolute; left: 22px; top: 186px; display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 18px; border-radius: 999px; font: 600 13px/1 "Urbanist", sans-serif; letter-spacing: .04em; color: var(--navy); background: linear-gradient(180deg, #f0d99c, #c9a35a); box-shadow: 0 3px 0 #8a6a32, 0 8px 16px -6px rgba(0,0,0,.5); transition: transform .15s, box-shadow .15s; }
+  #cta b { display: inline-block; transition: transform .2s; }
+  #cta:hover { transform: translateY(-2px); box-shadow: 0 5px 0 #8a6a32, 0 10px 18px -6px rgba(0,0,0,.5); }
+  #cta:hover b { transform: translateX(4px); }
+  .pulse #cta { animation: pulse 1.6s ease-in-out 2; }
+  @keyframes pulse { 50% { transform: scale(1.06); } }
+
+  /* Yıldız maskot – oyuncak */
+  #mascot { position: absolute; right: 22px; top: 70px; width: 76px; height: 76px; cursor: pointer; transform-origin: 50% 90%; z-index: 5; }
+  #mascot .bob { width: 100%; height: 100%; animation: bob 2.8s ease-in-out infinite; filter: drop-shadow(0 6px 8px rgba(0,0,0,.35)); }
+  #mascot:hover .bob { animation: wiggle .5s ease-in-out 2; }
+  #mascot.spin .bob { animation: spin .9s var(--bounce); }
+  @keyframes bob { 50% { transform: translateY(-5px) rotate(-4deg); } }
+  @keyframes wiggle { 25% { transform: rotate(-14deg) } 75% { transform: rotate(14deg) } }
+  @keyframes spin { from { transform: rotate(0) scale(1) } 50% { transform: rotate(200deg) scale(1.25) } to { transform: rotate(360deg) scale(1) } }
+  #bubble { position: absolute; right: 108px; top: 82px; width: 128px; z-index: 6; font: 500 10.5px/1.3 "Urbanist", sans-serif; color: var(--navy); background: #fff; border-radius: 10px; padding: 7px 10px; box-shadow: 0 6px 16px rgba(0,0,0,.3); opacity: 0; transform: translateX(8px) scale(.9); transform-origin: 100% 50%; transition: opacity .25s, transform .25s var(--bounce); pointer-events: none; }
+  #bubble:after { content: ""; position: absolute; right: -6px; top: 16px; border: 7px solid transparent; border-left-color: #fff; border-right: 0; }
+  #bubble.show { opacity: 1; transform: none; }
+  #bubble b { color: #8a6a32; }
+
+  #legal { position: absolute; left: 0; width: 604px; bottom: 5px; text-align: center; font: 400 7.5px/1.2 "Urbanist", sans-serif; color: #8b8e96; pointer-events: none; }
+  #fx { position: absolute; left: 0; top: 0; pointer-events: none; z-index: 20; }
+</style>
+</head>
+<body>
+<div id="ad" role="link" tabindex="0" aria-label="Altınyıldız Classics Sonbahar/Kış 2026 koleksiyonunu keşfet">
+  <div id="brand">
+    <div id="logo"></div>
+    <div id="kick">SONBAHAR / KIŞ 2026</div>
+    <div id="head">Kışın yeni<br><em>renkleri</em></div>
+    <div id="palette"><i style="background:#6b4630"></i><i style="background:#1d2a48"></i><i style="background:#6b6a44"></i><i style="background:#6e2233"></i><span>Kahve · Lacivert · Haki · Bordo</span></div>
+    <div id="hint">↔ Askıyı <b>salla</b>, kartlara dokun</div>
+  </div>
+
+  <div id="rack">
+    <div id="rail"></div>
+    <div class="hang" id="h1"><div class="hook"></div><div class="stem"></div><div class="card"><div class="clip"></div><div class="ph"><img alt=""></div></div></div>
+    <div class="hang" id="h2"><div class="hook"></div><div class="stem"></div><div class="card"><div class="clip"></div><div class="ph"><img alt=""></div></div></div>
+    <div class="hang" id="h0"><div class="hook"></div><div class="stem"></div><div class="card"><div class="clip"></div><div class="ph"><img alt=""></div><div class="nm"></div></div></div>
+    <div id="tag"><div class="str"></div><div class="t"><div class="k">YENİ SEZON</div><div class="p"><span id="tp">0</span> <small>TL</small></div></div></div>
+  </div>
+
+  <div id="panel">
+    <div id="chips"></div>
+    <div id="offer">
+      <div id="label"></div>
+      <div id="pname"></div>
+      <div id="price"><span id="num">0</span><small>TL</small><span id="old"></span></div>
+    </div>
+    <div id="bubble">Beni <b>tıkla</b>, sezonun yıldız parçasını göstereyim! ✨</div>
+    <div id="mascot" title="Yıldız parçayı göster"><div class="bob amb"></div></div>
+    <div id="cta">Hemen Keşfet <b>→</b></div>
+  </div>
+
+  <div id="legal">/*@LEGAL@*/</div>
+  <canvas id="fx" width="970" height="250"></canvas>
+</div>
+
+<script>/*@SHARED@*/</script>
+<script>
+var DATA = /*@DATA@*/{};
+(function () {
+  "use strict";
+  var $ = function (id) { return document.getElementById(id); };
+  var ad = $("ad"), offer = $("offer"), label = $("label"), pname = $("pname"), num = $("num"), old = $("old"), tp = $("tp");
+  var bubble = $("bubble"), mascot = $("mascot");
+  var CATS = DATA.cats, DUR = 3600;
+  var burst = AY.fx($("fx"));
+  $("logo").innerHTML = AY.logo("#1d2a48");
+  mascot.firstChild.innerHTML = AY.mascot();
+
+  // Slaytlar: her kategoriden ürünler sırayla
+  var SLIDES = [];
+  CATS.forEach(function (c, ci) { c.items.forEach(function (it, ii) { SLIDES.push({ cat: ci, item: ii }); }); });
+  var chipsEl = $("chips");
+  CATS.forEach(function (c, i) { var b = document.createElement("button"); b.className = "chip"; b.dataset.cat = i; b.innerHTML = "<i></i><span>" + c.chip + "</span>"; chipsEl.appendChild(b); });
+  var chips = chipsEl.querySelectorAll(".chip");
+
+  /* ---------- askı fiziği (sönümlü sarkaç) ---------- */
+  var H = [$("h0"), $("h1"), $("h2"), $("tag")].map(function (el, i) { return { el: el, a: 0, v: 0, k: i === 3 ? 38 : 26 + i * 4, c: i === 3 ? 2.2 : 1.9 }; });
+  function kick(f) { H.forEach(function (h, i) { h.v += f * (i === 0 ? 1 : i === 3 ? 1.6 : .7) * (0.85 + Math.random() * .3); }); }
+  var lastT = 0;
+  (function phys(t) {
+    var dt = Math.min(.033, (t - (lastT || t)) / 1000); lastT = t;
+    H.forEach(function (h) { h.v += (-h.k * h.a - h.c * h.v) * dt; h.a += h.v * dt; h.el.style.transform = "rotate(" + h.a.toFixed(2) + "deg)"; });
+    requestAnimationFrame(phys);
+  })(0);
+  var rack = $("rack"), lastX = null;
+  rack.addEventListener("mousemove", function (e) { if (lastX !== null) kick(Math.max(-30, Math.min(30, (e.clientX - lastX) * 1.1))); lastX = e.clientX; });
+  rack.addEventListener("mouseleave", function () { lastX = null; });
+  rack.addEventListener("touchmove", function (e) { var x = e.touches[0].clientX; if (lastX !== null) kick((x - lastX) * 1.2); lastX = x; }, { passive: true });
+
+  /* ---------- slayt ---------- */
+  var cur = -1, timer = null, paused = false, loops = 0;
+  function setImg(el, it) { var img = el.querySelector("img"); if (img.getAttribute("src") === it.img) return; img.style.opacity = 0; setTimeout(function () { img.src = it.img; img.alt = it.name; img.style.opacity = 1; }, 160); }
+  function show(i, dir) {
+    if (i === cur) return;
+    cur = i;
+    var s = SLIDES[i], c = CATS[s.cat], it = c.items[s.item];
+    var prev = SLIDES[(i - 1 + SLIDES.length) % SLIDES.length], next = SLIDES[(i + 1) % SLIDES.length];
+    setImg($("h0"), it); $("h0").querySelector(".nm").textContent = c.chip;
+    setImg($("h1"), CATS[prev.cat].items[prev.item]); setImg($("h2"), CATS[next.cat].items[next.item]);
+    kick(dir === -1 ? -60 : 60);
+    chips.forEach(function (ch, n) { ch.classList.toggle("on", n === s.cat); ch.classList.remove("run"); });
+    if (!paused && timer) restartFill();
+    offer.classList.remove("swap"); void offer.offsetWidth; offer.classList.add("swap");
+    label.textContent = c.label; pname.textContent = it.name;
+    AY.countTo(num, it.price); AY.countTo(tp, it.price);
+    old.textContent = it.oldPrice ? AY.tl(it.oldPrice) + " TL" : "";
+  }
+  function restartFill() { var ch = chips[SLIDES[cur].cat]; ch.style.setProperty("--dur", DUR + "ms"); ch.classList.remove("run"); void ch.offsetWidth; ch.classList.add("run"); }
+  function next() {
+    if (cur === SLIDES.length - 1 && ++loops >= 1) { stop(); show(0, 1); return; } // 30 sn kuralı: bir tur sonra ilk karede dur
+    show((cur + 1) % SLIDES.length, 1);
+  }
+  function play() { stop(); timer = setInterval(next, DUR); if (cur >= 0) restartFill(); }
+  function stop() { clearInterval(timer); timer = null; chips.forEach(function (ch) { ch.classList.remove("run"); }); }
+
+  ad.addEventListener("mouseenter", function () { paused = true; stop(); AY.wake(); });
+  ad.addEventListener("mouseleave", function () { paused = false; bubble.classList.remove("show"); if (loops < 1) play(); });
+
+  chips.forEach(function (ch) {
+    function pick(e) {
+      e.stopPropagation();
+      var cat = +ch.dataset.cat;
+      if (SLIDES[cur].cat === cat) return;
+      for (var n = 0; n < SLIDES.length; n++) if (SLIDES[n].cat === cat) { show(n, n > cur ? 1 : -1); break; }
+    }
+    ch.addEventListener("mouseenter", pick); ch.addEventListener("click", pick);
+  });
+  // Yan kartlar: önceki / sonraki ürün
+  $("h1").addEventListener("click", function (e) { e.stopPropagation(); show((cur - 1 + SLIDES.length) % SLIDES.length, -1); });
+  $("h2").addEventListener("click", function (e) { e.stopPropagation(); show((cur + 1) % SLIDES.length, 1); });
+
+  // Maskot: konuşma balonu + tıklayınca dönüp yıldız saçar ve "yıldız parçaya" (en çok indirimli / ilk ürün) atlar
+  mascot.addEventListener("mouseenter", function () { bubble.classList.add("show"); });
+  mascot.addEventListener("mouseleave", function () { bubble.classList.remove("show"); });
+  mascot.addEventListener("click", function (e) {
+    e.stopPropagation();
+    mascot.classList.remove("spin"); void mascot.offsetWidth; mascot.classList.add("spin");
+    burst(904, 110, 26, 3.2); kick(90);
+    var star = DATA.star || 0;
+    if (cur !== star) show(star, 1);
+    bubble.innerHTML = "İşte sezonun <b>yıldız parçası!</b> Tekrar tıkla, sepete git ✨";
+    bubble.classList.add("show");
+    if (mascot.dataset.armed) AY.exit(SLIDES[cur].cat + 1);
+    mascot.dataset.armed = "1";
+  });
+
+  // Ürün kartı: o ürünün sayfası; geri kalan her yer: ekrandaki kategori
+  $("h0").addEventListener("click", function (e) { e.stopPropagation(); var s = SLIDES[cur]; var it = CATS[s.cat].items[s.item]; if (it.url && !window.Enabler && DATA.deepLink) window.open(it.url, "_blank"); else AY.exit(s.cat + 1); });
+  ad.addEventListener("click", function () { AY.exit(SLIDES[cur].cat + 1); });
+  ad.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowRight") show((cur + 1) % SLIDES.length, 1);
+    else if (e.key === "ArrowLeft") show((cur - 1 + SLIDES.length) % SLIDES.length, -1);
+    else if (e.key === "Enter") AY.exit(SLIDES[cur].cat + 1);
+  });
+
+  AY.ready(function () {
+    ad.classList.add("in");
+    setTimeout(function () { show(0, 1); if (!paused) play(); }, 250);
+    setTimeout(function () { ad.classList.add("pulse"); }, 1800);
+    setTimeout(function () { if (!paused) bubble.classList.add("show"); }, 2600);
+    setTimeout(function () { if (!paused) bubble.classList.remove("show"); }, 5600);
+  });
+})();
+</script>
+</body>
+</html>
