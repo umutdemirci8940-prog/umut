@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="ad.size" content="width=970,height=250">
-<meta name="viewport" content="width=970,height=250">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Milli Piyango – Yılbaşı 2027 Masthead 970x250</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,10 +17,11 @@
   --ink:#14204a;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{width:970px;height:250px;overflow:hidden;background:#3d0410}
+html,body{width:100%;min-height:100%;background:#fff}
+body{min-height:100vh;display:flex;align-items:center;justify-content:center}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
-#ad{position:relative;width:970px;height:250px;overflow:hidden;font-family:Rubik,system-ui,sans-serif;color:var(--cream);
+#ad{position:relative;flex:none;width:970px;height:250px;overflow:hidden;font-family:Rubik,system-ui,sans-serif;color:var(--cream);
   background:
     radial-gradient(ellipse 34% 80% at 50% 120%,rgba(255,92,92,.45),transparent 70%),
     radial-gradient(ellipse 30% 90% at 86% 40%,rgba(255,196,90,.18),transparent 70%),
@@ -262,7 +263,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   /* ===== Ayarlar – metinler, çıkış adresi ve dinamik kreatif (DCO) eşlemeleri ===== */
   var CFG = {
     exitUrl: 'https://www.millipiyangoonline.com/',
-    utm: 'utm_source=display&utm_medium=masthead&utm_campaign=yilbasi_2027',
     drawDate: 'ÇEKİLİŞ: 31 ARALIK',
     introMs: 2600,
     stopAfterMs: 30000, // Google Ads / DV360: animasyon en fazla 30 sn
@@ -300,15 +300,11 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   var dco = (window.MP_DREAM || qs.dream || '').toLowerCase();
   if (!CFG.dreams[dco]) dco = '';
 
-  /* ===== Çıkış (clickTag / Studio Enabler / UTM'li adres) ===== */
-  function exitUrl(src) {
-    var u = CFG.exitUrl + (CFG.exitUrl.indexOf('?') > -1 ? '&' : '?') + CFG.utm + '&utm_content=' + (current || 'genel') + '_' + src;
-    return u;
-  }
+  /* ===== Çıkış (clickTag / Studio Enabler / ana sayfa) ===== */
   function exit(e, src) {
     if (e) { e.preventDefault(); e.stopPropagation(); }
     if (window.Enabler && Enabler.exit) { Enabler.exit(src === 'cta' ? 'CTA' : 'Background'); return; }
-    var url = (typeof window.clickTag === 'string' && window.clickTag) || exitUrl(src);
+    var url = (typeof window.clickTag === 'string' && window.clickTag) || CFG.exitUrl;
     window.open(url, '_blank');
   }
   document.getElementById('hit').addEventListener('click', function (e) { exit(e, 'bg'); });

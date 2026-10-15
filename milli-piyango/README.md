@@ -31,11 +31,12 @@ Brief'teki "kullanıcının incelediği araç, hayal ettiği yaşam tarzı" fikr
 | Seyahat, lifestyle | `dream=tur` | "O dünya turu o kadar da uzak değil." |
 | Bankacılık, finans, yatırım, kripto | `dream=borc` | "Borçsuz bir yıl o kadar da uzak değil." |
 
-Parametre URL ile (`index.html?dream=araba`) ya da sunucu makrosuyla `window.MP_DREAM = 'araba'` olarak verilir. Seçilen hayal, çıkış linkine `utm_content=<hayal>_<cta|bg>` olarak eklenir; hangi hayalin daha çok yeni kullanıcı getirdiği ölçülebilir.
+Parametre URL ile (`index.html?dream=araba`) ya da sunucu makrosuyla `window.MP_DREAM = 'araba'` olarak verilir. Tıklamalar parametresiz olarak doğrudan ana sayfaya yönlenir.
 
 ## Teknik
 
-- **Tıklama:** Arka plan ve CTA çıkış yapar; `window.clickTag` (Google Ads / CM360) veya `Enabler.exit` (Studio) varsa onlar kullanılır, yoksa `CFG.exitUrl` + UTM açılır. Hayal kartları, bilet ve "Başka bir hayal seç" kontroldür, çıkış tetiklemez.
+- **Sayfa:** Masthead beyaz zemin üzerinde, sayfanın tam ortasında (yatay ve dikey) görüntülenir.
+- **Tıklama:** Arka plan ve CTA çıkış yapar; `window.clickTag` (Google Ads / CM360) veya `Enabler.exit` (Studio) varsa onlar kullanılır, yoksa doğrudan ana sayfa (`CFG.exitUrl`, UTM/parametre yok) açılır. Hayal kartları, bilet ve "Başka bir hayal seç" kontroldür, çıkış tetiklemez.
 - **Ayarlar:** Metinler, aile mesajları, çekiliş tarihi ve çıkış adresi `index.html` içindeki `CFG` nesnesindedir.
 - **Tipografi:** Google Fonts – *Fraunces* (rozet ve başlıklar), *Rubik* (metin). Türkçe karakter desteği tam.
 - **Erişilebilirlik:** Tüm kontroller `button`, klavye ile gezilebilir, `aria-live` ile sonuç okunur; `prefers-reduced-motion` açıksa kar/konfeti kapanır.
@@ -44,5 +45,5 @@ Parametre URL ile (`index.html?dream=araba`) ya da sunucu makrosuyla `window.MP_
 ## Yayın öncesi kontrol
 
 - Yasal ibare metni ve "Büyük İkramiye" tutarı (eklenecekse) Milli Piyango onayından geçmelidir; tutar bilinmediği için bannerda rakam yoktur.
-- Çıkış adresi (`millipiyangoonline.com`) ve UTM yapısı kampanya ekibiyle teyit edilmelidir.
+- Çıkış adresi (`https://www.millipiyangoonline.com/`) kampanya ekibiyle teyit edilmelidir.
 - Rozet, brief'teki V3 badge tasarımının kod ile yeniden çizimidir; nihai yayında onaylı badge görseli (PNG/SVG) ile değiştirilebilir.
