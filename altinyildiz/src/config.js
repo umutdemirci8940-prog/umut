@@ -47,24 +47,8 @@ module.exports = {
   // Vitrin: maskot tıklanınca gösterilecek "yıldız parça" (slayt sırası: kategori × ürün)
   star: 0,
 
-  // Yıldız Vinci: sitedeki gerçek ayrıcalıklar (altinyildizclassics.com, 15.10.2026)
-  perks: [
-    '<b>1250 TL üzeri</b> kargo bedava',
-    'Garanti Bonus\'la <b>peşin fiyatına 6 taksit</b>',
-    'Her alışverişte <b>%3 Stars puan</b>',
-  ],
-  // Kapsül ödülleri. Marka bir kupon kodu verirse `code` alanını doldurun (ör. { code: 'YILDIZ10', text: 'Sepette %10 ek indirim' });
-  // kod yoksa kapsül, ürünü ve sitedeki gerçek ayrıcalığı gösterir.
-  prizes: [
-    { text: '1250 TL üzeri alışverişte kargo bedava.' },
-    { text: 'Garanti Bonus\'la peşin fiyatına 6 taksit.' },
-    { text: 'Ücretsiz terzi hizmetiyle tam ölçünde.' },
-    { text: 'Her alışverişte %3 Stars puan kazan.' },
-  ],
-
   legal: {
     vitrin: 'Fiyatlar 15.10.2026 itibarıyla altinyildizclassics.com fiyatlarıdır; stok ve kampanyalarla değişebilir.',
     lookbook: 'Fiyatlar 15.10.2026 itibarıyla altinyildizclassics.com fiyatlarıdır; stok ve kampanyalarla değişebilir.',
-    vinc: 'Ayrıcalıklar altinyildizclassics.com koşullarına tabidir. Fiyatlar 15.10.2026 itibarıyla geçerlidir.',
   },
 };

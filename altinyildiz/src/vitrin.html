@@ -12,19 +12,15 @@
 /*@CLICKTAGS@*/
 </script>
 <style>
-  :root { --navy: #14213d; --navy-2: #1d2a48; --gold: #c9a35a; --gold-l: #e7cf98; --cream: #f4efe6; --ink: #1d2a48; --bounce: cubic-bezier(.34,1.56,.64,1); }
+  :root { --navy: #14213d; --navy-2: #1d2a48; --gold: #c9a35a; --gold-l: #e7cf98; --cream: #ffffff; --line: #e6e1d8; --mute: #6c6f78; --ink: #1d2a48; --bounce: cubic-bezier(.34,1.56,.64,1); }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { width: 970px; height: 250px; overflow: hidden; background: var(--cream); }
   #ad { position: relative; width: 970px; height: 250px; overflow: hidden; cursor: pointer; font-family: "Urbanist", "Helvetica Neue", Arial, sans-serif; color: var(--ink); user-select: none; -webkit-user-select: none;
-    background: var(--cream); border: 1px solid #ddd3c3; }
-  /* balıksırtı kumaş dokusu – markanın kumaş mirasına selam */
-  #ad:before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .55;
-    background: repeating-linear-gradient(45deg, rgba(29,42,72,.035) 0 3px, transparent 3px 9px), repeating-linear-gradient(-45deg, rgba(29,42,72,.03) 0 3px, transparent 3px 9px);
-    -webkit-mask: linear-gradient(90deg, #000 0 50%, transparent 50% 100%) 0 0 / 18px 18px; mask: linear-gradient(90deg, #000 0 50%, transparent 50% 100%) 0 0 / 18px 18px; }
+    background: #fff; border: 1px solid var(--line); }
   img { display: block; -webkit-user-drag: none; }
 
   /* ---------- sol: marka ---------- */
-  #brand { position: absolute; left: 26px; top: 22px; width: 200px; }
+  #brand { position: absolute; left: 30px; top: 24px; width: 230px; }
   #brand .ay-logo { opacity: 0; transform: translateY(-8px); transition: opacity .6s, transform .6s var(--bounce); }
   #brand .ay-logo { width: 180px; }
   #kick { margin-top: 26px; font: 500 9.5px/1 "Urbanist", sans-serif; letter-spacing: .34em; color: var(--gold); opacity: 0; transition: opacity .6s .2s; }
@@ -36,14 +32,14 @@
   .in #brand .ay-logo, .in #kick, .in #head, .in #palette { opacity: 1; transform: none; }
 
   /* ---------- orta: askılı vitrin ---------- */
-  #rack { position: absolute; left: 238px; top: 0; width: 360px; height: 250px; }
+  #rack { position: absolute; left: 305px; top: 0; width: 360px; height: 250px; }
   #rail { position: absolute; left: 6px; right: 6px; top: 16px; height: 6px; border-radius: 3px; background: linear-gradient(180deg, #f0d99c, #b8924f 60%, #8a6a32); box-shadow: 0 2px 4px rgba(0,0,0,.18); }
   #rail:before, #rail:after { content: ""; position: absolute; top: -10px; width: 4px; height: 12px; background: #8a6a32; border-radius: 2px; }
   #rail:before { left: 14px; } #rail:after { right: 14px; }
   .hang { position: absolute; top: 12px; transform-origin: 50% 0; will-change: transform; }
   .hang .hook { position: absolute; left: 50%; top: 0; width: 22px; height: 22px; margin-left: -11px; border: 3px solid #b8924f; border-bottom-color: transparent; border-left-color: transparent; border-radius: 50%; transform: rotate(-45deg); }
   .hang .stem { position: absolute; left: 50%; top: 9px; width: 3px; height: 14px; margin-left: -1.5px; background: #b8924f; }
-  .hang .card { position: absolute; left: 0; top: 22px; background: #fff; padding: 5px 5px 18px; border-radius: 3px; box-shadow: 0 10px 22px -8px rgba(20,33,61,.45), 0 1px 0 rgba(0,0,0,.05); }
+  .hang .card { position: absolute; left: 0; top: 22px; background: #fff; border: 1px solid #ece7de; padding: 5px 5px 18px; border-radius: 3px; box-shadow: 0 10px 22px -8px rgba(20,33,61,.45), 0 1px 0 rgba(0,0,0,.05); }
   .hang .card .ph { position: relative; overflow: hidden; background: #ebe6de; border-radius: 2px; }
   .hang .card .ph img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; transition: opacity .35s; }
   .hang .card .clip { position: absolute; left: 50%; top: -6px; width: 34px; height: 12px; margin-left: -17px; border-radius: 3px; background: linear-gradient(180deg, #e9cf8f, #a8843f); box-shadow: 0 1px 2px rgba(0,0,0,.25); }
@@ -55,7 +51,7 @@
   /* fiyat etiketi (hang tag) */
   #tag { position: absolute; left: 236px; top: 64px; z-index: 4; transform-origin: 6px 0; will-change: transform; }
   #tag .str { position: absolute; left: 4px; top: -26px; width: 1px; height: 30px; background: #9b8a6c; transform: rotate(-30deg); transform-origin: 0 100%; }
-  #tag .t { position: relative; width: 70px; padding: 9px 6px 7px; background: var(--navy); color: #fff; text-align: center; border-radius: 3px 3px 6px 6px; box-shadow: 0 6px 12px -4px rgba(20,33,61,.5); clip-path: polygon(14% 0, 86% 0, 100% 14%, 100% 100%, 0 100%, 0 14%); }
+  #tag .t { position: relative; width: 80px; padding: 9px 6px 7px; background: var(--navy); color: #fff; text-align: center; border-radius: 3px 3px 6px 6px; box-shadow: 0 6px 12px -4px rgba(20,33,61,.5); clip-path: polygon(14% 0, 86% 0, 100% 14%, 100% 100%, 0 100%, 0 14%); }
   #tag .t:before { content: ""; position: absolute; left: 50%; top: 4px; width: 5px; height: 5px; margin-left: -2.5px; border-radius: 50%; background: var(--cream); }
   #tag .k { font: 500 7px/1 "Urbanist", sans-serif; letter-spacing: .2em; color: var(--gold-l); margin-top: 4px; }
   #tag .p { font: 600 15px/1 "Urbanist", sans-serif; margin-top: 4px; white-space: nowrap; letter-spacing: -.02em; }
@@ -65,46 +61,44 @@
   #hint b { color: var(--gold); font-weight: 600; }
 
   /* ---------- sağ: teklif paneli ---------- */
-  #panel { position: absolute; left: 604px; top: 0; width: 366px; height: 250px; background: var(--navy); color: #fff; padding: 18px 0 0 22px; }
-  #panel:before { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 80% 90% at 85% 30%, rgba(201,163,90,.18), transparent 70%); }
-  #panel:after { content: ""; position: absolute; left: -14px; top: 0; bottom: 0; width: 14px; background: linear-gradient(90deg, transparent, rgba(20,33,61,.18)); }
-  #chips { position: relative; display: flex; gap: 6px; flex-wrap: nowrap; }
-  .chip { position: relative; overflow: hidden; font: 500 11.5px/1 "Urbanist", sans-serif; color: var(--gold-l); background: transparent; border: 1px solid rgba(231,207,152,.55); border-radius: 999px; padding: 7px 11px 8px; cursor: pointer; transition: color .25s, background .25s, transform .2s, border-color .25s; white-space: nowrap; }
-  .chip:hover { transform: translateY(-1px); border-color: var(--gold-l); }
+  #panel { position: absolute; left: 676px; top: 0; width: 286px; height: 250px; color: var(--navy); padding: 24px 0 0 0; }
+  #chips { position: relative; display: flex; gap: 5px; flex-wrap: nowrap; }
+  .chip { position: relative; overflow: hidden; font: 600 10.5px/1 "Urbanist", sans-serif; color: var(--navy); background: transparent; border: 1px solid rgba(20,33,61,.25); border-radius: 999px; padding: 6px 9px 7px; cursor: pointer; transition: color .25s, background .25s, transform .2s, border-color .25s; white-space: nowrap; }
+  .chip:hover { transform: translateY(-1px); border-color: var(--navy); }
   .chip span { position: relative; z-index: 1; }
-  .chip i { position: absolute; left: 0; bottom: 0; height: 2px; width: 0; background: rgba(20,33,61,.55); }
-  .chip.on { color: var(--navy); background: var(--gold-l); border-color: var(--gold-l); }
+  .chip i { position: absolute; left: 0; bottom: 0; height: 2px; width: 0; background: var(--gold); }
+  .chip.on { color: #fff; background: var(--navy); border-color: var(--navy); }
   .chip.on.run i { animation: fill var(--dur, 4s) linear forwards; }
   @keyframes fill { from { width: 0 } to { width: 100% } }
-  #offer { position: relative; margin-top: 22px; }
-  #label { font: 600 italic 22px/1.05 "Cormorant Garamond", Georgia, serif; color: var(--gold-l); white-space: nowrap; }
-  #pname { margin-top: 5px; font: 400 11px/1.2 "Urbanist", sans-serif; color: rgba(255,255,255,.7); width: 228px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: .02em; }
-  #price { margin-top: 8px; font: 600 42px/1 "Urbanist", sans-serif; letter-spacing: -1.5px; white-space: nowrap; }
-  #price small { font-size: 18px; font-weight: 500; letter-spacing: 0; margin-left: 4px; }
-  #old { display: inline-block; margin-left: 8px; font: 400 13px/1 "Urbanist", sans-serif; color: rgba(255,255,255,.5); text-decoration: line-through; letter-spacing: 0; vertical-align: 6px; }
+  #offer { position: relative; margin-top: 20px; }
+  #label { font: 600 italic 22px/1.05 "Cormorant Garamond", Georgia, serif; color: #8a6a32; white-space: nowrap; }
+  #pname { margin-top: 5px; font: 400 11px/1.2 "Urbanist", sans-serif; color: var(--mute); width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: .02em; }
+  #price { margin-top: 8px; font: 700 36px/1 "Urbanist", sans-serif; letter-spacing: -1.5px; white-space: nowrap; }
+  #price small { font-size: 16px; font-weight: 500; letter-spacing: 0; margin-left: 4px; }
+  #old { display: inline-block; margin-left: 8px; font: 400 13px/1 "Urbanist", sans-serif; color: #9a9ca3; text-decoration: line-through; letter-spacing: 0; vertical-align: 6px; }
   #offer.swap #label, #offer.swap #pname { animation: rise .45s cubic-bezier(.2,.8,.2,1); }
   @keyframes rise { from { opacity: 0; transform: translateY(8px) } to { opacity: 1; transform: none } }
-  #cta { position: absolute; left: 22px; top: 186px; display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 18px; border-radius: 999px; font: 600 13px/1 "Urbanist", sans-serif; letter-spacing: .04em; color: var(--navy); background: linear-gradient(180deg, #f0d99c, #c9a35a); box-shadow: 0 3px 0 #8a6a32, 0 8px 16px -6px rgba(0,0,0,.5); transition: transform .15s, box-shadow .15s; }
+  #cta { position: absolute; left: 0; top: 182px; display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 18px; border-radius: 999px; font: 600 13px/1 "Urbanist", sans-serif; letter-spacing: .04em; color: var(--gold-l); background: var(--navy); box-shadow: 0 3px 0 #070c18, 0 8px 16px -6px rgba(20,33,61,.45); transition: transform .15s, box-shadow .15s; }
   #cta b { display: inline-block; transition: transform .2s; }
-  #cta:hover { transform: translateY(-2px); box-shadow: 0 5px 0 #8a6a32, 0 10px 18px -6px rgba(0,0,0,.5); }
+  #cta:hover { transform: translateY(-2px); box-shadow: 0 5px 0 #070c18, 0 10px 18px -6px rgba(20,33,61,.45); }
   #cta:hover b { transform: translateX(4px); }
   .pulse #cta { animation: pulse 1.6s ease-in-out 2; }
   @keyframes pulse { 50% { transform: scale(1.06); } }
 
   /* Yıldız maskot – oyuncak */
-  #mascot { position: absolute; right: 22px; top: 70px; width: 76px; height: 76px; cursor: pointer; transform-origin: 50% 90%; z-index: 5; }
-  #mascot .bob { width: 100%; height: 100%; animation: bob 2.8s ease-in-out infinite; filter: drop-shadow(0 6px 8px rgba(0,0,0,.35)); }
+  #mascot { position: absolute; right: 18px; top: 158px; width: 62px; height: 62px; cursor: pointer; transform-origin: 50% 90%; z-index: 5; }
+  #mascot .bob { width: 100%; height: 100%; animation: bob 2.8s ease-in-out infinite; filter: drop-shadow(0 5px 6px rgba(20,33,61,.25)); }
   #mascot:hover .bob { animation: wiggle .5s ease-in-out 2; }
   #mascot.spin .bob { animation: spin .9s var(--bounce); }
   @keyframes bob { 50% { transform: translateY(-5px) rotate(-4deg); } }
   @keyframes wiggle { 25% { transform: rotate(-14deg) } 75% { transform: rotate(14deg) } }
   @keyframes spin { from { transform: rotate(0) scale(1) } 50% { transform: rotate(200deg) scale(1.25) } to { transform: rotate(360deg) scale(1) } }
-  #bubble { position: absolute; right: 108px; top: 82px; width: 128px; z-index: 6; font: 500 10.5px/1.3 "Urbanist", sans-serif; color: var(--navy); background: #fff; border-radius: 10px; padding: 7px 10px; box-shadow: 0 6px 16px rgba(0,0,0,.3); opacity: 0; transform: translateX(8px) scale(.9); transform-origin: 100% 50%; transition: opacity .25s, transform .25s var(--bounce); pointer-events: none; }
-  #bubble:after { content: ""; position: absolute; right: -6px; top: 16px; border: 7px solid transparent; border-left-color: #fff; border-right: 0; }
+  #bubble { position: absolute; right: 18px; top: 92px; width: 150px; z-index: 6; font: 500 10.5px/1.3 "Urbanist", sans-serif; color: var(--navy); background: #fff; border-radius: 10px; padding: 7px 10px; box-shadow: 0 6px 16px rgba(20,33,61,.22); border: 1px solid var(--line); opacity: 0; transform: translateY(6px) scale(.9); transform-origin: 85% 100%; transition: opacity .25s, transform .25s var(--bounce); pointer-events: none; }
+  #bubble:after { content: ""; position: absolute; right: 26px; bottom: -7px; border: 7px solid transparent; border-top-color: #fff; border-bottom: 0; }
   #bubble.show { opacity: 1; transform: none; }
   #bubble b { color: #8a6a32; }
 
-  #legal { position: absolute; left: 0; width: 604px; bottom: 5px; text-align: center; font: 400 7.5px/1.2 "Urbanist", sans-serif; color: #8b8e96; pointer-events: none; }
+  #legal { position: absolute; left: 0; right: 0; bottom: 5px; text-align: center; font: 400 7.5px/1.2 "Urbanist", sans-serif; color: #8b8e96; pointer-events: none; }
   #fx { position: absolute; left: 0; top: 0; pointer-events: none; z-index: 20; }
 </style>
 </head>
@@ -224,7 +218,7 @@ var DATA = /*@DATA@*/{};
   mascot.addEventListener("click", function (e) {
     e.stopPropagation();
     mascot.classList.remove("spin"); void mascot.offsetWidth; mascot.classList.add("spin");
-    burst(904, 110, 26, 3.2); kick(90);
+    burst(921, 180, 26, 3.2); kick(90);
     var star = DATA.star || 0;
     if (cur !== star) show(star, 1);
     bubble.innerHTML = "İşte sezonun <b>yıldız parçası!</b> Tekrar tıkla, sepete git ✨";

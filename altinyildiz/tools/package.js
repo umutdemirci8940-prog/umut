@@ -2,7 +2,7 @@
 'use strict';
 /**
  * Tek dosyalık sunum sayfası üretir: preview/index.html
- * Üç banner srcdoc ile gömülüdür; klasör/zip gerektirmeden açılır ve her bannerın index.html'i indirilebilir.
+ * İki banner srcdoc ile gömülüdür; klasör/zip gerektirmeden açılır ve her bannerın index.html'i indirilebilir.
  * Kullanım: node altinyildiz/tools/package.js [--artifact]  (önce node altinyildiz/build.js)
  *   --artifact: claude.ai Artifact olarak yayınlanacak sürüm (indirme bağlantısız, iskeletsiz) → preview/artifact.html
  */
@@ -12,11 +12,9 @@ const path = require('path');
 const ROOT = path.join(__dirname, '..');
 const esc = (t) => t.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
 const B = [
-  { id: 'vinc', no: '03', name: 'Yıldız Vinci', tag: 'Yeni konsept · oyun',
-    desc: 'Pelüş vinç makinesi. Okları basılı tut ya da cama dokun; vinç iner, kapsülü kapar ve ÇIKIŞ’a bırakır. Kapsülden sitedeki orijinal ürün, fiyatı ve gerçek bir ayrıcalık çıkar. Etkileşim yoksa 4. saniyede demo turu oynar.' },
-  { id: 'vitrin', no: '01', name: 'Askılı Vitrin', tag: 'Civil 1 uyarlaması',
+  { id: 'vitrin', no: 'A', name: 'Askılı Vitrin', tag: 'Civil 1 uyarlaması',
     desc: 'Kategori çipleri, askıda sallanan ürün kartları (fare hareketiyle sallanır), sayan fiyat ve üstü çizili eski fiyat. Yıldız maskot tıklanınca döner, yıldız saçar ve sezonun yıldız parçasına atlar.' },
-  { id: 'lookbook', no: '02', name: 'Pop-up Lookbook', tag: 'Civil 6 uyarlaması',
+  { id: 'lookbook', no: 'B', name: 'Pop-up Lookbook', tag: 'Civil 6 uyarlaması',
     desc: 'Lacivert kumaş ciltli lookbook açılır; her sayfada sezon rengi, kumaş kartelası harfleri, pop-up fotoğraf ve fiyat etiketi. Küçük resimler ürünü değiştirir, sayfa çevrildikçe altın yıldız konfetisi.' },
 ];
 const cards = B.map((b) => {
@@ -66,12 +64,11 @@ iframe{display:block;border:0;width:970px;height:250px}
 </style>${ART ? '' : '</head><body>'}<main>
 <div class="k">Altınyıldız Classics · First Media Masthead</div>
 <h1>Sonbahar / Kış 2026 interaktif masthead seti</h1>
-<p class="lead">Üç adet 970×250 interaktif çalışma. Ürün fotoğrafları, logo, fiyatlar ve ayrıcalıklar altinyildizclassics.com’dan alındı (15.10.2026). Bannerlarla oynayabilirsiniz; tıklama çıkışları yayında altinyildizclassics.com’a gider.</p>
+<p class="lead">İki adet 970×250 interaktif çalışma. Ürün fotoğrafları, logo, fiyatlar ve ayrıcalıklar altinyildizclassics.com’dan alındı (15.10.2026). Bannerlarla oynayabilirsiniz; tıklama çıkışları yayında altinyildizclassics.com’a gider.</p>
 ${cards}
 <ul class="notes">
 <li>Her banner tek dosya (görseller gömülü), zip’i 95 KB’ın altında: Google Ads / CM360 / DV360 için hazır. clickTag ve kategori bazlı clickTag1–4 tanımlı.</li>
 <li>Döngüsel animasyonlar 30 sn’de durur; kullanıcı etkileşimi sürdükçe oyun çalışmaya devam eder.</li>
-<li>Kapsül ödülleri sitedeki gerçek ayrıcalıklardır. Marka bir kupon kodu verirse config’e eklenince vinçte kopyalanabilir kod olarak çıkar.</li>
 </ul>
 </main>
 <script>

@@ -41,15 +41,6 @@ const url = (n) => 'file://' + path.join(ROOT, 'dist', n, 'index.html');
   await p.click('#next'); await p.waitForTimeout(2300); await shot(p, 'lookbook-3-sayfa2');
   await p.close();
 
-  // 3) Yıldız Vinci
-  p = await open('vinc');
-  await p.waitForTimeout(1800); await shot(p, 'vinc-1-acilis');
-  await p.waitForTimeout(4400); await shot(p, 'vinc-2-demo');
-  await p.waitForTimeout(4500); await shot(p, 'vinc-3-odul');
-  await p.click('#again'); await p.waitForTimeout(400);
-  await p.mouse.click(262 + 12 + 130, 30 + 120); await p.waitForTimeout(5200); await shot(p, 'vinc-4-oyun');
-  await p.close();
-
   await browser.close();
   console.log(errors.length ? 'HATALAR:\n' + errors.join('\n') : '✔ hata yok');
 })();

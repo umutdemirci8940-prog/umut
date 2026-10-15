@@ -14,7 +14,7 @@ const cfg = require('./src/config');
 const ROOT = __dirname;
 const DIST = path.join(ROOT, 'dist');
 const IMG = path.join(ROOT, 'assets', 'banner');
-const BANNERS = ['vinc', 'vitrin', 'lookbook'];
+const BANNERS = ['vitrin', 'lookbook'];
 
 const b64 = (f, mime) => `data:${mime};base64,${fs.readFileSync(f).toString('base64')}`;
 
@@ -31,7 +31,7 @@ const data = {
       return { name: it.name, price: it.price, oldPrice: it.oldPrice || 0, url: it.url, img: b64(f, 'image/webp') };
     }),
   })),
-  star: cfg.star, perks: cfg.perks, prizes: cfg.prizes,
+  star: cfg.star,
 };
 
 const clickTags = [`  var clickTag = ${JSON.stringify(cfg.clickTag)};`]
