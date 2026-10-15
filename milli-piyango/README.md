@@ -38,6 +38,7 @@ Parametre URL ile (`index.html?dream=araba`) ya da sunucu makrosuyla `window.MP_
 - **Sayfa:** Masthead beyaz zemin üzerinde, sayfanın tam ortasında (yatay ve dikey) görüntülenir.
 - **Tıklama:** Arka plan ve CTA çıkış yapar; `window.clickTag` (Google Ads / CM360) veya `Enabler.exit` (Studio) varsa onlar kullanılır, yoksa doğrudan ana sayfa (`CFG.exitUrl`, UTM/parametre yok) açılır. Hayal kartları, bilet ve "Başka bir hayal seç" kontroldür, çıkış tetiklemez.
 - **Ayarlar:** Metinler, aile mesajları, çekiliş tarihi ve çıkış adresi `index.html` içindeki `CFG` nesnesindedir.
+- **Logo:** Resmi Milli Piyango logosu (`assets/MP_main_logo.svg`) dosyaya base64 olarak gömülüdür; sağ üstte, ışık zincirinden sarkan krem plaka üzerinde durur ve bilet/CTA ile çakışmaz.
 - **Tipografi:** Google Fonts – *Fraunces* (rozet ve başlıklar), *Rubik* (metin). Türkçe karakter desteği tam.
 - **Erişilebilirlik:** Tüm kontroller `button`, klavye ile gezilebilir, `aria-live` ile sonuç okunur; `prefers-reduced-motion` açıksa kar/konfeti kapanır.
 - **18+:** Yasal ibare ("18 yaşından küçükler şans oyunlarına katılamaz.") ve 18+ ikonu kalıcıdır. Yayın, yalnızca 18+ doğrulanmış/yaşa göre hedeflenen envanterde ve brief'teki içerik kategorilerinde (spor/futbol yorum, finans, yatırım, kripto, lifestyle) planlanmalıdır.

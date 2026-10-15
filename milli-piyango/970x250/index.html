@@ -123,41 +123,49 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   padding:6px 10px;border-radius:20px;border:1px solid rgba(255,244,220,.35);transition:.2s}
 .again:hover,.again:focus-visible{background:rgba(255,244,220,.14);color:#fff;outline:none}
 
+/* ---------- Marka logosu (üstten sarkan krem plaka) ---------- */
+.logo{position:absolute;z-index:5;left:749px;top:0;width:110px;height:40px;pointer-events:none;
+  display:flex;align-items:center;justify-content:center;border-radius:0 0 14px 14px;
+  background:linear-gradient(180deg,#fff,#fdf3dc);border:2px solid var(--gold);border-top:0;
+  box-shadow:0 8px 16px rgba(0,0,0,.35);transform:translateY(-60px);transition:transform .7s cubic-bezier(.3,1.5,.5,1) .2s}
+.logo img{display:block;width:80px;height:auto}
+.s-intro .logo,.s-main .logo{transform:none}
+
 /* ---------- SAĞ: Yılbaşı bileti + CTA ---------- */
 .right{position:absolute;z-index:3;left:664px;top:0;width:290px;height:250px;pointer-events:none;
   opacity:0;transform:translateX(30px);transition:opacity .5s .55s,transform .7s .55s cubic-bezier(.2,1.3,.4,1)}
 .s-main .right{opacity:1;transform:none}
-.tk-wrap{position:absolute;left:4px;top:22px;width:282px;height:114px;filter:drop-shadow(0 10px 16px rgba(0,0,0,.45));
-  transform:rotate(-2.5deg);animation:float 4s ease-in-out infinite}
-@keyframes float{0%,100%{transform:rotate(-2.5deg) translateY(0)}50%{transform:rotate(-1.5deg) translateY(-3px)}}
-.ticket{pointer-events:auto;position:relative;width:100%;height:100%;display:block;text-align:left;color:var(--blue-d);border-radius:10px;
+.tk-wrap{position:absolute;left:4px;top:62px;width:282px;height:96px;filter:drop-shadow(0 10px 16px rgba(0,0,0,.45));
+  transform:rotate(-1.5deg);animation:float 4s ease-in-out infinite}
+@keyframes float{0%,100%{transform:rotate(-1.5deg) translateY(0)}50%{transform:rotate(-1deg) translateY(2px)}}
+.ticket{pointer-events:auto;position:relative;width:100%;height:100%;display:flex;flex-direction:column;justify-content:flex-start;text-align:left;color:var(--blue-d);border-radius:10px;
   background:
     repeating-radial-gradient(circle at 80% 60%,rgba(27,63,174,.06) 0 2px,transparent 2px 7px),
     linear-gradient(135deg,#fffaf0,#fbecc9);
-  -webkit-mask:radial-gradient(circle 10px at 0 64%,#0000 96%,#000) left/51% 100% no-repeat,radial-gradient(circle 10px at 100% 64%,#0000 96%,#000) right/51% 100% no-repeat;
-          mask:radial-gradient(circle 10px at 0 64%,#0000 96%,#000) left/51% 100% no-repeat,radial-gradient(circle 10px at 100% 64%,#0000 96%,#000) right/51% 100% no-repeat;
+  -webkit-mask:radial-gradient(circle 10px at 0 77%,#0000 96%,#000) left/51% 100% no-repeat,radial-gradient(circle 10px at 100% 77%,#0000 96%,#000) right/51% 100% no-repeat;
+          mask:radial-gradient(circle 10px at 0 77%,#0000 96%,#000) left/51% 100% no-repeat,radial-gradient(circle 10px at 100% 77%,#0000 96%,#000) right/51% 100% no-repeat;
   transition:transform .2s}
 .ticket:hover,.ticket:focus-visible{transform:scale(1.03);outline:none}
-.t-top{display:flex;justify-content:space-between;align-items:center;height:26px;padding:0 12px;
+.t-top{display:flex;justify-content:space-between;align-items:center;height:22px;padding:0 12px;
   background:linear-gradient(90deg,var(--blue-d),var(--blue));color:var(--gold);font:800 10px/1 Rubik;letter-spacing:.8px}
 .t-top span:last-child{color:#fff;font-weight:700;letter-spacing:.5px}
-.t-mid{display:flex;align-items:center;gap:10px;padding:9px 12px 0}
+.t-mid{display:flex;align-items:center;gap:10px;padding:7px 12px 0}
 .t-lbl{font:700 8.5px/1.25 Rubik;letter-spacing:.8px;color:var(--red);width:36px}
 .digits{display:flex;gap:4px}
-.digits b{width:30px;height:40px;border-radius:6px;display:flex;align-items:center;justify-content:center;
+.digits b{width:30px;height:36px;border-radius:6px;display:flex;align-items:center;justify-content:center;
   background:#fff;border:1.5px solid rgba(27,63,174,.25);box-shadow:inset 0 -3px 0 rgba(27,63,174,.08);
-  font:800 27px/1 Rubik;color:var(--blue);font-variant-numeric:tabular-nums}
+  font:800 25px/1 Rubik;color:var(--blue);font-variant-numeric:tabular-nums}
 .digits b.set{animation:pop .35s cubic-bezier(.3,1.8,.5,1)}
 @keyframes pop{0%{transform:scale(1.35);color:var(--red)}100%{transform:none}}
-.t-bot{position:absolute;left:0;right:0;bottom:0;height:24px;display:flex;justify-content:space-between;align-items:center;padding:0 14px;
+.t-bot{position:absolute;left:0;right:0;bottom:0;height:22px;display:flex;justify-content:space-between;align-items:center;padding:0 14px;
   border-top:1.5px dashed rgba(27,63,174,.35);font:700 9.5px/1 Rubik;letter-spacing:.5px;color:var(--blue-d)}
 .t-bot em{font-style:normal;color:var(--red);font-weight:800}
-.t-hint{position:absolute;z-index:2;pointer-events:none;right:-6px;top:-9px;font:800 8.5px/1 Rubik;letter-spacing:.5px;color:#fff;background:var(--red);
-  padding:4px 6px;border-radius:8px;transform:rotate(6deg);animation:hint 1.6s ease-in-out infinite}
-@keyframes hint{0%,100%{transform:rotate(6deg) scale(1)}50%{transform:rotate(6deg) scale(1.1)}}
-.tag{position:absolute;left:4px;top:150px;width:282px;text-align:center;font:500 13px/1 Rubik;color:#ffe3c2}
+.t-hint{position:absolute;z-index:2;pointer-events:none;left:-2px;top:-21px;font:800 8.5px/1 Rubik;letter-spacing:.5px;color:#fff;background:var(--red);
+  padding:4px 6px;border-radius:8px;transform:rotate(-6deg);animation:hint 1.6s ease-in-out infinite}
+@keyframes hint{0%,100%{transform:rotate(-6deg) scale(1)}50%{transform:rotate(-6deg) scale(1.1)}}
+.tag{position:absolute;left:4px;top:168px;width:282px;text-align:center;font:500 13px/1 Rubik;color:#ffe3c2}
 .tag b{color:var(--gold);font-weight:800}
-.cta{pointer-events:auto;position:absolute;left:12px;top:170px;width:266px;height:44px;border-radius:24px;display:flex;align-items:center;justify-content:center;gap:8px;
+.cta{pointer-events:auto;position:absolute;left:12px;top:186px;width:266px;height:38px;border-radius:24px;display:flex;align-items:center;justify-content:center;gap:8px;
   background:linear-gradient(180deg,#4b74f0,var(--blue) 55%,var(--blue-d));color:#fff;text-decoration:none;
   font:800 15px/1 Rubik;letter-spacing:.1px;border:2px solid var(--gold);
   box-shadow:0 6px 0 #071649,0 12px 20px rgba(0,0,0,.4);overflow:hidden;transition:transform .15s,box-shadow .15s}
@@ -236,15 +244,18 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     </div>
   </section>
 
+  <!-- Marka logosu -->
+  <div class="logo"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAxMTYgNDIiPjxkZWZzPjxzdHlsZT4KICAgICAgLnN0MCB7CiAgICAgICAgZmlsbDogbm9uZTsKICAgICAgfQoKICAgICAgLnN0MSB7CiAgICAgICAgZmlsbDogIzAwNjBhMDsKICAgICAgfQoKICAgICAgLnN0MiB7CiAgICAgICAgZmlsbDogIzAxOTlkNjsKICAgICAgfQoKICAgICAgLnN0MyB7CiAgICAgICAgY2xpcC1wYXRoOiB1cmwoI2NsaXBwYXRoKTsKICAgICAgfQogICAgPC9zdHlsZT48Y2xpcFBhdGggaWQ9ImNsaXBwYXRoIj48cmVjdCBjbGFzcz0ic3QwIiB3aWR0aD0iMTE2IiBoZWlnaHQ9IjQyIi8+PC9jbGlwUGF0aD48L2RlZnM+PGcgY2xhc3M9InN0MyI+PHBhdGggY2xhc3M9InN0MiIgZD0iTTQ1LjQ2LDcuOTVjLTEuNDMtNS43MS02Ljk0LTkuMTEtMTIuMjgtNy41OC0yLjgxLjgxLTUuMDIsMi44Mi02LjI4LDUuMzgtMS4wNS0xLjU3LTIuNDItMi45LTQuMDMtMy45QzE5LjkxLjAxLDE2LjQ1LS40OCwxMy4xMy40N2MtLjQ1LjEzLTEuNjkuNDktMS42OS40OSwwLDAsLjIuNzYuMjgsMS4xLS4xNS0uMS0uMTktLjEyLS4zNC0uMjJDOC40MS4wMSw0Ljk0LS40OCwxLjYzLjQ3LDEuMTkuNi4wNy45MywwLC45NWw0Ljg4LDE5LjMyaDBsMi4wMyw3LjkyczAsMCwwLDBjMS4xNyw0LjY2LDMuOTcsOC41Niw3Ljg4LDEwLjk4LDIuNjEsMS42MSw1LjUsMi40Myw4LjQzLDIuNDMsMS40NywwLDIuOTUtLjIxLDQuNDEtLjYyLDguNDktMi40MywxMy43NS0xMS40LDEyLjMxLTIwLjQ5LDEuODktLjkyLDMuNDYtMi40NCw0LjUxLTQuMzksMS4zNC0yLjQ4LDEuNjktNS4zNywxLTguMTRNMzcuNTIsMTcuNDZjLS40Ni4xMy0xLjc0LjUxLTEuNzQuNTEsMCwwLC4zMSwxLjIzLjQ1LDEuNzksMS45Miw3LjY1LTIuMzQsMTUuNTUtOS41LDE3LjYtMy40Ny45OS03LjA5LjQ4LTEwLjItMS40NHMtNS4zMy01LjAyLTYuMjYtOC43M2MwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMEw0LjI3LDMuNzZjMS44Ni0uMTUsMy43Mi4zLDUuMzcsMS4zMiwyLjE3LDEuMzQsMy43MiwzLjUsNC4zNiw2LjA4LjAzLjExLjA3LjIyLjExLjMybDIuODgsMTEuMjdjLjIxLjgzLjkxLDEuMzgsMS42OCwxLjM4LjE1LDAsLjMtLjAyLjQ2LS4wNy45My0uMjcsMS40OC0xLjI5LDEuMjMtMi4yOUwxNS43NywzLjc2YzEuODYtLjE1LDMuNzIuMyw1LjM3LDEuMzIsMi4xNywxLjM0LDMuNzIsMy41LDQuMzYsNi4wOGwyLjE1LDguNTNjLjI1LDEsMS4yMSwxLjU5LDIuMTQsMS4zMi45My0uMjcsMS40OC0xLjI5LDEuMjMtMi4yOGwtMS41Mi02YzAtLjA3LS4wMi0uMTMtLjA0LS4yLS45My0zLjcyLDEuMTQtNy41Niw0LjYyLTguNTYsMy40OC0xLDcuMDcsMS4yMiw4LDQuOTQuOTMsMy43LTEuMTIsNy41NC00LjU3LDguNTVNMzguMzcsMTAuNjJjMCwxLjUzLTEuMTYsMi43Ny0yLjU5LDIuNzdzLTIuNTktMS4yNC0yLjU5LTIuNzcsMS4xNi0yLjc3LDIuNTktMi43NywyLjU5LDEuMjQsMi41OSwyLjc3Ii8+PHBhdGggY2xhc3M9InN0MSIgZD0iTTYzLjIsMTMuMjZjLjY5LjczLDEuMDMsMS42NywxLjAzLDIuODF2Ni4wM2gtMS41OWMtLjQzLDAtLjc3LS4zNy0uNzctLjgzdi00LjY4YzAtLjYzLS4xNy0xLjE0LS41MS0xLjUycy0uNzYtLjU3LTEuMjYtLjU3Yy0uNjUsMC0xLjE2LjI1LTEuNTQuNzQtLjM3LjUtLjU2LDEuMjMtLjU2LDIuMjF2NC42NGgtMS42MWMtLjQzLDAtLjc3LS4zNy0uNzctLjgzdi00LjY4YzAtLjYzLS4xNy0xLjE0LS41MS0xLjUycy0uNzYtLjU3LTEuMjYtLjU3Yy0uNjUsMC0xLjE2LjI0LTEuNTIuNzMtLjM2LjQ5LS41NCwxLjIzLS41NCwyLjIydjQuNjRoLTEuNjFjLS40MywwLS43Ny0uMzctLjc3LS44M3YtOC44MmgxLjY0Yy40MSwwLC43NC4zNS43NC43OS42Ny0uNzIsMS41Ny0xLjA4LDIuNjktMS4wOCwxLjMsMCwyLjI5LjUzLDIuOTYsMS41OC44LTEuMDYsMS44OS0xLjU4LDMuMjktMS41OC45NiwwLDEuNzkuMzYsMi40OCwxLjA5Ii8+PHBhdGggY2xhc3M9InN0MSIgZD0iTTY4LjY3LDkuMDZjLjI4LjMuNDIuNjYuNDIsMS4wN3MtLjE0Ljc4LS40MiwxLjA2Yy0uMjguMjgtLjYyLjQzLTEuMDMuNDNzLS43Ny0uMTQtMS4wNC0uNDNjLS4yNy0uMjgtLjQxLS42NC0uNDEtMS4wNnMuMTQtLjc3LjQyLTEuMDdjLjI4LS4zLjYyLS40NSwxLjAzLS40NXMuNzUuMTUsMS4wMy40NU02Ni40NSwyMS4yOHYtOC44MmgxLjYxYy40MywwLC43Ny4zNy43Ny44M3Y4LjgyaC0xLjYxYy0uNDMsMC0uNzctLjM3LS43Ny0uODMiLz48cGF0aCBjbGFzcz0ic3QxIiBkPSJNNzEuMTcsMjEuMjh2LTEzLjA5aDEuNjFjLjQzLDAsLjc3LjM3Ljc3LjgzdjEzLjA5aC0xLjYxYy0uNDMsMC0uNzctLjM3LS43Ny0uODMiLz48cGF0aCBjbGFzcz0ic3QxIiBkPSJNNzUuODIsMjEuMjh2LTEzLjA5aDEuNjFjLjQzLDAsLjc3LjM3Ljc3LjgzdjEzLjA5aC0xLjYxYy0uNDMsMC0uNzctLjM3LS43Ny0uODMiLz48cGF0aCBjbGFzcz0ic3QxIiBkPSJNODIuNzYsOS4wNmMuMjguMy40Mi42Ni40MiwxLjA3cy0uMTQuNzgtLjQyLDEuMDZjLS4yOC4yOC0uNjIuNDMtMS4wMy40M3MtLjc3LS4xNC0xLjA0LS40M2MtLjI3LS4yOC0uNDEtLjY0LS40MS0xLjA2cy4xNC0uNzcuNDItMS4wN2MuMjgtLjMuNjItLjQ1LDEuMDMtLjQ1cy43NS4xNSwxLjAzLjQ1TTgwLjUzLDIxLjI4di04LjgyaDEuNjFjLjQzLDAsLjc3LjM3Ljc3LjgzdjguODJoLTEuNjFjLS40MywwLS43Ny0uMzctLjc3LS44MyIvPjxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik01Ny44NiwyOS44NWMuODkuOTcsMS4zMywyLjE5LDEuMzMsMy42NnMtLjQ0LDIuNjktMS4zMiwzLjY1Yy0uODguOTctMS45MiwxLjQ1LTMuMTEsMS40NXMtMi4xNy0uMzUtMi45OC0xLjA0djQuMDRoLTEuNjhjLS4zOSwwLS43LS4zNC0uNy0uNzV2LTEyLjE4aDEuNjZjLjQsMCwuNzIuMzUuNzIuNzcuNzktLjcxLDEuNzktMS4wNiwyLjk4LTEuMDZzMi4yMS40OSwzLjEsMS40Nk01Ni4xNiwzNS42MWMuNDgtLjUyLjcxLTEuMjIuNzEtMi4xcy0uMjQtMS41OC0uNzEtMi4xMWMtLjQ4LS41My0xLjA4LS43OS0xLjgyLS43OS0uNjcsMC0xLjI3LjI3LTEuNzkuODEtLjUyLjU0LS43OCwxLjI0LS43OCwyLjA5cy4yNiwxLjU0Ljc4LDIuMDhjLjUyLjUzLDEuMTEuOCwxLjc5LjguNzMsMCwxLjM0LS4yNiwxLjgyLS43OCIvPjxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik02Mi42OSwyNS4yNGMuMjguMy40Mi42Ni40MiwxLjA3cy0uMTQuNzgtLjQyLDEuMDZjLS4yOC4yOC0uNjIuNDMtMS4wMy40M3MtLjc3LS4xNC0xLjA0LS40M2MtLjI3LS4yOC0uNDEtLjY0LS40MS0xLjA2cy4xNC0uNzcuNDItMS4wNy42Mi0uNDUsMS4wMy0uNDUuNzUuMTUsMS4wMy40NU02MC40NiwzNy41N3YtOC44OWgxLjYxYy40MywwLC43Ny4zNy43Ny44M3Y4LjgyaC0xLjY4Yy0uMzksMC0uNy0uMzQtLjctLjc1Ii8+PHBhdGggY2xhc3M9InN0MSIgZD0iTTg0LDM4LjMzaC0xLjY4Yy0uMzksMC0uNy0uMzQtLjctLjc1LS44MS43LTEuOCwxLjA0LTIuOTgsMS4wNHMtMi4yMy0uNDgtMy4xMS0xLjQ1Yy0uODgtLjk3LTEuMzItMi4xOC0xLjMyLTMuNjVzLjQ0LTIuNjksMS4zMy0zLjY2Yy44OS0uOTcsMS45Mi0xLjQ2LDMuMS0xLjQ2czIuMTkuMzUsMi45OCwxLjA2di0uNzdoMS42MWMuNDMsMCwuNzcuMzcuNzcuODN2OC44MlpNODAuODMsMzUuNTljLjUyLS41My43OC0xLjIzLjc4LTIuMDhzLS4yNi0xLjU1LS43OC0yLjA5LTEuMTEtLjgxLTEuNzktLjgxYy0uNzMsMC0xLjM0LjI2LTEuODIuNzktLjQ4LjUzLS43MSwxLjIzLS43MSwyLjExcy4yNCwxLjU4LjcxLDIuMWMuNDguNTIsMS4wOC43OCwxLjgyLjc4LjY3LDAsMS4yNy0uMjcsMS43OS0uOCIvPjxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik05My41OSwyOS41MmMuNjYuNzUuOTksMS43My45OSwyLjkzdjUuODhoLTEuNjhjLS4zOSwwLS43LS4zNC0uNy0uNzV2LTQuNThjMC0uNjgtLjE3LTEuMjMtLjUtMS42NC0uMzMtLjQxLS43Ny0uNjItMS4zMy0uNjItMS40OSwwLTIuMjQsMS4xMS0yLjI0LDMuMzJ2NC4yN2gtMS42OGMtLjM5LDAtLjctLjM0LS43LS43NXYtOC44OWgxLjYxYy40MywwLC43Ny4zNy43Ny44M3YuMDRjLjcyLS43NywxLjY3LTEuMTYsMi44NC0xLjE2LDEuMDgsMCwxLjk2LjM4LDIuNjIsMS4xMyIvPjxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik0xMDUuMTksMzcuNGMwLDEuNDYtLjQzLDIuNTktMS4zLDMuMzlzLTIuMDQsMS4yMS0zLjUyLDEuMjFjLTIuMSwwLTMuNTYtLjcxLTQuMzktMi4xM2wxLjM3LTEuMTFjLjMxLS4yNS43My0uMjEsMSwuMDguMjIuMjMuNDMuNDEuNjQuNTQuMzUuMjEuODEuMzIsMS4zNy4zMi43NywwLDEuMzgtLjI0LDEuODMtLjcyLjQ1LS40OC42OC0xLjEzLjY4LTEuOTd2LS4xNWMtLjY5LjU5LTEuNjMuODktMi44NC44OXMtMi4xNy0uNDYtMy4wNS0xLjM3Yy0uODgtLjkxLTEuMzItMi4wMi0xLjMyLTMuMzJzLjQ0LTIuMzksMS4zMi0zLjNjLjg4LS45MSwxLjktMS4zNiwzLjA1LTEuMzZzMi4xMy4zLDIuODQuODl2LS42aDEuNTJjLjQzLDAsLjc3LjM3Ljc3LjgzbC4wMiw3Ljg5Wk0xMDEuODgsMzUuMDljLjY3LS41LDEtMS4xOCwxLTIuMDRzLS4zMy0xLjU1LTEtMi4wNGMtLjQyLS4zMi0uOTMtLjQ3LTEuNDQtLjQ3LS43MSwwLTEuMy4yNC0xLjc3LjctLjQ3LjQ2LS43LDEuMDctLjcsMS44MnMuMjMsMS4zNS43LDEuODJjLjQ3LjQ2LDEuMDYuNjksMS43Ny43LjUyLDAsMS4wMi0uMTUsMS40NC0uNDciLz48cGF0aCBjbGFzcz0ic3QxIiBkPSJNMTE0LjU4LDI5Ljg3Yy45NS45NSwxLjQyLDIuMTYsMS40MiwzLjY0cy0uNDcsMi43LTEuNDIsMy42NGMtLjk1Ljk1LTIuMDksMS40Mi0zLjQ0LDEuNDJzLTIuNTQtLjQ3LTMuNDktMS40MmMtLjk1LS45NS0xLjQzLTIuMTYtMS40My0zLjY0cy40OC0yLjcsMS40My0zLjY0Yy45NS0uOTUsMi4xMS0xLjQyLDMuNDktMS40MnMyLjUuNDcsMy40NCwxLjQyTTExMi45MSwzNS41OWMuNTItLjUzLjc4LTEuMjMuNzgtMi4wOHMtLjI2LTEuNTQtLjc4LTIuMDhjLS41Mi0uNTMtMS4xMS0uOC0xLjc3LS44cy0xLjI5LjI2LTEuODIuNzktLjc5LDEuMjItLjc5LDIuMDkuMjYsMS41Ni43OSwyLjA5Yy41Mi41MywxLjEzLjc5LDEuODIuNzlzMS4yNS0uMjcsMS43Ny0uOCIvPjxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik02OC4zOCw0MS42aC0yLjE0bDEuNDQtMy41OS0zLjczLTkuMzNoMi4xM2MuMzEsMCwuNTkuMi43MS41MWwyLjE4LDUuNjQsMi40OS02LjE1aDIuNjVsLTUuMDMsMTIuNDJjLS4xMi4zLS40LjUtLjcxLjUiLz48L2c+PC9zdmc+" alt="Milli Piyango" width="80" height="29"></div>
+
   <!-- Sağ panel -->
   <section class="right">
     <div class="tk-wrap">
       <button class="ticket" id="ticket" aria-label="Bilete dokun, yılbaşı bilet numaranı çek">
-        <div class="t-top"><span>MİLLİ PİYANGO</span><span>YILBAŞI ÖZEL ÇEKİLİŞİ</span></div>
+        <div class="t-top"><span>YILBAŞI ÖZEL ÇEKİLİŞİ</span><span>2027</span></div>
         <div class="t-mid"><div class="t-lbl">BİLET<br>NO</div><div class="digits" id="digits"><b>2</b><b>0</b><b>2</b><b>7</b><b>3</b><b>1</b></div></div>
         <div class="t-bot"><span id="drawDate">ÇEKİLİŞ: 31 ARALIK</span><em>BÜYÜK İKRAMİYE</em></div>
       </button>
-      <i class="t-hint" id="tHint">DOKUN, NUMARANI ÇEK!</i>
+      <i class="t-hint" id="tHint">DOKUN, ÇEK!</i>
     </div>
     <p class="tag">Yılbaşı geleneğini <b>online’da</b> yaşa.</p>
     <a class="cta" id="cta" href="#">Hemen yılbaşı biletini al
@@ -342,7 +353,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   }
   document.getElementById('ticket').addEventListener('click', function (e) {
     e.stopPropagation(); stopAuto();
-    document.getElementById('tHint').textContent = 'ŞANSIN BOL OLSUN!';
+    document.getElementById('tHint').textContent = 'BOL ŞANS!';
     roll(function () { burst(810, 80, 70); cta.classList.remove('pulse'); void cta.offsetWidth; cta.classList.add('pulse'); });
   });
 
