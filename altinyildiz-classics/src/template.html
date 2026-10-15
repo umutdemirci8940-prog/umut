@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=970,height=250">
+<meta name="viewport" content="width=970,height=250">
+<title>Altınyıldız Classics – Size Özel Stil (970x250)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>var clickTag = window.clickTag || '';</script>
+<style>
+:root{
+  --ink:#000; --paper:#fff; --mute:#666; --line:#e6e6e6; --soft:#f5f5f3;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:970px;height:250px;overflow:hidden;background:var(--paper)}
+body{font-family:Urbanist,"Helvetica Neue",Arial,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+#ad{position:relative;width:970px;height:250px;overflow:hidden;cursor:pointer;border:1px solid var(--line);background:var(--paper)}
+#ad:focus-visible{outline:2px solid var(--ink);outline-offset:-3px}
+
+/* ---------- Sol panel ---------- */
+.left{position:absolute;left:0;top:0;width:252px;height:100%;padding:20px 22px 16px 24px;display:flex;flex-direction:column}
+.logo{height:20px;width:auto;display:block;align-self:flex-start}
+.eyebrow{margin-top:24px;font-size:10.5px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--mute)}
+.headline{margin-top:4px;font-size:27px;font-weight:600;letter-spacing:-.01em;line-height:1.05}
+.chips{margin-top:14px;display:flex;flex-direction:column;gap:6px}
+.chip{position:relative;height:31px;padding:0 12px;border:1px solid #cfcfcf;display:flex;align-items:center;justify-content:space-between;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;overflow:hidden;transition:border-color .3s,background .3s,color .3s}
+.chip .ar{font-size:15px;line-height:1;transform:translateX(-4px);opacity:0;transition:.3s var(--ease)}
+.chip:hover{border-color:var(--ink)}
+.chip:hover .ar{opacity:1;transform:none}
+.chip.on{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.chip.on .ar{opacity:1;transform:none}
+.chip .bar{position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--paper);opacity:.7}
+.chip.on.timed .bar{animation:fill var(--cycle) linear forwards}
+@keyframes fill{to{width:100%}}
+.hint{margin-top:auto;font-size:11px;color:var(--mute);display:flex;align-items:center;gap:6px;transition:opacity .4s}
+.hint .dot{width:6px;height:6px;border-radius:50%;background:var(--ink);animation:blink 1.4s infinite}
+@keyframes blink{50%{opacity:.15}}
+.picked .hint{opacity:0}
+
+/* ---------- Orta: sahne fotoğrafı ---------- */
+.stage{position:absolute;left:252px;top:0;width:400px;height:250px;overflow:hidden;background:#2b2724}
+.scene{position:absolute;inset:0;opacity:0;transition:opacity .9s var(--ease)}
+.scene img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.08);transform-origin:50% 40%;transition:transform 6s linear}
+.scene.on{opacity:1}
+.scene.on img{transform:scale(1)}
+.stage:after{content:"";position:absolute;inset:auto 0 0 0;height:120px;background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,0));pointer-events:none}
+.cap{position:absolute;left:20px;right:20px;bottom:15px;color:#fff;z-index:3;pointer-events:none}
+.cap .over{font-size:10px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;opacity:.85}
+.cap .title{margin-top:3px;font-size:22px;font-weight:600;letter-spacing:.01em;line-height:1.1}
+.cap .sub{margin-top:4px;font-size:11.5px;font-weight:500;opacity:.92}
+.cap > *{transition:transform .6s var(--ease),opacity .6s var(--ease)}
+.cap.swap > *{transform:translateY(8px);opacity:0}
+.note{position:absolute;right:8px;top:6px;font-size:8px;color:#fff;opacity:.7;z-index:3;pointer-events:none}
+
+/* Sahne üzerindeki etkileşim noktaları */
+.hs{position:absolute;z-index:4;width:22px;height:22px;margin:-11px 0 0 -11px;border-radius:50%;opacity:0;transform:scale(.4);transition:opacity .4s,transform .4s var(--ease)}
+.stage.ready .hs.on{opacity:1;transform:none}
+.hs i{position:absolute;inset:6px;border-radius:50%;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.25)}
+.hs:before{content:"";position:absolute;inset:0;border-radius:50%;border:1.5px solid #fff;animation:ring 2s var(--ease) infinite}
+@keyframes ring{0%{transform:scale(.5);opacity:1}100%{transform:scale(1.6);opacity:0}}
+.hs span{position:absolute;left:50%;bottom:28px;transform:translate(-50%,4px);white-space:nowrap;background:#fff;color:#000;font-size:11px;font-weight:600;letter-spacing:.04em;padding:5px 9px;opacity:0;pointer-events:none;transition:.25s var(--ease)}
+.hs span:after{content:"";position:absolute;left:50%;top:100%;margin-left:-4px;border:4px solid transparent;border-top-color:#fff}
+.hs:hover span,.hs:focus-visible span{opacity:1;transform:translate(-50%,0)}
+
+/* ---------- Sağ panel: kombin ---------- */
+.right{position:absolute;left:652px;top:0;width:318px;height:100%;padding:14px 16px 14px 16px;display:flex;flex-direction:column}
+.rhead{display:flex;justify-content:space-between;align-items:baseline;font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase}
+.rhead em{font-style:normal;color:var(--mute);letter-spacing:.06em;text-transform:none;font-weight:500;font-size:10.5px}
+.cards{margin-top:8px;display:flex;gap:7px;height:178px}
+.card{position:relative;flex:1;min-width:0;display:flex;flex-direction:column;text-align:left}
+.ph{position:relative;height:138px;background:var(--soft);overflow:hidden;cursor:none}
+.ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s var(--ease)}
+.card .nm{margin-top:5px;font-size:11px;font-weight:600;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card .mt{font-size:9.5px;color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px}
+.card{opacity:0;transform:translateY(10px)}
+.card.in{opacity:1;transform:none;transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.card.in:nth-child(2){transition-delay:.08s}.card.in:nth-child(3){transition-delay:.16s}
+.card.hl .ph{box-shadow:inset 0 0 0 2px var(--ink)}
+/* Büyüteç (raster ürün fotoğrafının yakın plan görünümü) */
+.loupe{position:absolute;width:74px;height:74px;margin:-37px 0 0 -37px;border-radius:50%;pointer-events:none;opacity:0;transform:scale(.6);transition:opacity .2s,transform .2s var(--ease);box-shadow:0 0 0 2px #fff,0 4px 14px rgba(0,0,0,.35);background-repeat:no-repeat;z-index:5}
+.ph:hover .loupe{opacity:1;transform:none}
+.tip{position:absolute;left:16px;right:16px;top:30px;height:138px;display:flex;align-items:flex-end;justify-content:center;pointer-events:none;z-index:6;opacity:0;transition:opacity .4s}
+.tip b{background:rgba(0,0,0,.82);color:#fff;font-size:10.5px;font-weight:600;letter-spacing:.04em;padding:5px 9px;margin-bottom:8px}
+.tip.show{opacity:1}
+.cta{margin-top:auto;height:34px;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;gap:10px;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;transition:background .3s}
+.cta .ar{display:inline-block;transition:transform .3s var(--ease)}
+.cta:hover .ar{transform:translateX(5px)}
+.cta:hover{background:#222}
+
+/* ---------- Açılış ---------- */
+.intro{position:absolute;inset:0;background:#fff;z-index:20;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;transition:opacity .7s var(--ease),visibility .7s}
+.intro img{height:30px;width:auto;opacity:0;transform:translateY(6px);animation:up .8s .15s var(--ease) forwards}
+.intro .rule{width:0;height:1px;background:#000;animation:rule .9s .5s var(--ease) forwards}
+.intro p{font-size:11px;font-weight:600;letter-spacing:.34em;text-transform:uppercase;opacity:0;animation:up .7s .8s var(--ease) forwards}
+@keyframes up{to{opacity:1;transform:none}}
+@keyframes rule{to{width:180px}}
+.started .intro{opacity:0;visibility:hidden}
+.left,.right{transition:opacity .6s .15s var(--ease),transform .6s .15s var(--ease)}
+.stage{transition:clip-path .9s var(--ease)}
+#ad:not(.started) .left{opacity:0;transform:translateX(-12px)}
+#ad:not(.started) .right{opacity:0;transform:translateX(12px)}
+#ad:not(.started) .stage{clip-path:inset(0 50% 0 50%)}
+#ad.started .stage{clip-path:inset(0 0 0 0)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+<div id="ad" role="link" tabindex="0" aria-label="Altınyıldız Classics – Size özel stil. Sitede keşfedin.">
+  <div class="left">
+    <img class="logo" alt="Altınyıldız Classics" src="%%LOGO%%">
+    <div class="eyebrow" id="eyebrow"></div>
+    <div class="headline" id="headline"></div>
+    <div class="chips" id="chips" role="tablist" aria-label="Kullanım alanı"></div>
+    <div class="hint"><span class="dot"></span><span id="hint"></span></div>
+  </div>
+
+  <div class="stage" id="stage">
+    <div class="note" id="note"></div>
+    <div class="cap" id="cap"><div class="over" id="over"></div><div class="title" id="title"></div><div class="sub" id="sub"></div></div>
+  </div>
+
+  <div class="right">
+    <div class="rhead"><span id="rail"></span><em id="count"></em></div>
+    <div class="cards" id="cards"></div>
+    <div class="tip" id="tip"><b id="tipTxt"></b></div>
+    <button class="cta" id="cta" type="button"><span id="ctaTxt"></span><span class="ar">→</span></button>
+  </div>
+
+  <div class="intro" aria-hidden="true">
+    <img alt="" src="%%LOGO%%">
+    <div class="rule"></div>
+    <p>Size özel stil</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var D = /*DATA*/null;
+  var IMG = /*IMG*/null;
+  var B = D.brand, T = D.timing, O = D.occasions;
+  var $ = function (id) { return document.getElementById(id); };
+  var ad = $('ad'), stage = $('stage'), cards = $('cards');
+  var cur = -1, timer = null, autoplay = true, t0 = Date.now(), loupeTipShown = false;
+
+  ad.style.setProperty('--cycle', T.cycle + 'ms');
+  $('eyebrow').textContent = B.eyebrow;
+  $('headline').textContent = B.headline;
+  $('hint').textContent = B.hint;
+  $('rail').textContent = B.rail;
+  $('ctaTxt').textContent = B.cta;
+  $('tipTxt').textContent = B.loupe;
+
+  /* ---- Çıkış (clickTag / Studio Enabler / doğrudan) ---- */
+  function exit(url, name) {
+    if (window.Enabler && Enabler.exitOverride) { Enabler.exitOverride(name || 'Ana Cikis', url); return; }
+    var target = (window.clickTag && /^https?:/.test(window.clickTag)) ? window.clickTag : url;
+    window.open(target, '_blank');
+  }
+
+  /* ---- Öğeleri oluştur ---- */
+  var chipEls = [], sceneEls = [], hsEls = [];
+  O.forEach(function (o, i) {
+    var c = document.createElement('button');
+    c.type = 'button'; c.className = 'chip'; c.setAttribute('role', 'tab');
+    c.innerHTML = '<span></span><span class="ar">→</span><span class="bar"></span>';
+    c.firstChild.textContent = o.chip;
+    c.addEventListener('click', function (e) { e.stopPropagation(); userPick(i); });
+    c.addEventListener('mouseenter', function () { if (autoplay) return; });
+    $('chips').appendChild(c); chipEls.push(c);
+
+    var s = document.createElement('div');
+    s.className = 'scene';
+    s.innerHTML = '<img alt="">';
+    s.firstChild.src = IMG['scene-' + o.key];
+    s.firstChild.alt = o.title;
+    stage.insertBefore(s, stage.firstChild); sceneEls.push(s);
+
+    hsEls[i] = o.hotspots.map(function (h) {
+      var el = document.createElement('button');
+      el.type = 'button'; el.className = 'hs';
+      el.style.left = h.x + '%'; el.style.top = h.y + '%';
+      el.setAttribute('aria-label', h.label);
+      el.innerHTML = '<i></i><span></span>';
+      el.lastChild.textContent = h.label;
+      el.addEventListener('click', function (e) { e.stopPropagation(); exit(h.url, 'Nokta: ' + h.label); });
+      el.addEventListener('mouseenter', stopAuto);
+      stage.appendChild(el);
+      return el;
+    });
+  });
+
+  function renderCards(o) {
+    cards.innerHTML = '';
+    o.products.forEach(function (p, k) {
+      var c = document.createElement('div');
+      c.className = 'card';
+      c.innerHTML = '<div class="ph"><img alt=""><div class="loupe"></div></div><div class="nm"></div><div class="mt"></div>';
+      var img = c.querySelector('img'), lp = c.querySelector('.loupe'), ph = c.querySelector('.ph');
+      img.src = IMG[p.img]; img.alt = p.name;
+      c.querySelector('.nm').textContent = p.name;
+      c.querySelector('.mt').textContent = p.meta;
+      lp.style.backgroundImage = 'url(' + IMG[p.img] + ')';
+      var Z = 2.6;
+      ph.addEventListener('mousemove', function (e) {
+        var r = ph.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+        lp.style.left = x + 'px'; lp.style.top = y + 'px';
+        lp.style.backgroundSize = (r.width * Z) + 'px ' + (r.height * Z) + 'px';
+        lp.style.backgroundPosition = (37 - x * Z) + 'px ' + (37 - y * Z) + 'px';
+      });
+      ph.addEventListener('mouseenter', function () { stopAuto(); $('tip').classList.remove('show'); loupeTipShown = true; });
+      c.addEventListener('click', function (e) { e.stopPropagation(); exit(p.url, 'Urun: ' + p.name); });
+      cards.appendChild(c);
+      setTimeout(function () { c.classList.add('in'); }, 40 + k * 10);
+    });
+    $('count').textContent = o.products.length + ' parça';
+  }
+
+  /* ---- Sahne değiştirme ---- */
+  function show(i) {
+    if (i === cur) return;
+    var o = O[i], cap = $('cap');
+    chipEls.forEach(function (c, k) { c.classList.toggle('on', k === i); c.classList.remove('timed'); c.setAttribute('aria-selected', k === i); });
+    if (autoplay) { void chipEls[i].offsetWidth; chipEls[i].classList.add('timed'); }
+    sceneEls.forEach(function (s, k) { s.classList.toggle('on', k === i); });
+    hsEls.forEach(function (arr, k) { arr.forEach(function (h) { h.classList.toggle('on', k === i); }); });
+    cap.classList.add('swap');
+    setTimeout(function () {
+      $('over').textContent = o.over; $('title').textContent = o.title; $('sub').textContent = o.sub;
+      $('note').textContent = o.note || '';
+      cap.classList.remove('swap');
+    }, cur < 0 ? 0 : 280);
+    renderCards(o);
+    cur = i;
+  }
+
+  function stopAuto() {
+    if (!autoplay) return;
+    autoplay = false; clearInterval(timer);
+    chipEls.forEach(function (c) { c.classList.remove('timed'); });
+  }
+  function userPick(i) {
+    stopAuto();
+    ad.classList.add('picked');
+    show(i);
+    if (!loupeTipShown) { loupeTipShown = true; setTimeout(function () { $('tip').classList.add('show'); setTimeout(function () { $('tip').classList.remove('show'); }, 2600); }, 700); }
+  }
+
+  /* ---- Klavye ---- */
+  ad.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { e.preventDefault(); userPick((cur + 1) % O.length); }
+    else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { e.preventDefault(); userPick((cur - 1 + O.length) % O.length); }
+    else if (e.key === 'Enter') exit(O[cur].url, 'Klavye');
+  });
+
+  /* ---- Genel tıklama ---- */
+  ad.addEventListener('click', function () { exit(cur >= 0 ? O[cur].url : B.url, 'Ana Cikis'); });
+  $('cta').addEventListener('click', function (e) { e.stopPropagation(); exit(O[cur].url, 'CTA: ' + O[cur].key); });
+
+  /* ---- Başlat ---- */
+  function start() {
+    show(0);
+    setTimeout(function () { ad.classList.add('started'); }, T.intro);
+    setTimeout(function () { stage.classList.add('ready'); }, T.intro + 700);
+    setTimeout(function () {
+      if (!autoplay) return;
+      chipEls[0].classList.remove('timed'); void chipEls[0].offsetWidth; chipEls[0].classList.add('timed');
+      timer = setInterval(function () {
+        if (!autoplay) return;
+        if (T.maxAutoplay && Date.now() - t0 > T.maxAutoplay - T.cycle) { stopAuto(); show(0); return; }
+        show((cur + 1) % O.length);
+      }, T.cycle);
+    }, T.intro);
+  }
+  function boot() { if (window.Enabler && !Enabler.isInitialized()) Enabler.addEventListener('init', start); else start(); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
+})();
+</script>
+</body>
+</html>

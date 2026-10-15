@@ -1,0 +1,12 @@
+{
+  "scenes": {
+    "is":        { "raw": "033", "crop": [300, 0, 1540, 775], "note": "Ana sayfa 'Takım Elbise' kampanya görseli (yazısız bölge)" },
+    "davet":     { "raw": "017", "crop": [700, 0, 1920, 762], "note": "Ana sayfa 'Smokin Bizim İşimiz' kampanya görseli (yazısız bölge)" },
+    "haftasonu": { "raw": "023", "crop": [160, 0, 1400, 775], "note": "Ana sayfa 'Yeni Sezon Sonbahar/Kış' kampanya görseli (yazısız bölge)" }
+  },
+  "products": {
+    "is1":    { "raw": "114" }, "is2":    { "raw": "111" }, "is3":    { "raw": "140" },
+    "davet1": { "raw": "106" }, "davet2": { "raw": "109" }, "davet3": { "raw": "110" },
+    "hs1":    { "raw": "036" }, "hs2":    { "raw": "037" }, "hs3":    { "raw": "080" }
+  }
+}

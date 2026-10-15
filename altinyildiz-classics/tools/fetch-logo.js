@@ -13,31 +13,21 @@ fs.mkdirSync(out, { recursive: true });
   const page = await ctx.newPage();
   await page.goto('https://www.altinyildizclassics.com/', { waitUntil: 'domcontentloaded', timeout: 60000 });
   await page.waitForTimeout(4000);
-  const handle = await page.evaluateHandle(() => {
-    const vis = (e) => { const r = e.getBoundingClientRect(); return r.width > 60 && r.height > 8 && r.top >= 0 && r.top < 120; };
-    const uses = [...document.querySelectorAll('use')].filter((u) => /#logo$/.test(u.getAttribute('href') || u.getAttribute('xlink:href') || ''));
-    const svg = uses.map((u) => u.closest('svg')).find((s) => s && vis(s));
-    if (svg) return svg;
-    // yedek: ekranın üst ortasındaki en geniş svg/img
-    const c = [...document.querySelectorAll('header svg, header img')].map((e) => ({ e, r: e.getBoundingClientRect() }))
-      .filter((o) => o.r.width > 60 && o.r.top >= 0 && o.r.top < 80 && Math.abs(o.r.left + o.r.width / 2 - innerWidth / 2) < 200).sort((a, b) => b.r.width - a.r.width);
-    return c[0] && c[0].e;
+  // Sitedeki <symbol id="logo"> tanımını büyük ölçekte çizip ekran görüntüsünü PNG (raster) olarak alıyoruz.
+  const sym = await page.evaluate(() => {
+    const s = document.getElementById('logo');
+    return s ? { vb: s.getAttribute('viewBox'), inner: s.innerHTML } : null;
   });
-  const el = handle.asElement();
-  if (!el) throw new Error('logo bulunamadı');
-  await page.evaluate(() => window.scrollTo(0, 0));
-  const box = await el.boundingBox();
-  console.log('logo kutusu', box);
-  // Arka planı şeffaf yapıp yalnızca logoyu çek (çevresindeki öğeleri gizle)
-  await page.evaluate((e) => {
-    document.documentElement.style.background = 'transparent'; document.body.style.background = 'transparent';
-    for (const n of document.querySelectorAll('body *')) if (!n.contains(e) && !e.contains(n) && n !== e) n.style.visibility = 'hidden';
-    let p = e; while (p) { if (p.style) p.style.background = 'transparent'; p = p.parentElement; }
-  }, el);
-  await page.screenshot({ path: path.join(out, 'logo@4x.png'), omitBackground: true, clip: { x: box.x - 2, y: box.y - 2, width: box.width + 4, height: box.height + 4 } });
-  // Beyaz sürüm (koyu zemin için) – raster olarak renk değiştirerek
-  await page.evaluate((e) => { e.style.color = '#fff'; e.style.fill = '#fff'; for (const n of e.querySelectorAll('*')) { n.style.fill = '#fff'; } }, el);
-  await page.screenshot({ path: path.join(out, 'logo-white@4x.png'), omitBackground: true, clip: { x: box.x - 2, y: box.y - 2, width: box.width + 4, height: box.height + 4 } });
+  if (!sym || !sym.vb) throw new Error('logo sembolü bulunamadı');
+  const [, , vw, vh] = sym.vb.split(/[\s,]+/).map(Number);
+  console.log('logo viewBox', sym.vb);
+  const W = 1200, H = Math.round(W * vh / vw);
+  for (const [name, color] of [['logo@4x.png', '#000'], ['logo-white@4x.png', '#fff']]) {
+    const p = await browser.newPage({ viewport: { width: W + 20, height: H + 20 }, deviceScaleFactor: 1 });
+    await p.setContent(`<html><body style="margin:0;background:transparent"><svg xmlns="http://www.w3.org/2000/svg" viewBox="${sym.vb}" width="${W}" height="${H}" style="display:block;margin:10px;color:${color};fill:${color}">${sym.inner}</svg></body></html>`);
+    await p.locator('svg').screenshot({ path: path.join(out, name), omitBackground: true });
+    await p.close();
+  }
   await browser.close();
   console.log('✔ logo@4x.png, logo-white@4x.png');
 })();
