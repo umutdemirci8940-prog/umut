@@ -1,23 +1,41 @@
 # Oasis Media — yeni web sitesi
 
-[oasismedia.com.tr](https://oasismedia.com.tr/) için yeniden tasarlanan, animasyonlu açılışa sahip tek sayfalık site.
+[oasismedia.com.tr](https://oasismedia.com.tr/) için yeniden tasarlanan site: **"Vaha yolculuğu"**.
+Sayfanın arkasında tam ekran bir 3D sahne var: su üzerinde batan, logodaki gibi çizgili güneş, palmiyeli adacıklar,
+ışığı yansıtan dalgalı su. Ziyaretçi kaydırdıkça kamera vahanın içinde ilerler; her bölüm yolculuğun bir durağıdır.
 Tüm metinler, logo, 145 müşteri logosu, 24 yayıncı partner logosu ve iletişim bilgileri orijinal siteden alınmıştır.
-Projeler bölümü, markanın "İnteraktif & Rich Media Çalışmalar" PDF'ini site içinde önizler.
 
 ```
 oasismedia/
-├── site/                  ← yayına alınacak klasör (statik; herhangi bir hostinge kopyalanabilir)
+├── site/                     ← yayına alınacak klasör (statik; herhangi bir hostinge kopyalanabilir)
 │   ├── index.html
 │   ├── css/style.css
-│   ├── js/main.js         ← etkileşimler (bağımlılık yok)
-│   ├── js/particles.js    ← WebGL parçacık sahnesi (bağımlılık yok)
-│   ├── js/data.js         ← müşteri / partner / proje listesi (otomatik üretilir)
-│   ├── assets/            ← logo, favicon, WebP'ye çevrilmiş müşteri/partner logoları
-│   ├── assets/pdf/        ← oasis-media-calismalar.pdf (Projeler bölümünün önizlediği dosya)
-│   └── vendor/pdfjs/      ← PDF.js 3.11.174 (PDF sayfalarını her cihazda site içinde çizer)
-├── source/                ← GitHub Actions ile indirilen orijinal sitenin kopyası (+ content.json metin dökümü)
-└── tools/prepare_assets.py← source/ → site/assets ve js/data.js
+│   ├── js/scene.js           ← 3D vaha sahnesi (three.js, ES modülü)
+│   ├── js/main.js            ← açılış, menü, hizmet sekmeleri, PDF kapağı, form
+│   ├── js/data.js            ← müşteri / partner listesi (otomatik üretilir)
+│   ├── assets/               ← logo, favicon, WebP müşteri/partner logoları
+│   ├── assets/pdf/           ← oasis-media-calismalar.pdf (Projeler bölümündeki sunum)
+│   ├── vendor/three/         ← three.js 0.160.0 (MIT)
+│   └── vendor/pdfjs/         ← PDF.js 3.11.174 (Apache-2.0) — PDF kapağına ilk sayfayı çizer
+├── source/                   ← GitHub Actions ile indirilen orijinal sitenin kopyası (+ content.json)
+└── tools/prepare_assets.py   ← source/ → site/assets ve js/data.js
 ```
+
+## Yolculuğun durakları
+
+| Durak | 3D sahnede |
+|---|---|
+| Açılış | Güneş sudan doğar, "oasis media" harfleri zıplar; logolar yüklenirken çubuk dolar (oturum başına bir kez, "Geç" ile atlanır) |
+| Ufuk (hero) | Güneş ve palmiyeler; fareyle kamera hafifçe süzülür |
+| Hakkımızda | Kamera adaların arasından ilerler |
+| Rakamlar | 300+ / 2K+ / 10 / 145 sırayla sudan yükselir, suya yansır, geri batar |
+| Hizmetlerimiz / Projelerimiz | Cam paneller; Projeler'de PDF sunum yeni sekmede açılır |
+| Müşterilerimiz | 145 logo suyun üstünde yüzen kartlar; üzerine gelince kart yükselir ve marka adı görünür |
+| İş ortaklarımız | 24 yayıncı partner, ışık sütunu etrafında dönen halka |
+| İletişim | Kamera güneşe varır |
+
+WebGL desteklemeyen cihazlarda sayfa gökyüzü–su degradesi üzerinde düz içerikle çalışır (rakamlar ve partner logoları liste olarak görünür).
+Hareket azaltma tercihi açıksa açılış atlanır ve sahne hareketsiz kalır.
 
 ## Önizleme
 
@@ -25,31 +43,12 @@ oasismedia/
 cd oasismedia/site && python3 -m http.server 8080   # http://localhost:8080
 ```
 
-## Bölümler ve etkileşimler
-
-- **Açılış animasyonu:** logodaki güneş doğar, palmiye yaprağı açılır, "oasis media" harfleri zıplar,
-  "300+ partner site bağlanıyor…" yükleme satırları akar. Oturum başına bir kez gösterilir; "Geç", Enter veya Esc ile atlanır.
-  Hareket azaltma tercihi açıksa hiç gösterilmez.
-- **Hero:** fareyle etkileşen canlı "yayıncı ağı" arka planı, paralaks reklam formatı çipleri (Masthead, 970×250, Gravity…),
-  tıklanınca KPI baloncukları saçan güneş, artan kampanya erişimi kartı, mıknatıslı butonlar, özel imleç.
-- **WebGL parçacık sahnesi:** 4.000–9.000 parçacık açılışta dağınık hâlden toplanıp logodaki güneşi (ufuk çizgileri ve
-  palmiye yaprağıyla) oluşturur; fareyle itilir, güneşe tıklayınca patlar. Sayfa kaydıkça aynı parçacıklar
-  "Rakamlarla Oasis" sahnesinde 300+ → 2K+ → 10 → 145 rakamlarına, iş ortaklarında dönen yayıncı ağı küresine,
-  iletişimde dalgalanan vaha suyuna dönüşür. WebGL yoksa rakamlar düz metin olarak gösterilir.
-- **Hakkımızda:** orijinal metin, vizyon/misyon, sayaçlar (300+ site, 2K+ proje, 10 yıl, 145+ marka).
-- **Hizmetlerimiz:** 6 hizmet sekmesi; her biri hizmet sayfasındaki tam metni gösterir (klavye okları ile gezilebilir).
-- **Projelerimiz:** PDF kapağı (ilk sayfa otomatik küçük resim olur, sayfa sayısı yazılır); tıklayınca tüm sayfalar
-  site içindeki önizleme penceresinde açılır. PDF'i değiştirmek için `site/assets/pdf/oasis-media-calismalar.pdf`
-  dosyasını aynı adla güncellemek yeterli.
-- **Müşterilerimiz:** üç sıra kayan logo şeridi + tüm listeyi açan ızgara.
-- **İş ortaklarımız:** 24 yayıncı partner logosu.
-- **İletişim:** adres (Google Maps bağlantısı), telefon, e-postalar (kopyala butonu), form (sales@oasismedia.com.tr'ye
-  e-posta taslağı açar — sunucu tarafı form gerekirse `js/main.js` içindeki submit işleyicisi bir API'ye yönlendirilebilir).
+Not: `index.html` dosyaya çift tıklanarak (file://) açılırsa tarayıcılar ES modüllerini ve PDF okumayı engeller; sunucu üzerinden açın.
 
 ## Görselleri yenilemek
 
-Ağ politikası nedeniyle bulut oturumu orijinal siteye erişemediğinden içerik `.github/workflows/oasis-mirror.yml`
-ile GitHub sunucusunda indirilir ve `oasismedia/source/` altına push'lanır. Ardından:
+Bulut oturumu orijinal siteye erişemediği için içerik `.github/workflows/oasis-mirror.yml` ile GitHub sunucusunda indirilir ve
+`oasismedia/source/` altına push'lanır. Ardından:
 
 ```bash
 python3 -I oasismedia/tools/prepare_assets.py
