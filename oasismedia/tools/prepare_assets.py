@@ -88,13 +88,4 @@ data = {'clients': clients, 'partners': partners}
 (ROOT / 'site' / 'js' / 'data.js').write_text(
     '// tools/prepare_assets.py tarafından üretildi — orijinal siteden alınan müşteri ve partner listesi\n'
     'window.OASIS_DATA = ' + json.dumps(data, ensure_ascii=False, indent=1) + ';\n')
-# 3D sahnedeki logo dokuları için görseller sayfaya gömülür (data URI): site dosyaya çift tıklanarak
-# (file://) açıldığında bile tarayıcı WebGL'e görsel yüklemeyi engellemesin
-import base64
-def data_uri(rel):
-    return 'data:image/webp;base64,' + base64.b64encode((ROOT / 'site' / rel).read_bytes()).decode()
-(ROOT / 'site' / 'js' / 'logo-data.js').write_text(
-    '// tools/prepare_assets.py tarafından üretildi — 3D sahne için gömülü logo görselleri (data.js ile aynı sırada)\n'
-    'window.OASIS_LOGO_DATA = ' + json.dumps({'clients': [data_uri(c['logo']) for c in clients],
-                                              'partners': [data_uri(p['logo']) for p in partners]}) + ';\n')
 print(len(clients), 'müşteri,', len(partners), 'partner')

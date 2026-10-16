@@ -1,87 +1,147 @@
-/* Oasis Media — sayfa etkileşimleri (bağımlılık yok). 3D sahne js/scene.js içinde; listeler js/data.js içinde. */
+/* Oasis Media — sayfa etkileşimleri (bağımlılık yok). 3D sıvı obje js/blob.js içinde; listeler js/data.js içinde. */
 (function () {
   'use strict';
   var D = window.OASIS_DATA || { clients: [], partners: [] };
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   var root = document.documentElement;
-  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var emit = function (n) { document.dispatchEvent(new CustomEvent(n)); };
+  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine = matchMedia('(pointer: fine)').matches;
+  var clamp = function (v, a, b) { return Math.max(a, Math.min(b, v)); };
   var store = {
     get: function (k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } },
     set: function (k, v) { try { sessionStorage.setItem(k, v); } catch (e) { /* depolama kapalı olabilir */ } }
   };
 
-  /* ---------- Açılış: güneş sudan doğarken logolar yüklenir ---------- */
-  var intro = $('#intro');
-  var finished = false;
-  function finish() {
-    if (finished) return; finished = true;
-    intro.classList.add('is-done');
-    root.classList.remove('intro-on'); root.classList.add('intro-off');
-    emit('oasis:intro-done');
-    setTimeout(function () { intro.hidden = true; }, 1000);
-  }
-  if (reduced || store.get('oasis-intro')) {
-    intro.classList.add('is-skipped'); intro.hidden = true; root.classList.add('intro-off'); finished = true;
+  /* ---------- Hero başlığı: harf harf ---------- */
+  var k = 0;
+  $$('.hero-title .chars').forEach(function (el) {
+    (function walk(node) {
+      Array.prototype.slice.call(node.childNodes).forEach(function (n) {
+        if (n.nodeType === 3) {
+          var f = document.createDocumentFragment();
+          n.textContent.split(/(\s+)/).forEach(function (word) { // harfler kelime kutusunda: kelime ortadan kırılmaz
+            if (!word) return;
+            if (/^\s+$/.test(word)) { f.appendChild(document.createTextNode(' ')); return; }
+            var wd = document.createElement('span'); wd.className = 'wd';
+            Array.from(word).forEach(function (ch) { var s = document.createElement('span'); s.className = 'c'; s.textContent = ch; s.style.setProperty('--k', k++); wd.appendChild(s); });
+            f.appendChild(wd);
+          });
+          n.parentNode.replaceChild(f, n);
+        } else if (n.nodeType === 1) walk(n);
+      });
+    })(el);
+  });
+
+  /* ---------- Yükleme ekranı ---------- */
+  var loader = $('#loader');
+  if (reduced || store.get('oasis-seen')) {
+    loader.hidden = true; root.classList.add('loaded-fast');
   } else {
-    store.set('oasis-intro', '1');
-    root.classList.add('intro-on');
-    var t0 = performance.now(), ready = false, bar = $('#introBar'), boot = $('#introBoot');
-    var lines = ['Vaha hazırlanıyor…', 'Güneş doğuyor…', '300+ yayıncı ağa bağlanıyor…', '145 marka suya iniyor…'];
-    var li = 0, lt = setInterval(function () { li = Math.min(lines.length - 1, li + 1); boot.textContent = lines[li]; }, 900);
-    var cnt = $('#introCount'), shown = 0, target = 0.06;
-    (function countLoop() { // yüzde sayacı hedefe yumuşakça yaklaşır
-      shown += (target - shown) * 0.08; cnt.textContent = ('00' + Math.round(shown * 100)).slice(-3);
-      bar.style.transform = 'scaleX(' + Math.max(0.04, shown) + ')';
-      if (!finished) requestAnimationFrame(countLoop);
-    })();
-    document.addEventListener('oasis:progress', function (e) { target = Math.max(target, Math.min(0.96, e.detail || 0)); });
-    document.addEventListener('oasis:ready', function () {
-      ready = true; target = 1;
-      setTimeout(function () { clearInterval(lt); boot.textContent = 'Hoş geldiniz.'; setTimeout(finish, 450); }, Math.max(0, 3000 - (performance.now() - t0)));
-    });
-    $('#introSkip').addEventListener('click', finish);
-    document.addEventListener('keydown', function k(e) { if (e.key === 'Enter' || e.key === 'Escape') { finish(); document.removeEventListener('keydown', k); } });
-    setTimeout(finish, 7000);
+    store.set('oasis-seen', '1');
+    var t0 = performance.now(), ready = false, done = false, cnt = $('#loaderCount'), bar = $('#loaderBar');
+    document.addEventListener('oasis:ready', function () { ready = true; });
+    (function tick(now) {
+      var p = clamp((now - t0) / 1500, 0, 1); p = 1 - Math.pow(1 - p, 3);
+      if (!ready && p > 0.9) p = 0.9 + (p - 0.9) * 0.2;
+      cnt.textContent = Math.round(p * 100); bar.style.transform = 'scaleX(' + p + ')';
+      if ((p >= 0.999 || (ready && now - t0 > 1500)) && !done) {
+        done = true; cnt.textContent = '100'; bar.style.transform = 'scaleX(1)';
+        setTimeout(function () { loader.classList.add('is-done'); setTimeout(function () { loader.hidden = true; }, 1200); }, 250);
+        return;
+      }
+      if (now - t0 > 6000) { done = true; loader.classList.add('is-done'); return; }
+      requestAnimationFrame(tick);
+    })(t0);
   }
 
-  /* ---------- Menü, ilerleme çubuğu, etkin bağlantı ---------- */
+  /* ---------- Menü, ilerleme, etkin bağlantı ---------- */
   var nav = $('#nav'), burger = $('#burger');
   burger.addEventListener('click', function () {
     var open = nav.classList.toggle('is-open');
-    burger.setAttribute('aria-expanded', open);
-    burger.setAttribute('aria-label', open ? 'Menüyü kapat' : 'Menüyü aç');
+    burger.setAttribute('aria-expanded', open); burger.setAttribute('aria-label', open ? 'Menüyü kapat' : 'Menüyü aç');
   });
   $$('#navLinks a').forEach(function (a) { a.addEventListener('click', function () { nav.classList.remove('is-open'); burger.setAttribute('aria-expanded', 'false'); }); });
   var sections = $$('main section[id]'), progress = $('#progress');
-  function onScroll() {
-    var h = document.documentElement.scrollHeight - innerHeight;
-    progress.style.transform = 'scaleX(' + (h > 0 ? scrollY / h : 0) + ')';
-    var cur = '';
-    sections.forEach(function (s) { if (s.getBoundingClientRect().top < innerHeight * 0.45) cur = s.id; });
-    $$('#navLinks a').forEach(function (a) { a.classList.toggle('is-active', a.getAttribute('href') === '#' + cur); });
-  }
-  addEventListener('scroll', onScroll, { passive: true }); onScroll();
   $('#year').textContent = Math.max(2025, new Date().getFullYear());
 
-  /* ---------- Başlık etiketleri: göründüklerinde harfler çözülerek belirir ---------- */
-  if (!reduced && 'IntersectionObserver' in window) {
-    var GLYPHS = '01<>/#%&*+=?ABCDEFKLMNOPRSTUVYZ';
-    var scramble = function (el) {
-      var final = el.textContent, t0s = performance.now(), dur = 900;
-      (function step(t) {
-        var k = Math.min(1, (t - t0s) / dur), out = '';
-        for (var i = 0; i < final.length; i++) out += (final[i] === ' ' || i / final.length < k) ? final[i] : GLYPHS[(Math.random() * GLYPHS.length) | 0];
-        el.textContent = out;
-        if (k < 1) requestAnimationFrame(step); else el.textContent = final;
-      })(t0s);
-    };
-    var sio = new IntersectionObserver(function (en) { en.forEach(function (e) { if (e.isIntersecting) { sio.unobserve(e.target); scramble(e.target); } }); }, { threshold: 1 });
-    $$('.eyebrow').forEach(function (el) { sio.observe(el); });
+  /* ---------- İmleç ve mıknatıslı öğeler ---------- */
+  if (fine && !reduced) {
+    root.classList.add('has-cursor');
+    var cur = $('#cursor'), label = $('#cursorLabel'), mx = innerWidth / 2, my = innerHeight / 2, cx = mx, cy = my;
+    addEventListener('pointermove', function (e) { mx = e.clientX; my = e.clientY; }, { passive: true });
+    (function loop() { cx += (mx - cx) * 0.22; cy += (my - cy) * 0.22; cur.style.transform = 'translate(' + cx + 'px,' + cy + 'px)'; requestAnimationFrame(loop); })();
+    document.addEventListener('pointerover', function (e) {
+      var el = e.target.closest('a, button, [data-cursor], input, textarea, .logo-tile');
+      var txt = el && el.dataset.cursor;
+      cur.classList.toggle('is-link', !!el && !txt); cur.classList.toggle('has-label', !!txt); label.textContent = txt || '';
+    });
+    $$('[data-magnet]').forEach(function (b) {
+      b.addEventListener('pointermove', function (e) {
+        var r = b.getBoundingClientRect();
+        b.style.transform = 'translate(' + (e.clientX - r.left - r.width / 2) * 0.3 + 'px,' + (e.clientY - r.top - r.height / 2) * 0.35 + 'px)';
+      });
+      b.addEventListener('pointerleave', function () { b.style.transform = ''; });
+    });
   }
 
-  /* ---------- Hizmetler ---------- */
+  /* ---------- Başlıklar kelime kelime ---------- */
+  $$('.split').forEach(function (h) {
+    var n2 = 0;
+    (function walk(node) {
+      Array.prototype.slice.call(node.childNodes).forEach(function (n) {
+        if (n.nodeType === 3) {
+          var f = document.createDocumentFragment();
+          n.textContent.split(/(\s+)/).forEach(function (part) {
+            if (!part) return;
+            if (/^\s+$/.test(part)) { f.appendChild(document.createTextNode(part)); return; }
+            var w = document.createElement('span'); w.className = 'w';
+            var i = document.createElement('span'); i.textContent = part; i.style.setProperty('--k', n2++);
+            w.appendChild(i); f.appendChild(w);
+          });
+          n.parentNode.replaceChild(f, n);
+        } else if (n.nodeType === 1 && !n.id) walk(n);
+      });
+    })(h);
+  });
+  $$('.big-p, .lead-sm, .brands, .numbers .quote, .contact-info, .form, .cats, .actions, .card').forEach(function (el) { el.classList.add('rise'); });
+  var io = 'IntersectionObserver' in window && !reduced ? new IntersectionObserver(function (en) {
+    en.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+  }, { threshold: 0.2 }) : null;
+  $$('.split, .rise').forEach(function (el) { if (io) io.observe(el); else el.classList.add('is-in'); });
+
+  /* ---------- Kartlar fareyle eğilir ---------- */
+  function tilt(el, amt) {
+    if (!fine || reduced) return;
+    el.addEventListener('pointermove', function (e) {
+      var r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      el.style.setProperty('--rx', ((0.5 - y) * amt).toFixed(2) + 'deg'); el.style.setProperty('--ry', ((x - 0.5) * amt).toFixed(2) + 'deg');
+      el.style.setProperty('--mx', (x * 100) + '%'); el.style.setProperty('--my', (y * 100) + '%');
+    });
+    el.addEventListener('pointerleave', function () { el.style.setProperty('--rx', '0deg'); el.style.setProperty('--ry', '0deg'); });
+  }
+  $$('[data-tilt]').forEach(function (el) { tilt(el, 6); });
+
+  /* ---------- Manifesto: kelimeler kaydırdıkça yanar ---------- */
+  var man = $('#hakkimizda'), manText = $('#manifestoText');
+  var HOT = ['300’ü', 'aşkın', 'site', 'exclusive', 'KPI’larına', 'hedeflemeler'];
+  manText.innerHTML = manText.textContent.trim().split(/\s+/).map(function (w) {
+    return '<span class="mw' + (HOT.indexOf(w.replace(/[.,;]/g, '')) > -1 ? ' hotw' : '') + '">' + w + '</span>';
+  }).join(' ');
+  var mws = $$('.mw', manText);
+
+  /* ---------- Rakamlar ---------- */
+  if (D.clients.length) { $('#clientCount').dataset.count = D.clients.length; $('#clientCount').textContent = D.clients.length; $('#clientCount2').textContent = D.clients.length; }
+  function countUp(el) {
+    var to = +el.dataset.count, suf = el.dataset.suffix || '', s0 = performance.now();
+    (function step(t) { var p = clamp((t - s0) / 1800, 0, 1); el.textContent = Math.round(to * (1 - Math.pow(1 - p, 4))) + suf; if (p < 1) requestAnimationFrame(step); })(s0);
+  }
+  if (io) {
+    var cio = new IntersectionObserver(function (en) { en.forEach(function (e) { if (e.isIntersecting) { countUp(e.target); cio.unobserve(e.target); } }); }, { threshold: 0.6 });
+    $$('[data-count]').forEach(function (el) { cio.observe(el); });
+  }
+
+  /* ---------- Hizmetler: yatay kayan kartlar ---------- */
   var SERVICES = [
     { name: 'Hedeflemeler ve Raporlama', tagline: 'Oasis Media ile her veri, bir fırsata dönüşür.',
       text: 'Oasis Media olarak, işletmenizin büyüme stratejilerine yön veren hizmetimizle, doğru kitleye doğru mesajı ulaştırmanıza destek oluyoruz. Bu hizmetle, kullanıcı davranışlarını detaylı bir şekilde analiz ederek, stratejik hedeflerinize uygun sonuçlar elde etmenizi sağlarız. Masaüstü platformlarında da uygulanabilen interaktif çözümlerimiz, kullanıcıların aktif katılımını teşvik ederek etkileşim oranlarını artırır. Detaylı raporlama ve analizlerle süreçlerinizin verimliliğini artırmanıza yardımcı oluyoruz.' },
@@ -96,29 +156,34 @@
     { name: 'Kullanıcı ve Yazılım Geliştirme', tagline: 'İhtiyaçlarınızı anlamak, doğru çözümü sunmak için yanınızdayız.',
       text: 'İnovasyonun kalbinde yer alan yazılım çözümleri, işletmenizin dijital dönüşümünü hızlandırır ve kullanıcı deneyimini üst seviyeye taşır. Oasis Media olarak, iş süreçlerinizi daha verimli hale getirecek özel yazılımlar geliştiriyoruz. Kullanıcı dostu arayüzler, yüksek performanslı altyapılar ve kişiye özel çözümlerle, her türlü dijital ihtiyacınıza yönelik özgün yazılımlar sunuyoruz. İhtiyaçlarınızı anlamak, doğru çözümü sunmak ve kullanıcı odaklı bir yaklaşım geliştirmek için yanınızdayız.' }
   ];
-  var tabs = $('#svcTabs'), panel = $('#svcPanel');
-  SERVICES.forEach(function (s, i) {
-    var li = document.createElement('li');
-    li.innerHTML = '<button class="svc-tab" role="tab" id="svc-' + i + '" aria-controls="svcPanel" aria-selected="false" type="button"><span class="n">0' + (i + 1) + '</span><span>' + s.name + '</span></button>';
-    tabs.appendChild(li);
-  });
-  function showService(i, focus) {
-    var s = SERVICES[i];
-    $$('.svc-tab', tabs).forEach(function (t, j) { t.setAttribute('aria-selected', i === j); t.tabIndex = i === j ? 0 : -1; });
-    panel.setAttribute('aria-labelledby', 'svc-' + i);
-    panel.classList.remove('swap'); void panel.offsetWidth; panel.classList.add('swap');
-    panel.innerHTML = '<h3>' + s.name + '</h3><p>' + s.text + '</p><p class="tagline">' + s.tagline + '</p><a class="btn" href="#iletisim">Bu hizmet için teklif alın</a>';
-    if (focus) $$('.svc-tab', tabs)[i].focus();
-  }
-  tabs.addEventListener('click', function (e) { var b = e.target.closest('.svc-tab'); if (b) showService($$('.svc-tab', tabs).indexOf(b)); });
-  tabs.addEventListener('keydown', function (e) {
-    var cur = $$('.svc-tab', tabs).findIndex(function (t) { return t.getAttribute('aria-selected') === 'true'; });
-    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { e.preventDefault(); showService((cur + 1) % SERVICES.length, true); }
-    if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { e.preventDefault(); showService((cur + SERVICES.length - 1) % SERVICES.length, true); }
-  });
-  showService(0);
+  var track = $('#servicesTrack');
+  track.innerHTML = SERVICES.map(function (s, i) {
+    return '<article class="svc-card"><span class="n">0' + (i + 1) + '</span><h3>' + s.name + '</h3><p>' + s.text + '</p><p class="tagline">' + s.tagline + '</p></article>';
+  }).join('');
+  var svcSec = $('#hizmetler'), svcBar = $('#servicesBar');
 
-  /* ---------- Projeler: kapak ve düğme PDF sunumunu yeni sekmede açar; kapağa PDF'in ilk sayfası çizilir ---------- */
+  /* ---------- Kaydırmaya bağlı her şey tek döngüde ---------- */
+  function onScroll() {
+    var h = document.documentElement.scrollHeight - innerHeight;
+    progress.style.transform = 'scaleX(' + (h > 0 ? scrollY / h : 0) + ')';
+    var cur2 = '';
+    sections.forEach(function (s) { if (s.getBoundingClientRect().top < innerHeight * 0.5) cur2 = s.id; });
+    $$('#navLinks a').forEach(function (a) { a.classList.toggle('is-active', a.getAttribute('href') === '#' + cur2); });
+    // manifesto
+    var mr = man.getBoundingClientRect(), mp = clamp(-mr.top / (mr.height - innerHeight), 0, 1);
+    var lit = Math.round(mp * 1.15 * mws.length);
+    mws.forEach(function (w, i) { w.classList.toggle('on', i < lit); w.classList.toggle('hot', i < lit && w.classList.contains('hotw')); });
+    // hizmetler
+    if (innerWidth > 760) {
+      var sr = svcSec.getBoundingClientRect(), sp = clamp(-sr.top / (sr.height - innerHeight), 0, 1);
+      var max = track.scrollWidth - innerWidth;
+      track.style.transform = 'translateX(' + (-sp * Math.max(0, max)) + 'px)';
+      svcBar.style.transform = 'scaleX(' + sp + ')';
+    }
+  }
+  addEventListener('scroll', onScroll, { passive: true }); addEventListener('resize', onScroll); onScroll();
+
+  /* ---------- Projeler: kapak PDF'in ilk sayfası (sunucuda); bağlantılar sunumu yeni sekmede açar ---------- */
   var projSec = $('#projeler'), PDF_URL = projSec.dataset.pdf, PDFJS = 'vendor/pdfjs/'; // PDF.js 3.11.174 (Apache-2.0)
   function loadPdfJs() {
     if (window.pdfjsLib) return Promise.resolve(window.pdfjsLib);
@@ -129,7 +194,7 @@
     });
   }
   function cover() {
-    if (location.protocol === 'file:') return;
+    if (location.protocol === 'file:') return; // dosyadan açıldığında tarayıcı PDF okumaya izin vermez; tasarım kapağı kalır
     fetch(PDF_URL).then(function (r) { if (!r.ok) throw r.status; return r.arrayBuffer(); })
       .then(function (data) { return loadPdfJs().then(function (lib) { return lib.getDocument({ data: data }).promise; }); })
       .then(function (pdf) {
@@ -139,125 +204,35 @@
           c.width = vp.width; c.height = vp.height;
           return page.render({ canvasContext: c.getContext('2d'), viewport: vp }).promise.then(function () { c.hidden = false; $('#pdfPlaceholder').hidden = true; });
         });
-      }).catch(function () { /* kapak tasarımı kalır; bağlantılar yine PDF'i açar */ });
+      }).catch(function () { /* kapak tasarımı kalır */ });
   }
   if ('IntersectionObserver' in window) {
-    var pio = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { pio.disconnect(); cover(); } }, { rootMargin: '400px' });
+    var pio = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { pio.disconnect(); cover(); } }, { rootMargin: '500px' });
     pio.observe(projSec);
   } else cover();
 
-  /* ---------- Müşteriler ---------- */
+  /* ---------- Müşteriler: spot ışıklı logo duvarı ---------- */
   var NAMES = { a90: 'A90 Pictures', anabank: 'Anadolubank', bparmak: 'Balparmak', btoptan: 'Bizim Toptan', ck: 'Calvin Klein', cocacola: 'Coca-Cola', cs: 'CarrefourSA', ct: 'Cola Turka', gbbva: 'Garanti BBVA', hm: 'H&M', lufi: 'Lufian', ing: 'ING', bmw: 'BMW', bim: 'BİM', jbl: 'JBL', qnb: 'QNB', teb: 'TEB', vw: 'Volkswagen', tt: 'Türk Telekom', 'ford-trucks': 'Ford Trucks', 'm-coco': 'M.Coco' };
-  var nameOf = function (k) { var l = k.toLowerCase(); return NAMES[l] || (k.charAt(0).toUpperCase() + k.slice(1)); };
-  window.oasisClientName = nameOf;
-  if (D.clients.length) $('#clientCount').textContent = D.clients.length;
-  var allBtn = $('#allClientsBtn'), all = $('#allLogos');
-  allBtn.addEventListener('click', function () {
-    if (!all.childElementCount) all.innerHTML = D.clients.map(function (c) { return '<div class="logo-cell' + (c.dark ? ' dark' : '') + '"><img src="' + c.logo + '" alt="' + nameOf(c.key) + '" loading="lazy" decoding="async"></div>'; }).join('');
-    all.hidden = !all.hidden;
-    allBtn.setAttribute('aria-expanded', !all.hidden);
-    allBtn.textContent = all.hidden ? 'Tüm müşterilerimizi listele' : 'Listeyi gizle';
-  });
-
-  /* ---------- İş ortakları (3D halkada gösterilir; WebGL yoksa ızgara) ---------- */
-  $('#partnerWall').innerHTML = D.partners.map(function (p) { return '<img src="' + p.logo + '" alt="Yayıncı partner: ' + p.key.replace(/-\d+$/, '') + '" loading="lazy" decoding="async">'; }).join('');
-
-  /* =====================================================================
-     Efekt katmanı
-     ===================================================================== */
-  var fine = window.matchMedia('(pointer: fine)').matches;
-
-  // Özel imleç + mıknatıslı butonlar
-  if (fine && !reduced) {
-    root.classList.add('has-cursor');
-    var cur = $('#cursor'), dot = $('#cursorDot'), label = $('#cursorLabel');
-    var mx = innerWidth / 2, my = innerHeight / 2, cx = mx, cy = my;
-    addEventListener('pointermove', function (e) { mx = e.clientX; my = e.clientY; dot.style.transform = 'translate(' + mx + 'px,' + my + 'px)'; }, { passive: true });
-    (function loop() { cx += (mx - cx) * 0.2; cy += (my - cy) * 0.2; cur.style.transform = 'translate(' + cx + 'px,' + cy + 'px)'; requestAnimationFrame(loop); })();
-    document.addEventListener('pointerover', function (e) {
-      var el = e.target.closest('a, button, [data-cursor], input, textarea');
-      var txt = el && el.dataset.cursor;
-      cur.classList.toggle('is-link', !!el && !txt);
-      cur.classList.toggle('has-label', !!txt);
-      label.textContent = txt || '';
+  var nameOf = function (k2) { var l = k2.toLowerCase(); return NAMES[l] || (k2.charAt(0).toUpperCase() + k2.slice(1)); };
+  var wall = $('#logoWall');
+  wall.innerHTML = D.clients.map(function (c) {
+    return '<div class="logo-tile' + (c.dark ? ' dark' : '') + '"><img src="' + c.logo + '" alt="' + nameOf(c.key) + '" loading="lazy" decoding="async"><span class="nm">' + nameOf(c.key) + '</span></div>';
+  }).join('');
+  if (fine) {
+    wall.addEventListener('pointermove', function (e) {
+      var r = wall.getBoundingClientRect();
+      wall.style.setProperty('--sx', (e.clientX - r.left) + 'px'); wall.style.setProperty('--sy', (e.clientY - r.top) + 'px');
     });
-    $$('.btn').forEach(function (b) {
-      b.addEventListener('pointermove', function (e) {
-        var r = b.getBoundingClientRect();
-        b.style.transform = 'translate(' + (e.clientX - r.left - r.width / 2) * 0.28 + 'px,' + (e.clientY - r.top - r.height / 2) * 0.4 + 'px)';
-      });
-      b.addEventListener('pointerleave', function () { b.style.transform = ''; });
-    });
+    wall.addEventListener('pointerleave', function () { wall.style.setProperty('--sx', '-999px'); });
   }
 
-  // Başlıklar kelime kelime açılır
-  $$('main h2, .hero-lead').forEach(function (h) {
-    var k = 0;
-    (function walk(node) {
-      Array.prototype.slice.call(node.childNodes).forEach(function (n) {
-        if (n.nodeType === 3) {
-          var frag = document.createDocumentFragment();
-          n.textContent.split(/(\s+)/).forEach(function (part) {
-            if (!part) return;
-            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
-            var w = document.createElement('span'); w.className = 'w';
-            var inner = document.createElement('span'); inner.textContent = part; inner.style.setProperty('--k', k++);
-            w.appendChild(inner); frag.appendChild(w);
-          });
-          n.parentNode.replaceChild(frag, n);
-        } else if (n.nodeType === 1 && n.id !== 'clientCount') walk(n);
-      });
-    })(h);
-    h.classList.add('split');
-  });
-  // Paneller ve başlıklar sahneye kayarak girer
-  var revealEls = $$('.panel, .chip, .footer-inner');
-  revealEls.forEach(function (el) { el.classList.add('reveal-up', 'fx'); });
-  $$('.split').forEach(function (el) { el.classList.add('pending'); });
-  if ('IntersectionObserver' in window && !reduced) {
-    var rio = new IntersectionObserver(function (en) {
-      en.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); rio.unobserve(e.target); } });
-    }, { threshold: 0.15, rootMargin: '0px 0px -5% 0px' });
-    revealEls.concat($$('.split')).forEach(function (el) { rio.observe(el); });
-  } else revealEls.concat($$('.split')).forEach(function (el) { el.classList.add('is-in'); });
-
-  // Cam paneller fareyle eğilir, ışık imleci takip eder
-  if (fine && !reduced) {
-    $$('.glass.fx').forEach(function (g) {
-      g.addEventListener('pointermove', function (e) {
-        var r = g.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
-        g.style.setProperty('--rx', ((0.5 - y) * 4).toFixed(2) + 'deg');
-        g.style.setProperty('--ry', ((x - 0.5) * 5).toFixed(2) + 'deg');
-        g.style.setProperty('--mx', (x * 100).toFixed(1) + '%');
-        g.style.setProperty('--my', (y * 100).toFixed(1) + '%');
-      });
-      g.addEventListener('pointerleave', function () { g.style.setProperty('--rx', '0deg'); g.style.setProperty('--ry', '0deg'); });
-    });
-  }
-
-  // Kayan şeritler: sürekli akar, kaydırma hızıyla hızlanır ve eğilir
-  var bands = $$('.band-track'), lastY = scrollY, vel = 0, off = 0;
-  (function bandLoop() {
-    var y = scrollY, dv = y - lastY; lastY = y;
-    vel += (dv - vel) * 0.12;
-    off += reduced ? 0 : 0.6 + Math.abs(vel) * 0.35;
-    bands.forEach(function (b) {
-      var half = b.scrollWidth / 2, dir = +b.dataset.speed, x = -((off % half));
-      b.style.transform = 'translateX(' + (dir > 0 ? x : -half - x) + 'px) skewX(' + Math.max(-14, Math.min(14, -vel * 0.4)) + 'deg)';
-    });
-    requestAnimationFrame(bandLoop);
-  })();
-
-  // Sol durak göstergesi
-  var hudLinks = $$('#hud a'), hudFill = $('#hudFill');
-  function hud() {
-    var cur2 = 'hero';
-    hudLinks.forEach(function (a) { var s2 = document.getElementById(a.dataset.stop); if (s2 && s2.getBoundingClientRect().top < innerHeight * 0.5) cur2 = a.dataset.stop; });
-    hudLinks.forEach(function (a) { a.classList.toggle('is-on', a.dataset.stop === cur2); });
-    var h = document.documentElement.scrollHeight - innerHeight;
-    hudFill.style.height = (h > 0 ? scrollY / h * 100 : 0) + '%';
-  }
-  addEventListener('scroll', hud, { passive: true }); hud();
+  /* ---------- İş ortakları: 3D halka ---------- */
+  var ring = $('#orbitRing'), n = D.partners.length || 1;
+  ring.innerHTML = D.partners.map(function (p, i) {
+    return '<div class="orbit-item" style="--a:' + (i * 360 / n) + 'deg;--y:' + (i % 2 ? 70 : -70) + 'px"><img src="' + p.logo + '" alt="Yayıncı partner: ' + p.key.replace(/-\d+$/, '') + '" loading="lazy"></div>';
+  }).join('');
+  function ringR() { ring.style.setProperty('--r', Math.min(340, innerWidth * 0.36) + 'px'); $$('.orbit-item', ring).forEach(function (it) { it.style.setProperty('--r', Math.min(340, innerWidth * 0.36) + 'px'); }); }
+  ringR(); addEventListener('resize', ringR);
 
   /* ---------- Kopyala ---------- */
   $$('[data-copy]').forEach(function (b) {
@@ -273,7 +248,7 @@
     });
   });
 
-  /* ---------- İletişim formu: e-posta uygulamasında hazır taslak açar ---------- */
+  /* ---------- İletişim formu: e-posta uygulamasında hazır taslak ---------- */
   var form = $('#contactForm'), status = $('#formStatus');
   form.addEventListener('submit', function (e) {
     e.preventDefault();

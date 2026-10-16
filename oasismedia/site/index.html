@@ -6,7 +6,7 @@
 <title>Oasis Media</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Oasis Media Network çatısı altında 300'ü aşkın site üzerinde yayın: hedefleme ve raporlama, medya ve reklam planlama, web ve mobil geliştirme, pazarlama ve danışmanlık.">
-<meta name="theme-color" content="#f6fbfa">
+<meta name="theme-color" content="#f2f3f5">
 <meta property="og:title" content="Oasis Media — Markanız İçin en Doğru Hedef, en Etkili Çözüm!">
 <meta property="og:description" content="Doğru hedefleme ve etkili çözümlerle markanızın kampanya başarısını artırıyoruz.">
 <meta property="og:image" content="assets/brand/oasis-media-logo.png">
@@ -15,203 +15,178 @@
 <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<!-- 3D vaha sahnesi: sayfanın arkasında sabit durur, kamera kaydırmayla bölümler arasında ilerler -->
-<canvas id="scene" aria-hidden="true"></canvas>
+<!-- Arka plan: hareketli renk bulutları + gren; önünde sıvı metal 3D obje -->
+<div class="aura" aria-hidden="true"><i></i><i></i><i></i></div>
+<canvas id="blob" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
 
-<!-- Açılış: arkada güneş sudan doğarken logo yazısı ve yükleme çubuğu -->
-<div class="intro" id="intro" aria-hidden="true">
-  <div class="intro-stage">
-    <div class="intro-word"><span>o</span><span>a</span><span>s</span><span>i</span><span>s</span><span class="media">media</span></div>
-    <div class="intro-count" id="introCount" aria-hidden="true">000</div>
-    <div class="intro-boot" id="introBoot">Vaha hazırlanıyor…</div>
-    <div class="intro-bar"><i id="introBar"></i></div>
-  </div>
-  <button class="intro-skip" id="introSkip" type="button">Geç</button>
+<!-- Yükleme ekranı -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader-top"><img src="assets/brand/oasis-media-logo.webp" alt="" width="232" height="84"><span>Markanız için en doğru hedef</span></div>
+  <div class="loader-count"><span id="loaderCount">0</span><sup>%</sup></div>
+  <div class="loader-bar"><i id="loaderBar"></i></div>
 </div>
 
+<div class="cursor" id="cursor" aria-hidden="true"><span id="cursorLabel"></span></div>
 <div class="progress" id="progress"></div>
-<div class="logo-tip" id="logoTip" hidden></div>
-<div class="grain" aria-hidden="true"></div>
-<div class="cursor" id="cursor" aria-hidden="true"><span id="cursorLabel"></span></div><div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
-<nav class="hud" id="hud" aria-label="Duraklar">
-  <a href="#hero" data-stop="hero"><b>01</b><span>Ufuk</span></a>
-  <a href="#hakkimizda" data-stop="hakkimizda"><b>02</b><span>Hakkımızda</span></a>
-  <a href="#rakamlar" data-stop="rakamlar"><b>03</b><span>Rakamlar</span></a>
-  <a href="#hizmetler" data-stop="hizmetler"><b>04</b><span>Hizmetler</span></a>
-  <a href="#projeler" data-stop="projeler"><b>05</b><span>Projeler</span></a>
-  <a href="#musteriler" data-stop="musteriler"><b>06</b><span>Müşteriler</span></a>
-  <a href="#is-ortaklari" data-stop="is-ortaklari"><b>07</b><span>Network</span></a>
-  <a href="#iletisim" data-stop="iletisim"><b>08</b><span>İletişim</span></a>
-  <i class="hud-line"><i id="hudFill"></i></i>
-</nav>
 
 <header class="nav" id="nav">
-  <div class="wrap nav-inner">
-    <a class="brand" href="#top" aria-label="Oasis Media ana sayfa"><img src="assets/brand/oasis-media-logo.webp" alt="Oasis Media" width="232" height="84"></a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#hakkimizda">Hakkımızda</a></li>
-      <li><a href="#hizmetler">Hizmetlerimiz</a></li>
-      <li><a href="#projeler">Projelerimiz</a></li>
-      <li><a href="#musteriler">Müşterilerimiz</a></li>
-      <li><a href="#is-ortaklari">İş Ortaklarımız</a></li>
-      <li><a href="#iletisim">İletişim</a></li>
-    </ul>
-    <a class="btn nav-cta" href="#iletisim">İletişim</a>
-    <button class="burger" id="burger" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="navLinks"><span></span><span></span></button>
-  </div>
+  <a class="brand" href="#top" aria-label="Oasis Media ana sayfa"><img src="assets/brand/oasis-media-logo.webp" alt="Oasis Media" width="232" height="84"></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#hakkimizda"><i>01</i>Hakkımızda</a></li>
+    <li><a href="#hizmetler"><i>02</i>Hizmetlerimiz</a></li>
+    <li><a href="#projeler"><i>03</i>Projelerimiz</a></li>
+    <li><a href="#musteriler"><i>04</i>Müşterilerimiz</a></li>
+    <li><a href="#is-ortaklari"><i>05</i>İş Ortaklarımız</a></li>
+    <li><a href="#iletisim"><i>06</i>İletişim</a></li>
+  </ul>
+  <a class="nav-cta" href="#iletisim" data-magnet><span>Teklif alın</span><b aria-hidden="true">↗</b></a>
+  <button class="burger" id="burger" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="navLinks"><span></span><span></span></button>
 </header>
 
 <main id="top">
 
-  <!-- DURAK 1 · Ufuk -->
-  <section class="stop stop-hero" id="hero">
-    <div class="wrap hero-inner">
-      <h1 class="hero-title">
-        <span class="line"><span style="--i:0">Markanız İçin</span></span>
-        <span class="line"><span style="--i:1">en Doğru <em>Hedef,</em></span></span>
-        <span class="line"><span style="--i:2">en Etkili Çözüm!</span></span>
-      </h1>
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-meta">
+      <span>Oasis Media Network</span>
+      <span>300+ site · KPI hedefleme</span>
+      <span>Sarıyer — İstanbul</span>
+    </div>
+    <h1 class="hero-title" aria-label="Markanız İçin en Doğru Hedef, en Etkili Çözüm!">
+      <span class="ln"><span class="chars">Markanız İçin</span></span>
+      <span class="ln ln-indent"><span class="chars">en Doğru <em>Hedef,</em></span></span>
+      <span class="ln"><span class="chars">en Etkili Çözüm!</span></span>
+    </h1>
+    <div class="hero-bottom">
       <p class="hero-lead">Doğru hedefleme ve etkili çözümlerle markanızın kampanya başarısını artırıyoruz.</p>
-      <div class="actions">
-        <a class="btn" href="#iletisim">Bizimle iletişime geçin</a>
-        <a class="btn ghost" href="#projeler">Çalışmalarımızı inceleyin</a>
+      <a class="round-btn" href="#hakkimizda" data-magnet data-cursor="Keşfet"><span>Aşağı kaydırın</span><b aria-hidden="true">↓</b></a>
+    </div>
+    <div class="ticker" aria-hidden="true"><div class="ticker-track">
+      <span>Finans</span><span>Otomotiv</span><span>Market</span><span>Spor</span><span>Kadın</span><span>Teknoloji</span><span>Exclusive Siteler</span><span>KPI Hedefleme</span>
+      <span>Finans</span><span>Otomotiv</span><span>Market</span><span>Spor</span><span>Kadın</span><span>Teknoloji</span><span>Exclusive Siteler</span><span>KPI Hedefleme</span>
+    </div></div>
+  </section>
+
+  <!-- MANİFESTO / HAKKIMIZDA: kaydırdıkça kelimeler tek tek yanar -->
+  <section class="manifesto" id="hakkimizda">
+    <div class="manifesto-pin">
+      <div class="label"><i>01</i>Hakkımızda — Dijital Dünyada Markanızın Yol Haritası!</div>
+      <p class="manifesto-text" id="manifestoText">Oasis Media Network çatısı altında 300’ü aşkın site üzerinde yayın gerçekleştirebilmekteyiz. Bunların içerisinde exclusive sitelerimiz ile birlikte; Finans, Otomotiv, Market, Spor, Kadın, Teknoloji vb gibi farklı kategorilerde yayın gerçekleştirebiliyoruz. Bu yayınlar kapsamında markaların KPI’larına göre hedeflemeler de gerçekleştiriyoruz.</p>
+    </div>
+  </section>
+
+  <section class="about-more wrap">
+    <p class="big-p">Amacımız, markaların hedeflerini en etkili şekilde gerçekleştirebilmeleri adına her kampanya için en verimli çözümleri sunmak ve uygulamada da kapsamlı deneyimimizle başarılı sonuçlar elde etmektir. Bu doğrultuda çalışmalarımızı, sizlere hassas ve özgün çözümler sunarak hayata geçirmekteyiz.</p>
+    <div class="vm">
+      <article class="card" data-tilt><span class="tag">Vizyonumuz</span><p>Oasis Media amacı her zaman ve her yerde müşteri odaklı, entegre iletişim çözümleri ile müşterilerine hızlı, kaliteli, ekonomik hizmetler sunmaktır. Modern ve teknolojik araçlar ile müşterilerimizi geleceğe taşıyan en doğru adres olmayı amaçlamaktayız.</p></article>
+      <article class="card" data-tilt><span class="tag">Misyonumuz</span><p>Faaliyette bulunduğumuz sektörlerde; bireye ve topluma saygılı, hukuka, ekonomik ve ahlaki ilkelere bağlı, sağlık, emniyet ve çevreye duyarlı olarak müşterilerimizin beklentilerini en üst seviyede karşılamayı amaçlamaktayız.</p></article>
+    </div>
+  </section>
+
+  <!-- RAKAMLAR -->
+  <section class="numbers wrap" id="rakamlar" aria-label="Rakamlarla Oasis Media">
+    <div class="num"><b data-count="300" data-suffix="+">300+</b><span>site üzerinde yayın</span></div>
+    <div class="num"><b data-count="2" data-suffix="K+">2K+</b><span>tamamlanmış proje</span></div>
+    <div class="num"><b data-count="10">10</b><span>yıllık tecrübe</span></div>
+    <div class="num"><b data-count="145" id="clientCount">145</b><span>çalıştığımız marka</span></div>
+    <p class="quote">“Oasis Media ile her veri, bir fırsata dönüşür.”</p>
+  </section>
+
+  <!-- HİZMETLER: ekran sabitken kartlar yatay akar -->
+  <section class="services" id="hizmetler">
+    <div class="services-pin">
+      <div class="services-head wrap">
+        <div class="label"><i>02</i>Hizmetlerimiz</div>
+        <h2 class="split">Planlamadan yayına, <em>yazılımdan rapora</em> tek çatı.</h2>
       </div>
-    </div>
-    <a class="dive" href="#hakkimizda"><span>Vahaya dalın</span><i aria-hidden="true"></i></a>
-  </section>
-
-  <div class="band band-a" aria-hidden="true"><div class="band-track" data-speed="1"><span>Hedefleme</span><i></i><span>Medya Planlama</span><i></i><span>Oasis Network</span><i></i><span>Web &amp; Mobil</span><i></i><span>Pazarlama</span><i></i><span>Yazılım</span><i></i><span>Hedefleme</span><i></i><span>Medya Planlama</span><i></i><span>Oasis Network</span><i></i><span>Web &amp; Mobil</span><i></i><span>Pazarlama</span><i></i><span>Yazılım</span><i></i></div></div>
-
-  <!-- DURAK 2 · Hakkımızda -->
-  <section class="stop stop-right" id="hakkimizda">
-    <div class="wrap">
-      <article class="glass panel panel-md">
-        <span class="eyebrow">Hakkımızda</span>
-        <h2>Dijital Dünyada Markanızın <em>Yol Haritası!</em></h2>
-        <p><strong>Oasis Media Network</strong> çatısı altında 300’ü aşkın site üzerinde yayın gerçekleştirebilmekteyiz. Bunların içerisinde exclusive sitelerimiz ile birlikte; Finans, Otomotiv, Market, Spor, Kadın, Teknoloji vb gibi farklı kategorilerde yayın gerçekleştirebiliyoruz. Bu yayınlar kapsamında markaların KPI’larına göre hedeflemeler de gerçekleştiriyoruz.</p>
-        <p>Amacımız, markaların hedeflerini en etkili şekilde gerçekleştirebilmeleri adına her kampanya için en verimli çözümleri sunmak ve uygulamada da kapsamlı deneyimimizle başarılı sonuçlar elde etmektir. Bu doğrultuda çalışmalarımızı, sizlere hassas ve özgün çözümler sunarak hayata geçirmekteyiz.</p>
-        <div class="vm">
-          <div><h3>Vizyonumuz</h3><p>Oasis Media amacı her zaman ve her yerde müşteri odaklı, entegre iletişim çözümleri ile müşterilerine hızlı, kaliteli, ekonomik hizmetler sunmaktır. Modern ve teknolojik araçlar ile müşterilerimizi geleceğe taşıyan en doğru adres olmayı amaçlamaktayız.</p></div>
-          <div><h3>Misyonumuz</h3><p>Faaliyette bulunduğumuz sektörlerde; bireye ve topluma saygılı, hukuka, ekonomik ve ahlaki ilkelere bağlı, sağlık, emniyet ve çevreye duyarlı olarak müşterilerimizin beklentilerini en üst seviyede karşılamayı amaçlamaktayız.</p></div>
-        </div>
-      </article>
+      <div class="services-track" id="servicesTrack"></div>
+      <div class="services-progress wrap"><i id="servicesBar"></i></div>
     </div>
   </section>
 
-  <!-- DURAK 3 · Rakamlar: 3D sahnede sudan yükselir; WebGL yoksa aşağıdaki liste görünür -->
-  <section class="stop stop-tall" id="rakamlar" aria-label="Rakamlarla Oasis Media">
-    <div class="wrap sticky-chip">
-      <div class="glass chip">
-        <span class="eyebrow">Rakamlarla Oasis</span>
-        <p>“Oasis Media ile her veri, bir fırsata dönüşür.”</p>
-      </div>
-    </div>
-    <div class="wrap"><ul class="numbers-fallback">
-      <li><b>300+</b><span>site üzerinde yayın</span></li>
-      <li><b>2K+</b><span>tamamlanmış proje</span></li>
-      <li><b>10</b><span>yıllık tecrübe</span></li>
-      <li><b>145</b><span>marka</span></li>
-    </ul></div>
-  </section>
-
-  <!-- DURAK 4 · Hizmetler -->
-  <section class="stop stop-left" id="hizmetler">
-    <div class="wrap">
-      <article class="glass panel panel-lg">
-        <span class="eyebrow">Hizmetlerimiz</span>
-        <h2>Planlamadan yayına, <em>yazılımdan rapora</em> tek çatı.</h2>
-        <div class="svc">
-          <ul class="svc-list" role="tablist" aria-label="Hizmetlerimiz" id="svcTabs"></ul>
-          <div class="svc-panel" id="svcPanel" role="tabpanel" aria-live="polite"></div>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <!-- DURAK 5 · Projeler (PDF sunum yeni sekmede açılır) -->
-  <section class="stop stop-right" id="projeler" data-pdf="assets/pdf/oasis-media-calismalar.pdf">
-    <div class="wrap">
-      <article class="glass panel panel-md showcase">
-        <span class="eyebrow">Projelerimiz · İnteraktif çalışmalarımız</span>
-        <h2>Ekranda durmayan, <em>oynayan</em> reklamlar.</h2>
-        <a class="pdf-cover" data-cursor="Aç ↗" id="pdfOpen" href="assets/pdf/oasis-media-calismalar.pdf" target="_blank" rel="noopener" aria-label="Oasis Media Tekstil İnteraktif Çalışmalar sunumunu yeni sekmede aç">
-          <canvas id="pdfThumb" hidden></canvas>
-          <span class="pdf-placeholder" id="pdfPlaceholder"><img src="assets/brand/oasis-media-logo.webp" alt="" width="232" height="84"><b>Tekstil İnteraktif Çalışmalar</b></span>
-          <span class="pdf-open" aria-hidden="true">Sunumu aç ↗</span>
-        </a>
-        <p class="pdf-meta" id="pdfMeta">PDF · Çalışma dosyası</p>
-        <h3>Oasis Media Tekstil İnteraktif Çalışmalar</h3>
-        <p>Tekstil, moda ve ev tekstili markaları için ürettiğimiz interaktif masthead ve gravity çalışmaları. Sunumdaki “Örnek çalışma için tıklayınız” bağlantılarından kampanya kayıtlarını izleyebilirsiniz.</p>
+  <!-- PROJELER -->
+  <section class="projects wrap" id="projeler" data-pdf="assets/pdf/oasis-media-calismalar.pdf">
+    <div class="label"><i>03</i>Projelerimiz · İnteraktif çalışmalarımız</div>
+    <div class="projects-grid">
+      <div>
+        <h2 class="split">Ekranda durmayan, <em>oynayan</em> reklamlar.</h2>
+        <p class="lead-sm">Tekstil, moda ve ev tekstili markaları için ürettiğimiz interaktif masthead ve gravity çalışmaları. Sunumdaki “Örnek çalışma için tıklayınız” bağlantılarından kampanya kayıtlarını izleyebilirsiniz.</p>
         <p class="brands"><b>Sunumdaki markalar:</b> Adidas Terrex, Beymen, Karaca Home &amp; Pati, Vakko, Vakkorama, Chakra, English Home, Karaca, KOM, LTB, The North Face, Madame Coco, Penti</p>
         <div class="actions">
-          <a class="btn" id="pdfOpen2" href="assets/pdf/oasis-media-calismalar.pdf" target="_blank" rel="noopener">Çalışmaları önizle</a>
+          <a class="btn" id="pdfOpen2" href="assets/pdf/oasis-media-calismalar.pdf" target="_blank" rel="noopener" data-magnet>Çalışmaları önizle <b aria-hidden="true">↗</b></a>
           <a class="btn ghost" href="assets/pdf/oasis-media-calismalar.pdf" download>PDF'i indir</a>
         </div>
-      </article>
-    </div>
-  </section>
-
-  <!-- DURAK 6 · Müşteriler: logolar suyun üstünde yüzer -->
-  <section class="stop stop-tall" id="musteriler">
-    <div class="wrap sticky-chip">
-      <div class="glass chip chip-wide">
-        <span class="eyebrow">Müşterilerimiz</span>
-        <h2><em id="clientCount">145</em> marka, tek vaha.</h2>
-        <p class="only3d">Logoların üzerine gelin; kart sudan yükselsin.</p>
-        <button class="btn ghost" id="allClientsBtn" type="button" aria-expanded="false" aria-controls="allLogos">Tüm müşterilerimizi listele</button>
       </div>
-      <div class="glass all-logos" id="allLogos" hidden></div>
+      <a class="deck" id="pdfOpen" href="assets/pdf/oasis-media-calismalar.pdf" target="_blank" rel="noopener" data-cursor="Sunumu aç" aria-label="Oasis Media Tekstil İnteraktif Çalışmalar sunumunu yeni sekmede aç">
+        <span class="deck-sheet s3" aria-hidden="true"></span>
+        <span class="deck-sheet s2" aria-hidden="true"></span>
+        <span class="deck-sheet s1">
+          <canvas id="pdfThumb" hidden></canvas>
+          <span class="deck-ph" id="pdfPlaceholder"><b>Tekstil<br>İnteraktif<br>Çalışmalar</b><img src="assets/brand/oasis-media-logo.webp" alt="" width="232" height="84"></span>
+        </span>
+        <span class="deck-meta" id="pdfMeta">PDF · Çalışma dosyası</span>
+      </a>
     </div>
   </section>
 
-  <!-- DURAK 7 · İş ortakları: ışık sütunu etrafında dönen yayıncı halkası -->
-  <section class="stop stop-left" id="is-ortaklari">
-    <div class="wrap">
-      <article class="glass panel panel-sm">
-        <span class="eyebrow">İş ortaklarımız · Oasis Network</span>
-        <h2>Güçlü bağlantılar, <em>büyük başarılar</em> getirir.</h2>
-        <p>Oasis Media olarak, 300’ün üzerinde partner platformumuzla sizlere geniş bir erişim ağı ve etkili çözümler sunuyoruz. Oasis Network ve Üretim hizmetimiz, işletmenizin ihtiyaçlarına yönelik özelleştirilmiş içerik ve stratejik iş birlikleriyle, hedeflerinizi en verimli şekilde hayata geçirmenize yardımcı olur.</p>
+  <!-- MÜŞTERİLER: imleci izleyen spot ışıklı logo duvarı -->
+  <section class="clients" id="musteriler">
+    <div class="wrap clients-head">
+      <div class="label"><i>04</i>Müşterilerimiz</div>
+      <h2 class="split"><em id="clientCount2">145</em> marka bize güveniyor.</h2>
+    </div>
+    <div class="logo-wall wrap" id="logoWall"></div>
+  </section>
+
+  <!-- İŞ ORTAKLARI: 3D dönen yayıncı halkası -->
+  <section class="network" id="is-ortaklari">
+    <div class="wrap network-grid">
+      <div>
+        <div class="label"><i>05</i>İş ortaklarımız · Oasis Network</div>
+        <h2 class="split">Güçlü bağlantılar, <em>büyük başarılar</em> getirir.</h2>
+        <p class="lead-sm">Oasis Media olarak, 300’ün üzerinde partner platformumuzla sizlere geniş bir erişim ağı ve etkili çözümler sunuyoruz. Oasis Network ve Üretim hizmetimiz, işletmenizin ihtiyaçlarına yönelik özelleştirilmiş içerik ve stratejik iş birlikleriyle, hedeflerinizi en verimli şekilde hayata geçirmenize yardımcı olur.</p>
         <div class="cats"><span>#finans</span><span>#otomotiv</span><span>#market</span><span>#spor</span><span>#kadın</span><span>#teknoloji</span><span>#exclusive</span></div>
-        <div class="partner-wall" id="partnerWall"></div>
-      </article>
+      </div>
+      <div class="orbit" aria-label="Yayıncı partnerler"><div class="orbit-ring" id="orbitRing"></div></div>
     </div>
   </section>
 
-  <div class="band band-b" aria-hidden="true"><div class="band-track" data-speed="-1"><span>İnteraktif Masthead</span><i></i><span>Gravity</span><i></i><span>Rich Media</span><i></i><span>Video Masthead</span><i></i><span>KPI Hedefleme</span><i></i><span>300+ Site</span><i></i><span>İnteraktif Masthead</span><i></i><span>Gravity</span><i></i><span>Rich Media</span><i></i><span>Video Masthead</span><i></i><span>KPI Hedefleme</span><i></i><span>300+ Site</span><i></i></div></div>
-
-  <!-- DURAK 8 · İletişim: güneşe varış -->
-  <section class="stop" id="iletisim">
+  <!-- İLETİŞİM -->
+  <section class="contact" id="iletisim">
     <div class="wrap">
-      <div class="glass panel panel-xl contact">
-        <div class="contact-copy">
-          <span class="eyebrow">İletişim</span>
-          <h2>Bizimle İletişime <em>Geçin…</em></h2>
-          <p>Hizmetlerimizden yararlanmak ve bizlerle iletişime geçmek için formu doldurabilir ve aşağıdaki bilgilerden bizlere ulaşabilirsiniz.</p>
+      <div class="label"><i>06</i>İletişim</div>
+      <h2 class="contact-title split">Bizimle İletişime <em>Geçin…</em></h2>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <p class="lead-sm">Hizmetlerimizden yararlanmak ve bizlerle iletişime geçmek için formu doldurabilir ve aşağıdaki bilgilerden bizlere ulaşabilirsiniz.</p>
+          <a class="mega-mail" href="mailto:sales@oasismedia.com.tr" data-cursor="Yaz">sales@oasismedia.com.tr</a>
           <dl class="contact-list">
             <div><dt>Adres</dt><dd><a href="https://www.google.com/maps/search/?api=1&amp;query=Zekeriyak%C3%B6y+Mah.+T%C3%BCrkmen+Cad.+Emlak+Konutlar%C4%B1+Sitesi+No%3A6+Sar%C4%B1yer+%C4%B0stanbul" target="_blank" rel="noopener">Zekeriyaköy Mah. Türkmen Cad. Emlak Konutları Sitesi No:6 İç Kapı No:8 Sarıyer – İstanbul 34450 Türkiye</a></dd></div>
             <div><dt>Telefon</dt><dd><a href="tel:+905498008918">(0549) 800 89 18</a> <button class="copy" type="button" data-copy="0549 800 89 18">Kopyala</button></dd></div>
-            <div><dt>E-posta</dt><dd><a href="mailto:sales@oasismedia.com.tr">sales@oasismedia.com.tr</a> <button class="copy" type="button" data-copy="sales@oasismedia.com.tr">Kopyala</button><br><a href="mailto:gokhan@oasismedia.com.tr">gokhan@oasismedia.com.tr</a> <button class="copy" type="button" data-copy="gokhan@oasismedia.com.tr">Kopyala</button></dd></div>
+            <div><dt>E-posta</dt><dd><a href="mailto:gokhan@oasismedia.com.tr">gokhan@oasismedia.com.tr</a> <button class="copy" type="button" data-copy="gokhan@oasismedia.com.tr">Kopyala</button></dd></div>
           </dl>
         </div>
         <form class="form" id="contactForm" novalidate>
-          <h3>Mesajınızı gönderin</h3>
           <div class="form-row">
-            <div class="field"><label for="f-name">İsim</label><input id="f-name" name="isim" autocomplete="given-name" required></div>
-            <div class="field"><label for="f-surname">Soyisim</label><input id="f-surname" name="soyisim" autocomplete="family-name" required></div>
+            <div class="field"><input id="f-name" name="isim" autocomplete="given-name" required placeholder=" "><label for="f-name">İsim</label></div>
+            <div class="field"><input id="f-surname" name="soyisim" autocomplete="family-name" required placeholder=" "><label for="f-surname">Soyisim</label></div>
           </div>
           <div class="form-row">
-            <div class="field"><label for="f-phone">Telefon</label><input id="f-phone" name="telefon" type="tel" autocomplete="tel" inputmode="tel"></div>
-            <div class="field"><label for="f-email">E-posta Adresi</label><input id="f-email" name="eposta" type="email" autocomplete="email" required></div>
+            <div class="field"><input id="f-phone" name="telefon" type="tel" autocomplete="tel" inputmode="tel" placeholder=" "><label for="f-phone">Telefon</label></div>
+            <div class="field"><input id="f-email" name="eposta" type="email" autocomplete="email" required placeholder=" "><label for="f-email">E-posta Adresi</label></div>
           </div>
-          <div class="field"><label for="f-subject">Konu</label><input id="f-subject" name="konu" required></div>
-          <div class="field"><label for="f-message">Mesajınız</label><textarea id="f-message" name="mesaj" required></textarea></div>
-          <button class="btn" type="submit">Mesaj Gönder</button>
-          <p class="form-status" id="formStatus" role="status">Gönder'e bastığınızda mesajınız e-posta uygulamanızda sales@oasismedia.com.tr adresine hazır olarak açılır.</p>
+          <div class="field"><input id="f-subject" name="konu" required placeholder=" "><label for="f-subject">Konu</label></div>
+          <div class="field"><textarea id="f-message" name="mesaj" required placeholder=" "></textarea><label for="f-message">Mesajınız</label></div>
+          <div class="form-end">
+            <button class="round-btn solid" type="submit" data-magnet><span>Mesaj Gönder</span><b aria-hidden="true">→</b></button>
+            <p class="form-status" id="formStatus" role="status">Mesajınız e-posta uygulamanızda sales@oasismedia.com.tr adresine hazır olarak açılır.</p>
+          </div>
         </form>
       </div>
     </div>
@@ -219,22 +194,18 @@
 </main>
 
 <footer class="footer">
-  <div class="wrap">
-    <div class="footer-inner glass">
-      <img src="assets/brand/oasis-media-logo.webp" alt="Oasis Media" width="232" height="84">
-      <nav aria-label="Site haritası">
-        <a href="#top">Anasayfa</a><a href="#hakkimizda">Hakkımızda</a><a href="#hizmetler">Hizmetlerimiz</a><a href="#projeler">Projelerimiz</a><a href="#musteriler">Müşterilerimiz</a><a href="#is-ortaklari">İş Ortaklarımız</a><a href="#iletisim">İletişim</a>
-      </nav>
-      <p>© <span id="year">2025</span> Oasis Media · Zekeriyaköy, Sarıyer – İstanbul</p>
-    </div>
+  <div class="footer-mega" aria-hidden="true">oasis media</div>
+  <div class="wrap footer-row">
+    <span>© <span id="year">2025</span> Oasis Media</span>
+    <nav aria-label="Site haritası"><a href="#top">Anasayfa</a><a href="#hakkimizda">Hakkımızda</a><a href="#hizmetler">Hizmetlerimiz</a><a href="#projeler">Projelerimiz</a><a href="#musteriler">Müşterilerimiz</a><a href="#is-ortaklari">İş Ortaklarımız</a><a href="#iletisim">İletişim</a></nav>
+    <a href="#top" class="to-top">Yukarı ↑</a>
   </div>
 </footer>
 
-<!-- Klasik betikler (modül değil): site dosyaya çift tıklanarak açıldığında da çalışır -->
+<!-- Klasik betikler (modül değil): dosyaya çift tıklanarak açıldığında da çalışır -->
 <script src="js/data.js"></script>
-<script src="js/logo-data.js" defer></script>
-<script src="vendor/three/three.min.js" defer></script>
 <script src="js/main.js"></script>
-<script src="js/scene.js" defer></script>
+<script src="vendor/three/three.min.js" defer></script>
+<script src="js/blob.js" defer></script>
 </body>
 </html>

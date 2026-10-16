@@ -1,18 +1,17 @@
 # Oasis Media — yeni web sitesi
 
-[oasismedia.com.tr](https://oasismedia.com.tr/) için yeniden tasarlanan site: **"Vaha yolculuğu"**.
-Sayfanın arkasında tam ekran bir 3D sahne var: su üzerinde batan, logodaki gibi çizgili güneş, palmiyeli adacıklar,
-ışığı yansıtan dalgalı su. Ziyaretçi kaydırdıkça kamera vahanın içinde ilerler; her bölüm yolculuğun bir durağıdır.
-Tüm metinler, logo, 145 müşteri logosu, 24 yayıncı partner logosu ve iletişim bilgileri orijinal siteden alınmıştır.
+[oasismedia.com.tr](https://oasismedia.com.tr/) için yeniden tasarlanan site: **"Sıvı sinyal"**.
+Açık porselen zemin üzerinde, sayfa boyunca ziyaretçiyi takip eden sedef renkli sıvı metal 3D obje; dev genişletilmiş
+tipografi; kaydırmayla çalışan sabitlenmiş bölümler. Tüm metinler, logo, 145 müşteri logosu, 24 yayıncı partner logosu
+ve iletişim bilgileri orijinal siteden alınmıştır.
 
 ```
 oasismedia/
 ├── site/                     ← yayına alınacak klasör (statik; herhangi bir hostinge kopyalanabilir)
 │   ├── index.html
 │   ├── css/style.css
-│   ├── js/scene.js           ← 3D vaha sahnesi (three.js; klasik betik, file:// ile de çalışır)
-│   ├── js/logo-data.js       ← 3D sahne için gömülü logo görselleri (otomatik üretilir)
-│   ├── js/main.js            ← açılış, menü, hizmet sekmeleri, PDF kapağı, form
+│   ├── js/blob.js            ← sıvı metal 3D obje (three.js; klasik betik, file:// ile de çalışır)
+│   ├── js/main.js            ← yükleme ekranı, imleç, manifesto, yatay hizmetler, logo duvarı, partner halkası, form
 │   ├── js/data.js            ← müşteri / partner listesi (otomatik üretilir)
 │   ├── assets/               ← logo, favicon, WebP müşteri/partner logoları
 │   ├── assets/pdf/           ← oasis-media-calismalar.pdf (Projeler bölümündeki sunum)
@@ -22,21 +21,24 @@ oasismedia/
 └── tools/prepare_assets.py   ← source/ → site/assets ve js/data.js
 ```
 
-## Yolculuğun durakları
+## Kurgu
 
-| Durak | 3D sahnede |
+| Bölüm | Ne olur |
 |---|---|
-| Açılış | Güneş sudan doğar, "oasis media" harfleri zıplar; logolar yüklenirken çubuk dolar (oturum başına bir kez, "Geç" ile atlanır) |
-| Ufuk (hero) | Güneş ve palmiyeler; fareyle kamera hafifçe süzülür |
-| Hakkımızda | Kamera adaların arasından ilerler |
-| Rakamlar | 300+ / 2K+ / 10 / 145 sırayla sudan yükselir, suya yansır, geri batar |
-| Hizmetlerimiz / Projelerimiz | Cam paneller; Projeler'de PDF sunum yeni sekmede açılır |
-| Müşterilerimiz | 145 logo suyun üstünde yüzen kartlar; üzerine gelince kart yükselir ve marka adı görünür |
-| İş ortaklarımız | 24 yayıncı partner, ışık sütunu etrafında dönen halka |
-| İletişim | Kamera güneşe varır |
+| Yükleme | Lacivert perde, dev yüzde sayacı (0→100), perde yukarı kalkar (oturum başına bir kez) |
+| Hero | Başlık harf harf yükselir; sağda sıvı obje fareye tepki verip şişer, tıklayınca dalga yayılır; kategori şeridi akar |
+| Manifesto | Ekran sabitlenir, Hakkımızda metni kaydırdıkça kelime kelime yanar; anahtar kelimeler degrade renk alır |
+| Rakamlar | 300+ / 2K+ / 10 / 145 editoryal ızgarada sayarak gelir |
+| Hizmetler | Ekran sabitken 6 hizmet kartı yatay akar; kart üzerine gelince koyulaşır, numara turuncu dolar |
+| Projeler | Üst üste duran sunum kartları, üzerine gelince yelpaze gibi açılır; PDF yeni sekmede açılır |
+| Müşteriler | 145 logo ızgarası; imleci izleyen spot ışık, üzerine gelince logo renklenir ve adı görünür |
+| İş ortakları | 24 yayıncı logosu 3D dönen halkada |
+| İletişim | Dev başlık, büyük e-posta, çizgi tarzı form, mıknatıslı yuvarlak gönder butonu |
+| Altbilgi | Degrade dev "oasis media" yazısı |
 
-WebGL desteklemeyen cihazlarda sayfa gökyüzü–su degradesi üzerinde düz içerikle çalışır (rakamlar ve partner logoları liste olarak görünür).
-Hareket azaltma tercihi açıksa açılış atlanır ve sahne hareketsiz kalır.
+Sıvı obje her bölümde yer, boyut, dalga karakteri ve renk değiştirir; kaydırma hızı dalgayı büyütür. Özel imleç,
+mıknatıslı butonlar, eğilen kartlar ve film greni bütün sayfada vardır. WebGL yoksa obje hariç her şey çalışır;
+hareket azaltma tercihinde animasyonlar kapanır.
 
 ## Önizleme
 
@@ -46,13 +48,6 @@ cd oasismedia/site && python3 -m http.server 8080   # http://localhost:8080
 
 Site dosyaya çift tıklanarak (file://) açıldığında da 3D sahne ve tüm efektler çalışır; yalnızca PDF kapağına
 ilk sayfanın çizilmesi sunucu gerektirir (kapak tasarımı görünür, bağlantı PDF'i yine açar).
-
-## Efekt katmanı
-
-Bulutlar, kuş sürüleri, güneşten kameraya düşen lens parlaması, film greni; fareyle büyüyüp etiket gösteren imleç,
-mıknatıslı butonlar; kelime kelime bulanıklıktan netleşen başlıklar; fareyle 3D eğilen, ışık süzülen ve kenarında
-dönen degrade ışık olan cam paneller; kaydırma hızıyla eğilen dev yazı şeritleri; sağ kenarda durak göstergesi;
-yüzde sayan yükleme ekranı.
 
 ## Görselleri yenilemek
 
