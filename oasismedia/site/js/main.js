@@ -60,11 +60,13 @@
       intro.classList.add('is-done');
       document.documentElement.classList.add('no-intro');
       setTimeout(function () { intro.classList.add('is-skipped'); }, 600);
+      document.dispatchEvent(new CustomEvent('oasis:intro-done'));
     };
     $('#introSkip').addEventListener('click', finish);
     intro.addEventListener('dblclick', finish);
     document.addEventListener('keydown', function onKey(e) { if (e.key === 'Enter' || e.key === 'Escape') { finish(); document.removeEventListener('keydown', onKey); } });
-    intro.addEventListener('animationend', function (e) { if (e.target === intro) intro.classList.add('is-skipped'); });
+    intro.addEventListener('animationend', function (e) { if (e.target === intro) { intro.classList.add('is-skipped'); document.dispatchEvent(new CustomEvent('oasis:intro-done')); } });
+    intro.addEventListener('animationstart', function (e) { if (e.target === intro && e.animationName === 'intro-out') document.dispatchEvent(new CustomEvent('oasis:intro-done')); });
   }
 
   /* ---------- Menü ---------- */
@@ -108,6 +110,7 @@
 
   /* ---------- Hero: 300+ sitelik ağ ---------- */
   (function network() {
+    if (window.WebGLRenderingContext && document.createElement('canvas').getContext('webgl')) { $('#net').remove(); return; } // WebGL varsa parçacık sahnesi devralır
     var cv = $('#net'), ctx = cv.getContext('2d'), hero = $('#hero');
     var W, H, dpr, nodes = [], mouse = { x: -999, y: -999 }, running = true;
     var cSun = color('--sun'), cPalm = color('--palm'), cGold = color('--gold');
@@ -186,13 +189,32 @@
     }
   }
   var toySun = $('#toySun');
-  toySun.addEventListener('click', function (e) { burst(e.clientX, e.clientY); });
+  toySun.addEventListener('click', function (e) { burst(e.clientX, e.clientY); if (window.oasisExplode) window.oasisExplode(e.clientX, e.clientY, 9); });
   toySun.addEventListener('keydown', function (e) {
     if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); var r = toySun.getBoundingClientRect(); burst(r.left + r.width / 2, r.top + r.height / 2); }
   });
   // KPI kartındaki erişim sayısı küçük adımlarla artar
   var kpi = $('#kpiNum'), kv = 2.4;
   if (!reduced) setInterval(function () { kv = kv >= 3.9 ? 2.4 : +(kv + 0.1).toFixed(1); kpi.textContent = kv.toFixed(1) + 'M'; }, 1800);
+
+  /* ---------- Başlık etiketleri: göründüklerinde dijital "çözülme" efekti ---------- */
+  if (!reduced && 'IntersectionObserver' in window) {
+    var GLYPHS = '01<>/#%&*+=?ABCDEFKLMNOPRSTUVYZ';
+    var scramble = function (el) {
+      var final = el.textContent, t0 = performance.now(), dur = 900;
+      (function step(t) {
+        var k = Math.min(1, (t - t0) / dur), out = '';
+        for (var i = 0; i < final.length; i++) {
+          var ch = final[i];
+          out += (ch === ' ' || i / final.length < k) ? ch : GLYPHS[(Math.random() * GLYPHS.length) | 0];
+        }
+        el.textContent = out;
+        if (k < 1) requestAnimationFrame(step); else el.textContent = final;
+      })(t0);
+    };
+    var sio = new IntersectionObserver(function (en) { en.forEach(function (e) { if (e.isIntersecting) { sio.unobserve(e.target); scramble(e.target); } }); }, { threshold: 1 });
+    $$('.eyebrow').forEach(function (el) { sio.observe(el); });
+  }
 
   /* ---------- Kategori şeridi: kesintisiz döngü için içeriği çoğalt ---------- */
   var ticker = $('#ticker');

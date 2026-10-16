@@ -133,6 +133,36 @@ p { margin: 0; }
 .intro-skip:hover { color: var(--ink); border-color: var(--sun); }
 .intro.is-skipped { display: none; }
 
+/* ---------- WebGL parçacık katmanı ---------- */
+#gl { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+#gl.over-intro { z-index: 101; }
+main, .footer { position: relative; z-index: 1; }
+.gl-ok .intro-sun { visibility: hidden; }
+.gl-ok .toy-sun { opacity: 0; }
+.gl-ok .toy-leaf, .gl-ok .hero canvas#net { display: none; }
+.gl-ok .hero { background: none; }
+.gl-ok .hero::after { display: none; }
+.gl-ok .network { background: linear-gradient(160deg, color-mix(in srgb, var(--surface-2) 30%, transparent), color-mix(in srgb, var(--peach) 30%, transparent)); }
+
+/* ---------- Rakamlar sahnesi ---------- */
+.theater { position: relative; height: 440vh; }
+.theater-stage { position: sticky; top: 0; height: 100vh; height: 100dvh; display: grid; align-items: end; padding-block: 0 9vh; overflow: hidden; }
+.theater-inner { display: grid; gap: 16px; justify-items: center; text-align: center; }
+.theater-caps { display: grid; width: 100%; }
+.theater-cap { grid-area: 1 / 1; margin: 0 auto; max-width: 46ch; font-size: var(--step-1); color: var(--ink); opacity: 0; transform: translateY(18px); transition: opacity .5s, transform .6s cubic-bezier(.2,1,.3,1); }
+.theater-cap.is-on { opacity: 1; transform: none; }
+.theater-cap b { display: none; }
+.theater-dots { display: flex; gap: 10px; }
+.theater-dots i { width: 34px; height: 4px; border-radius: 4px; background: var(--line); transition: background .4s, width .4s; }
+.theater-dots i.is-on { background: var(--sun-grad); width: 60px; }
+/* WebGL yoksa ya da hareket azaltılmışsa: rakamlar düz metin olarak, sabitleme olmadan */
+html:not(.gl-ok) .theater, .reduce-motion .theater { height: auto; }
+html:not(.gl-ok) .theater-stage { position: static; height: auto; padding-block: clamp(60px, 8vw, 110px); }
+html:not(.gl-ok) .theater-caps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; min-height: 0; }
+html:not(.gl-ok) .theater-cap { grid-area: auto; opacity: 1; transform: none; display: grid; gap: 6px; }
+html:not(.gl-ok) .theater-cap b { display: block; font-family: var(--f-display); font-size: var(--step-4); line-height: 1; }
+html:not(.gl-ok) .theater-dots { display: none; }
+
 /* ---------- Kaydırma çubuğu & imleç ---------- */
 .progress { position: fixed; top: env(safe-area-inset-top, 0px); left: 0; height: 3px; width: 100%; z-index: 70; background: var(--sun-grad); transform-origin: left; transform: scaleX(0); }
 .cursor, .cursor-dot { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 90; border-radius: 50%; display: none; }
@@ -274,7 +304,7 @@ p { margin: 0; }
 @media (max-width: 520px) { .vm { grid-template-columns: 1fr; } }
 
 /* ---------- Hizmetler ---------- */
-.services { background: linear-gradient(180deg, var(--bg), var(--surface) 40%, var(--bg)); }
+.services { background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--surface) 70%, transparent) 40%, transparent); }
 .svc { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(20px, 4vw, 50px); align-items: start; }
 .svc-list { display: grid; gap: 8px; list-style: none; padding: 0; margin: 0; }
 .svc-tab {
@@ -380,7 +410,7 @@ p { margin: 0; }
 .clients-foot p { font-family: var(--f-mono); font-size: var(--step--1); color: var(--mute); }
 
 /* ---------- İş ortakları (yayıncı ağı) ---------- */
-.network { background: linear-gradient(160deg, var(--surface-2), var(--peach)); border-block: 1px solid var(--line); }
+.network { background: linear-gradient(160deg, color-mix(in srgb, var(--surface-2) 55%, transparent), color-mix(in srgb, var(--peach) 55%, transparent)); border-block: 1px solid var(--line); }
 .network-grid { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(30px, 5vw, 70px); align-items: center; }
 .network-copy { display: grid; gap: 20px; }
 .network-copy h2 { font-size: var(--step-3); }

@@ -10,6 +10,7 @@ oasismedia/
 │   ├── index.html
 │   ├── css/style.css
 │   ├── js/main.js         ← etkileşimler (bağımlılık yok)
+│   ├── js/particles.js    ← WebGL parçacık sahnesi (bağımlılık yok)
 │   ├── js/data.js         ← müşteri / partner / proje listesi (otomatik üretilir)
 │   ├── assets/            ← logo, favicon, WebP'ye çevrilmiş müşteri/partner logoları
 │   ├── assets/pdf/        ← oasis-media-calismalar.pdf (Projeler bölümünün önizlediği dosya)
@@ -31,6 +32,10 @@ cd oasismedia/site && python3 -m http.server 8080   # http://localhost:8080
   Hareket azaltma tercihi açıksa hiç gösterilmez.
 - **Hero:** fareyle etkileşen canlı "yayıncı ağı" arka planı, paralaks reklam formatı çipleri (Masthead, 970×250, Gravity…),
   tıklanınca KPI baloncukları saçan güneş, artan kampanya erişimi kartı, mıknatıslı butonlar, özel imleç.
+- **WebGL parçacık sahnesi:** 4.000–9.000 parçacık açılışta dağınık hâlden toplanıp logodaki güneşi (ufuk çizgileri ve
+  palmiye yaprağıyla) oluşturur; fareyle itilir, güneşe tıklayınca patlar. Sayfa kaydıkça aynı parçacıklar
+  "Rakamlarla Oasis" sahnesinde 300+ → 2K+ → 10 → 145 rakamlarına, iş ortaklarında dönen yayıncı ağı küresine,
+  iletişimde dalgalanan vaha suyuna dönüşür. WebGL yoksa rakamlar düz metin olarak gösterilir.
 - **Hakkımızda:** orijinal metin, vizyon/misyon, sayaçlar (300+ site, 2K+ proje, 10 yıl, 145+ marka).
 - **Hizmetlerimiz:** 6 hizmet sekmesi; her biri hizmet sayfasındaki tam metni gösterir (klavye okları ile gezilebilir).
 - **Projelerimiz:** PDF kapağı (ilk sayfa otomatik küçük resim olur, sayfa sayısı yazılır); tıklayınca tüm sayfalar
