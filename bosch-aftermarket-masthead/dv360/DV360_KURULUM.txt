@@ -1,0 +1,40 @@
+BOSCH AFTER MARKET - INTERACTIVE MASTHEAD 970x250 - DV360 HTML5 PAKETLERI
+=========================================================================
+
+Her zip ayri bir DV360 HTML5 kreatifidir (Creatives > New > HTML5 ile tek tek yukleyin).
+Zip icerigi: index.html, gsap.min.js, logo.png, product.jpg, video.mp4 (harici CDN bagimliligi yok).
+Boyut: <meta name="ad.size" content="width=970,height=250">
+
+CLICK
+-----
+- Tiklama "clickTag" degiskeni ile calisir: window.open(window.clickTag).
+- DV360'ta kreatifin "Landing page URL" alanina asagidaki Gemius click URL'sini girin.
+  (DV360 clickTag'i kendi tiklama takibi + bu landing page ile degistirir.)
+
+IMPRESSION
+----------
+- Gemius impression pixel'i (<IMG SRC=...redot.gif>) index.html'in en altinda ekli.
+- Ayni pixel'i DV360 "Third-party tracking / Impression" alanina TEKRAR EKLEMEYIN, cift sayim olur.
+
+KREATIF -> PLACEMENT -> LANDING PAGE (Gemius click URL)
+-------------------------------------------------------
+
+Bosch_AM_Aydinlatma_970x250_DV360.zip
+  placement: /Oasis/interactive_masthead_aydınlatma
+  https://gdetr.hit.gemius.pl/lshitredir/id=.RpLAKbYGH_YEK8fukgXjaSfP6IifcbVWIkQ3YRC7RH.z7/fastid=depmegtemyhlycjrmoimipdvsilg/stparam=tpcidtngah/nc=0/gdpr=0/gdpr_consent=/url=https://www.boschaftermarket.com/tr/tr/urunler/urunler/genel-bakis/?utm_campaign=Bosch_MA_Yedek_Parca_Kampanyasi_Ekim&utm_source=Tracking&utm_medium=%2FOasis%2Finteractive_masthead_ayd%C4%B1nlatma&utm_campaign=Bosch_MA_Yedek_Parca_Kampanyasi_Ekim&utm_source=Oasis&utm_medium=interactive_masthead_ayd%C4%B1nlatma&utm_creative_format=Tracking
+
+Bosch_AM_Dizel_970x250_DV360.zip
+  placement: /Oasis/interactive_masthead_dizel
+  https://gdetr.hit.gemius.pl/lshitredir/id=.RpLAKbYGH_YEK8fukgXjaSfP6IifcbVWIkQ3YRC7RH.z7/fastid=mklehmpggbylxvcprqqmyjtaztmz/stparam=kcilnkluas/nc=0/gdpr=0/gdpr_consent=/url=https://www.boschaftermarket.com/tr/tr/urunler/urunler/genel-bakis/?utm_campaign=Bosch_MA_Yedek_Parca_Kampanyasi_Ekim&utm_source=Tracking&utm_medium=%2FOasis%2Finteractive_masthead_dizel&utm_campaign=Bosch_MA_Yedek_Parca_Kampanyasi_Ekim&utm_source=Oasis&utm_medium=interactive_masthead_dizel&utm_creative_format=Tracking
+
+Bosch_AM_Kizdirma_970x250_DV360.zip
+  placement: /Oasis/interactive_masthead_kızdırma
+  https://gdetr.hit.gemius.pl/lshitredir/id=.RpLAKbYGH_YEK8fukgXjaSfP6IifcbVWIkQ3YRC7RH.z7/fastid=eyaflugeuzloldlqwfxxteighelu/stparam=renohsisoh/nc=0/gdpr=0/gdpr_consent=/url=https://www.boschaftermarket.com/tr/tr/urunler/urunler/genel-bakis/?utm_campaign=Bosch_MA_Yedek_Parca_Kampanyasi_Ekim&utm_source=Tracking&utm_medium=%2FOasis%2Finteractive_masthead_k%C4%B1zd%C4%B1rma&utm_campaign=Bosch_MA_Yedek_Parca_Kampanyasi_Ekim&utm_source=Oasis&utm_medium=interactive_masthead_k%C4%B1zd%C4%B1rma&utm_creative_format=Tracking
+
+Bosch_AM_Silecek_970x250_DV360.zip
+  placement: /Oasis/interactive_masthead_silecek
+  https://gdetr.hit.gemius.pl/lshitredir/id=.RpLAKbYGH_YEK8fukgXjaSfP6IifcbVWIkQ3YRC7RH.z7/fastid=jwhsqlxlvwtzdfdttkuqsyxloppo/stparam=ygcsbkgqyw/nc=0/gdpr=0/gdpr_consent=/url=https://www.boschaftermarket.com/tr/tr/urunler/urunler/genel-bakis/?utm_campaign=Bosch_MA_Yedek_Parca_Kampanyasi_Ekim&utm_source=Tracking&utm_medium=%2FOasis%2Finteractive_masthead_silecek&utm_campaign=Bosch_MA_Yedek_Parca_Kampanyasi_Ekim&utm_source=Oasis&utm_medium=interactive_masthead_silecek&utm_creative_format=Tracking
+
+Bosch_AM_Triger_970x250_DV360.zip
+  placement: /Oasis/interactive_masthead_triger
+  https://gdetr.hit.gemius.pl/lshitredir/id=.RpLAKbYGH_YEK8fukgXjaSfP6IifcbVWIkQ3YRC7RH.z7/fastid=eyexhvckkonelamravypftmqwaly/stparam=pjhfmrdoxl/nc=0/gdpr=0/gdpr_consent=/url=https://www.boschaftermarket.com/tr/tr/urunler/urunler/genel-bakis/?utm_campaign=Bosch_MA_Yedek_Parca_Kampanyasi_Ekim&utm_source=Tracking&utm_medium=%2FOasis%2Finteractive_masthead_triger&utm_campaign=Bosch_MA_Yedek_Parca_Kampanyasi_Ekim&utm_source=Oasis&utm_medium=interactive_masthead_triger&utm_creative_format=Tracking
