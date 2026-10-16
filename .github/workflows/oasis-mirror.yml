@@ -39,7 +39,7 @@ jobs:
           for b in ing lav; do
             f=oasismedia.com.tr/wp-content/uploads/2025/$b/banner.html
             [ -f "$f" ] || continue
-            grep -oE '(source|src)="[A-Za-z0-9_./-]+\.(png|jpe?g|mp4|webm|webp|gif|svg)"' "$f" | sed -E 's/^[a-z]+="//; s/"$//' | sort -u | while read -r a; do
+            grep -oE '(sources?|src|poster)="[A-Za-z0-9_./-]+\.(png|jpe?g|mp4|webm|webp|gif|svg)"' "$f" | sed -E 's/^[a-z]+="//; s/"$//' | sort -u | while read -r a; do
               wget -q -nc -e robots=off --user-agent="$UA" -P "oasismedia.com.tr/wp-content/uploads/2025/$b" "https://oasismedia.com.tr/wp-content/uploads/2025/$b/$a" || echo "eksik: $b/$a"
             done
           done
