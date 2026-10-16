@@ -53,3 +53,39 @@ NODE_PATH=$(npm root -g) node tools/capture.js   # ekran görüntüleri + bağla
 
 Metinler, senaryolar, ürünler, etkileşim noktası konumları ve bağlantılar: `src/data.js`. Görsel seçimi ve kırpımlar: `src/images.json`.
 Bulut ortamının ağı siteye erişemediği için görseller `.github/workflows/altinyildiz-*.yml` iş akışlarıyla GitHub sunucusunda çekildi.
+
+---
+
+# Kasım Kampanyası: 3 yeni interaktif konsept (970×250)
+
+**Hedef kitle:** 25-50 yaş, beyaz yakalı, giyimine özen gösteren erkekler. İlgi alanları: finans, ekonomi, spor, erkek modası, smart casual.
+**Ürün odağı:** sweatshirt, polar, pantolon, kazak. **Amaç:** branding + nitelikli trafik + yeni kullanıcı (satış bonus).
+
+Üçü de birbirinden farklı bir etkileşim modeli kullanıyor. Tüm görseller altinyildizclassics.com'dan alınmış raster fotoğraflar, vektör yok.
+
+| # | Konsept | Etkileşim | Dosya | Zip |
+|---|---|---|---|---|
+| 02 | **Kombin Makinesi** | Kolu aşağı **sürükle** → üst/alt makaralar döner; makarayı **kaydır/tekerlek/ok**; parçayı **kilitle**; 25 kombinden kaçını denediğini sayar | `dist/02-kombin-makinesi/index.html` | ~51 KB |
+| 03 | **Stil Borsası** | Kayan fiyat bandı; risk profili **kaydırıcısı** (Muhafazakâr → Dengeli → Atak) portföyü değiştirir; dağılım çubuğu ve toplam canlı güncellenir; karta gelince çubuktaki payı vurgulanır | `dist/03-stil-borsasi/index.html` | ~48 KB |
+| 04 | **Buğulu Cam** | Kasım soğuğunda buğulanmış camı fare/parmakla **sil**; cam yavaş yavaş yeniden buğulanır; %50 temizlenince "Tarzını Seç: Polar / Sweatshirt" sahnesi açılır, ürün noktaları ve kartlar çıkar | `dist/04-bugulu-cam/index.html` | ~52 KB |
+
+Zip'ler `dist/altinyildiz-classics-<id>.zip`, Google Ads 150 KB sınırının çok altında. Ekran görüntüleri: `preview/<id>/` ve `preview/<id>-ozet.jpg`.
+
+### Kurgu notları
+- **02 Kombin Makinesi:** Kazak (2), polar (1), sweatshirt (2) × pantolon (5: chino + klasik). Her üst/alt türü eşleşmesi için kısa stil notu ("Cuma ofisinin smart casual cevabı."). Kimse dokunmazsa açılışta kol kendiliğinden çekilir, 6,5 sn'de bir tekrarlar (30 sn sınırı). Makaradaki fotoğrafa tıklamak o ürünün sayfasını açar.
+- **03 Stil Borsası:** Finans/ekonomi ilgi alanı için borsa dili. Dağılım yüzdeleri uydurma değil: her parçanın **sitedeki sepet fiyatının portföy toplamına oranı**. Açılışta kaydırıcı üç profili kendiliğinden gezer.
+- **04 Buğulu Cam:** Sitedeki "Polar & Sweatshirt – Tarzını Seç" kampanya fotoğrafı; buğu katmanı aynı fotoğrafın bulanık raster kopyası. Açılışta görünmez bir parmak cama "S" çizer; 11 sn içinde etkileşim olmazsa cam kendiliğinden açılır, böylece etkileşmeyen kullanıcı da marka mesajını görür. "↺ Yeniden buğula" ile tekrar oynanır.
+
+### Yayın öncesi kontrol
+- **Fiyatlar (03):** 16.10.2026'da sitedeki "Sepette" fiyatlarıdır; Kasım'da değişeceği için `concepts/03-stil-borsasi/data.js` içinde güncelleyin (`node tools/lookup.js raw-kasim/074` gibi komutlarla yeniden çekilen veriden okunabilir).
+- **"Yapay Zeka ile Oluşturuldu" ibaresi:** Kampanya fotoğraflarında bu ibare var; kırpımlarda dışarıda kaldı. Markanın reklamda da göstermek isteyip istemediğini teyit edin.
+- Ünlü/marka yüzü olabilecek ürün fotoğrafları bilinçli olarak kullanılmadı (kullanım hakları ayrı olabilir).
+
+### Düzenleme
+```bash
+python3 tools/prepare-concepts.py            # concepts/*/images.json → assets/concepts/ (kırpım + WebP)
+node build-concepts.js                       # dist/<id>/index.html + zip
+NODE_PATH=$(npm root -g) node tools/capture-concepts.js   # ekran görüntüleri + etkileşim/bağlantı testi
+```
+Metinler, ürünler, bağlantılar: `concepts/<id>/data.js`. Görsel seçimi/kırpım: `concepts/<id>/images.json`.
+Ham site görselleri `assets/raw-kasim*/` (GitHub Actions ile `src/fetch-config.json` ayarına göre çekildi).
