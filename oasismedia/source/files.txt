@@ -681,6 +681,7 @@
 ./oasismedia.com.tr/wp-content/uploads/2025/ing/3-logo.png
 ./oasismedia.com.tr/wp-content/uploads/2025/ing/banner.html
 ./oasismedia.com.tr/wp-content/uploads/2025/ing/index.html
+./oasismedia.com.tr/wp-content/uploads/2025/ing/video_1.mp4
 ./oasismedia.com.tr/wp-content/uploads/2025/lav/1_1.png
 ./oasismedia.com.tr/wp-content/uploads/2025/lav/2_1.png
 ./oasismedia.com.tr/wp-content/uploads/2025/lav/3_1.png
@@ -697,6 +698,7 @@
 ./oasismedia.com.tr/wp-content/uploads/2025/lav/logo.png
 ./oasismedia.com.tr/wp-content/uploads/2025/lav/sohbet.png
 ./oasismedia.com.tr/wp-content/uploads/2025/lav/video-son-sahne.png
+./oasismedia.com.tr/wp-content/uploads/2025/lav/video_1.mp4
 ./oasismedia.com.tr/wp-content/uploads/forminator/925_4f2b2c9db434bcbf2945327a5f650e9a/css/style-925.css?ver=1736328611.css
 ./oasismedia.com.tr/wp-includes/css/buttons.min.css?ver=6.7.10.css
 ./oasismedia.com.tr/wp-includes/css/dist/block-library/style.min.css?ver=6.7.10.css
