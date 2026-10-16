@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bosch Kızdırma Bujileri Premium Interactive Masthead (970x250)</title>
+    
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- GSAP (CDN) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    
+    <style>
+        * { box-sizing: border-box; }
+        body { 
+            margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; 
+            min-height: 100vh; background-color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        
+        /* 970x250 Standart Banner Alanı */
+        #masthead {
+            width: 970px; height: 250px; position: relative; overflow: hidden;
+            background: radial-gradient(circle at 50% 50%, #171b22 0%, #060709 100%);
+            user-select: none;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        /* Kurumsal Renkler & Glow */
+        .text-bosch-red { color: #E30613; }
+        .bg-bosch-red { background-color: #E30613; }
+        .glow-red { text-shadow: 0 0 16px rgba(227,6,19,0.85); }
+        .glow-box-red { box-shadow: 0 0 25px rgba(227,6,19,0.55); }
+
+        /* İnteraktif Butonlar */
+        .spec-pill {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .spec-pill:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        .spec-pill.active {
+            background: linear-gradient(135deg, rgba(227,6,19,0.25) 0%, rgba(227,6,19,0.05) 100%);
+            border-color: #E30613;
+            box-shadow: 0 0 14px rgba(227,6,19,0.4);
+        }
+
+        /* Marş Butonu Nabız */
+        @keyframes ignitionPulse {
+            0% { box-shadow: 0 0 0 0 rgba(227, 6, 19, 0.7); transform: scale(1); }
+            70% { box-shadow: 0 0 0 14px rgba(227, 6, 19, 0); transform: scale(1.02); }
+            100% { box-shadow: 0 0 0 0 rgba(227, 6, 19, 0); transform: scale(1); }
+        }
+        .btn-ignition { animation: ignitionPulse 2s infinite ease-in-out; }
+
+        .blend-lighten { mix-blend-mode: lighten; }
+
+        /* Arka Plan Teknik Grid */
+        .hud-grid {
+            background-size: 24px 24px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="masthead">
+        
+        <!-- ================= SAHNE 1: MERKEZİ TAM BOY AKÜ & İNTERAKTİF TEST ================= -->
+        <div id="scene-1" class="absolute inset-0 w-full h-full z-20">
+            
+            <!-- SCENE 1 LOGO (Orta Üst) -->
+            <div class="absolute top-4 left-1/2 -translate-x-1/2 z-40">
+                <img src="https://oasisops.s3.eu-central-1.amazonaws.com/Bosch+Car+Service+/Aku%CC%88/kisspng-robert-bosch-gmbh-logo-motor-vehicle-windscreen-wi-logo-5ab88a731862a9.1214511815220435070999-removebg-preview.png" alt="Bosch" class="h-[28px] object-contain drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]">
+            </div>
+
+            <!-- SOL PANEL: SÜRÜŞ ŞARTLARI -->
+            <div class="absolute left-6 top-1/2 -translate-y-1/2 w-[240px] flex flex-col justify-center gap-2 z-30">
+                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest flex items-center gap-1.5 mb-0.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-bosch-red"></span>
+                    Test Koşulunu Seç:
+                </span>
+
+                <div class="spec-pill active p-2.5 rounded flex items-center justify-between" onclick="setMode('cold', this)">
+                    <div>
+                        <div class="text-[11px] font-bold text-white leading-none">Soğukta Hızlı Marş</div>
+                        <div class="text-[9px] text-gray-400 mt-1">Anında Isınma</div>
+                    </div>
+                    <span class="text-[8px] font-mono text-red-400 bg-red-500/10 px-1.5 py-0.5 rounded border border-red-400/20 font-bold">1000°C</span>
+                </div>
+
+                <div class="spec-pill p-2.5 rounded flex items-center justify-between" onclick="setMode('traffic', this)">
+                    <div>
+                        <div class="text-[11px] font-bold text-white leading-none">Temiz ve Sessiz Yanma</div>
+                        <div class="text-[9px] text-gray-400 mt-1">Düşük Emisyon</div>
+                    </div>
+                    <span class="text-[8px] font-mono text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-400/20 font-bold">ÇEVRE</span>
+                </div>
+
+                <div class="spec-pill p-2.5 rounded flex items-center justify-between" onclick="setMode('tech', this)">
+                    <div>
+                        <div class="text-[11px] font-bold text-white leading-none">Yüksek Dayanıklılık</div>
+                        <div class="text-[9px] text-gray-400 mt-1">Uzun Kullanım Ömrü</div>
+                    </div>
+                    <span class="text-[8px] font-mono text-blue-400 bg-blue-500/10 px-1.5 py-0.5 rounded border border-blue-400/20 font-bold">ÖMÜR</span>
+                </div>
+            </div>
+
+            <!-- ORTA PANEL: BAŞLIK & MARŞ BUTONU -->
+            <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[260px] flex flex-col items-center justify-center text-center z-30 mt-4">
+                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest flex items-center gap-1.5 mb-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-bosch-red animate-pulse"></span>
+                    İşlemi Başlat:
+                </span>
+                
+                <h3 id="mode-title" class="text-[16px] font-bold text-white mb-1.5 leading-tight">Soğukta Hızlı Marş</h3>
+                <p id="mode-desc" class="text-[11px] text-gray-300 font-light mb-4 leading-snug px-4">Dondurucu soğuklarda bile saniyeler içinde 1000°C sıcaklığa ulaşarak güvenli ilk çalıştırma sağlar.</p>
+
+                <!-- Marş Butonu -->
+                <button id="btn-crank" class="btn-ignition w-[80%] max-w-[200px] bg-bosch-red hover:bg-[#ff1e27] text-white font-bold text-[13px] py-1.5 px-4 rounded uppercase tracking-wider transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 glow-box-red">
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2v10l4-4-4-4zm0 20a10 10 0 1 1 10-10 10 10 0 0 1-10 10z"/></svg>
+                    <span class="flex flex-col items-start leading-[1.1]"><span>PERFORMANSI</span><span>TEST ET</span></span>
+                </button>
+            </div>
+
+            <!-- SAĞ PANEL: AKÜ GÖRSELİ (Tam Sağa Yapışık) -->
+            <div class="absolute right-0 top-0 h-full w-[300px] flex items-center justify-end pointer-events-none z-10">
+                <!-- Enerji Hale Işığı -->
+                <div id="center-halo" class="absolute right-10 w-[220px] h-[220px] rounded-full border border-blue-500/30 shadow-[0_0_60px_rgba(59,130,246,0.4)] transition-all duration-300"></div>
+                
+                <!-- Akü Görseli (Alttan üstten tam sığacak) -->
+                <img id="center-battery" src="https://oasisops.s3.eu-central-1.amazonaws.com/Bosch+Car+Service+/Ekim'26/K%C4%B1zd%C4%B1rma+Bujileri.jpg" 
+                     alt="Bosch Kızdırma Bujileri" class="h-full w-full object-cover blend-lighten filter relative z-10">
+
+                <!-- HUD Sıcaklık Rozeti -->
+                <div class="absolute bottom-2 left-2 bg-black/85 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-white/15 flex items-center gap-2 text-[8px] font-mono z-30">
+                    <span class="text-gray-300">SICAKLIK: <strong id="hud-v" class="text-white">1000°C</strong></span>
+                    <span class="h-2 w-px bg-white/20"></span>
+                    <span class="text-gray-300">HIZ: <strong id="hud-p" class="text-bosch-red">&lt; 2 SN</strong></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= SAHNE 2: YOL VİDEOSU & SONUÇ ================= -->
+        <div id="scene-2" class="absolute inset-0 w-full h-full opacity-0 pointer-events-none z-30 flex items-center justify-between">
+            
+            <!-- SCENE 2 LOGO (Sağ Üst) -->
+            <div class="absolute top-5 right-7 z-40">
+                <img src="https://oasisops.s3.eu-central-1.amazonaws.com/Bosch+Car+Service+/Aku%CC%88/kisspng-robert-bosch-gmbh-logo-motor-vehicle-windscreen-wi-logo-5ab88a731862a9.1214511815220435070999-removebg-preview.png" alt="Bosch" class="h-[28px] object-contain drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]">
+            </div>
+
+            <!-- Sol: Dinamik Sürüş Videosu -->
+            <div class="w-[445px] h-full relative overflow-hidden bg-[#060709] shrink-0 group">
+                <video id="road-video" src="https://oasisops.s3.eu-central-1.amazonaws.com/Bosch+Car+Service+/Ekim'26/Bosch_K%C4%B1zd%C4%B1rma+Bujileri_Yatay.mp4" 
+                       loop playsinline class="w-full h-full object-cover"></video>
+                <div class="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#060709] to-transparent z-10"></div>
+                
+                <!-- Video Kontrolleri (Oynat/Durdur & Ses - Sadece Hover Durumunda Görünür) -->
+                <div class="absolute top-4 left-6 z-30 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none group-hover:pointer-events-auto">
+                    <button id="btn-play-pause" class="bg-black/60 hover:bg-black/90 backdrop-blur-sm p-1.5 rounded-full border border-white/20 text-white transition-colors cursor-pointer" title="Oynat/Durdur">
+                        <!-- Pause Icon -->
+                        <svg id="icon-pause" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                        <!-- Play Icon -->
+                        <svg id="icon-play" class="w-4 h-4 hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </button>
+                    <button id="btn-sound" class="bg-black/60 hover:bg-black/90 backdrop-blur-sm p-1.5 rounded-full border border-white/20 text-white transition-colors cursor-pointer" title="Sesi Aç/Kapat">
+                        <svg id="icon-muted" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"/></svg>
+                        <svg id="icon-unmuted" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/></svg>
+                    </button>
+                </div>
+                
+                <div class="absolute bottom-3 left-6 bg-black/70 backdrop-blur-md px-3 py-1 rounded border border-white/10 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span class="text-[9px] text-white font-mono uppercase tracking-wider font-semibold">PERFORMANS ONAYLANDI: GÜVENLİ İLK ÇALIŞTIRMA</span>
+                </div>
+            </div>
+
+            <!-- Sağ: Final CTA & Kızdırma Bujisi Çözümü -->
+            <div class="w-[48%] h-full flex flex-col justify-center pr-12 pl-0 pb-4 z-20">
+                <div class="mb-2">
+                    <span class="text-bosch-red text-[10px] font-bold uppercase tracking-widest">Kızdırma Bujileri Test Edildi</span>
+                    <h2 class="text-[21px] font-bold text-white leading-tight">Dondurucu soğuklarda bile <br><span class="text-bosch-red glow-red">güvenli ilk çalıştırma.</span></h2>
+                </div>
+
+                <div class="bg-white/5 border border-white/10 rounded px-3 py-2 mb-3">
+                    <div class="text-[9px] text-gray-400 uppercase tracking-wider font-semibold">Gelişmiş Dizel Ateşleme Çözümü:</div>
+                    <div id="rec-battery" class="text-[12px] font-bold text-white flex items-center gap-1.5 mt-0.5">
+                        <span class="text-bosch-red">●</span> Bosch Duraterm & DuraSpeed Kızdırma Bujileri
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <a href="https://gdetr.hit.gemius.pl/lshitredir/id=.RpLAKbYGH_YEK8fukgXjaSfP6IifcbVWIkQ3YRC7RH.z7/fastid=eyaflugeuzloldlqwfxxteighelu/stparam=renohsisoh/nc=0/gdpr=0/gdpr_consent=/url=https://www.boschaftermarket.com/tr/tr/urunler/urunler/genel-bakis/?utm_campaign=Bosch_MA_Yedek_Parca_Kampanyasi_Ekim&utm_source=Tracking&utm_medium=%2FOasis%2Finteractive_masthead_k%C4%B1zd%C4%B1rma&utm_campaign=Bosch_MA_Yedek_Parca_Kampanyasi_Ekim&utm_source=Oasis&utm_medium=interactive_masthead_k%C4%B1zd%C4%B1rma&utm_creative_format=Tracking" target="_blank" 
+                       class="bg-bosch-red hover:bg-[#ff1e27] text-white font-bold text-[11px] px-3.5 py-2.5 rounded transition-all hover:scale-105 uppercase tracking-wider flex items-center gap-2 glow-box-red whitespace-nowrap">
+                        <span>BOSCH BUJİLERİNİ İNCELE</span>
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+                    </a>
+
+                    <button id="btn-replay" class="text-gray-400 hover:text-white text-[10px] font-bold uppercase tracking-wider flex items-center gap-1 cursor-pointer transition-colors">
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                        Yeniden Başlat
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Marş Flaşı -->
+        <div id="screen-flash" class="absolute inset-0 bg-white opacity-0 pointer-events-none z-50"></div>
+    </div>
+
+    <!-- JAVASCRIPT & SES SENTEZLEYİCİ -->
+    <script>
+        const btnSound = document.getElementById("btn-sound");
+        const iconMuted = document.getElementById("icon-muted");
+        const iconUnmuted = document.getElementById("icon-unmuted");
+        
+        const centerHalo = document.getElementById("center-halo");
+        const centerBattery = document.getElementById("center-battery");
+        const hudV = document.getElementById("hud-v");
+        const hudP = document.getElementById("hud-p");
+        const modeTitle = document.getElementById("mode-title");
+        const modeDesc = document.getElementById("mode-desc");
+        const recBattery = document.getElementById("rec-battery");
+        const btnCrank = document.getElementById("btn-crank");
+        const roadVideo = document.getElementById("road-video");
+        const btnReplay = document.getElementById("btn-replay");
+        const btnPlayPause = document.getElementById("btn-play-pause");
+        const iconPlay = document.getElementById("icon-play");
+        const iconPause = document.getElementById("icon-pause");
+
+        const modes = {
+            cold: {
+                title: "Soğukta Hızlı Marş",
+                desc: "Dondurucu soğuklarda bile saniyeler içinde 1000°C sıcaklığa ulaşarak güvenli ilk çalıştırma sağlar.",
+                v: "1000°C", p: "< 2 SN",
+                glow: "rgba(227,6,19,0.6)", border: "rgba(227,6,19,0.9)",
+                rec: "Bosch Duraterm & DuraSpeed"
+            },
+            traffic: {
+                title: "Temiz ve Sessiz Yanma",
+                desc: "Gelişmiş son kızdırma özelliği sayesinde motorun sessiz çalışmasını sağlar ve emisyonu azaltır.",
+                v: "MİN", p: "%100",
+                glow: "rgba(16,185,129,0.5)", border: "rgba(16,185,129,0.8)",
+                rec: "Bosch Çevre Dostu Teknoloji"
+            },
+            tech: {
+                title: "Yüksek Dayanıklılık",
+                desc: "Aşırı termal yüklere ve yüksek korozyona dayanıklı yapısıyla uzun ömürlü performans sunar.",
+                v: "UZUN", p: "MAKS",
+                glow: "rgba(59,130,246,0.5)", border: "rgba(59,130,246,0.8)",
+                rec: "Bosch Kızdırma Bujileri"
+            }
+        };
+
+        // 1. Mod Seçimi
+        window.setMode = function(key, el) {
+            document.querySelectorAll('.spec-pill').forEach(p => p.classList.remove('active'));
+            el.classList.add('active');
+
+            const d = modes[key];
+            modeTitle.innerText = d.title;
+            modeDesc.innerText = d.desc;
+            hudV.innerText = d.v;
+            hudP.innerText = d.p;
+            recBattery.innerHTML = `<span class="text-bosch-red">●</span> ${d.rec}`;
+
+            centerHalo.style.boxShadow = `0 0 60px ${d.glow}`;
+            centerHalo.style.borderColor = d.border;
+
+            gsap.fromTo(centerBattery, { scale: 0.97 }, { scale: 1, duration: 0.3, ease: "back.out(2)" });
+        };
+
+        // 2. Butona Basınca Sahne Geçişi
+        btnCrank.addEventListener("click", () => {
+            const tl = gsap.timeline();
+            tl.to(centerBattery, { x: 5, y: -2, repeat: 7, yoyo: true, duration: 0.04 })
+              .to("#screen-flash", { opacity: 0.85, duration: 0.12 }, "-=0.1")
+              .set("#scene-1", { opacity: 0, pointerEvents: "none" })
+              .set("#scene-2", { opacity: 1, pointerEvents: "auto" })
+              .call(() => {
+                  roadVideo.muted = false; // Sesli başlat
+                  iconMuted.classList.add("hidden");
+                  iconUnmuted.classList.remove("hidden");
+                  
+                  iconPlay.classList.add("hidden");
+                  iconPause.classList.remove("hidden");
+                  
+                  roadVideo.currentTime = 0;
+                  roadVideo.play().catch(() => {});
+              })
+              .to("#screen-flash", { opacity: 0, duration: 0.4 })
+              .from("#scene-2 h2, #scene-2 .bg-white\\/5", { x: 20, opacity: 0, stagger: 0.1, duration: 0.35, ease: "power2.out" }, "-=0.2");
+        });
+
+        // 3. Video Sesi Kontrolü
+        btnSound.addEventListener("click", () => {
+            roadVideo.muted = !roadVideo.muted;
+            if (roadVideo.muted) {
+                iconMuted.classList.remove("hidden");
+                iconUnmuted.classList.add("hidden");
+            } else {
+                iconMuted.classList.add("hidden");
+                iconUnmuted.classList.remove("hidden");
+            }
+        });
+
+        // 3.5. Video Oynat/Durdur Kontrolü
+        btnPlayPause.addEventListener("click", () => {
+            if (roadVideo.paused) {
+                roadVideo.play();
+                iconPlay.classList.add("hidden");
+                iconPause.classList.remove("hidden");
+            } else {
+                roadVideo.pause();
+                iconPause.classList.add("hidden");
+                iconPlay.classList.remove("hidden");
+            }
+        });
+
+        // 4. Yeniden Başlat (Replay)
+        btnReplay.addEventListener("click", () => {
+            roadVideo.pause();
+            roadVideo.muted = false; // Tekrar başlatıldığında da sesli başlaması için hazırla
+            iconMuted.classList.add("hidden");
+            iconUnmuted.classList.remove("hidden");
+
+            const tl = gsap.timeline();
+            tl.to("#screen-flash", { opacity: 0.7, duration: 0.1 })
+              .set("#scene-2", { opacity: 0, pointerEvents: "none" })
+              .set("#scene-1", { opacity: 1, pointerEvents: "auto" })
+              .to("#screen-flash", { opacity: 0, duration: 0.3 });
+        });
+    </script>
+    <!-- Gemius Impression | placement: /Oasis/interactive_masthead_kızdırma -->
+    <script>
+        (function () {
+            var imp = "https://gdetr.hit.gemius.pl/_[TIMESTAMP]/redot.gif?id=.RpLAKbYGH_YEK8fukgXjaSfP6IifcbVWIkQ3YRC7RH.z7/fastid=biknxfaeejuinbbtkmrypwonjekt/stparam=xcprqxejyr/nc=0/gdpr=0/gdpr_consent=";
+            var px = new Image(1, 1);
+            px.src = imp.replace("[TIMESTAMP]", Date.now());
+        })();
+    </script>
+    <noscript><img src="https://gdetr.hit.gemius.pl/_0/redot.gif?id=.RpLAKbYGH_YEK8fukgXjaSfP6IifcbVWIkQ3YRC7RH.z7/fastid=biknxfaeejuinbbtkmrypwonjekt/stparam=xcprqxejyr/nc=0/gdpr=0/gdpr_consent=" width="1" height="1" style="position:absolute;width:1px;height:1px;opacity:0" alt=""></noscript>
+</body>
+</html>
