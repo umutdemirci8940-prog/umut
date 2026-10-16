@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oasis Media — Konseptler</title>
+<link rel="icon" href="assets/brand/favicon-32.png" sizes="32x32">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+  :root { --bg: #07080c; --ink: #f2f3f7; --mute: #9aa1b2; --sun: #fe8732; --line: rgba(255,255,255,.1); }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: "Space Grotesk", system-ui, sans-serif; padding: 40px max(20px, 4vw) 60px; }
+  header { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 40px; }
+  header img { height: 44px; }
+  h1 { font-size: clamp(1.8rem, 1rem + 3vw, 3.2rem); margin: 0 0 8px; letter-spacing: -.02em; }
+  .sub { color: var(--mute); margin: 0 0 36px; max-width: 60ch; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+  a.card { display: grid; text-decoration: none; color: inherit; border: 1px solid var(--line); border-radius: 22px; overflow: hidden; background: #0e1017; transition: transform .4s cubic-bezier(.2,1,.3,1), border-color .3s, box-shadow .3s; }
+  a.card:hover { transform: translateY(-8px); border-color: var(--sun); box-shadow: 0 30px 60px -30px rgba(254,135,50,.6); }
+  .card img { width: 100%; aspect-ratio: 16/10; object-fit: cover; display: block; }
+  .card div { padding: 20px 22px 24px; display: grid; gap: 8px; }
+  .card b { font: 500 .78rem "JetBrains Mono", monospace; letter-spacing: .14em; color: var(--sun); }
+  .card h2 { margin: 0; font-size: 1.5rem; }
+  .card p { margin: 0; color: var(--mute); font-size: .95rem; line-height: 1.5; }
+  .card span { margin-top: 6px; font-weight: 600; }
+  footer { margin-top: 40px; color: var(--mute); font-size: .85rem; }
+  footer a { color: var(--ink); }
+</style>
+</head>
+<body>
+<header><img src="assets/brand/oasis-media-logo.webp" alt="Oasis Media"><span style="font:500 .8rem 'JetBrains Mono',monospace;color:var(--mute);letter-spacing:.12em">3 KONSEPT</span></header>
+<h1>Hangisi Oasis Media'yı temsil etsin?</h1>
+<p class="sub">Üç farklı teknolojik yön. Aynı içerik, logolar ve PDF sunumu; farklı kurgu ve efektler. Bir karta tıklayıp siteyi açın.</p>
+<div class="grid">
+  <a class="card" href="konsept-a.html"><img src="assets/concepts/a.webp" alt="Konsept A ekran görüntüsü"><div><b>KONSEPT A</b><h2>Veri merkezi</h2><p>Canlı reklam kontrol odası: dönen 3D dünya ve 300+ yayıncı arasında uçan ışık hatları, canlı simülasyon paneli, radar, kadranlar, tarama ışığıyla yanan logo duvarı.</p><span>Siteyi aç →</span></div></a>
+  <a class="card" href="konsept-b.html"><img src="assets/concepts/b.webp" alt="Konsept B ekran görüntüsü"><div><b>KONSEPT B</b><h2>Fütüristik lansman</h2><p>Ürün lansmanı gibi sinematik: binlerce parçacıktan çizgili güneş, kaydırdıkça 300+ / 2K+ / 10 / 145 rakamlarına dönüşür; 3D vitrin, eğik logo şeritleri, dönen partner halkaları.</p><span>Siteyi aç →</span></div></a>
+  <a class="card" href="konsept-c.html"><img src="assets/concepts/c.webp" alt="Konsept C ekran görüntüsü"><div><b>KONSEPT C</b><h2>Siberpunk / kod</h2><p>Terminal açılışı, kod yağmuru, neon ızgara ufkunda batan güneş, glitch başlıklar, yedi segment rakamlar, şifresi çözülerek beliren logolar, neon partner ağı.</p><span>Siteyi aç →</span></div></a>
+</div>
+<footer>Mevcut açık tasarım: <a href="index.html">index.html</a></footer>
+</body>
+</html>
