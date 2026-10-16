@@ -89,3 +89,18 @@ NODE_PATH=$(npm root -g) node tools/capture-concepts.js   # ekran görüntüleri
 ```
 Metinler, ürünler, bağlantılar: `concepts/<id>/data.js`. Görsel seçimi/kırpım: `concepts/<id>/images.json`.
 Ham site görselleri `assets/raw-kasim*/` (GitHub Actions ile `src/fetch-config.json` ayarına göre çekildi).
+
+---
+
+# Mobil konsept: Stil Eşleşmesi (320×480)
+
+`dist/05-mobil-stil-eslesmesi/index.html` · zip `dist/altinyildiz-classics-05-mobil-stil-eslesmesi.zip` (~65 KB)
+
+Mobil kullanıcının her gün yaptığı hareket üzerine kurulu: **kartı sağa kaydır = beğen, sola = geç** (flört uygulamaları gibi).
+
+- 8 kart: kazak (3), polar (2), sweatshirt (1), pantolon (2). Kartlar sitedeki stüdyo fotoğrafları; her biri Klasik / Smart Casual / Rahat stil etiketi taşır.
+- Sürüklerken kart döner, üzerine "BEĞENDİM" ya da "GEÇ" mührü basılır; hızlı fiske de sayılır. Altta ✕ / ♥ butonları ve 1/8 ilerleme çubuğu var.
+- Karara her basışta kısa titreşim (destekleyen Android cihazlarda). Telefon eğildikçe deste hafifçe döner (izin gerektirmeyen cihazlarda; iOS'ta izin penceresi açmamak için bilinçli olarak istenmez).
+- Sonunda **stil profili** (ör. "Klasik Beyefendi"), beğenilerin profil dağılımı ve **eşleşilen parçalardan mini gardırop** çıkar; her küçük resim ürün sayfasına, "Gardırobumu Gör" profil kategorisine gider. "↺ Yeniden oyna" ile tekrar oynanır.
+- Karta dokunmak ya da "İncele ↗" o ürünün sayfasını açar. Açılışta kart sağa-sola sallanarak hareketi gösterir.
+- Masaüstünde de çalışır (fare ile sürükleme, ← → tuşları).

@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=320,height=480">
+<meta name="viewport" content="width=320,height=480,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Altınyıldız Classics – Stil Eşleşmesi (320x480)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>var clickTag = window.clickTag || '';</script>
+<style>
+:root{--ink:#000;--paper:#fff;--mute:#666;--line:#e6e6e6;--soft:#f4f4f2;--ease:cubic-bezier(.22,.61,.36,1)}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{width:320px;height:480px;overflow:hidden;background:var(--paper);overscroll-behavior:none}
+body{font-family:Urbanist,"Helvetica Neue",Arial,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;user-select:none;-webkit-user-select:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+#ad{position:relative;width:320px;height:480px;overflow:hidden;background:var(--soft);border:1px solid var(--line)}
+#ad:focus-visible{outline:2px solid var(--ink);outline-offset:-3px}
+
+.head{position:absolute;left:0;right:0;top:0;height:58px;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;border-bottom:1px solid var(--line);z-index:5}
+.head img{height:15px}
+.head p{font-size:9.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--mute)}
+
+/* Kart destesi */
+.deck{position:absolute;left:24px;top:70px;width:272px;height:316px;perspective:900px}
+.card{position:absolute;inset:0;background:#fff;box-shadow:0 10px 26px rgba(0,0,0,.12);touch-action:none;will-change:transform;transition:transform .45s var(--ease),opacity .45s;transform-origin:50% 90%}
+.card img{display:block;width:272px;height:274px;object-fit:cover;pointer-events:none;background:var(--soft)}
+.card .info{height:42px;padding:0 10px 0 12px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.card .info div{min-width:0}
+.card .info small{display:block;font-size:8.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.card .info b{display:block;font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card .info span{display:none}
+.card .view{flex:none;height:24px;padding:0 9px;border:1px solid var(--ink);font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.card .meta{position:absolute;left:10px;top:244px;background:#fff;font-size:9.5px;font-weight:600;padding:4px 7px}
+.card.drag{transition:none}
+.stamp{position:absolute;top:22px;padding:4px 10px;border:3px solid;font-size:20px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:0;pointer-events:none;background:rgba(255,255,255,.85)}
+.stamp.like{left:16px;transform:rotate(-12deg);color:#000;border-color:#000}
+.stamp.nope{right:16px;transform:rotate(12deg);color:#8a8a8a;border-color:#8a8a8a}
+.card:nth-last-child(2){transform:translateY(10px) scale(.955)}
+.card:nth-last-child(3){transform:translateY(20px) scale(.91)}
+.card:nth-last-child(n+4){transform:translateY(20px) scale(.91);opacity:0}
+
+/* Alt bölüm */
+.prog{position:absolute;left:24px;right:24px;top:412px;display:flex;align-items:center;gap:10px;font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--mute)}
+.prog .bar{flex:1;height:2px;background:#dcdcd8;position:relative}
+.prog .bar i{position:absolute;left:0;top:0;bottom:0;width:0;background:#000;transition:width .4s var(--ease)}
+.btns{position:absolute;left:0;right:0;bottom:12px;display:flex;justify-content:center;gap:56px}
+.btn{width:44px;height:44px;border-radius:50%;background:#fff;box-shadow:0 4px 12px rgba(0,0,0,.14);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:600;transition:transform .2s}
+.btn:active{transform:scale(.9)}
+.btn.like{background:#000;color:#fff;font-size:19px}
+.btn span{line-height:1}
+
+/* İpucu */
+.hint{position:absolute;left:0;right:0;top:300px;display:flex;justify-content:center;pointer-events:none;z-index:6;opacity:0;transition:opacity .4s}
+.hint b{background:rgba(0,0,0,.84);color:#fff;font-size:11px;font-weight:600;padding:7px 12px;letter-spacing:.02em}
+.hint.on{opacity:1}
+
+/* Sonuç */
+.result{position:absolute;left:0;right:0;top:58px;bottom:0;background:#fff;padding:22px 24px 18px;display:flex;flex-direction:column;opacity:0;visibility:hidden;transform:translateY(16px);transition:opacity .5s var(--ease),transform .5s var(--ease),visibility .5s;z-index:7}
+.done .result{opacity:1;visibility:visible;transform:none}
+.result .over{font-size:10px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--mute)}
+.result h2{margin-top:6px;font-size:27px;font-weight:700;line-height:1.05;letter-spacing:-.01em}
+.result .desc{margin-top:6px;font-size:13px;color:#333}
+.mix{margin-top:14px;display:flex;flex-direction:column;gap:6px}
+.mix div{display:grid;grid-template-columns:96px 1fr 30px;align-items:center;gap:8px;font-size:11px;font-weight:600}
+.mix .track{height:6px;background:#ecece8}
+.mix .track i{display:block;height:100%;width:0;background:#000;transition:width .8s .3s var(--ease)}
+.mix em{font-style:normal;color:var(--mute);text-align:right;font-variant-numeric:tabular-nums}
+.liked{margin-top:16px}
+.liked p{font-size:9.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.thumbs{margin-top:7px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;touch-action:pan-x}
+.thumbs::-webkit-scrollbar{display:none}
+.thumbs button{flex:none;width:62px}
+.thumbs img{display:block;width:62px;height:72px;object-fit:cover;background:var(--soft)}
+.thumbs span{display:block;font-size:8.5px;font-weight:600;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.none{margin-top:7px;font-size:12px;color:#333}
+.cta{margin-top:auto;height:42px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:10px;font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+.again{margin-top:8px;align-self:center;font-size:11px;font-weight:600;color:var(--mute);padding:4px 8px}
+
+/* Açılış */
+.intro{position:absolute;inset:0;background:#fff;z-index:20;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;transition:opacity .6s,visibility .6s}
+.intro img{height:22px;opacity:0;transform:translateY(6px);animation:up .8s .1s var(--ease) forwards}
+.intro .rule{width:0;height:1px;background:#000;animation:rule .8s .45s var(--ease) forwards}
+.intro p{font-size:10px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;opacity:0;animation:up .7s .7s var(--ease) forwards}
+@keyframes up{to{opacity:1;transform:none}}
+@keyframes rule{to{width:150px}}
+.started .intro{opacity:0;visibility:hidden}
+@media (prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div id="ad" role="region" tabindex="0" aria-label="Altınyıldız Classics – Stil Eşleşmesi. Sağ ok beğen, sol ok geç.">
+  <div class="head"><img alt="Altınyıldız Classics" src="%%LOGO%%"><p id="eyebrow"></p></div>
+  <div class="deck" id="deck"></div>
+  <div class="hint" id="hint"><b id="hintTx"></b></div>
+  <div class="prog"><span id="count">1 / 8</span><span class="bar"><i id="bar"></i></span></div>
+  <div class="btns">
+    <button class="btn nope" id="bNope" type="button" aria-label="Geç"><span>✕</span></button>
+    <button class="btn like" id="bLike" type="button" aria-label="Beğen"><span>♥</span></button>
+  </div>
+
+  <div class="result" id="result">
+    <div class="over" id="rOver"></div>
+    <h2 id="rTitle"></h2>
+    <div class="desc" id="rDesc"></div>
+    <div class="mix" id="mix"></div>
+    <div class="liked"><p id="likedT"></p><div class="thumbs" id="thumbs"></div></div>
+    <button class="cta" id="cta" type="button"><span id="ctaTx"></span><span>→</span></button>
+    <button class="again" id="again" type="button"></button>
+  </div>
+
+  <div class="intro" aria-hidden="true"><img alt="" src="%%LOGO%%"><div class="rule"></div><p>Stil Eşleşmesi</p></div>
+</div>
+<script>
+(function () {
+  'use strict';
+  var D = /*DATA*/null, IMG = /*IMG*/null, C = D.copy;
+  var $ = function (id) { return document.getElementById(id); };
+  var ad = $('ad'), deck = $('deck'), cards = [], idx = 0, liked = [], busy = false, touched = false;
+
+  $('eyebrow').textContent = C.eyebrow; $('hintTx').textContent = C.hint;
+  $('rOver').textContent = C.resultOver; $('likedT').textContent = C.likedTitle; $('again').textContent = C.again;
+
+  function exit(url, name) {
+    if (window.Enabler && Enabler.exitOverride) { Enabler.exitOverride(name, url); return; }
+    window.open(window.clickTag && /^https?:/.test(window.clickTag) ? window.clickTag : url, '_blank');
+  }
+  function buzz() { try { navigator.vibrate && navigator.vibrate(12); } catch (e) {} }
+
+  /* Kartları oluştur (sondaki kart en üstte) */
+  function build() {
+    deck.innerHTML = ''; cards = [];
+    D.cards.slice().reverse().forEach(function (p) {
+      var c = document.createElement('div'); c.className = 'card';
+      c.innerHTML = '<img alt=""><span class="meta"></span><div class="info"><div><small></small><b></b></div><button class="view" type="button"></button></div><div class="stamp like"></div><div class="stamp nope"></div>';
+      c.querySelector('img').src = IMG[p.img]; c.querySelector('img').alt = p.name;
+      c.querySelector('.meta').textContent = p.meta; c.querySelector('small').textContent = p.cat; c.querySelector('b').textContent = p.name;
+      c.querySelector('.view').textContent = C.view + ' ↗';
+      c.querySelector('.stamp.like').textContent = C.like; c.querySelector('.stamp.nope').textContent = C.nope;
+      c.querySelector('.view').addEventListener('click', function (e) { e.stopPropagation(); exit(p.url, 'Kart: ' + p.name); });
+      c.querySelector('.view').addEventListener('pointerdown', function (e) { e.stopPropagation(); });
+      bindDrag(c, p);
+      deck.appendChild(c); cards.unshift(c);
+    });
+    idx = 0; liked = []; progress();
+  }
+  function progress() {
+    var n = D.cards.length;
+    $('count').textContent = Math.min(idx + 1, n) + ' / ' + n;
+    $('bar').style.width = (idx / n * 100) + '%';
+  }
+  function top() { return cards[idx]; }
+  function setPose(c, dx, dy) {
+    var rot = dx / 14;
+    c.style.transform = 'translate(' + dx + 'px,' + dy + 'px) rotate(' + rot + 'deg)';
+    var k = Math.min(1, Math.abs(dx) / 90);
+    c.querySelector('.stamp.like').style.opacity = dx > 0 ? k : 0;
+    c.querySelector('.stamp.nope').style.opacity = dx < 0 ? k : 0;
+  }
+
+  function decide(dir) { // 1 beğen, -1 geç
+    var c = top(); if (!c || busy) return;
+    busy = true; userTouched(); buzz();
+    var p = D.cards[idx];
+    if (dir > 0) liked.push(p);
+    c.classList.remove('drag');
+    c.style.transition = 'transform .42s cubic-bezier(.4,0,.6,1),opacity .42s';
+    setPose(c, dir * 420, -30); c.style.opacity = '0';
+    idx++; progress();
+    setTimeout(function () { c.remove(); busy = false; if (idx >= D.cards.length) finish(); }, 380);
+  }
+
+  function bindDrag(c, p) {
+    var sx = 0, sy = 0, dx = 0, dy = 0, t0 = 0, active = false;
+    c.addEventListener('pointerdown', function (e) {
+      if (c !== top() || busy) return;
+      active = true; userTouched(); sx = e.clientX; sy = e.clientY; dx = dy = 0; t0 = Date.now();
+      c.classList.add('drag'); c.setPointerCapture(e.pointerId);
+    });
+    c.addEventListener('pointermove', function (e) {
+      if (!active) return;
+      dx = e.clientX - sx; dy = (e.clientY - sy) * 0.4; setPose(c, dx, dy);
+    });
+    function end() {
+      if (!active) return; active = false;
+      var v = Math.abs(dx) / Math.max(1, Date.now() - t0);
+      if (Math.abs(dx) > 90 || (v > 0.6 && Math.abs(dx) > 30)) decide(dx > 0 ? 1 : -1);
+      else {
+        c.classList.remove('drag'); setPose(c, 0, 0);
+        c.style.transform = '';
+        if (Math.abs(dx) < 4 && Math.abs(dy) < 4 && Date.now() - t0 < 300) exit(p.url, 'Kart dokunma: ' + p.name);
+      }
+    }
+    c.addEventListener('pointerup', end);
+    c.addEventListener('pointercancel', end);
+  }
+
+  /* Sonuç */
+  function finish() {
+    var score = { klasik: 0, smart: 0, casual: 0 };
+    liked.forEach(function (p) { score[p.style]++; });
+    var best = liked.length ? Object.keys(score).sort(function (a, b) { return score[b] - score[a] || (b === 'smart') - (a === 'smart'); })[0] : null;
+    var prof = best ? D.profiles[best] : null;
+    $('rTitle').textContent = prof ? prof.title : C.none.split('.')[0] + '.';
+    $('rDesc').textContent = prof ? prof.desc : C.none.split('. ')[1] || '';
+    $('mix').innerHTML = '';
+    Object.keys(D.profiles).forEach(function (k) {
+      var row = document.createElement('div'), pct = liked.length ? Math.round(score[k] / liked.length * 100) : 0;
+      row.innerHTML = '<span></span><span class="track"><i></i></span><em></em>';
+      row.children[0].textContent = D.profiles[k].title; row.children[2].textContent = '%' + pct;
+      $('mix').appendChild(row);
+      setTimeout(function () { row.querySelector('i').style.width = pct + '%'; }, 60);
+    });
+    var th = $('thumbs'); th.innerHTML = '';
+    if (!liked.length) { th.innerHTML = '<div class="none"></div>'; th.firstChild.textContent = C.none; }
+    liked.forEach(function (p) {
+      var b = document.createElement('button'); b.type = 'button';
+      b.innerHTML = '<img alt=""><span></span>'; b.querySelector('img').src = IMG[p.img]; b.querySelector('img').alt = p.name;
+      b.querySelector('span').textContent = p.name;
+      b.addEventListener('click', function (e) { e.stopPropagation(); exit(p.url, 'Eslesme: ' + p.name); });
+      th.appendChild(b);
+    });
+    $('ctaTx').textContent = prof ? C.cta : C.ctaNone;
+    $('cta').onclick = function (e) { e.stopPropagation(); exit(prof ? prof.url : D.url, 'CTA: ' + (best || 'yok')); };
+    ad.classList.add('done');
+  }
+  $('again').addEventListener('click', function (e) { e.stopPropagation(); ad.classList.remove('done'); build(); });
+
+  $('bLike').addEventListener('click', function (e) { e.stopPropagation(); decide(1); });
+  $('bNope').addEventListener('click', function (e) { e.stopPropagation(); decide(-1); });
+  ad.addEventListener('keydown', function (e) {
+    if (ad.classList.contains('done')) return;
+    if (e.key === 'ArrowRight') { e.preventDefault(); decide(1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); decide(-1); }
+    if (e.key === 'Enter' && top()) exit(D.cards[idx].url, 'Klavye');
+  });
+
+  /* Telefon eğildikçe deste hafifçe döner (izin gerektirmeyen cihazlarda) */
+  window.addEventListener('deviceorientation', function (e) {
+    if (e.gamma == null) return;
+    var g = Math.max(-15, Math.min(15, e.gamma)), b = Math.max(-15, Math.min(15, (e.beta || 45) - 45));
+    deck.style.transform = 'rotateY(' + (g * 0.35) + 'deg) rotateX(' + (-b * 0.25) + 'deg)';
+  });
+
+  /* Açılış + gösterim: üst kart sağa-sola sallanır */
+  var demoT = [];
+  function userTouched() { if (touched) return; touched = true; demoT.forEach(clearTimeout); $('hint').classList.remove('on'); }
+  function demo() {
+    var c = top(); if (!c || touched) return;
+    $('hint').classList.add('on');
+    var steps = [[70, 0], [-70, 0], [0, 0]];
+    steps.forEach(function (s, k) {
+      demoT.push(setTimeout(function () {
+        if (touched) return;
+        c.style.transition = 'transform .5s cubic-bezier(.45,0,.55,1)'; setPose(c, s[0], s[1]);
+        if (k === 2) setTimeout(function () { c.style.transition = ''; c.style.transform = ''; }, 520);
+      }, k * 560));
+    });
+    demoT.push(setTimeout(function () { $('hint').classList.remove('on'); }, 4200));
+  }
+  function start() {
+    build();
+    setTimeout(function () { ad.classList.add('started'); }, 1500);
+    demoT.push(setTimeout(demo, 2100));
+  }
+  function boot() { if (window.Enabler && !Enabler.isInitialized()) Enabler.addEventListener('init', start); else start(); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
+})();
+</script>
+</body>
+</html>

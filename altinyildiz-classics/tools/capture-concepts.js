@@ -68,6 +68,31 @@ const SCENARIOS = {
   },
 };
 
+SCENARIOS['05-mobil-stil-eslesmesi'] = async (p, shot) => {
+  const swipe = async (dir, snap) => {
+    const c = await p.locator('.card').last().boundingBox();
+    const x = c.x + c.width / 2, y = c.y + c.height / 2;
+    await p.mouse.move(x, y); await p.mouse.down();
+    await p.mouse.move(x + dir * 70, y + 8, { steps: 6 });
+    if (snap) await shot(snap, 60);
+    await p.mouse.move(x + dir * 160, y + 14, { steps: 4 }); await p.mouse.up();
+    await p.waitForTimeout(450);
+  };
+  await shot('01-acilis', 900);
+  await shot('02-kart', 1300);
+  await shot('03-ipucu-gosterim', 900);
+  await p.waitForTimeout(1200);
+  await swipe(1, '04-begen-surukleme');
+  await swipe(-1, '05-gec-surukleme');
+  await swipe(1); await p.click('#bLike'); await p.waitForTimeout(450);
+  await p.click('#bNope'); await p.waitForTimeout(450);
+  await swipe(1); await swipe(1);
+  await shot('06-son-kart', 200);
+  await swipe(-1);
+  await shot('07-sonuc', 1200);
+  await p.click('.thumbs button >> nth=0'); await p.click('#cta');
+};
+
 (async () => {
   const b = await chromium.launch();
   let failed = false;
@@ -75,7 +100,8 @@ const SCENARIOS = {
     if (only.length && !only.includes(id)) continue;
     const out = path.join(root, 'preview', id);
     fs.mkdirSync(out, { recursive: true });
-    const ctx = await b.newContext({ viewport: { width: 970, height: 250 }, deviceScaleFactor: 2 });
+    const size = (require(path.join(root, 'concepts', id, 'data.js')).size) || { w: 970, h: 250 };
+    const ctx = await b.newContext({ viewport: { width: size.w, height: size.h }, deviceScaleFactor: 2 });
     await ctx.route('**/fonts.googleapis.com/**', (r) => r.fulfill({ contentType: 'text/css', body: fontCss }));
     await ctx.route('**/fonts.gstatic.com/**', (r) => {
       const f = path.join(cache, path.basename(new URL(r.request().url()).pathname));
@@ -85,7 +111,7 @@ const SCENARIOS = {
     const errors = [];
     p.on('pageerror', (e) => errors.push(e.message));
     await p.addInitScript(() => { window.__opened = []; window.open = (u) => { window.__opened.push(u); }; });
-    await p.mouse.move(969, 249);
+    await p.mouse.move(size.w - 1, size.h - 1);
     await p.goto('file://' + path.join(root, 'dist', id, 'index.html'));
     const shot = async (name, wait) => { await p.waitForTimeout(wait); await p.screenshot({ path: path.join(out, name + '.jpg'), type: 'jpeg', quality: 86 }); };
     await SCENARIOS[id](p, shot);
