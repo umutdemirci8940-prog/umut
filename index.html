@@ -8,8 +8,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Outfit:wght@300;400;500;600;800&display=swap" rel="stylesheet">
 <script>
-  var clickTag = "https://www.civilim.com/";
+  // DV360 / Ad Manager click-through. The ad server overrides clickTag; the default is the Admost redirect.
+  var clickTag = "https://run.admost.com/adx/goto.ashx?pbk=546058-387948-34988";
+  function adExit() {
+    if (window.Enabler && Enabler.isInitialized && Enabler.isInitialized()) { try { Enabler.exitOverride("clickTag", window.clickTag); return; } catch (e) {} }
+    window.open(window.clickTag, "_blank");
+  }
 </script>
+<script src="https://s0.2mdn.net/ads/studio/Enabler.js"></script>
 <style>
   :root { --red: #e63d1e; --red-d: #b52a10; --orange: #ff8a1f; --orange-d: #e05a0a; --brown: #53250d; --brown-2: #8a5a3f; --paper: #fff7ee; --bounce: cubic-bezier(.34,1.56,.64,1); --ease: cubic-bezier(.2,.8,.2,1); --flip: cubic-bezier(.45,.05,.25,1); }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -106,6 +112,7 @@
   <div id="next" class="nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></div>
   <canvas id="fx" width="970" height="250"></canvas>
 </div>
+<img src="https://run.admost.com/adx/count.ashx?pbk=546058-387948-34988" width="0" height="0" style="display:none" referrerpolicy="no-referrer-when-downgrade" alt="">
 
 <script>
 (function () {
@@ -226,10 +233,10 @@
   }
   book.addEventListener("click", function (e) {
     var go = e.target.closest ? e.target.closest("[data-go]") : null;
-    if (go) { e.stopPropagation(); touched(); window.open(window.clickTag, "_blank"); return; }
+    if (go) { e.stopPropagation(); touched(); adExit(); return; }
     touched();
     var r = book.getBoundingClientRect(), x = e.clientX - r.left;
-    if (x >= 485) { if (flipped === SPREADS.length) window.open(window.clickTag, "_blank"); else flip(1); } else flip(-1);
+    if (x >= 485) { if (flipped === SPREADS.length) adExit(); else flip(1); } else flip(-1);
   });
   $("next").addEventListener("click", function (e) { e.stopPropagation(); touched(); flip(1); });
   $("prev").addEventListener("click", function (e) { e.stopPropagation(); touched(); flip(-1); });
