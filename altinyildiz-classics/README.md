@@ -116,3 +116,13 @@ Mobil kullanıcının her gün yaptığı hareket üzerine kurulu: **kartı sağ
 - Hareket algılanamayan cihazlarda (ve masaüstünde) büyük **SALLA** düğmesi aynı işi yapar. **iOS:** hareket izni ayrı bir pencereyle değil, kullanıcı SALLA'ya ilk dokunduğunda istenir; izin verilirse sonrasında gerçek sallama çalışır. Android'de izin gerekmez.
 - Açılışta reklam kendini sallar ("SALLA!" ipucu); dokunulmazsa 30 sn boyunca birkaç saniyede bir yeni kombin gösterir.
 - Fotoğrafa dokunmak ürün sayfasını, "Kombini Keşfet" üst parçanın kategorisini açar. Masaüstünde boşluk tuşu karıştırır.
+
+### Telefonda test (CDN)
+- `dist/06-mobil-salla/index.html` tek dosyadır, CDN'e olduğu gibi yükleyin. **Adres HTTPS olmalı**; tarayıcılar hareket sensörünü yalnızca güvenli bağlantıda verir.
+- Telefonda doğrudan açıldığında reklam ekranda ortalanır (reklam alanının içinde bu kural devreye girmez).
+- **Android (Chrome):** açın ve sallayın; izin gerekmez.
+- **iPhone (Safari):** önce **SALLA**'ya dokunun → "Hareket ve yönelim" izni çıkar → İzin Ver → "Hazır! Şimdi sallayın". İzin reddedilirse düğme çalışmaya devam eder. Reddedildiyse sayfayı kapatıp yeniden açın.
+- Algılama: yer çekimi alçak geçiren filtreyle çıkarılır, kalan ivme 0,8 sn içinde iki kez 12 m/s²'yi aşarsa sallama sayılır. Hafif el titremesi tetiklemez.
+- Test parametreleri: `...index.html?debug=1` canlı sensör değerlerini (sapma, tepe, izin durumu) gösterir; `?esik=9` daha hassas, `?esik=16` daha zor yapar. İkisi birlikte: `?debug=1&esik=10`.
+- Reklam ağına konduğunda iframe içinde çalışır; iframe başka bir alan adındaysa sayfanın iframe'e `allow="accelerometer; gyroscope"` vermesi gerekir (çoğu mobil rich media SDK'sı verir, vermezse SALLA düğmesi devreye girer).
+- Otomatik test: `NODE_PATH=$(npm root -g) node tools/test-shake.js` (hafif titreme tetiklememeli, 3 sallama 3 kombin değiştirmeli).

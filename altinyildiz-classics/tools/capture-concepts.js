@@ -101,7 +101,7 @@ SCENARIOS['06-mobil-salla'] = async (p, shot) => {
   // Gerçek sallamayı taklit et: ardışık devicemotion olayları
   await p.evaluate(() => {
     const ev = (x, y, z) => { const e = new Event('devicemotion'); e.accelerationIncludingGravity = { x, y, z }; window.dispatchEvent(e); };
-    [[0, 9.8, 0], [18, 2, 4], [-16, 12, -6], [20, -3, 5], [-18, 14, -4]].forEach((a, i) => setTimeout(() => ev(...a), i * 60));
+    [[0, 9.8, 0], [24, 6, 5], [-22, 14, -6], [25, -4, 6], [-23, 15, -5]].forEach((a, i) => setTimeout(() => ev(...a), i * 60));
   });
   await shot('04-telefon-sallandi', 350);
   await shot('05-yeni-kombin', 900);

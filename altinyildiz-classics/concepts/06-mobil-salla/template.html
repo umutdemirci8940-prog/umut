@@ -57,9 +57,16 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .foot b{color:#000}
 
 /* Sallama ipucu */
-.phone{position:absolute;left:50%;top:210px;margin-left:-60px;width:120px;padding:10px 0;background:rgba(0,0,0,.85);color:#fff;text-align:center;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;opacity:0;pointer-events:none;transition:opacity .3s;z-index:4}
+.phone{position:absolute;left:50%;top:210px;transform:translateX(-50%);white-space:nowrap;padding:10px 14px;background:rgba(0,0,0,.85);color:#fff;text-align:center;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;opacity:0;pointer-events:none;transition:opacity .3s;z-index:4}
 .phone.on{opacity:1}
 
+/* Test: ?debug=1 */
+.dbg{position:absolute;left:0;right:0;top:56px;z-index:9;background:rgba(0,0,0,.78);color:#0f0;font:10px/1.3 monospace;padding:4px 6px;pointer-events:none}
+/* Telefonda doğrudan açıldığında (reklam alanından büyük ekran) ortala; reklam iframe'inde etkisizdir */
+@media (min-height:540px),(min-width:360px){
+  html,body{width:100%;height:100%;background:#e9e9e6}
+  body{display:flex;align-items:center;justify-content:center}
+}
 /* Açılış */
 .intro{position:absolute;inset:0;background:#fff;z-index:20;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;transition:opacity .6s,visibility .6s}
 .intro img{height:22px;opacity:0;transform:translateY(6px);animation:up .8s .1s var(--ease) forwards}
@@ -140,26 +147,57 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     }, 75);
   }
 
-  /* Hareket algılama (salla) */
-  var last = null, hits = [], lastShake = 0;
+  /* Hareket algılama (salla)
+     Yer çekimi alçak geçiren filtreyle tahmin edilip çıkarılır; kalan doğrusal ivme eşiği iki kez aşarsa sallama sayılır.
+     Test için adres parametreleri: ?debug=1 canlı sensör değerleri, ?esik=12 hassasiyet (m/s², küçük = daha hassas). */
+  var Q = (function () { var o = {}; try { location.search.slice(1).split('&').forEach(function (kv) { var p = kv.split('='); if (p[0]) o[decodeURIComponent(p[0])] = decodeURIComponent(p[1] || ''); }); } catch (e) {} return o; })();
+  var grav = null, TH = parseFloat(Q.esik) || 12, hits = [], lastShake = 0, evCount = 0, peak = 0, perm = 'gerekmiyor';
+  var needsPerm = !!(window.DeviceMotionEvent && typeof DeviceMotionEvent.requestPermission === 'function');
+  if (needsPerm) { perm = 'istenmedi'; $('hint').textContent = C.hintIOS; }
+  var dbg = null;
+  if (Q.debug) { dbg = document.createElement('div'); dbg.className = 'dbg'; ad.appendChild(dbg); }
+  function debug(dev) {
+    if (!dbg) return; peak = Math.max(peak * 0.97, dev);
+    dbg.textContent = 'olay: ' + evCount + ' · sapma: ' + dev.toFixed(1) + ' · tepe: ' + peak.toFixed(1) + ' · eşik: ' + TH + ' · izin: ' + perm + ' · sallama: ' + Object.keys(seen).length;
+  }
+  function toast(t, ms) { var el = $('phone'); el.textContent = t; el.classList.add('on'); clearTimeout(toast.t); toast.t = setTimeout(function () { el.classList.remove('on'); }, ms || 1200); }
   function onMotion(e) {
-    var a = e.accelerationIncludingGravity || e.acceleration; if (!a || a.x == null) return;
+    var g = e.accelerationIncludingGravity, a = e.acceleration, dev;
+    if (a && a.x != null && (a.x || a.y || a.z)) dev = Math.sqrt(a.x * a.x + a.y * a.y + a.z * a.z);            // yer çekimi çıkarılmış
+    else if (g && g.x != null) {                                                                                  // yer çekimi dahil: alçak geçiren
+      if (!grav) grav = { x: g.x, y: g.y, z: g.z };                                                                // filtreyle yer çekimini tahmin et, çıkar
+      grav.x = grav.x * 0.85 + g.x * 0.15; grav.y = grav.y * 0.85 + g.y * 0.15; grav.z = grav.z * 0.85 + g.z * 0.15;
+      var lx = g.x - grav.x, ly = g.y - grav.y, lz = g.z - grav.z;
+      dev = Math.sqrt(lx * lx + ly * ly + lz * lz);
+    } else return;
+    evCount++;
     if (!motion) { motion = true; $('hint').textContent = C.hintMotion; }
-    if (last) {
-      var d = Math.abs(a.x - last.x) + Math.abs(a.y - last.y) + Math.abs(a.z - last.z), now = Date.now();
-      if (d > 26) { hits = hits.filter(function (t) { return now - t < 500; }); hits.push(now);
-        if (hits.length >= 2 && now - lastShake > 1100) { lastShake = now; hits = []; shake(); } }
+    var now = Date.now();
+    if (dev > TH && (!hits.length || now - hits[hits.length - 1] > 70)) {
+      hits = hits.filter(function (t) { return now - t < 800; }); hits.push(now);
+      if (hits.length >= 2 && now - lastShake > 1200) { lastShake = now; hits = []; shake(); }
     }
-    last = { x: a.x, y: a.y, z: a.z };
+    debug(dev);
   }
   window.addEventListener('devicemotion', onMotion);
-  function askMotion() { // iOS 13+: izin yalnızca kullanıcı dokunuşuyla istenebilir
-    if (asked) return; asked = true;
-    try { if (window.DeviceMotionEvent && typeof DeviceMotionEvent.requestPermission === 'function') DeviceMotionEvent.requestPermission().catch(function () {}); } catch (e) {}
+  function askMotion(after) { // iOS 13+: izin yalnızca kullanıcının dokunuşuyla istenebilir
+    asked = true;
+    try {
+      DeviceMotionEvent.requestPermission().then(function (r) {
+        perm = r;
+        if (r === 'granted') { $('hint').textContent = C.hintMotion; toast(C.ready, 1800); }
+        else { $('hint').textContent = C.hintDenied; after(); }
+        debug(0);
+      }).catch(function () { perm = 'hata'; $('hint').textContent = C.hintDenied; after(); });
+    } catch (e) { after(); }
   }
 
   /* Dokunmalar */
-  $('shake').addEventListener('click', function (e) { e.stopPropagation(); askMotion(); shake(); });
+  $('shake').addEventListener('click', function (e) {
+    e.stopPropagation();
+    if (needsPerm && !asked) { used(); askMotion(function () { shake(); }); return; } // ilk dokunuş: iPhone hareket izni
+    shake();
+  });
   [0, 1].forEach(function (r) {
     var s = $('s' + r);
     s.querySelector('.lock').addEventListener('click', function (e) { e.stopPropagation(); used(); locked[r] = !locked[r]; paint(r); buzz(15); });
