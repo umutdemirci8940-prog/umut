@@ -13,12 +13,15 @@ const path = require('path');
 const { chromium } = require('playwright');
 
 const SITE = 'https://www.altinyildizclassics.com';
-const out = path.join(__dirname, '..', 'assets', 'raw');
+// İsteğe bağlı ayar: src/fetch-config.json → { out, keywords, maxPages, maxPerPage, maxImages, urls }
+const cfgFile = path.join(__dirname, '..', 'src', 'fetch-config.json');
+const CFG = fs.existsSync(cfgFile) ? JSON.parse(fs.readFileSync(cfgFile, 'utf8')) : {};
+const out = path.join(__dirname, '..', 'assets', CFG.out || 'raw');
 fs.rmSync(out, { recursive: true, force: true });
 fs.mkdirSync(path.join(out, 'img'), { recursive: true });
 fs.mkdirSync(path.join(out, 'screens'), { recursive: true });
-const KEYWORDS = ['takim', 'ceket', 'gomlek', 'pantolon', 'triko', 'kazak', 'mont', 'kaban', 'blazer', 'polo', 'yeni', 'koleksiyon', 'smokin', 'yelek'];
-const MAX_PAGES = 9, MAX_PER_PAGE = 40;
+const KEYWORDS = CFG.keywords || ['takim', 'ceket', 'gomlek', 'pantolon', 'triko', 'kazak', 'mont', 'kaban', 'blazer', 'polo', 'yeni', 'koleksiyon', 'smokin', 'yelek'];
+const MAX_PAGES = CFG.maxPages || 9, MAX_PER_PAGE = CFG.maxPerPage || 40, MAX_IMAGES = CFG.maxImages || 160;
 
 const slug = (s) => s.replace(/^https?:\/\//, '').replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '').slice(0, 60);
 
@@ -36,9 +39,11 @@ async function collect(page) {
       const r = img.getBoundingClientRect ? img.getBoundingClientRect() : { width: 0, height: 0 };
       const u = best(img.getAttribute('srcset') || img.getAttribute('data-srcset')) || img.currentSrc || img.getAttribute('data-src') || img.getAttribute('data-original') || img.getAttribute('src');
       const card = img.closest('a');
+      let box = img, priceText = '';
+      for (let k = 0; k < 7 && box && !priceText; k++) { box = box.parentElement; if (box && /\d[\d.]*,\d{2}\s*TL/.test(box.innerText || '')) priceText = box.innerText.replace(/\s+/g, ' ').trim().slice(0, 240); }
       items.push({ url: abs(u), alt: img.getAttribute('alt') || '', w: Math.round(r.width), h: Math.round(r.height),
         nw: img.naturalWidth || 0, nh: img.naturalHeight || 0, href: card ? abs(card.getAttribute('href')) : null,
-        text: card ? card.innerText.replace(/\s+/g, ' ').trim().slice(0, 160) : '' });
+        text: card ? card.innerText.replace(/\s+/g, ' ').trim().slice(0, 160) : '', priceText });
     }
     for (const el of document.querySelectorAll('[style*="background"]')) {
       const m = (el.getAttribute('style') || '').match(/url\(["']?([^"')]+)/);
@@ -125,6 +130,8 @@ async function scroll(page) {
       if (KEYWORDS.some((k) => p.includes(k))) cats.push(l);
     }
     index.categoryLinks = cats.slice(0, 40);
+    for (const u of CFG.urls || []) if (!cats.find((c) => c.href === SITE + u)) cats.unshift({ href: SITE + u, text: u });
+    index.categoryLinks = cats.slice(0, 60);
     let i = 1;
     for (const c of cats.slice(0, MAX_PAGES)) await visit(c.href, i++);
   }
@@ -142,7 +149,7 @@ async function scroll(page) {
       const file = `img/${String(k++).padStart(3, '0')}-${slug(path.basename(new URL(it.url).pathname).replace(/\.\w+$/, ''))}.${ext}`;
       fs.writeFileSync(path.join(out, file), buf);
       index.images.push(Object.assign(it, { file, bytes: buf.length }));
-      if (k >= 160) break;
+      if (k >= MAX_IMAGES) break;
     } catch { /* geç */ }
   }
   fs.writeFileSync(path.join(out, 'index.json'), JSON.stringify(index, null, 1));

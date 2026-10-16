@@ -7,7 +7,7 @@ on:
   push:
     paths:
       - 'altinyildiz-classics/tools/fetch-site.js'
-      - 'altinyildiz-classics/.fetch-trigger'
+      - 'altinyildiz-classics/src/fetch-config.json'
 
 permissions:
   contents: write
@@ -35,7 +35,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A altinyildiz-classics/assets/raw
+          git add -A altinyildiz-classics/assets
           git commit -m "Altınyıldız Classics: siteden ham görseller (GitHub Actions)" || { echo "Değişiklik yok"; exit 0; }
           git pull --rebase origin ${GITHUB_REF_NAME} || true
           git push
