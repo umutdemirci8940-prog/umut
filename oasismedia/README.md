@@ -1,8 +1,8 @@
 # Oasis Media — yeni web sitesi
 
 [oasismedia.com.tr](https://oasismedia.com.tr/) için yeniden tasarlanan, animasyonlu açılışa sahip tek sayfalık site.
-Tüm metinler, logo, 145 müşteri logosu, 24 yayıncı partner logosu, 30 proje (görsel + kampanya videosu),
-ING ve LAV interaktif bannerları ve iletişim bilgileri orijinal siteden alınmıştır.
+Tüm metinler, logo, 145 müşteri logosu, 24 yayıncı partner logosu ve iletişim bilgileri orijinal siteden alınmıştır.
+Projeler bölümü, markanın "İnteraktif & Rich Media Çalışmalar" PDF'ini site içinde önizler.
 
 ```
 oasismedia/
@@ -11,8 +11,9 @@ oasismedia/
 │   ├── css/style.css
 │   ├── js/main.js         ← etkileşimler (bağımlılık yok)
 │   ├── js/data.js         ← müşteri / partner / proje listesi (otomatik üretilir)
-│   ├── assets/            ← logo, favicon, WebP'ye çevrilmiş logolar ve proje görselleri
-│   └── banners/ing|lav/   ← sitedeki orijinal 970×250 HTML5 bannerlar
+│   ├── assets/            ← logo, favicon, WebP'ye çevrilmiş müşteri/partner logoları
+│   ├── assets/pdf/        ← oasis-media-calismalar.pdf (Projeler bölümünün önizlediği dosya)
+│   └── vendor/pdfjs/      ← PDF.js 3.11.174 (PDF sayfalarını her cihazda site içinde çizer)
 ├── source/                ← GitHub Actions ile indirilen orijinal sitenin kopyası (+ content.json metin dökümü)
 └── tools/prepare_assets.py← source/ → site/assets ve js/data.js
 ```
@@ -32,8 +33,9 @@ cd oasismedia/site && python3 -m http.server 8080   # http://localhost:8080
   tıklanınca KPI baloncukları saçan güneş, artan kampanya erişimi kartı, mıknatıslı butonlar, özel imleç.
 - **Hakkımızda:** orijinal metin, vizyon/misyon, sayaçlar (300+ site, 2K+ proje, 10 yıl, 145+ marka).
 - **Hizmetlerimiz:** 6 hizmet sekmesi; her biri hizmet sayfasındaki tam metni gösterir (klavye okları ile gezilebilir).
-- **Projelerimiz:** formata göre filtre (İnteraktif Masthead, Gravity, Rich Media…), 3B eğilen kartlar;
-  tıklayınca kampanya videosu (orijinal S3 bağlantısı) ya da ING/LAV bannerı canlı açılır.
+- **Projelerimiz:** PDF kapağı (ilk sayfa otomatik küçük resim olur, sayfa sayısı yazılır); tıklayınca tüm sayfalar
+  site içindeki önizleme penceresinde açılır. PDF'i değiştirmek için `site/assets/pdf/oasis-media-calismalar.pdf`
+  dosyasını aynı adla güncellemek yeterli.
 - **Müşterilerimiz:** üç sıra kayan logo şeridi + tüm listeyi açan ızgara.
 - **İş ortaklarımız:** 24 yayıncı partner logosu.
 - **İletişim:** adres (Google Maps bağlantısı), telefon, e-postalar (kopyala butonu), form (sales@oasismedia.com.tr'ye

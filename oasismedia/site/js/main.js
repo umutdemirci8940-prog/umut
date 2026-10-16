@@ -1,7 +1,7 @@
 /* Oasis Media — etkileşimler. Bağımlılık yok; içerik listeleri js/data.js (window.OASIS_DATA) içinde. */
 (function () {
   'use strict';
-  var D = window.OASIS_DATA || { clients: [], partners: [], projects: [] };
+  var D = window.OASIS_DATA || { clients: [], partners: [] };
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -260,83 +260,97 @@
   });
   showService(0);
 
-  /* ---------- Projeler ---------- */
-  var grid = $('#projectsGrid'), filters = $('#filters'), moreBtn = $('#moreProjects');
-  var LIMIT = 9, expanded = false, active = 'Tümü';
-  var kinds = ['Tümü'];
-  D.projects.forEach(function (p) { if (kinds.indexOf(p.kind) < 0) kinds.push(p.kind); });
-  kinds.forEach(function (k) {
-    var n = k === 'Tümü' ? D.projects.length : D.projects.filter(function (p) { return p.kind === k; }).length;
-    var b = document.createElement('button');
-    b.className = 'filter'; b.type = 'button'; b.setAttribute('aria-pressed', k === active);
-    b.innerHTML = k + '<sup>' + n + '</sup>'; b.dataset.kind = k;
-    filters.appendChild(b);
-  });
-  D.projects.forEach(function (p, i) {
-    var b = document.createElement('button');
-    b.type = 'button'; b.className = 'project' + (p.featured ? ' featured' : ''); b.dataset.i = i; b.dataset.kind = p.kind;
-    b.innerHTML = '<div class="thumb"><img src="' + p.image + '" alt="' + p.title + ' kampanya görseli" loading="lazy" decoding="async"><span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span></div>' +
-      '<div class="meta"><h3>' + p.title + '</h3><span class="kind">' + p.kind + '</span></div>';
-    b.setAttribute('aria-label', p.title + ' — ' + p.kind + (p.type === 'banner' ? ', canlı banneri aç' : ', videoyu izle'));
-    grid.appendChild(b);
-  });
-  function applyFilter() {
-    var shown = 0;
-    $$('.project', grid).forEach(function (el) {
-      var ok = active === 'Tümü' || el.dataset.kind === active;
-      if (ok) shown++;
-      el.classList.toggle('is-hidden', !ok || (!expanded && active === 'Tümü' && shown > LIMIT));
+  /* ---------- Projeler: PDF önizleme (PDF.js ile; yüklenemezse tarayıcının kendi PDF görüntüleyicisi) ---------- */
+  var projSec = $('#projeler');
+  var PDF_URL = projSec.dataset.pdf, PDF_TITLE = projSec.dataset.pdfTitle;
+  var PDFJS = 'vendor/pdfjs/'; // PDF.js 3.11.174 (Apache-2.0), siteyle birlikte barındırılır
+  var pdfDocPromise = null;
+  function loadPdfJs() {
+    if (window.pdfjsLib) return Promise.resolve(window.pdfjsLib);
+    return new Promise(function (res, rej) {
+      var sc = document.createElement('script');
+      sc.src = PDFJS + 'pdf.min.js';
+      sc.onload = function () { window.pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS + 'pdf.worker.min.js'; res(window.pdfjsLib); };
+      sc.onerror = rej;
+      document.head.appendChild(sc);
     });
-    moreBtn.parentElement.hidden = expanded || active !== 'Tümü' || D.projects.length <= LIMIT;
   }
-  filters.addEventListener('click', function (e) {
-    var b = e.target.closest('.filter'); if (!b) return;
-    active = b.dataset.kind;
-    $$('.filter', filters).forEach(function (f) { f.setAttribute('aria-pressed', f === b); });
-    applyFilter();
-  });
-  moreBtn.addEventListener('click', function () { expanded = true; applyFilter(); });
-  applyFilter();
-
-  if (finePointer && !reduced) {
-    grid.addEventListener('mousemove', function (e) {
-      var c = e.target.closest('.project'); if (!c) return;
-      var r = c.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
-      c.style.transform = 'perspective(800px) rotateY(' + x * 10 + 'deg) rotateX(' + (-y * 10) + 'deg) translateY(-4px)';
+  function getPdf() {
+    if (!pdfDocPromise) pdfDocPromise = loadPdfJs().then(function (lib) { return lib.getDocument(PDF_URL).promise; });
+    return pdfDocPromise;
+  }
+  function renderPage(pdf, n, canvas, width) {
+    return pdf.getPage(n).then(function (page) {
+      var base = page.getViewport({ scale: 1 });
+      var scale = (width * Math.min(devicePixelRatio || 1, 2)) / base.width;
+      var vp = page.getViewport({ scale: scale });
+      canvas.width = vp.width; canvas.height = vp.height;
+      return page.render({ canvasContext: canvas.getContext('2d'), viewport: vp }).promise.then(function () { return base; });
     });
-    grid.addEventListener('mouseout', function (e) { var c = e.target.closest('.project'); if (c && !c.contains(e.relatedTarget)) c.style.transform = ''; });
   }
+  // Kapak: PDF varsa ilk sayfası küçük resim olarak çizilir, sayfa sayısı yazılır
+  (function cover() {
+    var thumb = $('#pdfThumb');
+    var start = function () {
+      getPdf().then(function (pdf) {
+        $('#pdfMeta').textContent = 'PDF · ' + pdf.numPages + ' sayfa';
+        return renderPage(pdf, 1, thumb, 640).then(function () { thumb.hidden = false; $('#pdfPlaceholder').hidden = true; });
+      }).catch(function () { /* PDF henüz yok: tasarım kapağı kalır */ });
+    };
+    if ('IntersectionObserver' in window) {
+      var io2 = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { io2.disconnect(); start(); } }, { rootMargin: '300px' });
+      io2.observe(projSec);
+    } else start();
+  })();
 
-  /* Modal: video ya da canlı banner */
   var modal = $('#modal'), mBody = $('#modalBody'), lastFocus = null;
-  function fitBanner() {
-    var f = $('.banner-frame', mBody); if (!f) return;
-    var w = mBody.clientWidth - 24, s = Math.min(1, w / 970);
-    f.style.transform = 'scale(' + s + ')';
-    f.parentElement.style.height = (250 * s + 48) + 'px';
+  function showPdfMissing() {
+    mBody.innerHTML = '<div class="pdf-msg"><b>Çalışma dosyası yakında burada.</b><span>PDF yüklendiğinde sayfalar bu pencerede görüntülenecek.</span></div>';
   }
-  function openProject(p) {
+  function openPdf() {
     lastFocus = document.activeElement;
-    $('#modalTitle').textContent = p.title; $('#modalKind').textContent = p.kind;
-    $('#modalLink').href = p.link;
-    if (p.type === 'banner') {
-      mBody.innerHTML = '<div class="banner-wrap"><iframe class="banner-frame" src="' + p.link + '" title="' + p.title + ' interaktif banner" loading="lazy"></iframe></div>';
-    } else {
-      mBody.innerHTML = '<video controls autoplay playsinline preload="metadata" poster="' + p.image + '"><source src="' + p.link + '" type="video/mp4"></video>';
-    }
+    $('#modalTitle').textContent = PDF_TITLE; $('#modalKind').textContent = 'PDF önizleme';
+    $('#modalLink').href = PDF_URL;
+    mBody.innerHTML = '<div class="pdf-msg"><span>Sayfalar yükleniyor…</span></div>';
     modal.hidden = false; document.body.style.overflow = 'hidden';
-    fitBanner();
     $('#modalClose').focus();
+    getPdf().then(function (pdf) {
+      $('#modalKind').textContent = 'PDF önizleme · ' + pdf.numPages + ' sayfa';
+      var wrap = document.createElement('div'); wrap.className = 'pdf-pages';
+      mBody.innerHTML = ''; mBody.appendChild(wrap);
+      var width = Math.min(980, mBody.clientWidth - 36);
+      var lazy = 'IntersectionObserver' in window ? new IntersectionObserver(function (en) {
+        en.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          lazy.unobserve(e.target);
+          renderPage(pdf, +e.target.dataset.n, e.target.firstChild, width).then(function (b) { e.target.style.setProperty('--ar', b.width / b.height); });
+        });
+      }, { root: mBody, rootMargin: '600px' }) : null;
+      for (var n = 1; n <= pdf.numPages; n++) {
+        var pg = document.createElement('div');
+        pg.className = 'pdf-page'; pg.dataset.n = n;
+        pg.setAttribute('aria-label', 'Sayfa ' + n);
+        pg.appendChild(document.createElement('canvas'));
+        wrap.appendChild(pg);
+        if (lazy) lazy.observe(pg); else renderPage(pdf, n, pg.firstChild, width);
+      }
+    }).catch(function (err) {
+      // PDF.js yüklenemediyse dosyayı tarayıcının görüntüleyicisiyle dene; dosya yoksa bilgi göster
+      fetch(PDF_URL, { method: 'HEAD' }).then(function (r) {
+        if (r.ok) mBody.innerHTML = '<iframe class="pdf-frame" src="' + PDF_URL + '#view=FitH" title="' + PDF_TITLE + '"></iframe>';
+        else showPdfMissing();
+      }).catch(showPdfMissing);
+    });
   }
   function closeModal() {
     modal.hidden = true; mBody.innerHTML = ''; document.body.style.overflow = '';
     if (lastFocus) lastFocus.focus();
   }
-  grid.addEventListener('click', function (e) { var c = e.target.closest('.project'); if (c) openProject(D.projects[+c.dataset.i]); });
+  $('#pdfOpen').addEventListener('click', openPdf);
+  $('#pdfOpen2').addEventListener('click', openPdf);
   $('#modalClose').addEventListener('click', closeModal);
   modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
-  addEventListener('resize', fitBanner);
 
   /* ---------- Müşteriler ---------- */
   var NAMES = { a90: 'A90 Pictures', anabank: 'Anadolubank', bparmak: 'Balparmak', btoptan: 'Bizim Toptan', ck: 'Calvin Klein', cocacola: 'Coca-Cola', cs: 'CarrefourSA', ct: 'Cola Turka', gbbva: 'Garanti BBVA', hm: 'H&M', lufi: 'Lufian', ing: 'ING', bmw: 'BMW', bim: 'BİM', jbl: 'JBL', qnb: 'QNB', teb: 'TEB', vw: 'Volkswagen', tt: 'Türk Telekom', 'ford-trucks': 'Ford Trucks', 'm-coco': 'M.Coco' };

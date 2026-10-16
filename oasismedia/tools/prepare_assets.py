@@ -1,5 +1,5 @@
 """oasismedia/source (GitHub Actions ile indirilen orijinal site) içinden yeni site için
-logo, müşteri/partner logoları ve proje görsellerini seçip WebP'ye çevirir; site/data.js üretir.
+logo ile müşteri/partner logolarını seçip WebP'ye çevirir; site/data.js üretir.
 Kullanım: python3 -I oasismedia/tools/prepare_assets.py
 """
 import html, json, pathlib, re, shutil
@@ -37,8 +37,10 @@ def page(path):
     return (SRC / path / 'index.html').read_text(errors='ignore')
 
 
-if OUT.exists():
-    shutil.rmtree(OUT)
+if OUT.exists():  # PDF'ler elle eklenir; onları koru
+    for d in OUT.iterdir():
+        if d.name != 'pdf':
+            shutil.rmtree(d)
 
 # Logo (orijinal + favicon)
 logo = UP / 'uyooo-300x149.png'
@@ -79,101 +81,11 @@ for src in re.findall(r'uploads/2025/01/([^"\'/]+\.jpg)', page('is-ortaklarimiz'
     to_webp(find(src), OUT / 'partners' / f'{key.lower()}.webp', 320, 85)
     partners.append({'key': key, 'logo': f'assets/partners/{key.lower()}.webp'})
 
-# Projeler: başlık + video bağlantısı + kapak görseli (Revolution Slider katmanlarından)
-h = page('projelerimiz')
-img, title, order = {}, {}, []
-for m in re.finditer(r'<a\b([^>]*)>(.*?)</a>', h, re.S):
-    attrs, inner = m.groups()
-    href = re.search(r'href="([^"]+)"', attrs)
-    if not href or 'rs-layer' not in attrs:
-        continue
-    href = href.group(1)
-    bg = re.search(r"url\('//oasismedia\.com\.tr/wp-content/uploads/([^']+)'\)", inner)
-    if bg:
-        img.setdefault(href, bg.group(1))
-    else:
-        t = html.unescape(re.sub('<[^>]+>', '', inner)).strip()
-        if t and href not in title:
-            title[href] = t
-            order.append(href)
+# Projeler bölümü sitede PDF olarak sunulur (site/assets/pdf/), bu yüzden proje görselleri burada işlenmez.
 
-# Öne çıkan 6 proje (ana sayfadaki büyük kartlar)
-featured_imgs = {'BEYMEN': 'beymen-genz-1.jpg', 'ING': 'ING.webp', 'LAV': 'LAV.jpg',
-                 'TURKCELL': 'Tcell.jpg', 'RENAULT': 'renault.jpg', 'NOTE': 'Note.jpg'}
-featured_links = {'ING': 'banners/ing/banner.html', 'LAV': 'banners/lav/banner.html'}
-
-
-NAMES = {'BEYMEN': 'Beymen', 'ING': 'ING', 'LAV': 'LAV', 'TURKCELL': 'Turkcell', 'RENAULT': 'Renault',
-         'NOTE': 'Note Kozmetik', 'ADIDAS': 'Adidas', 'BAYER': 'Bayer', 'BOBBİ BROWN': 'Bobbi Brown',
-         'BLACK BRUIN': 'Black Bruin', 'CARREFOURSA': 'CarrefourSA', 'CHERY': 'Chery', 'ETİ LİFALİF': 'Eti Lifalif',
-         'CHERY LANSMAN': 'Chery Lansman', 'ETS MAXX ROYAL': 'ETS Maxx Royal', 'GARANTİ BANKASI': 'Garanti BBVA',
-         'KARACA PATİ': 'Karaca Pati', 'GOLF MARAŞIM': 'Golf Maraşım', 'KOLPAÇİNO': 'Kolpaçino', 'NESTLE': 'Nestlé',
-         'MİELE': 'Miele', 'NİSSAN': 'Nissan', 'SARIYER KOLA': 'Sarıyer Kola', 'TAFF': 'TAFF', 'ŞÖLEN': 'Şölen',
-         'TATİL DÜKKANI': 'Tatil Dükkanı', 'TİCİMAX': 'Ticimax', 'TRENDYOL': 'Trendyol', 'TÜRK TELEKOM': 'Türk Telekom',
-         'VAKKO': 'Vakko'}
-
-
-def fmt_kind(video):
-    v = video.replace('%CC%87', '').replace('I+nteraktif', 'Interaktif')
-    for k, label in [('Gravity', 'Gravity'), ('Rich+Media', 'Rich Media'), ('Video+Masthead', 'Video Masthead'),
-                     ('Masthead', 'İnteraktif Masthead')]:
-        if k in v:
-            return label
-    return 'İnteraktif'
-
-
-projects, seen = [], set()
-for name, file in featured_imgs.items():
-    href = next((x for x in order if title[x] == name), None)
-    out = to_webp(find(file), OUT / 'projects' / f'{name.lower()}.webp', 900, 80)
-    link = featured_links.get(name) or href
-    projects.append({'brand': NAMES[name], 'title': 'Oasis & ' + NAMES[name],
-                     'image': f'assets/projects/{out.name}', 'link': link,
-                     'type': 'banner' if name in featured_links else 'video',
-                     'kind': 'Canlı Banner (970×250)' if name in featured_links else fmt_kind(href or ''),
-                     'featured': True})
-    seen.add(name)
-
-for href in order:
-    t = title[href]
-    if t in seen or not img.get(href) or href in [p['link'] for p in projects]:
-        continue
-    seen.add(t)
-    brand = NAMES.get(t.replace('OASİS & ', '').strip(), t.replace('OASİS & ', '').strip())
-    file = img[href].split('/')[-1]
-    slug = re.sub(r'[^a-z0-9]+', '-', file.rsplit('.', 1)[0].lower()).strip('-') or 'proje'
-    out = to_webp(find(file), OUT / 'projects' / f'{slug}.webp', 900, 80)
-    projects.append({'brand': brand, 'title': 'Oasis & ' + brand, 'image': f'assets/projects/{out.name}',
-                     'link': href, 'type': 'video', 'kind': fmt_kind(href), 'featured': False})
-
-# İnteraktif bannerlar (ING, LAV) — sitedeki orijinal 970x250 HTML5 dosyaları
-for b in ('ing', 'lav'):
-    d = ROOT / 'site' / 'banners' / b
-    d.mkdir(parents=True, exist_ok=True)
-    src_html = (SRC / 'wp-content' / 'uploads' / '2025' / b / 'banner.html').read_text(errors='ignore')
-    # Cloudflare'in sayfaya enjekte ettiği challenge betiğini çıkar (yeni sunucuda 404 verir)
-    src_html = re.sub(r"<script>\(function\(\)\{function c\(\).*?</script>", '', src_html, flags=re.S)
-    # Enabler.js (Google Studio) yüklenemezse banner boş kalmasın: olayları hemen tetikleyen küçük bir yedek
-    shim = ('<script>if(!window.Enabler){(function(){var noop=function(){},ev=function(n){return n};'
-            'var S=new Proxy({},{get:function(t,k){return String(k).toLowerCase()}});'
-            'window.studio={events:{StudioEvent:S},module:{ModuleId:S},sdk:{gdn:{getConfig:function(){return{}}}},'
-            'video:{Reporter:{attach:noop,detach:noop}},Enabler:{setRushSimulatedLocalEvents:noop}};'
-            'var base={addEventListener:function(e,f){if(/init|page|visible/.test(e))setTimeout(f,0)},'
-            'isInitialized:function(){return true},isPageLoaded:function(){return true},isVisible:function(){return true},'
-            'isServingInLiveEnvironment:function(){return false},loadModule:function(m,f){f&&setTimeout(f,0)},'
-            'getUrl:ev,exit:function(n,u){if(u)window.open(u,"_blank")},exitOverride:function(n,u){if(u)window.open(u,"_blank")},'
-            'queryFullscreenSupport:noop};'
-            'window.Enabler=new Proxy(base,{get:function(t,k){return k in t?t[k]:noop}})})()}</script>')
-    src_html = re.sub(r'(<script[^>]+Enabler\.js[^>]*>\s*</script>)', lambda m: m.group(1) + shim, src_html, count=1)
-    (d / 'banner.html').write_text(src_html)
-    # banner'ın görsel/video dosyaları (mirror iş akışı aynı klasöre indirir)
-    for asset in (SRC / 'wp-content' / 'uploads' / '2025' / b).iterdir():
-        if asset.suffix.lower() in ('.png', '.jpg', '.jpeg', '.mp4', '.webm', '.webp', '.gif', '.svg'):
-            shutil.copy(asset, d / asset.name)
-
-data = {'clients': clients, 'partners': partners, 'projects': projects}
+data = {'clients': clients, 'partners': partners}
 (ROOT / 'site' / 'js' / 'data.js').parent.mkdir(parents=True, exist_ok=True)
 (ROOT / 'site' / 'js' / 'data.js').write_text(
-    '// tools/prepare_assets.py tarafından üretildi — orijinal siteden alınan müşteri, partner ve proje listesi\n'
+    '// tools/prepare_assets.py tarafından üretildi — orijinal siteden alınan müşteri ve partner listesi\n'
     'window.OASIS_DATA = ' + json.dumps(data, ensure_ascii=False, indent=1) + ';\n')
-print(len(clients), 'müşteri,', len(partners), 'partner,', len(projects), 'proje')
+print(len(clients), 'müşteri,', len(partners), 'partner')

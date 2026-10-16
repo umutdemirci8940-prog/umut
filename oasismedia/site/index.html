@@ -61,7 +61,6 @@
     <canvas id="net" aria-hidden="true"></canvas>
     <div class="wrap hero-grid">
       <div class="hero-copy">
-        <span class="eyebrow">Dijital medya &amp; reklam ajansı</span>
         <h1>
           <span class="line"><span style="--i:0">Markanız İçin</span></span>
           <span class="line"><span style="--i:1">en Doğru <span class="sun-text">Hedef,</span></span></span>
@@ -70,7 +69,7 @@
         <p class="hero-lead">Doğru hedefleme ve etkili çözümlerle markanızın kampanya başarısını artırıyoruz.</p>
         <div class="hero-actions">
           <a class="btn" href="#iletisim" data-magnet>Bizimle iletişime geçin <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <a class="btn ghost" href="#projeler" data-magnet>Projelerimizi izleyin</a>
+          <a class="btn ghost" href="#projeler" data-magnet>Çalışmalarımızı inceleyin</a>
         </div>
         <div class="hero-meta">
           <span><b>300+</b> site üzerinde yayın</span>
@@ -150,17 +149,40 @@
     </div>
   </section>
 
-  <!-- PROJELER -->
-  <section class="band" id="projeler">
+  <!-- PROJELER: çalışmalar PDF olarak sunulur; karta tıklayınca site içinde önizleme açılır -->
+  <section class="band" id="projeler" data-pdf="assets/pdf/oasis-media-calismalar.pdf" data-pdf-title="Oasis Media İnteraktif &amp; Rich Media Çalışmalar">
     <div class="wrap">
       <div class="section-head reveal">
         <span class="eyebrow">Projelerimiz · İnteraktif çalışmalarımız</span>
         <h2>Ekranda durmayan, <span class="sun-text">oynayan</span> reklamlar.</h2>
-        <p>Markalar için hazırladığımız interaktif masthead, gravity ve rich media çalışmaları. Bir karta tıklayın, kampanyayı izleyin. ING ve LAV bannerları canlı olarak açılır.</p>
+        <p>Markalar için hazırladığımız interaktif masthead, gravity ve rich media çalışmalarımızı tek dosyada topladık. Kapağa tıklayın, sayfaları burada inceleyin.</p>
       </div>
-      <div class="filters" id="filters" role="group" aria-label="Formata göre filtrele"></div>
-      <div class="projects-grid" id="projectsGrid"></div>
-      <div class="more-row"><button class="btn ghost" id="moreProjects" type="button">Tüm projeleri göster</button></div>
+      <div class="showcase reveal">
+        <button class="pdf-cover" id="pdfOpen" type="button" aria-label="Oasis Media İnteraktif ve Rich Media Çalışmalar PDF'ini önizle">
+          <span class="pdf-sheet s3" aria-hidden="true"></span>
+          <span class="pdf-sheet s2" aria-hidden="true"></span>
+          <span class="pdf-sheet s1">
+            <canvas id="pdfThumb" hidden></canvas>
+            <span class="pdf-placeholder" id="pdfPlaceholder">
+              <img src="assets/brand/oasis-media-logo.webp" alt="" width="232" height="84">
+              <b>İnteraktif &amp; Rich Media Çalışmalar</b>
+              <small>PDF</small>
+            </span>
+          </span>
+          <span class="pdf-eye" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span>
+        </button>
+        <div class="showcase-copy">
+          <span class="pdf-kind" id="pdfMeta">PDF · Çalışma dosyası</span>
+          <h3>Oasis Media İnteraktif &amp; Rich Media Çalışmalar</h3>
+          <p>İnteraktif masthead, gravity, rich media ve video masthead formatlarında markalar için ürettiğimiz kampanyalar.</p>
+          <ul class="formats" aria-label="Formatlar"><li>İnteraktif Masthead</li><li>Gravity</li><li>Rich Media</li><li>Video Masthead</li><li>970 × 250</li></ul>
+          <p class="brands"><b>Çalışmalarımızdan:</b> Beymen, ING, LAV, Turkcell, Renault, Note Kozmetik, Adidas, Bayer, Bobbi Brown, Black Bruin, CarrefourSA, Chery, Eti Lifalif, ETS Maxx Royal, Garanti BBVA, Karaca Pati, Golf Maraşım, Kolpaçino, Nestlé, Miele, Nissan, Sarıyer Kola, TAFF, Şölen, Tatil Dükkanı, Ticimax, Trendyol, Türk Telekom, Vakko</p>
+          <div class="hero-actions">
+            <button class="btn" type="button" id="pdfOpen2" data-magnet>Çalışmaları önizle <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+            <a class="btn ghost" id="pdfDownload" href="assets/pdf/oasis-media-calismalar.pdf" download>PDF'i indir</a>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -279,7 +301,7 @@
 
 <div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="modalTitle">
   <div class="modal-box">
-    <div class="modal-head"><div><small id="modalKind"></small><h3 id="modalTitle"></h3></div><button class="modal-close" id="modalClose" type="button" aria-label="Kapat">×</button></div>
+    <div class="modal-head"><div><small id="modalKind">PDF önizleme</small><h3 id="modalTitle"></h3></div><button class="modal-close" id="modalClose" type="button" aria-label="Kapat">×</button></div>
     <div class="modal-body" id="modalBody"></div>
     <div class="modal-foot"><span>Esc ile kapatabilirsiniz.</span><a id="modalLink" href="#" target="_blank" rel="noopener">Yeni sekmede aç ↗</a></div>
   </div>
