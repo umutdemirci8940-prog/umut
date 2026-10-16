@@ -2,9 +2,11 @@ BOSCH AFTER MARKET - INTERACTIVE MASTHEAD 970x250 - DV360 HTML5 PAKETLERI
 =========================================================================
 
 Her zip ayri bir DV360 HTML5 kreatifidir (Creatives > New > HTML5 ile tek tek yukleyin).
-Zip icerigi: index.html, gsap.min.js, logo.png, product.jpg, video.mp4 (harici CDN / S3 bagimliligi yok).
+Zip icerigi: index.html, gsap.min.js, video.js, logo.png, product.jpg (harici CDN / S3 bagimliligi yok).
+VIDEO: .mp4 dosyasi yerine video.js icine base64 olarak gomulu; sayfa yuklendikten sonra zip'ten okunur
+ve tarayicida olusturulur (Blob URL). Zip'te .mp4 dosyasi yok.
 SSL: Zip icindeki HICBIR dosyada 'http:' ifadesi yok ve kreatif hicbir dis istek yapmiyor (DV360 SSL kontrolu dosya iceriklerini tarar):
- - video.mp4: Adobe XMP metadata ve x264 kodlayici imzasi (videolan.org) temizlendi, 640x360.
+ - video (video.js icinde): Adobe XMP metadata ve x264 kodlayici imzasi (videolan.org) temizlendi, 640x360.
  - product.jpg: ICC renk profili (iec.ch) kaldirildi.
  - gsap.min.js: w3.org isim alani metinleri https olarak yazildi, GSAP calisirken donusturuyor (calisma ayni).
 Boyut: <meta name="ad.size" content="width=970,height=250">
