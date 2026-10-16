@@ -3,10 +3,10 @@ BOSCH AFTER MARKET - INTERACTIVE MASTHEAD 970x250 - DV360 HTML5 PAKETLERI
 
 Her zip ayri bir DV360 HTML5 kreatifidir (Creatives > New > HTML5 ile tek tek yukleyin).
 Zip icerigi: index.html, gsap.min.js, logo.png, product.jpg, video.mp4 (harici CDN / S3 bagimliligi yok).
-SSL: Zip icindeki HICBIR dosyada 'http://' ifadesi yok (DV360 SSL kontrolu dosya iceriklerini tarar):
+SSL: Zip icindeki HICBIR dosyada 'http:' ifadesi yok ve kreatif hicbir dis istek yapmiyor (DV360 SSL kontrolu dosya iceriklerini tarar):
  - video.mp4: Adobe XMP metadata ve x264 kodlayici imzasi (videolan.org) temizlendi, 640x360.
  - product.jpg: ICC renk profili (iec.ch) kaldirildi.
- - gsap.min.js: w3.org isim alani metinleri bolundu (calisma ayni).
+ - gsap.min.js: w3.org isim alani metinleri https olarak yazildi, GSAP calisirken donusturuyor (calisma ayni).
 Boyut: <meta name="ad.size" content="width=970,height=250">
 
 CLICK
@@ -17,8 +17,25 @@ CLICK
 
 IMPRESSION
 ----------
-- Gemius impression pixel'i (<IMG SRC=...redot.gif>) index.html'in en altinda ekli.
-- Ayni pixel'i DV360 "Third-party tracking / Impression" alanina TEKRAR EKLEMEYIN, cift sayim olur.
+- Gemius impression pixel'i SSL hatasini onlemek icin zip'ten CIKARILDI.
+- DV360'ta her kreatifin "Appended HTML tag" alanina (veya Third-party tracking > Impression)
+  asagidaki kendi pixel'ini girin. [TIMESTAMP] yerine DV360 makrosu ${CACHEBUSTER} kullanildi.
+- SSL hatasi devam ederse once bu alani BOS birakip yukleyin: hata kalkarsa sebep pixel'dir.
+
+Bosch_AM_Aydinlatma_970x250_DV360.zip
+  <IMG SRC="https://gdetr.hit.gemius.pl/_${CACHEBUSTER}/redot.gif?id=.RpLAKbYGH_YEK8fukgXjaSfP6IifcbVWIkQ3YRC7RH.z7/fastid=axsjuuciuupgrbdjvxwhvhkcuimu/stparam=znelmiknln/nc=0/gdpr=0/gdpr_consent=" />
+
+Bosch_AM_Dizel_970x250_DV360.zip
+  <IMG SRC="https://gdetr.hit.gemius.pl/_${CACHEBUSTER}/redot.gif?id=.RpLAKbYGH_YEK8fukgXjaSfP6IifcbVWIkQ3YRC7RH.z7/fastid=kjhtrthdpfsrblnuzzmsqbzibtnd/stparam=qakogqhlvc/nc=0/gdpr=0/gdpr_consent=" />
+
+Bosch_AM_Kizdirma_970x250_DV360.zip
+  <IMG SRC="https://gdetr.hit.gemius.pl/_${CACHEBUSTER}/redot.gif?id=.RpLAKbYGH_YEK8fukgXjaSfP6IifcbVWIkQ3YRC7RH.z7/fastid=biknxfaeejuinbbtkmrypwonjekt/stparam=xcprqxejyr/nc=0/gdpr=0/gdpr_consent=" />
+
+Bosch_AM_Silecek_970x250_DV360.zip
+  <IMG SRC="https://gdetr.hit.gemius.pl/_${CACHEBUSTER}/redot.gif?id=.RpLAKbYGH_YEK8fukgXjaSfP6IifcbVWIkQ3YRC7RH.z7/fastid=ehvfgqxefxczdentwqfbprdsqplw/stparam=ofeflpsgtg/nc=0/gdpr=0/gdpr_consent=" />
+
+Bosch_AM_Triger_970x250_DV360.zip
+  <IMG SRC="https://gdetr.hit.gemius.pl/_${CACHEBUSTER}/redot.gif?id=.RpLAKbYGH_YEK8fukgXjaSfP6IifcbVWIkQ3YRC7RH.z7/fastid=dopfahxbtmqvkvkzlppjblsxyamr/stparam=vhjifxpuxr/nc=0/gdpr=0/gdpr_consent=" />
 
 KREATIF -> PLACEMENT -> LANDING PAGE (Gemius click URL)
 -------------------------------------------------------
