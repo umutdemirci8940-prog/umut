@@ -334,9 +334,9 @@ html:not(.gl-ok) .theater-dots { display: none; }
 .svc-panel .btn { justify-self: start; }
 @media (max-width: 860px) { .svc { grid-template-columns: 1fr; } .svc-panel { position: relative; top: 0; } }
 
-/* ---------- Projeler (PDF vitrini) ---------- */
+/* ---------- Projeler (PDF vitrini; kapak ve düğme sunumu yeni sekmede açar) ---------- */
 .showcase { display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); gap: clamp(28px, 5vw, 70px); align-items: center; }
-.pdf-cover { position: relative; border: 0; background: none; padding: 0; cursor: pointer; aspect-ratio: 16 / 10.4; width: 100%; max-width: 100%; display: block; }
+.pdf-cover { position: relative; border: 0; background: none; padding: 0; cursor: pointer; color: inherit; text-decoration: none; aspect-ratio: 16 / 10.4; width: 100%; max-width: 100%; display: block; }
 .pdf-sheet {
   position: absolute; inset: 7% 6%; border-radius: 14px; background: var(--surface); border: 1px solid var(--line);
   box-shadow: 0 30px 60px -30px var(--shadow); overflow: hidden; transition: transform .5s cubic-bezier(.3,1.5,.5,1);
@@ -367,28 +367,6 @@ html:not(.gl-ok) .theater-dots { display: none; }
 .brands { font-size: .92rem; color: var(--mute); }
 .brands b { color: var(--ink); }
 @media (max-width: 860px) { .showcase { grid-template-columns: 1fr; } }
-
-/* Modal */
-.modal { position: fixed; inset: 0; z-index: 80; display: grid; place-items: center; padding: 20px max(16px, env(safe-area-inset-right, 0px)) 20px max(16px, env(safe-area-inset-left, 0px)); background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(8px); }
-.modal[hidden] { display: none !important; }
-.modal-box { width: min(1060px, 100%); background: var(--surface); border: 1px solid var(--line); border-radius: 24px; overflow: hidden; animation: pop .4s cubic-bezier(.2,1.4,.4,1); }
-@keyframes pop { from { transform: scale(.9) translateY(20px); opacity: 0; } }
-.modal-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 16px 14px 22px; border-bottom: 1px solid var(--line); }
-.modal-head h3 { font-size: 1rem; }
-.modal-head small { font-family: var(--f-mono); color: var(--palm); font-size: .75rem; display: block; }
-.modal-close { width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface-2); color: var(--ink); cursor: pointer; font-size: 1.3rem; line-height: 1; }
-.modal-close:hover { border-color: var(--sun); color: var(--sun); }
-.modal-body { background: var(--surface-2); overflow: auto; max-height: min(78vh, 900px); }
-.pdf-pages { display: grid; gap: 16px; padding: 18px; justify-items: center; }
-.pdf-page { position: relative; width: 100%; max-width: 980px; background: #fff; border-radius: 8px; box-shadow: 0 10px 30px -18px var(--shadow); overflow: hidden; aspect-ratio: var(--ar, 1.414); }
-.pdf-page canvas { width: 100%; height: auto; display: block; }
-.pdf-link { position: absolute; border-radius: 6px; outline: 2px solid transparent; transition: outline-color .2s, background .2s; }
-.pdf-link:hover, .pdf-link:focus-visible { outline-color: var(--sun); background: color-mix(in srgb, var(--sun) 14%, transparent); }
-.pdf-frame { width: 100%; height: min(78vh, 900px); border: 0; display: block; background: #fff; }
-.pdf-msg { padding: 48px 24px; text-align: center; display: grid; gap: 10px; justify-items: center; color: var(--mute); }
-.pdf-msg b { color: var(--ink); font-family: var(--f-display); }
-.modal-foot { padding: 12px 22px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: .85rem; color: var(--mute); }
-.modal-foot a { color: var(--sun); }
 
 /* ---------- Müşteriler ---------- */
 .clients { overflow: hidden; }

@@ -282,9 +282,9 @@
   });
   showService(0);
 
-  /* ---------- Projeler: PDF önizleme (PDF.js ile; yüklenemezse tarayıcının kendi PDF görüntüleyicisi) ---------- */
+  /* ---------- Projeler: kapak ve düğme PDF sunumunu yeni sekmede açar; kapağa PDF'in ilk sayfası çizilir ---------- */
   var projSec = $('#projeler');
-  var PDF_URL = projSec.dataset.pdf, PDF_TITLE = projSec.dataset.pdfTitle;
+  var PDF_URL = projSec.dataset.pdf;
   var PDFJS = 'vendor/pdfjs/'; // PDF.js 3.11.174 (Apache-2.0), siteyle birlikte barındırılır
   var pdfDocPromise = null;
   function loadPdfJs() {
@@ -297,8 +297,19 @@
       document.head.appendChild(sc);
     });
   }
+  // PDF önce düz GET ile indirilir: böylece hata nedeni (dosya yok / bilgisayardan açılmış / görüntüleyici yüklenemedi) ayırt edilir
   function getPdf() {
-    if (!pdfDocPromise) pdfDocPromise = loadPdfJs().then(function (lib) { return lib.getDocument(PDF_URL).promise; });
+    if (!pdfDocPromise) {
+      pdfDocPromise = (location.protocol === 'file:' ? Promise.reject({ kind: 'file' }) : fetch(PDF_URL, { cache: 'no-cache' }))
+        .then(function (r) {
+          if (!r.ok) throw { kind: 'http', status: r.status };
+          return r.arrayBuffer();
+        }, function (e) { throw e && e.kind ? e : { kind: 'network' }; })
+        .then(function (data) {
+          return loadPdfJs().then(function (lib) { return lib.getDocument({ data: data }).promise; }, function () { throw { kind: 'viewer' }; });
+        });
+      pdfDocPromise.catch(function () { pdfDocPromise = null; }); // bir sonraki tıklamada yeniden dene
+    }
     return pdfDocPromise;
   }
   function renderPage(pdf, n, canvas, width) {
@@ -307,24 +318,7 @@
       var scale = (width * Math.min(devicePixelRatio || 1, 2)) / base.width;
       var vp = page.getViewport({ scale: scale });
       canvas.width = vp.width; canvas.height = vp.height;
-      return page.render({ canvasContext: canvas.getContext('2d'), viewport: vp }).promise.then(function () { base.page = page; return base; });
-    });
-  }
-  // PDF içindeki bağlantıları ("Örnek çalışma için tıklayınız") sayfanın üzerine tıklanabilir alan olarak yerleştir
-  function addLinks(pageEl, base) {
-    return base.page.getAnnotations().then(function (annots) {
-      var vb = base.viewBox, W = vb[2] - vb[0], H = vb[3] - vb[1];
-      annots.forEach(function (a) {
-        if (a.subtype !== 'Link' || !a.url) return;
-        var r = a.rect, link = document.createElement('a');
-        link.className = 'pdf-link'; link.href = a.url; link.target = '_blank'; link.rel = 'noopener';
-        link.setAttribute('aria-label', 'Örnek çalışmayı yeni sekmede aç');
-        link.style.left = ((r[0] - vb[0]) / W * 100) + '%';
-        link.style.top = ((vb[3] - r[3]) / H * 100) + '%';
-        link.style.width = ((r[2] - r[0]) / W * 100) + '%';
-        link.style.height = ((r[3] - r[1]) / H * 100) + '%';
-        pageEl.appendChild(link);
-      });
+      return page.render({ canvasContext: canvas.getContext('2d'), viewport: vp }).promise.then(function () { return base; });
     });
   }
   // Kapak: PDF varsa ilk sayfası küçük resim olarak çizilir, sayfa sayısı yazılır
@@ -342,54 +336,6 @@
     } else start();
   })();
 
-  var modal = $('#modal'), mBody = $('#modalBody'), lastFocus = null;
-  function showPdfMissing() {
-    mBody.innerHTML = '<div class="pdf-msg"><b>Çalışma dosyası yakında burada.</b><span>PDF yüklendiğinde sayfalar bu pencerede görüntülenecek.</span></div>';
-  }
-  function openPdf() {
-    lastFocus = document.activeElement;
-    $('#modalTitle').textContent = PDF_TITLE; $('#modalKind').textContent = 'PDF önizleme';
-    $('#modalLink').href = PDF_URL;
-    mBody.innerHTML = '<div class="pdf-msg"><span>Sayfalar yükleniyor…</span></div>';
-    modal.hidden = false; document.body.style.overflow = 'hidden';
-    $('#modalClose').focus();
-    getPdf().then(function (pdf) {
-      $('#modalKind').textContent = 'PDF önizleme · ' + pdf.numPages + ' sayfa';
-      var wrap = document.createElement('div'); wrap.className = 'pdf-pages';
-      mBody.innerHTML = ''; mBody.appendChild(wrap);
-      var width = Math.min(980, mBody.clientWidth - 36);
-      var lazy = 'IntersectionObserver' in window ? new IntersectionObserver(function (en) {
-        en.forEach(function (e) {
-          if (!e.isIntersecting) return;
-          lazy.unobserve(e.target);
-          renderPage(pdf, +e.target.dataset.n, e.target.firstChild, width).then(function (b) { e.target.style.setProperty('--ar', b.width / b.height); return addLinks(e.target, b); });
-        });
-      }, { root: mBody, rootMargin: '600px' }) : null;
-      for (var n = 1; n <= pdf.numPages; n++) {
-        var pg = document.createElement('div');
-        pg.className = 'pdf-page'; pg.dataset.n = n;
-        pg.setAttribute('aria-label', 'Sayfa ' + n);
-        pg.appendChild(document.createElement('canvas'));
-        wrap.appendChild(pg);
-        if (lazy) lazy.observe(pg); else (function (el) { renderPage(pdf, +el.dataset.n, el.firstChild, width).then(function (b) { return addLinks(el, b); }); })(pg);
-      }
-    }).catch(function (err) {
-      // PDF.js yüklenemediyse dosyayı tarayıcının görüntüleyicisiyle dene; dosya yoksa bilgi göster
-      fetch(PDF_URL, { method: 'HEAD' }).then(function (r) {
-        if (r.ok) mBody.innerHTML = '<iframe class="pdf-frame" src="' + PDF_URL + '#view=FitH" title="' + PDF_TITLE + '"></iframe>';
-        else showPdfMissing();
-      }).catch(showPdfMissing);
-    });
-  }
-  function closeModal() {
-    modal.hidden = true; mBody.innerHTML = ''; document.body.style.overflow = '';
-    if (lastFocus) lastFocus.focus();
-  }
-  $('#pdfOpen').addEventListener('click', openPdf);
-  $('#pdfOpen2').addEventListener('click', openPdf);
-  $('#modalClose').addEventListener('click', closeModal);
-  modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
 
   /* ---------- Müşteriler ---------- */
   var NAMES = { a90: 'A90 Pictures', anabank: 'Anadolubank', bparmak: 'Balparmak', btoptan: 'Bizim Toptan', ck: 'Calvin Klein', cocacola: 'Coca-Cola', cs: 'CarrefourSA', ct: 'Cola Turka', gbbva: 'Garanti BBVA', hm: 'H&M', lufi: 'Lufian', ing: 'ING', bmw: 'BMW', bim: 'BİM', jbl: 'JBL', qnb: 'QNB', teb: 'TEB', vw: 'Volkswagen', tt: 'Türk Telekom', 'ford-trucks': 'Ford Trucks', 'm-coco': 'M.Coco' };
