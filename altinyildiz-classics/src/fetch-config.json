@@ -1,8 +1,8 @@
 {
-  "out": "raw-kasim",
-  "keywords": ["sweatshirt", "polar", "kazak", "hirka", "pantolon", "chino", "kanvas"],
-  "urls": ["/sweatshirt-c", "/polar-c", "/kazak-c", "/pantolon-c"],
-  "maxPages": 12,
+  "out": "raw-kasim2",
+  "keywords": [],
+  "urls": ["/hirka-c", "/fermuarli-yaka-polar-c", "/polar-c", "/bogazli-kazak-c", "/bisiklet-yaka-kazak-c", "/kazak-c"],
+  "maxPages": 6,
   "maxPerPage": 45,
-  "maxImages": 420
+  "maxImages": 300
 }
