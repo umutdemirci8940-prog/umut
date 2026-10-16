@@ -17,7 +17,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
 <link rel="stylesheet" href="css/style.css">
-<link rel="modulepreload" href="vendor/three/three.module.min.js">
 </head>
 <body>
 
@@ -28,6 +27,7 @@
 <div class="intro" id="intro" aria-hidden="true">
   <div class="intro-stage">
     <div class="intro-word"><span>o</span><span>a</span><span>s</span><span>i</span><span>s</span><span class="media">media</span></div>
+    <div class="intro-count" id="introCount" aria-hidden="true">000</div>
     <div class="intro-boot" id="introBoot">Vaha hazırlanıyor…</div>
     <div class="intro-bar"><i id="introBar"></i></div>
   </div>
@@ -36,6 +36,19 @@
 
 <div class="progress" id="progress"></div>
 <div class="logo-tip" id="logoTip" hidden></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor" id="cursor" aria-hidden="true"><span id="cursorLabel"></span></div><div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+<nav class="hud" id="hud" aria-label="Duraklar">
+  <a href="#hero" data-stop="hero"><b>01</b><span>Ufuk</span></a>
+  <a href="#hakkimizda" data-stop="hakkimizda"><b>02</b><span>Hakkımızda</span></a>
+  <a href="#rakamlar" data-stop="rakamlar"><b>03</b><span>Rakamlar</span></a>
+  <a href="#hizmetler" data-stop="hizmetler"><b>04</b><span>Hizmetler</span></a>
+  <a href="#projeler" data-stop="projeler"><b>05</b><span>Projeler</span></a>
+  <a href="#musteriler" data-stop="musteriler"><b>06</b><span>Müşteriler</span></a>
+  <a href="#is-ortaklari" data-stop="is-ortaklari"><b>07</b><span>Network</span></a>
+  <a href="#iletisim" data-stop="iletisim"><b>08</b><span>İletişim</span></a>
+  <i class="hud-line"><i id="hudFill"></i></i>
+</nav>
 
 <header class="nav" id="nav">
   <div class="wrap nav-inner">
@@ -71,6 +84,8 @@
     </div>
     <a class="dive" href="#hakkimizda"><span>Vahaya dalın</span><i aria-hidden="true"></i></a>
   </section>
+
+  <div class="band band-a" aria-hidden="true"><div class="band-track" data-speed="1"><span>Hedefleme</span><i></i><span>Medya Planlama</span><i></i><span>Oasis Network</span><i></i><span>Web &amp; Mobil</span><i></i><span>Pazarlama</span><i></i><span>Yazılım</span><i></i><span>Hedefleme</span><i></i><span>Medya Planlama</span><i></i><span>Oasis Network</span><i></i><span>Web &amp; Mobil</span><i></i><span>Pazarlama</span><i></i><span>Yazılım</span><i></i></div></div>
 
   <!-- DURAK 2 · Hakkımızda -->
   <section class="stop stop-right" id="hakkimizda">
@@ -124,7 +139,7 @@
       <article class="glass panel panel-md showcase">
         <span class="eyebrow">Projelerimiz · İnteraktif çalışmalarımız</span>
         <h2>Ekranda durmayan, <em>oynayan</em> reklamlar.</h2>
-        <a class="pdf-cover" id="pdfOpen" href="assets/pdf/oasis-media-calismalar.pdf" target="_blank" rel="noopener" aria-label="Oasis Media Tekstil İnteraktif Çalışmalar sunumunu yeni sekmede aç">
+        <a class="pdf-cover" data-cursor="Aç ↗" id="pdfOpen" href="assets/pdf/oasis-media-calismalar.pdf" target="_blank" rel="noopener" aria-label="Oasis Media Tekstil İnteraktif Çalışmalar sunumunu yeni sekmede aç">
           <canvas id="pdfThumb" hidden></canvas>
           <span class="pdf-placeholder" id="pdfPlaceholder"><img src="assets/brand/oasis-media-logo.webp" alt="" width="232" height="84"><b>Tekstil İnteraktif Çalışmalar</b></span>
           <span class="pdf-open" aria-hidden="true">Sunumu aç ↗</span>
@@ -166,6 +181,8 @@
       </article>
     </div>
   </section>
+
+  <div class="band band-b" aria-hidden="true"><div class="band-track" data-speed="-1"><span>İnteraktif Masthead</span><i></i><span>Gravity</span><i></i><span>Rich Media</span><i></i><span>Video Masthead</span><i></i><span>KPI Hedefleme</span><i></i><span>300+ Site</span><i></i><span>İnteraktif Masthead</span><i></i><span>Gravity</span><i></i><span>Rich Media</span><i></i><span>Video Masthead</span><i></i><span>KPI Hedefleme</span><i></i><span>300+ Site</span><i></i></div></div>
 
   <!-- DURAK 8 · İletişim: güneşe varış -->
   <section class="stop" id="iletisim">
@@ -213,8 +230,11 @@
   </div>
 </footer>
 
+<!-- Klasik betikler (modül değil): site dosyaya çift tıklanarak açıldığında da çalışır -->
 <script src="js/data.js"></script>
+<script src="js/logo-data.js" defer></script>
+<script src="vendor/three/three.min.js" defer></script>
 <script src="js/main.js"></script>
-<script type="module" src="js/scene.js"></script>
+<script src="js/scene.js" defer></script>
 </body>
 </html>

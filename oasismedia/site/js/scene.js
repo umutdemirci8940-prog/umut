@@ -2,8 +2,9 @@
    Su üzerinde batan çizgili güneş (logodaki güneş), palmiyeli adacıklar, sudan yükselen rakamlar,
    suyun üstünde yüzen 145 müşteri logosu, ışık sütunu etrafında dönen 24 yayıncı partner.
    Kamera, sayfa kaydırıldıkça bölümlere bağlı duraklar arasında süzülür. */
-import * as THREE from '../vendor/three/three.module.min.js';
-
+(function () {
+'use strict';
+const THREE = window.THREE;
 const root = document.documentElement;
 const canvas = document.getElementById('scene');
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -19,6 +20,7 @@ function fail() {
 
 let renderer;
 try {
+  if (!THREE || !canvas) throw new Error('three.js yok');
   renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
 } catch (e) { fail(); }
 
@@ -234,11 +236,12 @@ function start() {
   function loadImg(src) { return new Promise((res) => { const im = new Image(); im.onload = () => res(im); im.onerror = () => res(null); im.src = src; }); }
   let loaded = 0; const total = D.clients.length + D.partners.length;
   const tick = () => { loaded++; emit('oasis:progress', total ? loaded / total : 1); };
-  async function atlasFrom(list, cw, ch, pad, cover) {
+  const LOGO_DATA = window.OASIS_LOGO_DATA || {};
+  async function atlasFrom(list, cw, ch, pad, cover, embedded) {
     const cols = Math.ceil(Math.sqrt(list.length * (ch / cw))) || 1, rows = Math.ceil(list.length / cols) || 1;
     const c = document.createElement('canvas'); c.width = cols * cw; c.height = rows * ch;
     const x = c.getContext('2d');
-    const imgs = await Promise.all(list.map((it) => loadImg(it.logo).then((im) => { tick(); return im; })));
+    const imgs = await Promise.all(list.map((it) => loadImg((embedded && embedded[list.indexOf(it)]) || it.logo).then((im) => { tick(); return im; })));
     imgs.forEach((im, i) => {
       if (!im) return;
       const cx = (i % cols) * cw, cy = Math.floor(i / cols) * ch;
@@ -283,8 +286,8 @@ function start() {
 
   (async () => {
     const [ca, pa] = await Promise.all([
-      D.clients.length ? atlasFrom(D.clients, 256, 160, 22, false) : null,
-      D.partners.length ? atlasFrom(D.partners, 256, 256, 0, true) : null
+      D.clients.length ? atlasFrom(D.clients, 256, 160, 22, false, LOGO_DATA.clients) : null,
+      D.partners.length ? atlasFrom(D.partners, 256, 256, 0, true, LOGO_DATA.partners) : null
     ]);
     if (ca) {
       clientMesh = instanced(D.clients, ca, 5.2, 3.25, false);
@@ -300,6 +303,70 @@ function start() {
     if (pa) { partnerMesh = instanced(D.partners, pa, 5, 5, true); RING.add(partnerMesh); }
     emit('oasis:ready');
   })();
+
+  /* ---------- Bulutlar: gökyüzünde süzülen yumuşak bulutlar ---------- */
+  const cloudTex = (() => {
+    const c = document.createElement('canvas'); c.width = 512; c.height = 256;
+    const x = c.getContext('2d');
+    for (let i = 0; i < 18; i++) {
+      const cx = 80 + Math.random() * 352, cy = 120 + (Math.random() - 0.5) * 70, r = 40 + Math.random() * 70;
+      const g = x.createRadialGradient(cx, cy, 0, cx, cy, r);
+      g.addColorStop(0, 'rgba(255,255,255,0.9)'); g.addColorStop(0.6, 'rgba(255,255,255,0.35)'); g.addColorStop(1, 'rgba(255,255,255,0)');
+      x.fillStyle = g; x.fillRect(0, 0, 512, 256);
+    }
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.NoColorSpace; return t;
+  })();
+  const clouds = [];
+  for (let i = 0; i < (small ? 12 : 22); i++) {
+    const m = new THREE.SpriteMaterial({ map: cloudTex, transparent: true, depthWrite: false, fog: false, opacity: 0.55 + Math.random() * 0.35,
+      color: new THREE.Color().lerpColors(new THREE.Color('#ffffff'), new THREE.Color('#ffd9bd'), Math.random() * 0.6) });
+    const sp = new THREE.Sprite(m);
+    const w = 160 + Math.random() * 260; sp.scale.set(w, w * 0.42, 1);
+    sp.position.set((Math.random() - 0.5) * 1600, 70 + Math.random() * 190, -350 - Math.random() * 1300);
+    sp.userData.v = 1.5 + Math.random() * 3;
+    sp.renderOrder = -1; scene.add(sp); clouds.push(sp);
+  }
+
+  /* ---------- Kuş sürüleri: güneşin önünden geçen V dizileri ---------- */
+  const birdMat = new THREE.MeshBasicMaterial({ color: 0x2b3550, side: THREE.DoubleSide, fog: false, transparent: true, opacity: 0.85 });
+  const wingGeo = new THREE.BufferGeometry();
+  wingGeo.setAttribute('position', new THREE.Float32BufferAttribute([0, 0, 0, 1.6, 0.25, 0, 0.5, 0, 0.35], 3));
+  const flocks = [];
+  for (let f = 0; f < 3; f++) {
+    const flock = new THREE.Group(); const n = 5 + f * 2;
+    for (let b = 0; b < n; b++) {
+      const bird = new THREE.Group();
+      const l = new THREE.Mesh(wingGeo, birdMat), r = new THREE.Mesh(wingGeo, birdMat); r.scale.x = -1;
+      bird.add(l, r); bird.userData = { l, r, ph: Math.random() * 6 };
+      const row = Math.ceil(b / 2), side = b % 2 ? 1 : -1;
+      bird.position.set(-row * 3.2, -row * 0.4 * side + Math.random() * 0.6, row * 2.6 * side);
+      bird.scale.setScalar(1.6 + Math.random() * 0.4);
+      flock.add(bird);
+    }
+    flock.position.set(-500 + f * 380, 55 + f * 22, -380 - f * 160);
+    flock.userData.v = 9 + f * 3;
+    scene.add(flock); flocks.push(flock);
+  }
+
+  /* ---------- Lens parlaması: güneş ekrandayken kameraya düşen ışık halkaları ---------- */
+  const flareScene = new THREE.Scene(), flareCam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+  const ringTex = (soft) => {
+    const c = document.createElement('canvas'); c.width = c.height = 128;
+    const x = c.getContext('2d'), g = x.createRadialGradient(64, 64, 0, 64, 64, 64);
+    if (soft) { g.addColorStop(0, 'rgba(255,255,255,1)'); g.addColorStop(1, 'rgba(255,255,255,0)'); }
+    else { g.addColorStop(0, 'rgba(255,255,255,0)'); g.addColorStop(0.72, 'rgba(255,255,255,0.15)'); g.addColorStop(0.86, 'rgba(255,255,255,0.9)'); g.addColorStop(1, 'rgba(255,255,255,0)'); }
+    x.fillStyle = g; x.fillRect(0, 0, 128, 128);
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.NoColorSpace; return t;
+  };
+  const softTex = ringTex(true), hardTex = ringTex(false);
+  const FLARES = [[0.0, 0.55, softTex, '#ffd38a', 0.5], [0.35, 0.08, softTex, '#ffb36b', 0.35], [0.55, 0.16, hardTex, '#ff9a4d', 0.35],
+    [0.8, 0.05, softTex, '#9fe0d5', 0.4], [1.1, 0.22, hardTex, '#ffc98a', 0.25], [1.45, 0.1, softTex, '#ffcf9e', 0.3], [1.8, 0.3, hardTex, '#ffe3c2', 0.18]];
+  const flareSprites = FLARES.map(([pos, size, tex, c, a]) => {
+    const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, color: new THREE.Color(c), transparent: true, depthTest: false, depthWrite: false, blending: THREE.AdditiveBlending, opacity: a }));
+    sp.userData = { pos, size, a }; flareScene.add(sp); return sp;
+  });
+  renderer.autoClear = false;
+  const sunNdc = new THREE.Vector3();
 
   /* ---------- Altın toz parçacıkları ---------- */
   const dustN = small ? 500 : 1100;
@@ -461,8 +528,32 @@ function start() {
       partnerMesh.instanceMatrix.needsUpdate = true; linkGeo.attributes.position.needsUpdate = true;
     }
 
+    clouds.forEach((c) => { c.position.x += c.userData.v * dt; if (c.position.x > 900) c.position.x = -900; });
+    flocks.forEach((f) => {
+      f.position.x += f.userData.v * dt; if (f.position.x > 620) f.position.x = -620;
+      f.children.forEach((b) => { const a = Math.sin(t * 9 + b.userData.ph) * 0.7; b.userData.l.rotation.x = a; b.userData.r.rotation.x = a; });
+    });
+
+    renderer.clear();
     renderer.render(scene, camera);
+
+    // lens parlaması: güneşin ekrandaki yerinden ekranın ortasına doğru dizilir
+    sunNdc.copy(sun.position); sunNdc.y += SUN_R * 0.25; sunNdc.project(camera);
+    const onScreen = sunNdc.z < 1 && Math.abs(sunNdc.x) < 1.2 && Math.abs(sunNdc.y) < 1.2;
+    const vis = onScreen && !reduced ? Math.max(0, 1 - Math.hypot(sunNdc.x, sunNdc.y) * 0.55) * Math.min(1, sunRise * 1.4) : 0;
+    if (vis > 0.01) {
+      const asp = innerWidth / innerHeight;
+      flareSprites.forEach((sp) => {
+        const k2 = sp.userData.pos;
+        sp.position.set(sunNdc.x * (1 - k2), sunNdc.y * (1 - k2), 0);
+        sp.scale.set(sp.userData.size / asp * 2, sp.userData.size * 2, 1);
+        sp.material.opacity = sp.userData.a * vis;
+      });
+      renderer.clearDepth();
+      renderer.render(flareScene, flareCam);
+    }
     requestAnimationFrame(loop);
   }
   requestAnimationFrame(loop);
 }
+})();

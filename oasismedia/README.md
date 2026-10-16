@@ -10,12 +10,13 @@ oasismedia/
 ├── site/                     ← yayına alınacak klasör (statik; herhangi bir hostinge kopyalanabilir)
 │   ├── index.html
 │   ├── css/style.css
-│   ├── js/scene.js           ← 3D vaha sahnesi (three.js, ES modülü)
+│   ├── js/scene.js           ← 3D vaha sahnesi (three.js; klasik betik, file:// ile de çalışır)
+│   ├── js/logo-data.js       ← 3D sahne için gömülü logo görselleri (otomatik üretilir)
 │   ├── js/main.js            ← açılış, menü, hizmet sekmeleri, PDF kapağı, form
 │   ├── js/data.js            ← müşteri / partner listesi (otomatik üretilir)
 │   ├── assets/               ← logo, favicon, WebP müşteri/partner logoları
 │   ├── assets/pdf/           ← oasis-media-calismalar.pdf (Projeler bölümündeki sunum)
-│   ├── vendor/three/         ← three.js 0.160.0 (MIT)
+│   ├── vendor/three/         ← three.js 0.160.0 UMD (MIT)
 │   └── vendor/pdfjs/         ← PDF.js 3.11.174 (Apache-2.0) — PDF kapağına ilk sayfayı çizer
 ├── source/                   ← GitHub Actions ile indirilen orijinal sitenin kopyası (+ content.json)
 └── tools/prepare_assets.py   ← source/ → site/assets ve js/data.js
@@ -43,7 +44,15 @@ Hareket azaltma tercihi açıksa açılış atlanır ve sahne hareketsiz kalır.
 cd oasismedia/site && python3 -m http.server 8080   # http://localhost:8080
 ```
 
-Not: `index.html` dosyaya çift tıklanarak (file://) açılırsa tarayıcılar ES modüllerini ve PDF okumayı engeller; sunucu üzerinden açın.
+Site dosyaya çift tıklanarak (file://) açıldığında da 3D sahne ve tüm efektler çalışır; yalnızca PDF kapağına
+ilk sayfanın çizilmesi sunucu gerektirir (kapak tasarımı görünür, bağlantı PDF'i yine açar).
+
+## Efekt katmanı
+
+Bulutlar, kuş sürüleri, güneşten kameraya düşen lens parlaması, film greni; fareyle büyüyüp etiket gösteren imleç,
+mıknatıslı butonlar; kelime kelime bulanıklıktan netleşen başlıklar; fareyle 3D eğilen, ışık süzülen ve kenarında
+dönen degrade ışık olan cam paneller; kaydırma hızıyla eğilen dev yazı şeritleri; sağ kenarda durak göstergesi;
+yüzde sayan yükleme ekranı.
 
 ## Görselleri yenilemek
 

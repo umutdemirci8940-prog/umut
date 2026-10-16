@@ -30,14 +30,20 @@
     var t0 = performance.now(), ready = false, bar = $('#introBar'), boot = $('#introBoot');
     var lines = ['Vaha hazırlanıyor…', 'Güneş doğuyor…', '300+ yayıncı ağa bağlanıyor…', '145 marka suya iniyor…'];
     var li = 0, lt = setInterval(function () { li = Math.min(lines.length - 1, li + 1); boot.textContent = lines[li]; }, 900);
-    document.addEventListener('oasis:progress', function (e) { bar.style.transform = 'scaleX(' + Math.max(0.05, e.detail || 0) + ')'; });
+    var cnt = $('#introCount'), shown = 0, target = 0.06;
+    (function countLoop() { // yüzde sayacı hedefe yumuşakça yaklaşır
+      shown += (target - shown) * 0.08; cnt.textContent = ('00' + Math.round(shown * 100)).slice(-3);
+      bar.style.transform = 'scaleX(' + Math.max(0.04, shown) + ')';
+      if (!finished) requestAnimationFrame(countLoop);
+    })();
+    document.addEventListener('oasis:progress', function (e) { target = Math.max(target, Math.min(0.96, e.detail || 0)); });
     document.addEventListener('oasis:ready', function () {
-      ready = true; bar.style.transform = 'scaleX(1)';
+      ready = true; target = 1;
       setTimeout(function () { clearInterval(lt); boot.textContent = 'Hoş geldiniz.'; setTimeout(finish, 450); }, Math.max(0, 3000 - (performance.now() - t0)));
     });
     $('#introSkip').addEventListener('click', finish);
     document.addEventListener('keydown', function k(e) { if (e.key === 'Enter' || e.key === 'Escape') { finish(); document.removeEventListener('keydown', k); } });
-    setTimeout(finish, 9000);
+    setTimeout(finish, 7000);
   }
 
   /* ---------- Menü, ilerleme çubuğu, etkin bağlantı ---------- */
@@ -155,6 +161,103 @@
 
   /* ---------- İş ortakları (3D halkada gösterilir; WebGL yoksa ızgara) ---------- */
   $('#partnerWall').innerHTML = D.partners.map(function (p) { return '<img src="' + p.logo + '" alt="Yayıncı partner: ' + p.key.replace(/-\d+$/, '') + '" loading="lazy" decoding="async">'; }).join('');
+
+  /* =====================================================================
+     Efekt katmanı
+     ===================================================================== */
+  var fine = window.matchMedia('(pointer: fine)').matches;
+
+  // Özel imleç + mıknatıslı butonlar
+  if (fine && !reduced) {
+    root.classList.add('has-cursor');
+    var cur = $('#cursor'), dot = $('#cursorDot'), label = $('#cursorLabel');
+    var mx = innerWidth / 2, my = innerHeight / 2, cx = mx, cy = my;
+    addEventListener('pointermove', function (e) { mx = e.clientX; my = e.clientY; dot.style.transform = 'translate(' + mx + 'px,' + my + 'px)'; }, { passive: true });
+    (function loop() { cx += (mx - cx) * 0.2; cy += (my - cy) * 0.2; cur.style.transform = 'translate(' + cx + 'px,' + cy + 'px)'; requestAnimationFrame(loop); })();
+    document.addEventListener('pointerover', function (e) {
+      var el = e.target.closest('a, button, [data-cursor], input, textarea');
+      var txt = el && el.dataset.cursor;
+      cur.classList.toggle('is-link', !!el && !txt);
+      cur.classList.toggle('has-label', !!txt);
+      label.textContent = txt || '';
+    });
+    $$('.btn').forEach(function (b) {
+      b.addEventListener('pointermove', function (e) {
+        var r = b.getBoundingClientRect();
+        b.style.transform = 'translate(' + (e.clientX - r.left - r.width / 2) * 0.28 + 'px,' + (e.clientY - r.top - r.height / 2) * 0.4 + 'px)';
+      });
+      b.addEventListener('pointerleave', function () { b.style.transform = ''; });
+    });
+  }
+
+  // Başlıklar kelime kelime açılır
+  $$('main h2, .hero-lead').forEach(function (h) {
+    var k = 0;
+    (function walk(node) {
+      Array.prototype.slice.call(node.childNodes).forEach(function (n) {
+        if (n.nodeType === 3) {
+          var frag = document.createDocumentFragment();
+          n.textContent.split(/(\s+)/).forEach(function (part) {
+            if (!part) return;
+            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+            var w = document.createElement('span'); w.className = 'w';
+            var inner = document.createElement('span'); inner.textContent = part; inner.style.setProperty('--k', k++);
+            w.appendChild(inner); frag.appendChild(w);
+          });
+          n.parentNode.replaceChild(frag, n);
+        } else if (n.nodeType === 1 && n.id !== 'clientCount') walk(n);
+      });
+    })(h);
+    h.classList.add('split');
+  });
+  // Paneller ve başlıklar sahneye kayarak girer
+  var revealEls = $$('.panel, .chip, .footer-inner');
+  revealEls.forEach(function (el) { el.classList.add('reveal-up', 'fx'); });
+  $$('.split').forEach(function (el) { el.classList.add('pending'); });
+  if ('IntersectionObserver' in window && !reduced) {
+    var rio = new IntersectionObserver(function (en) {
+      en.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); rio.unobserve(e.target); } });
+    }, { threshold: 0.15, rootMargin: '0px 0px -5% 0px' });
+    revealEls.concat($$('.split')).forEach(function (el) { rio.observe(el); });
+  } else revealEls.concat($$('.split')).forEach(function (el) { el.classList.add('is-in'); });
+
+  // Cam paneller fareyle eğilir, ışık imleci takip eder
+  if (fine && !reduced) {
+    $$('.glass.fx').forEach(function (g) {
+      g.addEventListener('pointermove', function (e) {
+        var r = g.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+        g.style.setProperty('--rx', ((0.5 - y) * 4).toFixed(2) + 'deg');
+        g.style.setProperty('--ry', ((x - 0.5) * 5).toFixed(2) + 'deg');
+        g.style.setProperty('--mx', (x * 100).toFixed(1) + '%');
+        g.style.setProperty('--my', (y * 100).toFixed(1) + '%');
+      });
+      g.addEventListener('pointerleave', function () { g.style.setProperty('--rx', '0deg'); g.style.setProperty('--ry', '0deg'); });
+    });
+  }
+
+  // Kayan şeritler: sürekli akar, kaydırma hızıyla hızlanır ve eğilir
+  var bands = $$('.band-track'), lastY = scrollY, vel = 0, off = 0;
+  (function bandLoop() {
+    var y = scrollY, dv = y - lastY; lastY = y;
+    vel += (dv - vel) * 0.12;
+    off += reduced ? 0 : 0.6 + Math.abs(vel) * 0.35;
+    bands.forEach(function (b) {
+      var half = b.scrollWidth / 2, dir = +b.dataset.speed, x = -((off % half));
+      b.style.transform = 'translateX(' + (dir > 0 ? x : -half - x) + 'px) skewX(' + Math.max(-14, Math.min(14, -vel * 0.4)) + 'deg)';
+    });
+    requestAnimationFrame(bandLoop);
+  })();
+
+  // Sol durak göstergesi
+  var hudLinks = $$('#hud a'), hudFill = $('#hudFill');
+  function hud() {
+    var cur2 = 'hero';
+    hudLinks.forEach(function (a) { var s2 = document.getElementById(a.dataset.stop); if (s2 && s2.getBoundingClientRect().top < innerHeight * 0.5) cur2 = a.dataset.stop; });
+    hudLinks.forEach(function (a) { a.classList.toggle('is-on', a.dataset.stop === cur2); });
+    var h = document.documentElement.scrollHeight - innerHeight;
+    hudFill.style.height = (h > 0 ? scrollY / h * 100 : 0) + '%';
+  }
+  addEventListener('scroll', hud, { passive: true }); hud();
 
   /* ---------- Kopyala ---------- */
   $$('[data-copy]').forEach(function (b) {
