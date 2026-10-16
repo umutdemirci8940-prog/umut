@@ -93,6 +93,23 @@ SCENARIOS['05-mobil-stil-eslesmesi'] = async (p, shot) => {
   await p.click('.thumbs button >> nth=0'); await p.click('#cta');
 };
 
+SCENARIOS['06-mobil-salla'] = async (p, shot) => {
+  await shot('01-acilis', 900);
+  await shot('02-kombin', 1000);
+  await shot('03-kendini-sallama', 500);
+  await p.waitForTimeout(1200);
+  // Gerçek sallamayı taklit et: ardışık devicemotion olayları
+  await p.evaluate(() => {
+    const ev = (x, y, z) => { const e = new Event('devicemotion'); e.accelerationIncludingGravity = { x, y, z }; window.dispatchEvent(e); };
+    [[0, 9.8, 0], [18, 2, 4], [-16, 12, -6], [20, -3, 5], [-18, 14, -4]].forEach((a, i) => setTimeout(() => ev(...a), i * 60));
+  });
+  await shot('04-telefon-sallandi', 350);
+  await shot('05-yeni-kombin', 900);
+  await p.click('#s1 .lock'); await p.click('#shake'); await shot('06-alt-kilitli-salla', 300);
+  await shot('07-sonuc', 900);
+  await p.click('#s0 .ph'); await p.click('#cta');
+};
+
 (async () => {
   const b = await chromium.launch();
   let failed = false;

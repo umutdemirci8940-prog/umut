@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=320,height=480">
+<meta name="viewport" content="width=320,height=480,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Altınyıldız Classics – Salla, Kombin Gelsin (320x480)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>var clickTag = window.clickTag || '';</script>
+<style>
+:root{--ink:#000;--paper:#fff;--mute:#666;--line:#e6e6e6;--soft:#f4f4f2;--ease:cubic-bezier(.22,.61,.36,1)}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{width:320px;height:480px;overflow:hidden;background:var(--paper);overscroll-behavior:none}
+body{font-family:Urbanist,"Helvetica Neue",Arial,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;user-select:none;-webkit-user-select:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+#ad{position:relative;width:320px;height:480px;overflow:hidden;background:#fff;border:1px solid var(--line)}
+#ad:focus-visible{outline:2px solid var(--ink);outline-offset:-3px}
+
+.head{position:absolute;left:0;right:0;top:0;height:56px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;border-bottom:1px solid var(--line)}
+.head img{height:15px}
+.head p{font-size:9.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--mute)}
+.hl{position:absolute;left:22px;right:22px;top:68px;font-size:21px;font-weight:700;line-height:1.08;letter-spacing:-.01em}
+
+/* Kombin */
+.stage{position:absolute;left:22px;top:126px;width:276px;height:242px}
+.stage.shaking{animation:jit .09s linear infinite}
+@keyframes jit{0%{transform:translate(0,0) rotate(0)}25%{transform:translate(-3px,1px) rotate(-.6deg)}50%{transform:translate(2px,-2px) rotate(.5deg)}75%{transform:translate(-2px,2px) rotate(-.3deg)}100%{transform:translate(3px,-1px) rotate(.6deg)}}
+.slot{position:absolute;top:0;width:134px}
+.slot:nth-child(1){left:0}.slot:nth-child(2){left:142px}
+.ph{position:relative;width:134px;height:200px;background:var(--soft);overflow:hidden}
+.ph img{width:100%;height:100%;object-fit:cover;display:block;transition:filter .12s}
+.shaking .slot:not(.locked) .ph img{filter:blur(2px)}
+.ph .tag{position:absolute;left:0;top:0;background:#fff;font-size:8.5px;font-weight:800;letter-spacing:.2em;padding:4px 6px}
+.lock{position:absolute;right:6px;bottom:6px;height:22px;padding:0 8px;background:rgba(255,255,255,.92);font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.locked .lock{background:#000;color:#fff}
+.locked .ph{box-shadow:inset 0 0 0 2px #000}
+.land .ph{animation:pop .45s var(--ease)}
+@keyframes pop{0%{transform:scale(.94)}60%{transform:scale(1.02)}100%{transform:scale(1)}}
+.nm{margin-top:6px;font-size:12px;font-weight:700;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left;width:100%;display:block}
+.mt{font-size:10px;color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left;display:block;margin-top:1px}
+.nm,.mt{transition:opacity .2s}
+.shaking .slot:not(.locked) .nm,.shaking .slot:not(.locked) .mt{opacity:.15}
+.note{position:absolute;left:22px;right:22px;top:374px;font-size:12px;font-weight:600;text-align:center;min-height:16px;transition:opacity .25s}
+.shaking + .note{opacity:0}
+
+/* Alt bölüm */
+.row{position:absolute;left:22px;right:22px;top:400px;display:flex;gap:8px}
+.shake{flex:1;height:44px;background:#000;color:#fff;font-size:14px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:10px}
+.shake i{font-style:normal;display:inline-block;font-size:17px;letter-spacing:0}
+.shake.wig i{animation:wig 1.2s var(--ease) infinite}
+@keyframes wig{0%,60%,100%{transform:rotate(0)}10%,30%{transform:rotate(-18deg)}20%,40%{transform:rotate(18deg)}}
+.shake:active{transform:scale(.97)}
+.cta{width:108px;height:44px;border:1.5px solid #000;font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;line-height:1.2}
+.foot{position:absolute;left:22px;right:22px;bottom:10px;display:flex;justify-content:space-between;font-size:10px;color:var(--mute)}
+.foot b{color:#000}
+
+/* Sallama ipucu */
+.phone{position:absolute;left:50%;top:210px;margin-left:-60px;width:120px;padding:10px 0;background:rgba(0,0,0,.85);color:#fff;text-align:center;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;opacity:0;pointer-events:none;transition:opacity .3s;z-index:4}
+.phone.on{opacity:1}
+
+/* Açılış */
+.intro{position:absolute;inset:0;background:#fff;z-index:20;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;transition:opacity .6s,visibility .6s}
+.intro img{height:22px;opacity:0;transform:translateY(6px);animation:up .8s .1s var(--ease) forwards}
+.intro .rule{width:0;height:1px;background:#000;animation:rule .8s .45s var(--ease) forwards}
+.intro p{font-size:10px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;opacity:0;animation:up .7s .7s var(--ease) forwards}
+@keyframes up{to{opacity:1;transform:none}}
+@keyframes rule{to{width:150px}}
+.started .intro{opacity:0;visibility:hidden}
+@media (prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div id="ad" role="region" tabindex="0" aria-label="Altınyıldız Classics – Salla, kombin gelsin. Boşluk tuşu karıştırır.">
+  <div class="head"><img alt="Altınyıldız Classics" src="%%LOGO%%"><p id="eyebrow"></p></div>
+  <div class="hl" id="hl"></div>
+  <div class="stage" id="stage">
+    <div class="slot" id="s0"><button class="ph" type="button"><img alt=""><span class="tag">ÜST</span><span class="lock"></span></button><span class="nm"></span><span class="mt"></span></div>
+    <div class="slot" id="s1"><button class="ph" type="button"><img alt=""><span class="tag">ALT</span><span class="lock"></span></button><span class="nm"></span><span class="mt"></span></div>
+  </div>
+  <div class="note" id="note"></div>
+  <div class="phone" id="phone"></div>
+  <div class="row">
+    <button class="shake wig" id="shake" type="button"><i>↯</i><span id="shakeTx"></span></button>
+    <button class="cta" id="cta" type="button"></button>
+  </div>
+  <div class="foot"><span id="hint"></span><span><span id="triedL"></span> <b id="tried">1</b>/25</span></div>
+  <div class="intro" aria-hidden="true"><img alt="" src="%%LOGO%%"><div class="rule"></div><p>Salla, Kombin Gelsin</p></div>
+</div>
+<script>
+(function () {
+  'use strict';
+  var D = /*DATA*/null, IMG = /*IMG*/null, C = D.copy, T = D.timing;
+  var $ = function (id) { return document.getElementById(id); };
+  var ad = $('ad'), stage = $('stage');
+  var sets = [D.tops, D.bottoms], cur = [0, 0], locked = [false, false];
+  var seen = {}, busy = false, auto = true, motion = false, asked = false, t0 = Date.now(), idleT = null;
+
+  $('eyebrow').textContent = C.eyebrow; $('shakeTx').textContent = C.shake; $('cta').textContent = C.cta + ' →';
+  $('triedL').textContent = C.tried; $('hint').textContent = C.hintTap; $('phone').textContent = C.shake + '!';
+  $('hl').innerHTML = C.headline.map(function (s) { var e = document.createElement('div'); e.textContent = s; return e.outerHTML; }).join('');
+
+  function exit(url, name) {
+    if (window.Enabler && Enabler.exitOverride) { Enabler.exitOverride(name, url); return; }
+    window.open(window.clickTag && /^https?:/.test(window.clickTag) ? window.clickTag : url, '_blank');
+  }
+  function buzz(p) { try { navigator.vibrate && navigator.vibrate(p); } catch (e) {} }
+
+  function paint(r) {
+    var s = $('s' + r), p = sets[r][cur[r]];
+    s.querySelector('img').src = IMG[p.img]; s.querySelector('img').alt = p.name;
+    s.querySelector('.nm').textContent = p.name; s.querySelector('.mt').textContent = p.meta;
+    s.querySelector('.lock').textContent = locked[r] ? '● ' + C.locked : C.lock;
+    s.classList.toggle('locked', locked[r]);
+  }
+  function note() {
+    var t = D.tops[cur[0]], b = D.bottoms[cur[1]];
+    $('note').textContent = D.notes[t.type + '|' + b.type] || '';
+    seen[cur[0] + '-' + cur[1]] = 1; $('tried').textContent = Object.keys(seen).length;
+  }
+
+  /* Sallama: kilitsiz parçalar hızla karışır, yeni kombine iner */
+  function shake(isAuto) {
+    if (busy) return;
+    if (!isAuto) used();
+    var rows = [0, 1].filter(function (r) { return !locked[r]; });
+    if (!rows.length) { buzz(40); return; }
+    var start = cur.slice();
+    busy = true; stage.classList.add('shaking'); stage.classList.remove('land');
+    if (!isAuto) buzz([25, 30, 25, 30, 60]);
+    var ticks = 0, iv = setInterval(function () {
+      rows.forEach(function (r) { cur[r] = (cur[r] + 1 + Math.floor(Math.random() * (sets[r].length - 1))) % sets[r].length; $('s' + r).querySelector('img').src = IMG[sets[r][cur[r]].img]; });
+      if (++ticks >= 9) {
+        clearInterval(iv);
+        rows.forEach(function (r) { if (cur[r] === start[r]) cur[r] = (cur[r] + 1) % sets[r].length; }); // her sallamada mutlaka yeni parça
+        stage.classList.remove('shaking'); void stage.offsetWidth; stage.classList.add('land');
+        rows.forEach(paint); note(); busy = false;
+      }
+    }, 75);
+  }
+
+  /* Hareket algılama (salla) */
+  var last = null, hits = [], lastShake = 0;
+  function onMotion(e) {
+    var a = e.accelerationIncludingGravity || e.acceleration; if (!a || a.x == null) return;
+    if (!motion) { motion = true; $('hint').textContent = C.hintMotion; }
+    if (last) {
+      var d = Math.abs(a.x - last.x) + Math.abs(a.y - last.y) + Math.abs(a.z - last.z), now = Date.now();
+      if (d > 26) { hits = hits.filter(function (t) { return now - t < 500; }); hits.push(now);
+        if (hits.length >= 2 && now - lastShake > 1100) { lastShake = now; hits = []; shake(); } }
+    }
+    last = { x: a.x, y: a.y, z: a.z };
+  }
+  window.addEventListener('devicemotion', onMotion);
+  function askMotion() { // iOS 13+: izin yalnızca kullanıcı dokunuşuyla istenebilir
+    if (asked) return; asked = true;
+    try { if (window.DeviceMotionEvent && typeof DeviceMotionEvent.requestPermission === 'function') DeviceMotionEvent.requestPermission().catch(function () {}); } catch (e) {}
+  }
+
+  /* Dokunmalar */
+  $('shake').addEventListener('click', function (e) { e.stopPropagation(); askMotion(); shake(); });
+  [0, 1].forEach(function (r) {
+    var s = $('s' + r);
+    s.querySelector('.lock').addEventListener('click', function (e) { e.stopPropagation(); used(); locked[r] = !locked[r]; paint(r); buzz(15); });
+    s.querySelector('.ph').addEventListener('click', function (e) { e.stopPropagation(); exit(sets[r][cur[r]].url, (r ? 'Alt' : 'Ust') + ' urun'); });
+  });
+  $('cta').addEventListener('click', function (e) { e.stopPropagation(); exit(D.tops[cur[0]].cat, 'CTA'); });
+  ad.addEventListener('click', function () { exit(D.tops[cur[0]].cat, 'Ana Cikis'); });
+  ad.addEventListener('keydown', function (e) {
+    if (e.target !== ad) return;
+    if (e.key === ' ') { e.preventDefault(); shake(); } else if (e.key === 'Enter') exit(D.tops[cur[0]].cat, 'Klavye');
+  });
+
+  /* Gösterim: reklam kendini sallar; dokunulmazsa birkaç saniyede bir yeni kombin */
+  function used() { if (!auto) return; auto = false; clearInterval(idleT); $('shake').classList.remove('wig'); $('phone').classList.remove('on'); }
+  function demo() {
+    if (!auto) return;
+    $('phone').classList.add('on'); shake(true);
+    setTimeout(function () { $('phone').classList.remove('on'); }, 900);
+  }
+  function start() {
+    cur = [1, 2]; paint(0); paint(1); note();
+    setTimeout(function () { ad.classList.add('started'); }, 1500);
+    setTimeout(demo, T.demo);
+    idleT = setInterval(function () { if (!auto || Date.now() - t0 > T.maxAutoplay - T.idle) { clearInterval(idleT); return; } demo(); }, T.idle);
+  }
+  function boot() { if (window.Enabler && !Enabler.isInitialized()) Enabler.addEventListener('init', start); else start(); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
+})();
+</script>
+</body>
+</html>

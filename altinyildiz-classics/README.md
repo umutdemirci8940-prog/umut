@@ -104,3 +104,15 @@ Mobil kullanıcının her gün yaptığı hareket üzerine kurulu: **kartı sağ
 - Sonunda **stil profili** (ör. "Klasik Beyefendi"), beğenilerin profil dağılımı ve **eşleşilen parçalardan mini gardırop** çıkar; her küçük resim ürün sayfasına, "Gardırobumu Gör" profil kategorisine gider. "↺ Yeniden oyna" ile tekrar oynanır.
 - Karta dokunmak ya da "İncele ↗" o ürünün sayfasını açar. Açılışta kart sağa-sola sallanarak hareketi gösterir.
 - Masaüstünde de çalışır (fare ile sürükleme, ← → tuşları).
+
+---
+
+# Mobil konsept: Salla, Kombin Gelsin (320×480)
+
+`dist/06-mobil-salla/index.html` · zip `dist/altinyildiz-classics-06-mobil-salla.zip` (~61 KB)
+
+- **Telefonu sallayınca** üst ve alt parça hızla karışır, yeni bir kombine iner (titreşimle). 5 üst (kazak, polar, sweatshirt) × 5 pantolon = 25 kombin; sayaç kaçının denendiğini gösterir.
+- Beğenilen parça **kilitlenir**, sallayınca yalnızca diğeri değişir. Her kombine kısa bir stil notu eşlik eder.
+- Hareket algılanamayan cihazlarda (ve masaüstünde) büyük **SALLA** düğmesi aynı işi yapar. **iOS:** hareket izni ayrı bir pencereyle değil, kullanıcı SALLA'ya ilk dokunduğunda istenir; izin verilirse sonrasında gerçek sallama çalışır. Android'de izin gerekmez.
+- Açılışta reklam kendini sallar ("SALLA!" ipucu); dokunulmazsa 30 sn boyunca birkaç saniyede bir yeni kombin gösterir.
+- Fotoğrafa dokunmak ürün sayfasını, "Kombini Keşfet" üst parçanın kategorisini açar. Masaüstünde boşluk tuşu karıştırır.
