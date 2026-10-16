@@ -306,9 +306,9 @@ p { margin: 0; }
 
 /* ---------- Projeler (PDF vitrini) ---------- */
 .showcase { display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); gap: clamp(28px, 5vw, 70px); align-items: center; }
-.pdf-cover { position: relative; border: 0; background: none; padding: 0; cursor: pointer; aspect-ratio: 4 / 3; width: 100%; max-width: 100%; display: block; }
+.pdf-cover { position: relative; border: 0; background: none; padding: 0; cursor: pointer; aspect-ratio: 16 / 10.4; width: 100%; max-width: 100%; display: block; }
 .pdf-sheet {
-  position: absolute; inset: 6% 8%; border-radius: 18px; background: var(--surface); border: 1px solid var(--line);
+  position: absolute; inset: 7% 6%; border-radius: 14px; background: var(--surface); border: 1px solid var(--line);
   box-shadow: 0 30px 60px -30px var(--shadow); overflow: hidden; transition: transform .5s cubic-bezier(.3,1.5,.5,1);
 }
 .pdf-sheet.s3 { transform: rotate(-7deg) translate(-4%, 3%); background: var(--peach); }
@@ -350,8 +350,10 @@ p { margin: 0; }
 .modal-close:hover { border-color: var(--sun); color: var(--sun); }
 .modal-body { background: var(--surface-2); overflow: auto; max-height: min(78vh, 900px); }
 .pdf-pages { display: grid; gap: 16px; padding: 18px; justify-items: center; }
-.pdf-page { width: 100%; max-width: 980px; background: #fff; border-radius: 8px; box-shadow: 0 10px 30px -18px var(--shadow); overflow: hidden; aspect-ratio: var(--ar, 1.414); }
+.pdf-page { position: relative; width: 100%; max-width: 980px; background: #fff; border-radius: 8px; box-shadow: 0 10px 30px -18px var(--shadow); overflow: hidden; aspect-ratio: var(--ar, 1.414); }
 .pdf-page canvas { width: 100%; height: auto; display: block; }
+.pdf-link { position: absolute; border-radius: 6px; outline: 2px solid transparent; transition: outline-color .2s, background .2s; }
+.pdf-link:hover, .pdf-link:focus-visible { outline-color: var(--sun); background: color-mix(in srgb, var(--sun) 14%, transparent); }
 .pdf-frame { width: 100%; height: min(78vh, 900px); border: 0; display: block; background: #fff; }
 .pdf-msg { padding: 48px 24px; text-align: center; display: grid; gap: 10px; justify-items: center; color: var(--mute); }
 .pdf-msg b { color: var(--ink); font-family: var(--f-display); }

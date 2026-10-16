@@ -285,7 +285,24 @@
       var scale = (width * Math.min(devicePixelRatio || 1, 2)) / base.width;
       var vp = page.getViewport({ scale: scale });
       canvas.width = vp.width; canvas.height = vp.height;
-      return page.render({ canvasContext: canvas.getContext('2d'), viewport: vp }).promise.then(function () { return base; });
+      return page.render({ canvasContext: canvas.getContext('2d'), viewport: vp }).promise.then(function () { base.page = page; return base; });
+    });
+  }
+  // PDF içindeki bağlantıları ("Örnek çalışma için tıklayınız") sayfanın üzerine tıklanabilir alan olarak yerleştir
+  function addLinks(pageEl, base) {
+    return base.page.getAnnotations().then(function (annots) {
+      var vb = base.viewBox, W = vb[2] - vb[0], H = vb[3] - vb[1];
+      annots.forEach(function (a) {
+        if (a.subtype !== 'Link' || !a.url) return;
+        var r = a.rect, link = document.createElement('a');
+        link.className = 'pdf-link'; link.href = a.url; link.target = '_blank'; link.rel = 'noopener';
+        link.setAttribute('aria-label', 'Örnek çalışmayı yeni sekmede aç');
+        link.style.left = ((r[0] - vb[0]) / W * 100) + '%';
+        link.style.top = ((vb[3] - r[3]) / H * 100) + '%';
+        link.style.width = ((r[2] - r[0]) / W * 100) + '%';
+        link.style.height = ((r[3] - r[1]) / H * 100) + '%';
+        pageEl.appendChild(link);
+      });
     });
   }
   // Kapak: PDF varsa ilk sayfası küçük resim olarak çizilir, sayfa sayısı yazılır
@@ -323,7 +340,7 @@
         en.forEach(function (e) {
           if (!e.isIntersecting) return;
           lazy.unobserve(e.target);
-          renderPage(pdf, +e.target.dataset.n, e.target.firstChild, width).then(function (b) { e.target.style.setProperty('--ar', b.width / b.height); });
+          renderPage(pdf, +e.target.dataset.n, e.target.firstChild, width).then(function (b) { e.target.style.setProperty('--ar', b.width / b.height); return addLinks(e.target, b); });
         });
       }, { root: mBody, rootMargin: '600px' }) : null;
       for (var n = 1; n <= pdf.numPages; n++) {
@@ -332,7 +349,7 @@
         pg.setAttribute('aria-label', 'Sayfa ' + n);
         pg.appendChild(document.createElement('canvas'));
         wrap.appendChild(pg);
-        if (lazy) lazy.observe(pg); else renderPage(pdf, n, pg.firstChild, width);
+        if (lazy) lazy.observe(pg); else (function (el) { renderPage(pdf, +el.dataset.n, el.firstChild, width).then(function (b) { return addLinks(el, b); }); })(pg);
       }
     }).catch(function (err) {
       // PDF.js yüklenemediyse dosyayı tarayıcının görüntüleyicisiyle dene; dosya yoksa bilgi göster
