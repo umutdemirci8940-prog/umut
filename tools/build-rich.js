@@ -21,11 +21,16 @@ const ADS = {
   'mobil-320x480-kartlar': { content: 'mobil_kartlar', photo: 'mb' },
   'mobil-320x480-sil-kesfet': { content: 'mobil_sil', photo: 'mb' },
   'mobil-320x480-rutin': { content: 'mobil_rutin', photo: 'st' },
+  'masthead-970x250-mercek': { content: 'masthead_mercek', photo: 'mh', creative: 'lens' },
+  'mobil-320x480-mercek': { content: 'mobil_mercek', photo: 'mh', creative: 'lens' },
+  'mobil-320x480-ofis': { content: 'mobil_ofis', photo: 'mh', creative: 'office' },
+  'mobil-320x480-eslestir': { content: 'mobil_eslestir', photo: 'mh', creative: 'memory' },
 };
 
 function adData(content) {
   const L = (p, c) => data.link(p, `${content}_${c}`);
   return {
+    creative: data.creative(content),
     data: {
       brand: { ...data.brand, home: L('/collections/gida-takviyeleri', 'genel') },
       coupon: { ...data.coupon, url: L('/collections/en-cok-satanlar', 'kupon') },
@@ -53,6 +58,8 @@ for (const [name, cfg] of Object.entries(ADS)) {
   const d = adData(cfg.content);
   // Kreatif kendi fotoğraf ailesini kullanır; diğer ailelerin adreslerini çıkar ki gereksiz görsel paketlenmesin.
   for (const s of d.data.segments) s.img = { [cfg.photo]: s.img[cfg.photo] };
+  // Yaratıcı set segment fotoğraflarını kullanmaz; yalnızca kendi verisi gömülür (gereksiz görsel paketlenmez).
+  if (cfg.creative) { delete d.data.segments; d.creative = { [cfg.creative]: d.creative[cfg.creative] }; } else delete d.creative;
   const vars = { ...data.brand, ...data.coupon };
   let html = fs.readFileSync(file, 'utf8')
     .replace('{{SHARED_CSS}}', () => css)
@@ -85,19 +92,28 @@ for (const [name, cfg] of Object.entries(ADS)) {
 
 // Sunum sayfası: dört çalışma tek dosyada (srcdoc ile gömülü), tekrar oynat düğmeleri ve kurgu notları.
 const NOTES = {
+  'masthead-970x250-mercek': ['Interaktif Masthead · 970×250', 'Merceği Gezdir', "\"Her anın arkasında bir rutin var.\" Fare bir büyüteç olur; dört gerçek an (gri Kasım göğü, kahkaha, parkta koşan çocuklar, pilates) üzerinde gezdikçe mercek altında o anın arkasındaki ürün sahnesi belirir: gri gökyüzünün altında güneşli D3 & K2, kahkahanın arkasında B12 tableti. Mercek kendi kendine tur atarak mekaniği gösterir; kullanıcı 4 keşfi tamamlayınca kupon parlar. Her keşif ürün sayfasına gider."],
+  'mobil-320x480-mercek': ['Mobil Interaktif · 320×480', 'Merceği Gezdir (Mobil)', 'Masthead\'in mobil eşi: 2×2 gerçek an, parmakla sürüklenen mercek; mercek altında ürün sahnesi ve onaylı beyan. Keşif sayacı + kalıcı kupon şeridi; keşfedilen panele ikinci dokunuş ürün sayfasını açar.'],
+  'mobil-320x480-ofis': ['Mobil Interaktif · 320×480', "Dr. Ümit Aktaş'ın Ofisi", "Markanın kendi ofis fotoğrafı gezinilebilir bir sahneye dönüşür: parmakla kaydırılır ya da telefon eğilerek (gyro) bakılır. Fotoğraftaki gerçek nesneler sıcak nokta: kitaplık → kitapları, yoga heykeli → Huzur Ritüeli, stetoskop → imzalı takviyeler, raftaki oyuncak → çocuk ürünleri, kırmızı ajanda → %10 Kasım notu. 5 sürpriz sayacı keşfi oyunlaştırır; Dr. Ümit Aktaş içeriklerine ilgi duyan kitle için."],
+  'mobil-320x480-eslestir': ['Mobil Interaktif · 320×480', 'Rutin Eşleştir (Hafıza Oyunu)', 'Gerçek fotoğraflarla hafıza oyunu: kartlar 2 sn açık kalır, sonra kapanır; kullanıcı her anı (pilates, kahkaha, oyuncaklarla çocuk) doğru ürünüyle eşleştirir. Üç eş bulununca Dr. Ümit Aktaş\'lı final ekranında %10 kod açılır. Etkileşim yoksa oyun bir eşi kendisi gösterir ve 22 sn\'de finale geçer. Ürün-an bağını öğreten, dwell time yüksek bir format.'],
+
   'masthead-970x250': ['Interaktif Masthead · 970×250', 'Rutin Seçici Akordeon', "Dr. Ümit Aktaş portresiyle marka paneli + 4 tam fotoğraf paneli (Yetişkin, Bağışıklık, Çocuk & Aile, Aktif Yaşam). Panel kendiliğinden döner (2 tur, &lt;30 sn); üzerine gelinen panel açılır, ürün ambalajları yükselir. Her panel ve her ürün ayrı açılış sayfasına gider → daha fazla session, daha derin keşif. Kupon kodu tek dokunuşla kopyalanır."],
   'mobil-320x480-kartlar': ['Mobil Interaktif · 320×480', 'Rutin Kartları (Kaydır)', 'Tam ekran fotoğraf kartları; parmakla sağa/sola kaydırılır (story ilerleme çubuğu, ‹ › düğmeleri). Her kartta onaylı sağlık beyanı ve 2–3 ürün; son kart Dr. Ümit Aktaş portreli %10 yeni üye kuponu. İlk saniyelerde kart "sallanarak" kaydırma ipucu verir.'],
   'mobil-320x480-sil-kesfet': ['Mobil Interaktif · 320×480', 'Sil & Keşfet (Kazı-kazan)', 'Magnezyum kapsül fotoğrafı parmakla silinir, altından Dr. Ümit Aktaş ve %10 kupon çıkar. Otomatik demo çizgisi mekaniği gösterir; %45 silinince sahne açılır, 12 sn etkileşim yoksa kendiliğinden açılır (görünürlük garantisi). Silme hareketi tıklama sayılmaz.'],
   'mobil-320x480-rutin': ['Mobil Interaktif · 320×480', 'Rutin Seçici (Dikey)', "Masthead'in mobil eşi: 4 fotoğraf şeridi, dokununca açılır; ürünlere ve segment sayfasına derin bağlantı. Altta her an görünen kopyalanabilir kupon şeridi."],
 };
-const blocks = Object.keys(ADS).filter((n) => fs.existsSync(path.join(dist, 'inline', `${n}.html`))).map((n) => {
+const block = (n) => {
   const [size, title, note] = NOTES[n];
   const [w, h] = n.match(/(\d+)x(\d+)/).slice(1).map(Number);
   const doc = fs.readFileSync(path.join(dist, 'inline', `${n}.html`), 'utf8').replace(/&/g, '&amp;').replace(/"/g, '&quot;');
   return `<section class="item ${w > 500 ? 'wide' : ''}"><div class="meta"><span class="size">${size}</span><h2>${title}</h2><p>${note}</p>
 <div class="act"><button onclick="var f=this.closest('section').querySelector('iframe');f.srcdoc=f.srcdoc">↻ Tekrar oynat</button><a href="../dist-rich/zip/ilacsizyasam-${n}.zip">Zip</a><a href="../dist-rich/${n}/index.html" target="_blank">Yeni sekme</a></div></div>
 <div class="frame" style="width:${w}px;height:${h}px"><iframe title="${title}" width="${w}" height="${h}" srcdoc="${doc}"></iframe></div></section>`;
-}).join('\n');
+};
+const have = (n) => NOTES[n] && fs.existsSync(path.join(dist, 'inline', `${n}.html`));
+const creativeSet = Object.keys(ADS).filter((n) => ADS[n].creative && have(n)).map(block).join('\n');
+const standardSet = Object.keys(ADS).filter((n) => !ADS[n].creative && have(n)).map(block).join('\n');
+const blocks = `<h3 class="sec">Yaratıcı set · Kasım konsepti</h3>${creativeSet}<h3 class="sec">Standart set · alternatif / yedek</h3>${standardSet}`;
 fs.mkdirSync(path.join(root, 'preview-rich'), { recursive: true });
 fs.writeFileSync(path.join(root, 'preview-rich', 'index.html'), `<!DOCTYPE html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>İlaçsız Yaşam – Kasım Interaktif Çalışmalar</title>
@@ -107,7 +123,7 @@ fs.writeFileSync(path.join(root, 'preview-rich', 'index.html'), `<!DOCTYPE html>
 header{max-width:1040px;margin:0 auto 32px}header .k{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#5fa511}
 h1{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:40px;line-height:1.05;margin:8px 0 12px;color:#132d7d}header p{max-width:760px;line-height:1.55;font-size:15px;color:#3a4566}
 .grid{max-width:1040px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:28px}
-.item{background:#fff;border-radius:18px;padding:22px;box-shadow:0 10px 30px rgba(19,45,125,.08);display:flex;flex-direction:column;gap:16px}
+.sec{grid-column:1/-1;font-family:Fraunces,Georgia,serif;font-weight:600;font-size:22px;color:#132d7d;margin-top:18px;border-top:2px solid #dfe4f0;padding-top:22px}.item{background:#fff;border-radius:18px;padding:22px;box-shadow:0 10px 30px rgba(19,45,125,.08);display:flex;flex-direction:column;gap:16px}
 .item.wide{grid-column:1/-1}.item.wide .frame{max-width:100%}
 .size{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#5fa511}.item h2{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:24px;color:#132d7d;margin:4px 0 6px}
 .item p{font-size:13.5px;line-height:1.55;color:#3a4566}.act{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
@@ -115,7 +131,7 @@ h1{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:40px;line-height
 .act button{background:#132d7d;color:#fff}.frame{overflow:hidden;border-radius:6px;box-shadow:0 6px 24px rgba(0,0,0,.18);align-self:center}iframe{border:0;display:block}
 @media (max-width:1040px){.item.wide .frame{transform-origin:0 0}}
 </style></head><body>
-<header><div class="k">İlaçsız Yaşam · Kasım 2026</div><h1>Media-first interaktif çalışmalar</h1>
-<p>Tamamı markanın kendi fotoğraflarıyla (Dr. Ümit Aktaş portreleri, ürün yaşam tarzı çekimleri, orijinal ambalaj fotoğrafları) hazırlandı; hiçbir çizim/vektör illüstrasyon kullanılmadı. Kurgunun amacı session ve yeni kullanıcı: her segment ve her ürün kendi sayfasına UTM'li derin bağlantıyla gider, yeni üyelere %10 kupon (YENIUYE10) tek dokunuşla kopyalanır.</p></header>
+<header><div class="k">İlaçsız Yaşam · Kasım 2026</div><h1>Her anın arkasında bir rutin var.</h1>
+<p>Kasım konsepti: gündelik anların arkasındaki rutini kullanıcıya <b>kendi eliyle</b> keşfettiren üç mekanik — mercekle bakmak, Dr. Ümit Aktaş'ın ofisinde gezinmek, anı ürünüyle eşleştirmek. Tamamı markanın kendi fotoğraflarıyla hazırlandı; hiçbir çizim/vektör illüstrasyon yok. Her keşif ürün sayfasına UTM'li derin bağlantıyla gider (session + keşif derinliği), keşifler tamamlanınca yeni üyelere %10 kod (YENIUYE10) açılır (new user).</p></header>
 <div class="grid">${blocks}</div></body></html>`);
 console.log('✔ preview-rich/index.html (tek dosya sunum)');

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=320,height=480">
+<meta name="viewport" content="width=320,height=480,initial-scale=1,user-scalable=no">
+<title>İlaçsız Yaşam – Merceği Gezdir 320x480</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,600&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+{{SHARED_CSS}}
+.ad { width: 320px; height: 480px; touch-action: none; }
+.head { position: absolute; left: 0; right: 0; top: 0; height: 58px; display: flex; align-items: center; justify-content: space-between; padding: 0 14px; background: var(--navy-d); z-index: 5; }
+.head .logo { width: 98px; }
+.head .q { text-align: right; font-family: var(--serif); font-size: 14px; font-weight: 600; line-height: 1.1; }
+.head .q em { color: var(--green-l); }
+.stage { position: absolute; left: 0; top: 58px; width: 320px; height: 360px; overflow: hidden; }
+.front img { position: absolute; width: 160px; height: 180px; object-fit: cover; }
+.tag { position: absolute; z-index: 3; font-size: 8.5px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; padding: 4px 7px; border-radius: 999px; background: rgba(11, 28, 82, .55); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); white-space: nowrap; transition: opacity .3s; }
+.tag.seen::after { content: ' ✓'; color: var(--green-l); }
+.cap { position: absolute; z-index: 4; width: 160px; padding: 9px 10px 22px; background: linear-gradient(180deg, rgba(11, 28, 82, .96) 0%, rgba(11, 28, 82, .8) 62%, rgba(11, 28, 82, 0) 100%); opacity: 0; transform: translateY(-8px); transition: opacity .35s, transform .35s var(--ease); pointer-events: none; }
+.cap.on { opacity: 1; transform: none; }
+.cap b { display: block; font-family: var(--serif); font-weight: 600; font-size: 14px; line-height: 1.08; }
+.cap small { display: block; font-size: 8.3px; line-height: 1.28; font-weight: 600; color: rgba(255, 255, 255, .86); margin-top: 3px; }
+.lens { position: absolute; z-index: 6; left: 0; top: 0; width: 112px; height: 112px; margin: -56px 0 0 -56px; pointer-events: none; opacity: 0; transition: opacity .4s; }
+.ready .lens { opacity: 1; }
+.lens .in { position: absolute; inset: 0; border-radius: 50%; overflow: hidden; background: #fff; border: 3px solid #fff; box-shadow: 0 10px 26px rgba(0, 0, 0, .42); }
+.lens .in img { position: absolute; width: 168px; height: 168px; object-fit: cover; opacity: 0; transition: opacity .3s; }
+.lens .in img.on { opacity: 1; }
+.lens .in::after { content: ''; position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle at 30% 24%, rgba(255, 255, 255, .45), rgba(255, 255, 255, 0) 32%); box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .12), inset 0 -14px 24px rgba(0, 0, 0, .12); }
+.hint { position: absolute; z-index: 7; left: 50%; top: 214px; transform: translateX(-50%); white-space: nowrap; font-size: 11px; font-weight: 800; background: #fff; color: var(--navy); padding: 7px 13px; border-radius: 999px; box-shadow: 0 6px 16px rgba(0, 0, 0, .3); transition: opacity .3s; pointer-events: none; animation: bob 1.6s var(--ease) infinite; }
+@keyframes bob { 50% { transform: translate(-50%, -4px); } }
+.user .hint { opacity: 0; }
+.foot { position: absolute; left: 0; right: 0; bottom: 0; height: 62px; background: var(--navy-d); padding: 7px 14px 0; z-index: 5; }
+.foot .top { display: flex; align-items: center; gap: 8px; }
+.found { display: flex; gap: 3px; align-items: center; }
+.found i { width: 14px; height: 4px; border-radius: 4px; background: rgba(255, 255, 255, .22); transition: background .4s; }
+.found i.on { background: var(--green-l); }
+.found span { font-size: 8.5px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: rgba(255, 255, 255, .72); margin-left: 4px; white-space: nowrap; }
+.foot .coupon { margin-left: auto; font-size: 10px; padding: 4px 8px; border-radius: 8px; }
+.foot .coupon .pct { font-family: var(--serif); font-size: 15px; font-weight: 700; color: var(--green-l); }
+.foot .coupon.all { animation: glow 1.2s var(--ease) 3; }
+@keyframes glow { 50% { background: rgba(143, 209, 74, .35); transform: scale(1.05); } }
+.foot .legal { margin-top: 6px; font-size: 7.2px; }
+</style>
+</head>
+<body>
+<div class="ad" id="ad" role="link" tabindex="0" aria-label="İlaçsız Yaşam – Her anın arkasında bir rutin var. Merceği gezdir.">
+  <div class="head"><img class="logo" src="img/logo-beyaz.webp" alt="İlaçsız Yaşam"><div class="q">Her anın arkasında<br><em>bir rutin var.</em></div></div>
+  <div class="stage" id="stage"><div class="front" id="front"></div></div>
+  <div class="lens" id="lens"><div class="in" id="lensIn"></div></div>
+  <div class="hint" id="hint">Parmağınla merceği gezdir</div>
+  <div class="foot">
+    <div class="top">
+      <div class="found" id="found"><i></i><i></i><i></i><i></i><span id="fc">0/4 keşif</span></div>
+      <button class="coupon" id="cp"><span class="pct">{{pct}}</span><span><b>{{code}}</b> <span class="cp-act">Kopyala</span><span class="cp-ok">✓</span></span></button>
+    </div>
+    <div class="legal">{{legal}}</div>
+  </div>
+</div>
+<script>window.AD = {{DATA}};</script>
+<script>
+{{SHARED_JS}}
+(function () {
+  var C = AD.creative.lens, D = AD.data, ad = document.getElementById('ad'), stage = document.getElementById('stage');
+  var front = document.getElementById('front'), lensIn = document.getElementById('lensIn'), lens = document.getElementById('lens');
+  var Y0 = 58, PW = 160, PH = 180, R = 56, IS = 168;
+  var backs = [], caps = [], tags = [];
+  function px(i) { return (i % 2) * PW; } function py(i) { return Math.floor(i / 2) * PH; }
+  C.forEach(function (c, i) {
+    var im = front.appendChild(Object.assign(new Image(), { src: c.img, alt: c.moment }));
+    im.style.left = px(i) + 'px'; im.style.top = py(i) + 'px';
+    backs.push(lensIn.appendChild(Object.assign(new Image(), { src: c.back, alt: c.product })));
+    var t = AD.h('div', 'tag', c.moment); t.style.left = (px(i) + 8) + 'px'; t.style.top = (py(i) + 8) + 'px'; stage.appendChild(t); tags.push(t);
+    var cp = AD.h('div', 'cap', '<b>' + c.product + '</b><small>' + c.claim + '</small>');
+    cp.style.left = px(i) + 'px'; cp.style.top = py(i) + 'px'; stage.appendChild(cp); caps.push(cp);
+  });
+  // Mercek her panelin alt bandında durur (üst kısım ürün altyazısına ayrılır)
+  function snap(x, y) {
+    var col = x < PW ? 0 : 1, row = y - Y0 < PH ? 0 : 1;
+    return { x: Math.max(col * PW + 52, Math.min(col * PW + PW - 52, x)), y: Y0 + row * PH + 118 + Math.max(-6, Math.min(6, (y - Y0 - row * PH - 118) * .2)), i: row * 2 + col };
+  }
+  var cur = { x: 80, y: Y0 + 118 }, tgt = { x: 80, y: Y0 + 118 }, active = -1, seen = {}, nSeen = 0, dwell = 0, lastT = 0;
+  function render() {
+    lens.style.transform = 'translate(' + cur.x + 'px,' + cur.y + 'px)';
+    var i = (cur.x < PW ? 0 : 1) + (cur.y - Y0 < PH ? 0 : 2);
+    if (i !== active) { active = i; dwell = 0; caps.forEach(function (c, j) { c.classList.toggle('on', j === i); }); backs.forEach(function (b, j) { b.classList.toggle('on', j === i); }); tags.forEach(function (t, j) { t.style.opacity = j === i ? 0 : 1; }); }
+    var f = C[i].bf, ox = (cur.x - (px(i) + PW / 2)) * -0.3;
+    backs[i].style.left = (R - f[0] * IS + ox) + 'px'; backs[i].style.top = (R - f[1] * IS) + 'px';
+  }
+  function frame(t) {
+    var dt = Math.min(64, t - (lastT || t)); lastT = t;
+    cur.x += (tgt.x - cur.x) * 0.18; cur.y += (tgt.y - cur.y) * 0.18;
+    render();
+    var still = Math.abs(tgt.x - cur.x) < 24 && Math.abs(tgt.y - cur.y) < 24;
+    dwell = still ? dwell + dt : 0;
+    if (dwell > 650 && !seen[active]) markSeen(active);
+    requestAnimationFrame(frame);
+  }
+  var bars = [].slice.call(document.querySelectorAll('#found i')), fc = document.getElementById('fc');
+  function markSeen(i) {
+    seen[i] = true; nSeen++;
+    bars[nSeen - 1].classList.add('on'); tags[i].classList.add('seen');
+    fc.textContent = nSeen + '/4 keşif';
+    if (userMoved) AD.track('lens_found_' + C[i].key);
+    if (nSeen === C.length) { fc.textContent = 'Hepsini buldun!'; document.getElementById('cp').classList.add('all'); if (userMoved) AD.track('lens_all_found'); }
+  }
+  // Otomatik tur (≈ 21 sn): sol üst → sağ üst → sağ alt → sol alt, iki kez; sonra ilk panelde bekler
+  var userMoved = false, tourT = null, order = [0, 1, 3, 2, 0, 1, 3, 2];
+  function tour(k) {
+    if (userMoved || AD.reduced) return;
+    var i = order[Math.min(k, order.length - 1)];
+    var p = snap(px(i) + PW / 2 + (k % 2 ? -10 : 10), Y0 + py(i) + 118); tgt.x = p.x; tgt.y = p.y;
+    if (k < order.length) tourT = setTimeout(function () { tour(k + 1); }, 2600);
+  }
+  var down = false, sx = 0, sy = 0, moved = false;
+  function pos(e) { var b = ad.getBoundingClientRect(); return [(e.clientX - b.left) * 320 / b.width, (e.clientY - b.top) * 480 / b.height]; }
+  function follow(e) {
+    var p = pos(e);
+    if (p[1] < Y0 || p[1] > Y0 + 2 * PH) return;
+    if (!userMoved) { userMoved = true; clearTimeout(tourT); ad.classList.add('user'); AD.track('lens_user'); }
+    var s = snap(p[0], p[1]); tgt.x = s.x; tgt.y = s.y;
+  }
+  stage.addEventListener('pointerdown', function (e) { down = true; moved = false; var p = pos(e); sx = p[0]; sy = p[1]; follow(e); try { stage.setPointerCapture(e.pointerId); } catch (er) {} });
+  stage.addEventListener('pointermove', function (e) { if (e.pointerType === 'mouse' || down) { var p = pos(e); if (Math.abs(p[0] - sx) + Math.abs(p[1] - sy) > 10) moved = true; follow(e); } });
+  stage.addEventListener('pointerup', function (e) {
+    if (!down) return; down = false;
+    // Sürüklemeden kısa dokunuş: mercek zaten o paneldeyse ürüne git, değilse merceği oraya taşı
+    if (!moved) { var p = pos(e), s = snap(p[0], p[1]); if (s.i === active && seen[active]) AD.exit('mercek_' + C[active].key, C[active].url); }
+  });
+  stage.addEventListener('pointercancel', function () { down = false; });
+  document.querySelector('.head').addEventListener('click', function () { AD.exit('brand', D.brand.home); });
+  document.getElementById('cp').addEventListener('click', function (e) { e.stopPropagation(); AD.copy(this, D.coupon.code); });
+  ad.addEventListener('keydown', function (e) {
+    var map = { ArrowRight: 1, ArrowLeft: -1, ArrowDown: 2, ArrowUp: -2 };
+    if (map[e.key]) { e.preventDefault(); userMoved = true; clearTimeout(tourT); var i = (active + map[e.key] + 4) % 4; var s = snap(px(i) + PW / 2, Y0 + py(i) + 118); tgt.x = s.x; tgt.y = s.y; }
+    if (e.key === 'Enter') AD.exit('mercek_' + C[active].key, C[active].url);
+  });
+  render();
+  AD.ready(function () { AD.track('impression_ready'); requestAnimationFrame(frame); setTimeout(function () { tour(0); }, 600); });
+})();
+</script>
+</body>
+</html>

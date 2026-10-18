@@ -17,6 +17,21 @@ const swipe = (dx) => async (p) => {
   for (let i = 1; i <= 8; i++) await p.mouse.move(160 + (dx * i) / 8, 240 + i, { steps: 2 });
   await p.mouse.up();
 };
+const tapHs = async (p, i) => {
+  const bb = await p.locator('.hs').nth(i).boundingBox();
+  console.log('   hs', i, Math.round(bb.x), Math.round(bb.y));
+  await p.mouse.click(bb.x + bb.width / 2, bb.y + bb.height / 2);
+};
+// Eşleştirme oyunu: kart yüzlerinden eşleri bulup sırayla açar
+const PAIRS = { 'm-enerji': 'p-b12', 'm-aktif': 'p-krill', 'm-cocuk': 'p-omega3surup' };
+const playPair = (k, wrong) => async (p) => {
+  const srcs = await p.$$eval('.cd .f img', (a) => a.map((i) => i.getAttribute('src')));
+  const idx = (n) => srcs.findIndex((x) => x.includes(n + '.webp'));
+  const a = idx(k), b = idx(PAIRS[k]);
+  const cards = p.locator('.cd');
+  if (wrong) { const c = idx(Object.values(PAIRS).find((v) => v !== PAIRS[k])); await cards.nth(a).click(); await p.waitForTimeout(300); await cards.nth(c).click(); await p.waitForTimeout(400); return; }
+  await cards.nth(a).click(); await p.waitForTimeout(400); await cards.nth(b).click();
+};
 const scratch = async (p) => {
   await p.mouse.move(30, 120); await p.mouse.down();
   for (let y = 120; y < 420; y += 34) { await p.mouse.move(290, y, { steps: 6 }); await p.mouse.move(30, y + 17, { steps: 6 }); }
@@ -35,6 +50,29 @@ const SHOTS = {
   'mobil-320x480-sil-kesfet': { w: 320, h: 480, mobile: true, steps: [
     ['intro', 1400], ['demo', 2600], ['siliniyor', 400, async (p) => { await p.mouse.move(40, 200); await p.mouse.down(); await p.mouse.move(280, 260, { steps: 10 }); await p.mouse.move(40, 320, { steps: 10 }); await p.mouse.up(); }],
     ['acildi', 1800, scratch],
+  ] },
+  'masthead-970x250-mercek': { w: 970, h: 250, steps: [
+    ['intro', 1200], ['tur-1', 2600], ['tur-2', 2800],
+    ['kullanici-cocuk', 1400, (p) => p.mouse.move(700, 110, { steps: 12 })],
+    ['kullanici-hareket', 1400, (p) => p.mouse.move(870, 160, { steps: 12 })],
+    ['kullanici-gunes', 1400, (p) => p.mouse.move(340, 100, { steps: 12 })],
+    ['hepsi', 1600, (p) => p.mouse.move(520, 120, { steps: 12 })],
+  ] },
+  'mobil-320x480-mercek': { w: 320, h: 480, mobile: true, steps: [
+    ['intro', 1200], ['tur', 3000],
+    ['surukle', 1300, async (p) => { await p.mouse.move(80, 300); await p.mouse.down(); await p.mouse.move(240, 330, { steps: 14 }); await p.mouse.up(); }],
+    ['urune-git', 900, (p) => p.mouse.click(240, 330)],
+  ] },
+  'mobil-320x480-ofis': { w: 320, h: 480, mobile: true, steps: [
+    ['intro', 1400], ['gezinti', 3600], ['demo', 3600],
+    ['stetoskop', 1500, async (p) => { await p.locator('#x').click(); await p.waitForTimeout(600); await tapHs(p, 2); }],
+    ['kitaplik', 1500, async (p) => { await p.locator('#x').click(); await p.waitForTimeout(600); await p.mouse.move(60, 260); await p.mouse.down(); await p.mouse.move(250, 250, { steps: 8 }); await p.mouse.up(); await p.waitForTimeout(800); await tapHs(p, 0); }],
+    ['ajanda', 1500, async (p) => { await p.locator('#x').click(); await p.waitForTimeout(600); await tapHs(p, 4); }],
+  ] },
+  'mobil-320x480-eslestir': { w: 320, h: 480, mobile: true, steps: [
+    ['ezberle', 1600], ['oyun', 2000], ['yanlis', 0, playPair('m-enerji', true)],
+    ['eslesti', 900, async (p) => { await p.waitForTimeout(900); await playPair('m-aktif')(p); }],
+    ['final', 2200, async (p) => { await playPair('m-enerji')(p); await p.waitForTimeout(700); await playPair('m-cocuk')(p); }],
   ] },
   'mobil-320x480-rutin': { w: 320, h: 480, mobile: true, steps: [
     ['intro', 900], ['oto-2', 4200], ['dokun-aktif', 1100, (p) => p.mouse.click(160, 400)], ['urun', 600, (p) => p.mouse.move(60, 380)],

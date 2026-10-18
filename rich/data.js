@@ -91,4 +91,39 @@ module.exports = {
       ],
     },
   ],
+
+  /**
+   * Yaratıcı set (Kasım): Merceği gezdir, Dr. Ümit Aktaş'ın ofisi, Rutin eşleştir.
+   * creative(content) → UTM'leri çalışmaya göre çözülmüş veri.
+   */
+  creative(content) {
+    const L = (p, k) => link(p, `${content}_${k}`);
+    return {
+      // Her an (ön fotoğraf) → mercek altında beliren ürün sahnesi (arka fotoğraf)
+      lens: [
+        { key: 'gunes', bf: [.42, .5],  moment: 'Gri Kasım günleri', img: 'img/l-gri.webp', back: 'img/l-gri-b.webp', product: 'Vitamin D3 & K2 Damla',
+          line: 'Güneş azaldıysa D vitamini rutini.', claim: 'D vitamini bağışıklık sisteminin normal fonksiyonuna katkıda bulunur.', url: L('/products/d3-k2-vitamin-damlasi', 'gunes') },
+        { key: 'enerji', bf: [.4, .6], moment: 'Yorgun bir pazartesi', img: 'img/l-enerji.webp', back: 'img/l-enerji-b.webp', product: 'Vitamin B12 & Folik Asit',
+          line: 'Enerjinin arkasındaki küçük tablet.', claim: 'B12 vitamini yorgunluk ve bitkinliğin azalmasına katkıda bulunur.', url: L('/products/vitamin-b12-metilfolat', 'enerji') },
+        { key: 'cocuk', bf: [.62, .42], moment: 'Okul, park, koşu', img: 'img/l-cocuk.webp', back: 'img/l-cocuk-b.webp', product: 'Omega 3 Şurup',
+          line: 'Minikler için yeni tadıyla.', claim: 'DHA, normal beyin fonksiyonunun korunmasına katkıda bulunur.', url: L('/products/omega-3-surup', 'cocuk') },
+        { key: 'hareket', bf: [.4, .45], moment: 'Pilates sonrası', img: 'img/l-aktif.webp', back: 'img/l-aktif-b.webp', product: 'Krill Yağı',
+          line: 'Hareketin kırmızı kapsülü.', claim: 'EPA ve DHA kalbin normal fonksiyonuna katkıda bulunur.', url: L('/products/krill-yagi', 'hareket') },
+      ],
+      // Ofis fotoğrafındaki gerçek nesneler (x, y: fotoğraf genişliği/yüksekliği oranı)
+      office: [
+        { key: 'kitaplik', x: .13, y: .52, label: 'Kitaplık', title: "Dr. Ümit Aktaş'ın kitapları", text: 'İlaçsız Yaşam, Mutluluk Kürleri ve daha fazlası.', imgs: ['img/b-ilacsiz.webp', 'img/b-mutluluk.webp', 'img/b-bitkisel.webp'], cta: 'Kitapları gör', url: L('/collections/kitaplar', 'kitaplik') },
+        { key: 'heykel', x: .75, y: .2, label: 'Yoga heykeli', title: 'Huzur köşesi', text: 'Akşam rutinine Magnezyum ve Safran Ekstresi.', imgs: ['img/p-magnezyum.webp', 'img/p-safran.webp'], cta: 'Huzur Ritüeli', url: L('/products/huzur-ritueli-paketi', 'heykel') },
+        { key: 'stetoskop', x: .42, y: .66, label: 'Stetoskop', title: 'İmzalı takviyeler', text: 'Dr. Ümit Aktaş formülleriyle günlük rutin.', imgs: ['img/p-omega3.webp', 'img/p-d3k2.webp', 'img/p-vitc.webp'], cta: 'Takviyeleri keşfet', url: L('/collections/gida-takviyeleri', 'stetoskop') },
+        { key: 'oyuncak', x: .715, y: .53, label: 'Raftaki oyuncak', title: 'Miniklere destek', text: 'Omega 3 Şurup ve Vitamin D3 Damla.', imgs: ['img/p-omega3surup.webp', 'img/p-d3.webp'], cta: 'Gelişim Paketi', url: L('/products/gelisim-paketi', 'oyuncak') },
+        { key: 'ajanda', x: .2, y: .885, label: 'Kırmızı ajanda', title: 'Kasım notu: %10', text: 'Yeni üyelere ilk alışverişte indirim.', coupon: true, cta: 'Alışverişe başla', url: L('/collections/en-cok-satanlar', 'ajanda') },
+      ],
+      // An ↔ ürün eşleri
+      memory: [
+        { key: 'enerji', img: 'img/m-enerji.webp', pack: 'img/p-b12.webp', name: 'B12 & Folik Asit', url: L('/products/vitamin-b12-metilfolat', 'enerji') },
+        { key: 'hareket', img: 'img/m-aktif.webp', pack: 'img/p-krill.webp', name: 'Krill Yağı', url: L('/products/krill-yagi', 'hareket') },
+        { key: 'cocuk', img: 'img/m-cocuk.webp', pack: 'img/p-omega3surup.webp', name: 'Omega 3 Şurup', url: L('/products/omega-3-surup', 'cocuk') },
+      ],
+    };
+  },
 };

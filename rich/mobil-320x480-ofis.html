@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=320,height=480">
+<meta name="viewport" content="width=320,height=480,initial-scale=1,user-scalable=no">
+<title>İlaçsız Yaşam – Dr. Ümit Aktaş'ın Ofisi 320x480</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,600&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+{{SHARED_CSS}}
+.ad { width: 320px; height: 480px; touch-action: none; }
+/* Gezinilebilir ofis fotoğrafı */
+.world { position: absolute; left: 0; top: 0; width: 693px; height: 520px; will-change: transform; }
+.world > img { width: 100%; height: 100%; }
+.shade { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(11, 28, 82, .9) 0%, rgba(11, 28, 82, .55) 18%, rgba(11, 28, 82, 0) 32%, rgba(11, 28, 82, 0) 84%, rgba(11, 28, 82, .85) 100%); z-index: 2; }
+/* Sıcak noktalar: fotoğraftaki gerçek nesneler */
+.hs { position: absolute; z-index: 1; width: 40px; height: 40px; margin: -20px 0 0 -20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.hs::before { content: ''; position: absolute; inset: 0; border-radius: 50%; border: 2px solid #fff; animation: ping 1.8s var(--ease) infinite; }
+.hs::after { content: ''; width: 14px; height: 14px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 4px rgba(95, 165, 17, .85), 0 4px 12px rgba(0, 0, 0, .4); transition: background .3s; }
+.hs.found::after { background: var(--green-l); box-shadow: 0 0 0 4px rgba(255, 255, 255, .9), 0 4px 12px rgba(0, 0, 0, .4); }
+.hs.found::before { animation: none; opacity: 0; }
+@keyframes ping { 0% { transform: scale(.5); opacity: 1; } 100% { transform: scale(1.6); opacity: 0; } }
+.hs span { position: absolute; top: calc(100% + 2px); left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 9px; font-weight: 800; background: rgba(11, 28, 82, .75); padding: 2px 6px; border-radius: 6px; opacity: 0; transition: opacity .3s; }
+.hs.found span { opacity: 1; }
+/* Üst bilgi */
+.top { position: absolute; z-index: 3; left: 14px; right: 14px; top: 12px; pointer-events: none; }
+.top .logo { width: 98px; }
+.top h1 { font-family: var(--serif); font-weight: 600; font-size: 21px; line-height: 1.05; margin-top: 8px; letter-spacing: -.01em; text-shadow: 0 2px 12px rgba(0, 0, 0, .35); }
+.top h1 em { color: var(--green-l); }
+.prog { display: flex; align-items: center; gap: 4px; margin-top: 7px; }
+.prog i { width: 18px; height: 4px; border-radius: 4px; background: rgba(255, 255, 255, .3); transition: background .4s; }
+.prog i.on { background: var(--green-l); }
+.prog span { font-size: 9.5px; font-weight: 800; letter-spacing: .05em; margin-left: 5px; text-shadow: 0 1px 6px rgba(0, 0, 0, .5); }
+.hint { position: absolute; z-index: 3; left: 50%; bottom: 40px; transform: translateX(-50%); white-space: nowrap; font-size: 11.5px; font-weight: 800; background: #fff; color: var(--navy); padding: 8px 14px; border-radius: 999px; box-shadow: 0 6px 16px rgba(0, 0, 0, .3); transition: opacity .3s; pointer-events: none; }
+.user .hint { opacity: 0; }
+/* Alt kart */
+.sheet { position: absolute; z-index: 5; left: 8px; right: 8px; bottom: 28px; border-radius: 18px; padding: 14px 14px 12px; background: rgba(11, 28, 82, .82); -webkit-backdrop-filter: blur(14px) saturate(1.3); backdrop-filter: blur(14px) saturate(1.3); border: 1px solid rgba(255, 255, 255, .2); transform: translateY(calc(100% + 40px)); transition: transform .5s var(--ease); }
+.sheet.on { transform: none; }
+.sheet:not(.on) { pointer-events: none; }
+.sheet .x { position: absolute; right: 8px; top: 6px; width: 28px; height: 28px; font-size: 20px; line-height: 1; color: rgba(255, 255, 255, .8); }
+.sheet .ov { font-size: 9.5px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--green-l); }
+.sheet h2 { font-family: var(--serif); font-weight: 600; font-size: 22px; line-height: 1.05; margin-top: 2px; }
+.sheet p { font-size: 11px; line-height: 1.35; font-weight: 600; color: rgba(255, 255, 255, .88); margin-top: 4px; }
+.sheet .imgs { display: flex; gap: 7px; margin-top: 10px; }
+.sheet .imgs .pk { width: 64px; height: 78px; overflow: hidden; }
+.sheet .imgs .pk.book img { max-width: 100%; max-height: 100%; width: 100%; height: 100%; object-fit: cover; }
+.sheet .big { font-family: var(--serif); font-weight: 700; font-size: 54px; line-height: .9; color: var(--green-l); margin-top: 6px; }
+.sheet .coupon { margin-top: 8px; width: 100%; justify-content: space-between; font-size: 12px; padding: 8px 12px; }
+.sheet .coupon b { font-size: 14px; }
+.sheet .cta { width: 100%; justify-content: center; height: 38px; margin-top: 10px; font-size: 13px; }
+.legal { position: absolute; z-index: 6; left: 14px; right: 14px; bottom: 6px; font-size: 7.3px; pointer-events: none; }
+</style>
+</head>
+<body>
+<div class="ad" id="ad" role="link" tabindex="0" aria-label="İlaçsız Yaşam – Dr. Ümit Aktaş'ın ofisine hoş geldin. Fotoğraftaki nesnelere dokun, sürprizleri keşfet.">
+  <div class="world" id="world"><img src="img/o-ofis.webp" alt="Dr. Ümit Aktaş ofisinde"></div>
+  <div class="shade"></div>
+  <div class="top">
+    <img class="logo" src="img/logo-beyaz.webp" alt="İlaçsız Yaşam">
+    <h1>Dr. Ümit Aktaş'ın<br><em>ofisine hoş geldin.</em></h1>
+    <div class="prog" id="prog"></div>
+  </div>
+  <div class="hint" id="hint">Kaydır ya da telefonu eğ · noktalara dokun</div>
+  <div class="sheet" id="sheet"><button class="x" id="x" aria-label="Kapat">×</button><div id="sc"></div></div>
+  <div class="legal">{{legal}}</div>
+</div>
+<script>window.AD = {{DATA}};</script>
+<script>
+{{SHARED_JS}}
+(function () {
+  var H = AD.creative.office, D = AD.data, ad = document.getElementById('ad'), world = document.getElementById('world');
+  var WW = 693, WH = 520, VW = 320, VH = 480, MX = WW - VW, MY = WH - VH;
+  var prog = document.getElementById('prog');
+  // Odaklanan öğe taşma gizli kapsayıcıyı kaydırmasın
+  ad.addEventListener('scroll', function () { ad.scrollTop = 0; ad.scrollLeft = 0; });
+  prog.innerHTML = H.map(function () { return '<i></i>'; }).join('') + '<span id="pc">0/' + H.length + ' sürpriz</span>';
+  var bars = [].slice.call(prog.querySelectorAll('i')), pc = document.getElementById('pc');
+  var found = {}, nFound = 0, openK = -1;
+  var dots = H.map(function (h, k) {
+    var d = AD.h('div', 'hs', '<span>' + h.label + '</span>');
+    d.style.left = (h.x * WW) + 'px'; d.style.top = (h.y * WH) + 'px';
+    d.setAttribute('aria-label', h.label); d.setAttribute('role', 'button');
+    d.addEventListener('pointerup', function (e) { if (!dragged) { e.stopPropagation(); open(k, 'tap'); } });
+    world.appendChild(d);
+    return d;
+  });
+  // Kamera: sürükleme + atalet, telefon eğimi (gyro), otomatik tanıtım gezintisi
+  var cam = { x: .5 * WW - VW / 2, y: MY / 2 }, vel = { x: 0, y: 0 }, tgt = null, userMoved = false;
+  function clamp() { cam.x = Math.max(0, Math.min(MX, cam.x)); cam.y = Math.max(0, Math.min(MY, cam.y)); }
+  function frame() {
+    if (tgt) { cam.x += (tgt.x - cam.x) * 0.045; cam.y += (tgt.y - cam.y) * 0.045; }
+    else if (!dragging) { cam.x += vel.x; cam.y += vel.y; vel.x *= .92; vel.y *= .92; }
+    clamp();
+    world.style.transform = 'translate(' + (-cam.x) + 'px,' + (-cam.y) + 'px)';
+    requestAnimationFrame(frame);
+  }
+  function lookAt(h) { return { x: Math.max(0, Math.min(MX, h.x * WW - VW / 2)), y: Math.max(0, Math.min(MY, h.y * WH - VH / 2)) }; }
+  function takeOver() {
+    if (userMoved) return; userMoved = true; tgt = null; clearTimeout(tourT); ad.classList.add('user'); AD.track('office_user');
+    // iOS: eğim izni ilk dokunuşta istenir
+    try { if (window.DeviceOrientationEvent && DeviceOrientationEvent.requestPermission) DeviceOrientationEvent.requestPermission().then(function (s) { if (s === 'granted') gyro(); }).catch(function () {}); else gyro(); } catch (e) {}
+  }
+  var gyroOn = false;
+  function gyro() {
+    if (gyroOn) return; gyroOn = true;
+    var base = null;
+    window.addEventListener('deviceorientation', function (e) {
+      if (e.gamma == null || dragging || tgt) return;
+      if (base === null) base = { g: e.gamma, b: e.beta };
+      cam.x = (.5 + Math.max(-1, Math.min(1, (e.gamma - base.g) / 25)) * .5) * MX;
+      cam.y = (.5 + Math.max(-1, Math.min(1, (e.beta - base.b) / 30)) * .5) * MY;
+    });
+  }
+  var dragging = false, dragged = false, lx = 0, ly = 0, sx = 0, sy = 0;
+  ad.addEventListener('pointerdown', function (e) {
+    if (e.target.closest('.sheet')) return;
+    dragging = true; dragged = false; lx = sx = e.clientX; ly = sy = e.clientY; vel.x = vel.y = 0; tgt = null;
+    takeOver();
+  });
+  ad.addEventListener('pointermove', function (e) {
+    if (!dragging) return;
+    var dx = e.clientX - lx, dy = e.clientY - ly; lx = e.clientX; ly = e.clientY;
+    if (Math.abs(e.clientX - sx) + Math.abs(e.clientY - sy) > 8) dragged = true;
+    cam.x -= dx; cam.y -= dy; vel.x = -dx; vel.y = -dy;
+  });
+  window.addEventListener('pointerup', function () { dragging = false; setTimeout(function () { dragged = false; }, 0); });
+
+  var sheet = document.getElementById('sheet'), sc = document.getElementById('sc');
+  function open(k, why) {
+    var h = H[k]; openK = k;
+    if (!found[k] && why !== 'auto') { found[k] = true; nFound++; bars[nFound - 1].classList.add('on'); dots[k].classList.add('found'); }
+    pc.textContent = nFound === H.length ? 'Hepsini buldun!' : nFound + '/' + H.length + ' sürpriz';
+    var body = '<div class="ov">' + (nFound === H.length && !h.coupon ? 'Tur tamam · ' : '') + h.label + '</div><h2>' + h.title + '</h2><p>' + h.text + '</p>';
+    if (h.coupon) body += '<button class="coupon" data-copy="1"><span>İndirim kodu: <b>' + D.coupon.code + '</b></span><span class="cp-act">Kopyala</span><span class="cp-ok">✓ Kopyalandı</span></button>';
+    else body += '<div class="imgs">' + h.imgs.map(function (src) { return '<div class="pk' + (/\/b-/.test(src) ? ' book' : '') + '"><img src="' + src + '" alt=""></div>'; }).join('') + '</div>';
+    body += '<button class="cta" data-go="1">' + h.cta + ' <i>→</i></button>';
+    sc.innerHTML = body;
+    sheet.classList.add('on');
+    tgt = lookAt(h); setTimeout(function () { if (openK === k) tgt = null; }, 1400);
+    if (why !== 'auto') AD.track('office_' + h.key);
+    if (nFound === H.length && why !== 'auto') AD.track('office_all_found');
+  }
+  function close() { sheet.classList.remove('on'); openK = -1; if (userMoved) tgt = null; }
+  document.getElementById('x').addEventListener('click', function (e) { e.stopPropagation(); close(); });
+  sheet.addEventListener('click', function (e) {
+    e.stopPropagation();
+    var h = H[openK]; if (!h) return;
+    var c = e.target.closest('[data-copy]'); if (c) return AD.copy(c, D.coupon.code);
+    AD.exit('ofis_' + h.key, h.url);
+  });
+  ad.addEventListener('click', function (e) { if (!dragged && !e.target.closest('.hs') && !e.target.closest('.sheet') && openK < 0 && userMoved) AD.exit('brand', D.brand.home); });
+  ad.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { takeOver(); var k = ((openK < 0 ? -1 : openK) + (e.key === 'ArrowRight' ? 1 : H.length - 1) + H.length) % H.length; open(k, 'key'); }
+    if (e.key === 'Escape') close();
+    if (e.key === 'Enter' && openK >= 0) AD.exit('ofis_' + H[openK].key, H[openK].url);
+  });
+  // Tanıtım: kamera kitaplıktan rafa, doktora süzülür; bir nesneyi kendisi açıp kapatır (≈ 12 sn)
+  var tourT = null;
+  var tourSteps = [[function () { tgt = { x: 0, y: MY / 2 }; }, 2200], [function () { tgt = { x: MX, y: 0 }; }, 2600], [function () { tgt = lookAt({ x: .5, y: .5 }); }, 1800],
+    [function () { open(0, 'auto'); }, 3200], [function () { close(); tgt = lookAt({ x: .5, y: .5 }); }, 1200]];
+  function tour(i) { if (userMoved || i >= tourSteps.length) return; tourSteps[i][0](); tourT = setTimeout(function () { tour(i + 1); }, tourSteps[i][1]); }
+  AD.ready(function () {
+    AD.track('impression_ready');
+    requestAnimationFrame(frame);
+    if (!AD.reduced) setTimeout(function () { tour(0); }, 700);
+  });
+})();
+</script>
+</body>
+</html>

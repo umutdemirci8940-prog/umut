@@ -35,6 +35,25 @@ PHOTOS = {
     # sil-keşfet: üst katman (buğulu) ve alt katman
     'sc-ust': ('products/magnezyum/7.jpg', 480, 720, .5, .5, 62),
     'sc-alt': ('site/abb.webp', 480, 720, .5, .5, 70),
+    # Merceği gezdir: an (ön, panel 180x250 @1.5x) ve mercekte görünen ürün sahnesi (arka, tam kare)
+    'l-gri': ('site/cdn-shop-articles-image-3840-6-7fc11111-0087-47f3-a6b0-713e6b27aa24.webp', 270, 375, .5, .5, 72),
+    'l-gri-b': ('products/d3-k2-vitamin-damlasi/6.jpg', 300, 300, .5, .5, 74),
+    'l-enerji': ('products/vitamin-b12-metilfolat/7.jpg', 270, 375, .5, .55, 72),
+    'l-enerji-b': ('products/vitamin-b12-metilfolat/6.jpg', 300, 300, .5, .5, 74),
+    'l-cocuk': ('products/gelisim-paketi/1.webp', 270, 375, .5, .5, 72, (.72, .27, 1.0, .64)),
+    'l-cocuk-b': ('products/omega-3-surup/7.jpg', 300, 300, .5, .5, 74),
+    'l-aktif': ('products/krill-yagi/8.webp', 270, 375, .42, .5, 72),
+    'l-aktif-b': ('products/krill-yagi/7.jpg', 300, 300, .5, .5, 74),
+    # Dr. Ümit Aktaş'ın ofisi: gezinilebilir fotoğraf
+    'o-ofis': ('site/abb.webp', 1152, 864, .5, .5, 64),
+    'b-ilacsiz': ('products/ilacsiz-yasam/1.webp', 240, 300, .5, .5, 72),
+    'b-mutluluk': ('products/mutluluk-kurleri/1.webp', 240, 300, .5, .5, 72),
+    'b-bitkisel': ('products/bitkisel-kurlerle-ilacsiz-tedavi/1.webp', 240, 300, .5, .5, 72),
+    # Rutin eşleştir: kart yüzleri ve sırtı
+    'm-enerji': ('products/vitamin-b12-metilfolat/7.jpg', 240, 320, .45, .5, 70),
+    'm-aktif': ('products/krill-yagi/8.webp', 240, 320, .45, .5, 70),
+    'm-cocuk': ('products/omega-3-surup/6.jpg', 240, 320, .5, .5, 70),
+    'm-sirt': ('products/magnezyum/7.jpg', 240, 320, .35, .7, 66),
 }
 
 PACKS = {
@@ -50,6 +69,7 @@ PACKS = {
     'krill': 'products/krill-yagi/1.png',
     'magnezyum': 'products/magnezyum/1.png',
     'spirulina': 'products/spirulina/1.png',
+    'safran': 'products/safran-ekstresi/2.png',
 }
 
 
@@ -83,8 +103,12 @@ def packshot(src, height=240, xcrop=None):
 
 
 meta = {'photos': {}, 'packs': {}}
-for name, (src, w, h, fx, fy, q) in PHOTOS.items():
-    im = cover(Image.open(os.path.join(M, src)).convert('RGB'), w, h, fx, fy)
+for name, (src, w, h, fx, fy, q, *box) in PHOTOS.items():
+    im = Image.open(os.path.join(M, src)).convert('RGB')
+    if box:  # önce kaynak üzerinde bölge (oran) seç, sonra kırp
+        bw, bh = im.size; b = box[0]
+        im = im.crop((round(b[0] * bw), round(b[1] * bh), round(b[2] * bw), round(b[3] * bh)))
+    im = cover(im, w, h, fx, fy)
     f = os.path.join(OUT, name + '.webp')
     im.save(f, 'WEBP', quality=q, method=6)
     meta['photos'][name] = {'src': src, 'w': w, 'h': h, 'bytes': os.path.getsize(f)}

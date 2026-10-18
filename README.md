@@ -1,6 +1,19 @@
 # İlaçsız Yaşam – Kasım 2026 interaktif çalışmalar (media-first)
 
-Sunum: **`preview-rich/index.html`** (tek dosya; dört çalışma gömülü, tekrar oynat düğmeli). Yüklemeye hazır paketler: `dist-rich/zip/`.
+Sunum: **`preview-rich/index.html`** (tek dosya; tüm çalışmalar gömülü, tekrar oynat düğmeli). Yüklemeye hazır paketler: `dist-rich/zip/`.
+
+## Yaratıcı set — "Her anın arkasında bir rutin var."
+
+| Çalışma | Boyut | Mekanik | Klasör |
+|---|---|---|---|
+| **Merceği Gezdir** | 970 × 250 masthead | Fare bir büyüteç olur; 4 gerçek anın (gri Kasım göğü, kahkaha, parkta çocuklar, pilates) üzerinde gezdikçe mercek altında o anın arkasındaki ürün sahnesi belirir. Kendi kendine tur, 4 keşif sayacı, keşifler tamamlanınca kupon parlar. | `dist-rich/masthead-970x250-mercek/` |
+| **Merceği Gezdir (Mobil)** | 320 × 480 | 2×2 an, parmakla sürüklenen mercek, keşif sayacı, kalıcı kupon şeridi | `dist-rich/mobil-320x480-mercek/` |
+| **Dr. Ümit Aktaş'ın Ofisi** | 320 × 480 | Markanın ofis fotoğrafında kaydırarak / telefonu eğerek (gyro) gezinme; fotoğraftaki gerçek nesneler sıcak nokta: kitaplık, yoga heykeli, stetoskop, oyuncak, kırmızı ajanda (%10). 5 sürpriz sayacı. | `dist-rich/mobil-320x480-ofis/` |
+| **Rutin Eşleştir** | 320 × 480 | Gerçek fotoğraflarla hafıza oyunu: anı ürünüyle eşleştir; 3 eş → Dr. Ümit Aktaş'lı final ekranında %10 kod | `dist-rich/mobil-320x480-eslestir/` |
+
+Ağırlıklar 90–135 KB. Otomatik akış < 30 sn; etkileşim yoksa mekaniği kendisi gösterir ve teklif ekranına ulaşır.
+
+## Standart set (alternatif)
 
 | Çalışma | Boyut | Mekanik | Klasör / zip |
 |---|---|---|---|
@@ -21,7 +34,11 @@ node tools/build-rich.js                               # dist-rich/ + zip + prev
 NODE_PATH=$(npm root -g) node tools/shoot-rich.js      # ekran görüntüleri + etkileşim testi
 ```
 
-| Masthead | Mobil |
+| Masthead (mercek) | Mobil (mercek · ofis · eşleştir) |
+|---|---|
+| ![mercek](preview-rich/screens/masthead-970x250-mercek-kullanici-cocuk.jpg) | ![mercek](preview-rich/screens/mobil-320x480-mercek-surukle.jpg) ![ofis](preview-rich/screens/mobil-320x480-ofis-stetoskop.jpg) ![eslestir](preview-rich/screens/mobil-320x480-eslestir-eslesti.jpg) |
+
+| Masthead (standart) | Mobil (standart) |
 |---|---|
 | ![masthead](preview-rich/screens/masthead-970x250-oto-1.jpg) | ![kartlar](preview-rich/screens/mobil-320x480-kartlar-kaydir-2.jpg) ![sil](preview-rich/screens/mobil-320x480-sil-kesfet-siliniyor.jpg) ![rutin](preview-rich/screens/mobil-320x480-rutin-oto-2.jpg) |
 
