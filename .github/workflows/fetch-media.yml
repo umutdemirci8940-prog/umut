@@ -1,0 +1,41 @@
+name: İlaçsız Yaşam – masthead görsel arşivini çek
+
+# Bulut oturumunun ağ politikası ilacsizyasam.com'a erişemediği için görsel arşivi
+# GitHub'ın sunucusunda indirilir ve dala geri push'lanır.
+on:
+  workflow_dispatch:
+  push:
+    branches: ['claude/**']
+    paths:
+      - tools/fetch-media.js
+      - .github/workflows/fetch-media.yml
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Görsel arşivini çek
+        run: node tools/fetch-media.js
+
+      - name: Özet
+        run: du -sh assets/media && find assets/media -type f | wc -l
+
+      - name: Sonuçları dala push'la
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A assets/media
+          git commit -m "ilacsizyasam.com görsel arşivi (GitHub Actions)" || { echo "Değişiklik yok"; exit 0; }
+          git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          git push
