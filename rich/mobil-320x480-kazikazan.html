@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=320,height=480">
+<meta name="viewport" content="width=320,height=480,initial-scale=1,user-scalable=no">
+<title>İlaçsız Yaşam – Kasım Kazı Kazan 320x480</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,700&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+{{SHARED_CSS}}
+.ad { width: 320px; height: 480px; background: var(--navy-d); touch-action: none; }
+/* Bilet */
+.ticket { position: absolute; left: 10px; top: 10px; width: 300px; height: 430px; border-radius: 16px; background: #fbf7ec; overflow: hidden; box-shadow: 0 14px 34px rgba(0, 0, 0, .45); color: var(--ink); }
+.ticket::before, .ticket::after { content: ''; position: absolute; top: 96px; width: 18px; height: 18px; border-radius: 50%; background: var(--navy-d); margin-top: -9px; }
+.ticket::before { left: -9px; } .ticket::after { right: -9px; }
+.hd { position: relative; height: 96px; overflow: hidden; }
+.hd > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(1.1); }
+.hd::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(11, 28, 82, .92) 0%, rgba(11, 28, 82, .7) 55%, rgba(11, 28, 82, .15) 100%); }
+.hd .in { position: absolute; z-index: 1; left: 14px; top: 10px; color: #fff; }
+.hd .logo { width: 88px; }
+.hd h1 { font-family: var(--serif); font-style: italic; font-weight: 700; font-size: 25px; line-height: 1; margin-top: 6px; }
+.hd h1 em { font-style: normal; color: #ffd25a; }
+.perf { border-top: 2px dashed rgba(19, 45, 125, .25); margin: 0 14px; }
+.rule { text-align: center; font-size: 11.5px; font-weight: 800; color: var(--navy); margin-top: 9px; }
+/* 6 pencere */
+.grid { position: absolute; left: 30px; top: 142px; width: 260px; height: 200px; display: grid; grid-template-columns: repeat(3, 80px); grid-template-rows: repeat(2, 95px); gap: 10px; }
+.cell { position: relative; min-height: 0; overflow: hidden; border-radius: 12px; background: #fff; box-shadow: inset 0 0 0 1px rgba(19, 45, 125, .12); display: flex; align-items: center; justify-content: center; transition: box-shadow .3s, transform .3s var(--ease); }
+.cell img { max-width: 78%; max-height: 74%; object-fit: contain; }
+.cell.hit { box-shadow: 0 0 0 3px var(--green), 0 6px 16px rgba(95, 165, 17, .4); transform: scale(1.04); }
+canvas { position: absolute; left: 30px; top: 142px; width: 260px; height: 200px; z-index: 2; touch-action: none; transition: opacity .6s; }
+.done canvas { opacity: 0; pointer-events: none; }
+.stat { position: absolute; left: 24px; right: 24px; top: 356px; display: flex; align-items: center; justify-content: space-between; }
+.stat .c { font-size: 11px; font-weight: 800; color: var(--navy); }
+.stat .c b { color: var(--green); }
+.open { font-size: 11px; font-weight: 800; color: #fff; background: var(--navy); padding: 7px 12px; border-radius: 999px; opacity: 0; transform: translateY(6px); transition: opacity .3s, transform .3s var(--ease); pointer-events: none; }
+.open.show { opacity: 1; transform: none; pointer-events: auto; }
+.fine { position: absolute; left: 24px; right: 24px; top: 394px; font-size: 8.5px; line-height: 1.35; color: #6b7391; text-align: center; }
+.coin { position: absolute; z-index: 4; pointer-events: none; font-size: 11.5px; font-weight: 800; color: #fff; background: var(--navy); padding: 7px 12px; border-radius: 999px; box-shadow: 0 6px 16px rgba(0, 0, 0, .3); left: 50%; top: 224px; transform: translateX(-50%); white-space: nowrap; transition: opacity .3s; animation: bob 1.5s var(--ease) infinite; }
+@keyframes bob { 50% { transform: translate(-50%, -4px); } }
+.user .coin { opacity: 0; }
+/* Kazanma ekranı */
+.win { position: absolute; inset: 0; z-index: 8; background: radial-gradient(circle at 50% 30%, #2a4aa8 0%, var(--navy-d) 70%); color: #fff; text-align: center; padding: 22px 18px 0; opacity: 0; pointer-events: none; transition: opacity .45s; }
+.win.on { opacity: 1; pointer-events: auto; }
+.win .logo { width: 96px; }
+.win .k { font-family: var(--serif); font-style: italic; font-weight: 700; font-size: 38px; color: #ffd25a; margin-top: 10px; transform: scale(.5); transition: transform .55s cubic-bezier(.3, 1.7, .5, 1); }
+.win.on .k { transform: none; }
+.win .s { font-size: 12px; font-weight: 700; color: rgba(255, 255, 255, .85); margin-top: 2px; }
+.trio { display: flex; justify-content: center; gap: 8px; margin-top: 14px; }
+.trio div { width: 74px; height: 80px; border-radius: 12px; background: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 3px var(--green-l), 0 8px 18px rgba(0, 0, 0, .35); transform: translateY(20px) rotate(var(--r)); opacity: 0; transition: transform .5s var(--ease), opacity .5s; }
+.win.on .trio div { transform: rotate(var(--r)); opacity: 1; }
+.win.on .trio div:nth-child(2) { transition-delay: .1s; } .win.on .trio div:nth-child(3) { transition-delay: .2s; }
+.trio img { max-width: 80%; max-height: 80%; }
+.prize { font-family: var(--serif); font-weight: 700; font-size: 72px; line-height: .9; color: var(--green-l); margin-top: 14px; }
+.prize small { font-family: var(--sans); font-size: 13px; font-weight: 800; color: #fff; display: inline-block; text-align: left; margin-left: 6px; vertical-align: 12px; line-height: 1.2; }
+.win .coupon { margin-top: 12px; width: 100%; justify-content: space-between; font-size: 12px; padding: 9px 12px; }
+.win .coupon b { font-size: 15px; }
+.win .cta { width: 100%; justify-content: center; height: 40px; margin-top: 9px; }
+.win .pp { font-size: 10.5px; font-weight: 800; color: rgba(255, 255, 255, .75); margin-top: 9px; text-decoration: underline; }
+.legal { position: absolute; z-index: 9; left: 14px; right: 14px; bottom: 6px; font-size: 7.3px; pointer-events: none; }
+</style>
+</head>
+<body>
+<div class="ad" id="ad" role="link" tabindex="0" aria-label="İlaçsız Yaşam – Kasım Kazı Kazan: parmağınla kazı, 3 aynı ürünü bul, yüzde 10 indirim kazan.">
+  <div class="ticket">
+    <div class="hd"><img src="img/kk-kaplama.webp" alt=""><div class="in"><img class="logo" src="img/logo-beyaz.webp" alt="İlaçsız Yaşam"><h1>Kasım <em>Kazı Kazan</em></h1></div></div>
+    <div class="rule" id="rule"></div>
+    <div class="perf" style="margin-top:8px"></div>
+  </div>
+  <div class="grid" id="grid"></div>
+  <canvas id="cv" width="520" height="400" aria-hidden="true"></canvas>
+  <div class="coin">Parmağınla kazı</div>
+  <div class="stat"><div class="c" id="cnt">Açılan: <b>0</b>/6</div><button class="open" id="openAll">Hepsini aç</button></div>
+  <div class="fine" id="fine"></div>
+  <div class="win" id="win">
+    <img class="logo" src="img/logo-beyaz.webp" alt="İlaçsız Yaşam">
+    <div class="k">Kazandın!</div>
+    <div class="s" id="ws"></div>
+    <div class="trio" id="trio"></div>
+    <div class="prize">{{pct}}<small>Kasım<br>hediyen</small></div>
+    <button class="coupon" id="cp"><span>Yeni üye kodu: <b>{{code}}</b></span><span class="cp-act">Kopyala</span><span class="cp-ok">✓ Kopyalandı</span></button>
+    <button class="cta" id="go">Hediyemi kullan <i>→</i></button>
+    <button class="pp" id="pp">Vitamin D3 & K2'yi incele</button>
+  </div>
+  <div class="legal">{{legal}}</div>
+</div>
+<script>window.AD = {{DATA}};</script>
+<script>
+{{SHARED_JS}}
+(function () {
+  var K = AD.creative.kazi, D = AD.data, ad = document.getElementById('ad'), cv = document.getElementById('cv'), ctx = cv.getContext('2d');
+  var $ = function (id) { return document.getElementById(id); };
+  $('rule').textContent = K.rule; $('fine').textContent = K.fine;
+  // Pencere dizilimi: 3 kazanan ürün + 3 farklı ürün, karışık (kazananlar en az bir satıra yayılır)
+  var items = [K.win, K.win, K.win].concat(K.others);
+  for (var i = items.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = items[i]; items[i] = items[j]; items[j] = t; }
+  var grid = $('grid');
+  var cells = items.map(function (it) { var c = AD.h('div', 'cell', '<img src="' + it.img + '" alt="">'); grid.appendChild(c); return c; });
+  // Pencere geometrisi (canvas css px): 3×2, boşluk 10
+  var W = 260, H = 200, GAP = 10, CW = (W - 2 * GAP) / 3, CH = (H - GAP) / 2, S = 2;
+  function rect(i) { var col = i % 3, row = Math.floor(i / 3); return { x: col * (CW + GAP), y: row * (CH + GAP), w: CW, h: CH }; }
+  // Kazınan alanı kendimiz izleriz (canvas okunamasa da çalışır): her pencere 6×6 hücre
+  var N = 6, cover = items.map(function () { return new Array(N * N).fill(false); }), opened = items.map(function () { return false; });
+  var tex = new Image(); tex.src = 'img/kk-kaplama.webp';
+  function paint() {
+    ctx.clearRect(0, 0, cv.width, cv.height);
+    items.forEach(function (it, i) {
+      var r = rect(i), x = r.x * S, y = r.y * S, w = r.w * S, h = r.h * S, rr = 12 * S;
+      ctx.save(); ctx.beginPath();
+      ctx.moveTo(x + rr, y); ctx.arcTo(x + w, y, x + w, y + h, rr); ctx.arcTo(x + w, y + h, x, y + h, rr); ctx.arcTo(x, y + h, x, y, rr); ctx.arcTo(x, y, x + w, y, rr); ctx.closePath(); ctx.clip();
+      // Gerçek bal peteği fotoğrafı + altın tonu
+      var iw = tex.naturalWidth || 600, ih = tex.naturalHeight || 420, k = Math.max(w / iw, h / ih) * 2;
+      if (tex.complete && tex.naturalWidth) ctx.drawImage(tex, x + (w - iw * k) / 2 + ((i % 3) - 1) * 20 * S, y + (h - ih * k) / 2, iw * k, ih * k);
+      ctx.fillStyle = 'rgba(214,160,40,.35)'; ctx.fillRect(x, y, w, h);
+      ctx.fillStyle = 'rgba(255,255,255,.92)'; ctx.font = '800 ' + (13 * S) + 'px Manrope, Arial, sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.shadowColor = 'rgba(0,0,0,.45)'; ctx.shadowBlur = 6;
+      ctx.fillText('KAZI', x + w / 2, y + h / 2);
+      ctx.restore();
+    });
+  }
+  var last = null, started = false, done = false, demoing = false;
+  function scratch(px, py) {
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.lineCap = ctx.lineJoin = 'round'; ctx.lineWidth = 34 * S;
+    ctx.beginPath(); if (last) ctx.moveTo(last[0] * S, last[1] * S); else ctx.moveTo(px * S - .1, py * S); ctx.lineTo(px * S, py * S); ctx.stroke();
+    ctx.globalCompositeOperation = 'source-over';
+    // Hücre kapsama: fırça yarıçapı 17 px (tanıtım çizgisi pencere açmaz)
+    if (demoing) { last = [px, py]; return; }
+    var a = last || [px, py], steps = Math.max(1, Math.ceil(Math.hypot(px - a[0], py - a[1]) / 6));
+    for (var s = 0; s <= steps; s++) {
+      var qx = a[0] + (px - a[0]) * s / steps, qy = a[1] + (py - a[1]) * s / steps;
+      items.forEach(function (it, i) {
+        if (opened[i]) return; var r = rect(i);
+        for (var cy = 0; cy < N; cy++) for (var cx = 0; cx < N; cx++) {
+          var mx = r.x + (cx + .5) * r.w / N, my = r.y + (cy + .5) * r.h / N;
+          if (Math.hypot(mx - qx, my - qy) < 19) cover[i][cy * N + cx] = true;
+        }
+      });
+    }
+    last = [px, py];
+    check();
+  }
+  function check() {
+    cover.forEach(function (c, i) {
+      if (opened[i]) return;
+      if (c.filter(Boolean).length / c.length > .5) open(i, 'scratch');
+    });
+  }
+  var nOpen = 0, nWin = 0;
+  function open(i, why) {
+    if (opened[i]) return; opened[i] = true; nOpen++;
+    var r = rect(i); ctx.clearRect(r.x * S - 2, r.y * S - 2, r.w * S + 4, r.h * S + 4);
+    $('cnt').innerHTML = 'Açılan: <b>' + nOpen + '</b>/6';
+    if (items[i] === K.win) { nWin++; cells[i].classList.add('hit'); $('cnt').innerHTML += ' · <b>' + nWin + '/3</b> D3 & K2'; }
+    if (why !== 'auto') AD.track('kazi_open_' + items[i].key);
+    if (nWin === 3) setTimeout(win, 650);
+  }
+  function win() {
+    if (done) return; done = true;
+    ad.classList.add('done');
+    $('ws').textContent = '3 Vitamin D3 & K2 buldun — Kasım\'ın güneşsiz günlerine hazırsın.';
+    $('trio').innerHTML = [-8, 0, 8].map(function (r) { return '<div style="--r:' + r + 'deg"><img src="' + K.win.img + '" alt=""></div>'; }).join('');
+    $('win').classList.add('on');
+    AD.track('kazi_win');
+  }
+  function pos(e) { var b = cv.getBoundingClientRect(); return [(e.clientX - b.left) * W / b.width, (e.clientY - b.top) * H / b.height]; }
+  var down = false;
+  cv.addEventListener('pointerdown', function (e) {
+    down = true; last = null; e.preventDefault();
+    if (!started) { started = true; ad.classList.add('user'); clearTimeout(demoT); AD.track('kazi_start'); }
+    try { cv.setPointerCapture(e.pointerId); } catch (er) {}
+    var p = pos(e); scratch(p[0], p[1]);
+  });
+  cv.addEventListener('pointermove', function (e) { if (down && !done) { var p = pos(e); scratch(p[0], p[1]); } });
+  function up() { down = false; last = null; }
+  cv.addEventListener('pointerup', up); cv.addEventListener('pointercancel', up);
+  $('openAll').addEventListener('click', function (e) { e.stopPropagation(); AD.track('kazi_open_all'); items.forEach(function (it, i) { setTimeout(function () { open(i, 'all'); }, i * 160); }); });
+  $('cp').addEventListener('click', function (e) { e.stopPropagation(); AD.copy(this, D.coupon.code); });
+  $('go').addEventListener('click', function (e) { e.stopPropagation(); AD.exit('kazi_kupon', K.url); });
+  $('pp').addEventListener('click', function (e) { e.stopPropagation(); AD.exit('kazi_d3k2', K.win.url); });
+  $('win').addEventListener('click', function () { AD.exit('kazi_kupon', K.url); });
+  // Tanıtım: ilk pencerede kısa bir kazıma; 8 sn'de "Hepsini aç" belirir; 20 sn etkileşim yoksa kart kendini açar
+  var demoT = null;
+  function demo() {
+    if (started) return;
+    var r = rect(0), pts = [], t0 = null;
+    for (var k = 0; k <= 16; k++) pts.push([r.x + 14 + k * (r.w - 28) / 16, r.y + r.h / 2 + Math.sin(k / 16 * Math.PI * 3) * 18]);
+    last = null; demoing = true;
+    (function step(ts) { if (started) { demoing = false; return; } if (t0 === null) t0 = ts; var k = Math.min(pts.length - 1, Math.floor((ts - t0) / 30)); scratch(pts[k][0], pts[k][1]); if (k < pts.length - 1) requestAnimationFrame(step); else { last = null; demoing = false; } })(performance.now());
+  }
+  tex.onload = paint; paint();
+  AD.ready(function () {
+    AD.track('impression_ready');
+    paint();
+    if (AD.reduced) { $('openAll').classList.add('show'); return; }
+    demoT = setTimeout(demo, 1500);
+    setTimeout(function () { if (!done) $('openAll').classList.add('show'); }, 8000);
+    setTimeout(function () { if (!started && !done) items.forEach(function (it, i) { setTimeout(function () { open(i, 'auto'); }, i * 200); }); }, 20000);
+  });
+})();
+</script>
+</body>
+</html>

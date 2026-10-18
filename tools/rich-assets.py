@@ -63,6 +63,31 @@ PHOTOS = {
     'q-ben': ('products/vitamin-b12-metilfolat/7.jpg', 420, 250, .45, .5, 70),
     'q-enerji': ('site/cdn-shop-articles-image-3840-6-7fc11111-0087-47f3-a6b0-713e6b27aa24.webp', 420, 250, .5, .55, 72),
     'q-huzur': ('products/safran-ekstresi/8.jpg', 420, 250, .5, .5, 70),
+    # Rutin Eşleş (tanışma uygulaması): profil fotoğrafları
+    'dt-magnezyum': ('products/magnezyum/7.jpg', 450, 600, .4, .6, 70),
+    'dt-d3k2': ('products/d3-k2-vitamin-damlasi/6.jpg', 450, 600, .5, .5, 70),
+    'dt-b12': ('products/vitamin-b12-metilfolat/6.jpg', 450, 600, .4, .55, 70),
+    'dt-omega3': ('products/omega-3-33-22-60-kapsul/8.jpg', 450, 600, .5, .5, 70),
+    'dt-krill': ('products/krill-yagi/8.webp', 450, 600, .45, .5, 70),
+    'dt-vitc': ('products/vitamin-c/8.jpg', 450, 600, .5, .5, 70),
+    'dt-cinko': ('products/cinko/7.jpg', 450, 600, .5, .5, 70),
+    # Bulutları Dağıt: oyun sahnesi; Kazı Kazan: bal peteği kaplama
+    'gm-sahne': ('products/d3-k2-vitamin-damlasi/6.jpg', 480, 720, .5, .5, 70),
+    'kk-kaplama': ('products/propolis-kapsul/7.jpg', 600, 420, .5, .5, 70, (.58, .7, 1.0, 1.0)),
+}
+
+# Oyun balonları: (kaynak, merkez x, merkez y, yarıçap — hepsi genişliğe oranla)
+SPRITES = {
+    'bulut1': ('site/cdn-shop-articles-image-3840-6-7fc11111-0087-47f3-a6b0-713e6b27aa24.webp', .25, .3, .14),
+    'bulut2': ('site/cdn-shop-articles-image-3840-6-7fc11111-0087-47f3-a6b0-713e6b27aa24.webp', .75, .25, .14),
+    'bulut3': ('site/cdn-shop-articles-image-3840-6-7fc11111-0087-47f3-a6b0-713e6b27aa24.webp', .45, .32, .12),
+    'portakal': ('site/cdn-shop-articles-demir-takviyesi-kullanirken-emilimi-etkileyen-besinl.jpg', .105, .56, .09),
+    'domates': ('site/cdn-shop-articles-demir-takviyesi-kullanirken-emilimi-etkileyen-besinl.jpg', .885, .7, .1),
+    'brokoli': ('products/cinko/7.jpg', .88, .37, .1),
+    'avokado': ('products/cinko/7.jpg', .23, .47, .11),
+    'somon': ('products/cinko/7.jpg', .82, .57, .09),
+    'bal': ('products/propolis-kapsul/7.jpg', .86, .86, .1),
+    'zeytin': ('products/d3-k2-vitamin-damlasi/6.jpg', .1, .59, .08),
 }
 
 PACKS = {
@@ -122,6 +147,14 @@ for name, (src, w, h, fx, fy, q, *box) in PHOTOS.items():
     im.save(f, 'WEBP', quality=q, method=6)
     meta['photos'][name] = {'src': src, 'w': w, 'h': h, 'bytes': os.path.getsize(f)}
 
+for name, (src, cx, cy, r) in SPRITES.items():
+    im = Image.open(os.path.join(M, src)).convert('RGB')
+    w, h = im.size; R = r * w
+    im = im.crop((round(cx * w - R), round(cy * h - R), round(cx * w + R), round(cy * h + R))).resize((160, 160), Image.LANCZOS)
+    f = os.path.join(OUT, 's-' + name + '.webp')
+    im.save(f, 'WEBP', quality=72, method=6)
+    meta['photos']['s-' + name] = {'src': src, 'w': 160, 'h': 160, 'bytes': os.path.getsize(f)}
+
 for name, src in PACKS.items():
     src, xc = src if isinstance(src, tuple) else (src, None)
     im = packshot(os.path.join(M, src), xcrop=xc)
@@ -137,6 +170,10 @@ logo2 = Image.open(os.path.join(M, 'site', 'ilacsizyasam-logo2-copy.png')).conve
 logo2 = logo2.crop(logo2.getbbox())
 logo2 = logo2.resize((600, round(600 * logo2.size[1] / logo2.size[0])), Image.LANCZOS)
 logo2.save(os.path.join(OUT, 'logo-dr.webp'), 'WEBP', quality=86, method=6)
+logo3 = Image.open(os.path.join(M, 'site', 'lacivert-logo-large.png')).convert('RGBA')
+logo3 = logo3.crop(logo3.getbbox())
+logo3 = logo3.resize((360, round(360 * logo3.size[1] / logo3.size[0])), Image.LANCZOS)
+logo3.save(os.path.join(OUT, 'logo-lacivert.webp'), 'WEBP', quality=88, method=6)
 meta['logo'] = {'beyaz': logo.size, 'dr': logo2.size}
 
 json.dump(meta, open(os.path.join(OUT, 'index.json'), 'w'), indent=1)

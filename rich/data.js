@@ -56,7 +56,7 @@ module.exports = {
       focus: '55% 55%',
       mini: '92% 50%',
       products: [
-        { key: 'vitc', name: 'Vitamin C', path: '/products/vitamin-c' },
+        { key: 'vitc', name: 'Vitamin C', da: 'de', path: '/products/vitamin-c' },
         { key: 'cinko', name: 'Çinko', path: '/products/cinko' },
         { key: 'propolis', name: 'Propolis', path: '/products/propolis-kapsul' },
       ],
@@ -144,6 +144,39 @@ module.exports = {
         // utm_content en sonda; kreatif cevapları sonuna ekler (…_test_masa_cocuk_enerji) → markaya ihtiyaç dağılımı verisi
         resultUrl: L('/collections/gida-takviyeleri', 'test'),
         note: 'Bu test tıbbi tavsiye değildir; takviye kullanımı için hekiminize danışın.',
+      },
+      // Rutin Eşleş: takviyeler tanışma uygulaması profili olarak (yalnızca yetişkin ürünleri)
+      eslesme: [
+        { key: 'magnezyum', name: 'Magnezyum', age: '60', unit: 'kapsül', photo: 'img/dt-magnezyum.webp', pack: 'img/p-magnezyum.webp', bio: 'Akşam sakinliğini, hafta sonu yürüyüşlerini ve düzenli rutinleri severim.', claim: 'Yorgunluk ve bitkinliğin azalmasına katkıda bulunurum.', tags: ['akşam rutini', 'kas fonksiyonu', 'bitkisel kapsül'], url: L('/products/magnezyum', 'magnezyum') },
+        { key: 'd3k2', name: 'D3 & K2', da: 'de', age: '400', unit: 'damla', photo: 'img/dt-d3k2.webp', pack: 'img/p-d3k2.webp', bio: 'Güneşin alçaldığı Kasım günlerinde yanındayım. Zeytinyağı bazlıyım.', claim: 'D vitamini bağışıklık sisteminin normal fonksiyonuna katkıda bulunur.', tags: ['güneşsiz günler', 'damla', 'zeytinyağı'], url: L('/products/d3-k2-vitamin-damlasi', 'd3k2') },
+        { key: 'b12', name: 'B12 & Folik Asit', da: 'de', age: '30', unit: 'tablet', photo: 'img/dt-b12.webp', pack: 'img/p-b12.webp', bio: 'Pazartesi sabahlarının en sevilen yüzü. Çiğnenebilirim.', claim: 'B12 vitamini yorgunluk ve bitkinliğin azalmasına katkıda bulunur.', tags: ['enerji', 'çiğneme tableti', 'metil form'], url: L('/products/vitamin-b12-metilfolat', 'b12') },
+        { key: 'krill', name: 'Krill Yağı', age: '60', unit: 'kapsül', photo: 'img/dt-krill.webp', pack: 'img/p-krill.webp', bio: 'Pilates sonrası buluşalım. Kırmızı rengim astaksantinden.', claim: 'EPA ve DHA kalbin normal fonksiyonuna katkıda bulunur.', tags: ['pilates', 'hareket', 'omega 3'], url: L('/products/krill-yagi', 'krill') },
+        { key: 'vitc', name: 'Vitamin C', age: '30', unit: 'kapsül', photo: 'img/dt-vitc.webp', pack: 'img/p-vitc.webp', bio: 'Kışa hazırlık konusunda ciddiyim. Portakal kokulu sabahlar.', claim: 'C vitamini bağışıklık sisteminin normal fonksiyonuna katkıda bulunur.', tags: ['kışa hazırlık', 'turunçgil', 'vegan kapsül'], url: L('/products/vitamin-c', 'vitc') },
+        { key: 'omega3', name: 'Omega 3', da: 'de', age: '60', unit: 'kapsül', photo: 'img/dt-omega3.webp', pack: 'img/p-omega3.webp', bio: 'Masa başı günlerin sessiz kahramanı. Kokusuzum, söz.', claim: 'EPA ve DHA kalbin normal fonksiyonuna katkıda bulunur.', tags: ['masa başı', 'balık yağı', '33/22'], url: L('/products/omega-3-33-22-60-kapsul', 'omega3') },
+        { key: 'cinko', name: 'Çinko', age: '30', unit: 'kapsül', photo: 'img/dt-cinko.webp', pack: 'img/p-cinko.webp', bio: 'Avokado, somon ve brokoliyle aram çok iyi.', claim: 'Çinko bağışıklık sisteminin normal fonksiyonuna katkıda bulunur.', tags: ['bağışıklık', 'saç & tırnak', 'mutfak'], url: L('/products/cinko', 'cinko') },
+      ],
+      // Kasım Kazı Kazan: 6 pencere, 3'ü aynı (herkes kazanır — çekiliş değildir)
+      kazi: {
+        win: { key: 'd3k2', name: 'Vitamin D3 & K2', img: 'img/p-d3k2.webp', url: L('/products/d3-k2-vitamin-damlasi', 'kazi_d3k2') },
+        others: [{ key: 'b12', img: 'img/p-b12.webp' }, { key: 'magnezyum', img: 'img/p-magnezyum.webp' }, { key: 'vitc', img: 'img/p-vitc.webp' }],
+        url: L('/collections/en-cok-satanlar', 'kazi_kupon'),
+        rule: '3 aynı ürünü bul, Kasım hediyeni kazan.',
+        fine: 'Çekiliş değildir; her kart kazanır ve tüm katılımcılar aynı indirimi alır.',
+      },
+      // Bulutları Dağıt: 20 sn mini oyun
+      oyun: {
+        clouds: ['img/s-bulut1.webp', 'img/s-bulut2.webp', 'img/s-bulut3.webp'],
+        foods: [
+          { img: 'img/s-portakal.webp', t: 'Portakal · C vitamini' }, { img: 'img/s-somon.webp', t: 'Somon · Omega 3' },
+          { img: 'img/s-brokoli.webp', t: 'Brokoli · K vitamini' }, { img: 'img/s-bal.webp', t: 'Bal peteği' },
+          { img: 'img/s-zeytin.webp', t: 'Zeytin' }, { img: 'img/s-avokado.webp', t: 'Avokado' }, { img: 'img/s-domates.webp', t: 'Domates' },
+        ],
+        picks: [
+          { key: 'd3k2', name: 'Vitamin D3 & K2 Damla', img: 'img/p-d3k2.webp', url: L('/products/d3-k2-vitamin-damlasi', 'oyun_d3k2') },
+          { key: 'vitc', name: 'Vitamin C', img: 'img/p-vitc.webp', url: L('/products/vitamin-c', 'oyun_vitc') },
+          { key: 'omega3', name: 'Omega 3', img: 'img/p-omega3.webp', url: L('/products/omega-3-33-22-60-kapsul', 'oyun_omega3') },
+        ],
+        url: L('/collections/gida-takviyeleri', 'oyun_sonuc'),
       },
       // An ↔ ürün eşleri
       memory: [

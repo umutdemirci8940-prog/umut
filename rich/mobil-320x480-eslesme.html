@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=320,height=480">
+<meta name="viewport" content="width=320,height=480,initial-scale=1,user-scalable=no">
+<title>İlaçsız Yaşam – Rutin Eşleş 320x480</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600;1,9..144,700&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+{{SHARED_CSS}}
+html, body { background: #eef0f6; }
+.ad { width: 320px; height: 480px; background: #eef0f6; color: var(--ink); touch-action: none; }
+/* Uygulama üst çubuğu */
+.bar { position: absolute; left: 0; right: 0; top: 0; height: 46px; display: flex; align-items: center; justify-content: space-between; padding: 0 12px; }
+.bar .logo { height: 30px; }
+.bar .app { font-family: var(--serif); font-style: italic; font-weight: 700; font-size: 17px; color: var(--navy); }
+.bar .app em { color: var(--green); }
+.bar .pill { font-size: 9.5px; font-weight: 800; color: var(--navy); background: #fff; border-radius: 999px; padding: 5px 9px; box-shadow: 0 2px 8px rgba(19, 45, 125, .12); }
+/* Profil kartları */
+.deck { position: absolute; z-index: 1; left: 10px; top: 48px; width: 300px; height: 338px; }
+.card { position: absolute; inset: 0; border-radius: 18px; overflow: hidden; background: #fff; box-shadow: 0 10px 26px rgba(19, 45, 125, .22); transform-origin: 50% 120%; will-change: transform; color: #fff; }
+.card .ph { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity .25s; }
+.card .ph.pkimg { object-fit: contain; padding: 34px 30px 150px; background: #fff; opacity: 0; }
+.card.g1 .ph.pkimg { opacity: 1; }
+.card .shade { position: absolute; z-index: 1; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(0, 0, 0, .25) 0%, rgba(0, 0, 0, 0) 14%, rgba(0, 0, 0, 0) 46%, rgba(11, 28, 82, .78) 72%, rgba(11, 28, 82, .96) 100%); }
+.gal { position: absolute; z-index: 2; left: 8px; right: 8px; top: 7px; display: flex; gap: 4px; }
+.gal i { flex: 1; height: 3px; border-radius: 3px; background: rgba(255, 255, 255, .45); }
+.gal i.on { background: #fff; }
+.info { position: absolute; z-index: 2; left: 14px; right: 14px; bottom: 12px; }
+.info h2 { font-family: var(--serif); font-weight: 700; font-size: 27px; line-height: 1; }
+.info h2 span { font-family: var(--sans); font-weight: 600; font-size: 20px; }
+.info h2 small { font-family: var(--sans); font-size: 11px; font-weight: 700; opacity: .8; }
+.ver { display: inline-block; margin-top: 5px; font-size: 9.5px; font-weight: 800; padding: 3px 7px; border-radius: 999px; background: rgba(95, 165, 17, .9); }
+.info p { font-size: 11.5px; line-height: 1.35; font-weight: 600; margin-top: 6px; }
+.info .cl { font-size: 9.5px; font-weight: 700; color: rgba(255, 255, 255, .78); margin-top: 3px; }
+.tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 7px; }
+.tags span { font-size: 9.5px; font-weight: 800; padding: 3px 8px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, .55); background: rgba(255, 255, 255, .12); }
+.stamp { position: absolute; z-index: 3; top: 26px; font-size: 26px; font-weight: 800; letter-spacing: .06em; padding: 2px 10px; border: 4px solid; border-radius: 10px; opacity: 0; }
+.stamp.like { left: 18px; color: #6cd13a; border-color: #6cd13a; transform: rotate(-14deg); }
+.stamp.nope { right: 18px; color: #ff5b5b; border-color: #ff5b5b; transform: rotate(14deg); }
+/* Alt düğmeler */
+.btns { position: absolute; z-index: 2; left: 0; right: 0; top: 400px; display: flex; justify-content: center; align-items: center; gap: 18px; }
+.btns button { border-radius: 50%; background: #fff; box-shadow: 0 6px 16px rgba(19, 45, 125, .18); display: flex; align-items: center; justify-content: center; font-weight: 800; transition: transform .2s var(--ease); }
+.btns button:active { transform: scale(.9); }
+.b-no { width: 50px; height: 50px; font-size: 22px; color: #ff5b5b; }
+.b-star { width: 40px; height: 40px; font-size: 17px; color: #2f7bd8; }
+.b-yes { width: 50px; height: 50px; font-size: 24px; color: var(--green); }
+.legal { position: absolute; left: 12px; right: 12px; bottom: 5px; font-size: 7.2px; color: #6b7391; }
+.hint { position: absolute; z-index: 5; left: 50%; top: 210px; transform: translateX(-50%); white-space: nowrap; font-size: 11px; font-weight: 800; color: #fff; background: rgba(11, 28, 82, .82); padding: 7px 12px; border-radius: 999px; opacity: 0; transition: opacity .3s; pointer-events: none; }
+.hint.show { opacity: 1; }
+/* Eşleşme ekranı */
+.match { position: absolute; inset: 0; z-index: 10; color: #fff; opacity: 0; pointer-events: none; transition: opacity .35s; overflow: hidden; }
+.match.on { opacity: 1; pointer-events: auto; }
+.match .bg { position: absolute; inset: -20px; width: calc(100% + 40px); height: calc(100% + 40px); object-fit: cover; filter: blur(14px) brightness(.55) saturate(1.2); }
+.match::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11, 28, 82, .35), rgba(11, 28, 82, .92)); }
+.match .in { position: absolute; z-index: 1; inset: 0; padding: 26px 18px 0; text-align: center; }
+.match h1 { font-family: var(--serif); font-style: italic; font-weight: 700; font-size: 42px; color: var(--green-l); line-height: 1; transform: scale(.6); transition: transform .5s cubic-bezier(.3, 1.6, .5, 1); }
+.match.on h1 { transform: none; }
+.match .s { font-size: 12.5px; font-weight: 700; margin-top: 6px; }
+.duo { display: flex; justify-content: center; margin-top: 16px; }
+.duo div { width: 104px; height: 104px; border-radius: 50%; border: 4px solid #fff; overflow: hidden; background: #fff; box-shadow: 0 10px 24px rgba(0, 0, 0, .35); }
+.duo img { width: 100%; height: 100%; object-fit: cover; }
+.duo .p2 { margin-left: -22px; }
+.duo .p2 img { object-fit: contain; padding: 10px; }
+.duo .p1 { transform: translateX(-30px) rotate(-8deg); transition: transform .55s var(--ease); }
+.duo .p2 { transform: translateX(30px) rotate(8deg); transition: transform .55s var(--ease); }
+.match.on .duo .p1 { transform: rotate(-6deg); } .match.on .duo .p2 { transform: rotate(6deg); }
+.gift { margin-top: 16px; font-size: 10.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--green-l); }
+.match .coupon { margin-top: 6px; width: 100%; justify-content: space-between; font-size: 12px; padding: 9px 12px; color: #fff; }
+.match .coupon .pct { font-family: var(--serif); font-size: 19px; font-weight: 700; color: var(--green-l); }
+.match .cta { width: 100%; justify-content: center; height: 40px; margin-top: 9px; font-size: 13px; }
+.match .more { margin-top: 10px; font-size: 11.5px; font-weight: 800; color: rgba(255, 255, 255, .8); text-decoration: underline; }
+.match .cl { font-size: 9px; color: rgba(255, 255, 255, .7); margin-top: 6px; }
+/* Gün sonu özeti */
+.sum { position: absolute; inset: 0; z-index: 9; background: #eef0f6; padding: 54px 14px 0; opacity: 0; pointer-events: none; transition: opacity .35s; }
+.sum.on { opacity: 1; pointer-events: auto; }
+.sum h2 { font-family: var(--serif); font-weight: 700; font-size: 22px; color: var(--navy); }
+.sum p { font-size: 11px; font-weight: 600; color: #4a5373; margin-top: 4px; }
+.sum .list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
+.sum .list div { position: relative; height: 104px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(19, 45, 125, .15); cursor: pointer; }
+.sum .list img { width: 100%; height: 100%; object-fit: cover; }
+.sum .list span { position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 6px 5px; font-size: 9.5px; font-weight: 800; color: #fff; background: linear-gradient(0deg, rgba(11, 28, 82, .9), rgba(11, 28, 82, 0)); }
+.sum .coupon { margin-top: 12px; width: 100%; justify-content: space-between; color: var(--navy); border-color: rgba(19, 45, 125, .4); background: #fff; font-size: 12px; padding: 9px 12px; }
+.sum .coupon .cp-act { color: var(--green); }
+.sum .cta { width: 100%; justify-content: center; height: 40px; margin-top: 9px; }
+.sum .again { margin-top: 10px; font-size: 11px; font-weight: 800; color: var(--navy); text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="ad" id="ad" role="link" tabindex="0" aria-label="İlaçsız Yaşam – Rutin Eşleş: takviyeleri sağa kaydırarak beğen, eşleş, ilk buluşmaya yüzde 10 indirim.">
+  <div class="bar"><img class="logo" src="img/logo-lacivert.webp" alt="İlaçsız Yaşam"><div class="app">Rutin <em>Eşleş</em></div><div class="pill" id="left">7 profil</div></div>
+  <div class="deck" id="deck"></div>
+  <div class="hint" id="hint">→ Beğen · Geç ←</div>
+  <div class="btns"><button class="b-no" id="no" aria-label="Geç">✕</button><button class="b-star" id="star" aria-label="Ürünü incele">★</button><button class="b-yes" id="yes" aria-label="Beğen">♥</button></div>
+  <div class="legal">{{legal}}</div>
+  <div class="match" id="match"><img class="bg" id="mBg" src="" alt="">
+    <div class="in">
+      <h1>Eşleştiniz!</h1>
+      <div class="s" id="mS"></div>
+      <div class="duo"><div class="p1"><img id="mP1" src="" alt=""></div><div class="p2"><img id="mP2" src="" alt=""></div></div>
+      <div class="cl" id="mCl"></div>
+      <div class="gift">İlk buluşma hediyesi</div>
+      <button class="coupon" id="cp"><span><span class="pct">{{pct}}</span> Yeni üyelere · <b>{{code}}</b></span><span class="cp-act">Kopyala</span><span class="cp-ok">✓ Kopyalandı</span></button>
+      <button class="cta" id="msg">Mesaj gönder · ürünü incele <i>→</i></button>
+      <button class="more" id="more">Kaydırmaya devam et</button>
+    </div>
+  </div>
+  <div class="sum" id="sum">
+    <h2>Bugünkü eşleşmelerin</h2>
+    <p id="sumP"></p>
+    <div class="list" id="list"></div>
+    <button class="coupon" id="cp2"><span>%10 · <b>{{code}}</b></span><span class="cp-act">Kopyala</span><span class="cp-ok">✓ Kopyalandı</span></button>
+    <button class="cta" id="all">Eşleşmelerimi sitede gör <i>→</i></button>
+    <button class="again" id="again">Baştan kaydır</button>
+  </div>
+</div>
+<script>window.AD = {{DATA}};</script>
+<script>
+{{SHARED_JS}}
+(function () {
+  var P = AD.creative.eslesme, D = AD.data, ad = document.getElementById('ad'), deck = document.getElementById('deck');
+  var $ = function (id) { return document.getElementById(id); };
+  var cards = [], idx = 0, liked = [], user = false;
+  function build() {
+    deck.innerHTML = ''; cards = [];
+    P.forEach(function (p, i) {
+      var c = AD.h('div', 'card');
+      c.innerHTML = '<img class="ph" src="' + p.photo + '" alt=""><img class="ph pkimg" src="' + p.pack + '" alt="' + p.name + '"><div class="shade"></div>' +
+        '<div class="gal"><i class="on"></i><i></i></div><div class="stamp like">BEĞEN</div><div class="stamp nope">GEÇ</div>' +
+        '<div class="info"><h2>' + p.name + '<span>, ' + p.age + '</span> <small>' + p.unit + '</small></h2><div class="ver">✓ Orijinal ürün · resmi satış noktası</div>' +
+        '<p>' + p.bio + '</p><div class="cl">' + p.claim + '</div><div class="tags">' + p.tags.map(function (t) { return '<span>' + t + '</span>'; }).join('') + '</div></div>';
+      deck.appendChild(c); cards.push(c);
+    });
+    idx = 0; layout();
+  }
+  function layout() {
+    cards.forEach(function (c, i) {
+      var k = i - idx;
+      c.style.display = k < 0 || k > 2 ? 'none' : '';
+      c.style.zIndex = 10 - k;
+      c.style.transition = 'transform .4s var(--ease)';
+      c.style.transform = k <= 0 ? 'none' : 'scale(' + (1 - k * .04) + ') translateY(' + (k * 5) + 'px)';
+    });
+    $('left').textContent = (P.length - idx) + ' profil';
+  }
+  function stamps(c, dx) {
+    c.querySelector('.like').style.opacity = Math.max(0, Math.min(1, dx / 80));
+    c.querySelector('.nope').style.opacity = Math.max(0, Math.min(1, -dx / 80));
+  }
+  function decide(like, why) {
+    if (idx >= cards.length) return;
+    var c = cards[idx], p = P[idx];
+    c.style.transition = 'transform .45s var(--ease)';
+    c.style.transform = 'translate(' + (like ? 420 : -420) + 'px, 30px) rotate(' + (like ? 24 : -24) + 'deg)';
+    stamps(c, like ? 120 : -120);
+    AD.track((like ? 'like_' : 'nope_') + p.key + (why === 'auto' ? '_auto' : ''));
+    idx++;
+    setTimeout(function () { layout(); if (like) { liked.push(p); showMatch(p); } else if (idx >= cards.length) summary(); }, 260);
+  }
+  // Sürükleme
+  var sx = 0, sy = 0, dx = 0, drag = false, moved = false;
+  deck.addEventListener('pointerdown', function (e) {
+    if (idx >= cards.length) return;
+    drag = true; moved = false; sx = e.clientX; sy = e.clientY; dx = 0; first();
+    cards[idx].style.transition = 'none';
+    try { deck.setPointerCapture(e.pointerId); } catch (er) {}
+  });
+  deck.addEventListener('pointermove', function (e) {
+    if (!drag) return;
+    dx = e.clientX - sx; var dy = e.clientY - sy;
+    if (Math.abs(dx) > 6) moved = true;
+    if (moved) { cards[idx].style.transform = 'translate(' + dx + 'px,' + dy * .3 + 'px) rotate(' + dx / 16 + 'deg)'; stamps(cards[idx], dx); }
+  });
+  function end(e) {
+    if (!drag) return; drag = false;
+    if (moved) {
+      if (Math.abs(dx) > 80) decide(dx > 0, 'swipe');
+      else { var c = cards[idx]; c.style.transition = 'transform .35s var(--ease)'; c.style.transform = 'none'; stamps(c, 0); }
+      return;
+    }
+    // Dokunuş: sağ yarı → ikinci fotoğraf (ambalaj), sol yarı → ilk fotoğraf (Tinder galerisi gibi)
+    var b = deck.getBoundingClientRect(), right = e.clientX - b.left > b.width / 2, c2 = cards[idx];
+    c2.classList.toggle('g1', right);
+    var g = c2.querySelectorAll('.gal i'); g[0].classList.toggle('on', !right); g[1].classList.toggle('on', right);
+    AD.track('gallery_' + P[idx].key);
+  }
+  deck.addEventListener('pointerup', end);
+  deck.addEventListener('pointercancel', function () { drag = false; if (cards[idx]) { cards[idx].style.transform = 'none'; stamps(cards[idx], 0); } });
+  $('no').addEventListener('click', function (e) { e.stopPropagation(); first(); decide(false, 'btn'); });
+  $('yes').addEventListener('click', function (e) { e.stopPropagation(); first(); decide(true, 'btn'); });
+  $('star').addEventListener('click', function (e) { e.stopPropagation(); first(); if (idx < P.length) AD.exit('eslesme_super_' + P[idx].key, P[idx].url); });
+  // Eşleşme
+  var cur = null;
+  function showMatch(p) {
+    cur = p;
+    $('mBg').src = p.photo; $('mP1').src = p.photo; $('mP2').src = p.pack;
+    $('mS').textContent = p.name + ' ' + (p.da || 'da') + ' seni beğendi.';
+    $('mCl').textContent = p.claim;
+    $('match').classList.add('on');
+    AD.track('match_' + p.key);
+  }
+  $('cp').addEventListener('click', function (e) { e.stopPropagation(); AD.copy(this, D.coupon.code); });
+  $('cp2').addEventListener('click', function (e) { e.stopPropagation(); AD.copy(this, D.coupon.code); });
+  $('msg').addEventListener('click', function (e) { e.stopPropagation(); AD.exit('eslesme_' + cur.key, cur.url); });
+  $('more').addEventListener('click', function (e) { e.stopPropagation(); $('match').classList.remove('on'); if (idx >= cards.length) summary(); });
+  $('match').addEventListener('click', function () { AD.exit('eslesme_' + cur.key, cur.url); });
+  function summary() {
+    $('sumP').textContent = liked.length ? liked.length + ' takviyeyle eşleştin. Kasım rutinin hazır.' : 'Henüz eşleşme yok — belki bir tur daha?';
+    $('list').innerHTML = liked.slice(0, 6).map(function (p, i) { return '<div data-i="' + i + '"><img src="' + p.photo + '" alt=""><span>' + p.name + '</span></div>'; }).join('');
+    $('sum').classList.add('on'); AD.track('summary_' + liked.length);
+  }
+  $('list').addEventListener('click', function (e) { e.stopPropagation(); var d = e.target.closest('[data-i]'); if (d) { var p = liked[+d.dataset.i]; AD.exit('eslesme_' + p.key, p.url); } });
+  $('all').addEventListener('click', function (e) { e.stopPropagation(); AD.exit('eslesme_ozet', D.coupon.url); });
+  $('again').addEventListener('click', function (e) { e.stopPropagation(); liked = []; $('sum').classList.remove('on'); build(); });
+  $('sum').addEventListener('click', function (e) { e.stopPropagation(); });
+  // Tanıtım: kart sağa "beğen" diye sallanır; 10 sn etkileşim yoksa ilk kartı kendisi beğenir ve eşleşme ekranını gösterir
+  var hintT = [], autoT = null;
+  function first() { if (user) return; user = true; hintT.forEach(clearTimeout); clearTimeout(autoT); $('hint').classList.remove('show'); AD.track('eslesme_user'); }
+  function nudge(dir) {
+    if (user || !cards[idx]) return; var c = cards[idx];
+    c.style.transition = 'transform .5s var(--ease)'; c.style.transform = 'translateX(' + dir * 60 + 'px) rotate(' + dir * 5 + 'deg)'; stamps(c, dir * 60);
+    hintT.push(setTimeout(function () { if (!user) { c.style.transform = 'none'; stamps(c, 0); } }, 650));
+  }
+  build();
+  AD.ready(function () {
+    AD.track('impression_ready');
+    if (AD.reduced) return;
+    hintT.push(setTimeout(function () { $('hint').classList.add('show'); nudge(1); }, 1400));
+    hintT.push(setTimeout(function () { nudge(-1); }, 2600));
+    hintT.push(setTimeout(function () { $('hint').classList.remove('show'); }, 4200));
+    autoT = setTimeout(function () { if (!user) decide(true, 'auto'); }, 10000);
+  });
+})();
+</script>
+</body>
+</html>

@@ -32,6 +32,13 @@ const playPair = (k, wrong) => async (p) => {
   if (wrong) { const c = idx(Object.values(PAIRS).find((v) => v !== PAIRS[k])); await cards.nth(a).click(); await p.waitForTimeout(300); await cards.nth(c).click(); await p.waitForTimeout(400); return; }
   await cards.nth(a).click(); await p.waitForTimeout(400); await cards.nth(b).click();
 };
+const popClouds = (ms) => async (p) => {
+  const t0 = Date.now();
+  while (Date.now() - t0 < ms) {
+    const bb = await p.evaluate(() => { const el = [...document.querySelectorAll('.b')].find((e) => !e.classList.contains('pop')); if (!el) return null; const r = el.getBoundingClientRect(); return r.top > 70 && r.top < 400 ? [r.left + r.width / 2, r.top + r.height / 2] : null; });
+    if (bb) await p.mouse.click(bb[0], bb[1]); else await p.waitForTimeout(120);
+  }
+};
 const scratch = async (p) => {
   await p.mouse.move(30, 120); await p.mouse.down();
   for (let y = 120; y < 420; y += 34) { await p.mouse.move(290, y, { steps: 6 }); await p.mouse.move(30, y + 17, { steps: 6 }); }
@@ -93,6 +100,26 @@ const SHOTS = {
     ['soru-2', 700, (p) => p.locator('#ans button').nth(1).click()],
     ['soru-3', 700, (p) => p.locator('#ans button').nth(1).click()],
     ['sonuc', 1200, (p) => p.locator('#ans button').nth(1).click()],
+  ] },
+  'mobil-320x480-eslesme': { w: 320, h: 480, mobile: true, steps: [
+    ['profil', 1200], ['ipucu', 1300],
+    ['galeri', 600, (p) => p.mouse.click(250, 150)],
+    ['surukle', 0, async (p) => { await p.mouse.move(160, 220); await p.mouse.down(); await p.mouse.move(230, 230, { steps: 6 }); }],
+    ['eslesti', 1100, async (p) => { await p.mouse.move(300, 240, { steps: 4 }); await p.mouse.up(); }],
+    ['kopya', 500, (p) => p.locator('#cp').click()],
+    ['gec', 700, async (p) => { await p.locator('#more').click(); await p.waitForTimeout(400); await p.locator('#no').click(); }],
+    ['ozet', 900, async (p) => { for (let i = 0; i < 5; i++) { await p.locator('#yes').click(); await p.waitForTimeout(700); await p.locator('#more').click(); await p.waitForTimeout(300); } }],
+  ] },
+  'mobil-320x480-kazikazan': { w: 320, h: 480, mobile: true, steps: [
+    ['bilet', 1200], ['demo', 1600],
+    ['kaziniyor', 600, async (p) => { await p.mouse.move(30, 160); await p.mouse.down(); for (let y = 155; y < 240; y += 14) { await p.mouse.move(290, y, { steps: 6 }); await p.mouse.move(30, y + 7, { steps: 6 }); } await p.mouse.up(); }],
+    ['kazandin', 1400, async (p) => { await p.mouse.move(30, 255); await p.mouse.down(); for (let y = 255; y < 345; y += 14) { await p.mouse.move(290, y, { steps: 6 }); await p.mouse.move(30, y + 7, { steps: 6 }); } await p.mouse.up(); }],
+  ] },
+  'mobil-320x480-oyun': { w: 320, h: 480, mobile: true, steps: [
+    ['baslangic', 2600], ['tanitim', 2400],
+    ['oyun', 0, async (p) => { await p.locator('#play').click({ force: true }); await popClouds(6000)(p); }],
+    ['oyun-2', 0, popClouds(6000)],
+    ['sonuc', 9500],
   ] },
   'mobil-320x480-rutin': { w: 320, h: 480, mobile: true, steps: [
     ['intro', 900], ['oto-2', 4200], ['dokun-aktif', 1100, (p) => p.mouse.click(160, 400)], ['urun', 600, (p) => p.mouse.move(60, 380)],

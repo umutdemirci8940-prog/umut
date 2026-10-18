@@ -27,6 +27,9 @@ const ADS = {
   'mobil-320x480-eslestir': { content: 'mobil_eslestir', photo: 'mh', creative: 'memory' },
   'masthead-970x250-golge': { content: 'masthead_golge', photo: 'mh', creative: 'gunes' },
   'mobil-320x480-golge': { content: 'mobil_golge', photo: 'mh', creative: 'gunes' },
+  'mobil-320x480-eslesme': { content: 'mobil_eslesme', photo: 'mh', creative: 'eslesme' },
+  'mobil-320x480-kazikazan': { content: 'mobil_kazikazan', photo: 'mh', creative: 'kazi' },
+  'mobil-320x480-oyun': { content: 'mobil_oyun', photo: 'mh', creative: 'oyun' },
 };
 
 function adData(content) {
@@ -95,6 +98,10 @@ for (const [name, cfg] of Object.entries(ADS)) {
 
 // Sunum sayfası: dört çalışma tek dosyada (srcdoc ile gömülü), tekrar oynat düğmeleri ve kurgu notları.
 const NOTES = {
+  'mobil-320x480-eslesme': ['Mobil · tanışma uygulaması formatı · 320×480', 'Rutin Eşleş', "Takviyeler tanışma uygulamasında profil kartı: \"Magnezyum, 60 kapsül\" — gerçek yaşam tarzı fotoğrafı, biyografi, onaylı beyan, ilgi alanı etiketleri. Sağa kaydır = BEĞEN, sola = GEÇ (damga efektli), dokununca galeri ambalaj fotoğrafına geçer, ★ ürünü açar. Beğenince tam ekran \"Eşleştiniz!\" ve ilk buluşma hediyesi %10 kod; deste bitince \"Bugünkü eşleşmelerin\" özeti. Her beğeni/geçiş ölçülür → ürün ilgisi verisi."],
+  'mobil-320x480-kazikazan': ['Mobil · kazı kazan · 320×480', 'Kasım Kazı Kazan', 'Gerçek bal peteği fotoğrafından kaplamalı 6 pencereli bilet; parmakla kazınır, her pencere %50 kazınınca açılır. 3 Vitamin D3 & K2 bulunca \"Kazandın!\" ekranı ve %10 Kasım hediyesi. Çekiliş değildir, her kart kazanır (yasal not bilette). Tanıtım çizgisi mekaniği gösterir; 8 sn\'de \"Hepsini aç\", 20 sn\'de kendiliğinden açılır.'],
+  'mobil-320x480-oyun': ['Mobil · mini oyun · 320×480', 'Bulutları Dağıt', "20 saniyelik dokunma oyunu: gerçek gri Kasım göğünden kesilmiş bulutlar sahnenin üzerine yağar, dokunarak patlatılır; her bulutla Vitamin D3 & K2 sahnesi gerçekten aydınlanır (gün ışığı %0 → %100). Gerçek fotoğraftan kesilmiş portakal, somon, brokoli, bal peteği balonları +3 puan. Sonuçta skor + \"gerçekte Kasım'da güneş alçak\" mesajı, D3 & K2 / C / Omega 3 ve %10 kod. Rekor cihazda saklanır, tekrar oynanır."],
+
   'masthead-970x250-golge': ['Interaktif Masthead · 970×250', 'Gölgen Ne Diyor?', "Reklam, izleyicinin şehri (yayın makrosu ?city= ya da seçim) ve bugünün tarihi için güneşi canlı hesaplar: \"Bugün İstanbul'da öğlen gölgen boyunun 1,7 katı.\" Gölge boydan uzunsa güneş D vitamini üretimi için yeterince dik gelmez; ihtiyaç kullanıcının kendi verisiyle ortaya çıkar. Güneş Haziran'dan Aralık'a sürüklendikçe fotoğrafın ışığı gerçekten söner, gün ışığı kaybı dakikasıyla yazılır. Ardından fotoğraflı 3 soru → kişisel Kasım rutini (2–3 ürün, onaylı beyanlar, %10 kod). Cevaplar UTM'e yazılır: marka hangi mecrada hangi ihtiyacın baskın olduğunu görür."],
   'mobil-320x480-golge': ['Mobil Interaktif · 320×480', 'Gölgen Ne Diyor? (Mobil)', 'Aynı canlı hesap mobilde: ışığı şehrin güneşine göre değişen fotoğraf, büyük gölge oranı, şehir seçici, güneş kaydırıcısı; tam ekran fotoğraflı 3 soru ve kişisel rutin ekranı.'],
 
@@ -117,10 +124,12 @@ const block = (n) => {
 <div class="frame" style="width:${w}px;height:${h}px"><iframe title="${title}" width="${w}" height="${h}" srcdoc="${doc}"></iframe></div></section>`;
 };
 const have = (n) => NOTES[n] && fs.existsSync(path.join(dist, 'inline', `${n}.html`));
+const MOBILE_GAMES = ['eslesme', 'kazi', 'oyun'];
+const gameSet = Object.keys(ADS).filter((n) => MOBILE_GAMES.includes(ADS[n].creative) && have(n)).map(block).join('\n');
 const needSet = Object.keys(ADS).filter((n) => ADS[n].creative === 'gunes' && have(n)).map(block).join('\n');
-const creativeSet = Object.keys(ADS).filter((n) => ADS[n].creative && ADS[n].creative !== 'gunes' && have(n)).map(block).join('\n');
+const creativeSet = Object.keys(ADS).filter((n) => ADS[n].creative && ADS[n].creative !== 'gunes' && !MOBILE_GAMES.includes(ADS[n].creative) && have(n)).map(block).join('\n');
 const standardSet = Object.keys(ADS).filter((n) => !ADS[n].creative && have(n)).map(block).join('\n');
-const blocks = `<h3 class="sec">Ana fikir · İhtiyacı ortaya çıkaran canlı veri</h3>${needSet}<h3 class="sec">Yaratıcı set · keşif mekanikleri</h3>${creativeSet}<h3 class="sec">Standart set · alternatif / yedek</h3>${standardSet}`;
+const blocks = `<h3 class="sec">Mobil'e özgü · uygulama, kazı kazan ve oyun</h3>${gameSet}<h3 class="sec">Ana fikir · İhtiyacı ortaya çıkaran canlı veri</h3>${needSet}<h3 class="sec">Yaratıcı set · keşif mekanikleri</h3>${creativeSet}<h3 class="sec">Standart set · alternatif / yedek</h3>${standardSet}`;
 fs.mkdirSync(path.join(root, 'preview-rich'), { recursive: true });
 fs.writeFileSync(path.join(root, 'preview-rich', 'index.html'), `<!DOCTYPE html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>İlaçsız Yaşam – Kasım Interaktif Çalışmalar</title>

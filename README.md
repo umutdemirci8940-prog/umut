@@ -2,6 +2,18 @@
 
 Sunum: **`preview-rich/index.html`** (tek dosya; tüm çalışmalar gömülü, tekrar oynat düğmeli). Yüklemeye hazır paketler: `dist-rich/zip/`.
 
+## Mobil'e özgü set — uygulama, kazı kazan, oyun (320 × 480)
+
+| Çalışma | Mekanik | Klasör |
+|---|---|---|
+| **Rutin Eşleş** | Tanışma uygulaması: takviye profilleri (gerçek fotoğraf, biyografi, onaylı beyan), sağa/sola kaydırma damgaları, galeri, "Eşleştiniz!" + ilk buluşma hediyesi %10, gün sonu özeti | `dist-rich/mobil-320x480-eslesme/` |
+| **Kasım Kazı Kazan** | Bal peteği fotoğrafı kaplamalı 6 pencere, parmakla kazıma, 3 D3 & K2 → "Kazandın!" + %10. Çekiliş değildir, her kart kazanır. | `dist-rich/mobil-320x480-kazikazan/` |
+| **Bulutları Dağıt** | 20 sn dokunma oyunu: gri Kasım bulutlarını patlat, sahne aydınlanır; meyve/sebze balonları +3; skor, rekor, ürünler ve %10 | `dist-rich/mobil-320x480-oyun/` |
+
+| Rutin Eşleş | Kazı Kazan | Bulutları Dağıt |
+|---|---|---|
+| ![](preview-rich/screens/mobil-320x480-eslesme-surukle.jpg) ![](preview-rich/screens/mobil-320x480-eslesme-eslesti.jpg) | ![](preview-rich/screens/mobil-320x480-kazikazan-kaziniyor.jpg) ![](preview-rich/screens/mobil-320x480-kazikazan-kazandin.jpg) | ![](preview-rich/screens/mobil-320x480-oyun-oyun.jpg) ![](preview-rich/screens/mobil-320x480-oyun-sonuc.jpg) |
+
 ## Ana fikir — "Gölgen ne diyor?" (ihtiyacı ortaya çıkaran canlı veri)
 
 Reklam, izleyicinin şehri ve bugünün tarihi için güneşi canlı hesaplar (`rich/gunes.js`, NOAA yaklaşımı, ±2 dk): *"Bugün İstanbul'da öğlen gölgen boyunun 1,7 katı."* Gölge boydan uzunsa güneş D vitamini üretimi için yeterince dik gelmez. Güneş kaydırıcısı Haziran → Aralık sürüklendikçe fotoğrafın ışığı söner, gün ışığı kaybı dakikasıyla yazılır. Ardından fotoğraflı 3 soru → kişisel Kasım rutini (2–3 ürün, onaylı beyanlar, %10 kod, "tıbbi tavsiye değildir" notu).

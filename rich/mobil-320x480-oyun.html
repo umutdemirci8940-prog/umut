@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=320,height=480">
+<meta name="viewport" content="width=320,height=480,initial-scale=1,user-scalable=no">
+<title>İlaçsız Yaşam – Bulutları Dağıt 320x480</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,700&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+{{SHARED_CSS}}
+.ad { width: 320px; height: 480px; touch-action: none; }
+.scene { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: filter .35s linear; }
+.sky { position: absolute; inset: 0; overflow: hidden; }
+/* Balonlar: gerçek fotoğraftan kesilmiş bulut ve yiyecekler */
+.b { position: absolute; left: 0; top: 0; border-radius: 50%; will-change: transform; cursor: pointer; }
+.b img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; pointer-events: none; }
+.b.cl img { -webkit-mask-image: radial-gradient(circle, #000 50%, transparent 71%); mask-image: radial-gradient(circle, #000 50%, transparent 71%); filter: brightness(.9) contrast(1.05); }
+.b.fd { box-shadow: 0 0 0 3px #fff, 0 8px 18px rgba(0, 0, 0, .35); }
+.b.pop { transition: transform .28s var(--ease), opacity .28s; opacity: 0; }
+.fx { position: absolute; z-index: 6; pointer-events: none; font-weight: 800; font-size: 14px; color: #fff; text-shadow: 0 2px 8px rgba(0, 0, 0, .55); white-space: nowrap; animation: up .9s var(--ease) forwards; }
+.fx.food { font-size: 12px; background: #fff; color: var(--navy); padding: 4px 9px; border-radius: 999px; text-shadow: none; box-shadow: 0 4px 12px rgba(0, 0, 0, .3); }
+@keyframes up { from { transform: translate(-50%, 0); opacity: 1; } to { transform: translate(-50%, -46px); opacity: 0; } }
+/* HUD */
+.hud { position: absolute; z-index: 5; left: 0; right: 0; top: 0; padding: 10px 12px 0; display: flex; align-items: center; justify-content: space-between; background: linear-gradient(180deg, rgba(11, 28, 82, .75), rgba(11, 28, 82, 0)); height: 64px; pointer-events: none; }
+.hud .logo { width: 92px; }
+.score { font-family: var(--serif); font-weight: 700; font-size: 26px; text-align: right; line-height: 1; text-shadow: 0 2px 10px rgba(0, 0, 0, .4); }
+.score small { display: block; font-family: var(--sans); font-size: 8.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; opacity: .85; }
+.timer { position: absolute; z-index: 5; left: 12px; right: 12px; top: 56px; height: 5px; border-radius: 5px; background: rgba(255, 255, 255, .3); overflow: hidden; opacity: 0; transition: opacity .3s; }
+.playing .timer { opacity: 1; }
+.timer i { position: absolute; inset: 0; background: #ffd25a; transform-origin: 0 50%; }
+.sunm { position: absolute; z-index: 5; left: 12px; bottom: 26px; font-size: 10px; font-weight: 800; padding: 5px 10px; border-radius: 999px; background: rgba(11, 28, 82, .6); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); pointer-events: none; opacity: 0; transition: opacity .3s; }
+.playing .sunm { opacity: 1; }
+/* Başlangıç ve sonuç panelleri */
+.panel { position: absolute; z-index: 7; left: 0; right: 0; bottom: 0; padding: 70px 18px 30px; background: linear-gradient(180deg, rgba(11, 28, 82, 0) 0%, rgba(11, 28, 82, .88) 26%, rgba(11, 28, 82, .97) 100%); transform: translateY(0); transition: transform .45s var(--ease), opacity .45s; }
+.panel.off { transform: translateY(105%); opacity: 0; pointer-events: none; }
+.panel .ov { font-size: 10px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--green-l); }
+.panel h1 { font-family: var(--serif); font-weight: 700; font-size: 29px; line-height: 1.02; margin-top: 4px; }
+.panel h1 em { color: #ffd25a; font-style: italic; }
+.panel p { font-size: 11.5px; line-height: 1.4; font-weight: 600; color: rgba(255, 255, 255, .86); margin-top: 7px; }
+.panel .cta { width: 100%; justify-content: center; height: 44px; margin-top: 12px; font-size: 15px; }
+.panel .cta.pulse { animation: pulse 1.4s var(--ease) infinite; }
+@keyframes pulse { 50% { transform: scale(1.04); box-shadow: 0 0 0 8px rgba(95, 165, 17, .25); } }
+.res .big { font-family: var(--serif); font-weight: 700; font-size: 50px; line-height: .9; color: #ffd25a; }
+.res .big small { font-family: var(--sans); font-size: 12px; font-weight: 800; color: #fff; margin-left: 6px; vertical-align: 10px; display: inline-block; line-height: 1.2; }
+.res .row { display: flex; gap: 7px; margin-top: 10px; }
+.res .row .pk { width: 62px; height: 58px; cursor: pointer; }
+.res .coupon { margin-top: 10px; width: 100%; justify-content: space-between; font-size: 12px; padding: 8px 12px; }
+.res .coupon b { font-size: 14px; }
+.res .cta { height: 40px; margin-top: 8px; font-size: 13px; }
+.res .again { font-size: 11px; font-weight: 800; color: rgba(255, 255, 255, .75); text-decoration: underline; margin-top: 8px; }
+.legal { position: absolute; z-index: 9; left: 12px; right: 12px; bottom: 5px; font-size: 7.2px; pointer-events: none; }
+</style>
+</head>
+<body>
+<div class="ad" id="ad" role="link" tabindex="0" aria-label="İlaçsız Yaşam – Bulutları Dağıt: 20 saniyede Kasım bulutlarına dokun, güneşi geri getir.">
+  <img class="scene" id="scene" src="img/gm-sahne.webp" alt="Gün ışığında Vitamin D3 & K2 Damla">
+  <div class="sky" id="sky"></div>
+  <div class="hud"><img class="logo" src="img/logo-beyaz.webp" alt="İlaçsız Yaşam"><div class="score" id="score">0<small>güneş puanı</small></div></div>
+  <div class="timer"><i id="tm"></i></div>
+  <div class="sunm" id="sunm">Gün ışığı %0</div>
+  <div class="panel" id="start">
+    <div class="ov">Kasım mini oyunu · 20 saniye</div>
+    <h1>Kasım bulutlarını <em>dağıt!</em></h1>
+    <p>Gri bulutlara dokun, güneşi geri getir. Meyve ve sebze balonları <b>+3</b> puan.</p>
+    <button class="cta pulse" id="play">Oyna <i>→</i></button>
+  </div>
+  <div class="panel res off" id="res">
+    <div class="ov" id="rov"></div>
+    <div class="big" id="rbig"></div>
+    <p id="rp"></p>
+    <div class="row" id="row"></div>
+    <button class="coupon" id="cp"><span>%10 yeni üye kodu: <b>{{code}}</b></span><span class="cp-act">Kopyala</span><span class="cp-ok">✓ Kopyalandı</span></button>
+    <button class="cta" id="go" style="width:100%;justify-content:center">Kasım rutinine bak <i>→</i></button>
+    <div style="text-align:center"><button class="again" id="again">Tekrar oyna</button></div>
+  </div>
+  <div class="legal">{{legal}}</div>
+</div>
+<script>window.AD = {{DATA}};</script>
+<script>
+{{SHARED_JS}}
+(function () {
+  var O = AD.creative.oyun, D = AD.data, ad = document.getElementById('ad'), sky = document.getElementById('sky');
+  var $ = function (id) { return document.getElementById(id); };
+  var balls = [], score = 0, popped = 0, playing = false, tEnd = 0, GAME = 20000, nextCloud = 0, nextFood = 0, last = 0;
+  function light() {
+    // Sahne ışığı: başta kapalı Kasım günü, dağıtılan buluta göre aydınlanır
+    var k = Math.min(1, popped / 22);
+    $('scene').style.filter = 'brightness(' + (0.45 + 0.65 * k).toFixed(3) + ') saturate(' + (0.4 + 0.8 * k).toFixed(3) + ') hue-rotate(' + ((1 - k) * 14).toFixed(1) + 'deg)';
+    $('sunm').textContent = 'Gün ışığı %' + Math.round(k * 100);
+  }
+  function spawn(kind) {
+    var food = kind === 'food', size = food ? 58 + Math.random() * 10 : 70 + Math.random() * 34;
+    var el = AD.h('div', 'b ' + (food ? 'fd' : 'cl'));
+    var f = food ? O.foods[Math.floor(Math.random() * O.foods.length)] : null;
+    el.innerHTML = '<img src="' + (food ? f.img : O.clouds[Math.floor(Math.random() * O.clouds.length)]) + '" alt="">';
+    el.style.width = el.style.height = size + 'px';
+    var b = { el: el, food: f, x: 10 + Math.random() * (300 - size), y: -size, vy: (food ? 46 : 30) + Math.random() * 26, sway: Math.random() * 6.28, s: size, dead: false };
+    el.addEventListener('pointerdown', function (e) { e.stopPropagation(); e.preventDefault(); hit(b, true); });
+    sky.appendChild(el); balls.push(b);
+  }
+  function fx(x, y, text, food) { var t = AD.h('div', 'fx' + (food ? ' food' : ''), text); t.style.left = x + 'px'; t.style.top = y + 'px'; ad.appendChild(t); setTimeout(function () { t.remove(); }, 950); }
+  function hit(b, user) {
+    if (b.dead || (!playing && user)) { if (!playing && user) startGame(); return; }
+    b.dead = true; b.el.classList.add('pop'); b.el.style.transform = 'translate(' + b.x + 'px,' + b.y + 'px) scale(1.35)';
+    setTimeout(function () { b.el.remove(); }, 300);
+    if (b.food) { score += 3; fx(b.x + b.s / 2, b.y, '+3 ' + b.food.t, true); }
+    else { score += 1; popped++; fx(b.x + b.s / 2, b.y + b.s / 3, '+1'); }
+    $('score').innerHTML = score + '<small>güneş puanı</small>';
+    light();
+  }
+  function frame(t) {
+    var dt = Math.min(50, t - (last || t)) / 1000; last = t;
+    if (t > nextCloud) { spawn('cloud'); nextCloud = t + (playing ? 430 : 900); }
+    if (playing && t > nextFood) { spawn('food'); nextFood = t + 1700 + Math.random() * 900; }
+    balls.forEach(function (b) {
+      if (b.dead) return;
+      b.y += b.vy * dt; b.sway += dt * 1.6;
+      var x = b.x + Math.sin(b.sway) * 10;
+      b.el.style.transform = 'translate(' + x + 'px,' + b.y + 'px)';
+      if (b.y > 500) { b.dead = true; b.el.remove(); }
+    });
+    balls = balls.filter(function (b) { return !b.dead || b.el.isConnected; });
+    if (playing) {
+      var left = Math.max(0, tEnd - Date.now());
+      $('tm').style.transform = 'scaleX(' + (left / GAME) + ')';
+      if (!left) endGame();
+    }
+    requestAnimationFrame(frame);
+  }
+  var user = false, autoT = [];
+  function startGame() {
+    if (!user) { user = true; autoT.forEach(clearTimeout); AD.track('game_start'); } else AD.track('game_restart');
+    score = 0; popped = 0; light();
+    $('score').innerHTML = '0<small>güneş puanı</small>';
+    $('start').classList.add('off'); $('res').classList.add('off');
+    ad.classList.add('playing'); playing = true; tEnd = Date.now() + GAME; nextFood = performance.now() + 900;
+  }
+  function endGame() {
+    playing = false; ad.classList.remove('playing');
+    var best = 0; try { best = +localStorage.getItem('iy_bulut_best') || 0; if (score > best) localStorage.setItem('iy_bulut_best', score); } catch (e) {}
+    showResult(true, best);
+    AD.track('game_end_' + (score >= 25 ? '25plus' : score >= 15 ? '15plus' : 'under15'));
+  }
+  function showResult(played, best) {
+    $('rov').textContent = played ? 'Oyun bitti' + (best && score > best ? ' · yeni rekor!' : '') : 'Kasım hediyen hazır';
+    $('rbig').innerHTML = played ? score + '<small>güneş<br>puanı</small>' : '%10<small>yeni üye<br>indirimi</small>';
+    $('rp').textContent = played ? 'Oyunda güneşi geri getirmek kolay. Gerçekte Kasım\'da öğle güneşi alçak ve günler kısa; rutinine gün ışığı desteği ekle.' : 'Kasım\'da öğle güneşi alçak ve günler kısa; rutinine gün ışığı desteği ekle.';
+    $('row').innerHTML = O.picks.map(function (p, i) { return '<div class="pk" data-i="' + i + '"><img src="' + p.img + '" alt="' + p.name + '"></div>'; }).join('');
+    $('start').classList.add('off'); $('res').classList.remove('off');
+  }
+  $('play').addEventListener('click', function (e) { e.stopPropagation(); startGame(); });
+  $('again').addEventListener('click', function (e) { e.stopPropagation(); startGame(); });
+  $('row').addEventListener('click', function (e) { e.stopPropagation(); var pk = e.target.closest('.pk'); if (pk) { var p = O.picks[+pk.dataset.i]; AD.exit('oyun_' + p.key, p.url); } });
+  $('cp').addEventListener('click', function (e) { e.stopPropagation(); AD.copy(this, D.coupon.code); });
+  $('go').addEventListener('click', function (e) { e.stopPropagation(); AD.exit('oyun_sonuc', O.url); });
+  ad.addEventListener('pointerdown', function () { if (!playing && !user) startGame(); });
+  // Tanıtım: bulutlar süzülür, birkaçı kendiliğinden patlar; 18 sn'de oynanmadıysa hediye paneli açılır (< 30 sn)
+  light();
+  AD.ready(function () {
+    AD.track('impression_ready');
+    requestAnimationFrame(frame);
+    if (AD.reduced) return;
+    [3200, 4100, 5000, 5900].forEach(function (ms) {
+      autoT.push(setTimeout(function () { var b = balls.filter(function (x) { return !x.dead && !x.food && x.y > 60 && x.y < 300; })[0]; if (b && !user) hit(b, false); }, ms));
+    });
+    autoT.push(setTimeout(function () { if (!user) showResult(false); }, 18000));
+  });
+})();
+</script>
+</body>
+</html>
