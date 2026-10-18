@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=320,height=480">
+<meta name="viewport" content="width=320,height=480,initial-scale=1,user-scalable=no">
+<title>İlaçsız Yaşam – Rutin Seçici 320x480</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+{{SHARED_CSS}}
+.ad { width: 320px; height: 480px; }
+.head { position: absolute; left: 0; right: 0; top: 0; height: 58px; display: flex; align-items: center; justify-content: space-between; padding: 0 14px; background: var(--navy-d); }
+.head .logo { width: 100px; }
+.head .q { text-align: right; font-family: var(--serif); font-size: 15px; font-weight: 600; line-height: 1.08; }
+.head .q em { font-style: italic; color: var(--green-l); }
+/* Dikey akordeon: 4 fotoğraf şeridi */
+.acc { position: absolute; left: 0; right: 0; top: 58px; height: 362px; display: flex; flex-direction: column; }
+.st { position: relative; flex: 0 0 48px; overflow: hidden; border-top: 1px solid rgba(255, 255, 255, .2); transition: flex-basis .65s var(--ease); }
+.st.on { flex-basis: 218px; }
+.st > .ph { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.12); filter: saturate(.8) brightness(.62) blur(1px); transition: transform 3.6s linear, filter .5s; }
+.st.on > .ph { transform: scale(1); filter: none; }
+.st::before { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, rgba(11, 28, 82, .6), rgba(11, 28, 82, .15)); transition: opacity .5s; }
+.st.on::before { background: linear-gradient(180deg, rgba(11, 28, 82, .88) 0%, rgba(11, 28, 82, .5) 32%, rgba(11, 28, 82, 0) 50%, rgba(11, 28, 82, 0) 58%, rgba(11, 28, 82, .55) 100%); }
+.lab { position: absolute; z-index: 2; left: 14px; right: 12px; top: 0; height: 48px; display: flex; align-items: center; gap: 10px; transition: opacity .3s; }
+.lab .no { font-size: 10px; font-weight: 800; color: var(--green-l); letter-spacing: .1em; }
+.lab .tt { font-family: var(--serif); font-size: 18px; font-weight: 600; }
+.lab .ov2 { font-size: 9.5px; font-weight: 700; color: rgba(255, 255, 255, .75); letter-spacing: .04em; margin-left: 2px; }
+.lab .plus { margin-left: auto; width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid rgba(255, 255, 255, .7); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; line-height: 1; }
+.st.on .lab { opacity: 0; pointer-events: none; }
+.cnt { position: absolute; z-index: 2; inset: 0; padding: 12px 14px; opacity: 0; pointer-events: none; transition: opacity .25s; }
+.st.on .cnt { opacity: 1; pointer-events: auto; transition: opacity .45s .25s; }
+.cnt .ov { font-size: 9.5px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--green-l); }
+.cnt h2 { font-family: var(--serif); font-weight: 600; font-size: 26px; line-height: 1.04; margin-top: 2px; letter-spacing: -.01em; }
+.cnt p { font-size: 10.5px; line-height: 1.32; font-weight: 600; max-width: 220px; margin-top: 4px; color: rgba(255, 255, 255, .92); text-shadow: 0 1px 8px rgba(0, 0, 0, .4); }
+.bar { position: absolute; left: 10px; right: 10px; bottom: 10px; height: 66px; border-radius: 14px; display: flex; align-items: center; gap: 6px; padding: 0 8px; background: rgba(11, 28, 82, .4); -webkit-backdrop-filter: blur(12px) saturate(1.4); backdrop-filter: blur(12px) saturate(1.4); border: 1px solid rgba(255, 255, 255, .22); }
+.bar .pk { width: 50px; height: 50px; border-radius: 8px; opacity: 0; transform: translateY(10px); }
+.st.on .bar .pk { opacity: 1; transform: none; transition: opacity .4s var(--ease), transform .4s var(--ease); }
+.st.on .bar .pk:nth-child(1) { transition-delay: .4s; } .st.on .bar .pk:nth-child(2) { transition-delay: .5s; } .st.on .bar .pk:nth-child(3) { transition-delay: .6s; }
+.bar .cta { margin-left: auto; height: 36px; padding: 0 13px; font-size: 12px; }
+.prog { position: absolute; z-index: 3; left: 0; top: 0; height: 3px; width: 0; background: var(--green); }
+.st.on.run .prog { width: 100%; transition: width var(--dur, 3.6s) linear; }
+/* Alt: kupon + yasal ibare */
+.foot { position: absolute; left: 0; right: 0; bottom: 0; height: 60px; background: var(--navy-d); padding: 7px 14px 0; }
+.foot .coupon { width: 100%; justify-content: space-between; font-size: 11px; padding: 5px 10px; border-radius: 8px; }
+.foot .coupon .pct { font-family: var(--serif); font-size: 17px; font-weight: 700; color: var(--green-l); }
+.foot .legal { margin-top: 4px; font-size: 7.3px; }
+</style>
+</head>
+<body>
+<div class="ad" id="ad" role="link" tabindex="0" aria-label="İlaçsız Yaşam – Kasım'da sana uygun rutini seç.">
+  <div class="head"><img class="logo" src="img/logo-beyaz.webp" alt="İlaçsız Yaşam"><div class="q">Kasım'da<br>rutinini <em>seç.</em></div></div>
+  <div class="acc" id="acc"></div>
+  <div class="foot">
+    <button class="coupon" id="cp"><span><span class="pct">{{pct}}</span> &nbsp;İlk alışverişe · <b>{{code}}</b></span><span class="cp-act">Kopyala</span><span class="cp-ok">✓ Kopyalandı</span></button>
+    <div class="legal">{{legal}}</div>
+  </div>
+</div>
+<script>window.AD = {{DATA}};</script>
+<script>
+{{SHARED_JS}}
+(function () {
+  var D = AD.data, acc = document.getElementById('acc'), ad = document.getElementById('ad');
+  var strips = D.segments.map(function (s, i) {
+    var st = AD.h('div', 'st');
+    st.innerHTML = '<img class="ph" src="' + s.img.st + '" alt="">' + '<div class="prog"></div>' +
+      '<div class="lab"><span class="no">0' + (i + 1) + '</span><span class="tt">' + s.title + '</span><span class="ov2">' + s.over + '</span><span class="plus">+</span></div>' +
+      '<div class="cnt"><div class="ov">' + s.over + '</div><h2>' + s.title + '</h2><p>' + s.claim + '</p>' +
+      '<div class="bar">' + s.products.map(function (p, j) { return '<div class="pk" data-p="' + j + '"><img src="' + p.img + '" alt="' + p.name + '"></div>'; }).join('') +
+      '<button class="cta">Keşfet <i>→</i></button></div></div>';
+    st.addEventListener('click', function (e) {
+      e.stopPropagation(); stopAuto();
+      if (!st.classList.contains('on')) return open(i, 'tap');
+      var pk = e.target.closest('.pk');
+      if (pk) { var p = s.products[+pk.dataset.p]; return AD.exit(s.key + '_' + p.key, p.url); }
+      AD.exit(s.key, s.url);
+    });
+    acc.appendChild(st);
+    return st;
+  });
+  var cur = -1;
+  function open(i, why) {
+    if (i === cur) return;
+    strips.forEach(function (p, j) { p.classList.toggle('on', j === i); p.classList.remove('run'); });
+    cur = i;
+    if (why !== 'auto') AD.track('segment_' + D.segments[i].key + '_' + why);
+  }
+  // Otomatik akış: her şerit 3,6 sn, iki tur (< 30 sn), sonra ilk şeritte durur.
+  var DUR = 3600, step = 0, timer = null, autoOn = true;
+  acc.style.setProperty('--dur', DUR + 'ms');
+  function tick() {
+    if (!autoOn) return;
+    if (step >= D.segments.length * 2) { stopAuto(); open(0, 'auto'); return; }
+    var i = step % D.segments.length;
+    open(i, 'auto');
+    var p = strips[i]; p.classList.remove('run'); void p.offsetWidth; p.classList.add('run');
+    step++; timer = setTimeout(tick, DUR);
+  }
+  function stopAuto() { if (!autoOn) return; autoOn = false; clearTimeout(timer); strips.forEach(function (p) { p.classList.remove('run'); }); }
+  document.getElementById('cp').addEventListener('click', function (e) { e.stopPropagation(); AD.copy(this, D.coupon.code); });
+  ad.addEventListener('click', function () { AD.exit('brand', D.brand.home); });
+  ad.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); stopAuto(); open((cur + (e.key === 'ArrowDown' ? 1 : D.segments.length - 1)) % D.segments.length, 'key'); }
+    if (e.key === 'Enter') AD.exit(D.segments[cur].key, D.segments[cur].url);
+  });
+  open(0, 'auto');
+  AD.ready(function () {
+    AD.track('impression_ready');
+    if (AD.reduced) { autoOn = false; return; }
+    setTimeout(tick, 700);
+  });
+})();
+</script>
+</body>
+</html>

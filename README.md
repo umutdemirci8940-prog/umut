@@ -1,3 +1,32 @@
+# İlaçsız Yaşam – Kasım 2026 interaktif çalışmalar (media-first)
+
+Sunum: **`preview-rich/index.html`** (tek dosya; dört çalışma gömülü, tekrar oynat düğmeli). Yüklemeye hazır paketler: `dist-rich/zip/`.
+
+| Çalışma | Boyut | Mekanik | Klasör / zip |
+|---|---|---|---|
+| Rutin Seçici Akordeon | 970 × 250 masthead | Dr. Ümit Aktaş portreli marka paneli + 4 fotoğraf paneli; otomatik döner, üzerine gelince açılır, ürün ve segment derin bağlantıları | `dist-rich/masthead-970x250/` |
+| Rutin Kartları | 320 × 480 mobil | Tam ekran fotoğraf kartları, parmakla kaydırma (story çubuğu), son kart %10 kupon | `dist-rich/mobil-320x480-kartlar/` |
+| Sil & Keşfet | 320 × 480 mobil | Ürün fotoğrafını parmakla sil → Dr. Ümit Aktaş + %10 kupon; demo çizgisi, %45'te açılır, 12 sn'de otomatik açılır | `dist-rich/mobil-320x480-sil-kesfet/` |
+| Rutin Seçici (Dikey) | 320 × 480 mobil | 4 fotoğraf şeridi dikey akordeon, kalıcı kupon şeridi | `dist-rich/mobil-320x480-rutin/` |
+
+- **Görseller:** Tamamı ilacsizyasam.com'daki orijinal fotoğraflar (Dr. Ümit Aktaş portreleri, ürün yaşam tarzı çekimleri, ambalaj fotoğrafları). Çizim/SVG/vektör illüstrasyon yoktur. Arşiv `assets/media/` (GitHub Actions: `.github/workflows/fetch-media.yml`), kreatif kırpımları `assets/rich/` (`python3 tools/rich-assets.py`).
+- **Segmentler:** Yetişkin (Günlük enerji), Bağışıklık (Kışa hazırlık), Çocuk & Aile (Miniklere destek), Aktif Yaşam (Spor & hareket). Sağlık beyanları onaylı beyan listesinden seçildi; yasal ibare her çalışmada var. Yayın öncesi marka/regülasyon onayı önerilir (özellikle hekim görselinin takviye reklamında kullanımı).
+- **Session / yeni kullanıcı:** Her segment ve her ürün UTM'li ayrı adrese gider (`utm_campaign=kasim_2026`, `utm_content=<çalışma>_<segment>_<ürün>`); kupon `YENIUYE10` tek dokunuşla kopyalanır.
+- **Tıklama:** `Enabler` varsa `Enabler.exitOverride(id, url)` (Studio/DV360, çoklu çıkış), `clickTag` tanımlıysa o (Google Ads / CM360), yoksa doğrudan UTM'li adres. Ölçüm olayları `AD.track()` → `Enabler.counter` (segment açma, kart kaydırma, kupon kopyalama, silme başlangıcı/açılma).
+- **Kurallar:** Otomatik animasyon < 30 sn; `prefers-reduced-motion` desteklenir; ağırlık 134–203 KB (masthead 177 KB). Metinler `rich/data.js`, kreatifler `rich/*.html`.
+
+```bash
+python3 tools/rich-assets.py                           # assets/media → assets/rich (kırpma, WebP)
+node tools/build-rich.js                               # dist-rich/ + zip + preview-rich/index.html
+NODE_PATH=$(npm root -g) node tools/shoot-rich.js      # ekran görüntüleri + etkileşim testi
+```
+
+| Masthead | Mobil |
+|---|---|
+| ![masthead](preview-rich/screens/masthead-970x250-oto-1.jpg) | ![kartlar](preview-rich/screens/mobil-320x480-kartlar-kaydir-2.jpg) ![sil](preview-rich/screens/mobil-320x480-sil-kesfet-siliniyor.jpg) ![rutin](preview-rich/screens/mobil-320x480-rutin-oto-2.jpg) |
+
+---
+
 # İlaçsız Yaşam – Gıda Takviyesi Banner Serisi
 
 [ilacsizyasam.com](https://ilacsizyasam.com/) için hazırlanmış, gıda takviyeleri özelinde **animasyonlu, ürün slider'lı ve tıklanabilir HTML5 display reklam seti**.

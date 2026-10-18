@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=970,height=250">
+<meta name="viewport" content="width=970,height=250">
+<title>İlaçsız Yaşam – Kasım Masthead 970x250</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #132d7d;
+  --navy-d: #0b1c52;
+  --green: #5fa511;
+  --green-l: #8fd14a;
+  --ink: #0f1a3a;
+  --white: #fff;
+  --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --sans: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+  --ease: cubic-bezier(.22, .8, .2, 1);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: var(--navy-d); }
+body { font-family: var(--sans); color: var(--white); -webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none; }
+img { display: block; -webkit-user-drag: none; }
+button { font: inherit; color: inherit; border: 0; background: none; cursor: pointer; }
+.ad { position: relative; overflow: hidden; background: var(--navy-d); cursor: pointer; }
+.legal { font-size: 8px; line-height: 1.25; color: rgba(255, 255, 255, .72); letter-spacing: .01em; }
+
+/* Kupon çipi */
+.coupon { display: inline-flex; align-items: center; gap: 8px; border-radius: 10px; background: rgba(255, 255, 255, .14); border: 1px dashed rgba(255, 255, 255, .55); padding: 6px 10px; transition: background .25s, transform .25s var(--ease); }
+.coupon:hover { background: rgba(255, 255, 255, .22); }
+.coupon:active { transform: scale(.97); }
+.coupon b { font-weight: 800; letter-spacing: .08em; }
+.coupon .cp-act { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--green-l); }
+.coupon .cp-ok { display: none; }
+.coupon.copied { background: var(--green); border-color: var(--green); }
+.coupon.copied .cp-act { display: none; }
+.coupon.copied .cp-ok { display: inline; font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; }
+
+/* Yeşil CTA */
+.cta { display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 16px; border-radius: 999px; background: var(--green); color: #fff; font-weight: 800; font-size: 12.5px; letter-spacing: .01em; white-space: nowrap; box-shadow: 0 6px 18px rgba(95, 165, 17, .38); transition: transform .25s var(--ease), background .25s; }
+.cta:hover { background: #6cbb14; transform: translateY(-1px); }
+.cta i { font-style: normal; transition: transform .25s var(--ease); }
+.cta:hover i { transform: translateX(3px); }
+
+/* Ürün kutucuğu (orijinal ambalaj fotoğrafı, beyaz kart) */
+.pk { position: relative; flex: none; background: #fff; border-radius: 10px; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 16px rgba(5, 15, 50, .28); transition: transform .3s var(--ease), box-shadow .3s; }
+.pk img { max-width: 86%; max-height: 82%; object-fit: contain; }
+.pk:hover { transform: translateY(-4px) scale(1.04); box-shadow: 0 10px 22px rgba(5, 15, 50, .4); z-index: 2; }
+.pk .tip { position: absolute; left: 50%; bottom: calc(100% + 6px); transform: translate(-50%, 4px); background: #fff; color: var(--navy); font-size: 10px; font-weight: 800; padding: 4px 8px; border-radius: 6px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; box-shadow: 0 4px 12px rgba(0, 0, 0, .25); }
+.pk:hover .tip { opacity: 1; transform: translate(-50%, 0); }
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: .01s !important; animation-duration: .01s !important; } }
+
+.ad { width: 970px; height: 250px; }
+
+/* Marka paneli: Dr. Ümit Aktaş fotoğrafı + lacivert geçiş */
+.brand { position: absolute; left: 0; top: 0; width: 300px; height: 250px; overflow: hidden; }
+.brand .ph { position: absolute; left: 62px; top: 0; height: 250px; width: 333px; object-fit: cover; object-position: 50% 30%; transform: scale(1.08); transition: transform 6s var(--ease); }
+.ready .brand .ph { transform: scale(1); }
+.brand::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, var(--navy-d) 0%, rgba(11, 28, 82, .9) 34%, rgba(11, 28, 82, .35) 58%, rgba(11, 28, 82, 0) 76%), linear-gradient(0deg, rgba(11, 28, 82, .9) 0%, rgba(11, 28, 82, 0) 28%); }
+.brand .in { position: absolute; z-index: 1; left: 18px; top: 16px; width: 186px; }
+.logo { width: 118px; }
+.by { font-size: 8.5px; font-weight: 700; color: rgba(255, 255, 255, .78); letter-spacing: .02em; margin-top: 3px; }
+.hl { font-family: var(--serif); font-weight: 600; font-size: 24px; line-height: 1.04; letter-spacing: -.01em; margin-top: 12px; text-shadow: 0 2px 14px rgba(0, 0, 0, .3); }
+.hl em { font-style: italic; color: var(--green-l); }
+.sub { font-size: 11px; font-weight: 600; color: rgba(255, 255, 255, .86); margin-top: 6px; }
+.brand .coupon { margin-top: 11px; font-size: 10px; line-height: 1.2; padding: 5px 10px 5px 8px; text-align: left; background: rgba(11, 28, 82, .55); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.brand .coupon .pct { font-family: var(--serif); font-size: 22px; font-weight: 700; color: var(--green-l); }
+.brand .legal { position: absolute; z-index: 1; left: 18px; bottom: 7px; width: 268px; font-size: 7.5px; }
+.reveal { opacity: 0; transform: translateY(8px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
+.ready .reveal { opacity: 1; transform: none; }
+
+/* Akordeon: 4 fotoğraf paneli */
+.acc { position: absolute; left: 300px; top: 0; width: 670px; height: 250px; display: flex; }
+.pn { position: relative; flex: 0 0 80px; height: 250px; overflow: hidden; border-left: 1px solid rgba(255, 255, 255, .18); transition: flex-basis .7s var(--ease); transform: translateX(40px); opacity: 0; }
+.ready .pn { transform: none; opacity: 1; transition: flex-basis .7s var(--ease), transform .8s var(--ease), opacity .8s var(--ease); }
+.pn.on { flex-basis: 430px; }
+.pn > .ph { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--mini); transform: scale(1.12); transition: transform 3.6s linear, filter .6s, object-position .7s var(--ease); filter: saturate(.8) brightness(.66) blur(1.2px); }
+.pn.on > .ph { transform: scale(1); filter: none; object-position: var(--focus); }
+.pn::before { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(11, 28, 82, .55) 0%, rgba(11, 28, 82, .2) 40%, rgba(11, 28, 82, .7) 100%); transition: opacity .6s; }
+.pn.on::before { background: linear-gradient(100deg, rgba(11, 28, 82, .82) 0%, rgba(11, 28, 82, .35) 45%, rgba(11, 28, 82, 0) 70%), linear-gradient(0deg, rgba(11, 28, 82, .6) 0%, rgba(11, 28, 82, 0) 45%); }
+/* Kapalı panel etiketi */
+.lab { position: absolute; z-index: 2; left: 0; bottom: 18px; width: 80px; display: flex; flex-direction: column; align-items: center; gap: 10px; transition: opacity .35s; }
+.lab .no { font-size: 10px; font-weight: 800; color: var(--green-l); letter-spacing: .1em; }
+.lab .vt { writing-mode: vertical-rl; transform: rotate(180deg); font-family: var(--serif); font-size: 19px; font-weight: 600; white-space: nowrap; }
+.lab .plus { width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid rgba(255, 255, 255, .7); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; line-height: 1; transition: background .25s, border-color .25s; }
+.pn:hover .lab .plus { background: var(--green); border-color: var(--green); }
+.pn.on .lab { opacity: 0; pointer-events: none; }
+/* Açık panel içeriği */
+.cnt { position: absolute; z-index: 2; left: 0; top: 0; width: 430px; height: 250px; padding: 18px 20px; opacity: 0; pointer-events: none; transition: opacity .3s; }
+.pn.on .cnt { opacity: 1; pointer-events: auto; transition: opacity .5s .3s; }
+.cnt .ov { font-size: 10px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--green-l); }
+.cnt h2 { font-family: var(--serif); font-weight: 600; font-size: 30px; line-height: 1.05; margin-top: 4px; letter-spacing: -.01em; }
+.cnt p { font-size: 11px; line-height: 1.35; font-weight: 600; max-width: 230px; margin-top: 6px; color: rgba(255, 255, 255, .92); text-shadow: 0 1px 8px rgba(0, 0, 0, .35); }
+.bar { position: absolute; left: 12px; right: 12px; bottom: 12px; height: 84px; border-radius: 16px; display: flex; align-items: center; gap: 8px; padding: 0 12px; background: rgba(11, 28, 82, .38); -webkit-backdrop-filter: blur(12px) saturate(1.4); backdrop-filter: blur(12px) saturate(1.4); border: 1px solid rgba(255, 255, 255, .22); }
+.bar .pk { width: 66px; height: 62px; opacity: 0; transform: translateY(14px); }
+.pn.on .bar .pk { opacity: 1; transform: none; transition: opacity .45s var(--ease), transform .45s var(--ease), box-shadow .3s; }
+.pn.on .bar .pk:nth-child(1) { transition-delay: .45s; }
+.pn.on .bar .pk:nth-child(2) { transition-delay: .55s; }
+.pn.on .bar .pk:nth-child(3) { transition-delay: .65s; }
+.pn.on .bar .pk:hover { transition-delay: 0s; transform: translateY(-4px) scale(1.05); }
+.bar .cta { margin-left: auto; }
+/* Otomatik oynatma ilerleme çizgisi */
+.prog { position: absolute; z-index: 3; left: 0; top: 0; height: 3px; width: 0; background: var(--green); }
+.pn.on.run .prog { width: 100%; transition: width var(--dur, 3.6s) linear; }
+/* Dokunma ipucu */
+.hint { position: absolute; z-index: 4; right: 12px; top: 12px; font-size: 9.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; padding: 5px 9px; border-radius: 999px; background: rgba(255, 255, 255, .92); color: var(--navy); opacity: 0; transform: translateY(-6px); transition: opacity .4s, transform .4s var(--ease); pointer-events: none; }
+.hint.show { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+<div class="ad" id="ad" role="link" tabindex="0" aria-label="İlaçsız Yaşam – Kasım'da kendine iyi bak. Rutinini seç, keşfet.">
+  <div class="brand">
+    <img class="ph" src="img/mh-doktor.webp" alt="Dr. Ümit Aktaş">
+    <div class="in">
+      <img class="logo reveal" src="img/logo-beyaz.webp" alt="İlaçsız Yaşam">
+      <div class="hl reveal" style="transition-delay:.25s">Kasım'da kendine <em>iyi bak.</em></div>
+      <div class="sub reveal" style="transition-delay:.4s">Sana uygun rutini seç, keşfet.</div>
+      <button class="coupon reveal" id="cp" style="transition-delay:.55s" aria-label="İndirim kodunu kopyala">
+        <span class="pct">%10</span>
+        <span style="white-space:nowrap">İlk alışverişe indirim<br>Kod: <b>YENIUYE10</b> &nbsp;<span class="cp-act">Kopyala</span><span class="cp-ok">✓ Kopyalandı</span></span>
+      </button>
+    </div>
+    <div class="legal">Takviye edici gıdalar ilaç değildir. Hastalıkların önlenmesi veya tedavi edilmesi amacıyla kullanılmaz.</div>
+  </div>
+  <div class="acc" id="acc"></div>
+  <div class="hint" id="hint">Bir rutin seç</div>
+</div>
+<script>window.AD = {"data":{"brand":{"name":"İlaçsız Yaşam","by":"Dr. Ümit Aktaş Ürünleri Resmi Satış Noktası","headline":"Kasım'da kendine iyi bak.","sub":"Sana uygun rutini seç, keşfet.","legal":"Takviye edici gıdalar ilaç değildir. Hastalıkların önlenmesi veya tedavi edilmesi amacıyla kullanılmaz.","home":"https://ilacsizyasam.com/collections/gida-takviyeleri?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=masthead_genel"},"coupon":{"over":"Yeni üyelere","pct":"%10","text":"ilk alışverişte indirim","code":"YENIUYE10","copied":"Kod kopyalandı","url":"https://ilacsizyasam.com/collections/en-cok-satanlar?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=masthead_kupon"},"segments":[{"key":"yetiskin","over":"Günlük enerji","title":"Yetişkin","claim":"B12 vitamini yorgunluk ve bitkinliğin azalmasına katkıda bulunur.","cta":"Rutinini keşfet","path":"/collections/vitamin-takviyeleri","focus":"42% 40%","mini":"38% 45%","products":[{"key":"b12","name":"Vitamin B12 & Folik Asit","path":"/products/vitamin-b12-metilfolat","img":"img/p-b12.webp","url":"https://ilacsizyasam.com/products/vitamin-b12-metilfolat?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=masthead_yetiskin_b12"},{"key":"omega3","name":"Omega 3","path":"/products/omega-3-33-22-60-kapsul","img":"img/p-omega3.webp","url":"https://ilacsizyasam.com/products/omega-3-33-22-60-kapsul?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=masthead_yetiskin_omega3"},{"key":"mvwomen","name":"Multivitamin Women","path":"/products/multivitamin-women","img":"img/p-mvwomen.webp","url":"https://ilacsizyasam.com/products/multivitamin-women?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=masthead_yetiskin_mvwomen"}],"url":"https://ilacsizyasam.com/collections/vitamin-takviyeleri?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=masthead_yetiskin","img":{"mh":"img/mh-yetiskin.webp"}},{"key":"bagisiklik","over":"Kışa hazırlık","title":"Bağışıklık","claim":"C vitamini ve çinko bağışıklık sisteminin normal fonksiyonuna katkıda bulunur.","cta":"Kışa hazırlan","path":"/collections/mineral-takviyeleri","focus":"55% 55%","mini":"92% 50%","products":[{"key":"vitc","name":"Vitamin C","path":"/products/vitamin-c","img":"img/p-vitc.webp","url":"https://ilacsizyasam.com/products/vitamin-c?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=masthead_bagisiklik_vitc"},{"key":"cinko","name":"Çinko","path":"/products/cinko","img":"img/p-cinko.webp","url":"https://ilacsizyasam.com/products/cinko?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=masthead_bagisiklik_cinko"},{"key":"propolis","name":"Propolis","path":"/products/propolis-kapsul","img":"img/p-propolis.webp","url":"https://ilacsizyasam.com/products/propolis-kapsul?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=masthead_bagisiklik_propolis"}],"url":"https://ilacsizyasam.com/collections/mineral-takviyeleri?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=masthead_bagisiklik","img":{"mh":"img/mh-bagisiklik.webp"}},{"key":"cocuk","over":"Miniklere destek","title":"Çocuk & Aile","claim":"D vitamini çocuklarda kemiklerin normal büyüme ve gelişimi için gereklidir.","cta":"Aile rutinini gör","path":"/products/gelisim-paketi","focus":"50% 50%","mini":"78% 70%","products":[{"key":"omega3surup","name":"Omega 3 Şurup","path":"/products/omega-3-surup","img":"img/p-omega3surup.webp","url":"https://ilacsizyasam.com/products/omega-3-surup?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=masthead_cocuk_omega3surup"},{"key":"d3","name":"Vitamin D3 Damla","path":"/products/vitamin-d3-damla","img":"img/p-d3.webp","url":"https://ilacsizyasam.com/products/vitamin-d3-damla?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=masthead_cocuk_d3"}],"url":"https://ilacsizyasam.com/products/gelisim-paketi?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=masthead_cocuk","img":{"mh":"img/mh-cocuk.webp"}},{"key":"aktif","over":"Spor & hareket","title":"Aktif Yaşam","claim":"Magnezyum normal kas fonksiyonuna katkıda bulunur.","cta":"Formunu destekle","path":"/collections/omegalar-probiyotik","focus":"50% 55%","mini":"22% 40%","products":[{"key":"magnezyum","name":"Magnezyum","path":"/products/magnezyum","img":"img/p-magnezyum.webp","url":"https://ilacsizyasam.com/products/magnezyum?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=masthead_aktif_magnezyum"},{"key":"krill","name":"Krill Yağı","path":"/products/krill-yagi","img":"img/p-krill.webp","url":"https://ilacsizyasam.com/products/krill-yagi?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=masthead_aktif_krill"},{"key":"spirulina","name":"Spirulina","path":"/products/spirulina","img":"img/p-spirulina.webp","url":"https://ilacsizyasam.com/products/spirulina?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=masthead_aktif_spirulina"}],"url":"https://ilacsizyasam.com/collections/omegalar-probiyotik?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=masthead_aktif","img":{"mh":"img/mh-aktif.webp"}}]}};</script>
+<script>
+/* Ortak çalışma zamanı: tıklama çıkışları, ölçüm, kupon kopyalama. Her kreatifin içine satır içi gömülür. */
+var AD = window.AD || {};
+(function () {
+  // Ölçüm: Studio/DV360 Enabler varsa sayaç, yoksa konsol (ağ makrosuna buradan bağlanır).
+  AD.track = function (name) {
+    try { if (window.Enabler && Enabler.counter) Enabler.counter(name); } catch (e) {}
+    if (window.console && console.debug) console.debug('[ad]', name);
+  };
+  // Çıkış: Enabler → exitOverride; clickTag tanımlıysa (Google Ads/CM360 tek çıkış) clickTag; yoksa UTM'li doğrudan adres.
+  AD.exit = function (id, url) {
+    AD.track('exit_' + id);
+    try {
+      if (window.Enabler && Enabler.exitOverride) { Enabler.exitOverride(id, url); return; }
+    } catch (e) {}
+    var tag = window.clickTag || window.clickTAG;
+    window.open(tag || url, '_blank');
+  };
+  // Kupon kodunu panoya kopyalar; el.dataset.code okunur, geri bildirim için `copied` sınıfı eklenir.
+  AD.copy = function (el, code, done) {
+    function ok() {
+      el.classList.add('copied');
+      AD.track('coupon_copy');
+      clearTimeout(el._t); el._t = setTimeout(function () { el.classList.remove('copied'); }, 1800);
+      if (done) done();
+    }
+    try {
+      if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(code).then(ok, fallback); return; }
+    } catch (e) {}
+    fallback();
+    function fallback() {
+      var t = document.createElement('textarea');
+      t.value = code; t.setAttribute('readonly', ''); t.style.cssText = 'position:fixed;opacity:0;left:-99px';
+      document.body.appendChild(t); t.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(t); ok();
+    }
+  };
+  AD.reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Görseller yüklenince başlat (Enabler varsa görünür olduğunda).
+  AD.ready = function (fn) {
+    function go() {
+      var imgs = [].slice.call(document.images), n = imgs.length, started = false;
+      function start() { if (!started) { started = true; document.documentElement.classList.add('ready'); fn(); } }
+      if (!n) return start();
+      imgs.forEach(function (im) { if (im.complete) { if (!--n) start(); } else im.onload = im.onerror = function () { if (!--n) start(); }; });
+      setTimeout(start, 2500);
+    }
+    if (window.Enabler && Enabler.isInitialized) {
+      if (Enabler.isInitialized()) go(); else Enabler.addEventListener('init', go);
+    } else if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go();
+  };
+  AD.h = function (tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
+})();
+
+(function () {
+  var D = AD.data, acc = document.getElementById('acc'), ad = document.getElementById('ad');
+  var panels = D.segments.map(function (s, i) {
+    var pn = AD.h('div', 'pn');
+    pn.innerHTML =
+      '<img class="ph" src="' + s.img.mh + '" alt="" style="--focus:' + s.focus + ';--mini:' + s.mini + '">' +
+      '<div class="prog"></div>' +
+      '<div class="lab"><span class="no">0' + (i + 1) + '</span><span class="vt">' + s.title + '</span><span class="plus">+</span></div>' +
+      '<div class="cnt"><div class="ov">' + s.over + '</div><h2>' + s.title + '</h2><p>' + s.claim + '</p>' +
+      '<div class="bar">' + s.products.map(function (p, j) {
+        return '<div class="pk" data-p="' + j + '"><img src="' + p.img + '" alt="' + p.name + '"><span class="tip">' + p.name + '</span></div>';
+      }).join('') + '<button class="cta">' + s.cta + ' <i>→</i></button></div></div>';
+    pn.addEventListener('mouseenter', function () { stopAuto(); open(i, 'hover'); });
+    pn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      stopAuto();
+      if (!pn.classList.contains('on')) return open(i, 'tap');
+      var pk = e.target.closest('.pk');
+      if (pk) { var p = s.products[+pk.dataset.p]; return AD.exit(s.key + '_' + p.key, p.url); }
+      AD.exit(s.key, s.url);
+    });
+    acc.appendChild(pn);
+    return pn;
+  });
+  var cur = -1;
+  function open(i, why) {
+    if (i === cur) return;
+    panels.forEach(function (p, j) { p.classList.toggle('on', j === i); p.classList.remove('run'); });
+    cur = i;
+    if (why !== 'auto') AD.track('segment_' + D.segments[i].key + '_' + why);
+  }
+  // Otomatik oynatma: her segment 3,6 sn, iki tur (< 30 sn), sonra ilk segmentte durur.
+  var DUR = 3600, step = 0, timer = null, autoOn = true;
+  acc.style.setProperty('--dur', DUR + 'ms');
+  function tick() {
+    if (!autoOn) return;
+    if (step >= D.segments.length * 2) { stopAuto(); open(0, 'auto'); hint(); return; }
+    var i = step % D.segments.length;
+    open(i, 'auto');
+    var p = panels[i];
+    p.classList.remove('run'); void p.offsetWidth; p.classList.add('run');
+    step++;
+    timer = setTimeout(tick, DUR);
+  }
+  function stopAuto() {
+    if (!autoOn) return;
+    autoOn = false; clearTimeout(timer);
+    panels.forEach(function (p) { p.classList.remove('run'); });
+  }
+  var h = document.getElementById('hint');
+  function hint() { h.classList.add('show'); setTimeout(function () { h.classList.remove('show'); }, 3200); }
+  acc.addEventListener('mouseleave', function () { /* seçili panel açık kalır */ });
+
+  document.getElementById('cp').addEventListener('click', function (e) { e.stopPropagation(); AD.copy(this, D.coupon.code); });
+  ad.addEventListener('click', function () { AD.exit('brand', D.brand.home); });
+  ad.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { stopAuto(); open((cur + (e.key === 'ArrowRight' ? 1 : D.segments.length - 1)) % D.segments.length, 'key'); }
+    if (e.key === 'Enter') AD.exit(cur >= 0 ? D.segments[cur].key : 'brand', cur >= 0 ? D.segments[cur].url : D.brand.home);
+  });
+  open(0, 'auto');
+  AD.ready(function () {
+    AD.track('impression_ready');
+    if (AD.reduced) { autoOn = false; hint(); return; }
+    setTimeout(tick, 900);
+  });
+})();
+</script>
+</body>
+</html>

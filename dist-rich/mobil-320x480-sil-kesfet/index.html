@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=320,height=480">
+<meta name="viewport" content="width=320,height=480,initial-scale=1,user-scalable=no">
+<title>İlaçsız Yaşam – Sil & Keşfet 320x480</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #132d7d;
+  --navy-d: #0b1c52;
+  --green: #5fa511;
+  --green-l: #8fd14a;
+  --ink: #0f1a3a;
+  --white: #fff;
+  --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --sans: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+  --ease: cubic-bezier(.22, .8, .2, 1);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: var(--navy-d); }
+body { font-family: var(--sans); color: var(--white); -webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none; }
+img { display: block; -webkit-user-drag: none; }
+button { font: inherit; color: inherit; border: 0; background: none; cursor: pointer; }
+.ad { position: relative; overflow: hidden; background: var(--navy-d); cursor: pointer; }
+.legal { font-size: 8px; line-height: 1.25; color: rgba(255, 255, 255, .72); letter-spacing: .01em; }
+
+/* Kupon çipi */
+.coupon { display: inline-flex; align-items: center; gap: 8px; border-radius: 10px; background: rgba(255, 255, 255, .14); border: 1px dashed rgba(255, 255, 255, .55); padding: 6px 10px; transition: background .25s, transform .25s var(--ease); }
+.coupon:hover { background: rgba(255, 255, 255, .22); }
+.coupon:active { transform: scale(.97); }
+.coupon b { font-weight: 800; letter-spacing: .08em; }
+.coupon .cp-act { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--green-l); }
+.coupon .cp-ok { display: none; }
+.coupon.copied { background: var(--green); border-color: var(--green); }
+.coupon.copied .cp-act { display: none; }
+.coupon.copied .cp-ok { display: inline; font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; }
+
+/* Yeşil CTA */
+.cta { display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 16px; border-radius: 999px; background: var(--green); color: #fff; font-weight: 800; font-size: 12.5px; letter-spacing: .01em; white-space: nowrap; box-shadow: 0 6px 18px rgba(95, 165, 17, .38); transition: transform .25s var(--ease), background .25s; }
+.cta:hover { background: #6cbb14; transform: translateY(-1px); }
+.cta i { font-style: normal; transition: transform .25s var(--ease); }
+.cta:hover i { transform: translateX(3px); }
+
+/* Ürün kutucuğu (orijinal ambalaj fotoğrafı, beyaz kart) */
+.pk { position: relative; flex: none; background: #fff; border-radius: 10px; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 16px rgba(5, 15, 50, .28); transition: transform .3s var(--ease), box-shadow .3s; }
+.pk img { max-width: 86%; max-height: 82%; object-fit: contain; }
+.pk:hover { transform: translateY(-4px) scale(1.04); box-shadow: 0 10px 22px rgba(5, 15, 50, .4); z-index: 2; }
+.pk .tip { position: absolute; left: 50%; bottom: calc(100% + 6px); transform: translate(-50%, 4px); background: #fff; color: var(--navy); font-size: 10px; font-weight: 800; padding: 4px 8px; border-radius: 6px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; box-shadow: 0 4px 12px rgba(0, 0, 0, .25); }
+.pk:hover .tip { opacity: 1; transform: translate(-50%, 0); }
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: .01s !important; animation-duration: .01s !important; } }
+
+.ad { width: 320px; height: 480px; }
+/* Alt katman: açılınca görünen kupon sahnesi (Dr. Ümit Aktaş fotoğrafı) */
+.under { position: absolute; inset: 0; }
+.under > .ph { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 28%; transform: scale(1.1); transition: transform 2.4s var(--ease); }
+.done .under > .ph { transform: scale(1); }
+.under::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11, 28, 82, .5) 0%, rgba(11, 28, 82, 0) 16%, rgba(11, 28, 82, 0) 30%, rgba(11, 28, 82, .9) 52%, rgba(11, 28, 82, .98) 100%); }
+.offer { position: absolute; z-index: 1; left: 16px; right: 16px; bottom: 28px; }
+/* Teklif silme sırasında altta hazırdır (silinen yerden görünür); açılınca öne doğru "pop" yapar */
+.done .offer > * { animation: pop .6s var(--ease) both; }
+.done .offer > :nth-child(2) { animation-delay: .08s; } .done .offer > :nth-child(3) { animation-delay: .16s; }
+.done .offer > :nth-child(4) { animation-delay: .24s; } .done .offer > :nth-child(5) { animation-delay: .32s; }
+@keyframes pop { 0% { transform: translateY(0) scale(1); } 40% { transform: translateY(-4px) scale(1.04); } 100% { transform: none; } }
+.ov { font-size: 10px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--green-l); }
+.big { font-family: var(--serif); font-weight: 700; font-size: 80px; line-height: .88; color: var(--green-l); letter-spacing: -.02em; margin-top: 2px; }
+.big small { font-family: var(--sans); font-size: 14px; font-weight: 800; color: #fff; letter-spacing: 0; display: inline-block; margin-left: 6px; line-height: 1.15; vertical-align: 12px; }
+.row { display: flex; gap: 7px; margin-top: 12px; align-items: center; }
+.row .pk { width: 58px; height: 56px; }
+.row .lbl { font-size: 10.5px; font-weight: 700; line-height: 1.3; color: rgba(255, 255, 255, .86); margin-left: 3px; }
+.offer .coupon { margin-top: 12px; width: 100%; justify-content: space-between; font-size: 12px; padding: 9px 12px; }
+.offer .coupon b { font-size: 15px; }
+.offer .cta { width: 100%; justify-content: center; height: 40px; margin-top: 10px; font-size: 13.5px; }
+/* Üst katman: silinebilir ürün fotoğrafı (canvas) */
+canvas { position: absolute; inset: 0; width: 320px; height: 480px; z-index: 5; touch-action: none; transition: opacity .8s var(--ease); }
+.done canvas { opacity: 0; pointer-events: none; }
+.cover-ui { position: absolute; z-index: 6; inset: 0; pointer-events: none; transition: opacity .35s; }
+.scratching .cover-ui, .done .cover-ui { opacity: 0; }
+.cover-ui .t { position: absolute; left: 16px; right: 16px; top: 66px; }
+.cover-ui h1 { font-family: var(--serif); font-weight: 600; font-size: 30px; line-height: 1.04; letter-spacing: -.01em; text-shadow: 0 2px 16px rgba(0, 0, 0, .3); }
+.cover-ui h1 em { font-style: italic; color: var(--green-l); }
+.cover-ui p { font-size: 12px; font-weight: 600; margin-top: 8px; color: rgba(255, 255, 255, .9); }
+.pill { position: absolute; left: 50%; bottom: 42px; transform: translateX(-50%); padding: 11px 18px; border-radius: 999px; background: #fff; color: var(--navy); font-size: 13px; font-weight: 800; white-space: nowrap; box-shadow: 0 10px 26px rgba(0, 0, 0, .3); animation: pulse 1.6s var(--ease) infinite; }
+@keyframes pulse { 0%, 100% { transform: translateX(-50%) scale(1); } 50% { transform: translateX(-50%) scale(1.06); } }
+.meter { position: absolute; z-index: 7; left: 16px; right: 16px; bottom: 26px; height: 4px; border-radius: 4px; background: rgba(255, 255, 255, .3); overflow: hidden; opacity: 0; transition: opacity .3s; pointer-events: none; }
+.scratching .meter { opacity: 1; }
+.done .meter { opacity: 0; }
+.meter i { position: absolute; inset: 0; background: var(--green-l); transform-origin: 0 50%; transform: scaleX(0); transition: transform .25s; }
+.logo { position: absolute; z-index: 8; left: 14px; top: 12px; width: 104px; filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .35)); pointer-events: none; }
+.legal { position: absolute; z-index: 8; left: 16px; right: 16px; bottom: 7px; font-size: 7.5px; pointer-events: none; }
+</style>
+</head>
+<body>
+<div class="ad" id="ad" role="link" tabindex="0" aria-label="İlaçsız Yaşam – Sil ve keşfet: yeni üyelere ilk alışverişte yüzde 10 indirim.">
+  <div class="under">
+    <img class="ph" src="img/mb-doktor.webp" alt="Dr. Ümit Aktaş">
+    <div class="offer">
+      <div class="ov">Kasım sürprizin · Yeni üyelere özel</div>
+      <div class="big">%10<small>ilk<br>alışverişte</small></div>
+      <div class="row" id="row"></div>
+      <button class="coupon" id="cp"><span>İndirim kodu: <b>YENIUYE10</b></span><span class="cp-act">Kopyala</span><span class="cp-ok">✓ Kopyalandı</span></button>
+      <button class="cta" id="cta">Alışverişe başla <i>→</i></button>
+    </div>
+  </div>
+  <canvas id="cv" width="640" height="960" aria-hidden="true"></canvas>
+  <div class="cover-ui">
+    <div class="t"><h1>Kasım sürprizin <em>bu fotoğrafın altında.</em></h1><p>Parmağınla sil, sana özel indirimi ortaya çıkar.</p></div>
+    <div class="pill">Parmağınla sil</div>
+  </div>
+  <div class="meter"><i id="meter"></i></div>
+  <img class="logo" src="img/logo-beyaz.webp" alt="İlaçsız Yaşam">
+  <div class="legal">Takviye edici gıdalar ilaç değildir. Hastalıkların önlenmesi veya tedavi edilmesi amacıyla kullanılmaz.</div>
+</div>
+<img id="top" src="img/sc-ust.webp" alt="" hidden>
+<script>window.AD = {"data":{"brand":{"name":"İlaçsız Yaşam","by":"Dr. Ümit Aktaş Ürünleri Resmi Satış Noktası","headline":"Kasım'da kendine iyi bak.","sub":"Sana uygun rutini seç, keşfet.","legal":"Takviye edici gıdalar ilaç değildir. Hastalıkların önlenmesi veya tedavi edilmesi amacıyla kullanılmaz.","home":"https://ilacsizyasam.com/collections/gida-takviyeleri?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_sil_genel"},"coupon":{"over":"Yeni üyelere","pct":"%10","text":"ilk alışverişte indirim","code":"YENIUYE10","copied":"Kod kopyalandı","url":"https://ilacsizyasam.com/collections/en-cok-satanlar?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_sil_kupon"},"segments":[{"key":"yetiskin","over":"Günlük enerji","title":"Yetişkin","claim":"B12 vitamini yorgunluk ve bitkinliğin azalmasına katkıda bulunur.","cta":"Rutinini keşfet","path":"/collections/vitamin-takviyeleri","focus":"42% 40%","mini":"38% 45%","products":[{"key":"b12","name":"Vitamin B12 & Folik Asit","path":"/products/vitamin-b12-metilfolat","img":"img/p-b12.webp","url":"https://ilacsizyasam.com/products/vitamin-b12-metilfolat?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_sil_yetiskin_b12"},{"key":"omega3","name":"Omega 3","path":"/products/omega-3-33-22-60-kapsul","img":"img/p-omega3.webp","url":"https://ilacsizyasam.com/products/omega-3-33-22-60-kapsul?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_sil_yetiskin_omega3"},{"key":"mvwomen","name":"Multivitamin Women","path":"/products/multivitamin-women","img":"img/p-mvwomen.webp","url":"https://ilacsizyasam.com/products/multivitamin-women?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_sil_yetiskin_mvwomen"}],"url":"https://ilacsizyasam.com/collections/vitamin-takviyeleri?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_sil_yetiskin","img":{"mb":"img/mb-yetiskin.webp"}},{"key":"bagisiklik","over":"Kışa hazırlık","title":"Bağışıklık","claim":"C vitamini ve çinko bağışıklık sisteminin normal fonksiyonuna katkıda bulunur.","cta":"Kışa hazırlan","path":"/collections/mineral-takviyeleri","focus":"55% 55%","mini":"92% 50%","products":[{"key":"vitc","name":"Vitamin C","path":"/products/vitamin-c","img":"img/p-vitc.webp","url":"https://ilacsizyasam.com/products/vitamin-c?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_sil_bagisiklik_vitc"},{"key":"cinko","name":"Çinko","path":"/products/cinko","img":"img/p-cinko.webp","url":"https://ilacsizyasam.com/products/cinko?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_sil_bagisiklik_cinko"},{"key":"propolis","name":"Propolis","path":"/products/propolis-kapsul","img":"img/p-propolis.webp","url":"https://ilacsizyasam.com/products/propolis-kapsul?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_sil_bagisiklik_propolis"}],"url":"https://ilacsizyasam.com/collections/mineral-takviyeleri?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_sil_bagisiklik","img":{"mb":"img/mb-bagisiklik.webp"}},{"key":"cocuk","over":"Miniklere destek","title":"Çocuk & Aile","claim":"D vitamini çocuklarda kemiklerin normal büyüme ve gelişimi için gereklidir.","cta":"Aile rutinini gör","path":"/products/gelisim-paketi","focus":"50% 50%","mini":"78% 70%","products":[{"key":"omega3surup","name":"Omega 3 Şurup","path":"/products/omega-3-surup","img":"img/p-omega3surup.webp","url":"https://ilacsizyasam.com/products/omega-3-surup?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_sil_cocuk_omega3surup"},{"key":"d3","name":"Vitamin D3 Damla","path":"/products/vitamin-d3-damla","img":"img/p-d3.webp","url":"https://ilacsizyasam.com/products/vitamin-d3-damla?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_sil_cocuk_d3"}],"url":"https://ilacsizyasam.com/products/gelisim-paketi?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_sil_cocuk","img":{"mb":"img/mb-cocuk.webp"}},{"key":"aktif","over":"Spor & hareket","title":"Aktif Yaşam","claim":"Magnezyum normal kas fonksiyonuna katkıda bulunur.","cta":"Formunu destekle","path":"/collections/omegalar-probiyotik","focus":"50% 55%","mini":"22% 40%","products":[{"key":"magnezyum","name":"Magnezyum","path":"/products/magnezyum","img":"img/p-magnezyum.webp","url":"https://ilacsizyasam.com/products/magnezyum?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_sil_aktif_magnezyum"},{"key":"krill","name":"Krill Yağı","path":"/products/krill-yagi","img":"img/p-krill.webp","url":"https://ilacsizyasam.com/products/krill-yagi?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_sil_aktif_krill"},{"key":"spirulina","name":"Spirulina","path":"/products/spirulina","img":"img/p-spirulina.webp","url":"https://ilacsizyasam.com/products/spirulina?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_sil_aktif_spirulina"}],"url":"https://ilacsizyasam.com/collections/omegalar-probiyotik?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_sil_aktif","img":{"mb":"img/mb-aktif.webp"}}]}};</script>
+<script>
+/* Ortak çalışma zamanı: tıklama çıkışları, ölçüm, kupon kopyalama. Her kreatifin içine satır içi gömülür. */
+var AD = window.AD || {};
+(function () {
+  // Ölçüm: Studio/DV360 Enabler varsa sayaç, yoksa konsol (ağ makrosuna buradan bağlanır).
+  AD.track = function (name) {
+    try { if (window.Enabler && Enabler.counter) Enabler.counter(name); } catch (e) {}
+    if (window.console && console.debug) console.debug('[ad]', name);
+  };
+  // Çıkış: Enabler → exitOverride; clickTag tanımlıysa (Google Ads/CM360 tek çıkış) clickTag; yoksa UTM'li doğrudan adres.
+  AD.exit = function (id, url) {
+    AD.track('exit_' + id);
+    try {
+      if (window.Enabler && Enabler.exitOverride) { Enabler.exitOverride(id, url); return; }
+    } catch (e) {}
+    var tag = window.clickTag || window.clickTAG;
+    window.open(tag || url, '_blank');
+  };
+  // Kupon kodunu panoya kopyalar; el.dataset.code okunur, geri bildirim için `copied` sınıfı eklenir.
+  AD.copy = function (el, code, done) {
+    function ok() {
+      el.classList.add('copied');
+      AD.track('coupon_copy');
+      clearTimeout(el._t); el._t = setTimeout(function () { el.classList.remove('copied'); }, 1800);
+      if (done) done();
+    }
+    try {
+      if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(code).then(ok, fallback); return; }
+    } catch (e) {}
+    fallback();
+    function fallback() {
+      var t = document.createElement('textarea');
+      t.value = code; t.setAttribute('readonly', ''); t.style.cssText = 'position:fixed;opacity:0;left:-99px';
+      document.body.appendChild(t); t.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(t); ok();
+    }
+  };
+  AD.reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Görseller yüklenince başlat (Enabler varsa görünür olduğunda).
+  AD.ready = function (fn) {
+    function go() {
+      var imgs = [].slice.call(document.images), n = imgs.length, started = false;
+      function start() { if (!started) { started = true; document.documentElement.classList.add('ready'); fn(); } }
+      if (!n) return start();
+      imgs.forEach(function (im) { if (im.complete) { if (!--n) start(); } else im.onload = im.onerror = function () { if (!--n) start(); }; });
+      setTimeout(start, 2500);
+    }
+    if (window.Enabler && Enabler.isInitialized) {
+      if (Enabler.isInitialized()) go(); else Enabler.addEventListener('init', go);
+    } else if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go();
+  };
+  AD.h = function (tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
+})();
+
+(function () {
+  var D = AD.data, ad = document.getElementById('ad'), cv = document.getElementById('cv'), ctx = cv.getContext('2d');
+  var meter = document.getElementById('meter');
+  var R = 2, BR = 30; // çizim ölçeği, fırça yarıçapı (css px)
+  // Çok satanlar: her segmentin ilk ürünü
+  var best = D.segments.slice(0, 3).map(function (s) { return { s: s, p: s.products[0] }; });
+  var row = document.getElementById('row');
+  row.innerHTML = best.map(function (b, i) { return '<div class="pk" data-i="' + i + '"><img src="' + b.p.img + '" alt="' + b.p.name + '"></div>'; }).join('') +
+    '<div class="lbl">Kasım\'ın<br>çok sevilenleri</div>';
+
+  function paint() {
+    var im = document.getElementById('top');
+    var w = cv.width, h = cv.height, s = Math.max(w / im.naturalWidth, h / im.naturalHeight);
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.drawImage(im, (w - im.naturalWidth * s) / 2, (h - im.naturalHeight * s) / 2, im.naturalWidth * s, im.naturalHeight * s);
+    // Okunabilirlik için fotoğrafın üst ve alt kısmına lacivert geçiş (silinince o da gider)
+    var g = ctx.createLinearGradient(0, 0, 0, h);
+    g.addColorStop(0, 'rgba(11,28,82,.92)'); g.addColorStop(.36, 'rgba(11,28,82,.35)'); g.addColorStop(.55, 'rgba(11,28,82,0)');
+    g.addColorStop(.8, 'rgba(11,28,82,0)'); g.addColorStop(1, 'rgba(11,28,82,.75)');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
+  }
+  var last = null, strokes = 0, started = false, done = false, auto = null;
+  function erase(x, y) {
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.lineCap = ctx.lineJoin = 'round';
+    ctx.lineWidth = BR * 2 * R;
+    ctx.shadowColor = '#000'; ctx.shadowBlur = 14;
+    ctx.beginPath();
+    if (last) ctx.moveTo(last[0] * R, last[1] * R); else ctx.moveTo(x * R - .1, y * R);
+    ctx.lineTo(x * R, y * R); ctx.stroke();
+    last = [x, y];
+    if (++strokes % 6 === 0) measure();
+  }
+  function measure() {
+    // Seyrek örnekleme ile silinen alan oranı
+    var r;
+    try {
+      var d = ctx.getImageData(0, 0, cv.width, cv.height).data, clear = 0, n = 0;
+      for (var y = 8; y < cv.height; y += 24) for (var x = 8; x < cv.width; x += 24) { n++; if (d[(y * cv.width + x) * 4 + 3] < 60) clear++; }
+      r = clear / n;
+    } catch (e) { r = strokes / 160; } // canvas okunamıyorsa (ör. file:// önizleme) çizgi sayısıyla tahmin
+    meter.style.transform = 'scaleX(' + Math.min(1, r / .45) + ')';
+    if (r > .45) reveal('scratch');
+  }
+  function reveal(why) {
+    if (done) return; done = true;
+    clearTimeout(auto);
+    ad.classList.add('done');
+    AD.track('reveal_' + why);
+  }
+  function pos(e) { var b = cv.getBoundingClientRect(); return [(e.clientX - b.left) * 320 / b.width, (e.clientY - b.top) * 480 / b.height]; }
+  var down = false, taps = 0, gesture = false;
+  cv.addEventListener('pointerdown', function (e) {
+    down = true; gesture = true; last = null; e.preventDefault();
+    try { cv.setPointerCapture(e.pointerId); } catch (er) {}
+    if (!started) { started = true; ad.classList.add('scratching'); AD.track('scratch_start'); clearTimeout(auto); }
+    var p = pos(e); erase(p[0], p[1]);
+  });
+  cv.addEventListener('pointermove', function (e) { if (!down || done) return; var p = pos(e); erase(p[0], p[1]); });
+  function up() { if (!down) return; down = false; last = null; measure(); if (!done && strokes < 3 && ++taps >= 2) reveal('tap'); }
+  cv.addEventListener('pointerup', up); cv.addEventListener('pointercancel', up);
+
+  // Otomatik gösterim: kısa bir "silme" demosu; hiç etkileşim olmazsa 12 sn'de kendiliğinden açılır.
+  function demo() {
+    if (started || AD.reduced) return;
+    var pts = [], t0 = null;
+    for (var i = 0; i <= 26; i++) { var k = i / 26; pts.push([40 + k * 150, 236 + Math.sin(k * Math.PI * 2) * 18]); }
+    last = null;
+    (function step(ts) {
+      if (started) return;
+      if (t0 === null) t0 = ts;
+      var i = Math.min(pts.length - 1, Math.floor((ts - t0) / 28));
+      erase(pts[i][0], pts[i][1]);
+      if (i < pts.length - 1) requestAnimationFrame(step); else last = null;
+    })(performance.now());
+  }
+  function autoReveal() {
+    if (started) return;
+    var y = 0;
+    (function sweep() {
+      if (done) return;
+      last = null;
+      for (var x = 0; x <= 320; x += 40) erase(x, y);
+      y += 30;
+      if (y < 520) requestAnimationFrame(sweep); else reveal('auto');
+    })();
+  }
+
+  row.addEventListener('click', function (e) {
+    e.stopPropagation(); var pk = e.target.closest('.pk'); if (!pk) return;
+    var b = best[+pk.dataset.i]; AD.exit('kupon_' + b.p.key, b.p.url);
+  });
+  document.getElementById('cp').addEventListener('click', function (e) { e.stopPropagation(); AD.copy(this, D.coupon.code); });
+  // Silme hareketinin sonundaki tıklama reklam çıkışı sayılmaz; yalnızca açıldıktan sonraki ayrı dokunuşlar.
+  ad.addEventListener('click', function () { if (gesture) { gesture = false; return; } if (done) AD.exit('kupon', D.coupon.url); });
+  ad.addEventListener('keydown', function (e) { if (e.key === 'Enter') { if (done) AD.exit('kupon', D.coupon.url); else reveal('key'); } });
+
+  AD.ready(function () {
+    paint();
+    AD.track('impression_ready');
+    if (AD.reduced) return;
+    setTimeout(demo, 1600);
+    auto = setTimeout(autoReveal, 12000);
+  });
+})();
+</script>
+</body>
+</html>

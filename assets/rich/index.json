@@ -1,0 +1,184 @@
+{
+ "photos": {
+  "mh-yetiskin": {
+   "src": "products/vitamin-b12-metilfolat/7.jpg",
+   "w": 660,
+   "h": 375,
+   "bytes": 9576
+  },
+  "mh-bagisiklik": {
+   "src": "products/vitamin-c/8.jpg",
+   "w": 660,
+   "h": 375,
+   "bytes": 17812
+  },
+  "mh-cocuk": {
+   "src": "site/cdn-shop-articles-okul-doneminde-cocuklarin-bagisiklik-sistemini-deste.jpg",
+   "w": 660,
+   "h": 375,
+   "bytes": 34142
+  },
+  "mh-aktif": {
+   "src": "products/krill-yagi/8.webp",
+   "w": 660,
+   "h": 375,
+   "bytes": 14952
+  },
+  "mh-doktor": {
+   "src": "site/abb.webp",
+   "w": 450,
+   "h": 375,
+   "bytes": 18420
+  },
+  "mb-yetiskin": {
+   "src": "products/vitamin-b12-metilfolat/7.jpg",
+   "w": 480,
+   "h": 510,
+   "bytes": 8076
+  },
+  "mb-bagisiklik": {
+   "src": "products/vitamin-c/8.jpg",
+   "w": 480,
+   "h": 510,
+   "bytes": 19516
+  },
+  "mb-cocuk": {
+   "src": "products/omega-3-surup/6.jpg",
+   "w": 480,
+   "h": 510,
+   "bytes": 21152
+  },
+  "mb-aktif": {
+   "src": "products/krill-yagi/8.webp",
+   "w": 480,
+   "h": 510,
+   "bytes": 15210
+  },
+  "mb-doktor": {
+   "src": "site/abb.webp",
+   "w": 480,
+   "h": 720,
+   "bytes": 22936
+  },
+  "st-yetiskin": {
+   "src": "products/vitamin-b12-metilfolat/7.jpg",
+   "w": 480,
+   "h": 420,
+   "bytes": 7432
+  },
+  "st-bagisiklik": {
+   "src": "products/vitamin-c/8.jpg",
+   "w": 480,
+   "h": 420,
+   "bytes": 15346
+  },
+  "st-cocuk": {
+   "src": "products/omega-3-surup/6.jpg",
+   "w": 480,
+   "h": 420,
+   "bytes": 17602
+  },
+  "st-aktif": {
+   "src": "products/krill-yagi/8.webp",
+   "w": 480,
+   "h": 420,
+   "bytes": 12898
+  },
+  "sc-ust": {
+   "src": "products/magnezyum/7.jpg",
+   "w": 480,
+   "h": 720,
+   "bytes": 20984
+  },
+  "sc-alt": {
+   "src": "site/abb.webp",
+   "w": 480,
+   "h": 720,
+   "bytes": 22936
+  }
+ },
+ "packs": {
+  "omega3": {
+   "src": "products/omega-3-33-22-60-kapsul/2.png",
+   "w": 304,
+   "h": 240,
+   "bytes": 4758
+  },
+  "mvwomen": {
+   "src": "products/multivitamin-women/1.jpg",
+   "w": 292,
+   "h": 240,
+   "bytes": 5910
+  },
+  "b12": {
+   "src": "products/vitamin-b12-metilfolat/1.png",
+   "w": 131,
+   "h": 240,
+   "bytes": 4370
+  },
+  "vitc": {
+   "src": "products/vitamin-c/2.png",
+   "w": 304,
+   "h": 240,
+   "bytes": 5148
+  },
+  "cinko": {
+   "src": "products/cinko/1.png",
+   "w": 131,
+   "h": 240,
+   "bytes": 2826
+  },
+  "propolis": {
+   "src": "products/propolis-kapsul/1.png",
+   "w": 304,
+   "h": 240,
+   "bytes": 4460
+  },
+  "omega3surup": {
+   "src": "products/omega-3-surup/1.png",
+   "w": 104,
+   "h": 240,
+   "bytes": 2726
+  },
+  "d3": {
+   "src": "products/vitamin-d3-damla/1.png",
+   "w": 139,
+   "h": 240,
+   "bytes": 4338
+  },
+  "d3k2": {
+   "src": "products/d3-k2-vitamin-damlasi/1.png",
+   "w": 151,
+   "h": 240,
+   "bytes": 3544
+  },
+  "krill": {
+   "src": "products/krill-yagi/1.png",
+   "w": 304,
+   "h": 240,
+   "bytes": 5028
+  },
+  "magnezyum": {
+   "src": "products/magnezyum/1.png",
+   "w": 304,
+   "h": 240,
+   "bytes": 5106
+  },
+  "spirulina": {
+   "src": "products/spirulina/1.png",
+   "w": 126,
+   "h": 240,
+   "bytes": 3746
+  }
+ },
+ "logo": {
+  "beyaz": [
+   480,
+   191
+  ],
+  "dr": [
+   600,
+   170
+  ]
+ }
+}
