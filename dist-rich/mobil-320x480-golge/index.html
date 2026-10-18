@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=320,height=480">
+<meta name="viewport" content="width=320,height=480,initial-scale=1,user-scalable=no">
+<title>İlaçsız Yaşam – Gölgen Ne Diyor? 320x480</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #132d7d;
+  --navy-d: #0b1c52;
+  --green: #5fa511;
+  --green-l: #8fd14a;
+  --ink: #0f1a3a;
+  --white: #fff;
+  --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --sans: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+  --ease: cubic-bezier(.22, .8, .2, 1);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: var(--navy-d); }
+body { font-family: var(--sans); color: var(--white); -webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none; }
+img { display: block; -webkit-user-drag: none; }
+button { font: inherit; color: inherit; border: 0; background: none; cursor: pointer; }
+.ad { position: relative; overflow: hidden; background: var(--navy-d); cursor: pointer; }
+.legal { font-size: 8px; line-height: 1.25; color: rgba(255, 255, 255, .72); letter-spacing: .01em; }
+
+/* Kupon çipi */
+.coupon { display: inline-flex; align-items: center; gap: 8px; border-radius: 10px; background: rgba(255, 255, 255, .14); border: 1px dashed rgba(255, 255, 255, .55); padding: 6px 10px; transition: background .25s, transform .25s var(--ease); }
+.coupon:hover { background: rgba(255, 255, 255, .22); }
+.coupon:active { transform: scale(.97); }
+.coupon b { font-weight: 800; letter-spacing: .08em; }
+.coupon .cp-act { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--green-l); }
+.coupon .cp-ok { display: none; }
+.coupon.copied { background: var(--green); border-color: var(--green); }
+.coupon.copied .cp-act { display: none; }
+.coupon.copied .cp-ok { display: inline; font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; }
+
+/* Yeşil CTA */
+.cta { display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 16px; border-radius: 999px; background: var(--green); color: #fff; font-weight: 800; font-size: 12.5px; letter-spacing: .01em; white-space: nowrap; box-shadow: 0 6px 18px rgba(95, 165, 17, .38); transition: transform .25s var(--ease), background .25s; }
+.cta:hover { background: #6cbb14; transform: translateY(-1px); }
+.cta i { font-style: normal; transition: transform .25s var(--ease); }
+.cta:hover i { transform: translateX(3px); }
+
+/* Ürün kutucuğu (orijinal ambalaj fotoğrafı, beyaz kart) */
+.pk { position: relative; flex: none; background: #fff; border-radius: 10px; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 16px rgba(5, 15, 50, .28); transition: transform .3s var(--ease), box-shadow .3s; }
+.pk img { max-width: 86%; max-height: 82%; object-fit: contain; }
+.pk:hover { transform: translateY(-4px) scale(1.04); box-shadow: 0 10px 22px rgba(5, 15, 50, .4); z-index: 2; }
+.pk .tip { position: absolute; left: 50%; bottom: calc(100% + 6px); transform: translate(-50%, 4px); background: #fff; color: var(--navy); font-size: 10px; font-weight: 800; padding: 4px 8px; border-radius: 6px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; box-shadow: 0 4px 12px rgba(0, 0, 0, .25); }
+.pk:hover .tip { opacity: 1; transform: translate(-50%, 0); }
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: .01s !important; animation-duration: .01s !important; } }
+
+.ad { width: 320px; height: 480px; }
+.st { position: absolute; inset: 0; opacity: 0; pointer-events: none; transform: translateX(18px); transition: opacity .45s var(--ease), transform .45s var(--ease); }
+.st.on { opacity: 1; pointer-events: auto; transform: none; }
+.ov { font-size: 9.5px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--green-l); display: flex; align-items: center; gap: 6px; }
+.city { font: inherit; letter-spacing: 0; text-transform: none; font-size: 11px; font-weight: 800; color: #fff; background: rgba(255, 255, 255, .14); border: 1px solid rgba(255, 255, 255, .3); border-radius: 999px; padding: 2px 9px; }
+/* 1: canlı pencere */
+.win { position: absolute; left: 0; top: 0; width: 320px; height: 240px; overflow: hidden; }
+.win > img.ph { width: 100%; height: 100%; object-fit: cover; transition: filter .25s linear; }
+.win::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11, 28, 82, .6) 0%, rgba(11, 28, 82, 0) 28%, rgba(11, 28, 82, 0) 55%, rgba(11, 28, 82, .85) 92%, var(--navy-d) 100%); pointer-events: none; }
+.win .logo { position: absolute; z-index: 1; left: 14px; top: 12px; width: 98px; }
+.live { position: absolute; z-index: 1; right: 12px; top: 13px; font-size: 8.5px; font-weight: 800; letter-spacing: .1em; padding: 4px 8px 4px 17px; border-radius: 999px; background: rgba(11, 28, 82, .55); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.live::before { content: ''; position: absolute; left: 7px; top: 50%; width: 6px; height: 6px; margin-top: -3px; border-radius: 50%; background: #ff5a4f; animation: blink 1.4s infinite; }
+@keyframes blink { 50% { opacity: .25; } }
+.big { position: absolute; z-index: 1; right: 14px; bottom: 6px; text-align: right; font-family: var(--serif); font-weight: 700; font-size: 60px; line-height: .9; letter-spacing: -.02em; transition: color .3s; text-shadow: 0 4px 18px rgba(0, 0, 0, .35); }
+.big small { font-size: 30px; color: var(--green-l); }
+.big span { display: block; font-family: var(--sans); font-size: 8.5px; font-weight: 800; letter-spacing: .1em; color: rgba(255, 255, 255, .8); text-transform: uppercase; margin-top: 2px; text-shadow: none; }
+.sun { position: absolute; z-index: 1; left: 14px; bottom: 10px; font-size: 9.5px; font-weight: 700; line-height: 1.35; color: rgba(255, 255, 255, .9); max-width: 170px; }
+.sun b { color: #fff; }
+.b1 { position: absolute; left: 16px; right: 16px; top: 250px; }
+.b1 h1 { font-family: var(--serif); font-weight: 600; font-size: 22px; line-height: 1.06; margin-top: 6px; letter-spacing: -.01em; }
+.b1 h1 em { color: var(--green-l); }
+.b1 p { font-size: 10px; line-height: 1.38; font-weight: 600; color: rgba(255, 255, 255, .8); margin-top: 5px; }
+.slider { position: absolute; left: 20px; right: 20px; top: 362px; height: 36px; touch-action: none; }
+.track { position: absolute; left: 0; right: 0; top: 10px; height: 6px; border-radius: 6px; background: linear-gradient(90deg, #f6c544, #e9a23b 40%, #5a6fa8 75%, #33467e); }
+.knob { position: absolute; top: 13px; width: 26px; height: 26px; margin: -13px 0 0 -13px; border-radius: 50%; background: #ffd25a; box-shadow: 0 0 0 4px rgba(255, 210, 90, .3), 0 0 18px rgba(255, 200, 70, .7); }
+.today { position: absolute; top: 2px; width: 2px; height: 22px; margin-left: -1px; background: #fff; border-radius: 2px; }
+.months { position: absolute; left: 0; right: 0; top: 24px; display: flex; justify-content: space-between; font-size: 8px; font-weight: 700; color: rgba(255, 255, 255, .55); }
+.s1 .cta { position: absolute; left: 16px; right: 16px; top: 406px; height: 40px; justify-content: center; font-size: 13px; }
+.cta.pulse { animation: pulse 1.4s var(--ease) 3; }
+@keyframes pulse { 50% { transform: scale(1.04); box-shadow: 0 0 0 8px rgba(95, 165, 17, .25); } }
+.cities { position: absolute; z-index: 6; left: 12px; right: 12px; top: 270px; display: flex; flex-wrap: wrap; gap: 6px; padding: 10px; border-radius: 14px; background: #fff; box-shadow: 0 12px 30px rgba(0, 0, 0, .35); opacity: 0; transform: translateY(-6px); pointer-events: none; transition: opacity .25s, transform .25s var(--ease); }
+.cities.on { opacity: 1; transform: none; pointer-events: auto; }
+.cities button { font-size: 12px; font-weight: 800; color: var(--navy); padding: 7px 11px; border-radius: 999px; background: #eef1f8; }
+.cities button.sel { background: var(--navy); color: #fff; }
+/* 2: sorular */
+.qhd { position: absolute; left: 14px; right: 14px; top: 12px; display: flex; align-items: center; justify-content: space-between; }
+.qhd .logo { width: 90px; }
+.dots { display: flex; gap: 4px; }
+.dots i { width: 18px; height: 4px; border-radius: 4px; background: rgba(255, 255, 255, .25); }
+.dots i.on { background: var(--green-l); }
+.qt { position: absolute; left: 16px; right: 16px; top: 58px; font-family: var(--serif); font-weight: 600; font-size: 22px; line-height: 1.08; }
+.ans { position: absolute; left: 10px; right: 10px; top: 116px; display: flex; flex-direction: column; gap: 10px; }
+.ans button { position: relative; height: 162px; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 20px rgba(0, 0, 0, .35); transition: transform .25s var(--ease), box-shadow .25s; }
+.ans button:active { transform: scale(.98); }
+.ans button img { width: 100%; height: 100%; object-fit: cover; }
+.ans button span { position: absolute; left: 10px; bottom: 10px; font-size: 14px; font-weight: 800; padding: 7px 13px; border-radius: 999px; background: #fff; color: var(--navy); }
+.ans button.pick { box-shadow: 0 0 0 4px var(--green-l); }
+/* 3: sonuç */
+.r { position: absolute; left: 14px; right: 14px; top: 60px; }
+.r h2 { font-family: var(--serif); font-weight: 600; font-size: 18px; line-height: 1.12; margin-top: 4px; }
+.r h2 em { color: var(--green-l); }
+.rp { display: flex; flex-direction: column; gap: 6px; margin-top: 9px; }
+.rp .it { display: flex; gap: 10px; align-items: center; padding: 5px; border-radius: 12px; background: rgba(255, 255, 255, .08); border: 1px solid rgba(255, 255, 255, .14); opacity: 0; transform: translateX(14px); }
+.s3.on .rp .it { opacity: 1; transform: none; transition: opacity .45s var(--ease), transform .45s var(--ease); }
+.s3.on .rp .it:nth-child(2) { transition-delay: .12s; } .s3.on .rp .it:nth-child(3) { transition-delay: .24s; }
+.rp .pk { width: 44px; height: 44px; }
+.rp b { display: block; font-size: 11.5px; font-weight: 800; }
+.rp small { display: block; font-size: 9px; font-weight: 600; line-height: 1.25; color: rgba(255, 255, 255, .75); margin-top: 1px; }
+.rp i { margin-left: auto; font-style: normal; font-weight: 800; color: var(--green-l); padding-right: 6px; }
+.r .coupon { margin-top: 10px; width: 100%; justify-content: space-between; font-size: 11px; padding: 7px 10px; }
+.r .coupon .pct { font-family: var(--serif); font-size: 17px; font-weight: 700; color: var(--green-l); }
+.r .cta { width: 100%; justify-content: center; height: 38px; margin-top: 8px; }
+.r .note { font-size: 8px; color: rgba(255, 255, 255, .6); margin-top: 6px; }
+.legal { position: absolute; z-index: 9; left: 14px; right: 14px; bottom: 6px; font-size: 7.3px; pointer-events: none; }
+</style>
+</head>
+<body>
+<div class="ad" id="ad" role="link" tabindex="0" aria-label="İlaçsız Yaşam – Gölgen ne diyor? Şehrinde güneş bugün ne kadar dik geliyor; 3 soruda Kasım rutinini bul.">
+  <div class="st s1 on" id="s1">
+    <div class="win">
+      <img class="ph" id="ph" src="img/g-sahne-m.webp" alt="Gün ışığında Vitamin D3 & K2 Damla">
+      <img class="logo" src="img/logo-beyaz.webp" alt="İlaçsız Yaşam">
+      <div class="live">CANLI HESAP</div>
+      <div class="sun" id="sun"></div>
+      <div class="big" id="big"></div>
+    </div>
+    <div class="b1">
+      <div class="ov"><button class="city" id="cityBtn">İstanbul ▾</button><span id="dateTxt"></span></div>
+      <h1 id="hl"></h1>
+      <p id="sub"></p>
+    </div>
+    <div class="slider" id="slider" role="slider" aria-label="Yıl içinde tarih seç"><div class="track"></div><div class="today" id="today"></div><div class="knob" id="knob"></div>
+      <div class="months"><span>Haz</span><span>Tem</span><span>Ağu</span><span>Eyl</span><span>Eki</span><span>Kas</span><span>Ara</span></div></div>
+    <button class="cta" id="start">3 soruda Kasım rutinimi bul <i>→</i></button>
+    <div class="cities" id="cities"></div>
+  </div>
+  <div class="st s2" id="s2">
+    <div class="qhd"><img class="logo" src="img/logo-beyaz.webp" alt="İlaçsız Yaşam"><div class="dots" id="dots"><i></i><i></i><i></i></div></div>
+    <div class="qt" id="qt"></div>
+    <div class="ans" id="ans"></div>
+  </div>
+  <div class="st s3" id="s3">
+    <div class="qhd"><img class="logo" src="img/logo-beyaz.webp" alt="İlaçsız Yaşam"><button class="ov" id="again" style="text-decoration:underline">Testi yenile</button></div>
+    <div class="r">
+      <div class="ov" id="rov"></div>
+      <h2 id="rh"></h2>
+      <div class="rp" id="rp"></div>
+      <button class="coupon" id="cp"><span><span class="pct">%10</span> Yeni üyelere · <b>YENIUYE10</b></span><span class="cp-act">Kopyala</span><span class="cp-ok">✓ Kopyalandı</span></button>
+      <button class="cta" id="go">Rutinimi gör <i>→</i></button>
+      <div class="note" id="note"></div>
+    </div>
+  </div>
+  <div class="legal">Takviye edici gıdalar ilaç değildir. Hastalıkların önlenmesi veya tedavi edilmesi amacıyla kullanılmaz.</div>
+</div>
+<script>window.AD = {"creative":{"gunes":{"cities":[{"key":"istanbul","name":"İstanbul","lat":41.01,"lon":28.98},{"key":"ankara","name":"Ankara","lat":39.93,"lon":32.86},{"key":"izmir","name":"İzmir","lat":38.42,"lon":27.14},{"key":"bursa","name":"Bursa","lat":40.19,"lon":29.06},{"key":"antalya","name":"Antalya","lat":36.9,"lon":30.7},{"key":"adana","name":"Adana","lat":37,"lon":35.32},{"key":"konya","name":"Konya","lat":37.87,"lon":32.48}],"fact":"Gölgen boyundan uzunsa güneş, cildin D vitamini üretebileceği kadar dik gelmez.","questions":[{"key":"gun","q":"Günün çoğu nasıl geçiyor?","a":[{"v":"masa","t":"Masa başında","img":"img/q-masa.webp"},{"v":"hareket","t":"Hareket halinde","img":"img/q-hareket.webp"}]},{"key":"aile","q":"Rutini kimin için kuruyorsun?","a":[{"v":"cocuk","t":"Minikler de var","img":"img/q-aile.webp"},{"v":"ben","t":"Kendim için","img":"img/q-ben.webp"}]},{"key":"his","q":"Kasım'da en çok neye ihtiyacın var?","a":[{"v":"enerji","t":"Gün boyu enerji","img":"img/q-enerji.webp"},{"v":"huzur","t":"Akşam dinginliği","img":"img/q-huzur.webp"}]}],"products":{"d3k2":{"key":"d3k2","name":"Vitamin D3 & K2 Damla","why":"Gün ışığı azaldığında","claim":"D vitamini bağışıklık sisteminin normal fonksiyonuna katkıda bulunur.","img":"img/p-d3k2.webp","url":"https://ilacsizyasam.com/products/d3-k2-vitamin-damlasi?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_golge_gunes_d3k2"},"d3":{"key":"d3","name":"Vitamin D3 Damla","why":"Minikler için gün ışığı desteği","claim":"D vitamini çocuklarda kemiklerin normal büyüme ve gelişimi için gereklidir.","img":"img/p-d3.webp","url":"https://ilacsizyasam.com/products/vitamin-d3-damla?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_golge_gunes_d3"},"omega3surup":{"key":"omega3surup","name":"Omega 3 Şurup","why":"Minikler için, yeni tadıyla","claim":"4 yaş ve üzeri çocuklar için sıvı form.","img":"img/p-omega3surup.webp","url":"https://ilacsizyasam.com/products/omega-3-surup?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_golge_gunes_omega3surup"},"b12":{"key":"b12","name":"Vitamin B12 & Folik Asit","why":"Gün boyu enerji için","claim":"B12 vitamini yorgunluk ve bitkinliğin azalmasına katkıda bulunur.","img":"img/p-b12.webp","url":"https://ilacsizyasam.com/products/vitamin-b12-metilfolat?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_golge_gunes_b12"},"magnezyum":{"key":"magnezyum","name":"Magnezyum","why":"Akşam rutini için","claim":"Magnezyum sinir sisteminin normal fonksiyonuna katkıda bulunur.","img":"img/p-magnezyum.webp","url":"https://ilacsizyasam.com/products/magnezyum?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_golge_gunes_magnezyum"},"omega3":{"key":"omega3","name":"Omega 3","why":"Masa başı günler için","claim":"EPA ve DHA kalbin normal fonksiyonuna katkıda bulunur.","img":"img/p-omega3.webp","url":"https://ilacsizyasam.com/products/omega-3-33-22-60-kapsul?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_golge_gunes_omega3"},"krill":{"key":"krill","name":"Krill Yağı","why":"Hareketli günler için","claim":"EPA ve DHA kalbin normal fonksiyonuna katkıda bulunur.","img":"img/p-krill.webp","url":"https://ilacsizyasam.com/products/krill-yagi?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_golge_gunes_krill"}},"resultUrl":"https://ilacsizyasam.com/collections/gida-takviyeleri?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_golge_test","note":"Bu test tıbbi tavsiye değildir; takviye kullanımı için hekiminize danışın."}},"data":{"brand":{"name":"İlaçsız Yaşam","by":"Dr. Ümit Aktaş Ürünleri Resmi Satış Noktası","headline":"Kasım'da kendine iyi bak.","sub":"Sana uygun rutini seç, keşfet.","legal":"Takviye edici gıdalar ilaç değildir. Hastalıkların önlenmesi veya tedavi edilmesi amacıyla kullanılmaz.","home":"https://ilacsizyasam.com/collections/gida-takviyeleri?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_golge_genel"},"coupon":{"over":"Yeni üyelere","pct":"%10","text":"ilk alışverişte indirim","code":"YENIUYE10","copied":"Kod kopyalandı","url":"https://ilacsizyasam.com/collections/en-cok-satanlar?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_golge_kupon"}}};</script>
+<script>
+/* Ortak çalışma zamanı: tıklama çıkışları, ölçüm, kupon kopyalama. Her kreatifin içine satır içi gömülür. */
+var AD = window.AD || {};
+(function () {
+  // Ölçüm: Studio/DV360 Enabler varsa sayaç, yoksa konsol (ağ makrosuna buradan bağlanır).
+  AD.track = function (name) {
+    try { if (window.Enabler && Enabler.counter) Enabler.counter(name); } catch (e) {}
+    if (window.console && console.debug) console.debug('[ad]', name);
+  };
+  // Çıkış: Enabler → exitOverride; clickTag tanımlıysa (Google Ads/CM360 tek çıkış) clickTag; yoksa UTM'li doğrudan adres.
+  AD.exit = function (id, url) {
+    AD.track('exit_' + id);
+    try {
+      if (window.Enabler && Enabler.exitOverride) { Enabler.exitOverride(id, url); return; }
+    } catch (e) {}
+    var tag = window.clickTag || window.clickTAG;
+    window.open(tag || url, '_blank');
+  };
+  // Kupon kodunu panoya kopyalar; el.dataset.code okunur, geri bildirim için `copied` sınıfı eklenir.
+  AD.copy = function (el, code, done) {
+    function ok() {
+      el.classList.add('copied');
+      AD.track('coupon_copy');
+      clearTimeout(el._t); el._t = setTimeout(function () { el.classList.remove('copied'); }, 1800);
+      if (done) done();
+    }
+    try {
+      if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(code).then(ok, fallback); return; }
+    } catch (e) {}
+    fallback();
+    function fallback() {
+      var t = document.createElement('textarea');
+      t.value = code; t.setAttribute('readonly', ''); t.style.cssText = 'position:fixed;opacity:0;left:-99px';
+      document.body.appendChild(t); t.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(t); ok();
+    }
+  };
+  AD.reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Görseller yüklenince başlat (Enabler varsa görünür olduğunda).
+  AD.ready = function (fn) {
+    function go() {
+      var imgs = [].slice.call(document.images), n = imgs.length, started = false;
+      function start() { if (!started) { started = true; document.documentElement.classList.add('ready'); fn(); } }
+      if (!n) return start();
+      imgs.forEach(function (im) { if (im.complete) { if (!--n) start(); } else im.onload = im.onerror = function () { if (!--n) start(); }; });
+      setTimeout(start, 2500);
+    }
+    if (window.Enabler && Enabler.isInitialized) {
+      if (Enabler.isInitialized()) go(); else Enabler.addEventListener('init', go);
+    } else if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go();
+  };
+  AD.h = function (tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
+})();
+
+/* Gölgen ne diyor? — şehir + tarih için güneş hesabı ve kişisel rutin eşlemesi (kreatife satır içi gömülür). */
+var GUNES = (function () {
+  var RAD = Math.PI / 180;
+  function dayOfYear(d) { return Math.round((Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) - Date.UTC(d.getFullYear(), 0, 0)) / 864e5); }
+  // NOAA yaklaşımı (±2 dk): deklinasyon, zaman denklemi, öğle yüksekliği, gün uzunluğu, doğuş/batış (Türkiye UTC+3)
+  function calc(city, date) {
+    var N = dayOfYear(date), phi = city.lat * RAD;
+    var g = 2 * Math.PI / 365 * (N - 1);
+    var decl = 0.006918 - 0.399912 * Math.cos(g) + 0.070257 * Math.sin(g) - 0.006758 * Math.cos(2 * g) + 0.000907 * Math.sin(2 * g) - 0.002697 * Math.cos(3 * g) + 0.00148 * Math.sin(3 * g);
+    var eot = 229.18 * (0.000075 + 0.001868 * Math.cos(g) - 0.032077 * Math.sin(g) - 0.014615 * Math.cos(2 * g) - 0.040849 * Math.sin(2 * g));
+    var noonAlt = 90 - Math.abs(city.lat - decl / RAD);
+    var cosW = (Math.sin(-0.833 * RAD) - Math.sin(phi) * Math.sin(decl)) / (Math.cos(phi) * Math.cos(decl));
+    var w = Math.acos(Math.max(-1, Math.min(1, cosW))) / RAD;
+    var noon = 720 - 4 * city.lon - eot + 180; // yerel dakika
+    return { noonAlt: noonAlt, shadow: 1 / Math.tan(noonAlt * RAD), dayMin: 8 * w, rise: noon - 4 * w, set: noon + 4 * w, noon: noon };
+  }
+  function hm(min) { min = Math.round(min); return ('0' + Math.floor(min / 60)).slice(-2) + ':' + ('0' + (min % 60)).slice(-2); }
+  function dur(min) { min = Math.round(Math.abs(min)); var h = Math.floor(min / 60), m = min % 60; return (h ? h + ' sa ' : '') + m + ' dk'; }
+  function num(x) { return x.toFixed(1).replace('.', ','); }
+  var AY = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
+  function dateTR(d) { return d.getDate() + ' ' + AY[d.getMonth()]; }
+  // Bulunma eki (ünlü uyumu): 18 Ekim'de, 30 Haziran'da, 1 Ağustos'ta
+  var DA = ["'ta", "'ta", "'ta", "'da", "'ta", "'da", "'da", "'ta", "'de", "'de", "'da", "'ta"];
+  function dateTRda(d) { return dateTR(d) + DA[d.getMonth()]; }
+  // Haziran gündönümünden Aralık gündönümüne: t=0..1
+  function yearSpan(now) {
+    var y = now.getFullYear(), a = new Date(y, 5, 21), b = new Date(y, 11, 21);
+    if (now < a) { a = new Date(y - 1, 5, 21); b = new Date(y - 1, 11, 21); }
+    return { a: a, b: b, at: function (t) { return new Date(a.getTime() + (b - a) * t); }, tOf: function (d) { return Math.max(0, Math.min(1, (d - a) / (b - a))); } };
+  }
+  // Fotoğrafın ışığı: öğle güneşinin yüksekliğine göre (≈27° kış → ≈73° yaz)
+  function light(alt) {
+    var k = Math.max(0, Math.min(1, (alt - 25) / 48));
+    return 'brightness(' + (0.5 + 0.58 * k).toFixed(3) + ') saturate(' + (0.45 + 0.7 * k).toFixed(3) + ') contrast(' + (0.92 + 0.12 * k).toFixed(3) + ') hue-rotate(' + ((1 - k) * 12).toFixed(1) + 'deg)';
+  }
+  // Cevaplar → en fazla 3 ürün (her zaman gün ışığı ürünüyle başlar)
+  function recommend(answers, P) {
+    var out = [answers.aile === 'cocuk' ? 'd3' : 'd3k2'];
+    if (answers.aile === 'cocuk') out.push('omega3surup');
+    out.push(answers.his === 'enerji' ? 'b12' : 'magnezyum');
+    if (out.length < 3) out.push(answers.gun === 'masa' ? 'omega3' : 'krill');
+    return out.slice(0, 3).map(function (k) { return P[k]; });
+  }
+  return { calc: calc, hm: hm, dur: dur, num: num, dateTR: dateTR, dateTRda: dateTRda, yearSpan: yearSpan, light: light, recommend: recommend };
+})();
+
+(function () {
+  var G = AD.creative.gunes, D = AD.data, ad = document.getElementById('ad');
+  var $ = function (id) { return document.getElementById(id); };
+  var q = (location.search.match(/[?&]city=([^&]+)/) || [])[1];
+  var city = G.cities.filter(function (c) { return c.key === (q || '').toLowerCase(); })[0] || G.cities[0];
+  var now = new Date(), span = GUNES.yearSpan(now), tToday = span.tOf(now), t = tToday;
+  $('today').style.left = (tToday * 100) + '%';
+  function update() {
+    var d = span.at(t), c = GUNES.calc(city, d), cJ = GUNES.calc(city, span.a), cN = GUNES.calc(city, now);
+    var isToday = Math.abs(t - tToday) < 0.015;
+    $('ph').style.filter = GUNES.light(c.noonAlt);
+    $('knob').style.left = (t * 100) + '%';
+    $('cityBtn').textContent = city.name + ' ▾';
+    $('dateTxt').textContent = '· ' + (isToday ? 'bugün, ' : '') + GUNES.dateTR(d);
+    $('hl').innerHTML = (isToday ? 'Bugün' : GUNES.dateTRda(d)) + ' öğlen gölgen boyunun <em>' + GUNES.num(c.shadow) + ' katı.</em>';
+    $('big').innerHTML = GUNES.num(c.shadow) + '<small>×</small><span>gölge / boy</span>';
+    $('big').style.color = c.shadow > 1 ? '#fff' : '#ffd25a';
+    $('sub').textContent = G.fact;
+    var lost = cJ.dayMin - cN.dayMin;
+    $('sun').innerHTML = '<b>' + city.name + '</b> · batım ' + GUNES.hm(c.set) + (lost > 5 ? '<br>Haziran\'dan beri <b>−' + GUNES.dur(lost) + '</b> gün ışığı' : '');
+  }
+  var sl = $('slider'), dragging = false, userTouched = false;
+  function setFromX(x) { var b = sl.getBoundingClientRect(); t = Math.max(0, Math.min(1, (x - b.left) / b.width)); update(); }
+  sl.addEventListener('pointerdown', function (e) { e.stopPropagation(); dragging = true; touch('slider'); setFromX(e.clientX); try { sl.setPointerCapture(e.pointerId); } catch (er) {} });
+  sl.addEventListener('pointermove', function (e) { if (dragging) setFromX(e.clientX); });
+  sl.addEventListener('pointerup', function () { dragging = false; });
+  sl.addEventListener('click', function (e) { e.stopPropagation(); });
+  function touch(what) { if (!userTouched) { userTouched = true; stopDemo(); } AD.track('golge_' + what); }
+  var cities = $('cities');
+  cities.innerHTML = G.cities.map(function (c) { return '<button data-k="' + c.key + '">' + c.name + '</button>'; }).join('');
+  $('cityBtn').addEventListener('click', function (e) { e.stopPropagation(); touch('city_open'); cities.classList.toggle('on'); [].forEach.call(cities.children, function (b) { b.classList.toggle('sel', b.dataset.k === city.key); }); });
+  cities.addEventListener('click', function (e) {
+    e.stopPropagation(); var b = e.target.closest('button'); if (!b) return;
+    city = G.cities.filter(function (c) { return c.key === b.dataset.k; })[0]; AD.track('golge_city_' + city.key);
+    cities.classList.remove('on'); t = tToday; update();
+  });
+  var answers = {}, qi = 0, dots = [].slice.call($('dots').children);
+  function show(n) { ['s1', 's2', 's3'].forEach(function (id, i) { $(id).classList.toggle('on', i === n - 1); }); }
+  function ask(i) {
+    var Q = G.questions[i]; qi = i;
+    dots.forEach(function (d, j) { d.classList.toggle('on', j <= i); });
+    $('qt').textContent = Q.q;
+    $('ans').innerHTML = Q.a.map(function (a, j) { return '<button data-j="' + j + '"><img src="' + a.img + '" alt=""><span>' + a.t + '</span></button>'; }).join('');
+  }
+  $('ans').addEventListener('click', function (e) {
+    e.stopPropagation(); var b = e.target.closest('button'); if (!b) return;
+    var Q = G.questions[qi], a = Q.a[+b.dataset.j];
+    answers[Q.key] = a.v; b.classList.add('pick'); AD.track('quiz_' + Q.key + '_' + a.v);
+    setTimeout(function () { if (qi + 1 < G.questions.length) ask(qi + 1); else result(); }, 360);
+  });
+  $('start').addEventListener('click', function (e) { e.stopPropagation(); touch('start'); answers = {}; ask(0); show(2); });
+  var picks = [], code = '';
+  function result() {
+    picks = GUNES.recommend(answers, G.products);
+    code = G.questions.map(function (Q) { return answers[Q.key]; }).join('_');
+    var tag = { masa: 'masa başında', hareket: 'hareket halinde', cocuk: 'minikleriyle', ben: 'kendi için', enerji: 'enerji arayan', huzur: 'akşam dinginliği arayan' };
+    $('rov').textContent = 'Senin Kasım rutinin · ' + city.name + ' · gölge ' + GUNES.num(GUNES.calc(city, now).shadow) + '×';
+    $('rh').innerHTML = 'Günü ' + tag[answers.gun] + ' geçen, rutini ' + tag[answers.aile] + ' kuran, <em>' + tag[answers.his] + '</em> biri için:';
+    $('rp').innerHTML = picks.map(function (p, i) { return '<div class="it" data-i="' + i + '"><div class="pk"><img src="' + p.img + '" alt=""></div><div><b>' + p.name + '</b><small>' + p.why + '</small></div><i>→</i></div>'; }).join('');
+    $('note').textContent = G.note;
+    show(3); AD.track('quiz_result_' + code);
+  }
+  $('rp').addEventListener('click', function (e) { e.stopPropagation(); var it = e.target.closest('.it'); if (it) { var p = picks[+it.dataset.i]; AD.exit('golge_' + p.key, p.url); } });
+  $('go').addEventListener('click', function (e) { e.stopPropagation(); AD.exit('golge_sonuc', G.resultUrl + '_' + code); });
+  $('again').addEventListener('click', function (e) { e.stopPropagation(); t = tToday; update(); show(1); });
+  $('cp').addEventListener('click', function (e) { e.stopPropagation(); AD.copy(this, D.coupon.code); });
+  ad.addEventListener('click', function () { cities.classList.remove('on'); if ($('s1').classList.contains('on')) AD.exit('golge_genel', D.brand.home); });
+  var raf = null, demoT = [];
+  function sweep(ms, done) {
+    var t0 = null;
+    (function step(ts) { if (userTouched) return; if (t0 === null) t0 = ts; var k = Math.min(1, (ts - t0) / ms); var e = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2; t = tToday * e; update(); if (k < 1) raf = requestAnimationFrame(step); else if (done) done(); })(performance.now());
+  }
+  function stopDemo() { cancelAnimationFrame(raf); demoT.forEach(clearTimeout); }
+  update();
+  AD.ready(function () {
+    AD.track('impression_ready');
+    if (AD.reduced) return;
+    t = 0; update();
+    demoT.push(setTimeout(function () { sweep(3600, function () { $('start').classList.add('pulse'); }); }, 900));
+    demoT.push(setTimeout(function () { if (!userTouched) { t = 0; update(); demoT.push(setTimeout(function () { sweep(3600, function () { $('start').classList.remove('pulse'); void $('start').offsetWidth; $('start').classList.add('pulse'); }); }, 600)); } }, 12000));
+  });
+})();
+</script>
+</body>
+</html>

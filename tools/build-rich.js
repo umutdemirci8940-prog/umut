@@ -25,6 +25,8 @@ const ADS = {
   'mobil-320x480-mercek': { content: 'mobil_mercek', photo: 'mh', creative: 'lens' },
   'mobil-320x480-ofis': { content: 'mobil_ofis', photo: 'mh', creative: 'office' },
   'mobil-320x480-eslestir': { content: 'mobil_eslestir', photo: 'mh', creative: 'memory' },
+  'masthead-970x250-golge': { content: 'masthead_golge', photo: 'mh', creative: 'gunes' },
+  'mobil-320x480-golge': { content: 'mobil_golge', photo: 'mh', creative: 'gunes' },
 };
 
 function adData(content) {
@@ -64,6 +66,7 @@ for (const [name, cfg] of Object.entries(ADS)) {
   let html = fs.readFileSync(file, 'utf8')
     .replace('{{SHARED_CSS}}', () => css)
     .replace('{{SHARED_JS}}', () => js)
+    .replace(/\{\{INCLUDE:([\w.-]+)\}\}/g, (m, f) => fs.readFileSync(path.join(src, f), 'utf8'))
     .replace('{{DATA}}', () => JSON.stringify(d).replace(/</g, '\\u003c'))
     .replace(/\{\{(\w+)\}\}/g, (m, k) => (k in vars ? esc(vars[k]) : m));
   const used = [...new Set([...html.matchAll(/img\/([\w-]+\.webp)/g)].map((m) => m[1]))];
@@ -92,6 +95,9 @@ for (const [name, cfg] of Object.entries(ADS)) {
 
 // Sunum sayfası: dört çalışma tek dosyada (srcdoc ile gömülü), tekrar oynat düğmeleri ve kurgu notları.
 const NOTES = {
+  'masthead-970x250-golge': ['Interaktif Masthead · 970×250', 'Gölgen Ne Diyor?', "Reklam, izleyicinin şehri (yayın makrosu ?city= ya da seçim) ve bugünün tarihi için güneşi canlı hesaplar: \"Bugün İstanbul'da öğlen gölgen boyunun 1,7 katı.\" Gölge boydan uzunsa güneş D vitamini üretimi için yeterince dik gelmez; ihtiyaç kullanıcının kendi verisiyle ortaya çıkar. Güneş Haziran'dan Aralık'a sürüklendikçe fotoğrafın ışığı gerçekten söner, gün ışığı kaybı dakikasıyla yazılır. Ardından fotoğraflı 3 soru → kişisel Kasım rutini (2–3 ürün, onaylı beyanlar, %10 kod). Cevaplar UTM'e yazılır: marka hangi mecrada hangi ihtiyacın baskın olduğunu görür."],
+  'mobil-320x480-golge': ['Mobil Interaktif · 320×480', 'Gölgen Ne Diyor? (Mobil)', 'Aynı canlı hesap mobilde: ışığı şehrin güneşine göre değişen fotoğraf, büyük gölge oranı, şehir seçici, güneş kaydırıcısı; tam ekran fotoğraflı 3 soru ve kişisel rutin ekranı.'],
+
   'masthead-970x250-mercek': ['Interaktif Masthead · 970×250', 'Merceği Gezdir', "\"Her anın arkasında bir rutin var.\" Fare bir büyüteç olur; dört gerçek an (gri Kasım göğü, kahkaha, parkta koşan çocuklar, pilates) üzerinde gezdikçe mercek altında o anın arkasındaki ürün sahnesi belirir: gri gökyüzünün altında güneşli D3 & K2, kahkahanın arkasında B12 tableti. Mercek kendi kendine tur atarak mekaniği gösterir; kullanıcı 4 keşfi tamamlayınca kupon parlar. Her keşif ürün sayfasına gider."],
   'mobil-320x480-mercek': ['Mobil Interaktif · 320×480', 'Merceği Gezdir (Mobil)', 'Masthead\'in mobil eşi: 2×2 gerçek an, parmakla sürüklenen mercek; mercek altında ürün sahnesi ve onaylı beyan. Keşif sayacı + kalıcı kupon şeridi; keşfedilen panele ikinci dokunuş ürün sayfasını açar.'],
   'mobil-320x480-ofis': ['Mobil Interaktif · 320×480', "Dr. Ümit Aktaş'ın Ofisi", "Markanın kendi ofis fotoğrafı gezinilebilir bir sahneye dönüşür: parmakla kaydırılır ya da telefon eğilerek (gyro) bakılır. Fotoğraftaki gerçek nesneler sıcak nokta: kitaplık → kitapları, yoga heykeli → Huzur Ritüeli, stetoskop → imzalı takviyeler, raftaki oyuncak → çocuk ürünleri, kırmızı ajanda → %10 Kasım notu. 5 sürpriz sayacı keşfi oyunlaştırır; Dr. Ümit Aktaş içeriklerine ilgi duyan kitle için."],
@@ -111,9 +117,10 @@ const block = (n) => {
 <div class="frame" style="width:${w}px;height:${h}px"><iframe title="${title}" width="${w}" height="${h}" srcdoc="${doc}"></iframe></div></section>`;
 };
 const have = (n) => NOTES[n] && fs.existsSync(path.join(dist, 'inline', `${n}.html`));
-const creativeSet = Object.keys(ADS).filter((n) => ADS[n].creative && have(n)).map(block).join('\n');
+const needSet = Object.keys(ADS).filter((n) => ADS[n].creative === 'gunes' && have(n)).map(block).join('\n');
+const creativeSet = Object.keys(ADS).filter((n) => ADS[n].creative && ADS[n].creative !== 'gunes' && have(n)).map(block).join('\n');
 const standardSet = Object.keys(ADS).filter((n) => !ADS[n].creative && have(n)).map(block).join('\n');
-const blocks = `<h3 class="sec">Yaratıcı set · Kasım konsepti</h3>${creativeSet}<h3 class="sec">Standart set · alternatif / yedek</h3>${standardSet}`;
+const blocks = `<h3 class="sec">Ana fikir · İhtiyacı ortaya çıkaran canlı veri</h3>${needSet}<h3 class="sec">Yaratıcı set · keşif mekanikleri</h3>${creativeSet}<h3 class="sec">Standart set · alternatif / yedek</h3>${standardSet}`;
 fs.mkdirSync(path.join(root, 'preview-rich'), { recursive: true });
 fs.writeFileSync(path.join(root, 'preview-rich', 'index.html'), `<!DOCTYPE html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>İlaçsız Yaşam – Kasım Interaktif Çalışmalar</title>
@@ -131,7 +138,7 @@ h1{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:40px;line-height
 .act button{background:#132d7d;color:#fff}.frame{overflow:hidden;border-radius:6px;box-shadow:0 6px 24px rgba(0,0,0,.18);align-self:center}iframe{border:0;display:block}
 @media (max-width:1040px){.item.wide .frame{transform-origin:0 0}}
 </style></head><body>
-<header><div class="k">İlaçsız Yaşam · Kasım 2026</div><h1>Her anın arkasında bir rutin var.</h1>
-<p>Kasım konsepti: gündelik anların arkasındaki rutini kullanıcıya <b>kendi eliyle</b> keşfettiren üç mekanik — mercekle bakmak, Dr. Ümit Aktaş'ın ofisinde gezinmek, anı ürünüyle eşleştirmek. Tamamı markanın kendi fotoğraflarıyla hazırlandı; hiçbir çizim/vektör illüstrasyon yok. Her keşif ürün sayfasına UTM'li derin bağlantıyla gider (session + keşif derinliği), keşifler tamamlanınca yeni üyelere %10 kod (YENIUYE10) açılır (new user).</p></header>
+<header><div class="k">İlaçsız Yaşam · Kasım 2026</div><h1>Gölgen ne diyor?</h1>
+<p>Kasım'da insanlar ihtiyaçlarının farkında değil: gün kısalıyor, güneş alçalıyor, ama kimse bunu kendi hayatına bağlamıyor. Ana fikir, reklamın izleyicinin şehri ve bugünün tarihi için güneşi <b>canlı hesaplayıp</b> ona kendi gerçeğini göstermesi: <i>"Bugün İstanbul'da öğlen gölgen boyunun 1,7 katı."</i> İhtiyaç, kullanıcının kendi verisiyle ortaya çıkar; ardından 3 fotoğraflı soru kişisel Kasım rutinini kurar. Cevaplar UTM'e yazıldığı için marka da mecra bazında hangi ihtiyacın baskın olduğunu öğrenir. Tamamı markanın kendi fotoğraflarıyla; hiçbir çizim/vektör yok.</p></header>
 <div class="grid">${blocks}</div></body></html>`);
 console.log('✔ preview-rich/index.html (tek dosya sunum)');

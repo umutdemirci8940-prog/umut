@@ -2,6 +2,23 @@
 
 Sunum: **`preview-rich/index.html`** (tek dosya; tüm çalışmalar gömülü, tekrar oynat düğmeli). Yüklemeye hazır paketler: `dist-rich/zip/`.
 
+## Ana fikir — "Gölgen ne diyor?" (ihtiyacı ortaya çıkaran canlı veri)
+
+Reklam, izleyicinin şehri ve bugünün tarihi için güneşi canlı hesaplar (`rich/gunes.js`, NOAA yaklaşımı, ±2 dk): *"Bugün İstanbul'da öğlen gölgen boyunun 1,7 katı."* Gölge boydan uzunsa güneş D vitamini üretimi için yeterince dik gelmez. Güneş kaydırıcısı Haziran → Aralık sürüklendikçe fotoğrafın ışığı söner, gün ışığı kaybı dakikasıyla yazılır. Ardından fotoğraflı 3 soru → kişisel Kasım rutini (2–3 ürün, onaylı beyanlar, %10 kod, "tıbbi tavsiye değildir" notu).
+
+| Çalışma | Boyut | Klasör |
+|---|---|---|
+| Gölgen Ne Diyor? | 970 × 250 masthead | `dist-rich/masthead-970x250-golge/` |
+| Gölgen Ne Diyor? (Mobil) | 320 × 480 | `dist-rich/mobil-320x480-golge/` |
+
+- **Şehir:** Yayın makrosu ile `index.html?city=ankara` (istanbul, ankara, izmir, bursa, antalya, adana, konya); yoksa İstanbul, kullanıcı değiştirebilir.
+- **İhtiyaç verisi:** Cevaplar sonuç adresinin `utm_content`'ine yazılır (`…_test_masa_cocuk_enerji`) ve `quiz_*` olayları sayılır → mecra/şehir bazında ihtiyaç dağılımı raporlanabilir.
+- **Mesaj onayı:** "Gölge kuralı" bilgilendirme amaçlıdır; metin ve ürün eşleşmeleri yayın öncesi marka/regülasyon onayına sunulmalıdır.
+
+| Masthead | Mobil |
+|---|---|
+| ![golge](preview-rich/screens/masthead-970x250-golge-kasim.jpg) ![sonuc](preview-rich/screens/masthead-970x250-golge-sonuc.jpg) | ![golge](preview-rich/screens/mobil-320x480-golge-kasim.jpg) ![soru](preview-rich/screens/mobil-320x480-golge-soru-1.jpg) ![sonuc](preview-rich/screens/mobil-320x480-golge-sonuc.jpg) |
+
 ## Yaratıcı set — "Her anın arkasında bir rutin var."
 
 | Çalışma | Boyut | Mekanik | Klasör |

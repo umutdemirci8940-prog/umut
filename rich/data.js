@@ -118,6 +118,33 @@ module.exports = {
         { key: 'oyuncak', x: .715, y: .53, label: 'Raftaki oyuncak', title: 'Miniklere destek', text: 'Omega 3 Şurup ve Vitamin D3 Damla.', imgs: ['img/p-omega3surup.webp', 'img/p-d3.webp'], cta: 'Gelişim Paketi', url: L('/products/gelisim-paketi', 'oyuncak') },
         { key: 'ajanda', x: .2, y: .885, label: 'Kırmızı ajanda', title: 'Kasım notu: %10', text: 'Yeni üyelere ilk alışverişte indirim.', coupon: true, cta: 'Alışverişe başla', url: L('/collections/en-cok-satanlar', 'ajanda') },
       ],
+      // Gölgen ne diyor? — şehir koordinatları (brief'teki öncelikli şehirler), sorular, ürünler
+      gunes: {
+        cities: [
+          { key: 'istanbul', name: 'İstanbul', lat: 41.01, lon: 28.98 }, { key: 'ankara', name: 'Ankara', lat: 39.93, lon: 32.86 },
+          { key: 'izmir', name: 'İzmir', lat: 38.42, lon: 27.14 }, { key: 'bursa', name: 'Bursa', lat: 40.19, lon: 29.06 },
+          { key: 'antalya', name: 'Antalya', lat: 36.9, lon: 30.7 }, { key: 'adana', name: 'Adana', lat: 37.0, lon: 35.32 },
+          { key: 'konya', name: 'Konya', lat: 37.87, lon: 32.48 },
+        ],
+        fact: 'Gölgen boyundan uzunsa güneş, cildin D vitamini üretebileceği kadar dik gelmez.',
+        questions: [
+          { key: 'gun', q: 'Günün çoğu nasıl geçiyor?', a: [{ v: 'masa', t: 'Masa başında', img: 'img/q-masa.webp' }, { v: 'hareket', t: 'Hareket halinde', img: 'img/q-hareket.webp' }] },
+          { key: 'aile', q: 'Rutini kimin için kuruyorsun?', a: [{ v: 'cocuk', t: 'Minikler de var', img: 'img/q-aile.webp' }, { v: 'ben', t: 'Kendim için', img: 'img/q-ben.webp' }] },
+          { key: 'his', q: "Kasım'da en çok neye ihtiyacın var?", a: [{ v: 'enerji', t: 'Gün boyu enerji', img: 'img/q-enerji.webp' }, { v: 'huzur', t: 'Akşam dinginliği', img: 'img/q-huzur.webp' }] },
+        ],
+        products: {
+          d3k2: { key: 'd3k2', name: 'Vitamin D3 & K2 Damla', why: 'Gün ışığı azaldığında', claim: 'D vitamini bağışıklık sisteminin normal fonksiyonuna katkıda bulunur.', img: 'img/p-d3k2.webp', url: L('/products/d3-k2-vitamin-damlasi', 'gunes_d3k2') },
+          d3: { key: 'd3', name: 'Vitamin D3 Damla', why: 'Minikler için gün ışığı desteği', claim: 'D vitamini çocuklarda kemiklerin normal büyüme ve gelişimi için gereklidir.', img: 'img/p-d3.webp', url: L('/products/vitamin-d3-damla', 'gunes_d3') },
+          omega3surup: { key: 'omega3surup', name: 'Omega 3 Şurup', why: 'Minikler için, yeni tadıyla', claim: '4 yaş ve üzeri çocuklar için sıvı form.', img: 'img/p-omega3surup.webp', url: L('/products/omega-3-surup', 'gunes_omega3surup') },
+          b12: { key: 'b12', name: 'Vitamin B12 & Folik Asit', why: 'Gün boyu enerji için', claim: 'B12 vitamini yorgunluk ve bitkinliğin azalmasına katkıda bulunur.', img: 'img/p-b12.webp', url: L('/products/vitamin-b12-metilfolat', 'gunes_b12') },
+          magnezyum: { key: 'magnezyum', name: 'Magnezyum', why: 'Akşam rutini için', claim: 'Magnezyum sinir sisteminin normal fonksiyonuna katkıda bulunur.', img: 'img/p-magnezyum.webp', url: L('/products/magnezyum', 'gunes_magnezyum') },
+          omega3: { key: 'omega3', name: 'Omega 3', why: 'Masa başı günler için', claim: 'EPA ve DHA kalbin normal fonksiyonuna katkıda bulunur.', img: 'img/p-omega3.webp', url: L('/products/omega-3-33-22-60-kapsul', 'gunes_omega3') },
+          krill: { key: 'krill', name: 'Krill Yağı', why: 'Hareketli günler için', claim: 'EPA ve DHA kalbin normal fonksiyonuna katkıda bulunur.', img: 'img/p-krill.webp', url: L('/products/krill-yagi', 'gunes_krill') },
+        },
+        // utm_content en sonda; kreatif cevapları sonuna ekler (…_test_masa_cocuk_enerji) → markaya ihtiyaç dağılımı verisi
+        resultUrl: L('/collections/gida-takviyeleri', 'test'),
+        note: 'Bu test tıbbi tavsiye değildir; takviye kullanımı için hekiminize danışın.',
+      },
       // An ↔ ürün eşleri
       memory: [
         { key: 'enerji', img: 'img/m-enerji.webp', pack: 'img/p-b12.webp', name: 'B12 & Folik Asit', url: L('/products/vitamin-b12-metilfolat', 'enerji') },

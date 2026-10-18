@@ -54,6 +54,15 @@ PHOTOS = {
     'm-aktif': ('products/krill-yagi/8.webp', 240, 320, .45, .5, 70),
     'm-cocuk': ('products/omega-3-surup/6.jpg', 240, 320, .5, .5, 70),
     'm-sirt': ('products/magnezyum/7.jpg', 240, 320, .35, .7, 66),
+    # Gölgen ne diyor?: ışığı canlı değişen sahne ve soru fotoğrafları
+    'g-sahne': ('products/d3-k2-vitamin-damlasi/6.jpg', 600, 375, .5, .42, 74),
+    'g-sahne-m': ('products/d3-k2-vitamin-damlasi/6.jpg', 480, 360, .5, .42, 72),
+    'q-masa': ('site/cdn-shop-articles-image-3840-5-54a8e510-1b73-42d1-a512-eb705646c559.webp', 420, 250, .35, .4, 70),
+    'q-hareket': ('products/krill-yagi/8.webp', 420, 250, .45, .45, 70),
+    'q-aile': ('site/cdn-shop-articles-okul-doneminde-cocuklarin-bagisiklik-sistemini-deste.jpg', 420, 250, .5, .5, 72),
+    'q-ben': ('products/vitamin-b12-metilfolat/7.jpg', 420, 250, .45, .5, 70),
+    'q-enerji': ('site/cdn-shop-articles-image-3840-6-7fc11111-0087-47f3-a6b0-713e6b27aa24.webp', 420, 250, .5, .55, 72),
+    'q-huzur': ('products/safran-ekstresi/8.jpg', 420, 250, .5, .5, 70),
 }
 
 PACKS = {
