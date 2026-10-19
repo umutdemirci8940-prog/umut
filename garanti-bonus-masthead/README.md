@@ -69,3 +69,22 @@ Teslim dosyası: `media-first/index.html` (tek dosya, ~52 KB). Kaynak: `src/medi
 | Final – film oynuyor | Final – duraklatıldı |
 |---|---|
 | ![](screens/media-first/7-final.png) | ![](screens/media-first/8-final-duraklatildi.png) |
+
+---
+
+# Video masthead: kampanya görseli + video alanı
+
+Teslim dosyası: `video/index.html` (tek dosya, ~38 KB). Kaynak: `src/video.html`.
+
+| Video alanı boş (yer tutucu) | Film eklendiğinde (test videosu) |
+|---|---|
+| ![](screens/video/1-video-alani-bos.png) | ![](screens/video/2-video-oynuyor-test.png) |
+
+**Yerleşim**
+- **Sol 526 × 250 – kampanya görseli:** logo, "Black Friday · Kasım" etiketi, ana mesaj, Bonus kartı, "Kampanyaları Keşfet" CTA'sı, yasal ibare. Ajansın hazırlayacağı kampanya görseli bu alanın yerine konabilir (`.kv` bloğu).
+- **Sağ 444 × 250 – video alanı (16:9):** `VIDEO_URL` boşken kesik çizgili "Kampanya filmi" yer tutucusu görünür (tıklanınca reklam açılır).
+
+**Filmi eklemek:** Dosyanın başında `VIDEO_URL = "film.mp4"` (MP4, H.264, 16:9; önerilen 888×500 veya 1280×720, ≤15 sn). İsteğe bağlı kapak için `VIDEO_POSTER`.
+- Sayfa açılınca film **sessiz** başlar; oynat/duraklat, ilerleme çubuğu (tıklayarak sarma), süre, ses aç/kapat ve tam ekran kontrolleri vardır.
+- Video alanına tıklamak reklamdan çıkış yapmaz; banner'ın geri kalanı tıklama çıkışına gider (`clickTag` / `Enabler.exit`).
+- Film bitince oynatıcı durur, ortada oynat düğmesi çıkar ve CTA nabız atar.
