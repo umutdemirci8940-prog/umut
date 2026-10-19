@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=970,height=250">
+<meta name="viewport" content="width=970,height=250">
+<title>Garanti BBVA Bonus – Kartını Okut Masthead 970x250</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Roboto:wght@400;500;700;900&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+<script>
+  // Reklam ağı tarafından ezilir (Google Ads / DCM). Studio için Enabler.exit kullanılır.
+  var clickTag = window.clickTag || "https://www.bonus.com.tr/kampanyalar";
+  // Kampanya filmi: MP4 (H.264), 16:9. Doluysa final karesindeki video alanında sessiz oynar; boşsa yer tutucu görünür.
+  var VIDEO_URL = "";
+  var VIDEO_POSTER = ""; // isteğe bağlı kapak görseli
+</script>
+<style>
+  /* Renkler bonus.com.tr ve garantibbva.com.tr'den ölçüldü (brand-ref/report.json) */
+  :root {
+    --lime: #7cc325;
+    --lime-lt: #aaef51;
+    --lime-pale: #f3f9ea;
+    --green: #58b04c;
+    --green-dk: #00623a;
+    --yellow: #ffcc00;
+    --yellow-dk: #f5bd00;
+    --ink: #2e3033;
+    --muted: #737980;
+    --ease: cubic-bezier(.2,.9,.25,1);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 970px; height: 250px; overflow: hidden; background: #fff; }
+  body { font-family: Roboto, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+  .cond { font-family: "Barlow Condensed", "Roboto Condensed", "Arial Narrow", sans-serif; }
+  .mono { font-family: "Roboto Mono", "Courier New", monospace; }
+
+  #ad { position: relative; width: 970px; height: 250px; overflow: hidden; cursor: pointer; user-select: none; -webkit-user-select: none;
+    background: radial-gradient(380px 240px at 150px 150px, var(--lime-lt), transparent 70%), radial-gradient(320px 220px at 820px 110px, rgba(170,239,81,.8), transparent 70%), var(--lime); }
+  #ad::before { content: ""; position: absolute; left: -200px; top: -500px; width: 1400px; height: 1400px; pointer-events: none; opacity: .14;
+    background: repeating-conic-gradient(from 0deg at 50% 50%, #fff 0 4deg, transparent 4deg 14deg);
+    -webkit-mask: radial-gradient(circle at 50% 50%, #000 0, transparent 60%); mask: radial-gradient(circle at 50% 50%, #000 0, transparent 60%); }
+  #ad:focus-visible { outline: 3px solid var(--green-dk); outline-offset: -3px; }
+
+  /* ---------- Sol: logo + ana mesaj ---------- */
+  .logo-tab { position: absolute; z-index: 5; left: 0; top: 0; width: 186px; height: 60px; background: #fff; border-radius: 0 0 14px 0;
+    display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(0,98,58,.15); }
+  .logo-tab img { height: 44px; display: block; }
+  .head { position: absolute; left: 22px; top: 76px; }
+  .tag { display: inline-flex; align-items: center; gap: 6px; height: 20px; padding: 0 9px; border-radius: 10px; border: 1.5px solid var(--green-dk);
+    color: var(--green-dk); font: 800 12px/1 "Barlow Condensed", Arial Narrow, sans-serif; letter-spacing: 1px; }
+  .tag i { width: 5px; height: 5px; border-radius: 50%; background: var(--green-dk); }
+  .pill { display: table; margin-top: 5px; padding: 3px 12px 2px; border-radius: 22px; line-height: 1; font-weight: 800; text-transform: uppercase; white-space: nowrap; }
+  .pill.y { background: var(--yellow); color: var(--green-dk); font-size: 23px; margin-top: 8px; }
+  .pill.g { background: var(--green-dk); color: #fff; font-size: 28px; }
+  .pill.g em { font-style: normal; color: var(--yellow); }
+  .legal { position: absolute; left: 22px; bottom: 9px; font-size: 9px; color: var(--green-dk); opacity: .85; }
+
+  /* ---------- Orta: POS cihazı ---------- */
+  .pos { position: absolute; left: 318px; top: 22px; width: 132px; height: 212px; border-radius: 20px; padding: 10px;
+    background: linear-gradient(160deg, #3a3d41, #1f2123); box-shadow: 0 18px 34px rgba(0,60,30,.4), inset 0 1px 0 rgba(255,255,255,.12);
+    transition: transform .6s var(--ease), opacity .4s; }
+  .pos::after { content: ""; position: absolute; left: 50%; bottom: -6px; width: 60px; height: 8px; margin-left: -30px; border-radius: 0 0 6px 6px; background: #17181a; }
+  .screen { position: relative; height: 118px; border-radius: 10px; background: var(--lime-pale); overflow: hidden; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center; transition: background .3s; }
+  .screen > div { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 6px;
+    opacity: 0; transform: translateY(8px); transition: opacity .25s, transform .3s var(--ease); }
+  .screen[data-s="idle"] .s-idle, .screen[data-s="proc"] .s-proc, .screen[data-s="ok"] .s-ok { opacity: 1; transform: none; }
+  .screen[data-s="ok"] { background: var(--lime); }
+  .s-idle svg { width: 38px; height: 38px; stroke: var(--green-dk); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .s-idle b { font: 800 15px/1 "Barlow Condensed", Arial Narrow, sans-serif; color: var(--green-dk); text-transform: uppercase; }
+  .s-idle small { font-size: 9px; font-weight: 700; color: var(--muted); }
+  .s-idle .nfc { width: 18px; height: 18px; stroke: var(--green); stroke-width: 2; }
+  .spinner { width: 30px; height: 30px; border-radius: 50%; border: 3px solid rgba(0,98,58,.15); border-top-color: var(--green-dk); animation: spin .7s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .s-proc small, .s-ok small { font-size: 10px; font-weight: 700; color: var(--green-dk); }
+  .s-ok .tick { width: 36px; height: 36px; border-radius: 50%; background: #fff; color: var(--green-dk); display: grid; place-items: center; font-size: 20px; font-weight: 900; }
+  .s-ok b { font: 800 18px/1 "Barlow Condensed", Arial Narrow, sans-serif; color: var(--green-dk); background: var(--yellow); padding: 3px 8px 2px; border-radius: 10px; }
+  .keys { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin-top: 10px; }
+  .keys i { height: 13px; border-radius: 4px; background: #2c2e31; box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
+  .keys i:nth-child(10) { background: #b33a3a; } .keys i:nth-child(12) { background: var(--green); }
+  /* temassız ödeme dalgaları */
+  .waves { position: absolute; left: 50%; top: 69px; width: 0; height: 0; pointer-events: none; }
+  .waves span { position: absolute; left: -40px; top: -40px; width: 80px; height: 80px; border-radius: 50%; border: 3px solid var(--yellow); opacity: 0; }
+  .pos.tap .waves span { animation: wave .9s ease-out; }
+  .pos.tap .waves span:nth-child(2) { animation-delay: .2s; } .pos.tap .waves span:nth-child(3) { animation-delay: .4s; }
+  @keyframes wave { from { transform: scale(.4); opacity: 1; } to { transform: scale(1.9); opacity: 0; } }
+
+  /* ---------- Orta: fiş ---------- */
+  .receipt { position: absolute; left: 470px; top: 14px; width: 206px; }
+  .slot { height: 10px; border-radius: 6px; background: #1f2123; box-shadow: 0 3px 8px rgba(0,0,0,.25); position: relative; z-index: 2; }
+  .paper { position: relative; margin: -4px 8px 0; background: #fff; overflow: hidden; height: 64px; transition: height .5s cubic-bezier(.3,0,.2,1);
+    box-shadow: 0 10px 22px rgba(0,60,30,.22); padding: 12px 12px 0; color: var(--ink); }
+  .paper::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 8px;
+    background: linear-gradient(-45deg, var(--lime) 4px, transparent 0) 0 100% / 8px 8px repeat-x, linear-gradient(45deg, var(--lime) 4px, transparent 0) 0 100% / 8px 8px repeat-x; }
+  .r-head { text-align: center; font-size: 9px; font-weight: 700; letter-spacing: .5px; line-height: 1.35; }
+  .r-head b { display: block; font: 800 13px/1 "Barlow Condensed", Arial Narrow, sans-serif; letter-spacing: 1px; color: var(--green-dk); }
+  .dash { border-top: 1.5px dashed #c9d1c4; margin: 6px 0; }
+  .r-line { display: flex; justify-content: space-between; align-items: center; height: 19px; font-size: 10.5px; font-weight: 500; animation: print .4s ease; }
+  .r-line b { color: var(--green-dk); font-weight: 700; }
+  .r-line b::before { content: "✓ "; color: var(--green); }
+  @keyframes print { from { opacity: 0; transform: translateY(-6px); } }
+  .r-total { margin-top: 2px; font-size: 9px; font-weight: 700; text-align: center; line-height: 1.3; display: none; }
+  .r-total em { display: inline-block; margin-top: 3px; font: 800 17px/1 "Barlow Condensed", Arial Narrow, sans-serif; font-style: normal; background: var(--yellow); color: var(--green-dk); padding: 3px 10px 2px; border-radius: 10px; letter-spacing: .5px; }
+  .done .r-total { display: block; animation: print .5s ease; }
+
+  /* ---------- Sağ: kart + ipucu + CTA ---------- */
+  .card { position: absolute; z-index: 6; left: 712px; top: 28px; width: 200px; height: 126px; border-radius: 12px; overflow: hidden; cursor: grab; touch-action: none;
+    background: radial-gradient(160px 110px at 100% 0%, rgba(170,239,81,.55), transparent 65%), linear-gradient(135deg, #0b7a45 0%, var(--green-dk) 55%, #004a2b 100%);
+    box-shadow: 0 18px 34px rgba(0,60,30,.45), 0 0 0 1px rgba(255,255,255,.18) inset;
+    transform: rotate(-6deg); transition: transform .6s cubic-bezier(.5,0,.2,1), box-shadow .3s; }
+  .card.drag { cursor: grabbing; transition: none; box-shadow: 0 26px 44px rgba(0,60,30,.5); }
+  .card:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
+  .card::before { content: ""; position: absolute; right: -60px; bottom: -90px; width: 220px; height: 160px; border-radius: 50%; border: 18px solid rgba(124,195,37,.55); }
+  .card::after { content: ""; position: absolute; top: -50%; left: -60%; width: 40%; height: 200%; background: linear-gradient(90deg, transparent, rgba(255,255,255,.45), transparent); transform: rotate(20deg); }
+  .card.sweep::after { animation: sweep .9s ease; }
+  @keyframes sweep { to { left: 130%; } }
+  .card .plate { position: absolute; left: 10px; top: 9px; background: #fff; border-radius: 7px; padding: 3px 6px; }
+  .card .plate img { height: 24px; display: block; pointer-events: none; }
+  .card .chip { position: absolute; left: 14px; top: 56px; width: 30px; height: 22px; border-radius: 4px; background: linear-gradient(135deg, #f6e3a1, #c9a74a); }
+  .card .nfc { position: absolute; left: 52px; top: 58px; width: 18px; height: 18px; fill: none; stroke: rgba(255,255,255,.75); stroke-width: 2; stroke-linecap: round; }
+  .card .num { position: absolute; left: 14px; bottom: 13px; font-size: 11px; font-weight: 500; letter-spacing: 2px; color: #fff; opacity: .9; }
+  .card .bf-tag { position: absolute; right: 10px; bottom: 10px; background: var(--yellow); color: var(--green-dk); font: 800 11px/1 "Barlow Condensed", Arial Narrow, sans-serif; letter-spacing: .8px; padding: 4px 7px 3px; border-radius: 9px; }
+
+  .hint { position: absolute; left: 728px; top: 163px; width: 170px; display: flex; align-items: center; justify-content: center; gap: 6px;
+    font-size: 11px; font-weight: 700; color: var(--green-dk); transition: opacity .3s; }
+  .hint svg { width: 16px; height: 16px; fill: var(--green-dk); animation: nudge 1.2s ease-in-out infinite; }
+  @keyframes nudge { 50% { transform: translateX(-6px); } }
+  #ad.finished .hint { opacity: 0; }
+  .cta { position: absolute; left: 712px; top: 184px; width: 200px; height: 42px; border: 0; border-radius: 6px; background: var(--yellow); color: var(--ink);
+    font: 700 15px Roboto, Arial, sans-serif; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; box-shadow: 0 6px 14px rgba(0,98,58,.25); transition: background .2s; }
+  .cta svg { width: 15px; height: 15px; stroke: currentColor; stroke-width: 2.6; fill: none; transition: transform .2s; }
+  #ad:hover .cta { background: var(--yellow-dk); }
+  #ad:hover .cta svg { transform: translateX(3px); }
+  .cta.glow { animation: ctapulse 1.4s ease 3; }
+  @keyframes ctapulse { 50% { box-shadow: 0 0 0 8px rgba(255,204,0,.35), 0 6px 14px rgba(0,98,58,.25); } }
+
+  .coin { position: absolute; z-index: 7; pointer-events: none; padding: 4px 10px; border-radius: 14px; background: var(--yellow); color: var(--green-dk);
+    font-size: 12px; font-weight: 900; white-space: nowrap; box-shadow: 0 4px 10px rgba(0,40,20,.3); }
+
+  /* ---------- Final: POS kenara, video alanı + tamamlanan fiş ---------- */
+  #ad.finished .pos { transform: translateX(-30px) scale(.85); opacity: 0; pointer-events: none; transition: all .45s var(--ease); }
+  .fin { position: absolute; left: 296px; top: 52px; width: 170px; opacity: 0; visibility: hidden; transform: translateY(10px); transition: all .5s var(--ease) .3s; }
+  .finished .fin { opacity: 1; visibility: visible; transform: none; }
+  .fin small { display: block; white-space: nowrap; font-size: 10px; font-weight: 700; color: var(--green-dk); letter-spacing: .6px; text-transform: uppercase; margin-bottom: 6px; }
+  .replay { margin-top: 8px; background: none; border: 0; color: var(--green-dk); cursor: pointer; font: 700 11px Roboto, Arial, sans-serif; padding: 2px 0; opacity: .85; }
+  .replay:hover, .replay:focus-visible { opacity: 1; text-decoration: underline; outline: none; }
+
+  .vmini { position: relative; width: 168px; height: 95px; border-radius: 8px; overflow: hidden; background: #003d24; cursor: default; box-shadow: 0 0 0 3px #fff, 0 10px 20px rgba(0,98,58,.3); }
+  .vmini video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: #000; }
+  .vmini .ph { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; color: #fff; cursor: pointer;
+    background: radial-gradient(110px 70px at 50% 45%, #0b7a45, transparent 70%), var(--green-dk); }
+  .vmini .ph::before { content: ""; position: absolute; inset: 6px; border: 1px dashed rgba(170,239,81,.55); border-radius: 5px; }
+  .vmini .ph b { font: 800 12px/1 "Barlow Condensed", Arial Narrow, sans-serif; letter-spacing: .5px; text-transform: uppercase; }
+  .vmini.has-video .ph { display: none; }
+  .vmini .badge { position: absolute; left: 6px; top: 6px; z-index: 3; padding: 2px 5px; border-radius: 6px; background: rgba(0,0,0,.45); color: #fff;
+    font: 700 8px/1 Roboto, Arial, sans-serif; letter-spacing: .5px; text-transform: uppercase; display: none; }
+  .vmini.has-video .badge { display: block; }
+  .vc { position: absolute; left: 0; right: 0; bottom: 0; z-index: 3; height: 24px; display: none; align-items: center; gap: 4px; padding: 0 4px; background: linear-gradient(transparent, rgba(0,0,0,.65)); }
+  .vmini.has-video .vc { display: flex; }
+  .vc button { width: 20px; height: 20px; border: 0; border-radius: 50%; background: none; color: #fff; cursor: pointer; display: grid; place-items: center; }
+  .vc button:hover, .vc button:focus-visible { background: rgba(255,255,255,.2); outline: none; }
+  .vc svg { width: 10px; height: 10px; fill: currentColor; }
+  .vbar { flex: 1; height: 3px; border-radius: 2px; background: rgba(255,255,255,.3); cursor: pointer; position: relative; }
+  .vbar::before { content: ""; position: absolute; inset: -6px 0; }
+  .vbar i { display: block; height: 100%; width: 0; border-radius: 2px; background: var(--yellow); }
+  .vmini .i-play, .vmini.stopped .i-pause, .vmini .i-on, .vmini.sound .i-off { display: none; }
+  .vmini.stopped .i-play, .vmini.sound .i-on { display: block; }
+  .vplay { width: 30px; height: 30px; border-radius: 50%; background: var(--yellow); color: var(--green-dk); display: grid; place-items: center; box-shadow: 0 4px 10px rgba(0,0,0,.3); }
+  .vplay svg { width: 12px; height: 12px; fill: currentColor; margin-left: 2px; }
+  .vbig { position: absolute; left: 50%; top: 50%; z-index: 4; margin: -15px 0 0 -15px; border: 0; padding: 0; background: none; cursor: pointer;
+    opacity: 0; transform: scale(.6); pointer-events: none; transition: all .3s cubic-bezier(.2,1.4,.4,1); }
+  .vmini.has-video.stopped .vbig { opacity: 1; transform: none; pointer-events: auto; }
+
+  /* Giriş animasyonu */
+  .logo-tab, .head > *, .pos, .receipt, .card, .hint, .cta { opacity: 0; }
+  .in .logo-tab, .in .head > *, .in .receipt, .in .hint, .in .cta { opacity: 1; transition: opacity .5s ease, transform .7s var(--ease); }
+  .in .pos { opacity: 1; transition: opacity .5s ease .3s, transform .6s var(--ease); }
+  .in .card { opacity: 1; transition: opacity .4s ease .5s, transform .6s cubic-bezier(.5,0,.2,1); }
+  .in .card.drag { transition: none; }
+  .logo-tab { transform: translateY(-100%); } .head > * { transform: translateX(-20px); } .receipt { transform: translateY(-20px); } .cta { transform: translateY(10px); }
+  .in .logo-tab, .in .head > *, .in .receipt, .in .cta { transform: none; }
+  .in .head > :nth-child(2) { transition-delay: .1s; } .in .head > :nth-child(3) { transition-delay: .2s; } .in .head > :nth-child(4) { transition-delay: .3s; }
+  .in .receipt { transition-delay: .4s; } .in .hint, .in .cta { transition-delay: .7s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; transition-delay: 0s !important; }
+  }
+</style>
+</head>
+<body>
+<div id="ad" role="link" tabindex="0" aria-label="Garanti BBVA Bonus – Black Friday ve Kasım alışverişlerinde en çok kazandıran kart Bonus. Kampanyaları keşfet.">
+
+  <div class="logo-tab"><img id="logo" src="{{BONUS_LOGO}}" alt="Garanti BBVA Bonus"></div>
+  <div class="head cond">
+    <span class="tag"><i></i>BLACK FRIDAY <i></i> KASIM</span>
+    <span class="pill y">Kasım alışverişlerinde</span>
+    <span class="pill g">En çok kazandıran</span>
+    <span class="pill g">kart <em>Bonus!</em></span>
+  </div>
+  <p class="legal">Kampanya koşulları için bonus.com.tr</p>
+
+  <div class="pos" id="pos" aria-hidden="true">
+    <div class="screen" id="screen" data-s="idle">
+      <div class="s-idle"><svg id="sIcon" viewBox="0 0 24 24"></svg><b id="sName"></b><small>Bonus kartla öde</small>
+        <svg class="nfc" viewBox="0 0 24 24"><path d="M8 7a7 7 0 010 10M12 4.5a11 11 0 010 15M16 2a15 15 0 010 20"/></svg></div>
+      <div class="s-proc"><span class="spinner"></span><small>Okunuyor…</small></div>
+      <div class="s-ok"><span class="tick">✓</span><small>Ödeme onaylandı</small><b>+ BONUS</b></div>
+    </div>
+    <div class="waves"><span></span><span></span><span></span></div>
+    <div class="keys"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  </div>
+
+  <div class="fin" aria-live="polite">
+    <small>Sepet tamam! · Kampanya filmi</small>
+    <div class="vmini stopped" id="vmini" role="region" aria-label="Kampanya filmi">
+      <div class="ph" aria-hidden="true"><span class="vplay"><svg viewBox="0 0 16 16"><path d="M4 2.5v11l9.5-5.5z"/></svg></span><b>Kampanya filmi</b></div>
+      <span class="badge">Film</span>
+      <button class="vbig" type="button" aria-label="Oynat"><span class="vplay"><svg viewBox="0 0 16 16"><path d="M4 2.5v11l9.5-5.5z"/></svg></span></button>
+      <div class="vc">
+        <button class="vpp" type="button" aria-label="Oynat / duraklat"><span class="i-pause"><svg viewBox="0 0 16 16"><rect x="3" y="2" width="3.5" height="12" rx="1"/><rect x="9.5" y="2" width="3.5" height="12" rx="1"/></svg></span><span class="i-play"><svg viewBox="0 0 16 16"><path d="M4 2.5v11l9.5-5.5z"/></svg></span></button>
+        <div class="vbar" role="slider" aria-label="Film ilerlemesi"><i></i></div>
+        <button class="vmute" type="button" aria-label="Sesi aç / kapat"><span class="i-off"><svg viewBox="0 0 16 16"><path d="M2 6h3l4-3.5v11L5 10H2z"/><path d="M11 5.5l4 5m0-5l-4 5" stroke="currentColor" stroke-width="1.8" fill="none"/></svg></span><span class="i-on"><svg viewBox="0 0 16 16"><path d="M2 6h3l4-3.5v11L5 10H2z"/><path d="M11.5 5a4 4 0 010 6M13 3.5a6.5 6.5 0 010 9" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></span></button>
+        <button class="vfull" type="button" aria-label="Tam ekran"><svg viewBox="0 0 16 16"><path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4" stroke="currentColor" stroke-width="2" fill="none"/></svg></button>
+      </div>
+    </div>
+    <button class="replay" id="replay" type="button">↻ Tekrar oyna</button>
+  </div>
+
+  <div class="receipt" id="receipt" aria-live="polite">
+    <div class="slot"></div>
+    <div class="paper mono" id="paper">
+      <div class="r-head"><b>GARANTİ BBVA BONUS</b>BLACK FRIDAY · KASIM</div>
+      <div class="dash"></div>
+      <div id="lines"></div>
+      <div class="r-total"><div class="dash"></div>KASIM'IN EN ÇOK<br>KAZANDIRAN KARTI<br><em>BONUS!</em></div>
+    </div>
+  </div>
+
+  <div class="card" id="card" role="button" tabindex="0" aria-label="Bonus kartını POS cihazına okut">
+    <span class="plate"><img id="plateLogo" alt=""></span>
+    <span class="chip"></span>
+    <svg class="nfc" viewBox="0 0 24 24"><path d="M8 7a7 7 0 010 10M12 4.5a11 11 0 010 15M16 2a15 15 0 010 20"/></svg>
+    <span class="num">•••• 2026</span>
+    <span class="bf-tag">BLACK FRIDAY</span>
+  </div>
+  <p class="hint" id="hint"><svg viewBox="0 0 24 24"><path d="M9 11V5.5a1.5 1.5 0 013 0V10h.5V8.5a1.5 1.5 0 013 0V10h.5V9.5a1.5 1.5 0 013 0V15a6 6 0 01-6 6h-1a6 6 0 01-4.6-2.2L4 15.5a1.5 1.5 0 012.3-1.9L9 16z"/></svg>Kartı POS'a sürükle</p>
+  <button class="cta" id="cta" type="button" tabindex="-1">Kampanyaları Keşfet <svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+</div>
+
+<script>
+(function () {
+  // Kategoriler – metinler marka onayına göre güncellenebilir.
+  var CATS = [
+    { label: 'Giyim', short: 'Giyim', icon: '<path d="M8 3l4 2 4-2 5 4-3 4-2-1v11H8V10l-2 1-3-4z"/>' },
+    { label: 'E-ticaret', short: 'E-ticaret uyg.', icon: '<rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10 6.5h4"/><path d="M9 11h6l-.8 5H9.8z"/><path d="M10.5 11V9.8a1.5 1.5 0 013 0V11"/>' },
+    { label: 'Elektronik', short: 'Elektronik', icon: '<rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 16v4"/>' },
+    { label: 'Beyaz eşya', short: 'Beyaz eşya', icon: '<rect x="5" y="2.5" width="14" height="19" rx="2"/><path d="M5 7h14"/><circle cx="12" cy="14" r="4"/><path d="M8 4.8h1M11 4.8h1"/>' },
+    { label: 'Küçük ev aletleri', short: 'Küçük ev aletleri', icon: '<path d="M8 3h8l-1 8H9z"/><path d="M16 5h2.5v4H15.5"/><path d="M9 11h6l1 3H8z"/><rect x="7" y="14" width="10" height="7" rx="1.5"/><circle cx="12" cy="17.5" r="1"/>' }
+  ];
+
+  var ad = document.getElementById('ad'), card = document.getElementById('card'), pos = document.getElementById('pos'), screen = document.getElementById('screen');
+  var paper = document.getElementById('paper'), lines = document.getElementById('lines'), receipt = document.getElementById('receipt');
+  var cta = document.getElementById('cta');
+  document.getElementById('plateLogo').src = document.getElementById('logo').src; // logo tek kez gömülür
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var idx = 0, busy = false, finished = false, autoTimer = null, idleTimer = null, startedAt = 0;
+  var AUTO_FIRST = 2600, AUTO_DELAY = 1200, IDLE_RESUME = 6000, MAX_ANIM_MS = 29000; // 30 sn animasyon sınırı
+  var REST = 'rotate(-6deg)';
+
+  function showCat() {
+    var c = CATS[idx];
+    document.getElementById('sIcon').innerHTML = c.icon;
+    document.getElementById('sName').textContent = c.label;
+    screen.dataset.s = 'idle';
+  }
+  function cardToPos() { // kartın POS ekranının üzerine geleceği dönüşüm
+    var dx = 318 + 66 - (712 + 100), dy = 22 + 69 - (28 + 63);
+    return 'translate(' + dx + 'px,' + dy + 'px) rotate(0deg) scale(.72)';
+  }
+
+  function pay(alreadyThere) {
+    if (busy || finished) return;
+    busy = true;
+    var c = CATS[idx];
+    card.style.transform = cardToPos();
+    setTimeout(function () {
+      pos.classList.remove('tap'); void pos.offsetWidth; pos.classList.add('tap');
+      screen.dataset.s = 'proc';
+    }, alreadyThere ? 50 : 600);
+    setTimeout(function () {
+      screen.dataset.s = 'ok';
+      card.classList.remove('sweep'); void card.offsetWidth; card.classList.add('sweep');
+      printLine(c); coin();
+      card.style.transform = REST;
+    }, alreadyThere ? 650 : 1200);
+    setTimeout(function () {
+      idx++;
+      busy = false;
+      if (idx >= CATS.length) return finish();
+      showCat();
+    }, alreadyThere ? 1550 : 2100);
+  }
+
+  function printLine(c) {
+    var d = document.createElement('div');
+    d.className = 'r-line'; d.innerHTML = '<span>' + c.short + '</span><b>Bonus</b>';
+    lines.appendChild(d);
+    paper.style.height = (64 + lines.children.length * 19) + 'px';
+  }
+  function coin() {
+    if (reduce || !ad.animate) return;
+    var el = document.createElement('div');
+    el.className = 'coin'; el.textContent = '+ Bonus';
+    el.style.left = '360px'; el.style.top = '40px';
+    ad.appendChild(el);
+    el.animate([
+      { transform: 'translateY(10px) scale(.5)', opacity: 0 },
+      { transform: 'translateY(-14px) scale(1.05)', opacity: 1, offset: .3 },
+      { transform: 'translateY(-34px) scale(1)', opacity: 0 }
+    ], { duration: 1100, easing: 'ease-out' }).onfinish = function () { el.remove(); };
+  }
+
+  function finish() {
+    finished = true; stopAuto();
+    receipt.classList.add('done');
+    paper.style.height = (64 + lines.children.length * 19 + 64) + 'px';
+    ad.classList.add('finished');
+    cta.classList.remove('glow'); void cta.offsetWidth; cta.classList.add('glow');
+    setTimeout(function () { if (finished) player.play(true); }, 800);
+  }
+
+  function reset() {
+    idx = 0; finished = false; busy = false; startedAt = Date.now();
+    lines.innerHTML = ''; paper.style.height = ''; receipt.classList.remove('done');
+    ad.classList.remove('finished'); cta.classList.remove('glow'); card.style.transform = REST;
+    player.stop(); showCat();
+    stopAuto(); idleTimer = setTimeout(nextAuto, IDLE_RESUME);
+  }
+
+  // Otomatik gösterim: kullanıcı etkileşmezse kart kendiliğinden okutulur.
+  function nextAuto() {
+    if (finished) return;
+    if (Date.now() - startedAt > MAX_ANIM_MS) { while (idx < CATS.length) { printLine(CATS[idx]); idx++; } return finish(); }
+    if (!busy) pay(false);
+    autoTimer = setTimeout(nextAuto, 2100 + AUTO_DELAY);
+  }
+  function stopAuto() { clearTimeout(autoTimer); clearTimeout(idleTimer); }
+  function userAction() { stopAuto(); idleTimer = setTimeout(nextAuto, IDLE_RESUME); }
+
+  // Sürükle-bırak (fare + dokunmatik)
+  var drag = null, moved = false;
+  card.addEventListener('pointerdown', function (e) {
+    if (busy || finished) return;
+    e.preventDefault(); e.stopPropagation();
+    drag = { x: e.clientX, y: e.clientY }; moved = false;
+    card.setPointerCapture(e.pointerId); card.classList.add('drag');
+    userAction();
+  });
+  card.addEventListener('pointermove', function (e) {
+    if (!drag) return;
+    var dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+    if (Math.abs(dx) + Math.abs(dy) > 4) moved = true;
+    card.style.transform = 'translate(' + dx + 'px,' + dy + 'px) rotate(' + Math.max(-6, -6 + Math.abs(dx) / 40) + 'deg) scale(' + Math.max(.72, 1 - Math.abs(dx) / 1400) + ')';
+  });
+  card.addEventListener('pointerup', function (e) {
+    if (!drag) return;
+    card.classList.remove('drag'); drag = null;
+    var c = card.getBoundingClientRect(), p = pos.getBoundingClientRect();
+    var cx = c.left + c.width / 2, cy = c.top + c.height / 2;
+    var onPos = cx > p.left - 30 && cx < p.right + 40 && cy > p.top - 20 && cy < p.bottom;
+    if (!moved || onPos) pay(onPos && moved);
+    else card.style.transform = REST;
+  });
+  card.addEventListener('click', function (e) { e.stopPropagation(); });
+  card.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); userAction(); pay(false); }
+  });
+  document.getElementById('replay').addEventListener('click', function (e) { e.stopPropagation(); reset(); });
+
+  // Final karesindeki küçük video alanı
+  var player = (function () {
+    var win = document.getElementById('vmini'), bar = win.querySelector('.vbar i'), vid = null, raf = null;
+    if (VIDEO_URL) {
+      vid = document.createElement('video');
+      vid.muted = true; vid.playsInline = true; vid.setAttribute('playsinline', ''); vid.preload = 'metadata'; vid.src = VIDEO_URL;
+      if (VIDEO_POSTER) vid.poster = VIDEO_POSTER;
+      win.insertBefore(vid, win.firstChild);
+      win.classList.add('has-video');
+      vid.addEventListener('ended', function () { stop(); cta.classList.remove('glow'); void cta.offsetWidth; cta.classList.add('glow'); });
+    }
+    function tick() { bar.style.width = (vid.currentTime / (vid.duration || 1) * 100) + '%'; raf = requestAnimationFrame(tick); }
+    function play(fromStart) {
+      if (!vid) return;
+      if (fromStart || vid.ended) vid.currentTime = 0;
+      vid.play().catch(function () {}); win.classList.remove('stopped'); cancelAnimationFrame(raf); tick();
+    }
+    function stop() { if (!vid) return; vid.pause(); win.classList.add('stopped'); cancelAnimationFrame(raf); }
+    win.addEventListener('click', function (e) {
+      e.stopPropagation(); // video alanı reklamdan çıkış yapmaz
+      if (!vid) return exit(); // film yokken yer tutucu tıklanabilir
+      var t = e.target;
+      if (t.closest('.vmute')) {
+        var on = !win.classList.contains('sound'); win.classList.toggle('sound', on); vid.muted = !on;
+        if (on && vid.paused) play();
+      } else if (t.closest('.vfull')) { (vid.requestFullscreen || vid.webkitEnterFullscreen || function () {}).call(vid); }
+      else if (t.closest('.vbar')) {
+        var r = win.querySelector('.vbar').getBoundingClientRect();
+        vid.currentTime = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width)) * (vid.duration || 0);
+        if (vid.paused) play();
+      } else { vid.paused ? play() : stop(); }
+    });
+    return { play: play, stop: stop };
+  })();
+
+  // Tıklama çıkışı
+  function exit() {
+    if (window.Enabler && Enabler.exit) return Enabler.exit('Bonus_BlackFriday_POS_Exit');
+    window.open(window.clickTag, '_blank');
+  }
+  ad.addEventListener('click', exit);
+  ad.addEventListener('keydown', function (e) {
+    if (e.target === ad && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); exit(); }
+  });
+
+  function start() {
+    showCat(); ad.classList.add('in'); startedAt = Date.now();
+    autoTimer = setTimeout(nextAuto, AUTO_FIRST);
+  }
+  if (document.readyState === 'complete') requestAnimationFrame(start);
+  else window.addEventListener('load', function () { requestAnimationFrame(start); });
+})();
+</script>
+</body>
+</html>

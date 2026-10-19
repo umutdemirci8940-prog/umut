@@ -5,13 +5,14 @@
  *   src/index.html       → index.html             (interaktif "sepetini doldur")
  *   src/media-first.html → media-first/index.html (sinematik, media-first)
  *   src/video.html       → video/index.html       (kampanya görseli + video alanı)
+ *   src/pos.html         → pos/index.html         (Kartını Okut: POS + fiş)
  * Kullanım: node build.js
  */
 const fs = require('fs');
 const path = require('path');
 const dir = __dirname;
 const logo = 'data:image/webp;base64,' + fs.readFileSync(path.join(dir, 'assets', 'bonus-logo.webp')).toString('base64');
-for (const [src, out] of [['index.html', 'index.html'], ['media-first.html', 'media-first/index.html'], ['video.html', 'video/index.html']]) {
+for (const [src, out] of [['index.html', 'index.html'], ['media-first.html', 'media-first/index.html'], ['video.html', 'video/index.html'], ['pos.html', 'pos/index.html']]) {
   const html = fs.readFileSync(path.join(dir, 'src', src), 'utf8').split('{{BONUS_LOGO}}').join(logo);
   fs.mkdirSync(path.dirname(path.join(dir, out)), { recursive: true });
   fs.writeFileSync(path.join(dir, out), html);

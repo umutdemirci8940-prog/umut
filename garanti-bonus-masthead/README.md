@@ -93,3 +93,27 @@ Teslim dosyası: `video/index.html` (tek dosya, ~38 KB). Kaynak: `src/video.html
 - Sayfa açılınca film **sessiz** başlar; oynat/duraklat, ilerleme çubuğu (tıklayarak sarma), süre, ses aç/kapat ve tam ekran kontrolleri vardır.
 - Video alanına tıklamak reklamdan çıkış yapmaz; banner'ın geri kalanı tıklama çıkışına gider (`clickTag` / `Enabler.exit`).
 - Film bitince oynatıcı durur, ortada oynat düğmesi çıkar ve CTA nabız atar.
+
+---
+
+# Konsept 4: "Kartını Okut" (POS + fiş)
+
+Teslim dosyası: `pos/index.html` (tek dosya, ~52 KB). Kaynak: `src/pos.html`.
+
+| Açılış | Ödeme onaylandı | Kart sürükleniyor |
+|---|---|---|
+| ![](screens/pos/1-acilis.png) | ![](screens/pos/3-onaylandi.png) | ![](screens/pos/4-surukleniyor.png) |
+
+| Final – video alanı boş | Final – film oynuyor (test videosu) |
+|---|---|
+| ![](screens/pos/5-final.png) | ![](screens/pos/6-final-video-test.png) |
+
+**Fikir:** Black Friday'de her ödeme Bonus kazandırır. Ortada bir POS cihazı, yanında fiş yazıcısı; sağda Bonus kartı.
+1. POS ekranında sıradaki kategori görünür (Giyim → E-ticaret → Elektronik → Beyaz eşya → Küçük ev aletleri).
+2. Kullanıcı kartı **sürükleyip POS'a bırakır** (ya da karta tıklar / Enter): temassız ödeme dalgaları, "Okunuyor…", ardından "Ödeme onaylandı · + BONUS".
+3. Her ödemede fişe yeni satır basılır: "Giyim ✓ Bonus" …
+4. 5 ödeme bitince fiş "KASIM'IN EN ÇOK KAZANDIRAN KARTI · BONUS!" toplamıyla tamamlanır, POS kenara çekilir ve yerine **küçük video alanı (16:9, 168×95)** açılır; CTA nabız atar.
+
+**Etkileşim:** Sürükle-bırak (fare ve dokunmatik), karta tıklama, klavye (Tab → kart → Enter). Kullanıcı etkileşmezse kart kendiliğinden okutulur; yarıda bırakırsa 6 sn sonra devam eder; 30 sn içinde finale ulaşır. Kart ve video alanı tıklama çıkışını tetiklemez, banner'ın geri kalanı `clickTag` / `Enabler.exit` ile çıkar. "Tekrar oyna" baştan başlatır.
+
+**Video:** Dosyanın başındaki `VIDEO_URL` (MP4, H.264, 16:9) doluysa final karesinde film sessiz başlar; oynat/duraklat, sarma, ses, tam ekran kontrolleri vardır. Boşken "Kampanya filmi" yer tutucusu görünür.
