@@ -28,6 +28,11 @@ Renkler, fontlar ve logo **garantibbva.com.tr** ve **bonus.com.tr**'den ölçül
 1. **Açılış (0–2 sn):** Beyaz sekmede Bonus logosu iner, "BLACK FRIDAY · KASIM" etiketi ve "Kasım alışverişlerinde / En çok kazandıran / kart Bonus!" başlık kutuları sırayla gelir, Bonus kartı sağdan girer, oyun paneli ve kategori kutuları yükselir. Zeminde Bonus görsellerindeki gibi yavaş dönen ışık hüzmeleri.
 2. **"Kasım sepetini doldur" oyunu:** Kampanya kapsamındaki 5 kategori (Giyim, seçili e-ticaret uygulamaları, elektrik-elektronik, beyaz eşya, küçük ev aletleri). Kullanıcı kategoriye dokununca ikon karta uçar, kart parlar, "+ Bonus" rozeti çıkar, kazanç çubuğu dolar ve kategoriye özel mesaj gösterilir.
 3. **Final:** 5 kategori dolunca "Kasım'da en çok kazandıran kart Bonus" karesi, konfeti ve nabız efektli CTA ("Kampanyaları Keşfet"). "Tekrar oyna" ile baştan başlar.
+   - **Video alanı:** Final panelinde metnin yanında küçük bir 16:9 video penceresi (168 × 95) var. Dosyanın başındaki `VIDEO_URL`'e kampanya filminin MP4 adresi yazılırsa final karesi gelince film sessiz başlar (oynat/duraklat, sarma, ses, tam ekran); boşken "Kampanya filmi" yer tutucusu görünür. Video alanına tıklamak reklamdan çıkış yapmaz; film bitince CTA tekrar nabız atar.
+
+   | Final – video alanı (boş) | Final – film oynuyor (test videosu) |
+   |---|---|
+   | ![](screens/4-final-video-alani.png) | ![](screens/5-final-video-oynuyor-test.png) |
 
 ## Etkileşim
 - Kullanıcı etkileşmezse kategoriler otomatik dolar (~1,7 sn arayla); yarıda bırakırsa 5 sn sonra otomatik devam eder. Animasyon 30 sn içinde finalde durur (Google Ads kuralı).

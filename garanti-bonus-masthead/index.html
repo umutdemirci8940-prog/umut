@@ -11,6 +11,9 @@
 <script>
   // Reklam ağı tarafından ezilir (Google Ads / DCM). Studio için Enabler.exit kullanılır.
   var clickTag = window.clickTag || "https://www.bonus.com.tr/kampanyalar";
+  // Kampanya filmi: MP4 (H.264), 16:9. Doluysa final karesindeki küçük video alanında sessiz oynar; boşsa yer tutucu görünür.
+  var VIDEO_URL = "";
+  var VIDEO_POSTER = ""; // isteğe bağlı kapak görseli
 </script>
 <style>
   /* Renkler bonus.com.tr ve garantibbva.com.tr'den ölçüldü (brand-ref/report.json) */
@@ -116,19 +119,50 @@
   .game { transition: opacity .35s, visibility .35s; }
   .panel.done .game { opacity: 0; visibility: hidden; }
   .final {
-    position: absolute; inset: 0; padding: 0 22px; display: flex; flex-direction: column; justify-content: center;
+    position: absolute; inset: 0; padding: 0 14px 0 20px; display: flex; align-items: center; gap: 14px;
     opacity: 0; visibility: hidden; transform: scale(.97); transition: opacity .5s .15s, transform .5s .15s, visibility .5s .15s;
   }
   .panel.done .final { opacity: 1; visibility: visible; transform: none; }
+  .f-txt { width: 178px; display: flex; flex-direction: column; }
   .final small { font-size: 11px; font-weight: 700; color: var(--green); letter-spacing: .8px; text-transform: uppercase; }
-  .final h3 { margin-top: 4px; font-size: 34px; font-weight: 800; line-height: .98; color: var(--green-dk); text-transform: uppercase; }
-  .final h3 em { font-style: normal; display: inline-block; background: var(--yellow); padding: 1px 9px 0; border-radius: 18px; margin-top: 3px; }
-  .final p { margin-top: 8px; font-size: 12px; color: var(--muted); line-height: 1.35; }
+  .final h3 { margin-top: 4px; font-size: 27px; font-weight: 800; line-height: .98; color: var(--green-dk); text-transform: uppercase; }
+  .final h3 em { font-style: normal; display: inline-block; background: var(--yellow); padding: 1px 9px 0; border-radius: 16px; margin-top: 4px; }
+  .final p { margin-top: 7px; font-size: 11px; color: var(--muted); line-height: 1.35; }
   .replay {
     margin-top: 10px; align-self: flex-start; background: none; border: 0; color: var(--green); cursor: pointer;
     font: 700 11px Roboto, Arial, sans-serif; letter-spacing: .2px; padding: 2px 0;
   }
   .replay:hover, .replay:focus-visible { color: var(--green-dk); text-decoration: underline; outline: none; }
+
+  /* Final karesindeki küçük video alanı (16:9, 168×95) */
+  .vmini { position: relative; flex: none; width: 168px; height: 95px; border-radius: 8px; overflow: hidden; background: #003d24; cursor: default;
+    box-shadow: 0 8px 18px rgba(0,98,58,.25); transform: scale(.9); opacity: 0; transition: transform .5s cubic-bezier(.2,1.3,.4,1) .45s, opacity .4s .45s; }
+  .panel.done .vmini { transform: none; opacity: 1; }
+  .vmini video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: #000; }
+  .vmini .ph { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; color: #fff; cursor: pointer;
+    background: radial-gradient(110px 70px at 50% 45%, #0b7a45, transparent 70%), var(--green-dk); }
+  .vmini .ph::before { content: ""; position: absolute; inset: 6px; border: 1px dashed rgba(170,239,81,.55); border-radius: 5px; }
+  .vmini .ph b { font: 800 12px/1 "Barlow Condensed", Arial Narrow, sans-serif; letter-spacing: .5px; text-transform: uppercase; }
+  .vmini.has-video .ph { display: none; }
+  .vmini .badge { position: absolute; left: 6px; top: 6px; z-index: 3; padding: 2px 5px; border-radius: 6px; background: rgba(0,0,0,.45); color: #fff;
+    font: 700 8px/1 Roboto, Arial, sans-serif; letter-spacing: .5px; text-transform: uppercase; display: none; }
+  .vmini.has-video .badge { display: block; }
+  .vc { position: absolute; left: 0; right: 0; bottom: 0; z-index: 3; height: 24px; display: none; align-items: center; gap: 4px; padding: 0 4px;
+    background: linear-gradient(transparent, rgba(0,0,0,.65)); }
+  .vmini.has-video .vc { display: flex; }
+  .vc button { width: 20px; height: 20px; border: 0; border-radius: 50%; background: none; color: #fff; cursor: pointer; display: grid; place-items: center; }
+  .vc button:hover, .vc button:focus-visible { background: rgba(255,255,255,.2); outline: none; }
+  .vc svg { width: 10px; height: 10px; fill: currentColor; }
+  .vbar { flex: 1; height: 3px; border-radius: 2px; background: rgba(255,255,255,.3); cursor: pointer; position: relative; }
+  .vbar::before { content: ""; position: absolute; inset: -6px 0; }
+  .vbar i { display: block; height: 100%; width: 0; border-radius: 2px; background: var(--yellow); }
+  .vmini .i-play, .vmini.stopped .i-pause, .vmini .i-on, .vmini.sound .i-off { display: none; }
+  .vmini.stopped .i-play, .vmini.sound .i-on { display: block; }
+  .vplay { width: 30px; height: 30px; border-radius: 50%; background: var(--yellow); color: var(--green-dk); display: grid; place-items: center; box-shadow: 0 4px 10px rgba(0,0,0,.3); }
+  .vplay svg { width: 12px; height: 12px; fill: currentColor; margin-left: 2px; }
+  .vbig { position: absolute; left: 50%; top: 50%; z-index: 4; margin: -19px 0 0 -15px; border: 0; padding: 0; cursor: pointer;
+    opacity: 0; transform: scale(.6); pointer-events: none; transition: all .3s cubic-bezier(.2,1.4,.4,1); }
+  .vmini.has-video.stopped .vbig { opacity: 1; transform: none; pointer-events: auto; }
 
   /* ---------- Sağ: kart + CTA ---------- */
   .card-wrap { position: absolute; left: 734px; top: 26px; width: 200px; height: 126px; perspective: 700px; opacity: 0; transform: translateX(80px) rotate(10deg); }
@@ -231,10 +265,23 @@
       </div>
     </div>
     <div class="final" aria-live="polite">
-      <small>Sepet tamam!</small>
-      <h3 class="cond">Kasım'da en çok kazandıran kart<br><em>Bonus!</em></h3>
-      <p>Giyim, e-ticaret, elektronik, beyaz eşya ve küçük ev aletlerinde Bonus kazan.</p>
-      <button class="replay" id="replay" type="button">↻ Tekrar oyna</button>
+      <div class="f-txt">
+        <small>Sepet tamam!</small>
+        <h3 class="cond">Kasım'da en çok kazandıran kart<br><em>Bonus!</em></h3>
+        <p>Giyimden küçük ev aletlerine Bonus kazan.</p>
+        <button class="replay" id="replay" type="button">↻ Tekrar oyna</button>
+      </div>
+      <div class="vmini stopped" id="vmini" role="region" aria-label="Kampanya filmi">
+        <div class="ph" aria-hidden="true"><span class="vplay"><svg viewBox="0 0 16 16"><path d="M4 2.5v11l9.5-5.5z"/></svg></span><b>Kampanya filmi</b></div>
+        <span class="badge">Film</span>
+        <button class="vbig" type="button" aria-label="Oynat"><span class="vplay"><svg viewBox="0 0 16 16"><path d="M4 2.5v11l9.5-5.5z"/></svg></span></button>
+        <div class="vc">
+          <button class="vpp" type="button" aria-label="Oynat / duraklat"><span class="i-pause"><svg viewBox="0 0 16 16"><rect x="3" y="2" width="3.5" height="12" rx="1"/><rect x="9.5" y="2" width="3.5" height="12" rx="1"/></svg></span><span class="i-play"><svg viewBox="0 0 16 16"><path d="M4 2.5v11l9.5-5.5z"/></svg></span></button>
+          <div class="vbar" role="slider" aria-label="Film ilerlemesi"><i></i></div>
+          <button class="vmute" type="button" aria-label="Sesi aç / kapat"><span class="i-off"><svg viewBox="0 0 16 16"><path d="M2 6h3l4-3.5v11L5 10H2z"/><path d="M11 5.5l4 5m0-5l-4 5" stroke="currentColor" stroke-width="1.8" fill="none"/></svg></span><span class="i-on"><svg viewBox="0 0 16 16"><path d="M2 6h3l4-3.5v11L5 10H2z"/><path d="M11.5 5a4 4 0 010 6M13 3.5a6.5 6.5 0 010 9" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></span></button>
+          <button class="vfull" type="button" aria-label="Tam ekran"><svg viewBox="0 0 16 16"><path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4" stroke="currentColor" stroke-width="2" fill="none"/></svg></button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -344,7 +391,43 @@
     cta.classList.add('glow');
     hint.style.visibility = 'hidden';
     confetti();
+    setTimeout(function () { if (finished) player.play(true); }, 700);
   }
+
+  // Final karesindeki küçük video alanı
+  var player = (function () {
+    var win = document.getElementById('vmini'), bar = win.querySelector('.vbar i'), vid = null, raf = null;
+    if (VIDEO_URL) {
+      vid = document.createElement('video');
+      vid.muted = true; vid.playsInline = true; vid.setAttribute('playsinline', ''); vid.preload = 'metadata'; vid.src = VIDEO_URL;
+      if (VIDEO_POSTER) vid.poster = VIDEO_POSTER;
+      win.insertBefore(vid, win.firstChild);
+      win.classList.add('has-video');
+      vid.addEventListener('ended', function () { stop(); cta.classList.remove('glow'); void cta.offsetWidth; cta.classList.add('glow'); });
+    }
+    function tick() { bar.style.width = (vid.currentTime / (vid.duration || 1) * 100) + '%'; raf = requestAnimationFrame(tick); }
+    function play(fromStart) {
+      if (!vid) return;
+      if (fromStart || vid.ended) vid.currentTime = 0;
+      vid.play().catch(function () {}); win.classList.remove('stopped'); cancelAnimationFrame(raf); tick();
+    }
+    function stop() { if (!vid) return; vid.pause(); win.classList.add('stopped'); cancelAnimationFrame(raf); }
+    win.addEventListener('click', function (e) {
+      e.stopPropagation(); // video alanı reklamdan çıkış yapmaz
+      if (!vid) return exit(); // film yokken yer tutucu tıklanabilir
+      var t = e.target;
+      if (t.closest('.vmute')) {
+        var on = !win.classList.contains('sound'); win.classList.toggle('sound', on); vid.muted = !on;
+        if (on && vid.paused) play();
+      } else if (t.closest('.vfull')) { (vid.requestFullscreen || vid.webkitEnterFullscreen || function () {}).call(vid); }
+      else if (t.closest('.vbar')) {
+        var r = win.querySelector('.vbar').getBoundingClientRect();
+        vid.currentTime = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width)) * (vid.duration || 0);
+        if (vid.paused) play();
+      } else { vid.paused ? play() : stop(); }
+    });
+    return { play: play, stop: stop };
+  })();
 
   function confetti() {
     if (reduce || !ad.animate) return;
@@ -392,7 +475,7 @@
     tiles.forEach(function (t) { t.classList.remove('on'); t.setAttribute('aria-pressed', 'false'); });
     fill.style.width = '0'; count.textContent = '0 / ' + CATS.length + ' kategori';
     msg.innerHTML = 'Alışverişini seç, <em>Bonus</em> kazancını gör.';
-    panel.classList.remove('done'); cta.classList.remove('glow');
+    panel.classList.remove('done'); cta.classList.remove('glow'); player.stop();
     hint.style.visibility = '';
     stopAuto(); idleTimer = setTimeout(nextAuto, IDLE_RESUME);
   }
