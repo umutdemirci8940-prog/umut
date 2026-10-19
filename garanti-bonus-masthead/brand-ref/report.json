@@ -1,0 +1,1874 @@
+{
+ "garantibbva": {
+  "title": "Kendim İçin | Garanti BBVA",
+  "bg": [
+   [
+    "rgb(255, 255, 255)",
+    33
+   ],
+   [
+    "rgb(0, 146, 66)",
+    15
+   ],
+   [
+    "rgb(244, 245, 251)",
+    11
+   ],
+   [
+    "rgb(227, 232, 245)",
+    8
+   ],
+   [
+    "rgb(7, 33, 70)",
+    8
+   ],
+   [
+    "rgb(197, 204, 221)",
+    5
+   ],
+   [
+    "rgb(4, 50, 99)",
+    4
+   ],
+   [
+    "rgb(0, 68, 129)",
+    3
+   ],
+   [
+    "rgb(100, 106, 128)",
+    3
+   ],
+   [
+    "rgb(235, 239, 248)",
+    2
+   ],
+   [
+    "rgba(7, 33, 70, 0.6)",
+    1
+   ],
+   [
+    "rgb(91, 190, 255)",
+    1
+   ]
+  ],
+  "fg": [
+   [
+    "rgb(29, 33, 47)",
+    536
+   ],
+   [
+    "rgb(0, 68, 129)",
+    121
+   ],
+   [
+    "rgb(0, 146, 66)",
+    71
+   ],
+   [
+    "rgb(255, 255, 255)",
+    64
+   ],
+   [
+    "rgb(29, 115, 178)",
+    24
+   ],
+   [
+    "rgb(66, 71, 89)",
+    18
+   ],
+   [
+    "rgb(0, 0, 0)",
+    17
+   ],
+   [
+    "rgb(100, 106, 128)",
+    16
+   ],
+   [
+    "rgb(51, 168, 104)",
+    3
+   ],
+   [
+    "rgb(95, 95, 95)",
+    2
+   ],
+   [
+    "rgb(255, 250, 249)",
+    2
+   ],
+   [
+    "rgb(157, 150, 142)",
+    1
+   ]
+  ],
+  "border": [
+   [
+    "rgb(248, 205, 81)",
+    6
+   ],
+   [
+    "rgb(227, 232, 245)",
+    5
+   ],
+   [
+    "rgb(221, 227, 237)",
+    1
+   ],
+   [
+    "rgb(0, 146, 66)",
+    1
+   ],
+   [
+    "rgb(197, 204, 221)",
+    1
+   ]
+  ],
+  "fonts": [
+   [
+    "BentonSansBBVA-Book, sans-serif",
+    602
+   ],
+   [
+    "BentonSansBBVA-Medium, sans-serif",
+    232
+   ],
+   [
+    "TiemposHeadline-Bold, serif",
+    18
+   ],
+   [
+    "Arial",
+    18
+   ],
+   [
+    "BentonSansBBVA-Book",
+    4
+   ],
+   [
+    "sans-serif",
+    1
+   ]
+  ],
+  "radius": [
+   [
+    "12px",
+    22
+   ],
+   [
+    "8px",
+    14
+   ],
+   [
+    "4px",
+    6
+   ],
+   [
+    "50%",
+    6
+   ],
+   [
+    "100%",
+    6
+   ],
+   [
+    "1px",
+    5
+   ],
+   [
+    "20px",
+    5
+   ],
+   [
+    "12px 0px 0px",
+    3
+   ],
+   [
+    "100px",
+    3
+   ],
+   [
+    "0px 12px 12px 0px",
+    1
+   ],
+   [
+    "0px 30px 0px 0px",
+    1
+   ],
+   [
+    "0px 0px 30px",
+    1
+   ]
+  ],
+  "buttons": [
+   {
+    "text": "KENDİM İÇİN",
+    "bg": "rgb(244, 245, 251)",
+    "color": "rgb(0, 146, 66)",
+    "radius": "8px",
+    "font": "BentonSansBBVA-Medium, sans-serif",
+    "weight": "500",
+    "size": "15px",
+    "h": 40
+   },
+   {
+    "text": "Giriş Yap",
+    "bg": "rgb(0, 146, 66)",
+    "color": "rgb(0, 146, 66)",
+    "radius": "8px",
+    "font": "BentonSansBBVA-Medium, sans-serif",
+    "weight": "400",
+    "size": "15px",
+    "h": 48
+   },
+   {
+    "text": "Detaylı Bilgi",
+    "bg": "rgb(0, 146, 66)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "8px",
+    "font": "BentonSansBBVA-Medium, sans-serif",
+    "weight": "400",
+    "size": "15px",
+    "h": 56
+   },
+   {
+    "text": "Detaylı Bilgi",
+    "bg": "rgb(0, 146, 66)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "8px",
+    "font": "BentonSansBBVA-Medium, sans-serif",
+    "weight": "400",
+    "size": "15px",
+    "h": 56
+   },
+   {
+    "text": "Müşterimiz Olun",
+    "bg": "rgb(0, 146, 66)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "8px",
+    "font": "BentonSansBBVA-Medium, sans-serif",
+    "weight": "400",
+    "size": "15px",
+    "h": 56
+   },
+   {
+    "text": "Detaylı Bilgi",
+    "bg": "rgb(0, 146, 66)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "8px",
+    "font": "BentonSansBBVA-Medium, sans-serif",
+    "weight": "400",
+    "size": "15px",
+    "h": 56
+   },
+   {
+    "text": "Detaylı Bilgi",
+    "bg": "rgb(0, 146, 66)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "8px",
+    "font": "BentonSansBBVA-Medium, sans-serif",
+    "weight": "400",
+    "size": "15px",
+    "h": 56
+   },
+   {
+    "text": "Detaylı Bilgi",
+    "bg": "rgb(0, 146, 66)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "8px",
+    "font": "BentonSansBBVA-Medium, sans-serif",
+    "weight": "400",
+    "size": "15px",
+    "h": 56
+   },
+   {
+    "text": "Detaylı Bilgi",
+    "bg": "rgb(0, 146, 66)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "8px",
+    "font": "BentonSansBBVA-Medium, sans-serif",
+    "weight": "400",
+    "size": "15px",
+    "h": 56
+   },
+   {
+    "text": "3 Ay",
+    "bg": "rgb(227, 232, 245)",
+    "color": "rgb(29, 33, 47)",
+    "radius": "20px",
+    "font": "Arial",
+    "weight": "400",
+    "size": "15px",
+    "h": 42
+   },
+   {
+    "text": "6 Ay",
+    "bg": "rgb(227, 232, 245)",
+    "color": "rgb(29, 33, 47)",
+    "radius": "20px",
+    "font": "Arial",
+    "weight": "400",
+    "size": "15px",
+    "h": 42
+   },
+   {
+    "text": "9 Ay",
+    "bg": "rgb(227, 232, 245)",
+    "color": "rgb(29, 33, 47)",
+    "radius": "20px",
+    "font": "Arial",
+    "weight": "400",
+    "size": "15px",
+    "h": 42
+   },
+   {
+    "text": "12 Ay",
+    "bg": "rgb(227, 232, 245)",
+    "color": "rgb(29, 33, 47)",
+    "radius": "20px",
+    "font": "Arial",
+    "weight": "400",
+    "size": "15px",
+    "h": 42
+   },
+   {
+    "text": "36 Ay",
+    "bg": "rgb(91, 190, 255)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "20px",
+    "font": "BentonSansBBVA-Medium, sans-serif",
+    "weight": "400",
+    "size": "15px",
+    "h": 42
+   },
+   {
+    "text": "Başvurunu Başlat",
+    "bg": "rgb(0, 146, 66)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "8px",
+    "font": "BentonSansBBVA-Medium, sans-serif",
+    "weight": "400",
+    "size": "18px",
+    "h": 64
+   },
+   {
+    "text": "Başvur",
+    "bg": "rgb(0, 146, 66)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "8px",
+    "font": "BentonSansBBVA-Medium, sans-serif",
+    "weight": "400",
+    "size": "15px",
+    "h": 48
+   },
+   {
+    "text": "Başvur",
+    "bg": "rgb(0, 146, 66)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "8px",
+    "font": "BentonSansBBVA-Medium, sans-serif",
+    "weight": "400",
+    "size": "15px",
+    "h": 48
+   },
+   {
+    "text": "Başvur",
+    "bg": "rgb(0, 146, 66)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "8px",
+    "font": "BentonSansBBVA-Medium, sans-serif",
+    "weight": "400",
+    "size": "15px",
+    "h": 48
+   },
+   {
+    "text": "Sürdürülebilirlik Yaklaşımımız\n\n\t\t\t\t\t\n  ",
+    "bg": "rgb(255, 255, 255)",
+    "color": "rgb(0, 146, 66)",
+    "radius": "12px",
+    "font": "BentonSansBBVA-Medium, sans-serif",
+    "weight": "500",
+    "size": "15px",
+    "h": 568
+   },
+   {
+    "text": "Finansal Sağlık\n\n\t\t\t\t\t\n  Hepimizin farkl",
+    "bg": "rgb(255, 255, 255)",
+    "color": "rgb(0, 146, 66)",
+    "radius": "12px",
+    "font": "BentonSansBBVA-Medium, sans-serif",
+    "weight": "500",
+    "size": "15px",
+    "h": 568
+   }
+  ],
+  "headings": [
+   {
+    "tag": "H2",
+    "text": "",
+    "font": "BentonSansBBVA-Medium, sans-serif",
+    "weight": "500",
+    "size": "15px",
+    "color": "rgb(29, 33, 47)"
+   },
+   {
+    "tag": "H2",
+    "text": "",
+    "font": "BentonSansBBVA-Medium, sans-serif",
+    "weight": "500",
+    "size": "15px",
+    "color": "rgb(29, 33, 47)"
+   },
+   {
+    "tag": "H2",
+    "text": "",
+    "font": "BentonSansBBVA-Medium, sans-serif",
+    "weight": "500",
+    "size": "15px",
+    "color": "rgb(29, 33, 47)"
+   },
+   {
+    "tag": "H2",
+    "text": "",
+    "font": "BentonSansBBVA-Medium, sans-serif",
+    "weight": "500",
+    "size": "15px",
+    "color": "rgb(29, 33, 47)"
+   },
+   {
+    "tag": "H2",
+    "text": "",
+    "font": "BentonSansBBVA-Medium, sans-serif",
+    "weight": "500",
+    "size": "15px",
+    "color": "rgb(29, 33, 47)"
+   },
+   {
+    "tag": "H2",
+    "text": "",
+    "font": "BentonSansBBVA-Medium, sans-serif",
+    "weight": "500",
+    "size": "15px",
+    "color": "rgb(29, 33, 47)"
+   },
+   {
+    "tag": "H2",
+    "text": "",
+    "font": "BentonSansBBVA-Medium, sans-serif",
+    "weight": "500",
+    "size": "15px",
+    "color": "rgb(29, 33, 47)"
+   },
+   {
+    "tag": "H2",
+    "text": "",
+    "font": "BentonSansBBVA-Medium, sans-serif",
+    "weight": "500",
+    "size": "15px",
+    "color": "rgb(29, 33, 47)"
+   },
+   {
+    "tag": "H2",
+    "text": "Sıkça Sorulan Sorular",
+    "font": "TiemposHeadline-Bold, serif",
+    "weight": "700",
+    "size": "36px",
+    "color": "rgb(0, 68, 129)"
+   },
+   {
+    "tag": "H3",
+    "text": "Müşteri Ol",
+    "font": "BentonSansBBVA-Medium, sans-serif",
+    "weight": "500",
+    "size": "18px",
+    "color": "rgb(29, 33, 47)"
+   },
+   {
+    "tag": "H3",
+    "text": "Krediler",
+    "font": "BentonSansBBVA-Medium, sans-serif",
+    "weight": "500",
+    "size": "18px",
+    "color": "rgb(29, 33, 47)"
+   },
+   {
+    "tag": "H3",
+    "text": "Hesaplar",
+    "font": "BentonSansBBVA-Medium, sans-serif",
+    "weight": "500",
+    "size": "18px",
+    "color": "rgb(29, 33, 47)"
+   }
+  ],
+  "vars": {
+   "--gbva-affiliate-bar-height": "44px",
+   "--gbva-affiliate-bar-bg": "#EBEFF8",
+   "--gbva-affiliate-bar-border": "#dde3ed",
+   "--gbva-affiliate-bar-text": "#1D212F",
+   "--gbva-affiliate-bar-text-active": "#009242",
+   "--gbva-affiliate-bar-separator": "#c9d1de",
+   "--gbva-affiliate-bar-shadow": "none",
+   "--gbva-affiliate-bar-max-width": "1240px",
+   "--gbva-affiliate-bar-z-index": "4444",
+   "--gbva-affiliate-bar-top": "0px"
+  },
+  "fontFaces": [
+   "@font-face { font-family: BentonSansBBVA-Bold; src: url(\"../../../content/dam/public-website/fonts/BentonSansBBVA-Bold.woff2\") format(\"woff2\"), url(\"../../../content/dam/public-website/fonts/BentonSansBBVA-Bold.woff\") format(\"woff\"); font-display: swap; }",
+   "@font-face { font-family: BentonSansBBVA-Book; src: url(\"../../../content/dam/public-website/fonts/BentonSansBBVA-Book.woff2\") format(\"woff2\"), url(\"../../../content/dam/public-website/fonts/BentonSansBBVA-Book.woff\") format(\"woff\"); font-display: swap; }",
+   "@font-face { font-family: BentonSansBBVA-BookItalic; src: url(\"../../../content/dam/public-website/fonts/BentonSansBBVA-BookItalic.woff2\") format(\"woff2\"), url(\"../../../content/dam/public-website/fonts/BentonSansBBVA-BookItalic.woff\") format(\"woff\"); font-display: swap; }",
+   "@font-face { font-family: BentonSansBBVA-Light; src: url(\"../../../content/dam/public-website/fonts/BentonSansBBVA-Light.woff2\") format(\"woff2\"), url(\"../../../content/dam/public-website/fonts/BentonSansBBVA-Light.woff\") format(\"woff\"); font-display: swap; }",
+   "@font-face { font-family: BentonSansBBVA-Medium; src: url(\"../../../content/dam/public-website/fonts/BentonSansBBVA-Medium.woff2\") format(\"woff2\"), url(\"../../../content/dam/public-website/fonts/BentonSansBBVA-Medium.woff\") format(\"woff\"); font-display: swap; }",
+   "@font-face { font-family: BentonSansBBVA-MediumItalic; src: url(\"../../../content/dam/public-website/fonts/BentonSansBBVA-MediumItalic.woff2\") format(\"woff2\"), url(\"../../../content/dam/public-website/fonts/BentonSansBBVA-MediumItalic.woff\") format(\"woff\"); font-display: swap; }",
+   "@font-face { font-family: TiemposHeadline-Bold; src: url(\"../../../content/dam/public-website/fonts/tiempos-headline-bold.woff2\") format(\"woff2\"); font-display: swap; }",
+   "@font-face { font-family: TiemposHeadline-BoldItalic; src: url(\"../../../content/dam/public-website/fonts/tiempos-headline-bold-italic.woff2\") format(\"woff2\"); font-display: swap; }",
+   "@font-face { font-family: Tiempos-Regular; src: url(\"../../../content/dam/public-website/fonts/tiemposTextWeb-Regular.woff2\") format(\"woff2\"); font-display: swap; }",
+   "@font-face { font-family: BentonSansBBVA-Bold; src: url(\"https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-Bold.woff2\") format(\"woff2\"), url(\"https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-Bold.woff\") format(\"woff\"); font-display: swap; }",
+   "@font-face { font-family: BentonSansBBVA-Book; src: url(\"https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-Book.woff2\") format(\"woff2\"), url(\"https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-Book.woff\") format(\"woff\"); font-display: swap; }",
+   "@font-face { font-family: BentonSansBBVA-BookItalic; src: url(\"https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-BookItalic.woff2\") format(\"woff2\"), url(\"https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-BookItalic.woff\") format(\"woff\"); font",
+   "@font-face { font-family: BentonSansBBVA-Light; src: url(\"https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-Light.woff2\") format(\"woff2\"), url(\"https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-Light.woff\") format(\"woff\"); font-display: swap;",
+   "@font-face { font-family: BentonSansBBVA-Medium; src: url(\"https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-Medium.woff2\") format(\"woff2\"), url(\"https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-Medium.woff\") format(\"woff\"); font-display: sw",
+   "@font-face { font-family: BentonSansBBVA-MediumItalic; src: url(\"https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-MediumItalic.woff2\") format(\"woff2\"), url(\"https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-MediumItalic.woff\") format(\"woff\")"
+  ],
+  "logos": [
+   {
+    "src": "https://www.garantibbva.com.tr/content/dam/public-website/chatbot/assets/icons/cbot-logo-icon.svg",
+    "alt": "Beyaz arka plan."
+   },
+   {
+    "src": "https://www.garantibbva.com.tr/content/dam/public-website/icons/can/mobil.jpg",
+    "alt": "Size özel finansal rehberiniz Kredi Koçum, Garanti BBVA Mobil’de!"
+   },
+   {},
+   {},
+   {
+    "src": "https://www.garantibbva.com.tr/content/experience-fragments/public-website/tr/site/header/master1/_jcr_content/root/header/headerdesktop/image.coreimg.svg/1782192398335/logo.svg",
+    "alt": "Garanti BBVA logosu, yeşil yaprak simgesi ve mavi yazı stiliyle bankanın kurumsal kimliğini temsil ediyor."
+   },
+   {
+    "src": "https://www.garantibbva.com.tr/content/dam/public-website/micro-illustrasyon/birikim.svg",
+    "alt": "Beyaz ve mavi renkli, üst kısmında yuvarlak bir metal nesne bulunan, üzerinde \"Garanti BBVA\" yazısı ve yonca simgesi olan dikdörtgen kutu."
+   },
+   {
+    "src": "https://www.garantibbva.com.tr/content/dam/public-website/kendim-icin/menu/tr/hybrid-brand-yeni-g%C3%B6rseller/eVadeli_210x372_tr.jpg",
+    "alt": "Garanti BBVA’nın yüksek faiz oranları ile siz de mevduatınıza değer katın. e-Vadeli hesapla birikimlerinizi değerlendirin."
+   },
+   {
+    "src": "https://www.garantibbva.com.tr/content/dam/public-website/kendim-icin/menu/tr/hybrid-brand-yeni-g%C3%B6rseller/Kart_Basvurusu_210x372_tr.jpg",
+    "alt": "Garanti BBVA kredi kartlarına başvurunuzu hemen yapın, kazanmaya başlayın. Bonus, Shop&Fly ve Amex kredi kartlarının eşsiz ayrıcalıkları ile tanışın."
+   },
+   {
+    "src": "https://www.garantibbva.com.tr/content/dam/public-website/micro-illustrasyon/app_bbva.svg",
+    "alt": "Mavi ve beyaz tonlarında modern bir akıllı telefon simgesi."
+   },
+   {
+    "src": "https://www.garantibbva.com.tr/content/dam/public-website/micro-illustrasyon/desktop_logo.svg",
+    "alt": "Dizüstü bilgisayar simgesi, açık ekranıyla mavi ve beyaz tonlarında minimalist bir tasarım."
+   },
+   {
+    "src": "https://www.garantibbva.com.tr/content/dam/public-website/kendim-icin/menu/tr/hybrid-brand-yeni-g%C3%B6rseller/Acik_Bankacilik_210x372_tr_v2.jpg",
+    "alt": "Diğer banka hesaplarınızı ve kartlarınızı Garanti BBVA Mobil ile kolayca tek bir yerden yönetin."
+   },
+   {
+    "src": "https://www.garantibbva.com.tr/content/dam/public-website/kendim-icin/menu/tr/hybrid-brand-yeni-g%C3%B6rseller/Bes_210x372_tr.jpg",
+    "alt": "Bireysel Emeklilik Sistemi nedir, şartları avantajları nelerdir? BES hakkında daha fazla detaylı soru ve cevap için Garanti BBVA.com.tr!"
+   },
+   {
+    "src": "https://www.garantibbva.com.tr/content/dam/public-website/kendim-icin/menu/tr/hybrid-brand-yeni-g%C3%B6rseller/Emekli_Maas_Odemeleri_210x372_tr.jpg",
+    "alt": "Garanti BBVA'da 2024 yılı emekli promosyon fırsatı! Emekli maaşınızı bankamıza taşıyın, nakit emekli promosyon fırsatını kaçırmayın."
+   },
+   {
+    "src": "https://www.garantibbva.com.tr/content/dam/public-website/kendim-icin/menu/tr/hybrid-brand-yeni-g%C3%B6rseller/Ozel_Bankacilik_210x372_tr.jpg",
+    "alt": "Özel Bankacılık hizmetine Garanti BBVA farkı ile ulaşın. Özel eğitimli müşteri ilişkileri yöneticilerimize ulaşın."
+   },
+   {},
+   {},
+   {
+    "src": "https://www.garantibbva.com.tr/content/experience-fragments/public-website/tr/site/header/master1/_jcr_content/root/header/headermobile/image.coreimg.svg/1782192422474/logo.svg",
+    "alt": "Garanti BBVA logosu, yeşil yaprak simgesi ve mavi yazı stiliyle."
+   },
+   {
+    "src": "https://www.garantibbva.com.tr/content/dam/public-website/icons/menu/cards-siyah.svg",
+    "alt": "Dijital cüzdan simgesi, Garanti BBVA web sitesi için minimalist tasarım."
+   },
+   {
+    "src": "https://www.garantibbva.com.tr/content/dam/public-website/icons/tools-and-objects/mobile-siyah.svg",
+    "alt": "Mobil cihaz simgesi, Garanti BBVA uygulaması."
+   },
+   {
+    "src": "https://www.garantibbva.com.tr/content/dam/public-website/icons/menu/insurance-siyah.svg",
+    "alt": "Şemsiye simgesi, Garantibbva."
+   }
+  ],
+  "fontFiles": [
+   "https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-Light.woff2",
+   "https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-Medium.woff2",
+   "https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-Bold.woff2",
+   "https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-Book.woff2",
+   "https://www.garantibbva.com.tr/content/dam/public-website/fonts/tiempos-headline-bold.woff2",
+   "https://glomo.garantibbva.com.tr/non-core-assets//cfa/fonts/woff2/benton-sans-bbva-regular.woff2",
+   "https://glomo.garantibbva.com.tr/non-core-assets//cfa/fonts/woff2/benton-sans-bbva-light.woff2",
+   "https://glomo.garantibbva.com.tr/non-core-assets//cfa/fonts/woff2/benton-sans-bbva-medium.woff2"
+  ]
+ },
+ "bonus": {
+  "title": "Garanti Bonus | Bedavası En Bol Kredi Kartı",
+  "bg": [
+   [
+    "rgb(255, 255, 255)",
+    93
+   ],
+   [
+    "rgb(242, 242, 242)",
+    21
+   ],
+   [
+    "rgb(88, 176, 76)",
+    19
+   ],
+   [
+    "rgb(126, 195, 37)",
+    15
+   ],
+   [
+    "rgb(255, 204, 0)",
+    5
+   ],
+   [
+    "rgba(255, 255, 255, 0.3)",
+    3
+   ],
+   [
+    "rgb(46, 48, 51)",
+    2
+   ],
+   [
+    "rgb(39, 39, 41)",
+    2
+   ],
+   [
+    "rgb(254, 204, 0)",
+    1
+   ],
+   [
+    "rgb(0, 0, 0)",
+    1
+   ],
+   [
+    "rgb(89, 147, 81)",
+    1
+   ],
+   [
+    "rgb(102, 185, 92)",
+    1
+   ],
+   [
+    "rgb(40, 42, 45)",
+    1
+   ],
+   [
+    "rgb(76, 154, 66)",
+    1
+   ],
+   [
+    "rgb(255, 219, 0)",
+    1
+   ]
+  ],
+  "fg": [
+   [
+    "rgb(51, 51, 51)",
+    515
+   ],
+   [
+    "rgb(255, 255, 255)",
+    179
+   ],
+   [
+    "rgb(88, 176, 76)",
+    164
+   ],
+   [
+    "rgb(57, 58, 58)",
+    67
+   ],
+   [
+    "rgb(115, 121, 128)",
+    60
+   ],
+   [
+    "rgb(134, 141, 155)",
+    29
+   ],
+   [
+    "rgb(157, 164, 172)",
+    24
+   ],
+   [
+    "rgb(107, 124, 147)",
+    21
+   ],
+   [
+    "rgb(0, 0, 0)",
+    18
+   ],
+   [
+    "rgb(48, 48, 48)",
+    8
+   ],
+   [
+    "rgb(198, 205, 217)",
+    5
+   ],
+   [
+    "rgb(147, 153, 160)",
+    5
+   ],
+   [
+    "rgb(141, 209, 109)",
+    4
+   ],
+   [
+    "rgb(46, 48, 51)",
+    3
+   ],
+   [
+    "rgb(1, 1, 1)",
+    2
+   ],
+   [
+    "rgb(0, 103, 84)",
+    2
+   ],
+   [
+    "rgb(54, 63, 71)",
+    2
+   ],
+   [
+    "rgb(95, 95, 95)",
+    2
+   ],
+   [
+    "rgb(255, 219, 0)",
+    2
+   ],
+   [
+    "rgb(155, 155, 155)",
+    1
+   ],
+   [
+    "rgb(121, 185, 40)",
+    1
+   ],
+   [
+    "rgb(0, 99, 58)",
+    1
+   ],
+   [
+    "rgb(0, 98, 58)",
+    1
+   ],
+   [
+    "rgb(74, 74, 74)",
+    1
+   ]
+  ],
+  "border": [
+   [
+    "rgb(242, 242, 242)",
+    21
+   ],
+   [
+    "rgb(107, 124, 147)",
+    21
+   ],
+   [
+    "rgb(88, 176, 76)",
+    16
+   ],
+   [
+    "rgb(189, 201, 214)",
+    8
+   ],
+   [
+    "rgb(230, 233, 237)",
+    4
+   ],
+   [
+    "rgb(220, 220, 220)",
+    2
+   ],
+   [
+    "rgb(255, 204, 0)",
+    2
+   ],
+   [
+    "rgb(255, 255, 255)",
+    2
+   ],
+   [
+    "rgb(0, 0, 0)",
+    1
+   ],
+   [
+    "rgb(199, 181, 181)",
+    1
+   ],
+   [
+    "rgb(255, 219, 0)",
+    1
+   ]
+  ],
+  "fonts": [
+   [
+    "Roboto, sans-serif",
+    1109
+   ],
+   [
+    "Arial",
+    8
+   ]
+  ],
+  "radius": [
+   [
+    "2px",
+    22
+   ],
+   [
+    "3px",
+    11
+   ],
+   [
+    "1px",
+    4
+   ],
+   [
+    "9px",
+    2
+   ],
+   [
+    "4px",
+    2
+   ],
+   [
+    "50%",
+    1
+   ]
+  ],
+  "buttons": [
+   {
+    "text": "HEMEN BAŞVURBAŞVUR",
+    "bg": "rgb(254, 204, 0)",
+    "color": "rgb(1, 1, 1)",
+    "radius": "0px",
+    "font": "Roboto, sans-serif",
+    "weight": "700",
+    "size": "13px",
+    "h": 75
+   },
+   {
+    "text": "Ara",
+    "bg": "rgb(255, 204, 0)",
+    "color": "rgb(48, 48, 48)",
+    "radius": "0px",
+    "font": "Roboto, sans-serif",
+    "weight": "700",
+    "size": "14px",
+    "h": 60
+   },
+   {
+    "text": "Ara",
+    "bg": "rgb(255, 204, 0)",
+    "color": "rgb(48, 48, 48)",
+    "radius": "0px",
+    "font": "Roboto, sans-serif",
+    "weight": "700",
+    "size": "14px",
+    "h": 60
+   },
+   {
+    "text": "Hemen Başvur",
+    "bg": "rgb(255, 204, 0)",
+    "color": "rgb(46, 48, 51)",
+    "radius": "0px",
+    "font": "Roboto, sans-serif",
+    "weight": "700",
+    "size": "13px",
+    "h": 42
+   },
+   {
+    "text": "TÜM KAMPANYALAR",
+    "bg": "rgb(88, 176, 76)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "3px",
+    "font": "Roboto, sans-serif",
+    "weight": "700",
+    "size": "14px",
+    "h": 53
+   },
+   {
+    "text": "TÜM BONUSFLAŞ KAMPANYALARI",
+    "bg": "rgb(88, 176, 76)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "3px",
+    "font": "Roboto, sans-serif",
+    "weight": "700",
+    "size": "14px",
+    "h": 53
+   },
+   {
+    "text": "TÜM GarantiPay KAMPANYALARI",
+    "bg": "rgb(88, 176, 76)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "3px",
+    "font": "Roboto, sans-serif",
+    "weight": "700",
+    "size": "14px",
+    "h": 53
+   },
+   {
+    "text": "TÜM PARACARD BONUS KAMPANYALARI",
+    "bg": "rgb(88, 176, 76)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "3px",
+    "font": "Roboto, sans-serif",
+    "weight": "700",
+    "size": "14px",
+    "h": 53
+   },
+   {
+    "text": "TÜM BONUS GENÇ KAMPANYALARI",
+    "bg": "rgb(88, 176, 76)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "3px",
+    "font": "Roboto, sans-serif",
+    "weight": "700",
+    "size": "14px",
+    "h": 53
+   },
+   {
+    "text": "TÜM BONUS PİU KAMPANYALARI",
+    "bg": "rgb(88, 176, 76)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "3px",
+    "font": "Roboto, sans-serif",
+    "weight": "700",
+    "size": "14px",
+    "h": 53
+   },
+   {
+    "text": "TÜM MONEY BONUS KAMPANYALARI",
+    "bg": "rgb(88, 176, 76)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "3px",
+    "font": "Roboto, sans-serif",
+    "weight": "700",
+    "size": "14px",
+    "h": 53
+   },
+   {
+    "text": "TÜM TARAFTAR KAMPANYALARI",
+    "bg": "rgb(88, 176, 76)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "3px",
+    "font": "Roboto, sans-serif",
+    "weight": "700",
+    "size": "14px",
+    "h": 53
+   },
+   {
+    "text": "TÜM ONLINE KAMPANYALARI",
+    "bg": "rgb(88, 176, 76)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "3px",
+    "font": "Roboto, sans-serif",
+    "weight": "700",
+    "size": "14px",
+    "h": 53
+   },
+   {
+    "text": "Müşteri Temsilcisi Arasın",
+    "bg": "rgb(255, 204, 0)",
+    "color": "rgb(54, 63, 71)",
+    "radius": "0px",
+    "font": "Roboto, sans-serif",
+    "weight": "700",
+    "size": "17px",
+    "h": 60
+   },
+   {
+    "text": "Hemen Başvur",
+    "bg": "rgb(255, 204, 0)",
+    "color": "rgb(54, 63, 71)",
+    "radius": "0px",
+    "font": "Roboto, sans-serif",
+    "weight": "700",
+    "size": "17px",
+    "h": 60
+   },
+   {
+    "text": "TÜM ÖDEME KOLAYLIKLARI",
+    "bg": "rgb(88, 176, 76)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "3px",
+    "font": "Roboto, sans-serif",
+    "weight": "700",
+    "size": "14px",
+    "h": 53
+   },
+   {
+    "text": "Üniversiteli",
+    "bg": "rgb(88, 176, 76)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "0px",
+    "font": "Roboto, sans-serif",
+    "weight": "700",
+    "size": "13px",
+    "h": 31
+   },
+   {
+    "text": "İlham",
+    "bg": "rgb(88, 176, 76)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "0px",
+    "font": "Roboto, sans-serif",
+    "weight": "700",
+    "size": "13px",
+    "h": 31
+   },
+   {
+    "text": "Yaşam",
+    "bg": "rgb(88, 176, 76)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "0px",
+    "font": "Roboto, sans-serif",
+    "weight": "700",
+    "size": "13px",
+    "h": 31
+   },
+   {
+    "text": "Ürünler ve Hizmetler",
+    "bg": "rgb(88, 176, 76)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "0px",
+    "font": "Roboto, sans-serif",
+    "weight": "700",
+    "size": "13px",
+    "h": 31
+   },
+   {
+    "text": "TÜM İÇERİKLER",
+    "bg": "rgb(88, 176, 76)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "3px",
+    "font": "Roboto, sans-serif",
+    "weight": "700",
+    "size": "14px",
+    "h": 53
+   },
+   {
+    "text": "Kapat",
+    "bg": "rgb(76, 154, 66)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "0px",
+    "font": "Arial",
+    "weight": "400",
+    "size": "12px",
+    "h": 25
+   }
+  ],
+  "headings": [
+   {
+    "tag": "H1",
+    "text": "Garanti Bonus",
+    "font": "Roboto, sans-serif",
+    "weight": "700",
+    "size": "40px",
+    "color": "rgb(255, 255, 255)"
+   },
+   {
+    "tag": "H2",
+    "text": "Garanti BBVA Bonus",
+    "font": "Roboto, sans-serif",
+    "weight": "700",
+    "size": "26px",
+    "color": "rgb(255, 255, 255)"
+   },
+   {
+    "tag": "H3",
+    "text": "Bonus Blog",
+    "font": "Roboto, sans-serif",
+    "weight": "700",
+    "size": "32px",
+    "color": "rgb(0, 98, 58)"
+   },
+   {
+    "tag": "H2",
+    "text": "Kişisel Verileriniz Koruma Altında!",
+    "font": "\"Open Sans\", sans-serif",
+    "weight": "700",
+    "size": "18px",
+    "color": "rgb(51, 51, 51)"
+   }
+  ],
+  "vars": {
+   "--gbva-affiliate-bar-height": "44px",
+   "--gbva-affiliate-bar-bg": "#EBEFF8",
+   "--gbva-affiliate-bar-border": "#dde3ed",
+   "--gbva-affiliate-bar-text": "#1D212F",
+   "--gbva-affiliate-bar-text-active": "#009242",
+   "--gbva-affiliate-bar-separator": "#c9d1de",
+   "--gbva-affiliate-bar-shadow": "none",
+   "--gbva-affiliate-bar-max-width": "1240px",
+   "--gbva-affiliate-bar-z-index": "4444",
+   "--gbva-affiliate-bar-top": "0px",
+   "--slide-arrow-space": "calc((100vw - 1150px)/2)",
+   "--home-slider-side-bar-space": "calc((100vw - 1200px)/2)",
+   "--home-slider-content-min1200": "calc((100vw - 1200px)/2)"
+  },
+  "fontFaces": [
+   "@font-face { font-family: BentonSansBBVA-Bold; src: url(\"https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-Bold.woff2\") format(\"woff2\"), url(\"https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-Bold.woff\") format(\"woff\"); font-display: swap; }",
+   "@font-face { font-family: BentonSansBBVA-Book; src: url(\"https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-Book.woff2\") format(\"woff2\"), url(\"https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-Book.woff\") format(\"woff\"); font-display: swap; }",
+   "@font-face { font-family: BentonSansBBVA-BookItalic; src: url(\"https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-BookItalic.woff2\") format(\"woff2\"), url(\"https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-BookItalic.woff\") format(\"woff\"); font",
+   "@font-face { font-family: BentonSansBBVA-Light; src: url(\"https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-Light.woff2\") format(\"woff2\"), url(\"https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-Light.woff\") format(\"woff\"); font-display: swap;",
+   "@font-face { font-family: BentonSansBBVA-Medium; src: url(\"https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-Medium.woff2\") format(\"woff2\"), url(\"https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-Medium.woff\") format(\"woff\"); font-display: sw",
+   "@font-face { font-family: BentonSansBBVA-MediumItalic; src: url(\"https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-MediumItalic.woff2\") format(\"woff2\"), url(\"https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-MediumItalic.woff\") format(\"woff\")"
+  ],
+  "logos": [
+   {
+    "src": "https://www.bonus.com.tr/assets/img/slider-bf-box/home-bf-box-tel.png",
+    "alt": "BonusFlaş Telefon İkonu"
+   },
+   {
+    "src": "https://www.bonus.com.tr/assets/img/slider-bf-box/home-bf-box-icon-new.png",
+    "alt": "BonusFlaş İkon"
+   },
+   {
+    "src": "https://www.bonus.com.tr/assets/img/slider-bf-box/home-bf-box-qr-big.png",
+    "alt": "BonusFlaş QR"
+   },
+   {
+    "src": "",
+    "alt": "Garanti BBVA Bonus Kampanyaları"
+   },
+   {
+    "src": "https://www.bonus.com.tr/assets/img/main_slider/sevilen-kk-bonus-desktop.webp",
+    "alt": "Garanti BBVA Bonus Kampanyaları"
+   },
+   {
+    "src": "https://www.bonus.com.tr/assets/img/main_slider/market_b_011026.webp",
+    "alt": "Garanti BBVA Bonus Kampanyaları"
+   },
+   {
+    "src": "",
+    "alt": "Garanti BBVA Bonus Kampanyaları"
+   },
+   {
+    "src": "",
+    "alt": "Garanti BBVA Bonus Kampanyaları"
+   },
+   {
+    "src": "",
+    "alt": "Garanti BBVA Bonus Kampanyaları"
+   },
+   {
+    "src": "",
+    "alt": "Garanti BBVA Bonus Kampanyaları"
+   },
+   {
+    "src": "",
+    "alt": "Garanti BBVA Bonus Kampanyaları"
+   },
+   {
+    "src": "",
+    "alt": "Garanti BBVA Bonus Kampanyaları"
+   },
+   {
+    "src": "",
+    "alt": "Garanti BBVA Bonus Kampanyaları"
+   },
+   {
+    "src": "",
+    "alt": "Garanti BBVA Bonus Kampanyaları"
+   },
+   {
+    "src": "",
+    "alt": "Garanti BBVA Bonus Kampanyaları"
+   },
+   {
+    "src": "",
+    "alt": "Garanti BBVA Bonus Kampanyaları"
+   },
+   {
+    "src": "",
+    "alt": "Garanti BBVA Bonus Kampanyaları"
+   },
+   {
+    "src": "",
+    "alt": "Garanti BBVA Bonus Kampanyaları"
+   },
+   {
+    "src": "",
+    "alt": "Garanti BBVA Bonus Kampanyaları"
+   },
+   {
+    "src": "",
+    "alt": "Garanti BBVA Bonus Kampanyaları"
+   }
+  ],
+  "fontFiles": [
+   "https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3KUBGEe.woff2",
+   "https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBA.woff2",
+   "https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-Book.woff2",
+   "https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-Medium.woff2"
+  ]
+ },
+ "bonus-kampanyalar": {
+  "title": "Kredi Kartı Kampanyaları | Bonus",
+  "bg": [
+   [
+    "rgb(255, 255, 255)",
+    41
+   ],
+   [
+    "rgb(244, 244, 244)",
+    16
+   ],
+   [
+    "rgb(88, 176, 76)",
+    4
+   ],
+   [
+    "rgb(46, 48, 51)",
+    2
+   ],
+   [
+    "rgb(255, 204, 0)",
+    2
+   ],
+   [
+    "rgb(84, 133, 47)",
+    1
+   ],
+   [
+    "rgb(0, 0, 0)",
+    1
+   ],
+   [
+    "rgb(121, 186, 39)",
+    1
+   ],
+   [
+    "rgb(227, 227, 227)",
+    1
+   ],
+   [
+    "rgb(121, 185, 39)",
+    1
+   ],
+   [
+    "rgb(102, 185, 92)",
+    1
+   ],
+   [
+    "rgb(40, 42, 45)",
+    1
+   ],
+   [
+    "rgba(0, 0, 0, 0.5)",
+    1
+   ],
+   [
+    "rgb(76, 154, 66)",
+    1
+   ],
+   [
+    "rgb(255, 219, 0)",
+    1
+   ]
+  ],
+  "fg": [
+   [
+    "rgb(88, 176, 76)",
+    239
+   ],
+   [
+    "rgb(51, 51, 51)",
+    121
+   ],
+   [
+    "rgb(255, 255, 255)",
+    115
+   ],
+   [
+    "rgb(115, 121, 128)",
+    60
+   ],
+   [
+    "rgb(86, 102, 120)",
+    40
+   ],
+   [
+    "rgb(157, 164, 172)",
+    24
+   ],
+   [
+    "rgb(0, 0, 0)",
+    17
+   ],
+   [
+    "rgb(172, 172, 172)",
+    16
+   ],
+   [
+    "rgb(57, 58, 58)",
+    16
+   ],
+   [
+    "rgb(48, 48, 48)",
+    14
+   ],
+   [
+    "rgb(198, 205, 217)",
+    5
+   ],
+   [
+    "rgb(147, 153, 160)",
+    5
+   ],
+   [
+    "rgb(224, 224, 224)",
+    2
+   ],
+   [
+    "rgb(46, 48, 51)",
+    2
+   ],
+   [
+    "rgb(141, 209, 109)",
+    2
+   ],
+   [
+    "rgb(92, 92, 92)",
+    2
+   ],
+   [
+    "rgb(95, 95, 95)",
+    2
+   ],
+   [
+    "rgb(255, 219, 0)",
+    2
+   ],
+   [
+    "rgb(225, 255, 217)",
+    1
+   ],
+   [
+    "rgb(74, 74, 74)",
+    1
+   ]
+  ],
+  "border": [
+   [
+    "rgb(212, 212, 212)",
+    4
+   ],
+   [
+    "rgb(230, 233, 237)",
+    2
+   ],
+   [
+    "rgb(255, 255, 255)",
+    2
+   ],
+   [
+    "rgb(0, 0, 0)",
+    1
+   ],
+   [
+    "rgb(88, 176, 76)",
+    1
+   ],
+   [
+    "rgb(199, 181, 181)",
+    1
+   ],
+   [
+    "rgb(255, 219, 0)",
+    1
+   ]
+  ],
+  "fonts": [
+   [
+    "Roboto, sans-serif",
+    672
+   ],
+   [
+    "Arial",
+    14
+   ]
+  ],
+  "radius": [
+   [
+    "5px",
+    17
+   ],
+   [
+    "1px",
+    2
+   ],
+   [
+    "2px",
+    2
+   ],
+   [
+    "4px",
+    2
+   ],
+   [
+    "50%",
+    1
+   ]
+  ],
+  "buttons": [
+   {
+    "text": "HEMEN BAŞVURBAŞVUR",
+    "bg": "rgb(84, 133, 47)",
+    "color": "rgb(224, 224, 224)",
+    "radius": "0px",
+    "font": "Roboto, sans-serif",
+    "weight": "700",
+    "size": "13px",
+    "h": 75
+   },
+   {
+    "text": "Ara",
+    "bg": "rgb(255, 204, 0)",
+    "color": "rgb(48, 48, 48)",
+    "radius": "0px",
+    "font": "Roboto, sans-serif",
+    "weight": "700",
+    "size": "14px",
+    "h": 60
+   },
+   {
+    "text": "Ara",
+    "bg": "rgb(255, 204, 0)",
+    "color": "rgb(48, 48, 48)",
+    "radius": "0px",
+    "font": "Roboto, sans-serif",
+    "weight": "700",
+    "size": "14px",
+    "h": 60
+   },
+   {
+    "text": "Tüm Kampanyalar",
+    "bg": "rgb(121, 186, 39)",
+    "color": "rgb(88, 176, 76)",
+    "radius": "0px",
+    "font": "Roboto, sans-serif",
+    "weight": "400",
+    "size": "14px",
+    "h": 170
+   },
+   {
+    "text": "5Yurt dışı Alışverişi",
+    "bg": "rgb(255, 255, 255)",
+    "color": "rgb(88, 176, 76)",
+    "radius": "0px",
+    "font": "Roboto, sans-serif",
+    "weight": "400",
+    "size": "14px",
+    "h": 170
+   },
+   {
+    "text": "14İnternet Alışverişi",
+    "bg": "rgb(255, 255, 255)",
+    "color": "rgb(88, 176, 76)",
+    "radius": "0px",
+    "font": "Roboto, sans-serif",
+    "weight": "400",
+    "size": "14px",
+    "h": 170
+   },
+   {
+    "text": ".st0{fill:#3E9445;}\n            .st1{fil",
+    "bg": "rgb(255, 255, 255)",
+    "color": "rgb(88, 176, 76)",
+    "radius": "0px",
+    "font": "Roboto, sans-serif",
+    "weight": "400",
+    "size": "14px",
+    "h": 170
+   },
+   {
+    "text": "3Kamu ve Vergi Ödemeleri",
+    "bg": "rgb(255, 255, 255)",
+    "color": "rgb(88, 176, 76)",
+    "radius": "0px",
+    "font": "Roboto, sans-serif",
+    "weight": "400",
+    "size": "14px",
+    "h": 170
+   },
+   {
+    "text": "171Marka İş Birlikleri",
+    "bg": "rgb(255, 255, 255)",
+    "color": "rgb(88, 176, 76)",
+    "radius": "0px",
+    "font": "Roboto, sans-serif",
+    "weight": "400",
+    "size": "14px",
+    "h": 170
+   },
+   {
+    "text": "47Bonus Avantajları",
+    "bg": "rgb(255, 255, 255)",
+    "color": "rgb(88, 176, 76)",
+    "radius": "0px",
+    "font": "Roboto, sans-serif",
+    "weight": "400",
+    "size": "14px",
+    "h": 170
+   },
+   {
+    "text": "4Mastercard Kampanyaları",
+    "bg": "rgb(255, 255, 255)",
+    "color": "rgb(88, 176, 76)",
+    "radius": "0px",
+    "font": "Roboto, sans-serif",
+    "weight": "400",
+    "size": "14px",
+    "h": 170
+   },
+   {
+    "text": "8Visa Avantajları",
+    "bg": "rgb(255, 255, 255)",
+    "color": "rgb(88, 176, 76)",
+    "radius": "0px",
+    "font": "Roboto, sans-serif",
+    "weight": "400",
+    "size": "14px",
+    "h": 170
+   },
+   {
+    "text": "11Market",
+    "bg": "rgb(255, 255, 255)",
+    "color": "rgb(88, 176, 76)",
+    "radius": "0px",
+    "font": "Roboto, sans-serif",
+    "weight": "400",
+    "size": "14px",
+    "h": 170
+   },
+   {
+    "text": "80Giyim",
+    "bg": "rgb(255, 255, 255)",
+    "color": "rgb(88, 176, 76)",
+    "radius": "0px",
+    "font": "Roboto, sans-serif",
+    "weight": "400",
+    "size": "14px",
+    "h": 170
+   },
+   {
+    "text": "3Akaryakıt",
+    "bg": "rgb(255, 255, 255)",
+    "color": "rgb(88, 176, 76)",
+    "radius": "0px",
+    "font": "Roboto, sans-serif",
+    "weight": "400",
+    "size": "14px",
+    "h": 170
+   },
+   {
+    "text": "4Beyaz Eşya",
+    "bg": "rgb(255, 255, 255)",
+    "color": "rgb(88, 176, 76)",
+    "radius": "0px",
+    "font": "Roboto, sans-serif",
+    "weight": "400",
+    "size": "14px",
+    "h": 170
+   },
+   {
+    "text": "1Elektronik",
+    "bg": "rgb(255, 255, 255)",
+    "color": "rgb(88, 176, 76)",
+    "radius": "0px",
+    "font": "Roboto, sans-serif",
+    "weight": "400",
+    "size": "14px",
+    "h": 170
+   },
+   {
+    "text": "9Mobilya",
+    "bg": "rgb(255, 255, 255)",
+    "color": "rgb(88, 176, 76)",
+    "radius": "0px",
+    "font": "Roboto, sans-serif",
+    "weight": "400",
+    "size": "14px",
+    "h": 170
+   },
+   {
+    "text": "10Araç Kiralama",
+    "bg": "rgb(255, 255, 255)",
+    "color": "rgb(88, 176, 76)",
+    "radius": "0px",
+    "font": "Roboto, sans-serif",
+    "weight": "400",
+    "size": "14px",
+    "h": 170
+   },
+   {
+    "text": ".s0 { fill: #79b927 } \n\t\t.s1 { fill: #3e",
+    "bg": "rgb(255, 255, 255)",
+    "color": "rgb(88, 176, 76)",
+    "radius": "0px",
+    "font": "Roboto, sans-serif",
+    "weight": "400",
+    "size": "14px",
+    "h": 170
+   },
+   {
+    "text": "Ara",
+    "bg": "rgb(121, 185, 39)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "0px",
+    "font": "Roboto, sans-serif",
+    "weight": "400",
+    "size": "12px",
+    "h": 50
+   },
+   {
+    "text": "DAHA FAZLA KAMPANYA GÖSTER",
+    "bg": "rgb(88, 176, 76)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "2px",
+    "font": "Roboto, sans-serif",
+    "weight": "700",
+    "size": "14px",
+    "h": 56
+   },
+   {
+    "text": "Kapat",
+    "bg": "rgb(76, 154, 66)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "0px",
+    "font": "Arial",
+    "weight": "400",
+    "size": "12px",
+    "h": 25
+   }
+  ],
+  "headings": [
+   {
+    "tag": "H1",
+    "text": "kredi kartı kampanyaları",
+    "font": "Roboto, sans-serif",
+    "weight": "700",
+    "size": "21px",
+    "color": "rgb(225, 255, 217)"
+   },
+   {
+    "tag": "H2",
+    "text": "Otomatik fatura ödeme talimatınıza 800 TL'ye varan bonus!",
+    "font": "Roboto, sans-serif",
+    "weight": "400",
+    "size": "15px",
+    "color": "rgb(57, 58, 58)"
+   },
+   {
+    "tag": "H2",
+    "text": "İnternet alışverişlerinde hızlı ve güvenli ödemenin yolu  Ga",
+    "font": "Roboto, sans-serif",
+    "weight": "400",
+    "size": "15px",
+    "color": "rgb(57, 58, 58)"
+   },
+   {
+    "tag": "H2",
+    "text": "Market alışverişlerinize 1.200 TL,BonusFlaş ile ödemelere 1.",
+    "font": "Roboto, sans-serif",
+    "weight": "400",
+    "size": "15px",
+    "color": "rgb(57, 58, 58)"
+   },
+   {
+    "tag": "H2",
+    "text": "Market alışverişlerinize 1.000 TL,BonusFlaş ile ödemeleriniz",
+    "font": "Roboto, sans-serif",
+    "weight": "400",
+    "size": "15px",
+    "color": "rgb(57, 58, 58)"
+   },
+   {
+    "tag": "H2",
+    "text": "E-ticaret alışverişlerine1.250 TL bonus!",
+    "font": "Roboto, sans-serif",
+    "weight": "400",
+    "size": "15px",
+    "color": "rgb(57, 58, 58)"
+   },
+   {
+    "tag": "H2",
+    "text": "Otomotiv, lastik, bakım ve yedek parça alışverişinize600 TL ",
+    "font": "Roboto, sans-serif",
+    "weight": "400",
+    "size": "15px",
+    "color": "rgb(57, 58, 58)"
+   },
+   {
+    "tag": "H2",
+    "text": "Market alışverişinize 1.250 TL,BonusFlaş ile ödemeye 1.300 T",
+    "font": "Roboto, sans-serif",
+    "weight": "400",
+    "size": "15px",
+    "color": "rgb(57, 58, 58)"
+   },
+   {
+    "tag": "H2",
+    "text": "Giyim, ayakkabı ve çantaalışverişlerinize toplam 1.500 TL bo",
+    "font": "Roboto, sans-serif",
+    "weight": "400",
+    "size": "15px",
+    "color": "rgb(57, 58, 58)"
+   },
+   {
+    "tag": "H2",
+    "text": "Bonus iş yeri giyim sektöründe1.000 TL bonus!",
+    "font": "Roboto, sans-serif",
+    "weight": "400",
+    "size": "15px",
+    "color": "rgb(57, 58, 58)"
+   },
+   {
+    "tag": "H2",
+    "text": "Garanti BBVA POS'u olan okullardapeşin ödemelerinize faizsiz",
+    "font": "Roboto, sans-serif",
+    "weight": "400",
+    "size": "15px",
+    "color": "rgb(57, 58, 58)"
+   },
+   {
+    "tag": "H2",
+    "text": "Seçili okullarda yapacağınızpeşin okul ödemelerinize ücretsi",
+    "font": "Roboto, sans-serif",
+    "weight": "400",
+    "size": "15px",
+    "color": "rgb(57, 58, 58)"
+   }
+  ],
+  "vars": {
+   "--gbva-affiliate-bar-height": "44px",
+   "--gbva-affiliate-bar-bg": "#EBEFF8",
+   "--gbva-affiliate-bar-border": "#dde3ed",
+   "--gbva-affiliate-bar-text": "#1D212F",
+   "--gbva-affiliate-bar-text-active": "#009242",
+   "--gbva-affiliate-bar-separator": "#c9d1de",
+   "--gbva-affiliate-bar-shadow": "none",
+   "--gbva-affiliate-bar-max-width": "1240px",
+   "--gbva-affiliate-bar-z-index": "4444",
+   "--gbva-affiliate-bar-top": "0px",
+   "--slide-arrow-space": "calc((100vw - 1150px)/2)",
+   "--home-slider-side-bar-space": "calc((100vw - 1200px)/2)",
+   "--home-slider-content-min1200": "calc((100vw - 1200px)/2)"
+  },
+  "fontFaces": [
+   "@font-face { font-family: BentonSansBBVA-Bold; src: url(\"https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-Bold.woff2\") format(\"woff2\"), url(\"https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-Bold.woff\") format(\"woff\"); font-display: swap; }",
+   "@font-face { font-family: BentonSansBBVA-Book; src: url(\"https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-Book.woff2\") format(\"woff2\"), url(\"https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-Book.woff\") format(\"woff\"); font-display: swap; }",
+   "@font-face { font-family: BentonSansBBVA-BookItalic; src: url(\"https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-BookItalic.woff2\") format(\"woff2\"), url(\"https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-BookItalic.woff\") format(\"woff\"); font",
+   "@font-face { font-family: BentonSansBBVA-Light; src: url(\"https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-Light.woff2\") format(\"woff2\"), url(\"https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-Light.woff\") format(\"woff\"); font-display: swap;",
+   "@font-face { font-family: BentonSansBBVA-Medium; src: url(\"https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-Medium.woff2\") format(\"woff2\"), url(\"https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-Medium.woff\") format(\"woff\"); font-display: sw",
+   "@font-face { font-family: BentonSansBBVA-MediumItalic; src: url(\"https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-MediumItalic.woff2\") format(\"woff2\"), url(\"https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-MediumItalic.woff\") format(\"woff\")"
+  ],
+  "logos": [
+   {
+    "src": "https://www.bonus.com.tr/assets/images/imported/yurtdisilogo060624.png",
+    "alt": "Yurtdışı kampanyaları"
+   },
+   {
+    "src": "https://www.bonus.com.tr/assets/img/bonus-logo-only.png",
+    "alt": "Bonus Kampanyaları"
+   },
+   {
+    "src": "https://www.bonus.com.tr/assets/img/visa-filter-logo.png",
+    "alt": "Visa Kart Kampanyaları"
+   },
+   {
+    "src": "https://www.bonus.com.tr/assets/img/bonus-taraftar-icon.png",
+    "alt": "Bonus Taraftar Kampanyaları"
+   },
+   {
+    "src": "https://www.bonus.com.tr/assets/images/imported/bonus_logo_2026_3.svg",
+    "alt": "Bonus Genç Kampanyaları"
+   },
+   {
+    "src": "https://www.bonus.com.tr/assets/img/garanti_pay-home.svg",
+    "alt": "GarantiPay Kampanyaları"
+   },
+   {
+    "src": "https://www.bonus.com.tr/assets/img/bonus-flas1.svg",
+    "alt": "BonusFlaş Kampanyaları"
+   },
+   {
+    "src": "https://www.bonus.com.tr/assets/img/money-bonus-icon.svg",
+    "alt": "Money Bonus Kampanyaları"
+   },
+   {
+    "src": "https://www.bonus.com.tr/assets/img/paracard-tab-logo.png",
+    "alt": "Paracard Bonus Kampanyaları"
+   },
+   {
+    "src": "https://www.bonus.com.tr/assets/images/imported/ofo_300124.jpg",
+    "alt": "Otomatik Fatura Ödeme Talimatınıza 800 TL'ye Varan Bonus!"
+   },
+   {
+    "src": "https://www.bonus.com.tr/assets/images/imported/garantipay_camp_2023.jpg",
+    "alt": "İnternet alışverişlerinde hızlı ve güvenli ödemenin yolu GarantiPay!"
+   },
+   {
+    "src": "https://www.bonus.com.tr/assets/images/imported/market_2_300926.webp",
+    "alt": "Market alışverişlerinize 1.200 TL, BonusFlaş ile ödemelere 1.500 TL bonus!"
+   },
+   {
+    "src": "https://www.bonus.com.tr/assets/images/imported/market_100326.webp",
+    "alt": "Market alışverişlerinize 1.000 TL, BonusFlaş ile ödemelerinize 1.100 TL bonus!"
+   },
+   {
+    "src": "https://www.bonus.com.tr/assets/images/imported/eticaret2_280325.webp",
+    "alt": "E-ticaret alışverişlerine 1.250 TL bonus!"
+   },
+   {
+    "src": "https://www.bonus.com.tr/assets/images/garantipay_.png",
+    "alt": "GarantiPay etiketi"
+   },
+   {
+    "src": "https://www.bonus.com.tr/assets/images/imported/otomotiv_250226.webp",
+    "alt": "Otomotiv, lastik, bakım ve yedek parça alışverişinize 600 TL bonus!"
+   },
+   {
+    "src": "https://www.bonus.com.tr/assets/images/imported/market_250525.webp",
+    "alt": "Market alışverişinize 1.250 TL, BonusFlaş ile ödemeye 1.300 TL bonus!"
+   },
+   {
+    "src": "https://www.bonus.com.tr/assets/images/imported/giyim_2_300926.webp",
+    "alt": "Giyim, ayakkabı ve çanta alışverişlerinize toplam 1.500 TL bonus!"
+   },
+   {
+    "src": "",
+    "alt": "Bonus iş yeri giyim sektöründe 1.000 TL bonus!"
+   },
+   {
+    "src": "https://www.bonus.com.tr/assets/images/Etiket.png",
+    "alt": "Bonus Flas etiketi"
+   }
+  ],
+  "fontFiles": [
+   "https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBA.woff2",
+   "https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3KUBGEe.woff2",
+   "https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-Medium.woff2",
+   "https://www.garantibbva.com.tr/content/dam/public-website/fonts/BentonSansBBVA-Book.woff2"
+  ]
+ }
+}
