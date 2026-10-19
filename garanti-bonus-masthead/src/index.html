@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=970,height=250">
+<meta name="viewport" content="width=970,height=250">
+<title>Garanti BBVA Bonus – Black Friday Masthead 970x250</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+<script>
+  // Reklam ağı tarafından ezilir (Google Ads / DCM). Studio için Enabler.exit kullanılır.
+  var clickTag = window.clickTag || "https://www.bonus.com.tr/kampanyalar";
+</script>
+<style>
+  /* Renkler bonus.com.tr ve garantibbva.com.tr'den ölçüldü (brand-ref/report.json) */
+  :root {
+    --lime: #7cc325;      /* Bonus kampanya zemini */
+    --lime-lt: #aaef51;   /* zemin ışığı */
+    --lime-pale: #f3f9ea;
+    --green: #58b04c;     /* Bonus buton / link yeşili */
+    --green-dk: #00623a;  /* Bonus koyu yeşil (başlık) */
+    --yellow: #ffcc00;    /* Bonus CTA sarısı */
+    --yellow-dk: #f5bd00;
+    --ink: #2e3033;       /* CTA metni */
+    --text: #333333;
+    --muted: #737980;
+    --line: #e1efcf;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 970px; height: 250px; overflow: hidden; background: var(--lime); }
+  body { font-family: Roboto, Arial, sans-serif; color: var(--text); -webkit-font-smoothing: antialiased; }
+  .cond { font-family: "Barlow Condensed", "Roboto Condensed", "Arial Narrow", sans-serif; }
+
+  #ad {
+    position: relative; width: 970px; height: 250px; overflow: hidden; cursor: pointer;
+    background:
+      radial-gradient(360px 230px at 150px 150px, rgba(170,239,81,.95), transparent 70%),
+      radial-gradient(300px 200px at 840px 110px, rgba(170,239,81,.8), transparent 70%),
+      var(--lime);
+  }
+  /* Bonus görsellerindeki ışık hüzmeleri */
+  #ad::before {
+    content: ""; position: absolute; left: -200px; top: -500px; width: 1400px; height: 1400px; pointer-events: none; opacity: .16;
+    background: repeating-conic-gradient(from 0deg at 50% 50%, #fff 0 4deg, transparent 4deg 14deg);
+    -webkit-mask: radial-gradient(circle at 50% 50%, #000 0, transparent 60%); mask: radial-gradient(circle at 50% 50%, #000 0, transparent 60%);
+    animation: rays 40s linear infinite;
+  }
+  @keyframes rays { to { transform: rotate(30deg); } }
+  #ad:focus-visible { outline: 3px solid var(--green-dk); outline-offset: -3px; }
+
+  /* ---------- Sol: logo + mesaj ---------- */
+  .logo-tab {
+    position: absolute; left: 0; top: 0; width: 186px; height: 60px; background: #fff;
+    border-radius: 0 0 14px 0; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 14px rgba(0,98,58,.15); opacity: 0; transform: translateY(-100%);
+  }
+  .logo-tab img { height: 44px; width: auto; display: block; }
+
+  .head { position: absolute; left: 22px; top: 76px; width: 272px; }
+  .tag {
+    display: inline-flex; align-items: center; gap: 6px; height: 20px; padding: 0 9px; border-radius: 10px;
+    border: 1.5px solid var(--green-dk); color: var(--green-dk); font: 800 12px/1 "Barlow Condensed", Arial Narrow, sans-serif; letter-spacing: 1px;
+    opacity: 0; transform: translateX(-16px);
+  }
+  .tag i { width: 5px; height: 5px; border-radius: 50%; background: var(--green-dk); }
+  .pill {
+    display: table; margin-top: 5px; padding: 3px 12px 2px; border-radius: 22px; line-height: 1; letter-spacing: .2px;
+    font-weight: 800; text-transform: uppercase; white-space: nowrap; opacity: 0; transform: translateX(-24px);
+  }
+  .pill.y { background: var(--yellow); color: var(--green-dk); font-size: 23px; margin-top: 8px; }
+  .pill.g { background: var(--green-dk); color: #fff; font-size: 28px; }
+  .pill.g em { font-style: normal; color: var(--yellow); }
+  .legal { position: absolute; left: 22px; bottom: 9px; font-size: 9px; color: var(--green-dk); opacity: .85; }
+
+  /* ---------- Orta: interaktif sepet paneli ---------- */
+  .panel {
+    position: absolute; left: 302px; top: 20px; width: 394px; height: 210px; background: #fff; border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(0,98,58,.22); padding: 14px 16px; opacity: 0; transform: translateY(20px);
+  }
+  .p-head { display: flex; justify-content: space-between; align-items: center; }
+  .p-head h2 { font-size: 15px; font-weight: 700; color: var(--green-dk); letter-spacing: -.1px; }
+  .p-head span { font-size: 10px; font-weight: 700; color: var(--green); letter-spacing: .4px; text-transform: uppercase; }
+  .hint-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--green); margin-right: 5px; vertical-align: 1px; animation: blink 1.1s infinite; }
+  @keyframes blink { 50% { opacity: .2; } }
+
+  .tiles { display: flex; gap: 8px; margin-top: 11px; }
+  .tile {
+    position: relative; width: 66px; height: 84px; border-radius: 10px; border: 1px solid var(--line);
+    background: var(--lime-pale); color: var(--text); cursor: pointer;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+    font: 500 10px/1.15 Roboto, Arial, sans-serif; text-align: center; padding: 0 3px;
+    opacity: 0; transform: translateY(12px);
+  }
+  .tile svg { width: 32px; height: 32px; stroke: var(--green-dk); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .ready .tile { transition: transform .25s cubic-bezier(.2,.9,.3,1.3), border-color .2s, background .2s, box-shadow .2s; }
+  .ready .tile:hover, .tile:focus-visible, .tile.peek { transform: translateY(-4px); border-color: var(--green); outline: none; box-shadow: 0 8px 16px rgba(0,98,58,.18); }
+  .tile.on { background: var(--lime); border-color: var(--lime); color: var(--green-dk); font-weight: 700; }
+  .tile .check {
+    position: absolute; top: -6px; right: -6px; width: 18px; height: 18px; border-radius: 50%;
+    background: var(--yellow); color: var(--green-dk); font-size: 11px; font-weight: 900; line-height: 18px;
+    box-shadow: 0 2px 5px rgba(0,0,0,.15); transform: scale(0); transition: transform .3s cubic-bezier(.2,.9,.3,1.6);
+  }
+  .tile.on .check { transform: scale(1); }
+
+  .meter { margin-top: 13px; }
+  .meter-row { display: flex; justify-content: space-between; font-size: 10px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .4px; }
+  .meter-row b { color: var(--green-dk); }
+  .bar { margin-top: 5px; height: 8px; border-radius: 4px; background: #eef3e6; overflow: hidden; }
+  .bar i { display: block; height: 100%; width: 0; border-radius: 4px; background: linear-gradient(90deg, var(--green), var(--lime)); transition: width .6s cubic-bezier(.2,.8,.2,1); }
+  .msg { margin-top: 9px; height: 17px; font-size: 13px; font-weight: 500; color: var(--text); white-space: nowrap; }
+  .msg em { font-style: normal; font-weight: 700; color: var(--green-dk); }
+  .msg.swap { animation: swap .4s ease; }
+  @keyframes swap { from { opacity: 0; transform: translateY(6px); } }
+
+  .game { transition: opacity .35s, visibility .35s; }
+  .panel.done .game { opacity: 0; visibility: hidden; }
+  .final {
+    position: absolute; inset: 0; padding: 0 22px; display: flex; flex-direction: column; justify-content: center;
+    opacity: 0; visibility: hidden; transform: scale(.97); transition: opacity .5s .15s, transform .5s .15s, visibility .5s .15s;
+  }
+  .panel.done .final { opacity: 1; visibility: visible; transform: none; }
+  .final small { font-size: 11px; font-weight: 700; color: var(--green); letter-spacing: .8px; text-transform: uppercase; }
+  .final h3 { margin-top: 4px; font-size: 34px; font-weight: 800; line-height: .98; color: var(--green-dk); text-transform: uppercase; }
+  .final h3 em { font-style: normal; display: inline-block; background: var(--yellow); padding: 1px 9px 0; border-radius: 18px; margin-top: 3px; }
+  .final p { margin-top: 8px; font-size: 12px; color: var(--muted); line-height: 1.35; }
+  .replay {
+    margin-top: 10px; align-self: flex-start; background: none; border: 0; color: var(--green); cursor: pointer;
+    font: 700 11px Roboto, Arial, sans-serif; letter-spacing: .2px; padding: 2px 0;
+  }
+  .replay:hover, .replay:focus-visible { color: var(--green-dk); text-decoration: underline; outline: none; }
+
+  /* ---------- Sağ: kart + CTA ---------- */
+  .card-wrap { position: absolute; left: 734px; top: 26px; width: 200px; height: 126px; perspective: 700px; opacity: 0; transform: translateX(80px) rotate(10deg); }
+  .card {
+    position: relative; width: 100%; height: 100%; border-radius: 12px; overflow: hidden;
+    background:
+      radial-gradient(160px 110px at 100% 0%, rgba(170,239,81,.55), transparent 65%),
+      linear-gradient(135deg, #0b7a45 0%, var(--green-dk) 55%, #004a2b 100%);
+    box-shadow: 0 16px 34px rgba(0,60,30,.45), 0 0 0 1px rgba(255,255,255,.18) inset;
+    transform: rotateY(-14deg) rotateX(6deg); transition: transform .3s ease;
+  }
+  .card::before { /* lime dalga */
+    content: ""; position: absolute; right: -60px; bottom: -90px; width: 220px; height: 160px; border-radius: 50%;
+    border: 18px solid rgba(124,195,37,.55);
+  }
+  .card::after { /* parlama */
+    content: ""; position: absolute; top: -50%; left: -60%; width: 40%; height: 200%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.4), transparent); transform: rotate(20deg);
+  }
+  .card.sweep::after { animation: sweep .9s ease; }
+  @keyframes sweep { to { left: 130%; } }
+  .card .plate { position: absolute; left: 10px; top: 9px; background: #fff; border-radius: 7px; padding: 3px 6px; }
+  .card .plate img { height: 24px; display: block; }
+  .card .chip { position: absolute; left: 14px; top: 56px; width: 30px; height: 22px; border-radius: 4px; background: linear-gradient(135deg, #f6e3a1, #c9a74a); }
+  .card .num { position: absolute; left: 14px; bottom: 13px; font-size: 11px; font-weight: 500; letter-spacing: 2px; color: #fff; opacity: .9; }
+  .card .bf-tag { position: absolute; right: 10px; bottom: 10px; background: var(--yellow); color: var(--green-dk); font: 800 11px/1 "Barlow Condensed", Arial Narrow, sans-serif; letter-spacing: .8px; padding: 4px 7px 3px; border-radius: 9px; }
+  .card.pulse { animation: pulse .45s ease; }
+  @keyframes pulse { 40% { transform: rotateY(-4deg) rotateX(2deg) scale(1.06); } }
+
+  .coin {
+    position: absolute; z-index: 5; pointer-events: none; padding: 4px 10px; border-radius: 14px;
+    background: var(--yellow); color: var(--green-dk); font-size: 11px; font-weight: 900; white-space: nowrap;
+    box-shadow: 0 4px 10px rgba(0,60,30,.3);
+  }
+
+  .cta {
+    position: absolute; left: 734px; top: 180px; width: 200px; height: 44px; border-radius: 6px; border: 0;
+    background: var(--yellow); color: var(--ink); font: 700 15px Roboto, Arial, sans-serif; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 6px 14px rgba(0,98,58,.25);
+    opacity: 0; transform: translateY(12px); transition: background .2s;
+  }
+  .cta svg { width: 16px; height: 16px; stroke: currentColor; stroke-width: 2.6; fill: none; transition: transform .2s; }
+  #ad:hover .cta { background: var(--yellow-dk); }
+  #ad:hover .cta svg { transform: translateX(3px); }
+  .cta.glow { animation: ctapulse 1.4s ease 3; }
+  @keyframes ctapulse { 50% { box-shadow: 0 0 0 8px rgba(255,204,0,.35), 0 6px 14px rgba(0,98,58,.25); } }
+
+  .fly { position: absolute; z-index: 6; width: 32px; height: 32px; pointer-events: none; }
+  .fly svg { width: 100%; height: 100%; stroke: var(--green-dk); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .confetti { position: absolute; z-index: 4; width: 8px; height: 8px; border-radius: 2px; pointer-events: none; }
+
+  /* Giriş animasyonu */
+  .in .logo-tab, .in .tag, .in .pill, .in .panel, .in .tile, .in .card-wrap, .in .cta {
+    opacity: 1; transform: none; transition: opacity .55s ease, transform .7s cubic-bezier(.2,.9,.25,1);
+  }
+  .in .card-wrap { transition-delay: .2s; }
+  .in .tag { transition-delay: .3s; }
+  .in .pill:nth-of-type(1) { transition-delay: .42s; }
+  .in .pill:nth-of-type(2) { transition-delay: .54s; }
+  .in .pill:nth-of-type(3) { transition-delay: .66s; }
+  .in .panel { transition-delay: .75s; }
+  .in .tile:nth-child(1) { transition-delay: .95s; }
+  .in .tile:nth-child(2) { transition-delay: 1.03s; }
+  .in .tile:nth-child(3) { transition-delay: 1.11s; }
+  .in .tile:nth-child(4) { transition-delay: 1.19s; }
+  .in .tile:nth-child(5) { transition-delay: 1.27s; }
+  .in .cta { transition-delay: 1.4s; }
+  .ready .tile { transition-delay: 0s !important; }
+  .ready .cta { transition: background .2s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; transition-delay: 0s !important; }
+  }
+</style>
+</head>
+<body>
+<div id="ad" role="link" tabindex="0" aria-label="Garanti BBVA Bonus – Black Friday ve Kasım alışverişlerinde en çok kazandıran kart Bonus. Kampanyaları keşfet.">
+
+  <div class="logo-tab"><img src="{{BONUS_LOGO}}" alt="Garanti BBVA Bonus"></div>
+
+  <div class="head cond">
+    <span class="tag"><i></i>BLACK FRIDAY <i></i> KASIM</span>
+    <span class="pill y">Kasım alışverişlerinde</span>
+    <span class="pill g">En çok kazandıran</span>
+    <span class="pill g">kart <em>Bonus!</em></span>
+  </div>
+  <p class="legal">Kampanya koşulları için bonus.com.tr</p>
+
+  <div class="panel" id="panel">
+    <div class="game">
+      <div class="p-head">
+        <h2>Kasım sepetini doldur, Bonus'u kap!</h2>
+        <span id="hint"><i class="hint-dot"></i>Dokun</span>
+      </div>
+      <div class="tiles" id="tiles" role="group" aria-label="Kampanya kategorileri"></div>
+      <div class="meter">
+        <div class="meter-row"><span>Bonus kazancın</span><b id="count">0 / 5 kategori</b></div>
+        <div class="bar"><i id="fill"></i></div>
+        <p class="msg" id="msg">Alışverişini seç, <em>Bonus</em> kazancını gör.</p>
+      </div>
+    </div>
+    <div class="final" aria-live="polite">
+      <small>Sepet tamam!</small>
+      <h3 class="cond">Kasım'da en çok kazandıran kart<br><em>Bonus!</em></h3>
+      <p>Giyim, e-ticaret, elektronik, beyaz eşya ve küçük ev aletlerinde Bonus kazan.</p>
+      <button class="replay" id="replay" type="button">↻ Tekrar oyna</button>
+    </div>
+  </div>
+
+  <div class="card-wrap">
+    <div class="card" id="card">
+      <span class="plate"><img id="plateLogo" alt=""></span>
+      <span class="chip"></span>
+      <span class="num">•••• 2026</span>
+      <span class="bf-tag">BLACK FRIDAY</span>
+    </div>
+  </div>
+  <button class="cta" id="cta" type="button" tabindex="-1">Kampanyaları Keşfet
+    <svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+  </button>
+</div>
+
+<script>
+(function () {
+  // Kategori içerikleri – metinler marka onayına göre güncellenebilir.
+  var CATS = [
+    { id: 'giyim', label: 'Giyim', msg: 'Giyim alışverişlerinde <em>Bonus</em> kazan.',
+      icon: '<path d="M8 3l4 2 4-2 5 4-3 4-2-1v11H8V10l-2 1-3-4z"/>' },
+    { id: 'eticaret', label: 'E-ticaret uygulamaları', msg: 'Seçili e-ticaret uygulamalarında <em>Bonus</em> kazan.',
+      icon: '<rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10 6.5h4"/><path d="M9 11h6l-.8 5H9.8z"/><path d="M10.5 11V9.8a1.5 1.5 0 013 0V11"/>' },
+    { id: 'elektronik', label: 'Elektrik elektronik', msg: 'Elektrik-elektronik alışverişinde <em>Bonus</em> kazan.',
+      icon: '<rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 16v4"/>' },
+    { id: 'beyaz', label: 'Beyaz eşya', msg: 'Beyaz eşya alışverişinde <em>Bonus</em> kazan.',
+      icon: '<rect x="5" y="2.5" width="14" height="19" rx="2"/><path d="M5 7h14"/><circle cx="12" cy="14" r="4"/><path d="M8 4.8h1M11 4.8h1"/>' },
+    { id: 'kucuk', label: 'Küçük ev aletleri', msg: 'Küçük ev aletlerinde <em>Bonus</em> kazan.',
+      icon: '<path d="M8 3h8l-1 8H9z"/><path d="M16 5h2.5v4H15.5"/><path d="M9 11h6l1 3H8z"/><rect x="7" y="14" width="10" height="7" rx="1.5"/><circle cx="12" cy="17.5" r="1"/>' }
+  ];
+
+  var ad = document.getElementById('ad');
+  var panel = document.getElementById('panel');
+  var tilesEl = document.getElementById('tiles');
+  var fill = document.getElementById('fill');
+  var count = document.getElementById('count');
+  var msg = document.getElementById('msg');
+  var card = document.getElementById('card');
+  var cta = document.getElementById('cta');
+  var hint = document.getElementById('hint');
+  document.getElementById('plateLogo').src = document.querySelector('.logo-tab img').src; // logo tek kez gömülür
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var picked = {}, nPicked = 0, autoTimer = null, idleTimer = null, finished = false, startedAt = Date.now();
+  var AUTO_DELAY = 1700, IDLE_RESUME = 5000, MAX_ANIM_MS = 29000; // 30 sn animasyon sınırı
+
+  var tiles = CATS.map(function (c, i) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'tile';
+    b.setAttribute('aria-pressed', 'false');
+    b.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true">' + c.icon + '</svg>' + c.label + '<span class="check" aria-hidden="true">✓</span>';
+    b.addEventListener('click', function (e) { e.stopPropagation(); userPick(i); });
+    tilesEl.appendChild(b);
+    return b;
+  });
+
+  function rel(el) { // #ad içindeki konum
+    var a = ad.getBoundingClientRect(), r = el.getBoundingClientRect();
+    return { x: r.left - a.left, y: r.top - a.top, w: r.width, h: r.height };
+  }
+
+  function pick(i) {
+    if (finished || picked[CATS[i].id]) return;
+    picked[CATS[i].id] = true; nPicked++;
+    var t = tiles[i];
+    t.classList.add('on'); t.setAttribute('aria-pressed', 'true');
+    fill.style.width = (nPicked / CATS.length * 100) + '%';
+    count.textContent = nPicked + ' / ' + CATS.length + ' kategori';
+    msg.innerHTML = CATS[i].msg; msg.classList.remove('swap'); void msg.offsetWidth; msg.classList.add('swap');
+    flyToCard(t, CATS[i]);
+    if (nPicked === CATS.length) setTimeout(showFinal, reduce ? 200 : 1100);
+  }
+
+  function flyToCard(tile, c) {
+    var from = rel(tile.querySelector('svg')), to = rel(card);
+    if (reduce || !ad.animate) return land(to);
+    var f = document.createElement('div');
+    f.className = 'fly'; f.innerHTML = '<svg viewBox="0 0 24 24">' + c.icon + '</svg>';
+    f.style.left = from.x + 'px'; f.style.top = from.y + 'px';
+    ad.appendChild(f);
+    var dx = to.x + to.w / 2 - 16 - from.x, dy = to.y + to.h / 2 - 16 - from.y;
+    f.animate([
+      { transform: 'translate(0,0) scale(1)', opacity: 1 },
+      { transform: 'translate(' + dx * .5 + 'px,' + (dy - 60) + 'px) scale(1.4)', opacity: 1, offset: .5 },
+      { transform: 'translate(' + dx + 'px,' + dy + 'px) scale(.3)', opacity: 0 }
+    ], { duration: 650, easing: 'cubic-bezier(.4,0,.6,1)' }).onfinish = function () { f.remove(); land(to); };
+  }
+
+  function land(to) {
+    card.classList.remove('pulse', 'sweep'); void card.offsetWidth; card.classList.add('pulse', 'sweep');
+    if (reduce || !ad.animate) return;
+    var coin = document.createElement('div');
+    coin.className = 'coin'; coin.textContent = '+ Bonus';
+    coin.style.left = (to.x + to.w - 50) + 'px'; coin.style.top = (to.y - 2) + 'px';
+    ad.appendChild(coin);
+    coin.animate([
+      { transform: 'translateY(10px) scale(.5)', opacity: 0 },
+      { transform: 'translateY(-8px) scale(1.05)', opacity: 1, offset: .3 },
+      { transform: 'translateY(-24px) scale(1)', opacity: 0 }
+    ], { duration: 1100, easing: 'ease-out' }).onfinish = function () { coin.remove(); };
+  }
+
+  function showFinal() {
+    finished = true; stopAuto();
+    panel.classList.add('done');
+    cta.classList.add('glow');
+    hint.style.visibility = 'hidden';
+    confetti();
+  }
+
+  function confetti() {
+    if (reduce || !ad.animate) return;
+    var colors = ['#ffcc00', '#00623a', '#ffffff', '#aaef51'];
+    for (var k = 0; k < 36; k++) {
+      var p = document.createElement('div');
+      p.className = 'confetti';
+      p.style.background = colors[k % colors.length];
+      p.style.left = (720 + Math.random() * 230) + 'px'; p.style.top = '-10px';
+      ad.appendChild(p);
+      (function (p) {
+        p.animate([
+          { transform: 'translate(0,0) rotate(0)', opacity: 1 },
+          { transform: 'translate(' + (Math.random() * 120 - 60) + 'px,' + (200 + Math.random() * 80) + 'px) rotate(' + (Math.random() * 720) + 'deg)', opacity: 0 }
+        ], { duration: 1600 + Math.random() * 1200, delay: Math.random() * 400, easing: 'cubic-bezier(.2,.6,.4,1)' }).onfinish = function () { p.remove(); };
+      })(p);
+    }
+  }
+
+  // Otomatik gösterim: kullanıcı etkileşmezse kategoriler sırayla dolar.
+  function nextAuto() {
+    if (finished) return;
+    if (Date.now() - startedAt > MAX_ANIM_MS) return showFinal();
+    for (var i = 0; i < CATS.length; i++) {
+      if (!picked[CATS[i].id]) {
+        var t = tiles[i];
+        t.classList.add('peek');
+        setTimeout(function () { t.classList.remove('peek'); }, 450);
+        pick(i);
+        break;
+      }
+    }
+    autoTimer = setTimeout(nextAuto, AUTO_DELAY);
+  }
+  function stopAuto() { clearTimeout(autoTimer); clearTimeout(idleTimer); }
+  function userPick(i) {
+    stopAuto();
+    pick(i);
+    // Kullanıcı yarıda bırakırsa bir süre sonra otomatik devam et (30 sn içinde kapanır).
+    if (!finished) idleTimer = setTimeout(nextAuto, IDLE_RESUME);
+  }
+
+  function reset() {
+    picked = {}; nPicked = 0; finished = false; startedAt = Date.now();
+    tiles.forEach(function (t) { t.classList.remove('on'); t.setAttribute('aria-pressed', 'false'); });
+    fill.style.width = '0'; count.textContent = '0 / ' + CATS.length + ' kategori';
+    msg.innerHTML = 'Alışverişini seç, <em>Bonus</em> kazancını gör.';
+    panel.classList.remove('done'); cta.classList.remove('glow');
+    hint.style.visibility = '';
+    stopAuto(); idleTimer = setTimeout(nextAuto, IDLE_RESUME);
+  }
+  document.getElementById('replay').addEventListener('click', function (e) { e.stopPropagation(); reset(); });
+
+  // Kartta hafif 3B eğim (fare takibi)
+  ad.addEventListener('mousemove', function (e) {
+    var a = ad.getBoundingClientRect();
+    var x = (e.clientX - a.left) / a.width - .5, y = (e.clientY - a.top) / a.height - .5;
+    card.style.transform = 'rotateY(' + (-14 + x * 22) + 'deg) rotateX(' + (6 - y * 14) + 'deg)';
+  });
+  ad.addEventListener('mouseleave', function () { card.style.transform = ''; });
+
+  // Tıklama çıkışı
+  function exit() {
+    if (window.Enabler && Enabler.exit) return Enabler.exit('Bonus_BlackFriday_Exit');
+    window.open(window.clickTag, '_blank');
+  }
+  ad.addEventListener('click', exit);
+  ad.addEventListener('keydown', function (e) {
+    if (e.target === ad && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); exit(); }
+  });
+
+  // Başlat
+  function start() {
+    ad.classList.add('in');
+    setTimeout(function () { ad.classList.add('ready'); }, 2200);
+    autoTimer = setTimeout(nextAuto, 3400);
+  }
+  if (document.readyState === 'complete') requestAnimationFrame(start);
+  else window.addEventListener('load', function () { requestAnimationFrame(start); });
+})();
+</script>
+</body>
+</html>
