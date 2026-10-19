@@ -6,8 +6,7 @@
  * Fiyatlar 19.10.2026 tarihinde sitedeki "Sepette" fiyatlarıdır; yayın öncesi güncelleyin.
  */
 const SITE = 'https://www.altinyildizclassics.com';
-const UTM = 'utm_source=display&utm_medium=masthead&utm_campaign=kasim-rengini-sec-970x250';
-const u = (p) => `${SITE}/${p}?${UTM}`;
+const u = (p) => `${SITE}/${p}`; // yönlendirmelerde UTM kullanılmaz
 const V = [
  {
   "img": "p0",

@@ -5,8 +5,7 @@
  * Kullanıcı fermuarı aşağı çektikçe mont V şeklinde açılır; tamamen açılınca altındaki Kasım katmanları çıkar.
  */
 const SITE = 'https://www.altinyildizclassics.com';
-const UTM = 'utm_source=display&utm_medium=masthead&utm_campaign=kasim-fermuar-970x250';
-const u = (p) => `${SITE}/${p}?${UTM}`;
+const u = (p) => `${SITE}/${p}`; // yönlendirmelerde UTM kullanılmaz
 module.exports = {
   copy: {
     closedOver: 'Kasım geldi',
