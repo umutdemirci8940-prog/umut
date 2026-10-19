@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=970,height=250">
+<meta name="viewport" content="width=970,height=250">
+<title>İlaçsız Yaşam – Kasım Takvimi 970x250</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600;1,9..144,700&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+{{SHARED_CSS}}
+.ad { width: 970px; height: 250px; background: radial-gradient(90% 140% at 20% 0%, #1d3a8f 0%, var(--navy-d) 60%); }
+/* Sol: başlık, geri sayım, ay şeridi */
+.side { position: absolute; left: 0; top: 0; width: 256px; height: 250px; padding: 15px 16px 0 20px; }
+.side .logo { width: 104px; }
+.side h1 { font-family: var(--serif); font-weight: 700; font-size: 31px; line-height: .98; margin-top: 10px; letter-spacing: -.01em; }
+.side h1 em { font-style: italic; color: #ffd25a; }
+.side p { font-size: 10.5px; font-weight: 700; color: rgba(255, 255, 255, .75); margin-top: 6px; line-height: 1.35; }
+.side p b { color: #fff; }
+.cd { display: inline-block; margin-top: 9px; font-size: 10px; font-weight: 800; padding: 5px 10px; border-radius: 999px; background: rgba(255, 255, 255, .12); border: 1px solid rgba(255, 255, 255, .22); }
+.cd b { font-variant-numeric: tabular-nums; color: #ffd25a; }
+.month { display: grid; grid-template-columns: repeat(15, 1fr); gap: 3px; margin-top: 11px; width: 215px; }
+.month i { height: 6px; border-radius: 3px; background: rgba(255, 255, 255, .18); }
+.month i.p { background: rgba(255, 210, 90, .65); }
+.month i.t { background: #ffd25a; box-shadow: 0 0 8px rgba(255, 210, 90, .9); }
+.month i.g { outline: 1px solid #ffd25a; }
+.side .legal { position: absolute; left: 20px; right: 10px; bottom: 7px; font-size: 7px; }
+/* Sağ: bu haftanın 7 kapısı */
+.week { position: absolute; left: 262px; top: 16px; display: flex; gap: 7px; }
+.door { position: relative; width: 94px; height: 218px; perspective: 700px; cursor: pointer; }
+.door .pic { position: absolute; inset: 0; border-radius: 12px; overflow: hidden; background: #0a1640; }
+.door .pic img { width: 100%; height: 100%; object-fit: cover; }
+.door .pic .lb { position: absolute; left: 0; right: 0; bottom: 0; padding: 18px 7px 7px; background: linear-gradient(0deg, rgba(11, 28, 82, .92), rgba(11, 28, 82, 0)); font-size: 9px; font-weight: 800; line-height: 1.2; }
+.door .pic .lb b { display: block; font-family: var(--serif); font-size: 16px; }
+.door .leaf { position: absolute; inset: 0; border-radius: 12px; overflow: hidden; transform-origin: 0 50%; -webkit-backface-visibility: hidden; backface-visibility: hidden; transition: transform .8s cubic-bezier(.3, .9, .3, 1.05); box-shadow: 0 6px 16px rgba(0, 0, 0, .4); }
+.door .leaf img { position: absolute; inset: -8px; width: calc(100% + 16px); height: calc(100% + 16px); object-fit: cover; filter: blur(6px) saturate(.6) brightness(.55); }
+.door .leaf::after { content: ''; position: absolute; inset: 0; border-radius: 12px; background: linear-gradient(165deg, rgba(42, 74, 168, .5), rgba(11, 28, 82, .82)); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .22); }
+.door .leaf .n { position: absolute; z-index: 1; left: 0; right: 0; top: 64px; text-align: center; font-family: var(--serif); font-weight: 700; font-size: 44px; line-height: 1; }
+.door .leaf .w { position: absolute; z-index: 1; left: 0; right: 0; top: 114px; text-align: center; font-size: 9.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; opacity: .75; }
+.door .leaf .h { position: absolute; z-index: 1; right: 8px; top: 50%; width: 4px; height: 16px; margin-top: -8px; border-radius: 2px; background: rgba(255, 255, 255, .55); }
+.door .leaf .s { position: absolute; z-index: 1; left: 8px; right: 8px; bottom: 12px; text-align: center; font-size: 9px; font-weight: 800; letter-spacing: .1em; padding: 5px 0; border-radius: 999px; }
+.door.today .leaf { box-shadow: 0 0 0 2px #ffd25a, 0 0 24px rgba(255, 210, 90, .7); animation: glow 1.8s ease-in-out infinite; }
+.door.today .leaf .n, .door.today .leaf .w { color: #ffd25a; opacity: 1; }
+.door.today .leaf .s { background: #ffd25a; color: var(--navy); }
+.door.fut .leaf .n { opacity: .55; }
+.door.fut .leaf .s { background: rgba(255, 255, 255, .12); }
+.door.open .leaf { transform: rotateY(-110deg); box-shadow: none; animation: none; }
+.door.past .leaf { transition: none; }
+.door.gold .pic { box-shadow: 0 0 0 2px #ffd25a; }
+.door.knock .leaf { animation: knock .55s ease-in-out 2; }
+.door.shake { animation: shake .4s; }
+.door:hover .leaf { filter: brightness(1.12); }
+@keyframes glow { 50% { box-shadow: 0 0 0 2px #ffd25a, 0 0 34px rgba(255, 210, 90, .95); } }
+@keyframes knock { 30% { transform: rotateY(-24deg); } 60% { transform: rotateY(-6deg); } }
+@keyframes shake { 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+.burst { position: absolute; z-index: 3; width: 220px; height: 220px; margin: -110px 0 0 -110px; border-radius: 50%; pointer-events: none; background: radial-gradient(circle, rgba(255, 226, 140, .95) 0%, rgba(255, 210, 90, .45) 30%, rgba(255, 210, 90, 0) 70%); transform: scale(.2); opacity: 0; }
+.burst.go { animation: burst .8s var(--ease) forwards; }
+@keyframes burst { 30% { opacity: 1; } 100% { transform: scale(2); opacity: 0; } }
+.toast { position: absolute; z-index: 6; left: 616px; top: 26px; transform: translate(-50%, 8px); white-space: nowrap; font-size: 11px; font-weight: 800; color: var(--navy); background: #fff; padding: 7px 13px; border-radius: 999px; box-shadow: 0 8px 20px rgba(0, 0, 0, .35); opacity: 0; transition: opacity .3s, transform .3s var(--ease); pointer-events: none; }
+.toast.on { opacity: 1; transform: translate(-50%, 0); }
+/* Kapının ardı: içerik paneli kapıdan büyüyerek sağ alanı kaplar */
+.view { position: absolute; z-index: 8; left: 256px; top: 0; width: 714px; height: 250px; background: var(--navy-d); clip-path: inset(50% 50% 50% 50% round 12px); transition: clip-path .6s cubic-bezier(.7, 0, .2, 1); pointer-events: none; }
+.view.on { clip-path: inset(0 0 0 0 round 0); pointer-events: auto; }
+.view .ph { position: absolute; left: 0; top: 0; width: 330px; height: 250px; object-fit: cover; transform: scale(1.12); transition: transform 5s var(--ease); }
+.view.on .ph { transform: scale(1); }
+.view .shade { position: absolute; left: 230px; top: 0; width: 100px; height: 250px; background: linear-gradient(90deg, rgba(11, 28, 82, 0), var(--navy-d)); }
+.view .date { position: absolute; left: 12px; top: 12px; font-size: 10px; font-weight: 800; padding: 5px 10px; border-radius: 999px; background: #ffd25a; color: var(--navy); }
+.view .body { position: absolute; left: 350px; right: 24px; top: 26px; }
+.view .ov { font-size: 10px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--green-l); }
+.view h2 { font-family: var(--serif); font-weight: 700; font-size: 30px; line-height: 1.02; margin-top: 4px; }
+.view p { font-size: 12px; line-height: 1.4; font-weight: 600; color: rgba(255, 255, 255, .88); margin-top: 7px; }
+.view .cl { font-size: 9.5px; font-weight: 700; color: rgba(255, 255, 255, .62); margin-top: 4px; }
+.view .act { position: absolute; left: 350px; right: 24px; bottom: 18px; display: flex; align-items: center; gap: 10px; }
+.view .coupon { font-size: 10.5px; padding: 6px 10px; }
+.view .act .cta { margin-left: auto; height: 38px; }
+.view .nav { position: absolute; right: 12px; top: 10px; display: flex; gap: 6px; }
+.view .nav button { width: 30px; height: 30px; border-radius: 50%; background: rgba(255, 255, 255, .1); font-size: 17px; font-weight: 800; }
+.view .nav button:disabled { opacity: .3; }
+.view > * { opacity: 0; transition: opacity .3s .25s; }
+.view.on > * { opacity: 1; }
+</style>
+</head>
+<body>
+<div class="ad" id="ad" role="link" tabindex="0" aria-label="İlaçsız Yaşam – Kasım Takvimi: 30 gün, 30 kapı. Bugünün kapısını aç.">
+  <div class="side">
+    <img class="logo" src="img/logo-beyaz.webp" alt="İlaçsız Yaşam">
+    <h1>Kasım <em>Takvimi</em></h1>
+    <p id="sub"></p>
+    <div class="cd">Yarınki kapıya <b id="cd">--:--:--</b></div>
+    <div class="month" id="month"></div>
+    <div class="legal">{{legal}}</div>
+  </div>
+  <div class="week" id="week"></div>
+  <div class="burst" id="burst"></div>
+  <div class="toast" id="toast"></div>
+  <div class="view" id="view">
+    <img class="ph" id="vImg" src="" alt="">
+    <div class="shade"></div>
+    <div class="date" id="vDate"></div>
+    <div class="nav"><button id="vPrev" aria-label="Önceki gün">‹</button><button id="vNext" aria-label="Sonraki gün">›</button><button id="vX" aria-label="Takvime dön">×</button></div>
+    <div class="body"><div class="ov" id="vOv"></div><h2 id="vT"></h2><p id="vP"></p><div class="cl" id="vCl"></div></div>
+    <div class="act"><span id="vCp"></span><button class="cta" id="vGo"></button></div>
+  </div>
+</div>
+<script>window.AD = {{DATA}};</script>
+<script>
+{{SHARED_JS}}
+{{INCLUDE:takvim.js}}
+(function () {
+  var T = AD.creative.takvim, D = AD.data, ad = document.getElementById('ad'), week = document.getElementById('week');
+  var $ = function (id) { return document.getElementById(id); };
+  var today = TAKVIM.today(T.year), seen = TAKVIM.opened(), user = false;
+  $('sub').innerHTML = '30 gün, 30 kapı. Her gün yeni bir ürün, kitap, tarif ya da fırsat. Bugün <b>' + today + '. kapı</b>.';
+  $('month').innerHTML = T.days.map(function (it) { return '<i class="' + (it.d < today ? 'p' : it.d === today ? 't' : '') + (it.d === 11 ? ' g' : '') + '"></i>'; }).join('');
+  // Bugünü ortalayan 7 günlük pencere
+  var start = Math.max(1, Math.min(24, today - 3)), doors = {};
+  for (var d = start; d < start + 7; d++) (function (d) {
+    var it = T.days[d - 1], past = d < today, isToday = d === today, fut = d > today;
+    var el = AD.h('div', 'door' + (past ? ' past open' : '') + (isToday ? ' today' + (seen.indexOf(d) > -1 ? ' open' : '') : '') + (fut ? ' fut' : '') + (d === 11 ? ' gold' : ''));
+    el.innerHTML = '<div class="pic"><img src="' + it.thumb + '" alt=""><div class="lb"><b>' + d + ' Kasım</b>' + it.over + '</div></div>' +
+      '<div class="leaf"><img src="' + it.thumb + '" alt=""><div class="n">' + d + '</div><div class="w">' + TAKVIM.weekday(T.year, d) + '</div><i class="h"></i>' +
+      '<div class="s">' + (isToday ? 'BUGÜN · AÇ' : d === today + 1 ? 'YARIN' : d === 11 ? '11.11' : 'KİLİTLİ') + '</div></div>';
+    el.addEventListener('click', function (e) { e.stopPropagation(); first(); tap(d, el); });
+    week.appendChild(el); doors[d] = el;
+  })(d);
+  var toastT;
+  function toast(t) { var el = $('toast'); el.textContent = t; el.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(function () { el.classList.remove('on'); }, 2400); }
+  function tap(d, el) {
+    if (d > today) { el.classList.remove('shake'); void el.offsetWidth; el.classList.add('shake'); toast('Bu kapı ' + d + ' Kasım\'da açılır · ' + (d - today) + ' gün kaldı'); AD.track('takvim_locked_' + d); return; }
+    if (d === today && !el.classList.contains('open')) {
+      el.classList.add('open');
+      var r = el.getBoundingClientRect(), a = ad.getBoundingClientRect(), b = $('burst');
+      b.style.left = (r.left - a.left + r.width / 2) + 'px'; b.style.top = (r.top - a.top + r.height / 2) + 'px';
+      b.classList.remove('go'); void b.offsetWidth; b.classList.add('go');
+      TAKVIM.markOpened(d); AD.track('takvim_open_today_' + d);
+      setTimeout(function () { show(d, el); }, 700);
+    } else { AD.track('takvim_view_' + d); show(d, el); }
+  }
+  var cur = 0;
+  function fill(d) {
+    var it = T.days[d - 1]; cur = d;
+    $('vImg').src = it.img;
+    $('vDate').textContent = d + ' Kasım · ' + TAKVIM.weekday(T.year, d);
+    $('vOv').textContent = it.over; $('vT').textContent = it.title; $('vP').textContent = it.text; $('vCl').textContent = it.claim;
+    $('vCp').innerHTML = (d === 11 || d === 1 || d === 30) ? '<button class="coupon" data-copy="1"><span>%10 · <b>' + D.coupon.code + '</b></span><span class="cp-act">Kopyala</span><span class="cp-ok">✓</span></button>' : '';
+    $('vGo').innerHTML = it.cta + ' <i>→</i>';
+    $('vPrev').disabled = d <= 1; $('vNext').disabled = d >= today;
+  }
+  function show(d, el) {
+    fill(d);
+    var v = $('view'), r = el.getBoundingClientRect(), a = v.getBoundingClientRect(), sx = a.width / 714;
+    var t = (r.top - a.top) / sx, l = (r.left - a.left) / sx, rr = 714 - (r.right - a.left) / sx, bb = 250 - (r.bottom - a.top) / sx;
+    v.style.transition = 'none'; v.style.clipPath = 'inset(' + t + 'px ' + rr + 'px ' + bb + 'px ' + l + 'px round 12px)';
+    void v.offsetWidth; v.style.transition = ''; v.style.clipPath = ''; v.classList.add('on');
+  }
+  $('vX').addEventListener('click', function (e) { e.stopPropagation(); $('view').classList.remove('on'); });
+  $('vPrev').addEventListener('click', function (e) { e.stopPropagation(); if (cur > 1) { fill(cur - 1); AD.track('takvim_view_' + cur); } });
+  $('vNext').addEventListener('click', function (e) { e.stopPropagation(); if (cur < today) { fill(cur + 1); AD.track('takvim_view_' + cur); } });
+  $('view').addEventListener('click', function (e) {
+    e.stopPropagation();
+    var c = e.target.closest('[data-copy]'); if (c) return AD.copy(c, D.coupon.code);
+    if (e.target.closest('.nav')) return;
+    AD.exit('takvim_gun' + cur, T.days[cur - 1].url);
+  });
+  ad.addEventListener('click', function () { AD.exit('takvim_genel', D.brand.home); });
+  function tick() { $('cd').textContent = TAKVIM.countdown(); }
+  tick(); setInterval(tick, 1000);
+  var autoT = [];
+  function first() { if (!user) { user = true; autoT.forEach(clearTimeout); AD.track('takvim_user'); } }
+  AD.ready(function () {
+    AD.track('impression_ready_day_' + today);
+    if (AD.reduced) return;
+    var td = doors[today];
+    autoT.push(setTimeout(function () { if (!td.classList.contains('open')) { td.classList.add('knock'); toast('Bugünün kapısı seni bekliyor · ' + today + ' Kasım'); } }, 1200));
+    autoT.push(setTimeout(function () { td.classList.remove('knock'); }, 2500));
+    autoT.push(setTimeout(function () { if (!user) tap(today, td); }, 6500));
+  });
+})();
+</script>
+</body>
+</html>

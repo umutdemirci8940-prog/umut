@@ -30,6 +30,8 @@ const ADS = {
   'mobil-320x480-eslesme': { content: 'mobil_eslesme', photo: 'mh', creative: 'eslesme' },
   'mobil-320x480-kazikazan': { content: 'mobil_kazikazan', photo: 'mh', creative: 'kazi' },
   'mobil-320x480-oyun': { content: 'mobil_oyun', photo: 'mh', creative: 'oyun' },
+  'masthead-970x250-takvim': { content: 'masthead_takvim', photo: 'mh', creative: 'takvim' },
+  'mobil-320x480-takvim': { content: 'mobil_takvim', photo: 'mh', creative: 'takvim' },
 };
 
 function adData(content) {
@@ -98,6 +100,9 @@ for (const [name, cfg] of Object.entries(ADS)) {
 
 // Sunum sayfası: dört çalışma tek dosyada (srcdoc ile gömülü), tekrar oynat düğmeleri ve kurgu notları.
 const NOTES = {
+  'masthead-970x250-takvim': ['Interaktif Masthead · 970×250 · 30 gün yaşayan reklam', 'Kasım Takvimi', "Reklam Kasım boyunca her gün kendiliğinden değişir: 30 gün, 30 kapı. Bu haftanın 7 kapısı görünür; bugünün kapısı altın ışıkla parlar, açılınca 3B menteşeyle döner, ışık patlar ve içerik kapının içinden büyüyerek gelir (gerçek fotoğraf, ürün/kitap/blog/fırsat, onaylı beyan). Geçmiş günler fotoğraf albümü gibi dolar ve geri gezilebilir; gelecek kapılar buzlu camın ardında, \"Yarınki kapıya 13:58:15\" geri sayımıyla bekler. 11.11'e özel altın kapı. Kullanıcıyı her gün geri getiren bir session makinesi."],
+  'mobil-320x480-takvim': ['Mobil · 320×480 · 30 gün yaşayan reklam', 'Kasım Takvimi (Mobil)', 'Ayın 30 kapısı tek ekranda: açılan günler gerçek fotoğraflardan bir Kasım albümü oluşturur, bugünün kapısı parlar, yarınki "YARIN" der. Dokununca kapı açılır ve içerik kapının konumundan tam ekrana büyür; ‹ › ile önceki günler gezilir, kilitli kapı titreyip "7 gün kaldı" der. Açılan kapılar cihazda hatırlanır.'],
+
   'mobil-320x480-eslesme': ['Mobil · tanışma uygulaması formatı · 320×480', 'Rutin Eşleş', "Takviyeler tanışma uygulamasında profil kartı: \"Magnezyum, 60 kapsül\" — gerçek yaşam tarzı fotoğrafı, biyografi, onaylı beyan, ilgi alanı etiketleri. Sağa kaydır = BEĞEN, sola = GEÇ (damga efektli), dokununca galeri ambalaj fotoğrafına geçer, ★ ürünü açar. Beğenince tam ekran \"Eşleştiniz!\" ve ilk buluşma hediyesi %10 kod; deste bitince \"Bugünkü eşleşmelerin\" özeti. Her beğeni/geçiş ölçülür → ürün ilgisi verisi."],
   'mobil-320x480-kazikazan': ['Mobil · kazı kazan · 320×480', 'Kasım Kazı Kazan', 'Gerçek bal peteği fotoğrafından kaplamalı 6 pencereli bilet; parmakla kazınır, her pencere %50 kazınınca açılır. 3 Vitamin D3 & K2 bulunca \"Kazandın!\" ekranı ve %10 Kasım hediyesi. Çekiliş değildir, her kart kazanır (yasal not bilette). Tanıtım çizgisi mekaniği gösterir; 8 sn\'de \"Hepsini aç\", 20 sn\'de kendiliğinden açılır.'],
   'mobil-320x480-oyun': ['Mobil · mini oyun · 320×480', 'Bulutları Dağıt', "20 saniyelik dokunma oyunu: gerçek gri Kasım göğünden kesilmiş bulutlar sahnenin üzerine yağar, dokunarak patlatılır; her bulutla Vitamin D3 & K2 sahnesi gerçekten aydınlanır (gün ışığı %0 → %100). Gerçek fotoğraftan kesilmiş portakal, somon, brokoli, bal peteği balonları +3 puan. Sonuçta skor + \"gerçekte Kasım'da güneş alçak\" mesajı, D3 & K2 / C / Omega 3 ve %10 kod. Rekor cihazda saklanır, tekrar oynanır."],
@@ -118,18 +123,21 @@ const NOTES = {
 const block = (n) => {
   const [size, title, note] = NOTES[n];
   const [w, h] = n.match(/(\d+)x(\d+)/).slice(1).map(Number);
-  const doc = fs.readFileSync(path.join(dist, 'inline', `${n}.html`), 'utf8').replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+  let raw = fs.readFileSync(path.join(dist, 'inline', `${n}.html`), 'utf8');
+  if (ADS[n].creative === 'takvim') raw = raw.replace('<head>', '<head><script>window.AD_DAY=11</script>');
+  const doc = raw.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
   return `<section class="item ${w > 500 ? 'wide' : ''}"><div class="meta"><span class="size">${size}</span><h2>${title}</h2><p>${note}</p>
 <div class="act"><button onclick="var f=this.closest('section').querySelector('iframe');f.srcdoc=f.srcdoc">↻ Tekrar oynat</button><a href="../dist-rich/zip/ilacsizyasam-${n}.zip">Zip</a><a href="../dist-rich/${n}/index.html" target="_blank">Yeni sekme</a></div></div>
 <div class="frame" style="width:${w}px;height:${h}px"><iframe title="${title}" width="${w}" height="${h}" srcdoc="${doc}"></iframe></div></section>`;
 };
 const have = (n) => NOTES[n] && fs.existsSync(path.join(dist, 'inline', `${n}.html`));
 const MOBILE_GAMES = ['eslesme', 'kazi', 'oyun'];
+const calSet = Object.keys(ADS).filter((n) => ADS[n].creative === 'takvim' && have(n)).map(block).join('\n');
 const gameSet = Object.keys(ADS).filter((n) => MOBILE_GAMES.includes(ADS[n].creative) && have(n)).map(block).join('\n');
 const needSet = Object.keys(ADS).filter((n) => ADS[n].creative === 'gunes' && have(n)).map(block).join('\n');
-const creativeSet = Object.keys(ADS).filter((n) => ADS[n].creative && ADS[n].creative !== 'gunes' && !MOBILE_GAMES.includes(ADS[n].creative) && have(n)).map(block).join('\n');
+const creativeSet = Object.keys(ADS).filter((n) => ADS[n].creative && !['gunes', 'takvim'].includes(ADS[n].creative) && !MOBILE_GAMES.includes(ADS[n].creative) && have(n)).map(block).join('\n');
 const standardSet = Object.keys(ADS).filter((n) => !ADS[n].creative && have(n)).map(block).join('\n');
-const blocks = `<h3 class="sec">Mobil'e özgü · uygulama, kazı kazan ve oyun</h3>${gameSet}<h3 class="sec">Ana fikir · İhtiyacı ortaya çıkaran canlı veri</h3>${needSet}<h3 class="sec">Yaratıcı set · keşif mekanikleri</h3>${creativeSet}<h3 class="sec">Standart set · alternatif / yedek</h3>${standardSet}`;
+const blocks = `<h3 class="sec">Büyük fikir · Kasım boyunca her gün değişen reklam</h3><div class="days"><b>Gün seç:</b> ${Array.from({ length: 30 }, (_, i) => `<button data-d="${i + 1}"${i + 1 === 11 ? ' class="on"' : ''}>${i + 1}</button>`).join('')}<span>Reklam yayında gerçek tarihi kullanır; burada istediğin günü önizle.</span></div>${calSet}<h3 class="sec">Mobil'e özgü · uygulama, kazı kazan ve oyun</h3>${gameSet}<h3 class="sec">Ana fikir · İhtiyacı ortaya çıkaran canlı veri</h3>${needSet}<h3 class="sec">Yaratıcı set · keşif mekanikleri</h3>${creativeSet}<h3 class="sec">Standart set · alternatif / yedek</h3>${standardSet}`;
 fs.mkdirSync(path.join(root, 'preview-rich'), { recursive: true });
 fs.writeFileSync(path.join(root, 'preview-rich', 'index.html'), `<!DOCTYPE html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>İlaçsız Yaşam – Kasım Interaktif Çalışmalar</title>
@@ -139,7 +147,7 @@ fs.writeFileSync(path.join(root, 'preview-rich', 'index.html'), `<!DOCTYPE html>
 header{max-width:1040px;margin:0 auto 32px}header .k{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#5fa511}
 h1{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:40px;line-height:1.05;margin:8px 0 12px;color:#132d7d}header p{max-width:760px;line-height:1.55;font-size:15px;color:#3a4566}
 .grid{max-width:1040px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:28px}
-.sec{grid-column:1/-1;font-family:Fraunces,Georgia,serif;font-weight:600;font-size:22px;color:#132d7d;margin-top:18px;border-top:2px solid #dfe4f0;padding-top:22px}.item{background:#fff;border-radius:18px;padding:22px;box-shadow:0 10px 30px rgba(19,45,125,.08);display:flex;flex-direction:column;gap:16px}
+.days{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:5px;align-items:center;font-size:12px;color:#3a4566}.days b{margin-right:6px;color:#132d7d}.days button{font:inherit;font-weight:800;font-size:11px;width:30px;height:30px;border-radius:8px;border:1.5px solid #c9d1e6;background:#fff;color:#132d7d;cursor:pointer}.days button.on{background:#132d7d;color:#fff;border-color:#132d7d}.days span{flex-basis:100%;font-size:11px;margin-top:4px}.sec{grid-column:1/-1;font-family:Fraunces,Georgia,serif;font-weight:600;font-size:22px;color:#132d7d;margin-top:18px;border-top:2px solid #dfe4f0;padding-top:22px}.item{background:#fff;border-radius:18px;padding:22px;box-shadow:0 10px 30px rgba(19,45,125,.08);display:flex;flex-direction:column;gap:16px}
 .item.wide{grid-column:1/-1}.item.wide .frame{max-width:100%}
 .size{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#5fa511}.item h2{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:24px;color:#132d7d;margin:4px 0 6px}
 .item p{font-size:13.5px;line-height:1.55;color:#3a4566}.act{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
@@ -147,7 +155,18 @@ h1{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:40px;line-height
 .act button{background:#132d7d;color:#fff}.frame{overflow:hidden;border-radius:6px;box-shadow:0 6px 24px rgba(0,0,0,.18);align-self:center}iframe{border:0;display:block}
 @media (max-width:1040px){.item.wide .frame{transform-origin:0 0}}
 </style></head><body>
-<header><div class="k">İlaçsız Yaşam · Kasım 2026</div><h1>Gölgen ne diyor?</h1>
-<p>Kasım'da insanlar ihtiyaçlarının farkında değil: gün kısalıyor, güneş alçalıyor, ama kimse bunu kendi hayatına bağlamıyor. Ana fikir, reklamın izleyicinin şehri ve bugünün tarihi için güneşi <b>canlı hesaplayıp</b> ona kendi gerçeğini göstermesi: <i>"Bugün İstanbul'da öğlen gölgen boyunun 1,7 katı."</i> İhtiyaç, kullanıcının kendi verisiyle ortaya çıkar; ardından 3 fotoğraflı soru kişisel Kasım rutinini kurar. Cevaplar UTM'e yazıldığı için marka da mecra bazında hangi ihtiyacın baskın olduğunu öğrenir. Tamamı markanın kendi fotoğraflarıyla; hiçbir çizim/vektör yok.</p></header>
-<div class="grid">${blocks}</div></body></html>`);
+<header><div class="k">İlaçsız Yaşam · Kasım 2026 · interaktif masthead & mobil</div><h1>Kasım Takvimi: 30 gün, 30 kapı.</h1>
+<p>Büyük fikir: reklam bir ay boyunca <b>her gün kendiliğinden değişen</b> bir takvime dönüşüyor. Her sabah yeni bir kapı açılıyor (ürün, Dr. Ümit Aktaş kitabı, blog yazısı, çay ritüeli, hafta sonu fırsatı, 11.11 altın kapısı); dünkü kapılar fotoğraf albümü gibi doluyor, yarınki kapı buzlu camın ardında geri sayımla bekliyor. Kullanıcıya her gün geri gelmek için bir neden veriyor; her kapı başka bir sayfaya gidiyor: session ve yeni kullanıcı hedefi için bir ay boyunca çalışan tek bir kreatif. Aşağıdaki "Gün seç" ile reklamın 1–30 Kasım arasındaki her gününü önizleyebilirsiniz. Altında ihtiyaç keşfi (Gölgen ne diyor?), mobil'e özgü oyun/uygulama formatları ve diğer seçenekler yer alıyor. Tamamı markanın kendi fotoğraflarıyla; çizim/vektör yok.</p></header>
+<div class="grid">${blocks}</div>
+<script>
+document.querySelectorAll('.days button').forEach(function (b) {
+  b.addEventListener('click', function () {
+    document.querySelectorAll('.days button').forEach(function (x) { x.classList.toggle('on', x === b); });
+    document.querySelectorAll('iframe').forEach(function (f) {
+      var s = f.getAttribute('srcdoc'); if (s.indexOf('window.AD_DAY=') < 0) return;
+      f.setAttribute('srcdoc', s.replace(/window.AD_DAY=[0-9]+/, 'window.AD_DAY=' + b.dataset.d));
+    });
+  });
+});
+</script></body></html>`);
 console.log('✔ preview-rich/index.html (tek dosya sunum)');

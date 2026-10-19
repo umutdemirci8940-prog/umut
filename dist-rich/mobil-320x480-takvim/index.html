@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=320,height=480">
+<meta name="viewport" content="width=320,height=480,initial-scale=1,user-scalable=no">
+<title>İlaçsız Yaşam – Kasım Takvimi 320x480</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600;1,9..144,700&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #132d7d;
+  --navy-d: #0b1c52;
+  --green: #5fa511;
+  --green-l: #8fd14a;
+  --ink: #0f1a3a;
+  --white: #fff;
+  --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --sans: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+  --ease: cubic-bezier(.22, .8, .2, 1);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: var(--navy-d); }
+body { font-family: var(--sans); color: var(--white); -webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none; }
+img { display: block; -webkit-user-drag: none; }
+button { font: inherit; color: inherit; border: 0; background: none; cursor: pointer; }
+.ad { position: relative; overflow: hidden; background: var(--navy-d); cursor: pointer; }
+.legal { font-size: 8px; line-height: 1.25; color: rgba(255, 255, 255, .72); letter-spacing: .01em; }
+
+/* Kupon çipi */
+.coupon { display: inline-flex; align-items: center; gap: 8px; border-radius: 10px; background: rgba(255, 255, 255, .14); border: 1px dashed rgba(255, 255, 255, .55); padding: 6px 10px; transition: background .25s, transform .25s var(--ease); }
+.coupon:hover { background: rgba(255, 255, 255, .22); }
+.coupon:active { transform: scale(.97); }
+.coupon b { font-weight: 800; letter-spacing: .08em; }
+.coupon .cp-act { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--green-l); }
+.coupon .cp-ok { display: none; }
+.coupon.copied { background: var(--green); border-color: var(--green); }
+.coupon.copied .cp-act { display: none; }
+.coupon.copied .cp-ok { display: inline; font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; }
+
+/* Yeşil CTA */
+.cta { display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 16px; border-radius: 999px; background: var(--green); color: #fff; font-weight: 800; font-size: 12.5px; letter-spacing: .01em; white-space: nowrap; box-shadow: 0 6px 18px rgba(95, 165, 17, .38); transition: transform .25s var(--ease), background .25s; }
+.cta:hover { background: #6cbb14; transform: translateY(-1px); }
+.cta i { font-style: normal; transition: transform .25s var(--ease); }
+.cta:hover i { transform: translateX(3px); }
+
+/* Ürün kutucuğu (orijinal ambalaj fotoğrafı, beyaz kart) */
+.pk { position: relative; flex: none; background: #fff; border-radius: 10px; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 16px rgba(5, 15, 50, .28); transition: transform .3s var(--ease), box-shadow .3s; }
+.pk img { max-width: 86%; max-height: 82%; object-fit: contain; }
+.pk:hover { transform: translateY(-4px) scale(1.04); box-shadow: 0 10px 22px rgba(5, 15, 50, .4); z-index: 2; }
+.pk .tip { position: absolute; left: 50%; bottom: calc(100% + 6px); transform: translate(-50%, 4px); background: #fff; color: var(--navy); font-size: 10px; font-weight: 800; padding: 4px 8px; border-radius: 6px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; box-shadow: 0 4px 12px rgba(0, 0, 0, .25); }
+.pk:hover .tip { opacity: 1; transform: translate(-50%, 0); }
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: .01s !important; animation-duration: .01s !important; } }
+
+.ad { width: 320px; height: 480px; background: radial-gradient(120% 70% at 50% 0%, #1d3a8f 0%, var(--navy-d) 60%); }
+.head { position: absolute; left: 14px; right: 12px; top: 10px; }
+.head .row1 { display: flex; align-items: center; justify-content: space-between; }
+.head .logo { width: 92px; }
+.cd { font-size: 9.5px; font-weight: 800; padding: 5px 9px; border-radius: 999px; background: rgba(255, 255, 255, .12); border: 1px solid rgba(255, 255, 255, .22); white-space: nowrap; }
+.cd b { font-variant-numeric: tabular-nums; color: #ffd25a; }
+.head h1 { font-family: var(--serif); font-weight: 700; font-size: 25px; line-height: 1; margin-top: 7px; letter-spacing: -.01em; }
+.head h1 em { font-style: italic; color: #ffd25a; }
+.head p { font-size: 10px; font-weight: 700; color: rgba(255, 255, 255, .72); margin-top: 3px; }
+.head p b { color: #fff; }
+/* 30 kapı */
+.grid { position: absolute; left: 10px; top: 97px; width: 300px; display: grid; grid-template-columns: repeat(5, 56px); grid-auto-rows: 54px; gap: 4px 5px; }
+.door { position: relative; perspective: 420px; cursor: pointer; }
+.door .pic { position: absolute; inset: 0; border-radius: 8px; overflow: hidden; background: #0a1640; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .12); }
+.door .pic img { width: 100%; height: 100%; object-fit: cover; }
+.door .pic span { position: absolute; left: 3px; top: 3px; font-size: 8.5px; font-weight: 800; background: rgba(11, 28, 82, .75); padding: 1px 4px; border-radius: 5px; }
+.door .leaf { position: absolute; inset: 0; border-radius: 8px; overflow: hidden; transform-origin: 0 50%; -webkit-backface-visibility: hidden; backface-visibility: hidden; transition: transform .75s cubic-bezier(.3, .9, .3, 1.05), box-shadow .3s; box-shadow: 0 3px 8px rgba(0, 0, 0, .35); }
+.door .leaf img { position: absolute; inset: -6px; width: calc(100% + 12px); height: calc(100% + 12px); object-fit: cover; filter: blur(4px) saturate(.6) brightness(.55); }
+.door .leaf::after { content: ''; position: absolute; inset: 0; border-radius: 8px; background: linear-gradient(160deg, rgba(42, 74, 168, .55), rgba(11, 28, 82, .8)); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .22); }
+.door .leaf b { position: absolute; z-index: 1; inset: 0; display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-weight: 700; font-size: 21px; }
+.door .leaf i { position: absolute; z-index: 1; right: 5px; top: 50%; width: 3px; height: 9px; margin-top: -4px; border-radius: 2px; background: rgba(255, 255, 255, .55); }
+.door.open .leaf { transform: rotateY(-108deg); box-shadow: none; }
+.door.past .leaf { transition: none; }
+.door.today .leaf { box-shadow: 0 0 0 2px #ffd25a, 0 0 18px rgba(255, 210, 90, .65); animation: glow 1.8s ease-in-out infinite; }
+.door.today .leaf b { color: #ffd25a; }
+.door.today .leaf small { position: absolute; z-index: 1; left: 0; right: 0; bottom: 3px; text-align: center; font-size: 7.5px; font-weight: 800; letter-spacing: .1em; color: #ffd25a; }
+.door.today.open .leaf { animation: none; }
+.door.fut .leaf b { opacity: .55; }
+.door.fut.tmr .leaf small { position: absolute; z-index: 1; left: 0; right: 0; bottom: 3px; text-align: center; font-size: 7.5px; font-weight: 800; letter-spacing: .1em; opacity: .75; }
+.door.knock .leaf { animation: knock .5s ease-in-out 2; }
+.door.shake { animation: shake .4s; }
+.door.gold .pic { box-shadow: 0 0 0 2px #ffd25a; }
+@keyframes glow { 50% { box-shadow: 0 0 0 2px #ffd25a, 0 0 26px rgba(255, 210, 90, .9); } }
+@keyframes knock { 30% { transform: rotateY(-22deg); } 60% { transform: rotateY(-6deg); } }
+@keyframes shake { 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+.burst { position: absolute; z-index: 3; width: 160px; height: 160px; margin: -80px 0 0 -80px; border-radius: 50%; pointer-events: none; background: radial-gradient(circle, rgba(255, 226, 140, .95) 0%, rgba(255, 210, 90, .45) 30%, rgba(255, 210, 90, 0) 70%); transform: scale(.2); opacity: 0; }
+.burst.go { animation: burst .8s var(--ease) forwards; }
+@keyframes burst { 30% { opacity: 1; } 100% { transform: scale(2.2); opacity: 0; } }
+.toast { position: absolute; z-index: 6; left: 50%; bottom: 30px; transform: translate(-50%, 8px); white-space: nowrap; font-size: 11px; font-weight: 800; color: var(--navy); background: #fff; padding: 8px 13px; border-radius: 999px; box-shadow: 0 8px 20px rgba(0, 0, 0, .35); opacity: 0; transition: opacity .3s, transform .3s var(--ease); pointer-events: none; }
+.toast.on { opacity: 1; transform: translate(-50%, 0); }
+/* Kapının ardı: tam ekran içerik (kapıdan büyüyerek açılır) */
+.view { position: absolute; inset: 0; z-index: 8; background: var(--navy-d); clip-path: inset(50% 50% 50% 50% round 8px); transition: clip-path .6s cubic-bezier(.7, 0, .2, 1); pointer-events: none; }
+.view.on { clip-path: inset(0 0 0 0 round 0); pointer-events: auto; }
+.view .ph { position: absolute; left: 0; top: 0; width: 100%; height: 262px; object-fit: cover; transform: scale(1.12); transition: transform 5s var(--ease); }
+.view.on .ph { transform: scale(1); }
+.view .shade { position: absolute; left: 0; right: 0; top: 0; height: 262px; background: linear-gradient(180deg, rgba(11, 28, 82, .55) 0%, rgba(11, 28, 82, 0) 26%, rgba(11, 28, 82, 0) 62%, var(--navy-d) 100%); }
+.view .x { position: absolute; z-index: 2; right: 8px; top: 8px; width: 32px; height: 32px; border-radius: 50%; background: rgba(11, 28, 82, .6); font-size: 20px; line-height: 1; }
+.view .date { position: absolute; z-index: 2; left: 12px; top: 12px; font-size: 10px; font-weight: 800; padding: 5px 10px; border-radius: 999px; background: #ffd25a; color: var(--navy); }
+.view .body { position: absolute; left: 16px; right: 16px; top: 236px; }
+.view .ov { font-size: 10px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--green-l); }
+.view h2 { font-family: var(--serif); font-weight: 700; font-size: 25px; line-height: 1.04; margin-top: 3px; }
+.view p { font-size: 11.5px; line-height: 1.4; font-weight: 600; color: rgba(255, 255, 255, .88); margin-top: 6px; }
+.view .cl { font-size: 9.5px; font-weight: 700; color: rgba(255, 255, 255, .65); margin-top: 4px; }
+.view .coupon { margin-top: 8px; width: 100%; justify-content: space-between; font-size: 11.5px; padding: 7px 11px; }
+.view .cta { position: absolute; left: 16px; right: 16px; bottom: 30px; justify-content: center; height: 40px; }
+.view .nav { position: absolute; z-index: 2; right: 48px; top: 8px; display: flex; gap: 6px; }
+.view .nav button { width: 32px; height: 32px; border-radius: 50%; background: rgba(11, 28, 82, .6); font-size: 18px; font-weight: 800; }
+.view .nav button:disabled { opacity: .3; }
+.view > * { opacity: 0; transition: opacity .3s .25s; }
+.view.on > * { opacity: 1; }
+.legal { position: absolute; z-index: 9; left: 12px; right: 12px; bottom: 5px; font-size: 7.2px; pointer-events: none; }
+</style>
+</head>
+<body>
+<div class="ad" id="ad" role="link" tabindex="0" aria-label="İlaçsız Yaşam – Kasım Takvimi: 30 gün, 30 kapı. Her gün yeni bir kapı aç.">
+  <div class="head">
+    <div class="row1"><img class="logo" src="img/logo-beyaz.webp" alt="İlaçsız Yaşam"><div class="cd">Yarınki kapı <b id="cd">--:--:--</b></div></div>
+    <h1>Kasım <em>Takvimi</em></h1>
+    <p id="sub"></p>
+  </div>
+  <div class="grid" id="grid"></div>
+  <div class="burst" id="burst"></div>
+  <div class="toast" id="toast"></div>
+  <div class="view" id="view">
+    <img class="ph" id="vImg" src="" alt="">
+    <div class="shade"></div>
+    <div class="date" id="vDate"></div>
+    <div class="nav"><button id="vPrev" aria-label="Önceki gün">‹</button><button id="vNext" aria-label="Sonraki gün">›</button></div>
+    <button class="x" id="vX" aria-label="Takvime dön">×</button>
+    <div class="body"><div class="ov" id="vOv"></div><h2 id="vT"></h2><p id="vP"></p><div class="cl" id="vCl"></div><div id="vCp"></div></div>
+    <button class="cta" id="vGo"></button>
+  </div>
+  <div class="legal">Takviye edici gıdalar ilaç değildir. Hastalıkların önlenmesi veya tedavi edilmesi amacıyla kullanılmaz.</div>
+</div>
+<script>window.AD = {"creative":{"takvim":{"year":2026,"days":[{"d":1,"over":"Başlangıç","title":"30 gün, 30 kapı","text":"Kasım boyunca her gün yeni bir kapı açılıyor: ürünler, kitaplar, tarifler ve fırsatlar.","claim":"","cta":"Takvimi keşfet","img":"img/tk-01.webp","thumb":"img/tk-01-s.webp","url":"https://ilacsizyasam.com/collections/gida-takviyeleri?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_takvim_gun01"},{"d":2,"over":"Ürün günü","title":"Pazartesi enerjisi","text":"Haftaya çiğnenebilir bir tabletle başla: Vitamin B12 & Folik Asit.","claim":"B12 vitamini yorgunluk ve bitkinliğin azalmasına katkıda bulunur.","cta":"Ürünü incele","img":"img/tk-02.webp","thumb":"img/tk-02-s.webp","url":"https://ilacsizyasam.com/products/vitamin-b12-metilfolat?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_takvim_gun02"},{"d":3,"over":"Çay saati","title":"İlk soğuklar, ilk fincan","text":"Pencerede kar, elinde Kış Çayı. Piramit poşette, kafeinsiz.","claim":"","cta":"Kış Çayı","img":"img/tk-03.webp","thumb":"img/tk-03-s.webp","url":"https://ilacsizyasam.com/products/kis-cayi?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_takvim_gun03"},{"d":4,"over":"Ürün günü","title":"Güneş alçaldı","text":"Kasım'da öğle güneşi yaz ayına göre çok daha alçak. Rutinine gün ışığı desteği.","claim":"D vitamini bağışıklık sisteminin normal fonksiyonuna katkıda bulunur.","cta":"D3 & K2 Damla","img":"img/tk-04.webp","thumb":"img/tk-04-s.webp","url":"https://ilacsizyasam.com/products/d3-k2-vitamin-damlasi?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_takvim_gun04"},{"d":5,"over":"Blog","title":"Okul çantasına ne koysak?","text":"Çocukların bağışıklık sistemini destekleyen besinler: blogda okuma listesi.","claim":"","cta":"Yazıyı oku","img":"img/tk-05.webp","thumb":"img/tk-05-s.webp","url":"https://ilacsizyasam.com/blogs/tum-bloglar/cocuklarin-bagisiklik-sistemini-destekleyen-besinler-nelerdir?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_takvim_gun05"},{"d":6,"over":"Hafta sonu","title":"Cuma'dan Pazar'a fırsatlar","text":"Hafta sonu fırsatları başladı. Sepetini hazırla, matcha latteni al.","claim":"","cta":"Fırsatları gör","img":"img/tk-06.webp","thumb":"img/tk-06-s.webp","url":"https://ilacsizyasam.com/pages/kampanyalar?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_takvim_gun06"},{"d":7,"over":"Ürün günü","title":"Pilates sonrası","text":"Hareketin kırmızı kapsülü: Krill Yağı.","claim":"EPA ve DHA kalbin normal fonksiyonuna katkıda bulunur.","cta":"Krill Yağı","img":"img/tk-07.webp","thumb":"img/tk-07-s.webp","url":"https://ilacsizyasam.com/products/krill-yagi?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_takvim_gun07"},{"d":8,"over":"Kitap günü","title":"Pazar okuması","text":"Dr. Ümit Aktaş'ın çok okunan kitabı \"İlaçsız Yaşam\".","claim":"","cta":"Kitabı incele","img":"img/tk-08.webp","thumb":"img/tk-08-s.webp","url":"https://ilacsizyasam.com/products/ilacsiz-yasam?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_takvim_gun08"},{"d":9,"over":"Ürün günü","title":"Masa başı pazartesi","text":"Omega 3 33/22: kokusuz, 60 kapsül.","claim":"EPA ve DHA kalbin normal fonksiyonuna katkıda bulunur.","cta":"Omega 3","img":"img/tk-09.webp","thumb":"img/tk-09-s.webp","url":"https://ilacsizyasam.com/products/omega-3-33-22-60-kapsul?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_takvim_gun09"},{"d":10,"over":"Ritüel","title":"Sabahın yeşil ritüeli","text":"%100 Japon matcha ile güne yavaş başla.","claim":"","cta":"Matcha","img":"img/tk-10.webp","thumb":"img/tk-10-s.webp","url":"https://ilacsizyasam.com/products/matcha?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_takvim_gun10"},{"d":11,"over":"11.11","title":"11.11 kapısı","text":"Yılın en büyük alışveriş gününde yeni üyelere ilk alışverişte %10.","claim":"","cta":"Alışverişe başla","img":"img/tk-11.webp","thumb":"img/tk-11-s.webp","url":"https://ilacsizyasam.com/collections/en-cok-satanlar?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_takvim_gun11"},{"d":12,"over":"Ürün günü","title":"Kökten gelen sıcaklık","text":"Topraktan gelen zencefil, kapsülde: Zencefil Ekstraktı.","claim":"","cta":"Zencefil","img":"img/tk-12.webp","thumb":"img/tk-12-s.webp","url":"https://ilacsizyasam.com/products/zencefil-ekstrakti-zingiber-officinale?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_takvim_gun12"},{"d":13,"over":"Hafta sonu","title":"Turuncu hafta sonu","text":"Hafta sonu fırsatları ve kışa hazırlık: Vitamin C.","claim":"C vitamini bağışıklık sisteminin normal fonksiyonuna katkıda bulunur.","cta":"Fırsatları gör","img":"img/tk-13.webp","thumb":"img/tk-13-s.webp","url":"https://ilacsizyasam.com/pages/kampanyalar?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_takvim_gun13"},{"d":14,"over":"Ürün günü","title":"Ormandan yeşil","text":"120 kapsül Spirulina, doğadan.","claim":"","cta":"Spirulina","img":"img/tk-14.webp","thumb":"img/tk-14-s.webp","url":"https://ilacsizyasam.com/products/spirulina?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_takvim_gun14"},{"d":15,"over":"Blog","title":"Reishi nedir?","text":"Ormanın kırmızı mantarı hakkında bilmen gerekenler blogda.","claim":"","cta":"Yazıyı oku","img":"img/tk-15.webp","thumb":"img/tk-15-s.webp","url":"https://ilacsizyasam.com/blogs/tum-bloglar?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_takvim_gun15"},{"d":16,"over":"Ürün günü","title":"Mutfaktaki çinko","text":"Avokado, somon, kabak çekirdeği… ve Çinko kapsül.","claim":"Çinko bağışıklık sisteminin normal fonksiyonuna katkıda bulunur.","cta":"Çinko","img":"img/tk-16.webp","thumb":"img/tk-16-s.webp","url":"https://ilacsizyasam.com/products/cinko?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_takvim_gun16"},{"d":17,"over":"Aile günü","title":"Miniklere yeni tat","text":"Omega 3 Şurup: 4 yaş ve üzeri, yeni tadıyla.","claim":"","cta":"Omega 3 Şurup","img":"img/tk-17.webp","thumb":"img/tk-17-s.webp","url":"https://ilacsizyasam.com/products/omega-3-surup?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_takvim_gun17"},{"d":18,"over":"Ürün günü","title":"Mor çiçeğin kırmızısı","text":"Safran Ekstresi, patentli safran ile.","claim":"","cta":"Safran Ekstresi","img":"img/tk-18.webp","thumb":"img/tk-18-s.webp","url":"https://ilacsizyasam.com/products/safran-ekstresi?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_takvim_gun18"},{"d":19,"over":"Çay saati","title":"Ihlamur kokusu","text":"Çiçek Ihlamur: demle, kokla, yavaşla.","claim":"","cta":"Çiçek Ihlamur","img":"img/tk-19.webp","thumb":"img/tk-19-s.webp","url":"https://ilacsizyasam.com/products/cicek-ihlamur?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_takvim_gun19"},{"d":20,"over":"Hafta sonu","title":"Renkli tabak","text":"Hafta sonu fırsatları ve blogdan: demirin emilimini etkileyen besinler.","claim":"","cta":"Fırsatları gör","img":"img/tk-20.webp","thumb":"img/tk-20-s.webp","url":"https://ilacsizyasam.com/pages/kampanyalar?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_takvim_gun20"},{"d":21,"over":"Kitap günü","title":"Mutluluk Kürleri","text":"Dr. Ümit Aktaş'tan 21 günlük mutluluk programı.","claim":"","cta":"Kitabı incele","img":"img/tk-21.webp","thumb":"img/tk-21-s.webp","url":"https://ilacsizyasam.com/products/mutluluk-kurleri?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_takvim_gun21"},{"d":22,"over":"Sofra","title":"Erken hasat pazarı","text":"Erken hasat, soğuk sıkım, 0,2 asit: Sızma Zeytinyağı.","claim":"","cta":"Zeytinyağı","img":"img/tk-22.webp","thumb":"img/tk-22-s.webp","url":"https://ilacsizyasam.com/products/erken-hasat-sizma-zeytinyagi-500-ml-yarim-litre?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_takvim_gun22"},{"d":23,"over":"Çay saati","title":"Ay ışığında bir fincan","text":"Uyku Öncesi Çayı ile akşam ritüeli.","claim":"","cta":"Uyku Öncesi Çayı","img":"img/tk-23.webp","thumb":"img/tk-23-s.webp","url":"https://ilacsizyasam.com/products/uyku-oncesi-cayi?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_takvim_gun23"},{"d":24,"over":"Ürün günü","title":"Arının hediyesi","text":"Propolis: 60 kapsül, bitkisel kökenli kapsülde.","claim":"","cta":"Propolis","img":"img/tk-24.webp","thumb":"img/tk-24-s.webp","url":"https://ilacsizyasam.com/products/propolis-kapsul?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_takvim_gun24"},{"d":25,"over":"Aile günü","title":"Gelişim Paketi","text":"Vitamin D3 Damla ve Omega 3 Şurup bir arada.","claim":"D vitamini çocuklarda kemiklerin normal büyüme ve gelişimi için gereklidir.","cta":"Paketi incele","img":"img/tk-25.webp","thumb":"img/tk-25-s.webp","url":"https://ilacsizyasam.com/products/gelisim-paketi?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_takvim_gun25"},{"d":26,"over":"Blog","title":"Antioksidan sofrası","text":"Antioksidan içeren besin ve içecekler: blogda okuma listesi.","claim":"","cta":"Yazıyı oku","img":"img/tk-26.webp","thumb":"img/tk-26-s.webp","url":"https://ilacsizyasam.com/blogs/tum-bloglar?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_takvim_gun26"},{"d":27,"over":"Hafta sonu","title":"Kasım'ın son hafta sonu","text":"Kasım'ın son fırsatları sitede.","claim":"","cta":"Fırsatları gör","img":"img/tk-27.webp","thumb":"img/tk-27-s.webp","url":"https://ilacsizyasam.com/pages/kampanyalar?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_takvim_gun27"},{"d":28,"over":"Ürün günü","title":"Akşam rutini","text":"Magnezyum ile akşamlarına sakin bir ritim.","claim":"Magnezyum sinir sisteminin normal fonksiyonuna katkıda bulunur.","cta":"Magnezyum","img":"img/tk-28.webp","thumb":"img/tk-28-s.webp","url":"https://ilacsizyasam.com/products/magnezyum?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_takvim_gun28"},{"d":29,"over":"Sofra","title":"Temiz baharat","text":"GDO, gluten ve ağır metal analizli, helal sertifikalı baharatlar.","claim":"","cta":"Baharatlar","img":"img/tk-29.webp","thumb":"img/tk-29-s.webp","url":"https://ilacsizyasam.com/collections/baharatlar?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_takvim_gun29"},{"d":30,"over":"Final","title":"Kasım bitti, rutin sürsün","text":"30 kapının hepsi açıldı. Rutinin Aralık'ta da seninle.","claim":"","cta":"Rutinini kur","img":"img/tk-30.webp","thumb":"img/tk-30-s.webp","url":"https://ilacsizyasam.com/collections/gida-takviyeleri?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_takvim_gun30"}]}},"data":{"brand":{"name":"İlaçsız Yaşam","by":"Dr. Ümit Aktaş Ürünleri Resmi Satış Noktası","headline":"Kasım'da kendine iyi bak.","sub":"Sana uygun rutini seç, keşfet.","legal":"Takviye edici gıdalar ilaç değildir. Hastalıkların önlenmesi veya tedavi edilmesi amacıyla kullanılmaz.","home":"https://ilacsizyasam.com/collections/gida-takviyeleri?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_takvim_genel"},"coupon":{"over":"Yeni üyelere","pct":"%10","text":"ilk alışverişte indirim","code":"YENIUYE10","copied":"Kod kopyalandı","url":"https://ilacsizyasam.com/collections/en-cok-satanlar?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_takvim_kupon"}}};</script>
+<script>
+/* Ortak çalışma zamanı: tıklama çıkışları, ölçüm, kupon kopyalama. Her kreatifin içine satır içi gömülür. */
+var AD = window.AD || {};
+(function () {
+  // Ölçüm: Studio/DV360 Enabler varsa sayaç, yoksa konsol (ağ makrosuna buradan bağlanır).
+  AD.track = function (name) {
+    try { if (window.Enabler && Enabler.counter) Enabler.counter(name); } catch (e) {}
+    if (window.console && console.debug) console.debug('[ad]', name);
+  };
+  // Çıkış: Enabler → exitOverride; clickTag tanımlıysa (Google Ads/CM360 tek çıkış) clickTag; yoksa UTM'li doğrudan adres.
+  AD.exit = function (id, url) {
+    AD.track('exit_' + id);
+    try {
+      if (window.Enabler && Enabler.exitOverride) { Enabler.exitOverride(id, url); return; }
+    } catch (e) {}
+    var tag = window.clickTag || window.clickTAG;
+    window.open(tag || url, '_blank');
+  };
+  // Kupon kodunu panoya kopyalar; el.dataset.code okunur, geri bildirim için `copied` sınıfı eklenir.
+  AD.copy = function (el, code, done) {
+    function ok() {
+      el.classList.add('copied');
+      AD.track('coupon_copy');
+      clearTimeout(el._t); el._t = setTimeout(function () { el.classList.remove('copied'); }, 1800);
+      if (done) done();
+    }
+    try {
+      if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(code).then(ok, fallback); return; }
+    } catch (e) {}
+    fallback();
+    function fallback() {
+      var t = document.createElement('textarea');
+      t.value = code; t.setAttribute('readonly', ''); t.style.cssText = 'position:fixed;opacity:0;left:-99px';
+      document.body.appendChild(t); t.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(t); ok();
+    }
+  };
+  AD.reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Görseller yüklenince başlat (Enabler varsa görünür olduğunda).
+  AD.ready = function (fn) {
+    function go() {
+      var imgs = [].slice.call(document.images), n = imgs.length, started = false;
+      function start() { if (!started) { started = true; document.documentElement.classList.add('ready'); fn(); } }
+      if (!n) return start();
+      imgs.forEach(function (im) { if (im.complete) { if (!--n) start(); } else im.onload = im.onerror = function () { if (!--n) start(); }; });
+      setTimeout(start, 2500);
+    }
+    if (window.Enabler && Enabler.isInitialized) {
+      if (Enabler.isInitialized()) go(); else Enabler.addEventListener('init', go);
+    } else if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go();
+  };
+  AD.h = function (tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
+})();
+
+/* Kasım Takvimi — bugünün kapısı, geri sayım ve açılan kapılar (kreatife satır içi gömülür). */
+var TAKVIM = (function () {
+  var GUN = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];
+  // Bugün: önizleme için window.AD_DAY ya da ?day=; Kasım'da gerçek gün; öncesinde 1, sonrasında 30
+  function today(year) {
+    var o = window.AD_DAY || +((location.search.match(/[?&]day=(\d+)/) || [])[1] || 0);
+    if (o) return Math.max(1, Math.min(30, o));
+    var n = new Date();
+    if (n.getFullYear() === year && n.getMonth() === 10) return n.getDate();
+    return n < new Date(year, 10, 1) ? 1 : 30;
+  }
+  function weekday(year, d) { return GUN[new Date(year, 10, d).getDay()]; }
+  // Yarınki kapıya kalan süre (gece yarısı)
+  function countdown() {
+    var n = new Date(), m = new Date(n.getFullYear(), n.getMonth(), n.getDate() + 1), s = Math.max(0, Math.floor((m - n) / 1000));
+    var p = function (x) { return ('0' + x).slice(-2); };
+    return p(Math.floor(s / 3600)) + ':' + p(Math.floor(s / 60) % 60) + ':' + p(s % 60);
+  }
+  // Açılan kapılar izleyicinin cihazında saklanır (yoksa sessizce yok sayılır)
+  var KEY = 'iy_kasim_takvim';
+  function opened() { try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) { return []; } }
+  function markOpened(d) { try { var a = opened(); if (a.indexOf(d) < 0) { a.push(d); localStorage.setItem(KEY, JSON.stringify(a)); } } catch (e) {} }
+  return { today: today, weekday: weekday, countdown: countdown, opened: opened, markOpened: markOpened };
+})();
+
+(function () {
+  var T = AD.creative.takvim, D = AD.data, ad = document.getElementById('ad'), grid = document.getElementById('grid');
+  var $ = function (id) { return document.getElementById(id); };
+  var today = TAKVIM.today(T.year), seen = TAKVIM.opened(), user = false;
+  $('sub').innerHTML = '30 gün · 30 kapı · bugün <b>' + today + '. kapı</b>' + (seen.length ? ' · açtığın: ' + seen.length : '');
+  var doors = T.days.map(function (it) {
+    var d = it.d, el = AD.h('div', 'door');
+    var past = d < today, isToday = d === today, fut = d > today;
+    el.className = 'door' + (past ? ' past open' : '') + (isToday ? ' today' + (seen.indexOf(d) > -1 ? ' open' : '') : '') + (fut ? ' fut' + (d === today + 1 ? ' tmr' : '') : '') + (d === 11 ? ' gold' : '');
+    el.innerHTML = '<div class="pic"><img src="' + it.thumb + '" alt=""><span>' + d + '</span></div>' +
+      '<div class="leaf"><img src="' + it.thumb + '" alt=""><b>' + d + '</b><i></i>' + (isToday ? '<small>BUGÜN</small>' : d === today + 1 ? '<small>YARIN</small>' : '') + '</div>';
+    el.addEventListener('click', function (e) { e.stopPropagation(); first(); tap(d, el); });
+    grid.appendChild(el);
+    return el;
+  });
+  var toastT;
+  function toast(t) { var el = $('toast'); el.textContent = t; el.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(function () { el.classList.remove('on'); }, 2200); }
+  function tap(d, el) {
+    if (d > today) {
+      el.classList.remove('shake'); void el.offsetWidth; el.classList.add('shake');
+      toast('Bu kapı ' + d + ' Kasım\'da açılır · ' + (d - today) + ' gün kaldı');
+      AD.track('takvim_locked_' + d); return;
+    }
+    if (d === today && !el.classList.contains('open')) {
+      el.classList.add('open');
+      var r = el.getBoundingClientRect(), a = ad.getBoundingClientRect(), b = $('burst');
+      b.style.left = (r.left - a.left + r.width / 2) + 'px'; b.style.top = (r.top - a.top + r.height / 2) + 'px';
+      b.classList.remove('go'); void b.offsetWidth; b.classList.add('go');
+      TAKVIM.markOpened(d); AD.track('takvim_open_today_' + d);
+      setTimeout(function () { show(d, el); }, 650);
+    } else { AD.track('takvim_view_' + d); show(d, el); }
+  }
+  // İçerik, tıklanan kapının konumundan tam ekrana büyür
+  var cur = 0;
+  function fill(d) {
+    var it = T.days[d - 1]; cur = d;
+    $('vImg').src = it.img;
+    $('vDate').textContent = d + ' Kasım · ' + TAKVIM.weekday(T.year, d);
+    $('vOv').textContent = it.over; $('vT').textContent = it.title; $('vP').textContent = it.text; $('vCl').textContent = it.claim;
+    $('vCp').innerHTML = (d === 11 || d === 1 || d === 30) ? '<button class="coupon" data-copy="1"><span>%10 yeni üye kodu: <b>' + D.coupon.code + '</b></span><span class="cp-act">Kopyala</span><span class="cp-ok">✓ Kopyalandı</span></button>' : '';
+    $('vGo').innerHTML = it.cta + ' <i>→</i>';
+    $('vPrev').disabled = d <= 1; $('vNext').disabled = d >= today;
+  }
+  function show(d, el) {
+    fill(d);
+    var v = $('view'), r = el.getBoundingClientRect(), a = ad.getBoundingClientRect(), sx = a.width / 320;
+    var t = (r.top - a.top) / sx, l = (r.left - a.left) / sx, rr = 320 - (r.right - a.left) / sx, bb = 480 - (r.bottom - a.top) / sx;
+    v.style.transition = 'none'; v.style.clipPath = 'inset(' + t + 'px ' + rr + 'px ' + bb + 'px ' + l + 'px round 8px)';
+    void v.offsetWidth; v.style.transition = ''; v.style.clipPath = ''; v.classList.add('on');
+  }
+  function hide() { var v = $('view'); var el = doors[cur - 1]; v.classList.remove('on'); show.lastEl = el; }
+  $('vX').addEventListener('click', function (e) { e.stopPropagation(); hide(); });
+  $('vPrev').addEventListener('click', function (e) { e.stopPropagation(); if (cur > 1) { fill(cur - 1); AD.track('takvim_view_' + cur); } });
+  $('vNext').addEventListener('click', function (e) { e.stopPropagation(); if (cur < today) { fill(cur + 1); AD.track('takvim_view_' + cur); } });
+  $('view').addEventListener('click', function (e) {
+    e.stopPropagation();
+    var c = e.target.closest('[data-copy]'); if (c) return AD.copy(c, D.coupon.code);
+    if (e.target.closest('.nav') || e.target.closest('.x')) return;
+    AD.exit('takvim_gun' + cur, T.days[cur - 1].url);
+  });
+  ad.addEventListener('click', function () { AD.exit('takvim_genel', D.brand.home); });
+  // Geri sayım
+  function tick() { $('cd').textContent = TAKVIM.countdown(); }
+  tick(); setInterval(tick, 1000);
+  // Tanıtım: bugünün kapısı "tıklatılır"; 7 sn etkileşim yoksa kendiliğinden açılır
+  var autoT = [];
+  function first() { if (!user) { user = true; autoT.forEach(clearTimeout); AD.track('takvim_user'); } }
+  AD.ready(function () {
+    AD.track('impression_ready_day_' + today);
+    if (AD.reduced) return;
+    var td = doors[today - 1];
+    autoT.push(setTimeout(function () { if (!td.classList.contains('open')) { td.classList.add('knock'); toast('Bugünün kapısı seni bekliyor · ' + today + ' Kasım'); } }, 1200));
+    autoT.push(setTimeout(function () { td.classList.remove('knock'); }, 2400));
+    autoT.push(setTimeout(function () { if (!user) tap(today, td); }, 7000));
+  });
+})();
+</script>
+</body>
+</html>

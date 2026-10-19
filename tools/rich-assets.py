@@ -90,6 +90,22 @@ SPRITES = {
     'zeytin': ('products/d3-k2-vitamin-damlasi/6.jpg', .1, .59, .08),
 }
 
+# Kasım Takvimi: gün → (kaynak, odak x, odak y[, önce seçilecek bölge])
+TAKVIM = {
+    1: ('site/abb.webp', .5, .35), 2: ('products/vitamin-b12-metilfolat/7.jpg', .45, .5), 3: ('products/kis-cayi/5.webp', .5, .55),
+    4: ('products/d3-k2-vitamin-damlasi/6.jpg', .5, .5), 5: ('site/cdn-shop-articles-okul-doneminde-cocuklarin-bagisiklik-sistemini-deste.jpg', .5, .5),
+    6: ('products/matcha/7.jpg', .5, .45), 7: ('products/krill-yagi/8.webp', .45, .5), 8: ('products/ilacsiz-yasam/1.webp', .55, .5),
+    9: ('products/omega-3-33-22-60-kapsul/8.jpg', .5, .5), 10: ('products/matcha/1.jpg', .5, .5), 11: ('products/huzur-ritueli-paketi/1.jpg', .5, .62),
+    12: ('products/zencefil-ekstrakti-zingiber-officinale/7.jpg', .5, .55), 13: ('products/vitamin-c/8.jpg', .5, .5), 14: ('products/spirulina/7.jpg', .5, .5),
+    15: ('products/reishi-mantari-ekstrakti-ganoderma-lucidum-60-kapsul/7.jpg', .5, .55), 16: ('products/cinko/7.jpg', .5, .5),
+    17: ('products/omega-3-surup/6.jpg', .5, .5), 18: ('products/safran-ekstresi/8.jpg', .5, .5), 19: ('products/cicek-ihlamur/2.webp', .5, .55),
+    20: ('site/cdn-shop-articles-demir-takviyesi-kullanirken-emilimi-etkileyen-besinl.jpg', .5, .5), 21: ('products/mutluluk-kurleri/1.webp', .5, .5),
+    22: ('products/erken-hasat-sizma-zeytinyagi-500-ml-yarim-litre/3.jpg', .5, .5), 23: ('products/uyku-oncesi-cayi/5.webp', .5, .5),
+    24: ('products/propolis-kapsul/7.jpg', .5, .5), 25: ('products/gelisim-paketi/1.webp', .5, .62), 26: ('site/cdn-shop-articles-antioksidan-iceren-besin-ve-icecekler-nelerdir.jpg', .5, .5),
+    27: ('products/erken-hasat-sizma-zeytinyagi-500-ml-yarim-litre/4.jpg', .5, .5), 28: ('products/magnezyum/7.jpg', .4, .6),
+    29: ('site/ilacsizyasam-14-06-2025-1436.jpg', .5, .5), 30: ('site/dr-umit-aktas-satis-sitesi.jpg', .2, .5, (0, 0, .46, 1)),
+}
+
 PACKS = {
     'omega3': 'products/omega-3-33-22-60-kapsul/2.png',
     'mvwomen': 'products/multivitamin-women/1.jpg',
@@ -146,6 +162,16 @@ for name, (src, w, h, fx, fy, q, *box) in PHOTOS.items():
     f = os.path.join(OUT, name + '.webp')
     im.save(f, 'WEBP', quality=q, method=6)
     meta['photos'][name] = {'src': src, 'w': w, 'h': h, 'bytes': os.path.getsize(f)}
+
+for day, (src, fx, fy, *box) in TAKVIM.items():
+    base = Image.open(os.path.join(M, src)).convert('RGB')
+    if box:
+        bw, bh = base.size; b = box[0]
+        base = base.crop((round(b[0] * bw), round(b[1] * bh), round(b[2] * bw), round(b[3] * bh)))
+    for suffix, (w, h, q) in {'': (560, 450, 64), '-s': (200, 240, 60)}.items():
+        f = os.path.join(OUT, 'tk-%02d%s.webp' % (day, suffix))
+        cover(base, w, h, fx, fy).save(f, 'WEBP', quality=q, method=6)
+        meta['photos']['tk-%02d%s' % (day, suffix)] = {'src': src, 'w': w, 'h': h, 'bytes': os.path.getsize(f)}
 
 for name, (src, cx, cy, r) in SPRITES.items():
     im = Image.open(os.path.join(M, src)).convert('RGB')

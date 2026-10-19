@@ -121,6 +121,20 @@ const SHOTS = {
     ['oyun-2', 0, popClouds(6000)],
     ['sonuc', 9500],
   ] },
+  'masthead-970x250-takvim': { w: 970, h: 250, day: 11, steps: [
+    ['takvim', 1600],
+    ['kapi-aciliyor', 380, (p) => p.locator('.door.today').click()],
+    ['icerik', 1300],
+    ['dun', 1100, async (p) => { await p.locator('#vX').click(); await p.waitForTimeout(800); await p.locator('.door').nth(1).click(); }],
+    ['kilitli', 500, async (p) => { await p.locator('#vX').click(); await p.waitForTimeout(800); await p.locator('.door').nth(5).click(); }],
+  ] },
+  'mobil-320x480-takvim': { w: 320, h: 480, mobile: true, day: 11, steps: [
+    ['takvim', 1500],
+    ['kapi-aciliyor', 350, (p) => p.locator('.door').nth(10).click()],
+    ['icerik', 1300],
+    ['dun', 1000, async (p) => { await p.locator('#vX').click(); await p.waitForTimeout(800); await p.locator('.door').nth(3).click(); }],
+    ['kilitli', 500, async (p) => { await p.locator('#vX').click(); await p.waitForTimeout(800); await p.locator('.door').nth(17).click(); }],
+  ] },
   'mobil-320x480-rutin': { w: 320, h: 480, mobile: true, steps: [
     ['intro', 900], ['oto-2', 4200], ['dokun-aktif', 1100, (p) => p.mouse.click(160, 400)], ['urun', 600, (p) => p.mouse.move(60, 380)],
   ] },
@@ -142,6 +156,7 @@ const SHOTS = {
     page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); if (/\[ad\]/.test(m.text())) exits.push(m.text().replace('[ad] ', '')); });
     await ctx.exposeFunction('__open', (u) => exits.push('open ' + u));
     await page.addInitScript(() => { window.open = (u) => { window.__open(u); return null; }; console.debug = (...a) => console.log(...a); });
+    if (cfg.day) await page.addInitScript((d) => { window.AD_DAY = d; }, cfg.day);
     await page.goto('file://' + file);
     await page.waitForLoadState('networkidle').catch(() => {});
     for (const [label, wait, act] of cfg.steps) {

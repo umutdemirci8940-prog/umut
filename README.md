@@ -2,6 +2,24 @@
 
 Sunum: **`preview-rich/index.html`** (tek dosya; tüm çalışmalar gömülü, tekrar oynat düğmeli). Yüklemeye hazır paketler: `dist-rich/zip/`.
 
+## Büyük fikir — Kasım Takvimi: 30 gün, 30 kapı
+
+Reklam Kasım boyunca **her gün kendiliğinden değişir**. Her gün yeni bir kapı açılır (ürün, Dr. Ümit Aktaş kitabı, blog yazısı, çay ritüeli, hafta sonu fırsatı, 11.11 altın kapısı); geçmiş günler gerçek fotoğraflardan bir albüm gibi dolar, yarınki kapı buzlu camın ardında gece yarısına geri sayımla bekler. Kapı 3B menteşeyle döner, ışık patlar, içerik kapının konumundan büyüyerek açılır.
+
+| Çalışma | Boyut | Klasör |
+|---|---|---|
+| Kasım Takvimi | 970 × 250 masthead (bu haftanın 7 kapısı + ay şeridi) | `dist-rich/masthead-970x250-takvim/` |
+| Kasım Takvimi (Mobil) | 320 × 480 (ayın 30 kapısı tek ekranda) | `dist-rich/mobil-320x480-takvim/` |
+
+- **Gün:** Yayında gerçek tarih (Kasım 2026); önizleme için `index.html?day=11` ya da sunum sayfasındaki "Gün seç". Kasım öncesi 1. gün, sonrası tüm kapılar açık.
+- **İçerik:** 30 günün metni, görseli ve adresi `rich/data.js` → `takvim.days` (görseller `tools/rich-assets.py` → `TAKVIM`).
+- **Ağırlık:** 30 küçük kapı görseli + 30 içerik görseli ≈ 900 KB. Rich media platformlarında (Celtra, Adform, DV360 Studio) içerik görselleri "polite/lazy" yüklenir; ilk yük ≈ 260 KB.
+- **Ölçüm:** `takvim_open_today_<gün>`, `takvim_view_<gün>`, `takvim_locked_<gün>`, gün bazlı tıklama çıkışları (`utm_content=…_gunNN`).
+
+| Masthead | Mobil |
+|---|---|
+| ![](preview-rich/screens/masthead-970x250-takvim-takvim.jpg) ![](preview-rich/screens/masthead-970x250-takvim-icerik.jpg) | ![](preview-rich/screens/mobil-320x480-takvim-takvim.jpg) ![](preview-rich/screens/mobil-320x480-takvim-icerik.jpg) |
+
 ## Mobil'e özgü set — uygulama, kazı kazan, oyun (320 × 480)
 
 | Çalışma | Mekanik | Klasör |

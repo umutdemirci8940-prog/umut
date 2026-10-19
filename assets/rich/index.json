@@ -294,6 +294,366 @@
    "h": 420,
    "bytes": 31876
   },
+  "tk-01": {
+   "src": "site/abb.webp",
+   "w": 560,
+   "h": 450,
+   "bytes": 21800
+  },
+  "tk-01-s": {
+   "src": "site/abb.webp",
+   "w": 200,
+   "h": 240,
+   "bytes": 6382
+  },
+  "tk-02": {
+   "src": "products/vitamin-b12-metilfolat/7.jpg",
+   "w": 560,
+   "h": 450,
+   "bytes": 8636
+  },
+  "tk-02-s": {
+   "src": "products/vitamin-b12-metilfolat/7.jpg",
+   "w": 200,
+   "h": 240,
+   "bytes": 2226
+  },
+  "tk-03": {
+   "src": "products/kis-cayi/5.webp",
+   "w": 560,
+   "h": 450,
+   "bytes": 22394
+  },
+  "tk-03-s": {
+   "src": "products/kis-cayi/5.webp",
+   "w": 200,
+   "h": 240,
+   "bytes": 5894
+  },
+  "tk-04": {
+   "src": "products/d3-k2-vitamin-damlasi/6.jpg",
+   "w": 560,
+   "h": 450,
+   "bytes": 31822
+  },
+  "tk-04-s": {
+   "src": "products/d3-k2-vitamin-damlasi/6.jpg",
+   "w": 200,
+   "h": 240,
+   "bytes": 8932
+  },
+  "tk-05": {
+   "src": "site/cdn-shop-articles-okul-doneminde-cocuklarin-bagisiklik-sistemini-deste.jpg",
+   "w": 560,
+   "h": 450,
+   "bytes": 27270
+  },
+  "tk-05-s": {
+   "src": "site/cdn-shop-articles-okul-doneminde-cocuklarin-bagisiklik-sistemini-deste.jpg",
+   "w": 200,
+   "h": 240,
+   "bytes": 7226
+  },
+  "tk-06": {
+   "src": "products/matcha/7.jpg",
+   "w": 560,
+   "h": 450,
+   "bytes": 19618
+  },
+  "tk-06-s": {
+   "src": "products/matcha/7.jpg",
+   "w": 200,
+   "h": 240,
+   "bytes": 6162
+  },
+  "tk-07": {
+   "src": "products/krill-yagi/8.webp",
+   "w": 560,
+   "h": 450,
+   "bytes": 14678
+  },
+  "tk-07-s": {
+   "src": "products/krill-yagi/8.webp",
+   "w": 200,
+   "h": 240,
+   "bytes": 4164
+  },
+  "tk-08": {
+   "src": "products/ilacsiz-yasam/1.webp",
+   "w": 560,
+   "h": 450,
+   "bytes": 9548
+  },
+  "tk-08-s": {
+   "src": "products/ilacsiz-yasam/1.webp",
+   "w": 200,
+   "h": 240,
+   "bytes": 3626
+  },
+  "tk-09": {
+   "src": "products/omega-3-33-22-60-kapsul/8.jpg",
+   "w": 560,
+   "h": 450,
+   "bytes": 15110
+  },
+  "tk-09-s": {
+   "src": "products/omega-3-33-22-60-kapsul/8.jpg",
+   "w": 200,
+   "h": 240,
+   "bytes": 3588
+  },
+  "tk-10": {
+   "src": "products/matcha/1.jpg",
+   "w": 560,
+   "h": 450,
+   "bytes": 19088
+  },
+  "tk-10-s": {
+   "src": "products/matcha/1.jpg",
+   "w": 200,
+   "h": 240,
+   "bytes": 5478
+  },
+  "tk-11": {
+   "src": "products/huzur-ritueli-paketi/1.jpg",
+   "w": 560,
+   "h": 450,
+   "bytes": 25588
+  },
+  "tk-11-s": {
+   "src": "products/huzur-ritueli-paketi/1.jpg",
+   "w": 200,
+   "h": 240,
+   "bytes": 6680
+  },
+  "tk-12": {
+   "src": "products/zencefil-ekstrakti-zingiber-officinale/7.jpg",
+   "w": 560,
+   "h": 450,
+   "bytes": 31930
+  },
+  "tk-12-s": {
+   "src": "products/zencefil-ekstrakti-zingiber-officinale/7.jpg",
+   "w": 200,
+   "h": 240,
+   "bytes": 8248
+  },
+  "tk-13": {
+   "src": "products/vitamin-c/8.jpg",
+   "w": 560,
+   "h": 450,
+   "bytes": 17260
+  },
+  "tk-13-s": {
+   "src": "products/vitamin-c/8.jpg",
+   "w": 200,
+   "h": 240,
+   "bytes": 5680
+  },
+  "tk-14": {
+   "src": "products/spirulina/7.jpg",
+   "w": 560,
+   "h": 450,
+   "bytes": 29746
+  },
+  "tk-14-s": {
+   "src": "products/spirulina/7.jpg",
+   "w": 200,
+   "h": 240,
+   "bytes": 7542
+  },
+  "tk-15": {
+   "src": "products/reishi-mantari-ekstrakti-ganoderma-lucidum-60-kapsul/7.jpg",
+   "w": 560,
+   "h": 450,
+   "bytes": 45126
+  },
+  "tk-15-s": {
+   "src": "products/reishi-mantari-ekstrakti-ganoderma-lucidum-60-kapsul/7.jpg",
+   "w": 200,
+   "h": 240,
+   "bytes": 9426
+  },
+  "tk-16": {
+   "src": "products/cinko/7.jpg",
+   "w": 560,
+   "h": 450,
+   "bytes": 21138
+  },
+  "tk-16-s": {
+   "src": "products/cinko/7.jpg",
+   "w": 200,
+   "h": 240,
+   "bytes": 5802
+  },
+  "tk-17": {
+   "src": "products/omega-3-surup/6.jpg",
+   "w": 560,
+   "h": 450,
+   "bytes": 21162
+  },
+  "tk-17-s": {
+   "src": "products/omega-3-surup/6.jpg",
+   "w": 200,
+   "h": 240,
+   "bytes": 5278
+  },
+  "tk-18": {
+   "src": "products/safran-ekstresi/8.jpg",
+   "w": 560,
+   "h": 450,
+   "bytes": 20240
+  },
+  "tk-18-s": {
+   "src": "products/safran-ekstresi/8.jpg",
+   "w": 200,
+   "h": 240,
+   "bytes": 4776
+  },
+  "tk-19": {
+   "src": "products/cicek-ihlamur/2.webp",
+   "w": 560,
+   "h": 450,
+   "bytes": 27184
+  },
+  "tk-19-s": {
+   "src": "products/cicek-ihlamur/2.webp",
+   "w": 200,
+   "h": 240,
+   "bytes": 7682
+  },
+  "tk-20": {
+   "src": "site/cdn-shop-articles-demir-takviyesi-kullanirken-emilimi-etkileyen-besinl.jpg",
+   "w": 560,
+   "h": 450,
+   "bytes": 46466
+  },
+  "tk-20-s": {
+   "src": "site/cdn-shop-articles-demir-takviyesi-kullanirken-emilimi-etkileyen-besinl.jpg",
+   "w": 200,
+   "h": 240,
+   "bytes": 10232
+  },
+  "tk-21": {
+   "src": "products/mutluluk-kurleri/1.webp",
+   "w": 560,
+   "h": 450,
+   "bytes": 10242
+  },
+  "tk-21-s": {
+   "src": "products/mutluluk-kurleri/1.webp",
+   "w": 200,
+   "h": 240,
+   "bytes": 3796
+  },
+  "tk-22": {
+   "src": "products/erken-hasat-sizma-zeytinyagi-500-ml-yarim-litre/3.jpg",
+   "w": 560,
+   "h": 450,
+   "bytes": 21720
+  },
+  "tk-22-s": {
+   "src": "products/erken-hasat-sizma-zeytinyagi-500-ml-yarim-litre/3.jpg",
+   "w": 200,
+   "h": 240,
+   "bytes": 5406
+  },
+  "tk-23": {
+   "src": "products/uyku-oncesi-cayi/5.webp",
+   "w": 560,
+   "h": 450,
+   "bytes": 15368
+  },
+  "tk-23-s": {
+   "src": "products/uyku-oncesi-cayi/5.webp",
+   "w": 200,
+   "h": 240,
+   "bytes": 4392
+  },
+  "tk-24": {
+   "src": "products/propolis-kapsul/7.jpg",
+   "w": 560,
+   "h": 450,
+   "bytes": 37462
+  },
+  "tk-24-s": {
+   "src": "products/propolis-kapsul/7.jpg",
+   "w": 200,
+   "h": 240,
+   "bytes": 9632
+  },
+  "tk-25": {
+   "src": "products/gelisim-paketi/1.webp",
+   "w": 560,
+   "h": 450,
+   "bytes": 30628
+  },
+  "tk-25-s": {
+   "src": "products/gelisim-paketi/1.webp",
+   "w": 200,
+   "h": 240,
+   "bytes": 8520
+  },
+  "tk-26": {
+   "src": "site/cdn-shop-articles-antioksidan-iceren-besin-ve-icecekler-nelerdir.jpg",
+   "w": 560,
+   "h": 450,
+   "bytes": 33368
+  },
+  "tk-26-s": {
+   "src": "site/cdn-shop-articles-antioksidan-iceren-besin-ve-icecekler-nelerdir.jpg",
+   "w": 200,
+   "h": 240,
+   "bytes": 7846
+  },
+  "tk-27": {
+   "src": "products/erken-hasat-sizma-zeytinyagi-500-ml-yarim-litre/4.jpg",
+   "w": 560,
+   "h": 450,
+   "bytes": 15594
+  },
+  "tk-27-s": {
+   "src": "products/erken-hasat-sizma-zeytinyagi-500-ml-yarim-litre/4.jpg",
+   "w": 200,
+   "h": 240,
+   "bytes": 5002
+  },
+  "tk-28": {
+   "src": "products/magnezyum/7.jpg",
+   "w": 560,
+   "h": 450,
+   "bytes": 16504
+  },
+  "tk-28-s": {
+   "src": "products/magnezyum/7.jpg",
+   "w": 200,
+   "h": 240,
+   "bytes": 4748
+  },
+  "tk-29": {
+   "src": "site/ilacsizyasam-14-06-2025-1436.jpg",
+   "w": 560,
+   "h": 450,
+   "bytes": 24528
+  },
+  "tk-29-s": {
+   "src": "site/ilacsizyasam-14-06-2025-1436.jpg",
+   "w": 200,
+   "h": 240,
+   "bytes": 6022
+  },
+  "tk-30": {
+   "src": "site/dr-umit-aktas-satis-sitesi.jpg",
+   "w": 560,
+   "h": 450,
+   "bytes": 12424
+  },
+  "tk-30-s": {
+   "src": "site/dr-umit-aktas-satis-sitesi.jpg",
+   "w": 200,
+   "h": 240,
+   "bytes": 3044
+  },
   "s-bulut1": {
    "src": "site/cdn-shop-articles-image-3840-6-7fc11111-0087-47f3-a6b0-713e6b27aa24.webp",
    "w": 160,
