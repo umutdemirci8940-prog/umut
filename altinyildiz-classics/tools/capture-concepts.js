@@ -110,6 +110,35 @@ SCENARIOS['06-mobil-salla'] = async (p, shot) => {
   await p.click('#s0 .ph'); await p.click('#cta');
 };
 
+SCENARIOS['07-masthead-renk-sec'] = async (p, shot) => {
+  await shot('01-acilis', 900);
+  await shot('02-ilk-renk', 1300);
+  await shot('03-renk-akisi', 2700);
+  await p.hover('#sw button >> nth=5'); await p.click('#sw button >> nth=5'); await shot('04-saks-secildi', 500);
+  await shot('05-renk-yayildi', 500);
+  const s = await p.locator('#stage').boundingBox();
+  await p.mouse.move(s.x + 300, s.y + 120); await p.mouse.down(); await p.mouse.move(s.x + 140, s.y + 120, { steps: 8 }); await p.mouse.up();
+  await shot('06-surukleyerek-tarama', 700);
+  await p.click('#tabs button >> nth=1'); await p.mouse.move(960, 245); await shot('07-sweatshirt', 900);
+  await p.click('#cta'); await p.click('#all');
+};
+
+SCENARIOS['08-masthead-fermuar'] = async (p, shot) => {
+  await shot('01-acilis', 900);
+  await shot('02-kapali-mont', 1300);
+  await shot('03-fermuar-gosterimi', 600);
+  await p.waitForTimeout(1200);
+  const k = await p.locator('#pull').boundingBox();
+  await p.mouse.move(k.x + 13, k.y + 10); await p.mouse.down();
+  await p.mouse.move(k.x + 13, k.y + 70, { steps: 8 }); await shot('04-yari-acik', 100);
+  await p.mouse.move(k.x + 13, k.y + 120, { steps: 6 }); await shot('05-cogu-acik', 100);
+  await p.mouse.up();
+  await p.mouse.move(960, 245); await shot('06-katmanlar', 1400);
+  await p.hover('.tile >> nth=2'); await shot('07-katman-uzerinde', 400);
+  await p.click('.tile >> nth=0'); await p.click('#cta');
+  await p.click('#replay'); await shot('08-yeniden-kapandi', 1200);
+};
+
 (async () => {
   const b = await chromium.launch();
   let failed = false;

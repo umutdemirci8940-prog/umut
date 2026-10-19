@@ -12,6 +12,7 @@ const root = __dirname;
 const only = process.argv.slice(2);
 const b64 = (f, mime) => `data:${mime};base64,${fs.readFileSync(f).toString('base64')}`;
 const LOGO = b64(path.join(root, 'assets', 'banner', 'logo.png'), 'image/png');
+const LOGO_W = b64(path.join(root, 'assets', 'banner', 'logo-white.png'), 'image/png'); // koyu zemin için (siteden çekilen beyaz logo)
 
 for (const id of fs.readdirSync(path.join(root, 'concepts')).sort()) {
   const dir = path.join(root, 'concepts', id);
@@ -22,6 +23,7 @@ for (const id of fs.readdirSync(path.join(root, 'concepts')).sort()) {
   const IMG = {};
   for (const f of fs.existsSync(imgDir) ? fs.readdirSync(imgDir) : []) if (f.endsWith('.webp')) IMG[f.slice(0, -5)] = b64(path.join(imgDir, f), 'image/webp');
   const html = fs.readFileSync(path.join(dir, 'template.html'), 'utf8')
+    .split('%%LOGO_W%%').join(LOGO_W)
     .split('%%LOGO%%').join(LOGO)
     .replace('/*DATA*/null', JSON.stringify(data).replace(/</g, '\\u003c'))
     .replace('/*IMG*/null', JSON.stringify(IMG));
