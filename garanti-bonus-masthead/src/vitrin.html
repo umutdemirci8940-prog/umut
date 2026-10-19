@@ -111,20 +111,15 @@
   .snd .on, .tv.sound .snd .off { display: none; } .tv.sound .snd .on { display: block; }
 
   /* Bonus kartı */
-  .card { position: absolute; z-index: 6; left: 16px; top: 34px; width: 136px; height: 86px; border-radius: 9px; overflow: hidden; pointer-events: none;
-    background: radial-gradient(110px 76px at 100% 0%, rgba(170,239,81,.55), transparent 65%), linear-gradient(135deg, #0b7a45 0%, var(--green-dk) 55%, #004a2b 100%);
-    box-shadow: 0 16px 30px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.2) inset, 0 0 30px rgba(124,195,37,.35);
+  /* Gerçek Bonus Classic kart görseli (bonus.com.tr) */
+  .card { position: absolute; z-index: 6; left: 14px; top: 30px; width: 152px; height: 96px; border-radius: 7px; overflow: hidden; pointer-events: none;
+    box-shadow: 0 16px 30px rgba(0,0,0,.6), 0 0 26px rgba(124,195,37,.35);
     opacity: 0; transform: translate(-40px, -140px) rotate(-30deg); transition: transform 1s cubic-bezier(.3,1.1,.4,1) 2.1s, opacity .3s 2.1s; }
   .open .card { opacity: 1; transform: rotate(-7deg); }
-  .card::before { content: ""; position: absolute; right: -40px; bottom: -62px; width: 150px; height: 110px; border-radius: 50%; border: 12px solid rgba(124,195,37,.55); }
-  .card::after { content: ""; position: absolute; top: -50%; left: -60%; width: 40%; height: 200%; background: linear-gradient(90deg, transparent, rgba(255,255,255,.45), transparent); transform: rotate(20deg); }
+  .card img { width: 100%; height: 100%; }
+  .card::after { content: ""; position: absolute; top: -50%; left: -60%; width: 40%; height: 200%; background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent); transform: rotate(20deg); }
   .open .card::after { animation: sweep 1s ease 3s; }
   @keyframes sweep { to { left: 130%; } }
-  .card .plate { position: absolute; left: 7px; top: 6px; background: #fff; border-radius: 5px; padding: 2px 4px; }
-  .card .plate img { height: 17px; }
-  .card .chip { position: absolute; left: 10px; top: 38px; width: 21px; height: 15px; border-radius: 3px; background: linear-gradient(135deg, #f6e3a1, #c9a74a); }
-  .card .num { position: absolute; left: 10px; bottom: 9px; font-size: 8px; font-weight: 500; letter-spacing: 1.5px; color: #fff; opacity: .9; }
-  .card .bf { position: absolute; right: 7px; bottom: 7px; background: var(--yellow); color: var(--green-dk); font: 800 8px/1 "Barlow Condensed", Arial Narrow, sans-serif; letter-spacing: .6px; padding: 3px 5px 2px; border-radius: 6px; }
   .glass { position: absolute; inset: 0; z-index: 7; pointer-events: none;
     background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.07) 38%, transparent 46%, transparent 62%, rgba(255,255,255,.05) 68%, transparent 74%); }
   .legal { position: absolute; z-index: 9; right: 10px; bottom: 6px; font-size: 8.5px; color: rgba(255,255,255,.75); text-shadow: 0 1px 2px rgba(0,0,0,.6); }
@@ -193,12 +188,7 @@
     <div class="p phone"><img src="{{VITRIN:phone.webp}}" alt="Akıllı telefonda alışveriş uygulaması"><span class="lbl"><b>E-ticaret</b>✓ Bonus<span> kazan</span></span></div>
     <div class="p espresso"><img src="{{VITRIN:espresso.webp}}" alt="Espresso makinesi"><span class="lbl"><b>Küçük ev aletleri</b>✓ Bonus<span> kazan</span></span></div>
 
-    <div class="card">
-      <span class="plate"><img id="plateLogo" alt=""></span>
-      <span class="chip"></span>
-      <span class="num">•••• 2026</span>
-      <span class="bf">BLACK FRIDAY</span>
-    </div>
+    <div class="card"><img src="{{VITRIN:card.webp}}" alt="Garanti BBVA Bonus kredi kartı"></div>
     <div class="glass"></div>
     <p class="legal">Kampanya koşulları için bonus.com.tr</p>
     <button class="reclose" id="reclose" type="button">↻ Kepengi kapat</button>
@@ -219,7 +209,6 @@
 <script>
 (function () {
   var ad = document.getElementById('ad'), shutter = document.getElementById('shutter'), cta = document.getElementById('cta');
-  document.getElementById('plateLogo').src = document.getElementById('logo').src; // logo tek kez gömülür
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var opened = false, autoTimer = null, doneTimer = null, AUTO_OPEN = 3200;
 
