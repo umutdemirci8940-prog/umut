@@ -1,0 +1,36 @@
+name: Bonus kart görselleri
+
+# Bulut oturumunun ağ politikası bonus.com.tr ve garantibbva.com.tr'ye erişemediği için
+# gerçek Bonus kart görselleri GitHub sunucusunda toplanıp dala push'lanır.
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - tools/card-ref.js
+      - .github/workflows/card-ref.yml
+
+permissions:
+  contents: write
+
+jobs:
+  card-ref:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Playwright + Chromium kur
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Kart görsellerini topla
+        run: node tools/card-ref.js
+      - name: Sonuçları dala push'la
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A garanti-bonus-masthead/brand-ref/cards
+          git commit -m "Bonus kart görselleri (GitHub Actions)" || { echo "Değişiklik yok"; exit 0; }
+          git pull --rebase origin ${{ github.ref_name }}
+          git push origin HEAD:${{ github.ref_name }}
