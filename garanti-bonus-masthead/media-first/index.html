@@ -11,8 +11,10 @@
 <script>
   // Reklam ağı tarafından ezilir (Google Ads / DCM). Studio için Enabler.exit kullanılır.
   var clickTag = window.clickTag || "https://www.bonus.com.tr/kampanyalar";
-  // Markanın TV/dijital filmi hazır olduğunda MP4 adresi girilirse açılış sahnesi yerine sessiz video oynar.
+  // Kampanya filmi (MP4, H.264). Doluysa final karesindeki video penceresinde oynar; boşsa pencerede önizleme döngüsü oynar.
   var VIDEO_URL = "";
+  // İsteğe bağlı: açılış sahnesi yerine tam ekran oynayacak sessiz film.
+  var INTRO_VIDEO_URL = "";
 </script>
 <style>
   /* Renkler bonus.com.tr ve garantibbva.com.tr'den ölçüldü (brand-ref/report.json) */
@@ -117,19 +119,48 @@
   .on .tag { transition-delay: .35s; } .on .pill.y { transition-delay: .45s; }
   .on .pill:nth-of-type(3) { transition-delay: .57s; } .on .pill:nth-of-type(4) { transition-delay: .69s; }
 
-  .chips { position: absolute; left: 318px; top: 40px; width: 210px; list-style: none; }
-  .chips li { display: flex; align-items: center; gap: 8px; height: 28px; margin-bottom: 6px; padding: 0 12px 0 6px; border-radius: 14px; background: #fff;
-    color: var(--green-dk); font-size: 12px; font-weight: 700; box-shadow: 0 4px 10px rgba(0,98,58,.15); opacity: 0; transform: translateX(-14px); }
-  .chips li b { width: 18px; height: 18px; border-radius: 50%; background: var(--yellow); display: grid; place-items: center; font-size: 11px; transform: scale(0); }
-  .on .chips li { opacity: 1; transform: none; transition: all .45s var(--ease); }
-  .on .chips li b { transform: scale(1); transition: transform .35s cubic-bezier(.2,1.6,.4,1); }
-  .on .chips li:nth-child(1), .on .chips li:nth-child(1) b { transition-delay: .8s; }
-  .on .chips li:nth-child(2), .on .chips li:nth-child(2) b { transition-delay: .95s; }
-  .on .chips li:nth-child(3), .on .chips li:nth-child(3) b { transition-delay: 1.1s; }
-  .on .chips li:nth-child(4), .on .chips li:nth-child(4) b { transition-delay: 1.25s; }
-  .on .chips li:nth-child(5), .on .chips li:nth-child(5) b { transition-delay: 1.4s; }
-  .replay { position: absolute; left: 324px; top: 218px; background: none; border: 0; color: var(--green-dk); font: 700 11px Roboto, Arial, sans-serif; cursor: pointer; opacity: 0; }
-  .on .replay { opacity: .85; transition: opacity .4s 1.8s; }
+  /* Final karesindeki video penceresi (16:9) */
+  .vwin { position: absolute; left: 292px; top: 32px; width: 320px; height: 180px; border-radius: 12px; overflow: hidden; background: #003d24; cursor: default;
+    box-shadow: 0 0 0 3px #fff, 0 16px 34px rgba(0,98,58,.35); opacity: 0; transform: translateY(18px) scale(.94); }
+  .on .vwin { opacity: 1; transform: none; transition: all .7s var(--ease) .55s; }
+  .vwin video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: #000; }
+  .vbadge { position: absolute; left: 10px; top: 10px; z-index: 3; display: flex; align-items: center; gap: 5px; padding: 3px 8px 3px 6px; border-radius: 10px;
+    background: rgba(0,0,0,.45); color: #fff; font: 700 9px/1 Roboto, Arial, sans-serif; letter-spacing: .6px; text-transform: uppercase; }
+  .vbadge i { width: 6px; height: 6px; border-radius: 50%; background: #ff3b30; animation: blink 1.2s infinite; }
+  .vwin.stopped .vbadge i { animation: none; background: #fff; opacity: .6; }
+  @keyframes blink { 50% { opacity: .25; } }
+  .vctrl { position: absolute; left: 0; right: 0; bottom: 0; z-index: 3; height: 34px; display: flex; align-items: center; gap: 8px; padding: 0 8px;
+    background: linear-gradient(transparent, rgba(0,0,0,.6)); }
+  .vctrl button { width: 24px; height: 24px; border: 0; border-radius: 50%; background: none; color: #fff; cursor: pointer; display: grid; place-items: center; }
+  .vctrl button:hover, .vctrl button:focus-visible { background: rgba(255,255,255,.2); outline: none; }
+  .vctrl svg { width: 13px; height: 13px; fill: currentColor; }
+  .vbar { flex: 1; height: 4px; border-radius: 2px; background: rgba(255,255,255,.3); cursor: pointer; position: relative; }
+  .vbar::before { content: ""; position: absolute; inset: -6px 0; }
+  .vbar i { display: block; height: 100%; width: 0; border-radius: 2px; background: var(--yellow); }
+  .vtime { color: #fff; font: 500 10px/1 Roboto, Arial, sans-serif; min-width: 26px; }
+  .vwin .i-play, .vwin.stopped .i-pause, .vwin .i-on, .vwin.sound .i-off { display: none; }
+  .vwin.stopped .i-play, .vwin.sound .i-on { display: block; }
+  .vbig { position: absolute; left: 50%; top: 50%; z-index: 4; width: 54px; height: 54px; margin: -32px 0 0 -27px; border: 0; border-radius: 50%; cursor: pointer;
+    background: var(--yellow); color: var(--green-dk); display: grid; place-items: center; box-shadow: 0 6px 18px rgba(0,0,0,.35);
+    opacity: 0; transform: scale(.6); pointer-events: none; transition: all .3s cubic-bezier(.2,1.4,.4,1); }
+  .vbig svg { width: 20px; height: 20px; fill: currentColor; margin-left: 3px; }
+  .vwin.stopped .vbig { opacity: 1; transform: none; pointer-events: auto; }
+  /* Film yokken: önizleme döngüsü (kategori kesitleri) */
+  .reel { position: absolute; inset: 0; background: radial-gradient(220px 150px at 70% 40%, #0b7a45, transparent 70%), var(--green-dk); }
+  .reel .rays { opacity: .1; }
+  .rs { position: absolute; inset: 0; display: flex; align-items: center; gap: 14px; padding: 0 22px 14px; opacity: 0; transform: translateX(30px); transition: all .45s var(--ease); }
+  .rs.cur { opacity: 1; transform: none; }
+  .rs.out { opacity: 0; transform: translateX(-30px); }
+  .rs svg { flex: none; width: 92px; height: 92px; fill: none; stroke: #fff; stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; overflow: visible; }
+  .rs svg .acc { fill: var(--yellow); }
+  .rs b { display: block; font: 800 34px/.92 "Barlow Condensed", Arial Narrow, sans-serif; color: #fff; text-transform: uppercase; }
+  .rs span { display: inline-block; margin-top: 6px; padding: 3px 10px 2px; border-radius: 14px; background: var(--yellow); color: var(--green-dk);
+    font: 800 18px/1 "Barlow Condensed", Arial Narrow, sans-serif; text-transform: uppercase; }
+  .vcap { position: absolute; left: 292px; top: 220px; width: 320px; display: flex; justify-content: space-between; align-items: center; opacity: 0; }
+  .on .vcap { opacity: 1; transition: opacity .4s 1.2s; }
+  .vcap small { font: 700 10px Roboto, Arial, sans-serif; color: var(--green-dk); letter-spacing: .3px; }
+  .replay { position: static; background: none; border: 0; color: var(--green-dk); font: 700 11px Roboto, Arial, sans-serif; cursor: pointer; opacity: 0; }
+  .on .replay { opacity: .85; }
   .replay:hover, .replay:focus-visible { opacity: 1; text-decoration: underline; outline: none; }
   .end-cta { position: absolute; left: 718px; top: 188px; width: 216px; height: 44px; border: 0; border-radius: 6px; background: var(--yellow); color: var(--ink);
     font: 700 15px Roboto, Arial, sans-serif; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer;
@@ -265,10 +296,10 @@
   document.getElementById('plateLogo').src = document.getElementById('logo').src; // logo tek kez gömülür
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if (VIDEO_URL) SCENES[0] = { id: 'video', label: 'Film', bg: 'dk', dur: 0, pos: 'intro', video: true };
+  if (INTRO_VIDEO_URL) SCENES[0] = { id: 'video', label: 'Film', bg: 'dk', dur: 0, pos: 'intro', video: true };
 
   function sceneHTML(s) {
-    if (s.video) return '<video muted playsinline preload="auto" src="' + VIDEO_URL + '"></video><div class="vshade"></div>' +
+    if (s.video) return '<video muted playsinline preload="auto" src="' + INTRO_VIDEO_URL + '"></video><div class="vshade"></div>' +
       '<button class="sound" type="button" aria-label="Sesi aç / kapat">🔇</button>';
     if (s.id === 'intro') {
       var row = new Array(9).join('BLACK FRIDAY • ');
@@ -277,16 +308,36 @@
         '<span class="l2">Bonus\'la kazan!</span></div>';
     }
     if (s.id === 'end') {
-      var items = ['Giyim', 'Seçili e-ticaret uygulamaları', 'Elektrik-elektronik', 'Beyaz eşya', 'Küçük ev aletleri'];
       return '<div class="rays"></div><div class="end-txt cond"><span class="tag"><i></i>BLACK FRIDAY <i></i> KASIM</span>' +
         '<span class="pill y">Kasım alışverişlerinde</span><span class="pill g">En çok kazandıran</span><span class="pill g">kart <em>Bonus!</em></span></div>' +
-        '<ul class="chips">' + items.map(function (t) { return '<li><b>✓</b>' + t + '</li>'; }).join('') + '</ul>' +
-        '<button class="replay" type="button">↻ Tekrar izle</button>' +
+        vwinHTML() +
+        '<div class="vcap"><small>Bonus · Black Friday filmi</small><button class="replay" type="button">↻ Banner\'ı tekrar izle</button></div>' +
         '<button class="end-cta" type="button" tabindex="-1">Kampanyaları Keşfet <svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>';
     }
     return '<div class="txt cond"><div class="kicker">' + s.k + '</div><div class="mask"><span class="l1">' + s.l1 + '</span></div>' +
       '<span class="l2">' + s.l2.replace('Bonus', '<em>Bonus</em>') + '</span></div>' +
       '<div class="disk"><svg class="art" viewBox="0 0 200 200" aria-hidden="true">' + ART[s.id] + '</svg></div>';
+  }
+
+  var REEL = SCENES.filter(function (s) { return s.pos === 'cat'; });
+  function vwinHTML() {
+    var media = VIDEO_URL
+      ? '<video muted playsinline preload="metadata" src="' + VIDEO_URL + '"></video>'
+      : '<div class="reel"><div class="rays"></div>' + REEL.map(function (s) {
+          return '<div class="rs"><svg viewBox="0 0 200 200" aria-hidden="true">' + ART[s.id] + '</svg><div><b>' + s.l1 + '</b><span>Bonus kazan</span></div></div>';
+        }).join('') + '</div>';
+    var ic = function (d) { return '<svg viewBox="0 0 16 16">' + d + '</svg>'; };
+    return '<div class="vwin stopped" id="vwin" role="region" aria-label="Kampanya filmi">' + media +
+      '<span class="vbadge"><i></i>Kampanya filmi</span>' +
+      '<button class="vbig" type="button" aria-label="Oynat">' + ic('<path d="M4 2.5v11l9.5-5.5z"/>') + '</button>' +
+      '<div class="vctrl">' +
+        '<button class="vpp" type="button" aria-label="Oynat / duraklat"><span class="i-pause">' + ic('<rect x="3" y="2" width="3.5" height="12" rx="1"/><rect x="9.5" y="2" width="3.5" height="12" rx="1"/>') +
+        '</span><span class="i-play">' + ic('<path d="M4 2.5v11l9.5-5.5z"/>') + '</span></button>' +
+        '<div class="vbar" role="slider" aria-label="Film ilerlemesi"><i></i></div><span class="vtime">0:00</span>' +
+        '<button class="vmute" type="button" aria-label="Sesi aç / kapat"><span class="i-off">' + ic('<path d="M2 6h3l4-3.5v11L5 10H2z"/><path d="M11 5.5l4 5m0-5l-4 5" stroke="currentColor" stroke-width="1.6" fill="none"/>') +
+        '</span><span class="i-on">' + ic('<path d="M2 6h3l4-3.5v11L5 10H2z"/><path d="M11.5 5a4 4 0 010 6M13 3.5a6.5 6.5 0 010 9" stroke="currentColor" stroke-width="1.5" fill="none"/>') + '</span></button>' +
+        (VIDEO_URL ? '<button class="vfull" type="button" aria-label="Tam ekran">' + ic('<path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4" stroke="currentColor" stroke-width="1.8" fill="none"/>') + '</button>' : '') +
+      '</div></div>';
   }
 
   var els = SCENES.map(function (s, i) {
@@ -323,6 +374,7 @@
     if (prev && prev !== el) {
       var p = prev; setTimeout(function () { if (p !== els[cur]) p.classList.remove('on'); }, 900);
       var v0 = p.querySelector('video'); if (v0) v0.pause();
+      if (p === els[SCENES.length - 1]) player.stop();
     }
     el.classList.remove('on'); void el.offsetWidth;
     el.style.zIndex = ++z;
@@ -330,14 +382,17 @@
     cur = i;
     ad.dataset.bg = s.bg;
     ad.classList.remove('pos-intro', 'pos-cat', 'pos-end'); ad.classList.add('pos-' + s.pos);
-    if (s.pos === 'end') { card.classList.remove('flip'); void card.offsetWidth; card.classList.add('flip'); }
+    if (s.pos === 'end') {
+      card.classList.remove('flip'); void card.offsetWidth; card.classList.add('flip');
+      setTimeout(function () { if (cur === i) player.start(); }, 900);
+    }
     if (s.pos === 'cat') setTimeout(function () { if (cur === i) burst(); }, 900);
 
     segs.forEach(function (b, k) {
       b.classList.toggle('done', k < i); b.classList.remove('cur');
       b.setAttribute('aria-selected', k === i ? 'true' : 'false');
     });
-    var v = el.querySelector('video');
+    var v = s.video && el.querySelector('video');
     if (v) {
       v.currentTime = 0; v.play().catch(function () {});
       v.onended = function () { if (cur === i) go(i + 1); };
@@ -358,7 +413,7 @@
   function syncPause() {
     var p = isPaused();
     ad.classList.toggle('paused', p);
-    var v = els[cur] && els[cur].querySelector('video');
+    var v = SCENES[cur] && SCENES[cur].video && els[cur].querySelector('video');
     if (v) { p ? v.pause() : v.play().catch(function () {}); return; }
     if (!SCENES[cur] || !SCENES[cur].dur) return;
     clearTimeout(timer);
@@ -382,6 +437,55 @@
       ], { duration: 1300, delay: k * 120, easing: 'cubic-bezier(.2,.8,.3,1)', fill: 'backwards' }).onfinish = function () { c.remove(); };
     });
   }
+
+  // Final karesindeki video oynatıcı: gerçek film (VIDEO_URL) ya da önizleme döngüsü
+  var player = (function () {
+    var win = document.getElementById('vwin'), vid = win.querySelector('video'), bar = win.querySelector('.vbar i'), time = win.querySelector('.vtime');
+    var slides = win.querySelectorAll('.rs'), SLIDE = 1700, LOOPS = 2, REEL_MS = slides.length * SLIDE * LOOPS;
+    var t0 = 0, pos = 0, raf = null, playing = false;
+    function fmt(ms) { var s = Math.floor(ms / 1000); return Math.floor(s / 60) + ':' + ('0' + s % 60).slice(-2); }
+    function render(ms, total) {
+      bar.style.width = Math.min(100, ms / total * 100) + '%'; time.textContent = fmt(ms);
+      if (slides.length) {
+        var k = Math.floor(ms / SLIDE) % slides.length;
+        slides.forEach(function (sl, j) { sl.classList.toggle('cur', j === k); sl.classList.toggle('out', j !== k && sl.classList.contains('cur')); });
+      }
+    }
+    function tick() {
+      if (vid) { render(vid.currentTime * 1000, (vid.duration || 1) * 1000); }
+      else {
+        pos = Date.now() - t0;
+        if (pos >= REEL_MS) { pos = REEL_MS; render(pos - 1, REEL_MS); return pause(); }
+        render(pos, REEL_MS);
+      }
+      raf = requestAnimationFrame(tick);
+    }
+    function play() {
+      if (vid) { if (vid.ended) vid.currentTime = 0; vid.play().catch(function () {}); }
+      else { if (pos >= REEL_MS) pos = 0; t0 = Date.now() - pos; }
+      playing = true; win.classList.remove('stopped'); cancelAnimationFrame(raf); tick();
+    }
+    function pause() { playing = false; win.classList.add('stopped'); cancelAnimationFrame(raf); if (vid) vid.pause(); }
+    if (vid) vid.addEventListener('ended', function () { pause(); cta(); });
+    function cta() { var b = win.closest('.scene').querySelector('.end-cta'); b.style.animation = 'none'; void b.offsetWidth; b.style.animation = ''; }
+    win.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var t = e.target;
+      if (t.closest('.vmute')) {
+        var on = !win.classList.contains('sound'); win.classList.toggle('sound', on); if (vid) vid.muted = !on;
+        if (on && !playing) play();
+      } else if (t.closest('.vfull')) { (vid.requestFullscreen || vid.webkitEnterFullscreen || function () {}).call(vid); }
+      else if (t.closest('.vbar')) {
+        var r = win.querySelector('.vbar').getBoundingClientRect(), f = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width));
+        if (vid) vid.currentTime = f * (vid.duration || 0); else { pos = f * REEL_MS; t0 = Date.now() - pos; render(pos, REEL_MS); }
+        if (!playing) play();
+      } else { playing ? pause() : play(); }
+    });
+    return {
+      start: function () { if (vid) vid.currentTime = 0; pos = 0; render(0, 1); play(); },
+      stop: function () { pause(); }
+    };
+  })();
 
   // Etkileşim: üzerine gelince duraklat, düğme, klavye, kaydırma
   ad.addEventListener('mouseenter', function () { hoverPause = true; syncPause(); });

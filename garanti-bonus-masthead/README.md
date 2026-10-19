@@ -55,8 +55,17 @@ Teslim dosyası: `media-first/index.html` (tek dosya, ~52 KB). Kaynak: `src/medi
 |---|---|---|
 | ![](screens/media-first/5-beyaz.png) | ![](screens/media-first/6-kucuk.png) | ![](screens/media-first/7-final.png) |
 
-**Kurgu (~16 sn, sonra finalde durur):** Banner bir video gibi akar. Açılışta koyu yeşil zeminde iki ters yönde kayan "BLACK FRIDAY" şeridi, "Sepetin hazır mı? / Bonus'la kazan!" ve sağdan dönerek giren Bonus kartı. Ardından 5 kategori sahnesi; her biri Bonus renklerinden birinde (yeşil → koyu yeşil → sarı …), kartın arkasından dairesel perdeyle açılır. Dev başlık maskeden yükselir, kategori illüstrasyonu çizilerek gelir (çamaşır makinesinin tamburu döner, su ısıtıcısından buhar çıkar), kart köşeye yerleşir ve "+ Bonus" rozetleri patlar. Finalde kart dönerek büyür, 5 kategori tek tek işaretlenir, sarı CTA nabız atar.
+**Kurgu (~16 sn, sonra finalde durur):** Banner bir video gibi akar. Açılışta koyu yeşil zeminde iki ters yönde kayan "BLACK FRIDAY" şeridi, "Sepetin hazır mı? / Bonus'la kazan!" ve sağdan dönerek giren Bonus kartı. Ardından 5 kategori sahnesi; her biri Bonus renklerinden birinde (yeşil → koyu yeşil → sarı …), kartın arkasından dairesel perdeyle açılır. Dev başlık maskeden yükselir, kategori illüstrasyonu çizilerek gelir (çamaşır makinesinin tamburu döner, su ısıtıcısından buhar çıkar), kart köşeye yerleşir ve "+ Bonus" rozetleri patlar. Finalde kart dönerek büyür, ortadaki **video penceresinde kampanya filmi** sessiz başlar, sarı CTA nabız atar.
 
 **Etkileşim:** Altta hikâye tarzı bölüm çubuğu (her bölüme tıklanır, üzerine gelince adı görünür) · üzerine gelince otomatik duraklar, sağ üstte oynat/duraklat · ← → tuşları ve mobilde kaydırma ile sahne değiştirme · kart fareyle 3B eğilir · "Tekrar izle".
 
-**Film yuvası:** Kampanya filmi hazır olunca dosyanın başındaki `VIDEO_URL` değişkenine MP4 adresi yazılırsa açılış sahnesinin yerine sessiz video oynar (ses düğmesiyle), film bitince kategori sahneleri ve final devam eder.
+**Final karesindeki video penceresi (16:9, 320×180):**
+- Dosyanın başındaki `VIDEO_URL` değişkenine kampanya filminin MP4 adresi (H.264, önerilen ≤15 sn, 640×360) yazılır. Final karesi gelince film **sessiz** başlar.
+- Oynatıcı kontrolleri: oynat/duraklat, ilerleme çubuğu (tıklayarak sarma), süre, ses aç/kapat, tam ekran; duraklatınca ortada sarı büyük oynat düğmesi. Pencereye tıklamak reklamdan çıkış yapmaz.
+- Film bitince oynatıcı durur ve CTA tekrar nabız atar.
+- `VIDEO_URL` boşken pencerede aynı oynatıcı arayüzüyle 5 kategorinin önizleme döngüsü oynar (2 tur, sonra durur) – sunumda film yerini gösterir.
+- İsteğe bağlı `INTRO_VIDEO_URL`: açılış sahnesi yerine tam ekran sessiz film oynatır.
+
+| Final – film oynuyor | Final – duraklatıldı |
+|---|---|
+| ![](screens/media-first/7-final.png) | ![](screens/media-first/8-final-duraklatildi.png) |
