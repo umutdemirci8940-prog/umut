@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=970,height=250">
+<meta name="viewport" content="width=970,height=250">
+<title>Garanti BBVA Bonus – Black Friday Vitrini Masthead 970x250</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+<script>
+  // Reklam ağı tarafından ezilir (Google Ads / DCM). Studio için Enabler.exit kullanılır.
+  var clickTag = window.clickTag || "https://www.bonus.com.tr/kampanyalar";
+  // Kampanya filmi: MP4 (H.264). Doluysa vitrindeki TV'nin ekranında sessiz oynar; TV'ye tıklayınca ses açılır.
+  var VIDEO_URL = "";
+</script>
+<style>
+  /* Renkler bonus.com.tr ve garantibbva.com.tr'den ölçüldü (brand-ref/report.json) */
+  :root {
+    --lime: #7cc325;
+    --lime-lt: #aaef51;
+    --green-dk: #00623a;
+    --yellow: #ffcc00;
+    --yellow-dk: #f5bd00;
+    --ink: #2e3033;
+    --ease: cubic-bezier(.2,.9,.25,1);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 970px; height: 250px; overflow: hidden; background: #fff; }
+  body { font-family: Roboto, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+  .cond { font-family: "Barlow Condensed", "Roboto Condensed", "Arial Narrow", sans-serif; }
+  #ad { position: relative; width: 970px; height: 250px; overflow: hidden; cursor: pointer; user-select: none; -webkit-user-select: none; background: #111; }
+  #ad:focus-visible { outline: 3px solid var(--yellow); outline-offset: -3px; }
+  img { display: block; -webkit-user-drag: none; }
+
+  /* ---------- Sol: marka paneli ---------- */
+  .brand { position: absolute; z-index: 10; left: 0; top: 0; width: 280px; height: 250px; overflow: hidden;
+    background: radial-gradient(300px 220px at 130px 150px, var(--lime-lt), transparent 70%), var(--lime); }
+  .brand::before { content: ""; position: absolute; left: -560px; top: -570px; width: 1400px; height: 1400px; pointer-events: none; opacity: .14;
+    background: repeating-conic-gradient(from 0deg at 50% 50%, #fff 0 4deg, transparent 4deg 14deg);
+    -webkit-mask: radial-gradient(circle at 50% 50%, #000 0, transparent 50%); mask: radial-gradient(circle at 50% 50%, #000 0, transparent 50%); }
+  .logo-tab { position: absolute; left: 0; top: 0; width: 176px; height: 56px; background: #fff; border-radius: 0 0 14px 0;
+    display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(0,98,58,.15); }
+  .logo-tab img { height: 40px; }
+  .head { position: absolute; left: 20px; top: 68px; }
+  .tag { display: inline-flex; align-items: center; gap: 6px; height: 19px; padding: 0 9px; border-radius: 10px; border: 1.5px solid var(--green-dk);
+    color: var(--green-dk); font: 800 12px/1 "Barlow Condensed", Arial Narrow, sans-serif; letter-spacing: 1px; }
+  .tag i { width: 5px; height: 5px; border-radius: 50%; background: var(--green-dk); }
+  .pill { display: table; margin-top: 4px; padding: 3px 11px 2px; border-radius: 20px; line-height: 1; font-weight: 800; text-transform: uppercase; white-space: nowrap; }
+  .pill.y { background: var(--yellow); color: var(--green-dk); font-size: 21px; margin-top: 7px; }
+  .pill.g { background: var(--green-dk); color: #fff; font-size: 26px; }
+  .pill.g em { font-style: normal; color: var(--yellow); }
+  .cta { position: absolute; left: 20px; top: 202px; width: 196px; height: 34px; border: 0; border-radius: 6px; background: var(--yellow); color: var(--ink);
+    font: 700 14px Roboto, Arial, sans-serif; display: flex; align-items: center; justify-content: center; gap: 7px; cursor: pointer;
+    box-shadow: 0 6px 14px rgba(0,98,58,.25); transition: background .2s; }
+  .cta svg { width: 14px; height: 14px; stroke: currentColor; stroke-width: 2.6; fill: none; transition: transform .2s; }
+  #ad:hover .cta { background: var(--yellow-dk); }
+  #ad:hover .cta svg { transform: translateX(3px); }
+  .cta.glow { animation: ctapulse 1.4s ease 3; }
+  @keyframes ctapulse { 50% { box-shadow: 0 0 0 7px rgba(255,204,0,.4), 0 6px 14px rgba(0,98,58,.25); } }
+
+  /* ---------- Sağ: vitrin ---------- */
+  .win { position: absolute; left: 280px; top: 0; width: 690px; height: 250px; overflow: hidden; background: #0b0d0c; }
+  .win::after { /* alüminyum doğrama */ content: ""; position: absolute; inset: 0; z-index: 8; pointer-events: none;
+    box-shadow: inset 6px 0 0 #1c1e20, inset 7px 0 0 rgba(255,255,255,.12), inset 14px 0 18px rgba(0,0,0,.5); }
+  .store { position: absolute; inset: 0; width: 690px; height: 250px; object-fit: cover; filter: brightness(.18) saturate(.6); transition: filter .2s; }
+  .open .store { animation: lightsOn 1.1s steps(1) .25s forwards; }
+  @keyframes lightsOn { 0% { filter: brightness(.18) saturate(.6); } 15% { filter: brightness(.9); } 25% { filter: brightness(.3); } 40% { filter: brightness(1) saturate(1.05); }
+    55% { filter: brightness(.55); } 70%, 100% { filter: brightness(1) saturate(1.05); } }
+  .neon { position: absolute; z-index: 2; left: 0; right: 0; top: 18px; text-align: center; font: 800 26px/1 "Barlow Condensed", Arial Narrow, sans-serif; letter-spacing: 6px;
+    color: #eaffd0; opacity: 0; text-shadow: 0 0 4px #fff, 0 0 10px var(--lime-lt), 0 0 22px var(--lime), 0 0 40px var(--lime); }
+  .open .neon { animation: neon 1.2s steps(1) .5s forwards; }
+  @keyframes neon { 0% { opacity: 0; } 10% { opacity: 1; } 18% { opacity: .2; } 30% { opacity: 1; } 38% { opacity: .4; } 50%, 100% { opacity: 1; } }
+
+  /* Ürünler: podyumlara yerleşir */
+  .p { position: absolute; z-index: 3; cursor: pointer; opacity: 0; transform: translateY(-14px) scale(.96); transform-origin: 50% 100%;
+    filter: drop-shadow(0 10px 10px rgba(0,0,0,.45)); transition: opacity .45s ease, transform .6s cubic-bezier(.2,1.25,.4,1); }
+  .p img { width: 100%; height: 100%; }
+  .open .p { opacity: 1; transform: none; }
+  .open .p.ready:hover { transform: translateY(-4px) scale(1.05); }
+  .p.tv { left: 570px; top: 75px; width: 104px; height: 91px; }
+  .p.washer { left: 86px; top: 148px; width: 83px; height: 100px; z-index: 4; }
+  .p.sneaker { left: 166px; top: 123px; width: 130px; height: 88px; }
+  .p.phone { left: 345px; top: 36px; width: 54px; height: 104px; }
+  .p.espresso { left: 438px; top: 97px; width: 75px; height: 80px; }
+  .open .p.tv { transition-delay: .9s; } .open .p.washer { transition-delay: 1.05s; } .open .p.sneaker { transition-delay: 1.2s; }
+  .open .p.phone { transition-delay: 1.35s; } .open .p.espresso { transition-delay: 1.5s; }
+  .p.ready { transition-delay: 0s !important; }
+
+  /* Fiyat etiketi yerine Bonus etiketi */
+  .lbl { position: absolute; left: 50%; bottom: 30%; transform: translateX(-50%) rotate(-4deg) scale(0); white-space: nowrap; z-index: 2;
+    background: var(--yellow); color: var(--green-dk); border-radius: 6px; padding: 3px 7px 3px 6px; font: 700 9px/1.1 Roboto, Arial, sans-serif;
+    box-shadow: 0 3px 8px rgba(0,0,0,.35); transition: transform .35s cubic-bezier(.2,1.5,.4,1); }
+  .lbl b { display: block; font: 800 12px/1 "Barlow Condensed", Arial Narrow, sans-serif; text-transform: uppercase; letter-spacing: .3px; }
+  .lbl span { display: none; }
+  .lbl::before { content: ""; position: absolute; left: -4px; top: 50%; width: 6px; height: 6px; margin-top: -3px; border-radius: 50%; background: #fff; box-shadow: inset 0 0 0 1.5px var(--yellow-dk); }
+  .open .lbl { transform: translateX(-50%) rotate(-4deg) scale(1); }
+  .open .tv .lbl { transition-delay: 1.3s; } .open .washer .lbl { transition-delay: 1.45s; } .open .sneaker .lbl { transition-delay: 1.6s; }
+  .open .phone .lbl { transition-delay: 1.75s; } .open .espresso .lbl { transition-delay: 1.9s; }
+  .p.ready .lbl { transition-delay: 0s; }
+  .p.ready:hover .lbl { transform: translateX(-50%) rotate(-2deg) scale(1.12); }
+  .p.ready:hover .lbl span { display: inline; }
+  .p.tv .lbl { bottom: 0; } .p.phone .lbl { bottom: 18%; } .p.washer .lbl { bottom: 22%; }
+
+  /* TV ekranında kampanya filmi (perspektife oturtulur) */
+  .tvvid { position: absolute; left: 0; top: 0; width: 160px; height: 90px; transform-origin: 0 0; object-fit: cover; background: #000; }
+  .snd { position: absolute; z-index: 3; left: 78px; top: 60px; width: 20px; height: 20px; border-radius: 50%; border: 0; background: rgba(0,0,0,.55); color: #fff;
+    display: none; place-items: center; cursor: pointer; }
+  .has-video .snd { display: grid; }
+  .snd svg { width: 11px; height: 11px; fill: currentColor; }
+  .snd .on, .tv.sound .snd .off { display: none; } .tv.sound .snd .on { display: block; }
+
+  /* Bonus kartı */
+  .card { position: absolute; z-index: 6; left: 16px; top: 34px; width: 136px; height: 86px; border-radius: 9px; overflow: hidden; pointer-events: none;
+    background: radial-gradient(110px 76px at 100% 0%, rgba(170,239,81,.55), transparent 65%), linear-gradient(135deg, #0b7a45 0%, var(--green-dk) 55%, #004a2b 100%);
+    box-shadow: 0 16px 30px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.2) inset, 0 0 30px rgba(124,195,37,.35);
+    opacity: 0; transform: translate(-40px, -140px) rotate(-30deg); transition: transform 1s cubic-bezier(.3,1.1,.4,1) 2.1s, opacity .3s 2.1s; }
+  .open .card { opacity: 1; transform: rotate(-7deg); }
+  .card::before { content: ""; position: absolute; right: -40px; bottom: -62px; width: 150px; height: 110px; border-radius: 50%; border: 12px solid rgba(124,195,37,.55); }
+  .card::after { content: ""; position: absolute; top: -50%; left: -60%; width: 40%; height: 200%; background: linear-gradient(90deg, transparent, rgba(255,255,255,.45), transparent); transform: rotate(20deg); }
+  .open .card::after { animation: sweep 1s ease 3s; }
+  @keyframes sweep { to { left: 130%; } }
+  .card .plate { position: absolute; left: 7px; top: 6px; background: #fff; border-radius: 5px; padding: 2px 4px; }
+  .card .plate img { height: 17px; }
+  .card .chip { position: absolute; left: 10px; top: 38px; width: 21px; height: 15px; border-radius: 3px; background: linear-gradient(135deg, #f6e3a1, #c9a74a); }
+  .card .num { position: absolute; left: 10px; bottom: 9px; font-size: 8px; font-weight: 500; letter-spacing: 1.5px; color: #fff; opacity: .9; }
+  .card .bf { position: absolute; right: 7px; bottom: 7px; background: var(--yellow); color: var(--green-dk); font: 800 8px/1 "Barlow Condensed", Arial Narrow, sans-serif; letter-spacing: .6px; padding: 3px 5px 2px; border-radius: 6px; }
+  .glass { position: absolute; inset: 0; z-index: 7; pointer-events: none;
+    background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.07) 38%, transparent 46%, transparent 62%, rgba(255,255,255,.05) 68%, transparent 74%); }
+  .legal { position: absolute; z-index: 9; right: 10px; bottom: 6px; font-size: 8.5px; color: rgba(255,255,255,.75); text-shadow: 0 1px 2px rgba(0,0,0,.6); }
+  .reclose { position: absolute; z-index: 9; right: 10px; top: 18px; background: rgba(0,0,0,.45); border: 0; border-radius: 10px; color: #fff; cursor: pointer;
+    font: 700 9.5px Roboto, Arial, sans-serif; padding: 4px 8px; opacity: 0; pointer-events: none; transition: opacity .4s; }
+  .open.done .reclose { opacity: .85; pointer-events: auto; }
+  .reclose:hover, .reclose:focus-visible { opacity: 1; outline: none; background: rgba(0,0,0,.7); }
+
+  /* ---------- Kepenk ---------- */
+  .housing { position: absolute; z-index: 9; left: 0; right: 0; top: 0; height: 13px; background: linear-gradient(#3a3d40, #1b1d1f); box-shadow: 0 3px 6px rgba(0,0,0,.5); }
+  .shutter { position: absolute; z-index: 8; left: 0; top: 0; width: 690px; height: 262px; cursor: ns-resize; touch-action: none;
+    background: url({{VITRIN:shutter.jpg}}) center / cover; box-shadow: 0 8px 18px rgba(0,0,0,.6);
+    transition: transform .95s cubic-bezier(.6,0,.2,1); }
+  .shutter.drag { transition: none; }
+  .shutter.hint { animation: hint 2.2s ease-in-out infinite; }
+  @keyframes hint { 0%, 60%, 100% { transform: translateY(0); } 70% { transform: translateY(-16px); } 80% { transform: translateY(0); } 87% { transform: translateY(-6px); } }
+  .open .shutter { transform: translateY(-275px) !important; }
+  .shutter::after { /* alt kayıt */ content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 14px;
+    background: linear-gradient(#5b5f63, #2b2d30 60%, #1b1c1e); box-shadow: 0 -1px 0 rgba(255,255,255,.25); }
+  .handle { position: absolute; bottom: 3px; width: 34px; height: 7px; border-radius: 4px; background: linear-gradient(#9aa0a5, #4a4e52); z-index: 1; }
+  .handle.l { left: 120px; } .handle.r { right: 120px; }
+  .poster { position: absolute; left: 50%; top: 40px; width: 236px; margin-left: -118px; padding: 12px 14px 12px; background: #fdfdf8; transform: rotate(-2deg);
+    box-shadow: 0 6px 16px rgba(0,0,0,.45); text-align: center; }
+  .poster::before, .poster::after { content: ""; position: absolute; top: -8px; width: 54px; height: 18px; background: rgba(255,240,180,.75); }
+  .poster::before { left: -12px; transform: rotate(-30deg); } .poster::after { right: -12px; transform: rotate(28deg); }
+  .poster small { display: block; font: 800 12px/1 "Barlow Condensed", Arial Narrow, sans-serif; letter-spacing: 2px; color: var(--green-dk); }
+  .poster b { display: block; margin-top: 3px; font: 800 40px/.9 "Barlow Condensed", Arial Narrow, sans-serif; color: var(--green-dk); letter-spacing: .5px; }
+  .poster span { display: inline-block; margin-top: 7px; padding: 3px 10px 2px; border-radius: 12px; background: var(--yellow); color: var(--green-dk);
+    font: 800 15px/1 "Barlow Condensed", Arial Narrow, sans-serif; text-transform: uppercase; }
+  .pull { position: absolute; left: 50%; bottom: 24px; transform: translateX(-50%); display: flex; align-items: center; gap: 6px; padding: 5px 11px 5px 8px;
+    border-radius: 14px; background: rgba(0,0,0,.6); color: #fff; font: 700 11px Roboto, Arial, sans-serif; white-space: nowrap; }
+  .pull svg { width: 14px; height: 14px; fill: none; stroke: var(--yellow); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; animation: up 1.1s ease-in-out infinite; }
+  @keyframes up { 50% { transform: translateY(-4px); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; transition-delay: 0s !important; }
+  }
+</style>
+</head>
+<body>
+<div id="ad" role="link" tabindex="0" aria-label="Garanti BBVA Bonus – Black Friday ve Kasım alışverişlerinde en çok kazandıran kart Bonus. Kampanyaları keşfet.">
+
+  <div class="brand">
+    <div class="logo-tab"><img id="logo" src="{{BONUS_LOGO}}" alt="Garanti BBVA Bonus"></div>
+    <div class="head cond">
+      <span class="tag"><i></i>BLACK FRIDAY <i></i> KASIM</span>
+      <span class="pill y">Kasım alışverişlerinde</span>
+      <span class="pill g">En çok kazandıran</span>
+      <span class="pill g">kart <em>Bonus!</em></span>
+    </div>
+    <button class="cta" id="cta" type="button" tabindex="-1">Kampanyaları Keşfet <svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+  </div>
+
+  <div class="win" id="win">
+    <img class="store" src="{{VITRIN:store.jpg}}" alt="">
+    <div class="neon" aria-hidden="true">BLACK FRIDAY</div>
+
+    <div class="p tv" data-k="Elektronik"><img src="{{VITRIN:tv.webp}}" alt="Televizyon">
+      <button class="snd" type="button" aria-label="Filmin sesini aç / kapat">
+        <svg class="off" viewBox="0 0 16 16"><path d="M2 6h3l4-3.5v11L5 10H2z"/><path d="M11 5.5l4 5m0-5l-4 5" stroke="currentColor" stroke-width="1.8" fill="none"/></svg>
+        <svg class="on" viewBox="0 0 16 16"><path d="M2 6h3l4-3.5v11L5 10H2z"/><path d="M11.5 5a4 4 0 010 6M13 3.5a6.5 6.5 0 010 9" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>
+      </button>
+      <span class="lbl"><b>Elektronik</b>✓ Bonus<span> kazan</span></span></div>
+    <div class="p washer"><img src="{{VITRIN:washer.webp}}" alt="Çamaşır makinesi"><span class="lbl"><b>Beyaz eşya</b>✓ Bonus<span> kazan</span></span></div>
+    <div class="p sneaker"><img src="{{VITRIN:sneaker.webp}}" alt="Spor ayakkabı"><span class="lbl"><b>Giyim</b>✓ Bonus<span> kazan</span></span></div>
+    <div class="p phone"><img src="{{VITRIN:phone.webp}}" alt="Akıllı telefonda alışveriş uygulaması"><span class="lbl"><b>E-ticaret</b>✓ Bonus<span> kazan</span></span></div>
+    <div class="p espresso"><img src="{{VITRIN:espresso.webp}}" alt="Espresso makinesi"><span class="lbl"><b>Küçük ev aletleri</b>✓ Bonus<span> kazan</span></span></div>
+
+    <div class="card">
+      <span class="plate"><img id="plateLogo" alt=""></span>
+      <span class="chip"></span>
+      <span class="num">•••• 2026</span>
+      <span class="bf">BLACK FRIDAY</span>
+    </div>
+    <div class="glass"></div>
+    <p class="legal">Kampanya koşulları için bonus.com.tr</p>
+    <button class="reclose" id="reclose" type="button">↻ Kepengi kapat</button>
+
+    <div class="shutter hint" id="shutter" role="button" tabindex="0" aria-label="Kepengi yukarı kaldır">
+      <div class="poster">
+        <small>KASIM · BONUS</small>
+        <b>BLACK FRIDAY</b>
+        <span>Kepengi kaldır, fırsatları gör!</span>
+      </div>
+      <div class="pull"><svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg>Yukarı kaydır</div>
+      <i class="handle l"></i><i class="handle r"></i>
+    </div>
+    <div class="housing"></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var ad = document.getElementById('ad'), shutter = document.getElementById('shutter'), cta = document.getElementById('cta');
+  document.getElementById('plateLogo').src = document.getElementById('logo').src; // logo tek kez gömülür
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var opened = false, autoTimer = null, doneTimer = null, AUTO_OPEN = 3200;
+
+  function open() {
+    if (opened) return;
+    opened = true; clearTimeout(autoTimer);
+    shutter.classList.remove('hint', 'drag'); shutter.style.transform = '';
+    ad.classList.add('open');
+    clearTimeout(doneTimer);
+    doneTimer = setTimeout(function () {
+      ad.classList.add('done');
+      [].forEach.call(document.querySelectorAll('.p'), function (p) { p.classList.add('ready'); });
+      cta.classList.remove('glow'); void cta.offsetWidth; cta.classList.add('glow');
+    }, reduce ? 100 : 3200);
+    setTimeout(function () { if (opened) tv.play(); }, reduce ? 100 : 1400);
+  }
+  function close() {
+    opened = false; clearTimeout(doneTimer);
+    ad.classList.remove('open', 'done'); cta.classList.remove('glow');
+    [].forEach.call(document.querySelectorAll('.p'), function (p) { p.classList.remove('ready'); });
+    tv.stop();
+    shutter.classList.add('hint');
+    autoTimer = setTimeout(open, AUTO_OPEN + 1500);
+  }
+
+  // Kepengi sürükle (fare + dokunmatik) ya da tıkla
+  var drag = null;
+  shutter.addEventListener('pointerdown', function (e) {
+    if (opened) return;
+    e.preventDefault(); e.stopPropagation(); clearTimeout(autoTimer);
+    drag = { y: e.clientY, dy: 0 };
+    shutter.setPointerCapture(e.pointerId); shutter.classList.remove('hint'); shutter.classList.add('drag');
+  });
+  shutter.addEventListener('pointermove', function (e) {
+    if (!drag) return;
+    drag.dy = Math.min(0, e.clientY - drag.y);
+    shutter.style.transform = 'translateY(' + drag.dy + 'px)';
+  });
+  shutter.addEventListener('pointerup', function () {
+    if (!drag) return;
+    var dy = drag.dy; drag = null; shutter.classList.remove('drag');
+    if (dy < -40 || dy > -4) open();
+    else { shutter.style.transform = ''; shutter.classList.add('hint'); autoTimer = setTimeout(open, AUTO_OPEN); }
+  });
+  shutter.addEventListener('click', function (e) { e.stopPropagation(); });
+  shutter.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowUp') { e.preventDefault(); e.stopPropagation(); open(); } });
+  ad.addEventListener('wheel', function (e) { if (!opened && e.deltaY < 0) open(); }, { passive: true });
+  document.getElementById('reclose').addEventListener('click', function (e) { e.stopPropagation(); close(); });
+
+  // TV ekranında kampanya filmi: video, ekranın perspektifine matrix3d ile oturtulur
+  var tv = (function () {
+    var box = document.querySelector('.p.tv'), vid = null;
+    if (!VIDEO_URL) return { play: function () {}, stop: function () {} };
+    vid = document.createElement('video');
+    vid.className = 'tvvid'; vid.muted = true; vid.loop = false; vid.playsInline = true; vid.setAttribute('playsinline', ''); vid.preload = 'metadata'; vid.src = VIDEO_URL;
+    box.insertBefore(vid, box.querySelector('.snd'));
+    box.classList.add('has-video');
+    // Ekran köşeleri (TV görseli 104×91 içinde): sol-üst, sağ-üst, sol-alt, sağ-alt
+    var q = [2.6, 2.3, 100.8, 15.9, 2.6, 83.9, 100.8, 74.5];
+    vid.style.transform = homography(160, 90, q);
+    function play() { vid.currentTime = 0; vid.play().catch(function () {}); }
+    function stop() { vid.pause(); }
+    box.addEventListener('click', function (e) {
+      e.stopPropagation(); // TV'ye tıklamak reklamdan çıkış yapmaz, sesi açar/kapatır
+      var on = !box.classList.contains('sound'); box.classList.toggle('sound', on); vid.muted = !on;
+      if (vid.paused || vid.ended) vid.play().catch(function () {});
+    });
+    return { play: play, stop: stop };
+  })();
+
+  function homography(w, h, q) {
+    function adj(m) { return [m[4]*m[8]-m[5]*m[7], m[2]*m[7]-m[1]*m[8], m[1]*m[5]-m[2]*m[4], m[5]*m[6]-m[3]*m[8], m[0]*m[8]-m[2]*m[6], m[2]*m[3]-m[0]*m[5], m[3]*m[7]-m[4]*m[6], m[1]*m[6]-m[0]*m[7], m[0]*m[4]-m[1]*m[3]]; }
+    function mm(a, b) { var c = []; for (var i = 0; i < 3; i++) for (var j = 0; j < 3; j++) { var s = 0; for (var k = 0; k < 3; k++) s += a[3*i+k] * b[3*k+j]; c[3*i+j] = s; } return c; }
+    function mv(m, v) { return [m[0]*v[0]+m[1]*v[1]+m[2]*v[2], m[3]*v[0]+m[4]*v[1]+m[5]*v[2], m[6]*v[0]+m[7]*v[1]+m[8]*v[2]]; }
+    function basis(p) { var m = [p[0], p[2], p[4], p[1], p[3], p[5], 1, 1, 1]; var v = mv(adj(m), [p[6], p[7], 1]); return mm(m, [v[0], 0, 0, 0, v[1], 0, 0, 0, v[2]]); }
+    var t = mm(basis(q), adj(basis([0, 0, w, 0, 0, h, w, h])));
+    for (var i = 0; i < 9; i++) t[i] = t[i] / t[8];
+    return 'matrix3d(' + [t[0], t[3], 0, t[6], t[1], t[4], 0, t[7], 0, 0, 1, 0, t[2], t[5], 0, t[8]].join(',') + ')';
+  }
+
+  // Tıklama çıkışı (ürünler dahil; kepenk ve TV hariç)
+  function exit() {
+    if (window.Enabler && Enabler.exit) return Enabler.exit('Bonus_BlackFriday_Vitrin_Exit');
+    window.open(window.clickTag, '_blank');
+  }
+  ad.addEventListener('click', exit);
+  ad.addEventListener('keydown', function (e) {
+    if (e.target === ad && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); exit(); }
+  });
+
+  function start() { autoTimer = setTimeout(open, AUTO_OPEN); }
+  if (document.readyState === 'complete') requestAnimationFrame(start);
+  else window.addEventListener('load', function () { requestAnimationFrame(start); });
+})();
+</script>
+</body>
+</html>

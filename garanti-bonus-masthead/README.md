@@ -117,3 +117,25 @@ Teslim dosyası: `pos/index.html` (tek dosya, ~52 KB). Kaynak: `src/pos.html`.
 **Etkileşim:** Sürükle-bırak (fare ve dokunmatik), karta tıklama, klavye (Tab → kart → Enter). Kullanıcı etkileşmezse kart kendiliğinden okutulur; yarıda bırakırsa 6 sn sonra devam eder; 30 sn içinde finale ulaşır. Kart ve video alanı tıklama çıkışını tetiklemez, banner'ın geri kalanı `clickTag` / `Enabler.exit` ile çıkar. "Tekrar oyna" baştan başlatır.
 
 **Video:** Dosyanın başındaki `VIDEO_URL` (MP4, H.264, 16:9) doluysa final karesinde film sessiz başlar; oynat/duraklat, sarma, ses, tam ekran kontrolleri vardır. Boşken "Kampanya filmi" yer tutucusu görünür.
+
+---
+
+# Konsept 5: "Black Friday Vitrini" (fotoğraf-gerçekçi)
+
+Teslim dosyası: `vitrin/index.html` (tek dosya, ~190 KB; görseller gömülü). Kaynak: `src/vitrin.html`, görseller `assets/vitrin/`.
+
+| Kepenk kapalı | Kepenk kaldırılıyor | Işıklar yanıyor |
+|---|---|---|
+| ![](screens/vitrin/1-kepenk.png) | ![](screens/vitrin/2-surukleniyor.png) | ![](screens/vitrin/3-isiklar.png) |
+
+| Vitrin açık | Ürün üzerine gelme | Film TV ekranında (test videosu) |
+|---|---|---|
+| ![](screens/vitrin/4-vitrin.png) | ![](screens/vitrin/5-hover.png) | ![](screens/vitrin/6-tv-film-test.png) |
+
+**Fikir:** Gece, kepengi kapalı bir mağaza vitrini. Kepengin üzerinde bantlı "BLACK FRIDAY – Kepengi kaldır, fırsatları gör!" afişi. Kullanıcı kepengi yukarı sürükler (ya da tıklar / fare tekerleği / ↑ tuşu); kepenk toplanır, mağazanın ışıkları titreyerek yanar, "BLACK FRIDAY" neon tabelası açılır, ürünler podyumlara yerleşir ve her birinin üzerinde Bonus etiketi belirir: Elektronik (TV), Beyaz eşya (çamaşır makinesi), Giyim (spor ayakkabı), E-ticaret (telefonda alışveriş uygulaması), Küçük ev aletleri (espresso makinesi). Son olarak Bonus kartı vitrine süzülür, CTA nabız atar.
+
+**Etkileşim:** Kepengi sürükleme (fare + dokunmatik), tıklama, tekerlek, klavye. Kullanıcı dokunmazsa kepenk 3,2 sn sonra kendiliğinden açılır. Ürünlerin üzerine gelince ürün öne çıkar, etiket "Bonus kazan" olarak genişler. "Kepengi kapat" ile baştan oynar. Kepenk ve TV dışındaki her yer tıklama çıkışına gider (`clickTag` / `Enabler.exit`).
+
+**Kampanya filmi:** `VIDEO_URL`'e MP4 adresi yazılırsa film vitrindeki **TV'nin ekranında**, ekranın perspektifine oturtulmuş olarak sessiz oynar; TV'ye tıklamak sesi açar/kapatır.
+
+**Görseller:** Mağaza içi, kepenk ve 5 ürün yapay zekâ ile fotoğraf-gerçekçi üretildi (Figma AI, "Bonus Black Friday – Vitrin Masthead Görselleri" dosyası); markasız/logosuzdur. Ürünlerin fonu temizlenip WebP'ye, sahneler JPEG'e sıkıştırıldı (toplam ~110 KB). Gerçek ürün/kampanya fotoğrafları gelirse `assets/vitrin/` içindeki dosyalar aynı adlarla değiştirilip `node build.js` çalıştırılır. Not: Google Ads HTML5 sınırı 150 KB'tır; bu konsept masthead / rich media (DV360, YouTube Masthead vb.) ağırlık sınırlarına göre hazırlanmıştır.
