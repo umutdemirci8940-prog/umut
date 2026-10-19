@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=970,height=250">
+<meta name="viewport" content="width=970,height=250">
+<title>Bonus – Black Friday Masthead 970x250</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800;900&display=swap" rel="stylesheet">
+<script>
+  // Reklam ağı tarafından ezilir (Google Ads / DCM). Studio için Enabler.exit kullanılır.
+  var clickTag = window.clickTag || "https://www.bonus.com.tr/kampanyalar";
+</script>
+<style>
+  :root {
+    --green: #00a650;       /* Bonus yeşili – marka kılavuzuna göre güncelleyin */
+    --green-hi: #3ddc84;
+    --green-dk: #00703a;
+    --black: #0a0a0a;
+    --ink: #ffffff;
+    --muted: #a7b0aa;
+    --line: rgba(255,255,255,.12);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 970px; height: 250px; overflow: hidden; background: var(--black); }
+  body { font-family: Montserrat, "Segoe UI", Arial, sans-serif; color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+  #ad {
+    position: relative; width: 970px; height: 250px; overflow: hidden; cursor: pointer;
+    background:
+      radial-gradient(420px 260px at 840px 120px, rgba(0,166,80,.35), transparent 70%),
+      radial-gradient(300px 200px at 120px 260px, rgba(0,166,80,.18), transparent 70%),
+      var(--black);
+    border: 1px solid #1d1d1d;
+  }
+  /* Black Friday çapraz şerit dokusu */
+  #ad::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .07;
+    background: repeating-linear-gradient(-55deg, #fff 0 2px, transparent 2px 22px);
+  }
+  #ad:focus-visible { outline: 3px solid var(--green-hi); outline-offset: -3px; }
+
+  /* ---------- Sol: marka + mesaj ---------- */
+  .left { position: absolute; left: 26px; top: 20px; width: 270px; height: 210px; }
+  .brand { display: flex; align-items: center; gap: 10px; opacity: 0; transform: translateY(-8px); }
+  .logo-bonus {
+    font-weight: 900; font-size: 24px; letter-spacing: -.5px; color: #fff;
+    background: var(--green); padding: 2px 12px 4px; border-radius: 20px; line-height: 1.1;
+  }
+  .logo-sep { width: 1px; height: 22px; background: var(--line); }
+  .logo-gar { font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: .3px; line-height: 1.2; }
+
+  .bf {
+    margin-top: 16px; font-weight: 900; font-size: 40px; line-height: .95; letter-spacing: -1px;
+    color: transparent; -webkit-text-stroke: 1.4px #fff;
+    background: linear-gradient(100deg, transparent 40%, rgba(255,255,255,.95) 50%, transparent 60%) -200% 0 / 200% 100% no-repeat;
+    -webkit-background-clip: text; background-clip: text;
+    opacity: 0; transform: translateX(-20px);
+  }
+  .bf b { display: block; color: #fff; -webkit-text-stroke: 0; }
+  .shine { animation: shine 2.4s ease .3s 2; }
+  @keyframes shine { to { background-position: 200% 0; } }
+
+  .claim { margin-top: 12px; font-size: 15px; font-weight: 700; line-height: 1.25; opacity: 0; transform: translateY(8px); }
+  .claim em { font-style: normal; color: var(--green-hi); font-weight: 900; }
+  .legal { position: absolute; left: 0; bottom: 0; font-size: 9px; color: #6f7772; }
+
+  /* ---------- Orta: interaktif sepet ---------- */
+  .mid { position: absolute; left: 318px; top: 18px; width: 378px; height: 214px; }
+  .mid-head { display: flex; justify-content: space-between; align-items: baseline; opacity: 0; }
+  .mid-head h2 { font-size: 15px; font-weight: 800; letter-spacing: -.2px; }
+  .mid-head span { font-size: 10px; font-weight: 700; color: var(--green-hi); letter-spacing: .6px; text-transform: uppercase; }
+  .hint-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--green-hi); margin-right: 5px; vertical-align: 1px; animation: blink 1.1s infinite; }
+  @keyframes blink { 50% { opacity: .2; } }
+
+  .tiles { display: flex; gap: 8px; margin-top: 12px; }
+  .tile {
+    position: relative; width: 69px; height: 92px; border-radius: 12px; border: 1px solid var(--line);
+    background: linear-gradient(180deg, #1a1a1a, #111); color: #fff; cursor: pointer;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px;
+    font: 700 10px/1.15 Montserrat, Arial, sans-serif; text-align: center; padding: 0 3px;
+    opacity: 0; transform: translateY(16px);
+    transition: transform .25s cubic-bezier(.2,.9,.3,1.3), border-color .2s, background .2s, box-shadow .2s;
+  }
+  .tile svg { width: 34px; height: 34px; stroke: #fff; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; transition: stroke .2s; }
+  .tile:hover, .tile:focus-visible, .tile.peek { transform: translateY(-4px); border-color: var(--green); outline: none; box-shadow: 0 8px 18px rgba(0,166,80,.25); }
+  .tile.on { background: linear-gradient(180deg, var(--green), var(--green-dk)); border-color: var(--green-hi); }
+  .tile.on svg { stroke: #fff; }
+  .tile .check {
+    position: absolute; top: -6px; right: -6px; width: 18px; height: 18px; border-radius: 50%;
+    background: #fff; color: var(--green-dk); font-size: 12px; font-weight: 900; line-height: 18px;
+    transform: scale(0); transition: transform .3s cubic-bezier(.2,.9,.3,1.6);
+  }
+  .tile.on .check { transform: scale(1); }
+
+  .meter { margin-top: 16px; opacity: 0; }
+  .meter-row { display: flex; justify-content: space-between; font-size: 10px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; }
+  .meter-row b { color: #fff; }
+  .bar { margin-top: 6px; height: 10px; border-radius: 6px; background: #1c1c1c; border: 1px solid var(--line); overflow: hidden; }
+  .bar i { display: block; height: 100%; width: 0; border-radius: 6px; background: linear-gradient(90deg, var(--green-dk), var(--green), var(--green-hi)); transition: width .6s cubic-bezier(.2,.8,.2,1); box-shadow: 0 0 12px var(--green); }
+  .msg { margin-top: 10px; height: 18px; font-size: 13px; font-weight: 700; color: #fff; white-space: nowrap; }
+  .msg em { font-style: normal; color: var(--green-hi); }
+  .msg.swap { animation: swap .4s ease; }
+  @keyframes swap { from { opacity: 0; transform: translateY(6px); } }
+
+  /* Final karesi (orta alanın üzerine) */
+  .final {
+    position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center;
+    opacity: 0; visibility: hidden; transform: scale(.96); transition: opacity .5s, transform .5s, visibility .5s;
+  }
+  .final.show { opacity: 1; visibility: visible; transform: none; }
+  .final small { font-size: 11px; font-weight: 800; color: var(--green-hi); letter-spacing: 1px; text-transform: uppercase; }
+  .final h3 { margin-top: 6px; font-size: 27px; font-weight: 900; line-height: 1.08; letter-spacing: -.6px; }
+  .final h3 em { font-style: normal; color: var(--green-hi); }
+  .final p { margin-top: 8px; font-size: 12px; font-weight: 600; color: var(--muted); line-height: 1.35; }
+  .replay {
+    margin-top: 12px; align-self: flex-start; background: none; border: 1px solid var(--line); color: #fff; border-radius: 16px;
+    font: 700 10px Montserrat, Arial, sans-serif; padding: 5px 11px; cursor: pointer; letter-spacing: .4px;
+  }
+  .replay:hover, .replay:focus-visible { border-color: var(--green-hi); outline: none; }
+  .mid.done .mid-head, .mid.done .tiles, .mid.done .meter { opacity: 0 !important; visibility: hidden; transition: opacity .35s, visibility .35s; }
+
+  /* ---------- Sağ: kart + CTA ---------- */
+  .right { position: absolute; left: 718px; top: 0; width: 252px; height: 250px; }
+  .card-wrap { position: absolute; left: 22px; top: 30px; width: 200px; height: 126px; perspective: 700px; opacity: 0; transform: translateX(60px) rotate(8deg); }
+  .card {
+    position: relative; width: 100%; height: 100%; border-radius: 13px; overflow: hidden;
+    background:
+      radial-gradient(180px 120px at 85% 10%, rgba(255,255,255,.28), transparent 60%),
+      linear-gradient(135deg, var(--green-hi) 0%, var(--green) 45%, var(--green-dk) 100%);
+    box-shadow: 0 18px 40px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.15) inset;
+    transform: rotateY(-14deg) rotateX(6deg); transition: transform .3s ease;
+  }
+  .card::after { /* parlama */
+    content: ""; position: absolute; top: -50%; left: -60%; width: 40%; height: 200%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.45), transparent); transform: rotate(20deg);
+  }
+  .card.sweep::after { animation: sweep .9s ease; }
+  @keyframes sweep { to { left: 130%; } }
+  .card .c-logo { position: absolute; left: 14px; top: 10px; font-weight: 900; font-size: 22px; letter-spacing: -.5px; }
+  .card .c-bank { position: absolute; right: 14px; top: 15px; font-size: 9px; font-weight: 700; opacity: .85; }
+  .card .chip { position: absolute; left: 16px; top: 50px; width: 30px; height: 22px; border-radius: 4px; background: linear-gradient(135deg, #f6e3a1, #c9a74a); }
+  .card .num { position: absolute; left: 16px; bottom: 14px; font-size: 11px; font-weight: 700; letter-spacing: 2px; opacity: .9; }
+  .card .bf-tag { position: absolute; right: 12px; bottom: 11px; background: #000; color: #fff; font-size: 8px; font-weight: 900; letter-spacing: .8px; padding: 3px 6px; border-radius: 4px; }
+  .card.pulse { animation: pulse .45s ease; }
+  @keyframes pulse { 40% { transform: rotateY(-4deg) rotateX(2deg) scale(1.06); } }
+
+  .coin {
+    position: absolute; z-index: 5; pointer-events: none; padding: 4px 9px; border-radius: 14px;
+    background: #fff; color: var(--green-dk); font-size: 11px; font-weight: 900; white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0,0,0,.4);
+  }
+
+  .cta {
+    position: absolute; left: 22px; top: 178px; width: 200px; height: 42px; border-radius: 22px; border: 0;
+    background: #fff; color: #000; font: 800 14px Montserrat, Arial, sans-serif; cursor: pointer; letter-spacing: -.1px;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    opacity: 0; transform: translateY(12px); transition: background .2s, color .2s, box-shadow .2s;
+  }
+  .cta svg { width: 16px; height: 16px; stroke: currentColor; stroke-width: 2.4; fill: none; transition: transform .2s; }
+  #ad:hover .cta, .cta.glow { background: var(--green); color: #fff; box-shadow: 0 0 0 4px rgba(0,166,80,.25), 0 0 26px rgba(0,166,80,.6); }
+  #ad:hover .cta svg { transform: translateX(3px); }
+  .cta.glow { animation: ctapulse 1.4s ease 3; }
+  @keyframes ctapulse { 50% { box-shadow: 0 0 0 9px rgba(0,166,80,0), 0 0 30px rgba(0,166,80,.7); } }
+
+  /* Uçan ikon */
+  .fly { position: absolute; z-index: 6; width: 34px; height: 34px; pointer-events: none; }
+  .fly svg { width: 100%; height: 100%; stroke: var(--green-hi); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 6px var(--green)); }
+
+  /* Final konfeti */
+  .confetti { position: absolute; z-index: 4; width: 8px; height: 8px; border-radius: 2px; pointer-events: none; }
+
+  /* Giriş animasyonu durumları */
+  .in .brand, .in .bf, .in .claim, .in .mid-head, .in .meter, .in .tile, .in .card-wrap, .in .cta {
+    opacity: 1; transform: none;
+    transition: opacity .6s ease, transform .7s cubic-bezier(.2,.9,.25,1);
+  }
+  .in .card-wrap { transition-delay: .15s; }
+  .in .bf { transition-delay: .25s; }
+  .in .claim { transition-delay: .55s; }
+  .in .mid-head { transition-delay: .8s; }
+  .in .tile:nth-child(1) { transition-delay: .9s; }
+  .in .tile:nth-child(2) { transition-delay: .98s; }
+  .in .tile:nth-child(3) { transition-delay: 1.06s; }
+  .in .tile:nth-child(4) { transition-delay: 1.14s; }
+  .in .tile:nth-child(5) { transition-delay: 1.22s; }
+  .in .meter { transition-delay: 1.3s; }
+  .in .cta { transition-delay: 1.45s; }
+  /* Giriş tamamlanınca hover geçişlerinde gecikme kalmasın */
+  .ready .tile { transition: transform .25s cubic-bezier(.2,.9,.3,1.3), border-color .2s, background .2s, box-shadow .2s; transition-delay: 0s !important; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; transition-delay: 0s !important; }
+  }
+</style>
+</head>
+<body>
+<div id="ad" role="link" tabindex="0" aria-label="Bonus – Black Friday ve Kasım alışverişlerinde en çok kazandıran kart. Kampanyaları keşfet.">
+
+  <div class="left">
+    <div class="brand" aria-hidden="true">
+      <span class="logo-bonus">bonus</span>
+      <span class="logo-sep"></span>
+      <span class="logo-gar">Garanti<br>BBVA</span>
+    </div>
+    <div class="bf">BLACK<b>FRIDAY</b></div>
+    <p class="claim">Kasım alışverişlerinde<br><em>en çok kazandıran kart</em> Bonus!</p>
+    <p class="legal">Kampanya koşulları bonus.com.tr'de.</p>
+  </div>
+
+  <div class="mid" id="mid">
+    <div class="mid-head">
+      <h2>Kasım sepetini doldur</h2>
+      <span id="hint"><i class="hint-dot"></i>Kategoriye dokun</span>
+    </div>
+    <div class="tiles" id="tiles" role="group" aria-label="Kampanya kategorileri"></div>
+    <div class="meter">
+      <div class="meter-row"><span>Bonus kazancın</span><b id="count">0 / 5 kategori</b></div>
+      <div class="bar"><i id="fill"></i></div>
+      <p class="msg" id="msg">Alışverişini seç, <em>Bonus</em> kazancını gör.</p>
+    </div>
+
+    <div class="final" id="final" aria-live="polite">
+      <small>Sepet tamam!</small>
+      <h3>Kasım'da en çok<br>kazandıran kart <em>Bonus</em></h3>
+      <p>Giyimden elektroniğe, beyaz eşyadan e-ticarete<br>alışverişlerinde Bonus kazan.</p>
+      <button class="replay" id="replay" type="button">↻ Tekrar oyna</button>
+    </div>
+  </div>
+
+  <div class="right">
+    <div class="card-wrap" id="cardWrap">
+      <div class="card" id="card">
+        <span class="c-logo">bonus</span>
+        <span class="c-bank">Garanti BBVA</span>
+        <span class="chip"></span>
+        <span class="num">•••• 2026</span>
+        <span class="bf-tag">BLACK FRIDAY</span>
+      </div>
+    </div>
+    <button class="cta" id="cta" type="button" tabindex="-1">Kampanyaları Keşfet
+      <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+(function () {
+  // Kategori içerikleri – metinler marka onayına göre güncellenebilir.
+  var CATS = [
+    { id: 'giyim', label: 'Giyim', msg: 'Giyim alışverişlerinde <em>Bonus</em> kazan',
+      icon: '<path d="M8 3l4 2 4-2 5 4-3 4-2-1v11H8V10l-2 1-3-4z"/>' },
+    { id: 'eticaret', label: 'E-ticaret uygulama', msg: 'Seçili e-ticaret uygulamalarında <em>Bonus</em>',
+      icon: '<rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10 6.5h4"/><path d="M9 11h6l-.8 5H9.8z"/><path d="M10.5 11V9.8a1.5 1.5 0 013 0V11"/>' },
+    { id: 'elektronik', label: 'Elektrik elektronik', msg: 'Elektronik alışverişinde <em>Bonus</em> kazan',
+      icon: '<rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 16v4"/>' },
+    { id: 'beyaz', label: 'Beyaz eşya', msg: 'Beyaz eşya alışverişinde <em>Bonus</em> kazan',
+      icon: '<rect x="5" y="2.5" width="14" height="19" rx="2"/><path d="M5 7h14"/><circle cx="12" cy="14" r="4"/><path d="M8 4.8h1M11 4.8h1"/>' },
+    { id: 'kucuk', label: 'Küçük ev aletleri', msg: 'Küçük ev aletlerinde <em>Bonus</em> kazan',
+      icon: '<path d="M8 3h8l-1 8H9z"/><path d="M16 5h2.5v4H15.5"/><path d="M9 11h6l1 3H8z"/><rect x="7" y="14" width="10" height="7" rx="1.5"/><circle cx="12" cy="17.5" r="1"/>' }
+  ];
+
+  var ad = document.getElementById('ad');
+  var mid = document.getElementById('mid');
+  var tilesEl = document.getElementById('tiles');
+  var fill = document.getElementById('fill');
+  var count = document.getElementById('count');
+  var msg = document.getElementById('msg');
+  var final = document.getElementById('final');
+  var card = document.getElementById('card');
+  var cta = document.getElementById('cta');
+  var hint = document.getElementById('hint');
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var picked = {}, nPicked = 0, autoTimer = null, idleTimer = null, finished = false, startedAt = Date.now();
+  var AUTO_DELAY = 1700, IDLE_RESUME = 5000, MAX_ANIM_MS = 29000; // 30 sn animasyon sınırı
+
+  var tiles = CATS.map(function (c, i) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'tile'; b.dataset.i = i;
+    b.setAttribute('aria-pressed', 'false');
+    b.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true">' + c.icon + '</svg>' + c.label + '<span class="check" aria-hidden="true">✓</span>';
+    b.addEventListener('click', function (e) { e.stopPropagation(); userPick(i); });
+    tilesEl.appendChild(b);
+    return b;
+  });
+
+  function rel(el) { // #ad içindeki konum
+    var a = ad.getBoundingClientRect(), r = el.getBoundingClientRect();
+    return { x: r.left - a.left, y: r.top - a.top, w: r.width, h: r.height };
+  }
+
+  function pick(i) {
+    if (finished || picked[CATS[i].id]) return;
+    picked[CATS[i].id] = true; nPicked++;
+    var t = tiles[i];
+    t.classList.add('on'); t.setAttribute('aria-pressed', 'true');
+    fill.style.width = (nPicked / CATS.length * 100) + '%';
+    count.textContent = nPicked + ' / ' + CATS.length + ' kategori';
+    msg.innerHTML = CATS[i].msg; msg.classList.remove('swap'); void msg.offsetWidth; msg.classList.add('swap');
+    flyToCard(t, CATS[i]);
+    if (nPicked === CATS.length) setTimeout(showFinal, reduce ? 200 : 1100);
+  }
+
+  function flyToCard(tile, c) {
+    var from = rel(tile.querySelector('svg')), to = rel(card);
+    if (reduce || !ad.animate) return land(to);
+    var f = document.createElement('div');
+    f.className = 'fly'; f.innerHTML = '<svg viewBox="0 0 24 24">' + c.icon + '</svg>';
+    f.style.left = from.x + 'px'; f.style.top = from.y + 'px';
+    ad.appendChild(f);
+    var dx = to.x + to.w / 2 - 17 - from.x, dy = to.y + to.h / 2 - 17 - from.y;
+    f.animate([
+      { transform: 'translate(0,0) scale(1)', opacity: 1 },
+      { transform: 'translate(' + dx * .5 + 'px,' + (dy - 70) + 'px) scale(1.4)', opacity: 1, offset: .5 },
+      { transform: 'translate(' + dx + 'px,' + dy + 'px) scale(.3)', opacity: 0 }
+    ], { duration: 650, easing: 'cubic-bezier(.4,0,.6,1)' }).onfinish = function () { f.remove(); land(to); };
+  }
+
+  function land(to) {
+    card.classList.remove('pulse', 'sweep'); void card.offsetWidth; card.classList.add('pulse', 'sweep');
+    if (reduce || !ad.animate) return;
+    var coin = document.createElement('div');
+    coin.className = 'coin'; coin.textContent = '+ Bonus';
+    coin.style.left = (to.x + to.w - 40) + 'px'; coin.style.top = (to.y - 4) + 'px';
+    ad.appendChild(coin);
+    coin.animate([
+      { transform: 'translateY(10px) scale(.5)', opacity: 0 },
+      { transform: 'translateY(-6px) scale(1.05)', opacity: 1, offset: .3 },
+      { transform: 'translateY(-26px) scale(1)', opacity: 0 }
+    ], { duration: 1100, easing: 'ease-out' }).onfinish = function () { coin.remove(); };
+  }
+
+  function showFinal() {
+    finished = true; stopAuto();
+    mid.classList.add('done');
+    final.classList.add('show');
+    cta.classList.add('glow');
+    hint.style.visibility = 'hidden';
+    confetti();
+  }
+
+  function confetti() {
+    if (reduce || !ad.animate) return;
+    var colors = ['#00a650', '#3ddc84', '#ffffff', '#00703a'];
+    for (var k = 0; k < 36; k++) {
+      var p = document.createElement('div');
+      p.className = 'confetti';
+      p.style.background = colors[k % colors.length];
+      p.style.left = (720 + Math.random() * 230) + 'px'; p.style.top = '-10px';
+      ad.appendChild(p);
+      (function (p) {
+        p.animate([
+          { transform: 'translate(0,0) rotate(0)', opacity: 1 },
+          { transform: 'translate(' + (Math.random() * 120 - 60) + 'px,' + (200 + Math.random() * 80) + 'px) rotate(' + (Math.random() * 720) + 'deg)', opacity: 0 }
+        ], { duration: 1600 + Math.random() * 1200, delay: Math.random() * 400, easing: 'cubic-bezier(.2,.6,.4,1)' }).onfinish = function () { p.remove(); };
+      })(p);
+    }
+  }
+
+  // Otomatik gösterim: kullanıcı etkileşmezse kategoriler sırayla dolar.
+  function nextAuto() {
+    if (finished) return;
+    if (Date.now() - startedAt > MAX_ANIM_MS) return showFinal();
+    for (var i = 0; i < CATS.length; i++) {
+      if (!picked[CATS[i].id]) {
+        var t = tiles[i];
+        t.classList.add('peek');
+        setTimeout(function () { t.classList.remove('peek'); }, 450);
+        pick(i);
+        break;
+      }
+    }
+    autoTimer = setTimeout(nextAuto, AUTO_DELAY);
+  }
+  function stopAuto() { clearTimeout(autoTimer); clearTimeout(idleTimer); }
+  function userPick(i) {
+    stopAuto();
+    pick(i);
+    // Kullanıcı yarıda bırakırsa bir süre sonra otomatik devam et (30 sn içinde kapanır).
+    if (!finished) idleTimer = setTimeout(nextAuto, IDLE_RESUME);
+  }
+
+  function reset() {
+    picked = {}; nPicked = 0; finished = false; startedAt = Date.now();
+    tiles.forEach(function (t) { t.classList.remove('on'); t.setAttribute('aria-pressed', 'false'); });
+    fill.style.width = '0'; count.textContent = '0 / ' + CATS.length + ' kategori';
+    msg.innerHTML = 'Alışverişini seç, <em>Bonus</em> kazancını gör.';
+    final.classList.remove('show'); mid.classList.remove('done'); cta.classList.remove('glow');
+    hint.style.visibility = '';
+    stopAuto(); idleTimer = setTimeout(nextAuto, IDLE_RESUME);
+  }
+  document.getElementById('replay').addEventListener('click', function (e) { e.stopPropagation(); reset(); });
+
+  // Kartta hafif 3B eğim (fare takibi)
+  ad.addEventListener('mousemove', function (e) {
+    var a = ad.getBoundingClientRect();
+    var x = (e.clientX - a.left) / a.width - .5, y = (e.clientY - a.top) / a.height - .5;
+    card.style.transform = 'rotateY(' + (-14 + x * 22) + 'deg) rotateX(' + (6 - y * 14) + 'deg)';
+  });
+  ad.addEventListener('mouseleave', function () { card.style.transform = ''; });
+
+  // Tıklama çıkışı
+  function exit() {
+    if (window.Enabler && Enabler.exit) return Enabler.exit('Bonus_BlackFriday_Exit');
+    window.open(window.clickTag, '_blank');
+  }
+  ad.addEventListener('click', exit);
+  ad.addEventListener('keydown', function (e) {
+    if (e.target === ad && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); exit(); }
+  });
+
+  // Başlat
+  function start() {
+    ad.classList.add('in');
+    document.querySelector('.bf').classList.add('shine');
+    setTimeout(function () { ad.classList.add('ready'); }, 2200);
+    autoTimer = setTimeout(nextAuto, 3400);
+  }
+  if (document.readyState === 'complete') requestAnimationFrame(start);
+  else window.addEventListener('load', function () { requestAnimationFrame(start); });
+})();
+</script>
+</body>
+</html>
