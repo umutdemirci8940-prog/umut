@@ -40,3 +40,23 @@ Renkler, fontlar ve logo **garantibbva.com.tr** ve **bonus.com.tr**'den ölçül
 - Logo ve renkler siteden alındı; yayın öncesi marka ekibinin onayından geçmeli (renkler `src/index.html` → `:root`).
 - Kampanyada oran/tutar verilmediği için bonus miktarı yazılmadı; net kazanım oranları gelince `CATS[].msg` metinlerine eklenebilir.
 - Yasal ibare ("Kampanya koşulları bonus.com.tr'de.") hukuk onayına göre güncellenmeli.
+
+---
+
+# Alternatif konsept: Media-First (sinematik) masthead
+
+Teslim dosyası: `media-first/index.html` (tek dosya, ~52 KB). Kaynak: `src/media-first.html`.
+
+| Açılış | Giyim | E-ticaret | Elektronik |
+|---|---|---|---|
+| ![](screens/media-first/1-acilis.png) | ![](screens/media-first/2-giyim.png) | ![](screens/media-first/3-eticaret.png) | ![](screens/media-first/4-elektronik.png) |
+
+| Beyaz eşya | Küçük ev aletleri | Final |
+|---|---|---|
+| ![](screens/media-first/5-beyaz.png) | ![](screens/media-first/6-kucuk.png) | ![](screens/media-first/7-final.png) |
+
+**Kurgu (~16 sn, sonra finalde durur):** Banner bir video gibi akar. Açılışta koyu yeşil zeminde iki ters yönde kayan "BLACK FRIDAY" şeridi, "Sepetin hazır mı? / Bonus'la kazan!" ve sağdan dönerek giren Bonus kartı. Ardından 5 kategori sahnesi; her biri Bonus renklerinden birinde (yeşil → koyu yeşil → sarı …), kartın arkasından dairesel perdeyle açılır. Dev başlık maskeden yükselir, kategori illüstrasyonu çizilerek gelir (çamaşır makinesinin tamburu döner, su ısıtıcısından buhar çıkar), kart köşeye yerleşir ve "+ Bonus" rozetleri patlar. Finalde kart dönerek büyür, 5 kategori tek tek işaretlenir, sarı CTA nabız atar.
+
+**Etkileşim:** Altta hikâye tarzı bölüm çubuğu (her bölüme tıklanır, üzerine gelince adı görünür) · üzerine gelince otomatik duraklar, sağ üstte oynat/duraklat · ← → tuşları ve mobilde kaydırma ile sahne değiştirme · kart fareyle 3B eğilir · "Tekrar izle".
+
+**Film yuvası:** Kampanya filmi hazır olunca dosyanın başındaki `VIDEO_URL` değişkenine MP4 adresi yazılırsa açılış sahnesinin yerine sessiz video oynar (ses düğmesiyle), film bitince kategori sahneleri ve final devam eder.

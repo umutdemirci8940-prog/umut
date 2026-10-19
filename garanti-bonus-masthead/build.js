@@ -1,10 +1,18 @@
 #!/usr/bin/env node
 'use strict';
-/** src/index.html → index.html: logoyu base64 gömer, tek dosyalık banner üretir. Kullanım: node build.js */
+/**
+ * src/*.html → tek dosyalık bannerlar (logo base64 gömülür).
+ *   src/index.html       → index.html             (interaktif "sepetini doldur")
+ *   src/media-first.html → media-first/index.html (sinematik, media-first)
+ * Kullanım: node build.js
+ */
 const fs = require('fs');
 const path = require('path');
 const dir = __dirname;
 const logo = 'data:image/webp;base64,' + fs.readFileSync(path.join(dir, 'assets', 'bonus-logo.webp')).toString('base64');
-const html = fs.readFileSync(path.join(dir, 'src', 'index.html'), 'utf8').split('{{BONUS_LOGO}}').join(logo);
-fs.writeFileSync(path.join(dir, 'index.html'), html);
-console.log('index.html', (Buffer.byteLength(html) / 1024).toFixed(1) + ' KB');
+for (const [src, out] of [['index.html', 'index.html'], ['media-first.html', 'media-first/index.html']]) {
+  const html = fs.readFileSync(path.join(dir, 'src', src), 'utf8').split('{{BONUS_LOGO}}').join(logo);
+  fs.mkdirSync(path.dirname(path.join(dir, out)), { recursive: true });
+  fs.writeFileSync(path.join(dir, out), html);
+  console.log(out, (Buffer.byteLength(html) / 1024).toFixed(1) + ' KB');
+}
