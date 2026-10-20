@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=320,height=480">
+<meta name="viewport" content="width=320,height=480,initial-scale=1,user-scalable=no">
+<title>İlaçsız Yaşam – Mesajlaş 320x480</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+{{SHARED_CSS}}
+html, body { background: #ece5dc; }
+.ad { width: 320px; height: 480px; background: #ece5dc; color: var(--ink); }
+/* Üst çubuk */
+.top { position: absolute; z-index: 3; left: 0; right: 0; top: 0; height: 54px; background: var(--navy); color: #fff; display: flex; align-items: center; gap: 9px; padding: 0 12px; box-shadow: 0 2px 8px rgba(0, 0, 0, .2); cursor: pointer; }
+.top .av { width: 36px; height: 36px; border-radius: 50%; overflow: hidden; flex: none; }
+.top .av img { width: 100%; height: 100%; }
+.top .nm { font-size: 14px; font-weight: 800; line-height: 1.1; }
+.top .nm span { display: inline-block; margin-left: 4px; width: 14px; height: 14px; border-radius: 50%; background: var(--green); font-size: 9px; line-height: 14px; text-align: center; vertical-align: 1px; }
+.top .st { font-size: 10px; font-weight: 600; opacity: .8; margin-top: 2px; }
+.top .st.typing { color: #9fe06a; opacity: 1; }
+/* Mesajlar */
+.msgs { position: absolute; left: 0; right: 0; top: 54px; bottom: 58px; transition: bottom .3s var(--ease); overflow: hidden; padding: 0 10px; display: flex; flex-direction: column; }
+.msgs .inner { margin-top: auto; display: flex; flex-direction: column; gap: 5px; padding: 10px 0 6px; transition: transform .35s var(--ease); }
+.day { align-self: center; font-size: 9.5px; font-weight: 800; color: #5b6478; background: rgba(255, 255, 255, .75); padding: 3px 9px; border-radius: 7px; margin-bottom: 3px; }
+.b { position: relative; max-width: 82%; padding: 6px 9px 15px; border-radius: 10px; font-size: 12px; line-height: 1.38; font-weight: 600; box-shadow: 0 1px 1px rgba(0, 0, 0, .12); animation: pop .32s var(--ease) both; }
+.b .tm { position: absolute; right: 7px; bottom: 3px; font-size: 8.5px; font-weight: 700; color: #7b8496; }
+.b.bot { align-self: flex-start; background: #fff; border-top-left-radius: 3px; }
+.b.me { align-self: flex-end; background: #e2f6cf; border-top-right-radius: 3px; }
+.b.me .tm::after { content: ' ✓✓'; color: #3f9ae0; }
+.b.ph { padding: 4px 4px 16px; width: 210px; }
+.b.ph img { display: block; width: 100%; height: 118px; object-fit: cover; border-radius: 7px; }
+.b.ph p { padding: 5px 5px 0; }
+.card { padding: 4px; width: 226px; }
+.card img.cp { display: block; width: 100%; height: 112px; object-fit: cover; border-radius: 7px; }
+.card img.cp.pk { object-fit: contain; background: #fff; }
+.card .ci { padding: 6px 5px 0; }
+.card .ci b { display: block; font-family: var(--serif); font-size: 15px; color: var(--navy); }
+.card .ci small { display: block; font-size: 10px; line-height: 1.32; color: #4b546a; font-weight: 600; margin-top: 2px; }
+.card .ci .use { margin-top: 5px; font-size: 10px; font-weight: 700; color: var(--navy); background: #eef3fb; border-radius: 6px; padding: 4px 6px; }
+.card .ci .use em { font-style: normal; color: #6b7391; font-weight: 800; }
+.card .go { display: block; width: 100%; margin-top: 7px; padding: 7px 0; border-top: 1px solid #e6e9f0; font-size: 12px; font-weight: 800; color: #2f7bd8; text-align: center; }
+.b.cpn { background: #fff8e1; }
+.b.cpn .coupon { margin-top: 5px; border-color: rgba(19, 45, 125, .4); background: #fff; color: var(--navy); font-size: 11.5px; }
+.b.cpn .coupon .cp-act { color: var(--green); }
+.b.note { align-self: center; max-width: 92%; font-size: 9px; color: #5b6478; background: #fdf3c7; padding: 4px 9px; text-align: center; border-radius: 7px; box-shadow: none; }
+.typing-b { align-self: flex-start; background: #fff; border-radius: 10px; border-top-left-radius: 3px; padding: 9px 12px; display: flex; gap: 4px; box-shadow: 0 1px 1px rgba(0, 0, 0, .12); }
+.typing-b i { width: 6px; height: 6px; border-radius: 50%; background: #9aa3b5; animation: dot 1s infinite; }
+.typing-b i:nth-child(2) { animation-delay: .15s; } .typing-b i:nth-child(3) { animation-delay: .3s; }
+@keyframes dot { 30% { transform: translateY(-4px); background: #5b6478; } }
+@keyframes pop { from { opacity: 0; transform: translateY(8px) scale(.96); } to { opacity: 1; transform: none; } }
+/* Hızlı cevaplar + giriş çubuğu */
+.chips { position: absolute; left: 8px; right: 8px; bottom: 56px; display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 5px; }
+.chips button { font-size: 11px; font-weight: 800; color: var(--navy); background: #fff; border: 1.5px solid rgba(19, 45, 125, .25); border-radius: 999px; padding: 6px 10px; box-shadow: 0 2px 6px rgba(0, 0, 0, .08); animation: pop .3s var(--ease) both; transition: background .2s, border-color .2s; }
+.chips button:hover { border-color: var(--navy); }
+.chips button.hint { animation: hint 1.2s var(--ease) infinite; border-color: var(--green); }
+@keyframes hint { 50% { transform: scale(1.06); } }
+.bar { position: absolute; left: 8px; right: 8px; bottom: 16px; height: 34px; display: flex; gap: 6px; align-items: center; }
+.bar .in { flex: 1; height: 34px; border-radius: 999px; background: #fff; display: flex; align-items: center; padding: 0 13px; font-size: 12px; font-weight: 600; color: #8a92a6; }
+.bar .send { width: 34px; height: 34px; border-radius: 50%; background: var(--green); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800; }
+.legal { position: absolute; left: 10px; right: 10px; bottom: 3px; font-size: 6.8px; color: #6b7391; pointer-events: none; }
+</style>
+</head>
+<body>
+<div class="ad" id="ad" role="link" tabindex="0" aria-label="İlaçsız Yaşam – mesajlaşma: Kasım rutinini sorularla birlikte kur.">
+  <div class="top" id="top"><div class="av"><img src="img/av-marka.webp" alt="İlaçsız Yaşam"></div><div><div class="nm">İlaçsız Yaşam<span>✓</span></div><div class="st" id="st">Dr. Ümit Aktaş Ürünleri · çevrimiçi</div></div></div>
+  <div class="msgs"><div class="inner" id="inner"><div class="day">BUGÜN</div></div></div>
+  <div class="chips" id="chips"></div>
+  <div class="bar"><div class="in">Bir soru seç…</div><div class="send">➤</div></div>
+  <div class="legal">{{legal}}</div>
+</div>
+<script>window.AD = {{DATA}};</script>
+<script>
+{{SHARED_JS}}
+(function () {
+  var C = AD.creative.sohbet, D = AD.data, ad = document.getElementById('ad'), inner = document.getElementById('inner');
+  var $ = function (id) { return document.getElementById(id); };
+  var now = new Date(), tm = ('0' + now.getHours()).slice(-2) + ':' + ('0' + now.getMinutes()).slice(-2);
+  var asked = {}, nAsked = 0, couponSent = false, busy = false, user = false, cards = [];
+  function scroll() {
+    // Mesaj alanı sığmazsa en son mesaj görünecek şekilde yukarı kaydır
+    var box = inner.parentNode, over = inner.scrollHeight - box.clientHeight;
+    inner.style.transform = over > 0 ? 'translateY(' + (-over) + 'px)' : 'none';
+  }
+  function add(html, cls) { var el = AD.h('div', cls, html); inner.appendChild(el); scroll(); return el; }
+  function bubble(text, who) { return add(text + '<span class="tm">' + tm + '</span>', 'b ' + who); }
+  function typing(ms, done) {
+    $('st').textContent = 'yazıyor…'; $('st').classList.add('typing');
+    var t = add('<i></i><i></i><i></i>', 'typing-b');
+    setTimeout(function () { t.remove(); $('st').textContent = 'Dr. Ümit Aktaş Ürünleri · çevrimiçi'; $('st').classList.remove('typing'); done(); }, ms);
+  }
+  function card(k) {
+    var c = C.cards[k], i = cards.push(c) - 1;
+    return add('<img class="cp' + (c.pack ? ' pk' : '') + '" src="' + c.img + '" alt="' + c.name + '"><div class="ci"><b>' + c.name + '</b><small>' + c.claim + '</small>' +
+      '<div class="use"><em>Ambalajda:</em> ' + c.use + '</div></div><button class="go" data-c="' + i + '">Ürüne git →</button><span class="tm">' + tm + '</span>', 'b bot card');
+  }
+  // Bot mesaj kuyruğu: her öğe "yazıyor…" sonrası gelir
+  function say(list, done) {
+    busy = true;
+    (function next(i) {
+      if (i >= list.length) { busy = false; if (done) done(); return; }
+      typing(list[i].wait || 850, function () { list[i].fn(); setTimeout(function () { next(i + 1); }, 250); });
+    })(0);
+  }
+  function chips() {
+    var box = $('chips'); box.innerHTML = '';
+    C.qs.filter(function (q) { return !asked[q.key]; }).slice(0, 3).forEach(function (q, i) {
+      var b = AD.h('button', i === 0 && !user ? 'hint' : '', q.q); b.style.animationDelay = (i * 60) + 'ms';
+      b.addEventListener('click', function (e) { e.stopPropagation(); ask(q, false); });
+      box.appendChild(b);
+    });
+    fit();
+  }
+  // Mesaj alanı, soru düğmelerinin hemen üstünde biter
+  function fit() { document.querySelector('.msgs').style.bottom = ($('chips').offsetHeight + 62) + 'px'; setTimeout(scroll, 320); }
+  function ask(q, auto) {
+    if (busy || asked[q.key]) return;
+    if (!auto && !user) { user = true; clearTimeout(autoT); AD.track('sohbet_user'); }
+    asked[q.key] = true; nAsked++;
+    AD.track('sohbet_q_' + q.key + (auto ? '_auto' : ''));
+    $('chips').innerHTML = ''; fit();
+    bubble(q.q, 'me');
+    var list = q.a.map(function (t) { return { fn: function () { bubble(t, 'bot'); } }; })
+      .concat(q.cards.map(function (k) { return { wait: 700, fn: function () { card(k); } }; }));
+    if (!couponSent && (nAsked >= 2 || auto)) {
+      couponSent = true;
+      list.push({ wait: 900, fn: function () {
+        add('Bu arada: yeni üyelere ilk alışverişte <b>%10</b> indirim var.<button class="coupon" data-copy="1"><span>Kod: <b>' + D.coupon.code + '</b></span><span class="cp-act">Kopyala</span><span class="cp-ok">✓ Kopyalandı</span></button><span class="tm">' + tm + '</span>', 'b bot cpn');
+        add(C.note, 'b note');
+      } });
+    }
+    setTimeout(function () { say(list, chips); }, 300);
+  }
+  inner.addEventListener('click', function (e) {
+    e.stopPropagation();
+    var cp = e.target.closest('[data-copy]'); if (cp) return AD.copy(cp, D.coupon.code);
+    var g = e.target.closest('.card'); if (!g) return;
+    var c = cards[+g.querySelector('.go').dataset.c]; AD.exit('sohbet_' + Object.keys(C.cards).filter(function (k) { return C.cards[k] === c; })[0], c.url);
+  });
+  $('top').addEventListener('click', function (e) { e.stopPropagation(); AD.exit('sohbet_profil', C.url); });
+  ad.addEventListener('click', function () { AD.exit('sohbet_genel', C.url); });
+  // Açılış: selamlaşma + fotoğraflı öneri; 8 sn etkileşim yoksa en çok sorulan soruyu kendisi sorar
+  var autoT = null;
+  AD.ready(function () {
+    AD.track('impression_ready');
+    say([
+      { wait: 700, fn: function () { bubble(C.hello[0], 'bot'); } },
+      { wait: 900, fn: function () { bubble(C.hello[1], 'bot'); } },
+      { wait: 1000, fn: function () { add('<img src="' + C.teaser.img + '" alt=""><p>' + C.teaser.text + '</p><span class="tm">' + tm + '</span>', 'b bot ph'); } },
+    ], function () {
+      chips();
+      if (!AD.reduced) autoT = setTimeout(function () { if (!user) ask(C.qs[0], true); }, 8000);
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=320,height=480">
+<meta name="viewport" content="width=320,height=480,initial-scale=1,user-scalable=no">
+<title>İlaçsız Yaşam – Sevdiğine Bir Rutin Gönder 320x480</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+{{SHARED_CSS}}
+.ad { width: 320px; height: 480px; background: var(--navy-d); }
+.st { position: absolute; inset: 0; opacity: 0; pointer-events: none; transition: opacity .45s var(--ease), transform .45s var(--ease); transform: translateX(16px); }
+.st.on { opacity: 1; pointer-events: auto; transform: none; }
+/* 1: alıcı seç */
+.hero > img.bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.08); transition: transform 6s var(--ease); }
+.hero.on > img.bg { transform: scale(1); }
+.hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11, 28, 82, .55) 0%, rgba(11, 28, 82, 0) 22%, rgba(11, 28, 82, 0) 38%, rgba(11, 28, 82, .9) 62%, var(--navy-d) 100%); }
+.hero .in { position: absolute; z-index: 1; left: 16px; right: 16px; bottom: 30px; }
+.hero .logo { position: absolute; z-index: 1; left: 14px; top: 12px; width: 98px; }
+.hero h1 { font-family: var(--serif); font-weight: 700; font-size: 28px; line-height: 1.02; }
+.hero h1 em { font-style: italic; font-weight: 600; color: #ffd25a; }
+.hero p { font-size: 12px; font-weight: 600; color: rgba(255, 255, 255, .86); margin-top: 6px; }
+.who { display: flex; justify-content: space-between; margin-top: 14px; }
+.who button { width: 54px; text-align: center; }
+.who .c { width: 54px; height: 54px; border-radius: 50%; overflow: hidden; border: 2px solid rgba(255, 255, 255, .85); box-shadow: 0 6px 14px rgba(0, 0, 0, .35); transition: transform .25s var(--ease), border-color .25s; }
+.who .c img { width: 100%; height: 100%; object-fit: cover; }
+.who span { display: block; margin-top: 5px; font-size: 10.5px; font-weight: 800; }
+.who button:hover .c, .who button.hint .c { transform: translateY(-3px) scale(1.06); border-color: #ffd25a; }
+/* 2: kartpostal */
+.ed { background: radial-gradient(120% 80% at 50% 0%, #1d3a8f 0%, var(--navy-d) 65%); }
+.ed .back { position: absolute; left: 12px; top: 10px; font-size: 11px; font-weight: 800; opacity: .8; }
+.ed .ttl { position: absolute; right: 14px; top: 10px; font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #ffd25a; }
+.post { position: absolute; left: 18px; top: 34px; width: 284px; height: 300px; background: #fbf6ec; border-radius: 6px; overflow: hidden; color: var(--ink); box-shadow: 0 16px 34px rgba(0, 0, 0, .45); transform: rotate(-2deg) translateY(20px); opacity: 0; transition: transform .6s cubic-bezier(.3, 1.4, .5, 1), opacity .4s; }
+.ed.on .post { transform: rotate(-2deg); opacity: 1; }
+.post > img { display: block; width: 100%; height: 134px; object-fit: cover; }
+.post .paper { position: relative; padding: 10px 14px 0; }
+.post .stamp { position: absolute; right: 10px; top: -22px; width: 58px; height: 46px; background: #fff; border: 2px dashed rgba(19, 45, 125, .4); border-radius: 4px; display: flex; align-items: center; justify-content: center; transform: rotate(4deg); box-shadow: 0 3px 8px rgba(0, 0, 0, .15); }
+.post .stamp img { width: 46px; }
+.post .to { font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 19px; color: var(--navy); }
+.post .msg { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 13.5px; line-height: 1.35; margin-top: 3px; color: #2a3354; transition: opacity .25s; }
+.post .items { margin-top: 7px; display: flex; flex-direction: column; gap: 3px; }
+.post .items span { font-size: 11.5px; font-weight: 800; color: var(--navy); }
+.post .items span::before { content: '— '; color: var(--green); }
+.post .sig { position: absolute; right: 14px; bottom: -40px; font-family: var(--serif); font-style: italic; font-size: 11px; color: #7b8496; }
+.ed .tools { position: absolute; left: 14px; right: 14px; top: 346px; display: flex; gap: 6px; }
+.ed .tools button { flex: 1; font-size: 11px; font-weight: 800; padding: 7px 0; border-radius: 999px; border: 1px solid rgba(255, 255, 255, .35); background: rgba(255, 255, 255, .08); }
+.ed .wa { position: absolute; left: 14px; right: 14px; top: 384px; height: 42px; border-radius: 999px; background: #25d366; color: #fff; font-size: 14px; font-weight: 800; box-shadow: 0 8px 18px rgba(37, 211, 102, .35); }
+.ed .gift { position: absolute; left: 14px; right: 14px; top: 432px; text-align: center; font-size: 9.5px; font-weight: 700; color: rgba(255, 255, 255, .75); }
+.ed .gift b { color: #ffd25a; }
+/* 3: gönderildi */
+.ok { background: radial-gradient(120% 80% at 50% 10%, #2a4aa8 0%, var(--navy-d) 70%); text-align: center; padding: 40px 18px 0; }
+.ok .env { width: 150px; height: 104px; margin: 0 auto; border-radius: 8px; overflow: hidden; transform: rotate(-4deg); box-shadow: 0 14px 30px rgba(0, 0, 0, .45); border: 4px solid #fbf6ec; }
+.ok .env img { width: 100%; height: 100%; object-fit: cover; }
+.ok h2 { font-family: var(--serif); font-weight: 700; font-size: 28px; margin-top: 20px; }
+.ok h2 em { color: #ffd25a; font-style: italic; }
+.ok p { font-size: 12px; font-weight: 600; color: rgba(255, 255, 255, .85); margin-top: 6px; line-height: 1.4; }
+.ok .coupon { margin-top: 14px; width: 100%; justify-content: space-between; font-size: 12px; padding: 9px 12px; }
+.ok .cta { width: 100%; justify-content: center; height: 40px; margin-top: 9px; }
+.ok .again { margin-top: 10px; font-size: 11px; font-weight: 800; text-decoration: underline; opacity: .8; }
+.legal { position: absolute; z-index: 9; left: 12px; right: 12px; bottom: 5px; font-size: 7.2px; pointer-events: none; }
+</style>
+</head>
+<body>
+<div class="ad" id="ad" role="link" tabindex="0" aria-label="İlaçsız Yaşam – Sevdiğine bir Kasım rutini gönder.">
+  <div class="st hero on" id="s1">
+    <img class="bg" src="img/tk-03.webp" alt="Karlı pencere önünde Kış Çayı">
+    <img class="logo" src="img/logo-beyaz.webp" alt="İlaçsız Yaşam">
+    <div class="in">
+      <h1>Kasım'da sevdiğine <em>iyi bak.</em></h1>
+      <p>Ona bir rutin kartı gönder: kime?</p>
+      <div class="who" id="who"></div>
+    </div>
+  </div>
+  <div class="st ed" id="s2">
+    <button class="back" id="back">← Alıcı</button>
+    <div class="ttl">Kasım kartı</div>
+    <div class="post" id="post">
+      <img id="pImg" src="" alt="">
+      <div class="paper">
+        <div class="stamp"><img src="img/logo-lacivert.webp" alt="İlaçsız Yaşam"></div>
+        <div class="to" id="pTo"></div>
+        <div class="msg" id="pMsg"></div>
+        <div class="items" id="pItems"></div>
+      </div>
+    </div>
+    <div class="tools"><button id="swap">↻ Mesajı değiştir</button><button id="copy">Linki kopyala</button></div>
+    <button class="wa" id="wa">WhatsApp'ta gönder</button>
+    <div class="gift">Alıcıya hoş geldin hediyesi: yeni üyelere <b>%10 · {{code}}</b></div>
+  </div>
+  <div class="st ok" id="s3">
+    <div class="env"><img id="oImg" src="" alt=""></div>
+    <h2>Kartın <em>yolda!</em></h2>
+    <p id="oP"></p>
+    <button class="coupon" id="cp"><span>Senin için de: <b>{{code}}</b></span><span class="cp-act">Kopyala</span><span class="cp-ok">✓ Kopyalandı</span></button>
+    <button class="cta" id="mine">Kendime de rutin seç <i>→</i></button>
+    <button class="again" id="again">Bir kart daha gönder</button>
+  </div>
+  <div class="legal">{{legal}}</div>
+</div>
+<script>window.AD = {{DATA}};</script>
+<script>
+{{SHARED_JS}}
+(function () {
+  var G = AD.creative.gonder, D = AD.data, ad = document.getElementById('ad');
+  var $ = function (id) { return document.getElementById(id); };
+  var cur = null, mi = 0, user = false;
+  $('who').innerHTML = G.to.map(function (t, i) { return '<button data-i="' + i + '"><div class="c"><img src="' + t.img + '" alt=""></div><span>' + t.label + '</span></button>'; }).join('');
+  function show(n) { ['s1', 's2', 's3'].forEach(function (id, i) { $(id).classList.toggle('on', i === n - 1); }); }
+  function pick(i, auto) {
+    if (!auto) first();
+    cur = G.to[i]; mi = 0;
+    $('pImg').src = cur.card; $('pTo').textContent = cur.who + ',';
+    $('pItems').innerHTML = cur.items.map(function (x) { return '<span>' + x + '</span>'; }).join('');
+    msg(); show(2);
+    AD.track('gonder_alici_' + cur.key + (auto ? '_auto' : ''));
+  }
+  function msg() { $('pMsg').style.opacity = 0; setTimeout(function () { $('pMsg').textContent = G.msgs[mi]; $('pMsg').style.opacity = 1; }, 180); }
+  // Paylaşım metni: alıcı siteye UTM'li bağlantıyla gelir (alıcı tarafı ayrı ölçülür)
+  function text() { return cur.who + ', ' + G.msgs[mi] + ' ' + cur.items.join(' ve ') + '. ' + G.landing + '_' + cur.key; }
+  $('who').addEventListener('click', function (e) { e.stopPropagation(); var b = e.target.closest('button'); if (b) pick(+b.dataset.i, false); });
+  $('swap').addEventListener('click', function (e) { e.stopPropagation(); mi = (mi + 1) % G.msgs.length; msg(); AD.track('gonder_mesaj'); });
+  $('copy').addEventListener('click', function (e) { e.stopPropagation(); var b = this; AD.copy(b, text(), function () { b.textContent = '✓ Kopyalandı'; setTimeout(function () { b.textContent = 'Linki kopyala'; }, 1500); }); AD.track('gonder_kopya_' + cur.key); });
+  $('wa').addEventListener('click', function (e) {
+    e.stopPropagation();
+    AD.exit('gonder_whatsapp_' + cur.key, 'https://wa.me/?text=' + encodeURIComponent(text()));
+    $('oImg').src = cur.card;
+    $('oP').textContent = cur.who + ' için Kasım kartın hazır. Bağlantıya tıklayan yeni üyeler ilk alışverişte %10 indirim alır.';
+    setTimeout(function () { show(3); }, 400);
+  });
+  $('back').addEventListener('click', function (e) { e.stopPropagation(); show(1); });
+  $('again').addEventListener('click', function (e) { e.stopPropagation(); show(1); });
+  $('cp').addEventListener('click', function (e) { e.stopPropagation(); AD.copy(this, D.coupon.code); });
+  $('mine').addEventListener('click', function (e) { e.stopPropagation(); AD.exit('gonder_kendime', G.url); });
+  $('post').addEventListener('click', function (e) { e.stopPropagation(); mi = (mi + 1) % G.msgs.length; msg(); });
+  ad.addEventListener('click', function () { AD.exit('gonder_genel', G.url); });
+  // Tanıtım: alıcılar sırayla parlar; 6 sn etkileşim yoksa "Anneme" kartı kendiliğinden hazırlanır
+  var autoT = [];
+  function first() { if (!user) { user = true; autoT.forEach(clearTimeout); [].forEach.call($('who').children, function (b) { b.classList.remove('hint'); }); AD.track('gonder_user'); } }
+  AD.ready(function () {
+    AD.track('impression_ready');
+    if (AD.reduced) return;
+    var bs = [].slice.call($('who').children);
+    bs.forEach(function (b, i) { autoT.push(setTimeout(function () { bs.forEach(function (x) { x.classList.toggle('hint', x === b); }); }, 900 + i * 650)); });
+    autoT.push(setTimeout(function () { bs.forEach(function (x) { x.classList.remove('hint'); }); }, 900 + bs.length * 650));
+    autoT.push(setTimeout(function () { if (!user) pick(0, true); }, 6000));
+  });
+})();
+</script>
+</body>
+</html>

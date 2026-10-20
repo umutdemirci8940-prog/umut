@@ -214,6 +214,53 @@ module.exports = {
           { d: 30, over: 'Final', title: 'Kasım bitti, rutin sürsün', text: '30 kapının hepsi açıldı. Rutinin Aralık\'ta da seninle.', claim: '', cta: 'Rutinini kur', img: 'img/tk-30.webp', thumb: 'img/tk-30-s.webp', url: L('/collections/gida-takviyeleri', 'gun30') },
         ],
       },
+      // Mesajlaşma reklamı: hazır sorular → onaylı cevaplar (kullanım bilgisi ürün kutusundaki "Nasıl kullanılır" görsellerinden)
+      sohbet: {
+        hello: ['Merhaba! Kasım geldi, günler kısaldı.', 'Rutinini birlikte kuralım mı? Aşağıdan bir soru seç.'],
+        teaser: { img: 'img/tk-03.webp', text: 'Bu akşam için küçük bir öneri: karlı bir pencere önünde Kış Çayı.' },
+        note: 'Kullanım bilgisi ürün ambalajındandır. Takviye kullanımı için hekiminize danışın.',
+        qs: [
+          { key: 'magnezyum_ne_zaman', q: 'Magnezyum ne zaman alınır?', a: ['Ambalajında iki seçenek var: sabah kahvaltıdan sonra ya da akşam yemekten sonra, tok karnına 1 kapsül.'], cards: ['magnezyum'] },
+          { key: 'sabah_enerji', q: 'Sabahları enerjim düşük', a: ['Kasım sabahları zor, biliyoruz.', 'Güne çiğnenebilir bir B12 tabletiyle başlamak isteyebilirsin.'], cards: ['b12'] },
+          { key: 'aksam', q: 'Akşamları dinlenemiyorum', a: ['Akşam ritüeli için iki öneri:'], cards: ['magnezyum', 'uyku'] },
+          { key: 'cocuk', q: 'Çocuğum için ne var?', a: ['Miniklerin iki favorisi:'], cards: ['omega3surup', 'd3'] },
+          { key: 'spor', q: 'Düzenli spor yapıyorum', a: ['Hareketli günlerin kırmızı kapsülü:'], cards: ['krill'] },
+          { key: 'gunes', q: 'Güneş yok, ne yapayım?', a: ['Kasım\'da öğle güneşi alçak: gölgen boyundan uzun.', 'Gün ışığı azaldığında D3 & K2 Damla:'], cards: ['d3k2'] },
+        ],
+        cards: {
+          magnezyum: { name: 'Magnezyum', img: 'img/tk-28.webp', claim: 'Magnezyum sinir sisteminin normal fonksiyonuna katkıda bulunur.', use: 'Sabah ya da akşam, yemekten sonra tok karnına 1 kapsül', url: L('/products/magnezyum', 'magnezyum') },
+          b12: { name: 'Vitamin B12 & Folik Asit', img: 'img/tk-02.webp', claim: 'B12 vitamini yorgunluk ve bitkinliğin azalmasına katkıda bulunur.', use: 'Sabah kahvaltıdan sonra 1 tablet', url: L('/products/vitamin-b12-metilfolat', 'b12') },
+          uyku: { name: 'Uyku Öncesi Çayı', img: 'img/tk-23.webp', claim: 'Kafeinsiz, piramit poşet bitki çayı.', use: '200 ml sıcak suda 5 dakika demle', url: L('/products/uyku-oncesi-cayi', 'uyku') },
+          omega3surup: { name: 'Omega 3 Şurup', img: 'img/tk-17.webp', claim: 'Yeni tadıyla, sıvı form.', use: '4 yaş ve üzeri: sabah kahvaltıdan sonra 5 cc', url: L('/products/omega-3-surup', 'omega3surup') },
+          d3: { name: 'Vitamin D3 Damla', img: 'img/p-d3.webp', pack: true, claim: 'D vitamini çocuklarda kemiklerin normal büyüme ve gelişimi için gereklidir.', use: '4–10 yaş: günde 1 damla', url: L('/products/vitamin-d3-damla', 'd3') },
+          krill: { name: 'Krill Yağı', img: 'img/tk-07.webp', claim: 'EPA ve DHA kalbin normal fonksiyonuna katkıda bulunur.', use: 'Sabah ya da akşam, yemekten sonra 1 kapsül', url: L('/products/krill-yagi', 'krill') },
+          d3k2: { name: 'Vitamin D3 & K2 Damla', img: 'img/tk-04.webp', claim: 'D vitamini bağışıklık sisteminin normal fonksiyonuna katkıda bulunur.', use: 'Sabah kahvaltıdan sonra 1 damla', url: L('/products/d3-k2-vitamin-damlasi', 'd3k2') },
+        },
+        url: L('/collections/gida-takviyeleri', 'sohbet_genel'),
+      },
+      // Sevdiğine bir rutin gönder: alıcı → kart fotoğrafı, ürünler, mesaj şablonları; WhatsApp ile paylaşım
+      gonder: {
+        to: [
+          { key: 'anne', label: 'Anneme', who: 'Annem', img: 'img/tk-19.webp', items: ['Kış Çayı', 'Vitamin D3 & K2 Damla'], card: 'img/tk-03.webp' },
+          { key: 'baba', label: 'Babama', who: 'Babam', img: 'img/tk-22.webp', items: ['Omega 3', 'Erken Hasat Zeytinyağı'], card: 'img/tk-22.webp' },
+          { key: 'es', label: 'Eşime', who: 'Canım', img: 'img/tk-23.webp', items: ['Magnezyum', 'Uyku Öncesi Çayı'], card: 'img/tk-23.webp' },
+          { key: 'cocuk', label: 'Çocuğuma', who: 'Minik kuşum', img: 'img/tk-17.webp', items: ['Omega 3 Şurup', 'Vitamin D3 Damla'], card: 'img/tk-17.webp' },
+          { key: 'kendim', label: 'Kendime', who: 'Kendime not', img: 'img/tk-10.webp', items: ['Vitamin B12', 'Matcha'], card: 'img/tk-10.webp' },
+        ],
+        msgs: ['Kasım\'da kendine iyi bak. Senin için bir rutin seçtim:', 'Günler kısaldı ama aklım hep sende. Bu Kasım rutinin benden:', 'Sıcak bir fincan, küçük bir hatırlatma. Kasım rutinin:'],
+        landing: L('/collections/gida-takviyeleri', 'gonder_alici'),
+        url: L('/collections/gida-takviyeleri', 'gonder_gonderen'),
+      },
+      // Saati bilen masthead: günün dilimine göre sahne (yerel saat; ?saat=8 ile önizleme)
+      gunsaat: {
+        city: { name: 'İstanbul', lat: 41.01, lon: 28.98 },
+        slots: [
+          { key: 'sabah', from: 6, label: 'Sabah', img: 'img/tk-10.webp', title: 'Güne yeşil bir başlangıç.', text: 'Kahvaltıdan sonra B12, yanına bir kase matcha.', product: 'Vitamin B12 & Folik Asit', claim: 'B12 vitamini yorgunluk ve bitkinliğin azalmasına katkıda bulunur.', url: L('/products/vitamin-b12-metilfolat', 'saat_sabah') },
+          { key: 'ogle', from: 11, label: 'Öğle', img: 'img/tk-04.webp', title: 'Güneş en tepede, ama alçak.', text: 'Kasım\'da öğle güneşi bile yazın yarısı kadar yüksek. Gün ışığı desteği: D3 & K2.', product: 'Vitamin D3 & K2 Damla', claim: 'D vitamini bağışıklık sisteminin normal fonksiyonuna katkıda bulunur.', url: L('/products/d3-k2-vitamin-damlasi', 'saat_ogle') },
+          { key: 'aksam', from: 16, label: 'Akşamüstü', img: 'img/tk-03.webp', title: 'Hava erken karardı.', text: 'Eve dönüş yolunda aklında sıcak bir fincan Kış Çayı olsun.', product: 'Kış Çayı', claim: 'Kafeinsiz, piramit poşet bitki çayı.', url: L('/products/kis-cayi', 'saat_aksam') },
+          { key: 'gece', from: 20, label: 'Gece', img: 'img/tk-23.webp', title: 'Ekranı kapatma vakti.', text: 'Uyku Öncesi Çayı ve akşam yemeğinden sonra Magnezyum.', product: 'Magnezyum', claim: 'Magnezyum sinir sisteminin normal fonksiyonuna katkıda bulunur.', url: L('/products/magnezyum', 'saat_gece') },
+        ],
+      },
       // An ↔ ürün eşleri
       memory: [
         { key: 'enerji', img: 'img/m-enerji.webp', pack: 'img/p-b12.webp', name: 'B12 & Folik Asit', url: L('/products/vitamin-b12-metilfolat', 'enerji') },

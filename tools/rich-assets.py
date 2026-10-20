@@ -200,6 +200,13 @@ logo3 = Image.open(os.path.join(M, 'site', 'lacivert-logo-large.png')).convert('
 logo3 = logo3.crop(logo3.getbbox())
 logo3 = logo3.resize((360, round(360 * logo3.size[1] / logo3.size[0])), Image.LANCZOS)
 logo3.save(os.path.join(OUT, 'logo-lacivert.webp'), 'WEBP', quality=88, method=6)
+# Sohbet avatarı: markanın yaprak işareti, beyaz daire içinde
+fav = Image.open(os.path.join(M, 'site', 'favicon-1024x.png')).convert('RGBA')
+fav = fav.crop(fav.getbbox())
+av = Image.new('RGBA', (120, 120), (255, 255, 255, 255))
+fw = 70; fav = fav.resize((fw, round(fw * fav.size[1] / fav.size[0])), Image.LANCZOS)
+av.paste(fav, ((120 - fav.size[0]) // 2, (120 - fav.size[1]) // 2), fav)
+av.convert('RGB').save(os.path.join(OUT, 'av-marka.webp'), 'WEBP', quality=86, method=6)
 meta['logo'] = {'beyaz': logo.size, 'dr': logo2.size}
 
 json.dump(meta, open(os.path.join(OUT, 'index.json'), 'w'), indent=1)

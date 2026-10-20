@@ -135,6 +135,22 @@ const SHOTS = {
     ['dun', 1000, async (p) => { await p.locator('#vX').click(); await p.waitForTimeout(800); await p.locator('.door').nth(3).click(); }],
     ['kilitli', 500, async (p) => { await p.locator('#vX').click(); await p.waitForTimeout(800); await p.locator('.door').nth(17).click(); }],
   ] },
+  'mobil-320x480-sohbet': { w: 320, h: 480, mobile: true, steps: [
+    ['acilis', 1800], ['oneri', 3200],
+    ['soru-1', 4200, (p) => p.locator('#chips button', { hasText: 'Sabahları' }).click()],
+    ['soru-2', 5200, (p) => p.locator('#chips button', { hasText: 'Çocuğum' }).click()],
+  ] },
+  'mobil-320x480-gonder': { w: 320, h: 480, mobile: true, steps: [
+    ['alici', 1800],
+    ['kart', 1100, (p) => p.locator('#who button').nth(2).click()],
+    ['mesaj', 600, (p) => p.locator('#swap').click()],
+    ['gonderildi', 1200, (p) => p.locator('#wa').click()],
+  ] },
+  'masthead-970x250-saat': { w: 970, h: 250, saat: 21, steps: [
+    ['gece', 1200], ['tur-sabah', 2600], ['tur-aksam', 2600],
+    ['surukle-ogle', 900, async (p) => { await p.mouse.move(700, 211); await p.mouse.down(); await p.mouse.move(745, 211, { steps: 6 }); await p.mouse.up(); }],
+    ['surukle-sabah', 900, async (p) => { await p.mouse.move(745, 211); await p.mouse.down(); await p.mouse.move(640, 211, { steps: 6 }); await p.mouse.up(); }],
+  ] },
   'mobil-320x480-rutin': { w: 320, h: 480, mobile: true, steps: [
     ['intro', 900], ['oto-2', 4200], ['dokun-aktif', 1100, (p) => p.mouse.click(160, 400)], ['urun', 600, (p) => p.mouse.move(60, 380)],
   ] },
@@ -157,6 +173,7 @@ const SHOTS = {
     await ctx.exposeFunction('__open', (u) => exits.push('open ' + u));
     await page.addInitScript(() => { window.open = (u) => { window.__open(u); return null; }; console.debug = (...a) => console.log(...a); });
     if (cfg.day) await page.addInitScript((d) => { window.AD_DAY = d; }, cfg.day);
+    if (cfg.saat) await page.addInitScript((h) => { window.AD_SAAT = h; }, cfg.saat);
     await page.goto('file://' + file);
     await page.waitForLoadState('networkidle').catch(() => {});
     for (const [label, wait, act] of cfg.steps) {

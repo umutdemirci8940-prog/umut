@@ -32,6 +32,9 @@ const ADS = {
   'mobil-320x480-oyun': { content: 'mobil_oyun', photo: 'mh', creative: 'oyun' },
   'masthead-970x250-takvim': { content: 'masthead_takvim', photo: 'mh', creative: 'takvim' },
   'mobil-320x480-takvim': { content: 'mobil_takvim', photo: 'mh', creative: 'takvim' },
+  'mobil-320x480-sohbet': { content: 'mobil_sohbet', photo: 'mh', creative: 'sohbet' },
+  'mobil-320x480-gonder': { content: 'mobil_gonder', photo: 'mh', creative: 'gonder' },
+  'masthead-970x250-saat': { content: 'masthead_saat', photo: 'mh', creative: 'gunsaat' },
 };
 
 function adData(content) {
@@ -100,6 +103,10 @@ for (const [name, cfg] of Object.entries(ADS)) {
 
 // Sunum sayfası: dört çalışma tek dosyada (srcdoc ile gömülü), tekrar oynat düğmeleri ve kurgu notları.
 const NOTES = {
+  'mobil-320x480-sohbet': ['Mobil · mesajlaşma formatı · 320×480', 'İlaçsız Yaşam ile Mesajlaş', 'Reklam bir mesajlaşma ekranı gibi açılır: marka hesabı "yazıyor…", fotoğraflı öneri gönderir. Kullanıcı hazır sorulara dokunur ("Magnezyum ne zaman alınır?", "Çocuğum için ne var?", "Güneş yok, ne yapayım?"); cevaplar onaylı beyanlar ve ürün ambalajındaki kullanım bilgisiyle, fotoğraflı ürün kartı olarak gelir. İkinci sorudan sonra %10 kod. Yapay zekâ yok: her cevap önceden onaylı. Sorulan sorular = markaya ihtiyaç verisi.'],
+  'mobil-320x480-gonder': ['Mobil · paylaşılabilir · 320×480', 'Sevdiğine Bir Rutin Gönder', 'Kullanıcı alıcıyı seçer (anneme, babama, eşime, çocuğuma, kendime); gerçek fotoğraflı bir Kasım kartpostalı oluşur, mesaj değiştirilebilir. "WhatsApp\'ta gönder" kartı alıcıya özel UTM\'li bağlantıyla paylaşır; alıcı siteye gelir ve %10 hoş geldin kodunu görür. Bir gösterim, birden fazla yeni kullanıcı getirir.'],
+  'masthead-970x250-saat': ['Interaktif Masthead · 970×250 · saati bilen', 'Günün Rutini', "Reklam izleyicinin yerel saatini bilir ve sahnesini ona göre seçer: sabah matcha ve B12, öğle D3 & K2, akşamüstü karlı pencerede Kış Çayı, gece ay ışığında Uyku Öncesi Çayı ve Magnezyum. Canlı saat, İstanbul'un bugünkü gün doğumu/batımı ve güneşin o saatteki yüksekliğine göre değişen ışık. Açılışta güneş tüm günü bir kez gezer; kullanıcı güneşi sürükleyerek günün her saatini görür."],
+
   'masthead-970x250-takvim': ['Interaktif Masthead · 970×250 · 30 gün yaşayan reklam', 'Kasım Takvimi', "Reklam Kasım boyunca her gün kendiliğinden değişir: 30 gün, 30 kapı. Bu haftanın 7 kapısı görünür; bugünün kapısı altın ışıkla parlar, açılınca 3B menteşeyle döner, ışık patlar ve içerik kapının içinden büyüyerek gelir (gerçek fotoğraf, ürün/kitap/blog/fırsat, onaylı beyan). Geçmiş günler fotoğraf albümü gibi dolar ve geri gezilebilir; gelecek kapılar buzlu camın ardında, \"Yarınki kapıya 13:58:15\" geri sayımıyla bekler. 11.11'e özel altın kapı. Kullanıcıyı her gün geri getiren bir session makinesi."],
   'mobil-320x480-takvim': ['Mobil · 320×480 · 30 gün yaşayan reklam', 'Kasım Takvimi (Mobil)', 'Ayın 30 kapısı tek ekranda: açılan günler gerçek fotoğraflardan bir Kasım albümü oluşturur, bugünün kapısı parlar, yarınki "YARIN" der. Dokununca kapı açılır ve içerik kapının konumundan tam ekrana büyür; ‹ › ile önceki günler gezilir, kilitli kapı titreyip "7 gün kaldı" der. Açılan kapılar cihazda hatırlanır.'],
 
@@ -132,12 +139,14 @@ const block = (n) => {
 };
 const have = (n) => NOTES[n] && fs.existsSync(path.join(dist, 'inline', `${n}.html`));
 const MOBILE_GAMES = ['eslesme', 'kazi', 'oyun'];
+const NEW3 = ['sohbet', 'gonder', 'gunsaat'];
+const newSet = Object.keys(ADS).filter((n) => NEW3.includes(ADS[n].creative) && have(n)).map(block).join('\n');
 const calSet = Object.keys(ADS).filter((n) => ADS[n].creative === 'takvim' && have(n)).map(block).join('\n');
 const gameSet = Object.keys(ADS).filter((n) => MOBILE_GAMES.includes(ADS[n].creative) && have(n)).map(block).join('\n');
 const needSet = Object.keys(ADS).filter((n) => ADS[n].creative === 'gunes' && have(n)).map(block).join('\n');
-const creativeSet = Object.keys(ADS).filter((n) => ADS[n].creative && !['gunes', 'takvim'].includes(ADS[n].creative) && !MOBILE_GAMES.includes(ADS[n].creative) && have(n)).map(block).join('\n');
+const creativeSet = Object.keys(ADS).filter((n) => ADS[n].creative && !['gunes', 'takvim', 'sohbet', 'gonder', 'gunsaat'].includes(ADS[n].creative) && !MOBILE_GAMES.includes(ADS[n].creative) && have(n)).map(block).join('\n');
 const standardSet = Object.keys(ADS).filter((n) => !ADS[n].creative && have(n)).map(block).join('\n');
-const blocks = `<h3 class="sec">Büyük fikir · Kasım boyunca her gün değişen reklam</h3><div class="days"><b>Gün seç:</b> ${Array.from({ length: 30 }, (_, i) => `<button data-d="${i + 1}"${i + 1 === 11 ? ' class="on"' : ''}>${i + 1}</button>`).join('')}<span>Reklam yayında gerçek tarihi kullanır; burada istediğin günü önizle.</span></div>${calSet}<h3 class="sec">Mobil'e özgü · uygulama, kazı kazan ve oyun</h3>${gameSet}<h3 class="sec">Ana fikir · İhtiyacı ortaya çıkaran canlı veri</h3>${needSet}<h3 class="sec">Yaratıcı set · keşif mekanikleri</h3>${creativeSet}<h3 class="sec">Standart set · alternatif / yedek</h3>${standardSet}`;
+const blocks = `<h3 class="sec">Büyük fikir · Kasım boyunca her gün değişen reklam</h3><div class="days"><b>Gün seç:</b> ${Array.from({ length: 30 }, (_, i) => `<button data-d="${i + 1}"${i + 1 === 11 ? ' class="on"' : ''}>${i + 1}</button>`).join('')}<span>Reklam yayında gerçek tarihi kullanır; burada istediğin günü önizle.</span></div>${calSet}<h3 class="sec">Konuşan, yayılan, saati bilen · yeni set</h3>${newSet}<h3 class="sec">Mobil'e özgü · uygulama, kazı kazan ve oyun</h3>${gameSet}<h3 class="sec">Ana fikir · İhtiyacı ortaya çıkaran canlı veri</h3>${needSet}<h3 class="sec">Yaratıcı set · keşif mekanikleri</h3>${creativeSet}<h3 class="sec">Standart set · alternatif / yedek</h3>${standardSet}`;
 fs.mkdirSync(path.join(root, 'preview-rich'), { recursive: true });
 fs.writeFileSync(path.join(root, 'preview-rich', 'index.html'), `<!DOCTYPE html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>İlaçsız Yaşam – Kasım Interaktif Çalışmalar</title>

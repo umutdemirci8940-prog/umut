@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=320,height=480">
+<meta name="viewport" content="width=320,height=480,initial-scale=1,user-scalable=no">
+<title>İlaçsız Yaşam – Mesajlaş 320x480</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #132d7d;
+  --navy-d: #0b1c52;
+  --green: #5fa511;
+  --green-l: #8fd14a;
+  --ink: #0f1a3a;
+  --white: #fff;
+  --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --sans: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+  --ease: cubic-bezier(.22, .8, .2, 1);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: var(--navy-d); }
+body { font-family: var(--sans); color: var(--white); -webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none; }
+img { display: block; -webkit-user-drag: none; }
+button { font: inherit; color: inherit; border: 0; background: none; cursor: pointer; }
+.ad { position: relative; overflow: hidden; background: var(--navy-d); cursor: pointer; }
+.legal { font-size: 8px; line-height: 1.25; color: rgba(255, 255, 255, .72); letter-spacing: .01em; }
+
+/* Kupon çipi */
+.coupon { display: inline-flex; align-items: center; gap: 8px; border-radius: 10px; background: rgba(255, 255, 255, .14); border: 1px dashed rgba(255, 255, 255, .55); padding: 6px 10px; transition: background .25s, transform .25s var(--ease); }
+.coupon:hover { background: rgba(255, 255, 255, .22); }
+.coupon:active { transform: scale(.97); }
+.coupon b { font-weight: 800; letter-spacing: .08em; }
+.coupon .cp-act { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--green-l); }
+.coupon .cp-ok { display: none; }
+.coupon.copied { background: var(--green); border-color: var(--green); }
+.coupon.copied .cp-act { display: none; }
+.coupon.copied .cp-ok { display: inline; font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; }
+
+/* Yeşil CTA */
+.cta { display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 16px; border-radius: 999px; background: var(--green); color: #fff; font-weight: 800; font-size: 12.5px; letter-spacing: .01em; white-space: nowrap; box-shadow: 0 6px 18px rgba(95, 165, 17, .38); transition: transform .25s var(--ease), background .25s; }
+.cta:hover { background: #6cbb14; transform: translateY(-1px); }
+.cta i { font-style: normal; transition: transform .25s var(--ease); }
+.cta:hover i { transform: translateX(3px); }
+
+/* Ürün kutucuğu (orijinal ambalaj fotoğrafı, beyaz kart) */
+.pk { position: relative; flex: none; background: #fff; border-radius: 10px; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 16px rgba(5, 15, 50, .28); transition: transform .3s var(--ease), box-shadow .3s; }
+.pk img { max-width: 86%; max-height: 82%; object-fit: contain; }
+.pk:hover { transform: translateY(-4px) scale(1.04); box-shadow: 0 10px 22px rgba(5, 15, 50, .4); z-index: 2; }
+.pk .tip { position: absolute; left: 50%; bottom: calc(100% + 6px); transform: translate(-50%, 4px); background: #fff; color: var(--navy); font-size: 10px; font-weight: 800; padding: 4px 8px; border-radius: 6px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; box-shadow: 0 4px 12px rgba(0, 0, 0, .25); }
+.pk:hover .tip { opacity: 1; transform: translate(-50%, 0); }
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: .01s !important; animation-duration: .01s !important; } }
+
+html, body { background: #ece5dc; }
+.ad { width: 320px; height: 480px; background: #ece5dc; color: var(--ink); }
+/* Üst çubuk */
+.top { position: absolute; z-index: 3; left: 0; right: 0; top: 0; height: 54px; background: var(--navy); color: #fff; display: flex; align-items: center; gap: 9px; padding: 0 12px; box-shadow: 0 2px 8px rgba(0, 0, 0, .2); cursor: pointer; }
+.top .av { width: 36px; height: 36px; border-radius: 50%; overflow: hidden; flex: none; }
+.top .av img { width: 100%; height: 100%; }
+.top .nm { font-size: 14px; font-weight: 800; line-height: 1.1; }
+.top .nm span { display: inline-block; margin-left: 4px; width: 14px; height: 14px; border-radius: 50%; background: var(--green); font-size: 9px; line-height: 14px; text-align: center; vertical-align: 1px; }
+.top .st { font-size: 10px; font-weight: 600; opacity: .8; margin-top: 2px; }
+.top .st.typing { color: #9fe06a; opacity: 1; }
+/* Mesajlar */
+.msgs { position: absolute; left: 0; right: 0; top: 54px; bottom: 58px; transition: bottom .3s var(--ease); overflow: hidden; padding: 0 10px; display: flex; flex-direction: column; }
+.msgs .inner { margin-top: auto; display: flex; flex-direction: column; gap: 5px; padding: 10px 0 6px; transition: transform .35s var(--ease); }
+.day { align-self: center; font-size: 9.5px; font-weight: 800; color: #5b6478; background: rgba(255, 255, 255, .75); padding: 3px 9px; border-radius: 7px; margin-bottom: 3px; }
+.b { position: relative; max-width: 82%; padding: 6px 9px 15px; border-radius: 10px; font-size: 12px; line-height: 1.38; font-weight: 600; box-shadow: 0 1px 1px rgba(0, 0, 0, .12); animation: pop .32s var(--ease) both; }
+.b .tm { position: absolute; right: 7px; bottom: 3px; font-size: 8.5px; font-weight: 700; color: #7b8496; }
+.b.bot { align-self: flex-start; background: #fff; border-top-left-radius: 3px; }
+.b.me { align-self: flex-end; background: #e2f6cf; border-top-right-radius: 3px; }
+.b.me .tm::after { content: ' ✓✓'; color: #3f9ae0; }
+.b.ph { padding: 4px 4px 16px; width: 210px; }
+.b.ph img { display: block; width: 100%; height: 118px; object-fit: cover; border-radius: 7px; }
+.b.ph p { padding: 5px 5px 0; }
+.card { padding: 4px; width: 226px; }
+.card img.cp { display: block; width: 100%; height: 112px; object-fit: cover; border-radius: 7px; }
+.card img.cp.pk { object-fit: contain; background: #fff; }
+.card .ci { padding: 6px 5px 0; }
+.card .ci b { display: block; font-family: var(--serif); font-size: 15px; color: var(--navy); }
+.card .ci small { display: block; font-size: 10px; line-height: 1.32; color: #4b546a; font-weight: 600; margin-top: 2px; }
+.card .ci .use { margin-top: 5px; font-size: 10px; font-weight: 700; color: var(--navy); background: #eef3fb; border-radius: 6px; padding: 4px 6px; }
+.card .ci .use em { font-style: normal; color: #6b7391; font-weight: 800; }
+.card .go { display: block; width: 100%; margin-top: 7px; padding: 7px 0; border-top: 1px solid #e6e9f0; font-size: 12px; font-weight: 800; color: #2f7bd8; text-align: center; }
+.b.cpn { background: #fff8e1; }
+.b.cpn .coupon { margin-top: 5px; border-color: rgba(19, 45, 125, .4); background: #fff; color: var(--navy); font-size: 11.5px; }
+.b.cpn .coupon .cp-act { color: var(--green); }
+.b.note { align-self: center; max-width: 92%; font-size: 9px; color: #5b6478; background: #fdf3c7; padding: 4px 9px; text-align: center; border-radius: 7px; box-shadow: none; }
+.typing-b { align-self: flex-start; background: #fff; border-radius: 10px; border-top-left-radius: 3px; padding: 9px 12px; display: flex; gap: 4px; box-shadow: 0 1px 1px rgba(0, 0, 0, .12); }
+.typing-b i { width: 6px; height: 6px; border-radius: 50%; background: #9aa3b5; animation: dot 1s infinite; }
+.typing-b i:nth-child(2) { animation-delay: .15s; } .typing-b i:nth-child(3) { animation-delay: .3s; }
+@keyframes dot { 30% { transform: translateY(-4px); background: #5b6478; } }
+@keyframes pop { from { opacity: 0; transform: translateY(8px) scale(.96); } to { opacity: 1; transform: none; } }
+/* Hızlı cevaplar + giriş çubuğu */
+.chips { position: absolute; left: 8px; right: 8px; bottom: 56px; display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 5px; }
+.chips button { font-size: 11px; font-weight: 800; color: var(--navy); background: #fff; border: 1.5px solid rgba(19, 45, 125, .25); border-radius: 999px; padding: 6px 10px; box-shadow: 0 2px 6px rgba(0, 0, 0, .08); animation: pop .3s var(--ease) both; transition: background .2s, border-color .2s; }
+.chips button:hover { border-color: var(--navy); }
+.chips button.hint { animation: hint 1.2s var(--ease) infinite; border-color: var(--green); }
+@keyframes hint { 50% { transform: scale(1.06); } }
+.bar { position: absolute; left: 8px; right: 8px; bottom: 16px; height: 34px; display: flex; gap: 6px; align-items: center; }
+.bar .in { flex: 1; height: 34px; border-radius: 999px; background: #fff; display: flex; align-items: center; padding: 0 13px; font-size: 12px; font-weight: 600; color: #8a92a6; }
+.bar .send { width: 34px; height: 34px; border-radius: 50%; background: var(--green); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800; }
+.legal { position: absolute; left: 10px; right: 10px; bottom: 3px; font-size: 6.8px; color: #6b7391; pointer-events: none; }
+</style>
+</head>
+<body>
+<div class="ad" id="ad" role="link" tabindex="0" aria-label="İlaçsız Yaşam – mesajlaşma: Kasım rutinini sorularla birlikte kur.">
+  <div class="top" id="top"><div class="av"><img src="img/av-marka.webp" alt="İlaçsız Yaşam"></div><div><div class="nm">İlaçsız Yaşam<span>✓</span></div><div class="st" id="st">Dr. Ümit Aktaş Ürünleri · çevrimiçi</div></div></div>
+  <div class="msgs"><div class="inner" id="inner"><div class="day">BUGÜN</div></div></div>
+  <div class="chips" id="chips"></div>
+  <div class="bar"><div class="in">Bir soru seç…</div><div class="send">➤</div></div>
+  <div class="legal">Takviye edici gıdalar ilaç değildir. Hastalıkların önlenmesi veya tedavi edilmesi amacıyla kullanılmaz.</div>
+</div>
+<script>window.AD = {"creative":{"sohbet":{"hello":["Merhaba! Kasım geldi, günler kısaldı.","Rutinini birlikte kuralım mı? Aşağıdan bir soru seç."],"teaser":{"img":"img/tk-03.webp","text":"Bu akşam için küçük bir öneri: karlı bir pencere önünde Kış Çayı."},"note":"Kullanım bilgisi ürün ambalajındandır. Takviye kullanımı için hekiminize danışın.","qs":[{"key":"magnezyum_ne_zaman","q":"Magnezyum ne zaman alınır?","a":["Ambalajında iki seçenek var: sabah kahvaltıdan sonra ya da akşam yemekten sonra, tok karnına 1 kapsül."],"cards":["magnezyum"]},{"key":"sabah_enerji","q":"Sabahları enerjim düşük","a":["Kasım sabahları zor, biliyoruz.","Güne çiğnenebilir bir B12 tabletiyle başlamak isteyebilirsin."],"cards":["b12"]},{"key":"aksam","q":"Akşamları dinlenemiyorum","a":["Akşam ritüeli için iki öneri:"],"cards":["magnezyum","uyku"]},{"key":"cocuk","q":"Çocuğum için ne var?","a":["Miniklerin iki favorisi:"],"cards":["omega3surup","d3"]},{"key":"spor","q":"Düzenli spor yapıyorum","a":["Hareketli günlerin kırmızı kapsülü:"],"cards":["krill"]},{"key":"gunes","q":"Güneş yok, ne yapayım?","a":["Kasım'da öğle güneşi alçak: gölgen boyundan uzun.","Gün ışığı azaldığında D3 & K2 Damla:"],"cards":["d3k2"]}],"cards":{"magnezyum":{"name":"Magnezyum","img":"img/tk-28.webp","claim":"Magnezyum sinir sisteminin normal fonksiyonuna katkıda bulunur.","use":"Sabah ya da akşam, yemekten sonra tok karnına 1 kapsül","url":"https://ilacsizyasam.com/products/magnezyum?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_sohbet_magnezyum"},"b12":{"name":"Vitamin B12 & Folik Asit","img":"img/tk-02.webp","claim":"B12 vitamini yorgunluk ve bitkinliğin azalmasına katkıda bulunur.","use":"Sabah kahvaltıdan sonra 1 tablet","url":"https://ilacsizyasam.com/products/vitamin-b12-metilfolat?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_sohbet_b12"},"uyku":{"name":"Uyku Öncesi Çayı","img":"img/tk-23.webp","claim":"Kafeinsiz, piramit poşet bitki çayı.","use":"200 ml sıcak suda 5 dakika demle","url":"https://ilacsizyasam.com/products/uyku-oncesi-cayi?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_sohbet_uyku"},"omega3surup":{"name":"Omega 3 Şurup","img":"img/tk-17.webp","claim":"Yeni tadıyla, sıvı form.","use":"4 yaş ve üzeri: sabah kahvaltıdan sonra 5 cc","url":"https://ilacsizyasam.com/products/omega-3-surup?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_sohbet_omega3surup"},"d3":{"name":"Vitamin D3 Damla","img":"img/p-d3.webp","pack":true,"claim":"D vitamini çocuklarda kemiklerin normal büyüme ve gelişimi için gereklidir.","use":"4–10 yaş: günde 1 damla","url":"https://ilacsizyasam.com/products/vitamin-d3-damla?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_sohbet_d3"},"krill":{"name":"Krill Yağı","img":"img/tk-07.webp","claim":"EPA ve DHA kalbin normal fonksiyonuna katkıda bulunur.","use":"Sabah ya da akşam, yemekten sonra 1 kapsül","url":"https://ilacsizyasam.com/products/krill-yagi?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_sohbet_krill"},"d3k2":{"name":"Vitamin D3 & K2 Damla","img":"img/tk-04.webp","claim":"D vitamini bağışıklık sisteminin normal fonksiyonuna katkıda bulunur.","use":"Sabah kahvaltıdan sonra 1 damla","url":"https://ilacsizyasam.com/products/d3-k2-vitamin-damlasi?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_sohbet_d3k2"}},"url":"https://ilacsizyasam.com/collections/gida-takviyeleri?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_sohbet_sohbet_genel"}},"data":{"brand":{"name":"İlaçsız Yaşam","by":"Dr. Ümit Aktaş Ürünleri Resmi Satış Noktası","headline":"Kasım'da kendine iyi bak.","sub":"Sana uygun rutini seç, keşfet.","legal":"Takviye edici gıdalar ilaç değildir. Hastalıkların önlenmesi veya tedavi edilmesi amacıyla kullanılmaz.","home":"https://ilacsizyasam.com/collections/gida-takviyeleri?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_sohbet_genel"},"coupon":{"over":"Yeni üyelere","pct":"%10","text":"ilk alışverişte indirim","code":"YENIUYE10","copied":"Kod kopyalandı","url":"https://ilacsizyasam.com/collections/en-cok-satanlar?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=mobil_sohbet_kupon"}}};</script>
+<script>
+/* Ortak çalışma zamanı: tıklama çıkışları, ölçüm, kupon kopyalama. Her kreatifin içine satır içi gömülür. */
+var AD = window.AD || {};
+(function () {
+  // Ölçüm: Studio/DV360 Enabler varsa sayaç, yoksa konsol (ağ makrosuna buradan bağlanır).
+  AD.track = function (name) {
+    try { if (window.Enabler && Enabler.counter) Enabler.counter(name); } catch (e) {}
+    if (window.console && console.debug) console.debug('[ad]', name);
+  };
+  // Çıkış: Enabler → exitOverride; clickTag tanımlıysa (Google Ads/CM360 tek çıkış) clickTag; yoksa UTM'li doğrudan adres.
+  AD.exit = function (id, url) {
+    AD.track('exit_' + id);
+    try {
+      if (window.Enabler && Enabler.exitOverride) { Enabler.exitOverride(id, url); return; }
+    } catch (e) {}
+    var tag = window.clickTag || window.clickTAG;
+    window.open(tag || url, '_blank');
+  };
+  // Kupon kodunu panoya kopyalar; el.dataset.code okunur, geri bildirim için `copied` sınıfı eklenir.
+  AD.copy = function (el, code, done) {
+    function ok() {
+      el.classList.add('copied');
+      AD.track('coupon_copy');
+      clearTimeout(el._t); el._t = setTimeout(function () { el.classList.remove('copied'); }, 1800);
+      if (done) done();
+    }
+    try {
+      if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(code).then(ok, fallback); return; }
+    } catch (e) {}
+    fallback();
+    function fallback() {
+      var t = document.createElement('textarea');
+      t.value = code; t.setAttribute('readonly', ''); t.style.cssText = 'position:fixed;opacity:0;left:-99px';
+      document.body.appendChild(t); t.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(t); ok();
+    }
+  };
+  AD.reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Görseller yüklenince başlat (Enabler varsa görünür olduğunda).
+  AD.ready = function (fn) {
+    function go() {
+      var imgs = [].slice.call(document.images), n = imgs.length, started = false;
+      function start() { if (!started) { started = true; document.documentElement.classList.add('ready'); fn(); } }
+      if (!n) return start();
+      imgs.forEach(function (im) { if (im.complete) { if (!--n) start(); } else im.onload = im.onerror = function () { if (!--n) start(); }; });
+      setTimeout(start, 2500);
+    }
+    if (window.Enabler && Enabler.isInitialized) {
+      if (Enabler.isInitialized()) go(); else Enabler.addEventListener('init', go);
+    } else if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go();
+  };
+  AD.h = function (tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
+})();
+
+(function () {
+  var C = AD.creative.sohbet, D = AD.data, ad = document.getElementById('ad'), inner = document.getElementById('inner');
+  var $ = function (id) { return document.getElementById(id); };
+  var now = new Date(), tm = ('0' + now.getHours()).slice(-2) + ':' + ('0' + now.getMinutes()).slice(-2);
+  var asked = {}, nAsked = 0, couponSent = false, busy = false, user = false, cards = [];
+  function scroll() {
+    // Mesaj alanı sığmazsa en son mesaj görünecek şekilde yukarı kaydır
+    var box = inner.parentNode, over = inner.scrollHeight - box.clientHeight;
+    inner.style.transform = over > 0 ? 'translateY(' + (-over) + 'px)' : 'none';
+  }
+  function add(html, cls) { var el = AD.h('div', cls, html); inner.appendChild(el); scroll(); return el; }
+  function bubble(text, who) { return add(text + '<span class="tm">' + tm + '</span>', 'b ' + who); }
+  function typing(ms, done) {
+    $('st').textContent = 'yazıyor…'; $('st').classList.add('typing');
+    var t = add('<i></i><i></i><i></i>', 'typing-b');
+    setTimeout(function () { t.remove(); $('st').textContent = 'Dr. Ümit Aktaş Ürünleri · çevrimiçi'; $('st').classList.remove('typing'); done(); }, ms);
+  }
+  function card(k) {
+    var c = C.cards[k], i = cards.push(c) - 1;
+    return add('<img class="cp' + (c.pack ? ' pk' : '') + '" src="' + c.img + '" alt="' + c.name + '"><div class="ci"><b>' + c.name + '</b><small>' + c.claim + '</small>' +
+      '<div class="use"><em>Ambalajda:</em> ' + c.use + '</div></div><button class="go" data-c="' + i + '">Ürüne git →</button><span class="tm">' + tm + '</span>', 'b bot card');
+  }
+  // Bot mesaj kuyruğu: her öğe "yazıyor…" sonrası gelir
+  function say(list, done) {
+    busy = true;
+    (function next(i) {
+      if (i >= list.length) { busy = false; if (done) done(); return; }
+      typing(list[i].wait || 850, function () { list[i].fn(); setTimeout(function () { next(i + 1); }, 250); });
+    })(0);
+  }
+  function chips() {
+    var box = $('chips'); box.innerHTML = '';
+    C.qs.filter(function (q) { return !asked[q.key]; }).slice(0, 3).forEach(function (q, i) {
+      var b = AD.h('button', i === 0 && !user ? 'hint' : '', q.q); b.style.animationDelay = (i * 60) + 'ms';
+      b.addEventListener('click', function (e) { e.stopPropagation(); ask(q, false); });
+      box.appendChild(b);
+    });
+    fit();
+  }
+  // Mesaj alanı, soru düğmelerinin hemen üstünde biter
+  function fit() { document.querySelector('.msgs').style.bottom = ($('chips').offsetHeight + 62) + 'px'; setTimeout(scroll, 320); }
+  function ask(q, auto) {
+    if (busy || asked[q.key]) return;
+    if (!auto && !user) { user = true; clearTimeout(autoT); AD.track('sohbet_user'); }
+    asked[q.key] = true; nAsked++;
+    AD.track('sohbet_q_' + q.key + (auto ? '_auto' : ''));
+    $('chips').innerHTML = ''; fit();
+    bubble(q.q, 'me');
+    var list = q.a.map(function (t) { return { fn: function () { bubble(t, 'bot'); } }; })
+      .concat(q.cards.map(function (k) { return { wait: 700, fn: function () { card(k); } }; }));
+    if (!couponSent && (nAsked >= 2 || auto)) {
+      couponSent = true;
+      list.push({ wait: 900, fn: function () {
+        add('Bu arada: yeni üyelere ilk alışverişte <b>%10</b> indirim var.<button class="coupon" data-copy="1"><span>Kod: <b>' + D.coupon.code + '</b></span><span class="cp-act">Kopyala</span><span class="cp-ok">✓ Kopyalandı</span></button><span class="tm">' + tm + '</span>', 'b bot cpn');
+        add(C.note, 'b note');
+      } });
+    }
+    setTimeout(function () { say(list, chips); }, 300);
+  }
+  inner.addEventListener('click', function (e) {
+    e.stopPropagation();
+    var cp = e.target.closest('[data-copy]'); if (cp) return AD.copy(cp, D.coupon.code);
+    var g = e.target.closest('.card'); if (!g) return;
+    var c = cards[+g.querySelector('.go').dataset.c]; AD.exit('sohbet_' + Object.keys(C.cards).filter(function (k) { return C.cards[k] === c; })[0], c.url);
+  });
+  $('top').addEventListener('click', function (e) { e.stopPropagation(); AD.exit('sohbet_profil', C.url); });
+  ad.addEventListener('click', function () { AD.exit('sohbet_genel', C.url); });
+  // Açılış: selamlaşma + fotoğraflı öneri; 8 sn etkileşim yoksa en çok sorulan soruyu kendisi sorar
+  var autoT = null;
+  AD.ready(function () {
+    AD.track('impression_ready');
+    say([
+      { wait: 700, fn: function () { bubble(C.hello[0], 'bot'); } },
+      { wait: 900, fn: function () { bubble(C.hello[1], 'bot'); } },
+      { wait: 1000, fn: function () { add('<img src="' + C.teaser.img + '" alt=""><p>' + C.teaser.text + '</p><span class="tm">' + tm + '</span>', 'b bot ph'); } },
+    ], function () {
+      chips();
+      if (!AD.reduced) autoT = setTimeout(function () { if (!user) ask(C.qs[0], true); }, 8000);
+    });
+  });
+})();
+</script>
+</body>
+</html>

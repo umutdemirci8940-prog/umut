@@ -20,6 +20,21 @@ Reklam Kasım boyunca **her gün kendiliğinden değişir**. Her gün yeni bir k
 |---|---|
 | ![](preview-rich/screens/masthead-970x250-takvim-takvim.jpg) ![](preview-rich/screens/masthead-970x250-takvim-icerik.jpg) | ![](preview-rich/screens/mobil-320x480-takvim-takvim.jpg) ![](preview-rich/screens/mobil-320x480-takvim-icerik.jpg) |
 
+## Konuşan, yayılan, saati bilen — yeni set
+
+| Çalışma | Boyut | Mekanik | Klasör |
+|---|---|---|---|
+| **İlaçsız Yaşam ile Mesajlaş** | 320 × 480 | Mesajlaşma ekranı; hazır sorular → onaylı cevaplar, ambalajdaki kullanım bilgisi, fotoğraflı ürün kartları, %10 kod | `dist-rich/mobil-320x480-sohbet/` |
+| **Sevdiğine Bir Rutin Gönder** | 320 × 480 | Alıcı seç → gerçek fotoğraflı kartpostal → WhatsApp ile alıcıya özel UTM'li paylaşım; alıcıya %10 hoş geldin | `dist-rich/mobil-320x480-gonder/` |
+| **Günün Rutini** | 970 × 250 | İzleyicinin yerel saatine göre sahne (sabah/öğle/akşamüstü/gece), canlı saat, gerçek gün doğumu/batımı, sürüklenebilir güneş | `dist-rich/masthead-970x250-saat/` |
+
+- **WhatsApp paylaşımı:** Çıkış `Enabler.exitOverride` ile çalışır; ağ tek `clickTag` zorunlu kılıyorsa (Google Ads) paylaşım yerine clickTag açılır, bu çalışma rich media platformu (Studio/Celtra/Adform) için önerilir.
+- **Saat önizleme:** `index.html?saat=21`.
+
+| Mesajlaş | Gönder | Günün Rutini |
+|---|---|---|
+| ![](preview-rich/screens/mobil-320x480-sohbet-soru-1.jpg) | ![](preview-rich/screens/mobil-320x480-gonder-kart.jpg) | ![](preview-rich/screens/masthead-970x250-saat-gece.jpg) |
+
 ## Mobil'e özgü set — uygulama, kazı kazan, oyun (320 × 480)
 
 | Çalışma | Mekanik | Klasör |
