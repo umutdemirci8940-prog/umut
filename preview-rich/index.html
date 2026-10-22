@@ -1402,7 +1402,7 @@ var GUNES = (function () {
       var t0 = null, from = nowMin;
       (function step(ts) {
         if (user) return; if (t0 === null) t0 = ts;
-        var k = Math.min(1, (ts - t0) / 7000), e = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+        var k = Math.max(0, Math.min(1, (ts - t0) / 7000)), e = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
         render(from + e * 1440, false);
         if (k < 1) raf = requestAnimationFrame(step); else { render(nowMin, true); setTimeout(function () { $('hint').classList.remove('on'); }, 1800); }
       })(performance.now());
@@ -2036,7 +2036,7 @@ var AD = window.AD || {};
     var r = rect(0), pts = [], t0 = null;
     for (var k = 0; k <= 16; k++) pts.push([r.x + 14 + k * (r.w - 28) / 16, r.y + r.h / 2 + Math.sin(k / 16 * Math.PI * 3) * 18]);
     last = null; demoing = true;
-    (function step(ts) { if (started) { demoing = false; return; } if (t0 === null) t0 = ts; var k = Math.min(pts.length - 1, Math.floor((ts - t0) / 30)); scratch(pts[k][0], pts[k][1]); if (k < pts.length - 1) requestAnimationFrame(step); else { last = null; demoing = false; } })(performance.now());
+    (function step(ts) { if (started) { demoing = false; return; } if (t0 === null) t0 = ts; var k = Math.max(0, Math.min(pts.length - 1, Math.floor((ts - t0) / 30))); scratch(pts[k][0], pts[k][1]); if (k < pts.length - 1) requestAnimationFrame(step); else { last = null; demoing = false; } })(performance.now());
   }
   tex.onload = paint; paint();
   AD.ready(function () {
@@ -2676,7 +2676,7 @@ var GUNES = (function () {
   var raf = null, demoT = [];
   function sweep(ms, done) {
     var t0 = null;
-    (function step(ts) { if (userTouched) return; if (t0 === null) t0 = ts; var k = Math.min(1, (ts - t0) / ms); var e = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2; t = tToday * e; update(); if (k < 1) raf = requestAnimationFrame(step); else if (done) done(); })(performance.now());
+    (function step(ts) { if (userTouched) return; if (t0 === null) t0 = ts; var k = Math.max(0, Math.min(1, (ts - t0) / ms)); var e = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2; t = tToday * e; update(); if (k < 1) raf = requestAnimationFrame(step); else if (done) done(); })(performance.now());
   }
   function stopDemo() { cancelAnimationFrame(raf); demoT.forEach(clearTimeout); }
   update();
@@ -3025,7 +3025,7 @@ var GUNES = (function () {
   var raf = null, demoT = [];
   function sweep(ms, done) {
     var t0 = null;
-    (function step(ts) { if (userTouched) return; if (t0 === null) t0 = ts; var k = Math.min(1, (ts - t0) / ms); var e = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2; t = tToday * e; update(); if (k < 1) raf = requestAnimationFrame(step); else if (done) done(); })(performance.now());
+    (function step(ts) { if (userTouched) return; if (t0 === null) t0 = ts; var k = Math.max(0, Math.min(1, (ts - t0) / ms)); var e = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2; t = tToday * e; update(); if (k < 1) raf = requestAnimationFrame(step); else if (done) done(); })(performance.now());
   }
   function stopDemo() { cancelAnimationFrame(raf); demoT.forEach(clearTimeout); }
   update();
@@ -4876,7 +4876,7 @@ var AD = window.AD || {};
     (function step(ts) {
       if (started) return;
       if (t0 === null) t0 = ts;
-      var i = Math.min(pts.length - 1, Math.floor((ts - t0) / 28));
+      var i = Math.max(0, Math.min(pts.length - 1, Math.floor((ts - t0) / 28)));
       erase(pts[i][0], pts[i][1]);
       if (i < pts.length - 1) requestAnimationFrame(step); else last = null;
     })(performance.now());

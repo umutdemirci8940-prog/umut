@@ -267,7 +267,7 @@ var GUNES = (function () {
       var t0 = null, from = nowMin;
       (function step(ts) {
         if (user) return; if (t0 === null) t0 = ts;
-        var k = Math.min(1, (ts - t0) / 7000), e = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+        var k = Math.max(0, Math.min(1, (ts - t0) / 7000)), e = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
         render(from + e * 1440, false);
         if (k < 1) raf = requestAnimationFrame(step); else { render(nowMin, true); setTimeout(function () { $('hint').classList.remove('on'); }, 1800); }
       })(performance.now());

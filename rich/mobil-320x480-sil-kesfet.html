@@ -145,7 +145,7 @@ canvas { position: absolute; inset: 0; width: 320px; height: 480px; z-index: 5; 
     (function step(ts) {
       if (started) return;
       if (t0 === null) t0 = ts;
-      var i = Math.min(pts.length - 1, Math.floor((ts - t0) / 28));
+      var i = Math.max(0, Math.min(pts.length - 1, Math.floor((ts - t0) / 28)));
       erase(pts[i][0], pts[i][1]);
       if (i < pts.length - 1) requestAnimationFrame(step); else last = null;
     })(performance.now());

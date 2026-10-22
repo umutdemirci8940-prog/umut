@@ -1,3 +1,9 @@
+# Splash Digital sunumu
+
+**`sunum/index.html`** — tüm çalışmalar tek sayfada, satır satır (Çalışma 1 … Çalışma 18), üstte Splash Digital logosu ve "Bu Çalışmalar Splash Digital'e Aittir." Tek dosya; çalışmalar canlı oynar (masthead'ler tarayıcı penceresinde, mobiller telefon çerçevesinde). Yeniden üretmek için: `node tools/build-rich.js && node tools/present.js`.
+
+---
+
 # İlaçsız Yaşam – Kasım 2026 interaktif çalışmalar (media-first)
 
 Sunum: **`preview-rich/index.html`** (tek dosya; tüm çalışmalar gömülü, tekrar oynat düğmeli). Yüklemeye hazır paketler: `dist-rich/zip/`.

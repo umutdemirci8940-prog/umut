@@ -207,7 +207,7 @@
   var raf = null, demoT = [];
   function sweep(ms, done) {
     var t0 = null;
-    (function step(ts) { if (userTouched) return; if (t0 === null) t0 = ts; var k = Math.min(1, (ts - t0) / ms); var e = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2; t = tToday * e; update(); if (k < 1) raf = requestAnimationFrame(step); else if (done) done(); })(performance.now());
+    (function step(ts) { if (userTouched) return; if (t0 === null) t0 = ts; var k = Math.max(0, Math.min(1, (ts - t0) / ms)); var e = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2; t = tToday * e; update(); if (k < 1) raf = requestAnimationFrame(step); else if (done) done(); })(performance.now());
   }
   function stopDemo() { cancelAnimationFrame(raf); demoT.forEach(clearTimeout); }
   update();

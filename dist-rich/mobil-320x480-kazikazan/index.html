@@ -283,7 +283,7 @@ var AD = window.AD || {};
     var r = rect(0), pts = [], t0 = null;
     for (var k = 0; k <= 16; k++) pts.push([r.x + 14 + k * (r.w - 28) / 16, r.y + r.h / 2 + Math.sin(k / 16 * Math.PI * 3) * 18]);
     last = null; demoing = true;
-    (function step(ts) { if (started) { demoing = false; return; } if (t0 === null) t0 = ts; var k = Math.min(pts.length - 1, Math.floor((ts - t0) / 30)); scratch(pts[k][0], pts[k][1]); if (k < pts.length - 1) requestAnimationFrame(step); else { last = null; demoing = false; } })(performance.now());
+    (function step(ts) { if (started) { demoing = false; return; } if (t0 === null) t0 = ts; var k = Math.max(0, Math.min(pts.length - 1, Math.floor((ts - t0) / 30))); scratch(pts[k][0], pts[k][1]); if (k < pts.length - 1) requestAnimationFrame(step); else { last = null; demoing = false; } })(performance.now());
   }
   tex.onload = paint; paint();
   AD.ready(function () {
