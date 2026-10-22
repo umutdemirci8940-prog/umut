@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=320,height=480">
+<meta name="viewport" content="width=320,height=480,initial-scale=1,user-scalable=no">
+<title>İlaçsız Yaşam – 3D Kasım Rutin Kitabı 320x480</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+{{SHARED_CSS}}
+.ad { width: 320px; height: 480px; background: radial-gradient(100% 70% at 60% 40%, #26489c 0%, var(--navy-d) 60%, #050d2e 100%); }
+.sc { position: absolute; left: 0; top: 0; width: 320px; height: 440px; perspective: 1100px; perspective-origin: 30% 50%; touch-action: pan-y; }
+.book { position: absolute; left: 40px; top: 28px; width: 256px; height: 372px; transform-style: preserve-3d; transform: rotateX(8deg) rotateY(-14deg); transition: transform 1.2s var(--ease); }
+.book.flat { transform: rotateX(4deg) rotateY(-4deg); }
+/* Kitap gövdesi: sayfa kalınlığı ve sırt */
+.block { position: absolute; left: 2px; top: 4px; right: -7px; bottom: -6px; border-radius: 3px 8px 8px 3px; background: repeating-linear-gradient(90deg, #efe6d4 0 1px, #d9ceb8 1px 2px); transform: translateZ(-14px); box-shadow: 18px 24px 40px rgba(0, 0, 0, .55); }
+.back { position: absolute; inset: 0; border-radius: 3px 8px 8px 3px; background: #fbf6ec; transform: translateZ(-1px); color: var(--ink); padding: 54px 22px 0; text-align: center; }
+.back .logo { width: 130px; margin: 0 auto; }
+.back h3 { font-family: var(--serif); font-weight: 700; font-size: 24px; line-height: 1.05; color: var(--navy); margin-top: 22px; }
+.back h3 em { font-style: italic; font-weight: 600; color: var(--green); }
+.back p { font-size: 11.5px; font-weight: 700; color: rgba(15, 26, 58, .72); margin-top: 8px; }
+.back .coupon { margin-top: 16px; background: var(--navy); border-color: var(--navy); color: #fff; font-size: 11px; }
+.back .cta { margin-top: 14px; }
+/* Sayfa: sol kenardan (sırttan) döner */
+.pg { position: absolute; inset: 0; transform-origin: 0 50%; transform-style: preserve-3d; transition: transform 1.05s cubic-bezier(.45, .05, .2, 1); }
+.pg.fl { transform: rotateY(-172deg); }
+.pg > div { position: absolute; inset: 0; border-radius: 3px 8px 8px 3px; overflow: hidden; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.pg .fr { background: #fbf6ec; color: var(--ink); }
+.pg .bk { transform: rotateY(180deg); background: #f3ecdd; }
+.pg .bk::after { content: ''; position: absolute; inset: 0; background: linear-gradient(270deg, rgba(0, 0, 0, .14), transparent 30%); }
+/* Sayfa gölgelendirme: dönerken kıvrılma ışığı */
+.pg .fr::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0, 0, 0, .16), transparent 9%); pointer-events: none; }
+.pg .sh { position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(0, 0, 0, .35)); opacity: 0; transition: opacity .5s; pointer-events: none; }
+.pg.turn .sh { opacity: 1; }
+/* Kapak */
+.cover .fr { background: linear-gradient(160deg, #1b3a96, var(--navy-d)); color: #fff; padding: 26px 22px; }
+.cover .fr > img.ph { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 196px; object-fit: cover; }
+.cover .fr::before { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 196px; background: linear-gradient(180deg, #102769 0%, rgba(16, 39, 105, 0) 40%); z-index: 1; }
+.cover .logo { width: 104px; position: relative; z-index: 2; }
+.cover h1 { position: relative; z-index: 2; font-family: var(--serif); font-weight: 700; font-size: 30px; line-height: 1; margin-top: 18px; }
+.cover h1 em { font-style: italic; font-weight: 600; color: #ffd25a; display: block; }
+.cover .by { position: relative; z-index: 2; font-size: 10.5px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; margin-top: 10px; color: rgba(255, 255, 255, .78); }
+.cover .gold { position: absolute; z-index: 2; left: 10px; top: 10px; right: 10px; bottom: 10px; border: 1px solid rgba(255, 210, 90, .45); border-radius: 2px 6px 6px 2px; pointer-events: none; }
+/* İç sayfalar */
+.in .ph { display: block; width: 100%; height: 196px; object-fit: cover; }
+.in .tx { padding: 12px 18px 0; }
+.in .no { position: absolute; right: 14px; bottom: 10px; font-family: var(--serif); font-style: italic; font-size: 12px; color: rgba(15, 26, 58, .45); }
+.in .tg { font-size: 9.5px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--green); }
+.in h2 { font-family: var(--serif); font-weight: 700; font-size: 21px; line-height: 1.05; color: var(--navy); margin-top: 4px; }
+.in .ln { font-family: var(--serif); font-style: italic; font-size: 13px; color: rgba(15, 26, 58, .82); margin-top: 5px; }
+.in .cl { font-size: 9.5px; font-weight: 600; color: rgba(15, 26, 58, .6); margin-top: 6px; }
+.in .go { position: absolute; left: 18px; bottom: 11px; font-size: 11px; font-weight: 800; color: var(--green); }
+.bk .note { position: absolute; left: 22px; right: 22px; top: 50%; transform: translateY(-50%) scaleX(-1); }
+/* Alt çubuk */
+.bar { position: absolute; z-index: 3; left: 14px; right: 14px; bottom: 26px; display: flex; align-items: center; justify-content: space-between; }
+.bar .nav { width: 34px; height: 34px; border-radius: 50%; background: rgba(255, 255, 255, .12); border: 1px solid rgba(255, 255, 255, .22); font-size: 15px; font-weight: 800; }
+.bar .dots { display: flex; gap: 5px; }
+.bar .dots i { width: 6px; height: 6px; border-radius: 3px; background: rgba(255, 255, 255, .28); transition: width .3s var(--ease), background .3s; }
+.bar .dots i.on { width: 16px; background: #ffd25a; }
+.hint { position: absolute; z-index: 3; left: 0; right: 0; top: 410px; text-align: center; font-size: 10px; font-weight: 800; letter-spacing: .08em; color: rgba(255, 255, 255, .78); transition: opacity .4s; }
+.ad > .legal { position: absolute; left: 14px; right: 14px; bottom: 7px; }
+</style>
+</head>
+<body>
+<div class="ad" id="ad">
+  <div class="sc" id="sc">
+    <div class="book" id="book">
+      <div class="block"></div>
+      <div class="back">
+        <img class="logo" src="img/logo-lacivert.webp" alt="İlaçsız Yaşam">
+        <h3>Kasım rutinin<br><em>bu sayfalarda.</em></h3>
+        <p>Yeni üyelere ilk alışverişte %10 indirim.</p>
+        <button class="coupon" id="cp"><span><b>{{code}}</b></span><span class="cp-act">Kopyala</span><span class="cp-ok">✓ Kopyalandı</span></button><br>
+        <button class="cta" id="go">Rutinimi seç <i>→</i></button>
+      </div>
+    </div>
+  </div>
+  <div class="hint" id="hint">Sayfayı çevir: kaydır ya da sağa dokun</div>
+  <div class="bar"><button class="nav" id="pv">←</button><div class="dots" id="dots"></div><button class="nav" id="nx">→</button></div>
+  <div class="legal">{{legal}}</div>
+</div>
+<script>window.AD = {{DATA}};</script>
+<script>
+{{SHARED_JS}}
+(function () {
+  var U = AD.creative.uc, D = AD.data, ad = document.getElementById('ad');
+  var $ = function (id) { return document.getElementById(id); };
+  var book = $('book');
+  // Kapak + 8 sayfa; arka sayfalar sonda (yığının altında) kalır
+  var pages = [];
+  function page(cls, front, back) {
+    var p = AD.h('div', 'pg ' + cls, '<div class="fr">' + front + '<div class="sh"></div></div><div class="bk">' + back + '</div>');
+    pages.push(p); return p;
+  }
+  page('cover', '<div class="gold"></div><img class="logo" src="img/logo-beyaz.webp" alt=""><h1>Kasım<em>Rutin Kitabı</em></h1><div class="by">Dr. Ümit Aktaş ürünleriyle</div><img class="ph" src="img/tk-08.webp" alt="">', '');
+  U.forEach(function (u, i) {
+    page('in', '<img class="ph" src="' + u.img + '" alt=""><div class="tx"><div class="tg">' + u.tag + '</div><h2>' + u.name + '</h2><div class="ln">' + u.line + '</div><div class="cl">' + u.claim + '</div></div><span class="go">Ürünü incele →</span><span class="no">' + (i + 1) + '</span>', '');
+  });
+  for (var k = pages.length - 1; k >= 0; k--) { pages[k].style.zIndex = pages.length - k; book.appendChild(pages[k]); }
+  $('dots').innerHTML = pages.map(function () { return '<i></i>'; }).join('') + '<i></i>';
+  var at = 0, user = false, busy = 0;
+  function dots() { [].forEach.call($('dots').children, function (d, i) { d.classList.toggle('on', i === at); }); }
+  // Çevrilen sayfa en üste çıkar (dönerken diğerlerinin önünde kalır), sonra sola yığılır
+  function go(dir, how) {
+    if (dir > 0 && at >= pages.length) return; if (dir < 0 && at <= 0) return;
+    var p = dir > 0 ? pages[at] : pages[at - 1];
+    p.style.zIndex = 100; p.classList.add('turn');
+    p.classList.toggle('fl', dir > 0);
+    at += dir; dots(); book.classList.toggle('flat', at > 0);
+    clearTimeout(p._t); p._t = setTimeout(function () { p.classList.remove('turn'); var i = pages.indexOf(p); p.style.zIndex = p.classList.contains('fl') ? 50 + i : pages.length - i; }, 1050);
+    AD.track('kitap_sayfa_' + at + (how ? '_' + how : ''));
+  }
+  function first() { if (!user) { user = true; autoT.forEach(clearTimeout); $('hint').style.opacity = 0; AD.track('kitap_user'); } }
+  $('nx').addEventListener('click', function (e) { e.stopPropagation(); first(); go(1, 'ok'); });
+  $('pv').addEventListener('click', function (e) { e.stopPropagation(); first(); go(-1, 'ok'); });
+  // Kaydırma ve dokunma: sağ yarı ileri, sol yarı geri; açık sayfanın alt kısmı ürüne gider
+  var sx = null, sy = 0, sw = false;
+  var sc = $('sc');
+  sc.addEventListener('pointerdown', function (e) { sx = e.clientX; sy = e.clientY; sw = false; });
+  sc.addEventListener('pointermove', function (e) { if (sx === null || sw) return; var dx = e.clientX - sx; if (Math.abs(dx) > 34 && Math.abs(dx) > Math.abs(e.clientY - sy)) { sw = true; first(); go(dx < 0 ? 1 : -1, 'kaydir'); } });
+  sc.addEventListener('pointerup', function () { sx = null; });
+  sc.addEventListener('click', function (e) {
+    e.stopPropagation(); if (sw) return;
+    if (e.target.closest('.back')) return;
+    var r = book.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+    first();
+    if (at > 0 && at <= U.length && y > 300 && x < 170) { var u = U[at - 1]; AD.exit('kitap_' + u.key, u.url); return; }
+    go(x > r.width * .45 ? 1 : -1, 'dokun');
+  });
+  $('cp').addEventListener('click', function (e) { e.stopPropagation(); AD.copy(this, D.coupon.code); });
+  $('go').addEventListener('click', function (e) { e.stopPropagation(); AD.exit('kitap_cta', D.brand.home); });
+  ad.addEventListener('click', function () { AD.exit('kitap_genel', at > 0 && at <= U.length ? U[at - 1].url : D.brand.home); });
+  dots();
+  // Tanıtım: kapak açılır, sayfalar tek tek çevrilir; dokununca durur
+  var autoT = [];
+  AD.ready(function () {
+    AD.track('impression_ready');
+    if (AD.reduced) return;
+    for (var i = 0; i < pages.length; i++) autoT.push(setTimeout(function () { if (!user) go(1); }, 1300 + i * 2500));
+  });
+})();
+</script>
+</body>
+</html>

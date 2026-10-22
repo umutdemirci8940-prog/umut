@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=970,height=250">
+<meta name="viewport" content="width=970,height=250,initial-scale=1">
+<title>İlaçsız Yaşam – 3D Kasım Halkası 970x250</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #132d7d;
+  --navy-d: #0b1c52;
+  --green: #5fa511;
+  --green-l: #8fd14a;
+  --ink: #0f1a3a;
+  --white: #fff;
+  --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --sans: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+  --ease: cubic-bezier(.22, .8, .2, 1);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: var(--navy-d); }
+body { font-family: var(--sans); color: var(--white); -webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none; }
+img { display: block; -webkit-user-drag: none; }
+button { font: inherit; color: inherit; border: 0; background: none; cursor: pointer; }
+.ad { position: relative; overflow: hidden; background: var(--navy-d); cursor: pointer; }
+.legal { font-size: 8px; line-height: 1.25; color: rgba(255, 255, 255, .72); letter-spacing: .01em; }
+
+/* Kupon çipi */
+.coupon { display: inline-flex; align-items: center; gap: 8px; border-radius: 10px; background: rgba(255, 255, 255, .14); border: 1px dashed rgba(255, 255, 255, .55); padding: 6px 10px; transition: background .25s, transform .25s var(--ease); }
+.coupon:hover { background: rgba(255, 255, 255, .22); }
+.coupon:active { transform: scale(.97); }
+.coupon b { font-weight: 800; letter-spacing: .08em; }
+.coupon .cp-act { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--green-l); }
+.coupon .cp-ok { display: none; }
+.coupon.copied { background: var(--green); border-color: var(--green); }
+.coupon.copied .cp-act { display: none; }
+.coupon.copied .cp-ok { display: inline; font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; }
+
+/* Yeşil CTA */
+.cta { display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 16px; border-radius: 999px; background: var(--green); color: #fff; font-weight: 800; font-size: 12.5px; letter-spacing: .01em; white-space: nowrap; box-shadow: 0 6px 18px rgba(95, 165, 17, .38); transition: transform .25s var(--ease), background .25s; }
+.cta:hover { background: #6cbb14; transform: translateY(-1px); }
+.cta i { font-style: normal; transition: transform .25s var(--ease); }
+.cta:hover i { transform: translateX(3px); }
+
+/* Ürün kutucuğu (orijinal ambalaj fotoğrafı, beyaz kart) */
+.pk { position: relative; flex: none; background: #fff; border-radius: 10px; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 16px rgba(5, 15, 50, .28); transition: transform .3s var(--ease), box-shadow .3s; }
+.pk img { max-width: 86%; max-height: 82%; object-fit: contain; }
+.pk:hover { transform: translateY(-4px) scale(1.04); box-shadow: 0 10px 22px rgba(5, 15, 50, .4); z-index: 2; }
+.pk .tip { position: absolute; left: 50%; bottom: calc(100% + 6px); transform: translate(-50%, 4px); background: #fff; color: var(--navy); font-size: 10px; font-weight: 800; padding: 4px 8px; border-radius: 6px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; box-shadow: 0 4px 12px rgba(0, 0, 0, .25); }
+.pk:hover .tip { opacity: 1; transform: translate(-50%, 0); }
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: .01s !important; animation-duration: .01s !important; } }
+
+.ad { width: 970px; height: 250px; background: radial-gradient(55% 120% at 57% 40%, #23479f 0%, var(--navy-d) 62%, #060f33 100%); }
+/* Sol: mesaj */
+.lf { position: absolute; z-index: 3; left: 24px; top: 18px; width: 250px; }
+.lf .logo { width: 108px; }
+.lf h1 { font-family: var(--serif); font-weight: 700; font-size: 29px; line-height: 1.02; margin-top: 18px; }
+.lf h1 em { font-style: italic; font-weight: 600; color: #ffd25a; }
+.lf p { font-size: 12px; font-weight: 600; color: rgba(255, 255, 255, .8); margin-top: 8px; }
+.lf .coupon { margin-top: 12px; font-size: 11px; }
+/* Orta: 3D halka */
+.sc { position: absolute; left: 270px; top: 0; width: 470px; height: 250px; perspective: 900px; perspective-origin: 50% 30%; touch-action: none; cursor: grab; }
+.sc.drag { cursor: grabbing; }
+.ring { position: absolute; left: 50%; top: 50px; width: 0; height: 0; transform-style: preserve-3d; }
+.pn { position: absolute; left: -76px; top: 0; width: 152px; height: 122px; border-radius: 10px; overflow: hidden; background: #0b1c52; box-shadow: 0 0 0 1px rgba(255, 255, 255, .18); backface-visibility: hidden; transition: box-shadow .3s; }
+.pn img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+.pn::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11, 28, 82, 0) 55%, rgba(11, 28, 82, .75)); }
+.pn span { position: absolute; z-index: 1; left: 9px; bottom: 7px; font-size: 9.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.pn.on { box-shadow: 0 0 0 2px #ffd25a, 0 14px 30px rgba(0, 0, 0, .5); }
+/* Zemin: halkanın yansıması ve gölgesi */
+.floor { position: absolute; left: 50%; top: 186px; width: 420px; height: 56px; margin-left: -210px; border-radius: 50%; background: radial-gradient(closest-side, rgba(95, 165, 17, .28), rgba(26, 130, 214, .08) 60%, transparent); filter: blur(2px); }
+.hint { position: absolute; left: 50%; bottom: 10px; transform: translateX(-50%); font-size: 10.5px; font-weight: 800; letter-spacing: .08em; color: rgba(255, 255, 255, .78); white-space: nowrap; transition: opacity .4s; }
+.hint b { color: #ffd25a; }
+/* Sağ: öndeki ürün */
+.rt { position: absolute; z-index: 3; right: 22px; top: 22px; width: 206px; }
+.rt .tg { font-size: 10px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--green-l); }
+.rt h2 { font-family: var(--serif); font-weight: 700; font-size: 22px; line-height: 1.05; margin-top: 6px; min-height: 46px; }
+.rt .ln { font-size: 12px; font-weight: 700; color: rgba(255, 255, 255, .9); margin-top: 6px; min-height: 32px; }
+.rt .cl { font-size: 9.5px; font-weight: 600; color: rgba(255, 255, 255, .62); margin-top: 6px; min-height: 26px; }
+.rt .cta { margin-top: 8px; }
+.rt .sw { transition: opacity .25s, transform .25s var(--ease); }
+.rt .sw.out { opacity: 0; transform: translateY(6px); }
+.ad > .legal { position: absolute; left: 24px; bottom: 8px; width: 240px; }
+</style>
+</head>
+<body>
+<div class="ad" id="ad">
+  <div class="lf">
+    <img class="logo" src="img/logo-beyaz.webp" alt="İlaçsız Yaşam">
+    <h1>Kasım'ı <em>çevir,</em><br>rutinini bul.</h1>
+    <p>Sekiz an, sekiz ürün. Halkayı sürükle.</p>
+    <button class="coupon" id="cp"><span>Yeni üyelere %10: <b>YENIUYE10</b></span><span class="cp-act">Kopyala</span><span class="cp-ok">✓ Kopyalandı</span></button>
+  </div>
+  <div class="sc" id="sc">
+    <div class="floor"></div>
+    <div class="ring" id="ring"></div>
+    <div class="hint" id="hint">↔ <b>Sürükle</b> · karta dokun</div>
+  </div>
+  <div class="rt">
+    <div class="sw" id="sw">
+      <div class="tg" id="tg"></div>
+      <h2 id="nm"></h2>
+      <div class="ln" id="ln"></div>
+      <div class="cl" id="cl"></div>
+    </div>
+    <button class="cta" id="go">Ürünü incele <i>→</i></button>
+  </div>
+  <div class="legal">Takviye edici gıdalar ilaç değildir. Hastalıkların önlenmesi veya tedavi edilmesi amacıyla kullanılmaz.</div>
+</div>
+<script>window.AD = {"creative":{"uc":[{"key":"d3k2","tag":"Öğle","name":"Vitamin D3 & K2 Damla","line":"Güneş alçaldığında gün ışığı desteği.","claim":"D vitamini bağışıklık sisteminin normal fonksiyonuna katkıda bulunur.","img":"img/tk-04.webp","url":"https://ilacsizyasam.com/products/d3-k2-vitamin-damlasi?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=masthead_3d_halka_uc_d3k2"},{"key":"kiscayi","tag":"Akşamüstü","name":"Kış Çayı","line":"Karlı pencerenin önünde ilk fincan.","claim":"Kafeinsiz, piramit poşet bitki çayı.","img":"img/tk-03.webp","url":"https://ilacsizyasam.com/products/kis-cayi?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=masthead_3d_halka_uc_kiscayi"},{"key":"magnezyum","tag":"Akşam","name":"Magnezyum","line":"Akşamlarına sakin bir ritim.","claim":"Magnezyum sinir sisteminin normal fonksiyonuna katkıda bulunur.","img":"img/tk-28.webp","url":"https://ilacsizyasam.com/products/magnezyum?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=masthead_3d_halka_uc_magnezyum"},{"key":"omega3surup","tag":"Aile","name":"Omega 3 Şurup","line":"Miniklere yeni tadıyla.","claim":"4 yaş ve üzeri için sıvı form.","img":"img/tk-17.webp","url":"https://ilacsizyasam.com/products/omega-3-surup?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=masthead_3d_halka_uc_omega3surup"},{"key":"krill","tag":"Hareket","name":"Krill Yağı","line":"Pilates sonrası kırmızı kapsül.","claim":"EPA ve DHA kalbin normal fonksiyonuna katkıda bulunur.","img":"img/tk-07.webp","url":"https://ilacsizyasam.com/products/krill-yagi?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=masthead_3d_halka_uc_krill"},{"key":"vitc","tag":"Kışa hazırlık","name":"Vitamin C","line":"Turuncu bir kış hazırlığı.","claim":"C vitamini bağışıklık sisteminin normal fonksiyonuna katkıda bulunur.","img":"img/tk-13.webp","url":"https://ilacsizyasam.com/products/vitamin-c?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=masthead_3d_halka_uc_vitc"},{"key":"uyku","tag":"Gece","name":"Uyku Öncesi Çayı","line":"Ay ışığında bir fincan.","claim":"Kafeinsiz bitki çayı.","img":"img/tk-23.webp","url":"https://ilacsizyasam.com/products/uyku-oncesi-cayi?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=masthead_3d_halka_uc_uyku"},{"key":"matcha","tag":"Sabah","name":"Matcha","line":"Sabahın yeşil ritüeli.","claim":"%100 Japon matcha.","img":"img/tk-10.webp","url":"https://ilacsizyasam.com/products/matcha?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=masthead_3d_halka_uc_matcha"}]},"data":{"brand":{"name":"İlaçsız Yaşam","by":"Dr. Ümit Aktaş Ürünleri Resmi Satış Noktası","headline":"Kasım'da kendine iyi bak.","sub":"Sana uygun rutini seç, keşfet.","legal":"Takviye edici gıdalar ilaç değildir. Hastalıkların önlenmesi veya tedavi edilmesi amacıyla kullanılmaz.","home":"https://ilacsizyasam.com/collections/gida-takviyeleri?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=masthead_3d_halka_genel"},"coupon":{"over":"Yeni üyelere","pct":"%10","text":"ilk alışverişte indirim","code":"YENIUYE10","copied":"Kod kopyalandı","url":"https://ilacsizyasam.com/collections/en-cok-satanlar?utm_source=display&utm_medium=rich_media&utm_campaign=kasim_2026&utm_content=masthead_3d_halka_kupon"}}};</script>
+<script>
+/* Ortak çalışma zamanı: tıklama çıkışları, ölçüm, kupon kopyalama. Her kreatifin içine satır içi gömülür. */
+var AD = window.AD || {};
+(function () {
+  // Ölçüm: Studio/DV360 Enabler varsa sayaç, yoksa konsol (ağ makrosuna buradan bağlanır).
+  AD.track = function (name) {
+    try { if (window.Enabler && Enabler.counter) Enabler.counter(name); } catch (e) {}
+    if (window.console && console.debug) console.debug('[ad]', name);
+  };
+  // Çıkış: Enabler → exitOverride; clickTag tanımlıysa (Google Ads/CM360 tek çıkış) clickTag; yoksa UTM'li doğrudan adres.
+  AD.exit = function (id, url) {
+    AD.track('exit_' + id);
+    try {
+      if (window.Enabler && Enabler.exitOverride) { Enabler.exitOverride(id, url); return; }
+    } catch (e) {}
+    var tag = window.clickTag || window.clickTAG;
+    window.open(tag || url, '_blank');
+  };
+  // Kupon kodunu panoya kopyalar; el.dataset.code okunur, geri bildirim için `copied` sınıfı eklenir.
+  AD.copy = function (el, code, done) {
+    function ok() {
+      el.classList.add('copied');
+      AD.track('coupon_copy');
+      clearTimeout(el._t); el._t = setTimeout(function () { el.classList.remove('copied'); }, 1800);
+      if (done) done();
+    }
+    try {
+      if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(code).then(ok, fallback); return; }
+    } catch (e) {}
+    fallback();
+    function fallback() {
+      var t = document.createElement('textarea');
+      t.value = code; t.setAttribute('readonly', ''); t.style.cssText = 'position:fixed;opacity:0;left:-99px';
+      document.body.appendChild(t); t.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(t); ok();
+    }
+  };
+  AD.reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Görseller yüklenince başlat (Enabler varsa görünür olduğunda).
+  AD.ready = function (fn) {
+    function go() {
+      var imgs = [].slice.call(document.images), n = imgs.length, started = false;
+      function start() { if (!started) { started = true; document.documentElement.classList.add('ready'); fn(); } }
+      if (!n) return start();
+      imgs.forEach(function (im) { if (im.complete) { if (!--n) start(); } else im.onload = im.onerror = function () { if (!--n) start(); }; });
+      setTimeout(start, 2500);
+    }
+    if (window.Enabler && Enabler.isInitialized) {
+      if (Enabler.isInitialized()) go(); else Enabler.addEventListener('init', go);
+    } else if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go();
+  };
+  AD.h = function (tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
+})();
+
+(function () {
+  var U = AD.creative.uc, D = AD.data, ad = document.getElementById('ad');
+  var $ = function (id) { return document.getElementById(id); };
+  var N = U.length, STEP = 360 / N, R = 232;
+  // Halka: her fotoğraf silindirin bir yüzü
+  var pns = U.map(function (u, i) {
+    var p = AD.h('div', 'pn', '<img src="' + u.img + '" alt=""><span>' + u.tag + '</span>');
+    p.style.transform = 'rotateY(' + (i * STEP) + 'deg) translateZ(' + R + 'px)';
+    $('ring').appendChild(p); return p;
+  });
+  var ang = -STEP * 3, vel = 0, drag = false, user = false, lastX = 0, moved = 0, front = -1, auto = !AD.reduced, target = null;
+  function draw() { $('ring').style.transform = 'translateZ(-' + R + 'px) rotateX(-9deg) rotateY(' + ang + 'deg)'; }
+  function idx() { return ((Math.round(-ang / STEP) % N) + N) % N; }
+  function show(i) {
+    if (i === front) return; front = i;
+    pns.forEach(function (p, k) { p.classList.toggle('on', k === i); });
+    var u = U[i], sw = $('sw'); sw.classList.add('out');
+    setTimeout(function () { $('tg').textContent = u.tag; $('nm').textContent = u.name; $('ln').textContent = u.line; $('cl').textContent = u.claim; sw.classList.remove('out'); }, 160);
+  }
+  function loop() {
+    if (!drag) {
+      if (target !== null) { ang += (target - ang) * .12; if (Math.abs(target - ang) < .05) { ang = target; target = null; } }
+      else if (Math.abs(vel) > .02) { ang += vel; vel *= .94; if (Math.abs(vel) <= .02) target = Math.round(ang / STEP) * STEP; }
+      else if (auto) ang -= .16;
+    }
+    draw(); show(idx()); requestAnimationFrame(loop);
+  }
+  function first() { if (!user) { user = true; auto = false; $('hint').style.opacity = 0; AD.track('halka_user'); } }
+  var sc = $('sc');
+  sc.addEventListener('pointerdown', function (e) { drag = true; moved = 0; lastX = e.clientX; vel = 0; target = null; sc.classList.add('drag'); try { sc.setPointerCapture(e.pointerId); } catch (x) {} });
+  sc.addEventListener('pointermove', function (e) { if (!drag) return; var dx = e.clientX - lastX; lastX = e.clientX; moved += Math.abs(dx); ang += dx * .32; vel = dx * .32; if (moved > 6) first(); });
+  function up() { if (!drag) return; drag = false; sc.classList.remove('drag'); if (Math.abs(vel) < .4) target = Math.round(ang / STEP) * STEP; AD.track('halka_surukle'); }
+  sc.addEventListener('pointerup', up); sc.addEventListener('pointercancel', up);
+  // Dokunma: öndeki karta dokununca ürün sayfası, yandakine dokununca halka ona döner
+  sc.addEventListener('click', function (e) {
+    e.stopPropagation(); if (moved > 6) return;
+    var t = document.elementFromPoint(e.clientX, e.clientY), p = t && t.closest('.pn'); if (!p) return;
+    var i = pns.indexOf(p); first();
+    if (i === front) { AD.exit('halka_' + U[i].key, U[i].url); return; }
+    var d = ((i - front) % N + N) % N; if (d > N / 2) d -= N;
+    target = Math.round(ang / STEP) * STEP - d * STEP; AD.track('halka_sec_' + U[i].key);
+  });
+  $('go').addEventListener('click', function (e) { e.stopPropagation(); AD.exit('halka_cta_' + U[front].key, U[front].url); });
+  $('cp').addEventListener('click', function (e) { e.stopPropagation(); AD.copy(this, D.coupon.code); });
+  ad.addEventListener('click', function () { AD.exit('halka_genel', U[front].url); });
+  draw(); show(idx());
+  AD.ready(function () {
+    AD.track('impression_ready');
+    if (AD.reduced) return;
+    // Açılış: halka hızla dönerek yerine oturur; 25 sn sonra kendiliğinden dönüş durur
+    vel = -9; requestAnimationFrame(loop);
+    setTimeout(function () { auto = false; if (!user) target = Math.round(ang / STEP) * STEP; }, 25000);
+  });
+  if (AD.reduced) requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>

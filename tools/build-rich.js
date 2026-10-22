@@ -35,6 +35,10 @@ const ADS = {
   'mobil-320x480-sohbet': { content: 'mobil_sohbet', photo: 'mh', creative: 'sohbet' },
   'mobil-320x480-gonder': { content: 'mobil_gonder', photo: 'mh', creative: 'gonder' },
   'masthead-970x250-saat': { content: 'masthead_saat', photo: 'mh', creative: 'gunsaat' },
+  'masthead-970x250-3d-halka': { content: 'masthead_3d_halka', photo: 'mh', creative: 'uc' },
+  'mobil-320x480-3d-kup': { content: 'mobil_3d_kup', photo: 'mh', creative: 'uc' },
+  'mobil-320x480-3d-kitap': { content: 'mobil_3d_kitap', photo: 'mh', creative: 'uc' },
+  'mobil-320x480-3d-tunel': { content: 'mobil_3d_tunel', photo: 'mh', creative: 'uc' },
 };
 
 function adData(content) {

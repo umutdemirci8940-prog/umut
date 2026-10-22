@@ -261,6 +261,17 @@ module.exports = {
           { key: 'gece', from: 20, label: 'Gece', img: 'img/tk-23.webp', title: 'Ekranı kapatma vakti.', text: 'Uyku Öncesi Çayı ve akşam yemeğinden sonra Magnezyum.', product: 'Magnezyum', claim: 'Magnezyum sinir sisteminin normal fonksiyonuna katkıda bulunur.', url: L('/products/magnezyum', 'saat_gece') },
         ],
       },
+      // 3D set: halka, küp, kitap, tünel — gerçek fotoğraflar, onaylı beyanlar
+      uc: [
+        { key: 'd3k2', tag: 'Öğle', name: 'Vitamin D3 & K2 Damla', line: 'Güneş alçaldığında gün ışığı desteği.', claim: 'D vitamini bağışıklık sisteminin normal fonksiyonuna katkıda bulunur.', img: 'img/tk-04.webp', url: L('/products/d3-k2-vitamin-damlasi', 'uc_d3k2') },
+        { key: 'kiscayi', tag: 'Akşamüstü', name: 'Kış Çayı', line: 'Karlı pencerenin önünde ilk fincan.', claim: 'Kafeinsiz, piramit poşet bitki çayı.', img: 'img/tk-03.webp', url: L('/products/kis-cayi', 'uc_kiscayi') },
+        { key: 'magnezyum', tag: 'Akşam', name: 'Magnezyum', line: 'Akşamlarına sakin bir ritim.', claim: 'Magnezyum sinir sisteminin normal fonksiyonuna katkıda bulunur.', img: 'img/tk-28.webp', url: L('/products/magnezyum', 'uc_magnezyum') },
+        { key: 'omega3surup', tag: 'Aile', name: 'Omega 3 Şurup', line: 'Miniklere yeni tadıyla.', claim: '4 yaş ve üzeri için sıvı form.', img: 'img/tk-17.webp', url: L('/products/omega-3-surup', 'uc_omega3surup') },
+        { key: 'krill', tag: 'Hareket', name: 'Krill Yağı', line: 'Pilates sonrası kırmızı kapsül.', claim: 'EPA ve DHA kalbin normal fonksiyonuna katkıda bulunur.', img: 'img/tk-07.webp', url: L('/products/krill-yagi', 'uc_krill') },
+        { key: 'vitc', tag: 'Kışa hazırlık', name: 'Vitamin C', line: 'Turuncu bir kış hazırlığı.', claim: 'C vitamini bağışıklık sisteminin normal fonksiyonuna katkıda bulunur.', img: 'img/tk-13.webp', url: L('/products/vitamin-c', 'uc_vitc') },
+        { key: 'uyku', tag: 'Gece', name: 'Uyku Öncesi Çayı', line: 'Ay ışığında bir fincan.', claim: 'Kafeinsiz bitki çayı.', img: 'img/tk-23.webp', url: L('/products/uyku-oncesi-cayi', 'uc_uyku') },
+        { key: 'matcha', tag: 'Sabah', name: 'Matcha', line: 'Sabahın yeşil ritüeli.', claim: '%100 Japon matcha.', img: 'img/tk-10.webp', url: L('/products/matcha', 'uc_matcha') },
+      ],
       // An ↔ ürün eşleri
       memory: [
         { key: 'enerji', img: 'img/m-enerji.webp', pack: 'img/p-b12.webp', name: 'B12 & Folik Asit', url: L('/products/vitamin-b12-metilfolat', 'enerji') },

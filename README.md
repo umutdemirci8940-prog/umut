@@ -26,6 +26,17 @@ Reklam Kasım boyunca **her gün kendiliğinden değişir**. Her gün yeni bir k
 |---|---|
 | ![](preview-rich/screens/masthead-970x250-takvim-takvim.jpg) ![](preview-rich/screens/masthead-970x250-takvim-icerik.jpg) | ![](preview-rich/screens/mobil-320x480-takvim-takvim.jpg) ![](preview-rich/screens/mobil-320x480-takvim-icerik.jpg) |
 
+## 3D set — gerçek fotoğraflarla üç boyut (sunumda Çalışma 19–22)
+
+Hepsi CSS 3D ile kurulur; yüzeylerin tamamı sitedeki gerçek ürün/an fotoğraflarıdır, çizim yoktur. Açılışta kendi kendine oynar, dokunulduğunda kontrol kullanıcıya geçer.
+
+| Çalışma | Kaynak | Fikir |
+|---|---|---|
+| 3D Kasım Halkası · 970×250 | `rich/masthead-970x250-3d-halka.html` | Sekiz an (Sabah, Öğle, Akşam, Gece…) bir silindirde döner; sürükle ya da yandaki karta dokun, öndeki ürün sağda açılır. |
+| 3D Kasım Küpü · 320×480 | `rich/mobil-320x480-3d-kup.html` | Altı yüzü altı ürün anı olan küp; yüzler dışarıdan gelip birleşir, parmakla her yöne çevrilir ve yüze oturur. |
+| 3D Kasım Rutin Kitabı · 320×480 | `rich/mobil-320x480-3d-kitap.html` | Kapağı açılan, sayfaları sırttan 3B dönen bir kitap; her sayfa bir ürün, arka kapakta kupon. |
+| 3D Kasım Galerisi · 320×480 | `rich/mobil-320x480-3d-tunel.html` | "Kasım galerisinde bir tur at": fotoğraflar koridorun iki yanında derinlikte dizilir, yukarı kaydırdıkça aralarında ilerlenir; sonda kupon kapısı. |
+
 ## Konuşan, yayılan, saati bilen — yeni set
 
 | Çalışma | Boyut | Mekanik | Klasör |

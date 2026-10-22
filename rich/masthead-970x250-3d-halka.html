@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=970,height=250">
+<meta name="viewport" content="width=970,height=250,initial-scale=1">
+<title>İlaçsız Yaşam – 3D Kasım Halkası 970x250</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+{{SHARED_CSS}}
+.ad { width: 970px; height: 250px; background: radial-gradient(55% 120% at 57% 40%, #23479f 0%, var(--navy-d) 62%, #060f33 100%); }
+/* Sol: mesaj */
+.lf { position: absolute; z-index: 3; left: 24px; top: 18px; width: 250px; }
+.lf .logo { width: 108px; }
+.lf h1 { font-family: var(--serif); font-weight: 700; font-size: 29px; line-height: 1.02; margin-top: 18px; }
+.lf h1 em { font-style: italic; font-weight: 600; color: #ffd25a; }
+.lf p { font-size: 12px; font-weight: 600; color: rgba(255, 255, 255, .8); margin-top: 8px; }
+.lf .coupon { margin-top: 12px; font-size: 11px; }
+/* Orta: 3D halka */
+.sc { position: absolute; left: 270px; top: 0; width: 470px; height: 250px; perspective: 900px; perspective-origin: 50% 30%; touch-action: none; cursor: grab; }
+.sc.drag { cursor: grabbing; }
+.ring { position: absolute; left: 50%; top: 50px; width: 0; height: 0; transform-style: preserve-3d; }
+.pn { position: absolute; left: -76px; top: 0; width: 152px; height: 122px; border-radius: 10px; overflow: hidden; background: #0b1c52; box-shadow: 0 0 0 1px rgba(255, 255, 255, .18); backface-visibility: hidden; transition: box-shadow .3s; }
+.pn img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+.pn::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11, 28, 82, 0) 55%, rgba(11, 28, 82, .75)); }
+.pn span { position: absolute; z-index: 1; left: 9px; bottom: 7px; font-size: 9.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.pn.on { box-shadow: 0 0 0 2px #ffd25a, 0 14px 30px rgba(0, 0, 0, .5); }
+/* Zemin: halkanın yansıması ve gölgesi */
+.floor { position: absolute; left: 50%; top: 186px; width: 420px; height: 56px; margin-left: -210px; border-radius: 50%; background: radial-gradient(closest-side, rgba(95, 165, 17, .28), rgba(26, 130, 214, .08) 60%, transparent); filter: blur(2px); }
+.hint { position: absolute; left: 50%; bottom: 10px; transform: translateX(-50%); font-size: 10.5px; font-weight: 800; letter-spacing: .08em; color: rgba(255, 255, 255, .78); white-space: nowrap; transition: opacity .4s; }
+.hint b { color: #ffd25a; }
+/* Sağ: öndeki ürün */
+.rt { position: absolute; z-index: 3; right: 22px; top: 22px; width: 206px; }
+.rt .tg { font-size: 10px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--green-l); }
+.rt h2 { font-family: var(--serif); font-weight: 700; font-size: 22px; line-height: 1.05; margin-top: 6px; min-height: 46px; }
+.rt .ln { font-size: 12px; font-weight: 700; color: rgba(255, 255, 255, .9); margin-top: 6px; min-height: 32px; }
+.rt .cl { font-size: 9.5px; font-weight: 600; color: rgba(255, 255, 255, .62); margin-top: 6px; min-height: 26px; }
+.rt .cta { margin-top: 8px; }
+.rt .sw { transition: opacity .25s, transform .25s var(--ease); }
+.rt .sw.out { opacity: 0; transform: translateY(6px); }
+.ad > .legal { position: absolute; left: 24px; bottom: 8px; width: 240px; }
+</style>
+</head>
+<body>
+<div class="ad" id="ad">
+  <div class="lf">
+    <img class="logo" src="img/logo-beyaz.webp" alt="İlaçsız Yaşam">
+    <h1>Kasım'ı <em>çevir,</em><br>rutinini bul.</h1>
+    <p>Sekiz an, sekiz ürün. Halkayı sürükle.</p>
+    <button class="coupon" id="cp"><span>Yeni üyelere %10: <b>{{code}}</b></span><span class="cp-act">Kopyala</span><span class="cp-ok">✓ Kopyalandı</span></button>
+  </div>
+  <div class="sc" id="sc">
+    <div class="floor"></div>
+    <div class="ring" id="ring"></div>
+    <div class="hint" id="hint">↔ <b>Sürükle</b> · karta dokun</div>
+  </div>
+  <div class="rt">
+    <div class="sw" id="sw">
+      <div class="tg" id="tg"></div>
+      <h2 id="nm"></h2>
+      <div class="ln" id="ln"></div>
+      <div class="cl" id="cl"></div>
+    </div>
+    <button class="cta" id="go">Ürünü incele <i>→</i></button>
+  </div>
+  <div class="legal">{{legal}}</div>
+</div>
+<script>window.AD = {{DATA}};</script>
+<script>
+{{SHARED_JS}}
+(function () {
+  var U = AD.creative.uc, D = AD.data, ad = document.getElementById('ad');
+  var $ = function (id) { return document.getElementById(id); };
+  var N = U.length, STEP = 360 / N, R = 232;
+  // Halka: her fotoğraf silindirin bir yüzü
+  var pns = U.map(function (u, i) {
+    var p = AD.h('div', 'pn', '<img src="' + u.img + '" alt=""><span>' + u.tag + '</span>');
+    p.style.transform = 'rotateY(' + (i * STEP) + 'deg) translateZ(' + R + 'px)';
+    $('ring').appendChild(p); return p;
+  });
+  var ang = -STEP * 3, vel = 0, drag = false, user = false, lastX = 0, moved = 0, front = -1, auto = !AD.reduced, target = null;
+  function draw() { $('ring').style.transform = 'translateZ(-' + R + 'px) rotateX(-9deg) rotateY(' + ang + 'deg)'; }
+  function idx() { return ((Math.round(-ang / STEP) % N) + N) % N; }
+  function show(i) {
+    if (i === front) return; front = i;
+    pns.forEach(function (p, k) { p.classList.toggle('on', k === i); });
+    var u = U[i], sw = $('sw'); sw.classList.add('out');
+    setTimeout(function () { $('tg').textContent = u.tag; $('nm').textContent = u.name; $('ln').textContent = u.line; $('cl').textContent = u.claim; sw.classList.remove('out'); }, 160);
+  }
+  function loop() {
+    if (!drag) {
+      if (target !== null) { ang += (target - ang) * .12; if (Math.abs(target - ang) < .05) { ang = target; target = null; } }
+      else if (Math.abs(vel) > .02) { ang += vel; vel *= .94; if (Math.abs(vel) <= .02) target = Math.round(ang / STEP) * STEP; }
+      else if (auto) ang -= .16;
+    }
+    draw(); show(idx()); requestAnimationFrame(loop);
+  }
+  function first() { if (!user) { user = true; auto = false; $('hint').style.opacity = 0; AD.track('halka_user'); } }
+  var sc = $('sc');
+  sc.addEventListener('pointerdown', function (e) { drag = true; moved = 0; lastX = e.clientX; vel = 0; target = null; sc.classList.add('drag'); try { sc.setPointerCapture(e.pointerId); } catch (x) {} });
+  sc.addEventListener('pointermove', function (e) { if (!drag) return; var dx = e.clientX - lastX; lastX = e.clientX; moved += Math.abs(dx); ang += dx * .32; vel = dx * .32; if (moved > 6) first(); });
+  function up() { if (!drag) return; drag = false; sc.classList.remove('drag'); if (Math.abs(vel) < .4) target = Math.round(ang / STEP) * STEP; AD.track('halka_surukle'); }
+  sc.addEventListener('pointerup', up); sc.addEventListener('pointercancel', up);
+  // Dokunma: öndeki karta dokununca ürün sayfası, yandakine dokununca halka ona döner
+  sc.addEventListener('click', function (e) {
+    e.stopPropagation(); if (moved > 6) return;
+    var t = document.elementFromPoint(e.clientX, e.clientY), p = t && t.closest('.pn'); if (!p) return;
+    var i = pns.indexOf(p); first();
+    if (i === front) { AD.exit('halka_' + U[i].key, U[i].url); return; }
+    var d = ((i - front) % N + N) % N; if (d > N / 2) d -= N;
+    target = Math.round(ang / STEP) * STEP - d * STEP; AD.track('halka_sec_' + U[i].key);
+  });
+  $('go').addEventListener('click', function (e) { e.stopPropagation(); AD.exit('halka_cta_' + U[front].key, U[front].url); });
+  $('cp').addEventListener('click', function (e) { e.stopPropagation(); AD.copy(this, D.coupon.code); });
+  ad.addEventListener('click', function () { AD.exit('halka_genel', U[front].url); });
+  draw(); show(idx());
+  AD.ready(function () {
+    AD.track('impression_ready');
+    if (AD.reduced) return;
+    // Açılış: halka hızla dönerek yerine oturur; 25 sn sonra kendiliğinden dönüş durur
+    vel = -9; requestAnimationFrame(loop);
+    setTimeout(function () { auto = false; if (!user) target = Math.round(ang / STEP) * STEP; }, 25000);
+  });
+  if (AD.reduced) requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>

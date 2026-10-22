@@ -151,6 +151,25 @@ const SHOTS = {
     ['surukle-ogle', 900, async (p) => { await p.mouse.move(700, 211); await p.mouse.down(); await p.mouse.move(745, 211, { steps: 6 }); await p.mouse.up(); }],
     ['surukle-sabah', 900, async (p) => { await p.mouse.move(745, 211); await p.mouse.down(); await p.mouse.move(640, 211, { steps: 6 }); await p.mouse.up(); }],
   ] },
+  'masthead-970x250-3d-halka': { w: 970, h: 250, steps: [
+    ['acilis', 600], ['oturdu', 2600],
+    ['surukle', 1400, async (p) => { await p.mouse.move(560, 110); await p.mouse.down(); await p.mouse.move(420, 112, { steps: 10 }); await p.mouse.up(); }],
+    ['yan-kart', 1400, (p) => p.mouse.click(660, 120)],
+  ] },
+  'mobil-320x480-3d-kup': { w: 320, h: 480, mobile: true, steps: [
+    ['birlesme', 700], ['donus', 2400], ['tur', 2600],
+    ['cevir', 1400, async (p) => { await p.mouse.move(160, 210); await p.mouse.down(); await p.mouse.move(80, 260, { steps: 10 }); await p.mouse.up(); }],
+    ['cevir-2', 1400, async (p) => { await p.mouse.move(160, 210); await p.mouse.down(); await p.mouse.move(160, 300, { steps: 10 }); await p.mouse.up(); }],
+  ] },
+  'mobil-320x480-3d-kitap': { w: 320, h: 480, mobile: true, steps: [
+    ['kapak', 1000], ['donerken', 800], ['sayfa-1', 1400], ['ileri', 1300, (p) => p.mouse.click(250, 200)],
+    ['geri', 1300, (p) => p.locator('#pv').click()], ['son', 1400, async (p) => { for (let i = 0; i < 8; i++) { await p.locator('#nx').click(); await p.waitForTimeout(150); } }],
+  ] },
+  'mobil-320x480-3d-tunel': { w: 320, h: 480, mobile: true, steps: [
+    ['giris', 900], ['foto-1', 2000], ['foto-2', 2600],
+    ['kaydir', 1600, async (p) => { await p.mouse.move(160, 380); await p.mouse.down(); await p.mouse.move(160, 250, { steps: 10 }); await p.mouse.up(); }],
+    ['kapi', 2200, async (p) => { for (let i = 0; i < 6; i++) await p.mouse.wheel(0, 400); }],
+  ] },
   'mobil-320x480-rutin': { w: 320, h: 480, mobile: true, steps: [
     ['intro', 900], ['oto-2', 4200], ['dokun-aktif', 1100, (p) => p.mouse.click(160, 400)], ['urun', 600, (p) => p.mouse.move(60, 380)],
   ] },

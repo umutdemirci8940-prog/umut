@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=320,height=480">
+<meta name="viewport" content="width=320,height=480,initial-scale=1,user-scalable=no">
+<title>İlaçsız Yaşam – 3D Kasım Galerisi 320x480</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+{{SHARED_CSS}}
+.ad { width: 320px; height: 480px; background: radial-gradient(70% 45% at 50% 40%, #2b55b8 0%, #10276e 40%, #050d2e 100%); }
+.sc { position: absolute; inset: 0; perspective: 380px; perspective-origin: 50% 40%; touch-action: none; overflow: hidden; }
+.world { position: absolute; left: 50%; top: 40%; width: 0; height: 0; transform-style: preserve-3d; }
+/* Koridor zemini: ışık şeridi */
+.fl { position: absolute; left: -170px; top: 120px; width: 340px; height: 4200px; transform-origin: 50% 0; transform: rotateX(90deg); background: linear-gradient(180deg, rgba(95, 165, 17, .0), rgba(95, 165, 17, .16) 8%, rgba(26, 130, 214, .08) 60%, transparent); }
+/* Fotoğraf çerçevesi */
+.fr { position: absolute; left: -110px; top: -88px; width: 220px; height: 176px; border-radius: 10px; overflow: hidden; background: #0b1c52; box-shadow: 0 0 0 2px rgba(255, 255, 255, .85), 0 22px 40px rgba(0, 0, 0, .55); }
+.fr img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+.fr span { position: absolute; left: 8px; top: 8px; padding: 3px 7px; border-radius: 999px; background: rgba(11, 28, 82, .8); font-size: 9px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+/* Koridorun sonundaki kapı */
+.door { position: absolute; left: -110px; top: -120px; width: 220px; height: 240px; border-radius: 16px; background: #fbf6ec; color: var(--ink); text-align: center; padding: 22px 16px; box-shadow: 0 0 60px rgba(255, 210, 90, .45); }
+.door .logo { width: 110px; margin: 0 auto; }
+.door h3 { font-family: var(--serif); font-weight: 700; font-size: 21px; line-height: 1.05; color: var(--navy); margin-top: 14px; }
+.door h3 em { font-style: italic; font-weight: 600; color: var(--green); }
+.door .coupon { margin-top: 12px; background: var(--navy); border-color: var(--navy); color: #fff; font-size: 10.5px; }
+.door .cta { margin-top: 10px; height: 30px; font-size: 12px; }
+.top { position: absolute; z-index: 3; left: 16px; right: 16px; top: 12px; pointer-events: none; }
+.top .logo { width: 92px; }
+.top h1 { font-family: var(--serif); font-weight: 700; font-size: 22px; line-height: 1.04; margin-top: 10px; text-shadow: 0 2px 12px rgba(0, 0, 0, .4); transition: opacity .5s; }
+.top h1 em { font-style: italic; font-weight: 600; color: #ffd25a; }
+/* Alt yazı: yaklaşan fotoğrafın ürünü */
+.cap { position: absolute; z-index: 3; left: 12px; right: 12px; bottom: 30px; height: 94px; padding: 10px 13px; border-radius: 14px; background: rgba(5, 13, 46, .62); border: 1px solid rgba(255, 255, 255, .14); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); transition: opacity .4s, transform .4s var(--ease); }
+.cap.out { opacity: 0; transform: translateY(10px); pointer-events: none; }
+.cap .tg { font-size: 9.5px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--green-l); }
+.cap h2 { font-family: var(--serif); font-weight: 700; font-size: 18px; line-height: 1.05; margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cap .cl { padding-right: 86px; font-size: 9.5px; font-weight: 600; color: rgba(255, 255, 255, .7); margin-top: 4px; }
+.cap .cta { position: absolute; right: 11px; bottom: 10px; height: 28px; font-size: 11px; padding: 0 11px; }
+.prog { position: absolute; z-index: 3; right: 10px; top: 120px; width: 3px; height: 180px; border-radius: 2px; background: rgba(255, 255, 255, .16); }
+.prog i { position: absolute; left: 0; top: 0; width: 3px; border-radius: 2px; background: #ffd25a; height: 0; }
+.hint { position: absolute; z-index: 3; left: 0; right: 0; top: 330px; text-align: center; font-size: 10.5px; font-weight: 800; letter-spacing: .08em; color: rgba(255, 255, 255, .85); transition: opacity .4s; pointer-events: none; }
+.hint b { color: #ffd25a; }
+.ad > .legal { position: absolute; z-index: 3; left: 14px; right: 14px; bottom: 7px; }
+</style>
+</head>
+<body>
+<div class="ad" id="ad">
+  <div class="sc" id="sc"><div class="world" id="world"><div class="fl"></div></div></div>
+  <div class="top"><img class="logo" src="img/logo-beyaz.webp" alt="İlaçsız Yaşam"><h1 id="h1">Kasım galerisinde<br><em>bir tur at.</em></h1></div>
+  <div class="prog"><i id="pg"></i></div>
+  <div class="hint" id="hint">↑ <b>Yukarı kaydır</b>, galeride ilerle</div>
+  <div class="cap out" id="cap"><div class="tg" id="tg"></div><h2 id="nm"></h2><div class="cl" id="cl"></div><button class="cta" id="go">İncele <i>→</i></button></div>
+  <div class="legal">{{legal}}</div>
+</div>
+<script>window.AD = {{DATA}};</script>
+<script>
+{{SHARED_JS}}
+(function () {
+  var U = AD.creative.uc, D = AD.data, ad = document.getElementById('ad');
+  var $ = function (id) { return document.getElementById(id); };
+  var GAP = 330, VIEW = 120, N = U.length;
+  // Fotoğraflar koridorun iki yanına, içe dönük dizilir; sonda kapı
+  var items = U.map(function (u, i) {
+    var side = i % 2 ? 1 : -1, el = AD.h('div', 'fr', '<img src="' + u.img + '" alt=""><span>' + u.tag + '</span>');
+    el._z = -(i + 1) * GAP; el._x = side * 70; el._r = -side * 24; el._y = (i % 3 - 1) * 8;
+    $('world').appendChild(el); return el;
+  });
+  var door = AD.h('div', 'door', '<img class="logo" src="img/logo-lacivert.webp" alt=""><h3>Kasım rutinin<br><em>burada başlıyor.</em></h3><button class="coupon" id="cp"><span>%10: <b>{{code}}</b></span><span class="cp-act">Kopyala</span><span class="cp-ok">✓</span></button><br><button class="cta" id="all">Tümünü keşfet <i>→</i></button>');
+  door._z = -(N + 1) * GAP; door._x = 0; door._r = 0; door._y = 0;
+  $('world').appendChild(door); items.push(door);
+  // Kamera: i. fotoğrafın önünde durma noktası
+  function stop(i) { return (i + 1) * GAP - VIEW; }
+  var MAX = stop(N), cam = -220, tgt = stop(0), vel = 0, drag = false, user = false, ly = 0, lt = 0, cur = -2;
+  function place() {
+    items.forEach(function (el) {
+      var rz = el._z + cam; // izleyiciye göre derinlik (0 = kamera)
+      el.style.transform = 'translate3d(' + el._x + 'px,' + el._y + 'px,' + el._z + 'px) rotateY(' + el._r + 'deg)';
+      el.style.opacity = rz > 60 ? 0 : rz > -90 ? (60 - rz) / 150 : rz < -2600 ? 0 : 1;
+      el.style.visibility = rz > 60 || rz < -2600 ? 'hidden' : 'visible';
+    });
+    $('world').style.transform = 'translateZ(' + cam + 'px)';
+    $('pg').style.height = Math.max(0, Math.min(1, cam / MAX)) * 100 + '%';
+    var i = Math.round((cam + VIEW) / GAP) - 1;
+    if (Math.abs(cam - stop(i)) > GAP * .38) i = -1;
+    if (i !== cur) {
+      cur = i; var c = $('cap');
+      if (i >= 0 && i < N) { var u = U[i]; c.classList.add('out'); setTimeout(function () { $('tg').textContent = u.tag; $('nm').textContent = u.name; $('cl').textContent = u.claim; c.classList.remove('out'); }, 180); }
+      else c.classList.add('out');
+      $('h1').style.opacity = i === N ? 0 : 1;
+      if (i >= 0) AD.track('tunel_' + (i < N ? U[i].key : 'kapi'));
+    }
+  }
+  function loop() {
+    if (!drag) {
+      if (Math.abs(vel) > .5) { cam += vel; vel *= .9; if (Math.abs(vel) <= .5) tgt = near(); }
+      else cam += (tgt - cam) * .07;
+    }
+    cam = Math.max(-260, Math.min(MAX + 40, cam));
+    place(); requestAnimationFrame(loop);
+  }
+  function near() { return stop(Math.max(0, Math.min(N, Math.round((cam + VIEW) / GAP) - 1))); }
+  function first() { if (!user) { user = true; autoT.forEach(clearTimeout); $('hint').style.opacity = 0; AD.track('tunel_user'); } }
+  var sc = $('sc'), moved = 0;
+  sc.addEventListener('pointerdown', function (e) { drag = true; moved = 0; ly = e.clientY; vel = 0; try { sc.setPointerCapture(e.pointerId); } catch (x) {} });
+  sc.addEventListener('pointermove', function (e) { if (!drag) return; var dy = ly - e.clientY; ly = e.clientY; moved += Math.abs(dy); cam += dy * 2.4; vel = dy * 2.4; if (moved > 6) first(); });
+  function up() { if (!drag) return; drag = false; if (Math.abs(vel) < 4) { vel = 0; tgt = near(); } }
+  sc.addEventListener('pointerup', up); sc.addEventListener('pointercancel', up);
+  sc.addEventListener('wheel', function (e) { e.preventDefault(); first(); vel = 0; cam = Math.max(-260, Math.min(MAX + 40, cam + e.deltaY * 1.2)); tgt = cam; clearTimeout(sc._w); sc._w = setTimeout(function () { tgt = near(); }, 140); }, { passive: false });
+  // Dokunma: fotoğrafa dokununca ürün sayfası; boş alana dokununca bir sonraki fotoğrafa uçar
+  sc.addEventListener('click', function (e) {
+    e.stopPropagation(); if (moved > 6) return; first();
+    var t = document.elementFromPoint(e.clientX, e.clientY) || e.target, f = t.closest('.fr');
+    if (f) { var u = U[items.indexOf(f)]; AD.exit('tunel_foto_' + u.key, u.url); return; }
+    if (t.closest('.door')) return;
+    tgt = stop(Math.min(N, Math.max(0, cur) + (cur < 0 ? 0 : 1)));
+  });
+  $('go').addEventListener('click', function (e) { e.stopPropagation(); if (cur >= 0 && cur < N) AD.exit('tunel_cta_' + U[cur].key, U[cur].url); });
+  $('cp').addEventListener('click', function (e) { e.stopPropagation(); AD.copy(this, D.coupon.code); });
+  $('all').addEventListener('click', function (e) { e.stopPropagation(); AD.exit('tunel_kapi', D.brand.home); });
+  ad.addEventListener('click', function () { AD.exit('tunel_genel', cur >= 0 && cur < N ? U[cur].url : D.brand.home); });
+  place();
+  // Tanıtım: kamera galeriye girer, her fotoğrafta durup ilerler, kapıda biter
+  var autoT = [];
+  AD.ready(function () {
+    AD.track('impression_ready');
+    requestAnimationFrame(loop);
+    if (AD.reduced) { cam = tgt = stop(0); return; }
+    for (var i = 1; i <= N; i++) (function (i) { autoT.push(setTimeout(function () { if (!user) tgt = stop(i); }, 1200 + i * 2600)); })(i);
+  });
+})();
+</script>
+</body>
+</html>

@@ -17,6 +17,7 @@ const ORDER = [
   'mobil-320x480-eslesme', 'mobil-320x480-kazikazan', 'mobil-320x480-oyun',
   'masthead-970x250-mercek', 'mobil-320x480-mercek', 'mobil-320x480-ofis', 'mobil-320x480-eslestir',
   'masthead-970x250', 'mobil-320x480-kartlar', 'mobil-320x480-sil-kesfet', 'mobil-320x480-rutin',
+  'masthead-970x250-3d-halka', 'mobil-320x480-3d-kup', 'mobil-320x480-3d-kitap', 'mobil-320x480-3d-tunel',
 ];
 const logo = 'data:image/png;base64,' + fs.readFileSync(path.join(root, 'assets', 'brand', 'splash-logo.png')).toString('base64');
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
