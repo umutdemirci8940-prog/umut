@@ -31,7 +31,7 @@ const rows = ORDER.filter((n) => fs.existsSync(path.join(inline, `${n}.html`))).
     ? `<div class="browser"><div class="bar"><i></i><i></i><i></i></div><div class="vp" style="width:${w}px;height:${h}px"><iframe loading="lazy" title="Çalışma ${i + 1}" width="${w}" height="${h}" srcdoc="${esc(raw)}"></iframe></div></div>`
     : `<div class="phone"><div class="notch"></div><div class="vp" style="width:${w}px;height:${h}px"><iframe loading="lazy" title="Çalışma ${i + 1}" width="${w}" height="${h}" srcdoc="${esc(raw)}"></iframe></div></div>`;
   return `<section class="row ${wide ? 'wide' : 'tall'}">
-  <div class="lb"><span class="no">${no}</span><h2>Çalışma ${i + 1}</h2><button class="re" aria-label="Çalışma ${i + 1} tekrar oynat" onclick="var f=this.closest('section').querySelector('iframe');f.srcdoc=f.srcdoc">↻</button></div>
+  <div class="lb"><span class="no">${no}</span><h2>Çalışma ${i + 1}</h2><button class="re" onclick="replay(this.closest('section'))"><span>↻</span> Tekrar oynat</button></div>
   <div class="stage">${frame}</div>
 </section>`;
 }).join('\n');
@@ -64,7 +64,9 @@ main { position: relative; max-width: 1180px; margin: 0 auto; padding: 0 24px 12
 .lb { display: flex; align-items: center; gap: 16px; }
 .lb .no { display: block; font-family: Fraunces, Georgia, serif; font-size: 56px; line-height: .9; color: transparent; -webkit-text-stroke: 1px rgba(26, 130, 214, .7); }
 .lb h2 { font-size: 15px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
-.lb .re { margin-left: auto; width: 34px; height: 34px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, .25); background: transparent; color: var(--txt); font-size: 16px; cursor: pointer; transition: background .2s, border-color .2s; }
+.lb .re { margin-left: auto; display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 16px 0 14px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, .28); background: rgba(255, 255, 255, .04); color: var(--txt); font: inherit; font-size: 13px; font-weight: 800; letter-spacing: .02em; cursor: pointer; transition: background .2s, border-color .2s; }
+.lb .re span { font-size: 16px; line-height: 1; transition: transform .5s cubic-bezier(.22, .8, .2, 1); }
+.lb .re:hover span, .lb .re.spin span { transform: rotate(-360deg); }
 .lb .re:hover { background: var(--blue); border-color: var(--blue); }
 .stage { display: flex; justify-content: center; }
 .stage > * { flex: none; }
@@ -99,6 +101,22 @@ ${rows}
 <script>
 var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('seen'); io.unobserve(e.target); } }); }, { threshold: .15 });
 document.querySelectorAll('.row').forEach(function (r) { io.observe(r); });
+// Tekrar oynat: çalışmayı baştan yükler
+function replay(row) {
+  var f = row.querySelector('iframe'), b = row.querySelector('.re');
+  f.srcdoc = f.getAttribute('srcdoc');
+  b.classList.remove('spin'); void b.offsetWidth; b.classList.add('spin');
+  setTimeout(function () { b.classList.remove('spin'); }, 600);
+}
+// Çalışma ekrana her geldiğinde (yarısı görünür olduğunda) kendiliğinden baştan oynar
+var vis = new IntersectionObserver(function (es) {
+  es.forEach(function (e) {
+    var row = e.target;
+    if (e.intersectionRatio >= .5 && !row._on) { row._on = true; replay(row); }
+    else if (e.intersectionRatio < .1) row._on = false;
+  });
+}, { threshold: [0, .1, .5] });
+document.querySelectorAll('.row').forEach(function (r) { vis.observe(r); });
 // Dar ekranda masthead penceresi ve telefon çerçevesi sahneye sığacak şekilde ölçeklenir
 function fit() {
   document.querySelectorAll('.stage').forEach(function (st) {

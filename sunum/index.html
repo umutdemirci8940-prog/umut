@@ -26,7 +26,9 @@ main { position: relative; max-width: 1180px; margin: 0 auto; padding: 0 24px 12
 .lb { display: flex; align-items: center; gap: 16px; }
 .lb .no { display: block; font-family: Fraunces, Georgia, serif; font-size: 56px; line-height: .9; color: transparent; -webkit-text-stroke: 1px rgba(26, 130, 214, .7); }
 .lb h2 { font-size: 15px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
-.lb .re { margin-left: auto; width: 34px; height: 34px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, .25); background: transparent; color: var(--txt); font-size: 16px; cursor: pointer; transition: background .2s, border-color .2s; }
+.lb .re { margin-left: auto; display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 16px 0 14px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, .28); background: rgba(255, 255, 255, .04); color: var(--txt); font: inherit; font-size: 13px; font-weight: 800; letter-spacing: .02em; cursor: pointer; transition: background .2s, border-color .2s; }
+.lb .re span { font-size: 16px; line-height: 1; transition: transform .5s cubic-bezier(.22, .8, .2, 1); }
+.lb .re:hover span, .lb .re.spin span { transform: rotate(-360deg); }
 .lb .re:hover { background: var(--blue); border-color: var(--blue); }
 .stage { display: flex; justify-content: center; }
 .stage > * { flex: none; }
@@ -56,7 +58,7 @@ footer img { width: 170px; opacity: .85; }
 </header>
 <main>
 <section class="row wide">
-  <div class="lb"><span class="no">01</span><h2>Çalışma 1</h2><button class="re" aria-label="Çalışma 1 tekrar oynat" onclick="var f=this.closest('section').querySelector('iframe');f.srcdoc=f.srcdoc">↻</button></div>
+  <div class="lb"><span class="no">01</span><h2>Çalışma 1</h2><button class="re" onclick="replay(this.closest('section'))"><span>↻</span> Tekrar oynat</button></div>
   <div class="stage"><div class="browser"><div class="bar"><i></i><i></i><i></i></div><div class="vp" style="width:970px;height:250px"><iframe loading="lazy" title="Çalışma 1" width="970" height="250" srcdoc="<!DOCTYPE html>
 <html lang=&quot;tr&quot;>
 <head><script>window.AD_DAY=11</script>
@@ -362,7 +364,7 @@ var TAKVIM = (function () {
 "></iframe></div></div></div>
 </section>
 <section class="row tall">
-  <div class="lb"><span class="no">02</span><h2>Çalışma 2</h2><button class="re" aria-label="Çalışma 2 tekrar oynat" onclick="var f=this.closest('section').querySelector('iframe');f.srcdoc=f.srcdoc">↻</button></div>
+  <div class="lb"><span class="no">02</span><h2>Çalışma 2</h2><button class="re" onclick="replay(this.closest('section'))"><span>↻</span> Tekrar oynat</button></div>
   <div class="stage"><div class="phone"><div class="notch"></div><div class="vp" style="width:320px;height:480px"><iframe loading="lazy" title="Çalışma 2" width="320" height="480" srcdoc="<!DOCTYPE html>
 <html lang=&quot;tr&quot;>
 <head><script>window.AD_DAY=11</script>
@@ -665,7 +667,7 @@ var TAKVIM = (function () {
 "></iframe></div></div></div>
 </section>
 <section class="row wide">
-  <div class="lb"><span class="no">03</span><h2>Çalışma 3</h2><button class="re" aria-label="Çalışma 3 tekrar oynat" onclick="var f=this.closest('section').querySelector('iframe');f.srcdoc=f.srcdoc">↻</button></div>
+  <div class="lb"><span class="no">03</span><h2>Çalışma 3</h2><button class="re" onclick="replay(this.closest('section'))"><span>↻</span> Tekrar oynat</button></div>
   <div class="stage"><div class="browser"><div class="bar"><i></i><i></i><i></i></div><div class="vp" style="width:970px;height:250px"><iframe loading="lazy" title="Çalışma 3" width="970" height="250" srcdoc="<!DOCTYPE html>
 <html lang=&quot;tr&quot;>
 <head>
@@ -1035,7 +1037,7 @@ var GUNES = (function () {
 "></iframe></div></div></div>
 </section>
 <section class="row tall">
-  <div class="lb"><span class="no">04</span><h2>Çalışma 4</h2><button class="re" aria-label="Çalışma 4 tekrar oynat" onclick="var f=this.closest('section').querySelector('iframe');f.srcdoc=f.srcdoc">↻</button></div>
+  <div class="lb"><span class="no">04</span><h2>Çalışma 4</h2><button class="re" onclick="replay(this.closest('section'))"><span>↻</span> Tekrar oynat</button></div>
   <div class="stage"><div class="phone"><div class="notch"></div><div class="vp" style="width:320px;height:480px"><iframe loading="lazy" title="Çalışma 4" width="320" height="480" srcdoc="<!DOCTYPE html>
 <html lang=&quot;tr&quot;>
 <head>
@@ -1385,7 +1387,7 @@ var GUNES = (function () {
 "></iframe></div></div></div>
 </section>
 <section class="row wide">
-  <div class="lb"><span class="no">05</span><h2>Çalışma 5</h2><button class="re" aria-label="Çalışma 5 tekrar oynat" onclick="var f=this.closest('section').querySelector('iframe');f.srcdoc=f.srcdoc">↻</button></div>
+  <div class="lb"><span class="no">05</span><h2>Çalışma 5</h2><button class="re" onclick="replay(this.closest('section'))"><span>↻</span> Tekrar oynat</button></div>
   <div class="stage"><div class="browser"><div class="bar"><i></i><i></i><i></i></div><div class="vp" style="width:970px;height:250px"><iframe loading="lazy" title="Çalışma 5" width="970" height="250" srcdoc="<!DOCTYPE html>
 <html lang=&quot;tr&quot;>
 <head>
@@ -1668,7 +1670,7 @@ var GUNES = (function () {
 "></iframe></div></div></div>
 </section>
 <section class="row tall">
-  <div class="lb"><span class="no">06</span><h2>Çalışma 6</h2><button class="re" aria-label="Çalışma 6 tekrar oynat" onclick="var f=this.closest('section').querySelector('iframe');f.srcdoc=f.srcdoc">↻</button></div>
+  <div class="lb"><span class="no">06</span><h2>Çalışma 6</h2><button class="re" onclick="replay(this.closest('section'))"><span>↻</span> Tekrar oynat</button></div>
   <div class="stage"><div class="phone"><div class="notch"></div><div class="vp" style="width:320px;height:480px"><iframe loading="lazy" title="Çalışma 6" width="320" height="480" srcdoc="<!DOCTYPE html>
 <html lang=&quot;tr&quot;>
 <head>
@@ -1927,7 +1929,7 @@ var AD = window.AD || {};
 "></iframe></div></div></div>
 </section>
 <section class="row tall">
-  <div class="lb"><span class="no">07</span><h2>Çalışma 7</h2><button class="re" aria-label="Çalışma 7 tekrar oynat" onclick="var f=this.closest('section').querySelector('iframe');f.srcdoc=f.srcdoc">↻</button></div>
+  <div class="lb"><span class="no">07</span><h2>Çalışma 7</h2><button class="re" onclick="replay(this.closest('section'))"><span>↻</span> Tekrar oynat</button></div>
   <div class="stage"><div class="phone"><div class="notch"></div><div class="vp" style="width:320px;height:480px"><iframe loading="lazy" title="Çalışma 7" width="320" height="480" srcdoc="<!DOCTYPE html>
 <html lang=&quot;tr&quot;>
 <head>
@@ -2179,7 +2181,7 @@ var AD = window.AD || {};
 "></iframe></div></div></div>
 </section>
 <section class="row tall">
-  <div class="lb"><span class="no">08</span><h2>Çalışma 8</h2><button class="re" aria-label="Çalışma 8 tekrar oynat" onclick="var f=this.closest('section').querySelector('iframe');f.srcdoc=f.srcdoc">↻</button></div>
+  <div class="lb"><span class="no">08</span><h2>Çalışma 8</h2><button class="re" onclick="replay(this.closest('section'))"><span>↻</span> Tekrar oynat</button></div>
   <div class="stage"><div class="phone"><div class="notch"></div><div class="vp" style="width:320px;height:480px"><iframe loading="lazy" title="Çalışma 8" width="320" height="480" srcdoc="<!DOCTYPE html>
 <html lang=&quot;tr&quot;>
 <head>
@@ -2517,7 +2519,7 @@ var AD = window.AD || {};
 "></iframe></div></div></div>
 </section>
 <section class="row tall">
-  <div class="lb"><span class="no">09</span><h2>Çalışma 9</h2><button class="re" aria-label="Çalışma 9 tekrar oynat" onclick="var f=this.closest('section').querySelector('iframe');f.srcdoc=f.srcdoc">↻</button></div>
+  <div class="lb"><span class="no">09</span><h2>Çalışma 9</h2><button class="re" onclick="replay(this.closest('section'))"><span>↻</span> Tekrar oynat</button></div>
   <div class="stage"><div class="phone"><div class="notch"></div><div class="vp" style="width:320px;height:480px"><iframe loading="lazy" title="Çalışma 9" width="320" height="480" srcdoc="<!DOCTYPE html>
 <html lang=&quot;tr&quot;>
 <head>
@@ -2821,7 +2823,7 @@ var AD = window.AD || {};
 "></iframe></div></div></div>
 </section>
 <section class="row tall">
-  <div class="lb"><span class="no">10</span><h2>Çalışma 10</h2><button class="re" aria-label="Çalışma 10 tekrar oynat" onclick="var f=this.closest('section').querySelector('iframe');f.srcdoc=f.srcdoc">↻</button></div>
+  <div class="lb"><span class="no">10</span><h2>Çalışma 10</h2><button class="re" onclick="replay(this.closest('section'))"><span>↻</span> Tekrar oynat</button></div>
   <div class="stage"><div class="phone"><div class="notch"></div><div class="vp" style="width:320px;height:480px"><iframe loading="lazy" title="Çalışma 10" width="320" height="480" srcdoc="<!DOCTYPE html>
 <html lang=&quot;tr&quot;>
 <head>
@@ -3094,7 +3096,7 @@ var AD = window.AD || {};
 "></iframe></div></div></div>
 </section>
 <section class="row wide">
-  <div class="lb"><span class="no">11</span><h2>Çalışma 11</h2><button class="re" aria-label="Çalışma 11 tekrar oynat" onclick="var f=this.closest('section').querySelector('iframe');f.srcdoc=f.srcdoc">↻</button></div>
+  <div class="lb"><span class="no">11</span><h2>Çalışma 11</h2><button class="re" onclick="replay(this.closest('section'))"><span>↻</span> Tekrar oynat</button></div>
   <div class="stage"><div class="browser"><div class="bar"><i></i><i></i><i></i></div><div class="vp" style="width:970px;height:250px"><iframe loading="lazy" title="Çalışma 11" width="970" height="250" srcdoc="<!DOCTYPE html>
 <html lang=&quot;tr&quot;>
 <head>
@@ -3351,7 +3353,7 @@ var AD = window.AD || {};
 "></iframe></div></div></div>
 </section>
 <section class="row tall">
-  <div class="lb"><span class="no">12</span><h2>Çalışma 12</h2><button class="re" aria-label="Çalışma 12 tekrar oynat" onclick="var f=this.closest('section').querySelector('iframe');f.srcdoc=f.srcdoc">↻</button></div>
+  <div class="lb"><span class="no">12</span><h2>Çalışma 12</h2><button class="re" onclick="replay(this.closest('section'))"><span>↻</span> Tekrar oynat</button></div>
   <div class="stage"><div class="phone"><div class="notch"></div><div class="vp" style="width:320px;height:480px"><iframe loading="lazy" title="Çalışma 12" width="320" height="480" srcdoc="<!DOCTYPE html>
 <html lang=&quot;tr&quot;>
 <head>
@@ -3596,7 +3598,7 @@ var AD = window.AD || {};
 "></iframe></div></div></div>
 </section>
 <section class="row tall">
-  <div class="lb"><span class="no">13</span><h2>Çalışma 13</h2><button class="re" aria-label="Çalışma 13 tekrar oynat" onclick="var f=this.closest('section').querySelector('iframe');f.srcdoc=f.srcdoc">↻</button></div>
+  <div class="lb"><span class="no">13</span><h2>Çalışma 13</h2><button class="re" onclick="replay(this.closest('section'))"><span>↻</span> Tekrar oynat</button></div>
   <div class="stage"><div class="phone"><div class="notch"></div><div class="vp" style="width:320px;height:480px"><iframe loading="lazy" title="Çalışma 13" width="320" height="480" srcdoc="<!DOCTYPE html>
 <html lang=&quot;tr&quot;>
 <head>
@@ -3868,7 +3870,7 @@ var AD = window.AD || {};
 "></iframe></div></div></div>
 </section>
 <section class="row tall">
-  <div class="lb"><span class="no">14</span><h2>Çalışma 14</h2><button class="re" aria-label="Çalışma 14 tekrar oynat" onclick="var f=this.closest('section').querySelector('iframe');f.srcdoc=f.srcdoc">↻</button></div>
+  <div class="lb"><span class="no">14</span><h2>Çalışma 14</h2><button class="re" onclick="replay(this.closest('section'))"><span>↻</span> Tekrar oynat</button></div>
   <div class="stage"><div class="phone"><div class="notch"></div><div class="vp" style="width:320px;height:480px"><iframe loading="lazy" title="Çalışma 14" width="320" height="480" srcdoc="<!DOCTYPE html>
 <html lang=&quot;tr&quot;>
 <head>
@@ -4142,7 +4144,7 @@ var AD = window.AD || {};
 "></iframe></div></div></div>
 </section>
 <section class="row wide">
-  <div class="lb"><span class="no">15</span><h2>Çalışma 15</h2><button class="re" aria-label="Çalışma 15 tekrar oynat" onclick="var f=this.closest('section').querySelector('iframe');f.srcdoc=f.srcdoc">↻</button></div>
+  <div class="lb"><span class="no">15</span><h2>Çalışma 15</h2><button class="re" onclick="replay(this.closest('section'))"><span>↻</span> Tekrar oynat</button></div>
   <div class="stage"><div class="browser"><div class="bar"><i></i><i></i><i></i></div><div class="vp" style="width:970px;height:250px"><iframe loading="lazy" title="Çalışma 15" width="970" height="250" srcdoc="<!DOCTYPE html>
 <html lang=&quot;tr&quot;>
 <head>
@@ -4401,7 +4403,7 @@ var AD = window.AD || {};
 "></iframe></div></div></div>
 </section>
 <section class="row tall">
-  <div class="lb"><span class="no">16</span><h2>Çalışma 16</h2><button class="re" aria-label="Çalışma 16 tekrar oynat" onclick="var f=this.closest('section').querySelector('iframe');f.srcdoc=f.srcdoc">↻</button></div>
+  <div class="lb"><span class="no">16</span><h2>Çalışma 16</h2><button class="re" onclick="replay(this.closest('section'))"><span>↻</span> Tekrar oynat</button></div>
   <div class="stage"><div class="phone"><div class="notch"></div><div class="vp" style="width:320px;height:480px"><iframe loading="lazy" title="Çalışma 16" width="320" height="480" srcdoc="<!DOCTYPE html>
 <html lang=&quot;tr&quot;>
 <head>
@@ -4691,7 +4693,7 @@ var AD = window.AD || {};
 "></iframe></div></div></div>
 </section>
 <section class="row tall">
-  <div class="lb"><span class="no">17</span><h2>Çalışma 17</h2><button class="re" aria-label="Çalışma 17 tekrar oynat" onclick="var f=this.closest('section').querySelector('iframe');f.srcdoc=f.srcdoc">↻</button></div>
+  <div class="lb"><span class="no">17</span><h2>Çalışma 17</h2><button class="re" onclick="replay(this.closest('section'))"><span>↻</span> Tekrar oynat</button></div>
   <div class="stage"><div class="phone"><div class="notch"></div><div class="vp" style="width:320px;height:480px"><iframe loading="lazy" title="Çalışma 17" width="320" height="480" srcdoc="<!DOCTYPE html>
 <html lang=&quot;tr&quot;>
 <head>
@@ -4976,7 +4978,7 @@ var AD = window.AD || {};
 "></iframe></div></div></div>
 </section>
 <section class="row tall">
-  <div class="lb"><span class="no">18</span><h2>Çalışma 18</h2><button class="re" aria-label="Çalışma 18 tekrar oynat" onclick="var f=this.closest('section').querySelector('iframe');f.srcdoc=f.srcdoc">↻</button></div>
+  <div class="lb"><span class="no">18</span><h2>Çalışma 18</h2><button class="re" onclick="replay(this.closest('section'))"><span>↻</span> Tekrar oynat</button></div>
   <div class="stage"><div class="phone"><div class="notch"></div><div class="vp" style="width:320px;height:480px"><iframe loading="lazy" title="Çalışma 18" width="320" height="480" srcdoc="<!DOCTYPE html>
 <html lang=&quot;tr&quot;>
 <head>
@@ -5196,6 +5198,22 @@ var AD = window.AD || {};
 <script>
 var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('seen'); io.unobserve(e.target); } }); }, { threshold: .15 });
 document.querySelectorAll('.row').forEach(function (r) { io.observe(r); });
+// Tekrar oynat: çalışmayı baştan yükler
+function replay(row) {
+  var f = row.querySelector('iframe'), b = row.querySelector('.re');
+  f.srcdoc = f.getAttribute('srcdoc');
+  b.classList.remove('spin'); void b.offsetWidth; b.classList.add('spin');
+  setTimeout(function () { b.classList.remove('spin'); }, 600);
+}
+// Çalışma ekrana her geldiğinde (yarısı görünür olduğunda) kendiliğinden baştan oynar
+var vis = new IntersectionObserver(function (es) {
+  es.forEach(function (e) {
+    var row = e.target;
+    if (e.intersectionRatio >= .5 && !row._on) { row._on = true; replay(row); }
+    else if (e.intersectionRatio < .1) row._on = false;
+  });
+}, { threshold: [0, .1, .5] });
+document.querySelectorAll('.row').forEach(function (r) { vis.observe(r); });
 // Dar ekranda masthead penceresi ve telefon çerçevesi sahneye sığacak şekilde ölçeklenir
 function fit() {
   document.querySelectorAll('.stage').forEach(function (st) {
