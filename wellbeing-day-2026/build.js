@@ -47,70 +47,112 @@ const built = CONCEPTS.map((c, i) => {
   return out;
 });
 
-// Ajans logosu: assets/splash-digital-logo.(svg|png|webp) varsa o, yoksa yer tutucu
-const logoFile = ['svg', 'png', 'webp'].map((e) => `assets/splash-digital-logo.${e}`).find((f) => fs.existsSync(path.join(__dirname, f)))
-  || 'assets/splash-digital-logo.placeholder.svg';
-
-const rows = built.map((b, i) => `
-  <section class="work">
-    <header class="wh"><span class="no">${String(i + 1).padStart(2, '0')}</span><h2>Çalışma ${i + 1}</h2></header>
-    <div class="frames">${Object.entries(SIZES).map(([k, s]) => `
-      <figure class="frame" style="--w:${s.w};--h:${s.h}">
-        <div class="box"><iframe width="${s.w}" height="${s.h}" scrolling="no" title="Çalışma ${i + 1} – ${k}" data-srcdoc="${escAttr(b[k])}"></iframe></div>
-        <figcaption>${k.replace('x', ' × ')}<button type="button" class="re" aria-label="Yeniden oynat" title="Yeniden oynat">↻</button></figcaption>
-      </figure>`).join('')}
-    </div>
-  </section>`).join('');
+// Splash Digital sunumu (ajansın diğer sunumlarıyla aynı tasarım): her çalışma bir satır,
+// masthead tarayıcı penceresinde, mobil telefon çerçevesinde.
+const logo = uri('assets/brand/splash-logo.png');
+const rows = built.map((b, i) => {
+  const frames = Object.entries(SIZES).map(([k, s]) => {
+    const ifr = `<div class="vp" style="width:${s.w}px;height:${s.h}px"><iframe loading="lazy" title="Çalışma ${i + 1} – ${k}" width="${s.w}" height="${s.h}" scrolling="no" srcdoc="${escAttr(b[k])}"></iframe></div>`;
+    return s.w > 500
+      ? `<div class="browser"><div class="bar"><i></i><i></i><i></i></div>${ifr}</div>`
+      : `<div class="phone"><div class="notch"></div>${ifr}</div>`;
+  }).join('');
+  return `<section class="row">
+  <div class="lb"><span class="no">${String(i + 1).padStart(2, '0')}</span><h2>Çalışma ${i + 1}</h2><button class="re" onclick="replay(this.closest('section'))"><span>↻</span> Tekrar oynat</button></div>
+  <div class="stage"><div class="pair">${frames}</div></div>
+</section>`;
+}).join('\n');
 
 fs.writeFileSync(path.join(__dirname, 'sunum.html'), `<!DOCTYPE html>
-<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Splash Digital</title>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Splash Digital – Çalışmalar</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&amp;family=Montserrat:wght@300;500;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,500&amp;family=Manrope:wght@500;700;800&amp;display=swap" rel="stylesheet">
 <style>
+:root{--bg:#070b1d;--line:rgba(255,255,255,.08);--blue:#1a82d6;--txt:#e9eefc;--mut:#8d97b8}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#0c0c0f;color:#f4efe9;font-family:Montserrat,system-ui,sans-serif;-webkit-font-smoothing:antialiased;
-  background-image:radial-gradient(900px 500px at 50% -120px,rgba(255,170,90,.16),transparent 70%),radial-gradient(700px 600px at 100% 40%,rgba(255,60,120,.06),transparent 70%)}
-.top{text-align:center;padding:64px 16px 40px}
-.top img{height:58px;width:auto;max-width:80vw}
-.top h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:clamp(26px,4vw,44px);letter-spacing:.01em;margin-top:26px}
-.top .rule{width:120px;height:1px;margin:26px auto 0;background:linear-gradient(90deg,transparent,#c9a46c,transparent)}
-main{max-width:1420px;margin:0 auto;padding:0 16px 80px}
-.work{padding:48px 0;border-top:1px solid rgba(255,255,255,.08)}
-.work:first-child{border-top:0}
-.wh{display:flex;align-items:baseline;gap:16px;margin-bottom:26px}
-.no{font-family:'Cormorant Garamond',Georgia,serif;font-size:56px;line-height:.8;color:#c9a46c;font-weight:500}
-.wh h2{font-weight:300;font-size:22px;letter-spacing:.24em;text-transform:uppercase}
-.frames{display:flex;flex-wrap:wrap;gap:36px;align-items:flex-start}
-.frame{width:min(calc(var(--w)*1px),100%)}
-.box{position:relative;width:100%;aspect-ratio:var(--w)/var(--h);overflow:hidden;border-radius:4px;box-shadow:0 24px 60px -24px rgba(0,0,0,.9),0 0 0 1px rgba(255,255,255,.06)}
-.box iframe{position:absolute;left:0;top:0;border:0;transform-origin:0 0;background:#f1dcc6}
-figcaption{display:flex;align-items:center;gap:10px;margin-top:12px;font-size:11px;letter-spacing:.2em;color:rgba(244,239,233,.55)}
-.re{font:inherit;font-size:14px;letter-spacing:0;color:rgba(244,239,233,.7);background:none;border:1px solid rgba(255,255,255,.18);border-radius:50%;width:26px;height:26px;cursor:pointer;transition:all .2s}
-.re:hover{color:#fff;border-color:#c9a46c}
-</style></head>
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:Manrope,Arial,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;background:radial-gradient(60% 40% at 50% -5%,rgba(26,130,214,.28),transparent 70%),radial-gradient(40% 30% at 100% 60%,rgba(26,130,214,.08),transparent 70%)}
+header{position:relative;min-height:86vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 20px}
+header img{width:min(420px,78vw);filter:drop-shadow(0 10px 40px rgba(26,130,214,.35));opacity:0;transform:translateY(14px);animation:in 1s .1s cubic-bezier(.22,.8,.2,1) forwards}
+header h1{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:clamp(26px,4.4vw,52px);line-height:1.1;margin-top:34px;letter-spacing:-.01em;opacity:0;transform:translateY(14px);animation:in 1s .35s cubic-bezier(.22,.8,.2,1) forwards}
+header h1 em{font-style:italic;font-weight:500;color:var(--blue)}
+header .down{position:absolute;bottom:28px;left:50%;width:22px;height:36px;margin-left:-11px;border:2px solid rgba(255,255,255,.35);border-radius:12px;opacity:0;animation:in 1s .9s forwards}
+header .down::after{content:'';position:absolute;left:50%;top:7px;width:4px;height:8px;margin-left:-2px;border-radius:2px;background:#fff;animation:sc 1.6s infinite}
+@keyframes in{to{opacity:1;transform:none}}
+@keyframes sc{0%{opacity:0;transform:translateY(0)}40%{opacity:1}100%{opacity:0;transform:translateY(10px)}}
+main{position:relative;max-width:1460px;margin:0 auto;padding:0 24px 120px}
+.row{display:flex;flex-direction:column;gap:26px;padding:64px 0;border-top:1px solid var(--line);opacity:0;transform:translateY(30px);transition:opacity .9s cubic-bezier(.22,.8,.2,1),transform .9s cubic-bezier(.22,.8,.2,1)}
+.row.seen{opacity:1;transform:none}
+.lb{display:flex;align-items:center;gap:16px}
+.lb .no{display:block;font-family:Fraunces,Georgia,serif;font-size:56px;line-height:.9;color:transparent;-webkit-text-stroke:1px rgba(26,130,214,.7)}
+.lb h2{font-size:15px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+.lb .re{margin-left:auto;display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 16px 0 14px;border-radius:999px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.04);color:var(--txt);font:inherit;font-size:13px;font-weight:800;letter-spacing:.02em;cursor:pointer;transition:background .2s,border-color .2s}
+.lb .re span{font-size:16px;line-height:1;transition:transform .5s cubic-bezier(.22,.8,.2,1)}
+.lb .re:hover span,.lb .re.spin span{transform:rotate(-360deg)}
+.lb .re:hover{background:var(--blue);border-color:var(--blue)}
+.stage{position:relative}
+.pair{display:flex;align-items:center;justify-content:center;gap:44px;transform-origin:left top}
+.pair.col{flex-direction:column;gap:30px;align-items:flex-start}
+.pair>*{flex:none}
+iframe{border:0;display:block}
+.vp{overflow:hidden;background:#000}
+/* Tarayıcı penceresi (masthead) */
+.browser{border-radius:12px;overflow:hidden;background:#151b33;box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.07);transform-origin:left top}
+.browser .bar{height:30px;display:flex;align-items:center;gap:6px;padding:0 12px;background:#1c2342}
+.browser .bar i{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.18)}
+/* Telefon (mobil) */
+.phone{position:relative;padding:44px 12px 44px;border-radius:44px;background:linear-gradient(160deg,#20294d,#0c1129);box-shadow:0 30px 80px rgba(0,0,0,.6),inset 0 0 0 2px rgba(255,255,255,.08),0 0 0 1px rgba(255,255,255,.06);transform-origin:left top}
+.phone .notch{position:absolute;left:50%;top:16px;width:90px;height:14px;margin-left:-45px;border-radius:10px;background:#070b1d}
+.phone .vp{border-radius:10px}
+footer{text-align:center;padding:40px 20px 70px;border-top:1px solid var(--line)}
+footer img{width:170px;opacity:.85}
+@media (max-width:760px){.row{padding:44px 0}.lb .no{font-size:42px}}
+</style>
+</head>
 <body>
-<header class="top">
-  <img src="${uri(logoFile)}" alt="Splash Digital">
-  <h1>Bu Çalışmalar Splash Digital'e Aittir.</h1>
-  <div class="rule"></div>
+<header>
+  <img src="${logo}" alt="Splash Digital">
+  <h1>Bu Çalışmalar <em>Splash Digital</em>'e Aittir.</h1>
+  <div class="down"></div>
 </header>
-<main>${rows}
+<main>
+${rows}
 </main>
+<footer><img src="${logo}" alt="Splash Digital"></footer>
 <script>
-(function(){
-  var frames=[].slice.call(document.querySelectorAll('.frame'));
-  function fit(){frames.forEach(function(f){var box=f.querySelector('.box'),ifr=f.querySelector('iframe');ifr.style.transform='scale('+(box.clientWidth/ifr.width)+')';});}
-  function play(ifr){ifr.srcdoc=ifr.getAttribute('data-srcdoc');}
-  frames.forEach(function(f){var ifr=f.querySelector('iframe');f.querySelector('.re').addEventListener('click',function(){play(ifr);});});
-  // Her banner görünür olduğunda oynamaya başlar
-  if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){play(e.target);io.unobserve(e.target);}});},{threshold:.35});
-    frames.forEach(function(f){io.observe(f.querySelector('iframe'));});
-  }else frames.forEach(function(f){play(f.querySelector('iframe'));});
-  window.addEventListener('resize',fit);fit();
-})();
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('seen');io.unobserve(e.target);}});},{threshold:.15});
+document.querySelectorAll('.row').forEach(function(r){io.observe(r);});
+// Tekrar oynat: satırdaki iki banner baştan yüklenir
+function replay(row){
+  row.querySelectorAll('iframe').forEach(function(f){f.srcdoc=f.getAttribute('srcdoc');});
+  var b=row.querySelector('.re');b.classList.remove('spin');void b.offsetWidth;b.classList.add('spin');
+  setTimeout(function(){b.classList.remove('spin');},600);
+}
+// Çalışma ekrana her geldiğinde kendiliğinden baştan oynar
+var vis=new IntersectionObserver(function(es){es.forEach(function(e){var row=e.target;
+  if(e.intersectionRatio>=.5&&!row._on){row._on=true;replay(row);}else if(e.intersectionRatio<.1)row._on=false;});},{threshold:[0,.1,.5]});
+document.querySelectorAll('.row').forEach(function(r){vis.observe(r);});
+// Geniş ekranda pencere + telefon yan yana; sığmazsa alt alta ve her biri ekrana göre ölçeklenir
+function fit(){
+  document.querySelectorAll('.stage').forEach(function(st){
+    var pair=st.firstElementChild,kids=[].slice.call(pair.children),cw=st.clientWidth;
+    pair.style.transform='';kids.forEach(function(k){k.style.transform='';k.style.marginBottom='';k.style.marginRight='';});
+    pair.classList.remove('col');st.style.height='';
+    var w=pair.scrollWidth,h=pair.offsetHeight;
+    if(cw>=w*.78){var k=Math.min(1,cw/w);pair.style.transform=k<1?'scale('+k+')':'';st.style.height=k<1?(h*k)+'px':'';return;}
+    pair.classList.add('col');
+    kids.forEach(function(el){var ew=el.offsetWidth,eh=el.offsetHeight,s=Math.min(1,cw/ew);
+      if(s<1){el.style.transform='scale('+s+')';el.style.marginBottom=(eh*s-eh)+'px';el.style.marginRight=(ew*s-ew)+'px';}});
+  });
+}
+fit();addEventListener('resize',fit);
 </script>
-</body></html>
+</body>
+</html>
 `);
-console.log(`✔ sunum.html  ${(fs.statSync(path.join(__dirname, 'sunum.html')).size / 1024).toFixed(0)} KB (tek dosya) – logo: ${logoFile}`);
+console.log(`✔ sunum.html  ${(fs.statSync(path.join(__dirname, 'sunum.html')).size / 1024).toFixed(0)} KB (tek dosya)`);

@@ -128,15 +128,14 @@ const portraitHTML = (ev, img, tag = true) =>
   `<div class="por"><div class="orb"></div><div class="ring"><img src="${img.portrait}" alt="${esc(ev.host)}"></div>${tag ? `<div class="tag">${esc(ev.host)}</div>` : ''}</div>`;
 
 /**
- * Ortak çalışma zamanı: tıklama çıkışı (clickTag / Enabler / UTM'li URL), açılış ve 30 sn durdurma.
- * Konsept betikleri: AD.exit(detay), AD.on(), AD.stopAfter(fn), AD.burst().
+ * Ortak çalışma zamanı: tıklama çıkışı (clickTag / Enabler / program sayfası, UTM eklenmez), açılış ve 30 sn durdurma.
+ * Konsept betikleri: AD.exit(detay), AD.count(ad), AD.burst(), AD.onStop.
  */
 const RUNTIME = (cfg) => `
 var C=${JSON.stringify(cfg)};
 var ad=document.getElementById('ad');
 var AD={detail:'genel',stopped:false,
-  url:function(d){var u=C.utm;return C.url+(C.url.indexOf('?')<0?'?':'&')+'utm_source='+u.source+'&utm_medium='+u.medium+'&utm_campaign='+u.campaign+'&utm_content='+encodeURIComponent(C.concept+'_'+C.size+'_'+(d||AD.detail));},
-  exit:function(d){d=d||AD.detail;if(window.Enabler&&Enabler.exit){Enabler.exit('CTA_'+d,AD.url(d));return;}window.open(window.clickTag||AD.url(d),'_blank');},
+  exit:function(d){d=d||AD.detail;if(window.Enabler&&Enabler.exit){Enabler.exit('CTA_'+d,C.url);return;}window.open(window.clickTag||C.url,'_blank');},
   count:function(n){if(window.Enabler&&Enabler.counter)Enabler.counter(n);},
   burst:function(){ad.classList.remove('burst-on');void ad.offsetWidth;ad.classList.add('burst-on');},
   ready:function(fn){if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fn);else fn();}

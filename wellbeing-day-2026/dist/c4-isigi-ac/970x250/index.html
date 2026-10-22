@@ -187,11 +187,10 @@ box-shadow:0 4px 12px -4px rgba(31,26,23,.5),0 0 calc(6px + 22px*var(--v)) rgba(
 </div>
 <script>
 (function(){
-var C={"concept":"isigi-ac","size":"970x250","url":"https://eliftuncel.com/egitim/icten-disa-parla-wellbeing-day-2026-egitimi/","utm":{"source":"display","medium":"banner","campaign":"wellbeing_day_2026"},"timing":{"intro":2600,"idle":1400,"perPillar":2600,"stopAfter":29000},"th":[0.2,0.45,0.7,0.92],"autoAfter":3400,"autoDur":3600,"start":"2026-11-21T11:30:00+03:00","daysText":"gün kaldı","tomorrow":"Yarın!"};
+var C={"concept":"isigi-ac","size":"970x250","url":"https://eliftuncel.com/egitim/icten-disa-parla-wellbeing-day-2026-egitimi/","timing":{"intro":2600,"idle":1400,"perPillar":2600,"stopAfter":29000},"th":[0.2,0.45,0.7,0.92],"autoAfter":3400,"autoDur":3600,"start":"2026-11-21T11:30:00+03:00","daysText":"gün kaldı","tomorrow":"Yarın!"};
 var ad=document.getElementById('ad');
 var AD={detail:'genel',stopped:false,
-  url:function(d){var u=C.utm;return C.url+(C.url.indexOf('?')<0?'?':'&')+'utm_source='+u.source+'&utm_medium='+u.medium+'&utm_campaign='+u.campaign+'&utm_content='+encodeURIComponent(C.concept+'_'+C.size+'_'+(d||AD.detail));},
-  exit:function(d){d=d||AD.detail;if(window.Enabler&&Enabler.exit){Enabler.exit('CTA_'+d,AD.url(d));return;}window.open(window.clickTag||AD.url(d),'_blank');},
+  exit:function(d){d=d||AD.detail;if(window.Enabler&&Enabler.exit){Enabler.exit('CTA_'+d,C.url);return;}window.open(window.clickTag||C.url,'_blank');},
   count:function(n){if(window.Enabler&&Enabler.counter)Enabler.counter(n);},
   burst:function(){ad.classList.remove('burst-on');void ad.offsetWidth;ad.classList.add('burst-on');},
   ready:function(fn){if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fn);else fn();}
@@ -227,7 +226,7 @@ sl.addEventListener('pointerup',end);sl.addEventListener('pointercancel',end);
 sl.addEventListener('keydown',function(e){if(done)return;var k=e.key,d=0;
   if(k==='ArrowRight'||k==='ArrowUp')d=.1;else if(k==='ArrowLeft'||k==='ArrowDown')d=-.1;else if(k==='End')d=1;else if(k==='Home')d=-1;else return;
   e.preventDefault();take();set(v+d);});
-function glide(a,b,ms,cb){var t0=0;(function f(t){if(!t0)t0=t;var k=Math.min(1,(t-t0)/ms);k=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+function glide(a,b,ms,cb){var t0=0;(function f(t){if(!t0)t0=t;var k=Math.max(0,Math.min(1,(t-t0)/ms));k=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
   if(!done)set(a+(b-a)*k);if(k<1&&!done&&!(touched&&cb))requestAnimationFrame(f);else if(cb)cb();})(performance.now());}
 var days=Math.ceil((new Date(C.start)-Date.now())/864e5),dEl=ad.querySelector('.days');
 if(days>1)dEl.textContent=days+' '+C.daysText;else if(days===1)dEl.textContent=C.tomorrow;else dEl.classList.add('hide');

@@ -122,7 +122,7 @@ function render(sizeKey, data, img) {
   const ev = data.event;
   const t = data.concepts.nefes;
   const cfg = {
-    concept: 'nefes', size: sizeKey, url: data.url, utm: data.utm, timing: data.timing,
+    concept: 'nefes', size: sizeKey, url: data.url, timing: data.timing,
     inhale: t.inhale, exhale: t.exhale, autoAfter: t.autoAfter, txt: t.txt,
   };
   const body = `<div id="ad" class="ad ${is970 ? 's970' : 's320'}" style="--bg:url(${img.bg})" aria-label="${esc(ev.academy)} – İçten Dışa Parla ${esc(ev.sub)}, ${esc(ev.date)} ${esc(ev.time)}, ${esc(ev.venue)}. ${esc(ev.note)}.">

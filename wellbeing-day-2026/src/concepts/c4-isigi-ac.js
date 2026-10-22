@@ -111,7 +111,7 @@ sl.addEventListener('pointerup',end);sl.addEventListener('pointercancel',end);
 sl.addEventListener('keydown',function(e){if(done)return;var k=e.key,d=0;
   if(k==='ArrowRight'||k==='ArrowUp')d=.1;else if(k==='ArrowLeft'||k==='ArrowDown')d=-.1;else if(k==='End')d=1;else if(k==='Home')d=-1;else return;
   e.preventDefault();take();set(v+d);});
-function glide(a,b,ms,cb){var t0=0;(function f(t){if(!t0)t0=t;var k=Math.min(1,(t-t0)/ms);k=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+function glide(a,b,ms,cb){var t0=0;(function f(t){if(!t0)t0=t;var k=Math.max(0,Math.min(1,(t-t0)/ms));k=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
   if(!done)set(a+(b-a)*k);if(k<1&&!done&&!(touched&&cb))requestAnimationFrame(f);else if(cb)cb();})(performance.now());}
 var days=Math.ceil((new Date(C.start)-Date.now())/864e5),dEl=ad.querySelector('.days');
 if(days>1)dEl.textContent=days+' '+C.daysText;else if(days===1)dEl.textContent=C.tomorrow;else dEl.classList.add('hide');
@@ -124,7 +124,7 @@ function render(sizeKey, data, img) {
   const ev = data.event;
   const t = data.concepts.isik;
   const cfg = {
-    concept: 'isigi-ac', size: sizeKey, url: data.url, utm: data.utm, timing: data.timing,
+    concept: 'isigi-ac', size: sizeKey, url: data.url, timing: data.timing,
     th: t.thresholds, autoAfter: t.autoAfter, autoDur: t.autoDur, start: ev.start, daysText: t.daysText, tomorrow: t.tomorrow,
   };
   const marks = data.pillars.map((p) => `<div class="mk" data-k="${p.key}" style="--pc:${p.color}">${icon(p.key)}<span>${esc(p.label)}</span></div>`).join('');

@@ -160,11 +160,10 @@ transition:opacity .8s .5s,transform .9s .5s cubic-bezier(.2,.8,.2,1)}
 </div>
 <script>
 (function(){
-var C={"concept":"kazi","size":"320x480","url":"https://eliftuncel.com/egitim/icten-disa-parla-wellbeing-day-2026-egitimi/","utm":{"source":"display","medium":"banner","campaign":"wellbeing_day_2026"},"timing":{"intro":2600,"idle":1400,"perPillar":2600,"stopAfter":29000},"autoAfter":4200,"autoDur":2600,"revealAt":0.45};
+var C={"concept":"kazi","size":"320x480","url":"https://eliftuncel.com/egitim/icten-disa-parla-wellbeing-day-2026-egitimi/","timing":{"intro":2600,"idle":1400,"perPillar":2600,"stopAfter":29000},"autoAfter":4200,"autoDur":2600,"revealAt":0.45};
 var ad=document.getElementById('ad');
 var AD={detail:'genel',stopped:false,
-  url:function(d){var u=C.utm;return C.url+(C.url.indexOf('?')<0?'?':'&')+'utm_source='+u.source+'&utm_medium='+u.medium+'&utm_campaign='+u.campaign+'&utm_content='+encodeURIComponent(C.concept+'_'+C.size+'_'+(d||AD.detail));},
-  exit:function(d){d=d||AD.detail;if(window.Enabler&&Enabler.exit){Enabler.exit('CTA_'+d,AD.url(d));return;}window.open(window.clickTag||AD.url(d),'_blank');},
+  exit:function(d){d=d||AD.detail;if(window.Enabler&&Enabler.exit){Enabler.exit('CTA_'+d,C.url);return;}window.open(window.clickTag||C.url,'_blank');},
   count:function(n){if(window.Enabler&&Enabler.counter)Enabler.counter(n);},
   burst:function(){ad.classList.remove('burst-on');void ad.offsetWidth;ad.classList.add('burst-on');},
   ready:function(fn){if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fn);else fn();}
@@ -220,7 +219,7 @@ function autoScratch(){
   card.classList.add('scratching');AD.detail='kazi-otomatik';
   var pts=[],rows=4;for(var r=0;r<rows;r++){var y=H*(r+.5)/rows;pts.push({x:r%2?W*.92:W*.08,y:y-H*.08},{x:r%2?W*.08:W*.92,y:y+H*.08});}
   var t0=0,dur=C.autoDur; // kullanıcı kazımaya başlarsa otomatik akış durur
-  (function f(t){if(touched)return;if(!t0)t0=t;var k=Math.min(1,(t-t0)/dur),seg=k*(pts.length-1),i=Math.floor(seg),fr=seg-i;
+  (function f(t){if(touched)return;if(!t0)t0=t;var k=Math.max(0,Math.min(1,(t-t0)/dur)),seg=k*(pts.length-1),i=Math.floor(seg),fr=seg-i;
     var a=pts[i],b=pts[Math.min(i+1,pts.length-1)];scratchTo(a.x+(b.x-a.x)*fr,a.y+(b.y-a.y)*fr);
     if(k<1&&!done)requestAnimationFrame(f);else reveal();})(performance.now());
 }

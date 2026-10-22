@@ -112,7 +112,7 @@ function autoScratch(){
   card.classList.add('scratching');AD.detail='kazi-otomatik';
   var pts=[],rows=4;for(var r=0;r<rows;r++){var y=H*(r+.5)/rows;pts.push({x:r%2?W*.92:W*.08,y:y-H*.08},{x:r%2?W*.08:W*.92,y:y+H*.08});}
   var t0=0,dur=C.autoDur; // kullanıcı kazımaya başlarsa otomatik akış durur
-  (function f(t){if(touched)return;if(!t0)t0=t;var k=Math.min(1,(t-t0)/dur),seg=k*(pts.length-1),i=Math.floor(seg),fr=seg-i;
+  (function f(t){if(touched)return;if(!t0)t0=t;var k=Math.max(0,Math.min(1,(t-t0)/dur)),seg=k*(pts.length-1),i=Math.floor(seg),fr=seg-i;
     var a=pts[i],b=pts[Math.min(i+1,pts.length-1)];scratchTo(a.x+(b.x-a.x)*fr,a.y+(b.y-a.y)*fr);
     if(k<1&&!done)requestAnimationFrame(f);else reveal();})(performance.now());
 }
@@ -124,7 +124,7 @@ function render(sizeKey, data, img) {
   const is970 = sizeKey === '970x250';
   const ev = data.event;
   const t = data.concepts.kazi;
-  const cfg = { concept: 'kazi', size: sizeKey, url: data.url, utm: data.utm, timing: data.timing, autoAfter: t.autoAfter, autoDur: t.autoDur, revealAt: t.revealAt };
+  const cfg = { concept: 'kazi', size: sizeKey, url: data.url, timing: data.timing, autoAfter: t.autoAfter, autoDur: t.autoDur, revealAt: t.revealAt };
   const note = `<div class="note"><b>${esc(ev.season)}</b> · ${esc(ev.note)}</div>`;
   const cta = `<button class="cta red" type="button">${esc(data.ctaEnd)}<i>→</i></button>`;
   const body = `<div id="ad" class="ad ${is970 ? 's970' : 's320'}" style="--bg:url(${img.bg})" aria-label="${esc(ev.academy)} – İçten Dışa Parla ${esc(ev.sub)}, ${esc(ev.date)} ${esc(ev.time)}, ${esc(ev.venue)}. ${esc(ev.note)}.">

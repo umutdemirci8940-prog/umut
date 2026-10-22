@@ -2,7 +2,7 @@
 
 Elif Tuncel Akademi · 21 Kasım 2026 · 11.30–18.00 · Marriott İstanbul Şişli · 4. Sezon
 
-**Sunum:** `sunum.html` – dört çalışma, her biri 970×250 ve 320×480 olarak tek sayfada (bannerlar gömülü, dosya tek başına açılır; en üstte "Bu Çalışmalar Splash Digital'e Aittir." ve ajans logosu).
+**Sunum:** `sunum.html` – Splash Digital sunum tasarımında (ajansın diğer sunumlarıyla aynı): üstte logo ve "Bu Çalışmalar Splash Digital'e Aittir.", her çalışma bir satır; 970×250 tarayıcı penceresinde, 320×480 telefon çerçevesinde, "Tekrar oynat" düğmeli. Tek dosya, bannerlar gömülü.
 
 | # | Çalışma | Etkileşim | Klasör |
 |---|---|---|---|
@@ -16,8 +16,8 @@ Her klasörde `970x250/index.html` ve `320x480/index.html`; yüklemeye hazır pa
 ## Ortak özellikler
 
 - **Etkileşim yoksa** her banner kendi akışını otomatik oynatır ve CTA'lı kapanış karesinde durur; döngüsel animasyonlar 30 sn'de durur (Google Ads / IAB).
-- **Trafik kalitesi:** çıkış bağlantısı yapılan etkileşimi UTM'e yazar: `utm_content=<konsept>_<boyut>_<durum>` (ör. `isik-testi_970x250_zihin`, `kazi_320x480_kazi-otomatik`). GA4'te hangi kreatif/etkileşimin kayıt getirdiği ayrışır.
-- `window.clickTag` (Google Ads / CM360) ve `Enabler.exit` / `Enabler.counter` (Studio / DV360) desteklenir; ikisi yoksa UTM'li program sayfası açılır. Kontroller (seçim, kazıma, kaydırma, basılı tutma) reklam çıkışını tetiklemez.
+- Yönlendirmelere **UTM eklenmez**; tıklama doğrudan program sayfasına gider (`src/data.js` → `url`).
+- `window.clickTag` (Google Ads / CM360) ve `Enabler.exit` / `Enabler.counter` (Studio / DV360) desteklenir; ikisi yoksa program sayfası açılır. Kontroller (seçim, kazıma, kaydırma, basılı tutma) reklam çıkışını tetiklemez.
 - Tek dosya, satır içi CSS/JS, görseller gömülü: 49–58 KB (150 KB sınırının altında). Klavye erişimi ve `prefers-reduced-motion` desteklenir.
 - Görseller resmi afişten (`assets/source/afis.webp`): Elif Tuncel portresi, şampanya ışıltılı fon, "E" logosu. Fontlar: Cinzel, Cormorant Garamond, Montserrat (Google Fonts).
 
@@ -25,7 +25,7 @@ Her klasörde `970x250/index.html` ve `320x480/index.html`; yüklemeye hazır pa
 
 - Metinler, süreler, renkler, URL: `src/data.js` (Çalışma 2–4'e özel metinler `concepts` altında).
 - Ortak tasarım / tıklama altyapısı: `src/common.js`; her çalışma: `src/concepts/c<N>-*.js`.
-- **Ajans logosu:** gerçek logoyu `assets/splash-digital-logo.svg` (veya `.png` / `.webp`) olarak ekleyip `node build.js` çalıştırın; şu an yer tutucu `assets/splash-digital-logo.placeholder.svg` kullanılıyor.
+- Ajans logosu: `assets/brand/splash-logo.png`.
 
 ```bash
 node build.js                               # dist/ + zip + sunum.html

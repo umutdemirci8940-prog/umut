@@ -176,11 +176,10 @@ letter-spacing:.14em;text-transform:uppercase;padding:5px 11px;border-radius:12p
 </div>
 <script>
 (function(){
-var C={"concept":"nefes","size":"970x250","url":"https://eliftuncel.com/egitim/icten-disa-parla-wellbeing-day-2026-egitimi/","utm":{"source":"display","medium":"banner","campaign":"wellbeing_day_2026"},"timing":{"intro":2600,"idle":1400,"perPillar":2600,"stopAfter":29000},"inhale":4000,"exhale":3000,"autoAfter":4400,"txt":{"idle":"Hazır olduğunuzda…","inhale":"Nefes alın…","keep":"Bırakmayın…","exhale":"Nefes verin…"}};
+var C={"concept":"nefes","size":"970x250","url":"https://eliftuncel.com/egitim/icten-disa-parla-wellbeing-day-2026-egitimi/","timing":{"intro":2600,"idle":1400,"perPillar":2600,"stopAfter":29000},"inhale":4000,"exhale":3000,"autoAfter":4400,"txt":{"idle":"Hazır olduğunuzda…","inhale":"Nefes alın…","keep":"Bırakmayın…","exhale":"Nefes verin…"}};
 var ad=document.getElementById('ad');
 var AD={detail:'genel',stopped:false,
-  url:function(d){var u=C.utm;return C.url+(C.url.indexOf('?')<0?'?':'&')+'utm_source='+u.source+'&utm_medium='+u.medium+'&utm_campaign='+u.campaign+'&utm_content='+encodeURIComponent(C.concept+'_'+C.size+'_'+(d||AD.detail));},
-  exit:function(d){d=d||AD.detail;if(window.Enabler&&Enabler.exit){Enabler.exit('CTA_'+d,AD.url(d));return;}window.open(window.clickTag||AD.url(d),'_blank');},
+  exit:function(d){d=d||AD.detail;if(window.Enabler&&Enabler.exit){Enabler.exit('CTA_'+d,C.url);return;}window.open(window.clickTag||C.url,'_blank');},
   count:function(n){if(window.Enabler&&Enabler.counter)Enabler.counter(n);},
   burst:function(){ad.classList.remove('burst-on');void ad.offsetWidth;ad.classList.add('burst-on');},
   ready:function(fn){if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fn);else fn();}

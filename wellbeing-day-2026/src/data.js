@@ -6,7 +6,6 @@
  */
 module.exports = {
   url: 'https://eliftuncel.com/egitim/icten-disa-parla-wellbeing-day-2026-egitimi/',
-  utm: { source: 'display', medium: 'banner', campaign: 'wellbeing_day_2026' },
 
   event: {
     academy: 'ELİF TUNCEL AKADEMİ',
@@ -27,7 +26,7 @@ module.exports = {
   cta: 'Programı İncele',
   ctaEnd: 'Yerinizi Ayırtın',
 
-  // Seçilebilir dört alan. key → UTM utm_content değerine de yazılır.
+  // Seçilebilir dört alan.
   pillars: [
     { key: 'beslenme', label: 'Beslenme', title: 'Enerjinizi içeriden besleyin', text: 'Fonksiyonel beslenme ve sağlıklı yaşam', color: '#7f9f5c' },
     { key: 'zihin', label: 'Zihin', title: 'Zihninize nefes aldırın', text: 'Mindfulness, meditasyon ve stres yönetimi', color: '#8a7cc2' },

@@ -127,7 +127,7 @@ function render(sizeKey, data, img) {
   const chips = data.pillars.map((p) =>
     `<button class="chip" type="button" data-noexit data-k="${p.key}" style="--pc:${p.color}" aria-pressed="false">${icon(p.key)}<span>${esc(p.label)}</span></button>`).join('');
   const cfg = {
-    concept: 'isik-testi', size: sizeKey, url: data.url, utm: data.utm, cta: data.cta, ctaEnd: data.ctaEnd, timing: data.timing,
+    concept: 'isik-testi', size: sizeKey, url: data.url, cta: data.cta, ctaEnd: data.ctaEnd, timing: data.timing,
     pillars: data.pillars.map(({ key, label, title, text, color }) => ({ key, label, title, text, color })),
     overview: data.overview,
   };
