@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="ad.size" content="width=320,height=480">
+<meta name="viewport" content="width=320,height=480,initial-scale=1">
+<title>İçten Dışa Parla – Wellbeing Day 2026 (320x480)</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,600&amp;family=Manrope:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<style>:root{--ink:#3a2340;--ink2:#6d5672;--cream:#fbf4ec;--sand:#f3e6d8;--line:rgba(58,35,64,.14);--c:#e0a15a}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--cream)}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.ad{position:relative;overflow:hidden;cursor:pointer;color:var(--ink);font-family:Manrope,'Segoe UI',Arial,sans-serif;
+background:radial-gradient(120% 140% at 0% 0%,#fff8f1 0%,var(--cream) 45%,var(--sand) 100%);border:1px solid var(--line);
+-webkit-font-smoothing:antialiased;user-select:none;-webkit-tap-highlight-color:transparent}
+.serif{font-family:Fraunces,Georgia,'Times New Roman',serif}
+/* ışık katmanı */
+.glow{position:absolute;pointer-events:none}
+.orb{position:absolute;inset:0;border-radius:50%;background:var(--c);filter:blur(34px);opacity:.5;transform:scale(.2);
+transition:background-color .9s ease,transform 1.6s cubic-bezier(.2,.8,.2,1),opacity .9s}
+.core{position:absolute;inset:30%;border-radius:50%;background:#fffaf3;filter:blur(18px);opacity:.9}
+.rays{position:absolute;inset:-35%;border-radius:50%;opacity:0;transition:opacity 1.2s;
+background:repeating-conic-gradient(from 0deg,rgba(255,255,255,.55) 0deg 4deg,transparent 4deg 18deg);
+-webkit-mask:radial-gradient(circle,#000 18%,transparent 62%);mask:radial-gradient(circle,#000 18%,transparent 62%);
+animation:spin 40s linear infinite}
+.ad.on .orb{transform:scale(1)}
+.ad.on .rays{opacity:.7}
+.ad.pulse .orb{animation:breathe 3.2s ease-in-out infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes breathe{50%{transform:scale(1.12);opacity:.62}}
+.spark{position:absolute;width:9px;height:9px;color:var(--c);opacity:0;transition:color .9s;animation:rise 5s ease-in-out infinite}
+.spark svg{width:100%;height:100%;display:block}
+@keyframes rise{0%{opacity:0;transform:translateY(8px) scale(.6)}30%{opacity:.9}100%{opacity:0;transform:translateY(-34px) scale(1.1) rotate(45deg)}}
+/* marka bloğu */
+.brand{position:absolute;text-align:center;z-index:2}
+.acad{font-size:9.5px;font-weight:700;letter-spacing:.32em;color:var(--ink2);opacity:0;transform:translateY(6px);transition:all .7s .1s}
+.title{line-height:.92;margin-top:8px}
+.title .a{display:block;font-weight:400;opacity:0;transform:translateY(10px);transition:all .8s .35s}
+.title .b{display:block;font-style:italic;font-weight:600;color:var(--ink);opacity:0;transform:translateY(12px) scale(.96);transition:all .9s .6s;
+background:linear-gradient(100deg,var(--ink) 30%,var(--c) 50%,var(--ink) 70%);background-size:300% 100%;background-position:100% 0;
+-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.ad.on .title .b{animation:shine 3.4s 1.6s ease-in-out 3}
+@keyframes shine{0%{background-position:100% 0}60%,100%{background-position:0 0}}
+.event{font-size:13px;font-weight:700;letter-spacing:.04em;margin-top:10px;opacity:0;transition:opacity .7s .95s}
+.meta{font-size:10.5px;color:var(--ink2);margin-top:4px;opacity:0;transition:opacity .7s 1.15s}
+.meta .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#5fae6e;margin-right:5px;vertical-align:1px;box-shadow:0 0 0 0 rgba(95,174,110,.6);animation:live 2s infinite}
+@keyframes live{70%{box-shadow:0 0 0 6px rgba(95,174,110,0)}100%{box-shadow:0 0 0 0 rgba(95,174,110,0)}}
+.ad.on .acad,.ad.on .title .a,.ad.on .title .b,.ad.on .event,.ad.on .meta{opacity:1;transform:none}
+/* soru + seçenekler */
+.stage{position:absolute;z-index:3;opacity:0;transform:translateY(8px);transition:opacity .7s,transform .7s}
+.ad.ready .stage{opacity:1;transform:none}
+.q{font-size:20px;font-weight:600;letter-spacing:-.01em}
+.hint{font-size:11px;color:var(--ink2);margin-top:3px}
+.chips{display:grid;gap:8px}
+.chip{position:relative;display:flex;align-items:center;gap:8px;height:42px;padding:0 12px;border-radius:21px;background:rgba(255,255,255,.72);
+border:1px solid var(--line);font-size:13px;font-weight:700;color:var(--ink);transition:background .35s,color .35s,border-color .35s,transform .2s,box-shadow .35s;
+opacity:0;transform:translateY(8px)}
+.ad.ready .chip{opacity:1;transform:none}
+.chip svg{width:20px;height:20px;flex:none;color:var(--pc);transition:color .35s}
+.chip:hover,.chip:focus-visible{border-color:var(--pc);transform:translateY(-1px);outline:none;box-shadow:0 4px 14px -6px var(--pc)}
+.chip.active{background:var(--pc);border-color:var(--pc);color:#fff;box-shadow:0 6px 18px -6px var(--pc)}
+.chip.active svg{color:#fff}
+.chip.tap::after{content:'';position:absolute;left:22px;top:50%;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;
+border:2px solid #fff;animation:tap .9s ease-out forwards;pointer-events:none}
+@keyframes tap{0%{transform:scale(.3);opacity:1}100%{transform:scale(1.8);opacity:0}}
+/* sonuç paneli */
+.panel{position:absolute;display:flex;border-radius:16px;background:rgba(255,255,255,.66);border:1px solid var(--line);
+-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.ptext{min-width:0}
+.ptext>*{transition:opacity .35s,transform .35s}
+.ptext.swap>*{opacity:0;transform:translateX(10px)}
+.kicker{font-size:9.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--c);transition:color .6s}
+.ptitle{font-size:22px;font-weight:600;line-height:1.1;margin-top:4px}
+.ptxt{font-size:12.5px;color:var(--ink2);margin-top:5px;line-height:1.35}
+.cta{flex:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;height:42px;padding:0 20px;border-radius:21px;
+background:var(--ink);color:#fff;font-size:13.5px;font-weight:700;letter-spacing:.01em;transition:background .5s,transform .2s,box-shadow .3s}
+.cta:hover,.cta:focus-visible{transform:translateY(-1px);box-shadow:0 8px 20px -8px var(--ink);outline:none}
+.cta i{font-style:normal;transition:transform .25s}
+.cta:hover i{transform:translateX(3px)}
+.ad.end .cta{background:var(--c);animation:ctaPulse 1.8s ease-in-out 4}
+@keyframes ctaPulse{50%{box-shadow:0 0 0 7px rgba(255,255,255,0),0 0 0 0 transparent;transform:scale(1.04)}}
+.steps{display:flex;gap:4px;position:absolute}
+.steps b{width:14px;height:3px;border-radius:2px;background:var(--line);transition:background .4s,width .4s}
+.steps b.on{background:var(--c);width:22px}
+/* ---------- 970x250 ---------- */
+.s970{width:970px;height:250px}
+.s970 .glow{left:-20px;top:-35px;width:340px;height:320px}
+.s970 .brand{left:0;top:0;width:300px;height:250px;display:flex;flex-direction:column;justify-content:center}
+.s970 .title .a{font-size:30px}
+.s970 .title .b{font-size:50px}
+.s970 .sep{position:absolute;left:318px;top:30px;bottom:30px;width:1px;background:var(--line);z-index:2}
+.s970 .stage{left:342px;top:22px;width:606px;height:206px}
+.s970 .chips{grid-template-columns:repeat(4,1fr);margin-top:12px}
+.s970 .panel{left:0;right:0;bottom:0;height:94px;align-items:center;justify-content:space-between;gap:16px;padding:0 16px 0 20px}
+.s970 .steps{right:22px;top:8px}
+/* ---------- 320x480 ---------- */
+.s320{width:320px;height:480px}
+.s320 .glow{left:10px;top:-40px;width:300px;height:280px}
+.s320 .brand{left:0;right:0;top:22px}
+.s320 .title .a{font-size:27px}
+.s320 .title .b{font-size:46px}
+.s320 .event{margin-top:8px}
+.s320 .stage{left:16px;right:16px;top:176px;bottom:16px;text-align:center}
+.s320 .q{font-size:18px}
+.s320 .chips{grid-template-columns:1fr 1fr;margin-top:10px}
+.s320 .chip{height:40px;justify-content:flex-start}
+.s320 .panel{left:0;right:0;bottom:0;top:152px;flex-direction:column;justify-content:space-between;padding:11px 12px 10px;text-align:center}
+.s320 .ptitle{font-size:20px;margin-top:2px}
+.s320 .ptxt{font-size:12px;margin-top:3px}
+.s320 .cta{width:100%;height:38px}
+.s320 .steps{left:50%;transform:translateX(-50%);top:-10px}
+/* 30 sn sonra tüm döngüsel animasyonlar durur */
+.ad.still *,.ad.still{animation-play-state:paused!important}
+@media (prefers-reduced-motion:reduce){.ad *{animation:none!important;transition-duration:.01s!important}}</style>
+</head>
+<body>
+<div id="ad" class="ad s320" aria-label="ELİF TUNCEL AKADEMİ – İçten Dışa Parla Wellbeing Day 2026. Kayıtlar açık.">
+  <div class="glow"><div class="orb"></div><div class="rays"></div><div class="core"></div><span class="spark" style="left:18%;top:70%;animation-delay:0.0s"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M5 0l1.2 3.8L10 5 6.2 6.2 5 10 3.8 6.2 0 5l3.8-1.2z" fill="currentColor"/></svg></span><span class="spark" style="left:74%;top:22%;animation-delay:0.7s"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M5 0l1.2 3.8L10 5 6.2 6.2 5 10 3.8 6.2 0 5l3.8-1.2z" fill="currentColor"/></svg></span><span class="spark" style="left:82%;top:64%;animation-delay:1.4s"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M5 0l1.2 3.8L10 5 6.2 6.2 5 10 3.8 6.2 0 5l3.8-1.2z" fill="currentColor"/></svg></span><span class="spark" style="left:30%;top:18%;animation-delay:2.1s"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M5 0l1.2 3.8L10 5 6.2 6.2 5 10 3.8 6.2 0 5l3.8-1.2z" fill="currentColor"/></svg></span><span class="spark" style="left:55%;top:84%;animation-delay:2.8s"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M5 0l1.2 3.8L10 5 6.2 6.2 5 10 3.8 6.2 0 5l3.8-1.2z" fill="currentColor"/></svg></span><span class="spark" style="left:10%;top:40%;animation-delay:3.5s"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M5 0l1.2 3.8L10 5 6.2 6.2 5 10 3.8 6.2 0 5l3.8-1.2z" fill="currentColor"/></svg></span><span class="spark" style="left:64%;top:44%;animation-delay:4.2s"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M5 0l1.2 3.8L10 5 6.2 6.2 5 10 3.8 6.2 0 5l3.8-1.2z" fill="currentColor"/></svg></span></div>
+  <header class="brand">
+    <div class="acad">ELİF TUNCEL AKADEMİ</div>
+    <h1 class="title serif"><span class="a">İçten Dışa</span><span class="b">Parla</span></h1>
+    <div class="event">Wellbeing Day 2026</div>
+    <div class="meta"><span class="dot"></span>Kayıtlar açık</div>
+  </header>
+  
+  <section class="stage">
+    <p class="q serif">Bugün ışığını ne besler?</p>
+    <p class="hint">Birini seç, sana özel oturumu gör</p>
+    <div class="chips" role="group" aria-label="Bugün ışığını ne besler?"><button class="chip" type="button" data-k="beslenme" style="--pc:#7fa45f" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c0-8 5-13 14-14-1 9-6 14-14 14z"/><path d="M5 19l8-8"/></svg><span>Beslenme</span></button><button class="chip" type="button" data-k="zihin" style="--pc:#8a7fca" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3a9 9 0 0 1 0 18"/><path d="M12 6.5a5.5 5.5 0 0 1 0 11"/><path d="M12 3a9 9 0 0 0 0 18" opacity=".45"/></svg><span>Zihin</span></button><button class="chip" type="button" data-k="beden" style="--pc:#df8a5c" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><path d="M4 10c3 1.5 5 2 8 2s5-.5 8-2"/><path d="M12 12v4l-4 5M12 16l4 5"/></svg><span>Beden</span></button><button class="chip" type="button" data-k="cilt" style="--pc:#d77f8d" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M18.5 15.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z"/></svg><span>Cilt</span></button></div>
+    <div class="panel" aria-live="polite">
+      <div class="steps" aria-hidden="true"><b></b><b></b><b></b><b></b></div>
+      <div class="ptext"><div class="kicker"></div><div class="ptitle serif"></div><div class="ptxt"></div></div>
+      <button class="cta" type="button"><span class="ctal"></span><i>→</i></button>
+    </div>
+  </section>
+</div>
+<script>
+(function(){
+  var C={"size":"320x480","url":"https://eliftuncel.com/egitim/icten-disa-parla-wellbeing-day-2026-egitimi/","utm":{"source":"display","medium":"banner","campaign":"wellbeing_day_2026"},"cta":"Programı İncele","ctaEnd":"Yerini Ayırt","timing":{"intro":2600,"idle":1400,"perPillar":2600,"stopAfter":29000},"pillars":[{"key":"beslenme","label":"Beslenme","title":"Enerjini içeriden besle","text":"Fonksiyonel beslenme ve sağlıklı yaşam alışkanlıkları","color":"#7fa45f"},{"key":"zihin","label":"Zihin","title":"Zihnine nefes aldır","text":"Mindfulness, meditasyon ve stres yönetimi","color":"#8a7fca"},{"key":"beden","label":"Beden","title":"Dengeni yeniden kur","text":"Yoga, pilates ve fiziksel denge","color":"#df8a5c"},{"key":"cilt","label":"Cilt","title":"Işıltın içeriden gelsin","text":"Bütüncül cilt bakımı ve anti-aging","color":"#d77f8d"}],"overview":{"key":"genel","label":"Tek günde","title":"Kendine yatırım yap","text":"Beslenme, zihin, beden ve cilt bakımı uzmanlarla tek bir günde","color":"#e0a15a"}};
+  var ad=document.getElementById('ad'),root=document.documentElement;
+  var chips=[].slice.call(ad.querySelectorAll('.chip')),steps=[].slice.call(ad.querySelectorAll('.steps b'));
+  var pt=ad.querySelector('.ptext'),kick=ad.querySelector('.kicker'),ttl=ad.querySelector('.ptitle'),txt=ad.querySelector('.ptxt');
+  var ctaL=ad.querySelector('.ctal'),cta=ad.querySelector('.cta'),orb=ad.querySelector('.orb');
+  var cur=C.overview,timer=null,autoIdx=-1,userChose=false,hovering=false,ended=false,t0=Date.now();
+
+  function show(p,fromUser){
+    cur=p;
+    root.style.setProperty('--c',p.color);
+    orb.style.backgroundColor=p.color;
+    chips.forEach(function(c){var on=c.getAttribute('data-k')===p.key;c.classList.toggle('active',on);c.setAttribute('aria-pressed',on);
+      if(on&&!fromUser){c.classList.remove('tap');void c.offsetWidth;c.classList.add('tap');}});
+    var idx=-1;C.pillars.forEach(function(q,i){if(q.key===p.key)idx=i;});
+    steps.forEach(function(s,i){s.classList.toggle('on',i===idx);});
+    pt.classList.add('swap');
+    setTimeout(function(){kick.textContent=p.label;ttl.textContent=p.title;txt.textContent=p.text;pt.classList.remove('swap');},180);
+    ctaL.textContent=p.key===C.overview.key&&ended?C.ctaEnd:C.cta;
+  }
+  function finish(){
+    ended=true;clearTimeout(timer);ad.classList.add('end','pulse');
+    if(!userChose)show(C.overview);else ctaL.textContent=C.cta;
+  }
+  function step(){
+    if(userChose||hovering||ended)return;
+    autoIdx++;
+    if(autoIdx>=C.pillars.length){finish();return;}
+    show(C.pillars[autoIdx]);
+    timer=setTimeout(step,C.timing.perPillar);
+  }
+  function exitUrl(){
+    var u=C.utm,q='utm_source='+u.source+'&utm_medium='+u.medium+'&utm_campaign='+u.campaign+'&utm_content='+encodeURIComponent(C.size+'_'+cur.key);
+    return C.url+(C.url.indexOf('?')<0?'?':'&')+q;
+  }
+  function openLink(){
+    if(window.Enabler&&Enabler.exit){Enabler.exit('CTA_'+cur.key,exitUrl());return;}
+    window.open(window.clickTag||exitUrl(),'_blank');
+  }
+
+  chips.forEach(function(c){
+    c.addEventListener('click',function(e){
+      e.stopPropagation();userChose=true;clearTimeout(timer);ad.classList.remove('end');
+      var k=c.getAttribute('data-k');
+      C.pillars.forEach(function(p){if(p.key===k)show(p,true);});
+      if(window.Enabler&&Enabler.counter)Enabler.counter('secim_'+k);
+    });
+  });
+  cta.addEventListener('click',function(e){e.stopPropagation();openLink();});
+  ad.addEventListener('click',openLink);
+  // Yalnızca gerçek fare hareketi duraklatır (sayfa kaydırılırken imleç üstte kalınca akış durmasın)
+  ad.addEventListener('mousemove',function(){if(!hovering){hovering=true;clearTimeout(timer);}});
+  ad.addEventListener('mouseleave',function(){hovering=false;if(!userChose&&!ended&&ad.classList.contains('ready'))timer=setTimeout(step,900);});
+
+  function start(){
+    show(C.overview);
+    requestAnimationFrame(function(){ad.classList.add('on');});
+    setTimeout(function(){ad.classList.add('ready');timer=setTimeout(step,C.timing.idle);},C.timing.intro);
+    setTimeout(function(){if(!ended)finish();ad.classList.add('still');},C.timing.stopAfter);
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start();
+})();
+</script>
+</body>
+</html>

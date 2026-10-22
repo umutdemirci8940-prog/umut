@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>İçten Dışa Parla – Interaktif Banner</title>
+<style>body{margin:0;padding:32px 16px;font-family:system-ui,sans-serif;background:#ece6df;color:#3a2340}
+h1{font-size:20px;margin:0 0 4px}p{margin:0 0 24px;color:#6d5672;font-size:14px}
+.wrap{display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start}
+figure{margin:0;max-width:100%;overflow-x:auto}figcaption{font-size:13px;margin-bottom:8px;display:flex;gap:10px;align-items:center}
+figcaption button{font:inherit;font-size:12px;border:1px solid #c9bcc9;background:#fff;border-radius:12px;padding:3px 10px;cursor:pointer}
+iframe{border:0;display:block;box-shadow:0 10px 30px -12px rgba(58,35,64,.35)}</style></head>
+<body><h1>Elif Tuncel Akademi · İçten Dışa Parla Wellbeing Day 2026</h1>
+<p>Interaktif HTML5 banner – bir alan seçin (Beslenme / Zihin / Beden / Cilt), panel ve ışık rengi değişir. Etkileşim yoksa otomatik tanıtım akışı oynar.</p>
+<div class="wrap">
+  <figure>
+    <figcaption><b>970x250</b> · Billboard <button onclick="var f=document.getElementById('f970x250');f.src=f.src">↻ Yeniden oynat</button></figcaption>
+    <iframe id="f970x250" src="dist/970x250/index.html" width="970" height="250" scrolling="no" title="970x250"></iframe>
+  </figure>
+  <figure>
+    <figcaption><b>320x480</b> · Mobil Interstitial <button onclick="var f=document.getElementById('f320x480');f.src=f.src">↻ Yeniden oynat</button></figcaption>
+    <iframe id="f320x480" src="dist/320x480/index.html" width="320" height="480" scrolling="no" title="320x480"></iframe>
+  </figure>
+</div></body></html>
