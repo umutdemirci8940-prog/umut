@@ -2,7 +2,7 @@
 /**
  * Elif Tuncel Akademi – "İçten Dışa Parla" Wellbeing Day 2026
  * Bannerlardaki tüm metinler, renkler ve bağlantı burada.
- * Tarih / mekân netleşince `event.date` ve `event.venue` alanlarını doldurun; boş kalırsa gösterilmez.
+ * Etkinlik bilgileri resmi afişten alınmıştır (21 Kasım 2026 · Marriott İstanbul Şişli · 4. Sezon).
  */
 module.exports = {
   url: 'https://eliftuncel.com/egitim/icten-disa-parla-wellbeing-day-2026-egitimi/',
@@ -10,29 +10,39 @@ module.exports = {
 
   event: {
     academy: 'ELİF TUNCEL AKADEMİ',
-    titleA: 'İçten Dışa',
-    titleB: 'Parla',
-    name: 'Wellbeing Day 2026',
-    date: '',   // örn. '14 Kasım Cumartesi'
-    venue: '',  // örn. 'İstanbul'
-    status: 'Kayıtlar açık',
+    title: 'İÇTEN DIŞA PARLA',
+    sub: 'Wellbeing Day',
+    date: '21 Kasım 2026',
+    time: '11.30–18.00',
+    venue: 'Marriott İstanbul Şişli',
+    season: '4. Sezon',
+    note: 'Kontenjan sınırlıdır',
+    slogan: 'İçinizdeki ışığı ortaya çıkarmaya var mısınız?',
+    host: 'Elif Tuncel',
   },
 
-  question: 'Bugün ışığını ne besler?',
-  hint: 'Birini seç, sana özel oturumu gör',
+  question: 'Işığınızı ne besler?',
+  hint: 'Bir alan seçin, size özel oturumu görün',
   cta: 'Programı İncele',
-  ctaEnd: 'Yerini Ayırt',
+  ctaEnd: 'Yerinizi Ayırtın',
 
   // Seçilebilir dört alan. key → UTM utm_content değerine de yazılır.
   pillars: [
-    { key: 'beslenme', label: 'Beslenme', title: 'Enerjini içeriden besle', text: 'Fonksiyonel beslenme ve sağlıklı yaşam alışkanlıkları', color: '#7fa45f' },
-    { key: 'zihin', label: 'Zihin', title: 'Zihnine nefes aldır', text: 'Mindfulness, meditasyon ve stres yönetimi', color: '#8a7fca' },
-    { key: 'beden', label: 'Beden', title: 'Dengeni yeniden kur', text: 'Yoga, pilates ve fiziksel denge', color: '#df8a5c' },
-    { key: 'cilt', label: 'Cilt', title: 'Işıltın içeriden gelsin', text: 'Bütüncül cilt bakımı ve anti-aging', color: '#d77f8d' },
+    { key: 'beslenme', label: 'Beslenme', title: 'Enerjinizi içeriden besleyin', text: 'Fonksiyonel beslenme ve sağlıklı yaşam', color: '#7f9f5c' },
+    { key: 'zihin', label: 'Zihin', title: 'Zihninize nefes aldırın', text: 'Mindfulness, meditasyon ve stres yönetimi', color: '#8a7cc2' },
+    { key: 'beden', label: 'Beden', title: 'Dengenizi yeniden kurun', text: 'Yoga, pilates ve fiziksel denge', color: '#d0814f' },
+    { key: 'cilt', label: 'Cilt', title: 'Işıltınız içeriden gelsin', text: 'Bütüncül cilt bakımı ve anti-aging', color: '#c9636f' },
   ],
 
   // Hiçbir alan seçili değilken ve kapanışta gösterilen genel mesaj.
-  overview: { key: 'genel', label: 'Tek günde', title: 'Kendine yatırım yap', text: 'Beslenme, zihin, beden ve cilt bakımı uzmanlarla tek bir günde', color: '#e0a15a' },
+  overview: { key: 'genel', label: 'Kontenjan sınırlıdır', title: 'Kendinize yatırım yapın', text: 'Bütüncül wellbeing, uzmanlarla tek günde', color: '#b08a57' },
+
+  // Banner görselleri (resmi afişten kırpıldı: assets/source/afis.webp). build.js base64 olarak gömer.
+  images: {
+    portrait: 'assets/portrait.webp',
+    logo: 'assets/logo-e.png',
+    bg: { '970x250': 'assets/bg-970x250.jpg', '320x480': 'assets/bg-320x480.jpg' },
+  },
 
   // Otomatik tanıtım akışı (ms). Toplam süre 30 sn'yi aşmaz; sonunda kapanış karesinde durur.
   timing: { intro: 2600, idle: 1400, perPillar: 2600, stopAfter: 29000 },

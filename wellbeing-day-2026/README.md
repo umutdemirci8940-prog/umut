@@ -7,7 +7,11 @@ Elif Tuncel Akademi'nin "İçten Dışa Parla Wellbeing Day 2026" programı içi
 | 970 × 250 | Billboard (masaüstü, premium display) | `dist/970x250/index.html` | `dist/zip/wellbeing-day-2026-970x250.zip` |
 | 320 × 480 | Mobil interstitial / in-app | `dist/320x480/index.html` | `dist/zip/wellbeing-day-2026-320x480.zip` |
 
-İkisini birlikte görmek için: `preview.html` (yeniden oynat düğmeli).
+İkisini birlikte görmek için: **`preview.html`** – bannerlar içine gömülüdür, dosya tek başına indirilip açılabilir (yeniden oynat düğmeli).
+
+**Etkinlik:** 21 Kasım 2026 · 11.30–18.00 · Marriott İstanbul Şişli · 4. Sezon · Kontenjan sınırlıdır.
+
+**Görseller:** Resmi afişten (`assets/source/afis.webp`) alındı: Elif Tuncel portresi, şampanya ışıltılı fon ve Elif Tuncel Akademi "E" logosu → `assets/`. Bannerlara base64 olarak gömülür (harici istek yok).
 
 | 970 × 250 – seçim | 970 × 250 – kapanış |
 |---|---|
@@ -19,10 +23,10 @@ Elif Tuncel Akademi'nin "İçten Dışa Parla Wellbeing Day 2026" programı içi
 
 ## Kurgu – "Bugün ışığını ne besler?"
 
-1. **Açılış (~2,6 sn):** Arkadaki ışık küresi "içten dışa" büyür, ışınlar döner; *İçten Dışa Parla* başlığı ve "Wellbeing Day 2026 · Kayıtlar açık" belirir.
+1. **Açılış (~2,6 sn):** Afişteki ışıltılı fon üzerinde Elif Tuncel portresi ışık halesiyle belirir; *İÇTEN DIŞA PARLA® Wellbeing Day* başlığı, tarih, saat, mekân ve "4. Sezon · Kontenjan sınırlıdır" gelir.
 2. **Soru:** Kullanıcıya dört alan sunulur: **Beslenme · Zihin · Beden · Cilt**.
-3. **Seçim:** Bir alana dokununca ışığın rengi o alana döner, panelde o alana ait oturum mesajı gösterilir (ör. *Zihin → "Zihnine nefes aldır" – Mindfulness, meditasyon ve stres yönetimi*).
-4. **Etkileşim yoksa:** Banner kendi kendine dört alanı sırayla "dokunarak" gösterir (tıklama dalgası efekti ile etkileşimli olduğunu anlatır), ardından kapanış karesinde *"Kendine yatırım yap"* + nabız efektli **Yerini Ayırt** CTA'sı ile durur.
+3. **Seçim:** Bir alana dokununca portrenin arkasındaki ışık o alanın rengine döner, panelde o alana ait oturum mesajı gösterilir (ör. *Zihin → "Zihninize nefes aldırın" – Mindfulness, meditasyon ve stres yönetimi*).
+4. **Etkileşim yoksa:** Banner kendi kendine dört alanı sırayla "dokunarak" gösterir (tıklama dalgası efekti ile etkileşimli olduğunu anlatır), ardından kapanış karesinde *"Kendinize yatırım yapın"* + nabız efektli kırmızı **Yerinizi Ayırtın** CTA'sı ile durur.
 5. Tüm döngüsel animasyonlar 30 sn'de durur (Google Ads / IAB kuralı).
 
 ## Neden bu format? (trafik kalitesi)
@@ -36,18 +40,18 @@ Elif Tuncel Akademi'nin "İçten Dışa Parla Wellbeing Day 2026" programı içi
 - Alan seçimleri reklam çıkışını tetiklemez; **CTA** ve bannerın geri kalanı tıklanabilir.
 - Fare banner üzerinde hareket edince otomatik akış durur, ayrılınca devam eder. Klavye ile chip'ler ve CTA odaklanabilir.
 - `window.clickTag` varsa o kullanılır (Google Ads / CM360), `Enabler` varsa `Enabler.exit`, ikisi de yoksa UTM'li program sayfası açılır.
-- Tek dosya, satır içi CSS/JS, **harici görsel yok** – her boyut ~17 KB (150 KB sınırının çok altında). Görseller CSS/SVG ile çizildi; ışık rengi seçime göre canlı değişir.
-- Fontlar: Google Fonts *Fraunces* (başlık) + *Manrope* (metin); yüklenemezse Georgia / Arial'a düşer.
+- Tek dosya, satır içi CSS/JS, görseller gömülü – 970×250 ~54 KB, 320×480 ~49 KB (150 KB sınırının altında).
+- Fontlar (afişe yakın): Google Fonts *Cinzel* (başlık), *Cormorant Garamond* (Wellbeing Day / başlıklar), *Montserrat* (metin); yüklenemezse Georgia / Arial'a düşer.
 - `prefers-reduced-motion` desteklenir; `ad.size` meta etiketi mevcuttur.
 
 ## Düzenleme
 
 Bütün metinler, alanlar, renkler, süreler ve hedef URL: **`src/data.js`**.
-Tarih/mekân kesinleşince `event.date` ve `event.venue` alanlarını doldurun ("Kayıtlar açık · 14 Kasım · İstanbul" gibi görünür).
+Görsel dosyaları `data.images` altında; değiştirilirse `node build.js` yeniden gömer.
 
 ```bash
 node build.js                               # dist/ + zip + preview.html
 NODE_PATH=$(npm root -g) node capture.js    # (isteğe bağlı) screens/ ekran görüntüleri – Playwright gerekir
 ```
 
-> Not: Alan açıklamaları programın genel temalarından yazıldı (bu ortamdan program sayfasına erişilemedi). Yayına almadan önce gerçek oturum başlıklarıyla eşleştirilmesi önerilir.
+> Not: Alan açıklamaları programın genel temalarından yazıldı (bu ortamdan eliftuncel.com'a erişilemedi; görseller bu yüzden afişten alındı). Yayına almadan önce gerçek oturum başlıklarıyla eşleştirilmesi önerilir.
