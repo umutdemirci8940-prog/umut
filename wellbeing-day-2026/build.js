@@ -1,59 +1,116 @@
 #!/usr/bin/env node
 'use strict';
 /**
- * Üretir:
- *   dist/970x250/index.html, dist/320x480/index.html   – görseller base64 gömülü, tek dosya
- *   dist/zip/wellbeing-day-2026-<boyut>.zip             – reklam ağlarına yüklemeye hazır
- *   preview.html                                         – iki banner içine gömülü, TEK DOSYA (indirip açılabilir)
+ * Tüm çalışmaları üretir:
+ *   dist/c<N>-<konsept>/<boyut>/index.html   – tek dosya, görseller base64 gömülü
+ *   dist/zip/c<N>-<konsept>-<boyut>.zip      – reklam ağlarına yüklemeye hazır
+ *   sunum.html                                – tüm çalışmalar tek sayfada (bannerlar gömülü, tek başına açılır)
  * Kullanım: node build.js
  */
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 const data = require('./src/data');
-const { render, SIZES } = require('./src/template');
+const { SIZES } = require('./src/common');
+
+const CONCEPTS = [
+  require('./src/concepts/c1-isik-testi'),
+  require('./src/concepts/c2-nefes'),
+  require('./src/concepts/c3-kazi'),
+  require('./src/concepts/c4-isigi-ac'),
+];
 
 const dist = path.join(__dirname, 'dist');
 const zipDir = path.join(dist, 'zip');
+fs.rmSync(dist, { recursive: true, force: true });
 fs.mkdirSync(zipDir, { recursive: true });
 const MIME = { jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png', webp: 'image/webp', svg: 'image/svg+xml' };
 const uri = (rel) => `data:${MIME[path.extname(rel).slice(1)]};base64,${fs.readFileSync(path.join(__dirname, rel)).toString('base64')}`;
 const escAttr = (s) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+let hasZip = true;
+try { execSync('zip -v', { stdio: 'ignore' }); } catch { hasZip = false; }
 
-const built = {};
-for (const key of Object.keys(SIZES)) {
-  const img = { portrait: uri(data.images.portrait), logo: uri(data.images.logo), bg: uri(data.images.bg[key]) };
-  const html = render(key, data, img);
-  built[key] = html;
-  const dir = path.join(dist, key);
-  fs.mkdirSync(dir, { recursive: true });
-  fs.writeFileSync(path.join(dir, 'index.html'), html);
-  const zip = path.join(zipDir, `wellbeing-day-2026-${key}.zip`);
-  fs.rmSync(zip, { force: true });
-  try { execSync(`zip -q -j "${zip}" "${path.join(dir, 'index.html')}"`); } catch { /* zip yoksa atla */ }
-  const kb = Buffer.byteLength(html) / 1024;
-  console.log(`✔ ${key.padEnd(8)} ${SIZES[key].label.padEnd(20)} ${kb.toFixed(1).padStart(6)} KB${kb > 150 ? '  ⚠ 150 KB üstü' : ''}`);
-}
+const built = CONCEPTS.map((c, i) => {
+  const slug = `c${i + 1}-${c.key}`;
+  const out = {};
+  for (const size of Object.keys(SIZES)) {
+    const img = { portrait: uri(data.images.portrait), logo: uri(data.images.logo), bg: uri(data.images.bg[size]) };
+    const html = c.render(size, data, img);
+    out[size] = html;
+    const dir = path.join(dist, slug, size);
+    fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(path.join(dir, 'index.html'), html);
+    if (hasZip) execSync(`zip -q -j "${path.join(zipDir, `${slug}-${size}.zip`)}" "${path.join(dir, 'index.html')}"`);
+    const kb = Buffer.byteLength(html) / 1024;
+    console.log(`✔ Çalışma ${i + 1}  ${c.name.padEnd(36)} ${size.padEnd(8)} ${kb.toFixed(1).padStart(6)} KB${kb > 150 ? '  ⚠ 150 KB üstü' : ''}`);
+  }
+  return out;
+});
 
-// Sunum sayfası: bannerlar srcdoc ile gömülü → tek başına indirilip açılabilir
-const frames = Object.entries(SIZES).map(([k, s]) => `
-  <figure>
-    <figcaption><b>${k}</b> · ${s.label}
-      <button type="button" onclick="var f=document.getElementById('f${k}');f.srcdoc=f.srcdoc">↻ Yeniden oynat</button></figcaption>
-    <iframe id="f${k}" width="${s.w}" height="${s.h}" scrolling="no" title="${k}" srcdoc="${escAttr(built[k])}"></iframe>
-  </figure>`).join('');
-fs.writeFileSync(path.join(__dirname, 'preview.html'), `<!DOCTYPE html>
+// Ajans logosu: assets/splash-digital-logo.(svg|png|webp) varsa o, yoksa yer tutucu
+const logoFile = ['svg', 'png', 'webp'].map((e) => `assets/splash-digital-logo.${e}`).find((f) => fs.existsSync(path.join(__dirname, f)))
+  || 'assets/splash-digital-logo.placeholder.svg';
+
+const rows = built.map((b, i) => `
+  <section class="work">
+    <header class="wh"><span class="no">${String(i + 1).padStart(2, '0')}</span><h2>Çalışma ${i + 1}</h2></header>
+    <div class="frames">${Object.entries(SIZES).map(([k, s]) => `
+      <figure class="frame" style="--w:${s.w};--h:${s.h}">
+        <div class="box"><iframe width="${s.w}" height="${s.h}" scrolling="no" title="Çalışma ${i + 1} – ${k}" data-srcdoc="${escAttr(b[k])}"></iframe></div>
+        <figcaption>${k.replace('x', ' × ')}<button type="button" class="re" aria-label="Yeniden oynat" title="Yeniden oynat">↻</button></figcaption>
+      </figure>`).join('')}
+    </div>
+  </section>`).join('');
+
+fs.writeFileSync(path.join(__dirname, 'sunum.html'), `<!DOCTYPE html>
 <html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>İçten Dışa Parla – Interaktif Banner</title>
-<style>body{margin:0;padding:32px 16px;font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#ece4da;color:#1f1a17}
-h1{font-size:20px;margin:0 0 4px}p{margin:0 0 24px;color:#5e5148;font-size:14px;max-width:760px}
-.wrap{display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start}
-figure{margin:0;max-width:100%;overflow-x:auto}figcaption{font-size:13px;margin-bottom:8px;display:flex;gap:10px;align-items:center}
-figcaption button{font:inherit;font-size:12px;border:1px solid #c9bcb0;background:#fff;border-radius:12px;padding:3px 10px;cursor:pointer}
-iframe{border:0;display:block;box-shadow:0 10px 30px -12px rgba(31,26,23,.35)}</style></head>
-<body><h1>Elif Tuncel Akademi · İçten Dışa Parla® Wellbeing Day 2026</h1>
-<p>21 Kasım 2026 · Marriott İstanbul Şişli – interaktif HTML5 banner. Bir alan seçin (Beslenme / Zihin / Beden / Cilt): panel ve ışık rengi değişir. Etkileşim yoksa banner alanları kendisi gösterir ve “Yerinizi Ayırtın” kapanışında durur.</p>
-<div class="wrap">${frames}
-</div></body></html>
+<title>Splash Digital</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&amp;family=Montserrat:wght@300;500;700&amp;display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0c0c0f;color:#f4efe9;font-family:Montserrat,system-ui,sans-serif;-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(900px 500px at 50% -120px,rgba(255,170,90,.16),transparent 70%),radial-gradient(700px 600px at 100% 40%,rgba(255,60,120,.06),transparent 70%)}
+.top{text-align:center;padding:64px 16px 40px}
+.top img{height:58px;width:auto;max-width:80vw}
+.top h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:clamp(26px,4vw,44px);letter-spacing:.01em;margin-top:26px}
+.top .rule{width:120px;height:1px;margin:26px auto 0;background:linear-gradient(90deg,transparent,#c9a46c,transparent)}
+main{max-width:1420px;margin:0 auto;padding:0 16px 80px}
+.work{padding:48px 0;border-top:1px solid rgba(255,255,255,.08)}
+.work:first-child{border-top:0}
+.wh{display:flex;align-items:baseline;gap:16px;margin-bottom:26px}
+.no{font-family:'Cormorant Garamond',Georgia,serif;font-size:56px;line-height:.8;color:#c9a46c;font-weight:500}
+.wh h2{font-weight:300;font-size:22px;letter-spacing:.24em;text-transform:uppercase}
+.frames{display:flex;flex-wrap:wrap;gap:36px;align-items:flex-start}
+.frame{width:min(calc(var(--w)*1px),100%)}
+.box{position:relative;width:100%;aspect-ratio:var(--w)/var(--h);overflow:hidden;border-radius:4px;box-shadow:0 24px 60px -24px rgba(0,0,0,.9),0 0 0 1px rgba(255,255,255,.06)}
+.box iframe{position:absolute;left:0;top:0;border:0;transform-origin:0 0;background:#f1dcc6}
+figcaption{display:flex;align-items:center;gap:10px;margin-top:12px;font-size:11px;letter-spacing:.2em;color:rgba(244,239,233,.55)}
+.re{font:inherit;font-size:14px;letter-spacing:0;color:rgba(244,239,233,.7);background:none;border:1px solid rgba(255,255,255,.18);border-radius:50%;width:26px;height:26px;cursor:pointer;transition:all .2s}
+.re:hover{color:#fff;border-color:#c9a46c}
+</style></head>
+<body>
+<header class="top">
+  <img src="${uri(logoFile)}" alt="Splash Digital">
+  <h1>Bu Çalışmalar Splash Digital'e Aittir.</h1>
+  <div class="rule"></div>
+</header>
+<main>${rows}
+</main>
+<script>
+(function(){
+  var frames=[].slice.call(document.querySelectorAll('.frame'));
+  function fit(){frames.forEach(function(f){var box=f.querySelector('.box'),ifr=f.querySelector('iframe');ifr.style.transform='scale('+(box.clientWidth/ifr.width)+')';});}
+  function play(ifr){ifr.srcdoc=ifr.getAttribute('data-srcdoc');}
+  frames.forEach(function(f){var ifr=f.querySelector('iframe');f.querySelector('.re').addEventListener('click',function(){play(ifr);});});
+  // Her banner görünür olduğunda oynamaya başlar
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){play(e.target);io.unobserve(e.target);}});},{threshold:.35});
+    frames.forEach(function(f){io.observe(f.querySelector('iframe'));});
+  }else frames.forEach(function(f){play(f.querySelector('iframe'));});
+  window.addEventListener('resize',fit);fit();
+})();
+</script>
+</body></html>
 `);
-console.log(`✔ preview.html  ${(fs.statSync(path.join(__dirname, 'preview.html')).size / 1024).toFixed(1)} KB (tek dosya)`);
+console.log(`✔ sunum.html  ${(fs.statSync(path.join(__dirname, 'sunum.html')).size / 1024).toFixed(0)} KB (tek dosya) – logo: ${logoFile}`);

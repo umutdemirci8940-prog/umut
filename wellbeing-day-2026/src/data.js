@@ -19,6 +19,7 @@ module.exports = {
     note: 'Kontenjan sınırlıdır',
     slogan: 'İçinizdeki ışığı ortaya çıkarmaya var mısınız?',
     host: 'Elif Tuncel',
+    start: '2026-11-21T11:30:00+03:00', // kalan gün sayacı için
   },
 
   question: 'Işığınızı ne besler?',
@@ -42,6 +43,27 @@ module.exports = {
     portrait: 'assets/portrait.webp',
     logo: 'assets/logo-e.png',
     bg: { '970x250': 'assets/bg-970x250.jpg', '320x480': 'assets/bg-320x480.jpg' },
+  },
+
+  // Çalışma 2–4'e özel metin ve süreler (ms)
+  concepts: {
+    nefes: {
+      kicker: 'Bir nefeslik mola', title: 'Birlikte nefes alalım', pill: 'Basılı tutun',
+      text: 'Daireye basılı tutun; nefes aldıkça ışığınız büyüsün.',
+      doneKicker: 'Işığınız parlıyor',
+      txt: { idle: 'Hazır olduğunuzda…', inhale: 'Nefes alın…', keep: 'Bırakmayın…', exhale: 'Nefes verin…' },
+      inhale: 4000, exhale: 3000, autoAfter: 4400,
+    },
+    kazi: {
+      coverTitle: 'KAZIYIN', coverText: 'içinizdeki ışığı ortaya çıkarın',
+      line: 'Beslenme · Zihin · Beden · Cilt – tek günde',
+      revealAt: 0.45, autoAfter: 4200, autoDur: 2600,
+    },
+    isik: {
+      kicker: 'Işığınızı açın', title: 'Kaydırın, içten dışa parlayın', hint: 'Kaydırın',
+      thresholds: [0.2, 0.45, 0.7, 0.92], autoAfter: 3400, autoDur: 3600,
+      daysText: 'gün kaldı', tomorrow: 'Yarın!',
+    },
   },
 
   // Otomatik tanıtım akışı (ms). Toplam süre 30 sn'yi aşmaz; sonunda kapanış karesinde durur.

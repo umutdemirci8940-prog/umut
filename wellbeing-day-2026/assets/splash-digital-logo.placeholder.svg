@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330 72" role="img" aria-label="Splash Digital">
+  <!-- Yer tutucu logo: gerçek logo assets/splash-digital-logo.(svg|png|webp) olarak eklenince otomatik onun yerine kullanılır -->
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff5f6d"/><stop offset=".5" stop-color="#ffb347"/><stop offset="1" stop-color="#ff2f87"/></linearGradient></defs>
+  <g transform="translate(6 6)">
+    <path d="M30 2C30 2 8 26 8 40a22 22 0 0 0 44 0C52 26 30 2 30 2z" fill="url(#g)"/>
+    <circle cx="58" cy="12" r="5" fill="url(#g)"/><circle cx="4" cy="20" r="3.5" fill="url(#g)"/><circle cx="62" cy="34" r="2.6" fill="url(#g)"/>
+    <path d="M21 41a10 10 0 0 0 10 9" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" opacity=".85"/>
+  </g>
+  <text x="84" y="44" font-family="Montserrat,Arial,sans-serif" font-size="34" font-weight="800" fill="#fff" letter-spacing="-.5">splash</text>
+  <text x="206" y="44" font-family="Montserrat,Arial,sans-serif" font-size="34" font-weight="300" fill="#fff" letter-spacing="-.5">digital</text>
+  <rect x="86" y="54" width="232" height="2" rx="1" fill="url(#g)" opacity=".9"/>
+</svg>
