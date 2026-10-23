@@ -4,14 +4,14 @@
 {{HEAD}}
 <style>
 {{SHARED_CSS}}
-.ad { background: linear-gradient(120deg, #ff5d93 0%, var(--pink) 40%, #c0104f 100%); }
+.ad { background: linear-gradient(120deg, #f23cb8 0%, var(--pink) 40%, #a3006f 100%); }
 .ad::before { content: ''; position: absolute; inset: 0; background: url("img/{{HERO}}") center/cover; opacity: .12; mix-blend-mode: multiply; }
 .dots { position: absolute; inset: 0; background-image: radial-gradient(rgba(255, 255, 255, .22) 1.5px, transparent 1.6px); background-size: 16px 16px; mask-image: linear-gradient(90deg, #000, transparent 40%); -webkit-mask-image: linear-gradient(90deg, #000, transparent 40%); }
 .brand { position: absolute; left: 26px; top: 24px; bottom: 22px; width: 200px; display: flex; flex-direction: column; justify-content: space-between; }
 .brand h1 { font-size: 18px; font-weight: 900; line-height: 1.12; margin-top: 10px; }
 .brand h1 em { font-style: normal; color: var(--gold); }
 .ticket { position: absolute; left: 248px; top: 22px; width: 560px; height: 206px; border-radius: 18px; background: #fff; box-shadow: 0 18px 40px rgba(90, 0, 30, .4); padding: 14px 16px; display: flex; flex-direction: column; color: var(--ink); }
-.ticket::before, .ticket::after { content: ''; position: absolute; top: 50%; width: 24px; height: 24px; margin-top: -12px; border-radius: 50%; background: #e0306f; }
+.ticket::before, .ticket::after { content: ''; position: absolute; top: 50%; width: 24px; height: 24px; margin-top: -12px; border-radius: 50%; background: #c4068c; }
 .ticket::before { left: -12px; } .ticket::after { right: -12px; }
 .tt { display: flex; align-items: center; justify-content: space-between; font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-d); }
 .tt span:last-child { color: var(--pink); }
@@ -89,8 +89,8 @@
       ctx.fillStyle = 'rgba(255,255,255,.35)';
       for (var y = 6; y < r.height; y += 12) for (var x = (y / 12 % 2) * 6; x < r.width; x += 12) ctx.fillRect(x, y, 2, 2);
       ctx.fillStyle = '#007a87'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-      ctx.font = '900 30px Montserrat, Arial'; ctx.fillText('11.11', r.width / 2, r.height / 2 - 8);
-      ctx.font = '800 10px Montserrat, Arial'; ctx.fillText('KAZI', r.width / 2, r.height / 2 + 16);
+      ctx.font = '900 30px Rubik, Arial'; ctx.fillText('11.11', r.width / 2, r.height / 2 - 8);
+      ctx.font = '800 10px Rubik, Arial'; ctx.fillText('KAZI', r.width / 2, r.height / 2 + 16);
       ctx.globalCompositeOperation = 'destination-out'; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.lineWidth = 26;
     }
     w._paint = paint;

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="ad.size" content="width=970,height=250">
+<title>Watsons 11.11 – Rutinini Kur</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<script>var clickTag = ""; /* Reklam ağı tıklama makrosu buraya; boşsa her öğe kendi ürün/kategori sayfasına gider */</script>
+<!-- Boyutlar: 970x250 -->
+<style>
+/* Watsons 11.11 – ortak stil */
+:root {
+  --teal: #009aa9; --teal-d: #00737f; --teal-l: #c6eef2;
+  --pink: #e708a3; --gold: #ffd23f; --ink: #0d2b33; --night: #071a24; --cream: #fff7f0;
+  --f: 'Rubik', 'Helvetica Neue', Arial, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html, body { width: 100%; height: 100%; overflow: hidden; }
+body { font-family: var(--f); color: #fff; background: var(--night); -webkit-font-smoothing: antialiased; user-select: none; -webkit-user-select: none; }
+img { display: block; -webkit-user-drag: none; user-select: none; }
+button { font: inherit; border: 0; background: none; color: inherit; cursor: pointer; }
+.ad { position: relative; width: 100%; height: 100%; overflow: hidden; cursor: pointer; }
+.ad * { transition-timing-function: cubic-bezier(.22, .8, .2, 1); }
+
+/* Logo ve rozet */
+.wlogo { height: 19px; width: auto; flex: none; align-self: flex-start; }
+.side .wlogo, .info .wlogo, .hud .wlogo { align-self: flex-end; }
+img.wlogo[src*="logo-c"] { height: 26px; }
+.b1111 { display: inline-flex; flex-direction: column; align-items: flex-start; line-height: .86; }
+.b1111 b { font-size: 46px; font-weight: 900; letter-spacing: -.04em; background: linear-gradient(180deg, #fff 30%, #c9f1f4); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 3px 0 rgba(0, 0, 0, .18)); }
+.b1111 span { margin-top: 6px; font-size: 10px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
+
+/* Düğmeler */
+.cta { display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 20px; border-radius: 99px; background: #fff; color: var(--teal-d); font-size: 13px; font-weight: 800; letter-spacing: .02em; box-shadow: 0 8px 20px rgba(0, 0, 0, .22); transition: transform .25s, box-shadow .25s, background .25s; white-space: nowrap; }
+.cta::after { content: '›'; font-size: 20px; line-height: 1; margin-top: -2px; }
+.cta:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(0, 0, 0, .3); }
+.cta.pk { background: var(--pink); color: #fff; }
+.cta.pulse { animation: pulse 1.8s infinite; }
+@keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, .55), 0 8px 20px rgba(0, 0, 0, .22); } 60% { box-shadow: 0 0 0 12px rgba(255, 255, 255, 0), 0 8px 20px rgba(0, 0, 0, .22); } }
+.legal { position: absolute; font-size: 8px; line-height: 1.2; color: rgba(255, 255, 255, .62); letter-spacing: .02em; pointer-events: none; }
+.hint { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; color: rgba(255, 255, 255, .9); }
+.hint i { width: 18px; height: 18px; border-radius: 50%; background: rgba(255, 255, 255, .22); position: relative; animation: tap 1.4s infinite; }
+.hint i::after { content: ''; position: absolute; inset: 5px; border-radius: 50%; background: #fff; }
+@keyframes tap { 0%, 100% { transform: scale(1); } 50% { transform: scale(.75); } }
+
+/* Ürün çipi */
+.pc { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; background: #fff; border-radius: 14px; color: var(--ink); overflow: hidden; }
+.pc img { width: 100%; height: 100%; object-fit: contain; }
+.pc .pn { font-size: 10px; font-weight: 700; line-height: 1.2; text-align: center; padding: 0 6px 6px; }
+.pc .pb { font-size: 9px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; color: var(--teal-d); }
+.pc .pp { font-size: 13px; font-weight: 900; color: var(--pink); }
+
+/* Konfeti */
+.cf { position: absolute; width: 7px; height: 11px; border-radius: 2px; pointer-events: none; z-index: 99; animation: cf 1.4s cubic-bezier(.2, .7, .3, 1) forwards; }
+@keyframes cf { 0% { transform: translate(0, 0) rotate(0); opacity: 1; } 100% { transform: translate(var(--x), calc(var(--y) + 160px)) rotate(var(--r)); opacity: 0; } }
+
+/* Kupon */
+.coupon { display: inline-flex; align-items: center; gap: 10px; padding: 6px 6px 6px 14px; border: 2px dashed rgba(255, 255, 255, .7); border-radius: 12px; font-weight: 800; }
+.coupon code { font-family: inherit; font-size: 16px; letter-spacing: .08em; }
+.coupon button { height: 28px; padding: 0 12px; border-radius: 8px; background: #fff; color: var(--teal-d); font-size: 11px; font-weight: 800; }
+
+/* Giriş animasyon yardımcıları */
+.fx { opacity: 0; transform: translateY(14px); transition: opacity .7s, transform .7s; }
+.on .fx { opacity: 1; transform: none; }
+.on .fx.d1 { transition-delay: .15s; } .on .fx.d2 { transition-delay: .3s; } .on .fx.d3 { transition-delay: .45s; } .on .fx.d4 { transition-delay: .6s; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+
+.ad { background: linear-gradient(105deg, #fff 0%, #f1fbfc 55%, #d8f4f6 100%); color: var(--ink); }
+.photo { position: absolute; right: 0; top: 0; bottom: 0; width: 250px; background: #f4fbfc url("img/c-makyaj.webp") center/cover; clip-path: polygon(14% 0, 100% 0, 100% 100%, 0 100%); }
+.photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(255, 255, 255, .0), rgba(0, 90, 100, .25)); }
+.brand { position: absolute; left: 24px; top: 22px; bottom: 20px; width: 180px; display: flex; flex-direction: column; justify-content: space-between; }
+.brand .b1111 b { background: linear-gradient(180deg, var(--teal), var(--teal-d)); -webkit-background-clip: text; background-clip: text; filter: none; }
+.brand .b1111 span { color: var(--pink); }
+.brand h1 { font-size: 16px; font-weight: 900; line-height: 1.15; margin-top: 10px; }
+.brand h1 em { font-style: normal; color: var(--pink); }
+.q { position: absolute; left: 214px; top: 22px; bottom: 20px; width: 520px; display: flex; flex-direction: column; }
+.steps { display: flex; gap: 6px; margin-bottom: 10px; }
+.steps i { flex: 1; height: 4px; border-radius: 4px; background: #d6eef1; transition: background .3s; }
+.steps i.on { background: var(--teal); }
+.q .k { font-size: 10px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--teal-d); }
+.q h2 { font-size: 20px; font-weight: 900; line-height: 1.1; margin: 4px 0 12px; }
+.opts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.opts button { height: 46px; border-radius: 12px; background: #fff; color: var(--ink); font-size: 12px; font-weight: 800; box-shadow: 0 4px 12px rgba(0, 90, 100, .1), inset 0 0 0 2px #dff2f4; display: flex; align-items: center; gap: 10px; padding: 0 12px; text-align: left; transition: transform .2s, box-shadow .2s, background .2s; }
+.opts button span { font-size: 18px; }
+.opts button:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(0, 90, 100, .16), inset 0 0 0 2px var(--teal); }
+.opts button.sel { background: var(--teal); color: #fff; }
+.pane { transition: opacity .35s, transform .35s; }
+.pane.out { opacity: 0; transform: translateX(-20px); }
+.res { display: none; }
+.res.on { display: flex; gap: 10px; align-items: stretch; }
+.rc { width: 92px; border-radius: 14px; background: #fff; box-shadow: 0 8px 18px rgba(0, 90, 100, .14); padding: 8px; display: flex; flex-direction: column; align-items: center; cursor: pointer; animation: rin .5s backwards; }
+.rc:nth-child(2) { animation-delay: .12s; } .rc:nth-child(3) { animation-delay: .24s; }
+@keyframes rin { from { opacity: 0; transform: translateY(16px); } }
+.rc em { font-style: normal; font-size: 9px; font-weight: 900; letter-spacing: .1em; color: #fff; background: var(--pink); border-radius: 99px; padding: 3px 8px; }
+.rc img { width: 78px; height: 74px; object-fit: contain; margin: 4px 0; }
+.rc b { font-size: 8.5px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; color: var(--teal-d); text-align: center; }
+.rr { flex: none; width: 150px; display: flex; flex-direction: column; justify-content: space-between; gap: 6px; margin-left: 6px; }
+.rr p { font-size: 11px; font-weight: 600; color: #4d6a70; }
+.rr button { font-size: 11px; font-weight: 800; color: var(--teal-d); text-decoration: underline; text-align: left; }
+.side .wlogo { filter: drop-shadow(0 1px 4px rgba(0,0,0,.4)); }
+.side { position: absolute; right: 22px; top: 22px; bottom: 20px; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end; }
+.legal { left: 24px; bottom: 6px; color: #6a8187; }
+</style>
+</head>
+<body>
+<div class="ad" id="ad" data-exit="" data-label="genel">
+  <div class="photo"></div>
+  <div class="brand fx">
+    <div><div class="b1111"><b>11.11</b><span>Büyük İndirim Günü</span></div><h1>3 soruda <em>11.11 rutinini</em> kur</h1></div>
+    <img class="wlogo" src="img/logo-c.webp" alt="Watsons">
+  </div>
+  <div class="q fx d1" data-stop>
+    <div class="steps"><i class="on"></i><i></i><i></i></div>
+    <div class="pane" id="pane"></div>
+  </div>
+  <div class="side fx d3"><img class="wlogo" src="img/logo-w.webp" alt="Watsons"><span class="cta pk pulse">Fırsatları Gör</span></div>
+  <div class="legal">Kampanya 11.11 tarihinde watsons.com.tr'de geçerlidir. Stoklarla sınırlıdır. Detaylar watsons.com.tr'de.</div>
+</div>
+<script>window.AD_DATA = {"brand":{"home":"https://www.watsons.com.tr/?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_genel","event":"Büyük İndirim Günü","offer":"11.11'e özel seçili ürünlerde ekstra indirim.","code":"WATSONS1111","legal":"Kampanya 11.11 tarihinde watsons.com.tr'de geçerlidir. Stoklarla sınırlıdır. Detaylar watsons.com.tr'de.","logo":"img/logo-w.webp"},"products":[{"key":"1274042","brand":"L'Oreal Paris","name":"Telescopic Maskara Gold Black","price":"1.869,90","club":"869,90","img":"img/p-1274042.webp","url":"https://www.watsons.com.tr/loreal-paris-telescopic-maskara-gold-black/p/BP_1274042?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_1274042"},{"key":"139585","brand":"Calvin Klein","name":"In2U Kadın Parfüm EDT 150 ml","price":"3.299,90","club":"1.499,00","img":"img/p-139585.webp","url":"https://www.watsons.com.tr/calvin-klein-in2u-kadin-parfum-edt-150-ml/p/BP_139585?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_139585"},{"key":"1444513","brand":"Revolution","name":"Forever Flawless Far Paleti Nova Green","price":"1.499,90","club":"749,90","img":"img/p-1444513.webp","url":"https://www.watsons.com.tr/revolution-forever-flawless-far-paleti-nova-green/p/BP_1444513?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_1444513"}],"cats":[{"key":"makyaj","name":"Makyaj","img":"img/c-makyaj.webp","url":"https://www.watsons.com.tr/makyaj/c/100?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_kat_makyaj","product":{"key":"1397606","brand":"L'Oreal Paris","name":"Glotion All-In-One Doğal Işıltı 902 Light Glow","price":"1.499,90","club":"749,90","img":"img/p-1397606.webp","url":"https://www.watsons.com.tr/loreal-paris-glotion-all-in-one-dogal-isilti-902-light-glow/p/BP_1397606?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_1397606"},"products":[{"key":"1397606","brand":"L'Oreal Paris","name":"Glotion All-In-One Doğal Işıltı 902 Light Glow","price":"1.499,90","club":"749,90","img":"img/p-1397606.webp","url":"https://www.watsons.com.tr/loreal-paris-glotion-all-in-one-dogal-isilti-902-light-glow/p/BP_1397606?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_1397606"},{"key":"1274042","brand":"L'Oreal Paris","name":"Telescopic Maskara Gold Black","price":"1.869,90","club":"869,90","img":"img/p-1274042.webp","url":"https://www.watsons.com.tr/loreal-paris-telescopic-maskara-gold-black/p/BP_1274042?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_1274042"},{"key":"1380638","brand":"Flormar","name":"Longer Than Ever Uzun Görünüm Veren Maskara No: 001","price":"1.499,90","club":"599,00","img":"img/p-1380638.webp","url":"https://www.watsons.com.tr/flormar-longer-than-ever-uzun-gorunum-veren-maskara-no-001/p/BP_1380638?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_1380638"},{"key":"1397599","brand":"L'Oreal Paris","name":"Glotion All-In-One Doğal Işıltı 901 Fair Glow","price":"1.499,90","club":"749,90","img":"img/p-1397599.webp","url":"https://www.watsons.com.tr/loreal-paris-glotion-all-in-one-dogal-isilti-901-fair-glow/p/BP_1397599?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_1397599"},{"key":"1397613","brand":"L'Oreal Paris","name":"Glotion All-In-One Doğal Işıltı 903 Medium Glow","price":"1.499,90","club":"749,90","img":"img/p-1397613.webp","url":"https://www.watsons.com.tr/loreal-paris-glotion-all-in-one-dogal-isilti-903-medium-glow/p/BP_1397613?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_1397613"},{"key":"1261057","brand":"Revolution","name":"Forever Flawless Far Paleti Affinity","price":"1.499,90","club":"749,90","img":"img/p-1261057.webp","url":"https://www.watsons.com.tr/revolution-forever-flawless-far-paleti-affinity/p/BP_1261057?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_1261057"}]},{"key":"sac","name":"Saç Bakım","img":"img/c-sac.webp","url":"https://www.watsons.com.tr/sac-bakim/c/102?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_kat_sac","product":{"key":"1396318","brand":"HC Care","name":"Complex Bitkisel Saç Bakım Kompleksi 100 ml","price":"712,90","club":"499,00","img":"img/p-1396318.webp","url":"https://www.watsons.com.tr/hc-care-complex-bitkisel-sac-bakim-kompleksi-100-ml/p/BP_1396318?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_1396318"},"products":[{"key":"1396318","brand":"HC Care","name":"Complex Bitkisel Saç Bakım Kompleksi 100 ml","price":"712,90","club":"499,00","img":"img/p-1396318.webp","url":"https://www.watsons.com.tr/hc-care-complex-bitkisel-sac-bakim-kompleksi-100-ml/p/BP_1396318?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_1396318"},{"key":"146777","brand":"Elseve","name":"Mucizevi Yağ Saç Güzelleştirici Krem 150 ml","price":"449,90","club":"269,90","img":"img/p-146777.webp","url":"https://www.watsons.com.tr/loreal-paris-elseve-mucizevi-yag-sac-guzellestirici-krem-150-ml/p/BP_146777?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_146777"},{"key":"1482719","brand":"Elseve","name":"Şampuan Komple Onarıcı 5 Extreme 300 ml","price":"300,50","club":"149,90","img":"img/p-1482719.webp","url":"https://www.watsons.com.tr/elseve-sampuan-komple-onarici-5-extreme-300-ml/p/BP_1482719?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_1482719"},{"key":"1409737","brand":"Elidor","name":"7/24 Şekillendirici Bakım Kremi Belirgin Bukleler 240 ml","price":"444,90","club":"179,90","img":"img/p-1409737.webp","url":"https://www.watsons.com.tr/elidor-7-24-sekillendirici-bakim-kremi-belirgin-bukleler-240-ml/p/BP_1409737?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_1409737"},{"key":"145739","brand":"OGX","name":"Dolgunlaştırıcı Biotin ve Kolajen Şampuan 385 ml","price":"899,90","club":"309,00","img":"img/p-145739.webp","url":"https://www.watsons.com.tr/ogx-dolgunlastirici-biotin-ve-kolajen-sampuan-385-ml/p/BP_145739?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_145739"},{"key":"1343006","brand":"Head&Shoulders","name":"Klasik Bakım 2'si 1 Arada Kepeğe Karşı Etkili Şampuan 250 ml","price":"249,90","club":"124,90","img":"img/p-1343006.webp","url":"https://www.watsons.com.tr/head-shoulders-klasik-bakim-2si-1-arada-kepege-karsi-etkili-sampuan-250-ml/p/BP_1343006?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_1343006"}]},{"key":"parfum","name":"Parfüm","img":"img/c-parfum.webp","url":"https://www.watsons.com.tr/parfum/c/100013?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_kat_parfum","product":{"key":"1425970","brand":"Avon","name":"Incandessence Kadın EDP Parfüm 50 ml","price":"1.249,90","club":"309,90","img":"img/p-1425970.webp","url":"https://www.watsons.com.tr/avon-incandessence-kadin-edp-parfum-50-ml/p/BP_1425970?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_1425970"},"products":[{"key":"1425970","brand":"Avon","name":"Incandessence Kadın EDP Parfüm 50 ml","price":"1.249,90","club":"309,90","img":"img/p-1425970.webp","url":"https://www.watsons.com.tr/avon-incandessence-kadin-edp-parfum-50-ml/p/BP_1425970?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_1425970"},{"key":"1328257","brand":"Chloe","name":"Signature Kadın Parfüm EDP 75 ml","price":"6.999,90","club":"4.799,00","img":"img/p-1328257.webp","url":"https://www.watsons.com.tr/chloe-signature-kadin-parfum-edp-75-ml/p/BP_1328257?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_1328257"},{"key":"133582","brand":"Burberry","name":"Week-End Erkek Parfüm EDT 100 ml","price":"4.799,90","club":"1.999,00","img":"img/p-133582.webp","url":"https://www.watsons.com.tr/burberry-week-end-erkek-parfum-edt-100-ml/p/BP_133582?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_133582"},{"key":"1425977","brand":"Avon","name":"Pur Blanca Kadın Parfüm EDT 50 ml","price":"779,90","club":"194,90","img":"img/p-1425977.webp","url":"https://www.watsons.com.tr/avon-pur-blanca-kadin-parfum-edt-50-ml/p/BP_1425977?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_1425977"}]},{"key":"kisisel","name":"Kişisel Bakım","img":"img/c-kisisel.webp","url":"https://www.watsons.com.tr/kisisel-bakim/c/103?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_kat_kisisel","product":{"key":"114419","brand":"Nivea Deo","name":"Nivea Kadın Sprey Deodorant Fresh Natural 48 Saat Deodorant Koruma 150","price":"311,90","club":"123,90","img":"img/p-114419.webp","url":"https://www.watsons.com.tr/nivea-kadin-sprey-deodorant-fresh-natural-48-saat-deodorant-koruma-150-ml/p/BP_114419?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_114419"},"products":[{"key":"114419","brand":"Nivea Deo","name":"Nivea Kadın Sprey Deodorant Fresh Natural 48 Saat Deodorant Koruma 150","price":"311,90","club":"123,90","img":"img/p-114419.webp","url":"https://www.watsons.com.tr/nivea-kadin-sprey-deodorant-fresh-natural-48-saat-deodorant-koruma-150-ml/p/BP_114419?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_114419"},{"key":"131804","brand":"Nivea Deo","name":"Nivea Men Erkek Sprey Deodorant Black&White Invisible Original 150 ml","price":"311,90","club":"123,90","img":"img/p-131804.webp","url":"https://www.watsons.com.tr/nivea-men-erkek-sprey-deodorant-black-white-invisible-original-150-ml/p/BP_131804?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_131804"},{"key":"131802","brand":"Nivea Deo","name":"Nivea Kadın Sprey Deodorant Black & White Invisible Clear 150 ml","price":"311,90","club":"123,90","img":"img/p-131802.webp","url":"https://www.watsons.com.tr/nivea-kadin-sprey-deodorant-black-white-invisible-clear-150-ml/p/BP_131802?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_131802"},{"key":"146333","brand":"Nivea Deo","name":"Nivea Powder Touch Kadın Roll-On 50 ml","price":"311,90","club":"123,90","img":"img/p-146333.webp","url":"https://www.watsons.com.tr/nivea-powder-touch-kadin-roll-on-50-ml/p/BP_146333?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_146333"},{"key":"1238139","brand":"Nivea Deo","name":"Nivea Men Erkek Sprey Deodorant Black&White Invisible Güçlü Etki 150 m","price":"311,90","club":"123,90","img":"img/p-1238139.webp","url":"https://www.watsons.com.tr/nivea-men-erkek-sprey-deodorant-black-white-invisible-guclu-etki-150-ml/p/BP_1238139?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_1238139"},{"key":"1281714","brand":"Nivea Deo","name":"Nivea Men Roll-On Cool Kick 50 ml","price":"311,90","club":"123,90","img":"img/p-1281714.webp","url":"https://www.watsons.com.tr/nivea-men-roll-on-cool-kick-50-ml/p/BP_1281714?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_1281714"}]},{"key":"erkek","name":"Erkek Bakım","img":"img/c-erkek.webp","url":"https://www.watsons.com.tr/erkek-bakim/c/105?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_kat_erkek","product":{"key":"152372","brand":"Rexona","name":"Clinical Protection Fresh Erkek Stick","price":"669,90","club":"499,90","img":"img/p-152372.webp","url":"https://www.watsons.com.tr/rexona-clinical-protection-fresh-erkek-stick/p/BP_152372?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_152372"},"products":[{"key":"152372","brand":"Rexona","name":"Clinical Protection Fresh Erkek Stick","price":"669,90","club":"499,90","img":"img/p-152372.webp","url":"https://www.watsons.com.tr/rexona-clinical-protection-fresh-erkek-stick/p/BP_152372?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_152372"},{"key":"1356159","brand":"Versace","name":"Eros Erkek Parfüm Edp 100 ml","price":"6.699,90","club":"4.999,00","img":"img/p-1356159.webp","url":"https://www.watsons.com.tr/versace-eros-erkek-parfum-edp-100-ml/p/BP_1356159?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_1356159"},{"key":"140628","brand":"Calvin Klein","name":"Be Sprey Erkek Parfüm EDT 200 ml","price":"4.299,90","club":"1.799,00","img":"img/p-140628.webp","url":"https://www.watsons.com.tr/calvin-klein-be-sprey-erkek-parfum-edt-200-ml/p/BP_140628?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_140628"},{"key":"1394477","brand":"Rexona","name":"Men Clinical Protection Erkek Stick Deodorant Clean Scent 3x Güçlü Kor","price":"669,90","club":"499,90","img":"img/p-1394477.webp","url":"https://www.watsons.com.tr/rexona-men-clinical-protection-erkek-stick-deodorant-clean-scent-3x-guclu-koruma-45-ml/p/BP_1394477?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_1394477"},{"key":"1308762","brand":"Rexona","name":"Clinical Protection Confidence Kadın Deodorant 150 ml","price":"499,90","club":"373,90","img":"img/p-1308762.webp","url":"https://www.watsons.com.tr/rexona-clinical-protection-confidence-kadin-deodorant-150-ml/p/BP_1308762?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_1308762"},{"key":"173539","brand":"Old Spice","name":"Whitewater Deodorant 70 ml","price":"393,90","club":"199,00","img":"img/p-173539.webp","url":"https://www.watsons.com.tr/old-spice-whitewater-deodorant-70-ml/p/BP_173539?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=rutin_173539"}]}],"tiers":[{"n":1,"label":"11.11 fiyatı"},{"n":3,"label":"Sepette ek indirim"},{"n":5,"label":"Hediye ürün"}],"quiz":[{"q":"Bu 11.11'de en çok neye ihtiyacın var?","a":[{"i":"💄","t":"Makyaj yenilemek","cat":"makyaj","steps":["Baz","Renk","Bitiş"]},{"i":"🧴","t":"Cilt bakımı","cat":"cilt","steps":["Temizle","Bakım","Koru"]},{"i":"💇","t":"Saç bakımı","cat":"sac","steps":["Yıka","Besle","Şekil ver"]},{"i":"🌸","t":"Yeni bir koku","cat":"parfum","steps":["Gündüz","Akşam","Yanında"]}]},{"q":"Rutinini kimin için kuruyorsun?","a":[{"i":"✨","t":"Kendim"},{"i":"🎁","t":"Hediye"},{"i":"👫","t":"İkimiz"},{"i":"🏠","t":"Tüm aile"}]},{"q":"Rutinine ne kadar zaman ayırıyorsun?","a":[{"i":"⚡","t":"5 dakika"},{"i":"⏱️","t":"15 dakika"},{"i":"🛁","t":"Kendime vakit"},{"i":"🤷","t":"Fark etmez"}]}]};</script>
+<script>/* Watsons 11.11 – ortak reklam motoru (tıklama çıkışı, olay ölçümü, yardımcılar) */
+(function () {
+  'use strict';
+  var D = window.AD_DATA || {};
+  var W = window.W = { data: D };
+  var root = document.documentElement;
+
+  // Masaüstü 970×250 / mobil 320×480: reklam kendi alanının ölçüsüne göre yerleşim seçer
+  W.mobile = function () { return window.innerWidth < 640; };
+  function mode() { root.classList.toggle('m', W.mobile()); root.classList.toggle('d', !W.mobile()); }
+  mode();
+  addEventListener('resize', mode);
+
+  // Çıkış: clickTag (Google Ads / DV360 / Admost) → Enabler (Studio) → yedek adres
+  W.exit = function (url, label) {
+    W.track('exit_' + (label || 'genel'));
+    var target = window.clickTag || url || D.brand.home;
+    if (window.Enabler && Enabler.exitOverride) { Enabler.exitOverride(label || 'CTA', target); return; }
+    window.open(target, '_blank');
+  };
+  // Olay ölçümü: Studio sayaçları varsa onları, yoksa konsolu kullanır
+  W.track = function (name) {
+    try { if (window.Enabler && Enabler.counter) Enabler.counter(name); } catch (e) { /* yok */ }
+    if (window.console && console.debug) console.debug('[watsons-ad]', name);
+  };
+  W.$ = function (s, el) { return (el || document).querySelector(s); };
+  W.$$ = function (s, el) { return Array.prototype.slice.call((el || document).querySelectorAll(s)); };
+  W.el = function (tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
+  W.wait = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
+  W.reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  W.shuffle = function (a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; };
+  W.price = function (p) { return p ? p + ' TL' : ''; };
+
+  // Kampanya saati: 11.11 00:00 (Türkiye) — öncesinde geri sayım, sırasında "bitmesine", sonrasında "son gün"
+  W.campaign = function () {
+    var y = new Date().getFullYear();
+    var start = Date.UTC(y, 10, 10, 21, 0, 0); // 11 Kasım 00:00 TSİ
+    var end = Date.UTC(y, 10, 11, 21, 0, 0);   // 12 Kasım 00:00 TSİ
+    var now = Date.now();
+    if (D.forceNow) now = D.forceNow;
+    if (now < start) return { phase: 'once', left: start - now };
+    if (now < end) return { phase: 'gun', left: end - now };
+    return { phase: 'sonra', left: 0 };
+  };
+  W.split = function (ms) {
+    var s = Math.max(0, Math.floor(ms / 1000));
+    return { d: Math.floor(s / 86400), h: Math.floor(s / 3600) % 24, m: Math.floor(s / 60) % 60, s: s % 60 };
+  };
+  W.pad = function (n) { return (n < 10 ? '0' : '') + n; };
+
+  // Konfeti (Watsons turkuazı, magenta, altın)
+  W.confetti = function (host, n, origin) {
+    host = host || document.body; n = n || 70;
+    var cols = ['#009aa9', '#e708a3', '#ffd23f', '#ffffff', '#5fd3df'];
+    var r = host.getBoundingClientRect();
+    var ox = origin ? origin.x : r.width / 2, oy = origin ? origin.y : r.height / 2;
+    for (var i = 0; i < n; i++) {
+      var c = W.el('i', 'cf');
+      var a = Math.random() * Math.PI * 2, v = 80 + Math.random() * 220;
+      c.style.cssText = 'left:' + ox + 'px;top:' + oy + 'px;background:' + cols[i % cols.length] + ';--x:' + Math.cos(a) * v + 'px;--y:' + (Math.sin(a) * v - 60) + 'px;--r:' + (Math.random() * 720 - 360) + 'deg;animation-delay:' + Math.random() * 0.12 + 's';
+      host.appendChild(c);
+      (function (c) { setTimeout(function () { c.remove(); }, 1600); })(c);
+    }
+  };
+
+  // Kupon kodu kopyalama (çıkışı tetiklemez)
+  W.copy = function (text, btn) {
+    function ok() { if (btn) { var o = btn.getAttribute('data-label') || btn.innerHTML; btn.setAttribute('data-label', o); btn.innerHTML = 'Kopyalandı!'; setTimeout(function () { btn.innerHTML = o; }, 1600); } W.track('kupon_kopya'); }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(ok, ok);
+    else { var t = W.el('textarea'); t.value = text; document.body.appendChild(t); t.select(); try { document.execCommand('copy'); } catch (e) { /* yok */ } t.remove(); ok(); }
+  };
+
+  // Ortak parçalar: logo, 11.11 rozeti, yasal not, CTA
+  W.logo = function (cls) { return '<img class="wlogo ' + (cls || '') + '" src="' + D.brand.logo + '" alt="Watsons">'; };
+  W.badge = function (cls) { return '<div class="b1111 ' + (cls || '') + '"><b>11.11</b><span>' + D.brand.event + '</span></div>'; };
+
+  // Sürükle / kaydır: fare ve dokunmatik için tek arayüz
+  W.drag = function (el, h) {
+    var on = false, sx = 0, sy = 0;
+    function pt(e) { var t = e.touches ? e.touches[0] || e.changedTouches[0] : e; return { x: t.clientX, y: t.clientY }; }
+    function down(e) { on = true; var p = pt(e); sx = p.x; sy = p.y; if (h.start) h.start(p, e); }
+    function move(e) { if (!on) return; var p = pt(e); if (h.move) h.move(p, p.x - sx, p.y - sy, e); if (e.cancelable && h.prevent !== false) e.preventDefault(); }
+    function up(e) { if (!on) return; on = false; var p = pt(e); if (h.end) h.end(p, p.x - sx, p.y - sy, e); }
+    el.addEventListener('mousedown', down); addEventListener('mousemove', move); addEventListener('mouseup', up);
+    el.addEventListener('touchstart', down, { passive: true }); el.addEventListener('touchmove', move, { passive: false }); el.addEventListener('touchend', up);
+  };
+
+  // Tüm [data-exit] öğeleri tıklamada çıkış yapar; [data-stop] içindekiler yapmaz
+  document.addEventListener('click', function (e) {
+    var s = e.target.closest('[data-stop]');
+    var x = e.target.closest('[data-exit]');
+    // Durdurma bölgesi çıkış alanının içindeyse (kontroller) çıkış yok; bölge içindeki açık düğme çıkar
+    if (x && (!s || !(x !== s && x.contains(s)))) {
+      e.preventDefault(); W.exit(x.getAttribute('data-exit') || '', x.getAttribute('data-label') || 'cta');
+    }
+  });
+
+  // Görseller yüklenince başlat (önizlemede boş kare görünmesin)
+  W.ready = function (fn) {
+    function go() {
+      var imgs = W.$$('img'); var left = imgs.length; var done = false;
+      function fin() { if (!done) { done = true; root.classList.add('on'); fn(); } }
+      if (!left) return fin();
+      imgs.forEach(function (i) { if (i.complete) { if (--left <= 0) fin(); } else { i.addEventListener('load', function () { if (--left <= 0) fin(); }); i.addEventListener('error', function () { if (--left <= 0) fin(); }); } });
+      setTimeout(fin, 2500);
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go();
+  };
+})();
+</script>
+<script>
+(function () {
+  var D = W.data, Q = D.quiz, pane = W.$('#pane'), ans = [], step = 0;
+  function render() {
+    W.$$('.steps i').forEach(function (s, i) { s.classList.toggle('on', i <= step); });
+    if (step < Q.length) {
+      var q = Q[step];
+      pane.innerHTML = '<div class="k">Soru ' + (step + 1) + '/' + Q.length + '</div><h2>' + q.q + '</h2><div class="opts">' + q.a.map(function (a, i) { return '<button data-i="' + i + '"><span>' + a.i + '</span>' + a.t + '</button>'; }).join('') + '</div>';
+      W.$$('.opts button', pane).forEach(function (b) { b.addEventListener('click', function (e) { e.stopPropagation(); b.classList.add('sel'); pick(+b.getAttribute('data-i')); }); });
+    } else {
+      // Cevaplar → kategori; her adım için o kategoriden bir ürün
+      var cat = D.cats.filter(function (c) { return c.key === Q[0].a[ans[0]].cat; })[0] || D.cats[0];
+      var pool = (cat.products || []).concat(D.products), picks = [], seen = {};
+      for (var i = 0; i < pool.length && picks.length < 3; i++) if (!seen[pool[i].key]) { seen[pool[i].key] = 1; picks.push(pool[i]); }
+      var labels = Q[0].a[ans[0]].steps;
+      pane.innerHTML = '<div class="k">Senin 11.11 rutinin · ' + cat.name + '</div><h2>' + Q[1].a[ans[1]].t + ' için 3 adım</h2><div class="res on">' + picks.map(function (p, i) { return '<div class="rc" data-exit="' + p.url + '" data-label="rutin_' + p.key + '"><em>' + (i + 1) + '. ' + labels[i] + '</em><img src="' + p.img + '" alt=""><b>' + p.brand + '</b></div>'; }).join('') + '<div class="rr"><p>' + D.brand.offer + '</p><span class="cta pk" data-exit="' + cat.url + '" data-label="rutin_kategori" style="height:32px;padding:0 14px">Rutini Al</span><button id="re">Baştan başla</button></div></div>';
+      W.$('#re').addEventListener('click', function (e) { e.stopPropagation(); ans = []; step = 0; swap(); });
+      W.track('rutin_sonuc_' + cat.key);
+    }
+  }
+  function swap() { pane.classList.add('out'); setTimeout(function () { render(); pane.classList.remove('out'); }, 300); }
+  function pick(i) { ans[step] = i; W.track('rutin_s' + (step + 1) + '_' + i); step++; setTimeout(swap, 250); }
+  render();
+  W.ready(function () {});
+})();
+</script>
+</body>
+</html>

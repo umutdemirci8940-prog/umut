@@ -48,10 +48,10 @@
   };
   W.pad = function (n) { return (n < 10 ? '0' : '') + n; };
 
-  // Konfeti (Watsons turkuazı, pembe, altın)
+  // Konfeti (Watsons turkuazı, magenta, altın)
   W.confetti = function (host, n, origin) {
     host = host || document.body; n = n || 70;
-    var cols = ['#00a5b5', '#ff4f8b', '#ffd23f', '#ffffff', '#7a3cff'];
+    var cols = ['#009aa9', '#e708a3', '#ffd23f', '#ffffff', '#5fd3df'];
     var r = host.getBoundingClientRect();
     var ox = origin ? origin.x : r.width / 2, oy = origin ? origin.y : r.height / 2;
     for (var i = 0; i < n; i++) {

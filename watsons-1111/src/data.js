@@ -59,10 +59,11 @@ const utm = (url, content) => {
 function forAd(ad) {
   const s = selection();
   const c = ad.id.replace(/^\d+-/, '');
-  const prod = (p) => ({ key: p.key, brand: p.brand, name: p.name, price: p.price, img: `img/${p.img}`, url: utm(p.url, `${c}_${p.key}`) });
-  const products = s.products.map(prod);
-  const byKey = Object.fromEntries(products.map((p) => [p.key, p]));
-  const cats = s.cats.map((k) => {
+  const prod = (p) => ({ key: p.key, brand: p.brand, name: p.name, price: p.price, club: p.club || '', img: `img/${p.img}`, url: utm(p.url, `${c}_${p.key}`) });
+  const all = s.products.map(prod);
+  const byKey = Object.fromEntries(all.map((p) => [p.key, p]));
+  const products = all.slice(0, ad.products ?? 12);
+  const cats = s.cats.slice(0, ad.cats ?? 8).map((k) => {
     const ps = (k.products || []).map((x) => byKey[x]).filter(Boolean);
     return { key: k.key, name: k.name, img: `img/${k.img}`, url: utm(k.url, `${c}_kat_${k.key}`), product: ps[0], products: ps };
   });
@@ -71,7 +72,7 @@ function forAd(ad) {
     LOGO: '<img class="wlogo" src="img/logo-w.webp" alt="Watsons">',
     BADGE: `<div class="b1111"><b>11.11</b><span>${brand.event}</span></div>`,
     LEGAL: brand.legal, CODE: brand.code, OFFER: brand.offer, EVENT: brand.event,
-    HERO: s.heroes[ad.hero || 0] || s.heroes[0], HERO2: s.heroes[1] || s.heroes[0],
+    HERO: s.heroes[ad.hero || 0] || s.heroes[0], HERO2: s.heroes[1] || s.heroes[0], CAT0: (s.cats[0] || {}).img || s.heroes[0],
   };
   return { brand: b, products, cats, tiers, quiz, vars };
 }

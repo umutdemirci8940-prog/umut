@@ -38,7 +38,7 @@ for (const ad of ADS) {
 <meta name="ad.size" content="width=970,height=250">
 <title>Watsons 11.11 – ${ad.title}</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,700;0,800;0,900;1,800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 <script>var clickTag = ""; /* Reklam ağı tıklama makrosu buraya; boşsa her öğe kendi ürün/kategori sayfasına gider */</script>
 <!-- Boyutlar: ${size}${ad.mobile ? ' (aynı dosya, alan genişliğine göre yerleşim değiştirir)' : ''} -->`)
     .replace('{{SHARED_CSS}}', () => css)

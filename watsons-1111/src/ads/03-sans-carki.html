@@ -81,7 +81,7 @@
 (function () {
   var D = W.data, wheel = W.$('#wheel'), segs = D.cats.slice(0, 8);
   while (segs.length < 8) segs = segs.concat(D.cats).slice(0, 8);
-  var n = segs.length, a = 360 / n, cols = ['#ff3d7f', '#ffffff', '#00a5b5', '#ffd23f', '#ff3d7f', '#ffffff', '#00a5b5', '#ffd23f'];
+  var n = segs.length, a = 360 / n, cols = ['#e708a3', '#ffffff', '#009aa9', '#ffd23f', '#e708a3', '#ffffff', '#009aa9', '#ffd23f'];
   wheel.style.background = 'conic-gradient(' + segs.map(function (s, i) { return cols[i] + ' ' + (i * a) + 'deg ' + ((i + 1) * a) + 'deg'; }).join(',') + ')';
   segs.forEach(function (s, i) {
     var g = W.el('div', 'seg'); g.style.transform = 'rotate(' + (i * a + a / 2) + 'deg)';

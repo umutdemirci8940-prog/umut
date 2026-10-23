@@ -1,0 +1,620 @@
+{
+ "products": [
+  {
+   "key": "1274042",
+   "brand": "L'Oreal Paris",
+   "name": "Telescopic Maskara Gold Black",
+   "price": "1.869,90",
+   "club": "869,90",
+   "img": "p-1274042.webp",
+   "url": "https://www.watsons.com.tr/loreal-paris-telescopic-maskara-gold-black/p/BP_1274042",
+   "page": "/makyaj/c/100",
+   "transparent": true,
+   "hd": true
+  },
+  {
+   "key": "139585",
+   "brand": "Calvin Klein",
+   "name": "In2U Kadın Parfüm EDT 150 ml",
+   "price": "3.299,90",
+   "club": "1.499,00",
+   "img": "p-139585.webp",
+   "url": "https://www.watsons.com.tr/calvin-klein-in2u-kadin-parfum-edt-150-ml/p/BP_139585",
+   "page": "/kisisel-bakim/c/103",
+   "transparent": true,
+   "hd": true
+  },
+  {
+   "key": "1444513",
+   "brand": "Revolution",
+   "name": "Forever Flawless Far Paleti Nova Green",
+   "price": "1.499,90",
+   "club": "749,90",
+   "img": "p-1444513.webp",
+   "url": "https://www.watsons.com.tr/revolution-forever-flawless-far-paleti-nova-green/p/BP_1444513",
+   "page": "/makyaj/c/100",
+   "transparent": true,
+   "hd": true
+  },
+  {
+   "key": "145739",
+   "brand": "OGX",
+   "name": "Dolgunlaştırıcı Biotin ve Kolajen Şampuan 385 ml",
+   "price": "899,90",
+   "club": "309,00",
+   "img": "p-145739.webp",
+   "url": "https://www.watsons.com.tr/ogx-dolgunlastirici-biotin-ve-kolajen-sampuan-385-ml/p/BP_145739",
+   "page": "/sac-bakim/c/102",
+   "transparent": true,
+   "hd": true
+  },
+  {
+   "key": "1319556",
+   "brand": "NYX Professional Makeup",
+   "name": "Bare With Me Kapatıcı Serum 01 Fair",
+   "price": "1.499,90",
+   "club": "",
+   "img": "p-1319556.webp",
+   "url": "https://www.watsons.com.tr/nyx-professional-makeup-bare-with-me-kapatici-serum-01-fair/p/BP_1319556",
+   "page": "/makyaj/makyaj-cok-satanlar/c/100070",
+   "transparent": false,
+   "hd": true
+  },
+  {
+   "key": "1328257",
+   "brand": "Chloe",
+   "name": "Signature Kadın Parfüm EDP 75 ml",
+   "price": "6.999,90",
+   "club": "4.799,00",
+   "img": "p-1328257.webp",
+   "url": "https://www.watsons.com.tr/chloe-signature-kadin-parfum-edp-75-ml/p/BP_1328257",
+   "page": "/parfum/c/100013",
+   "transparent": true,
+   "hd": false
+  },
+  {
+   "key": "162973",
+   "brand": "Revolution",
+   "name": "Reloaded Far Paleti Velvet Rose",
+   "price": "934,90",
+   "club": "373,90",
+   "img": "p-162973.webp",
+   "url": "https://www.watsons.com.tr/revolution-reloaded-far-paleti-velvet-rose/p/BP_162973",
+   "page": "/makyaj/makyaj-cok-satanlar/c/100070",
+   "transparent": true,
+   "hd": true
+  },
+  {
+   "key": "1274021",
+   "brand": "Maybelline New York",
+   "name": "Lash Sensational Maskara Sky High",
+   "price": "2.099,90",
+   "club": "839,90",
+   "img": "p-1274021.webp",
+   "url": "https://www.watsons.com.tr/maybelline-new-york-lash-sensational-maskara-sky-high/p/BP_1274021",
+   "page": "/makyaj/makyaj-cok-satanlar/c/100070",
+   "transparent": true,
+   "hd": false
+  },
+  {
+   "key": "1409737",
+   "brand": "Elidor",
+   "name": "7/24 Şekillendirici Bakım Kremi Belirgin Bukleler 240 ml",
+   "price": "444,90",
+   "club": "179,90",
+   "img": "p-1409737.webp",
+   "url": "https://www.watsons.com.tr/elidor-7-24-sekillendirici-bakim-kremi-belirgin-bukleler-240-ml/p/BP_1409737",
+   "page": "/sac-bakim/c/102",
+   "transparent": false,
+   "hd": true
+  },
+  {
+   "key": "1356159",
+   "brand": "Versace",
+   "name": "Eros Erkek Parfüm Edp 100 ml",
+   "price": "6.699,90",
+   "club": "4.999,00",
+   "img": "p-1356159.webp",
+   "url": "https://www.watsons.com.tr/versace-eros-erkek-parfum-edp-100-ml/p/BP_1356159",
+   "page": "/erkek-bakim/c/105",
+   "transparent": true,
+   "hd": false
+  },
+  {
+   "key": "1380638",
+   "brand": "Flormar",
+   "name": "Longer Than Ever Uzun Görünüm Veren Maskara No: 001",
+   "price": "1.499,90",
+   "club": "599,00",
+   "img": "p-1380638.webp",
+   "url": "https://www.watsons.com.tr/flormar-longer-than-ever-uzun-gorunum-veren-maskara-no-001/p/BP_1380638",
+   "page": "/makyaj/c/100",
+   "transparent": true,
+   "hd": false
+  },
+  {
+   "key": "146777",
+   "brand": "Elseve",
+   "name": "Mucizevi Yağ Saç Güzelleştirici Krem 150 ml",
+   "price": "449,90",
+   "club": "269,90",
+   "img": "p-146777.webp",
+   "url": "https://www.watsons.com.tr/loreal-paris-elseve-mucizevi-yag-sac-guzellestirici-krem-150-ml/p/BP_146777",
+   "page": "/sac-bakim/c/102",
+   "transparent": true,
+   "hd": false
+  },
+  {
+   "key": "172262",
+   "brand": "Revolution",
+   "name": "Forever Flawless Far Paleti Allure",
+   "price": "1.499,90",
+   "club": "749,90",
+   "img": "p-172262.webp",
+   "url": "https://www.watsons.com.tr/revolution-forever-flawless-far-paleti-allure/p/BP_172262",
+   "page": "/makyaj/c/100",
+   "transparent": true,
+   "hd": true
+  },
+  {
+   "key": "1425970",
+   "brand": "Avon",
+   "name": "Incandessence Kadın EDP Parfüm 50 ml",
+   "price": "1.249,90",
+   "club": "309,90",
+   "img": "p-1425970.webp",
+   "url": "https://www.watsons.com.tr/avon-incandessence-kadin-edp-parfum-50-ml/p/BP_1425970",
+   "page": "/parfum/c/100013",
+   "transparent": true,
+   "hd": false
+  },
+  {
+   "key": "1396318",
+   "brand": "HC Care",
+   "name": "Complex Bitkisel Saç Bakım Kompleksi 100 ml",
+   "price": "712,90",
+   "club": "499,00",
+   "img": "p-1396318.webp",
+   "url": "https://www.watsons.com.tr/hc-care-complex-bitkisel-sac-bakim-kompleksi-100-ml/p/BP_1396318",
+   "page": "/sac-bakim/c/102",
+   "transparent": true,
+   "hd": false
+  },
+  {
+   "key": "133582",
+   "brand": "Burberry",
+   "name": "Week-End Erkek Parfüm EDT 100 ml",
+   "price": "4.799,90",
+   "club": "1.999,00",
+   "img": "p-133582.webp",
+   "url": "https://www.watsons.com.tr/burberry-week-end-erkek-parfum-edt-100-ml/p/BP_133582",
+   "page": "/parfum/c/100013",
+   "transparent": true,
+   "hd": false
+  },
+  {
+   "key": "1397606",
+   "brand": "L'Oreal Paris",
+   "name": "Glotion All-In-One Doğal Işıltı 902 Light Glow",
+   "price": "1.499,90",
+   "club": "749,90",
+   "img": "p-1397606.webp",
+   "url": "https://www.watsons.com.tr/loreal-paris-glotion-all-in-one-dogal-isilti-902-light-glow/p/BP_1397606",
+   "page": "/makyaj/c/100",
+   "transparent": false,
+   "hd": false
+  },
+  {
+   "key": "1406335",
+   "brand": "NYX Professional Makeup",
+   "name": "Buttermelt Blush Kremsi Pudra Allık 04 U Know Butt",
+   "price": "1.149,90",
+   "club": "689,90",
+   "img": "p-1406335.webp",
+   "url": "https://www.watsons.com.tr/nyx-professional-makeup-buttermelt-blush-kremsi-pudra-allik-04-u-know-butta/p/BP_1406335",
+   "page": "/makyaj/c/100",
+   "transparent": false,
+   "hd": false
+  },
+  {
+   "key": "1369795",
+   "brand": "Oral-B",
+   "name": "İo5 Şarjlı Diş Fırçası Siyah",
+   "price": "13.399,90",
+   "club": "6.270,90",
+   "img": "p-1369795.webp",
+   "url": "https://www.watsons.com.tr/oral-b-io5-sarjli-dis-fircasi-siyah/p/BP_1369795",
+   "page": "/kisisel-bakim/c/103",
+   "transparent": true,
+   "hd": true
+  },
+  {
+   "key": "152372",
+   "brand": "Rexona",
+   "name": "Clinical Protection Fresh Erkek Stick",
+   "price": "669,90",
+   "club": "499,90",
+   "img": "p-152372.webp",
+   "url": "https://www.watsons.com.tr/rexona-clinical-protection-fresh-erkek-stick/p/BP_152372",
+   "page": "/erkek-bakim/c/105",
+   "transparent": true,
+   "hd": true
+  },
+  {
+   "key": "1482719",
+   "brand": "Elseve",
+   "name": "Şampuan Komple Onarıcı 5 Extreme 300 ml",
+   "price": "300,50",
+   "club": "149,90",
+   "img": "p-1482719.webp",
+   "url": "https://www.watsons.com.tr/elseve-sampuan-komple-onarici-5-extreme-300-ml/p/BP_1482719",
+   "page": "/sac-bakim/c/102",
+   "transparent": true,
+   "hd": false
+  },
+  {
+   "key": "140628",
+   "brand": "Calvin Klein",
+   "name": "Be Sprey Erkek Parfüm EDT 200 ml",
+   "price": "4.299,90",
+   "club": "1.799,00",
+   "img": "p-140628.webp",
+   "url": "https://www.watsons.com.tr/calvin-klein-be-sprey-erkek-parfum-edt-200-ml/p/BP_140628",
+   "page": "/erkek-bakim/c/105",
+   "transparent": true,
+   "hd": false
+  },
+  {
+   "key": "1343006",
+   "brand": "Head&Shoulders",
+   "name": "Klasik Bakım 2'si 1 Arada Kepeğe Karşı Etkili Şampuan 250 ml",
+   "price": "249,90",
+   "club": "124,90",
+   "img": "p-1343006.webp",
+   "url": "https://www.watsons.com.tr/head-shoulders-klasik-bakim-2si-1-arada-kepege-karsi-etkili-sampuan-250-ml/p/BP_1343006",
+   "page": "/sac-bakim/c/102",
+   "transparent": true,
+   "hd": false
+  },
+  {
+   "key": "1425977",
+   "brand": "Avon",
+   "name": "Pur Blanca Kadın Parfüm EDT 50 ml",
+   "price": "779,90",
+   "club": "194,90",
+   "img": "p-1425977.webp",
+   "url": "https://www.watsons.com.tr/avon-pur-blanca-kadin-parfum-edt-50-ml/p/BP_1425977",
+   "page": "/parfum/c/100013",
+   "transparent": true,
+   "hd": false
+  },
+  {
+   "key": "1281714",
+   "brand": "Nivea Deo",
+   "name": "Nivea Men Roll-On Cool Kick 50 ml",
+   "price": "311,90",
+   "club": "123,90",
+   "img": "p-1281714.webp",
+   "url": "https://www.watsons.com.tr/nivea-men-roll-on-cool-kick-50-ml/p/BP_1281714",
+   "page": "/kisisel-bakim/c/103",
+   "transparent": true,
+   "hd": false
+  },
+  {
+   "key": "1327417",
+   "brand": "Marvis",
+   "name": "Smokers Beyazlatıcı Diş Macunu 85 ml",
+   "price": "589,90",
+   "club": "",
+   "img": "p-1327417.webp",
+   "url": "https://www.watsons.com.tr/marvis-smokers-beyazlatici-dis-macunu-85-ml/p/BP_1327417",
+   "page": "/kisisel-bakim/c/103",
+   "transparent": true,
+   "hd": false
+  },
+  {
+   "key": "173539",
+   "brand": "Old Spice",
+   "name": "Whitewater Deodorant 70 ml",
+   "price": "393,90",
+   "club": "199,00",
+   "img": "p-173539.webp",
+   "url": "https://www.watsons.com.tr/old-spice-whitewater-deodorant-70-ml/p/BP_173539",
+   "page": "/erkek-bakim/c/105",
+   "transparent": true,
+   "hd": false
+  },
+  {
+   "key": "1314320",
+   "brand": "Head&Shoulders",
+   "name": "Klasik Bakım Kepek Karşıtı Günlük Kullanım Şampuan 330 ml",
+   "price": "369,90",
+   "club": "184,90",
+   "img": "p-1314320.webp",
+   "url": "https://www.watsons.com.tr/head-shoulders-klasik-bakim-kepek-karsiti-gunluk-kullanim-sampuan-330-ml/p/BP_1314320",
+   "page": "/erkek-bakim/c/105",
+   "transparent": true,
+   "hd": false
+  },
+  {
+   "key": "114419",
+   "brand": "Nivea Deo",
+   "name": "Nivea Kadın Sprey Deodorant Fresh Natural 48 Saat Deodorant Koruma 150",
+   "price": "311,90",
+   "club": "123,90",
+   "img": "p-114419.webp",
+   "url": "https://www.watsons.com.tr/nivea-kadin-sprey-deodorant-fresh-natural-48-saat-deodorant-koruma-150-ml/p/BP_114419",
+   "page": "/kisisel-bakim/c/103",
+   "transparent": false,
+   "hd": false
+  },
+  {
+   "key": "129538",
+   "brand": "Rexona",
+   "name": "Kadın Sprey Deodorant Sexy Bouquet 72 Saat Kesintisiz Üstün Koruma 150",
+   "price": "339,90",
+   "club": "134,90",
+   "img": "p-129538.webp",
+   "url": "https://www.watsons.com.tr/rexona-kadin-sprey-deodorant-sexy-bouquet-72-saat-kesintisiz-ustun-koruma-150-ml/p/BP_129538",
+   "page": "/kisisel-bakim/c/103",
+   "transparent": false,
+   "hd": false
+  },
+  {
+   "key": "1397718",
+   "brand": "Maybelline New York",
+   "name": "Super Lock Brow Glue Kaş Sabitleyici Maskara",
+   "price": "1.699,90",
+   "club": "679,90",
+   "img": "p-1397718.webp",
+   "url": "https://www.watsons.com.tr/maybelline-new-york-super-lock-brow-glue-kas-sabitleyici-maskara/p/BP_1397718",
+   "page": "/makyaj/makyaj-cok-satanlar/c/100070",
+   "transparent": false,
+   "hd": false
+  },
+  {
+   "key": "1397599",
+   "brand": "L'Oreal Paris",
+   "name": "Glotion All-In-One Doğal Işıltı 901 Fair Glow",
+   "price": "1.499,90",
+   "club": "749,90",
+   "img": "p-1397599.webp",
+   "url": "https://www.watsons.com.tr/loreal-paris-glotion-all-in-one-dogal-isilti-901-fair-glow/p/BP_1397599",
+   "page": "/makyaj/c/100",
+   "transparent": false,
+   "hd": false
+  },
+  {
+   "key": "131804",
+   "brand": "Nivea Deo",
+   "name": "Nivea Men Erkek Sprey Deodorant Black&White Invisible Original 150 ml",
+   "price": "311,90",
+   "club": "123,90",
+   "img": "p-131804.webp",
+   "url": "https://www.watsons.com.tr/nivea-men-erkek-sprey-deodorant-black-white-invisible-original-150-ml/p/BP_131804",
+   "page": "/kisisel-bakim/c/103",
+   "transparent": false,
+   "hd": false
+  },
+  {
+   "key": "1394477",
+   "brand": "Rexona",
+   "name": "Men Clinical Protection Erkek Stick Deodorant Clean Scent 3x Güçlü Kor",
+   "price": "669,90",
+   "club": "499,90",
+   "img": "p-1394477.webp",
+   "url": "https://www.watsons.com.tr/rexona-men-clinical-protection-erkek-stick-deodorant-clean-scent-3x-guclu-koruma-45-ml/p/BP_1394477",
+   "page": "/erkek-bakim/c/105",
+   "transparent": false,
+   "hd": false
+  },
+  {
+   "key": "1319563",
+   "brand": "NYX Professional Makeup",
+   "name": "Bare With Me Kapatıcı Serum 02 Light",
+   "price": "1.499,90",
+   "club": "",
+   "img": "p-1319563.webp",
+   "url": "https://www.watsons.com.tr/nyx-professional-makeup-bare-with-me-kapatici-serum-02-light/p/BP_1319563",
+   "page": "/makyaj/makyaj-cok-satanlar/c/100070",
+   "transparent": false,
+   "hd": false
+  },
+  {
+   "key": "1261057",
+   "brand": "Revolution",
+   "name": "Forever Flawless Far Paleti Affinity",
+   "price": "1.499,90",
+   "club": "749,90",
+   "img": "p-1261057.webp",
+   "url": "https://www.watsons.com.tr/revolution-forever-flawless-far-paleti-affinity/p/BP_1261057",
+   "page": "/makyaj/c/100",
+   "transparent": true,
+   "hd": false
+  },
+  {
+   "key": "1397613",
+   "brand": "L'Oreal Paris",
+   "name": "Glotion All-In-One Doğal Işıltı 903 Medium Glow",
+   "price": "1.499,90",
+   "club": "749,90",
+   "img": "p-1397613.webp",
+   "url": "https://www.watsons.com.tr/loreal-paris-glotion-all-in-one-dogal-isilti-903-medium-glow/p/BP_1397613",
+   "page": "/makyaj/c/100",
+   "transparent": false,
+   "hd": false
+  },
+  {
+   "key": "131802",
+   "brand": "Nivea Deo",
+   "name": "Nivea Kadın Sprey Deodorant Black & White Invisible Clear 150 ml",
+   "price": "311,90",
+   "club": "123,90",
+   "img": "p-131802.webp",
+   "url": "https://www.watsons.com.tr/nivea-kadin-sprey-deodorant-black-white-invisible-clear-150-ml/p/BP_131802",
+   "page": "/kisisel-bakim/c/103",
+   "transparent": false,
+   "hd": false
+  },
+  {
+   "key": "1308762",
+   "brand": "Rexona",
+   "name": "Clinical Protection Confidence Kadın Deodorant 150 ml",
+   "price": "499,90",
+   "club": "373,90",
+   "img": "p-1308762.webp",
+   "url": "https://www.watsons.com.tr/rexona-clinical-protection-confidence-kadin-deodorant-150-ml/p/BP_1308762",
+   "page": "/erkek-bakim/c/105",
+   "transparent": false,
+   "hd": false
+  },
+  {
+   "key": "166550",
+   "brand": "Revolution",
+   "name": "Reloaded Palette Affection Far Paleti",
+   "price": "934,90",
+   "club": "373,90",
+   "img": "p-166550.webp",
+   "url": "https://www.watsons.com.tr/revolution-reloaded-palette-affection-far-paleti/p/BP_166550",
+   "page": "/makyaj/makyaj-cok-satanlar/c/100070",
+   "transparent": true,
+   "hd": false
+  },
+  {
+   "key": "170637",
+   "brand": "L'Oreal Paris",
+   "name": "True Match Fondöten No: 1N",
+   "price": "2.049,90",
+   "club": "1.024,90",
+   "img": "p-170637.webp",
+   "url": "https://www.watsons.com.tr/loreal-paris-true-match-fondoten-no-1n/p/BP_170637",
+   "page": "/makyaj/c/100",
+   "transparent": false,
+   "hd": false
+  },
+  {
+   "key": "146333",
+   "brand": "Nivea Deo",
+   "name": "Nivea Powder Touch Kadın Roll-On 50 ml",
+   "price": "311,90",
+   "club": "123,90",
+   "img": "p-146333.webp",
+   "url": "https://www.watsons.com.tr/nivea-powder-touch-kadin-roll-on-50-ml/p/BP_146333",
+   "page": "/kisisel-bakim/c/103",
+   "transparent": false,
+   "hd": false
+  },
+  {
+   "key": "1238139",
+   "brand": "Nivea Deo",
+   "name": "Nivea Men Erkek Sprey Deodorant Black&White Invisible Güçlü Etki 150 m",
+   "price": "311,90",
+   "club": "123,90",
+   "img": "p-1238139.webp",
+   "url": "https://www.watsons.com.tr/nivea-men-erkek-sprey-deodorant-black-white-invisible-guclu-etki-150-ml/p/BP_1238139",
+   "page": "/kisisel-bakim/c/103",
+   "transparent": false,
+   "hd": false
+  },
+  {
+   "key": "1382367",
+   "brand": "L'Oreal Paris",
+   "name": "Panorama Hacim Veren Maskara Siyah",
+   "price": "1.799,90",
+   "club": "719,90",
+   "img": "p-1382367.webp",
+   "url": "https://www.watsons.com.tr/loreal-paris-panorama-hacim-veren-maskara-siyah/p/BP_1382367",
+   "page": "/makyaj/makyaj-cok-satanlar/c/100070",
+   "transparent": false,
+   "hd": false
+  }
+ ],
+ "cats": [
+  {
+   "key": "makyaj",
+   "name": "Makyaj",
+   "url": "/makyaj/c/100",
+   "img": "c-makyaj.webp",
+   "products": [
+    "1397606",
+    "1274042",
+    "1380638",
+    "1397599",
+    "1397613",
+    "1261057"
+   ]
+  },
+  {
+   "key": "sac",
+   "name": "Saç Bakım",
+   "url": "/sac-bakim/c/102",
+   "img": "c-sac.webp",
+   "products": [
+    "1396318",
+    "146777",
+    "1482719",
+    "1409737",
+    "145739",
+    "1343006"
+   ]
+  },
+  {
+   "key": "parfum",
+   "name": "Parfüm",
+   "url": "/parfum/c/100013",
+   "img": "c-parfum.webp",
+   "products": [
+    "1425970",
+    "1328257",
+    "133582",
+    "1425977"
+   ]
+  },
+  {
+   "key": "kisisel",
+   "name": "Kişisel Bakım",
+   "url": "/kisisel-bakim/c/103",
+   "img": "c-kisisel.webp",
+   "products": [
+    "114419",
+    "131804",
+    "131802",
+    "146333",
+    "1238139",
+    "1281714"
+   ]
+  },
+  {
+   "key": "erkek",
+   "name": "Erkek Bakım",
+   "url": "/erkek-bakim/c/105",
+   "img": "c-erkek.webp",
+   "products": [
+    "152372",
+    "1356159",
+    "140628",
+    "1394477",
+    "1308762",
+    "173539"
+   ]
+  }
+ ],
+ "heroes": [
+  "h-kolaj-0.webp",
+  "h-kolaj-1.webp"
+ ],
+ "heroInfo": [
+  {
+   "img": "h-kolaj-0.webp",
+   "page": "kolaj",
+   "alt": "Ürün kolajı",
+   "src": ""
+  },
+  {
+   "img": "h-kolaj-1.webp",
+   "page": "kolaj",
+   "alt": "Ürün kolajı",
+   "src": ""
+  }
+ ]
+}

@@ -5,14 +5,14 @@
 <style>
 {{SHARED_CSS}}
 .ad { background: linear-gradient(105deg, #fff 0%, #f1fbfc 55%, #d8f4f6 100%); color: var(--ink); }
-.photo { position: absolute; right: 0; top: 0; bottom: 0; width: 330px; background: url("img/{{HERO2}}") center/cover; clip-path: polygon(14% 0, 100% 0, 100% 100%, 0 100%); }
+.photo { position: absolute; right: 0; top: 0; bottom: 0; width: 250px; background: #f4fbfc url("img/{{CAT0}}") center/cover; clip-path: polygon(14% 0, 100% 0, 100% 100%, 0 100%); }
 .photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(255, 255, 255, .0), rgba(0, 90, 100, .25)); }
 .brand { position: absolute; left: 24px; top: 22px; bottom: 20px; width: 180px; display: flex; flex-direction: column; justify-content: space-between; }
 .brand .b1111 b { background: linear-gradient(180deg, var(--teal), var(--teal-d)); -webkit-background-clip: text; background-clip: text; filter: none; }
 .brand .b1111 span { color: var(--pink); }
 .brand h1 { font-size: 16px; font-weight: 900; line-height: 1.15; margin-top: 10px; }
 .brand h1 em { font-style: normal; color: var(--pink); }
-.q { position: absolute; left: 220px; top: 22px; bottom: 20px; width: 420px; display: flex; flex-direction: column; }
+.q { position: absolute; left: 214px; top: 22px; bottom: 20px; width: 520px; display: flex; flex-direction: column; }
 .steps { display: flex; gap: 6px; margin-bottom: 10px; }
 .steps i { flex: 1; height: 4px; border-radius: 4px; background: #d6eef1; transition: background .3s; }
 .steps i.on { background: var(--teal); }
@@ -27,15 +27,16 @@
 .pane.out { opacity: 0; transform: translateX(-20px); }
 .res { display: none; }
 .res.on { display: flex; gap: 10px; align-items: stretch; }
-.rc { width: 96px; border-radius: 14px; background: #fff; box-shadow: 0 8px 18px rgba(0, 90, 100, .14); padding: 8px; display: flex; flex-direction: column; align-items: center; cursor: pointer; animation: rin .5s backwards; }
+.rc { width: 92px; border-radius: 14px; background: #fff; box-shadow: 0 8px 18px rgba(0, 90, 100, .14); padding: 8px; display: flex; flex-direction: column; align-items: center; cursor: pointer; animation: rin .5s backwards; }
 .rc:nth-child(2) { animation-delay: .12s; } .rc:nth-child(3) { animation-delay: .24s; }
 @keyframes rin { from { opacity: 0; transform: translateY(16px); } }
 .rc em { font-style: normal; font-size: 9px; font-weight: 900; letter-spacing: .1em; color: #fff; background: var(--pink); border-radius: 99px; padding: 3px 8px; }
 .rc img { width: 78px; height: 74px; object-fit: contain; margin: 4px 0; }
 .rc b { font-size: 8.5px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; color: var(--teal-d); text-align: center; }
-.rr { display: flex; flex-direction: column; justify-content: space-between; gap: 6px; margin-left: 6px; }
+.rr { flex: none; width: 150px; display: flex; flex-direction: column; justify-content: space-between; gap: 6px; margin-left: 6px; }
 .rr p { font-size: 11px; font-weight: 600; color: #4d6a70; }
 .rr button { font-size: 11px; font-weight: 800; color: var(--teal-d); text-decoration: underline; text-align: left; }
+.side .wlogo { filter: drop-shadow(0 1px 4px rgba(0,0,0,.4)); }
 .side { position: absolute; right: 22px; top: 22px; bottom: 20px; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end; }
 .legal { left: 24px; bottom: 6px; color: #6a8187; }
 </style>

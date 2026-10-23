@@ -11,7 +11,7 @@
 .shelf::after { content: ''; position: absolute; left: -10px; right: -10px; bottom: -8px; height: 10px; border-radius: 4px; background: linear-gradient(#fff, #cfe6ea); }
 .pr { position: relative; width: 74px; height: 120px; display: flex; align-items: flex-end; justify-content: center; }
 .pr img { width: 74px; height: 110px; object-fit: contain; filter: drop-shadow(0 6px 6px rgba(0, 0, 0, .35)); }
-.tag { position: absolute; left: 50%; top: -14px; transform: translate(-50%, 8px) scale(.6); opacity: 0; background: var(--pink); color: #fff; font-size: 11px; font-weight: 900; padding: 5px 9px; border-radius: 99px; white-space: nowrap; box-shadow: 0 6px 12px rgba(255, 61, 127, .5); transition: transform .4s cubic-bezier(.3, 1.6, .5, 1), opacity .3s; }
+.tag { position: absolute; left: 50%; top: -14px; transform: translate(-50%, 8px) scale(.6); opacity: 0; background: var(--pink); color: #fff; font-size: 11px; font-weight: 900; padding: 5px 9px; border-radius: 99px; white-space: nowrap; box-shadow: 0 6px 12px rgba(231, 8, 163, .5); transition: transform .4s cubic-bezier(.3, 1.6, .5, 1), opacity .3s; }
 .lit .tag { opacity: 1; transform: translate(-50%, 0) scale(1); }
 .dark { filter: brightness(.18) saturate(.4); }
 .light { -webkit-mask-image: radial-gradient(circle var(--r) at var(--x) var(--y), #000 55%, transparent 100%); mask-image: radial-gradient(circle var(--r) at var(--x) var(--y), #000 55%, transparent 100%); }
@@ -47,7 +47,7 @@
 (function () {
   var D = W.data, ad = W.$('#ad'), items = D.products.slice(0, 5), found = {};
   ['#s1', '#s2'].forEach(function (s, k) {
-    items.forEach(function (p) { W.$(s).appendChild(W.el('div', 'pr', '<img src="' + p.img + '" alt="">' + (k ? '<span class="tag">11.11 · ' + (p.price ? W.price(p.price) : 'Fırsat') + '</span>' : ''))); });
+    items.forEach(function (p) { W.$(s).appendChild(W.el('div', 'pr', '<img src="' + p.img + '" alt="">' + (k ? '<span class="tag">' + (p.price ? W.price(p.price) : p.brand) + '</span>' : ''))); });
   });
   var lit = W.$$('#s2 .pr'), x = 480, y = 125, tx = 480, ty = 125, user = false;
   function setPos() { ad.style.setProperty('--x', x + 'px'); ad.style.setProperty('--y', y + 'px'); }

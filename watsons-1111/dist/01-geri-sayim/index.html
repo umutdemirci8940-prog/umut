@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="ad.size" content="width=970,height=250">
+<title>Watsons 11.11 – 11.11 Geri Sayım</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<script>var clickTag = ""; /* Reklam ağı tıklama makrosu buraya; boşsa her öğe kendi ürün/kategori sayfasına gider */</script>
+<!-- Boyutlar: 970x250,320x480 (aynı dosya, alan genişliğine göre yerleşim değiştirir) -->
+<style>
+/* Watsons 11.11 – ortak stil */
+:root {
+  --teal: #009aa9; --teal-d: #00737f; --teal-l: #c6eef2;
+  --pink: #e708a3; --gold: #ffd23f; --ink: #0d2b33; --night: #071a24; --cream: #fff7f0;
+  --f: 'Rubik', 'Helvetica Neue', Arial, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html, body { width: 100%; height: 100%; overflow: hidden; }
+body { font-family: var(--f); color: #fff; background: var(--night); -webkit-font-smoothing: antialiased; user-select: none; -webkit-user-select: none; }
+img { display: block; -webkit-user-drag: none; user-select: none; }
+button { font: inherit; border: 0; background: none; color: inherit; cursor: pointer; }
+.ad { position: relative; width: 100%; height: 100%; overflow: hidden; cursor: pointer; }
+.ad * { transition-timing-function: cubic-bezier(.22, .8, .2, 1); }
+
+/* Logo ve rozet */
+.wlogo { height: 19px; width: auto; flex: none; align-self: flex-start; }
+.side .wlogo, .info .wlogo, .hud .wlogo { align-self: flex-end; }
+img.wlogo[src*="logo-c"] { height: 26px; }
+.b1111 { display: inline-flex; flex-direction: column; align-items: flex-start; line-height: .86; }
+.b1111 b { font-size: 46px; font-weight: 900; letter-spacing: -.04em; background: linear-gradient(180deg, #fff 30%, #c9f1f4); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 3px 0 rgba(0, 0, 0, .18)); }
+.b1111 span { margin-top: 6px; font-size: 10px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
+
+/* Düğmeler */
+.cta { display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 20px; border-radius: 99px; background: #fff; color: var(--teal-d); font-size: 13px; font-weight: 800; letter-spacing: .02em; box-shadow: 0 8px 20px rgba(0, 0, 0, .22); transition: transform .25s, box-shadow .25s, background .25s; white-space: nowrap; }
+.cta::after { content: '›'; font-size: 20px; line-height: 1; margin-top: -2px; }
+.cta:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(0, 0, 0, .3); }
+.cta.pk { background: var(--pink); color: #fff; }
+.cta.pulse { animation: pulse 1.8s infinite; }
+@keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, .55), 0 8px 20px rgba(0, 0, 0, .22); } 60% { box-shadow: 0 0 0 12px rgba(255, 255, 255, 0), 0 8px 20px rgba(0, 0, 0, .22); } }
+.legal { position: absolute; font-size: 8px; line-height: 1.2; color: rgba(255, 255, 255, .62); letter-spacing: .02em; pointer-events: none; }
+.hint { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; color: rgba(255, 255, 255, .9); }
+.hint i { width: 18px; height: 18px; border-radius: 50%; background: rgba(255, 255, 255, .22); position: relative; animation: tap 1.4s infinite; }
+.hint i::after { content: ''; position: absolute; inset: 5px; border-radius: 50%; background: #fff; }
+@keyframes tap { 0%, 100% { transform: scale(1); } 50% { transform: scale(.75); } }
+
+/* Ürün çipi */
+.pc { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; background: #fff; border-radius: 14px; color: var(--ink); overflow: hidden; }
+.pc img { width: 100%; height: 100%; object-fit: contain; }
+.pc .pn { font-size: 10px; font-weight: 700; line-height: 1.2; text-align: center; padding: 0 6px 6px; }
+.pc .pb { font-size: 9px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; color: var(--teal-d); }
+.pc .pp { font-size: 13px; font-weight: 900; color: var(--pink); }
+
+/* Konfeti */
+.cf { position: absolute; width: 7px; height: 11px; border-radius: 2px; pointer-events: none; z-index: 99; animation: cf 1.4s cubic-bezier(.2, .7, .3, 1) forwards; }
+@keyframes cf { 0% { transform: translate(0, 0) rotate(0); opacity: 1; } 100% { transform: translate(var(--x), calc(var(--y) + 160px)) rotate(var(--r)); opacity: 0; } }
+
+/* Kupon */
+.coupon { display: inline-flex; align-items: center; gap: 10px; padding: 6px 6px 6px 14px; border: 2px dashed rgba(255, 255, 255, .7); border-radius: 12px; font-weight: 800; }
+.coupon code { font-family: inherit; font-size: 16px; letter-spacing: .08em; }
+.coupon button { height: 28px; padding: 0 12px; border-radius: 8px; background: #fff; color: var(--teal-d); font-size: 11px; font-weight: 800; }
+
+/* Giriş animasyon yardımcıları */
+.fx { opacity: 0; transform: translateY(14px); transition: opacity .7s, transform .7s; }
+.on .fx { opacity: 1; transform: none; }
+.on .fx.d1 { transition-delay: .15s; } .on .fx.d2 { transition-delay: .3s; } .on .fx.d3 { transition-delay: .45s; } .on .fx.d4 { transition-delay: .6s; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+
+.ad { background: radial-gradient(120% 140% at 0% 0%, #12c4d3 0%, var(--teal) 35%, var(--teal-d) 75%, #035865 100%); }
+.ad::before { content: ''; position: absolute; inset: 0; background: url("img/h-kolaj-0.webp") center/cover; opacity: .13; mix-blend-mode: luminosity; }
+.glow { position: absolute; width: 520px; height: 520px; left: 300px; top: -150px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 255, 255, .35), transparent 62%); animation: gl 6s ease-in-out infinite; }
+@keyframes gl { 50% { transform: translate(60px, 20px) scale(1.08); } }
+.brand { position: absolute; left: 26px; top: 24px; display: flex; flex-direction: column; gap: 12px; }
+.brand .b1111 b { font-size: 64px; }
+.brand h1 { font-size: 15px; font-weight: 800; line-height: 1.2; max-width: 190px; }
+.brand h1 em { font-style: normal; color: var(--gold); }
+/* Saat */
+.clock { position: absolute; left: 236px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; align-items: center; gap: 10px; perspective: 600px; }
+.clock .cap { font-size: 11px; font-weight: 800; letter-spacing: .22em; text-transform: uppercase; color: rgba(255, 255, 255, .85); }
+.units { display: flex; gap: 6px; }
+.u { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.u small { font-size: 9px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: rgba(255, 255, 255, .75); }
+.digs { display: flex; gap: 3px; }
+.fl { position: relative; width: 31px; height: 50px; font-size: 33px; font-weight: 900; color: var(--teal-d); transform-style: preserve-3d; }
+.fl > div { position: absolute; left: 0; width: 100%; height: 50%; overflow: hidden; background: #fff; backface-visibility: hidden; }
+.fl > div span { position: absolute; left: 0; width: 100%; height: 200%; display: flex; align-items: center; justify-content: center; }
+.fl .t, .fl .ft { top: 0; border-radius: 7px 7px 0 0; transform-origin: 50% 100%; }
+.fl .b, .fl .fb { bottom: 0; border-radius: 0 0 7px 7px; transform-origin: 50% 0; }
+.fl .b, .fl .fb { background: #f2fbfc; }
+.fl .t span, .fl .ft span { top: 0; }
+.fl .b span, .fl .fb span { bottom: 0; }
+.fl::after { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: rgba(0, 80, 90, .18); z-index: 5; }
+.fl .ft { z-index: 3; }
+.fl .fb { z-index: 2; transform: rotateX(90deg); }
+.fl.go .ft { animation: ft .32s ease-in forwards; }
+.fl.go .fb { animation: fb .32s .32s ease-out forwards; }
+@keyframes ft { to { transform: rotateX(-90deg); } }
+@keyframes fb { from { transform: rotateX(90deg); } to { transform: rotateX(0); } }
+.fl { filter: drop-shadow(0 6px 10px rgba(0, 40, 50, .3)); }
+.sep { font-size: 28px; font-weight: 900; margin-top: -18px; opacity: .7; }
+/* Ürün kartları (3B çevrilir) */
+.cards { position: absolute; left: 568px; top: 26px; display: flex; gap: 12px; perspective: 900px; }
+.card { width: 112px; height: 182px; position: relative; transform-style: preserve-3d; transition: transform .8s; cursor: pointer; }
+.card.flip, .d .card:hover { transform: rotateY(180deg); }
+.face { position: absolute; inset: 0; border-radius: 16px; backface-visibility: hidden; overflow: hidden; background: #fff; color: var(--ink); box-shadow: 0 14px 30px rgba(0, 40, 50, .3); display: flex; flex-direction: column; }
+.face img { flex: 1; min-height: 0; width: 100%; object-fit: contain; padding: 10px 10px 0; }
+.face .nm { padding: 6px 9px 10px; font-size: 10px; font-weight: 700; line-height: 1.25; height: 44px; overflow: hidden; }
+.face .nm b { display: block; font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--teal-d); }
+.back { transform: rotateY(180deg); background: linear-gradient(160deg, var(--pink), #a3006f); color: #fff; align-items: center; justify-content: center; text-align: center; gap: 6px; padding: 12px; }
+.back .k { font-size: 10px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; opacity: .85; }
+.back .p { font-size: 17px; font-weight: 900; white-space: nowrap; }
+.back .s { font-size: 11px; font-weight: 700; line-height: 1.3; }
+.back .go { margin-top: 6px; font-size: 11px; font-weight: 800; background: #fff; color: var(--pink); border-radius: 99px; padding: 6px 12px; }
+.side { position: absolute; right: 22px; top: 24px; bottom: 22px; width: 116px; display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between; }
+.side .wlogo { height: 20px; }
+.side .cta { padding: 0 14px; }
+.legal { left: 26px; bottom: 10px; }
+/* Mobil 320×480 */
+.m .brand { left: 0; right: 0; top: 18px; align-items: center; text-align: center; gap: 6px; }
+.m .brand .b1111 { align-items: center; }
+.m .brand .b1111 b { font-size: 58px; }
+.m .brand h1 { max-width: 260px; font-size: 14px; }
+.m .clock { left: 50%; top: 186px; transform: translateX(-50%); }
+.m .fl { width: 24px; height: 38px; font-size: 25px; }
+.m .units { gap: 3px; } .m .digs { gap: 2px; }
+.m .sep { font-size: 18px; margin-top: -14px; }
+.m .cards { left: 50%; top: 280px; transform: translateX(-50%); gap: 8px; }
+.m .card { width: 92px; height: 132px; }
+.m .face .nm { height: 36px; font-size: 9px; padding: 4px 6px 7px; }
+.m .back .p { font-size: 17px; }
+.m .back .s { display: none; }
+.m .side { left: 16px; right: 16px; top: auto; bottom: 26px; width: auto; height: auto; flex-direction: row; align-items: center; }
+.m .side .wlogo { height: 16px; }
+.m .legal { left: 0; right: 0; text-align: center; bottom: 8px; }
+.m .glow { left: -100px; top: 60px; }
+</style>
+</head>
+<body>
+<div class="ad" data-exit="" data-label="genel">
+  <div class="glow"></div>
+  <div class="brand fx">
+    <div class="b1111"><b>11.11</b><span>Büyük İndirim Günü</span></div>
+    <h1>Yılın en büyük güzellik indirimine <em>az kaldı</em></h1>
+  </div>
+  <div class="clock fx d1">
+    <div class="cap" id="cap">11.11'e kalan süre</div>
+    <div class="units" id="units"></div>
+  </div>
+  <div class="cards fx d2" id="cards" data-stop></div>
+  <div class="side fx d3">
+    <img class="wlogo" src="img/logo-w.webp" alt="Watsons">
+    <span class="cta pulse">Fırsatları Gör</span>
+  </div>
+  <div class="legal">Kampanya 11.11 tarihinde watsons.com.tr'de geçerlidir. Stoklarla sınırlıdır. Detaylar watsons.com.tr'de.</div>
+</div>
+<script>window.AD_DATA = {"brand":{"home":"https://www.watsons.com.tr/?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=geri-sayim_genel","event":"Büyük İndirim Günü","offer":"11.11'e özel seçili ürünlerde ekstra indirim.","code":"WATSONS1111","legal":"Kampanya 11.11 tarihinde watsons.com.tr'de geçerlidir. Stoklarla sınırlıdır. Detaylar watsons.com.tr'de.","logo":"img/logo-w.webp"},"products":[{"key":"1274042","brand":"L'Oreal Paris","name":"Telescopic Maskara Gold Black","price":"1.869,90","club":"869,90","img":"img/p-1274042.webp","url":"https://www.watsons.com.tr/loreal-paris-telescopic-maskara-gold-black/p/BP_1274042?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=geri-sayim_1274042"},{"key":"139585","brand":"Calvin Klein","name":"In2U Kadın Parfüm EDT 150 ml","price":"3.299,90","club":"1.499,00","img":"img/p-139585.webp","url":"https://www.watsons.com.tr/calvin-klein-in2u-kadin-parfum-edt-150-ml/p/BP_139585?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=geri-sayim_139585"},{"key":"1444513","brand":"Revolution","name":"Forever Flawless Far Paleti Nova Green","price":"1.499,90","club":"749,90","img":"img/p-1444513.webp","url":"https://www.watsons.com.tr/revolution-forever-flawless-far-paleti-nova-green/p/BP_1444513?utm_source=masthead&utm_medium=display&utm_campaign=1111&utm_content=geri-sayim_1444513"}],"cats":[],"tiers":[{"n":1,"label":"11.11 fiyatı"},{"n":3,"label":"Sepette ek indirim"},{"n":5,"label":"Hediye ürün"}],"quiz":[{"q":"Bu 11.11'de en çok neye ihtiyacın var?","a":[{"i":"💄","t":"Makyaj yenilemek","cat":"makyaj","steps":["Baz","Renk","Bitiş"]},{"i":"🧴","t":"Cilt bakımı","cat":"cilt","steps":["Temizle","Bakım","Koru"]},{"i":"💇","t":"Saç bakımı","cat":"sac","steps":["Yıka","Besle","Şekil ver"]},{"i":"🌸","t":"Yeni bir koku","cat":"parfum","steps":["Gündüz","Akşam","Yanında"]}]},{"q":"Rutinini kimin için kuruyorsun?","a":[{"i":"✨","t":"Kendim"},{"i":"🎁","t":"Hediye"},{"i":"👫","t":"İkimiz"},{"i":"🏠","t":"Tüm aile"}]},{"q":"Rutinine ne kadar zaman ayırıyorsun?","a":[{"i":"⚡","t":"5 dakika"},{"i":"⏱️","t":"15 dakika"},{"i":"🛁","t":"Kendime vakit"},{"i":"🤷","t":"Fark etmez"}]}]};</script>
+<script>/* Watsons 11.11 – ortak reklam motoru (tıklama çıkışı, olay ölçümü, yardımcılar) */
+(function () {
+  'use strict';
+  var D = window.AD_DATA || {};
+  var W = window.W = { data: D };
+  var root = document.documentElement;
+
+  // Masaüstü 970×250 / mobil 320×480: reklam kendi alanının ölçüsüne göre yerleşim seçer
+  W.mobile = function () { return window.innerWidth < 640; };
+  function mode() { root.classList.toggle('m', W.mobile()); root.classList.toggle('d', !W.mobile()); }
+  mode();
+  addEventListener('resize', mode);
+
+  // Çıkış: clickTag (Google Ads / DV360 / Admost) → Enabler (Studio) → yedek adres
+  W.exit = function (url, label) {
+    W.track('exit_' + (label || 'genel'));
+    var target = window.clickTag || url || D.brand.home;
+    if (window.Enabler && Enabler.exitOverride) { Enabler.exitOverride(label || 'CTA', target); return; }
+    window.open(target, '_blank');
+  };
+  // Olay ölçümü: Studio sayaçları varsa onları, yoksa konsolu kullanır
+  W.track = function (name) {
+    try { if (window.Enabler && Enabler.counter) Enabler.counter(name); } catch (e) { /* yok */ }
+    if (window.console && console.debug) console.debug('[watsons-ad]', name);
+  };
+  W.$ = function (s, el) { return (el || document).querySelector(s); };
+  W.$$ = function (s, el) { return Array.prototype.slice.call((el || document).querySelectorAll(s)); };
+  W.el = function (tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
+  W.wait = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
+  W.reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  W.shuffle = function (a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; };
+  W.price = function (p) { return p ? p + ' TL' : ''; };
+
+  // Kampanya saati: 11.11 00:00 (Türkiye) — öncesinde geri sayım, sırasında "bitmesine", sonrasında "son gün"
+  W.campaign = function () {
+    var y = new Date().getFullYear();
+    var start = Date.UTC(y, 10, 10, 21, 0, 0); // 11 Kasım 00:00 TSİ
+    var end = Date.UTC(y, 10, 11, 21, 0, 0);   // 12 Kasım 00:00 TSİ
+    var now = Date.now();
+    if (D.forceNow) now = D.forceNow;
+    if (now < start) return { phase: 'once', left: start - now };
+    if (now < end) return { phase: 'gun', left: end - now };
+    return { phase: 'sonra', left: 0 };
+  };
+  W.split = function (ms) {
+    var s = Math.max(0, Math.floor(ms / 1000));
+    return { d: Math.floor(s / 86400), h: Math.floor(s / 3600) % 24, m: Math.floor(s / 60) % 60, s: s % 60 };
+  };
+  W.pad = function (n) { return (n < 10 ? '0' : '') + n; };
+
+  // Konfeti (Watsons turkuazı, magenta, altın)
+  W.confetti = function (host, n, origin) {
+    host = host || document.body; n = n || 70;
+    var cols = ['#009aa9', '#e708a3', '#ffd23f', '#ffffff', '#5fd3df'];
+    var r = host.getBoundingClientRect();
+    var ox = origin ? origin.x : r.width / 2, oy = origin ? origin.y : r.height / 2;
+    for (var i = 0; i < n; i++) {
+      var c = W.el('i', 'cf');
+      var a = Math.random() * Math.PI * 2, v = 80 + Math.random() * 220;
+      c.style.cssText = 'left:' + ox + 'px;top:' + oy + 'px;background:' + cols[i % cols.length] + ';--x:' + Math.cos(a) * v + 'px;--y:' + (Math.sin(a) * v - 60) + 'px;--r:' + (Math.random() * 720 - 360) + 'deg;animation-delay:' + Math.random() * 0.12 + 's';
+      host.appendChild(c);
+      (function (c) { setTimeout(function () { c.remove(); }, 1600); })(c);
+    }
+  };
+
+  // Kupon kodu kopyalama (çıkışı tetiklemez)
+  W.copy = function (text, btn) {
+    function ok() { if (btn) { var o = btn.getAttribute('data-label') || btn.innerHTML; btn.setAttribute('data-label', o); btn.innerHTML = 'Kopyalandı!'; setTimeout(function () { btn.innerHTML = o; }, 1600); } W.track('kupon_kopya'); }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(ok, ok);
+    else { var t = W.el('textarea'); t.value = text; document.body.appendChild(t); t.select(); try { document.execCommand('copy'); } catch (e) { /* yok */ } t.remove(); ok(); }
+  };
+
+  // Ortak parçalar: logo, 11.11 rozeti, yasal not, CTA
+  W.logo = function (cls) { return '<img class="wlogo ' + (cls || '') + '" src="' + D.brand.logo + '" alt="Watsons">'; };
+  W.badge = function (cls) { return '<div class="b1111 ' + (cls || '') + '"><b>11.11</b><span>' + D.brand.event + '</span></div>'; };
+
+  // Sürükle / kaydır: fare ve dokunmatik için tek arayüz
+  W.drag = function (el, h) {
+    var on = false, sx = 0, sy = 0;
+    function pt(e) { var t = e.touches ? e.touches[0] || e.changedTouches[0] : e; return { x: t.clientX, y: t.clientY }; }
+    function down(e) { on = true; var p = pt(e); sx = p.x; sy = p.y; if (h.start) h.start(p, e); }
+    function move(e) { if (!on) return; var p = pt(e); if (h.move) h.move(p, p.x - sx, p.y - sy, e); if (e.cancelable && h.prevent !== false) e.preventDefault(); }
+    function up(e) { if (!on) return; on = false; var p = pt(e); if (h.end) h.end(p, p.x - sx, p.y - sy, e); }
+    el.addEventListener('mousedown', down); addEventListener('mousemove', move); addEventListener('mouseup', up);
+    el.addEventListener('touchstart', down, { passive: true }); el.addEventListener('touchmove', move, { passive: false }); el.addEventListener('touchend', up);
+  };
+
+  // Tüm [data-exit] öğeleri tıklamada çıkış yapar; [data-stop] içindekiler yapmaz
+  document.addEventListener('click', function (e) {
+    var s = e.target.closest('[data-stop]');
+    var x = e.target.closest('[data-exit]');
+    // Durdurma bölgesi çıkış alanının içindeyse (kontroller) çıkış yok; bölge içindeki açık düğme çıkar
+    if (x && (!s || !(x !== s && x.contains(s)))) {
+      e.preventDefault(); W.exit(x.getAttribute('data-exit') || '', x.getAttribute('data-label') || 'cta');
+    }
+  });
+
+  // Görseller yüklenince başlat (önizlemede boş kare görünmesin)
+  W.ready = function (fn) {
+    function go() {
+      var imgs = W.$$('img'); var left = imgs.length; var done = false;
+      function fin() { if (!done) { done = true; root.classList.add('on'); fn(); } }
+      if (!left) return fin();
+      imgs.forEach(function (i) { if (i.complete) { if (--left <= 0) fin(); } else { i.addEventListener('load', function () { if (--left <= 0) fin(); }); i.addEventListener('error', function () { if (--left <= 0) fin(); }); } });
+      setTimeout(fin, 2500);
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go();
+  };
+})();
+</script>
+<script>
+(function () {
+  var D = W.data, units = W.$('#units'), cards = W.$('#cards');
+  var names = [['d', 'Gün'], ['h', 'Saat'], ['m', 'Dakika'], ['s', 'Saniye']];
+  var cells = {};
+  names.forEach(function (n, i) {
+    if (i) units.appendChild(W.el('div', 'sep', ':'));
+    var u = W.el('div', 'u'), digs = W.el('div', 'digs');
+    cells[n[0]] = [0, 1].map(function () {
+      var f = W.el('div', 'fl', '<div class="t"><span>0</span></div><div class="b"><span>0</span></div><div class="ft"><span>0</span></div><div class="fb"><span>0</span></div>');
+      f._v = '0'; digs.appendChild(f); return f;
+    });
+    u.appendChild(digs); u.appendChild(W.el('small', '', n[1])); units.appendChild(u);
+  });
+  function set(f, v) {
+    if (f._v === v) return;
+    var q = function (s) { return f.querySelector(s + ' span'); };
+    q('.ft').textContent = f._v; q('.b').textContent = f._v;
+    q('.t').textContent = v; q('.fb').textContent = v;
+    f.classList.remove('go'); void f.offsetWidth; f.classList.add('go');
+    f._v = v;
+    clearTimeout(f._t); f._t = setTimeout(function () { q('.b').textContent = v; q('.ft').textContent = v; f.classList.remove('go'); }, 680);
+  }
+  function tick() {
+    var c = W.campaign(), t = W.split(c.left);
+    W.$('#cap').textContent = c.phase === 'once' ? "11.11'e kalan süre" : c.phase === 'gun' ? '11.11 fırsatlarının bitmesine' : '11.11 fırsatları';
+    names.forEach(function (n) { var s = W.pad(Math.min(99, t[n[0]])); set(cells[n[0]][0], s[0]); set(cells[n[0]][1], s[1]); });
+  }
+  // Ürün kartları: önde ürün fotoğrafı, arkada 11.11 notu ve fiyat
+  var picks = D.products.slice(0, W.mobile() ? 3 : 2);
+  picks.forEach(function (p) {
+    var c = W.el('div', 'card');
+    c.innerHTML = '<div class="face"><img src="' + p.img + '" alt=""><div class="nm"><b>' + p.brand + '</b>' + p.name + '</div></div>' +
+      '<div class="face back"><span class="k">11.11 listende</span><span class="p">' + (p.price ? W.price(p.price) : 'Özel fiyat') + '</span><span class="s">' + (p.club ? 'Watsons Club ile ' + W.price(p.club) : D.brand.offer) + '</span><span class="go">İncele</span></div>';
+    c.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (W.mobile() && !c.classList.contains('flip')) { c.classList.add('flip'); W.track('kart_cevir'); return; }
+      W.exit(p.url, 'urun_' + p.key);
+    });
+    c.addEventListener('mouseenter', function () { W.track('kart_hover'); });
+    cards.appendChild(c);
+  });
+  W.ready(function () {
+    tick(); setInterval(tick, 1000);
+    // Açılışta kartlar sırayla dönüp geri gelir (mekaniği gösterir)
+    W.$$('.card').forEach(function (c, i) {
+      setTimeout(function () { c.classList.add('flip'); }, 1600 + i * 260);
+      setTimeout(function () { c.classList.remove('flip'); }, 3600 + i * 260);
+    });
+  });
+})();
+</script>
+</body>
+</html>
