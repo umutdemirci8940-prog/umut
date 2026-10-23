@@ -8,6 +8,7 @@ on:
     branches: ['claude/**']
     paths:
       - watsons-1111/tools/fetch-site.js
+      - watsons-1111/tools/fetch-wayback.js
       - .github/workflows/watsons-fetch.yml
 
 permissions:
@@ -32,8 +33,18 @@ jobs:
           npm install --no-save --no-package-lock playwright@1.56.1
           npx playwright install --with-deps chromium
 
-      - name: Görsel arşivini çek
-        run: cd watsons-1111 && node tools/fetch-site.js
+      - name: Görsel arşivini çek (doğrudan; Akamai engellerse Wayback Machine kopyası)
+        run: |
+          cd watsons-1111
+          rm -rf assets/site assets/products assets/shots assets/html assets/cdx assets/index.json
+          node tools/fetch-site.js --pages=3 || true
+          if node -e "const m=require('./assets/index.json');process.exit(m.site.length>5?0:1)"; then
+            echo "Doğrudan erişim başarılı"
+          else
+            echo "Doğrudan erişim engellendi → Wayback Machine"
+            rm -rf assets/site assets/products assets/shots assets/html assets/index.json
+            node tools/fetch-wayback.js
+          fi
 
       - name: Özet
         run: |
