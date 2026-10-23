@@ -1,19 +1,19 @@
 {
- "fetchedAt": "2026-10-23T15:16:52.779Z",
+ "fetchedAt": "2026-10-23T15:37:12.997Z",
  "via": "web.archive.org",
  "pages": [
   {
    "path": "/",
    "url": "https://web.archive.org/web/20260614013016/https://www.watsons.com.tr/",
    "title": "Kozmetik Ürünleri ve En Sevilen Kozmetik Markaları | Watsons",
-   "imgs": 22,
+   "imgs": 32,
    "products": 0
   },
   {
    "path": "/kampanyalar",
    "url": "https://web.archive.org/web/20260516121203/https://www.watsons.com.tr/kampanyalar",
    "title": "Kampanyalar | Watsons",
-   "imgs": 18,
+   "imgs": 19,
    "products": 0
   },
   {
@@ -24,41 +24,3037 @@
    "products": 112
   },
   {
-   "path": "/makyaj/yuz-makyaji/c/201",
-   "url": "https://web.archive.org/web/20260609000954/https://www.watsons.com.tr/makyaj/yuz-makyaji/c/201",
-   "title": "Yüz Makyajı Fiyatları, Çeşitleri ve Markaları | Watsons",
-   "imgs": 50,
+   "path": "/cilt-bakim/c/101",
+   "url": "https://web.archive.org/web/20260616064903/https://www.watsons.com.tr/",
+   "title": "Cilt Bakım Fiyatları, Çeşitleri ve Markaları | Watsons",
+   "imgs": 0,
+   "products": 0
+  },
+  {
+   "path": "/sac-bakim/c/102",
+   "url": "https://web.archive.org/web/20260710112429/https://www.watsons.com.tr/sac-bakim/c/102",
+   "title": "Saç Bakım Fiyatları, Çeşitleri ve Markaları | Watsons",
+   "imgs": 44,
    "products": 112
+  },
+  {
+   "path": "/parfum/c/100013",
+   "url": "https://web.archive.org/web/20260710111517/https://www.watsons.com.tr/parfum/c/100013",
+   "title": "Parfüm & Parfüm Markaları, Çeşitleri ve Fiyatları | Watsons",
+   "imgs": 85,
+   "products": 112
+  },
+  {
+   "path": "/kisisel-bakim/c/103",
+   "url": "https://web.archive.org/web/20260518185826/https://www.watsons.com.tr/kisisel-bakim/c/103",
+   "title": "Kişisel Bakım Ürünleri Fiyatları, Çeşitleri ve Markaları | Watsons",
+   "imgs": 49,
+   "products": 106
+  },
+  {
+   "path": "/erkek-bakim/c/105",
+   "url": "https://web.archive.org/web/20260608020703/https://www.watsons.com.tr/erkek-bakim/c/105",
+   "title": "Erkek Bakım Fiyatları, Çeşitleri ve Markaları | Watsons",
+   "imgs": 54,
+   "products": 110
+  },
+  {
+   "path": "/k-beauty/c/104",
+   "url": "https://web.archive.org/web/20260313170044/https://www.watsons.com.tr/",
+   "title": "Watsons",
+   "imgs": 0,
+   "products": 0
+  },
+  {
+   "path": "/sadece-watsonsta/c/50058",
+   "url": "https://web.archive.org/web/20260418104050/https://www.watsons.com.tr/",
+   "title": "Sadece Watsons'ta | Watsons",
+   "imgs": 0,
+   "products": 0
+  },
+  {
+   "path": "/saglikli-yasam/c/106",
+   "url": "https://web.archive.org/web/20260616023751/https://www.watsons.com.tr/saglikli-yasam/c/106",
+   "title": "Sağlıklı Yaşam Fiyatları, Çeşitleri ve Markaları | Watsons",
+   "imgs": 39,
+   "products": 104
+  },
+  {
+   "path": "/ayin-urunleri/c/50007",
+   "url": "https://web.archive.org/web/20260416050417/https://www.watsons.com.tr/",
+   "title": "Kasa Arkası Ürünlerde Her Ayın Avantajlı Fiyatları | Watsons",
+   "imgs": 0,
+   "products": 0
+  },
+  {
+   "path": "/makyaj/makyaj-cok-satanlar/c/100070",
+   "url": "https://web.archive.org/web/20260616024427/https://www.watsons.com.tr/makyaj/makyaj-cok-satanlar/c/100070",
+   "title": "Makyaj Ürünleri ve Çeşitlerinde Çok Satanlar | Watsons",
+   "imgs": 52,
+   "products": 94
   }
  ],
- "site": [],
- "products": [],
- "logos": [],
+ "site": [
+  {
+   "page": "/",
+   "src": "https://web.archive.org/web/20260614013016oe_/https://media.watsons.com.tr/medias/sys_master/images/hcb/h90/13953679982622/ECOM_TIKLAGELAL_CRM_KAMPANYASI_COVER_S%E2%95%A0%C2%BAUBAT2026_1425X330/ECOM-TIKLAGELAL-CRM-KAMPANYASI-COVER-S-UBAT2026-1425X330.png",
+   "alt": "ECOM_TIKLAGELAL_CRM_KAMPANYASI_COVER_S╠ºUBAT2026_1425X330.png",
+   "w": 1425,
+   "h": 330,
+   "boxW": 1420,
+   "boxH": 329,
+   "y": 4495,
+   "link": "https://www.watsons.com.tr/kampanyalar",
+   "file": "assets/site/home-001.jpg",
+   "bytes": 125631,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/images/hcb/h90/13953679982622/ECOM_TIKLAGELAL_CRM_KAMPANYASI_COVER_S%E2%95%A0%C2%BAUBAT2026_1425X330/ECOM-TIKLAGELAL-CRM-KAMPANYASI-COVER-S-UBAT2026-1425X330.png",
+   "cached": true
+  },
+  {
+   "page": "/",
+   "src": "https://web.archive.org/web/20260614013016im_/https://media.watsons.com.tr/medias/sys_master/images/h17/ha3/8840990392350/CKHHLogo/CKHHLogo.png",
+   "alt": "CKHHLogo.png",
+   "w": 251,
+   "h": 31,
+   "boxW": 200,
+   "boxH": 25,
+   "y": 7605,
+   "link": "",
+   "file": "assets/site/home-020.png",
+   "bytes": 2999,
+   "type": "image/png",
+   "original": "https://media.watsons.com.tr/medias/sys_master/images/h17/ha3/8840990392350/CKHHLogo/CKHHLogo.png",
+   "cached": true
+  },
+  {
+   "page": "/kampanyalar",
+   "src": "https://web.archive.org/web/20260516121203im_/https://media.watsons.com.tr/medias/sys_master/images/h26/h06/13935509110814/ECOM_TIKLAGELAL_CRM_KAMPANYASI_COVER_S%E2%95%A0%C2%BAUBAT2026_1425X330/ECOM-TIKLAGELAL-CRM-KAMPANYASI-COVER-S-UBAT2026-1425X330.png",
+   "alt": "ECOM_TIKLAGELAL_CRM_KAMPANYASI_COVER_S╠ºUBAT2026_1425X330.png",
+   "w": 1425,
+   "h": 330,
+   "boxW": 1400,
+   "boxH": 324,
+   "y": 1140,
+   "link": "",
+   "file": "assets/site/kampanyalar-001.jpg",
+   "bytes": 125631,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/images/h26/h06/13935509110814/ECOM_TIKLAGELAL_CRM_KAMPANYASI_COVER_S%E2%95%A0%C2%BAUBAT2026_1425X330/ECOM-TIKLAGELAL-CRM-KAMPANYASI-COVER-S-UBAT2026-1425X330.png",
+   "cached": true
+  },
+  {
+   "page": "/kampanyalar",
+   "src": "https://web.archive.org/web/20260516121203im_/https://media.watsons.com.tr/medias/sys_master/images/h78/h25/13079539089438/resim/resim.jpg",
+   "alt": "resim.jpg",
+   "w": 800,
+   "h": 185,
+   "boxW": 1400,
+   "boxH": 324,
+   "y": 1857,
+   "link": "",
+   "file": "assets/site/kampanyalar-002.jpg",
+   "bytes": 20075,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/images/h78/h25/13079539089438/resim/resim.jpg",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/c/100",
+   "src": "https://web.archive.org/web/20260712122843im_/https://media.watsons.com.tr/medias/sys_master/images/he9/h98/13518500036638/unfilter-1/unfilter-1.png",
+   "alt": "unfilter-1.png",
+   "w": 1425,
+   "h": 110,
+   "boxW": 1400,
+   "boxH": 108,
+   "y": 240,
+   "link": "https://www.watsons.com.tr/makyaj/c/100?query=:most-relevant:masterBrandName:UNFILTER",
+   "file": "assets/site/makyaj-c-100-001.jpg",
+   "bytes": 32059,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/images/he9/h98/13518500036638/unfilter-1/unfilter-1.png",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/c/100",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/hbb/h93/10525759602718/prd-front-1397718_195x195/prd-front-1397718-195x195.jpg",
+   "alt": " MAYBELLINE MAYBELLINE Maybelline New York Super Lock Brow Glue Kaş Sabitleyici Maskara  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 1324,
+   "link": "https://www.watsons.com.tr/maybelline-new-york-super-lock-brow-glue-kas-sabitleyici-maskara/p/BP_1397718",
+   "file": "assets/site/makyaj-c-100-002.jpg",
+   "bytes": 9056,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hbb/h93/10525759602718/prd-front-1397718_195x195/prd-front-1397718-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/c/100",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/hba/h82/14167126867998/prd-front-1274021_195x195/prd-front-1274021-195x195.jpg",
+   "alt": " MAYBELLINE MAYBELLINE Maybelline New York Lash Sensational Maskara Sky High  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 1744,
+   "link": "https://www.watsons.com.tr/maybelline-new-york-lash-sensational-maskara-sky-high/p/BP_1274021",
+   "file": "assets/site/makyaj-c-100-003.jpg",
+   "bytes": 5530,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hba/h82/14167126867998/prd-front-1274021_195x195/prd-front-1274021-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/c/100",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h18/h95/9920028213278/prd-front-1382367_195x195/prd-front-1382367-195x195.jpg",
+   "alt": " LOREAL PARIS LOREAL PARIS L'Oreal Paris Panorama Hacim Veren Maskara Siyah  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 1744,
+   "link": "https://www.watsons.com.tr/loreal-paris-panorama-hacim-veren-maskara-siyah/p/BP_1382367",
+   "file": "assets/site/makyaj-c-100-004.jpg",
+   "bytes": 8648,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h18/h95/9920028213278/prd-front-1382367_195x195/prd-front-1382367-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/c/100",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h3e/ha7/9963725160478/prd-front-1319556_195x195/prd-front-1319556-195x195.jpg",
+   "alt": " NYX NYX Nyx Professional Makeup Bare With Me Kapatıcı Serum 01 Fair  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 1744,
+   "link": "https://www.watsons.com.tr/nyx-professional-makeup-bare-with-me-kapatici-serum-01-fair/p/BP_1319556",
+   "file": "assets/site/makyaj-c-100-005.jpg",
+   "bytes": 11378,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h3e/ha7/9963725160478/prd-front-1319556_195x195/prd-front-1319556-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/c/100",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h96/h48/11646691016734/prd-front-1417948_195x195/prd-front-1417948-195x195.jpg",
+   "alt": " REVOLUTION REVOLUTION Revolution The Icon Enchanted Far Paleti  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 1744,
+   "link": "https://www.watsons.com.tr/revolution-the-icon-enchanted-far-paleti/p/BP_1417948",
+   "file": "assets/site/makyaj-c-100-006.jpg",
+   "bytes": 5604,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h96/h48/11646691016734/prd-front-1417948_195x195/prd-front-1417948-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/c/100",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h96/h85/14125659619358/prd-front-151534_195x195/prd-front-151534-195x195.jpg",
+   "alt": " MAYBELLINE MAYBELLINE Maybelline New York Instant Anti Age Eraser Kapatıcı 01 Light  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2164,
+   "link": "https://www.watsons.com.tr/maybelline-new-york-instant-anti-age-eraser-kapatici-01-light/p/BP_151534",
+   "file": "assets/site/makyaj-c-100-007.jpg",
+   "bytes": 8440,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h96/h85/14125659619358/prd-front-151534_195x195/prd-front-151534-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/c/100",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h65/h44/9963724374046/prd-front-1319563_195x195/prd-front-1319563-195x195.jpg",
+   "alt": " NYX NYX Nyx Professional Makeup Bare With Me Kapatıcı Serum 02 Light  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2164,
+   "link": "https://www.watsons.com.tr/nyx-professional-makeup-bare-with-me-kapatici-serum-02-light/p/BP_1319563",
+   "file": "assets/site/makyaj-c-100-008.jpg",
+   "bytes": 11328,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h65/h44/9963724374046/prd-front-1319563_195x195/prd-front-1319563-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/c/100",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h47/h70/8909225820190/prd-front-166550_195x195/prd-front-166550-195x195.jpeg",
+   "alt": " REVOLUTION REVOLUTION Revolution Reloaded Palette Affection Far Paleti  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2164,
+   "link": "https://www.watsons.com.tr/revolution-reloaded-palette-affection-far-paleti/p/BP_166550",
+   "file": "assets/site/makyaj-c-100-009.jpg",
+   "bytes": 3366,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h47/h70/8909225820190/prd-front-166550_195x195/prd-front-166550-195x195.jpeg",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/c/100",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/hb7/hc9/11798892642334/prd-front-1424997_195x195/prd-front-1424997-195x195.jpg",
+   "alt": " LOREAL PARIS LOREAL PARIS L'Oreal Paris Lumi Blush Yoğun Pigmentli ve Işıltılı Likit Allık Glowy True Rose  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2164,
+   "link": "https://www.watsons.com.tr/loreal-paris-lumi-blush-yogun-pigmentli-ve-isiltili-likit-allik-glowy-true-rose/p/BP_1424997",
+   "file": "assets/site/makyaj-c-100-010.jpg",
+   "bytes": 7238,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hb7/hc9/11798892642334/prd-front-1424997_195x195/prd-front-1424997-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/c/100",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h10/h93/10525749379102/prd-front-1397312_195x195/prd-front-1397312-195x195.jpg",
+   "alt": " LOREAL PARIS LOREAL PARIS L'Oreal Paris Infaillible 3-Second Makyaj Sabitleme Spreyi  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2584,
+   "link": "https://www.watsons.com.tr/loreal-paris-infaillible-3-second-makyaj-sabitleme-spreyi/p/BP_1397312",
+   "file": "assets/site/makyaj-c-100-011.jpg",
+   "bytes": 7198,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h10/h93/10525749379102/prd-front-1397312_195x195/prd-front-1397312-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/c/100",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h21/he8/14125666992158/prd-front-161989_195x195/prd-front-161989-195x195.jpg",
+   "alt": " MAYBELLINE MAYBELLINE Maybelline New York Instant Eraser Anti Age Kapatıcı No: 00 Ivory  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2584,
+   "link": "https://www.watsons.com.tr/maybelline-new-york-instant-eraser-anti-age-kapatici-no-00-ivory/p/BP_161989",
+   "file": "assets/site/makyaj-c-100-012.jpg",
+   "bytes": 8495,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h21/he8/14125666992158/prd-front-161989_195x195/prd-front-161989-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/c/100",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/hcd/h19/12082106990622/prd-front-1432494_195x195/prd-front-1432494-195x195.jpg",
+   "alt": " NYX NYX Nyx Professional Makeup Buttermelt Blush Kremsi Pudra Allık 02 Butta Together  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2584,
+   "link": "https://www.watsons.com.tr/nyx-professional-makeup-buttermelt-blush-kremsi-pudra-allik-02-butta-together/p/BP_1432494",
+   "file": "assets/site/makyaj-c-100-013.jpg",
+   "bytes": 10733,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hcd/h19/12082106990622/prd-front-1432494_195x195/prd-front-1432494-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/c/100",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h39/h6a/11922177196062/prd-front-1425326_195x195/prd-front-1425326-195x195.jpg",
+   "alt": " LOREAL PARIS LOREAL PARIS L'Oreal Paris Plump Ambition Hyaluron Dudak Yağı No: 641  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2584,
+   "link": "https://www.watsons.com.tr/loreal-paris-plump-ambition-hyaluron-dudak-yagi-no-641/p/BP_1425326",
+   "file": "assets/site/makyaj-c-100-014.jpg",
+   "bytes": 6243,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h39/h6a/11922177196062/prd-front-1425326_195x195/prd-front-1425326-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/c/100",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/hd6/h8e/12082126389278/prd-front-1429883_195x195/prd-front-1429883-195x195.jpg",
+   "alt": " NYX NYX Nyx Professional Makeup The Face Glue Sabitleyici Sprey  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 3004,
+   "link": "https://www.watsons.com.tr/nyx-professional-makeup-the-face-glue-sabitleyici-sprey/p/BP_1429883",
+   "file": "assets/site/makyaj-c-100-015.jpg",
+   "bytes": 14198,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hd6/h8e/12082126389278/prd-front-1429883_195x195/prd-front-1429883-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/c/100",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h45/hea/8956729753630/prd-front-153212_195x195/prd-front-153212-195x195.png",
+   "alt": " MAYBELLINE MAYBELLINE Maybelline New York Lash Sensational Yelpaze Etkili Maskara Ekstra Siyah  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 3004,
+   "link": "https://www.watsons.com.tr/maybelline-new-york-lash-sensational-yelpaze-etkili-maskara-ekstra-siyah/p/BP_153212",
+   "file": "assets/site/makyaj-c-100-016.jpg",
+   "bytes": 6000,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h45/hea/8956729753630/prd-front-153212_195x195/prd-front-153212-195x195.png",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/c/100",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/ha0/hae/8909770620958/prd-front-169388_195x195/prd-front-169388-195x195.png",
+   "alt": " SHOW BY PASTEL SHOW BY PASTEL Show By Pastel Show Your Sweetness Freckle Pen Çil Kalemi  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 3004,
+   "link": "https://www.watsons.com.tr/show-by-pastel-show-your-sweetness-freckle-pen-cil-kalemi/p/BP_169388",
+   "file": "assets/site/makyaj-c-100-017.jpg",
+   "bytes": 1948,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/ha0/hae/8909770620958/prd-front-169388_195x195/prd-front-169388-195x195.png",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/c/100",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h3a/h2e/11907769597982/prd-front-105655_195x195/prd-front-105655-195x195.jpg",
+   "alt": " LOREAL PARIS LOREAL PARIS L'Oreal Paris True Match Bakım Yapan Fondöten 2R Rose Vanilla  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 3004,
+   "link": "https://www.watsons.com.tr/loreal-paris-true-match-bakim-yapan-fondoten-2r-rose-vanilla/p/BP_105655",
+   "file": "assets/site/makyaj-c-100-018.jpg",
+   "bytes": 8463,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h3a/h2e/11907769597982/prd-front-105655_195x195/prd-front-105655-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/c/100",
+   "src": "https://web.archive.org/web/20260712122843im_/https://media.watsons.com.tr/medias/sys_master/root/h7f/hb1/13789512761374/logowatsons/logowatsons.png",
+   "alt": "",
+   "w": 500,
+   "h": 150,
+   "boxW": 155,
+   "boxH": 47,
+   "y": 66,
+   "link": "https://www.watsons.com.tr/",
+   "file": "assets/site/makyaj-c-100-020.png",
+   "bytes": 32405,
+   "type": "image/png",
+   "original": "https://media.watsons.com.tr/medias/sys_master/root/h7f/hb1/13789512761374/logowatsons/logowatsons.png",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/c/100",
+   "src": "https://web.archive.org/web/20260712122843im_/https://media.watsons.com.tr/medias/sys_master/root/hf4/h86/10521567756318/kazananbadge/kazananbadge.png",
+   "alt": "",
+   "w": 2000,
+   "h": 2000,
+   "boxW": 32,
+   "boxH": 32,
+   "y": 450,
+   "link": "",
+   "file": "assets/site/makyaj-c-100-021.png",
+   "bytes": 137950,
+   "type": "image/png",
+   "original": "https://media.watsons.com.tr/medias/sys_master/root/hf4/h86/10521567756318/kazananbadge/kazananbadge.png",
+   "cached": true
+  },
+  {
+   "page": "/sac-bakim/c/102",
+   "src": "https://web.archive.org/web/20260710112429im_/https://media.watsons.com.tr/medias/sys_master/images/h89/h87/13518500560926/nbw-cp/nbw-cp.png",
+   "alt": "nbw-cp.png",
+   "w": 1425,
+   "h": 110,
+   "boxW": 1400,
+   "boxH": 108,
+   "y": 240,
+   "link": "https://www.watsons.com.tr/naturals-by-watsons/b/2753",
+   "file": "assets/site/sac-bakim-c-102-001.jpg",
+   "bytes": 57237,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/images/h89/h87/13518500560926/nbw-cp/nbw-cp.png",
+   "cached": true
+  },
+  {
+   "page": "/sac-bakim/c/102",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h6e/h51/12450668937246/prd-front-1342999_195x195/prd-front-1342999-195x195.jpg",
+   "alt": " HEAD&SHOULDERS HEAD&SHOULDERS Head&Shoulders Mentol Ferahlığı Kepek Karşıtı Şampuan 250 ml  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 1315,
+   "link": "https://www.watsons.com.tr/head-shoulders-mentol-ferahligi-kepek-karsiti-sampuan-250-ml/p/BP_1342999",
+   "file": "assets/site/sac-bakim-c-102-002.jpg",
+   "bytes": 11089,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h6e/h51/12450668937246/prd-front-1342999_195x195/prd-front-1342999-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/sac-bakim/c/102",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/hc4/h2e/13121701969950/prd-front-1462874_195x195/prd-front-1462874-195x195.jpg",
+   "alt": " ELSEVE ELSEVE L'Oreal Paris Elseve Glycolic Gloss Parlaklık Veren Bakım Şampuanı 300 ml  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 1315,
+   "link": "https://www.watsons.com.tr/loreal-paris-elseve-glycolic-gloss-parlaklik-veren-bakim-sampuani-300-ml/p/BP_1462874",
+   "file": "assets/site/sac-bakim-c-102-003.jpg",
+   "bytes": 8851,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hc4/h2e/13121701969950/prd-front-1462874_195x195/prd-front-1462874-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/sac-bakim/c/102",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h8f/he4/14094991917086/prd-front-1491847_195x195/prd-front-1491847-195x195.jpg",
+   "alt": " DOVE DOVE Dove Saç Serumu Peptid Bond Repair 80 ml  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 1735,
+   "link": "https://www.watsons.com.tr/dove-sac-serumu-peptid-bond-repair-80-ml/p/BP_1491847",
+   "file": "assets/site/sac-bakim-c-102-004.jpg",
+   "bytes": 8424,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h8f/he4/14094991917086/prd-front-1491847_195x195/prd-front-1491847-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/sac-bakim/c/102",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h6e/hdc/10639730081822/prd-front-174358_195x195/prd-front-174358-195x195.jpg",
+   "alt": " URBAN CARE URBAN CARE Urban Care Curl Hibiscus ve Shea Durulanmaz Bakım Kremi 175 ml  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 1735,
+   "link": "https://www.watsons.com.tr/urban-care-curl-hibiscus-ve-shea-durulanmaz-bakim-kremi-175-ml/p/BP_174358",
+   "file": "assets/site/sac-bakim-c-102-005.jpg",
+   "bytes": 7471,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h6e/hdc/10639730081822/prd-front-174358_195x195/prd-front-174358-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/sac-bakim/c/102",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h42/h88/13121705902110/prd-front-1462888_195x195/prd-front-1462888-195x195.jpg",
+   "alt": " ELSEVE ELSEVE L'Oreal Paris Elseve Glycolic Gloss Mükemmel Parlaklık Veren Saç Bakım Sprey Serumu 150 ml  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 1735,
+   "link": "https://www.watsons.com.tr/loreal-paris-elseve-glycolic-gloss-mukemmel-parlaklik-veren-sac-bakim-sprey-serumu-150-ml/p/BP_1462888",
+   "file": "assets/site/sac-bakim-c-102-006.jpg",
+   "bytes": 7244,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h42/h88/13121705902110/prd-front-1462888_195x195/prd-front-1462888-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/sac-bakim/c/102",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/hff/h1e/12719462187038/prd-front-1432333_195x195/prd-front-1432333-195x195.jpg",
+   "alt": " ELSEVE ELSEVE Elseve Şampuan Komple Direnç Dökülme Karşıtı 300 ml  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2155,
+   "link": "https://www.watsons.com.tr/elseve-sampuan-komple-direnc-dokulme-karsiti-300-ml/p/BP_1432333",
+   "file": "assets/site/sac-bakim-c-102-007.jpg",
+   "bytes": 10147,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hff/h1e/12719462187038/prd-front-1432333_195x195/prd-front-1432333-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/sac-bakim/c/102",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h57/hd3/11475429949470/prd-front-127634_195x195/prd-front-127634-195x195.jpg",
+   "alt": " TAFT TAFT Taft Curl and Flex Köpük 150 ml  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2155,
+   "link": "https://www.watsons.com.tr/taft-curl-and-flex-kopuk-150-ml/p/BP_127634",
+   "file": "assets/site/sac-bakim-c-102-008.jpg",
+   "bytes": 2918,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h57/hd3/11475429949470/prd-front-127634_195x195/prd-front-127634-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/sac-bakim/c/102",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h39/ha7/13784875728926/prd-front-1484469_195x195/prd-front-1484469-195x195.jpeg",
+   "alt": " PANTENE PANTENE EXC. Pantene Saç Yağı Love Keratin Koruması 100 ml  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2155,
+   "link": "https://www.watsons.com.tr/pantene-sac-yagi-love-keratin-korumasi-100-ml/p/BP_1484469",
+   "file": "assets/site/sac-bakim-c-102-009.jpg",
+   "bytes": 5281,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h39/ha7/13784875728926/prd-front-1484469_195x195/prd-front-1484469-195x195.jpeg",
+   "cached": true
+  },
+  {
+   "page": "/sac-bakim/c/102",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h58/h4b/12719461138462/prd-front-1430590_195x195/prd-front-1430590-195x195.jpg",
+   "alt": " ELSEVE ELSEVE L'Oreal Paris Elseve Hydra Hyaluronic Pure Salisilik Asit İçeren Yağlanma Karşıtı Arındırıcı Şampuan 300 ml  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2575,
+   "link": "https://www.watsons.com.tr/loreal-paris-elseve-hydra-hyaluronic-pure-salisilik-asit-iceren-yaglanma-karsiti-arindirici-sampuan-300-ml/p/BP_1430590",
+   "file": "assets/site/sac-bakim-c-102-010.jpg",
+   "bytes": 9987,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h58/h4b/12719461138462/prd-front-1430590_195x195/prd-front-1430590-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/sac-bakim/c/102",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/hb2/h10/13683274121246/prd-front-1481648_195x195/prd-front-1481648-195x195.jpg",
+   "alt": " HEAD&SHOULDERS HEAD&SHOULDERS Head&Shoulders Şampuan Clinical Dry Scalp 400 ml  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2575,
+   "link": "https://www.watsons.com.tr/head-shoulders-sampuan-clinical-dry-scalp-400-ml/p/BP_1481648",
+   "file": "assets/site/sac-bakim-c-102-011.jpg",
+   "bytes": 13881,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hb2/h10/13683274121246/prd-front-1481648_195x195/prd-front-1481648-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/sac-bakim/c/102",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/hed/h38/10525586030622/prd-front-1314299_195x195/prd-front-1314299-195x195.jpg",
+   "alt": " HEAD&SHOULDERS HEAD&SHOULDERS Head&Shoulders Kadınlara Özel Dökülme ve Kepek Karşıtı Kafein Etkili 330 ml Şampuan  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2575,
+   "link": "https://www.watsons.com.tr/head-shoulders-kadinlara-ozel-dokulme-ve-kepek-karsiti-kafein-etkili-330-ml-sampuan/p/BP_1314299",
+   "file": "assets/site/sac-bakim-c-102-012.jpg",
+   "bytes": 11188,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hed/h38/10525586030622/prd-front-1314299_195x195/prd-front-1314299-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/sac-bakim/c/102",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h01/hf9/10344493744158/prd-front-1395751_195x195/prd-front-1395751-195x195.jpg",
+   "alt": " ELSEVE ELSEVE L'Oreal Paris Elseve Glycolic Gloss Parlaklığı Saça Mühürleyen Laminasyon 5 Dakikada Durulanan Bakım 200 ml  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2575,
+   "link": "https://www.watsons.com.tr/loreal-paris-elseve-glycolic-gloss-parlakligi-saca-muhurleyen-laminasyon-5-dakikada-durulanan-bakim-200-ml/p/BP_1395751",
+   "file": "assets/site/sac-bakim-c-102-013.jpg",
+   "bytes": 8231,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h01/hf9/10344493744158/prd-front-1395751_195x195/prd-front-1395751-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/sac-bakim/c/102",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/ha9/h8d/8900692738078/prd-front-145752_195x195/prd-front-145752-195x195.png",
+   "alt": " OGX OGX OGX Yenileyici Argan Oil of Morocco 100 ml  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2995,
+   "link": "https://www.watsons.com.tr/ogx-yenileyici-argan-oil-of-morocco-100-ml/p/BP_145752",
+   "file": "assets/site/sac-bakim-c-102-014.jpg",
+   "bytes": 6885,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/ha9/h8d/8900692738078/prd-front-145752_195x195/prd-front-145752-195x195.png",
+   "cached": true
+  },
+  {
+   "page": "/sac-bakim/c/102",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h01/h89/13372892905502/prd-front-172767_195x195/prd-front-172767-195x195.jpg",
+   "alt": " ELİDOR ELİDOR Elidor Superblend Saç Bakım Şampuanı Güçlü ve Parlak E Vitamini Makademya Yağı Kolajen 400 ml  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2995,
+   "link": "https://www.watsons.com.tr/elidor-superblend-sac-bakim-sampuani-guclu-ve-parlak-e-vitamini-makademya-yagi-kolajen-400-ml/p/BP_172767",
+   "file": "assets/site/sac-bakim-c-102-015.jpg",
+   "bytes": 8867,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h01/h89/13372892905502/prd-front-172767_195x195/prd-front-172767-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/sac-bakim/c/102",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/hfc/ha7/9719078060062/prd-front-1346296_195x195/prd-front-1346296-195x195.jpg",
+   "alt": " CLEAR CLEAR Clear Men Scalp Pro Saç Dökülmesine Karşı Güçlendirici Şampuan 300 ml  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2995,
+   "link": "https://www.watsons.com.tr/clear-men-scalp-pro-sac-dokulmesine-karsi-guclendirici-sampuan-300-ml/p/BP_1346296",
+   "file": "assets/site/sac-bakim-c-102-016.jpg",
+   "bytes": 8175,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hfc/ha7/9719078060062/prd-front-1346296_195x195/prd-front-1346296-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/parfum/c/100013",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/ha6/h5e/8900184440862/prd-front-139583_195x195/prd-front-139583-195x195.jpeg",
+   "alt": " DAVIDOFF DAVIDOFF Davidoff Cool Water Kadın Parfüm EDT 100 ml  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 1222,
+   "link": "https://www.watsons.com.tr/davidoff-cool-water-kadin-parfum-edt-100-ml/p/BP_139583",
+   "file": "assets/site/parfum-c-100013-001.jpg",
+   "bytes": 3655,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/ha6/h5e/8900184440862/prd-front-139583_195x195/prd-front-139583-195x195.jpeg",
+   "cached": true
+  },
+  {
+   "page": "/parfum/c/100013",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/hd1/h88/8903701168158/prd-front-158650_195x195/prd-front-158650-195x195.jpeg",
+   "alt": " VERSACE VERSACE Versace Crystal Noir Kadın Parfüm EDT 90 ml  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 1642,
+   "link": "https://www.watsons.com.tr/versace-crystal-noir-kadin-parfum-edt-90-ml/p/BP_158650",
+   "file": "assets/site/parfum-c-100013-002.jpg",
+   "bytes": 6996,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hd1/h88/8903701168158/prd-front-158650_195x195/prd-front-158650-195x195.jpeg",
+   "cached": true
+  },
+  {
+   "page": "/parfum/c/100013",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/he7/heb/8900400185374/prd-front-142166_195x195/prd-front-142166-195x195.jpeg",
+   "alt": " CALVIN KLEIN CALVIN KLEIN Calvin Klein Beauty Kadın Parfüm EDP 100 ml  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 1642,
+   "link": "https://www.watsons.com.tr/calvin-klein-beauty-kadin-parfum-edp-100-ml/p/BP_142166",
+   "file": "assets/site/parfum-c-100013-003.jpg",
+   "bytes": 3963,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/he7/heb/8900400185374/prd-front-142166_195x195/prd-front-142166-195x195.jpeg",
+   "cached": true
+  },
+  {
+   "page": "/parfum/c/100013",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/ha1/h57/13230561755166/prd-front-1475859_195x195/prd-front-1475859-195x195.jpg",
+   "alt": " VERSACE VERSACE Versace Crystal Noir Kadın Parfüm 90 ml  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 1642,
+   "link": "https://www.watsons.com.tr/versace-crystal-noir-kadin-parfum-90-ml/p/BP_1475859",
+   "file": "assets/site/parfum-c-100013-004.jpg",
+   "bytes": 7551,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/ha1/h57/13230561755166/prd-front-1475859_195x195/prd-front-1475859-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/parfum/c/100013",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h3f/h8a/11588226744350/prd-front-1423205_195x195/prd-front-1423205-195x195.jpeg",
+   "alt": " KYLIE JENNER KYLIE JENNER Kylie Jenner Cosmic Parfüm Edp 100 ml  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2062,
+   "link": "https://www.watsons.com.tr/kylie-jenner-cosmic-parfum-edp-100-ml/p/BP_1423205",
+   "file": "assets/site/parfum-c-100013-005.jpg",
+   "bytes": 6158,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h3f/h8a/11588226744350/prd-front-1423205_195x195/prd-front-1423205-195x195.jpeg",
+   "cached": true
+  },
+  {
+   "page": "/parfum/c/100013",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h73/heb/9370529267742/prd-front-1356159_195x195/prd-front-1356159-195x195.jpg",
+   "alt": " VERSACE VERSACE Versace Eros Erkek Parfüm Edp 100 ml  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2062,
+   "link": "https://www.watsons.com.tr/versace-eros-erkek-parfum-edp-100-ml/p/BP_1356159",
+   "file": "assets/site/parfum-c-100013-006.jpg",
+   "bytes": 10445,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h73/heb/9370529267742/prd-front-1356159_195x195/prd-front-1356159-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/parfum/c/100013",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h11/h64/8900283596830/prd-front-139867_195x195/prd-front-139867-195x195.jpeg",
+   "alt": " JOOP JOOP Joop Homme Erkek Parfüm EDT 125 ml  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2062,
+   "link": "https://www.watsons.com.tr/joop-homme-erkek-parfum-edt-125-ml/p/BP_139867",
+   "file": "assets/site/parfum-c-100013-007.jpg",
+   "bytes": 3657,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h11/h64/8900283596830/prd-front-139867_195x195/prd-front-139867-195x195.jpeg",
+   "cached": true
+  },
+  {
+   "page": "/parfum/c/100013",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/hb9/h97/8900786454558/prd-front-139585_195x195/prd-front-139585-195x195.jpeg",
+   "alt": " CALVIN KLEIN CALVIN KLEIN Calvin Klein In2U Kadın Parfüm EDT 150 ml  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2062,
+   "link": "https://www.watsons.com.tr/calvin-klein-in2u-kadin-parfum-edt-150-ml/p/BP_139585",
+   "file": "assets/site/parfum-c-100013-008.jpg",
+   "bytes": 4275,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hb9/h97/8900786454558/prd-front-139585_195x195/prd-front-139585-195x195.jpeg",
+   "cached": true
+  },
+  {
+   "page": "/parfum/c/100013",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h92/h75/13683257081886/prd-front-1481606_195x195/prd-front-1481606-195x195.jpg",
+   "alt": " Imprime IMPRIME EXC. Imprime Cherie Bloom Kadın EDP Parfüm 50 ml  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2482,
+   "link": "https://www.watsons.com.tr/imprime-cherie-bloom-kadin-edp-parfum-50-ml/p/BP_1481606",
+   "file": "assets/site/parfum-c-100013-009.jpg",
+   "bytes": 6533,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h92/h75/13683257081886/prd-front-1481606_195x195/prd-front-1481606-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/parfum/c/100013",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/hb5/h72/9259143790622/prd-front-1348781_195x195/prd-front-1348781-195x195.png",
+   "alt": " CHLOE CHLOE Chloe Love Story Bayan Edp 75 ml  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2482,
+   "link": "https://www.watsons.com.tr/chloe-love-story-bayan-edp-75-ml/p/BP_1348781",
+   "file": "assets/site/parfum-c-100013-010.jpg",
+   "bytes": 8151,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hb5/h72/9259143790622/prd-front-1348781_195x195/prd-front-1348781-195x195.png",
+   "cached": true
+  },
+  {
+   "page": "/parfum/c/100013",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/hdc/hda/11806830592030/prd-front-1425956_195x195/prd-front-1425956-195x195.jpg",
+   "alt": " AVON AVON Avon Musk Marine Erkek EDT 75 ml  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2904,
+   "link": "https://www.watsons.com.tr/avon-musk-marine-erkek-edt-75-ml/p/BP_1425956",
+   "file": "assets/site/parfum-c-100013-011.jpg",
+   "bytes": 7664,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hdc/hda/11806830592030/prd-front-1425956_195x195/prd-front-1425956-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/parfum/c/100013",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h19/h75/9370538704926/prd-front-1356117_195x195/prd-front-1356117-195x195.jpg",
+   "alt": " CHLOE CHLOE Chloe Nomade Kadın Parfüm EDP 75 ml  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2904,
+   "link": "https://www.watsons.com.tr/chloe-nomade-kadin-parfum-edp-75-ml/p/BP_1356117",
+   "file": "assets/site/parfum-c-100013-012.jpg",
+   "bytes": 5798,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h19/h75/9370538704926/prd-front-1356117_195x195/prd-front-1356117-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/parfum/c/100013",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h7f/h0f/13749544910878/prd-front-1427538_195x195/prd-front-1427538-195x195.jpg",
+   "alt": " DAVIDOFF DAVIDOFF Davidoff Adventure Erkek Parfüm EDT 100 ml  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2904,
+   "link": "https://www.watsons.com.tr/davidoff-adventure-erkek-parfum-edt-100-ml/p/BP_1427538",
+   "file": "assets/site/parfum-c-100013-013.jpg",
+   "bytes": 8615,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h7f/h0f/13749544910878/prd-front-1427538_195x195/prd-front-1427538-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/parfum/c/100013",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h24/he4/11806835310622/prd-front-1425998_195x195/prd-front-1425998-195x195.jpg",
+   "alt": " AVON AVON Avon Rare Pearls Kadın EDP Parfüm 50 ml  ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2904,
+   "link": "https://www.watsons.com.tr/avon-rare-pearls-kadin-edp-parfum-50-ml/p/BP_1425998",
+   "file": "assets/site/parfum-c-100013-014.jpg",
+   "bytes": 5707,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h24/he4/11806835310622/prd-front-1425998_195x195/prd-front-1425998-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/parfum/c/100013",
+   "src": "https://web.archive.org/web/20260710111517im_/https://media.watsons.com.tr/medias/sys_master/root/he5/h63/13758697603102/ciceksi/ciceksi.png",
+   "alt": "",
+   "w": 625,
+   "h": 625,
+   "boxW": 32,
+   "boxH": 32,
+   "y": 348,
+   "link": "",
+   "file": "assets/site/parfum-c-100013-020.png",
+   "bytes": 703500,
+   "type": "image/png",
+   "original": "https://media.watsons.com.tr/medias/sys_master/root/he5/h63/13758697603102/ciceksi/ciceksi.png",
+   "cached": true
+  },
+  {
+   "page": "/parfum/c/100013",
+   "src": "https://web.archive.org/web/20260710111517im_/https://media.watsons.com.tr/medias/sys_master/root/h2c/h10/13906317115422/Yeni_POP/Yeni-POP.png",
+   "alt": "",
+   "w": 408,
+   "h": 408,
+   "boxW": 32,
+   "boxH": 32,
+   "y": 348,
+   "link": "",
+   "file": "assets/site/parfum-c-100013-021.png",
+   "bytes": 65785,
+   "type": "image/png",
+   "original": "https://media.watsons.com.tr/medias/sys_master/root/h2c/h10/13906317115422/Yeni_POP/Yeni-POP.png",
+   "cached": true
+  },
+  {
+   "page": "/parfum/c/100013",
+   "src": "https://web.archive.org/web/20260710111517im_/https://media.watsons.com.tr/medias/sys_master/root/h9d/h3e/13744861872158/KOKUNOTALARI_BADGE_OCAK2026-07/KOKUNOTALARI-BADGE-OCAK2026-07.png",
+   "alt": "",
+   "w": 625,
+   "h": 625,
+   "boxW": 32,
+   "boxH": 32,
+   "y": 348,
+   "link": "",
+   "file": "assets/site/parfum-c-100013-022.png",
+   "bytes": 398563,
+   "type": "image/png",
+   "original": "https://media.watsons.com.tr/medias/sys_master/root/h9d/h3e/13744861872158/KOKUNOTALARI_BADGE_OCAK2026-07/KOKUNOTALARI-BADGE-OCAK2026-07.png",
+   "cached": true
+  },
+  {
+   "page": "/kisisel-bakim/c/103",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h79/h73/14206406983710/prd-front-1308762_195x195/prd-front-1308762-195x195.jpg",
+   "alt": " REXONA REXONA Rexona Clinical Protection Confidence Kadın Deodorant 150 ml ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 1597,
+   "link": "https://www.watsons.com.tr/rexona-clinical-protection-confidence-kadin-deodorant-150-ml/p/BP_1308762",
+   "file": "assets/site/kisisel-bakim-c-103-001.jpg",
+   "bytes": 3846,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h79/h73/14206406983710/prd-front-1308762_195x195/prd-front-1308762-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/kisisel-bakim/c/103",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/hf5/h6c/8904276377630/prd-front-1248149_195x195/prd-front-1248149-195x195.png",
+   "alt": " MARVIS MARVIS Marvis Klasik Nane Diş Macunu 85 ml ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 1597,
+   "link": "https://www.watsons.com.tr/marvis-klasik-nane-dis-macunu-85-ml/p/BP_1248149",
+   "file": "assets/site/kisisel-bakim-c-103-002.jpg",
+   "bytes": 5787,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hf5/h6c/8904276377630/prd-front-1248149_195x195/prd-front-1248149-195x195.png",
+   "cached": true
+  },
+  {
+   "page": "/kisisel-bakim/c/103",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h39/h9c/11258522107934/prd-front-1368136_195x195/prd-front-1368136-195x195.jpg",
+   "alt": " ORAL-B ORAL-B Oral-B Pro 1 Şarjlı Diş Fırçası Pembe ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 1597,
+   "link": "https://www.watsons.com.tr/oral-b-pro-1-sarjli-dis-fircasi-pembe/p/BP_1368136",
+   "file": "assets/site/kisisel-bakim-c-103-003.jpg",
+   "bytes": 5673,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h39/h9c/11258522107934/prd-front-1368136_195x195/prd-front-1368136-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/kisisel-bakim/c/103",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h72/h47/13185459650590/prd-front-1461579_195x195/prd-front-1461579-195x195.jpg",
+   "alt": " EPIFY EPIFY Epify Tüy Dökücü Jel Krem 250 ml ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 1597,
+   "link": "https://www.watsons.com.tr/epify-tuy-dokucu-jel-krem-250-ml/p/BP_1461579",
+   "file": "assets/site/kisisel-bakim-c-103-004.jpg",
+   "bytes": 9064,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h72/h47/13185459650590/prd-front-1461579_195x195/prd-front-1461579-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/kisisel-bakim/c/103",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/ha3/h23/13130070294558/prd-front-1353688_195x195/prd-front-1353688-195x195.jpg",
+   "alt": " OPALESCENCE OPALESCENCE Opalescence Beyazlatıcı Diş Macunu 133 g ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2009,
+   "link": "https://www.watsons.com.tr/opalescence-beyazlatici-dis-macunu-133-g/p/BP_1353688",
+   "file": "assets/site/kisisel-bakim-c-103-005.jpg",
+   "bytes": 6004,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/ha3/h23/13130070294558/prd-front-1353688_195x195/prd-front-1353688-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/kisisel-bakim/c/103",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/hac/hc2/14236901900318/prd-front-152370_195x195/prd-front-152370-195x195.jpg",
+   "alt": " REXONA REXONA Rexona Clinical Protection Kadın Stick ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2009,
+   "link": "https://www.watsons.com.tr/rexona-clinical-protection-kadin-stick/p/BP_152370",
+   "file": "assets/site/kisisel-bakim-c-103-006.jpg",
+   "bytes": 3306,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hac/hc2/14236901900318/prd-front-152370_195x195/prd-front-152370-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/kisisel-bakim/c/103",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/he8/h95/13887168479262/prd-front-173539_195x195/prd-front-173539-195x195.jpg",
+   "alt": " OLD SPICE OLD SPICE Old Spice Whitewater Deodorant 70 ml ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2009,
+   "link": "https://www.watsons.com.tr/old-spice-whitewater-deodorant-70-ml/p/BP_173539",
+   "file": "assets/site/kisisel-bakim-c-103-007.jpg",
+   "bytes": 11393,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/he8/h95/13887168479262/prd-front-173539_195x195/prd-front-173539-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/kisisel-bakim/c/103",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h5e/hcb/11258454736926/prd-front-1337273_195x195/prd-front-1337273-195x195.jpg",
+   "alt": " ORAL-B ORAL-B Oral-B Şarjlı/Elektrikli Diş Fırçası Vitality Pro Siyah Koruma ve Temizlik ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2421,
+   "link": "https://www.watsons.com.tr/oral-b-sarjli-elektrikli-dis-fircasi-vitality-pro-siyah-koruma-ve-temizlik/p/BP_1337273",
+   "file": "assets/site/kisisel-bakim-c-103-008.jpg",
+   "bytes": 6234,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h5e/hcb/11258454736926/prd-front-1337273_195x195/prd-front-1337273-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/kisisel-bakim/c/103",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h6d/hf9/11258523156510/prd-front-1368423_195x195/prd-front-1368423-195x195.jpg",
+   "alt": " ORAL-B ORAL-B Oral-B Sensitive Clean 4'lü Diş Fırçası Yedek Başlığı ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2421,
+   "link": "https://www.watsons.com.tr/oral-b-sensitive-clean-4lu-dis-fircasi-yedek-basligi/p/BP_1368423",
+   "file": "assets/site/kisisel-bakim-c-103-009.jpg",
+   "bytes": 7568,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h6d/hf9/11258523156510/prd-front-1368423_195x195/prd-front-1368423-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/kisisel-bakim/c/103",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/hc0/h02/13230562115614/prd-front-1475866_195x195/prd-front-1475866-195x195.jpg",
+   "alt": " VERSACE VERSACE Versace Dylan Purple Kadın Parfüm EDP 100 ml ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2421,
+   "link": "https://www.watsons.com.tr/versace-dylan-purple-kadin-parfum-edp-100-ml/p/BP_1475866",
+   "file": "assets/site/kisisel-bakim-c-103-010.jpg",
+   "bytes": 8575,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hc0/h02/13230562115614/prd-front-1475866_195x195/prd-front-1475866-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/kisisel-bakim/c/103",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h73/h39/11258521321502/prd-front-1368129_195x195/prd-front-1368129-195x195.jpg",
+   "alt": " ORAL-B ORAL-B Oral-B Pro 1 Şarjlı Diş Fırçası Siyah ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2421,
+   "link": "https://www.watsons.com.tr/oral-b-pro-1-sarjli-dis-fircasi-siyah/p/BP_1368129",
+   "file": "assets/site/kisisel-bakim-c-103-011.jpg",
+   "bytes": 5397,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h73/h39/11258521321502/prd-front-1368129_195x195/prd-front-1368129-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/kisisel-bakim/c/103",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/ha4/hb8/14189095518238/prd-front-1308769_195x195/prd-front-1308769-195x195.jpg",
+   "alt": " REXONA REXONA Rexona Clinical Protection Confidence Erkek Deodorant 150 ml ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2833,
+   "link": "https://www.watsons.com.tr/rexona-clinical-protection-confidence-erkek-deodorant-150-ml/p/BP_1308769",
+   "file": "assets/site/kisisel-bakim-c-103-012.jpg",
+   "bytes": 4565,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/ha4/hb8/14189095518238/prd-front-1308769_195x195/prd-front-1308769-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/kisisel-bakim/c/103",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h1b/he1/11008670597150/prd-front-137089_195x195/prd-front-137089-195x195.jpg",
+   "alt": " Lanvin LANVIN Lanvin E'Clat D'Arpege Kadın Parfüm Edp Spray 100 ml ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2833,
+   "link": "https://www.watsons.com.tr/lanvin-eclat-darpege-kadin-parfum-edp-spray-100-ml/p/BP_137089",
+   "file": "assets/site/kisisel-bakim-c-103-013.jpg",
+   "bytes": 7084,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h1b/he1/11008670597150/prd-front-137089_195x195/prd-front-137089-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/kisisel-bakim/c/103",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/hb7/h43/8904953823262/prd-front-1276506_195x195/prd-front-1276506-195x195.png",
+   "alt": " KOTEX KOTEX Kotex Regl Gece Külodu 2 Adet Seti ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2833,
+   "link": "https://www.watsons.com.tr/kotex-regl-gece-kulodu-2-adet-seti/p/BP_1276506",
+   "file": "assets/site/kisisel-bakim-c-103-014.jpg",
+   "bytes": 13141,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hb7/h43/8904953823262/prd-front-1276506_195x195/prd-front-1276506-195x195.png",
+   "cached": true
+  },
+  {
+   "page": "/kisisel-bakim/c/103",
+   "src": "https://web.archive.org/web/20260518185826im_/https://media.watsons.com.tr/medias/sys_master/root/hde/h3a/13744861741086/KOKUNOTALARI_BADGE_OCAK2026-05/KOKUNOTALARI-BADGE-OCAK2026-05.png",
+   "alt": "",
+   "w": 625,
+   "h": 625,
+   "boxW": 32,
+   "boxH": 32,
+   "y": 1151,
+   "link": "",
+   "file": "assets/site/kisisel-bakim-c-103-015.png",
+   "bytes": 480516,
+   "type": "image/png",
+   "original": "https://media.watsons.com.tr/medias/sys_master/root/hde/h3a/13744861741086/KOKUNOTALARI_BADGE_OCAK2026-05/KOKUNOTALARI-BADGE-OCAK2026-05.png",
+   "cached": true
+  },
+  {
+   "page": "/kisisel-bakim/c/103",
+   "src": "https://web.archive.org/web/20260518185826im_/https://media.watsons.com.tr/medias/sys_master/root/h9b/h41/13744861937694/KOKUNOTALARI_BADGE_OCAK2026-08/KOKUNOTALARI-BADGE-OCAK2026-08.png",
+   "alt": "",
+   "w": 625,
+   "h": 625,
+   "boxW": 32,
+   "boxH": 32,
+   "y": 1188,
+   "link": "",
+   "file": "assets/site/kisisel-bakim-c-103-016.png",
+   "bytes": 537453,
+   "type": "image/png",
+   "original": "https://media.watsons.com.tr/medias/sys_master/root/h9b/h41/13744861937694/KOKUNOTALARI_BADGE_OCAK2026-08/KOKUNOTALARI-BADGE-OCAK2026-08.png",
+   "cached": true
+  },
+  {
+   "page": "/kisisel-bakim/c/103",
+   "src": "https://web.archive.org/web/20260518185826im_/https://media.watsons.com.tr/medias/sys_master/root/hcc/h37/13744861675550/KOKUNOTALARI_BADGE_OCAK2026-03/KOKUNOTALARI-BADGE-OCAK2026-03.png",
+   "alt": "",
+   "w": 625,
+   "h": 625,
+   "boxW": 32,
+   "boxH": 32,
+   "y": 2012,
+   "link": "",
+   "file": "assets/site/kisisel-bakim-c-103-017.png",
+   "bytes": 611738,
+   "type": "image/png",
+   "original": "https://media.watsons.com.tr/medias/sys_master/root/hcc/h37/13744861675550/KOKUNOTALARI_BADGE_OCAK2026-03/KOKUNOTALARI-BADGE-OCAK2026-03.png",
+   "cached": true
+  },
+  {
+   "page": "/erkek-bakim/c/105",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h62/hc5/13230560608286/prd-front-1475824_195x195/prd-front-1475824-195x195.jpg",
+   "alt": " MONT BLANC MONT BLANC Mont Blanc Explorer Erkek Parfüm EDP 100 ml ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 1185,
+   "link": "https://www.watsons.com.tr/mont-blanc-explorer-erkek-parfum-edp-100-ml/p/BP_1475824",
+   "file": "assets/site/erkek-bakim-c-105-001.jpg",
+   "bytes": 8505,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h62/hc5/13230560608286/prd-front-1475824_195x195/prd-front-1475824-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/erkek-bakim/c/105",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h2e/hc4/9259144052766/prd-front-1348788_195x195/prd-front-1348788-195x195.png",
+   "alt": " VERSACE VERSACE Versace Eros Flame Erkek Parfüm Edp 100 ml ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 1185,
+   "link": "https://www.watsons.com.tr/versace-eros-flame-erkek-parfum-edp-100-ml/p/BP_1348788",
+   "file": "assets/site/erkek-bakim-c-105-002.jpg",
+   "bytes": 8528,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h2e/hc4/9259144052766/prd-front-1348788_195x195/prd-front-1348788-195x195.png",
+   "cached": true
+  },
+  {
+   "page": "/erkek-bakim/c/105",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h14/h0f/12518506332190/prd-front-103227_195x195/prd-front-103227-195x195.jpg",
+   "alt": " SEBAMED SEBAMED Sebamed Şampuan Kepeğe Karşı Etkili 400 ml ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 1597,
+   "link": "https://www.watsons.com.tr/sebamed-sampuan-kepege-karsi-etkili-400-ml/p/BP_103227",
+   "file": "assets/site/erkek-bakim-c-105-003.jpg",
+   "bytes": 12994,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h14/h0f/12518506332190/prd-front-103227_195x195/prd-front-103227-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/erkek-bakim/c/105",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/hda/he7/9441247428638/prd-front-1366484_195x195/prd-front-1366484-195x195.jpg",
+   "alt": " VERSACE VERSACE Versace Dylan Blue Erkek Parfüm Edt 200 ml ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 1597,
+   "link": "https://www.watsons.com.tr/versace-dylan-blue-erkek-parfum-edt-200-ml/p/BP_1366484",
+   "file": "assets/site/erkek-bakim-c-105-004.jpg",
+   "bytes": 7767,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hda/he7/9441247428638/prd-front-1366484_195x195/prd-front-1366484-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/erkek-bakim/c/105",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h6f/h4f/9192556331038/prd-front-142352_195x195/prd-front-142352-195x195.png",
+   "alt": " BURBERRY BURBERRY Burberry Classic Erkek Parfüm EDT 100 ml ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2009,
+   "link": "https://www.watsons.com.tr/burberry-classic-erkek-parfum-edt-100-ml/p/BP_142352",
+   "file": "assets/site/erkek-bakim-c-105-005.jpg",
+   "bytes": 6029,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h6f/h4f/9192556331038/prd-front-142352_195x195/prd-front-142352-195x195.png",
+   "cached": true
+  },
+  {
+   "page": "/erkek-bakim/c/105",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h4c/h4c/11841466957854/prd-front-1424787_195x195/prd-front-1424787-195x195.jpeg",
+   "alt": " GILLETTE GILLETTE Gillette Traş Sonrası Losyon Arctic Ice 100 ml ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2009,
+   "link": "https://www.watsons.com.tr/gillette-tras-sonrasi-losyon-arctic-ice-100-ml/p/BP_1424787",
+   "file": "assets/site/erkek-bakim-c-105-006.jpg",
+   "bytes": 10245,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h4c/h4c/11841466957854/prd-front-1424787_195x195/prd-front-1424787-195x195.jpeg",
+   "cached": true
+  },
+  {
+   "page": "/erkek-bakim/c/105",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h2e/h03/12993742471198/prd-front-1261981_195x195/prd-front-1261981-195x195.jpg",
+   "alt": " OLD SPICE OLD SPICE Old Spice Clear Gel Stick Captain 70 ml ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2421,
+   "link": "https://www.watsons.com.tr/old-spice-clear-gel-stick-captain-70-ml/p/BP_1261981",
+   "file": "assets/site/erkek-bakim-c-105-007.jpg",
+   "bytes": 13732,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h2e/h03/12993742471198/prd-front-1261981_195x195/prd-front-1261981-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/erkek-bakim/c/105",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h77/h39/10331002667038/prd-front-1378496_195x195/prd-front-1378496-195x195.jpg",
+   "alt": " SIVENO SIVENO Siveno Doğal Roll On Erkek 50 ml ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2421,
+   "link": "https://www.watsons.com.tr/siveno-dogal-roll-on-erkek-50-ml/p/BP_1378496",
+   "file": "assets/site/erkek-bakim-c-105-008.jpg",
+   "bytes": 6419,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h77/h39/10331002667038/prd-front-1378496_195x195/prd-front-1378496-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/erkek-bakim/c/105",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h23/h84/9256190312478/prd-front-1346135_195x195/prd-front-1346135-195x195.png",
+   "alt": " AXE AXE Axe Erkek Deodorant Dark Temptation XL 48 Saat Etkileyici Koku 200 ml ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2421,
+   "link": "https://www.watsons.com.tr/axe-erkek-deodorant-dark-temptation-xl-48-saat-etkileyici-koku-200-ml/p/BP_1346135",
+   "file": "assets/site/erkek-bakim-c-105-009.jpg",
+   "bytes": 10725,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h23/h84/9256190312478/prd-front-1346135_195x195/prd-front-1346135-195x195.png",
+   "cached": true
+  },
+  {
+   "page": "/erkek-bakim/c/105",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h56/h69/13027825549342/prd-front-173542_195x195/prd-front-173542-195x195.jpg",
+   "alt": " OLD SPICE OLD SPICE Old Spice Captain Erkek Deodorant Stick 50 ml ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2833,
+   "link": "https://www.watsons.com.tr/old-spice-captain-erkek-deodorant-stick-50-ml/p/BP_173542",
+   "file": "assets/site/erkek-bakim-c-105-010.jpg",
+   "bytes": 13418,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h56/h69/13027825549342/prd-front-173542_195x195/prd-front-173542-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/erkek-bakim/c/105",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h10/hb4/9312526434334/prd-front-1267126_195x195/prd-front-1267126-195x195.png",
+   "alt": " REVOX EXC. REVOX EXC. Revox X-Treme Dökülen ve Geç Uzayan Saçlar için Şampuan 400 ml ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2833,
+   "link": "https://www.watsons.com.tr/revox-x-treme-dokulen-ve-gec-uzayan-saclar-icin-sampuan-400-ml/p/BP_1267126",
+   "file": "assets/site/erkek-bakim-c-105-011.jpg",
+   "bytes": 13982,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h10/hb4/9312526434334/prd-front-1267126_195x195/prd-front-1267126-195x195.png",
+   "cached": true
+  },
+  {
+   "page": "/erkek-bakim/c/105",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/hd0/h7d/13027833085982/prd-front-1394463_195x195/prd-front-1394463-195x195.jpg",
+   "alt": " OLD SPICE OLD SPICE Old Spice Captain Erkekler İçin Sprey Vücut Deodorantı 150 ml ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2833,
+   "link": "https://www.watsons.com.tr/old-spice-captain-erkekler-icin-sprey-vucut-deodoranti-150-ml/p/BP_1394463",
+   "file": "assets/site/erkek-bakim-c-105-012.jpg",
+   "bytes": 10240,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hd0/h7d/13027833085982/prd-front-1394463_195x195/prd-front-1394463-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/erkek-bakim/c/105",
+   "src": "https://web.archive.org/web/20260608020703im_/https://media.watsons.com.tr/medias/sys_master/root/hdb/h3d/13744861806622/KOKUNOTALARI_BADGE_OCAK2026-06/KOKUNOTALARI-BADGE-OCAK2026-06.png",
+   "alt": "",
+   "w": 625,
+   "h": 625,
+   "boxW": 32,
+   "boxH": 32,
+   "y": 1151,
+   "link": "",
+   "file": "assets/site/erkek-bakim-c-105-017.png",
+   "bytes": 393527,
+   "type": "image/png",
+   "original": "https://media.watsons.com.tr/medias/sys_master/root/hdb/h3d/13744861806622/KOKUNOTALARI_BADGE_OCAK2026-06/KOKUNOTALARI-BADGE-OCAK2026-06.png",
+   "cached": true
+  },
+  {
+   "page": "/saglikli-yasam/c/106",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/hdf/he9/10097924767774/prd-front-1250123_195x195/prd-front-1250123-195x195.jpg",
+   "alt": " DUREX DUREX Durex Chill Karma Paket Prezervatif 20'li ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 1185,
+   "link": "https://www.watsons.com.tr/durex-chill-karma-paket-prezervatif-20li/p/BP_1250123",
+   "file": "assets/site/saglikli-yasam-c-106-001.jpg",
+   "bytes": 8389,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hdf/he9/10097924767774/prd-front-1250123_195x195/prd-front-1250123-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/saglikli-yasam/c/106",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/hc8/he3/8903516291102/prd-front-156523_195x195/prd-front-156523-195x195.png",
+   "alt": " OKEY OKEY Okey Zero Ekonomik Paket Prezervatif 20 Adet ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 1597,
+   "link": "https://www.watsons.com.tr/okey-zero-ekonomik-paket-prezervatif-20-adet/p/BP_156523",
+   "file": "assets/site/saglikli-yasam-c-106-002.jpg",
+   "bytes": 8345,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hc8/he3/8903516291102/prd-front-156523_195x195/prd-front-156523-195x195.png",
+   "cached": true
+  },
+  {
+   "page": "/saglikli-yasam/c/106",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h8f/h43/12743022018590/prd-front-1449854_195x195/prd-front-1449854-195x195.jpg",
+   "alt": " DUREX DUREX Durex Prezervatif Nude 8'li ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 1597,
+   "link": "https://www.watsons.com.tr/durex-prezervatif-nude-8li/p/BP_1449854",
+   "file": "assets/site/saglikli-yasam-c-106-003.jpg",
+   "bytes": 14040,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h8f/h43/12743022018590/prd-front-1449854_195x195/prd-front-1449854-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/saglikli-yasam/c/106",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/hf2/h12/10097922670622/prd-front-150747_195x195/prd-front-150747-195x195.jpg",
+   "alt": " DUREX DUREX Durex Yok Ötesi Ultra Kaygan İnce Prezervatif 20'li ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 1597,
+   "link": "https://www.watsons.com.tr/durex-yok-otesi-ultra-kaygan-ince-prezervatif-20li/p/BP_150747",
+   "file": "assets/site/saglikli-yasam-c-106-004.jpg",
+   "bytes": 6942,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hf2/h12/10097922670622/prd-front-150747_195x195/prd-front-150747-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/saglikli-yasam/c/106",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h05/he6/10097932763166/prd-front-1320893_195x195/prd-front-1320893-195x195.jpg",
+   "alt": " DUREX DUREX Durex Yok Ötesi XL İnce Prezervatif 20'li ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 1597,
+   "link": "https://www.watsons.com.tr/durex-yok-otesi-xl-ince-prezervatif-20li/p/BP_1320893",
+   "file": "assets/site/saglikli-yasam-c-106-005.jpg",
+   "bytes": 7172,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h05/he6/10097932763166/prd-front-1320893_195x195/prd-front-1320893-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/saglikli-yasam/c/106",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h90/hea/10620626468894/prd-front-172824_195x195/prd-front-172824-195x195.jpg",
+   "alt": " DUREX DUREX Durex Extreme Geciktiricili ve Tırtıklı Prezervatif 20'li ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2009,
+   "link": "https://www.watsons.com.tr/durex-extreme-geciktiricili-ve-tirtikli-prezervatif-20li/p/BP_172824",
+   "file": "assets/site/saglikli-yasam-c-106-006.jpg",
+   "bytes": 9613,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h90/hea/10620626468894/prd-front-172824_195x195/prd-front-172824-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/saglikli-yasam/c/106",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h3c/h50/12524825640990/prd-front-1348697_195x195/prd-front-1348697-195x195.jpg",
+   "alt": " STOP EVER STOPEVER EXC. StopEver Migren Bandı 4'lü ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2009,
+   "link": "https://www.watsons.com.tr/stopever-migren-bandi-4lu/p/BP_1348697",
+   "file": "assets/site/saglikli-yasam-c-106-007.jpg",
+   "bytes": 8487,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h3c/h50/12524825640990/prd-front-1348697_195x195/prd-front-1348697-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/saglikli-yasam/c/106",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h9e/h30/8906144284702/prd-front-163502_195x195/prd-front-163502-195x195.png",
+   "alt": " OKEY OKEY Okey Ultra Hisset 20'li Ekonomik ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2009,
+   "link": "https://www.watsons.com.tr/okey-ultra-hisset-20li-ekonomik/p/BP_163502",
+   "file": "assets/site/saglikli-yasam-c-106-008.jpg",
+   "bytes": 11223,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h9e/h30/8906144284702/prd-front-163502_195x195/prd-front-163502-195x195.png",
+   "cached": true
+  },
+  {
+   "page": "/saglikli-yasam/c/106",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h33/hf1/8909884653598/prd-front-169766_195x195/prd-front-169766-195x195.png",
+   "alt": " OKEY OKEY Okey Nirvana Hot Ekonomik Paket ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2009,
+   "link": "https://www.watsons.com.tr/okey-nirvana-hot-ekonomik-paket/p/BP_169766",
+   "file": "assets/site/saglikli-yasam-c-106-009.jpg",
+   "bytes": 11254,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h33/hf1/8909884653598/prd-front-169766_195x195/prd-front-169766-195x195.png",
+   "cached": true
+  },
+  {
+   "page": "/saglikli-yasam/c/106",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h85/hbf/12295787839518/prd-front-1433341_195x195/prd-front-1433341-195x195.jpg",
+   "alt": " DUREX DUREX Durex Play Uyarıcı Jel Ekstra Hisset 50 ml ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2421,
+   "link": "https://www.watsons.com.tr/durex-play-uyarici-jel-ekstra-hisset-50-ml/p/BP_1433341",
+   "file": "assets/site/saglikli-yasam-c-106-010.jpg",
+   "bytes": 4968,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h85/hbf/12295787839518/prd-front-1433341_195x195/prd-front-1433341-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/saglikli-yasam/c/106",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h10/h63/12215279452190/prd-front-129747_195x195/prd-front-129747-195x195.jpg",
+   "alt": " BREATHE RIGHT BREATHE RIGHT Breathe Right Burun Bandı Küçük / Orta 10 Adet ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2421,
+   "link": "https://www.watsons.com.tr/breathe-right-burun-bandi-kucuk-orta-10-adet/p/BP_129747",
+   "file": "assets/site/saglikli-yasam-c-106-011.jpg",
+   "bytes": 9671,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h10/h63/12215279452190/prd-front-129747_195x195/prd-front-129747-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/saglikli-yasam/c/106",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h6b/h3d/11674060652574/prd-front-1421819_195x195/prd-front-1421819-195x195.jpg",
+   "alt": " OKEY OKEY Okey Prezervatif Zero Tenn 8'li ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2421,
+   "link": "https://www.watsons.com.tr/okey-prezervatif-zero-tenn-8li/p/BP_1421819",
+   "file": "assets/site/saglikli-yasam-c-106-012.jpg",
+   "bytes": 5950,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h6b/h3d/11674060652574/prd-front-1421819_195x195/prd-front-1421819-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/saglikli-yasam/c/106",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h14/hf6/12295791509534/prd-front-1433334_195x195/prd-front-1433334-195x195.jpg",
+   "alt": " DUREX DUREX Durex Play Jel Kiraz Aşkı 50 ml ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2421,
+   "link": "https://www.watsons.com.tr/durex-play-jel-kiraz-aski-50-ml/p/BP_1433334",
+   "file": "assets/site/saglikli-yasam-c-106-013.jpg",
+   "bytes": 5019,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h14/hf6/12295791509534/prd-front-1433334_195x195/prd-front-1433334-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/saglikli-yasam/c/106",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/hc9/hb4/8900658921502/prd-front-134252_195x195/prd-front-134252-195x195.png",
+   "alt": " OKEY OKEY Okey Çilek Aromalı Jel Kayganlaştırıcı 100 ml ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2833,
+   "link": "https://www.watsons.com.tr/okey-cilek-aromali-jel-kayganlastirici-100-ml/p/BP_134252",
+   "file": "assets/site/saglikli-yasam-c-106-014.jpg",
+   "bytes": 5180,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hc9/hb4/8900658921502/prd-front-134252_195x195/prd-front-134252-195x195.png",
+   "cached": true
+  },
+  {
+   "page": "/saglikli-yasam/c/106",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/hd9/he3/10287196733470/prd-front-124847_195x195/prd-front-124847-195x195.jpg",
+   "alt": " DUREX DUREX Durex Aloe Vera 2si 1 Arada Kayganlaştırıcı & Masaj Jeli 200ml ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2833,
+   "link": "https://www.watsons.com.tr/durex-aloe-vera-2si-1-arada-kayganlastirici-masaj-jeli-200ml/p/BP_124847",
+   "file": "assets/site/saglikli-yasam-c-106-015.jpg",
+   "bytes": 4595,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hd9/he3/10287196733470/prd-front-124847_195x195/prd-front-124847-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/saglikli-yasam/c/106",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/hd4/h47/10287318401054/prd-front-1394701_195x195/prd-front-1394701-195x195.jpg",
+   "alt": " OKEY OKEY Okey 2in1 Aromasız Kayganlaştırıcı 200 ml ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2833,
+   "link": "https://www.watsons.com.tr/okey-2in1-aromasiz-kayganlastirici-200-ml/p/BP_1394701",
+   "file": "assets/site/saglikli-yasam-c-106-016.jpg",
+   "bytes": 4831,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hd4/h47/10287318401054/prd-front-1394701_195x195/prd-front-1394701-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/makyaj-cok-satanlar/c/100070",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/hb3/h10/12082119835678/prd-front-1429890_195x195/prd-front-1429890-195x195.jpg",
+   "alt": " NYX NYX Nyx Professional Makeup Face Glue Makyaj Bazı ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 1606,
+   "link": "https://www.watsons.com.tr/nyx-professional-makeup-face-glue-makyaj-bazi/p/BP_1429890",
+   "file": "assets/site/makyaj-makyaj-cok-satanlar-c-100070-001.jpg",
+   "bytes": 13035,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hb3/h10/12082119835678/prd-front-1429890_195x195/prd-front-1429890-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/makyaj-cok-satanlar/c/100070",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/he7/h87/10035742277662/prd-front-1384082_195x195/prd-front-1384082-195x195.jpg",
+   "alt": " NYX NYX Nyx Professional Makeup Ultimate Shadow Palette Warm Neutrals Göz Farı Paleti ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 1606,
+   "link": "https://www.watsons.com.tr/nyx-professional-makeup-ultimate-shadow-palette-warm-neutrals-goz-fari-paleti/p/BP_1384082",
+   "file": "assets/site/makyaj-makyaj-cok-satanlar-c-100070-002.jpg",
+   "bytes": 15243,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/he7/h87/10035742277662/prd-front-1384082_195x195/prd-front-1384082-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/makyaj-cok-satanlar/c/100070",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/h48/hf1/11173432688670/prd-front-1406356_195x195/prd-front-1406356-195x195.png",
+   "alt": " NYX NYX Nyx Professional Makeup Buttermelt Blush Kremsi Pudra Allık 09 Feelin Butta ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2018,
+   "link": "https://www.watsons.com.tr/nyx-professional-makeup-buttermelt-blush-kremsi-pudra-allik-09-feelin-butta/p/BP_1406356",
+   "file": "assets/site/makyaj-makyaj-cok-satanlar-c-100070-003.jpg",
+   "bytes": 11334,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h48/hf1/11173432688670/prd-front-1406356_195x195/prd-front-1406356-195x195.png",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/makyaj-cok-satanlar/c/100070",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/hf4/he2/11907843653662/prd-front-170636_195x195/prd-front-170636-195x195.jpg",
+   "alt": " LOREAL PARIS LOREAL PARIS L'Oreal Paris True Match Bakım Yapan Fondöten 1.5N Linen ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2842,
+   "link": "https://www.watsons.com.tr/loreal-paris-true-match-bakim-yapan-fondoten-15n-linen/p/BP_170636",
+   "file": "assets/site/makyaj-makyaj-cok-satanlar-c-100070-004.jpg",
+   "bytes": 8406,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hf4/he2/11907843653662/prd-front-170636_195x195/prd-front-170636-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/makyaj-cok-satanlar/c/100070",
+   "src": "https://media.watsons.com.tr/medias/sys_master/prd-images/hba/h49/9239615602718/prd-front-155917_195x195/prd-front-155917-195x195.png",
+   "alt": " NYX NYX Nyx Professional Makeup Epic Ink Liner Siyah ",
+   "w": 2808,
+   "h": 2808,
+   "boxW": 170,
+   "boxH": 170,
+   "y": 2842,
+   "link": "https://www.watsons.com.tr/nyx-professional-makeup-epic-ink-liner-siyah/p/BP_155917",
+   "file": "assets/site/makyaj-makyaj-cok-satanlar-c-100070-005.jpg",
+   "bytes": 9552,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hba/h49/9239615602718/prd-front-155917_195x195/prd-front-155917-195x195.png",
+   "cached": true
+  }
+ ],
+ "products": [
+  {
+   "page": "/makyaj/c/100",
+   "url": "https://www.watsons.com.tr/loreal-paris-glotion-all-in-one-dogal-isilti-902-light-glow/p/BP_1397606",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/h46/hfa/11677408559134/prd-front-1397606_195x195/prd-front-1397606-195x195.jpg",
+   "alt": " LOREAL PARIS LOREAL PARIS L'Oreal Paris Glotion All-In-One Doğal Işıltı 902 Light Glow  ",
+   "text": [
+    "Sepete Ekle",
+    "L'Oreal Paris Glotion All-In-One Doğal Işıltı 902 Light Glow",
+    "1.499,90 ₺",
+    "Watsons Club ile 749,90 ₺",
+    "9"
+   ],
+   "prices": [
+    "1.499,90",
+    "749,90"
+   ],
+   "file": "assets/products/loreal-paris-glotion-all-in-one-dogal-isilti-902-light-glow-.jpg",
+   "bytes": 8646,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h46/hfa/11677408559134/prd-front-1397606_195x195/prd-front-1397606-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/c/100",
+   "url": "https://www.watsons.com.tr/loreal-paris-telescopic-maskara-gold-black/p/BP_1274042",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/h51/h4c/8904519581726/prd-front-1274042_195x195/prd-front-1274042-195x195.jpeg",
+   "alt": " LOREAL PARIS LOREAL PARIS L'Oreal Paris Telescopic Maskara Gold Black  ",
+   "text": [
+    "Sepete Ekle",
+    "L'Oreal Paris Telescopic Maskara Gold Black",
+    "1.869,90 ₺",
+    "Watsons Club ile 869,90 ₺",
+    "457"
+   ],
+   "prices": [
+    "1.869,90",
+    "869,90"
+   ],
+   "file": "assets/products/loreal-paris-telescopic-maskara-gold-black-p-bp-1274042.jpg",
+   "bytes": 2856,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h51/h4c/8904519581726/prd-front-1274042_195x195/prd-front-1274042-195x195.jpeg",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/c/100",
+   "url": "https://www.watsons.com.tr/flormar-longer-than-ever-uzun-gorunum-veren-maskara-no-001/p/BP_1380638",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/h51/hf1/13588435468318/prd-front-1380638_195x195/prd-front-1380638-195x195.jpg",
+   "alt": " FLORMAR FLORMAR Flormar Longer Than Ever Uzun Görünüm Veren Maskara No: 001  ",
+   "text": [
+    "Sepete Ekle",
+    "Flormar Longer Than Ever Uzun Görünüm Veren Maskara No: 001",
+    "1.499,90 ₺",
+    "Watsons Club ile 599,00 ₺",
+    "75"
+   ],
+   "prices": [
+    "1.499,90",
+    "599,00"
+   ],
+   "file": "assets/products/flormar-longer-than-ever-uzun-gorunum-veren-maskara-no-001-p.jpg",
+   "bytes": 6218,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h51/hf1/13588435468318/prd-front-1380638_195x195/prd-front-1380638-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/c/100",
+   "url": "https://www.watsons.com.tr/loreal-paris-glotion-all-in-one-dogal-isilti-901-fair-glow/p/BP_1397599",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/h74/h16/11677401219102/prd-front-1397599_195x195/prd-front-1397599-195x195.jpg",
+   "alt": " LOREAL PARIS LOREAL PARIS L'Oreal Paris Glotion All-In-One Doğal Işıltı 901 Fair Glow  ",
+   "text": [
+    "Sepete Ekle",
+    "L'Oreal Paris Glotion All-In-One Doğal Işıltı 901 Fair Glow",
+    "1.499,90 ₺",
+    "Watsons Club ile 749,90 ₺",
+    "35"
+   ],
+   "prices": [
+    "1.499,90",
+    "749,90"
+   ],
+   "file": "assets/products/loreal-paris-glotion-all-in-one-dogal-isilti-901-fair-glow-p.jpg",
+   "bytes": 8287,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h74/h16/11677401219102/prd-front-1397599_195x195/prd-front-1397599-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/c/100",
+   "url": "https://www.watsons.com.tr/loreal-paris-glotion-all-in-one-dogal-isilti-903-medium-glow/p/BP_1397613",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/hea/h24/11677406199838/prd-front-1397613_195x195/prd-front-1397613-195x195.jpg",
+   "alt": " LOREAL PARIS LOREAL PARIS L'Oreal Paris Glotion All-In-One Doğal Işıltı 903 Medium Glow  ",
+   "text": [
+    "Sepete Ekle",
+    "L'Oreal Paris Glotion All-In-One Doğal Işıltı 903 Medium Glow",
+    "1.499,90 ₺",
+    "Watsons Club ile 749,90 ₺",
+    "2"
+   ],
+   "prices": [
+    "1.499,90",
+    "749,90"
+   ],
+   "file": "assets/products/loreal-paris-glotion-all-in-one-dogal-isilti-903-medium-glow.jpg",
+   "bytes": 8758,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hea/h24/11677406199838/prd-front-1397613_195x195/prd-front-1397613-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/c/100",
+   "url": "https://www.watsons.com.tr/revolution-forever-flawless-far-paleti-affinity/p/BP_1261057",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/hd1/h9b/8904570109982/prd-front-1261057_195x195/prd-front-1261057-195x195.png",
+   "alt": " REVOLUTION REVOLUTION Revolution Forever Flawless Far Paleti Affinity  ",
+   "text": [
+    "Sepete Ekle",
+    "Revolution Forever Flawless Far Paleti Affinity",
+    "1.499,90 ₺",
+    "Watsons Club ile 749,90 ₺",
+    "132"
+   ],
+   "prices": [
+    "1.499,90",
+    "749,90"
+   ],
+   "file": "assets/products/revolution-forever-flawless-far-paleti-affinity-p-bp-1261057.jpg",
+   "bytes": 6734,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hd1/h9b/8904570109982/prd-front-1261057_195x195/prd-front-1261057-195x195.png",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/c/100",
+   "url": "https://www.watsons.com.tr/revolution-forever-flawless-far-paleti-nova-green/p/BP_1444513",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/h19/h91/12514090188830/prd-front-1444513_195x195/prd-front-1444513-195x195.jpg",
+   "alt": " REVOLUTION REVOLUTION Revolution Forever Flawless Far Paleti Nova Green  ",
+   "text": [
+    "Sepete Ekle",
+    "Revolution Forever Flawless Far Paleti Nova Green",
+    "1.499,90 ₺",
+    "Watsons Club ile 749,90 ₺",
+    "63"
+   ],
+   "prices": [
+    "1.499,90",
+    "749,90"
+   ],
+   "file": "assets/products/revolution-forever-flawless-far-paleti-nova-green-p-bp-14445.jpg",
+   "bytes": 11767,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h19/h91/12514090188830/prd-front-1444513_195x195/prd-front-1444513-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/c/100",
+   "url": "https://www.watsons.com.tr/loreal-paris-true-match-fondoten-no-1n/p/BP_170637",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/h31/hba/11907844440094/prd-front-170637_195x195/prd-front-170637-195x195.jpg",
+   "alt": " LOREAL PARIS LOREAL PARIS L'Oreal Paris True Match Fondöten No: 1N  ",
+   "text": [
+    "Sepete Ekle",
+    "L'Oreal Paris True Match Fondöten No: 1N",
+    "2.049,90 ₺",
+    "Watsons Club ile 1.024,90 ₺",
+    "30"
+   ],
+   "prices": [
+    "2.049,90",
+    "1.024,90"
+   ],
+   "file": "assets/products/loreal-paris-true-match-fondoten-no-1n-p-bp-170637.jpg",
+   "bytes": 8377,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h31/hba/11907844440094/prd-front-170637_195x195/prd-front-170637-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/c/100",
+   "url": "https://www.watsons.com.tr/nyx-professional-makeup-buttermelt-blush-kremsi-pudra-allik-04-u-know-butta/p/BP_1406335",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/h21/hea/11173429280798/prd-front-1406335_195x195/prd-front-1406335-195x195.png",
+   "alt": " NYX NYX Nyx Professional Makeup Buttermelt Blush Kremsi Pudra Allık 04 U Know Butta  ",
+   "text": [
+    "Sepete Ekle",
+    "Nyx Professional Makeup Buttermelt Blush Kremsi Pudra Allık 04 U Know Butta",
+    "1.149,90 ₺",
+    "Watsons Club ile 689,90 ₺",
+    "132"
+   ],
+   "prices": [
+    "1.149,90",
+    "689,90"
+   ],
+   "file": "assets/products/nyx-professional-makeup-buttermelt-blush-kremsi-pudra-allik-.jpg",
+   "bytes": 11370,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h21/hea/11173429280798/prd-front-1406335_195x195/prd-front-1406335-195x195.png",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/c/100",
+   "url": "https://www.watsons.com.tr/revolution-forever-flawless-far-paleti-allure/p/BP_172262",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/h64/h52/8910076674078/prd-front-172262_195x195/prd-front-172262-195x195.png",
+   "alt": " REVOLUTION REVOLUTION Revolution Forever Flawless Far Paleti Allure  ",
+   "text": [
+    "Sepete Ekle",
+    "Revolution Forever Flawless Far Paleti Allure",
+    "1.499,90 ₺",
+    "Watsons Club ile 749,90 ₺",
+    "253"
+   ],
+   "prices": [
+    "1.499,90",
+    "749,90"
+   ],
+   "file": "assets/products/revolution-forever-flawless-far-paleti-allure-p-bp-172262.jpg",
+   "bytes": 8275,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h64/h52/8910076674078/prd-front-172262_195x195/prd-front-172262-195x195.png",
+   "cached": true
+  },
+  {
+   "page": "/sac-bakim/c/102",
+   "url": "https://www.watsons.com.tr/hc-care-complex-bitkisel-sac-bakim-kompleksi-100-ml/p/BP_1396318",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/h42/h35/10517699985438/prd-front-1396318_195x195/prd-front-1396318-195x195.jpg",
+   "alt": " HC CARE HC CARE HC Care Complex Bitkisel Saç Bakım Kompleksi 100 ml  ",
+   "text": [
+    "Sepete Ekle",
+    "HC Care Complex Bitkisel Saç Bakım Kompleksi 100 ml",
+    "712,90 ₺",
+    "Watsons Club ile 499,00 ₺",
+    "55"
+   ],
+   "prices": [
+    "712,90",
+    "499,00"
+   ],
+   "file": "assets/products/hc-care-complex-bitkisel-sac-bakim-kompleksi-100-ml-p-bp-139.jpg",
+   "bytes": 9024,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h42/h35/10517699985438/prd-front-1396318_195x195/prd-front-1396318-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/sac-bakim/c/102",
+   "url": "https://www.watsons.com.tr/loreal-paris-elseve-mucizevi-yag-sac-guzellestirici-krem-150-ml/p/BP_146777",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/h13/he6/8979708772382/prd-front-146777_195x195/prd-front-146777-195x195.png",
+   "alt": " ELSEVE ELSEVE L'Oreal Paris Elseve Mucizevi Yağ Saç Güzelleştirici Krem 150 ml  ",
+   "text": [
+    "Sepete Ekle",
+    "L'Oreal Paris Elseve Mucizevi Yağ Saç Güzelleştirici Krem 150 ml",
+    "449,90 ₺",
+    "Watsons Club ile 269,90 ₺",
+    "71"
+   ],
+   "prices": [
+    "449,90",
+    "269,90"
+   ],
+   "file": "assets/products/loreal-paris-elseve-mucizevi-yag-sac-guzellestirici-krem-150.jpg",
+   "bytes": 11198,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h13/he6/8979708772382/prd-front-146777_195x195/prd-front-146777-195x195.png",
+   "cached": true
+  },
+  {
+   "page": "/sac-bakim/c/102",
+   "url": "https://www.watsons.com.tr/elseve-sampuan-komple-onarici-5-extreme-300-ml/p/BP_1482719",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/h49/h56/13751735287838/prd-front-1482719_195x195/prd-front-1482719-195x195.jpg",
+   "alt": " ELSEVE ELSEVE EXC. Elseve Şampuan Komple Onarıcı 5 Extreme 300 ml  ",
+   "text": [
+    "Sepete Ekle",
+    "Elseve Şampuan Komple Onarıcı 5 Extreme 300 ml",
+    "300,50 ₺",
+    "Watsons Club ile 149,90 ₺",
+    "0"
+   ],
+   "prices": [
+    "300,50",
+    "149,90"
+   ],
+   "file": "assets/products/elseve-sampuan-komple-onarici-5-extreme-300-ml-p-bp-1482719.jpg",
+   "bytes": 7992,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h49/h56/13751735287838/prd-front-1482719_195x195/prd-front-1482719-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/sac-bakim/c/102",
+   "url": "https://www.watsons.com.tr/elidor-7-24-sekillendirici-bakim-kremi-belirgin-bukleler-240-ml/p/BP_1409737",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/h5d/h01/13121594687518/prd-front-1409737_195x195/prd-front-1409737-195x195.jpg",
+   "alt": " ELİDOR ELİDOR Elidor 7/24 Şekillendirici Bakım Kremi Belirgin Bukleler 240 ml  ",
+   "text": [
+    "Sepete Ekle",
+    "Elidor 7/24 Şekillendirici Bakım Kremi Belirgin Bukleler 240 ml",
+    "444,90 ₺",
+    "Watsons Club ile 179,90 ₺",
+    "7"
+   ],
+   "prices": [
+    "444,90",
+    "179,90"
+   ],
+   "file": "assets/products/elidor-7-24-sekillendirici-bakim-kremi-belirgin-bukleler-240.jpg",
+   "bytes": 6269,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h5d/h01/13121594687518/prd-front-1409737_195x195/prd-front-1409737-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/sac-bakim/c/102",
+   "url": "https://www.watsons.com.tr/ogx-dolgunlastirici-biotin-ve-kolajen-sampuan-385-ml/p/BP_145739",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/hc7/h79/12270210580510/prd-front-145739_195x195/prd-front-145739-195x195.jpg",
+   "alt": " OGX OGX OGX Dolgunlaştırıcı Biotin ve Kolajen Şampuan 385 ml  ",
+   "text": [
+    "Sepete Ekle",
+    "OGX Dolgunlaştırıcı Biotin ve Kolajen Şampuan 385 ml",
+    "899,90 ₺",
+    "Watsons Club ile 309,00 ₺",
+    "143"
+   ],
+   "prices": [
+    "899,90",
+    "309,00"
+   ],
+   "file": "assets/products/ogx-dolgunlastirici-biotin-ve-kolajen-sampuan-385-ml-p-bp-14.jpg",
+   "bytes": 6630,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hc7/h79/12270210580510/prd-front-145739_195x195/prd-front-145739-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/sac-bakim/c/102",
+   "url": "https://www.watsons.com.tr/head-shoulders-klasik-bakim-2si-1-arada-kepege-karsi-etkili-sampuan-250-ml/p/BP_1343006",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/h39/h1b/12450667888670/prd-front-1343006_195x195/prd-front-1343006-195x195.jpg",
+   "alt": " HEAD&SHOULDERS HEAD&SHOULDERS Head&Shoulders Klasik Bakım 2'si 1 Arada Kepeğe Karşı Etkili Şampuan 250 ml  ",
+   "text": [
+    "Sepete Ekle",
+    "Head&Shoulders Klasik Bakım 2'si 1 Arada Kepeğe Karşı Etkili Şampuan 250 ml",
+    "249,90 ₺",
+    "Watsons Club ile 124,90 ₺",
+    "4"
+   ],
+   "prices": [
+    "249,90",
+    "124,90"
+   ],
+   "file": "assets/products/head-shoulders-klasik-bakim-2si-1-arada-kepege-karsi-etkili-.jpg",
+   "bytes": 10261,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h39/h1b/12450667888670/prd-front-1343006_195x195/prd-front-1343006-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/parfum/c/100013",
+   "url": "https://www.watsons.com.tr/avon-incandessence-kadin-edp-parfum-50-ml/p/BP_1425970",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/h55/h44/11806832951326/prd-front-1425970_195x195/prd-front-1425970-195x195.jpg",
+   "alt": " AVON AVON Avon Incandessence Kadın EDP Parfüm 50 ml  ",
+   "text": [
+    "Sepete Ekle",
+    "Avon Incandessence Kadın EDP Parfüm 50 ml",
+    "1.249,90 ₺",
+    "Watsons Club ile 309,90 ₺",
+    "5"
+   ],
+   "prices": [
+    "1.249,90",
+    "309,90"
+   ],
+   "file": "assets/products/avon-incandessence-kadin-edp-parfum-50-ml-p-bp-1425970.jpg",
+   "bytes": 6945,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h55/h44/11806832951326/prd-front-1425970_195x195/prd-front-1425970-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/parfum/c/100013",
+   "url": "https://www.watsons.com.tr/chloe-signature-kadin-parfum-edp-75-ml/p/BP_1328257",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/hdc/h5f/9059972808734/prd-front-1328257_195x195/prd-front-1328257-195x195.jpg",
+   "alt": " CHLOE CHLOE Chloe Signature Kadın Parfüm EDP 75 ml  ",
+   "text": [
+    "Sepete Ekle",
+    "Chloe Signature Kadın Parfüm EDP 75 ml",
+    "6.999,90 ₺",
+    "Watsons Club ile 4.799,00 ₺",
+    "7"
+   ],
+   "prices": [
+    "6.999,90",
+    "4.799,00"
+   ],
+   "file": "assets/products/chloe-signature-kadin-parfum-edp-75-ml-p-bp-1328257.jpg",
+   "bytes": 5194,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hdc/h5f/9059972808734/prd-front-1328257_195x195/prd-front-1328257-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/parfum/c/100013",
+   "url": "https://www.watsons.com.tr/burberry-week-end-erkek-parfum-edt-100-ml/p/BP_133582",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/h9c/h09/9192555806750/prd-front-133582_195x195/prd-front-133582-195x195.png",
+   "alt": " BURBERRY BURBERRY Burberry Week-End Erkek Parfüm EDT 100 ml  ",
+   "text": [
+    "Sepete Ekle",
+    "Burberry Week-End Erkek Parfüm EDT 100 ml",
+    "4.799,90 ₺",
+    "Watsons Club ile 1.999,00 ₺",
+    "4"
+   ],
+   "prices": [
+    "4.799,90",
+    "1.999,00"
+   ],
+   "file": "assets/products/burberry-week-end-erkek-parfum-edt-100-ml-p-bp-133582.jpg",
+   "bytes": 6237,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h9c/h09/9192555806750/prd-front-133582_195x195/prd-front-133582-195x195.png",
+   "cached": true
+  },
+  {
+   "page": "/parfum/c/100013",
+   "url": "https://www.watsons.com.tr/avon-pur-blanca-kadin-parfum-edt-50-ml/p/BP_1425977",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/h0a/h12/11806809030686/prd-front-1425977_195x195/prd-front-1425977-195x195.jpg",
+   "alt": " AVON AVON Avon Pur Blanca Kadın Parfüm EDT 50 ml  ",
+   "text": [
+    "Sepete Ekle",
+    "Avon Pur Blanca Kadın Parfüm EDT 50 ml",
+    "779,90 ₺",
+    "Watsons Club ile 194,90 ₺",
+    "6"
+   ],
+   "prices": [
+    "779,90",
+    "194,90"
+   ],
+   "file": "assets/products/avon-pur-blanca-kadin-parfum-edt-50-ml-p-bp-1425977.jpg",
+   "bytes": 4531,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h0a/h12/11806809030686/prd-front-1425977_195x195/prd-front-1425977-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/kisisel-bakim/c/103",
+   "url": "https://www.watsons.com.tr/nivea-kadin-sprey-deodorant-fresh-natural-48-saat-deodorant-koruma-150-ml/p/BP_114419",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/h0a/h50/12113687117854/prd-front-114419_195x195/prd-front-114419-195x195.png",
+   "alt": " NIVEA DEO NIVEA DEO Nivea Kadın Sprey Deodorant Fresh Natural 48 Saat Deodorant Koruma 150 ml ",
+   "text": [
+    "Sepete Ekle",
+    "Nivea Kadın Sprey Deodorant Fresh Natural 48 Saat Deodorant Koruma 150 ml",
+    "311,90 ₺",
+    "Watsons Club ile 123,90 ₺",
+    "34"
+   ],
+   "prices": [
+    "311,90",
+    "123,90"
+   ],
+   "file": "assets/products/nivea-kadin-sprey-deodorant-fresh-natural-48-saat-deodorant-.jpg",
+   "bytes": 9577,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h0a/h50/12113687117854/prd-front-114419_195x195/prd-front-114419-195x195.png",
+   "cached": true
+  },
+  {
+   "page": "/kisisel-bakim/c/103",
+   "url": "https://www.watsons.com.tr/nivea-men-erkek-sprey-deodorant-black-white-invisible-original-150-ml/p/BP_131804",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/h53/hea/14229255880734/prd-front-131804_195x195/prd-front-131804-195x195.jpg",
+   "alt": " NIVEA DEO NIVEA DEO Nivea Men Erkek Sprey Deodorant Black&White Invisible Original 150 ml ",
+   "text": [
+    "Sepete Ekle",
+    "Nivea Men Erkek Sprey Deodorant Black&White Invisible Original 150 ml",
+    "311,90 ₺",
+    "Watsons Club ile 123,90 ₺",
+    "66"
+   ],
+   "prices": [
+    "311,90",
+    "123,90"
+   ],
+   "file": "assets/products/nivea-men-erkek-sprey-deodorant-black-white-invisible-origin.jpg",
+   "bytes": 11013,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h53/hea/14229255880734/prd-front-131804_195x195/prd-front-131804-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/kisisel-bakim/c/103",
+   "url": "https://www.watsons.com.tr/nivea-kadin-sprey-deodorant-black-white-invisible-clear-150-ml/p/BP_131802",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/h32/hc4/14229256142878/prd-front-131802_195x195/prd-front-131802-195x195.jpg",
+   "alt": " NIVEA DEO NIVEA DEO Nivea Kadın Sprey Deodorant Black & White Invisible Clear 150 ml ",
+   "text": [
+    "Sepete Ekle",
+    "Nivea Kadın Sprey Deodorant Black & White Invisible Clear 150 ml",
+    "311,90 ₺",
+    "Watsons Club ile 123,90 ₺",
+    "42"
+   ],
+   "prices": [
+    "311,90",
+    "123,90"
+   ],
+   "file": "assets/products/nivea-kadin-sprey-deodorant-black-white-invisible-clear-150-.jpg",
+   "bytes": 10656,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h32/hc4/14229256142878/prd-front-131802_195x195/prd-front-131802-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/kisisel-bakim/c/103",
+   "url": "https://www.watsons.com.tr/nivea-powder-touch-kadin-roll-on-50-ml/p/BP_146333",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/hb6/h3a/14068260438046/prd-front-146333_195x195/prd-front-146333-195x195.jpg",
+   "alt": " NIVEA DEO NIVEA DEO Nivea Powder Touch Kadın Roll-On 50 ml ",
+   "text": [
+    "Gelince Haber Ver",
+    "Nivea Powder Touch Kadın Roll-On 50 ml",
+    "311,90 ₺",
+    "Watsons Club ile 123,90 ₺",
+    "1"
+   ],
+   "prices": [
+    "311,90",
+    "123,90"
+   ],
+   "file": "assets/products/nivea-powder-touch-kadin-roll-on-50-ml-p-bp-146333.jpg",
+   "bytes": 8774,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hb6/h3a/14068260438046/prd-front-146333_195x195/prd-front-146333-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/kisisel-bakim/c/103",
+   "url": "https://www.watsons.com.tr/nivea-men-erkek-sprey-deodorant-black-white-invisible-guclu-etki-150-ml/p/BP_1238139",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/h95/hca/11949244416030/prd-front-1238139_195x195/prd-front-1238139-195x195.jpg",
+   "alt": " NIVEA DEO NIVEA DEO Nivea Men Erkek Sprey Deodorant Black&White Invisible Güçlü Etki 150 ml ",
+   "text": [
+    "Sepete Ekle",
+    "Nivea Men Erkek Sprey Deodorant Black&White Invisible Güçlü Etki 150 ml",
+    "311,90 ₺",
+    "Watsons Club ile 123,90 ₺",
+    "0"
+   ],
+   "prices": [
+    "311,90",
+    "123,90"
+   ],
+   "file": "assets/products/nivea-men-erkek-sprey-deodorant-black-white-invisible-guclu-.jpg",
+   "bytes": 9532,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h95/hca/11949244416030/prd-front-1238139_195x195/prd-front-1238139-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/kisisel-bakim/c/103",
+   "url": "https://www.watsons.com.tr/nivea-men-roll-on-cool-kick-50-ml/p/BP_1281714",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/h88/h5a/14032465264670/prd-front-1281714_195x195/prd-front-1281714-195x195.jpg",
+   "alt": " NIVEA DEO NIVEA DEO Nivea Men Roll-On Cool Kick 50 ml ",
+   "text": [
+    "Gelince Haber Ver",
+    "Nivea Men Roll-On Cool Kick 50 ml",
+    "311,90 ₺",
+    "Watsons Club ile 123,90 ₺",
+    "0"
+   ],
+   "prices": [
+    "311,90",
+    "123,90"
+   ],
+   "file": "assets/products/nivea-men-roll-on-cool-kick-50-ml-p-bp-1281714.jpg",
+   "bytes": 13017,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h88/h5a/14032465264670/prd-front-1281714_195x195/prd-front-1281714-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/kisisel-bakim/c/103",
+   "url": "https://www.watsons.com.tr/marvis-smokers-beyazlatici-dis-macunu-85-ml/p/BP_1327417",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/hc0/h78/9072280862750/prd-front-1327417_195x195/prd-front-1327417-195x195.png",
+   "alt": " MARVIS MARVIS Marvis Smokers Beyazlatıcı Diş Macunu 85 ml ",
+   "text": [
+    "Sepete Ekle",
+    "Marvis Smokers Beyazlatıcı Diş Macunu 85 ml",
+    "589,90 ₺",
+    "6"
+   ],
+   "prices": [
+    "589,90"
+   ],
+   "file": "assets/products/marvis-smokers-beyazlatici-dis-macunu-85-ml-p-bp-1327417.jpg",
+   "bytes": 6086,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hc0/h78/9072280862750/prd-front-1327417_195x195/prd-front-1327417-195x195.png",
+   "cached": true
+  },
+  {
+   "page": "/kisisel-bakim/c/103",
+   "url": "https://www.watsons.com.tr/oral-b-io5-sarjli-dis-fircasi-siyah/p/BP_1369795",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/h20/h63/11258529972254/prd-front-1369795_195x195/prd-front-1369795-195x195.jpg",
+   "alt": " ORAL-B ORAL-B Oral-B İo5 Şarjlı Diş Fırçası Siyah ",
+   "text": [
+    "Sepete Ekle",
+    "Oral-B İo5 Şarjlı Diş Fırçası Siyah",
+    "13.399,90 ₺",
+    "Watsons Club ile 6.270,90 ₺",
+    "7"
+   ],
+   "prices": [
+    "13.399,90",
+    "6.270,90"
+   ],
+   "file": "assets/products/oral-b-io5-sarjli-dis-fircasi-siyah-p-bp-1369795.jpg",
+   "bytes": 9974,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h20/h63/11258529972254/prd-front-1369795_195x195/prd-front-1369795-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/kisisel-bakim/c/103",
+   "url": "https://www.watsons.com.tr/calvin-klein-in2u-kadin-parfum-edt-150-ml/p/BP_139585",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/hb9/h97/8900786454558/prd-front-139585_195x195/prd-front-139585-195x195.jpeg",
+   "alt": " CALVIN KLEIN CALVIN KLEIN Calvin Klein In2U Kadın Parfüm EDT 150 ml ",
+   "text": [
+    "Sepete Ekle",
+    "Calvin Klein In2U Kadın Parfüm EDT 150 ml",
+    "3.299,90 ₺",
+    "Watsons Club ile 1.499,00 ₺",
+    "16"
+   ],
+   "prices": [
+    "3.299,90",
+    "1.499,00"
+   ],
+   "file": "assets/products/calvin-klein-in2u-kadin-parfum-edt-150-ml-p-bp-139585.jpg",
+   "bytes": 4275,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hb9/h97/8900786454558/prd-front-139585_195x195/prd-front-139585-195x195.jpeg",
+   "cached": true
+  },
+  {
+   "page": "/kisisel-bakim/c/103",
+   "url": "https://www.watsons.com.tr/rexona-kadin-sprey-deodorant-sexy-bouquet-72-saat-kesintisiz-ustun-koruma-150-ml/p/BP_129538",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/h14/h23/14073415172126/prd-front-129538_195x195/prd-front-129538-195x195.jpg",
+   "alt": " REXONA REXONA Rexona Kadın Sprey Deodorant Sexy Bouquet 72 Saat Kesintisiz Üstün Koruma 150 ml ",
+   "text": [
+    "Sepete Ekle",
+    "Rexona Kadın Sprey Deodorant Sexy Bouquet 72 Saat Kesintisiz Üstün Koruma 150 ml",
+    "339,90 ₺",
+    "Watsons Club ile 134,90 ₺",
+    "43"
+   ],
+   "prices": [
+    "339,90",
+    "134,90"
+   ],
+   "file": "assets/products/rexona-kadin-sprey-deodorant-sexy-bouquet-72-saat-kesintisiz.jpg",
+   "bytes": 6311,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h14/h23/14073415172126/prd-front-129538_195x195/prd-front-129538-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/erkek-bakim/c/105",
+   "url": "https://www.watsons.com.tr/rexona-clinical-protection-fresh-erkek-stick/p/BP_152372",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/hdc/h03/11216026206238/prd-front-152372_195x195/prd-front-152372-195x195.jpg",
+   "alt": " REXONA REXONA Rexona Clinical Protection Fresh Erkek Stick ",
+   "text": [
+    "Sepete Ekle",
+    "Rexona Clinical Protection Fresh Erkek Stick",
+    "669,90 ₺",
+    "Watsons Club ile 499,90 ₺",
+    "10"
+   ],
+   "prices": [
+    "669,90",
+    "499,90"
+   ],
+   "file": "assets/products/rexona-clinical-protection-fresh-erkek-stick-p-bp-152372.jpg",
+   "bytes": 4212,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hdc/h03/11216026206238/prd-front-152372_195x195/prd-front-152372-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/erkek-bakim/c/105",
+   "url": "https://www.watsons.com.tr/versace-eros-erkek-parfum-edp-100-ml/p/BP_1356159",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/h73/heb/9370529267742/prd-front-1356159_195x195/prd-front-1356159-195x195.jpg",
+   "alt": " VERSACE VERSACE Versace Eros Erkek Parfüm Edp 100 ml ",
+   "text": [
+    "Sepete Ekle",
+    "Versace Eros Erkek Parfüm Edp 100 ml",
+    "6.699,90 ₺",
+    "Watsons Club ile 4.999,00 ₺",
+    "4"
+   ],
+   "prices": [
+    "6.699,90",
+    "4.999,00"
+   ],
+   "file": "assets/products/versace-eros-erkek-parfum-edp-100-ml-p-bp-1356159.jpg",
+   "bytes": 10445,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h73/heb/9370529267742/prd-front-1356159_195x195/prd-front-1356159-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/erkek-bakim/c/105",
+   "url": "https://www.watsons.com.tr/calvin-klein-be-sprey-erkek-parfum-edt-200-ml/p/BP_140628",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/hc5/h28/8900562649118/prd-front-140628_195x195/prd-front-140628-195x195.jpeg",
+   "alt": " CALVIN KLEIN CALVIN KLEIN Calvin Klein Be Sprey Erkek Parfüm EDT 200 ml ",
+   "text": [
+    "Sepete Ekle",
+    "Calvin Klein Be Sprey Erkek Parfüm EDT 200 ml",
+    "4.299,90 ₺",
+    "Watsons Club ile 1.799,00 ₺",
+    "8"
+   ],
+   "prices": [
+    "4.299,90",
+    "1.799,00"
+   ],
+   "file": "assets/products/calvin-klein-be-sprey-erkek-parfum-edt-200-ml-p-bp-140628.jpg",
+   "bytes": 3224,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hc5/h28/8900562649118/prd-front-140628_195x195/prd-front-140628-195x195.jpeg",
+   "cached": true
+  },
+  {
+   "page": "/erkek-bakim/c/105",
+   "url": "https://www.watsons.com.tr/rexona-men-clinical-protection-erkek-stick-deodorant-clean-scent-3x-guclu-koruma-45-ml/p/BP_1394477",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/h8a/hbe/11216032858142/prd-front-1394477_195x195/prd-front-1394477-195x195.jpg",
+   "alt": " REXONA REXONA Rexona Men Clinical Protection Erkek Stick Deodorant Clean Scent 3x Güçlü Koruma 45 ml ",
+   "text": [
+    "Sepete Ekle",
+    "Rexona Men Clinical Protection Erkek Stick Deodorant Clean Scent 3x Güçlü Koruma 45 ml",
+    "669,90 ₺",
+    "Watsons Club ile 499,90 ₺",
+    "0"
+   ],
+   "prices": [
+    "669,90",
+    "499,90"
+   ],
+   "file": "assets/products/rexona-men-clinical-protection-erkek-stick-deodorant-clean-s.jpg",
+   "bytes": 7566,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h8a/hbe/11216032858142/prd-front-1394477_195x195/prd-front-1394477-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/erkek-bakim/c/105",
+   "url": "https://www.watsons.com.tr/rexona-clinical-protection-confidence-kadin-deodorant-150-ml/p/BP_1308762",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/h79/h73/14206406983710/prd-front-1308762_195x195/prd-front-1308762-195x195.jpg",
+   "alt": " REXONA REXONA Rexona Clinical Protection Confidence Kadın Deodorant 150 ml ",
+   "text": [
+    "Sepete Ekle",
+    "Rexona Clinical Protection Confidence Kadın Deodorant 150 ml",
+    "499,90 ₺",
+    "Watsons Club ile 373,90 ₺",
+    "561"
+   ],
+   "prices": [
+    "499,90",
+    "373,90"
+   ],
+   "file": "assets/products/rexona-clinical-protection-confidence-kadin-deodorant-150-ml.jpg",
+   "bytes": 3846,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h79/h73/14206406983710/prd-front-1308762_195x195/prd-front-1308762-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/erkek-bakim/c/105",
+   "url": "https://www.watsons.com.tr/old-spice-whitewater-deodorant-70-ml/p/BP_173539",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/he8/h95/13887168479262/prd-front-173539_195x195/prd-front-173539-195x195.jpg",
+   "alt": " OLD SPICE OLD SPICE Old Spice Whitewater Deodorant 70 ml ",
+   "text": [
+    "Sepete Ekle",
+    "Old Spice Whitewater Deodorant 70 ml",
+    "393,90 ₺",
+    "Watsons Club ile 199,00 ₺",
+    "4"
+   ],
+   "prices": [
+    "393,90",
+    "199,00"
+   ],
+   "file": "assets/products/old-spice-whitewater-deodorant-70-ml-p-bp-173539.jpg",
+   "bytes": 11393,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/he8/h95/13887168479262/prd-front-173539_195x195/prd-front-173539-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/erkek-bakim/c/105",
+   "url": "https://www.watsons.com.tr/head-shoulders-klasik-bakim-kepek-karsiti-gunluk-kullanim-sampuan-330-ml/p/BP_1314320",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/h39/h4a/10525586554910/prd-front-1314320_195x195/prd-front-1314320-195x195.jpg",
+   "alt": " HEAD&SHOULDERS HEAD&SHOULDERS Head&Shoulders Klasik Bakım Kepek Karşıtı  Günlük Kullanım Şampuan 330 ml ",
+   "text": [
+    "Sepete Ekle",
+    "Head&Shoulders Klasik Bakım Kepek Karşıtı  Günlük Kullanım Şampuan 330 ml",
+    "369,90 ₺",
+    "Watsons Club ile 184,90 ₺",
+    "1"
+   ],
+   "prices": [
+    "369,90",
+    "184,90"
+   ],
+   "file": "assets/products/head-shoulders-klasik-bakim-kepek-karsiti-gunluk-kullanim-sa.jpg",
+   "bytes": 9546,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h39/h4a/10525586554910/prd-front-1314320_195x195/prd-front-1314320-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/saglikli-yasam/c/106",
+   "url": "https://www.watsons.com.tr/nutrabliss-by-watsons-hindistan-cevizi-yagi-330-ml/p/BP_1433236",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/h7f/h99/12761401294878/prd-front-1433236_195x195/prd-front-1433236-195x195.jpg",
+   "alt": " NUTRABLISS BY WATSONS NUTRABLISS BY WATSONS Nutrabliss By Watsons Hindistan Cevizi Yağı 330 ml ",
+   "text": [
+    "Sepete Ekle",
+    "Nutrabliss By Watsons Hindistan Cevizi Yağı 330 ml",
+    "649,90 ₺",
+    "Watsons Club ile 299,00 ₺",
+    "4"
+   ],
+   "prices": [
+    "649,90",
+    "299,00"
+   ],
+   "file": "assets/products/nutrabliss-by-watsons-hindistan-cevizi-yagi-330-ml-p-bp-1433.jpg",
+   "bytes": 5688,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h7f/h99/12761401294878/prd-front-1433236_195x195/prd-front-1433236-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/saglikli-yasam/c/106",
+   "url": "https://www.watsons.com.tr/durex-prezervatif-nude-16li/p/BP_1449861",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/hd7/h7e/12743025033246/prd-front-1449861_195x195/prd-front-1449861-195x195.jpg",
+   "alt": " DUREX DUREX Durex Prezervatif Nude 16'lı ",
+   "text": [
+    "Sepete Ekle",
+    "Durex Prezervatif Nude 16'lı",
+    "829,90 ₺",
+    "Watsons Club ile 554,90 ₺",
+    "0"
+   ],
+   "prices": [
+    "829,90",
+    "554,90"
+   ],
+   "file": "assets/products/durex-prezervatif-nude-16li-p-bp-1449861.jpg",
+   "bytes": 14094,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hd7/h7e/12743025033246/prd-front-1449861_195x195/prd-front-1449861-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/saglikli-yasam/c/106",
+   "url": "https://www.watsons.com.tr/durex-gercek-dokunus-prezervatif-10lu/p/BP_141899",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/hd4/h23/10097919524894/prd-front-141899_195x195/prd-front-141899-195x195.jpg",
+   "alt": " DUREX DUREX Durex Gerçek Dokunuş Prezervatif 10'lu ",
+   "text": [
+    "Sepete Ekle",
+    "Durex Gerçek Dokunuş Prezervatif 10'lu",
+    "524,90 ₺",
+    "Watsons Club ile 354,90 ₺",
+    "1"
+   ],
+   "prices": [
+    "524,90",
+    "354,90"
+   ],
+   "file": "assets/products/durex-gercek-dokunus-prezervatif-10lu-p-bp-141899.jpg",
+   "bytes": 5758,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hd4/h23/10097919524894/prd-front-141899_195x195/prd-front-141899-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/saglikli-yasam/c/106",
+   "url": "https://www.watsons.com.tr/vitago-kolajen-seramid-ve-biotin-iceren-tablet-takviye-edici-gida-30lu/p/BP_1369221",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/hb0/h19/9889936080926/prd-front-1369221_195x195/prd-front-1369221-195x195.jpg",
+   "alt": " VITAGO VITAGO EXC. Vitago Kolajen, Seramid ve Biotin İçeren Tablet Takviye Edici Gıda 30'lu ",
+   "text": [
+    "Sepete Ekle",
+    "Vitago Kolajen, Seramid ve Biotin İçeren Tablet Takviye Edici Gıda 30'lu",
+    "769,90 ₺",
+    "Watsons Club ile 559,90 ₺",
+    "1"
+   ],
+   "prices": [
+    "769,90",
+    "559,90"
+   ],
+   "file": "assets/products/vitago-kolajen-seramid-ve-biotin-iceren-tablet-takviye-edici.jpg",
+   "bytes": 11191,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hb0/h19/9889936080926/prd-front-1369221_195x195/prd-front-1369221-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/saglikli-yasam/c/106",
+   "url": "https://www.watsons.com.tr/okey-ekstra-zevk-20li-ekonomik/p/BP_167785",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/h42/h6c/8909487898654/prd-front-167785_195x195/prd-front-167785-195x195.jpeg",
+   "alt": " OKEY OKEY Okey Ekstra Zevk 20'li Ekonomik ",
+   "text": [
+    "Sepete Ekle",
+    "Okey Ekstra Zevk 20'li Ekonomik",
+    "459,90 ₺",
+    "Watsons Club ile 322,90 ₺",
+    "1"
+   ],
+   "prices": [
+    "459,90",
+    "322,90"
+   ],
+   "file": "assets/products/okey-ekstra-zevk-20li-ekonomik-p-bp-167785.jpg",
+   "bytes": 5803,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h42/h6c/8909487898654/prd-front-167785_195x195/prd-front-167785-195x195.jpeg",
+   "cached": true
+  },
+  {
+   "page": "/saglikli-yasam/c/106",
+   "url": "https://www.watsons.com.tr/breathe-right-extra-regular-size-burun-bandi-10-adet/p/BP_143848",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/h42/h59/12215279714334/prd-front-143848_195x195/prd-front-143848-195x195.jpg",
+   "alt": " BREATHE RIGHT BREATHE RIGHT Breathe Right Extra Regular Size Burun Bandı 10 Adet ",
+   "text": [
+    "Sepete Ekle",
+    "Breathe Right Extra Regular Size Burun Bandı 10 Adet",
+    "199,90 ₺",
+    "0"
+   ],
+   "prices": [
+    "199,90"
+   ],
+   "file": "assets/products/breathe-right-extra-regular-size-burun-bandi-10-adet-p-bp-14.jpg",
+   "bytes": 10015,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h42/h59/12215279714334/prd-front-143848_195x195/prd-front-143848-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/saglikli-yasam/c/106",
+   "url": "https://www.watsons.com.tr/durex-maraton-geciktiricili-prezervatif-20li/p/BP_167085",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/ha6/hfa/10097929748510/prd-front-167085_195x195/prd-front-167085-195x195.jpg",
+   "alt": " DUREX DUREX Durex Maraton Geciktiricili Prezervatif 20'li ",
+   "text": [
+    "Sepete Ekle",
+    "Durex Maraton Geciktiricili Prezervatif 20'li",
+    "612,90 ₺",
+    "Watsons Club ile 379,90 ₺",
+    "1"
+   ],
+   "prices": [
+    "612,90",
+    "379,90"
+   ],
+   "file": "assets/products/durex-maraton-geciktiricili-prezervatif-20li-p-bp-167085.jpg",
+   "bytes": 8214,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/ha6/hfa/10097929748510/prd-front-167085_195x195/prd-front-167085-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/saglikli-yasam/c/106",
+   "url": "https://www.watsons.com.tr/breathe-right-seffaf-regular-size-burun-bandi-10-adet/p/BP_135290",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/hc4/h51/12215279976478/prd-front-135290_195x195/prd-front-135290-195x195.jpg",
+   "alt": " BREATHE RIGHT BREATHE RIGHT Breathe Right Şeffaf Regular Size Burun Bandı 10 Adet ",
+   "text": [
+    "Sepete Ekle",
+    "Breathe Right Şeffaf Regular Size Burun Bandı 10 Adet",
+    "189,90 ₺",
+    "3"
+   ],
+   "prices": [
+    "189,90"
+   ],
+   "file": "assets/products/breathe-right-seffaf-regular-size-burun-bandi-10-adet-p-bp-1.jpg",
+   "bytes": 9445,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hc4/h51/12215279976478/prd-front-135290_195x195/prd-front-135290-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/saglikli-yasam/c/106",
+   "url": "https://www.watsons.com.tr/okey-nirvana-uyarici-jel-100-ml/p/BP_161795",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/he6/hcc/8905826172958/prd-front-161795_195x195/prd-front-161795-195x195.png",
+   "alt": " OKEY OKEY Okey Nirvana Uyarıcı Jel 100 ml ",
+   "text": [
+    "Sepete Ekle",
+    "Okey Nirvana Uyarıcı Jel 100 ml",
+    "584,90 ₺",
+    "Watsons Club ile 442,90 ₺",
+    "3"
+   ],
+   "prices": [
+    "584,90",
+    "442,90"
+   ],
+   "file": "assets/products/okey-nirvana-uyarici-jel-100-ml-p-bp-161795.jpg",
+   "bytes": 5301,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/he6/hcc/8905826172958/prd-front-161795_195x195/prd-front-161795-195x195.png",
+   "cached": true
+  },
+  {
+   "page": "/saglikli-yasam/c/106",
+   "url": "https://www.watsons.com.tr/vitago-biotin-5000-mcg-iceren-tablet-takviye-edici-gida-60li/p/BP_1369228",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/he2/h0f/9889936343070/prd-front-1369228_195x195/prd-front-1369228-195x195.jpg",
+   "alt": " VITAGO VITAGO EXC. Vitago Biotin 5000 MCG İçeren Tablet Takviye Edici Gıda 60'lı ",
+   "text": [
+    "Sepete Ekle",
+    "Vitago Biotin 5000 MCG İçeren Tablet Takviye Edici Gıda 60'lı",
+    "489,90 ₺",
+    "Watsons Club ile 359,90 ₺",
+    "1"
+   ],
+   "prices": [
+    "489,90",
+    "359,90"
+   ],
+   "file": "assets/products/vitago-biotin-5000-mcg-iceren-tablet-takviye-edici-gida-60li.jpg",
+   "bytes": 10605,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/he2/h0f/9889936343070/prd-front-1369228_195x195/prd-front-1369228-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/makyaj-cok-satanlar/c/100070",
+   "url": "https://www.watsons.com.tr/revolution-reloaded-far-paleti-velvet-rose/p/BP_162973",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/hf7/h14/8906034839582/prd-front-162973_195x195/prd-front-162973-195x195.png",
+   "alt": " REVOLUTION REVOLUTION Revolution Reloaded Far Paleti Velvet Rose ",
+   "text": [
+    "Sepete Ekle",
+    "Revolution Reloaded Far Paleti Velvet Rose",
+    "934,90 ₺",
+    "Watsons Club ile 373,90 ₺",
+    "60"
+   ],
+   "prices": [
+    "934,90",
+    "373,90"
+   ],
+   "file": "assets/products/revolution-reloaded-far-paleti-velvet-rose-p-bp-162973.jpg",
+   "bytes": 6119,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hf7/h14/8906034839582/prd-front-162973_195x195/prd-front-162973-195x195.png",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/makyaj-cok-satanlar/c/100070",
+   "url": "https://www.watsons.com.tr/revolution-reloaded-palette-affection-far-paleti/p/BP_166550",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/h47/h70/8909225820190/prd-front-166550_195x195/prd-front-166550-195x195.jpeg",
+   "alt": " REVOLUTION REVOLUTION Revolution Reloaded Palette Affection Far Paleti ",
+   "text": [
+    "Sepete Ekle",
+    "Revolution Reloaded Palette Affection Far Paleti",
+    "934,90 ₺",
+    "Watsons Club ile 373,90 ₺",
+    "1719"
+   ],
+   "prices": [
+    "934,90",
+    "373,90"
+   ],
+   "file": "assets/products/revolution-reloaded-palette-affection-far-paleti-p-bp-166550.jpg",
+   "bytes": 3366,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h47/h70/8909225820190/prd-front-166550_195x195/prd-front-166550-195x195.jpeg",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/makyaj-cok-satanlar/c/100070",
+   "url": "https://www.watsons.com.tr/nyx-professional-makeup-bare-with-me-kapatici-serum-01-fair/p/BP_1319556",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/h3e/ha7/9963725160478/prd-front-1319556_195x195/prd-front-1319556-195x195.jpg",
+   "alt": " NYX NYX Nyx Professional Makeup Bare With Me Kapatıcı Serum 01 Fair ",
+   "text": [
+    "Sepete Ekle",
+    "Nyx Professional Makeup Bare With Me Kapatıcı Serum 01 Fair",
+    "1.499,90 ₺",
+    "88"
+   ],
+   "prices": [
+    "1.499,90"
+   ],
+   "file": "assets/products/nyx-professional-makeup-bare-with-me-kapatici-serum-01-fair-.jpg",
+   "bytes": 11378,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h3e/ha7/9963725160478/prd-front-1319556_195x195/prd-front-1319556-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/makyaj-cok-satanlar/c/100070",
+   "url": "https://www.watsons.com.tr/loreal-paris-panorama-hacim-veren-maskara-siyah/p/BP_1382367",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/h18/h95/9920028213278/prd-front-1382367_195x195/prd-front-1382367-195x195.jpg",
+   "alt": " LOREAL PARIS LOREAL PARIS L'Oreal Paris Panorama Hacim Veren Maskara Siyah ",
+   "text": [
+    "Sepete Ekle",
+    "L'Oreal Paris Panorama Hacim Veren Maskara Siyah",
+    "1.799,90 ₺",
+    "Watsons Club ile 719,90 ₺",
+    "275"
+   ],
+   "prices": [
+    "1.799,90",
+    "719,90"
+   ],
+   "file": "assets/products/loreal-paris-panorama-hacim-veren-maskara-siyah-p-bp-1382367.jpg",
+   "bytes": 8648,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h18/h95/9920028213278/prd-front-1382367_195x195/prd-front-1382367-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/makyaj-cok-satanlar/c/100070",
+   "url": "https://www.watsons.com.tr/maybelline-new-york-super-lock-brow-glue-kas-sabitleyici-maskara/p/BP_1397718",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/hbb/h93/10525759602718/prd-front-1397718_195x195/prd-front-1397718-195x195.jpg",
+   "alt": " MAYBELLINE MAYBELLINE Maybelline New York Super Lock Brow Glue Kaş Sabitleyici Maskara ",
+   "text": [
+    "Sepete Ekle",
+    "Maybelline New York Super Lock Brow Glue Kaş Sabitleyici Maskara",
+    "1.699,90 ₺",
+    "Watsons Club ile 679,90 ₺",
+    "551"
+   ],
+   "prices": [
+    "1.699,90",
+    "679,90"
+   ],
+   "file": "assets/products/maybelline-new-york-super-lock-brow-glue-kas-sabitleyici-mas.jpg",
+   "bytes": 9056,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hbb/h93/10525759602718/prd-front-1397718_195x195/prd-front-1397718-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/makyaj-cok-satanlar/c/100070",
+   "url": "https://www.watsons.com.tr/nyx-professional-makeup-bare-with-me-kapatici-serum-02-light/p/BP_1319563",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/h65/h44/9963724374046/prd-front-1319563_195x195/prd-front-1319563-195x195.jpg",
+   "alt": " NYX NYX Nyx Professional Makeup Bare With Me Kapatıcı Serum 02 Light ",
+   "text": [
+    "Sepete Ekle",
+    "Nyx Professional Makeup Bare With Me Kapatıcı Serum 02 Light",
+    "1.499,90 ₺",
+    "94"
+   ],
+   "prices": [
+    "1.499,90"
+   ],
+   "file": "assets/products/nyx-professional-makeup-bare-with-me-kapatici-serum-02-light.jpg",
+   "bytes": 11328,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/h65/h44/9963724374046/prd-front-1319563_195x195/prd-front-1319563-195x195.jpg",
+   "cached": true
+  },
+  {
+   "page": "/makyaj/makyaj-cok-satanlar/c/100070",
+   "url": "https://www.watsons.com.tr/maybelline-new-york-lash-sensational-maskara-sky-high/p/BP_1274021",
+   "img": "https://media.watsons.com.tr/medias/sys_master/prd-images/hba/h82/14167126867998/prd-front-1274021_195x195/prd-front-1274021-195x195.jpg",
+   "alt": " MAYBELLINE MAYBELLINE Maybelline New York Lash Sensational Maskara Sky High ",
+   "text": [
+    "Sepete Ekle",
+    "Maybelline New York Lash Sensational Maskara Sky High",
+    "2.099,90 ₺",
+    "Watsons Club ile 839,90 ₺",
+    "180"
+   ],
+   "prices": [
+    "2.099,90",
+    "839,90"
+   ],
+   "file": "assets/products/maybelline-new-york-lash-sensational-maskara-sky-high-p-bp-1.jpg",
+   "bytes": 5530,
+   "type": "image/jpeg",
+   "original": "https://media.watsons.com.tr/medias/sys_master/prd-images/hba/h82/14167126867998/prd-front-1274021_195x195/prd-front-1274021-195x195.jpg",
+   "cached": true
+  }
+ ],
+ "logos": [
+  {
+   "alt": "CKHHLogo.png",
+   "file": "assets/brand/logo-img-4.png",
+   "bytes": 2999,
+   "type": "image/png",
+   "original": "https://media.watsons.com.tr/medias/sys_master/images/h17/ha3/8840990392350/CKHHLogo/CKHHLogo.png",
+   "cached": true
+  }
+ ],
  "cdx": [],
  "theme": {
   "colors": [
    [
     "rgb(0, 0, 0)",
-    2667
+    2129
+   ],
+   [
+    "rgb(133, 133, 133)",
+    1362
    ],
    [
     "rgb(0, 0, 238)",
-    1102
+    342
    ],
    [
     "rgb(194, 194, 194)",
-    217
+    227
    ],
    [
     "rgb(255, 255, 255)",
-    78
+    192
    ],
    [
     "rgb(0, 154, 169)",
-    71
+    104
+   ],
+   [
+    "rgba(217, 241, 241, 0.5)",
+    6
+   ],
+   [
+    "rgb(244, 244, 244)",
+    2
    ],
    [
     "rgb(72, 72, 72)",
+    1
+   ],
+   [
+    "rgb(197, 212, 90)",
     1
    ],
    [
@@ -69,11 +3065,15 @@
   "fonts": [
    [
     "Rubik, arial, sans-serif",
-    2028
+    2098
    ],
    [
     "ee-icons",
-    29
+    33
+   ],
+   [
+    "\"lucida grande\", tahoma, verdana, arial, sans-serif",
+    3
    ],
    [
     "Arial",
@@ -87,7 +3087,8 @@
    "@font-face { font-family: Montserrat; font-style: normal; font-weight: 400; font-display: swap; src: url(\"/web/20260614013016im_/https://www.watsons.com.tr/assets/fonts/Montserrat/montserrat-regular.woff2\") format(\"woff2\"); }",
    "@font-face { font-family: Montserrat; font-style: normal; font-weight: 500; font-display: swap; src: url(\"/web/20260614013016im_/https://www.watsons.com.tr/assets/fonts/Montserrat/montserrat-medium.woff2\") format(\"woff2\"); }",
    "@font-face { font-family: Montserrat; font-style: normal; font-weight: 700; font-display: swap; src: url(\"/web/20260614013016im_/https://www.watsons.com.tr/assets/fonts/Montserrat/montserrat-bold.woff2\") format(\"woff2\"); }",
-   "@font-face { font-family: ee-icons; font-display: swap; font-weight: 400; font-style: normal; src: url(\"/web/20260614013016im_/https://www.watsons.com.tr/assets/fonts/ee-icons.woff\") format(\"woff\"), url(\"/web/20260614013016im_/https://www.watsons.com.tr/assets/fonts/ee-icons.ttf\") format(\"truetype\"); }"
+   "@font-face { font-family: ee-icons; font-display: swap; font-weight: 400; font-style: normal; src: url(\"/web/20260614013016im_/https://www.watsons.com.tr/assets/fonts/ee-icons.woff\") format(\"woff\"), url(\"/web/20260614013016im_/https://www.watsons.com.tr/assets/fonts/ee-icons.ttf\") format(\"truetype\"); }",
+   "@font-face { font-family: swiper-icons; src: url(\"data:application/font-woff;charset=utf-8;base64, d09GRgABAAAAAAZgABAAAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABGRlRNAAAGRAAAABoAAAAci6qHkUdERUYAAAWgAAAAIwAAACQAYABXR1BPUwAABhQAAAAuAAAANuAY7+xHU1VCAAAFxAAAAFAAAABm2fPczU9TLzIAAAHcAAAASgAAAGBP9V5RY21hcAAAAkQAAACIAAABYt6F0cBjdnQgAAACzAAAAAQAAAAEABEBRGdhc3AAAAWYAAAACAAAAAj//wADZ2x5ZgAAAywAAADMAAAD2MHtryVoZ"
   ]
  },
  "nav": [
@@ -97,7 +3098,7 @@
   },
   {
    "href": "https://www.watsons.com.tr/login",
-   "text": "Merhaba"
+   "text": "Merhaba Giriş Yap"
   },
   {
    "href": "https://www.watsons.com.tr/login",
@@ -1728,6 +4729,26 @@
    "text": "Ayın Ürünleri"
   },
   {
+   "href": "https://www.watsons.com.tr/c/makyaj-281",
+   "text": "makyaj malzemeleri"
+  },
+  {
+   "href": "https://www.watsons.com.tr/c/oje-425",
+   "text": "oje"
+  },
+  {
+   "href": "https://www.watsons.com.tr/c/cilt-bakimi-322",
+   "text": "cilt bakım"
+  },
+  {
+   "href": "https://www.watsons.com.tr/c/sac-307",
+   "text": "saç bakım"
+  },
+  {
+   "href": "https://www.watsons.com.tr/c/mor-sampuan-3596",
+   "text": "mor şampuan"
+  },
+  {
    "href": "https://www.watsons.com.tr/hakkimizda",
    "text": "Hakkımızda"
   },
@@ -2070,26 +5091,6 @@
   {
    "href": "https://www.watsons.com.tr/sevgililer-gunu",
    "text": "Sevgililer Günü"
-  },
-  {
-   "href": "https://www.watsons.com.tr/revolutionary-days",
-   "text": "Revolutionary Days"
-  },
-  {
-   "href": "https://www.watsons.com.tr/buyuk-bayram-indirimi",
-   "text": "Watsons'ta Büyük Bayram Fırsatları"
-  },
-  {
-   "href": "https://www.watsons.com.tr/dunya-tersine-gunu",
-   "text": "Dünya Tersine Günü"
-  },
-  {
-   "href": "https://www.watsons.com.tr/4-4-firsatlari",
-   "text": "4.4 Kampanyası"
-  },
-  {
-   "href": "https://www.watsons.com.tr/babalar-gunu",
-   "text": "Babalar Günü"
   }
  ]
 }
