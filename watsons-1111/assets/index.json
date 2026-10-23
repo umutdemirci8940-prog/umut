@@ -1,0 +1,32 @@
+{
+ "fetchedAt": "2026-10-23T14:11:54.138Z",
+ "base": "https://www.watsons.com.tr",
+ "pages": [
+  {
+   "path": "/",
+   "url": "https://www.watsons.com.tr/",
+   "title": "Access Denied",
+   "imgs": 0,
+   "products": 0
+  }
+ ],
+ "site": [],
+ "products": [],
+ "logos": [],
+ "videos": [],
+ "theme": {
+  "colors": [
+   [
+    "rgb(0, 0, 0)",
+    3
+   ]
+  ],
+  "fonts": [
+   [
+    "\"Times New Roman\"",
+    3
+   ]
+  ]
+ },
+ "nav": []
+}
