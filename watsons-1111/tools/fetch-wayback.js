@@ -31,17 +31,22 @@ const extOf = (url, type) => {
 // Arşiv adresini ham dosya adresine çevirir (…/web/<ts>im_/https://…  → …/web/<ts>id_/https://…)
 const raw = (u) => u.replace(/\/web\/(\d+)[a-z_]*\//, '/web/$1id_/');
 const original = (u) => { const m = u.match(/\/web\/\d+[a-z_]*\/(.+)$/); return m ? m[1] : u; };
+const T0 = Date.now();
+const BUDGET = (+process.env.BUDGET_MIN || 28) * 60000;
+const left = () => BUDGET - (Date.now() - T0);
+const log = (m) => console.log(`[${Math.round((Date.now() - T0) / 1000)}s] ${m}`);
 const index = { fetchedAt: new Date().toISOString(), via: 'web.archive.org', pages: [], site: [], products: [], logos: [], cdx: [], theme: {}, nav: [] };
 const seen = new Set();
 
 async function get(ctx, url) {
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 2; i++) {
     try {
-      const r = await ctx.request.get(url, { timeout: 45000 });
+      const r = await ctx.request.get(url, { timeout: 20000 });
       if (r.ok()) return r;
       if (r.status() === 404) throw new Error('404');
+      if (r.status() === 429) await new Promise((res) => setTimeout(res, 8000));
     } catch (e) { if (String(e.message).includes('404')) throw e; }
-    await new Promise((res) => setTimeout(res, 2500 * (i + 1)));
+    await new Promise((res) => setTimeout(res, 1500));
   }
   throw new Error(`indirilemedi ${url}`);
 }
@@ -121,8 +126,17 @@ async function collect(page) {
   });
 }
 
+async function pool(jobs, k) {
+  let i = 0;
+  await Promise.all(Array.from({ length: k }, async () => {
+    while (i < jobs.length && left() > 3 * 60000) { const j = jobs[i++]; try { await j.run(); } catch (e) { console.log(`⚠ ${e.message}`); } }
+  }));
+}
+const save = () => fs.writeFileSync(path.join(out, 'index.json'), JSON.stringify(index, null, 1));
+
 async function cdx(ctx) {
   // Arşivdeki watsons.com.tr görselleri (2025 sonrası), adres başına tek kayıt
+  if (left() < 4 * 60000) return;
   const q = `https://web.archive.org/cdx/search/cdx?url=watsons.com.tr&matchType=domain&from=2025&filter=mimetype:image/.*&filter=statuscode:200&collapse=urlkey&output=json&limit=20000`;
   let rows = [];
   try { rows = JSON.parse(await (await get(ctx, q)).text()); } catch (e) { console.log(`⚠ cdx: ${e.message}`); return; }
@@ -135,12 +149,14 @@ async function cdx(ctx) {
   // En büyük 260 dosya (banner ve büyük ürün görselleri)
   list.sort((a, b) => b.len - a.len);
   let n = 0;
-  for (const r of list.slice(0, 260)) {
-    const u = `${WB}/${r.ts}id_/${r.url}`;
+  const jobs = [];
+  for (const r of list.slice(0, 160)) {
     if (seen.has(r.url)) continue;
     seen.add(r.url);
-    try { index.cdx.push(Object.assign({ ts: r.ts }, await download(ctx, u, path.join(out, 'cdx', String(++n).padStart(3, '0'))))); } catch (e) { console.log(`⚠ ${e.message}`); }
+    const k = ++n, u = `${WB}/${r.ts}id_/${r.url}`;
+    jobs.push({ run: async () => { index.cdx.push(Object.assign({ ts: r.ts }, await download(ctx, u, path.join(out, 'cdx', String(k).padStart(3, '0'))))); } });
   }
+  await pool(jobs, 4);
 }
 
 (async () => {
@@ -150,16 +166,16 @@ async function cdx(ctx) {
   page.setDefaultTimeout(90000);
   const queue = [...PAGES];
   const done = new Set();
-  while (queue.length && done.size < 16) {
+  while (queue.length && done.size < 12 && left() > 8 * 60000) {
     const p = queue.shift();
     if (done.has(p)) continue;
     done.add(p);
     const target = `${WB}/2026/https://www.watsons.com.tr${p}`;
-    console.log(`→ ${target}`);
+    log(`→ ${target}`);
     try {
-      const resp = await page.goto(target, { waitUntil: 'domcontentloaded', timeout: 120000 });
+      const resp = await page.goto(target, { waitUntil: 'domcontentloaded', timeout: 60000 });
       if (!resp || resp.status() >= 400) { console.log(`  arşivde yok (${resp && resp.status()})`); continue; }
-      await page.waitForTimeout(6000);
+      await page.waitForTimeout(4000);
       await autoscroll(page);
     } catch (e) { console.log(`⚠ ${e.message}`); continue; }
     const name = slug(p);
@@ -183,23 +199,27 @@ async function cdx(ctx) {
       }
     }
     let n = 0;
-    for (const im of [...data.imgs, ...data.bgs]) {
+    const jobs = [];
+    for (const pr of data.products.slice(0, 40)) {
+      const o = original(pr.url);
+      if (!pr.img || index.products.some((x) => x.url === o) || jobs.some((j) => j.url === o)) continue;
+      seen.add(original(pr.img));
+      jobs.push({ url: o, run: async () => { index.products.push(Object.assign({ page: p }, pr, { url: o }, await download(ctx, pr.img, path.join(out, 'products', slug(o.split('/').slice(-3).join('-')))))); } });
+    }
+    for (const im of [...data.imgs, ...data.bgs].sort((a, b) => (b.boxW * b.boxH) - (a.boxW * a.boxH)).slice(0, 40)) {
       const o = original(im.src);
       if (seen.has(o) || /\.svg(\?|$)/i.test(o)) continue;
       if ((im.boxW || 0) < 90 && (im.w || 0) < 160) continue;
       seen.add(o);
-      try { index.site.push(Object.assign({ page: p }, im, await download(ctx, im.src, path.join(out, 'site', `${name}-${String(++n).padStart(3, '0')}`)))); } catch (e) { console.log(`⚠ ${e.message}`); }
+      const k = ++n;
+      jobs.push({ run: async () => { index.site.push(Object.assign({ page: p }, im, await download(ctx, im.src, path.join(out, 'site', `${name}-${String(k).padStart(3, '0')}`)))); } });
     }
-    for (const pr of data.products) {
-      const o = original(pr.url);
-      if (!pr.img || index.products.some((x) => x.url === o)) continue;
-      seen.add(original(pr.img));
-      try { index.products.push(Object.assign({ page: p }, pr, { url: o }, await download(ctx, pr.img, path.join(out, 'products', slug(o.split('/').slice(-3).join('-')))))); } catch (e) { console.log(`⚠ ürün ${e.message}`); }
-    }
-    console.log(`  "${data.title}" — ${n} görsel, ${data.products.length} ürün kartı`);
+    await pool(jobs, 4);
+    save();
+    log(`  "${data.title}" — ${n} görsel, ${data.products.length} ürün kartı`);
   }
   await cdx(ctx);
-  fs.writeFileSync(path.join(out, 'index.json'), JSON.stringify(index, null, 1));
+  save();
   console.log(`✔ ${index.pages.length} sayfa, ${index.site.length} site görseli, ${index.products.length} ürün, ${index.logos.length} logo, ${index.cdx.length} CDX görseli`);
   await browser.close();
 })().catch((e) => { console.error(e); process.exit(1); });

@@ -34,6 +34,9 @@ jobs:
           npx playwright install --with-deps chromium
 
       - name: Görsel arşivini çek (doğrudan; Akamai engellerse Wayback Machine kopyası)
+        timeout-minutes: 40
+        env:
+          BUDGET_MIN: '30'
         run: |
           cd watsons-1111
           rm -rf assets/site assets/products assets/shots assets/html assets/cdx assets/index.json
@@ -47,13 +50,15 @@ jobs:
           fi
 
       - name: Özet
+        if: always()
         run: |
           cd watsons-1111
           rm -f package.json
           du -sh assets/* && find assets -type f | wc -l
-          node -e "const m=require('./assets/index.json');console.log(JSON.stringify({pages:m.pages,logos:m.logos,theme:m.theme},null,1))"
+          node -e "const m=require('./assets/index.json');console.log(JSON.stringify({pages:m.pages,logos:m.logos,site:m.site.length,products:m.products.length,cdx:(m.cdx||[]).length},null,1))" || true
 
       - name: Sonuçları dala push'la
+        if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
