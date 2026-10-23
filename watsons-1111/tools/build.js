@@ -39,7 +39,7 @@ for (const ad of ADS) {
 <title>Watsons 11.11 – ${ad.title}</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-<script>var clickTag = ""; /* Reklam ağı tıklama makrosu buraya; boşsa her öğe kendi ürün/kategori sayfasına gider */</script>
+<script>var clickTag = "https://www.watsons.com.tr/"; /* Tüm tıklamalar buraya gider; reklam ağı kendi makrosunu buraya yazabilir */</script>
 <!-- Boyutlar: ${size}${ad.mobile ? ' (aynı dosya, alan genişliğine göre yerleşim değiştirir)' : ''} -->`)
     .replace('{{SHARED_CSS}}', () => css)
     .replace('{{SHARED_JS}}', () => js)

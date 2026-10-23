@@ -45,7 +45,7 @@ NODE_PATH=$(npm root -g) node tools/smoke.js   # her çalışmanın mekaniğini 
 ## Teknik
 
 - Her çalışma tek `index.html` + `img/` klasörü (yalnızca kullandığı görseller); `dist/zip/watsons-1111-<çalışma>.zip` yüklemeye hazırdır. `dist/inline/` görselleri gömülü tek dosya sürümleridir (sunumda kullanılır).
-- Tıklama: `clickTag` boş bırakıldı; reklam ağı makrosu yazılırsa tüm tıklamalar oraya gider, boşsa her öğe kendi ürün/kategori sayfasına (UTM'li) gider. Studio'da `Enabler.exitOverride`, sayaçlar `Enabler.counter` ile ölçülür.
+- Tıklama: `clickTag = "https://www.watsons.com.tr/"`; reklamdaki tüm tıklamalar (CTA, ürün, kategori, kupon sonrası düğmeler) watsons.com.tr ana sayfasına gider. Reklam ağı kendi tıklama makrosunu `clickTag`e yazarsa o kullanılır. Studio'da `Enabler.exitOverride`, sayaçlar `Enabler.counter` ile ölçülür.
 - Etkileşimli kontroller (çark düğmesi, kazıma alanı, oyun alanı, kartlar) reklam çıkışını tetiklemez; boş alana tıklama genel çıkıştır.
 - Mobil uyarlama: aynı dosya 640 px'ten dar alanda `html.m` sınıfıyla mobil yerleşime geçer; dokunma (kaydırma, kazıma, sürükleme) desteklidir.
 - `prefers-reduced-motion` açıksa animasyonlar kısaltılır. Kullanıcı etkileşmezse her çalışma mekaniğini kendisi gösterir (çark kendiliğinden döner, kutu açılır, kapılar aralanır…).
