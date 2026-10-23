@@ -1,0 +1,50 @@
+name: Watsons 11.11 – büyük ürün ve yaşam tarzı görselleri
+
+# fetch-wayback.js'in bulduğu ürünlerin detay sayfalarından büyük fotoğrafları,
+# blog ve kampanya sayfalarından büyük görselleri arşiv kopyası üzerinden çeker.
+on:
+  workflow_dispatch:
+  push:
+    branches: ['claude/**']
+    paths:
+      - watsons-1111/tools/fetch-detail.js
+      - .github/workflows/watsons-detail.yml
+
+permissions:
+  contents: write
+
+jobs:
+  detail:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Playwright + Chromium kur
+        run: |
+          cd watsons-1111
+          npm init -y >/dev/null
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+
+      - name: Büyük görselleri çek
+        timeout-minutes: 40
+        env:
+          BUDGET_MIN: '32'
+        run: cd watsons-1111 && node tools/fetch-detail.js
+
+      - name: Sonuçları dala push'la
+        if: always()
+        run: |
+          rm -f watsons-1111/package.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A watsons-1111/assets
+          git commit -m "watsons.com.tr büyük ürün ve yaşam tarzı görselleri (GitHub Actions)" || { echo "Değişiklik yok"; exit 0; }
+          git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          git push
