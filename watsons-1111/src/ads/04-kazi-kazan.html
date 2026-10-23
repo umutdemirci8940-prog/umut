@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+{{HEAD}}
+<style>
+{{SHARED_CSS}}
+.ad { background: linear-gradient(120deg, #ff5d93 0%, var(--pink) 40%, #c0104f 100%); }
+.ad::before { content: ''; position: absolute; inset: 0; background: url("img/{{HERO}}") center/cover; opacity: .12; mix-blend-mode: multiply; }
+.dots { position: absolute; inset: 0; background-image: radial-gradient(rgba(255, 255, 255, .22) 1.5px, transparent 1.6px); background-size: 16px 16px; mask-image: linear-gradient(90deg, #000, transparent 40%); -webkit-mask-image: linear-gradient(90deg, #000, transparent 40%); }
+.brand { position: absolute; left: 26px; top: 24px; bottom: 22px; width: 200px; display: flex; flex-direction: column; justify-content: space-between; }
+.brand h1 { font-size: 18px; font-weight: 900; line-height: 1.12; margin-top: 10px; }
+.brand h1 em { font-style: normal; color: var(--gold); }
+.ticket { position: absolute; left: 248px; top: 22px; width: 560px; height: 206px; border-radius: 18px; background: #fff; box-shadow: 0 18px 40px rgba(90, 0, 30, .4); padding: 14px 16px; display: flex; flex-direction: column; color: var(--ink); }
+.ticket::before, .ticket::after { content: ''; position: absolute; top: 50%; width: 24px; height: 24px; margin-top: -12px; border-radius: 50%; background: #e0306f; }
+.ticket::before { left: -12px; } .ticket::after { right: -12px; }
+.tt { display: flex; align-items: center; justify-content: space-between; font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-d); }
+.tt span:last-child { color: var(--pink); }
+.wins { flex: 1; display: flex; gap: 12px; margin-top: 10px; }
+.win { position: relative; flex: 1; border-radius: 12px; overflow: hidden; background: linear-gradient(160deg, #eafcfd, #fff); box-shadow: inset 0 0 0 1px rgba(0, 120, 135, .15); }
+.prize { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 8px; text-align: center; }
+.prize img { width: 92px; height: 92px; object-fit: contain; }
+.prize b { font-size: 9px; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; color: var(--teal-d); margin-top: 4px; }
+.prize span { font-size: 10px; font-weight: 700; line-height: 1.2; max-height: 24px; overflow: hidden; }
+.win canvas { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; cursor: crosshair; transition: opacity .6s; }
+.win.open canvas { opacity: 0; pointer-events: none; }
+.win.open .prize { animation: pop .5s; }
+@keyframes pop { 40% { transform: scale(1.08); } }
+.tf { margin-top: 8px; font-size: 9px; color: #6a7f86; display: flex; justify-content: space-between; }
+.done { position: absolute; inset: 0; border-radius: 18px; background: linear-gradient(140deg, var(--teal), var(--teal-d)); color: #fff; display: flex; align-items: center; justify-content: center; gap: 22px; opacity: 0; pointer-events: none; transform: scale(.96); transition: opacity .5s, transform .5s; }
+.won .done { opacity: 1; pointer-events: auto; transform: none; }
+.done h2 { font-size: 24px; font-weight: 900; line-height: 1.05; }
+.done h2 small { display: block; font-size: 11px; letter-spacing: .18em; color: var(--gold); margin-bottom: 4px; }
+.done .col { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+.side { position: absolute; right: 22px; top: 24px; bottom: 22px; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end; }
+.side .cta { padding: 0 14px; }
+.legal { left: 26px; bottom: 8px; }
+.m .brand { left: 0; right: 0; top: 16px; bottom: auto; width: auto; align-items: center; text-align: center; }
+.m .brand .b1111 { align-items: center; }
+.m .brand h1 { margin-top: 4px; font-size: 16px; }
+.m .brand .cta { display: none; }
+.m .ticket { left: 16px; right: 16px; width: auto; top: 128px; height: 278px; }
+.m .wins { flex-wrap: wrap; gap: 8px; }
+.m .win { flex: 0 0 calc(50% - 4px); height: 104px; }
+.m .win:nth-child(3) { flex: 0 0 100%; }
+.m .prize img { width: 58px; height: 58px; }
+.m .done { flex-direction: column; gap: 12px; text-align: center; }
+.m .done .col { align-items: center; }
+.m .side { left: 16px; right: 16px; top: auto; bottom: 26px; flex-direction: row; align-items: center; }
+.m .legal { left: 0; right: 0; text-align: center; }
+</style>
+</head>
+<body>
+<div class="ad" id="ad" data-exit="" data-label="genel">
+  <div class="dots"></div>
+  <div class="brand fx">
+    <div>{{BADGE}}<h1>Kazı, <em>11.11 sürprizini</em> ilk sen gör</h1></div>
+    <span class="cta">Tüm Fırsatlar</span>
+  </div>
+  <div class="ticket fx d1" data-stop>
+    <div class="tt"><span>Watsons 11.11 Kazı Kazan</span><span id="cnt">3 pencere</span></div>
+    <div class="wins" id="wins"></div>
+    <div class="tf"><span>Her bilet kazanır · Çekiliş değildir</span><span>Parmağınla / farenle kazı</span></div>
+    <div class="done">
+      <div class="col"><h2><small>Tebrikler!</small>11.11 fırsatların<br>hazır</h2></div>
+      <div class="col"><div class="coupon"><code>{{CODE}}</code><button id="cp">Kopyala</button></div><span class="cta" data-exit="" data-label="kazi_sonuc">Alışverişe Başla</span></div>
+    </div>
+  </div>
+  <div class="side fx d3">{{LOGO}}<span class="cta pulse">Keşfet</span></div>
+  <div class="legal">{{LEGAL}}</div>
+</div>
+<script>window.AD_DATA = {{DATA}};</script>
+<script>{{SHARED_JS}}</script>
+<script>
+(function () {
+  var D = W.data, wins = W.$('#wins'), opened = 0;
+  var prizes = D.products.slice(0, 3);
+  prizes.forEach(function (p, i) {
+    var w = W.el('div', 'win');
+    w.innerHTML = '<div class="prize"><img src="' + p.img + '" alt=""><b>' + p.brand + '</b><span>' + p.name + '</span></div><canvas></canvas>';
+    wins.appendChild(w);
+    var cv = w.querySelector('canvas'), ctx, cleared = false;
+    function paint() {
+      var r = w.getBoundingClientRect(), s = 2;
+      cv.width = r.width * s; cv.height = r.height * s;
+      ctx = cv.getContext('2d'); ctx.scale(s, s);
+      var g = ctx.createLinearGradient(0, 0, r.width, r.height);
+      g.addColorStop(0, '#9aa7ab'); g.addColorStop(.45, '#e9eef0'); g.addColorStop(.55, '#c7d0d3'); g.addColorStop(1, '#8b989c');
+      ctx.fillStyle = g; ctx.fillRect(0, 0, r.width, r.height);
+      ctx.fillStyle = 'rgba(255,255,255,.35)';
+      for (var y = 6; y < r.height; y += 12) for (var x = (y / 12 % 2) * 6; x < r.width; x += 12) ctx.fillRect(x, y, 2, 2);
+      ctx.fillStyle = '#007a87'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.font = '900 30px Montserrat, Arial'; ctx.fillText('11.11', r.width / 2, r.height / 2 - 8);
+      ctx.font = '800 10px Montserrat, Arial'; ctx.fillText('KAZI', r.width / 2, r.height / 2 + 16);
+      ctx.globalCompositeOperation = 'destination-out'; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.lineWidth = 26;
+    }
+    w._paint = paint;
+    var last = null;
+    function at(p) { var r = cv.getBoundingClientRect(); return { x: p.x - r.left, y: p.y - r.top }; }
+    function scratch(a, b) { ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); }
+    function check() {
+      if (cleared) return;
+      var d = ctx.getImageData(0, 0, cv.width, cv.height).data, t = 0, n = 0;
+      for (var k = 3; k < d.length; k += 64) { n++; if (d[k] === 0) t++; }
+      if (t / n > .45) open();
+    }
+    function open() {
+      if (cleared) return; cleared = true; w.classList.add('open'); opened++;
+      W.$('#cnt').textContent = opened < 3 ? (3 - opened) + ' pencere kaldı' : 'Tamamlandı';
+      W.track('kazi_' + (i + 1));
+      if (opened === 3) setTimeout(function () { W.$('#ad').classList.add('won'); W.confetti(W.$('#ad'), 90); W.track('kazi_bitti'); }, 700);
+    }
+    w._open = open;
+    W.drag(cv, {
+      start: function (p) { last = at(p); scratch(last, { x: last.x + .1, y: last.y }); },
+      move: function (p) { var q = at(p); scratch(last, q); last = q; },
+      end: function () { check(); }
+    });
+    cv.addEventListener('mousemove', function () { if (last) check(); });
+    w.addEventListener('click', function (e) { e.stopPropagation(); if (cleared) W.exit(p.url, 'urun_' + p.key); });
+  });
+  W.$('#cp').addEventListener('click', function (e) { e.stopPropagation(); W.copy(D.brand.code, this); });
+  function paintAll() { W.$$('.win').forEach(function (w) { if (!w.classList.contains('open')) w._paint(); }); }
+  W.ready(function () {
+    paintAll();
+    if (document.fonts) document.fonts.ready.then(paintAll);
+    // Tanıtım: ilk pencerede kendiliğinden bir kazıma çizgisi
+    setTimeout(function () {
+      var w = W.$('.win'), cv = w.querySelector('canvas'), ctx = cv.getContext('2d'), r = w.getBoundingClientRect(), k = 0;
+      (function step() {
+        k++; var x = 10 + (r.width - 20) * (k / 30), y = r.height / 2 + Math.sin(k / 3) * 26;
+        ctx.beginPath(); ctx.moveTo(x - 8, y); ctx.lineTo(x, y); ctx.stroke();
+        if (k < 30) requestAnimationFrame(step);
+      })();
+    }, 1200);
+    // 20 sn'de hiç etkileşim yoksa tüm pencereler açılır
+    setTimeout(function () { if (!opened) W.$$('.win').forEach(function (w, i) { setTimeout(w._open, i * 400); }); }, 20000);
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+{{HEAD}}
+<style>
+{{SHARED_CSS}}
+.ad { background: linear-gradient(110deg, #ffe9f1 0%, #fff6f9 40%, #dff7f9 100%); color: var(--ink); }
+.ad::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(255, 61, 127, .14) 2px, transparent 2.2px); background-size: 22px 22px; }
+.brand { position: absolute; left: 24px; top: 22px; bottom: 20px; width: 220px; display: flex; flex-direction: column; justify-content: space-between; }
+.brand .b1111 b { background: linear-gradient(180deg, var(--pink), #c0104f); -webkit-background-clip: text; background-clip: text; filter: none; }
+.brand .b1111 span { color: var(--teal-d); }
+.brand h1 { font-size: 17px; font-weight: 900; line-height: 1.15; margin-top: 10px; }
+.brand h1 em { font-style: normal; color: var(--pink); }
+.brand .wlogo { filter: none; }
+.mach { position: absolute; left: 300px; top: 8px; width: 190px; height: 236px; }
+.dome { position: absolute; left: 15px; top: 0; width: 160px; height: 150px; border-radius: 50% 50% 18px 18px; background: radial-gradient(circle at 30% 25%, rgba(255, 255, 255, .95), rgba(255, 255, 255, .25) 30%, rgba(200, 240, 245, .35) 70%); box-shadow: inset 0 0 0 4px rgba(255, 255, 255, .9), inset 0 -10px 30px rgba(0, 120, 135, .2), 0 10px 20px rgba(0, 80, 90, .15); overflow: hidden; }
+.cap { position: absolute; width: 44px; height: 44px; border-radius: 50%; overflow: hidden; box-shadow: inset -4px -6px 8px rgba(0, 0, 0, .18), 0 2px 4px rgba(0, 0, 0, .15); transition: transform .5s cubic-bezier(.3, 1.5, .5, 1); }
+.cap::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 50%; background: var(--c); }
+.cap::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 50%; background: rgba(255, 255, 255, .85); }
+.cap img { position: absolute; left: 7px; top: 7px; width: 30px; height: 30px; object-fit: contain; z-index: 2; opacity: .9; }
+.body { position: absolute; left: 0; top: 140px; width: 190px; height: 96px; border-radius: 16px 16px 22px 22px; background: linear-gradient(160deg, var(--teal), var(--teal-d)); box-shadow: 0 14px 24px rgba(0, 80, 90, .3); }
+.body .lbl { position: absolute; left: 14px; top: 12px; font-size: 13px; font-weight: 900; color: #fff; letter-spacing: .04em; }
+.body .slot { position: absolute; left: 18px; bottom: 14px; width: 62px; height: 40px; border-radius: 10px; background: #054650; box-shadow: inset 0 6px 10px rgba(0, 0, 0, .4); }
+.knob { position: absolute; right: 22px; top: 18px; width: 62px; height: 62px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff, #e8f6f8 60%, #b7dde2); box-shadow: 0 6px 12px rgba(0, 0, 0, .25); cursor: pointer; transition: transform 1s cubic-bezier(.4, 1.4, .5, 1); }
+.knob::before { content: ''; position: absolute; left: 50%; top: 6px; bottom: 6px; width: 14px; margin-left: -7px; border-radius: 8px; background: var(--pink); }
+.knob:hover { box-shadow: 0 0 0 4px rgba(255, 61, 127, .3), 0 6px 12px rgba(0, 0, 0, .25); }
+.out { position: absolute; left: 324px; top: 196px; width: 44px; height: 44px; z-index: 4; pointer-events: none; }
+.out .cap { left: 0; top: 0; }
+.reveal { position: absolute; left: 520px; right: 150px; top: 20px; bottom: 20px; display: flex; align-items: center; gap: 16px; }
+.card { position: relative; width: 150px; height: 200px; border-radius: 18px; background: #fff; box-shadow: 0 16px 30px rgba(0, 80, 90, .2); display: flex; flex-direction: column; align-items: center; padding: 12px; opacity: 0; transform: scale(.4) rotate(-12deg); transition: transform .6s cubic-bezier(.3, 1.5, .5, 1), opacity .3s; cursor: pointer; }
+.got .card { opacity: 1; transform: none; }
+.card img { width: 120px; height: 120px; object-fit: contain; }
+.card b { font-size: 9px; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; color: var(--teal-d); margin-top: 4px; }
+.card span { font-size: 10px; font-weight: 700; text-align: center; line-height: 1.2; max-height: 24px; overflow: hidden; }
+.card .pr { position: absolute; right: -10px; top: -10px; background: var(--pink); color: #fff; font-size: 12px; font-weight: 900; padding: 7px 10px; border-radius: 99px; box-shadow: 0 6px 12px rgba(255, 61, 127, .4); }
+.txt { display: flex; flex-direction: column; gap: 8px; }
+.txt .k { font-size: 10px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: var(--pink); }
+.txt h2 { font-size: 22px; font-weight: 900; line-height: 1.05; }
+.txt p { font-size: 11px; font-weight: 600; color: #4d6a70; }
+.txt .left { font-size: 11px; font-weight: 800; color: var(--teal-d); }
+.side { position: absolute; right: 22px; top: 24px; bottom: 22px; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end; }
+.side .cta { background: var(--teal); color: #fff; }
+.hint { color: var(--teal-d); }
+.hint i { background: rgba(0, 122, 135, .25); } .hint i::after { background: var(--pink); }
+.legal { left: 24px; bottom: 6px; color: #6a8187; }
+</style>
+</head>
+<body>
+<div class="ad" id="ad" data-exit="" data-label="genel">
+  <div class="brand fx">
+    <div>{{BADGE}}<h1>Kolu çevir, <em>11.11 kapsülünden</em> ne çıkacak?</h1></div>
+    <img class="wlogo" src="img/logo-c.webp" alt="Watsons">
+  </div>
+  <div class="mach fx d1" data-stop>
+    <div class="dome" id="dome"></div>
+    <div class="body"><div class="lbl">11.11</div><div class="slot"></div><div class="knob" id="knob"></div></div>
+  </div>
+  <div class="out" id="out"></div>
+  <div class="reveal" data-stop>
+    <div class="card" id="card"></div>
+    <div class="txt fx d2"><div class="k" id="k">Fırsat Kapsülü</div><h2 id="h">Her kapsülde bir<br>11.11 fırsatı</h2><p id="p">Kolu çevir, kapsülü aç.</p><span class="hint" id="hint"><i></i> Kola dokun</span><span class="left" id="lf"></span></div>
+  </div>
+  <div class="side fx d3"><span></span><span class="cta pulse">Fırsatları Gör</span></div>
+  <div class="legal">{{LEGAL}}</div>
+</div>
+<script>window.AD_DATA = {{DATA}};</script>
+<script>{{SHARED_JS}}</script>
+<script>
+(function () {
+  var D = W.data, dome = W.$('#dome'), items = W.shuffle(D.products.slice(0, 12)), cols = ['#ff3d7f', '#00a5b5', '#ffd23f', '#7a3cff', '#ff8a3d'];
+  var caps = items.map(function (p, i) {
+    var c = W.el('div', 'cap', '<img src="' + p.img + '" alt="">'); c.style.setProperty('--c', cols[i % cols.length]);
+    var row = Math.floor(i / 4), x = 8 + (i % 4) * 34 + (row % 2) * 14, y = 96 - row * 34;
+    c._x = x; c._y = y; c.style.transform = 'translate(' + x + 'px,' + y + 'px) rotate(' + (i * 47) + 'deg)';
+    dome.appendChild(c); return c;
+  });
+  var turns = 0, busy = false, rot = 0;
+  function shake() { caps.forEach(function (c, i) { if (!c.parentNode) return; c.style.transform = 'translate(' + (c._x + Math.random() * 16 - 8) + 'px,' + (c._y - Math.random() * 30) + 'px) rotate(' + Math.random() * 360 + 'deg)'; }); setTimeout(function () { caps.forEach(function (c) { c.style.transform = 'translate(' + c._x + 'px,' + c._y + 'px) rotate(' + Math.random() * 360 + 'deg)'; }); }, 420); }
+  function turn() {
+    if (busy || turns >= items.length) return; busy = true;
+    rot += 360; W.$('#knob').style.transform = 'rotate(' + rot + 'deg)';
+    W.$('#ad').classList.remove('got'); W.$('#hint').style.display = 'none';
+    shake(); setTimeout(shake, 450);
+    var p = items[turns], c = caps[turns], col = cols[turns % cols.length]; turns++;
+    setTimeout(function () {
+      c.remove();
+      var o = W.$('#out'); o.innerHTML = ''; var cc = W.el('div', 'cap', '<img src="' + p.img + '" alt="">'); cc.style.setProperty('--c', col); o.appendChild(cc);
+      cc.animate([{ transform: 'translate(0,-30px) scale(.6)' }, { transform: 'translate(0,0) scale(1)', offset: .4 }, { transform: 'translate(120px,-120px) scale(1.6) rotate(400deg)', opacity: 1 }, { transform: 'translate(210px,-110px) scale(2.2) rotate(540deg)', opacity: 0 }], { duration: 1100, easing: 'cubic-bezier(.4,0,.3,1)', fill: 'forwards' });
+      setTimeout(function () { show(p); busy = false; }, 900);
+    }, 1000);
+    W.track('kapsul_' + turns);
+  }
+  function show(p) {
+    var card = W.$('#card');
+    card.innerHTML = '<img src="' + p.img + '" alt=""><b>' + p.brand + '</b><span>' + p.name + '</span>' + (p.price ? '<div class="pr">' + W.price(p.price) + '</div>' : '');
+    card.onclick = function (e) { e.stopPropagation(); W.exit(p.url, 'urun_' + p.key); };
+    W.$('#k').textContent = 'Kapsülden çıkan'; W.$('#h').innerHTML = p.brand; W.$('#p').textContent = '11.11\'de bu ürün ve benzerleri sepette. ' + D.brand.offer;
+    W.$('#lf').textContent = (items.length - turns) + ' kapsül daha · Tekrar çevir';
+    W.$('#ad').classList.add('got');
+    var r = card.getBoundingClientRect(); W.confetti(W.$('#ad'), 50, { x: r.left + 75, y: r.top + 40 });
+  }
+  W.$('#knob').addEventListener('click', function (e) { e.stopPropagation(); turn(); });
+  W.ready(function () { setTimeout(function () { if (!turns) turn(); }, 2600); });
+})();
+</script>
+</body>
+</html>

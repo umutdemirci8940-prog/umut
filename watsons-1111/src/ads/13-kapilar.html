@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+{{HEAD}}
+<style>
+{{SHARED_CSS}}
+.ad { background: linear-gradient(180deg, #06242c 0%, #0a3d48 60%, #0d5561 100%); }
+.ad::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 40px; background: linear-gradient(180deg, transparent, rgba(0, 0, 0, .35)); pointer-events: none; }
+.brand { position: absolute; left: 24px; top: 22px; bottom: 20px; width: 170px; display: flex; flex-direction: column; justify-content: space-between; }
+.brand h1 { font-size: 15px; font-weight: 900; line-height: 1.15; margin-top: 10px; }
+.brand h1 em { font-style: normal; color: var(--gold); }
+.wall { position: absolute; left: 206px; right: 160px; top: 26px; height: 176px; display: flex; gap: 8px; perspective: 900px; }
+.door { position: relative; flex: 1; border-radius: 10px 10px 4px 4px; background: #fff; overflow: hidden; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .08); cursor: pointer; transform-style: preserve-3d; }
+.door .in { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4px; color: var(--ink); background: linear-gradient(180deg, #fff, #e8f8fa); }
+.door .in img { width: 46px; height: 70px; object-fit: contain; }
+.door .in b { font-size: 7.5px; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; color: var(--teal-d); text-align: center; margin-top: 3px; line-height: 1.1; max-height: 18px; overflow: hidden; }
+.door .in span { font-size: 9px; font-weight: 900; color: var(--pink); margin-top: 2px; }
+.leaf { position: absolute; inset: 0; transform-origin: 0 50%; transition: transform 1s cubic-bezier(.3, 1.1, .4, 1); background: linear-gradient(160deg, var(--teal), var(--teal-d)); border-radius: 10px 10px 4px 4px; box-shadow: inset 0 0 0 3px rgba(255, 255, 255, .25), inset -6px 0 10px rgba(0, 0, 0, .15); display: flex; flex-direction: column; align-items: center; justify-content: center; backface-visibility: hidden; z-index: 2; }
+.leaf b { font-size: 26px; font-weight: 900; line-height: 1; }
+.leaf small { font-size: 8px; font-weight: 800; letter-spacing: .16em; opacity: .8; margin-top: 4px; }
+.leaf::after { content: ''; position: absolute; right: 6px; top: 72%; width: 4px; height: 14px; margin-top: -7px; border-radius: 3px; background: var(--gold); }
+.door:hover .leaf { transform: rotateY(-14deg); }
+.door.open .leaf { transform: rotateY(-108deg); box-shadow: inset 0 0 0 3px rgba(255, 255, 255, .25), 10px 0 20px rgba(0, 0, 0, .3); }
+.door.gold .leaf { background: linear-gradient(160deg, #ffe17a, #e3a600); color: #5a3b00; }
+.door .glow { position: absolute; inset: 0; background: radial-gradient(circle at 0 50%, rgba(255, 230, 150, .7), transparent 60%); opacity: 0; z-index: 1; transition: opacity .6s; pointer-events: none; }
+.door.open .glow { opacity: 1; animation: gw 1s forwards; }
+@keyframes gw { to { opacity: 0; } }
+.floor { position: absolute; left: 196px; right: 150px; top: 202px; height: 30px; background: linear-gradient(180deg, rgba(0, 220, 235, .2), transparent); transform: perspective(200px) rotateX(50deg); transform-origin: top; }
+.cap { position: absolute; left: 206px; right: 160px; bottom: 10px; display: flex; justify-content: space-between; font-size: 10px; font-weight: 700; color: rgba(255, 255, 255, .85); }
+.cap b { color: var(--gold); }
+.side { position: absolute; right: 22px; top: 22px; bottom: 20px; width: 124px; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end; text-align: right; }
+.side .k { font-size: 9px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+.side b { font-size: 26px; font-weight: 900; }
+.side .cta { padding: 0 14px; }
+.legal { left: 24px; bottom: 6px; }
+</style>
+</head>
+<body>
+<div class="ad" id="ad" data-exit="" data-label="genel">
+  <div class="brand fx">
+    <div>{{BADGE}}<h1><em>11 kapı</em>, 11 fırsat. Hangisini açacaksın?</h1></div>
+    {{LOGO}}
+  </div>
+  <div class="floor"></div>
+  <div class="wall fx d1" id="wall" data-stop></div>
+  <div class="cap"><span class="hint"><i></i> Kapılara dokun</span><span>11. kapı <b>altın kapı</b></span></div>
+  <div class="side fx d2"><div><div class="k">Açılan kapı</div><b id="cnt">0/11</b></div><span class="cta pk pulse" data-exit="" data-label="kapi_cta">Tümünü Gör</span></div>
+  <div class="legal">{{LEGAL}}</div>
+</div>
+<script>window.AD_DATA = {{DATA}};</script>
+<script>{{SHARED_JS}}</script>
+<script>
+(function () {
+  var D = W.data, wall = W.$('#wall'), pool = D.products, opened = 0;
+  for (var i = 0; i < 11; i++) {
+    (function (i) {
+      var p = pool[i % pool.length], gold = i === 10;
+      var d = W.el('div', 'door' + (gold ? ' gold' : ''));
+      d.innerHTML = '<div class="in"><img src="' + p.img + '" alt=""><b>' + p.brand + '</b>' + (gold ? '<span>' + D.brand.code + '</span>' : p.price ? '<span>' + W.price(p.price) + '</span>' : '') + '</div><div class="glow"></div><div class="leaf"><b>' + (i + 1) + '</b><small>' + (gold ? 'ALTIN' : 'KAPI') + '</small></div>';
+      d.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (d.classList.contains('open')) return W.exit(p.url, 'kapi_urun_' + p.key);
+        d.classList.add('open'); opened++; W.$('#cnt').textContent = opened + '/11'; W.track('kapi_' + (i + 1));
+        if (gold) { var r = d.getBoundingClientRect(); W.confetti(W.$('#ad'), 80, { x: r.left + r.width / 2, y: r.top + 40 }); }
+        if (opened === 11) W.confetti(W.$('#ad'), 100);
+      });
+      wall.appendChild(d);
+    })(i);
+  }
+  W.ready(function () {
+    // Tanıtım: 3 kapı aralanıp kapanır, ardından altın kapı ışıldar
+    var ds = W.$$('.door');
+    [1, 5, 8].forEach(function (k, j) { setTimeout(function () { ds[k].classList.add('open'); }, 900 + j * 300); setTimeout(function () { if (opened === 0) ds[k].classList.remove('open'); }, 2600 + j * 300); });
+    setInterval(function () { var g = ds[10].querySelector('.leaf'); g.animate([{ filter: 'brightness(1)' }, { filter: 'brightness(1.4)' }, { filter: 'brightness(1)' }], { duration: 900 }); }, 2400);
+  });
+})();
+</script>
+</body>
+</html>

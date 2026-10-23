@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+{{HEAD}}
+<style>
+{{SHARED_CSS}}
+.ad { background: linear-gradient(120deg, var(--teal-d) 0%, var(--teal) 45%, #ff7aa8 100%); }
+.ad::before { content: ''; position: absolute; inset: 0; background: url("img/{{HERO}}") center/cover; opacity: .14; }
+.brand { position: absolute; left: 24px; top: 22px; bottom: 20px; width: 220px; display: flex; flex-direction: column; justify-content: space-between; }
+.brand h1 { font-size: 17px; font-weight: 900; line-height: 1.15; margin-top: 10px; }
+.brand h1 em { font-style: normal; color: var(--gold); }
+.deck { position: absolute; left: 380px; top: 14px; width: 170px; height: 222px; touch-action: none; }
+.cd { position: absolute; inset: 0; border-radius: 18px; background: #fff; color: var(--ink); box-shadow: 0 14px 30px rgba(0, 40, 50, .3); display: flex; flex-direction: column; overflow: hidden; cursor: grab; transition: transform .35s, opacity .35s; will-change: transform; }
+.cd.drag { transition: none; cursor: grabbing; }
+.cd img { flex: 1; min-height: 0; width: 100%; object-fit: contain; padding: 12px 12px 0; background: linear-gradient(180deg, #f2fbfc, #fff); }
+.cd .t { padding: 8px 12px 12px; }
+.cd .t b { display: block; font-size: 9px; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; color: var(--teal-d); }
+.cd .t span { display: block; font-size: 11px; font-weight: 700; line-height: 1.25; height: 28px; overflow: hidden; }
+.cd .t em { font-style: normal; font-size: 14px; font-weight: 900; color: var(--pink); }
+.st { position: absolute; top: 18px; padding: 4px 10px; border: 3px solid; border-radius: 8px; font-size: 18px; font-weight: 900; letter-spacing: .06em; opacity: 0; }
+.st.y { left: 14px; color: #12b886; transform: rotate(-14deg); }
+.st.n { right: 14px; color: var(--pink); transform: rotate(14deg); }
+.btns { position: absolute; left: 290px; top: 0; bottom: 0; width: 350px; pointer-events: none; display: flex; align-items: center; justify-content: space-between; }
+.btns button { pointer-events: auto; width: 50px; height: 50px; border-radius: 50%; background: #fff; font-size: 22px; font-weight: 900; box-shadow: 0 8px 18px rgba(0, 0, 0, .25); transition: transform .2s; }
+.btns button:hover { transform: scale(1.1); }
+.btns .no { color: var(--pink); } .btns .yes { color: #12b886; }
+.fav { position: absolute; left: 666px; right: 22px; top: 22px; bottom: 20px; display: flex; flex-direction: column; justify-content: space-between; }
+.fav .k { font-size: 10px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); }
+.fav .list { display: flex; flex-wrap: wrap; gap: 6px; min-height: 104px; align-content: flex-start; }
+.fav .list a { width: 49px; height: 49px; border-radius: 10px; background: #fff; padding: 3px; animation: fin .4s cubic-bezier(.3, 1.6, .5, 1); }
+@keyframes fin { from { transform: scale(0); } }
+.fav .list a img { width: 100%; height: 100%; object-fit: contain; }
+.fav .em { font-size: 11px; font-weight: 600; opacity: .85; }
+.d .side { display: none; }
+.side { position: absolute; right: 22px; top: 22px; bottom: 20px; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end; }
+.end { position: absolute; inset: 0; border-radius: 18px; background: rgba(0, 70, 80, .92); display: none; flex-direction: column; align-items: center; justify-content: center; gap: 10px; text-align: center; padding: 14px; }
+.end.on { display: flex; }
+.end h3 { font-size: 16px; font-weight: 900; line-height: 1.1; }
+.legal { left: 24px; bottom: 6px; }
+/* Mobil */
+.m .brand { left: 0; right: 0; top: 16px; bottom: auto; width: auto; align-items: center; text-align: center; }
+.m .brand .b1111 { align-items: center; }
+.m .brand .b1111 b { font-size: 40px; }
+.m .brand h1 { margin-top: 4px; font-size: 14px; }
+.m .brand .wlogo { display: none; }
+.m .deck { left: 50%; top: 116px; width: 210px; height: 262px; margin-left: -105px; }
+.m .btns { left: 50%; top: auto; bottom: 30px; height: 56px; width: 200px; margin-left: -100px; }
+.m .fav { left: 0; right: 0; bottom: 86px; top: auto; height: auto; align-items: center; display: none; }
+.m .side { left: auto; right: 14px; top: auto; bottom: 36px; }
+.m .side .cta { display: none; }
+.m .side .wlogo { height: 20px; }
+.m .legal { left: 0; right: 0; text-align: center; bottom: 8px; }
+.m .mfav { display: flex; }
+.mfav { display: none; position: absolute; left: 14px; bottom: 36px; align-items: center; gap: 6px; font-size: 12px; font-weight: 900; }
+.mfav i { font-style: normal; width: 30px; height: 30px; border-radius: 50%; background: #fff; color: #12b886; display: flex; align-items: center; justify-content: center; }
+</style>
+</head>
+<body>
+<div class="ad" id="ad" data-exit="" data-label="genel">
+  <div class="brand fx">
+    <div>{{BADGE}}<h1>Beğen ya da geç: <em>11.11 sepetini</em> kaydırarak kur</h1></div>
+    {{LOGO}}
+  </div>
+  <div class="deck fx d1" id="deck" data-stop></div>
+  <div class="btns fx d2" data-stop><button class="no" id="bn" aria-label="Geç">✕</button><button class="yes" id="by" aria-label="Beğen">♥</button></div>
+  <div class="fav fx d3" data-stop><div><div class="k">Favorilerin</div></div><div class="list" id="list"><span class="em">Beğendiğin ürünler burada toplanır.</span></div><span class="cta pk" data-exit="" data-label="favoriler">11.11'de Sepete Ekle</span></div>
+  <div class="mfav" data-stop><i>♥</i><span id="mf">0</span></div>
+  <div class="side fx d3"><span></span><span class="cta pulse">Fırsatlar</span></div>
+  <div class="legal">{{LEGAL}}</div>
+</div>
+<script>window.AD_DATA = {{DATA}};</script>
+<script>{{SHARED_JS}}</script>
+<script>
+(function () {
+  var D = W.data, deck = W.$('#deck'), items = D.products.slice(0, 10), idx = 0, favs = [];
+  var end = W.el('div', 'end', '<h3 id="eh"></h3><div class="coupon"><code>' + D.brand.code + '</code><button id="cp">Kopyala</button></div><span class="cta pk" data-exit="" data-label="begen_sonuc" style="height:34px">Sepete Git</span><button id="rs" style="font-size:11px;font-weight:800;text-decoration:underline">Baştan başla</button>');
+  deck.appendChild(end);
+  function build() {
+    W.$$('.cd', deck).forEach(function (c) { c.remove(); });
+    for (var i = items.length - 1; i >= idx; i--) {
+      var p = items[i], c = W.el('div', 'cd', '<img src="' + p.img + '" alt=""><div class="t"><b>' + p.brand + '</b><span>' + p.name + '</span>' + (p.price ? '<em>' + W.price(p.price) + '</em>' : '') + '</div><div class="st y">BEĞEN</div><div class="st n">GEÇ</div>');
+      c._i = i; deck.appendChild(c);
+    }
+    stack();
+  }
+  function top() { var cs = W.$$('.cd', deck); return cs[cs.length - 1]; }
+  function stack() {
+    W.$$('.cd', deck).reverse().forEach(function (c, k) { if (k < 3) { c.style.transform = 'translateY(' + k * 8 + 'px) scale(' + (1 - k * .05) + ')'; c.style.opacity = 1; } else c.style.opacity = 0; });
+    var t = top(); if (t) bind(t);
+  }
+  function bind(c) {
+    if (c._b) return; c._b = true;
+    var moved = false;
+    W.drag(c, {
+      start: function () { c.classList.add('drag'); moved = false; },
+      move: function (p, dx, dy) { if (Math.abs(dx) > 4) moved = true; c.style.transform = 'translate(' + dx + 'px,' + dy * .3 + 'px) rotate(' + dx / 12 + 'deg)'; c.querySelector('.y').style.opacity = Math.max(0, dx / 80); c.querySelector('.n').style.opacity = Math.max(0, -dx / 80); },
+      end: function (p, dx) { c.classList.remove('drag'); if (dx > 80) go(true); else if (dx < -80) go(false); else { c.style.transform = ''; c.querySelector('.y').style.opacity = 0; c.querySelector('.n').style.opacity = 0; } }
+    });
+    c.addEventListener('click', function (e) { e.stopPropagation(); if (!moved) W.exit(items[c._i].url, 'urun_' + items[c._i].key); });
+  }
+  function go(like) {
+    var c = top(); if (!c) return;
+    var p = items[c._i];
+    c.querySelector(like ? '.y' : '.n').style.opacity = 1;
+    c.style.transform = 'translate(' + (like ? 420 : -420) + 'px,40px) rotate(' + (like ? 30 : -30) + 'deg)'; c.style.opacity = 0;
+    setTimeout(function () { c.remove(); stack(); }, 350);
+    idx++;
+    if (like) {
+      favs.push(p); var l = W.$('#list'); if (favs.length === 1) l.innerHTML = '';
+      if (favs.length <= 8) l.insertAdjacentHTML('beforeend', '<a data-exit="' + p.url + '" data-label="fav_' + p.key + '"><img src="' + p.img + '" alt=""></a>');
+      W.$('#mf').textContent = favs.length;
+    }
+    W.track((like ? 'begen_' : 'gec_') + p.key);
+    if (idx >= items.length) setTimeout(function () { W.$('#eh').innerHTML = favs.length + ' favori seçtin!<br>11.11\'de sepetine ekle'; end.classList.add('on'); W.confetti(W.$('#ad'), 70); }, 380);
+  }
+  W.$('#by').addEventListener('click', function (e) { e.stopPropagation(); go(true); });
+  W.$('#bn').addEventListener('click', function (e) { e.stopPropagation(); go(false); });
+  W.$('#cp').addEventListener('click', function (e) { e.stopPropagation(); W.copy(D.brand.code, this); });
+  W.$('#rs').addEventListener('click', function (e) { e.stopPropagation(); idx = 0; favs = []; W.$('#list').innerHTML = ''; W.$('#mf').textContent = 0; end.classList.remove('on'); build(); });
+  build();
+  W.ready(function () {
+    // Tanıtım: üstteki kart sağa doğru eğilip geri gelir
+    setTimeout(function () { var c = top(); if (!c || idx) return; c.style.transform = 'translate(46px,0) rotate(5deg)'; c.querySelector('.y').style.opacity = .7; setTimeout(function () { if (idx) return; c.style.transform = 'translate(-46px,0) rotate(-5deg)'; c.querySelector('.y').style.opacity = 0; c.querySelector('.n').style.opacity = .7; }, 650); setTimeout(function () { if (idx) return; c.style.transform = ''; c.querySelector('.n').style.opacity = 0; }, 1300); }, 1500);
+  });
+})();
+</script>
+</body>
+</html>

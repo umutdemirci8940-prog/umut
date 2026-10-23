@@ -18,10 +18,14 @@ const out = path.join(root, 'assets');
 for (const d of ['site', 'products', 'brand', 'shots', 'html', 'cdx']) fs.mkdirSync(path.join(out, d), { recursive: true });
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36';
 const WB = 'https://web.archive.org/web';
+// Menüden alınan gerçek kategori adresleri
 const PAGES = [
-  '/', '/kampanyalar', '/makyaj/c/100', '/cilt-bakimi/c/200', '/sac-bakimi/c/300', '/parfum-deodorant/c/400',
-  '/kisisel-bakim/c/500', '/erkek-bakim/c/600', '/anne-bebek/c/700', '/saglik/c/800',
+  '/', '/kampanyalar', '/makyaj/c/100', '/cilt-bakim/c/101', '/sac-bakim/c/102', '/parfum/c/100013',
+  '/kisisel-bakim/c/103', '/erkek-bakim/c/105', '/k-beauty/c/104', '/sadece-watsonsta/c/50058',
+  '/saglikli-yasam/c/106', '/ayin-urunleri/c/50007', '/makyaj/makyaj-cok-satanlar/c/100070',
 ];
+// Tarayıcının yüklediği görseller (arşiv sunucusu ayrı istekleri sınırlıyor; sayfanın kendi yüklediğini saklarız)
+const cache = new Map();
 const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 60) || 'home';
 const extOf = (url, type) => {
   const m = (type || '').match(/image\/(png|jpe?g|webp|gif|svg|avif)/);
@@ -51,6 +55,12 @@ async function get(ctx, url) {
   throw new Error(`indirilemedi ${url}`);
 }
 async function download(ctx, url, file) {
+  const hit = cache.get(original(url));
+  if (hit) {
+    const f = `${file}.${extOf(original(url), hit.type)}`;
+    fs.writeFileSync(f, hit.buf);
+    return { file: path.relative(root, f), bytes: hit.buf.length, type: hit.type, original: original(url), cached: true };
+  }
   const r = await get(ctx, raw(url));
   const buf = await r.body();
   const type = r.headers()['content-type'] || '';
@@ -164,9 +174,17 @@ async function cdx(ctx) {
   const ctx = await browser.newContext({ userAgent: UA, locale: 'tr-TR', viewport: { width: 1440, height: 900 } });
   const page = await ctx.newPage();
   page.setDefaultTimeout(90000);
+  page.on('response', async (r) => {
+    try {
+      const t = r.headers()['content-type'] || '';
+      if (!/^image\//.test(t) || r.status() !== 200 || /svg/.test(t) && !/logo/i.test(r.url())) return;
+      const buf = await r.body();
+      if (buf.length > 1500) cache.set(original(r.url()), { buf, type: t });
+    } catch { /* gövde alınamadı */ }
+  });
   const queue = [...PAGES];
   const done = new Set();
-  while (queue.length && done.size < 12 && left() > 8 * 60000) {
+  while (queue.length && left() > 6 * 60000) {
     const p = queue.shift();
     if (done.has(p)) continue;
     done.add(p);
@@ -176,7 +194,9 @@ async function cdx(ctx) {
       const resp = await page.goto(target, { waitUntil: 'domcontentloaded', timeout: 60000 });
       if (!resp || resp.status() >= 400) { console.log(`  arşivde yok (${resp && resp.status()})`); continue; }
       await page.waitForTimeout(4000);
+      await page.evaluate(() => { const w = document.getElementById('wm-ipp-base'); if (w) w.remove(); const d = document.querySelector('#donato'); if (d) d.remove(); });
       await autoscroll(page);
+      await page.waitForTimeout(2000);
     } catch (e) { console.log(`⚠ ${e.message}`); continue; }
     const name = slug(p);
     const data = await collect(page);
@@ -191,11 +211,6 @@ async function cdx(ctx) {
         if (!l.src || seen.has(l.src)) continue;
         seen.add(l.src);
         try { index.logos.push(Object.assign({ alt: l.alt }, await download(ctx, l.src, path.join(out, 'brand', `logo-img-${i}`)))); } catch (e) { console.log(`⚠ logo ${e.message}`); }
-      }
-      // Menüden kategori adresleri (sabit listede olmayanlar)
-      for (const l of data.nav) {
-        const o = original(l.href).replace(/^https?:\/\/www\.watsons\.com\.tr/, '');
-        if (/^\/[^?#]*\/c\/[\w-]+$/.test(o) && !queue.includes(o) && !done.has(o) && queue.length < 14) queue.push(o);
       }
     }
     let n = 0;
@@ -216,7 +231,7 @@ async function cdx(ctx) {
     }
     await pool(jobs, 4);
     save();
-    log(`  "${data.title}" — ${n} görsel, ${data.products.length} ürün kartı`);
+    log(`  önbellek ${cache.size} · "${data.title}" — ${n} görsel, ${data.products.length} ürün kartı`);
   }
   await cdx(ctx);
   save();

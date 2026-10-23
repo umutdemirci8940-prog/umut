@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+{{HEAD}}
+<style>
+{{SHARED_CSS}}
+.ad { background: linear-gradient(180deg, #087f8c 0%, var(--teal) 55%, #3fd0dc 100%); }
+.ad::before { content: ''; position: absolute; inset: 0; background: url("img/{{HERO}}") center/cover; opacity: .12; }
+.brand { position: absolute; left: 24px; top: 22px; bottom: 20px; width: 190px; display: flex; flex-direction: column; justify-content: space-between; z-index: 5; }
+.brand h1 { font-size: 16px; font-weight: 900; line-height: 1.15; margin-top: 10px; }
+.brand h1 em { font-style: normal; color: var(--gold); }
+.field { position: absolute; left: 230px; right: 170px; top: 0; bottom: 0; overflow: hidden; touch-action: none; cursor: none; border-left: 1px dashed rgba(255, 255, 255, .25); border-right: 1px dashed rgba(255, 255, 255, .25); }
+.fall { position: absolute; top: 0; left: 0; width: 46px; height: 50px; will-change: transform; }
+.fall img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 4px 4px rgba(0, 0, 0, .2)); }
+.fall.bad { width: 30px; height: 30px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #9aa9ad, #56666b); }
+.fall.bad::after { content: '×'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-weight: 900; color: #fff; font-size: 16px; }
+.bk { position: absolute; bottom: 8px; left: 0; width: 90px; height: 50px; will-change: transform; }
+.bk::before { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 38px; border-radius: 6px 6px 16px 16px; background: repeating-linear-gradient(90deg, #fff 0 10px, #e9f8f9 10px 12px); box-shadow: 0 8px 14px rgba(0, 0, 0, .25); }
+.bk::after { content: ''; position: absolute; left: 14px; right: 14px; top: 0; height: 22px; border: 4px solid #fff; border-bottom: 0; border-radius: 20px 20px 0 0; }
+.bk b { position: absolute; left: 0; right: 0; bottom: 10px; text-align: center; font-size: 11px; font-weight: 900; color: var(--teal-d); z-index: 2; }
+.plus { position: absolute; font-size: 16px; font-weight: 900; color: var(--gold); pointer-events: none; animation: up .8s forwards; text-shadow: 0 2px 4px rgba(0, 0, 0, .3); }
+@keyframes up { to { transform: translateY(-40px); opacity: 0; } }
+.hud { position: absolute; right: 22px; top: 22px; bottom: 20px; width: 130px; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end; z-index: 5; }
+.hud .sc { text-align: right; }
+.hud .sc small { display: block; font-size: 9px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; opacity: .85; }
+.hud .sc b { font-size: 30px; font-weight: 900; line-height: 1; }
+.tm { width: 120px; height: 8px; border-radius: 99px; background: rgba(255, 255, 255, .3); overflow: hidden; }
+.tm i { display: block; height: 100%; width: 100%; background: var(--gold); transform-origin: left; }
+.ov { position: absolute; left: 230px; right: 170px; top: 0; bottom: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; text-align: center; background: rgba(0, 70, 80, .55); backdrop-filter: blur(2px); z-index: 6; transition: opacity .4s; }
+.ov.hide { opacity: 0; pointer-events: none; }
+.ov h2 { font-size: 26px; font-weight: 900; line-height: 1.05; }
+.ov p { font-size: 12px; font-weight: 600; max-width: 360px; }
+.ov .row { display: flex; gap: 10px; align-items: center; }
+.ov .cnt { font-size: 90px; font-weight: 900; }
+.legal { left: 24px; bottom: 6px; }
+.m .brand { left: 0; right: 0; top: 14px; bottom: auto; width: auto; flex-direction: row; justify-content: space-between; padding: 0 16px; align-items: flex-start; }
+.m .brand h1 { display: none; }
+.m .brand .b1111 b { font-size: 38px; } .m .brand .wlogo { height: 20px; position: absolute; left: 50%; top: 14px; transform: translateX(-50%); }
+.m .field, .m .ov { left: 0; right: 0; top: 70px; bottom: 18px; border: 0; }
+.m .hud { left: auto; right: 16px; top: 16px; bottom: auto; width: auto; height: 50px; flex-direction: column-reverse; gap: 6px; }
+.m .hud .cta { display: none; }
+.m .hud .tm { width: 90px; }
+.m .hud .sc b { font-size: 22px; }
+.m .ov h2 { font-size: 22px; padding: 0 14px; }
+.m .ov p { padding: 0 18px; }
+.m .ov .row { flex-direction: column; }
+.m .legal { left: 0; right: 0; text-align: center; bottom: 4px; }
+.m .mlogo { display: block; }
+.mlogo { display: none; position: absolute; left: 50%; top: 22px; height: 20px; transform: translateX(-50%); z-index: 5; }
+</style>
+</head>
+<body>
+<div class="ad" id="ad" data-exit="" data-label="genel">
+  <div class="brand fx">{{BADGE}}<h1>11 saniyede yakalayabildiğin kadar <em>11.11 fırsatı</em></h1>{{LOGO}}</div>
+  <div class="field" id="field" data-stop><div class="bk" id="bk"><b>Watsons</b></div></div>
+  <div class="hud fx d2"><div class="sc"><small>Skor</small><b id="sc">0</b></div><div class="tm"><i id="tm"></i></div><span class="cta" style="height:34px;padding:0 14px">Fırsatlar</span></div>
+  <div class="ov" id="ov" data-stop>
+    <h2 id="oh">Ürün Yağmuru!</h2>
+    <p id="op">Sepeti fareyle ya da parmağınla kaydır, yağan ürünleri yakala. Gri toplara dikkat.</p>
+    <div class="row" id="or"><button class="cta pk" id="play">Oyna</button></div>
+  </div>
+  <div class="legal">{{LEGAL}}</div>
+</div>
+<script>window.AD_DATA = {{DATA}};</script>
+<script>{{SHARED_JS}}</script>
+<script>
+(function () {
+  var D = W.data, field = W.$('#field'), bk = W.$('#bk'), ov = W.$('#ov'), items = D.products.slice(0, 12);
+  var bx = 0, drops = [], score = 0, t0 = 0, playing = false, last = 0, spawnAt = 0, DUR = 11000, best = 0;
+  try { best = +localStorage.getItem('w1111_best') || 0; } catch (e) { /* yok */ }
+  function fw() { return field.clientWidth; }
+  function fh() { return field.clientHeight; }
+  function moveTo(x) { var r = field.getBoundingClientRect(); bx = Math.max(0, Math.min(fw() - 90, x - r.left - 45)); bk.style.transform = 'translateX(' + bx + 'px)'; }
+  field.addEventListener('mousemove', function (e) { moveTo(e.clientX); });
+  field.addEventListener('touchmove', function (e) { moveTo(e.touches[0].clientX); e.preventDefault(); }, { passive: false });
+  field.addEventListener('touchstart', function (e) { moveTo(e.touches[0].clientX); }, { passive: true });
+  function spawn() {
+    var bad = Math.random() < .22, p = items[Math.floor(Math.random() * items.length)];
+    var e = W.el('div', 'fall' + (bad ? ' bad' : ''), bad ? '' : '<img src="' + p.img + '" alt="">');
+    field.appendChild(e);
+    drops.push({ e: e, x: Math.random() * (fw() - 46), y: -50, v: (W.mobile() ? .16 : .13) + Math.random() * .1, bad: bad, r: Math.random() * 40 - 20 });
+  }
+  function frame(t) {
+    if (!playing) return;
+    var dt = Math.min(40, t - last); last = t;
+    var el = t - t0, left = Math.max(0, DUR - el);
+    W.$('#tm').style.transform = 'scaleX(' + left / DUR + ')';
+    if (t > spawnAt) { spawn(); spawnAt = t + (W.mobile() ? 420 : 340) - el / 60; }
+    var H = fh();
+    drops = drops.filter(function (d) {
+      d.y += d.v * dt;
+      d.e.style.transform = 'translate(' + d.x + 'px,' + d.y + 'px) rotate(' + d.r * d.y / 100 + 'deg)';
+      if (d.y > H - 62 && d.y < H - 30 && d.x + 40 > bx && d.x < bx + 84) {
+        score = Math.max(0, score + (d.bad ? -2 : 1)); W.$('#sc').textContent = score;
+        var pl = W.el('div', 'plus', d.bad ? '−2' : '+1'); pl.style.left = d.x + 'px'; pl.style.top = (H - 80) + 'px'; field.appendChild(pl); setTimeout(function () { pl.remove(); }, 800);
+        d.e.remove(); return false;
+      }
+      if (d.y > H + 10) { d.e.remove(); return false; }
+      return true;
+    });
+    if (left <= 0) return end();
+    requestAnimationFrame(frame);
+  }
+  function start() {
+    W.track('oyun_basla');
+    ov.classList.remove('hide');
+    W.$('#oh').innerHTML = ''; W.$('#op').textContent = ''; W.$('#or').innerHTML = '<div class="cnt" id="cnt">3</div>';
+    var k = 3;
+    var iv = setInterval(function () {
+      k--; if (k > 0) { W.$('#cnt').textContent = k; return; }
+      clearInterval(iv); ov.classList.add('hide');
+      score = 0; W.$('#sc').textContent = 0; drops.forEach(function (d) { d.e.remove(); }); drops = [];
+      playing = true; t0 = last = spawnAt = performance.now(); requestAnimationFrame(frame);
+    }, 650);
+  }
+  function end() {
+    playing = false; drops.forEach(function (d) { d.e.remove(); }); drops = [];
+    if (score > best) { best = score; try { localStorage.setItem('w1111_best', best); } catch (e) { /* yok */ } }
+    W.track('oyun_bitti_' + score);
+    W.$('#oh').innerHTML = score + ' ürün yakaladın!';
+    W.$('#op').textContent = 'En iyi skorun: ' + best + '. Gerçek 11.11 fırsatları seni bekliyor; kodu kopyala, alışverişte kullan.';
+    W.$('#or').innerHTML = '<div class="coupon"><code>' + D.brand.code + '</code><button id="cp">Kopyala</button></div><button class="cta" id="again" style="background:transparent;color:#fff;box-shadow:inset 0 0 0 2px #fff">Tekrar</button><span class="cta pk" data-exit="" data-label="oyun_sonuc">Fırsatlara Git</span>';
+    W.$('#cp').addEventListener('click', function (e) { e.stopPropagation(); W.copy(D.brand.code, this); });
+    W.$('#again').addEventListener('click', function (e) { e.stopPropagation(); start(); });
+    ov.classList.remove('hide');
+    W.confetti(W.$('#ad'), 70);
+  }
+  W.$('#play').addEventListener('click', function (e) { e.stopPropagation(); start(); });
+  W.ready(function () {
+    moveTo(field.getBoundingClientRect().left + fw() / 2);
+    // Arka planda tanıtım yağmuru (oyun başlamadan)
+    var demo = setInterval(function () {
+      if (playing) return clearInterval(demo);
+      if (!ov.classList.contains('hide') && W.$('#play')) {
+        var p = items[Math.floor(Math.random() * items.length)], e = W.el('div', 'fall', '<img src="' + p.img + '" alt="">'), x = Math.random() * (fw() - 46), y = -50;
+        field.appendChild(e);
+        (function f() { y += 3; e.style.transform = 'translate(' + x + 'px,' + y + 'px)'; if (y < fh() + 20 && !playing) requestAnimationFrame(f); else e.remove(); })();
+      }
+    }, 380);
+  });
+})();
+</script>
+</body>
+</html>

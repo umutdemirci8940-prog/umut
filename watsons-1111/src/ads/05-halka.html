@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+{{HEAD}}
+<style>
+{{SHARED_CSS}}
+.ad { background: radial-gradient(70% 130% at 50% 110%, #0fb7c7 0%, #06606d 45%, #04212a 100%); }
+.floor { position: absolute; left: 50%; bottom: -60px; width: 760px; height: 200px; margin-left: -380px; border-radius: 50%; background: radial-gradient(closest-side, rgba(0, 230, 245, .45), transparent); filter: blur(6px); }
+.stars { position: absolute; inset: 0; background-image: radial-gradient(1.5px 1.5px at 20% 30%, #fff, transparent), radial-gradient(1px 1px at 70% 20%, #fff, transparent), radial-gradient(1.5px 1.5px at 85% 60%, #fff, transparent), radial-gradient(1px 1px at 35% 70%, #fff, transparent), radial-gradient(1px 1px at 55% 15%, #fff, transparent); opacity: .5; }
+.brand { position: absolute; left: 26px; top: 24px; bottom: 22px; width: 190px; display: flex; flex-direction: column; justify-content: space-between; z-index: 3; }
+.brand h1 { font-size: 17px; font-weight: 900; line-height: 1.15; margin-top: 10px; }
+.brand h1 em { font-style: normal; color: var(--gold); }
+.stage { position: absolute; left: 220px; right: 250px; top: 0; bottom: 0; perspective: 900px; perspective-origin: 50% 30%; cursor: grab; touch-action: none; overflow: hidden; }
+.ring { position: absolute; left: 50%; top: 46%; width: 0; height: 0; transform-style: preserve-3d; transform: rotateX(-9deg); }
+.it { position: absolute; width: 84px; height: 116px; margin: -58px 0 0 -42px; border-radius: 14px; background: #fff; box-shadow: 0 10px 24px rgba(0, 0, 0, .35); display: flex; flex-direction: column; align-items: center; padding: 8px 6px; color: var(--ink); transition: filter .4s; -webkit-box-reflect: below 6px linear-gradient(transparent 60%, rgba(255, 255, 255, .25)); }
+.it img { width: 70px; height: 72px; object-fit: contain; }
+.it b { font-size: 8px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; color: var(--teal-d); margin-top: 4px; text-align: center; }
+.it span { font-size: 11px; font-weight: 900; color: var(--pink); }
+.it.front { box-shadow: 0 0 0 3px var(--gold), 0 14px 30px rgba(0, 0, 0, .4); }
+.info { position: absolute; right: 22px; top: 22px; bottom: 22px; width: 230px; display: flex; flex-direction: column; justify-content: space-between; z-index: 3; }
+.info .top { display: flex; justify-content: space-between; align-items: flex-start; }
+.info .k { font-size: 10px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
+.info h2 { font-size: 13px; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; margin-top: 4px; color: var(--teal-l); }
+.info p { font-size: 15px; font-weight: 800; line-height: 1.2; margin-top: 4px; min-height: 54px; }
+.info .pr { font-size: 22px; font-weight: 900; }
+.info .btns { display: flex; gap: 8px; align-items: center; }
+.nav { width: 38px; height: 38px; border-radius: 50%; border: 2px solid rgba(255, 255, 255, .5); font-size: 18px; font-weight: 900; display: flex; align-items: center; justify-content: center; transition: background .2s; }
+.nav:hover { background: rgba(255, 255, 255, .15); }
+.legal { left: 26px; bottom: 8px; }
+.m .brand { left: 0; right: 0; top: 16px; bottom: auto; width: auto; align-items: center; text-align: center; }
+.m .brand .b1111 { align-items: center; }
+.m .brand h1 { margin-top: 4px; font-size: 15px; }
+.m .brand .cta { display: none; }
+.m .stage { left: 0; right: 0; top: 96px; bottom: 170px; perspective: 700px; }
+.m .it { width: 78px; height: 110px; margin: -55px 0 0 -39px; }
+.m .it img { width: 64px; height: 68px; }
+.m .info { left: 16px; right: 16px; top: auto; bottom: 22px; width: auto; height: 156px; text-align: center; align-items: center; }
+.m .info .top .wlogo { display: none; }
+.m .info .top { justify-content: center; }
+.m .info p { min-height: 0; font-size: 13px; }
+.m .legal { left: 0; right: 0; text-align: center; bottom: 6px; }
+.m .floor { bottom: 140px; width: 420px; margin-left: -210px; }
+</style>
+</head>
+<body>
+<div class="ad" data-exit="" data-label="genel">
+  <div class="stars"></div><div class="floor"></div>
+  <div class="brand fx">
+    <div>{{BADGE}}<h1>11.11'in yıldızları <em>senin etrafında</em> dönüyor</h1></div>
+    <span class="hint"><i></i> Halkayı sürükle</span>
+  </div>
+  <div class="stage" id="stage" data-stop><div class="ring" id="ring"></div></div>
+  <div class="info fx d2" data-stop>
+    <div class="top"><div><div class="k">11.11 Vitrini</div><h2 id="ib"></h2></div>{{LOGO}}</div>
+    <div><p id="in"></p><div class="pr" id="ip"></div></div>
+    <div class="btns"><button class="nav" id="pv">‹</button><button class="nav" id="nx">›</button><span class="cta pk" id="go" data-exit="">İncele</span></div>
+  </div>
+  <div class="legal">{{LEGAL}}</div>
+</div>
+<script>window.AD_DATA = {{DATA}};</script>
+<script>{{SHARED_JS}}</script>
+<script>
+(function () {
+  var D = W.data, ring = W.$('#ring'), items = D.products.slice(0, 8), n = items.length, step = 360 / n;
+  var els = items.map(function (p, i) {
+    var e = W.el('div', 'it', '<img src="' + p.img + '" alt=""><b>' + p.brand + '</b>' + (p.price ? '<span>' + W.price(p.price) + '</span>' : ''));
+    ring.appendChild(e); return e;
+  });
+  var ang = 0, target = 0, cur = -1;
+  function R() { return W.mobile() ? 140 : 196; }
+  function layout() {
+    var r = R();
+    els.forEach(function (e, i) {
+      var a = i * step + ang, rad = a * Math.PI / 180, z = Math.cos(rad);
+      e.style.transform = 'rotateY(' + a + 'deg) translateZ(' + r + 'px) rotateY(' + (-a) + 'deg)';
+      e.style.filter = 'brightness(' + (.45 + .55 * (z + 1) / 2) + ')';
+      e.style.zIndex = Math.round(z * 100) + 100;
+    });
+    var f = ((Math.round(-ang / step) % n) + n) % n;
+    if (f !== cur) { cur = f; info(f); }
+  }
+  function info(i) {
+    var p = items[i];
+    els.forEach(function (e, k) { e.classList.toggle('front', k === i); });
+    W.$('#ib').textContent = p.brand; W.$('#in').textContent = p.name; W.$('#ip').textContent = p.price ? W.price(p.price) : '';
+    W.$('#go').setAttribute('data-exit', p.url); W.$('#go').setAttribute('data-label', 'urun_' + p.key);
+  }
+  var auto = true, dragging = false, s0, moved;
+  function loop() {
+    if (auto && !dragging) target -= .12;
+    if (!dragging) ang += (target - ang) * .08;
+    layout(); requestAnimationFrame(loop);
+  }
+  W.drag(W.$('#stage'), {
+    start: function () { dragging = true; auto = false; s0 = ang; moved = false; },
+    move: function (p, dx) { if (Math.abs(dx) > 4) moved = true; ang = s0 + dx * .45; target = ang; },
+    end: function () { dragging = false; target = Math.round(ang / step) * step; if (moved) W.track('halka_cevir'); }
+  });
+  W.$('#stage').addEventListener('click', function (e) {
+    e.stopPropagation(); if (moved) return;
+    var el = e.target.closest('.it'); if (!el) return;
+    var i = els.indexOf(el);
+    if (i === cur) W.exit(items[i].url, 'urun_' + items[i].key);
+    else { auto = false; var d = ((-i * step - ang) % 360 + 540) % 360 - 180; target = ang + d; }
+  });
+  function go(d) { auto = false; target = Math.round(target / step) * step - d * step; W.track('halka_ok'); }
+  W.$('#pv').addEventListener('click', function (e) { e.stopPropagation(); go(-1); });
+  W.$('#nx').addEventListener('click', function (e) { e.stopPropagation(); go(1); });
+  W.ready(function () { ang = 140; target = 0; loop(); });
+})();
+</script>
+</body>
+</html>

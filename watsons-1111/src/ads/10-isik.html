@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+{{HEAD}}
+<style>
+{{SHARED_CSS}}
+.ad { background: #02090c; --x: 480px; --y: 125px; --r: 120px; }
+.lyr { position: absolute; inset: 0; }
+.lyr .bg { position: absolute; inset: 0; background: url("img/{{HERO}}") center/cover; }
+.shelf { position: absolute; left: 250px; right: 160px; bottom: 30px; height: 150px; display: flex; justify-content: space-around; align-items: flex-end; }
+.shelf::after { content: ''; position: absolute; left: -10px; right: -10px; bottom: -8px; height: 10px; border-radius: 4px; background: linear-gradient(#fff, #cfe6ea); }
+.pr { position: relative; width: 74px; height: 120px; display: flex; align-items: flex-end; justify-content: center; }
+.pr img { width: 74px; height: 110px; object-fit: contain; filter: drop-shadow(0 6px 6px rgba(0, 0, 0, .35)); }
+.tag { position: absolute; left: 50%; top: -14px; transform: translate(-50%, 8px) scale(.6); opacity: 0; background: var(--pink); color: #fff; font-size: 11px; font-weight: 900; padding: 5px 9px; border-radius: 99px; white-space: nowrap; box-shadow: 0 6px 12px rgba(255, 61, 127, .5); transition: transform .4s cubic-bezier(.3, 1.6, .5, 1), opacity .3s; }
+.lit .tag { opacity: 1; transform: translate(-50%, 0) scale(1); }
+.dark { filter: brightness(.18) saturate(.4); }
+.light { -webkit-mask-image: radial-gradient(circle var(--r) at var(--x) var(--y), #000 55%, transparent 100%); mask-image: radial-gradient(circle var(--r) at var(--x) var(--y), #000 55%, transparent 100%); }
+.light .bg { filter: brightness(1.05) saturate(1.15); }
+.halo { position: absolute; left: var(--x); top: var(--y); width: calc(var(--r) * 2); height: calc(var(--r) * 2); margin: calc(var(--r) * -1) 0 0 calc(var(--r) * -1); border-radius: 50%; box-shadow: 0 0 0 1px rgba(255, 255, 255, .25), 0 0 60px rgba(255, 240, 200, .25) inset; pointer-events: none; }
+.brand { position: absolute; left: 24px; top: 22px; bottom: 20px; width: 210px; display: flex; flex-direction: column; justify-content: space-between; z-index: 5; pointer-events: none; }
+.brand h1 { font-size: 17px; font-weight: 900; line-height: 1.15; margin-top: 10px; text-shadow: 0 2px 10px rgba(0, 0, 0, .6); }
+.brand h1 em { font-style: normal; color: var(--gold); }
+.side { position: absolute; right: 22px; top: 22px; bottom: 20px; width: 130px; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end; z-index: 5; text-align: right; }
+.side .k { font-size: 10px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); }
+.side b { font-size: 30px; font-weight: 900; line-height: 1; }
+.done .side .cta { animation: pulse 1.6s infinite; background: var(--pink); color: #fff; }
+.zone { position: absolute; inset: 0; z-index: 4; cursor: none; touch-action: none; }
+.legal { left: 24px; bottom: 6px; z-index: 5; }
+</style>
+</head>
+<body>
+<div class="ad" id="ad" data-exit="" data-label="genel">
+  <div class="lyr dark"><div class="bg"></div><div class="shelf" id="s1"></div></div>
+  <div class="lyr light" id="light"><div class="bg"></div><div class="shelf" id="s2"></div></div>
+  <div class="halo"></div>
+  <div class="zone" id="zone"></div>
+  <div class="brand fx">
+    <div>{{BADGE}}<h1>Işığı gezdir, <em>saklı 11.11 fırsatlarını</em> bul</h1></div>
+    {{LOGO}}
+  </div>
+  <div class="side fx d2" data-stop><div><div class="k">Bulunan</div><b id="cnt">0/5</b></div><span class="cta" data-exit="" data-label="isik_cta">Hepsini Gör</span></div>
+  <div class="legal">{{LEGAL}}</div>
+</div>
+<script>window.AD_DATA = {{DATA}};</script>
+<script>{{SHARED_JS}}</script>
+<script>
+(function () {
+  var D = W.data, ad = W.$('#ad'), items = D.products.slice(0, 5), found = {};
+  ['#s1', '#s2'].forEach(function (s, k) {
+    items.forEach(function (p) { W.$(s).appendChild(W.el('div', 'pr', '<img src="' + p.img + '" alt="">' + (k ? '<span class="tag">11.11 · ' + (p.price ? W.price(p.price) : 'Fırsat') + '</span>' : ''))); });
+  });
+  var lit = W.$$('#s2 .pr'), x = 480, y = 125, tx = 480, ty = 125, user = false;
+  function setPos() { ad.style.setProperty('--x', x + 'px'); ad.style.setProperty('--y', y + 'px'); }
+  function check() {
+    var r = ad.getBoundingClientRect();
+    lit.forEach(function (e, i) {
+      var b = e.getBoundingClientRect(), cx = b.left + b.width / 2 - r.left, cy = b.top + b.height / 2 - r.top;
+      var on = Math.hypot(cx - x, cy - y) < 90;
+      e.classList.toggle('lit', on);
+      if (on && !found[i]) { found[i] = 1; var n = Object.keys(found).length; W.$('#cnt').textContent = n + '/' + items.length; W.track('isik_bul_' + n); if (n === items.length) { ad.classList.add('done'); W.confetti(ad, 80, { x: cx, y: cy }); } }
+    });
+  }
+  function loop(t) {
+    if (!user) { tx = 480 + Math.sin(t / 1300) * 230; ty = 140 + Math.sin(t / 700) * 30; }
+    x += (tx - x) * .14; y += (ty - y) * .14; setPos(); if (user) check();
+    requestAnimationFrame(loop);
+  }
+  var z = W.$('#zone');
+  function at(e) { var r = ad.getBoundingClientRect(), p = e.touches ? e.touches[0] : e; user = true; tx = p.clientX - r.left; ty = p.clientY - r.top; }
+  z.addEventListener('mousemove', at);
+  z.addEventListener('touchmove', function (e) { at(e); e.preventDefault(); }, { passive: false });
+  z.addEventListener('touchstart', at, { passive: true });
+  z.addEventListener('click', function (e) {
+    e.stopPropagation();
+    var hit = lit.filter(function (el) { return el.classList.contains('lit'); })[0];
+    if (hit) { var p = items[lit.indexOf(hit)]; W.exit(p.url, 'urun_' + p.key); }
+  });
+  W.ready(function () { requestAnimationFrame(loop); });
+})();
+</script>
+</body>
+</html>

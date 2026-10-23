@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+{{HEAD}}
+<style>
+{{SHARED_CSS}}
+.ad { background: #04161c; perspective: 700px; perspective-origin: 50% 50%; }
+.world { position: absolute; inset: -30px; transform-style: preserve-3d; transition: transform .25s ease-out; }
+.l { position: absolute; transform-style: preserve-3d; }
+.bgl { inset: 0; background: url("img/{{HERO}}") center/cover; transform: translateZ(-160px) scale(1.25); filter: brightness(.55) saturate(1.1) blur(1px); }
+.tint { inset: 0; background: linear-gradient(90deg, rgba(0, 90, 100, .85) 0%, rgba(0, 120, 135, .35) 50%, rgba(255, 61, 127, .45) 100%); transform: translateZ(-120px) scale(1.2); }
+.sign { left: 250px; top: 54px; transform: translateZ(-40px); text-align: left; }
+.sign b { display: block; font-size: 110px; font-weight: 900; line-height: .9; letter-spacing: -.04em; color: #fff; text-shadow: 0 0 10px #fff, 0 0 26px var(--pink), 0 0 60px var(--pink); animation: neon 4s infinite; }
+@keyframes neon { 0%, 18%, 22%, 62%, 64%, 100% { opacity: 1; } 20%, 63% { opacity: .45; } }
+.sign span { display: block; margin-top: 8px; font-size: 13px; font-weight: 800; letter-spacing: .32em; text-transform: uppercase; color: var(--gold); text-shadow: 0 0 12px rgba(255, 210, 63, .6); }
+.prods { left: 520px; top: 40px; width: 360px; height: 200px; transform: translateZ(40px); }
+.fp { position: absolute; width: 96px; height: 120px; transform-style: preserve-3d; cursor: pointer; }
+.fp .in { position: absolute; inset: 0; transition: transform .4s cubic-bezier(.3, 1.4, .5, 1); animation: bob 4s ease-in-out infinite; }
+.fp img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 16px 14px rgba(0, 0, 0, .45)); }
+.fp .tg { position: absolute; left: 50%; bottom: -8px; transform: translate(-50%, 6px); opacity: 0; background: #fff; color: var(--ink); font-size: 10px; font-weight: 900; padding: 4px 9px; border-radius: 99px; white-space: nowrap; transition: opacity .3s, transform .3s; }
+.fp:hover .in { transform: translateZ(60px) scale(1.12); }
+.fp:hover .tg { opacity: 1; transform: translate(-50%, 0); }
+@keyframes bob { 50% { transform: translateY(-8px); } }
+.ped { position: absolute; left: 0; right: 0; bottom: -18px; height: 26px; border-radius: 50%; background: radial-gradient(rgba(255, 255, 255, .55), rgba(255, 255, 255, .08) 60%, transparent 70%); transform: rotateX(70deg); }
+.glass { inset: 0; transform: translateZ(90px); pointer-events: none; background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, .08) 38%, transparent 46%); }
+.brand { position: absolute; left: 24px; top: 22px; bottom: 20px; width: 200px; display: flex; flex-direction: column; justify-content: space-between; z-index: 5; }
+.brand h1 { font-size: 15px; font-weight: 900; line-height: 1.2; text-shadow: 0 2px 10px rgba(0, 0, 0, .5); }
+.brand h1 em { font-style: normal; color: var(--gold); }
+.side { position: absolute; right: 22px; top: 22px; bottom: 20px; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end; z-index: 5; }
+.legal { left: 24px; bottom: 6px; z-index: 5; }
+</style>
+</head>
+<body>
+<div class="ad" id="ad" data-exit="" data-label="genel">
+  <div class="world" id="world">
+    <div class="l bgl"></div>
+    <div class="l tint"></div>
+    <div class="l sign"><b>11.11</b><span>{{EVENT}}</span></div>
+    <div class="l prods" id="prods" data-stop></div>
+    <div class="l glass"></div>
+  </div>
+  <div class="brand fx">{{LOGO}}<h1>Vitrine yaklaş: <em>11.11 fırsatları</em> öne çıkıyor</h1><span class="hint"><i></i> Fareyi gezdir</span></div>
+  <div class="side fx d2"><span></span><span class="cta pk pulse">Vitrini Keşfet</span></div>
+  <div class="legal">{{LEGAL}}</div>
+</div>
+<script>window.AD_DATA = {{DATA}};</script>
+<script>{{SHARED_JS}}</script>
+<script>
+(function () {
+  var D = W.data, ad = W.$('#ad'), world = W.$('#world'), box = W.$('#prods'), items = D.products.slice(0, 5);
+  // Ürünler farklı derinliklerde (z) yüzer
+  var spots = [[0, 40, 30], [80, -6, -20], [160, 46, 70], [240, 0, 0], [300, 52, 40]];
+  items.forEach(function (p, i) {
+    var s = spots[i], e = W.el('div', 'fp', '<div class="in" style="animation-delay:' + (-i * .7) + 's"><img src="' + p.img + '" alt=""><div class="ped"></div></div><div class="tg">' + p.brand + (p.price ? ' · ' + W.price(p.price) : '') + '</div>');
+    e.style.left = s[0] + 'px'; e.style.top = s[1] + 'px'; e.style.transform = 'translateZ(' + s[2] + 'px)';
+    e.addEventListener('click', function (ev) { ev.stopPropagation(); W.exit(p.url, 'urun_' + p.key); });
+    e.addEventListener('mouseenter', function () { W.track('vitrin_' + p.key); });
+    box.appendChild(e);
+  });
+  var tx = 0, ty = 0, cx = 0, cy = 0, user = false;
+  function tilt(x, y) { tx = x; ty = y; }
+  ad.addEventListener('mousemove', function (e) { user = true; var r = ad.getBoundingClientRect(); tilt((e.clientX - r.left) / r.width - .5, (e.clientY - r.top) / r.height - .5); });
+  ad.addEventListener('mouseleave', function () { user = false; });
+  addEventListener('deviceorientation', function (e) { if (e.gamma == null) return; user = true; tilt(Math.max(-.5, Math.min(.5, e.gamma / 40)), Math.max(-.5, Math.min(.5, (e.beta - 40) / 40))); });
+  function loop(t) {
+    if (!user) { tx = Math.sin(t / 1800) * .35; ty = Math.sin(t / 2600) * .2; }
+    cx += (tx - cx) * .08; cy += (ty - cy) * .08;
+    world.style.transform = 'rotateY(' + cx * 14 + 'deg) rotateX(' + -cy * 12 + 'deg) translateZ(' + (user ? 20 : 0) + 'px)';
+    requestAnimationFrame(loop);
+  }
+  W.ready(function () { requestAnimationFrame(loop); });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+{{HEAD}}
+<style>
+{{SHARED_CSS}}
+.ad { background: linear-gradient(105deg, #fff 0%, #f1fbfc 55%, #d8f4f6 100%); color: var(--ink); }
+.photo { position: absolute; right: 0; top: 0; bottom: 0; width: 330px; background: url("img/{{HERO2}}") center/cover; clip-path: polygon(14% 0, 100% 0, 100% 100%, 0 100%); }
+.photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(255, 255, 255, .0), rgba(0, 90, 100, .25)); }
+.brand { position: absolute; left: 24px; top: 22px; bottom: 20px; width: 180px; display: flex; flex-direction: column; justify-content: space-between; }
+.brand .b1111 b { background: linear-gradient(180deg, var(--teal), var(--teal-d)); -webkit-background-clip: text; background-clip: text; filter: none; }
+.brand .b1111 span { color: var(--pink); }
+.brand h1 { font-size: 16px; font-weight: 900; line-height: 1.15; margin-top: 10px; }
+.brand h1 em { font-style: normal; color: var(--pink); }
+.q { position: absolute; left: 220px; top: 22px; bottom: 20px; width: 420px; display: flex; flex-direction: column; }
+.steps { display: flex; gap: 6px; margin-bottom: 10px; }
+.steps i { flex: 1; height: 4px; border-radius: 4px; background: #d6eef1; transition: background .3s; }
+.steps i.on { background: var(--teal); }
+.q .k { font-size: 10px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--teal-d); }
+.q h2 { font-size: 20px; font-weight: 900; line-height: 1.1; margin: 4px 0 12px; }
+.opts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.opts button { height: 46px; border-radius: 12px; background: #fff; color: var(--ink); font-size: 12px; font-weight: 800; box-shadow: 0 4px 12px rgba(0, 90, 100, .1), inset 0 0 0 2px #dff2f4; display: flex; align-items: center; gap: 10px; padding: 0 12px; text-align: left; transition: transform .2s, box-shadow .2s, background .2s; }
+.opts button span { font-size: 18px; }
+.opts button:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(0, 90, 100, .16), inset 0 0 0 2px var(--teal); }
+.opts button.sel { background: var(--teal); color: #fff; }
+.pane { transition: opacity .35s, transform .35s; }
+.pane.out { opacity: 0; transform: translateX(-20px); }
+.res { display: none; }
+.res.on { display: flex; gap: 10px; align-items: stretch; }
+.rc { width: 96px; border-radius: 14px; background: #fff; box-shadow: 0 8px 18px rgba(0, 90, 100, .14); padding: 8px; display: flex; flex-direction: column; align-items: center; cursor: pointer; animation: rin .5s backwards; }
+.rc:nth-child(2) { animation-delay: .12s; } .rc:nth-child(3) { animation-delay: .24s; }
+@keyframes rin { from { opacity: 0; transform: translateY(16px); } }
+.rc em { font-style: normal; font-size: 9px; font-weight: 900; letter-spacing: .1em; color: #fff; background: var(--pink); border-radius: 99px; padding: 3px 8px; }
+.rc img { width: 78px; height: 74px; object-fit: contain; margin: 4px 0; }
+.rc b { font-size: 8.5px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; color: var(--teal-d); text-align: center; }
+.rr { display: flex; flex-direction: column; justify-content: space-between; gap: 6px; margin-left: 6px; }
+.rr p { font-size: 11px; font-weight: 600; color: #4d6a70; }
+.rr button { font-size: 11px; font-weight: 800; color: var(--teal-d); text-decoration: underline; text-align: left; }
+.side { position: absolute; right: 22px; top: 22px; bottom: 20px; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end; }
+.legal { left: 24px; bottom: 6px; color: #6a8187; }
+</style>
+</head>
+<body>
+<div class="ad" id="ad" data-exit="" data-label="genel">
+  <div class="photo"></div>
+  <div class="brand fx">
+    <div>{{BADGE}}<h1>3 soruda <em>11.11 rutinini</em> kur</h1></div>
+    <img class="wlogo" src="img/logo-c.webp" alt="Watsons">
+  </div>
+  <div class="q fx d1" data-stop>
+    <div class="steps"><i class="on"></i><i></i><i></i></div>
+    <div class="pane" id="pane"></div>
+  </div>
+  <div class="side fx d3">{{LOGO}}<span class="cta pk pulse">Fırsatları Gör</span></div>
+  <div class="legal">{{LEGAL}}</div>
+</div>
+<script>window.AD_DATA = {{DATA}};</script>
+<script>{{SHARED_JS}}</script>
+<script>
+(function () {
+  var D = W.data, Q = D.quiz, pane = W.$('#pane'), ans = [], step = 0;
+  function render() {
+    W.$$('.steps i').forEach(function (s, i) { s.classList.toggle('on', i <= step); });
+    if (step < Q.length) {
+      var q = Q[step];
+      pane.innerHTML = '<div class="k">Soru ' + (step + 1) + '/' + Q.length + '</div><h2>' + q.q + '</h2><div class="opts">' + q.a.map(function (a, i) { return '<button data-i="' + i + '"><span>' + a.i + '</span>' + a.t + '</button>'; }).join('') + '</div>';
+      W.$$('.opts button', pane).forEach(function (b) { b.addEventListener('click', function (e) { e.stopPropagation(); b.classList.add('sel'); pick(+b.getAttribute('data-i')); }); });
+    } else {
+      // Cevaplar → kategori; her adım için o kategoriden bir ürün
+      var cat = D.cats.filter(function (c) { return c.key === Q[0].a[ans[0]].cat; })[0] || D.cats[0];
+      var pool = (cat.products || []).concat(D.products), picks = [], seen = {};
+      for (var i = 0; i < pool.length && picks.length < 3; i++) if (!seen[pool[i].key]) { seen[pool[i].key] = 1; picks.push(pool[i]); }
+      var labels = Q[0].a[ans[0]].steps;
+      pane.innerHTML = '<div class="k">Senin 11.11 rutinin · ' + cat.name + '</div><h2>' + Q[1].a[ans[1]].t + ' için 3 adım</h2><div class="res on">' + picks.map(function (p, i) { return '<div class="rc" data-exit="' + p.url + '" data-label="rutin_' + p.key + '"><em>' + (i + 1) + '. ' + labels[i] + '</em><img src="' + p.img + '" alt=""><b>' + p.brand + '</b></div>'; }).join('') + '<div class="rr"><p>' + D.brand.offer + '</p><span class="cta pk" data-exit="' + cat.url + '" data-label="rutin_kategori" style="height:32px;padding:0 14px">Rutini Al</span><button id="re">Baştan başla</button></div></div>';
+      W.$('#re').addEventListener('click', function (e) { e.stopPropagation(); ans = []; step = 0; swap(); });
+      W.track('rutin_sonuc_' + cat.key);
+    }
+  }
+  function swap() { pane.classList.add('out'); setTimeout(function () { render(); pane.classList.remove('out'); }, 300); }
+  function pick(i) { ans[step] = i; W.track('rutin_s' + (step + 1) + '_' + i); step++; setTimeout(swap, 250); }
+  render();
+  W.ready(function () {});
+})();
+</script>
+</body>
+</html>

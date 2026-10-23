@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+{{HEAD}}
+<style>
+{{SHARED_CSS}}
+.ad { background: linear-gradient(115deg, #052a33 0%, #07434e 45%, var(--teal-d) 100%); }
+.ad::before { content: ''; position: absolute; inset: 0; background: radial-gradient(40% 80% at 50% 50%, rgba(0, 220, 235, .35), transparent 70%); }
+.grid { position: absolute; left: 0; right: 0; bottom: -40px; height: 160px; background-image: linear-gradient(rgba(255, 255, 255, .12) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .12) 1px, transparent 1px); background-size: 34px 34px; transform: perspective(300px) rotateX(62deg); transform-origin: 50% 100%; mask-image: linear-gradient(transparent, #000 70%); -webkit-mask-image: linear-gradient(transparent, #000 70%); }
+.brand { position: absolute; left: 26px; top: 24px; bottom: 22px; width: 250px; display: flex; flex-direction: column; justify-content: space-between; }
+.brand h1 { font-size: 21px; font-weight: 900; line-height: 1.12; }
+.brand h1 em { font-style: normal; color: var(--gold); }
+.brand p { font-size: 11px; font-weight: 600; color: rgba(255, 255, 255, .8); margin-top: 6px; }
+.scene { position: absolute; left: 50%; top: 50%; width: 156px; height: 156px; margin: -78px 0 0 -110px; perspective: 700px; cursor: grab; touch-action: none; }
+.scene:active { cursor: grabbing; }
+.cube { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform .7s cubic-bezier(.2, .9, .25, 1.15); }
+.cube.dragging { transition: none; }
+.fc { position: absolute; inset: 0; border-radius: 10px; overflow: hidden; background: #fff center/cover; box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .6); backface-visibility: hidden; }
+.fc::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(0, 50, 60, .85)); }
+.fc b { position: absolute; left: 10px; bottom: 9px; z-index: 2; font-size: 14px; font-weight: 900; text-transform: uppercase; letter-spacing: .02em; }
+.fc img { position: absolute; right: 8px; top: 8px; width: 64px; height: 64px; object-fit: contain; background: #fff; border-radius: 10px; padding: 4px; z-index: 2; box-shadow: 0 6px 14px rgba(0, 0, 0, .25); }
+.fc.x { background: linear-gradient(150deg, var(--pink), #b5104f); display: flex; align-items: center; justify-content: center; }
+.fc.x::after { display: none; }
+.fc.x .b1111 { align-items: center; }
+.fc.x .b1111 b { font-size: 52px; }
+.shadow { position: absolute; left: 50%; top: 50%; width: 170px; height: 34px; margin: 92px 0 0 -117px; border-radius: 50%; background: radial-gradient(rgba(0, 0, 0, .55), transparent 70%); filter: blur(4px); }
+.info { position: absolute; right: 22px; top: 22px; bottom: 22px; width: 250px; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end; text-align: right; }
+.info .k { font-size: 10px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
+.info h2 { font-size: 26px; font-weight: 900; line-height: 1; margin-top: 4px; transition: opacity .3s; }
+.thumbs { display: flex; gap: 8px; justify-content: flex-end; }
+.thumbs a { width: 64px; height: 64px; background: #fff; border-radius: 12px; padding: 5px; box-shadow: 0 8px 18px rgba(0, 0, 0, .25); transition: transform .3s; }
+.thumbs a:hover { transform: translateY(-3px); }
+.thumbs img { width: 100%; height: 100%; object-fit: contain; }
+.hint { position: absolute; left: 50%; bottom: 12px; transform: translateX(-50%); margin-left: -32px; }
+.legal { left: 26px; bottom: 8px; }
+.m .brand { left: 18px; right: 18px; top: 18px; bottom: auto; width: auto; text-align: center; align-items: center; gap: 10px; }
+.m .brand h1 { font-size: 17px; } .m .brand p { display: none; } .m .info .k { display: none; } .m .info h2 { font-size: 20px; }
+.m .brand .cta { display: none; }
+.m .scene { left: 50%; top: 132px; width: 120px; height: 120px; margin: 0 0 0 -60px; }
+.m .shadow { left: 50%; top: 262px; margin: 0 0 0 -80px; width: 160px; }
+.m .info { left: 18px; right: 18px; top: auto; bottom: 26px; width: auto; height: auto; align-items: center; text-align: center; gap: 10px; }
+.m .info .wlogo { display: none; }
+.m .hint { bottom: auto; top: 380px; margin-left: 0; display: none; }
+.m .legal { left: 0; right: 0; text-align: center; }
+.m .mlogo { display: none; }
+.mlogo { display: none; }
+</style>
+</head>
+<body>
+<div class="ad" data-exit="" data-label="genel">
+  <div class="grid"></div>
+  <div class="brand fx">
+    <div>{{BADGE}}<h1 style="margin-top:12px">Küpü çevir, <em>11.11 fırsatını</em> seç</h1><p>Her yüzünde başka bir kategori</p></div>
+    <span class="cta">Tüm Fırsatlar</span>
+  </div>
+  <div class="shadow"></div>
+  <div class="scene" id="scene" data-stop><div class="cube" id="cube"></div></div>
+  <div class="hint" id="hint"><i></i> Sürükle ve çevir</div>
+  <div class="info fx d2" data-stop>
+    {{LOGO}}
+    <div><div class="k">11.11'de</div><h2 id="cn"></h2></div>
+    <div class="thumbs" id="th"></div>
+    <span class="cta pk" id="go" data-exit="" data-label="kategori">Fırsatları Gör</span>
+  </div>
+  <img class="mlogo" src="img/logo-w.webp" alt="">
+  <div class="legal">{{LEGAL}}</div>
+</div>
+<script>window.AD_DATA = {{DATA}};</script>
+<script>{{SHARED_JS}}</script>
+<script>
+(function () {
+  var D = W.data, cube = W.$('#cube'), cats = D.cats.slice(0, 5);
+  var rot = [['rotateY(0deg)', [0, 0, 1]], ['rotateY(90deg)', [1, 0, 0]], ['rotateY(180deg)', [0, 0, -1]], ['rotateY(-90deg)', [-1, 0, 0]], ['rotateX(90deg)', [0, -1, 0]], ['rotateX(-90deg)', [0, 1, 0]]];
+  var faces = cats.concat([{ key: 'x', name: '11.11', x: true }]);
+  var half = function () { return cube.offsetWidth / 2; };
+  faces.forEach(function (c, i) {
+    var f = W.el('div', 'fc' + (c.x ? ' x' : ''));
+    if (c.x) f.innerHTML = W.badge();
+    else { f.style.backgroundImage = 'url(' + c.img + ')'; f.innerHTML = '<b>' + c.name + '</b>' + (c.product ? '<img src="' + c.product.img + '" alt="">' : ''); }
+    f._t = rot[i][0]; f._n = rot[i][1]; f._c = c;
+    cube.appendChild(f);
+  });
+  function place() { W.$$('.fc').forEach(function (f) { f.style.transform = f._t + ' translateZ(' + half() + 'px)'; }); }
+  place(); addEventListener('resize', place);
+  var rx = 0, ry = 0, active = -1;
+  function apply() { cube.style.transform = 'rotateX(-14deg) rotateY(-22deg) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg)'; }
+  // Görünen yüz: yüz normali önce Y sonra X ekseninde döndürülür, z'si en büyük olan öndedir
+  function front() {
+    var a = ry * Math.PI / 180, b = rx * Math.PI / 180, best = 0, bz = -9;
+    W.$$('.fc').forEach(function (f, i) {
+      var n = f._n, x = n[0] * Math.cos(a) + n[2] * Math.sin(a), z = -n[0] * Math.sin(a) + n[2] * Math.cos(a), y = n[1];
+      var z2 = y * Math.sin(b) + z * Math.cos(b);
+      if (z2 > bz) { bz = z2; best = i; }
+    });
+    return best;
+  }
+  function show(i) {
+    if (i === active) return; active = i;
+    var c = faces[i], cc = c.x ? { name: 'Tüm Kategoriler', url: D.brand.home, products: D.products.slice(0, 3) } : c;
+    W.$('#cn').textContent = cc.name;
+    W.$('#go').setAttribute('data-exit', cc.url || D.brand.home);
+    W.$('#go').setAttribute('data-label', 'kategori_' + (c.key || 'x'));
+    W.$('#th').innerHTML = (cc.products || []).slice(0, 3).map(function (p) { return '<a data-exit="' + p.url + '" data-label="urun_' + p.key + '"><img src="' + p.img + '" alt=""></a>'; }).join('');
+    W.track('yuz_' + (c.key || 'x'));
+  }
+  function snap() {
+    ry = Math.round(ry / 90) * 90;
+    rx = Math.max(-90, Math.min(90, Math.round(rx / 90) * 90));
+    apply(); show(front());
+  }
+  var auto = true, srx, sry, moved = false;
+  W.drag(W.$('#scene'), {
+    start: function () { auto = false; srx = rx; sry = ry; moved = false; cube.classList.add('dragging'); W.$('#hint').style.opacity = 0; },
+    move: function (p, dx, dy) { if (Math.abs(dx) + Math.abs(dy) > 4) moved = true; ry = sry + dx * .6; rx = Math.max(-90, Math.min(90, srx - dy * .6)); apply(); show(front()); },
+    end: function () { cube.classList.remove('dragging'); if (moved) { snap(); W.track('kup_cevir'); } }
+  });
+  W.$('#scene').addEventListener('click', function (e) {
+    e.stopPropagation();
+    if (moved) return;
+    var c = faces[front()]; W.exit(c.url || D.brand.home, 'kup_' + (c.key || 'x'));
+  });
+  W.ready(function () {
+    apply(); show(front());
+    // Kendi kendine yüz yüz döner; kullanıcı dokununca durur
+    var step = 0, seq = [[0, -90], [0, -180], [0, -270], [-90, -270], [0, -360]];
+    setTimeout(function loop() {
+      if (!auto) return;
+      var s = seq[step++ % seq.length]; rx = s[0]; ry = s[1] - Math.floor((step - 1) / seq.length) * 360; apply(); show(front());
+      setTimeout(loop, 2100);
+    }, 1400);
+  });
+})();
+</script>
+</body>
+</html>

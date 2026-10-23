@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+{{HEAD}}
+<style>
+{{SHARED_CSS}}
+.ad { background: radial-gradient(90% 160% at 38% 50%, #13c6d6 0%, var(--teal) 30%, var(--teal-d) 70%, #04414b 100%); }
+.rays { position: absolute; left: 330px; top: 125px; width: 1100px; height: 1100px; margin: -550px 0 0 -550px; background: repeating-conic-gradient(rgba(255, 255, 255, .09) 0 8deg, transparent 8deg 20deg); animation: sp 40s linear infinite; }
+@keyframes sp { to { transform: rotate(360deg); } }
+.brand { position: absolute; left: 26px; top: 24px; bottom: 22px; display: flex; flex-direction: column; justify-content: space-between; }
+.brand h1 { font-size: 17px; font-weight: 900; line-height: 1.15; max-width: 170px; margin-top: 12px; }
+.brand h1 em { font-style: normal; color: var(--gold); }
+.wheelbox { position: absolute; left: 330px; top: 125px; width: 228px; height: 228px; margin: -114px 0 0 -114px; }
+.ring { position: absolute; inset: -9px; border-radius: 50%; background: #fff; box-shadow: 0 16px 40px rgba(0, 40, 50, .45); }
+.ring i { position: absolute; left: 50%; top: 50%; width: 7px; height: 7px; margin: -3.5px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 8px var(--gold); animation: bl 1s infinite; }
+@keyframes bl { 50% { opacity: .35; } }
+.wheel { position: absolute; inset: 0; border-radius: 50%; overflow: hidden; transition: transform 4.6s cubic-bezier(.12, .72, .12, 1); }
+.seg { position: absolute; left: 50%; top: 0; width: 0; height: 50%; transform-origin: 50% 100%; }
+.seg div { position: absolute; left: -26px; top: 9px; width: 52px; text-align: center; }
+.seg img { width: 34px; height: 34px; margin: 0 auto; object-fit: contain; background: #fff; border-radius: 50%; padding: 3px; box-shadow: 0 3px 8px rgba(0, 0, 0, .2); }
+.seg b { display: block; margin-top: 3px; font-size: 7px; font-weight: 900; line-height: 1.05; text-transform: uppercase; letter-spacing: .02em; }
+.hub { position: absolute; left: 50%; top: 50%; width: 70px; height: 70px; margin: -35px; border-radius: 50%; background: #fff; color: var(--pink); font-size: 14px; font-weight: 900; display: flex; align-items: center; justify-content: center; text-transform: uppercase; box-shadow: 0 6px 18px rgba(0, 0, 0, .3), inset 0 0 0 4px var(--pink); z-index: 3; transition: transform .2s; }
+.hub:hover { transform: scale(1.06); }
+.hub.dis { pointer-events: none; opacity: .9; }
+.ptr { position: absolute; left: 50%; top: -18px; width: 28px; height: 34px; margin-left: -14px; z-index: 4; background: var(--pink); clip-path: polygon(0 0, 100% 0, 50% 100%); filter: drop-shadow(0 3px 3px rgba(0, 0, 0, .3)); transform-origin: 50% 20%; }
+.ptr.tk { animation: tk .12s; }
+@keyframes tk { 50% { transform: rotate(-18deg); } }
+.res { position: absolute; left: 480px; right: 150px; top: 22px; bottom: 22px; display: flex; flex-direction: column; justify-content: center; gap: 10px; }
+.res .k { font-size: 10px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
+.res h2 { font-size: 26px; font-weight: 900; line-height: 1.05; }
+.res p { font-size: 12px; font-weight: 600; color: rgba(255, 255, 255, .85); max-width: 290px; }
+.res .row { display: flex; gap: 8px; }
+.res .row a { width: 70px; height: 70px; border-radius: 12px; background: #fff; padding: 5px; box-shadow: 0 8px 16px rgba(0, 0, 0, .2); opacity: 0; transform: translateY(10px) scale(.9); transition: opacity .5s, transform .5s; }
+.res .row a img { width: 100%; height: 100%; object-fit: contain; }
+.won .res .row a { opacity: 1; transform: none; }
+.won .res .row a:nth-child(2) { transition-delay: .1s; } .won .res .row a:nth-child(3) { transition-delay: .2s; }
+.res .before, .res .after { transition: opacity .4s; }
+.res .after { display: none; }
+.won .res .before { display: none; }
+.won .res .after { display: flex; flex-direction: column; gap: 10px; }
+.side { position: absolute; right: 22px; top: 24px; bottom: 22px; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end; }
+.legal { left: 26px; bottom: 8px; }
+/* Mobil */
+.m .rays, .m .wheelbox { left: 160px; top: 232px; }
+.m .wheelbox { width: 236px; height: 236px; margin: -118px 0 0 -118px; }
+.m .brand { left: 0; right: 0; top: 18px; bottom: auto; align-items: center; text-align: center; }
+.m .brand .b1111 { align-items: center; }
+.m .brand h1 { max-width: 260px; margin-top: 6px; font-size: 16px; }
+.m .brand .cta { display: none; }
+.m .side { left: 16px; right: 16px; top: auto; bottom: 24px; flex-direction: row; align-items: center; }
+.m .res { left: 14px; right: 14px; top: 106px; bottom: 74px; justify-content: center; align-items: center; text-align: center; background: rgba(4, 50, 60, .92); border-radius: 18px; padding: 16px; opacity: 0; pointer-events: none; transform: scale(.9); transition: opacity .4s, transform .4s; z-index: 6; }
+.m.won .res { opacity: 1; pointer-events: auto; transform: none; }
+.m .res .before { display: none; }
+.m .res .after { align-items: center; }
+.m .legal { left: 0; right: 0; text-align: center; }
+</style>
+</head>
+<body>
+<div class="ad" id="ad" data-exit="" data-label="genel">
+  <div class="rays"></div>
+  <div class="brand fx">
+    <div>{{BADGE}}<h1>Çarkı çevir, <em>11.11 şansını</em> yakala</h1></div>
+    <span class="cta">Tüm Fırsatlar</span>
+  </div>
+  <div class="wheelbox" data-stop>
+    <div class="ring" id="ring"></div>
+    <div class="wheel" id="wheel"></div>
+    <div class="ptr" id="ptr"></div>
+    <button class="hub" id="spin">Çevir</button>
+  </div>
+  <div class="res fx d2" data-stop>
+    <div class="before"><div class="k">11.11 Şans Çarkı</div><h2>Hangi kategoride<br>şanslısın?</h2><p>Çarkı çevir; sana çıkan kategorideki 11.11 fırsatlarını ilk sen gör.</p><span class="hint"><i></i> Ortadaki düğmeye dokun</span></div>
+    <div class="after"><div class="k">Senin 11.11 şansın</div><h2 id="rn"></h2><div class="row" id="rp"></div><div class="coupon" style="align-self:flex-start"><code>{{CODE}}</code><button id="cp">Kopyala</button></div><span class="cta pk" id="rgo" data-exit="" style="align-self:flex-start">Fırsatlara Git</span></div>
+  </div>
+  <div class="side fx d3">{{LOGO}}<span class="cta pulse">Alışverişe Başla</span></div>
+  <div class="legal">{{LEGAL}}</div>
+</div>
+<script>window.AD_DATA = {{DATA}};</script>
+<script>{{SHARED_JS}}</script>
+<script>
+(function () {
+  var D = W.data, wheel = W.$('#wheel'), segs = D.cats.slice(0, 8);
+  while (segs.length < 8) segs = segs.concat(D.cats).slice(0, 8);
+  var n = segs.length, a = 360 / n, cols = ['#ff3d7f', '#ffffff', '#00a5b5', '#ffd23f', '#ff3d7f', '#ffffff', '#00a5b5', '#ffd23f'];
+  wheel.style.background = 'conic-gradient(' + segs.map(function (s, i) { return cols[i] + ' ' + (i * a) + 'deg ' + ((i + 1) * a) + 'deg'; }).join(',') + ')';
+  segs.forEach(function (s, i) {
+    var g = W.el('div', 'seg'); g.style.transform = 'rotate(' + (i * a + a / 2) + 'deg)';
+    var dark = cols[i] === '#ffffff' || cols[i] === '#ffd23f';
+    g.innerHTML = '<div style="color:' + (dark ? '#0d2b33' : '#fff') + '"><img src="' + (s.product ? s.product.img : s.img) + '" alt=""><b>' + s.name + '</b></div>';
+    wheel.appendChild(g);
+  });
+  var ring = W.$('#ring');
+  for (var i = 0; i < 16; i++) { var d = W.el('i'); var t = i / 16 * Math.PI * 2; var rr = ring.offsetWidth / 2 - 4.5; d.style.transform = 'translate(' + Math.cos(t) * rr + 'px,' + Math.sin(t) * rr + 'px)'; d.style.animationDelay = (i % 2) * .5 + 's'; ring.appendChild(d); }
+  var rot = 0, busy = false;
+  function spin(target) {
+    if (busy) return; busy = true; W.$('#spin').classList.add('dis');
+    W.$('#ad').classList.remove('won');
+    var k = target != null ? target : Math.floor(Math.random() * n);
+    // İşaretçi tepede: k. dilimin ortası tepeye gelmeli
+    var stop = 360 - (k * a + a / 2);
+    rot = rot - (rot % 360) + 360 * 5 + stop;
+    wheel.style.transform = 'rotate(' + rot + 'deg)';
+    var ptr = W.$('#ptr'), last = 0, t0 = performance.now();
+    (function tick(t) {
+      var m = new DOMMatrix(getComputedStyle(wheel).transform), deg = Math.atan2(m.b, m.a) * 180 / Math.PI;
+      var cur = Math.floor((deg + 720) / a);
+      if (cur !== last) { last = cur; ptr.classList.remove('tk'); void ptr.offsetWidth; ptr.classList.add('tk'); }
+      if (t - t0 < 4700) requestAnimationFrame(tick);
+    })(t0);
+    setTimeout(function () { busy = false; W.$('#spin').classList.remove('dis'); W.$('#spin').textContent = 'Tekrar'; result(segs[k]); }, 4700);
+    W.track('cark_cevir');
+  }
+  function result(s) {
+    W.$('#rn').textContent = s.name;
+    W.$('#rp').innerHTML = (s.products || []).slice(0, 3).map(function (p) { return '<a data-exit="' + p.url + '" data-label="urun_' + p.key + '"><img src="' + p.img + '" alt=""></a>'; }).join('');
+    W.$('#rgo').setAttribute('data-exit', s.url); W.$('#rgo').setAttribute('data-label', 'cark_' + s.key);
+    W.$('#ad').classList.add('won');
+    var r = W.$('.wheelbox').getBoundingClientRect();
+    W.confetti(W.$('#ad'), 80, { x: r.left + r.width / 2, y: r.top + 20 });
+    W.track('cark_sonuc_' + s.key);
+  }
+  W.$('#spin').addEventListener('click', function (e) { e.stopPropagation(); spin(); });
+  W.$('#cp').addEventListener('click', function (e) { e.stopPropagation(); W.copy(D.brand.code, this); });
+  W.ready(function () {
+    // Açılışta çark yavaşça sallanır (dokunma daveti)
+    wheel.style.transition = 'transform 1.2s cubic-bezier(.3,1.6,.5,1)';
+    wheel.style.transform = 'rotate(-14deg)';
+    setTimeout(function () { wheel.style.transform = 'rotate(0deg)'; setTimeout(function () { wheel.style.transition = ''; }, 1200); }, 900);
+    // Etkileşim olmazsa 7 sn sonra kendiliğinden bir kez döner
+    setTimeout(function () { if (!busy && !W.$('#ad').classList.contains('won')) spin(0); }, 7000);
+  });
+})();
+</script>
+</body>
+</html>

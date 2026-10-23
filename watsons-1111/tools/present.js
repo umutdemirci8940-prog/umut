@@ -59,7 +59,7 @@ main { position: relative; max-width: 1180px; margin: 0 auto; padding: 0 24px 12
 .lb .re span { font-size: 16px; line-height: 1; transition: transform .5s cubic-bezier(.22, .8, .2, 1); }
 .lb .re:hover span, .lb .re.spin span { transform: rotate(-360deg); }
 .lb .re:hover { background: var(--blue); border-color: var(--blue); }
-.stage { display: flex; justify-content: center; }
+.stage { display: flex; justify-content: center; align-items: flex-start; }
 .stage > * { flex: none; }
 iframe { border: 0; display: block; }
 .vp { overflow: hidden; background: #000; }
