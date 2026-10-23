@@ -1,32 +1,2095 @@
 {
- "fetchedAt": "2026-10-23T14:11:54.138Z",
- "base": "https://www.watsons.com.tr",
+ "fetchedAt": "2026-10-23T15:16:52.779Z",
+ "via": "web.archive.org",
  "pages": [
   {
    "path": "/",
-   "url": "https://www.watsons.com.tr/",
-   "title": "Access Denied",
-   "imgs": 0,
+   "url": "https://web.archive.org/web/20260614013016/https://www.watsons.com.tr/",
+   "title": "Kozmetik Ürünleri ve En Sevilen Kozmetik Markaları | Watsons",
+   "imgs": 22,
    "products": 0
+  },
+  {
+   "path": "/kampanyalar",
+   "url": "https://web.archive.org/web/20260516121203/https://www.watsons.com.tr/kampanyalar",
+   "title": "Kampanyalar | Watsons",
+   "imgs": 18,
+   "products": 0
+  },
+  {
+   "path": "/makyaj/c/100",
+   "url": "https://web.archive.org/web/20260712122843/https://www.watsons.com.tr/makyaj/c/100",
+   "title": "Makyaj, Makyaj Malzemeleri & Makyaj Markaları | Watsons",
+   "imgs": 50,
+   "products": 112
+  },
+  {
+   "path": "/makyaj/yuz-makyaji/c/201",
+   "url": "https://web.archive.org/web/20260609000954/https://www.watsons.com.tr/makyaj/yuz-makyaji/c/201",
+   "title": "Yüz Makyajı Fiyatları, Çeşitleri ve Markaları | Watsons",
+   "imgs": 50,
+   "products": 112
   }
  ],
  "site": [],
  "products": [],
  "logos": [],
- "videos": [],
+ "cdx": [],
  "theme": {
   "colors": [
    [
     "rgb(0, 0, 0)",
-    3
+    2667
+   ],
+   [
+    "rgb(0, 0, 238)",
+    1102
+   ],
+   [
+    "rgb(194, 194, 194)",
+    217
+   ],
+   [
+    "rgb(255, 255, 255)",
+    78
+   ],
+   [
+    "rgb(0, 154, 169)",
+    71
+   ],
+   [
+    "rgb(72, 72, 72)",
+    1
+   ],
+   [
+    "rgb(231, 8, 163)",
+    1
    ]
   ],
   "fonts": [
    [
-    "\"Times New Roman\"",
-    3
+    "Rubik, arial, sans-serif",
+    2028
+   ],
+   [
+    "ee-icons",
+    29
+   ],
+   [
+    "Arial",
+    1
    ]
+  ],
+  "fontFaces": [
+   "@font-face { font-family: swiper-icons; src: url(\"data:application/font-woff;charset=utf-8;base64, d09GRgABAAAAAAZgABAAAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABGRlRNAAAGRAAAABoAAAAci6qHkUdERUYAAAWgAAAAIwAAACQAYABXR1BPUwAABhQAAAAuAAAANuAY7+xHU1VCAAAFxAAAAFAAAABm2fPczU9TLzIAAAHcAAAASgAAAGBP9V5RY21hcAAAAkQAAACIAAABYt6F0cBjdnQgAAACzAAAAAQAAAAEABEBRGdhc3AAAAWYAAAACAAAAAj//wADZ2x5ZgAAAywAAADMAAAD2MHtryVoZ",
+   "@font-face { font-family: Roboto; font-style: normal; font-weight: 400; font-display: swap; src: url(\"/web/20260614013016im_/https://www.watsons.com.tr/assets/fonts/Roboto/Roboto-Regular.woff2\") format(\"woff2\"); }",
+   "@font-face { font-family: Rubik; font-style: normal; font-weight: 400; font-display: swap; src: url(\"/web/20260614013016im_/https://www.watsons.com.tr/assets/fonts/Rubik/Rubik-Regular.woff2\") format(\"woff2\"); }",
+   "@font-face { font-family: Montserrat; font-style: normal; font-weight: 400; font-display: swap; src: url(\"/web/20260614013016im_/https://www.watsons.com.tr/assets/fonts/Montserrat/montserrat-regular.woff2\") format(\"woff2\"); }",
+   "@font-face { font-family: Montserrat; font-style: normal; font-weight: 500; font-display: swap; src: url(\"/web/20260614013016im_/https://www.watsons.com.tr/assets/fonts/Montserrat/montserrat-medium.woff2\") format(\"woff2\"); }",
+   "@font-face { font-family: Montserrat; font-style: normal; font-weight: 700; font-display: swap; src: url(\"/web/20260614013016im_/https://www.watsons.com.tr/assets/fonts/Montserrat/montserrat-bold.woff2\") format(\"woff2\"); }",
+   "@font-face { font-family: ee-icons; font-display: swap; font-weight: 400; font-style: normal; src: url(\"/web/20260614013016im_/https://www.watsons.com.tr/assets/fonts/ee-icons.woff\") format(\"woff\"), url(\"/web/20260614013016im_/https://www.watsons.com.tr/assets/fonts/ee-icons.ttf\") format(\"truetype\"); }"
   ]
  },
- "nav": []
+ "nav": [
+  {
+   "href": "https://www.watsons.com.tr/kampanyalar",
+   "text": "Online'dan sipariş ver, 1 saatte mağazadan ücretsiz al!"
+  },
+  {
+   "href": "https://www.watsons.com.tr/login",
+   "text": "Merhaba"
+  },
+  {
+   "href": "https://www.watsons.com.tr/login",
+   "text": "Oturum aç"
+  },
+  {
+   "href": "https://www.watsons.com.tr/register",
+   "text": "Kayıt"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cart",
+   "text": "0"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sadece-watsonsta/c/50058?sortCode=most-relevant",
+   "text": "Sadece Watsons’ta"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/c/100",
+   "text": "Makyaj"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/c/100",
+   "text": "Makyaj"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/yuz-makyaji/c/201",
+   "text": "Yüz Makyajı"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/yuz-makyaji/fondoten/c/1001",
+   "text": "Fondöten"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/yuz-makyaji/kapaticilar/c/1002",
+   "text": "Kapatıcılar"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/yuz-makyaji/allik-ve-paletler/c/1003",
+   "text": "Allık ve Paletler"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/yuz-makyaji/highlighter-ve-paletler/c/1004",
+   "text": "Highlighter ve Paletler"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/yuz-makyaji/bb-ve-cc-krem/c/1005",
+   "text": "BB ve CC Kremler"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/yuz-makyaji/kontur-ve-paletler/c/1006",
+   "text": "Kontür ve Paletler"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/yuz-makyaji/bronzer/c/1007",
+   "text": "Bronzer"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/yuz-makyaji/pudralar/c/1008",
+   "text": "Pudra"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj-bazlari-ve-sabitleyiciler/c/1009",
+   "text": "Makyaj Bazları ve Sabitleyiciler"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/goz-makyaji/c/202",
+   "text": "Göz Makyajı"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/goz-makyaji/maskara/c/1010",
+   "text": "Maskara"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/goz-makyaji/eyeliner/c/1011",
+   "text": "Eyeliner"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/goz-makyaji/goz-kalemi/c/1012",
+   "text": "Göz Kalemi"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/goz-makyaji/far-ve-paletler/c/1013",
+   "text": "Far ve Paletler"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/kas-makyaji/c/1014",
+   "text": "Kaş"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/goz-makyaji/takma-kirpik/c/1015",
+   "text": "Takma Kirpik"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/dudak-makyaji/c/203",
+   "text": "Dudak Makyajı"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/dudak-makyaji/ruj-ve-lipstick/c/1016",
+   "text": "Ruj ve Lipstick"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/dudak-makyaji/likit-ruj/c/1017",
+   "text": "Likit Ruj"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/dudak-makyaji/dudak-kalemi/c/1019",
+   "text": "Dudak Kalemi"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/dudak-makyaji/lip-gloss/c/1020",
+   "text": "Lip Gloss"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/tirnak-urunleri/c/205",
+   "text": "Tırnak Ürünleri"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/tirnak-urunleri/oje/c/1028",
+   "text": "Oje"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/tirnak-urunleri/aseton/c/1029",
+   "text": "Oje Temizleyicileri"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/tirnak-urunleri/nail-art-urunleri/c/1030",
+   "text": "Nail Art Ürünleri"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/tirnak-urunleri/takma-tirnak/c/1031",
+   "text": "Takma Tırnak"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/tirnak-urunleri/tirnak-bakim-urunleri/c/1032",
+   "text": "Tırnak Bakım Ürünleri"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/manikur-pedikur-gerecleri/c/1033",
+   "text": "Manikür / Pedikür Ürünleri"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/hizmetler/c/206",
+   "text": "Hizmetler"
+  },
+  {
+   "href": "https://www.watsons.com.tr/beauty-studio-by-watsons",
+   "text": "Beauty Studio by Watsons"
+  },
+  {
+   "href": "https://www.watsons.com.tr/make-up-studio-by-watsons",
+   "text": "Makeup Studio by Watsons"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/makyaj-setleri/c/243",
+   "text": "Makyaj Setleri"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/makyaj-setleri/c/243",
+   "text": "Setler"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/makyaj-aksesuarlari/c/204",
+   "text": "Makyaj Aksesuarları"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/makyaj-aksesuarlari/makyaj-fircalari/c/1021",
+   "text": "Makyaj Fırçaları"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/makyaj-aksesuarlari/makyaj-sungerleri-ve-aplikatorler/c/1022",
+   "text": "Makyaj Süngerleri ve Aplikatörler"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/makyaj-aksesuarlari/ayna/c/1023",
+   "text": "Ayna"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/makyaj-aksesuarlari/cimbiz/c/1024",
+   "text": "Cımbız"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/makyaj-aksesuarlari/makaslar-ve-usturalar/c/1025",
+   "text": "Makaslar ve Usturalar"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/makyaj-aksesuarlari/makyaj-cantalari/c/1026",
+   "text": "Makyaj Çantaları"
+  },
+  {
+   "href": "https://www.watsons.com.tr/diger-aksesuarlar/c/1027",
+   "text": "Diğer Aksesuarlar"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/makyaj-en-yeniler/c/100060",
+   "text": "EN YENİLER"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/c/100",
+   "text": "Öne Çıkan Markalar🔥"
+  },
+  {
+   "href": "https://www.watsons.com.tr/unfilter/b/3447",
+   "text": "Unfilter Beauty"
+  },
+  {
+   "href": "https://www.watsons.com.tr/flormar",
+   "text": "Flormar"
+  },
+  {
+   "href": "https://www.watsons.com.tr/revolution",
+   "text": "Revolution"
+  },
+  {
+   "href": "https://www.watsons.com.tr/deborah",
+   "text": "Deborah"
+  },
+  {
+   "href": "https://www.watsons.com.tr/maybelline-new-york",
+   "text": "Maybelline New York"
+  },
+  {
+   "href": "https://www.watsons.com.tr/nyx-prfessional-makeup",
+   "text": "NYX Professional Makeup"
+  },
+  {
+   "href": "https://www.watsons.com.tr/%20https:/www.watsons.com.tr/note/b/2545",
+   "text": "Note"
+  },
+  {
+   "href": "https://www.watsons.com.tr/loreal-paris-makyaj-urunleri/c/50263",
+   "text": "L'Oréal Paris Makeup"
+  },
+  {
+   "href": "https://www.watsons.com.tr/rimmel-london/b/1881",
+   "text": "Rimmel London"
+  },
+  {
+   "href": "https://www.watsons.com.tr/max-factor/b/1895",
+   "text": "Max Factor"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/c/100?query=:most-relevant:masterBrandName:FRUDIA",
+   "text": "Frudia"
+  },
+  {
+   "href": "https://www.watsons.com.tr/pastel/b/2629",
+   "text": "Pastel"
+  },
+  {
+   "href": "https://www.watsons.com.tr/golden-rose/b/2683",
+   "text": "Golden Rose"
+  },
+  {
+   "href": "https://www.watsons.com.tr/avon/b/3638",
+   "text": "Avon"
+  },
+  {
+   "href": "https://www.watsons.com.tr/essence/b/2597",
+   "text": "Essence"
+  },
+  {
+   "href": "https://www.watsons.com.tr/la-fae/b/3692",
+   "text": "La Fae"
+  },
+  {
+   "href": "https://www.watsons.com.tr/search/2wins",
+   "text": "2Wins"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/makyaj-cok-satanlar/c/100070",
+   "text": "ÇOK SATANLAR"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/c/101",
+   "text": "Cilt Bakım"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/c/101",
+   "text": "Cilt Bakım"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/yuz-bakim/c/207",
+   "text": "Yüz Bakım"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/yuz-ve-makyaj-temizleyiciler/c/1036",
+   "text": "Yüz Temizleme ve Tonik"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj-temizleme/c/1037",
+   "text": "Makyaj Temizleme"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/yuz-bakim/nemlendiriciler/c/1038",
+   "text": "Nemlendiriciler"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/yaslanma-karsiti-anti-aging/c/1039",
+   "text": "Yaşlanma Karşıtı (Anti-Aging)"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/yuz-bakim/yuz-maskesi/c/1040",
+   "text": "Yüz Maskesi"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/yuz-bakim/serumlar/c/1041",
+   "text": "Cilt Serumu ve Yağlar"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/yuz-ve-makyaj-temizleyiciler/yuz-peeling/c/1042",
+   "text": "Peeling"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/yuz-ve-makyaj-temizleyiciler/temizleyici-yuz-bantlari/c/1043",
+   "text": "Temizleyici Yüz Bantları"
+  },
+  {
+   "href": "https://www.watsons.com.tr/onarici-yuz-bakim/c/1044",
+   "text": "Onarıcı Yüz Bakım"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/dudak-bakim/c/1045",
+   "text": "Dudak Bakım"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/goz-bakim/c/1046",
+   "text": "Göz Bakım"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/el-ve-vucut-bakim/c/210",
+   "text": "El ve Vücut Bakım"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/el-ve-vucut-bakim/el-kremleri/c/1050",
+   "text": "El Kremleri"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/el-ve-vucut-bakim/vucut-kremi-losyon/c/1051",
+   "text": "Vücut Kremleri & Losyonlar"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/el-ve-vucut-bakim/vazelin/c/1205",
+   "text": "Vazelin"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/el-ve-vucut-bakim/selulit-karsiti-vucut-sikilastiricilar/c/1053",
+   "text": "Selülit Karşıtı & Vücut Sıkılaştırıcılar"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/el-ve-vucut-bakim/el-maskesi/c/1206",
+   "text": "El Maskesi"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/el-ve-vucut-bakim/at-kili-fircasi/c/1055",
+   "text": "At Kılı Fırçası"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/el-ve-vucut-bakim/el-ve-vucut-peelingi/c/1243",
+   "text": "El & Vücut Peelingi"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/el-ve-vucut-bakim/vucut-yaglari/c/1207",
+   "text": "Vücut Yağları"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/gunes-kremleri-ve-bronzlastiricilar/c/211",
+   "text": "Güneş Kremleri ve Bronzlaştırıcılar"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/gunes-kremleri-ve-bronzlastiricilar/vucut-gunes-kremleri/c/1056",
+   "text": "Vücut Güneş Kremleri"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/gunes-kremleri-ve-bronzlastiricilar/yuz-gunes-kremleri/c/1057",
+   "text": "Yüz Güneş Kremleri"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/gunes-kremleri-ve-bronzlastiricilar/bronzlastiricilar/c/1058",
+   "text": "Bronzlaştırıcılar"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/gunes-kremleri-ve-bronzlastiricilar/gunessiz-bronzlastiricilar/c/1059",
+   "text": "Güneşsiz Bronzlaştırıcılar"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/gunes-kremleri-ve-bronzlastiricilar/after-sun-gunes-sonrasi-bakim/c/1060",
+   "text": "Güneş Sonrası Bakım"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/gunes-kremleri-ve-bronzlastiricilar/bebek-ve-cocuk-gunes-kremleri/c/1061",
+   "text": "Bebek ve Çocuk Güneş Koruyucuları"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/c/101",
+   "text": "Öne Çıkan Markalar🔥"
+  },
+  {
+   "href": "https://www.watsons.com.tr/pure-beauty",
+   "text": "Pure Beauty"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/c/101?query=:most-relevant:masterBrandName:WATSONS",
+   "text": "Watsons Cilt Bakım"
+  },
+  {
+   "href": "https://www.watsons.com.tr/the-purest-solutions",
+   "text": "The Purest Solutions"
+  },
+  {
+   "href": "https://www.watsons.com.tr/frudia",
+   "text": "Frudia"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cosrx/b/3617",
+   "text": "Cosrx"
+  },
+  {
+   "href": "https://www.watsons.com.tr/axis-y/b/3615",
+   "text": "Axis-Y"
+  },
+  {
+   "href": "https://www.watsons.com.tr/nivea",
+   "text": "Nivea"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/c/101?query=:most-relevant:masterBrandName:UNFILTER",
+   "text": "Unfilter Beauty Skin"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sinoz/b/3440",
+   "text": "Sinoz"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/c/101?query=:most-relevant:masterBrandName:LOREAL%20PARIS",
+   "text": "L'Oréal Paris"
+  },
+  {
+   "href": "https://www.watsons.com.tr/garnier/b/2626",
+   "text": "Garnier"
+  },
+  {
+   "href": "https://www.watsons.com.tr/mia-klinika/b/3549",
+   "text": "Mia Klinika"
+  },
+  {
+   "href": "https://www.watsons.com.tr/banila-co/b/3452",
+   "text": "Banila Co"
+  },
+  {
+   "href": "https://www.watsons.com.tr/medicube/b/3697",
+   "text": "Medicube"
+  },
+  {
+   "href": "https://www.watsons.com.tr/ph-lab/b/3703",
+   "text": "Ph Lab"
+  },
+  {
+   "href": "https://www.watsons.com.tr/skin401/b/3528",
+   "text": "Skin401"
+  },
+  {
+   "href": "https://www.watsons.com.tr/haruharu/b/3600",
+   "text": "Haruharu Wonder"
+  },
+  {
+   "href": "https://www.watsons.com.tr/clasy-care/b/3662",
+   "text": "Clasy Care"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/c/101?query=:most-relevant:masterBrandName:DUADERM:masterBrandName:DUADERM%20SUN",
+   "text": "Duaderm"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/c/101?query=:most-relevant:masterBrandName:VASELINE",
+   "text": "Vaseline"
+  },
+  {
+   "href": "https://www.watsons.com.tr/elensilia/b/3654",
+   "text": "Elensilia"
+  },
+  {
+   "href": "https://www.watsons.com.tr/dr-althea/b/3698",
+   "text": "Dr.Althea"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/cilt-bakim-en-yeniler/c/101060",
+   "text": "EN YENİLER"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/cilt-bakim-cok-satanlar/c/101070",
+   "text": "ÇOK SATANLAR"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/c/101",
+   "text": "Cilt Tipine Göre"
+  },
+  {
+   "href": "https://www.watsons.com.tr/karma-cilt-bakim/c/karma-cilt-bakim-urunleri",
+   "text": "Karma Cilt Bakım Ürünleri"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/c/102",
+   "text": "Saç Bakım"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/c/102",
+   "text": "Saç Bakım"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/sampuanlar/c/212",
+   "text": "Şampuanlar"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/sampuanlar/sampuan/c/1062",
+   "text": "Şampuan"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/sampuanlar/mor-sampuan/c/1063",
+   "text": "Mor Şampuan"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/sampuanlar/kuru-sampuan/c/1064",
+   "text": "Kuru Şampuan"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/sampuanlar/sulfatsiz-sampuan/c/1018",
+   "text": "Sülfatsız Şampuanlar"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/sac-kremleri/c/213",
+   "text": "Saç Kremleri"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/sac-kremleri/sac-kremi/c/1065",
+   "text": "Saç Kremi"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/sac-kremleri/sivi-sac-kremi/c/1066",
+   "text": "Sıvı Saç Kremi"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/sac-bakim-urunleri/c/214",
+   "text": "Saç Bakım Ürünleri"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/sac-bakim-urunleri/sac-bakim-spreyi/c/1067",
+   "text": "Saç Bakım Spreyi ve Köpük"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/sac-bakim-urunleri/sac-serumu/c/1068",
+   "text": "Saç Serumu"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/sac-bakim-urunleri/sac-maskesi/c/1069",
+   "text": "Saç Maskesi"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/sac-bakim-urunleri/sac-bakim-yagi/c/1070",
+   "text": "Saç Bakım Yağı"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/sac-bakim-urunleri/sac-tonikleri/c/1071",
+   "text": "Saç Toniği"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/sac-kremleri/durulanmayan-sac-bakim-kremi/c/1113",
+   "text": "Durulanmayan Saç Bakım Kremi"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/sac-dokulme-karsiti-urunler/c/10010",
+   "text": "Saç Dökülmesine Karşı Ürünler✨"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/sekillendiriciler/c/215",
+   "text": "Şekillendiriciler"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/sekillendiriciler/sac-spreyi/c/1072",
+   "text": "Saç Spreyi"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/sekillendiriciler/sac-kopugu/c/1073",
+   "text": "Saç Köpüğü"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/sekillendiriciler/jole/c/1075",
+   "text": "Jöle"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/sekillendiriciler/wax-stick-wax/c/1076",
+   "text": "Wax"
+  },
+  {
+   "href": "https://www.watsons.com.tr/profesyonel-sac-bakim/c/216",
+   "text": "Profesyonel Saç Bakım"
+  },
+  {
+   "href": "https://www.watsons.com.tr/profesyonel-sac-bakim/sampuan/c/1077",
+   "text": "Şampuan"
+  },
+  {
+   "href": "https://www.watsons.com.tr/profesyonel-sac-bakim/sac-kremi/c/1078",
+   "text": "Saç Kremi"
+  },
+  {
+   "href": "https://www.watsons.com.tr/profesyonel-sac-bakim/sac-bakim-urunleri/c/1079",
+   "text": "Saç Bakım Ürünleri"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/sac-boyalari/c/217",
+   "text": "Saç Boyaları"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/sac-boyalari/sac-boyasi/c/1080",
+   "text": "Saç Boyası"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/sac-boyalari/gecici-sac-boyasi/c/1081",
+   "text": "Geçici Saç Boyaları"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/sac-boyalari/renk-acici/c/1082",
+   "text": "Renk Açıcı"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/sac-boyalari/tup-boyalar/c/1083",
+   "text": "Tüp Boyalar"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/sac-aksesuarlari/c/218",
+   "text": "Saç Aksesuarları"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/sac-aksesuarlari/sac-fircasi-ve-tarak/c/1084",
+   "text": "Saç Fırçası ve Tarak"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/sac-aksesuarlari/sac-bandi-ve-toka/c/1085",
+   "text": "Saç Bandı ve Tarak"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/sac-bakim-en-yeniler/c/102060",
+   "text": "EN YENİLER"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/sac-bakim-cok-satanlar/c/102070",
+   "text": "ÇOK SATANLAR"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/c/102",
+   "text": "Öne Çıkan Markalar🔥"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/c/102?query=:most-relevant:masterBrandName:NATURALS%20BY%20WATSONS:masterBrandName:WATSONS",
+   "text": "Watsons"
+  },
+  {
+   "href": "https://www.watsons.com.tr/naturals-by-watsons/b/2753",
+   "text": "Natural By Watsons"
+  },
+  {
+   "href": "https://www.watsons.com.tr/dove/b/2276",
+   "text": "Dove"
+  },
+  {
+   "href": "https://www.watsons.com.tr/urban-care/b/2915",
+   "text": "Urban Care"
+  },
+  {
+   "href": "https://www.watsons.com.tr/ogx/b/2602",
+   "text": "OGX"
+  },
+  {
+   "href": "https://www.watsons.com.tr/hc-care/b/3575",
+   "text": "HC Care"
+  },
+  {
+   "href": "https://www.watsons.com.tr/pantene/b/2982",
+   "text": "Pantene"
+  },
+  {
+   "href": "https://www.watsons.com.tr/elseve/b/1924",
+   "text": "Elseve"
+  },
+  {
+   "href": "https://www.watsons.com.tr/elidor/b/2111",
+   "text": "Elidor"
+  },
+  {
+   "href": "https://www.watsons.com.tr/clear/b/2274",
+   "text": "Clear"
+  },
+  {
+   "href": "https://www.watsons.com.tr/head-shoulders/b/2874",
+   "text": "Head&Shoulders"
+  },
+  {
+   "href": "https://www.watsons.com.tr/aussie/b/2896",
+   "text": "Aussie"
+  },
+  {
+   "href": "https://www.watsons.com.tr/john-frieda/b/3037",
+   "text": "John Frieda"
+  },
+  {
+   "href": "https://www.watsons.com.tr/biomagic/b/2732",
+   "text": "Biomagic"
+  },
+  {
+   "href": "https://www.watsons.com.tr/excellence/b/2470",
+   "text": "Excellence"
+  },
+  {
+   "href": "https://www.watsons.com.tr/palette/b/2076",
+   "text": "Palette"
+  },
+  {
+   "href": "https://www.watsons.com.tr/morfose/b/3059",
+   "text": "Morfose"
+  },
+  {
+   "href": "https://www.watsons.com.tr/search/wella%2520professional",
+   "text": "Wella Professionals"
+  },
+  {
+   "href": "https://www.watsons.com.tr/gliss/b/3022",
+   "text": "Gliss"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/c/102?query=:most-relevant:masterBrandName:KOLESTON%20NATURALS:masterBrandName:KOLESTON%20T%C3%9CP:masterBrandName:KOLESTON",
+   "text": "Koleston"
+  },
+  {
+   "href": "https://www.watsons.com.tr/taft/b/2640",
+   "text": "Taft"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/c/103",
+   "text": "Kişisel Bakım"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/c/103",
+   "text": "Kişisel Bakım"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/parfum-ve-deodorant/c/220",
+   "text": "Parfüm ve Deodorant"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/parfum-ve-deodorant/parfum/c/1089",
+   "text": "Kadın Parfüm"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/parfum-ve-deodorant/deodorant/c/1090",
+   "text": "Deodorant"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/parfum-ve-deodorant/vucut-spreyleri/c/1091",
+   "text": "Vücut Spreyleri"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/parfum-ve-deodorant/stick-ve-roll-on/c/1092",
+   "text": "Stick ve Roll-On"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/parfum-ve-deodorant/kolonya/c/1093",
+   "text": "Kolonya"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/banyo/c/221",
+   "text": "Banyo"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/banyo/dus-jelleri/c/1094",
+   "text": "Duş Jelleri"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/banyo/kati-sabun/c/1095",
+   "text": "Katı Sabun"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/banyo/sivi-sabun/c/1096",
+   "text": "Sıvı Sabun"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/banyo/kagit-ve-islak-mendil/c/1097",
+   "text": "Kağıt ve Islak Mendiller"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/banyo/pamuk/c/1098",
+   "text": "Pamuk"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/banyo/banyo-aksesuarlari/c/1099",
+   "text": "Banyo Aksesuarları"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/banyo/antibakteriyel-sabun/c/1168",
+   "text": "Aktibakteriyel Sabun"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/banyo/lif-sunger-ve-keseler/c/30070",
+   "text": "Lif Sünger ve Keseler"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/agiz-bakim/c/222",
+   "text": "Ağız Bakım"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/agiz-bakim/dis-macunu/c/1100",
+   "text": "Diş Macunu"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/agiz-bakim/dis-fircasi/c/1101",
+   "text": "Diş Fırçası"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/agiz-bakim/agiz-bakim-suyu/c/1102",
+   "text": "Ağız Bakım Suyu"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/agiz-bakim/dis-ipi-ve-dis-bakim-urunleri/c/1103",
+   "text": "Diş Bakım Ürünleri"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/agiz-bakim/elektrikli-dis-fircalari/c/1104",
+   "text": "Elektrikli Diş Fırçaları"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/agiz-bakim/bebek-ve-cocuk-agiz-bakim-urunleri/c/1105",
+   "text": "Bebek ve Çocuk Ağız Bakım Ürünleri"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/kadin-bakim/c/223",
+   "text": "Kadın Bakım"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/kadin-bakim/hijyenik-pedler/c/1106",
+   "text": "Hijyenik Pedler"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/kadin-bakim/gunluk-pedler/c/1107",
+   "text": "Günlük Pedler"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/kadin-bakim/tampon/c/1108",
+   "text": "Tampon"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/kadin-bakim/intim-temizlik-ve-hijyen-urunleri/c/1109",
+   "text": "Genital Bölge Temizlik ve Hiyen Ürünleri"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/epilasyon/c/224",
+   "text": "Epilasyon"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/epilasyon/agda-ve-agda-bantlari/c/1110",
+   "text": "Ağda ve Ağda Bantları"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/epilasyon/tuy-dokucu-ve-sarartici-urunler/c/1111",
+   "text": "Tüy Dökücü ve Sarartıcı Ürünler"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/epilasyon/kadin-tiras-bicaklari-ve-yedek-bicaklar/c/1112",
+   "text": "Kadın Tıraş Bıçakları ve Jeller"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/ayak-bakim/c/225",
+   "text": "Ayak Bakım"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/ayak-bakim/ayak-saglik-bakim-urunleri/c/1114",
+   "text": "Ayak Bakım Ürünleri"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/ayak-bakim/ayak-torpuleri/c/1173",
+   "text": "Ayak Törpüleri"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/ayak-bakim/ayak-maskeleri/c/30064",
+   "text": "Ayak Maskesi"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/anne-ve-bebek/c/226",
+   "text": "Anne ve Bebek"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/anne-ve-bebek/bebek-islak-havlu/c/1115",
+   "text": "Bebek Islak Havlu"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/anne-ve-bebek/bebek-banyo-bakim-ve-sampuan/c/1117",
+   "text": "Banyo Bakımı ve Şampuan"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/kisisel-bakim-en-yeniler/c/103060",
+   "text": "EN YENİLER"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/kisisel-bakim-cok-satanlar/c/103070",
+   "text": "ÇOK SATANLAR"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/c/103",
+   "text": "Öne Çıkan Markalar🔥"
+  },
+  {
+   "href": "https://www.watsons.com.tr/watsons/b/3170",
+   "text": "Watsons"
+  },
+  {
+   "href": "https://www.watsons.com.tr/oral-b/b/2244",
+   "text": "Oral-B"
+  },
+  {
+   "href": "https://www.watsons.com.tr/opalescence/b/2190",
+   "text": "Opalescence"
+  },
+  {
+   "href": "https://www.watsons.com.tr/marvis/b/2904",
+   "text": "Marvis"
+  },
+  {
+   "href": "https://www.watsons.com.tr/signal/b/2254",
+   "text": "Signal"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sensodyne/b/2253",
+   "text": "Sensodyne"
+  },
+  {
+   "href": "https://www.watsons.com.tr/search/fixodent",
+   "text": "Fixodent"
+  },
+  {
+   "href": "https://www.watsons.com.tr/colgate/b/3186",
+   "text": "Colgate"
+  },
+  {
+   "href": "https://www.watsons.com.tr/rexona/b/2825",
+   "text": "Rexona"
+  },
+  {
+   "href": "https://www.watsons.com.tr/nivea",
+   "text": "Nivea"
+  },
+  {
+   "href": "https://www.watsons.com.tr/dove/b/2276",
+   "text": "Dove"
+  },
+  {
+   "href": "https://www.watsons.com.tr/axe/b/2688",
+   "text": "Axe"
+  },
+  {
+   "href": "https://www.watsons.com.tr/siveno/b/2804",
+   "text": "Siveno"
+  },
+  {
+   "href": "https://www.watsons.com.tr/dicora-urban-fit/b/2391",
+   "text": "Dicora Urban Fit"
+  },
+  {
+   "href": "https://www.watsons.com.tr/le-petit-marseillais/b/3132",
+   "text": "Le Petit Marselias"
+  },
+  {
+   "href": "https://www.watsons.com.tr/orkid/b/2628",
+   "text": "Orkid"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kotex/b/2266",
+   "text": "Kotex"
+  },
+  {
+   "href": "https://www.watsons.com.tr/mjcare/b/3472",
+   "text": "MJ Care"
+  },
+  {
+   "href": "https://www.watsons.com.tr/clasy-care/b/3662",
+   "text": "Clasy Care"
+  },
+  {
+   "href": "https://www.watsons.com.tr/gillette-venus/b/2019",
+   "text": "Gilette Venüs"
+  },
+  {
+   "href": "https://www.watsons.com.tr/search/epify",
+   "text": "Epify"
+  },
+  {
+   "href": "https://www.watsons.com.tr/saglikli-yasam/c/106",
+   "text": "Sağlıklı Yaşam"
+  },
+  {
+   "href": "https://www.watsons.com.tr/saglikli-yasam/c/106",
+   "text": "Sağlıklı Yaşam"
+  },
+  {
+   "href": "https://www.watsons.com.tr/saglikli-yasam/vitaminler-gida-takviyeleri-diyet/c/231",
+   "text": "Vitaminler, Gıda Takviyeleri ve Diyet"
+  },
+  {
+   "href": "https://www.watsons.com.tr/saglikli-yasam/vitaminler-ve-gida-takviyeleri/vitaminler-ve-gida-takviyeleri/c/1140",
+   "text": "Vitamin ve Gıda Takviyeleri"
+  },
+  {
+   "href": "https://www.watsons.com.tr/saglikli-yasam/vitaminler-gida-takviyeleri-diyet/diyet-ve-fitness/c/1141",
+   "text": "Diyet ve Fitness"
+  },
+  {
+   "href": "https://www.watsons.com.tr/saglikli-yasam/genel-saglik-urunleri/c/234",
+   "text": "Genel Sağlık Ürünleri"
+  },
+  {
+   "href": "https://www.watsons.com.tr/saglikli-yasam/genel-saglik-urunleri/bitkisel-bakim-yaglari/c/1142",
+   "text": "Bitkisel Yağlar"
+  },
+  {
+   "href": "https://www.watsons.com.tr/saglikli-yasam/genel-saglik-urunleri/ilk-yardim-urunleri/c/1143",
+   "text": "İlk Yardım Ürünleri"
+  },
+  {
+   "href": "https://www.watsons.com.tr/saglikli-yasam/genel-saglik-urunleri/isitici-bantlar-sicak-su-torbalari/c/1144",
+   "text": "Isıtıcı Bantlar ve Sıcak Su Torbaları"
+  },
+  {
+   "href": "https://www.watsons.com.tr/saglikli-yasam/genel-saglik-urunleri/medikal-urunler/c/1145",
+   "text": "Medikal Ürünler"
+  },
+  {
+   "href": "https://www.watsons.com.tr/saglikli-yasam/cinsel-saglik/c/235",
+   "text": "Cinsel Sağlık"
+  },
+  {
+   "href": "https://www.watsons.com.tr/saglikli-yasam/cinsel-saglik/prezervatifler/c/1146",
+   "text": "Prezervatifler"
+  },
+  {
+   "href": "https://www.watsons.com.tr/saglikli-yasam/cinsel-saglik/kayganlastiricilar/c/1147",
+   "text": "Kayganlaştırıcılar"
+  },
+  {
+   "href": "https://www.watsons.com.tr/saglikli-yasam/saglikli-yasam-en-yeniler/c/106060",
+   "text": "EN YENİLER"
+  },
+  {
+   "href": "https://www.watsons.com.tr/saglikli-yasam/antibakteriyel-ve-hijyen-urunleri/c/230",
+   "text": "Antibakteriyel ve Hijyen Ürünleri"
+  },
+  {
+   "href": "https://www.watsons.com.tr/saglikli-yasam/antibakteriyel-ve-hijyen-urunleri/kolonya/c/1138",
+   "text": "Kolonya"
+  },
+  {
+   "href": "https://www.watsons.com.tr/saglikli-yasam/antibakteriyel-ve-hijyen-urunleri/cerrahi-maske/c/1139",
+   "text": "Cerrahi Maske"
+  },
+  {
+   "href": "https://www.watsons.com.tr/saglikli-yasam/saglikli-yasam-cok-satanlar/c/106070",
+   "text": "ÇOK SATANLAR"
+  },
+  {
+   "href": "https://www.watsons.com.tr/erkek-bakim/c/105",
+   "text": "Erkek Bakım"
+  },
+  {
+   "href": "https://www.watsons.com.tr/erkek-bakim/c/105",
+   "text": "Erkek Bakım"
+  },
+  {
+   "href": "https://www.watsons.com.tr/erkek-bakim/tiras/c/227",
+   "text": "Tıraş"
+  },
+  {
+   "href": "https://www.watsons.com.tr/erkek-bakim/tiras/kullan-at-tiras-bicaklari/c/1121",
+   "text": "Kullan At Tıraş Bıçakları"
+  },
+  {
+   "href": "https://www.watsons.com.tr/erkek-bakim/tiras/yedek-tiras-bicaklari/c/1122",
+   "text": "Yedek Tıraş Bıçakları"
+  },
+  {
+   "href": "https://www.watsons.com.tr/erkek-bakim/tiras/tiras-jeli-ve-kopugu/c/1123",
+   "text": "Tıraş Jeli ve Köpüğü"
+  },
+  {
+   "href": "https://www.watsons.com.tr/erkek-bakim/tiras/tiras-kolonyasi-losyon/c/1124",
+   "text": "Tıraş Sonrası Bakım"
+  },
+  {
+   "href": "https://www.watsons.com.tr/erkek-bakim/tiras/tiras-makineleri/c/1125",
+   "text": "Tıraş Makineleri"
+  },
+  {
+   "href": "https://www.watsons.com.tr/erkek-bakim/erkek-cilt-ve-kisisel-bakim/c/228",
+   "text": "Erkek Bakım Ürünleri"
+  },
+  {
+   "href": "https://www.watsons.com.tr/erkek-bakim/erkek-cilt-ve-kisisel-bakim/erkek-cilt-bakim/c/1128",
+   "text": "Erkek Cilt Bakım"
+  },
+  {
+   "href": "https://www.watsons.com.tr/erkek-bakim/erkek-cilt-ve-kisisel-bakim/erkek-cilt-bakim/diger-erkek-bakim-urunleri/c/1169",
+   "text": "Diğer"
+  },
+  {
+   "href": "https://www.watsons.com.tr/erkek-bakim/erkek-parfum-ve-deodorant/c/229",
+   "text": "Erkek Parfüm ve Deodorant"
+  },
+  {
+   "href": "https://www.watsons.com.tr/erkek-bakim/erkek-parfum-ve-deodorant/parfum/c/1132",
+   "text": "Parfüm"
+  },
+  {
+   "href": "https://www.watsons.com.tr/erkek-bakim/erkek-parfum-ve-deodorant/deodorant/c/1133",
+   "text": "Deodorant"
+  },
+  {
+   "href": "https://www.watsons.com.tr/erkek-bakim/erkek-parfum-ve-deodorant/stick-ve-roll-on/c/1134",
+   "text": "Stick ve Roll- On"
+  },
+  {
+   "href": "https://www.watsons.com.tr/erkek-bakim/erkek-bakim-en-yeniler/c/105060",
+   "text": "EN YENİLER"
+  },
+  {
+   "href": "https://www.watsons.com.tr/erkek-bakim/erkek-bakim-cok-satanlar/c/105070",
+   "text": "ÇOK SATANLAR"
+  },
+  {
+   "href": "https://www.watsons.com.tr/erkek-bakim/c/105",
+   "text": "Öne Çıkan Markalar🔥"
+  },
+  {
+   "href": "https://www.watsons.com.tr/erkek-bakim/c/105?query=:most-relevant:masterBrandName:WATSONS",
+   "text": "Watsons"
+  },
+  {
+   "href": "https://www.watsons.com.tr/gillette/b/2853",
+   "text": "Gillette"
+  },
+  {
+   "href": "https://www.watsons.com.tr/nivea-for-men/b/2661",
+   "text": "Nivea Men"
+  },
+  {
+   "href": "https://www.watsons.com.tr/arko/b/2142",
+   "text": "Arko"
+  },
+  {
+   "href": "https://www.watsons.com.tr/permatik/b/2442",
+   "text": "Permatik"
+  },
+  {
+   "href": "https://www.watsons.com.tr/axe/b/2688",
+   "text": "Axe"
+  },
+  {
+   "href": "https://www.watsons.com.tr/erkek-bakim/c/105?query=:most-relevant:masterBrandName:DOVE:masterBrandName:DOVE%20MEN",
+   "text": "Dove Men"
+  },
+  {
+   "href": "https://www.watsons.com.tr/old-spice/b/2935",
+   "text": "Old Spice"
+  },
+  {
+   "href": "https://www.watsons.com.tr/search/Palmolive%20Men",
+   "text": "Palmolive Men"
+  },
+  {
+   "href": "https://www.watsons.com.tr/search/Le%20Petit%20Marseillais%20Men",
+   "text": "Le Petit Marseillais Men"
+  },
+  {
+   "href": "https://www.watsons.com.tr/loreal-men-expert/b/3428",
+   "text": "Loreal Men Expert"
+  },
+  {
+   "href": "https://www.watsons.com.tr/erkek-bakim/c/105?query=:most-relevant:masterBrandName:MORFOSE:masterBrandName:MORFOSE%20EXC.",
+   "text": "Morfose"
+  },
+  {
+   "href": "https://www.watsons.com.tr/schwarzkopf-root-retoucher/b/2576",
+   "text": "Schwarzkopf Men Perfect"
+  },
+  {
+   "href": "https://www.watsons.com.tr/just-for-men/b/3346",
+   "text": "Just For Men"
+  },
+  {
+   "href": "https://www.watsons.com.tr/erkek-bakim/c/105?query=:most-relevant:masterBrandName:CLEAR",
+   "text": "Clear"
+  },
+  {
+   "href": "https://www.watsons.com.tr/erkek-bakim/c/105?query=:most-relevant:masterBrandName:HEAD%26SHOULDERS",
+   "text": "Head&Shoulders"
+  },
+  {
+   "href": "https://www.watsons.com.tr/bioblas/b/2137",
+   "text": "Bioblas"
+  },
+  {
+   "href": "https://www.watsons.com.tr/search/Revox%20erkek?query=Revox%20erkek:most-relevant:masterBrandName:REVOX:masterBrandName:REVOX%20EXC.",
+   "text": "Revox"
+  },
+  {
+   "href": "https://www.watsons.com.tr/slazenger/b/3218",
+   "text": "Slazenger"
+  },
+  {
+   "href": "https://www.watsons.com.tr/erkek-bakim/c/105?query=:most-relevant:masterBrandName:VEET",
+   "text": "Veet Men"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sesu/b/2990",
+   "text": "Sesu Men"
+  },
+  {
+   "href": "https://www.watsons.com.tr/erkek-bakim/c/105%3Fquery%3D:most-relevant:masterBrandName:VERSACE",
+   "text": "Versace"
+  },
+  {
+   "href": "https://www.watsons.com.tr/parfum/c/100013",
+   "text": "Parfüm"
+  },
+  {
+   "href": "https://www.watsons.com.tr/parfum/c/100013",
+   "text": "Parfüm"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/parfum-ve-deodorant/parfum/c/1089",
+   "text": "Parfümler"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/parfum-ve-deodorant/parfum/c/1089",
+   "text": "Kadın Parfümleri"
+  },
+  {
+   "href": "https://www.watsons.com.tr/erkek-bakim/erkek-parfum-ve-deodorant/parfum/c/1132",
+   "text": "Erkek Parfümleri"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/parfum-ve-deodorant/deodorant/c/1090",
+   "text": "Deodorant ve Roll-On"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/parfum-ve-deodorant/deodorant/c/1090",
+   "text": "Kadın Deodorantları"
+  },
+  {
+   "href": "https://www.watsons.com.tr/erkek-bakim/erkek-parfum-ve-deodorant/deodorant/c/1133",
+   "text": "Erkek Deodorantları"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/parfum-ve-deodorant/stick-ve-roll-on/c/1092",
+   "text": "Kadın Stick ve Roll-On"
+  },
+  {
+   "href": "https://www.watsons.com.tr/erkek-bakim/erkek-parfum-ve-deodorant/stick-ve-roll-on/c/1134",
+   "text": "Erkek Stick ve Roll-On"
+  },
+  {
+   "href": "https://www.watsons.com.tr/parfum/parfum-en-yeniler/c/10013060",
+   "text": "EN YENİLER"
+  },
+  {
+   "href": "https://www.watsons.com.tr/parfum/parfum-cok-satanlar/c/10013070",
+   "text": "ÇOK SATANLAR"
+  },
+  {
+   "href": "https://www.watsons.com.tr/parfum/c/100013",
+   "text": "Öne Çıkan Markalar🔥"
+  },
+  {
+   "href": "https://www.watsons.com.tr/dicora-urban-fit/b/2391",
+   "text": "Dicora Urban Fit"
+  },
+  {
+   "href": "https://www.watsons.com.tr/a-banderas/b/3004",
+   "text": "Antonio Banderas"
+  },
+  {
+   "href": "https://www.watsons.com.tr/parfum/c/100013?query=:most-relevant:masterBrandName:UDV",
+   "text": "Ulric De Varens"
+  },
+  {
+   "href": "https://www.watsons.com.tr/imprime/b/3544",
+   "text": "Imprime"
+  },
+  {
+   "href": "https://www.watsons.com.tr/burberry/b/2315",
+   "text": "Burberry"
+  },
+  {
+   "href": "https://www.watsons.com.tr/hermes/b/3498",
+   "text": "Hermes"
+  },
+  {
+   "href": "https://www.watsons.com.tr/search/givenchy",
+   "text": "Givenchy"
+  },
+  {
+   "href": "https://www.watsons.com.tr/parfum/c/100013?query=:most-relevant:masterBrandName:UNFILTER",
+   "text": "Unfilter"
+  },
+  {
+   "href": "https://www.watsons.com.tr/search/watsons%20edt?query=watsons%20edt:most-relevant:masterBrandName:WATSONS:flopLowestPriceValue:300%20TO%20100000.99",
+   "text": "Watsons Parfüm"
+  },
+  {
+   "href": "https://www.watsons.com.tr/chloe/b/2616",
+   "text": "Chloe"
+  },
+  {
+   "href": "https://www.watsons.com.tr/search/Joop",
+   "text": "Joop"
+  },
+  {
+   "href": "https://www.watsons.com.tr/dkny/b/2996",
+   "text": "DKNY"
+  },
+  {
+   "href": "https://www.watsons.com.tr/c-dior/b/2644",
+   "text": "Christian Dior"
+  },
+  {
+   "href": "https://www.watsons.com.tr/davidoff/b/3015",
+   "text": "Davidoff"
+  },
+  {
+   "href": "https://www.watsons.com.tr/yves-saint-laurent/b/3554",
+   "text": "Yves Saint Laurent"
+  },
+  {
+   "href": "https://www.watsons.com.tr/calvin-klein/b/3012",
+   "text": "Calvin Klein"
+  },
+  {
+   "href": "https://www.watsons.com.tr/tommy-hilfiger/b/2453",
+   "text": "Tommy Hilfiger"
+  },
+  {
+   "href": "https://www.watsons.com.tr/g-armani/b/2472",
+   "text": "Giorgio Armani"
+  },
+  {
+   "href": "https://www.watsons.com.tr/versace/b/1987?query=:most-relevant:category:229",
+   "text": "Versace"
+  },
+  {
+   "href": "https://www.watsons.com.tr/avon/b/3638",
+   "text": "Avon"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kylie-jenner/b/3628",
+   "text": "Kylie Jenner"
+  },
+  {
+   "href": "https://www.watsons.com.tr/aksesuar/c/109",
+   "text": "Aksesuar"
+  },
+  {
+   "href": "https://www.watsons.com.tr/aksesuar/c/109",
+   "text": "Aksesuar"
+  },
+  {
+   "href": "https://www.watsons.com.tr/aksesuar/bijuteri/c/241",
+   "text": "Moda Aksesuarları"
+  },
+  {
+   "href": "https://www.watsons.com.tr/aksesuar/bijuteri/gunes-gozlukleri/c/30065",
+   "text": "Güneş Gözlükleri"
+  },
+  {
+   "href": "https://www.watsons.com.tr/aksesuar/bijuteri/coraplar/c/100015",
+   "text": "Çorap"
+  },
+  {
+   "href": "https://www.watsons.com.tr/aksesuar/bijuteri/deniz-ayakkabisi/c/1159",
+   "text": "Sandalet ve Terlik"
+  },
+  {
+   "href": "https://www.watsons.com.tr/aksesuar/bijuteri/sezonsal-urunler/c/1160",
+   "text": "Sezonsal Ürünler"
+  },
+  {
+   "href": "https://www.watsons.com.tr/aksesuar/bijuteri/canta-ve-cuzdan/c/1161",
+   "text": "Çanta ve Cüzdan"
+  },
+  {
+   "href": "https://www.watsons.com.tr/aksesuar/bijuteri/semsiye/c/1162",
+   "text": "Şemsiye"
+  },
+  {
+   "href": "https://www.watsons.com.tr/aksesuar/bijuteri/taki/c/1163",
+   "text": "Takı"
+  },
+  {
+   "href": "https://www.watsons.com.tr/aksesuar/bijuteri/diger/c/1164",
+   "text": "Diğer"
+  },
+  {
+   "href": "https://www.watsons.com.tr/aksesuar/seyahat-urunleri/c/242",
+   "text": "Seyahat Aksesuarları"
+  },
+  {
+   "href": "https://www.watsons.com.tr/aksesuar/seyahat-urunleri/bavul/c/1165",
+   "text": "Bavul"
+  },
+  {
+   "href": "https://www.watsons.com.tr/aksesuar/seyahat-urunleri/seyahat-aksesuarlari/c/1166",
+   "text": "Seyahat Aksesuarları"
+  },
+  {
+   "href": "https://www.watsons.com.tr/aksesuar/seyahat-urunleri/seyahat-boy-urunler/c/1167",
+   "text": "Seyahat Boy Ürünler"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/makyaj-aksesuarlari/c/204",
+   "text": "Makyaj Aksesuarları"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/makyaj-aksesuarlari/makyaj-fircalari/c/1021",
+   "text": "Makyaj Fırçaları"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/makyaj-aksesuarlari/makyaj-sungerleri-ve-aplikatorler/c/1022",
+   "text": "Makyaj Süngerleri ve Aplikatörler"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/makyaj-aksesuarlari/ayna/c/1023",
+   "text": "Ayna"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/makyaj-aksesuarlari/cimbiz/c/1024",
+   "text": "Cımbız"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/makyaj-aksesuarlari/makaslar-ve-usturalar/c/1025",
+   "text": "Makaslar ve Usturalar"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/makyaj-aksesuarlari/makyaj-cantalari/c/1026",
+   "text": "Makyaj Çantaları"
+  },
+  {
+   "href": "https://www.watsons.com.tr/c/1027",
+   "text": "Diğer Aksesuarlar"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/tirnak-urunleri/c/205",
+   "text": "Tırnak Aksesuarları"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/tirnak-urunleri/nail-art-urunleri/c/1030",
+   "text": "Nail Art Ürünleri"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/tirnak-urunleri/takma-tirnak/c/1031",
+   "text": "Takma Tırnak"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/tirnak-urunleri/tirnak-bakim-urunleri/c/1032",
+   "text": "Tırnak Bakım Ürünleri"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/manikur-pedikur-gerecleri/c/1033",
+   "text": "Manikür ve Pedikür Gereçleri"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/sac-aksesuarlari/c/218",
+   "text": "Saç Aksesuarları"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/sac-aksesuarlari/sac-fircasi-ve-tarak/c/1084",
+   "text": "Saç Fırçası ve Taraklar"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/sac-aksesuarlari/sac-bandi-ve-toka/c/1085",
+   "text": "Saç Bandı ve Toka"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/banyo/banyo-aksesuarlari/c/1099",
+   "text": "Banyo Aksesuarları"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/el-ve-vucut-bakim/at-kili-fircasi/c/1055",
+   "text": "At Kılı Fırçası"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/banyo/lif-sunger-ve-keseler/c/30070",
+   "text": "Lif, Sünger ve Keseler"
+  },
+  {
+   "href": "https://www.watsons.com.tr/ev-ve-yasam/c/108",
+   "text": "Ev ve Yaşam"
+  },
+  {
+   "href": "https://www.watsons.com.tr/ev-ve-yasam/ev-tekstili-ve-dekorasyon/c/238",
+   "text": "Oda ve Çamaşır Kokuları"
+  },
+  {
+   "href": "https://www.watsons.com.tr/ev-ve-yasam/deterjan-ve-temizlik/c/236",
+   "text": "Temizlik Ürünleri"
+  },
+  {
+   "href": "https://www.watsons.com.tr/aksesuar/aksesuar-en-yeniler/c/109060",
+   "text": "EN YENİLER"
+  },
+  {
+   "href": "https://www.watsons.com.tr/aksesuar/aksesuar-cok-satanlar/c/109070",
+   "text": "ÇOK SATANLAR"
+  },
+  {
+   "href": "https://www.watsons.com.tr/k-beauty/c/104",
+   "text": "K-Beauty"
+  },
+  {
+   "href": "https://www.watsons.com.tr/k-beauty/c/104",
+   "text": "K-Beauty"
+  },
+  {
+   "href": "https://www.watsons.com.tr/k-beauty/c/104",
+   "text": "Öne Çıkan Markalar🔥"
+  },
+  {
+   "href": "https://www.watsons.com.tr/frudia/b/2969",
+   "text": "Frudia"
+  },
+  {
+   "href": "https://www.watsons.com.tr/pure-beauty/b/3221",
+   "text": "Pure Beauty"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cosrx/b/3617",
+   "text": "Cosrx"
+  },
+  {
+   "href": "https://www.watsons.com.tr/axis-y/b/3615",
+   "text": "Axis-y"
+  },
+  {
+   "href": "https://www.watsons.com.tr/k-beauty/c/104?query=:most-relevant:masterBrandName:Haruharu",
+   "text": "Haruharu Wonder"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/c/101?query=:most-relevant:masterBrandName:COLLAGEN%20BY%20WATSONS:masterBrandName:WATSONS",
+   "text": "Watsons"
+  },
+  {
+   "href": "https://www.watsons.com.tr/banila-co/b/3452",
+   "text": "BanilaCo"
+  },
+  {
+   "href": "https://www.watsons.com.tr/medicube/b/3697",
+   "text": "Medicube"
+  },
+  {
+   "href": "https://www.watsons.com.tr/mjcare/b/3472",
+   "text": "Mjcare"
+  },
+  {
+   "href": "https://www.watsons.com.tr/search/elensilia",
+   "text": "Elensilia"
+  },
+  {
+   "href": "https://www.watsons.com.tr/dr-althea/b/3698",
+   "text": "Dr.Althea"
+  },
+  {
+   "href": "https://www.watsons.com.tr/dalba/b/3593",
+   "text": "D'alba"
+  },
+  {
+   "href": "https://www.watsons.com.tr/deoproce-korea/b/3709",
+   "text": "Deoproce Korea"
+  },
+  {
+   "href": "https://www.watsons.com.tr/banobagi/b/3696",
+   "text": "Banobagi"
+  },
+  {
+   "href": "https://www.watsons.com.tr/collagen-by-watsons/b/2568",
+   "text": "Collagen By Watsons"
+  },
+  {
+   "href": "https://www.watsons.com.tr/luvum/b/3650",
+   "text": "Luvum"
+  },
+  {
+   "href": "https://www.watsons.com.tr/snp/b/2224",
+   "text": "SNP"
+  },
+  {
+   "href": "https://www.watsons.com.tr/surdurulebilir-yasam",
+   "text": "Sürdürülebilir Yaşam"
+  },
+  {
+   "href": "https://www.watsons.com.tr/surdurulebilir-yasam",
+   "text": "Sürdürülebilir Yaşam"
+  },
+  {
+   "href": "https://www.watsons.com.tr/surdurulebilir-yasam/surdurulebilir/c/10006",
+   "text": "Sürdürülebilir Ürünler"
+  },
+  {
+   "href": "https://www.watsons.com.tr/surdurulebilir-yasam/surdurulebilir/yeniden-dolum-yeniden-kullanma-yer-degistirme/c/10005",
+   "text": "Yeniden Dolum Yeniden Kullanma Yer Değiştirme"
+  },
+  {
+   "href": "https://www.watsons.com.tr/surdurulebilir-yasam/surdurulebilir/surdurulebilir-ambalajlar/c/10001",
+   "text": "Sürdürülebilir Ambalajlar"
+  },
+  {
+   "href": "https://www.watsons.com.tr/surdurulebilir-yasam/surdurulebilir/surdurulebilir-icerikler-malzemeler/c/10004",
+   "text": "Sürdürülebilir İçerikler & Malzemeler"
+  },
+  {
+   "href": "https://www.watsons.com.tr/markalarimiz",
+   "text": "Markalar"
+  },
+  {
+   "href": "https://www.watsons.com.tr/ayin-urunleri/c/50007",
+   "text": "Ayın Ürünleri"
+  },
+  {
+   "href": "https://www.watsons.com.tr/hakkimizda",
+   "text": "Hakkımızda"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kariyer",
+   "text": "Kariyer"
+  },
+  {
+   "href": "https://www.watsons.com.tr/isealimsureci",
+   "text": "İşe Alım ve Başvuru Süreci"
+  },
+  {
+   "href": "https://www.watsons.com.tr/performansyonetim",
+   "text": "Performans Yönetimi ve Ödüllendirme"
+  },
+  {
+   "href": "https://www.watsons.com.tr/egitimvegelisim",
+   "text": "Eğitim ve Gelişim"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kariyergelisimi",
+   "text": "Kariyer Gelişimi"
+  },
+  {
+   "href": "https://www.watsons.com.tr/ucretvesosyalhaklar",
+   "text": "Ücret ve Sosyal Haklar"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sosyal-aktivite",
+   "text": "Sosyal Aktivite ve Takım Faaliyetleri"
+  },
+  {
+   "href": "https://www.watsons.com.tr/basarilarimiz",
+   "text": "Başarılarımız"
+  },
+  {
+   "href": "https://www.watsons.com.tr/watsons-iyilik-hareketi-bagis",
+   "text": "Bağış"
+  },
+  {
+   "href": "https://www.watsons.com.tr/surdurulebilirlik",
+   "text": "Sürdürülebilirlik"
+  },
+  {
+   "href": "https://www.watsons.com.tr/bilgi-toplumu-hizmetleri",
+   "text": "Bilgi Toplumu Hizmetleri"
+  },
+  {
+   "href": "https://www.watsons.com.tr/calisan-adayi-aydinlatma-metni",
+   "text": "Çalışan Adayı Aydınlatma Metni"
+  },
+  {
+   "href": "https://www.watsons.com.tr/siparis-odeme",
+   "text": "Sipariş ve Ödeme"
+  },
+  {
+   "href": "https://www.watsons.com.tr/iptal-iade",
+   "text": "İptal ve İade"
+  },
+  {
+   "href": "https://www.watsons.com.tr/gonderim",
+   "text": "Teslimat Koşulları"
+  },
+  {
+   "href": "https://www.watsons.com.tr/guvenli-alisveris",
+   "text": "Güvenli Alışveriş"
+  },
+  {
+   "href": "https://www.watsons.com.tr/islem-rehberi",
+   "text": "İşlem Rehberi"
+  },
+  {
+   "href": "https://www.watsons.com.tr/magazabulucu",
+   "text": "Mağazalarımız"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sayfalar/hediye-kart",
+   "text": "Hediye Kart"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kampanyalar",
+   "text": "Kampanyalar"
+  },
+  {
+   "href": "https://blog.watsons.com.tr/",
+   "text": "Blog"
+  },
+  {
+   "href": "https://www.watsons.com.tr/login",
+   "text": "Kayıt Ol"
+  },
+  {
+   "href": "https://watsonscard.watsons.com.tr/tr/i-30",
+   "text": "Watsons Club"
+  },
+  {
+   "href": "https://watsonscard.watsons.com.tr/tr/watsons-elite-dunyasina-hos-geldin/i-572",
+   "text": "Watsons Elite"
+  },
+  {
+   "href": "https://watsonscard.watsons.com.tr/tr/sss/sikca-sorulan-sorular/i-13",
+   "text": "Watsons Club Sıkça Sorulan Sorular"
+  },
+  {
+   "href": "https://watsonscard.watsons.com.tr/tr/aydinlatma-metni/i-163",
+   "text": "Aydınlatma Metni"
+  },
+  {
+   "href": "https://watsonscard.watsons.com.tr/tr/watsons-card-uyelik-kosullari/i-202",
+   "text": "Watsons Card Üyelik Koşulları"
+  },
+  {
+   "href": "https://www.watsons.com.tr/internet-sitesi-uyelik-sozlesmesi-watsons-card-kullanim-kosullari",
+   "text": "İnternet Sitesi Üyelik Sözleşmesi ve Watsons Card Kullanım K"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sayfalar/sss",
+   "text": "Sıkça Sorulan Sorular"
+  },
+  {
+   "href": "https://www.watsons.com.tr/iletisim",
+   "text": "İletişim"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kullanim-kosullari",
+   "text": "Kullanım Koşulları"
+  },
+  {
+   "href": "https://www.watsons.com.tr/marka-telif",
+   "text": "Marka ve Telif Hakları"
+  },
+  {
+   "href": "https://www.watsons.com.tr/uyelik-sozlesmesi",
+   "text": "Üyelik Sözleşmesi"
+  },
+  {
+   "href": "https://www.watsons.com.tr/satis-sozlesmesi",
+   "text": "Mesafeli Satış Sözleşmesi"
+  },
+  {
+   "href": "https://www.watsons.com.tr/aydinlatma-metni",
+   "text": "KVKK Aydınlatma Metni"
+  },
+  {
+   "href": "https://www.watsons.com.tr/tuketici-yorum-kurallari",
+   "text": "Tüketici Yorum Kuralları"
+  },
+  {
+   "href": "https://www.watsons.com.tr/iletisim-izni",
+   "text": "İletişim İzni"
+  },
+  {
+   "href": "https://www.watsons.com.tr/watsons-alisveris-asistani-kullanim-sartlari",
+   "text": "Watsons Alışveriş Asistanı | Kullanım Şartları"
+  },
+  {
+   "href": "https://www.watsons.com.tr/pure-beauty/b/3221",
+   "text": "Pure Beauty"
+  },
+  {
+   "href": "https://www.watsons.com.tr/unfilter/b/3447",
+   "text": "Unfilter Beauty"
+  },
+  {
+   "href": "https://www.watsons.com.tr/flormar/b/3193",
+   "text": "Flormar"
+  },
+  {
+   "href": "https://www.watsons.com.tr/rexona/b/2825",
+   "text": "Rexona"
+  },
+  {
+   "href": "https://www.watsons.com.tr/nyx/b/1821",
+   "text": "NYX Professional Makeup"
+  },
+  {
+   "href": "https://www.watsons.com.tr/revolution/b/2403",
+   "text": "Revolution Makeup"
+  },
+  {
+   "href": "https://www.watsons.com.tr/golden-rose/b/2683",
+   "text": "Golden Rose"
+  },
+  {
+   "href": "https://www.watsons.com.tr/maybelline/b/1896",
+   "text": "Maybelline"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cosrx/b/3617",
+   "text": "Cosrx"
+  },
+  {
+   "href": "https://www.watsons.com.tr/oral-b/b/2244",
+   "text": "Oral-B"
+  },
+  {
+   "href": "https://www.watsons.com.tr/pastel/b/2629",
+   "text": "Pastel"
+  },
+  {
+   "href": "https://www.watsons.com.tr/nivea/c/50085",
+   "text": "Nivea"
+  },
+  {
+   "href": "https://www.watsons.com.tr/ogx/b/2602",
+   "text": "OGX"
+  },
+  {
+   "href": "https://www.watsons.com.tr/hc-care/b/3575",
+   "text": "HC Care"
+  },
+  {
+   "href": "https://www.watsons.com.tr/the-purest-solutions/b/3438",
+   "text": "The Purest Solutions"
+  },
+  {
+   "href": "https://www.watsons.com.tr/watsons/b/3170",
+   "text": "Watsons"
+  },
+  {
+   "href": "https://www.watsons.com.tr/versace/b/1987",
+   "text": "Versace"
+  },
+  {
+   "href": "https://www.watsons.com.tr/opalescence/b/2190",
+   "text": "Opalescence"
+  },
+  {
+   "href": "https://www.watsons.com.tr/frudia/b/2969",
+   "text": "Frudia"
+  },
+  {
+   "href": "https://www.watsons.com.tr/revolution/b/2403",
+   "text": "Revolution"
+  },
+  {
+   "href": "https://www.watsons.com.tr/avon/b/3638",
+   "text": "Avon"
+  },
+  {
+   "href": "https://www.watsons.com.tr/marvis/b/2904",
+   "text": "Marvis"
+  },
+  {
+   "href": "https://www.watsons.com.tr/clasy-care/b/3662",
+   "text": "Clasy Care"
+  },
+  {
+   "href": "https://www.watsons.com.tr/saglikli-yasam/cinsel-saglik/prezervatifler/c/1146",
+   "text": "Prezervatif"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/gunes-kremleri-ve-bronzlastiricilar/c/211",
+   "text": "Güneş Kremi"
+  },
+  {
+   "href": "https://www.watsons.com.tr/erkek-bakim/erkek-parfum-ve-deodorant/parfum/c/1132",
+   "text": "Erkek Parfüm"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/epilasyon/tuy-dokucu-ve-sarartici-urunler/c/1111",
+   "text": "Tüy Dökücü Krem"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/sac-boyalari/c/217",
+   "text": "Saç Boyası"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/parfum-ve-deodorant/deodorant/c/1090",
+   "text": "Deodorant"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/agiz-bakim/elektrikli-dis-fircalari/c/1104",
+   "text": "Şarjlı Diş Fırçası"
+  },
+  {
+   "href": "https://www.watsons.com.tr/makyaj/yuz-makyaji/fondoten/c/1001",
+   "text": "Fondöten"
+  },
+  {
+   "href": "https://www.watsons.com.tr/saglikli-yasam/vitaminler-gida-takviyeleri-diyet/c/231",
+   "text": "Vitamin"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sac-bakim/sampuanlar/c/212",
+   "text": "Şampuan"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim/yuz-ve-makyaj-temizleyiciler/c/1036",
+   "text": "Yüz Temizleme ve Tonik"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilt-bakim-rutini/c/akneli-ciltler-icin-oneriler",
+   "text": "Akneli Ciltler İçin Öneriler"
+  },
+  {
+   "href": "https://www.watsons.com.tr/leke-karsiti-serumlar/c/30100",
+   "text": "Leke Karşıtı Serumlar"
+  },
+  {
+   "href": "https://www.watsons.com.tr/parfum/c/100013",
+   "text": "Parfüm"
+  },
+  {
+   "href": "https://www.watsons.com.tr/kisisel-bakim/parfum-ve-deodorant/parfum/c/1089",
+   "text": "Kadın Parfüm"
+  },
+  {
+   "href": "https://www.watsons.com.tr/erkek-bakim/erkek-parfum-ve-deodorant/parfum/c/1132",
+   "text": "Erkek Parfüm"
+  },
+  {
+   "href": "https://www.watsons.com.tr/ekinoks-kampanyasi",
+   "text": "Ekinoks Kampanyası"
+  },
+  {
+   "href": "https://www.watsons.com.tr/buyuk-yilbasi-indirimi",
+   "text": "Yılbaşı Kampanyası"
+  },
+  {
+   "href": "https://www.watsons.com.tr/11-11-alisveris-festivali",
+   "text": "11.11 Alışveriş Festivali"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cilgin-cuma",
+   "text": "Black Friday"
+  },
+  {
+   "href": "https://www.watsons.com.tr/cyber-monday",
+   "text": "Cyber Monday"
+  },
+  {
+   "href": "https://www.watsons.com.tr/dunya-kadinlar-gunu",
+   "text": "Dünya Kadınlar Günü"
+  },
+  {
+   "href": "https://www.watsons.com.tr/anneler-gunu",
+   "text": "Anneler Günü"
+  },
+  {
+   "href": "https://www.watsons.com.tr/sevgililer-gunu",
+   "text": "Sevgililer Günü"
+  },
+  {
+   "href": "https://www.watsons.com.tr/revolutionary-days",
+   "text": "Revolutionary Days"
+  },
+  {
+   "href": "https://www.watsons.com.tr/buyuk-bayram-indirimi",
+   "text": "Watsons'ta Büyük Bayram Fırsatları"
+  },
+  {
+   "href": "https://www.watsons.com.tr/dunya-tersine-gunu",
+   "text": "Dünya Tersine Günü"
+  },
+  {
+   "href": "https://www.watsons.com.tr/4-4-firsatlari",
+   "text": "4.4 Kampanyası"
+  },
+  {
+   "href": "https://www.watsons.com.tr/babalar-gunu",
+   "text": "Babalar Günü"
+  }
+ ]
 }
