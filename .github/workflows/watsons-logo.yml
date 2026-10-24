@@ -1,0 +1,40 @@
+name: Watsons 11.11 – kurumsal logo (Wikimedia Commons)
+
+# Kullanıcının verdiği resmi Watsons logotipi (Watsons_logotype.svg) Wikimedia Commons'tan indirilir.
+on:
+  workflow_dispatch:
+  push:
+    branches: ['claude/**']
+    paths:
+      - .github/workflows/watsons-logo.yml
+
+permissions:
+  contents: write
+
+jobs:
+  logo:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Logoyu indir
+        run: |
+          set -e
+          D=watsons-1111/assets/brand
+          UA="SplashDigitalBannerBuild/1.0 (https://github.com/umutdemirci8940-prog/umut)"
+          curl -fsSL -A "$UA" -o $D/watsons-logotype.svg "https://upload.wikimedia.org/wikipedia/commons/d/dd/Watsons_logotype.svg"
+          curl -fsSL -A "$UA" -o $D/watsons-logotype.png "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Watsons_logotype.svg/3840px-Watsons_logotype.svg.png" \
+            || curl -fsSL -A "$UA" -o $D/watsons-logotype.png "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dd/Watsons_logotype.svg/3840px-Watsons_logotype.svg.png"
+          ls -la $D
+          head -c 600 $D/watsons-logotype.svg
+
+      - name: Dala push'la
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add watsons-1111/assets/brand
+          git commit -m "Resmi Watsons logotipi (Wikimedia Commons)" || { echo "Değişiklik yok"; exit 0; }
+          git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          git push
