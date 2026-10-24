@@ -36,7 +36,6 @@
 .rr { flex: none; width: 150px; display: flex; flex-direction: column; justify-content: space-between; gap: 6px; margin-left: 6px; }
 .rr p { font-size: 11px; font-weight: 600; color: #4d6a70; }
 .rr button { font-size: 11px; font-weight: 800; color: var(--teal-d); text-decoration: underline; text-align: left; }
-.side .wlogo { filter: drop-shadow(0 1px 4px rgba(0,0,0,.4)); }
 .side { position: absolute; right: 22px; top: 22px; bottom: 20px; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end; }
 .legal { left: 24px; bottom: 6px; color: #6a8187; }
 </style>
@@ -52,7 +51,7 @@
     <div class="steps"><i class="on"></i><i></i><i></i></div>
     <div class="pane" id="pane"></div>
   </div>
-  <div class="side fx d3">{{LOGO}}<span class="cta pk pulse">Fırsatları Gör</span></div>
+  <div class="side fx d3"><span></span><span class="cta pk pulse">Fırsatları Gör</span></div>
   <div class="legal">{{LEGAL}}</div>
 </div>
 <script>window.AD_DATA = {{DATA}};</script>

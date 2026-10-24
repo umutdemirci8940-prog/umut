@@ -257,24 +257,35 @@ if isinstance(logo, str):
     os.system(f'NODE_PATH=$(npm root -g) node "{os.path.join(ROOT, "tools", "svg2png.js")}" "{logo}" "{os.path.join(OUT, "_logo.png")}"')
     logo = Image.open(os.path.join(OUT, '_logo.png')).convert('RGBA')
     os.remove(os.path.join(OUT, '_logo.png'))
-if logo is None:
+if logo is None and not os.path.exists(os.path.join(A, 'brand', 'watsons-logotype.png')):
     sys.exit('Logo bulunamadı')
-logo, _ = cut_white(logo)
-bb = logo.getchannel('A').getbbox()
-logo = logo.crop(bb)
-logo.thumbnail((440, 120))
-logo.save(os.path.join(OUT, 'logo-c.webp'), 'WEBP', quality=92)  # turkuaz plaka + beyaz yazı (sitedeki hali)
-# Beyaz sürüm: plakanın içindeki beyaz "watsons" yazısı (koyu/turkuaz zeminler için)
-px = logo.load(); w, h = logo.size
-wt = Image.new('RGBA', logo.size, (255, 255, 255, 0)); q = wt.load()
-for y in range(h):
-    for x in range(w):
-        r, g, b, a = px[x, y]
-        if a > 0 and min(r, g, b) > 150:
-            q[x, y] = (255, 255, 255, min(255, int((min(r, g, b) - 150) * 2.5)))
-bb = wt.getchannel('A').getbbox()
-wt.crop(bb).save(os.path.join(OUT, 'logo-w.webp'), 'WEBP', quality=92)
-print('✔ logo')
+official = os.path.join(A, 'brand', 'watsons-logotype.png')  # resmi logotip (Wikimedia Commons, Watsons_logotype.svg)
+if os.path.exists(official):
+    lg = Image.open(official).convert('RGBA')
+    lg = lg.crop(lg.getchannel('A').getbbox())
+    lg.thumbnail((560, 140), Image.LANCZOS)
+    # Turkuaz plaka + beyaz kontür + kırmızı şerit her zeminde aynı kullanılır
+    for n in ('logo-c.webp', 'logo-w.webp'):
+        lg.save(os.path.join(OUT, n), 'WEBP', quality=94, method=6)
+    print('✔ logo (resmi logotip)')
+    logo = None
+if logo is not None:  # resmi logotip yoksa: sitedeki logowatsons.png'den kırpılan plaka
+  logo, _ = cut_white(logo)
+  bb = logo.getchannel('A').getbbox()
+  logo = logo.crop(bb)
+  logo.thumbnail((440, 120))
+  logo.save(os.path.join(OUT, 'logo-c.webp'), 'WEBP', quality=92)  # turkuaz plaka + beyaz yazı (sitedeki hali)
+  # Beyaz sürüm: plakanın içindeki beyaz "watsons" yazısı (koyu/turkuaz zeminler için)
+  px = logo.load(); w, h = logo.size
+  wt = Image.new('RGBA', logo.size, (255, 255, 255, 0)); q = wt.load()
+  for y in range(h):
+      for x in range(w):
+          r, g, b, a = px[x, y]
+          if a > 0 and min(r, g, b) > 150:
+              q[x, y] = (255, 255, 255, min(255, int((min(r, g, b) - 150) * 2.5)))
+  bb = wt.getchannel('A').getbbox()
+  wt.crop(bb).save(os.path.join(OUT, 'logo-w.webp'), 'WEBP', quality=92)
+  print('✔ logo')
 
 # Ürün sırası: fiyatı ve şeffaf fonu olanlar önce, markalar karışık
 products.sort(key=lambda p: (not p['hd'], not p['transparent'], not p['price']))
