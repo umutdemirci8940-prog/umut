@@ -21,7 +21,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; }
 body { font-family: var(--f); color: #fff; background: var(--night); -webkit-font-smoothing: antialiased; user-select: none; -webkit-user-select: none; }
 img { display: block; -webkit-user-drag: none; user-select: none; }
 button { font: inherit; border: 0; background: none; color: inherit; cursor: pointer; }
-.ad { position: relative; width: 100%; height: 100%; overflow: hidden; cursor: pointer; }
+.ad { position: relative; width: 100%; height: 100%; overflow: hidden; }
 .ad * { transition-timing-function: cubic-bezier(.22, .8, .2, 1); }
 
 /* Logo ve rozet */
@@ -32,7 +32,7 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
 .b1111 span { margin-top: 6px; font-size: 10px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
 
 /* Düğmeler */
-.cta { display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 20px; border-radius: 99px; background: #fff; color: var(--teal-d); font-size: 13px; font-weight: 800; letter-spacing: .02em; box-shadow: 0 8px 20px rgba(0, 0, 0, .22); transition: transform .25s, box-shadow .25s, background .25s; white-space: nowrap; }
+.cta { cursor: pointer; display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 20px; border-radius: 99px; background: #fff; color: var(--teal-d); font-size: 13px; font-weight: 800; letter-spacing: .02em; box-shadow: 0 8px 20px rgba(0, 0, 0, .22); transition: transform .25s, box-shadow .25s, background .25s; white-space: nowrap; }
 .cta::after { content: '›'; font-size: 20px; line-height: 1; margin-top: -2px; }
 .cta:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(0, 0, 0, .3); }
 .cta.pk { background: var(--pink); color: #fff; }
@@ -96,7 +96,7 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
 .bow::before { left: 0; transform: rotate(-20deg); } .bow::after { right: 0; transform: scaleX(-1) rotate(-20deg); }
 .open .lid { transform: translateY(-150px) translateZ(-40px) rotateX(-120deg) rotateZ(25deg); }
 .open .box { transform: rotateX(-22deg) rotateY(-32deg); }
-.pop { position: absolute; left: -36px; top: -40px; width: 72px; height: 72px; border-radius: 14px; background: #fff; padding: 5px; box-shadow: 0 10px 20px rgba(0, 0, 0, .3); opacity: 0; transform: translate(0, 40px) scale(.3); transition: transform .9s cubic-bezier(.2, 1.4, .4, 1), opacity .3s; z-index: 4; cursor: pointer; }
+.pop { position: absolute; left: -36px; top: -40px; width: 72px; height: 72px; border-radius: 14px; background: #fff; padding: 5px; box-shadow: 0 10px 20px rgba(0, 0, 0, .3); opacity: 0; transform: translate(0, 40px) scale(.3); transition: transform .9s cubic-bezier(.2, 1.4, .4, 1), opacity .3s; z-index: 4; }
 .pop img { width: 100%; height: 100%; object-fit: contain; }
 .open .pop { opacity: 1; }
 .tap { position: absolute; left: 330px; top: 214px; z-index: 3; }
@@ -115,7 +115,7 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
 </style>
 </head>
 <body>
-<div class="ad" id="ad" data-exit="" data-label="genel">
+<div class="ad" id="ad">
   <div class="snow" id="snow"></div>
   <div class="brand fx">
     <div><div class="b1111"><b>11.11</b><span>Büyük İndirim Günü</span></div><h1>Bu 11.11'de <em>hediyen</em> bizden</h1></div>
@@ -228,14 +228,12 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
     el.addEventListener('touchstart', down, { passive: true }); el.addEventListener('touchmove', move, { passive: false }); el.addEventListener('touchend', up);
   };
 
-  // Tüm [data-exit] öğeleri tıklamada çıkış yapar; [data-stop] içindekiler yapmaz
+  // Siteye yalnızca CTA düğmeleri (.cta) yönlendirir; reklamın geri kalanına tıklamak sadece etkileşimdir.
+  // Kendi işlevi olan düğmeler (Oyna, Tekrar…) olayı durdurduğu için buraya gelmez.
   document.addEventListener('click', function (e) {
-    var s = e.target.closest('[data-stop]');
-    var x = e.target.closest('[data-exit]');
-    // Durdurma bölgesi çıkış alanının içindeyse (kontroller) çıkış yok; bölge içindeki açık düğme çıkar
-    if (x && (!s || !(x !== s && x.contains(s)))) {
-      e.preventDefault(); W.exit(x.getAttribute('data-exit') || '', x.getAttribute('data-label') || 'cta');
-    }
+    var c = e.target.closest('.cta');
+    if (!c) return;
+    e.preventDefault(); W.exit(c.getAttribute('data-exit') || '', c.getAttribute('data-label') || 'cta');
   });
 
   // Görseller yüklenince başlat (önizlemede boş kare görünmesin)
@@ -261,7 +259,6 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
     var e = W.el('div', 'pop', '<img src="' + p.img + '" alt="">');
     e._to = 'translate(' + spots[i][0] + 'px,' + spots[i][1] + 'px) rotate(' + (i * 8 - 16) + 'deg)';
     e.style.transitionDelay = (.25 + i * .09) + 's';
-    e.addEventListener('click', function (ev) { ev.stopPropagation(); W.exit(p.url, 'urun_' + p.key); });
     pops.appendChild(e);
   });
   var isOpen = false;

@@ -43,7 +43,7 @@
 </style>
 </head>
 <body>
-<div class="ad" data-exit="" data-label="genel">
+<div class="ad">
   <div class="stars"></div><div class="floor"></div>
   <div class="brand fx">
     <div>{{BADGE}}<h1>11.11'in yıldızları <em>senin etrafında</em> dönüyor</h1></div>
@@ -100,8 +100,7 @@
     e.stopPropagation(); if (moved) return;
     var el = e.target.closest('.it'); if (!el) return;
     var i = els.indexOf(el);
-    if (i === cur) W.exit(items[i].url, 'urun_' + items[i].key);
-    else { auto = false; var d = ((-i * step - ang) % 360 + 540) % 360 - 180; target = ang + d; }
+    if (i !== cur) { auto = false; var d = ((-i * step - ang) % 360 + 540) % 360 - 180; target = ang + d; }
   });
   function go(d) { auto = false; target = Math.round(target / step) * step - d * step; W.track('halka_ok'); }
   W.$('#pv').addEventListener('click', function (e) { e.stopPropagation(); go(-1); });

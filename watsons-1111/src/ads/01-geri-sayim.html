@@ -74,7 +74,7 @@
 </style>
 </head>
 <body>
-<div class="ad" data-exit="" data-label="genel">
+<div class="ad">
   <div class="glow"></div>
   <div class="brand fx">
     {{BADGE}}
@@ -129,8 +129,7 @@
       '<div class="face back"><span class="k">11.11 listende</span><span class="p">' + (p.price ? W.price(p.price) : 'Özel fiyat') + '</span><span class="s">' + (p.club ? 'Watsons Club ile ' + W.price(p.club) : D.brand.offer) + '</span><span class="go">İncele</span></div>';
     c.addEventListener('click', function (e) {
       e.stopPropagation();
-      if (W.mobile() && !c.classList.contains('flip')) { c.classList.add('flip'); W.track('kart_cevir'); return; }
-      W.exit(p.url, 'urun_' + p.key);
+      c.classList.toggle('flip'); W.track('kart_cevir');
     });
     c.addEventListener('mouseenter', function () { W.track('kart_hover'); });
     cards.appendChild(c);

@@ -27,7 +27,7 @@
 .out { position: absolute; left: 324px; top: 196px; width: 44px; height: 44px; z-index: 4; pointer-events: none; }
 .out .cap { left: 0; top: 0; }
 .reveal { position: absolute; left: 520px; right: 150px; top: 20px; bottom: 20px; display: flex; align-items: center; gap: 16px; }
-.card { position: relative; width: 150px; height: 200px; border-radius: 18px; background: #fff; box-shadow: 0 16px 30px rgba(0, 80, 90, .2); display: flex; flex-direction: column; align-items: center; padding: 12px; opacity: 0; transform: scale(.4) rotate(-12deg); transition: transform .6s cubic-bezier(.3, 1.5, .5, 1), opacity .3s; cursor: pointer; }
+.card { position: relative; width: 150px; height: 200px; border-radius: 18px; background: #fff; box-shadow: 0 16px 30px rgba(0, 80, 90, .2); display: flex; flex-direction: column; align-items: center; padding: 12px; opacity: 0; transform: scale(.4) rotate(-12deg); transition: transform .6s cubic-bezier(.3, 1.5, .5, 1), opacity .3s; }
 .got .card { opacity: 1; transform: none; }
 .card img { width: 120px; height: 120px; object-fit: contain; }
 .card b { font-size: 9px; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; color: var(--teal-d); margin-top: 4px; }
@@ -46,7 +46,7 @@
 </style>
 </head>
 <body>
-<div class="ad" id="ad" data-exit="" data-label="genel">
+<div class="ad" id="ad">
   <div class="brand fx">
     <div>{{BADGE}}<h1>Kolu çevir, <em>11.11 kapsülünden</em> ne çıkacak?</h1></div>
     <img class="wlogo" src="img/logo-c.webp" alt="Watsons">
@@ -93,7 +93,6 @@
   function show(p) {
     var card = W.$('#card');
     card.innerHTML = '<img src="' + p.img + '" alt=""><b>' + p.brand + '</b><span>' + p.name + '</span>' + (p.price ? '<div class="pr">' + W.price(p.price) + '</div>' : '');
-    card.onclick = function (e) { e.stopPropagation(); W.exit(p.url, 'urun_' + p.key); };
     W.$('#k').textContent = 'Kapsülden çıkan'; W.$('#h').innerHTML = p.brand; W.$('#p').textContent = (p.club ? 'Watsons Club ile ' + W.price(p.club) + '. ' : '') + D.brand.offer;
     W.$('#lf').textContent = (items.length - turns) + ' kapsül daha · Tekrar çevir';
     W.$('#ad').classList.add('got');

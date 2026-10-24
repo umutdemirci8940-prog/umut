@@ -85,14 +85,12 @@
     el.addEventListener('touchstart', down, { passive: true }); el.addEventListener('touchmove', move, { passive: false }); el.addEventListener('touchend', up);
   };
 
-  // Tüm [data-exit] öğeleri tıklamada çıkış yapar; [data-stop] içindekiler yapmaz
+  // Siteye yalnızca CTA düğmeleri (.cta) yönlendirir; reklamın geri kalanına tıklamak sadece etkileşimdir.
+  // Kendi işlevi olan düğmeler (Oyna, Tekrar…) olayı durdurduğu için buraya gelmez.
   document.addEventListener('click', function (e) {
-    var s = e.target.closest('[data-stop]');
-    var x = e.target.closest('[data-exit]');
-    // Durdurma bölgesi çıkış alanının içindeyse (kontroller) çıkış yok; bölge içindeki açık düğme çıkar
-    if (x && (!s || !(x !== s && x.contains(s)))) {
-      e.preventDefault(); W.exit(x.getAttribute('data-exit') || '', x.getAttribute('data-label') || 'cta');
-    }
+    var c = e.target.closest('.cta');
+    if (!c) return;
+    e.preventDefault(); W.exit(c.getAttribute('data-exit') || '', c.getAttribute('data-label') || 'cta');
   });
 
   // Görseller yüklenince başlat (önizlemede boş kare görünmesin)

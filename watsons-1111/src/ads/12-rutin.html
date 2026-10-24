@@ -27,7 +27,7 @@
 .pane.out { opacity: 0; transform: translateX(-20px); }
 .res { display: none; }
 .res.on { display: flex; gap: 10px; align-items: stretch; }
-.rc { width: 92px; border-radius: 14px; background: #fff; box-shadow: 0 8px 18px rgba(0, 90, 100, .14); padding: 8px; display: flex; flex-direction: column; align-items: center; cursor: pointer; animation: rin .5s backwards; }
+.rc { width: 92px; border-radius: 14px; background: #fff; box-shadow: 0 8px 18px rgba(0, 90, 100, .14); padding: 8px; display: flex; flex-direction: column; align-items: center; animation: rin .5s backwards; }
 .rc:nth-child(2) { animation-delay: .12s; } .rc:nth-child(3) { animation-delay: .24s; }
 @keyframes rin { from { opacity: 0; transform: translateY(16px); } }
 .rc em { font-style: normal; font-size: 9px; font-weight: 900; letter-spacing: .1em; color: #fff; background: var(--pink); border-radius: 99px; padding: 3px 8px; }
@@ -41,7 +41,7 @@
 </style>
 </head>
 <body>
-<div class="ad" id="ad" data-exit="" data-label="genel">
+<div class="ad" id="ad">
   <div class="photo"></div>
   <div class="brand fx">
     <div>{{BADGE}}<h1>3 soruda <em>11.11 rutinini</em> kur</h1></div>
@@ -71,7 +71,7 @@
       var pool = (cat.products || []).concat(D.products), picks = [], seen = {};
       for (var i = 0; i < pool.length && picks.length < 3; i++) if (!seen[pool[i].key]) { seen[pool[i].key] = 1; picks.push(pool[i]); }
       var labels = Q[0].a[ans[0]].steps;
-      pane.innerHTML = '<div class="k">Senin 11.11 rutinin · ' + cat.name + '</div><h2>' + Q[1].a[ans[1]].t + ' için 3 adım</h2><div class="res on">' + picks.map(function (p, i) { return '<div class="rc" data-exit="' + p.url + '" data-label="rutin_' + p.key + '"><em>' + (i + 1) + '. ' + labels[i] + '</em><img src="' + p.img + '" alt=""><b>' + p.brand + '</b></div>'; }).join('') + '<div class="rr"><p>' + D.brand.offer + '</p><span class="cta pk" data-exit="' + cat.url + '" data-label="rutin_kategori" style="height:32px;padding:0 14px">Rutini Al</span><button id="re">Baştan başla</button></div></div>';
+      pane.innerHTML = '<div class="k">Senin 11.11 rutinin · ' + cat.name + '</div><h2>' + Q[1].a[ans[1]].t + ' için 3 adım</h2><div class="res on">' + picks.map(function (p, i) { return '<div class="rc"><em>' + (i + 1) + '. ' + labels[i] + '</em><img src="' + p.img + '" alt=""><b>' + p.brand + '</b></div>'; }).join('') + '<div class="rr"><p>' + D.brand.offer + '</p><span class="cta pk" data-exit="' + cat.url + '" data-label="rutin_kategori" style="height:32px;padding:0 14px">Rutini Al</span><button id="re">Baştan başla</button></div></div>';
       W.$('#re').addEventListener('click', function (e) { e.stopPropagation(); ans = []; step = 0; swap(); });
       W.track('rutin_sonuc_' + cat.key);
     }

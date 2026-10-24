@@ -50,7 +50,7 @@
 </style>
 </head>
 <body>
-<div class="ad" id="ad" data-exit="" data-label="genel">
+<div class="ad" id="ad">
   <div class="dots"></div>
   <div class="brand fx">
     <div>{{BADGE}}<h1>Kazı, <em>11.11 sürprizini</em> ilk sen gör</h1></div>
@@ -116,7 +116,6 @@
       end: function () { check(); }
     });
     cv.addEventListener('mousemove', function () { if (last) check(); });
-    w.addEventListener('click', function (e) { e.stopPropagation(); if (cleared) W.exit(p.url, 'urun_' + p.key); });
   });
   W.$('#cp').addEventListener('click', function (e) { e.stopPropagation(); W.copy(D.brand.code, this); });
   function paintAll() { W.$$('.win').forEach(function (w) { if (!w.classList.contains('open')) w._paint(); }); }

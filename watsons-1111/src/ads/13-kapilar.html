@@ -37,7 +37,7 @@
 </style>
 </head>
 <body>
-<div class="ad" id="ad" data-exit="" data-label="genel">
+<div class="ad" id="ad">
   <div class="brand fx">
     <div>{{BADGE}}<h1><em>11 kapı</em>, 11 fırsat. Hangisini açacaksın?</h1></div>
     {{LOGO}}
@@ -60,7 +60,7 @@
       d.innerHTML = '<div class="in"><img src="' + p.img + '" alt=""><b>' + p.brand + '</b>' + (gold ? '<span>' + D.brand.code + '</span>' : p.price ? '<span>' + W.price(p.price) + '</span>' : '') + '</div><div class="glow"></div><div class="leaf"><b>' + (i + 1) + '</b><small>' + (gold ? 'ALTIN' : 'KAPI') + '</small></div>';
       d.addEventListener('click', function (e) {
         e.stopPropagation();
-        if (d.classList.contains('open')) return W.exit(p.url, 'kapi_urun_' + p.key);
+        if (d.classList.contains('open')) return;
         d.classList.add('open'); opened++; W.$('#cnt').textContent = opened + '/11'; W.track('kapi_' + (i + 1));
         if (gold) { var r = d.getBoundingClientRect(); W.confetti(W.$('#ad'), 80, { x: r.left + r.width / 2, y: r.top + 40 }); }
         if (opened === 11) W.confetti(W.$('#ad'), 100);

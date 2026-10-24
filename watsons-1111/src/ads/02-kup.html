@@ -47,7 +47,7 @@
 </style>
 </head>
 <body>
-<div class="ad" data-exit="" data-label="genel">
+<div class="ad">
   <div class="grid"></div>
   <div class="brand fx">
     <div>{{BADGE}}<h1 style="margin-top:12px">Küpü çevir, <em>11.11 fırsatını</em> seç</h1><p>Her yüzünde başka bir kategori</p></div>
@@ -100,7 +100,7 @@
     W.$('#cn').textContent = cc.name;
     W.$('#go').setAttribute('data-exit', cc.url || D.brand.home);
     W.$('#go').setAttribute('data-label', 'kategori_' + (c.key || 'x'));
-    W.$('#th').innerHTML = (cc.products || []).slice(0, 3).map(function (p) { return '<a data-exit="' + p.url + '" data-label="urun_' + p.key + '"><img src="' + p.img + '" alt=""></a>'; }).join('');
+    W.$('#th').innerHTML = (cc.products || []).slice(0, 3).map(function (p) { return '<a><img src="' + p.img + '" alt=""></a>'; }).join('');
     W.track('yuz_' + (c.key || 'x'));
   }
   function snap() {
@@ -117,7 +117,7 @@
   W.$('#scene').addEventListener('click', function (e) {
     e.stopPropagation();
     if (moved) return;
-    var c = faces[front()]; W.exit(c.url || D.brand.home, 'kup_' + (c.key || 'x'));
+    auto = false; ry -= 90; apply(); show(front()); W.track('kup_tik'); // dokununca sıradaki yüz
   });
   W.ready(function () {
     apply(); show(front());

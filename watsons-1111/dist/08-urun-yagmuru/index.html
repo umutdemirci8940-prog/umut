@@ -21,7 +21,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; }
 body { font-family: var(--f); color: #fff; background: var(--night); -webkit-font-smoothing: antialiased; user-select: none; -webkit-user-select: none; }
 img { display: block; -webkit-user-drag: none; user-select: none; }
 button { font: inherit; border: 0; background: none; color: inherit; cursor: pointer; }
-.ad { position: relative; width: 100%; height: 100%; overflow: hidden; cursor: pointer; }
+.ad { position: relative; width: 100%; height: 100%; overflow: hidden; }
 .ad * { transition-timing-function: cubic-bezier(.22, .8, .2, 1); }
 
 /* Logo ve rozet */
@@ -32,7 +32,7 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
 .b1111 span { margin-top: 6px; font-size: 10px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
 
 /* Düğmeler */
-.cta { display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 20px; border-radius: 99px; background: #fff; color: var(--teal-d); font-size: 13px; font-weight: 800; letter-spacing: .02em; box-shadow: 0 8px 20px rgba(0, 0, 0, .22); transition: transform .25s, box-shadow .25s, background .25s; white-space: nowrap; }
+.cta { cursor: pointer; display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 20px; border-radius: 99px; background: #fff; color: var(--teal-d); font-size: 13px; font-weight: 800; letter-spacing: .02em; box-shadow: 0 8px 20px rgba(0, 0, 0, .22); transition: transform .25s, box-shadow .25s, background .25s; white-space: nowrap; }
 .cta::after { content: '›'; font-size: 20px; line-height: 1; margin-top: -2px; }
 .cta:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(0, 0, 0, .3); }
 .cta.pk { background: var(--pink); color: #fff; }
@@ -112,14 +112,14 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
 </style>
 </head>
 <body>
-<div class="ad" id="ad" data-exit="" data-label="genel">
+<div class="ad" id="ad">
   <div class="brand fx"><div class="b1111"><b>11.11</b><span>Büyük İndirim Günü</span></div><h1>11 saniyede yakalayabildiğin kadar <em>11.11 fırsatı</em></h1><img class="wlogo" src="img/logo-w.webp" alt="Watsons"></div>
   <div class="field" id="field" data-stop><div class="bk" id="bk"><b>Watsons</b></div></div>
   <div class="hud fx d2"><div class="sc"><small>Skor</small><b id="sc">0</b></div><div class="tm"><i id="tm"></i></div><span class="cta" style="height:34px;padding:0 14px">Fırsatlar</span></div>
   <div class="ov" id="ov" data-stop>
     <h2 id="oh">Ürün Yağmuru!</h2>
     <p id="op">Sepeti fareyle ya da parmağınla kaydır, yağan ürünleri yakala. Gri toplara dikkat.</p>
-    <div class="row" id="or"><button class="cta pk" id="play">Oyna</button></div>
+    <div class="row" id="or"><button class="cta pk" id="play">Oyna</button><span class="cta" data-label="oyun_giris">Fırsatları Gör</span></div>
   </div>
   <div class="legal">Kampanya 11.11 tarihinde watsons.com.tr'de geçerlidir. Stoklarla sınırlıdır. Detaylar watsons.com.tr'de.</div>
 </div>
@@ -211,14 +211,12 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
     el.addEventListener('touchstart', down, { passive: true }); el.addEventListener('touchmove', move, { passive: false }); el.addEventListener('touchend', up);
   };
 
-  // Tüm [data-exit] öğeleri tıklamada çıkış yapar; [data-stop] içindekiler yapmaz
+  // Siteye yalnızca CTA düğmeleri (.cta) yönlendirir; reklamın geri kalanına tıklamak sadece etkileşimdir.
+  // Kendi işlevi olan düğmeler (Oyna, Tekrar…) olayı durdurduğu için buraya gelmez.
   document.addEventListener('click', function (e) {
-    var s = e.target.closest('[data-stop]');
-    var x = e.target.closest('[data-exit]');
-    // Durdurma bölgesi çıkış alanının içindeyse (kontroller) çıkış yok; bölge içindeki açık düğme çıkar
-    if (x && (!s || !(x !== s && x.contains(s)))) {
-      e.preventDefault(); W.exit(x.getAttribute('data-exit') || '', x.getAttribute('data-label') || 'cta');
-    }
+    var c = e.target.closest('.cta');
+    if (!c) return;
+    e.preventDefault(); W.exit(c.getAttribute('data-exit') || '', c.getAttribute('data-label') || 'cta');
   });
 
   // Görseller yüklenince başlat (önizlemede boş kare görünmesin)

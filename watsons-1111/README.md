@@ -37,7 +37,7 @@ python3 tools/prepare.py            # assets/ → assets/ads/ (fon temizleme, We
 node tools/build.js                 # dist/<çalışma>/ + dist/zip/ + dist/inline/
 node tools/present.js               # sunum/index.html
 NODE_PATH=$(npm root -g) node tools/shoot.js   # preview/ ekran görüntüleri + konsol hatası kontrolü
-NODE_PATH=$(npm root -g) node tools/smoke.js   # her çalışmanın mekaniğini tetikleyen etkileşim testi (preview/<çalışma>-x.jpg)
+NODE_PATH=$(npm root -g) node tools/smoke.js   # mekanik testi + yalnızca CTA'nın siteye gittiğinin kontrolü (preview/<çalışma>-x.jpg)
 ```
 
 Ürün sırasını veya logoyu elle seçmek için `assets/manual.json`: `{ "order": ["urun-anahtari", …], "logo": "assets/brand/logo-0.svg" }`.
@@ -45,8 +45,7 @@ NODE_PATH=$(npm root -g) node tools/smoke.js   # her çalışmanın mekaniğini 
 ## Teknik
 
 - Her çalışma tek `index.html` + `img/` klasörü (yalnızca kullandığı görseller); `dist/zip/watsons-1111-<çalışma>.zip` yüklemeye hazırdır. `dist/inline/` görselleri gömülü tek dosya sürümleridir (sunumda kullanılır).
-- Tıklama: `clickTag = "https://www.watsons.com.tr/"`; reklamdaki tüm tıklamalar (CTA, ürün, kategori, kupon sonrası düğmeler) watsons.com.tr ana sayfasına gider. Reklam ağı kendi tıklama makrosunu `clickTag`e yazarsa o kullanılır. Studio'da `Enabler.exitOverride`, sayaçlar `Enabler.counter` ile ölçülür.
-- Etkileşimli kontroller (çark düğmesi, kazıma alanı, oyun alanı, kartlar) reklam çıkışını tetiklemez; boş alana tıklama genel çıkıştır.
+- Tıklama: siteye **yalnızca CTA düğmeleri** yönlendirir (`clickTag = "https://www.watsons.com.tr/"`). Reklamın boş alanına, ürün görsellerine, küpe, kapılara, kartlara vb. tıklamak yalnızca etkileşimdir (kart çevirme, küpü döndürme…); çıkış yapmaz. Oyna/Tekrar gibi işlevli düğmeler de çıkış yapmaz. Reklam ağı kendi makrosunu `clickTag`e yazarsa o kullanılır. Studio'da `Enabler.exitOverride`, sayaçlar `Enabler.counter` ile ölçülür.
 - Mobil uyarlama: aynı dosya 640 px'ten dar alanda `html.m` sınıfıyla mobil yerleşime geçer; dokunma (kaydırma, kazıma, sürükleme) desteklidir.
 - `prefers-reduced-motion` açıksa animasyonlar kısaltılır. Kullanıcı etkileşmezse her çalışma mekaniğini kendisi gösterir (çark kendiliğinden döner, kutu açılır, kapılar aralanır…).
 

@@ -29,7 +29,7 @@
 </style>
 </head>
 <body>
-<div class="ad" id="ad" data-exit="" data-label="genel">
+<div class="ad" id="ad">
   <div class="lyr dark"><div class="bg"></div><div class="shelf" id="s1"></div></div>
   <div class="lyr light" id="light"><div class="bg"></div><div class="shelf" id="s2"></div></div>
   <div class="halo"></div>
@@ -70,11 +70,6 @@
   z.addEventListener('mousemove', at);
   z.addEventListener('touchmove', function (e) { at(e); e.preventDefault(); }, { passive: false });
   z.addEventListener('touchstart', at, { passive: true });
-  z.addEventListener('click', function (e) {
-    e.stopPropagation();
-    var hit = lit.filter(function (el) { return el.classList.contains('lit'); })[0];
-    if (hit) { var p = items[lit.indexOf(hit)]; W.exit(p.url, 'urun_' + p.key); }
-  });
   W.ready(function () { requestAnimationFrame(loop); });
 })();
 </script>

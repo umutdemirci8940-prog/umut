@@ -58,6 +58,29 @@ const TESTS = {
     let ok = false;
     try { ok = await fn(page); } catch (e) { errs.push(e.message.split('\n')[0]); }
     await page.screenshot({ path: path.join(root, 'preview', `${id}-x.jpg`), type: 'jpeg', quality: 82 });
+    // Yalnızca CTA siteye gider: etkileşimler ve CTA dışı tıklamalar (boş alan, ürün görselleri) çıkış yapmamalı
+    for (const [x, y] of [[8, 8], [485, 125], [300, 60], [700, 200], [960, 240]]) {
+      const hitsCta = await page.evaluate(([x, y]) => { const e = document.elementFromPoint(x, y); return !!(e && e.closest('.cta')); }, [x, y]);
+      if (!hitsCta) await page.mouse.click(x, y);
+    }
+    for (const img of (await page.locator('img:not(.wlogo)').all()).slice(0, 6)) {
+      try { if (await img.isVisible() && !(await img.evaluate((e) => !!e.closest('.cta')))) await img.click({ timeout: 800, force: true }); } catch { /* geç */ }
+    }
+    await page.waitForTimeout(300);
+    const stray = await page.evaluate(() => window.__exits.length);
+    if (stray) errs.push(`CTA dışı tıklama siteye yönlendirdi (${stray})`);
+    // Her görünür CTA siteye gitmeli
+    const ctas = await page.locator('.cta:not(#play):not(#again)').all();
+    let clicked = 0;
+    for (const c of ctas) {
+      if (!(await c.isVisible())) continue;
+      const before = await page.evaluate(() => window.__exits.length);
+      try { await c.click({ timeout: 1000, force: true }); } catch { continue; }
+      clicked++;
+      const after = await page.evaluate(() => window.__exits.slice(-1)[0]);
+      if ((await page.evaluate(() => window.__exits.length)) !== before + 1 || after !== 'https://www.watsons.com.tr/') errs.push('CTA yönlendirmedi');
+    }
+    if (!clicked) errs.push('görünür CTA yok');
     if (!ok || errs.length) fail++;
     console.log(`${ok && !errs.length ? '✔' : '✖'} ${id}${errs.length ? '  ' + errs.join(' | ') : ''}${ok ? '' : '  (beklenen durum oluşmadı)'}`);
     await page.close();

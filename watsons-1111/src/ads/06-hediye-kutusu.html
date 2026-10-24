@@ -34,7 +34,7 @@
 .bow::before { left: 0; transform: rotate(-20deg); } .bow::after { right: 0; transform: scaleX(-1) rotate(-20deg); }
 .open .lid { transform: translateY(-150px) translateZ(-40px) rotateX(-120deg) rotateZ(25deg); }
 .open .box { transform: rotateX(-22deg) rotateY(-32deg); }
-.pop { position: absolute; left: -36px; top: -40px; width: 72px; height: 72px; border-radius: 14px; background: #fff; padding: 5px; box-shadow: 0 10px 20px rgba(0, 0, 0, .3); opacity: 0; transform: translate(0, 40px) scale(.3); transition: transform .9s cubic-bezier(.2, 1.4, .4, 1), opacity .3s; z-index: 4; cursor: pointer; }
+.pop { position: absolute; left: -36px; top: -40px; width: 72px; height: 72px; border-radius: 14px; background: #fff; padding: 5px; box-shadow: 0 10px 20px rgba(0, 0, 0, .3); opacity: 0; transform: translate(0, 40px) scale(.3); transition: transform .9s cubic-bezier(.2, 1.4, .4, 1), opacity .3s; z-index: 4; }
 .pop img { width: 100%; height: 100%; object-fit: contain; }
 .open .pop { opacity: 1; }
 .tap { position: absolute; left: 330px; top: 214px; z-index: 3; }
@@ -53,7 +53,7 @@
 </style>
 </head>
 <body>
-<div class="ad" id="ad" data-exit="" data-label="genel">
+<div class="ad" id="ad">
   <div class="snow" id="snow"></div>
   <div class="brand fx">
     <div>{{BADGE}}<h1>Bu 11.11'de <em>hediyen</em> bizden</h1></div>
@@ -90,7 +90,6 @@
     var e = W.el('div', 'pop', '<img src="' + p.img + '" alt="">');
     e._to = 'translate(' + spots[i][0] + 'px,' + spots[i][1] + 'px) rotate(' + (i * 8 - 16) + 'deg)';
     e.style.transitionDelay = (.25 + i * .09) + 's';
-    e.addEventListener('click', function (ev) { ev.stopPropagation(); W.exit(p.url, 'urun_' + p.key); });
     pops.appendChild(e);
   });
   var isOpen = false;

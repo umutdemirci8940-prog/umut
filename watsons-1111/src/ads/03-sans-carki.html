@@ -56,7 +56,7 @@
 </style>
 </head>
 <body>
-<div class="ad" id="ad" data-exit="" data-label="genel">
+<div class="ad" id="ad">
   <div class="rays"></div>
   <div class="brand fx">
     <div>{{BADGE}}<h1>Çarkı çevir, <em>11.11 şansını</em> yakala</h1></div>
@@ -112,7 +112,7 @@
   }
   function result(s) {
     W.$('#rn').textContent = s.name;
-    W.$('#rp').innerHTML = (s.products || []).slice(0, 3).map(function (p) { return '<a data-exit="' + p.url + '" data-label="urun_' + p.key + '"><img src="' + p.img + '" alt=""></a>'; }).join('');
+    W.$('#rp').innerHTML = (s.products || []).slice(0, 3).map(function (p) { return '<a><img src="' + p.img + '" alt=""></a>'; }).join('');
     W.$('#rgo').setAttribute('data-exit', s.url); W.$('#rgo').setAttribute('data-label', 'cark_' + s.key);
     W.$('#ad').classList.add('won');
     var r = W.$('.wheelbox').getBoundingClientRect();

@@ -21,7 +21,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; }
 body { font-family: var(--f); color: #fff; background: var(--night); -webkit-font-smoothing: antialiased; user-select: none; -webkit-user-select: none; }
 img { display: block; -webkit-user-drag: none; user-select: none; }
 button { font: inherit; border: 0; background: none; color: inherit; cursor: pointer; }
-.ad { position: relative; width: 100%; height: 100%; overflow: hidden; cursor: pointer; }
+.ad { position: relative; width: 100%; height: 100%; overflow: hidden; }
 .ad * { transition-timing-function: cubic-bezier(.22, .8, .2, 1); }
 
 /* Logo ve rozet */
@@ -32,7 +32,7 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
 .b1111 span { margin-top: 6px; font-size: 10px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
 
 /* Düğmeler */
-.cta { display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 20px; border-radius: 99px; background: #fff; color: var(--teal-d); font-size: 13px; font-weight: 800; letter-spacing: .02em; box-shadow: 0 8px 20px rgba(0, 0, 0, .22); transition: transform .25s, box-shadow .25s, background .25s; white-space: nowrap; }
+.cta { cursor: pointer; display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 20px; border-radius: 99px; background: #fff; color: var(--teal-d); font-size: 13px; font-weight: 800; letter-spacing: .02em; box-shadow: 0 8px 20px rgba(0, 0, 0, .22); transition: transform .25s, box-shadow .25s, background .25s; white-space: nowrap; }
 .cta::after { content: '›'; font-size: 20px; line-height: 1; margin-top: -2px; }
 .cta:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(0, 0, 0, .3); }
 .cta.pk { background: var(--pink); color: #fff; }
@@ -105,7 +105,7 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
 </style>
 </head>
 <body>
-<div class="ad" data-exit="" data-label="genel">
+<div class="ad">
   <div class="stars"></div><div class="floor"></div>
   <div class="brand fx">
     <div><div class="b1111"><b>11.11</b><span>Büyük İndirim Günü</span></div><h1>11.11'in yıldızları <em>senin etrafında</em> dönüyor</h1></div>
@@ -207,14 +207,12 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
     el.addEventListener('touchstart', down, { passive: true }); el.addEventListener('touchmove', move, { passive: false }); el.addEventListener('touchend', up);
   };
 
-  // Tüm [data-exit] öğeleri tıklamada çıkış yapar; [data-stop] içindekiler yapmaz
+  // Siteye yalnızca CTA düğmeleri (.cta) yönlendirir; reklamın geri kalanına tıklamak sadece etkileşimdir.
+  // Kendi işlevi olan düğmeler (Oyna, Tekrar…) olayı durdurduğu için buraya gelmez.
   document.addEventListener('click', function (e) {
-    var s = e.target.closest('[data-stop]');
-    var x = e.target.closest('[data-exit]');
-    // Durdurma bölgesi çıkış alanının içindeyse (kontroller) çıkış yok; bölge içindeki açık düğme çıkar
-    if (x && (!s || !(x !== s && x.contains(s)))) {
-      e.preventDefault(); W.exit(x.getAttribute('data-exit') || '', x.getAttribute('data-label') || 'cta');
-    }
+    var c = e.target.closest('.cta');
+    if (!c) return;
+    e.preventDefault(); W.exit(c.getAttribute('data-exit') || '', c.getAttribute('data-label') || 'cta');
   });
 
   // Görseller yüklenince başlat (önizlemede boş kare görünmesin)
@@ -271,8 +269,7 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
     e.stopPropagation(); if (moved) return;
     var el = e.target.closest('.it'); if (!el) return;
     var i = els.indexOf(el);
-    if (i === cur) W.exit(items[i].url, 'urun_' + items[i].key);
-    else { auto = false; var d = ((-i * step - ang) % 360 + 540) % 360 - 180; target = ang + d; }
+    if (i !== cur) { auto = false; var d = ((-i * step - ang) % 360 + 540) % 360 - 180; target = ang + d; }
   });
   function go(d) { auto = false; target = Math.round(target / step) * step - d * step; W.track('halka_ok'); }
   W.$('#pv').addEventListener('click', function (e) { e.stopPropagation(); go(-1); });
