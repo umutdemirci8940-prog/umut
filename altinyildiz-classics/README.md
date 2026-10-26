@@ -65,14 +65,14 @@ Bulut ortamının ağı siteye erişemediği için görseller `.github/workflows
 
 | # | Konsept | Etkileşim | Dosya | Zip |
 |---|---|---|---|---|
-| 02 | **Kombin Makinesi** | Kolu aşağı **sürükle** → üst/alt makaralar döner; makarayı **kaydır/tekerlek/ok**; parçayı **kilitle**; 25 kombinden kaçını denediğini sayar | `dist/02-kombin-makinesi/index.html` | ~51 KB |
+| 02 | **Kombin Makinesi** | Kolu aşağı **sürükle** → üst/alt makaralar döner; makarayı **kaydır/tekerlek/ok**; her makaranın altında o an görünen ürüne giden **Satın Al**; 25 kombinden kaçını denediğini sayar | `dist/02-kombin-makinesi/index.html` | ~51 KB |
 | 03 | **Stil Borsası** | Kayan fiyat bandı; risk profili **kaydırıcısı** (Muhafazakâr → Dengeli → Atak) portföyü değiştirir; dağılım çubuğu ve toplam canlı güncellenir; karta gelince çubuktaki payı vurgulanır | `dist/03-stil-borsasi/index.html` | ~48 KB |
 | 04 | **Buğulu Cam** | Kasım soğuğunda buğulanmış camı fare/parmakla **sil**; cam yavaş yavaş yeniden buğulanır; %50 temizlenince "Tarzını Seç: Polar / Sweatshirt" sahnesi açılır, ürün noktaları ve kartlar çıkar | `dist/04-bugulu-cam/index.html` | ~52 KB |
 
 Zip'ler `dist/altinyildiz-classics-<id>.zip`, Google Ads 150 KB sınırının çok altında. Ekran görüntüleri: `preview/<id>/` ve `preview/<id>-ozet.jpg`.
 
 ### Kurgu notları
-- **02 Kombin Makinesi:** Kazak (2), polar (1), sweatshirt (2) × pantolon (5: chino + klasik). Her üst/alt türü eşleşmesi için kısa stil notu ("Cuma ofisinin smart casual cevabı."). Kimse dokunmazsa açılışta kol kendiliğinden çekilir, 6,5 sn'de bir tekrarlar (30 sn sınırı). Makaradaki fotoğrafa tıklamak o ürünün sayfasını açar.
+- **02 Kombin Makinesi:** (Müşteri yorumu sonrası: kombin açılış sayfası olmadığı için "Kombini Keşfet" CTA'sı kaldırıldı, "Kilitle" düğmeleri yerine makaradaki ürüne giden "Satın Al" düğmeleri kondu; boşalan yere siteye götürmeyen "↻ Yeniden Çevir" eklendi.) Kazak (2), polar (1), sweatshirt (2) × pantolon (5: chino + klasik). Her üst/alt türü eşleşmesi için kısa stil notu ("Cuma ofisinin smart casual cevabı."). Kimse dokunmazsa açılışta kol kendiliğinden çekilir, 6,5 sn'de bir tekrarlar (30 sn sınırı). Makaradaki fotoğrafa tıklamak o ürünün sayfasını açar.
 - **03 Stil Borsası:** Finans/ekonomi ilgi alanı için borsa dili. Dağılım yüzdeleri uydurma değil: her parçanın **sitedeki sepet fiyatının portföy toplamına oranı**. Açılışta kaydırıcı üç profili kendiliğinden gezer.
 - **04 Buğulu Cam:** Sitedeki "Polar & Sweatshirt – Tarzını Seç" kampanya fotoğrafı; buğu katmanı aynı fotoğrafın bulanık raster kopyası. Açılışta görünmez bir parmak cama "S" çizer; 11 sn içinde etkileşim olmazsa cam kendiliğinden açılır, böylece etkileşmeyen kullanıcı da marka mesajını görür. "↺ Yeniden buğula" ile tekrar oynanır.
 

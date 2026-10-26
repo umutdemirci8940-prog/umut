@@ -11,9 +11,9 @@ module.exports = {
     lever: 'ÇEK',
     hint: 'Kolu aşağı çekin ya da makaraları kaydırın',
     result: 'Kombininiz',
-    lock: 'Kilitle', locked: 'Kilitli',
+    buy: 'Satın Al',          // her makaranın altında, o an görünen ürünün sayfasına gider
     tried: 'Denenen kombin',
-    cta: 'Kombini Keşfet',
+    again: 'Yeniden Çevir',   // kombin sayfası olmadığı için siteye götürmez, yeni kombin çevirir
   },
   timing: { demoSpin: 2100, idleSpin: 6500, maxAutoplay: 30000 },
   tops: [

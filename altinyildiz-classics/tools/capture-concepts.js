@@ -34,8 +34,12 @@ const SCENARIOS = {
     await p.mouse.move(k.x + 14, k.y + 150, { steps: 4 }); await p.mouse.up();
     await shot('05-makaralar-donuyor', 500);
     await p.mouse.move(700, 240); await shot('06-yeni-kombin', 1700);
-    await p.click('#l0'); await p.hover('#r1'); await p.click('#r1 .dn'); await shot('07-kilit-ve-ok', 600);
-    await p.click('#i0'); await p.click('#i1'); await p.click('#cta');
+    await p.hover('#r1'); await p.click('#r1 .dn'); await shot('07-ok-ile-degistirme', 600);
+    await p.hover('#l0'); await shot('08-satin-al', 300);
+    await p.click('#l0'); await p.click('#l1');                       // Satın Al → makaradaki ürünler
+    await p.click('#again'); await shot('09-yeniden-cevir', 2300);   // siteye götürmez, yeni kombin
+    const opened = await p.evaluate(() => window.__opened.length);
+    if (opened !== 2) throw new Error('Yeniden Çevir siteye yönlendirmemeli; açılan: ' + opened);
   },
   '03-stil-borsasi': async (p, shot) => {
     await shot('01-acilis', 900);
