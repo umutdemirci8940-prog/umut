@@ -1,8 +1,7 @@
 'use strict';
 /** Konsept 2 – Kombin Makinesi: kolu çek, üst ve alt makaraları dönsün; 5 × 5 = 25 kombin. */
 const SITE = 'https://www.altinyildizclassics.com';
-const UTM = 'utm_source=display&utm_medium=richmedia&utm_campaign=kasim-kombin-makinesi-970x250';
-const u = (p) => `${SITE}/${p}?${UTM}`;
+const u = (p) => `${SITE}/${p}`; // yönlendirmelerde UTM kullanılmaz
 module.exports = {
   copy: {
     eyebrow: 'Kasım Kombin Makinesi',

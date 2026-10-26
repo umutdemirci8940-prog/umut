@@ -5,8 +5,9 @@
  * Ürünler Kombin Makinesi (02) ile aynıdır.
  */
 const base = require('../02-kombin-makinesi/data.js');
-const UTM_OLD = 'kasim-kombin-makinesi-970x250', UTM_NEW = 'kasim-salla-kombin-320x480';
-const fix = (o) => JSON.parse(JSON.stringify(o).split(UTM_OLD).join(UTM_NEW).split('utm_medium=richmedia').join('utm_medium=mobile-richmedia'));
+// 02 artık UTM'siz adres veriyor; bu konsept kendi UTM'ini ekler.
+const UTM = 'utm_source=display&utm_medium=mobile-richmedia&utm_campaign=kasim-salla-kombin-320x480';
+const fix = (list) => list.map((p) => Object.assign({}, p, { url: p.url + '?' + UTM, cat: p.cat && p.cat + '?' + UTM }));
 module.exports = {
   size: { w: 320, h: 480 },
   copy: {
