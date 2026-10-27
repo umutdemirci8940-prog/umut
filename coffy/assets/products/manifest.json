@@ -1,0 +1,130 @@
+[
+ {
+  "key": "americano",
+  "name": "Americano",
+  "file": "assets/products/americano.webp",
+  "w": 147,
+  "h": 220,
+  "source": "https://coffy.com.tr/menu/"
+ },
+ {
+  "key": "cold-brew",
+  "name": "Cold Brew",
+  "file": "assets/products/cold-brew.webp",
+  "w": 115,
+  "h": 220,
+  "source": "https://coffy.com.tr/menu/"
+ },
+ {
+  "key": "cool-lime-038-mango",
+  "name": "Cool Lime & Mango",
+  "file": "assets/products/cool-lime-038-mango.webp",
+  "w": 113,
+  "h": 220,
+  "source": "https://coffy.com.tr/menu/"
+ },
+ {
+  "key": "cool-lime",
+  "name": "Cool Lime",
+  "file": "assets/products/cool-lime.webp",
+  "w": 118,
+  "h": 220,
+  "source": "https://coffy.com.tr/menu/"
+ },
+ {
+  "key": "filtre-kahve",
+  "name": "Filtre Kahve",
+  "file": "assets/products/filtre-kahve.webp",
+  "w": 148,
+  "h": 220,
+  "source": "https://coffy.com.tr/menu/"
+ },
+ {
+  "key": "iced-americano",
+  "name": "Iced Americano",
+  "file": "assets/products/iced-americano.webp",
+  "w": 113,
+  "h": 220,
+  "source": "https://coffy.com.tr/menu/"
+ },
+ {
+  "key": "iced-latte",
+  "name": "Iced Latte",
+  "file": "assets/products/iced-latte.webp",
+  "w": 114,
+  "h": 220,
+  "source": "https://coffy.com.tr/menu/"
+ },
+ {
+  "key": "iced-matcha",
+  "name": "Iced Matcha",
+  "file": "assets/products/iced-matcha.webp",
+  "w": 117,
+  "h": 220,
+  "source": "https://coffy.com.tr/menu/"
+ },
+ {
+  "key": "iced-pumpkin-latte",
+  "name": "Iced Pumpkin Latte",
+  "file": "assets/products/iced-pumpkin-latte.webp",
+  "w": 100,
+  "h": 220,
+  "source": "https://coffy.com.tr/menu/"
+ },
+ {
+  "key": "iced-vanilla-matcha",
+  "name": "Iced Vanilla Matcha",
+  "file": "assets/products/iced-vanilla-matcha.webp",
+  "w": 110,
+  "h": 220,
+  "source": "https://coffy.com.tr/menu/"
+ },
+ {
+  "key": "latte",
+  "name": "Latte",
+  "file": "assets/products/latte.webp",
+  "w": 149,
+  "h": 220,
+  "source": "https://coffy.com.tr/menu/"
+ },
+ {
+  "key": "matcha",
+  "name": "Matcha Latte",
+  "file": "assets/products/matcha.webp",
+  "w": 143,
+  "h": 220,
+  "source": "https://coffy.com.tr/menu/"
+ },
+ {
+  "key": "pumpkin-latte",
+  "name": "Pumpkin Latte",
+  "file": "assets/products/pumpkin-latte.webp",
+  "w": 119,
+  "h": 220,
+  "source": "https://coffy.com.tr/menu/"
+ },
+ {
+  "key": "strawberry-lemonade",
+  "name": "Strawberry Lemonade",
+  "file": "assets/products/strawberry-lemonade.webp",
+  "w": 112,
+  "h": 220,
+  "source": "https://coffy.com.tr/menu/"
+ },
+ {
+  "key": "tereyagli-kruvasan",
+  "name": "Tereyağlı Kruvasan",
+  "file": "assets/products/tereyagli-kruvasan.webp",
+  "w": 250,
+  "h": 150,
+  "source": "https://coffy.com.tr/menu/"
+ },
+ {
+  "key": "vanilla-matcha",
+  "name": "Vanilla Matcha",
+  "file": "assets/products/vanilla-matcha.webp",
+  "w": 147,
+  "h": 220,
+  "source": "https://coffy.com.tr/menu/"
+ }
+]

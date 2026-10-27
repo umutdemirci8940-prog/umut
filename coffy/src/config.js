@@ -8,11 +8,8 @@ module.exports = {
   brand: {
     name: 'Coffy',
     slogan: 'Çok da Coffy',
-    // Resmi logo SVG'si gelince buraya yapıştırın (tek renk, currentColor kullanan SVG önerilir).
-    // Boş bırakılırsa bannerlar "coffy" yazı logosunu kullanır.
-    logoSvg: '',
-    // Markanın logosu (beyaz, şeffaf zemin). Derleme sırasında dosyaya gömülür.
-    logo: 'assets/logo-white.png',
+    // coffy.com.tr'deki resmi vektör logo; derleme sırasında satır içi SVG olarak gömülür (renk: currentColor).
+    logo: 'assets/coffy-logo.svg',
     hashtag: '#ÇokDaCoffy',
   },
 
@@ -39,7 +36,8 @@ module.exports = {
   exits: {
     app: 'https://www.coffy.com.tr/',
     stores: 'https://www.coffy.com.tr/',
-    directions: 'https://www.google.com/maps/dir/?api=1&destination={lat},{lng}',
+    // Google Haritalar'da "Coffy" araması: kullanıcının konumuna göre en yakın şubeleri listeler.
+    directions: 'https://www.google.com/maps/search/?api=1&query=Coffy',
   },
 
   // Konum: sırasıyla MRAID getLocation → ad server makroları → ?lat=&lon= parametresi → fallback.
@@ -51,25 +49,22 @@ module.exports = {
     walkMetersPerMin: 80,
   },
 
-  // ÖRNEK şube verisi – gerçek Coffy şube feed'i (ad, koordinat, saat) ile değiştirilecek.
-  // sample: true iken bannerlarda küçük "örnek veri" etiketi görünür.
-  storesSample: true,
-  stores: [
-    { name: 'Coffy Kadıköy', area: 'Kadıköy', lat: 40.9906, lng: 29.0274, hours: '07:30–23:00' },
-    { name: 'Coffy Moda', area: 'Kadıköy', lat: 40.9840, lng: 29.0262, hours: '08:00–00:00' },
-    { name: 'Coffy Üsküdar', area: 'Üsküdar', lat: 41.0256, lng: 29.0157, hours: '07:30–23:00' },
-    { name: 'Coffy Beşiktaş', area: 'Beşiktaş', lat: 41.0428, lng: 29.0075, hours: '07:00–00:00' },
-    { name: 'Coffy Mecidiyeköy', area: 'Şişli', lat: 41.0672, lng: 28.9937, hours: '07:30–22:30' },
-    { name: 'Coffy Bakırköy', area: 'Bakırköy', lat: 40.9805, lng: 28.8722, hours: '08:00–23:00' },
-    { name: 'Coffy Kızılay', area: 'Çankaya', lat: 39.9208, lng: 32.8541, hours: '07:30–23:00' },
-    { name: 'Coffy Alsancak', area: 'Konak', lat: 38.4374, lng: 27.1432, hours: '08:00–00:00' },
-  ],
+  // Şubeler: coffy.com.tr/subeler sayfasındaki gerçek liste (ad, enlem, boylam, ilçe/il).
+  // Derleme sırasında assets/stores.json'dan yüklenir.
+  storesFile: 'assets/stores.json',
 
-  // Menü önerileri (Ruh Hali konsepti). İçecek adları örnektir; güncel menüyle eşleştirilecek.
+  // Ürünler: coffy.com.tr/menu görselleri, arka planı silinmiş (assets/products). Banner boyutu için 6 ürün gömülür.
+  productKeys: ['iced-latte', 'latte', 'iced-americano', 'cold-brew', 'pumpkin-latte', 'strawberry-lemonade'],
+  hero: 'iced-latte',
+  ring: ['iced-latte', 'pumpkin-latte', 'cold-brew', 'strawberry-lemonade', 'latte', 'iced-americano'],
+  // Video yer tutucusunda kullanılan gerçek Coffy bardağı fotoğrafı (coffy.com.tr ana sayfa)
+  photoFile: 'assets/photos/eller.webp',
+
+  // Ruh hali önerileri (07): menüdeki gerçek ürünler
   drinks: {
-    sleepy: { name: 'Double Shot Americano', tone: '#3a1f12' },
-    stressed: { name: 'Iced Latte', tone: '#b98a5e' },
-    social: { name: 'Caramel Frappé', tone: '#d39a52' },
-    focus: { name: 'Flat White', tone: '#8a5a36' },
+    sleepy: 'iced-americano',
+    stressed: 'iced-latte',
+    social: 'strawberry-lemonade',
+    focus: 'cold-brew',
   },
 };

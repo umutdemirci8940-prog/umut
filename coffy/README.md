@@ -5,7 +5,8 @@ Coffy “Çok da Coffy” kampanyası için lansman/sürdürme planı ve **10 in
 - **Sunum:** `release/index.html` tek dosyadır. Splash Digital “Çalışmalar” şablonundaki gibi her çalışma tarayıcı penceresinde (970×250) ve telefon çerçevesinde (320×480) birlikte oynar. Ekrana gelince kendiliğinden başlar, “Tekrar oynat” ile baştan oynar.
 - **Yükleme dosyaları:** `dist/<no>-<ad>/index.html` (iki boyut aynı dosyada) ve `dist/zip/*.zip`.
 - **Plan:** [`LANSMAN-PLANI.md`](LANSMAN-PLANI.md).
-- **Marka:** Logo `assets/logo-original.png` dosyasından alınmıştır (beyaz/siyah sürümler aynı klasörde). Kimlik siyah-beyaz, başlıklar logodaki gibi dar ve büyük harfli; vurgu rengi kahve tonudur.
+- **Marka ve ürünler:** Logo coffy.com.tr’deki resmi vektör logodur (`assets/coffy-logo.svg`). Ürün görselleri coffy.com.tr/menu’deki orijinal fotoğraflardan arka planı yapay zekâ modeliyle (rembg / isnet) silinerek hazırlandı (`assets/products/`). Şube listesi coffy.com.tr/subeler’deki 174 gerçek şubedir (`assets/stores.json`). Video yer tutucusunda ana sayfadaki gerçek Coffy bardağı fotoğrafı kullanılır.
+- **3B:** Kapanış kartında sürüklenebilir 3B ürün karuseli, 3B dönen kartlar (01, 04, 09), 3B eğimli şehir haritası ve ayakta duran pinler (06, 10), 3B ürün makarası (07), harekete göre dönen ürünler (05, 08).
 
 | # | Çalışma | Mekanik |
 |---|---|---|
@@ -38,8 +39,8 @@ Coffy “Çok da Coffy” kampanyası için lansman/sürdürme planı ve **10 in
 
 ## Teknik
 
-- Her çalışma tek dosya (satır içi CSS/JS, logo gömülü) ve **~45 KB** (Google Ads sınırı 150 KB). Fontlar Google Fonts’tan gelir (*Barlow Condensed* + *Manrope*).
-- **Tıklama:** Yalnızca CTA butonları (Yol tarifi al, Sipariş ver) dışarı çıkar; logo, zemin ve oyun alanı tıklaması çıkış yapmaz. Adreslerde UTM yoktur.
+- Her çalışma tek dosya (satır içi CSS/JS; logo, 6 ürün görseli, fotoğraf ve şube listesi gömülü) ve **~117 KB** (Google Ads sınırı 150 KB). Fontlar Google Fonts’tan gelir (*Barlow Condensed* + *Manrope*).
+- **Tıklama:** Yalnızca CTA butonları dışarı çıkar; logo, zemin ve oyun alanı tıklaması çıkış yapmaz. Adreslerde UTM yoktur. “Yol tarifi al” Google Haritalar’da **“Coffy”** araması açar (`https://www.google.com/maps/search/?api=1&query=Coffy`); Haritalar kullanıcının konumuna göre en yakın şubeleri listeler. “Sipariş ver” coffy.com.tr’ye gider.
 - **Çıkışlar:** `window.clickTag` tanımlıysa o kullanılır (Google Ads / CM360). `Enabler` varsa `Enabler.exitOverride(<ad>, url)` çağrılır (Studio; çıkış adları `app`, `directions`, `stores`). MRAID varsa `mraid.open` kullanılır. Hiçbiri yoksa `config.exits` adresleri açılır.
 - **Ölçüm:** Etkileşimler `track()` ile `Enabler.counter`’a ve üst pencereye (`postMessage`) gönderilir. Sunum sayfası her kartın altında bu olayları canlı gösterir.
 - `prefers-reduced-motion` desteklenir; düğmeler klavyeyle odaklanabilir.
@@ -50,13 +51,13 @@ Coffy “Çok da Coffy” kampanyası için lansman/sürdürme planı ve **10 in
 
 | Alan | Şu an | Yapılacak |
 |---|---|---|
-| `brand.logo` | Gönderilen logo (`assets/logo-white.png`) | Vektör (SVG) logo gelirse `brand.logoSvg` |
-| Ürün görseli | Çizim bardak | Orijinal ürün fotoğrafları (coffy.com.tr) |
+| `brand.logo` | coffy.com.tr resmi SVG logo | — |
+| `productKeys` | 6 gerçek ürün (Iced Latte, Latte, Iced Americano, Cold Brew, Pumpkin Latte, Strawberry Lemonade) | Kampanya dönemine göre ürün seçimi |
 | `:root` renkleri (`src/base.css`) | Siyah / beyaz / kahve vurgusu | Kurumsal renk kodları |
 | `video.src`, `video.poster` | Animasyonlu yer tutucu | CDN’deki 6 sn kesit |
-| `stores` (`storesSample: true`) | 8 örnek şube | Coffy şube feed’i; `storesSample: false` yapılınca “örnek şube verisi” etiketi kalkar |
+| `storesFile` | coffy.com.tr/subeler (174 şube) | Yeni şubeler için listeyi yenilemek yeterli |
 | `offer` | `COKDACOFFY` örnek kod | Gerçek teklif ve kanal bazlı kodlar |
-| `drinks` | Örnek içecek adları | Güncel menü |
+| `drinks` | Ruh hali → menüdeki gerçek ürün | — |
 | `exits` | coffy.com.tr (UTM yok) | Uygulama derin bağlantısı / kampanya sayfası |
 
 ## Derleme

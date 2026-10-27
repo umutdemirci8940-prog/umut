@@ -1,9 +1,12 @@
-/* "Çok da Coffy" ortak banner motoru (tarayıcı). C = config, AD = {id,w,h,name}, CUPT = bardak SVG şablonu. */
+/* "Çok da Coffy" ortak banner motoru (tarayıcı). C = config (ürün görselleri, şubeler gömülü), AD = {id,name}. */
 var $ = function (s, r) { return (r || document).querySelector(s); };
 var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
 var Q = (function () { try { return new URLSearchParams(location.search); } catch (e) { return { get: function () { return null; } }; } })();
 var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
 var later = function (fn, ms) { return setTimeout(fn, ms); };
+var START = Date.now();
+/** Otomatik animasyonlar 30 sn'de durur (Google Ads kuralı); kullanıcı etkileşimi her zaman çalışır. */
+function animating() { return Date.now() - START < 29000; }
 
 /* ---------- düzen: aynı dosya 970x250 (w) ve 320x480 (m) alanında çalışır ---------- */
 function isM() { return window.innerWidth < 640; }
@@ -18,7 +21,7 @@ function track(ev, d) {
   try { parent !== window && parent.postMessage({ coffy: 1, ad: AD.id, ev: ev, d: d || null }, '*'); } catch (e) { /* yok */ }
 }
 
-/* ---------- çıkış: clickTag → Studio → MRAID → yeni sekme ---------- */
+/* ---------- çıkış: clickTag → Studio → MRAID → yeni sekme. Yalnızca [data-exit] (CTA) butonları çağırır. ---------- */
 function exit(name, url) {
   url = url || C.exits.app;
   track('exit_' + name);
@@ -30,11 +33,7 @@ function exit(name, url) {
 function bindExits(root) {
   $$('[data-exit]', root).forEach(function (b) {
     if (b._bound) return; b._bound = 1;
-    b.addEventListener('click', function (e) {
-      e.stopPropagation();
-      var n = b.getAttribute('data-exit');
-      exit(n, n === 'directions' ? dirUrl() : C.exits[n]);
-    });
+    b.addEventListener('click', function (e) { e.stopPropagation(); var n = b.getAttribute('data-exit'); exit(n, C.exits[n]); });
   });
 }
 
@@ -57,21 +56,57 @@ function clock() {
   var d = new Date(); return ('0' + d.getHours()).slice(-2) + ':' + ('0' + d.getMinutes()).slice(-2);
 }
 
-/* ---------- bardak ---------- */
-var _cupN = 0;
-function cup(fill, tone, cls) {
-  var id = AD.id + 'c' + (++_cupN);
-  return CUPT.replace(/__ID__/g, id).replace('__STYLE__', '--fill:' + (fill == null ? .8 : fill) + (tone ? ';--tone:' + tone : '')).replace('__CLS__', cls || '');
+/* ---------- ürünler (coffy.com.tr menüsündeki orijinal görseller, dekupe) ---------- */
+function P(key) { return C.products[key] || C.products[C.hero]; }
+function prodImg(key, cls) { var p = P(key); return '<img class="prod ' + (cls || '') + '" src="' + p.src + '" alt="' + esc(p.name) + '" draggable="false">'; }
+/** Dolum efektli ürün: soluk görüntü üzerine renkli görüntü alttan yukarı dolar (--fill 0..1). */
+function cup(fill, key, cls) {
+  return '<span class="pf ' + (cls || '') + '" style="--fill:' + (fill == null ? 1 : fill) + '">' + prodImg(key, 'ghost') + prodImg(key, 'full') + '<i class="lvl"></i></span>';
 }
-function setFill(el, v) { (el.classList && el.classList.contains('cup') ? el : $('.cup', el)).style.setProperty('--fill', Math.max(0, Math.min(1, v))); }
+function setFill(el, v) { var t = el.classList && el.classList.contains('pf') ? el : $('.pf', el); t.style.setProperty('--fill', Math.max(0, Math.min(1, v))); }
 
 function slogan() {
   return '<div class="slogan"><span class="s1">Çok da</span><span class="s2">Coffy<i>.</i>' +
     '<svg class="sw" viewBox="0 0 200 20" preserveAspectRatio="none"><path d="M4 14 C 50 4, 120 2, 196 10"/></svg></span></div>';
 }
-function logo() {
-  if (C.brand.logoImg) return '<span class="logo"><img src="' + C.brand.logoImg + '" alt="Coffy"></span>';
-  return C.brand.logoSvg ? '<span class="logo">' + C.brand.logoSvg + '</span>' : '<span class="logo">COFFY</span>';
+function logo() { return '<span class="logo">' + (C.brand.logoSvg || 'COFFY') + '</span>'; }
+
+/* ---------- 3B: ürün karuseli (her ürün kameraya bakar, derinliğe göre ölçek/ışık) ---------- */
+function ring(host, keys, o) {
+  o = o || {};
+  var n = keys.length, items, a = o.start || 0, v = o.speed || .45, drag = false, lx = 0, vel = 0, raf, cap;
+  host.classList.add('ring');
+  host.innerHTML = keys.map(function (k) { return '<div class="ri" data-k="' + k + '">' + prodImg(k) + '</div>'; }).join('') + '<i class="floor"></i><b class="cap"></b>';
+  items = $$('.ri', host); cap = $('.cap', host);
+  function draw() {
+    var R = host.clientWidth * (o.spread || .36), best = -2, bi = 0;
+    items.forEach(function (it, i) {
+      var t = a + i * 2 * Math.PI / n, x = Math.sin(t) * R, z = Math.cos(t), d = (z + 1) / 2;
+      it.style.transform = 'translateX(-50%) translateX(' + x + 'px) translateZ(' + (z * 80) + 'px) rotateY(' + (-Math.sin(t) * 28) + 'deg) scale(' + (.5 + .5 * d) + ')';
+      it.style.zIndex = Math.round(d * 100); it.style.opacity = .25 + .75 * d; it.style.filter = 'brightness(' + (.45 + .55 * d) + ')';
+      if (z > best) { best = z; bi = i; }
+    });
+    var nm = P(keys[bi]).name; if (cap.textContent !== nm) cap.textContent = nm;
+  }
+  function tick() {
+    if (!drag) { if (animating() || Math.abs(vel) > .0005) { a += (animating() ? v * .016 : 0) + vel; vel *= .94; } }
+    draw(); raf = requestAnimationFrame(tick);
+  }
+  host.addEventListener('pointerdown', function (e) { drag = true; lx = e.clientX; vel = 0; host.setPointerCapture && host.setPointerCapture(e.pointerId); track('ring_drag'); });
+  host.addEventListener('pointermove', function (e) { if (!drag) return; var d = (e.clientX - lx) * .012; a += d; vel = d; lx = e.clientX; });
+  host.addEventListener('pointerup', function () { drag = false; });
+  tick();
+  return { stop: function () { cancelAnimationFrame(raf); } };
+}
+
+/* ---------- 3B: işaretçiye göre eğim (fare / dokunma) ---------- */
+function tilt(el, max) {
+  max = max || 16; var ad = $('#ad');
+  ad.addEventListener('pointermove', function (e) {
+    var r = ad.getBoundingClientRect(), px = (e.clientX - r.left) / r.width - .5, py = (e.clientY - r.top) / r.height - .5;
+    el.style.setProperty('--ry', (px * max * 2).toFixed(1) + 'deg'); el.style.setProperty('--rx', (-py * max).toFixed(1) + 'deg');
+  });
+  ad.addEventListener('pointerleave', function () { el.style.setProperty('--ry', '0deg'); el.style.setProperty('--rx', '0deg'); });
 }
 
 /* ---------- parçacık patlaması ---------- */
@@ -88,7 +123,7 @@ function burst(host, n, spread) {
   host.appendChild(b); later(function () { b.remove(); }, 1600);
 }
 
-/* ---------- konum ve en yakın şube ---------- */
+/* ---------- konum ve en yakın şube (coffy.com.tr/subeler verisi) ---------- */
 var GEO = null;
 function hav(a, b) {
   var R = 6371000, t = Math.PI / 180, dLa = (b.lat - a.lat) * t, dLo = (b.lng - a.lng) * t;
@@ -103,32 +138,35 @@ function locate() {
   if (!u && Q.get('lat')) { u = { lat: +Q.get('lat'), lng: +Q.get('lon') }; src = 'param'; }
   if (!u) u = { lat: C.geo.fallback.lat, lng: C.geo.fallback.lng };
   var list = C.stores.map(function (s) {
-    var m = hav(u, s); return { name: s.name, area: s.area, lat: s.lat, lng: s.lng, hours: s.hours, m: m, min: Math.max(1, Math.round(m / C.geo.walkMetersPerMin)) };
+    var m = hav(u, s); return { name: s.name, area: s.area, city: s.city, lat: s.lat, lng: s.lng, m: m, min: Math.max(1, Math.round(m / C.geo.walkMetersPerMin)) };
   }).sort(function (a, b) { return a.m - b.m; });
   GEO = { user: u, src: src, stores: list, near: list[0] };
   track('geo_' + src);
   return GEO;
 }
-function fmtDist(m) { return m < 1000 ? Math.round(m / 10) * 10 + '\u00a0m' : (m / 1000).toFixed(1).replace('.', ',') + '\u00a0km'; } // birim sayıdan ayrılmasın
-function dirUrl() { var s = locate().near; return C.exits.directions.replace('{lat}', s.lat).replace('{lng}', s.lng); }
+function fmtDist(m) { return m < 1000 ? Math.round(m / 10) * 10 + ' m' : (m / 1000).toFixed(1).replace('.', ',') + ' km'; } // birim sayıdan ayrılmasın
+function place(s) { return [s.area, s.city].filter(Boolean).join(' / '); }
+/** Konum reklam ağından gelmediyse (önizleme) varsayılan bölge kullanıldığını belirtir. */
+function geoNote() { return locate().src === 'fallback' ? ' · <i class="smp">örnek konum: ' + esc(C.geo.fallback.area) + '</i>' : ''; }
 var PIN = '<svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>';
 function storeRow() {
   var s = locate().near;
-  return '<div class="store"><span class="pinw">' + PIN + '</span><span><b>' + esc(s.name) + '</b><small>' + s.min + ' dk yürüme · ' + esc(s.hours) + smp() + '</small></span><span class="dist">' + fmtDist(s.m) + '</span></div>';
+  return '<div class="store"><span class="pinw">' + PIN + '</span><span><b>' + esc(s.name) + '</b><small>' + s.min + ' dk yürüme' + geoNote() + '</small></span><span class="dist">' + fmtDist(s.m) + '</span></div>';
 }
-/** Şube verisi örnekse şube bilgisinin yanına küçük not ekler. */
-function smp() { return C.storesSample ? ' · <i class="smp">örnek veri</i>' : ''; }
 
-/* ---------- bitiş kartı (mobil) ---------- */
+/* ---------- bitiş kartı: slogan + 3B ürün karuseli + şube + CTA ---------- */
 function endcard(el, o) {
   o = o || {};
+  var keys = o.keys || C.ring;
+  if (o.first) keys = [o.first].concat(keys.filter(function (k) { return k !== o.first; }));
   el.innerHTML = '<div class="end">' + (o.kicker ? '<div class="kicker k">' + o.kicker + '</div>' : '') + slogan() +
-    (o.cup === false ? '' : cup(o.fill == null ? .85 : o.fill, o.tone)) +
+    '<div class="er"></div>' +
     (o.lead ? '<p class="lead">' + o.lead + '</p>' : '') +
     '<div class="ctas">' + (o.store === false ? '' : storeRow()) +
     '<button class="btn pulse" data-exit="directions"><span class="pin">' + PIN + '</span>' + (o.cta || 'Yol tarifi al') + '</button>' +
     '<button class="btn ghost" data-exit="app">' + (o.cta2 || 'Uygulamadan sipariş ver') + '</button></div></div>';
   show(el); bindExits(el);
+  ring($('.er', el), keys, { spread: isM() ? .34 : .4 });
   requestAnimationFrame(function () { $('.end', el).classList.add('in'); });
   track('endcard');
 }
@@ -136,10 +174,11 @@ function endcard(el, o) {
 /* ---------- video aşaması ---------- */
 var SND_ON = '<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>';
 var SND_OFF = '<svg viewBox="0 0 24 24"><path d="M16.5 12A4.5 4.5 0 0 0 14 8v2.2l2.4 2.4.1-.6zM19 12c0 .9-.2 1.8-.5 2.6l1.5 1.5A8.9 8.9 0 0 0 21 12a9 9 0 0 0-7-8.8v2.1A7 7 0 0 1 19 12zM4.3 3 3 4.3 7.7 9H3v6h4l5 5v-6.7l4.3 4.3c-.7.5-1.4.9-2.3 1.2v2a9 9 0 0 0 3.7-1.8L19.7 21 21 19.7 4.3 3zM12 4 9.9 6.1 12 8.2V4z"/></svg>';
+/** Ana video gelene kadar: coffy.com.tr'deki gerçek Coffy bardağı fotoğrafı üzerinde kinetik tipografi. */
 function placeholder(loop) {
-  return '<div class="vph' + (loop ? ' loop' : '') + '"><div class="vph-bg"></div><div class="vph-grain"></div>' +
+  return '<div class="vph' + (loop ? ' loop' : '') + '"><div class="vph-ph" style="background-image:url(' + C.photo + ')"></div><div class="vph-sh"></div>' +
     '<div class="vph-w w1">Ders <em>09:00</em>’da.</div><div class="vph-w w2">Toplantı <em>09:01</em>’de.</div><div class="vph-w w3">Peki sen?</div>' +
-    '<div class="vph-end">' + cup(.82) + slogan() + '</div><div class="vph-tag">ANA VİDEO · YER TUTUCU</div></div>';
+    '<div class="vph-end">' + prodImg(C.hero, 'vp') + slogan() + '</div><div class="vph-tag">ANA VİDEO · YER TUTUCU</div></div>';
 }
 function playVideo(host, done, opt) {
   opt = opt || {};
@@ -187,16 +226,25 @@ function idle(ms, fn) {
   return off;
 }
 
-/* ---------- stilize harita ---------- */
+/* ---------- 3B eğimli şehir haritası (yollar, park, su; kuşbakışı perspektif) ---------- */
 function mapBg(w, h) {
   var s = 7, rnd = function () { s = (s * 9301 + 49297) % 233280; return s / 233280; }, o = [];
-  o.push('<rect width="' + w + '" height="' + h + '" fill="#26170f"/>');
-  o.push('<path d="M0 ' + h * .78 + ' C ' + w * .25 + ' ' + h * .7 + ', ' + w * .35 + ' ' + h + ', ' + w * .6 + ' ' + h * 1.02 + ' L0 ' + h + 'Z" fill="#1c2630"/>');
-  o.push('<rect x="' + w * .62 + '" y="' + h * .12 + '" width="' + w * .22 + '" height="' + h * .16 + '" rx="14" fill="#2c3220"/>');
-  for (var i = 0; i < 9; i++) { var y = (i + .3 + rnd() * .4) * h / 9; o.push('<path d="M-10 ' + y + ' L' + (w + 10) + ' ' + (y + (rnd() - .5) * 30) + '" stroke="#3a2519" stroke-width="' + (i % 3 ? 3 : 7) + '"/>'); }
-  for (var j = 0; j < 7; j++) { var x = (j + .3 + rnd() * .4) * w / 7; o.push('<path d="M' + x + ' -10 L' + (x + (rnd() - .5) * 40) + ' ' + (h + 10) + '" stroke="#3a2519" stroke-width="' + (j % 3 ? 3 : 7) + '"/>'); }
-  o.push('<path d="M-10 ' + h * .2 + ' L' + (w + 10) + ' ' + h * .65 + '" stroke="#4a2f20" stroke-width="10"/>');
+  o.push('<rect width="' + w + '" height="' + h + '" fill="#1d1d1d"/>');
+  o.push('<path d="M0 ' + h * .78 + ' C ' + w * .25 + ' ' + h * .7 + ', ' + w * .35 + ' ' + h + ', ' + w * .6 + ' ' + h * 1.02 + ' L0 ' + h + 'Z" fill="#1a2c3b"/>');
+  o.push('<rect x="' + w * .62 + '" y="' + h * .12 + '" width="' + w * .22 + '" height="' + h * .16 + '" rx="14" fill="#22341f"/>');
+  for (var k = 0; k < 40; k++) { var bx = rnd() * w, by = rnd() * h; o.push('<rect x="' + bx + '" y="' + by + '" width="' + (14 + rnd() * 26) + '" height="' + (10 + rnd() * 20) + '" rx="2" fill="#2a2a2a"/>'); }
+  for (var i = 0; i < 9; i++) { var y = (i + .3 + rnd() * .4) * h / 9; o.push('<path d="M-10 ' + y + ' L' + (w + 10) + ' ' + (y + (rnd() - .5) * 30) + '" stroke="#474747" stroke-width="' + (i % 3 ? 3 : 7) + '"/>'); }
+  for (var j = 0; j < 7; j++) { var x = (j + .3 + rnd() * .4) * w / 7; o.push('<path d="M' + x + ' -10 L' + (x + (rnd() - .5) * 40) + ' ' + (h + 10) + '" stroke="#474747" stroke-width="' + (j % 3 ? 3 : 7) + '"/>'); }
+  o.push('<path d="M-10 ' + h * .2 + ' L' + (w + 10) + ' ' + h * .65 + '" stroke="#5c5c5c" stroke-width="10"/>');
   return '<svg class="map" viewBox="0 0 ' + w + ' ' + h + '" width="' + w + '" height="' + h + '" preserveAspectRatio="xMidYMid slice">' + o.join('') + '</svg>';
+}
+/** 3B düzlemdeki bir işaretin (anchor) host içindeki ekran konumu; pinler düz katmanda buraya konur (her zaman görünür). */
+function screenPos(anchor, host) { var a = anchor.getBoundingClientRect(), h = host.getBoundingClientRect(); return { x: a.left + a.width / 2 - h.left, y: a.top + a.height / 2 - h.top }; }
+/** 3B düzlemdeki öğeyi, ekranda istenen yüksekliğe (sy) denk gelecek düzlem konumuna yerleştirir (ikili arama). */
+function planeY(el, host, sy, ph) {
+  var lo = 0, hi = ph;
+  for (var i = 0; i < 16; i++) { var mid = (lo + hi) / 2; el.style.top = mid + 'px'; if (screenPos(el, host).y < sy) lo = mid; else hi = mid; }
+  el.style.top = (lo + hi) / 2 + 'px'; return (lo + hi) / 2;
 }
 /** Şubeyi kullanıcıya göre ekrana yerleştirir (yön gerçek, mesafe ölçeklenir). */
 function project(u, s, cx, cy, r) {

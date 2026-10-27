@@ -36,9 +36,9 @@ const FLOWS = {
   },
   '05': async (p) => { await skip(p); await p.click('#start', { force: true }); await p.waitForSelector('#r.on', { timeout: 16000 }); await p.click('#claim', { force: true }); await p.waitForSelector('#e.on .end'); },
   '06': async (p) => { await skip(p); await p.waitForSelector('#sheet.on'); },
-  '07': async (p) => { await skip(p); await p.click('.tile[data-k="focus"]'); await p.waitForSelector('#e.on .end', { timeout: 5000 }); const k = await p.textContent('#e .kicker'); if (!/flat white/i.test(k)) throw new Error('öneri yanlış: ' + k); },
+  '07': async (p) => { await skip(p); await p.click('.tile[data-k="focus"]'); await p.waitForSelector('#e.on .end', { timeout: 5000 }); const k = await p.textContent('#e .kicker'); if (!/cold brew/i.test(k)) throw new Error('öneri yanlış: ' + k); },
   '08': async (p) => { await p.waitForTimeout(500); await drag(p, '#sl', [[2, 18], [150, 18], [300, 18]]); await p.waitForSelector('.p8.done'); },
-  '09': async (p) => { await skip(p); await p.click('.pn[data-i="1"]'); await p.waitForSelector('.pn[data-i="1"].done'); },
+  '09': async (p) => { await skip(p); await p.click('.pn[data-i="1"]'); await p.waitForSelector('.pn[data-i="1"].on'); },
   '10': async (p) => { await skip(p); await p.click('.it[data-i="2"]'); await p.waitForSelector('.it[data-i="2"].on'); },
 };
 
@@ -65,7 +65,8 @@ const FLOWS = {
       const url = await p.evaluate(() => window.__opened);
       const want = await p.evaluate(() => locate().near);
       if (/utm_/i.test(url)) throw new Error('UTM var: ' + url);
-      if (!url || !url.includes('google.com/maps') || !url.includes(String(want.lat))) throw new Error('yol tarifi çıkışı hatalı: ' + url);
+      // Yol tarifi: Google Haritalar'da "Coffy" araması (kullanıcının konumuna göre en yakın şubeler)
+      if (url !== 'https://www.google.com/maps/search/?api=1&query=Coffy') throw new Error('yol tarifi çıkışı hatalı: ' + url);
       if (errs.length) throw new Error(errs.join('; '));
       console.log(`✔ ${dir} ${label} → ${want.name}`);
     } catch (e) { fail++; console.log(`✘ ${dir} ${label}: ${e.message.split('\n')[0]}`); }

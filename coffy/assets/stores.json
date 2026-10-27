@@ -1,0 +1,1224 @@
+{
+"source": "https://coffy.com.tr/subeler/",
+"count": 174,
+"stores": [
+{
+"name": "Coffy 18 Mart Üniversitesi",
+"lat": 40.11506,
+"lng": 26.42071,
+"area": "",
+"city": "Çanakkale"
+},
+{
+"name": "Coffy Akdeniz Üniversitesi Ceypark",
+"lat": 36.8909,
+"lng": 30.64186,
+"area": "Konyaaltı",
+"city": "Antalya"
+},
+{
+"name": "Coffy Alanya Üniversitesi",
+"lat": 36.52865,
+"lng": 32.08277,
+"area": "Alanya",
+"city": "Antalya"
+},
+{
+"name": "Coffy Aliağa",
+"lat": 38.80267,
+"lng": 26.97334,
+"area": "Aliağa",
+"city": "İzmir"
+},
+{
+"name": "Coffy Anadolu Üniversitesi",
+"lat": 39.789708,
+"lng": 30.491774,
+"area": "Tepebaşı",
+"city": "Eskişehir"
+},
+{
+"name": "Coffy Anadolu Üniversitesi Kampüs (Vagon)",
+"lat": 39.79162,
+"lng": 30.49906,
+"area": "Tepebaşı",
+"city": "Eskişehir"
+},
+{
+"name": "Coffy Anatolıum Avm",
+"lat": 39.88939,
+"lng": 32.93257,
+"area": "Mamak",
+"city": "Ankara"
+},
+{
+"name": "Coffy Ankara Üniversitesi",
+"lat": 39.93617,
+"lng": 32.83318,
+"area": "Yenimahalle",
+"city": "Ankara"
+},
+{
+"name": "Coffy Ankara YHT",
+"lat": 39.93532,
+"lng": 32.841726,
+"area": "",
+"city": "Ankara"
+},
+{
+"name": "Coffy Antik Kent",
+"lat": 37.3139805,
+"lng": 40.727914,
+"area": "Artuklu",
+"city": "Mardin"
+},
+{
+"name": "Coffy Arteria Avm",
+"lat": 40.74796,
+"lng": 30.35301,
+"area": "Serdivan",
+"city": "Sakarya"
+},
+{
+"name": "Coffy Avcılar Firuze Konakları",
+"lat": 40.99267,
+"lng": 28.71723,
+"area": "Avcılar",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Avcılar Reşitpaşa",
+"lat": 40.98066,
+"lng": 28.71896,
+"area": "",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Aydın Üniversitesi",
+"lat": 40.990876,
+"lng": 28.796156,
+"area": "Küçükçekmece",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Bağcılar Meydan",
+"lat": 41.034316,
+"lng": 28.857594,
+"area": "Bağcılar",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Bağlar",
+"lat": 39.787258,
+"lng": 30.50782,
+"area": "Tepebaşı",
+"city": "Eskişehir"
+},
+{
+"name": "Coffy Bahçelievler (7. Cadde)",
+"lat": 39.91851,
+"lng": 32.827667,
+"area": "Çankaya",
+"city": "Ankara"
+},
+{
+"name": "Coffy Bahçelievler Yayla",
+"lat": 41.00207,
+"lng": 28.86411,
+"area": "Bahçelievler",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Bahçeşehir Akkoza",
+"lat": 41.060743,
+"lng": 28.667727,
+"area": "Esenyurt",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Bakırçay Üniversitesi",
+"lat": 38.5807,
+"lng": 26.9635,
+"area": "Menemen",
+"city": "İzmir"
+},
+{
+"name": "Coffy Bakırköy Çarşı",
+"lat": 40.976824,
+"lng": 28.875029,
+"area": "Bakırköy",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Bakırköy Ömür AVM",
+"lat": 40.998677,
+"lng": 28.873747,
+"area": "Bakırköy",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Balıkesir Üniversitesi",
+"lat": 39.5224,
+"lng": 28.017501,
+"area": "Bigadiç",
+"city": "Balıkesir"
+},
+{
+"name": "Coffy Balkan Mh",
+"lat": 40.21008,
+"lng": 28.81212,
+"area": "",
+"city": "Bursa"
+},
+{
+"name": "Coffy Bandırma Üniversitesi",
+"lat": 40.33971,
+"lng": 27.93609,
+"area": "Bandırma",
+"city": "Balıkesir"
+},
+{
+"name": "Coffy Başakşehir Arterium",
+"lat": 41.102087,
+"lng": 28.787824,
+"area": "Başakşehir",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Batman",
+"lat": 37.90005,
+"lng": 41.13389,
+"area": "Batman",
+"city": "Merkez"
+},
+{
+"name": "Coffy Bayrampaşa Axis Avm",
+"lat": 41.0353537,
+"lng": 28.921186,
+"area": "",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Beşevler",
+"lat": 39.931911,
+"lng": 32.829411,
+"area": "Çankaya",
+"city": "Ankara"
+},
+{
+"name": "Coffy Beşiktaş Barbaros Bulvarı",
+"lat": 41.04609,
+"lng": 29.0075,
+"area": "Beşiktaş",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Beylikdüzü Adnan Kahveci",
+"lat": 41.014761,
+"lng": 28.627143,
+"area": "Beylikdüzü",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Beylikdüzü İn Mari",
+"lat": 40.977085,
+"lng": 28.666842,
+"area": "Beylikdüzü",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Beylikdüzü Migros",
+"lat": 41.008373,
+"lng": 28.657,
+"area": "Beylikdüzü",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Bilgi Üniversitesi Kuştepe Kampüsü",
+"lat": 41.073065,
+"lng": 28.991301,
+"area": "",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Bornova Küçükpark Süvari",
+"lat": 38.461981,
+"lng": 27.213666,
+"area": "Bornova",
+"city": "İzmir"
+},
+{
+"name": "Coffy Bornova Sanayi Cad.",
+"lat": 38.45533,
+"lng": 27.204728,
+"area": "Bornova",
+"city": "İzmir"
+},
+{
+"name": "Coffy Bosna Hersek",
+"lat": 38.011369,
+"lng": 32.526334,
+"area": "Selçuklu",
+"city": "Konya"
+},
+{
+"name": "Coffy Buca",
+"lat": 38.372283,
+"lng": 27.194323,
+"area": "Buca",
+"city": "İzmir"
+},
+{
+"name": "Coffy Caddebostan",
+"lat": 40.966839,
+"lng": 29.068117,
+"area": "Kadıköy",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Canpark AVM",
+"lat": 41.02524,
+"lng": 29.1064,
+"area": "Ümraniye",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Cebeci",
+"lat": 39.929925,
+"lng": 32.872559,
+"area": "Çankaya",
+"city": "Ankara"
+},
+{
+"name": "Coffy Çerkeş",
+"lat": 40.812368,
+"lng": 32.886713,
+"area": "",
+"city": "Çankırı"
+},
+{
+"name": "Coffy Çerkezköy",
+"lat": 41.300975,
+"lng": 28.004785,
+"area": "Çerkezköy",
+"city": "Tekirdağ"
+},
+{
+"name": "Coffy Cevizlibağ",
+"lat": 41.016587,
+"lng": 28.906996,
+"area": "Zeytinburnu",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Çiğli Balatçık",
+"lat": 38.512488,
+"lng": 27.039461,
+"area": "Çiğli",
+"city": "İzmir"
+},
+{
+"name": "Coffy Çukurova Üniversitesi",
+"lat": 37.05989,
+"lng": 35.35623,
+"area": "Sarıçam",
+"city": "Adana"
+},
+{
+"name": "Coffy Değirmenaltı",
+"lat": 40.985987,
+"lng": 27.579541,
+"area": "Süleymanpaşa",
+"city": "Tekirdağ"
+},
+{
+"name": "Coffy Denizli",
+"lat": 37.742062,
+"lng": 29.0947734,
+"area": "Pamukkale",
+"city": "Denizli"
+},
+{
+"name": "Coffy Deposite Avm",
+"lat": 41.0704993,
+"lng": 28.8086144,
+"area": "",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Doğuş Üniversitesi",
+"lat": 41.001591,
+"lng": 29.1759,
+"area": "Ümraniye",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Doğuş Üniversitesi Çengelköy",
+"lat": 41.04687,
+"lng": 29.07665,
+"area": "Çengelköy",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Elvankent",
+"lat": 39.953841,
+"lng": 32.613592,
+"area": "Etimesgut",
+"city": "Ankara"
+},
+{
+"name": "Coffy Eryaman Port AVM",
+"lat": 39.964443,
+"lng": 32.608099,
+"area": "Etimesgut",
+"city": "Ankara"
+},
+{
+"name": "Coffy Erzurum",
+"lat": 39.89068,
+"lng": 41.26587,
+"area": "Palandöken",
+"city": "Erzurum"
+},
+{
+"name": "Coffy Esenler Dörtyol",
+"lat": 41.037716,
+"lng": 28.881822,
+"area": "Esenler",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Esenler Shell",
+"lat": 41.05238,
+"lng": 28.85824,
+"area": "Esenler",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Esenyurt Ardıçlı",
+"lat": 41.045438,
+"lng": 28.675792,
+"area": "Esenyurt",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Esenyurt City Center",
+"lat": 41.019488,
+"lng": 28.688284,
+"area": "Esenyurt",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Esenyurt Ferah",
+"lat": 41.017274,
+"lng": 28.638901,
+"area": "Esenyurt",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Etimesgut",
+"lat": 39.94872,
+"lng": 32.66283,
+"area": "Etimesgut",
+"city": "Ankara"
+},
+{
+"name": "Coffy Etlik",
+"lat": 39.972115,
+"lng": 32.819093,
+"area": "Keçiören",
+"city": "Ankara"
+},
+{
+"name": "Coffy Eyüp Bezmialem",
+"lat": 41.06999,
+"lng": 28.94228,
+"area": "",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Eyüp Sennapark",
+"lat": 41.081621,
+"lng": 28.928724,
+"area": "Eyüpsultan",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Eyüp Sultan Bulvarı",
+"lat": 41.045809,
+"lng": 28.931984,
+"area": "Eyüpsultan",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Fatih Çapa",
+"lat": 41.013083,
+"lng": 28.937071,
+"area": "Fatih",
+"city": "İstanbul"
+},
+{
+"name": "Coffy FSM Bulvarı",
+"lat": 40.21717,
+"lng": 28.97787,
+"area": "Nilüfer",
+"city": "Bursa"
+},
+{
+"name": "Coffy Gazi Üniversitesi",
+"lat": 39.94238,
+"lng": 32.8211,
+"area": "Yenimahalle",
+"city": "Ankara"
+},
+{
+"name": "Coffy Gaziosmanpaşa",
+"lat": 41.051916,
+"lng": 28.911085,
+"area": "Gaziosmanpaşa",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Gazipaşa Airport Avm",
+"lat": 36.28761,
+"lng": 32.29435,
+"area": "Gazipaşa",
+"city": "Antalya"
+},
+{
+"name": "Coffy Gebze",
+"lat": 40.795152,
+"lng": 29.432103,
+"area": "Gebze",
+"city": "Kocaeli"
+},
+{
+"name": "Coffy Gölbaşı",
+"lat": 39.78306,
+"lng": 32.81105,
+"area": "Gölbaşı",
+"city": "Ankara"
+},
+{
+"name": "Coffy Görükle",
+"lat": 40.227089,
+"lng": 28.844131,
+"area": "Görükle",
+"city": "Bursa"
+},
+{
+"name": "Coffy Gültepe",
+"lat": 37.91866,
+"lng": 41.13531,
+"area": "Merkez",
+"city": "Batman"
+},
+{
+"name": "Coffy Hacettepe Bam",
+"lat": 39.86864,
+"lng": 32.73225,
+"area": "Çankaya",
+"city": "Ankara"
+},
+{
+"name": "Coffy Hamamönü",
+"lat": 39.930867,
+"lng": 32.86744,
+"area": "Altındağ",
+"city": "Ankara"
+},
+{
+"name": "Coffy Hasanağa",
+"lat": 38.38629,
+"lng": 27.17968,
+"area": "Buca",
+"city": "İzmir"
+},
+{
+"name": "Coffy Hilloria Avm",
+"lat": 40.773325,
+"lng": 30.365755,
+"area": "Serdivan",
+"city": "Sakarya"
+},
+{
+"name": "Coffy Hilltown Avm",
+"lat": 40.95191,
+"lng": 29.121438,
+"area": "Maltepe",
+"city": "İstanbul"
+},
+{
+"name": "Coffy İdealtepe",
+"lat": 40.94123,
+"lng": 29.11543,
+"area": "Maltepe",
+"city": "İstanbul"
+},
+{
+"name": "Coffy İTÜ Ayazağa",
+"lat": 41.104613,
+"lng": 29.020827,
+"area": "",
+"city": "İstanbul"
+},
+{
+"name": "Coffy İzmir Hatay",
+"lat": 38.40158,
+"lng": 27.099874,
+"area": "Karabağlar",
+"city": "İzmir"
+},
+{
+"name": "Coffy İzmit Merkez",
+"lat": 40.764602,
+"lng": 29.935675,
+"area": "İzmit",
+"city": "Kocaeli"
+},
+{
+"name": "Coffy İzmit Umuttepe",
+"lat": 40.82285,
+"lng": 29.93134,
+"area": "İzmit",
+"city": "Kocaeli"
+},
+{
+"name": "Coffy İzzet Baysal Üniversitesi",
+"lat": 40.716759,
+"lng": 31.526788,
+"area": "Merkez",
+"city": "Bolu"
+},
+{
+"name": "Coffy İzzet Begoviç",
+"lat": 37.02211,
+"lng": 35.26091,
+"area": "Seyhan",
+"city": "Adana"
+},
+{
+"name": "Coffy Kadıköy",
+"lat": 40.99005,
+"lng": 29.024322,
+"area": "Kadıköy",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Kadıköy Boğa",
+"lat": 40.98992,
+"lng": 29.028917,
+"area": "Kadıköy",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Kadıköy Halitağa",
+"lat": 40.991267,
+"lng": 29.02817,
+"area": "Kadıköy",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Kadıköy Moda",
+"lat": 40.984459,
+"lng": 29.026836,
+"area": "Kadıköy",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Kadir Has Üniversitesi",
+"lat": 41.02413,
+"lng": 28.96035,
+"area": "Fatih",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Kadir Has Üniversitesi Amfi",
+"lat": 41.02413,
+"lng": 28.96035,
+"area": "Fatih",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Karşıyaka",
+"lat": 38.455744,
+"lng": 27.12039,
+"area": "Karşıyaka",
+"city": "İzmir"
+},
+{
+"name": "Coffy Karşıyaka Girne",
+"lat": 38.45214,
+"lng": 27.10484,
+"area": "Karşıyaka",
+"city": "İzmir"
+},
+{
+"name": "Coffy Kartal Uğur Mumcu",
+"lat": 40.92757,
+"lng": 29.21446,
+"area": "Kartal",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Kastamonu",
+"lat": 41.429411,
+"lng": 33.786123,
+"area": "Merkez",
+"city": "Kastamonu"
+},
+{
+"name": "Coffy Kavacık",
+"lat": 41.0951,
+"lng": 29.0987,
+"area": "Beykoz",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Kazasker",
+"lat": 40.972613,
+"lng": 29.083114,
+"area": "Kadıköy",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Keçiören",
+"lat": 39.979096,
+"lng": 32.868347,
+"area": "Keçiören",
+"city": "Ankara"
+},
+{
+"name": "Coffy Keçiören Şenlik",
+"lat": 39.99394,
+"lng": 32.86394,
+"area": "Keçiören",
+"city": "Ankara"
+},
+{
+"name": "Coffy Kemalpaşa",
+"lat": 38.430681,
+"lng": 27.413453,
+"area": "Kemalpaşa",
+"city": "İzmir"
+},
+{
+"name": "Coffy Kırşehir",
+"lat": 39.14155,
+"lng": 34.1576,
+"area": "Merkez",
+"city": "Kırşehir"
+},
+{
+"name": "Coffy Kızılay",
+"lat": 39.918053,
+"lng": 32.857591,
+"area": "Kızılay",
+"city": "Ankara"
+},
+{
+"name": "Coffy Kızılay Sakarya",
+"lat": 39.9225,
+"lng": 32.85578,
+"area": "Çankaya",
+"city": "Ankara"
+},
+{
+"name": "Coffy Konuralp",
+"lat": 40.89958,
+"lng": 31.170769,
+"area": "",
+"city": "Düzce"
+},
+{
+"name": "Coffy Kötekli",
+"lat": 37.17002,
+"lng": 28.38059,
+"area": "Menteşe",
+"city": "Muğla"
+},
+{
+"name": "Coffy Küçükçekmece Cennet",
+"lat": 40.98949,
+"lng": 28.78035,
+"area": "Küçükçekmece",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Kushimoto",
+"lat": 36.7806551,
+"lng": 34.5964358,
+"area": "Yenişehir",
+"city": "Mersin"
+},
+{
+"name": "Coffy Kütahya Merkez",
+"lat": 39.42428,
+"lng": 29.98986,
+"area": "Merkez",
+"city": "Kütahya"
+},
+{
+"name": "Coffy Maltepe",
+"lat": 40.923122,
+"lng": 29.13001,
+"area": "Maltepe",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Maslak",
+"lat": 41.11144,
+"lng": 29.02469,
+"area": "Şişli",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Mecidiyeköy",
+"lat": 41.06966,
+"lng": 29.00081,
+"area": "Şişli",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Medeniyet Üniversitesi",
+"lat": 40.99479,
+"lng": 29.06961,
+"area": "Üsküdar",
+"city": "İstanbul"
+},
+{
+"name": "Coffy MedicalPark",
+"lat": 38.42523,
+"lng": 27.1496,
+"area": "Konak",
+"city": "İzmir"
+},
+{
+"name": "Coffy Mehmet Akif Üniversitesi",
+"lat": 37.68727,
+"lng": 30.34337,
+"area": "Merkez",
+"city": "Burdur"
+},
+{
+"name": "Coffy Mersin Forum",
+"lat": 36.785224,
+"lng": 34.58891,
+"area": "Yenişehir",
+"city": "Mersin"
+},
+{
+"name": "Coffy Mersin Üniversitesi Kampüs",
+"lat": 36.786,
+"lng": 34.524,
+"area": "Yenişehir",
+"city": "Mersin"
+},
+{
+"name": "Coffy Metroport Avm",
+"lat": 40.99599,
+"lng": 28.86277,
+"area": "",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Meydan AVM",
+"lat": 37.7648,
+"lng": 30.55026,
+"area": "Merkez",
+"city": "Isparta"
+},
+{
+"name": "Coffy Mimar Sinan Çekmeköy",
+"lat": 41.030519,
+"lng": 29.172028,
+"area": "İstanbul",
+"city": "Çekmeköy"
+},
+{
+"name": "Coffy Muğla Merkez",
+"lat": 37.21408,
+"lng": 28.3619,
+"area": "Menteşe",
+"city": "Muğla"
+},
+{
+"name": "Coffy Muş",
+"lat": 38.7394943,
+"lng": 41.4933242,
+"area": "Merkez",
+"city": "Muş"
+},
+{
+"name": "Coffy Mustafakemalpaşa",
+"lat": 40.038602,
+"lng": 28.386891,
+"area": "Kemalpaşa",
+"city": "Bursa"
+},
+{
+"name": "Coffy Nişantaşı Üniversitesi",
+"lat": 41.1206342,
+"lng": 29.0082459,
+"area": "Sarıyer",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Novada Avm",
+"lat": 39.82378,
+"lng": 34.82291,
+"area": "Merkez",
+"city": "Yozgat"
+},
+{
+"name": "Coffy Odtü Çarşı",
+"lat": 39.89288,
+"lng": 32.78821,
+"area": "Çankaya",
+"city": "Ankara"
+},
+{
+"name": "Coffy Odunpazarı",
+"lat": 39.75449,
+"lng": 30.49271,
+"area": "Odunpazarı",
+"city": "Eskişehir"
+},
+{
+"name": "Coffy Optimum Avm",
+"lat": 39.965742,
+"lng": 32.631524,
+"area": "",
+"city": "Ankara"
+},
+{
+"name": "Coffy Ordu Bulvarı",
+"lat": 38.4714,
+"lng": 27.09864,
+"area": "Karşıyaka",
+"city": "İzmir"
+},
+{
+"name": "Coffy Osmangazi",
+"lat": 38.82129,
+"lng": 30.54146,
+"area": "Osmangazi",
+"city": "Bursa"
+},
+{
+"name": "Coffy Ostim",
+"lat": 39.96409,
+"lng": 32.76972,
+"area": "Yenimahalle",
+"city": "Ankara"
+},
+{
+"name": "Coffy Özlüce",
+"lat": 40.226396,
+"lng": 28.914653,
+"area": "Nilüfer",
+"city": "Bursa"
+},
+{
+"name": "Coffy Paşaalanı",
+"lat": 39.66092,
+"lng": 27.90839,
+"area": "Karesi",
+"city": "Balıkesir"
+},
+{
+"name": "Coffy Pendik",
+"lat": 40.877056,
+"lng": 29.235644,
+"area": "Pendik",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Rize Çarşı",
+"lat": 41.0265395,
+"lng": 40.5192484,
+"area": "Merkez",
+"city": "Rize"
+},
+{
+"name": "Coffy Sabancı Kiosk",
+"lat": 40.890407,
+"lng": 29.377463,
+"area": "Tuzla",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Sabancı Üniversitesi",
+"lat": 40.89037,
+"lng": 29.37742,
+"area": "Tuzla",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Sakarya Üniversitesi Kampüs",
+"lat": 40.74192,
+"lng": 30.33863,
+"area": "Serdivan",
+"city": "Sakarya"
+},
+{
+"name": "Coffy Sarıgazi",
+"lat": 41.00824,
+"lng": 29.21461,
+"area": "Sancaktepe",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Sefaköy Merkez",
+"lat": 41.00587,
+"lng": 28.798416,
+"area": "Küçükçekmece",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Sefaköy Metropark",
+"lat": 41.000384,
+"lng": 28.797832,
+"area": "Küçükçekmece",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Serdivan",
+"lat": 40.762915,
+"lng": 30.361186,
+"area": "Serdivan",
+"city": "Sakarya"
+},
+{
+"name": "Coffy Silivri",
+"lat": 41.074354,
+"lng": 28.240465,
+"area": "Silivri",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Sincan",
+"lat": 39.961999,
+"lng": 32.580026,
+"area": "Sincan",
+"city": "Ankara"
+},
+{
+"name": "Coffy Şirinevler",
+"lat": 40.9923,
+"lng": 28.84438,
+"area": "Bahçelievler",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Şişli",
+"lat": 41.06627,
+"lng": 28.9869,
+"area": "Şişli",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Sivas",
+"lat": 39.716408,
+"lng": 37.042416,
+"area": "Merkez",
+"city": "Sivas"
+},
+{
+"name": "Coffy Sultangazi",
+"lat": 41.10679,
+"lng": 28.86056,
+"area": "İstanbul",
+"city": "Sultangazi"
+},
+{
+"name": "Coffy Talas",
+"lat": 38.69692,
+"lng": 35.53964,
+"area": "Talas",
+"city": "Kayseri"
+},
+{
+"name": "Coffy Tarsus Üniversitesi",
+"lat": 36.95521,
+"lng": 34.84915,
+"area": "",
+"city": "Mersin"
+},
+{
+"name": "Coffy Taurus Avm",
+"lat": 39.88845,
+"lng": 32.8112,
+"area": "Çankaya",
+"city": "Ankara"
+},
+{
+"name": "Coffy Tokat",
+"lat": 40.33243,
+"lng": 36.54986,
+"area": "Merkez",
+"city": "Tokat"
+},
+{
+"name": "Coffy Torium AVM",
+"lat": 41.004273,
+"lng": 28.687859,
+"area": "Esenyurt",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Trakya Üniversitesi",
+"lat": 41.6379,
+"lng": 26.6124,
+"area": "Merkez",
+"city": "Edirne"
+},
+{
+"name": "Coffy Trump Avm",
+"lat": 41.06817,
+"lng": 28.99292,
+"area": "",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Tunalı",
+"lat": 39.90994,
+"lng": 32.86216,
+"area": "Çankaya",
+"city": "Ankara"
+},
+{
+"name": "Coffy Turan Güneş",
+"lat": 39.87523,
+"lng": 32.86348,
+"area": "Çankaya",
+"city": "Ankara"
+},
+{
+"name": "Coffy Turgutlu",
+"lat": 38.49459,
+"lng": 27.70307,
+"area": "Turgutlu",
+"city": "Manisa"
+},
+{
+"name": "Coffy Türk Alman Üniversitesi",
+"lat": 41.14287,
+"lng": 29.10128,
+"area": "Beykoz",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Üçyol",
+"lat": 38.4049,
+"lng": 27.12221,
+"area": "Karabağlar",
+"city": "İzmir"
+},
+{
+"name": "Coffy Ümraniye Çarşı",
+"lat": 41.025507,
+"lng": 29.092015,
+"area": "Ümraniye",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Ümraniye Madenler",
+"lat": 41.014654,
+"lng": 29.180904,
+"area": "Ümraniye",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Uşak Merkez",
+"lat": 38.67012,
+"lng": 29.39984,
+"area": "Merkez",
+"city": "Uşak"
+},
+{
+"name": "Coffy Üsküdar",
+"lat": 41.025077,
+"lng": 29.01848,
+"area": "Üsküdar",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Üsküdar Altunizade",
+"lat": 41.02049,
+"lng": 29.03472,
+"area": "Üsküdar",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Van Merkez",
+"lat": 38.49043,
+"lng": 43.3688118,
+"area": "İpekyolu",
+"city": "Van"
+},
+{
+"name": "Coffy Vega Avm",
+"lat": 41.091352,
+"lng": 28.889979,
+"area": "Sultangazi",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Yalova Merkez",
+"lat": 40.65844,
+"lng": 29.26743,
+"area": "Yalova",
+"city": "Merkez"
+},
+{
+"name": "Coffy Yeditepe",
+"lat": 37.0365,
+"lng": 37.32108,
+"area": "Şahinbey",
+"city": "Gaziantep"
+},
+{
+"name": "Coffy Yenişehir Cadde",
+"lat": 36.774,
+"lng": 34.538,
+"area": "Yenişehir",
+"city": "Mersin"
+},
+{
+"name": "Coffy Yeşilköy",
+"lat": 40.959977,
+"lng": 28.82342,
+"area": "",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Yeşilyurt",
+"lat": 38.3293,
+"lng": 38.26946,
+"area": "Yeşilyurt",
+"city": "Malatya"
+},
+{
+"name": "Coffy Yıldız Teknik Üniversitesi Davutpaşa",
+"lat": 41.01997,
+"lng": 28.89997,
+"area": "Güngören",
+"city": "İstanbul"
+},
+{
+"name": "Coffy Yüzüncüyıl",
+"lat": 40.22644,
+"lng": 28.90686,
+"area": "Nilüfer",
+"city": "Bursa"
+},
+{
+"name": "Coffy Zonguldak Üniversitesi",
+"lat": 41.451207,
+"lng": 31.763462,
+"area": "",
+"city": "Zonguldak"
+}
+]
+}

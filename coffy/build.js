@@ -24,9 +24,22 @@ const LIMIT_KB = 150;
 fs.rmSync(dist, { recursive: true, force: true });
 fs.mkdirSync(path.join(dist, 'zip'), { recursive: true });
 
-// Logo dosyası bannerın içine gömülür (harici istek yok)
-const logoFile = config.brand.logo && path.join(root, config.brand.logo);
-if (logoFile && fs.existsSync(logoFile)) config.brand.logoImg = 'data:image/png;base64,' + fs.readFileSync(logoFile).toString('base64');
+// Marka varlıkları bannerın içine gömülür (harici istek yok)
+const read = (f) => fs.readFileSync(path.join(root, f));
+const dataUri = (f) => `data:image/${path.extname(f).slice(1)};base64,` + read(f).toString('base64');
+// Logo: resmi SVG, beyaz dolgu → currentColor (zemine göre renk alır)
+config.brand.logoSvg = read(config.brand.logo).toString('utf8').replace(/<\?xml[^>]*>/, '').replace(/\s(width|height)="[^"]*"/g, '').replace(/fill="#fff(fff)?"/gi, 'fill="currentColor"').trim();
+// Ürünler
+const manifest = JSON.parse(read('assets/products/manifest.json'));
+config.products = {};
+for (const k of config.productKeys) {
+  const m = manifest.find((x) => x.key === k);
+  if (!m) throw new Error('Ürün görseli yok: ' + k);
+  config.products[k] = { name: m.name, src: dataUri(m.file) };
+}
+config.photo = dataUri(config.photoFile);
+// Şubeler (gerçek liste)
+config.stores = JSON.parse(read(config.storesFile)).stores.map((x) => ({ name: x.name, lat: +x.lat.toFixed(5), lng: +x.lng.toFixed(5), area: x.area, city: x.city }));
 
 for (const c of concepts) {
   let html = page(c, config);
