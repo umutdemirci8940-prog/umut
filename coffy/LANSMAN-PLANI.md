@@ -18,7 +18,7 @@
 | Mesaj hatırlanırlığı | Reklam hatırlanırlığı ve marka bilinirliği artışı | YouTube Brand Lift, Meta Brand Lift (lansman haftası başlatılır) |
 | İnteraksiyon | Etkileşim oranı, ortalama etkileşim süresi, oyun tamamlama, seçilen senaryo / ruh hali dağılımı | Bannerlardaki ölçüm olayları (Studio counter / DSP özel değişkenleri) |
 | Şube trafiği | Yol tarifi tıklaması, mağaza ziyareti, kanal bazlı kod kullanımı | “directions” çıkışı, mağaza ziyareti ölçümü, uygulamada kod kullanımı |
-| Uygulama | Uygulama indirme / ilk sipariş | Uygulama MMP verisi, UTM’li çıkışlar |
+| Uygulama | Uygulama indirme / ilk sipariş | Uygulama MMP verisi, kanal bazlı kodlar |
 
 Hedef değerler, ilk 5–7 günün verisi ve medya ajansının kategori benchmark’larıyla birlikte belirlenir. Kreatifler arası A/B karşılaştırması için her çalışma ayrı yerleşim/line item olarak açılır.
 

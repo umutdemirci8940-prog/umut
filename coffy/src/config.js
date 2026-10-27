@@ -35,8 +35,8 @@ module.exports = {
   // Çıkışlar. clickTag tanımlıysa (Google Ads / CM360) her çıkış clickTag'e gider;
   // Studio'da Enabler.exit(<ad>) çağrılır, uygulama içinde (MRAID) mraid.open kullanılır.
   exits: {
-    app: 'https://www.coffy.com.tr/?utm_source=display&utm_medium=rich_media&utm_campaign=cok_da_coffy',
-    stores: 'https://www.coffy.com.tr/?utm_source=display&utm_medium=rich_media&utm_campaign=cok_da_coffy&utm_content=store_locator',
+    app: 'https://www.coffy.com.tr/',
+    stores: 'https://www.coffy.com.tr/',
     directions: 'https://www.google.com/maps/dir/?api=1&destination={lat},{lng}',
   },
 

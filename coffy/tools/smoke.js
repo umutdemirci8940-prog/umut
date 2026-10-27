@@ -56,10 +56,14 @@ const FLOWS = {
     try {
       await p.goto('file://' + path.join(dist, dir, 'index.html'));
       await FLOWS[no](p);
+      // Yalnızca CTA butonları tıklanabilir: logo / zemin tıklaması çıkış yapmamalı
+      await p.mouse.click(20, 20); await p.mouse.click(w / 2, 6);
+      if (await p.evaluate(() => window.__opened)) throw new Error('CTA dışı tıklama çıkış yaptı');
       const btn = p.locator('.scene.on [data-exit="directions"], .p8 [data-exit="directions"]').first();
       await btn.click({ force: true });
       const url = await p.evaluate(() => window.__opened);
       const want = await p.evaluate(() => locate().near);
+      if (/utm_/i.test(url)) throw new Error('UTM var: ' + url);
       if (!url || !url.includes('google.com/maps') || !url.includes(String(want.lat))) throw new Error('yol tarifi çıkışı hatalı: ' + url);
       if (errs.length) throw new Error(errs.join('; '));
       console.log(`✔ ${dir}  → ${want.name}`);

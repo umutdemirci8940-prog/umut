@@ -54,7 +54,7 @@ Coffy “Çok da Coffy” kampanyası için lansman/sürdürme planı ve **10 in
 | `stores` (`storesSample: true`) | 8 örnek şube | Coffy şube feed’i; `storesSample: false` yapılınca “örnek şube verisi” etiketi kalkar |
 | `offer` | `COKDACOFFY` örnek kod | Gerçek teklif ve kanal bazlı kodlar |
 | `drinks` | Örnek içecek adları | Güncel menü |
-| `exits` | coffy.com.tr + UTM | Uygulama derin bağlantısı / kampanya sayfası |
+| `exits` | coffy.com.tr (UTM yok) | Uygulama derin bağlantısı / kampanya sayfası |
 
 ## Derleme
 
