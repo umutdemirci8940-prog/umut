@@ -21,12 +21,12 @@ module.exports = [
 <div class="c8" id="c8"></div>
 <div class="hint" id="hint" style="display:none"></div>`,
     css: `
-.ad-logo{left:476px;top:16px}
+.ad.w .ad-logo{left:476px;top:16px}
 .v8{position:absolute;left:0;top:0;width:444px;height:250px}
 .v8::after{content:"";position:absolute;right:0;top:0;bottom:0;width:40px;background:linear-gradient(90deg,transparent,rgba(29,17,11,.85));pointer-events:none;z-index:3}
 .p8{position:absolute;left:476px;top:50px;width:330px}
 .lh{font-size:46px;margin-top:6px;height:48px;white-space:nowrap}
-.lh .slogan{font-size:46px;flex-direction:row;align-items:baseline;gap:10px}.lh .slogan .s1{font-size:46px;margin:0}
+.lh .slogan{font-size:42px;flex-direction:row;align-items:baseline;gap:8px}.lh .slogan .s1{font-size:42px;margin:0}
 .sl{position:relative;width:300px;height:56px;margin-top:22px;touch-action:none;cursor:pointer;transition:opacity .4s,transform .4s}
 .sl .tr{position:absolute;left:0;right:0;top:12px;height:12px;border-radius:9px;background:rgba(255,255,255,.12);overflow:hidden}
 .sl .tr i{display:block;height:100%;width:0;background:linear-gradient(90deg,#c88b58,var(--acc))}
@@ -41,14 +41,24 @@ module.exports = [
 .bt8{display:flex;gap:8px;margin-top:10px}
 .c8{position:absolute;right:26px;top:12px;width:150px;height:230px;display:grid;place-items:center}
 .c8 .cup{height:226px;width:auto}
-.c8::before{content:"";position:absolute;inset:20px 0 0;border-radius:50%;background:radial-gradient(closest-side,rgba(255,90,44,.35),transparent);z-index:-1}`,
+.c8::before{content:"";position:absolute;inset:20px 0 0;border-radius:50%;background:radial-gradient(closest-side,rgba(200,134,78,.35),transparent);z-index:-1}`,
+    alt: `
+.ad.m .ad-logo{left:14px;top:14px}
+.ad.m .v8{width:100%;height:160px}.ad.m .v8::after{display:none}
+.ad.m .p8{left:16px;top:176px;width:180px}
+.ad.m .lh{font-size:38px;height:42px}
+.ad.m .lh .slogan,.ad.m .lh .slogan .s1{font-size:36px}
+.ad.m .sl{width:180px}
+.ad.m .ct8{top:92px;width:180px}
+.ad.m .bt8{flex-direction:column}.ad.m .bt8 .btn{width:100%}
+.ad.m .c8{right:6px;top:236px;width:120px;height:230px}.ad.m .c8 .cup{height:200px}`,
     js: function () {
       $('#c8').innerHTML = cup(.08);
       var s = locate().near, v = 0, done = false, p8 = $('#p8'), sl = $('#sl'), hint = $('#hint');
       $('#st8').innerHTML = 'En yakın Coffy: <b>' + esc(s.name) + '</b> · ' + fmtDist(s.m) + ' · ' + s.min + ' dk' + smp();
       bindExits(p8);
       function set(nv) {
-        v = Math.max(0, Math.min(100, nv)); var x = v / 100 * 300;
+        v = Math.max(0, Math.min(100, nv)); var x = v / 100 * sl.clientWidth;
         $('#kn').style.left = x + 'px'; $('#fb').style.width = v + '%'; setFill($('#c8'), .08 + v / 100 * .86);
         if (!done) $('#lh').textContent = v < 34 ? 'Az da Coffy.' : v < 67 ? 'Orta da Coffy.' : v < 100 ? 'Biraz daha…' : '';
         if (v >= 100 && !done) finish();
@@ -58,7 +68,7 @@ module.exports = [
         p8.classList.add('done'); hint.style.display = 'none'; burst($('#c8'), 26, 130); track('level_full'); track('endcard');
       }
       var drag = false;
-      function at(e) { set(pt(e, sl).x / 300 * 100); }
+      function at(e) { set(pt(e, sl).x / sl.clientWidth * 100); }
       sl.addEventListener('pointerdown', function (e) { if (done) return; drag = true; hint.style.display = 'none'; stop(); sl.setPointerCapture && sl.setPointerCapture(e.pointerId); at(e); });
       sl.addEventListener('pointermove', function (e) { if (drag) at(e); });
       sl.addEventListener('pointerup', function () { drag = false; track('level_' + Math.round(v)); });
@@ -66,7 +76,7 @@ module.exports = [
       function stop() { clearInterval(tm); }
       function demo() {
         hint.style.display = ''; var k = 0;
-        tm = setInterval(function () { k += 2; set(k); hint.style.left = (476 + v / 100 * 300 - 17) + 'px'; hint.style.top = '122px'; if (k >= 100) stop(); }, 45);
+        tm = setInterval(function () { k += 2; set(k); var r = sl.getBoundingClientRect(); hint.style.left = (r.left + v / 100 * r.width - 17) + 'px'; hint.style.top = (r.top - 6) + 'px'; if (k >= 100) stop(); }, 45);
       }
       set(0);
       playVideo($('#v'), null, { loop: true });
@@ -83,12 +93,12 @@ module.exports = [
     html: `
 <section class="scene" id="v"></section>
 <section class="scene s9" id="p">
-  <div class="l9"><h2 class="hd">Hangisi<br>sensin?</h2><p>Birini seç, gerisini<br>Coffy halleder.</p></div>
+  <div class="l9"><h2 class="hd">Hangisi <br>sensin?</h2><p>Birini seç, gerisini <br>Coffy halleder.</p></div>
   <div class="pns" id="pns"></div>
   <div class="r9"><div id="sl9"></div><div class="st9" id="st9"></div><button class="btn" data-exit="directions">Yol tarifi al</button></div>
 </section>`,
     css: `
-.s9 .l9{position:absolute;left:16px;top:52px;width:170px}
+.s9 .l9{position:absolute;left:26px;top:56px;width:166px}
 .s9 .l9 h2{font-size:36px}
 .s9 .l9 p{font-size:12.5px;font-weight:600;line-height:1.35;color:rgba(251,239,223,.75);margin-top:10px}
 .pns{position:absolute;left:196px;right:232px;top:14px;bottom:14px;display:flex;gap:8px}
@@ -111,11 +121,22 @@ module.exports = [
 .r9 .slogan{font-size:46px}
 .st9{font-size:11.5px;font-weight:700;color:rgba(251,239,223,.75);margin:14px 0 10px;line-height:1.35}.st9 b{color:var(--acc2)}
 .r9 .btn{width:100%}`,
+    alt: `
+.ad.m .s9 .l9{left:16px;right:16px;top:46px;width:auto}
+.ad.m .s9 .l9 h2{font-size:34px}.ad.m .s9 .l9 br{display:none}.ad.m .s9 .l9 p{margin-top:4px;font-size:12px}
+.ad.m .pns{left:12px;right:12px;top:118px;bottom:122px;flex-direction:column;gap:6px}
+.ad.m .pn{padding:10px 12px;border-radius:16px}.ad.m .pn small,.ad.m .pn em,.ad.m .pn .ic{display:none}
+.ad.m .pn b{font-size:21px;margin:0}
+.ad.m .pns:hover .pn{filter:none}.ad.m .pns .pn:hover,.ad.m .pns .pn.done{flex:1}
+.ad.m .pn .stp{bottom:auto;top:50%;right:auto;left:56%;margin-top:-16px;font-size:12px;padding:3px 7px;border-width:2px}
+.ad.m .pn.done .stp{transform:rotate(-6deg) scale(1)}
+.ad.m .r9{left:16px;right:16px;top:auto;bottom:14px;width:auto}
+.ad.m .r9 .slogan{display:none}.ad.m .st9{margin:0 0 8px}`,
     js: function () {
       var P = [
-        { k: 'SENARYO 1', t: 'Sınav haftası', s: '4 sınav, 1 gece.', c: '#ff8a5c' },
-        { k: 'SENARYO 2', t: 'Pazartesi 09:00', s: 'Kamera açık, mikrofon açık.', c: '#5fe0bd' },
-        { k: 'SENARYO 3', t: 'Oyun gecesi', s: 'Takım bir maç daha istiyor.', c: '#ffc53a' },
+        { k: 'SENARYO 1', t: 'Sınav haftası', s: '4 sınav, 1 gece.', c: '#ffffff' },
+        { k: 'SENARYO 2', t: 'Pazartesi 09:00', s: 'Kamera açık, mikrofon açık.', c: '#e9d1ad' },
+        { k: 'SENARYO 3', t: 'Oyun gecesi', s: 'Takım bir maç daha istiyor.', c: '#c8864e' },
       ];
       var IC = '<svg class="ic" width="110" height="110" viewBox="0 0 120 192">' + '<path d="M20 54H100L90 178Q89 184 83 184H37Q31 184 30 178Z" fill="#1d110b"/><rect x="15" y="44" width="90" height="12" rx="6" fill="#1d110b"/></svg>';
       $('#pns').innerHTML = P.map(function (p, i) {
@@ -174,7 +195,7 @@ module.exports = [
 .mid h2{font-size:30px;margin-top:6px}.mid h2 em{font-style:normal;color:var(--acc2)}
 .lst{display:flex;flex-direction:column;gap:5px;margin-top:10px}
 .it{appearance:none;border:0;cursor:pointer;display:flex;align-items:center;gap:10px;padding:6px 10px;border-radius:12px;background:rgba(255,255,255,.06);color:var(--cream);text-align:left;transition:background .2s}
-.it.on{background:rgba(255,90,44,.2);box-shadow:inset 0 0 0 1.5px var(--acc)}
+.it.on{background:rgba(200,134,78,.2);box-shadow:inset 0 0 0 1.5px var(--acc)}
 .it i{font-style:normal;width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.18);display:grid;place-items:center;font-family:var(--h);font-weight:800;font-size:11px;flex:none}
 .it.on i{background:var(--acc)}
 .it b{font-size:12.5px}.it small{font-size:11px;color:rgba(251,239,223,.65);margin-left:6px}
@@ -184,12 +205,19 @@ module.exports = [
 .rt10 p{font-size:12px;font-weight:700;color:rgba(251,239,223,.75);margin-top:14px}
 .rt10 p i{font-style:normal;color:var(--mint)}
 .rt10 .bt{display:flex;gap:6px;margin-top:10px}.rt10 .btn{flex:1;padding:12px 6px;font-size:12.5px}`,
+    alt: `
+.ad.m .mp{width:100%;height:176px}.ad.m .mp::after{background:linear-gradient(180deg,transparent 65%,var(--esp))}
+.ad.m .mid{left:16px;right:16px;top:172px;width:auto}
+.ad.m .mid h2{font-size:27px}
+.ad.m .lst{gap:4px;margin-top:8px}.ad.m .it{padding:5px 10px}
+.ad.m .rt10{left:16px;right:16px;top:auto;bottom:12px;width:auto}
+.ad.m .rt10 .slogan{display:none}.ad.m .rt10 p{margin:0}`,
     js: function () {
       var G = locate(), L = G.stores.slice(0, 3), dp = daypart();
       var DN = { morning: 'GÜNE COFFY’LE BAŞLA', noon: 'ÖĞLE MOLASI', evening: 'AKŞAM MOLASI', night: 'YARIN SABAH İLK DURAK' };
-      var mp = $('#mp'), cx = 160, cy = 140, maxM = L[L.length - 1].m || 1;
-      mp.innerHTML = mapBg(330, 250) + '<div class="me" style="left:' + cx + 'px;top:' + cy + 'px"></div>' + L.map(function (s, i) {
-        var p = project(G.user, s, cx, cy, 34 + 76 * (s.m / maxM)); p.x = Math.max(24, Math.min(300, p.x)); p.y = Math.max(44, Math.min(236, p.y));
+      var mob = isM(), MW = mob ? size().w : 330, MH = mob ? 176 : 250, mp = $('#mp'), cx = MW / 2, cy = mob ? 96 : 140, R = mob ? 60 : 110, maxM = L[L.length - 1].m || 1;
+      mp.innerHTML = mapBg(MW, MH) + '<div class="me" style="left:' + cx + 'px;top:' + cy + 'px"></div>' + L.map(function (s, i) {
+        var p = project(G.user, s, cx, cy, R * (.3 + .7 * s.m / maxM)); p.x = Math.max(24, Math.min(MW - 30, p.x)); p.y = Math.max(44, Math.min(MH - 14, p.y));
         return '<div class="pn10' + (i ? '' : ' on') + '" style="left:' + p.x + 'px;top:' + p.y + 'px"><b>' + (i + 1) + '</b></div>';
       }).join('');
       $('#chip').textContent = DN[dp] + (G.src === 'fallback' ? ' · ' + C.geo.fallback.area.toUpperCase() : '');

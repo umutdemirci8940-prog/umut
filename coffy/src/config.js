@@ -11,6 +11,8 @@ module.exports = {
     // Resmi logo SVG'si gelince buraya yapıştırın (tek renk, currentColor kullanan SVG önerilir).
     // Boş bırakılırsa bannerlar "coffy" yazı logosunu kullanır.
     logoSvg: '',
+    // Markanın logosu (beyaz, şeffaf zemin). Derleme sırasında dosyaya gömülür.
+    logo: 'assets/logo-white.png',
     hashtag: '#ÇokDaCoffy',
   },
 

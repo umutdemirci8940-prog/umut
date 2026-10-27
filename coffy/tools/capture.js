@@ -53,45 +53,42 @@ const MOMENTS = {
   const dirs = fs.readdirSync(dist).filter((d) => /^\d\d-/.test(d)).sort();
   const browser = await chromium.launch();
   const errors = [];
-  await Promise.all(dirs.map(async (dir) => {
-    const no = dir.slice(0, 2); const [w, h] = dir.match(/(\d+)x(\d+)$/).slice(1).map(Number);
-    const ctx = await browser.newContext({ viewport: { width: w, height: h }, deviceScaleFactor: 2, hasTouch: w === 320 });
+  const SIZES = [[970, 250, 'w'], [320, 480, 'm']];
+  const jobs = dirs.flatMap((dir) => SIZES.map((sz) => [dir, sz]));
+  for (let i = 0; i < jobs.length; i += 10) await Promise.all(jobs.slice(i, i + 10).map(async ([dir, [w, h, k]]) => {
+    const no = dir.slice(0, 2);
+    const ctx = await browser.newContext({ viewport: { width: w, height: h }, deviceScaleFactor: 2, hasTouch: k === 'm' });
     await ctx.route('**/fonts.googleapis.com/**', (r) => r.fulfill({ contentType: 'text/css', body: css }));
     await ctx.route('**/fonts.gstatic.com/**', (r) => {
       const f = path.join(cache, path.basename(new URL(r.request().url()).pathname));
       return fs.existsSync(f) ? r.fulfill({ contentType: 'font/woff2', body: fs.readFileSync(f) }) : r.abort();
     });
     const page = await ctx.newPage();
-    page.on('pageerror', (e) => errors.push(`${dir}: ${e.message}`));
+    page.on('pageerror', (e) => errors.push(`${dir} ${k}: ${e.message}`));
     await page.goto('file://' + path.join(dist, dir, 'index.html') + '?dp=morning&time=08:47');
     const t0 = Date.now();
     for (const [name, at] of MOMENTS[no] || DEFAULT) {
       const wait = at - (Date.now() - t0); if (wait > 0) await page.waitForTimeout(wait);
-      await page.screenshot({ path: path.join(out, `${no}-${name}.jpg`), type: 'jpeg', quality: 86 });
+      await page.screenshot({ path: path.join(out, `${no}-${k}-${name}.jpg`), type: 'jpeg', quality: 86 });
     }
     await ctx.close();
-    console.log('✔', dir);
+    console.log('✔', dir, k);
   }));
 
-  // Özet görseller
+  // Özet görseller: her çalışmanın etkileşim ve kapanış kareleri, iki boyutta
   const shots = fs.readdirSync(out);
-  const pick = (no, pref) => pref.map((p) => `${no}-${p}.jpg`).find((f) => shots.includes(f));
-  const sheet = async (file, items, w, h, cols, title) => {
-    const html = `<html><body style="margin:0;background:#140b07;font-family:sans-serif;padding:28px;display:grid;grid-template-columns:repeat(${cols},${w}px);gap:18px">
-      ${items.map(([src, cap]) => `<figure style="margin:0"><img src="data:image/jpeg;base64,${fs.readFileSync(path.join(out, src)).toString('base64')}" style="width:${w}px;height:${h}px;display:block;border-radius:${w === 320 ? 22 : 10}px"><figcaption style="color:#c9b7a3;font:700 13px sans-serif;margin-top:8px">${cap}</figcaption></figure>`).join('')}
+  const pick = (no, k, pref) => pref.map((p) => `${no}-${k}-${p}.jpg`).find((f) => shots.includes(f));
+  const sheet = async (file, items, w, h, cols) => {
+    const html = `<html><body style="margin:0;background:#0b0b0b;font-family:sans-serif;padding:28px;display:grid;grid-template-columns:repeat(${cols},${w}px);gap:18px">
+      ${items.filter((x) => x[0]).map(([src, cap]) => `<figure style="margin:0"><img src="data:image/jpeg;base64,${fs.readFileSync(path.join(out, src)).toString('base64')}" style="width:${w}px;height:${h}px;display:block;border-radius:${w === 320 ? 22 : 10}px"><figcaption style="color:#bbb;font:700 13px sans-serif;margin-top:8px">${cap}</figcaption></figure>`).join('')}
       </body></html>`;
     const p = await browser.newPage({ viewport: { width: 56 + cols * w + (cols - 1) * 18, height: 400 }, deviceScaleFactor: 1 });
     await p.setContent(html); await p.waitForTimeout(400);
     await p.screenshot({ path: path.join(out, file), type: 'jpeg', quality: 84, fullPage: true }); await p.close();
   };
-  const NAMES = { '01': 'Saat Kaç?', '02': 'Enerji Doldur', '03': 'Köpüğü Kazı', '04': 'Zor mu? Kaydır.', '05': 'Çekirdek Avı', '06': 'En Yakın Coffy', '07': 'Ruh Halin Ne?', '08': 'Coffy Seviyesi', '09': 'Senaryonu Seç', '10': 'Şube Bulucu' };
-  const mob = ['01', '02', '03', '04', '05', '06', '07'];
-  await sheet('overview-mobile.jpg', [
-    ...mob.map((n) => [pick(n, ['play']), `${n} · ${NAMES[n]} · etkileşim`]),
-    [pick('01', ['video']), 'Video aşaması (yer tutucu)'],
-    ...mob.filter((n) => n !== '06').map((n) => [pick(n, ['end']), `${n} · bitiş kartı`]),
-  ], 320, 480, 4);
-  await sheet('overview-wide.jpg', ['08', '09', '10'].flatMap((n) => [[pick(n, ['play']), `${n} · ${NAMES[n]}`], [pick(n, ['end']), `${n} · son kare`]]), 970, 250, 2);
+  const nos = dirs.map((d) => d.slice(0, 2));
+  await sheet('overview-mobile.jpg', nos.flatMap((n) => [[pick(n, 'm', ['play']), `${n} · 320×480 · etkileşim`], [pick(n, 'm', ['end']), `${n} · 320×480 · kapanış`]]), 320, 480, 4);
+  await sheet('overview-wide.jpg', nos.flatMap((n) => [[pick(n, 'w', ['play']), `${n} · 970×250 · etkileşim`], [pick(n, 'w', ['end']), `${n} · 970×250 · kapanış`]]), 970, 250, 2);
   await browser.close();
   if (errors.length) { console.error('Sayfa hataları:\n' + errors.join('\n')); process.exit(1); }
   console.log('✔ ekran görüntüleri: coffy/preview/screens/');

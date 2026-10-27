@@ -5,6 +5,13 @@ var Q = (function () { try { return new URLSearchParams(location.search); } catc
 var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
 var later = function (fn, ms) { return setTimeout(fn, ms); };
 
+/* ---------- düzen: aynı dosya 970x250 (w) ve 320x480 (m) alanında çalışır ---------- */
+function isM() { return window.innerWidth < 640; }
+function mode() { var a = document.getElementById('ad'); a.classList.toggle('m', isM()); a.classList.toggle('w', !isM()); }
+mode();
+window.addEventListener('resize', mode);
+function size() { return { w: window.innerWidth || (isM() ? 320 : 970), h: window.innerHeight || (isM() ? 480 : 250) }; }
+
 /* ---------- ölçüm ---------- */
 function track(ev, d) {
   try { if (window.Enabler && Enabler.counter) Enabler.counter(ev); } catch (e) { /* yok */ }
@@ -62,7 +69,10 @@ function slogan() {
   return '<div class="slogan"><span class="s1">Çok da</span><span class="s2">Coffy<i>.</i>' +
     '<svg class="sw" viewBox="0 0 200 20" preserveAspectRatio="none"><path d="M4 14 C 50 4, 120 2, 196 10"/></svg></span></div>';
 }
-function logo() { return C.brand.logoSvg ? '<span class="logo">' + C.brand.logoSvg + '</span>' : '<span class="logo">coffy<span class="dot"></span></span>'; }
+function logo() {
+  if (C.brand.logoImg) return '<span class="logo"><img src="' + C.brand.logoImg + '" alt="Coffy"></span>';
+  return C.brand.logoSvg ? '<span class="logo">' + C.brand.logoSvg + '</span>' : '<span class="logo">COFFY</span>';
+}
 
 /* ---------- parçacık patlaması ---------- */
 function burst(host, n, spread) {
@@ -70,7 +80,7 @@ function burst(host, n, spread) {
   spread = spread || 160;
   for (var i = 0; i < (n || 22); i++) {
     var p = document.createElement('i'), a = Math.random() * Math.PI * 2, r = spread * (.4 + Math.random() * .6);
-    if (i % 3 === 0) { p.className = 'c'; p.style.background = ['#ff5a2c', '#ffc53a', '#5fe0bd', '#ff8fb3'][i % 4]; }
+    if (i % 3 === 0) { p.className = 'c'; p.style.background = ['#ffffff', '#c8864e', '#e9d1ad', '#8a5a36'][i % 4]; }
     p.style.setProperty('--x', Math.cos(a) * r + 'px'); p.style.setProperty('--y', Math.sin(a) * r + 'px');
     p.style.setProperty('--r', (Math.random() * 540 - 270) + 'deg'); p.style.animationDelay = Math.random() * .15 + 's';
     b.appendChild(p);
@@ -99,7 +109,7 @@ function locate() {
   track('geo_' + src);
   return GEO;
 }
-function fmtDist(m) { return m < 1000 ? Math.round(m / 10) * 10 + ' m' : (m / 1000).toFixed(1).replace('.', ',') + ' km'; }
+function fmtDist(m) { return m < 1000 ? Math.round(m / 10) * 10 + '\u00a0m' : (m / 1000).toFixed(1).replace('.', ',') + '\u00a0km'; } // birim sayıdan ayrılmasın
 function dirUrl() { var s = locate().near; return C.exits.directions.replace('{lat}', s.lat).replace('{lng}', s.lng); }
 var PIN = '<svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>';
 function storeRow() {
@@ -116,7 +126,7 @@ function endcard(el, o) {
     (o.cup === false ? '' : cup(o.fill == null ? .85 : o.fill, o.tone)) +
     (o.lead ? '<p class="lead">' + o.lead + '</p>' : '') +
     '<div class="ctas">' + (o.store === false ? '' : storeRow()) +
-    '<button class="btn pulse" data-exit="directions"><span class="pin">' + PIN.replace('<svg', '<svg fill="#fff"') + '</span>' + (o.cta || 'Yol tarifi al') + '</button>' +
+    '<button class="btn pulse" data-exit="directions"><span class="pin">' + PIN + '</span>' + (o.cta || 'Yol tarifi al') + '</button>' +
     '<button class="btn ghost" data-exit="app">' + (o.cta2 || 'Uygulamadan sipariş ver') + '</button></div></div>';
   show(el); bindExits(el);
   requestAnimationFrame(function () { $('.end', el).classList.add('in'); });

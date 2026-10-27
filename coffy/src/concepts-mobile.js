@@ -9,7 +9,7 @@ const ICON = {
   cal: '<svg viewBox="0 0 24 24" width="16" height="16" fill="#fff"><path d="M7 2v2H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2H7zm-2 7h14v10H5V9z"/></svg>',
   book: '<svg viewBox="0 0 48 48" width="54" height="54"><rect x="8" y="30" width="32" height="8" rx="2" fill="#1d110b"/><rect x="11" y="21" width="28" height="8" rx="2" fill="#1d110b" opacity=".75"/><rect x="7" y="12" width="30" height="8" rx="2" fill="#1d110b" opacity=".5"/></svg>',
   clock: '<svg viewBox="0 0 48 48" width="54" height="54"><circle cx="24" cy="24" r="16" fill="none" stroke="#1d110b" stroke-width="4"/><path d="M24 14v11l7 5" stroke="#1d110b" stroke-width="4" fill="none" stroke-linecap="round"/></svg>',
-  chat: '<svg viewBox="0 0 48 48" width="54" height="54"><path d="M8 10h32v20H22l-9 8v-8H8z" fill="#1d110b"/><circle cx="17" cy="20" r="2.5" fill="#ffc53a"/><circle cx="24" cy="20" r="2.5" fill="#ffc53a"/><circle cx="31" cy="20" r="2.5" fill="#ffc53a"/></svg>',
+  chat: '<svg viewBox="0 0 48 48" width="54" height="54"><path d="M8 10h32v20H22l-9 8v-8H8z" fill="#1d110b"/><circle cx="17" cy="20" r="2.5" fill="#fff"/><circle cx="24" cy="20" r="2.5" fill="#fff"/><circle cx="31" cy="20" r="2.5" fill="#fff"/></svg>',
   x: '<svg viewBox="0 0 24 24" width="14" height="14"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>',
   heart: '<svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.8-8 11-8 11z"/></svg>',
 };
@@ -61,6 +61,17 @@ module.exports = [
 .r1 .re{font-size:34px;margin-top:16px}
 .r1 .rs{font-size:13px;font-weight:600;color:rgba(251,239,223,.7);margin-top:12px}
 .r1 .rc .cup{height:220px;width:auto;margin-top:14px}`,
+    alt: `
+.ad.w .q1{display:grid;grid-template-columns:210px 330px 1fr;grid-template-rows:1fr 1fr;grid-template-areas:"lock notif opts" "lock qq opts";column-gap:24px;padding:20px 26px;align-items:center}
+.ad.w .q1 .lock{grid-area:lock;text-align:left;margin-top:28px}
+.ad.w .q1 .time{font-size:76px}
+.ad.w .notif{grid-area:notif;margin:0;align-self:end}
+.ad.w .qq{grid-area:qq;font-size:28px;margin:10px 0 0;align-self:start}
+.ad.w .opts{grid-area:opts}
+.ad.w .opt{height:52px}
+.ad.w .r1{display:grid;grid-template-columns:1fr 240px;grid-template-areas:"pick rc" "re rc" "rs rc";align-content:center;justify-items:start;text-align:left;padding:30px 90px}
+.ad.w .r1 .pick{grid-area:pick}.ad.w .r1 .re{grid-area:re;font-size:52px;margin-top:10px}.ad.w .r1 .rs{grid-area:rs}
+.ad.w .r1 .rc{grid-area:rc;align-self:center}.ad.w .r1 .rc .cup{height:210px;margin:0}`,
     js: function () {
       var S = {
         morning: { nt: 'TAKVİM', nx: 'Ders 09:00’da başlıyor.', q: 'Alarm üç kez çaldı. Ne yapıyorsun?', o: ['Koşa koşa derse', '5 dakika daha uyurum', 'Yolda Coffy’e uğrarım'], l: 'Sabah dersi zor mu? Yanında Coffy varsa, çok da değil.' },
@@ -154,6 +165,14 @@ module.exports = [
 .reward{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(.6);opacity:0;padding:16px 24px;border-radius:20px;background:var(--acc2);color:var(--ink);text-align:center;box-shadow:0 20px 50px -10px rgba(0,0,0,.6);transition:.4s cubic-bezier(.3,1.5,.5,1);z-index:30}
 .reward b{display:block;font-size:34px}.reward span{font-size:12px;font-weight:800}
 .reward.on{opacity:1;transform:translate(-50%,-50%) scale(1)}`,
+    alt: `
+.ad.w .g2{display:grid;grid-template-columns:230px 1fr 220px;grid-template-rows:auto auto 1fr;grid-template-areas:"hero en cup" "hero msg cup" "hero sub cup";align-items:center;justify-items:center;padding:46px 30px 18px;column-gap:20px}
+.ad.w .hero{grid-area:hero;width:150px;height:150px;margin:0}.ad.w .hero svg{width:150px;height:150px}
+.ad.w .en{grid-area:en;margin:0;max-width:440px}
+.ad.w .msg{grid-area:msg;font-size:42px;margin-top:16px}
+.ad.w .sub{grid-area:sub;align-self:start}
+.ad.w .cupw{grid-area:cup;margin:-36px 0 0}.ad.w .cupw .cup{height:186px}
+.ad.w #hint{left:850px!important;top:150px!important}`,
     js: function () {
       var e = 12, n = 0, fin = false, auto = null, hero = $('#hero'), g = $('#g');
       $('#cupw').innerHTML = cup(.92);
@@ -168,7 +187,7 @@ module.exports = [
         $('#hint').style.display = 'none';
         var c = $('#cupw'); c.classList.add('sip'); later(function () { c.classList.remove('sip'); }, 140);
         setFill(c, .92 - n * .17); $('#msg').textContent = MSG[Math.min(n, 4)];
-        var f = document.createElement('div'); f.className = 'fl'; f.textContent = '+22'; f.style.left = 200 + Math.random() * 40 + 'px'; f.style.top = '360px'; g.appendChild(f); later(function () { f.remove(); }, 900);
+        var f = document.createElement('div'); f.className = 'fl'; f.textContent = '+22'; var cr = $('#cupw').getBoundingClientRect(); f.style.left = cr.left + cr.width * .55 + Math.random() * 30 + 'px'; f.style.top = cr.top + cr.height * .35 + 'px'; g.appendChild(f); later(function () { f.remove(); }, 900);
         track('sip_' + n);
         if (e >= 100) win();
       }
@@ -225,6 +244,11 @@ module.exports = [
 .acts{display:flex;gap:8px;margin-top:auto;width:100%;opacity:0;transform:translateY(10px);transition:.4s;pointer-events:none}
 .acts.on{opacity:1;transform:none;pointer-events:auto}
 .acts .btn{flex:1;padding:13px 8px;font-size:13px}`,
+    alt: `
+.ad.w .s3{display:grid;grid-template-columns:330px 1fr 250px;grid-template-rows:auto auto 1fr;grid-template-areas:"k . acts" "t . acts" "sub . acts";justify-items:start;text-align:left;padding:56px 26px 20px;column-gap:20px}
+.ad.w .s3 .kicker{grid-area:k}.ad.w .s3 .t{grid-area:t;font-size:42px}.ad.w .s3 .sub{grid-area:sub}
+.ad.w .latte{position:absolute;left:50%;top:50%;margin:0;transform:translate(-56%,-50%) scale(.84)}
+.ad.w .acts{grid-area:acts;flex-direction:column;align-self:center;margin:-36px 0 0;width:100%}`,
     js: function () {
       $('#ot').textContent = C.offer.text; $('#code').textContent = C.offer.code; $('#on').textContent = C.offer.note;
       var cv = $('#cv'), D = Math.min(2, window.devicePixelRatio || 1), W = 230, x = cv.getContext('2d'), last = null, moves = 0, done = false;
@@ -237,7 +261,7 @@ module.exports = [
       for (var i = 0; i < 140; i++) { x.beginPath(); x.arc(r() * W, r() * W, .6 + r() * 2.2, 0, 7); x.fillStyle = 'rgba(255,255,255,' + (.25 + r() * .4) + ')'; x.fill(); }
       x.fillStyle = '#b37b4f';
       for (var k = 0; k < 4; k++) { var s = 1 - k * .2; x.save(); x.translate(W / 2, W / 2 + 4); x.scale(s, s); x.beginPath(); x.moveTo(0, 48); x.bezierCurveTo(-70, 0, -46, -58, 0, -26); x.bezierCurveTo(46, -58, 70, 0, 0, 48); x.fillStyle = k % 2 ? '#f6e4cc' : '#b37b4f'; x.fill(); x.restore(); }
-      x.font = '800 13px "Bricolage Grotesque",Manrope,sans-serif'; x.textAlign = 'center'; x.fillStyle = 'rgba(90,52,34,.75)'; x.fillText('KAZI', W / 2, W - 26);
+      x.font = '700 15px "Barlow Condensed",Manrope,sans-serif'; x.textAlign = 'center'; x.fillStyle = 'rgba(90,52,34,.75)'; x.fillText('KAZI', W / 2, W - 26);
       x.globalCompositeOperation = 'destination-out'; x.lineCap = 'round'; x.lineJoin = 'round'; x.lineWidth = 38;
       function scratch(p) {
         if (done) return;
@@ -257,8 +281,9 @@ module.exports = [
       }
       // Dinleyiciler tüm sahnede: fincanın dışından başlayan sürüklemeler de köpüğe girince kazır.
       var down = false, lat = $('#s');
-      lat.addEventListener('pointerdown', function (e) { if (done || e.target.closest('button')) return; down = true; last = null; $('#hint').style.display = 'none'; lat.setPointerCapture && lat.setPointerCapture(e.pointerId); scratch(pt(e, cv)); });
-      lat.addEventListener('pointermove', function (e) { if (down) scratch(pt(e, cv)); });
+      function cp(e) { var r = cv.getBoundingClientRect(), k = W / r.width, q = pt(e, cv); return { x: q.x * k, y: q.y * k }; } // fincan ölçekliyse (970x250) tuval koordinatına çevir
+      lat.addEventListener('pointerdown', function (e) { if (done || e.target.closest('button')) return; down = true; last = null; $('#hint').style.display = 'none'; lat.setPointerCapture && lat.setPointerCapture(e.pointerId); scratch(cp(e)); });
+      lat.addEventListener('pointermove', function (e) { if (down) scratch(cp(e)); });
       lat.addEventListener('pointerup', function () { if (!down) return; down = false; last = null; check(); });
       $('#cp').addEventListener('click', function (e) {
         e.stopPropagation(); var b = this, ok = function () { b.textContent = 'Kopyalandı!'; track('copy_code'); };
@@ -315,11 +340,19 @@ module.exports = [
 .ctl .btn{flex:1;font-size:13.5px;padding:12px 8px}
 .cnt{display:flex;align-items:center;justify-content:space-between;width:100%;margin-top:10px;font-size:12px;font-weight:700;color:rgba(251,239,223,.75)}
 .bn{display:flex;gap:5px}.bn i{width:12px;height:16px;border-radius:50%;background:rgba(255,255,255,.15);transition:.3s}.bn i.on{background:var(--acc2);transform:rotate(20deg)}`,
+    alt: `
+.ad.w .w4{display:grid;grid-template-columns:300px 1fr 250px;grid-template-rows:auto auto 1fr;grid-template-areas:"k . ctl" "t . ctl" "cnt . ctl";justify-items:start;text-align:left;padding:56px 26px 20px;column-gap:20px}
+.ad.w .w4 .kicker{grid-area:k}.ad.w .w4 .t{grid-area:t;font-size:46px}
+.ad.w .deck{position:absolute;left:50%;top:50%;width:250px;height:206px;margin:0;transform:translate(-50%,-50%)}
+.ad.w .card{padding:14px}.ad.w .card svg{width:40px;height:40px;margin-top:6px}.ad.w .card b{font-size:22px}
+.ad.w .ctl{grid-area:ctl;flex-direction:column;align-self:center;margin:-34px 0 0}
+.ad.w .cnt{grid-area:cnt;align-self:end;width:200px;margin:0}
+.ad.w .toast{top:auto;bottom:12px}`,
     js: function () {
       var CARDS = [
-        { k: 'DURUM 1/3', t: 'Final haftası. 4 sınav arka arkaya.', c: '#ff8a5c', ic: 'book', lv: 5 },
-        { k: 'DURUM 2/3', t: 'Pazartesi, saat 09:00. Kamera açık.', c: '#5fe0bd', ic: 'clock', lv: 4 },
-        { k: 'DURUM 3/3', t: 'Grup ödevi. Herkes sessiz.', c: '#ffc53a', ic: 'chat', lv: 4 },
+        { k: 'DURUM 1/3', t: 'Final haftası. 4 sınav arka arkaya.', c: '#ffffff', ic: 'book', lv: 5 },
+        { k: 'DURUM 2/3', t: 'Pazartesi, saat 09:00. Kamera açık.', c: '#e9d1ad', ic: 'clock', lv: 4 },
+        { k: 'DURUM 3/3', t: 'Grup ödevi. Herkes sessiz.', c: '#c8864e', ic: 'chat', lv: 4 },
       ];
       var IC = { book: '__BOOK__', clock: '__CLOCK__', chat: '__CHAT__' };
       var deck = $('#deck'), ok = 0, busy = false, auto = null;
@@ -334,6 +367,7 @@ module.exports = [
       function accept() {
         var c = top(); if (!c || busy) return; busy = true;
         $('.stamp.yes', c).style.opacity = 1; c.style.transform = 'translate(340px,-30px) rotate(24deg)'; c.style.opacity = 0;
+        c.style.pointerEvents = 'none'; later(function () { c.style.visibility = 'hidden'; }, 380); // uçan kart butonların üstünde kalıp tıklamayı yutmasın
         ok++; $$('#bn i')[ok - 1].classList.add('on'); $('#cn').textContent = ok + '/3 halloldu'; track('swipe_yes_' + ok);
         later(function () { busy = false; restack(); if (ok === 3) finish(); }, 380);
       }
@@ -419,12 +453,25 @@ module.exports = [
 .code5 b{font-family:var(--h);font-size:24px;letter-spacing:.06em;color:var(--acc2)}
 .r5 .btn{width:100%;margin-top:10px}
 @keyframes up{to{transform:translateY(-50px);opacity:0}}`,
+    alt: `
+.ad.w .i5{display:grid;grid-template-columns:320px 1fr 250px;grid-template-rows:auto auto auto 1fr;grid-template-areas:"k demo go" "t demo go" "sub demo go" "rules demo go";justify-items:start;text-align:left;padding:50px 26px 20px;column-gap:20px}
+.ad.w .i5 .kicker{grid-area:k}.ad.w .i5 .t{grid-area:t;font-size:54px;margin-top:2px}.ad.w .i5 .sub{grid-area:sub}
+.ad.w .demo{grid-area:demo;justify-self:center;margin:-24px 0 0;height:190px}
+.ad.w .rules{grid-area:rules;margin-top:12px}
+.ad.w .i5 .btn{grid-area:go;align-self:center;margin:-30px 0 0}
+.ad.w .g5 canvas{width:100%;height:100%}
+.ad.w .pl .cup{height:84px}
+.ad.w .r5{display:grid;grid-template-columns:260px 1fr 270px;grid-template-rows:auto auto 1fr;grid-template-areas:"k slw code" "big slw code" "rt slw claim";justify-items:start;text-align:left;padding:50px 26px 20px;column-gap:20px}
+.ad.w .r5 .kicker{grid-area:k}.ad.w .r5 .big{grid-area:big;font-size:96px;margin-top:2px}.ad.w .r5 .rt{grid-area:rt;font-size:13px}
+.ad.w .slw{grid-area:slw;align-self:center;justify-self:center;margin:-30px 0 0;font-size:68px}
+.ad.w .code5{grid-area:code;margin:0;align-self:end}.ad.w .r5 .btn{grid-area:claim;align-self:start;margin-top:10px}`,
     js: function () {
       $('#dcup').innerHTML = cup(.7); $('#pl').innerHTML = cup(.15); $('#slw').innerHTML = slogan(); $('#cd').textContent = C.offer.code;
-      var cv = $('#cv'), D = Math.min(2, window.devicePixelRatio || 1), x = cv.getContext('2d'), W = 320, H = 480;
+      var cv = $('#cv'), D = Math.min(2, window.devicePixelRatio || 1), x = cv.getContext('2d'), SZ = size(), W = SZ.w, H = SZ.h, CY = H - 100, SP = H / 480;
+      $('#pl').style.top = CY - 8 + 'px'; cv.style.width = W + 'px'; cv.style.height = H + 'px';
       cv.width = W * D; cv.height = H * D; x.scale(D, D);
-      var beans = [], px = 160, tx = 160, score = 0, T = 10000, t0 = 0, lastS = 0, run = false, demo = false, raf, prev;
-      function spawn(now) { if (now - lastS < 360) return; lastS = now; var gold = Math.random() < .14; beans.push({ x: 24 + Math.random() * 272, y: -20, v: 150 + Math.random() * 110 + (now - t0) / 60, r: Math.random() * 6, g: gold }); }
+      var beans = [], px = W / 2, tx = W / 2, score = 0, T = 10000, t0 = 0, lastS = 0, run = false, demo = false, raf, prev;
+      function spawn(now) { if (now - lastS < 360) return; lastS = now; var gold = Math.random() < .14; beans.push({ x: 24 + Math.random() * (W - 48), y: -20, v: (150 + Math.random() * 110 + (now - t0) / 60) * Math.max(.55, SP), r: Math.random() * 6, g: gold }); }
       function drawBean(b) {
         x.save(); x.translate(b.x, b.y); x.rotate(b.r);
         x.beginPath(); x.ellipse(0, 0, 9, 12, 0, 0, 7); x.fillStyle = b.g ? '#ffc53a' : '#7a4528'; x.fill();
@@ -432,17 +479,17 @@ module.exports = [
         if (b.g) { x.beginPath(); x.arc(0, 0, 16, 0, 7); x.strokeStyle = 'rgba(255,197,58,.35)'; x.lineWidth = 3; x.stroke(); }
         x.restore();
       }
-      function pop(b, v) { var f = document.createElement('div'); f.className = 'fl'; f.textContent = '+' + v; f.style.cssText = 'position:absolute;left:' + (b.x - 10) + 'px;top:350px;font-family:var(--h);font-weight:800;font-size:20px;color:' + (v > 1 ? '#ffc53a' : '#5fe0bd') + ';animation:up .8s ease-out forwards;pointer-events:none'; $('#g').appendChild(f); later(function () { f.remove(); }, 800); }
+      function pop(b, v) { var f = document.createElement('div'); f.className = 'fl'; f.textContent = '+' + v; f.style.cssText = 'position:absolute;left:' + (b.x - 10) + 'px;top:' + (CY - 30) + 'px;font-family:var(--h);font-weight:800;font-size:20px;color:' + (v > 1 ? '#ffc53a' : '#5fe0bd') + ';animation:up .8s ease-out forwards;pointer-events:none'; $('#g').appendChild(f); later(function () { f.remove(); }, 800); }
       function frame(now) {
         var dt = Math.min(50, now - (prev || now)) / 1000; prev = now;
         var left = Math.max(0, T - (now - t0)); $('#tm').style.transform = 'scaleX(' + left / T + ')';
         if (left > 0) spawn(now);
-        if (demo) { var tgt = beans.filter(function (b) { return b.y < 380; }).sort(function (a, b) { return (b.g - a.g) || (b.y - a.y); })[0]; if (tgt) tx = tgt.x; }
+        if (demo) { var tgt = beans.filter(function (b) { return b.y < CY; }).sort(function (a, b) { return (b.g - a.g) || (b.y - a.y); })[0]; if (tgt) tx = tgt.x; }
         px += (tx - px) * Math.min(1, dt * 14); $('#pl').style.transform = 'translateX(' + px + 'px)';
         x.clearRect(0, 0, W, H);
         for (var i = beans.length - 1; i >= 0; i--) {
           var b = beans[i]; b.y += b.v * dt; b.r += dt * 3;
-          if (b.y > 380 && b.y < 410 && Math.abs(b.x - px) < 34) { var v = b.g ? 5 : 1; score += v; pop(b, v); beans.splice(i, 1); $('#sc').textContent = score; setFill($('#pl'), .15 + Math.min(.8, score / 30)); continue; }
+          if (b.y > CY && b.y < CY + 30 && Math.abs(b.x - px) < 34) { var v = b.g ? 5 : 1; score += v; pop(b, v); beans.splice(i, 1); $('#sc').textContent = score; setFill($('#pl'), .15 + Math.min(.8, score / 30)); continue; }
           if (b.y > H + 20) { beans.splice(i, 1); continue; }
           drawBean(b);
         }
@@ -480,7 +527,7 @@ module.exports = [
   <div class="mapw" id="mapw"></div>
   <svg class="route" id="route" width="320" height="480"><path id="rp" d=""/></svg>
   <div class="me" id="me"><i></i></div>
-  <div class="spin" id="spin"><div class="pb">${'<span class="logo">coffy<span class="dot"></span></span>'}</div><i></i></div>
+  <div class="spin" id="spin"><div class="pb" id="pbl"></div><i></i></div>
   <div class="top6"><div class="chip" id="chip"></div><h2 class="hd" id="hl"></h2></div>
   <div class="sheet" id="sheet">
     <div class="sh-h"><div><b id="sn"></b><small id="ss"></small></div><span class="dist hd" id="sd"></span></div>
@@ -499,7 +546,7 @@ module.exports = [
 @keyframes me{to{box-shadow:0 0 0 26px rgba(74,163,255,0)}}
 .spin{position:absolute;width:0;height:0}
 .spin .pb{position:absolute;left:0;bottom:16px;transform:translateX(-50%);padding:7px 10px;border-radius:12px;background:var(--acc);box-shadow:0 10px 20px -6px rgba(0,0,0,.6);white-space:nowrap;animation:pin .9s cubic-bezier(.3,1.6,.5,1) both}
-.spin .pb .logo{font-size:15px}.spin .pb .dot{background:#fff}
+.spin .pb .logo{font-size:14px}
 .spin i{position:absolute;left:-7px;bottom:4px;width:14px;height:14px;background:var(--acc);transform:rotate(45deg);border-radius:2px}
 @keyframes pin{from{transform:translate(-50%,-30px);opacity:0}to{transform:translate(-50%,0);opacity:1}}
 .top6{position:absolute;left:0;right:0;top:0;padding:46px 16px 40px;background:linear-gradient(#1d110b 55%,transparent)}
@@ -514,14 +561,23 @@ module.exports = [
 .sh-h .dist{margin-left:auto;font-size:26px;color:var(--acc);white-space:nowrap}
 .dp{font-size:12.5px;font-weight:700;margin-top:8px;color:rgba(29,17,11,.8)}
 .row{display:flex;gap:8px;margin-top:10px}.row .btn{flex:1;font-size:13px;padding:12px 6px}
+.sheet .btn:not(.dk){background:var(--ink);color:#fff;box-shadow:none}
 .btn.dk{color:var(--ink);box-shadow:inset 0 0 0 1.5px rgba(29,17,11,.2);background:transparent}`,
+    alt: `
+.ad.w .top6{right:auto;bottom:0;width:440px;padding:54px 26px 20px;background:linear-gradient(90deg,#0b0b0b 62%,transparent)}
+.ad.w .top6 h2{font-size:44px}
+.ad.w .sheet{left:auto;right:12px;top:12px;bottom:12px;width:330px;display:flex;flex-direction:column;justify-content:center;transform:translateX(115%)}
+.ad.w .sheet.on{transform:none}`,
     js: function () {
       var G = locate(), s = G.near, dp = daypart();
       var DL = { morning: 'Derse giderken tam yolunun üstünde.', noon: 'Öğle arasına tam mesafe.', evening: 'Akşam molası için yolun üstünde.', night: 'Yarın sabah ilk durak burası.' };
       var DN = { morning: 'SABAH', noon: 'ÖĞLE', evening: 'AKŞAM', night: 'GECE' };
-      $('#mapw').innerHTML = mapBg(320, 480);
-      var u = { x: 150, y: 330 }, p = project(G.user, s, u.x, u.y, 120);
-      p.y = Math.min(250, Math.max(190, p.y - 60)); p.x = Math.min(270, Math.max(60, p.x));
+      var SZ = size(), wide = !isM();
+      $('#mapw').innerHTML = mapBg(SZ.w, SZ.h); $('#pbl').innerHTML = logo();
+      $('#route').setAttribute('width', SZ.w); $('#route').setAttribute('height', SZ.h);
+      // 320x480: kullanıcı altta, şube üstte · 970x250: harita metin paneli ile şube kartı arasında
+      var u = wide ? { x: 470, y: 196 } : { x: 150, y: 330 }, p = project(G.user, s, u.x, u.y, 120);
+      if (wide) { p.y = Math.min(150, Math.max(70, p.y)); p.x = Math.min(600, Math.max(500, p.x)); } else { p.y = Math.min(250, Math.max(190, p.y - 60)); p.x = Math.min(270, Math.max(60, p.x)); }
       $('#me').style.left = u.x + 'px'; $('#me').style.top = u.y + 'px';
       $('#spin').style.left = p.x + 'px'; $('#spin').style.top = p.y + 'px';
       $('#rp').setAttribute('d', 'M' + u.x + ' ' + u.y + ' L' + u.x + ' ' + (p.y + 40) + ' L' + p.x + ' ' + (p.y + 40) + ' L' + p.x + ' ' + (p.y + 4));
@@ -580,6 +636,13 @@ module.exports = [
 @keyframes shake{from{transform:rotate(-8deg) translateY(0)}to{transform:rotate(8deg) translateY(-6px)}}
 .reel{height:40px;overflow:hidden;margin-top:24px}
 .reel div{font-family:var(--h);font-weight:800;font-size:28px;line-height:40px;transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}`,
+    alt: `
+.ad.w .p7{display:grid;grid-template-columns:270px 1fr;grid-template-rows:auto auto 1fr;grid-template-areas:"k grid" "t grid" "sub grid";justify-items:start;text-align:left;padding:56px 26px 20px;column-gap:24px}
+.ad.w .p7 .kicker{grid-area:k}.ad.w .p7 .t{grid-area:t;font-size:46px}.ad.w .p7 .sub{grid-area:sub;margin-top:10px}
+.ad.w .grid7{grid-area:grid;grid-template-columns:repeat(4,1fr);margin:-36px 0 0;align-self:center}
+.ad.w .tile{height:164px}
+.ad.w .s7{flex-direction:row;justify-content:center;gap:40px;padding:20px}
+.ad.w .spinc{margin:0}.ad.w .spinc .cup{height:190px}.ad.w .reel{margin:0;width:340px}`,
     js: function () {
       var WHY = { sleepy: 'Gözler kapanıyorsa:', stressed: 'Stres mi? Buz gibi bir', social: 'Ekip toplandıysa:', focus: 'Odak modu açık:' };
       var keys = Object.keys(C.drinks), picked = false;

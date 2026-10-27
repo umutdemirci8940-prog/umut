@@ -45,9 +45,10 @@ const FLOWS = {
 (async () => {
   const browser = await chromium.launch();
   const dirs = fs.readdirSync(dist).filter((d) => /^\d\d-/.test(d)).sort();
+  const jobs = dirs.flatMap((d) => [[d, 970, 250, '970x250'], [d, 320, 480, '320x480']]);
   let fail = 0;
-  await Promise.all(dirs.map(async (dir) => {
-    const no = dir.slice(0, 2); const [w, h] = dir.match(/(\d+)x(\d+)$/).slice(1).map(Number);
+  for (let i = 0; i < jobs.length; i += 10) await Promise.all(jobs.slice(i, i + 10).map(async ([dir, w, h, label]) => {
+    const no = dir.slice(0, 2);
     const ctx = await browser.newContext({ viewport: { width: w, height: h } });
     await ctx.route('**/fonts.*/**', (r) => r.abort());
     const p = await ctx.newPage(); const errs = [];
@@ -66,8 +67,8 @@ const FLOWS = {
       if (/utm_/i.test(url)) throw new Error('UTM var: ' + url);
       if (!url || !url.includes('google.com/maps') || !url.includes(String(want.lat))) throw new Error('yol tarifi çıkışı hatalı: ' + url);
       if (errs.length) throw new Error(errs.join('; '));
-      console.log(`✔ ${dir}  → ${want.name}`);
-    } catch (e) { fail++; console.log(`✘ ${dir}: ${e.message.split('\n')[0]}`); }
+      console.log(`✔ ${dir} ${label} → ${want.name}`);
+    } catch (e) { fail++; console.log(`✘ ${dir} ${label}: ${e.message.split('\n')[0]}`); }
     await ctx.close();
   }));
   await browser.close();

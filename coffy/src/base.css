@@ -1,38 +1,38 @@
 :root{
-  --esp:#1d110b;--roast:#3a2117;--bean:#5a3422;--cream:#fbefdf;--foam:#fff8ee;
-  --acc:#ff5a2c;--acc2:#ffc53a;--mint:#5fe0bd;--pink:#ff8fb3;--ink:#1d110b;
-  --h:'Bricolage Grotesque','Manrope',system-ui,sans-serif;
+  /* Coffy kimliği: siyah zemin, beyaz yazı; vurgu kahve tonları */
+  --esp:#0b0b0b;--roast:#1c1c1c;--bean:#5a3422;--cream:#ffffff;--foam:#ffffff;
+  --acc:#c8864e;--acc2:#e9d1ad;--mint:#5fe0bd;--pink:#ff8fb3;--ink:#0b0b0b;
+  --h:'Barlow Condensed','Manrope',system-ui,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{width:var(--W);height:var(--H);overflow:hidden;background:var(--esp)}
 body{font-family:'Manrope',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;color:var(--cream);-webkit-font-smoothing:antialiased;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 button{font:inherit;color:inherit}
 .ad{position:relative;width:var(--W);height:var(--H);overflow:hidden;isolation:isolate;
-  background:radial-gradient(120% 80% at 80% -10%,rgba(255,90,44,.28),transparent 55%),radial-gradient(90% 60% at -10% 110%,rgba(255,197,58,.16),transparent 60%),var(--esp)}
+  background:radial-gradient(120% 80% at 80% -10%,rgba(200,134,78,.22),transparent 55%),radial-gradient(90% 60% at -10% 110%,rgba(233,209,173,.08),transparent 60%),var(--esp)}
 .ad::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:50;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
-.hd{font-family:var(--h);font-weight:800;letter-spacing:-.03em;line-height:.95}
+.hd{font-family:var(--h);font-weight:700;letter-spacing:.005em;line-height:.95;text-transform:uppercase}
 .scene{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .45s ease,visibility .45s}
 .scene.on{opacity:1;visibility:visible}
 
 /* logo */
 .logo{display:inline-flex;align-items:center;gap:5px;font-family:var(--h);font-weight:800;letter-spacing:-.05em;font-size:22px;line-height:1;color:var(--cream);text-decoration:none}
-.logo .dot{width:.36em;height:.36em;border-radius:50%;background:var(--acc);transform:translateY(.22em)}
-.logo svg{height:1em;width:auto;fill:currentColor}
-.ad-logo{position:absolute;z-index:30;top:12px;left:14px;font-size:19px}
+.logo img,.logo svg{display:block;height:1em;width:auto;fill:currentColor}
+.ad-logo{position:absolute;z-index:30;top:14px;left:14px;font-size:17px}
 
 /* butonlar */
-.btn{appearance:none;border:0;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:7px;font-weight:800;font-size:14px;line-height:1;border-radius:999px;padding:13px 18px;background:var(--acc);color:#fff;box-shadow:0 8px 22px -8px rgba(255,90,44,.8);transition:transform .2s,background .2s}
+.btn{appearance:none;border:0;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:7px;font-weight:800;font-size:14px;line-height:1;border-radius:999px;padding:13px 18px;background:#fff;color:var(--ink);box-shadow:0 8px 22px -10px rgba(255,255,255,.45);transition:transform .2s,background .2s;text-transform:uppercase;letter-spacing:.04em}
 .btn:active{transform:scale(.96)}
-.btn.alt{background:var(--cream);color:var(--ink);box-shadow:none}
+.btn.alt{background:var(--acc2);color:var(--ink);box-shadow:none}
 .btn.ghost{background:rgba(255,255,255,.08);color:var(--cream);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.22)}
-.btn .pin{width:12px;height:12px;flex:none}
+.btn .pin{width:12px;height:12px;flex:none}.btn .pin svg{fill:currentColor;width:12px;height:12px;display:block}
 .pulse{animation:pulse 1.6s ease-in-out infinite}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
 .btn:focus-visible,.opt:focus-visible{outline:2px solid var(--acc2);outline-offset:2px}
 
 /* slogan */
-.slogan{display:inline-flex;flex-direction:column;align-items:flex-start;font-family:var(--h);font-weight:800;letter-spacing:-.04em;line-height:.86;color:var(--cream)}
-.slogan .s1{font-size:.5em;letter-spacing:-.02em;color:var(--acc2);margin-left:.06em}
+.slogan{display:inline-flex;flex-direction:column;align-items:flex-start;font-family:var(--h);font-weight:700;letter-spacing:.01em;line-height:.86;color:var(--cream);text-transform:uppercase}
+.slogan .s1{font-size:.5em;letter-spacing:.06em;color:var(--acc2);margin-left:.04em}
 .slogan .s2{position:relative;font-size:1em}
 .slogan .s2 i{font-style:normal;color:var(--acc)}
 .slogan .sw{position:absolute;left:0;right:-.1em;bottom:-.16em;height:.22em;width:100%;overflow:visible}
@@ -59,10 +59,10 @@ button{font:inherit;color:inherit}
 
 /* video yer tutucu (gerçek video gelene kadar) */
 .vph{position:absolute;inset:0;background:var(--esp);overflow:hidden}
-.vph-bg{position:absolute;inset:-20%;background:radial-gradient(40% 35% at 30% 30%,rgba(255,90,44,.55),transparent 70%),radial-gradient(40% 40% at 75% 70%,rgba(255,197,58,.35),transparent 70%),radial-gradient(30% 30% at 70% 20%,rgba(255,143,179,.25),transparent 70%);animation:vbg 5s linear infinite}
+.vph-bg{position:absolute;inset:-20%;background:radial-gradient(40% 35% at 30% 30%,rgba(200,134,78,.5),transparent 70%),radial-gradient(40% 40% at 75% 70%,rgba(233,209,173,.22),transparent 70%),radial-gradient(30% 30% at 70% 20%,rgba(255,255,255,.12),transparent 70%);animation:vbg 5s linear infinite}
 @keyframes vbg{to{transform:rotate(360deg)}}
 .vph-grain{position:absolute;inset:0;opacity:.18;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.06) 0 1px,transparent 1px 3px)}
-.vph-w{position:absolute;left:8cqw;right:8cqw;top:50%;transform:translateY(-50%);font-family:var(--h);font-weight:800;letter-spacing:-.04em;line-height:.9;font-size:min(13cqw,24cqh);color:var(--cream);opacity:0}
+.vph-w{position:absolute;left:8cqw;right:8cqw;top:50%;transform:translateY(-50%);font-family:var(--h);font-weight:700;letter-spacing:.01em;text-transform:uppercase;line-height:.9;font-size:min(13cqw,24cqh);color:var(--cream);opacity:0}
 .vph-w em{font-style:normal;color:var(--acc2)}
 .vph .w1{animation:vw1 5s both}.vph .w2{animation:vw2 5s both}.vph .w3{animation:vw3 5s both}
 .vph-end{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:4cqw;opacity:0;animation:vend 5s both}
@@ -102,13 +102,22 @@ button{font:inherit;color:inherit}
 .end .ctas{display:flex;flex-direction:column;gap:7px;width:100%;margin-top:auto}
 .end .ctas .btn{width:100%;padding:12px 16px}
 .store{display:flex;align-items:center;gap:10px;width:100%;padding:8px 12px;border-radius:14px;background:rgba(255,255,255,.07);text-align:left}
-.store .pinw{width:30px;height:30px;flex:none;border-radius:50%;background:var(--acc);display:grid;place-items:center}
-.store .pinw svg{width:14px;height:14px;fill:#fff}
+.store .pinw{width:30px;height:30px;flex:none;border-radius:50%;background:#fff;display:grid;place-items:center}
+.store .pinw svg{width:14px;height:14px;fill:#0b0b0b}
 .store b{display:block;font-size:13px}
 .store small{display:block;font-size:11px;color:rgba(251,239,223,.7);margin-top:2px}
-.store .dist{margin-left:auto;font-family:var(--h);font-weight:800;font-size:18px;color:var(--acc2);white-space:nowrap}
+.store .dist{margin-left:auto;font-family:var(--h);font-weight:700;font-size:21px;color:var(--acc2);white-space:nowrap}
 .end.in .slogan,.end.in .cup,.end.in .lead,.end.in .store,.end.in .ctas{animation:rise .6s both}
 .end.in .cup{animation-delay:.1s}.end.in .lead{animation-delay:.2s}.end.in .store{animation-delay:.3s}.end.in .ctas{animation-delay:.4s}
 @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 
+/* bitiş kartı – 970x250 */
+.ad.w .end{display:grid;grid-template-columns:330px 1fr 300px;grid-template-rows:auto auto 1fr;grid-template-areas:"k cup ctas" "s cup ctas" "l cup ctas";align-items:start;text-align:left;padding:52px 26px 20px;column-gap:20px}
+.ad.w .end .k{grid-area:k;margin:0}
+.ad.w .end .slogan{grid-area:s;font-size:64px;margin-top:6px}
+.ad.w .end .lead{grid-area:l;max-width:320px;font-size:13px;margin-top:14px}
+.ad.w .end .cup{grid-area:cup;justify-self:center;align-self:center;height:214px;margin:-30px 0 0}
+.ad.w .end .ctas{grid-area:ctas;align-self:center;margin:-30px 0 0}
+.ad.w .end .store{margin-bottom:2px}
+.ad.w .ad-logo{top:18px;left:26px;font-size:19px}
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01s!important;animation-iteration-count:1!important;transition-duration:.01s!important}}

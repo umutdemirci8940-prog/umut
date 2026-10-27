@@ -1,30 +1,30 @@
-# Çok da Coffy – Lansman Planı ve 10 İnteraktif Banner
+# Çok da Coffy – Lansman Planı ve 10 İnteraktif Çalışma
 
-Coffy “Çok da Coffy” kampanyası için lansman/sürdürme planı ve **10 interaktif HTML5 reklam**. Set mobil ağırlıklı: **7 × 320×480** (mobil interstitial, oyun içi end card, playable) ve **3 × 970×250** (billboard).
+Coffy “Çok da Coffy” kampanyası için lansman/sürdürme planı ve **10 interaktif HTML5 çalışma**. Her çalışma **tek dosyadır ve hem 970×250 hem 320×480** alanında çalışır: alan genişliğine göre yerleşimini kendisi seçer (masaüstü billboard / mobil interstitial, oyun içi end card, playable).
 
-- **Plan:** [`LANSMAN-PLANI.md`](LANSMAN-PLANI.md): hedefler, kitle, faz planı, genç kitle hedefleme alternatifleri, oyun içi kullanım, lokasyon/şube yönlendirme, bütçe dağılımı, ölçümleme ve takvim.
-- **Sunum (tek dosya):** `release/index.html`: İlaçsız Yaşam sunumuyla aynı formatta (Stüdyo / Yayın simülasyonu, Koyu / Açık), 10 banner içine gömülü. Plan dahil uzun sürüm: `release/cok-da-coffy-sunum.html`.
-- **Eski sunum notu:** `release/cok-da-coffy-sunum.html` tek dosyadır. Plan ve 10 banner birlikte açılır, bannerlar sayfa içinde oynar ve her biri ayrı indirilebilir.
-- **Yükleme dosyaları:** `dist/<no>-<ad>-<boyut>/index.html` ve `dist/zip/*.zip`.
+- **Sunum:** `release/index.html` tek dosyadır. Splash Digital “Çalışmalar” şablonundaki gibi her çalışma tarayıcı penceresinde (970×250) ve telefon çerçevesinde (320×480) birlikte oynar. Ekrana gelince kendiliğinden başlar, “Tekrar oynat” ile baştan oynar.
+- **Yükleme dosyaları:** `dist/<no>-<ad>/index.html` (iki boyut aynı dosyada) ve `dist/zip/*.zip`.
+- **Plan:** [`LANSMAN-PLANI.md`](LANSMAN-PLANI.md).
+- **Marka:** Logo `assets/logo-original.png` dosyasından alınmıştır (beyaz/siyah sürümler aynı klasörde). Kimlik siyah-beyaz, başlıklar logodaki gibi dar ve büyük harfli; vurgu rengi kahve tonudur.
 
-| # | Çalışma | Boyut | Mekanik |
-|---|---|---|---|
-| 01 | Saat Kaç? Senaryosu | 320×480 | Video → gerçek saate göre senaryo + 3 seçenek → bardak dolar → bitiş kartı |
-| 02 | Enerji Doldur | 320×480 | Ödüllü video → dokun-iç → enerji %100 → +1 Can |
-| 03 | Köpüğü Kazı | 320×480 | Video → latte köpüğünü kazı → uygulama kodu |
-| 04 | Zor mu? Kaydır. | 320×480 | Video → 3 “zor an” kartı, sağa kaydır = Coffy’le hallet |
-| 05 | Çekirdek Avı | 320×480 | Video → 10 sn mini oyun → skor + kod |
-| 06 | En Yakın Coffy | 320×480 | Video → harita, yürüme rotası, yol tarifi |
-| 07 | Ruh Halin Ne? | 320×480 | Video → ruh hali seç → içecek önerisi |
-| 08 | Coffy Seviyesi | 970×250 | Video + kaydırıcı: “Az da → Orta da → Çok da Coffy.” |
-| 09 | Senaryonu Seç | 970×250 | Video → 3 senaryo paneli, zorluk %95 → %15 |
-| 10 | Şube Bulucu | 970×250 | Video → haritada en yakın 3 şube |
+| # | Çalışma | Mekanik |
+|---|---|---|
+| 01 | Saat Kaç? Senaryosu | Video → gerçek saate göre senaryo + 3 seçenek → bardak dolar → kapanış |
+| 02 | Enerji Doldur | Ödüllü video → dokun-iç → enerji %100 → +1 Can |
+| 03 | Köpüğü Kazı | Video → latte köpüğünü kazı → uygulama kodu |
+| 04 | Zor mu? Kaydır. | Video → 3 “zor an” kartı, sağa kaydır = Coffy’le hallet |
+| 05 | Çekirdek Avı | Video → 10 sn mini oyun → skor + kod |
+| 06 | En Yakın Coffy | Video → harita, yürüme rotası, yol tarifi |
+| 07 | Ruh Halin Ne? | Video → ruh hali seç → içecek önerisi |
+| 08 | Coffy Seviyesi | Video + kaydırıcı: “Az da → Orta da → Çok da Coffy.” |
+| 09 | Senaryonu Seç | Video → 3 senaryo paneli, zorluk %95 → %15 |
+| 10 | Şube Bulucu | Video → haritada en yakın 3 şube |
 
 ## Ekran görüntüleri
 
-![Mobil set](preview/screens/overview-mobile.jpg)
+![320×480](preview/screens/overview-mobile.jpg)
 
-![Billboard set](preview/screens/overview-wide.jpg)
+![970×250](preview/screens/overview-wide.jpg)
 
 ## Ortak kurgu
 
@@ -38,7 +38,8 @@ Coffy “Çok da Coffy” kampanyası için lansman/sürdürme planı ve **10 in
 
 ## Teknik
 
-- Her banner tek dosya (satır içi CSS/JS, SVG çizimler, harici görsel yok) ve **150 KB altında**. Fontlar Google Fonts’tan gelir (*Bricolage Grotesque* + *Manrope*).
+- Her çalışma tek dosya (satır içi CSS/JS, logo gömülü) ve **~45 KB** (Google Ads sınırı 150 KB). Fontlar Google Fonts’tan gelir (*Barlow Condensed* + *Manrope*).
+- **Tıklama:** Yalnızca CTA butonları (Yol tarifi al, Sipariş ver) dışarı çıkar; logo, zemin ve oyun alanı tıklaması çıkış yapmaz. Adreslerde UTM yoktur.
 - **Çıkışlar:** `window.clickTag` tanımlıysa o kullanılır (Google Ads / CM360). `Enabler` varsa `Enabler.exitOverride(<ad>, url)` çağrılır (Studio; çıkış adları `app`, `directions`, `stores`). MRAID varsa `mraid.open` kullanılır. Hiçbiri yoksa `config.exits` adresleri açılır.
 - **Ölçüm:** Etkileşimler `track()` ile `Enabler.counter`’a ve üst pencereye (`postMessage`) gönderilir. Sunum sayfası her kartın altında bu olayları canlı gösterir.
 - `prefers-reduced-motion` desteklenir; düğmeler klavyeyle odaklanabilir.
@@ -49,8 +50,9 @@ Coffy “Çok da Coffy” kampanyası için lansman/sürdürme planı ve **10 in
 
 | Alan | Şu an | Yapılacak |
 |---|---|---|
-| `brand.logoSvg` | “coffy” yazı logosu | Resmi logo SVG’si |
-| `:root` renkleri (`src/base.css`) | Espresso / krem / turuncu | Kurumsal renk kodları |
+| `brand.logo` | Gönderilen logo (`assets/logo-white.png`) | Vektör (SVG) logo gelirse `brand.logoSvg` |
+| Ürün görseli | Çizim bardak | Orijinal ürün fotoğrafları (coffy.com.tr) |
+| `:root` renkleri (`src/base.css`) | Siyah / beyaz / kahve vurgusu | Kurumsal renk kodları |
 | `video.src`, `video.poster` | Animasyonlu yer tutucu | CDN’deki 6 sn kesit |
 | `stores` (`storesSample: true`) | 8 örnek şube | Coffy şube feed’i; `storesSample: false` yapılınca “örnek şube verisi” etiketi kalkar |
 | `offer` | `COKDACOFFY` örnek kod | Gerçek teklif ve kanal bazlı kodlar |
@@ -60,10 +62,10 @@ Coffy “Çok da Coffy” kampanyası için lansman/sürdürme planı ve **10 in
 ## Derleme
 
 ```bash
-node coffy/build.js           # dist/, zip'ler, preview/index.html, release/ (Node 18+, ek paket gerekmez)
-node coffy/tools/present.js   # release/index.html – tek dosyalık sunum
-node coffy/tools/capture.js   # (isteğe bağlı) preview/screens/ ekran görüntüleri (Playwright + Chromium)
-node coffy/tools/smoke.js     # (isteğe bağlı) 10 bannerın etkileşim duman testi
+node coffy/build.js           # dist/ (10 çalışma, iki boyut tek dosyada) + zip'ler (Node 18+)
+node coffy/tools/present.js   # release/index.html (Splash Digital şablonu) + release/cok-da-coffy-calismalar.zip
+node coffy/tools/capture.js   # (isteğe bağlı) preview/screens/ – iki boyutta ekran görüntüleri (Playwright)
+node coffy/tools/smoke.js     # (isteğe bağlı) 10 çalışma × 2 boyut etkileşim testi
 ```
 
 ## Klasör yapısı
@@ -71,15 +73,15 @@ node coffy/tools/smoke.js     # (isteğe bağlı) 10 bannerın etkileşim duman 
 ```
 coffy/
   LANSMAN-PLANI.md         Lansman ve sürdürme planı
+  assets/                  Coffy logosu (orijinal, beyaz, siyah, blok) ve Splash Digital logosu
   src/config.js            Metinler, video, teklif, çıkışlar, şube verisi
-  src/base.css             Ortak stil (renk değişkenleri)
-  src/engine.js            Ortak motor: video aşaması, konum, çıkış, ölçüm, bitiş kartı
-  src/shared.js            Bardak SVG'si ve sayfa şablonu
-  src/concepts-mobile.js   01–07 (320×480)
-  src/concepts-wide.js     08–10 (970×250)
+  src/base.css             Ortak stil (renk değişkenleri, iki boyut için kapanış kartı)
+  src/engine.js            Ortak motor: boyut algılama, video, konum, çıkış, ölçüm, kapanış kartı
+  src/shared.js            Bardak çizimi ve sayfa şablonu
+  src/concepts-mobile.js   01–07
+  src/concepts-wide.js     08–10
   build.js                 Derleyici
-  dist/                    Yüklemeye hazır bannerlar + zip'ler
-  preview/                 Sunum sayfası + ekran görüntüleri
-  release/                 Tek dosyalık sunum + teslim zip'i
-  tools/                   Ekran görüntüsü ve duman testi
+  dist/                    Yüklemeye hazır çalışmalar + zip'ler
+  release/                 index.html (sunum) + teslim zip'i
+  tools/                   Sunum, ekran görüntüsü ve duman testi
 ```
