@@ -25,7 +25,7 @@ const FLOWS = {
   '01': async (p) => { await skip(p); await p.click('.opt[data-i="0"]'); await p.waitForSelector('#e.on .end', { timeout: 6000 }); },
   '02': async (p) => { await skip(p); for (let i = 0; i < 5; i++) { await p.click('#cupw'); await p.waitForTimeout(150); } await p.waitForSelector('#reward.on'); await p.waitForSelector('#e.on .end', { timeout: 6000 }); },
   '03': async (p) => {
-    await skip(p); const pts = []; for (let y = 10; y <= 220; y += 14) { pts.push([10, y], [220, y + 7]); }
+    await skip(p); await p.waitForSelector('#s.on'); await p.waitForTimeout(500); const pts = []; for (let y = 10; y <= 220; y += 14) { pts.push([10, y], [220, y + 7]); }
     await drag(p, '#cv', pts); await p.waitForSelector('#acts.on', { timeout: 4000 }); await p.click('#go', { force: true }); await p.waitForSelector('#e.on .end');
   },
   '04': async (p) => {

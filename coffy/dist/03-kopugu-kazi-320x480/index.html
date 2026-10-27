@@ -384,7 +384,7 @@ function boot(){(function () {
       function check() {
         var d = x.getImageData(0, 0, cv.width, cv.height).data, t = 0, c = 0, R = cv.width / 2;
         for (var yy = 0; yy < cv.height; yy += 8) for (var xx = 0; xx < cv.width; xx += 8) { if ((xx - R) * (xx - R) + (yy - R) * (yy - R) > R * R) continue; t++; if (d[(yy * cv.width + xx) * 4 + 3] < 128) c++; }
-        if (c / t > .5) reveal();
+        if (c / t > .4) reveal();
       }
       function reveal() {
         if (done) return; done = true; cancel(); cv.classList.add('gone'); burst($('#latte'), 28, 170);
