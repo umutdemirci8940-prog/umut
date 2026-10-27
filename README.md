@@ -1,5 +1,7 @@
 # İlaçsız Yaşam – Gıda Takviyesi Banner Serisi
 
+> Bu depoda ayrıca: **[`coffy/`](coffy/README.md)**: Coffy “Çok da Coffy” lansman planı ve 10 interaktif banner (7 × 320×480, 3 × 970×250).
+
 [ilacsizyasam.com](https://ilacsizyasam.com/) için hazırlanmış, gıda takviyeleri özelinde **animasyonlu, ürün slider'lı ve tıklanabilir HTML5 display reklam seti**.
 
 | Boyut | IAB adı | Dosya | Paket |

@@ -3,3 +3,5 @@ preview/.fontcache/
 preview/video/
 .DS_Store
 release/stage/
+coffy/preview/.fontcache/
+coffy/release/stage/
