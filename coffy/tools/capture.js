@@ -24,7 +24,8 @@ const UA = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Geck
 
 // Chromium bazı ağlarda Google Fonts'a doğrudan erişemez: bir kez curl ile indirip yerelden servis et.
 function fontCss() {
-  const f = path.join(cache, 'fonts.css');
+  // önbellek font adresine bağlı: font ayarı değişince yeniden indirilir
+  const f = path.join(cache, 'fonts-' + require('crypto').createHash('md5').update(FONTS).digest('hex').slice(0, 8) + '.css');
   if (!fs.existsSync(f)) {
     execSync(`curl -sS -A "${UA}" -o "${f}" "${FONTS}"`);
     for (const m of fs.readFileSync(f, 'utf8').matchAll(/url\((https:\/\/fonts\.gstatic\.com[^)]+)\)/g)) {

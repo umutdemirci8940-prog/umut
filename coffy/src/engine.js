@@ -174,11 +174,19 @@ function endcard(el, o) {
 /* ---------- video aşaması ---------- */
 var SND_ON = '<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>';
 var SND_OFF = '<svg viewBox="0 0 24 24"><path d="M16.5 12A4.5 4.5 0 0 0 14 8v2.2l2.4 2.4.1-.6zM19 12c0 .9-.2 1.8-.5 2.6l1.5 1.5A8.9 8.9 0 0 0 21 12a9 9 0 0 0-7-8.8v2.1A7 7 0 0 1 19 12zM4.3 3 3 4.3 7.7 9H3v6h4l5 5v-6.7l4.3 4.3c-.7.5-1.4.9-2.3 1.2v2a9 9 0 0 0 3.7-1.8L19.7 21 21 19.7 4.3 3zM12 4 9.9 6.1 12 8.2V4z"/></svg>';
-/** Ana video gelene kadar: coffy.com.tr'deki gerçek Coffy bardağı fotoğrafı üzerinde kinetik tipografi. */
+/** Açılış (ana video gelene kadar): logo ışık süzmesi → gerçek Coffy fotoğrafı üzerinde kinetik metin →
+ *  spot ışığı altında 3B dönerek yükselen ürün, cam üzerinde ışık geçişi ve zemin yansıması → harf harf slogan. */
 function placeholder(loop) {
-  return '<div class="vph' + (loop ? ' loop' : '') + '"><div class="vph-ph" style="background-image:url(' + C.photo + ')"></div><div class="vph-sh"></div>' +
+  var p = P(C.hero), letters = function (t) { return t.split('').map(function (c, i) { return '<span style="--i:' + i + '">' + (c === ' ' ? '&nbsp;' : esc(c)) + '</span>'; }).join(''); };
+  return '<div class="vph' + (loop ? ' loop' : '') + '">' +
+    '<div class="op-ph" style="background-image:url(' + C.photo + ')"></div><div class="op-sh"></div>' +
+    '<div class="op-logo"><span class="logo">' + (C.brand.logoSvg || 'COFFY') + '</span><i class="op-gl"></i></div>' +
     '<div class="vph-w w1">Ders <em>09:00</em>’da.</div><div class="vph-w w2">Toplantı <em>09:01</em>’de.</div><div class="vph-w w3">Peki sen?</div>' +
-    '<div class="vph-end">' + prodImg(C.hero, 'vp') + slogan() + '</div><div class="vph-tag">ANA VİDEO · YER TUTUCU</div></div>';
+    '<div class="op-hero"><div class="op-stage"><i class="op-spot"></i><div class="op-prod">' + prodImg(C.hero) +
+    '<i class="op-sweep" style="-webkit-mask-image:url(' + p.src + ');mask-image:url(' + p.src + ')"></i></div>' +
+    '<div class="op-ref">' + prodImg(C.hero) + '</div></div>' +
+    '<div class="op-sl"><b class="s1">' + letters('Çok da') + '</b><b class="s2">' + letters('Coffy') + '<i>.</i></b><small>' + esc(p.name) + ' · coffy.com.tr</small></div></div>' +
+    '<i class="op-bar"></i><div class="vph-tag">ANA VİDEO · YER TUTUCU</div></div>';
 }
 function playVideo(host, done, opt) {
   opt = opt || {};

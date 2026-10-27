@@ -241,8 +241,8 @@ module.exports = [
         return '<i class="anc" style="left:' + p.x + 'px"></i>';
       }).join('');
       // Kullanıcı altta, şubeler mesafe sırasına göre geriye doğru (ekranda görünür bantta)
-      planeY($('.me', pl), host, mob ? 166 : 214, PH);
-      var SY = mob ? [152, 132, 114] : [160, 124, 94];
+      planeY($('.me', pl), host, mob ? 166 : 232, PH);
+      var SY = mob ? [152, 132, 114] : [184, 160, 138];
       $$('.anc', pl).forEach(function (a, i) { planeY(a, host, SY[i], PH); });
       $('#pins').innerHTML = $$('.anc', pl).map(function (a, i) { var q = screenPos(a, host); return '<div class="pn10' + (i ? '' : ' on') + '" style="left:' + q.x + 'px;top:' + q.y + 'px"><div class="ps"><b>' + (i + 1) + '</b><i></i></div></div>'; }).join('');
       $('#chip').textContent = DN[dp] + (G.src === 'fallback' ? ' · ' + C.geo.fallback.area.toUpperCase() : '');

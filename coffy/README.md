@@ -5,7 +5,8 @@ Coffy “Çok da Coffy” kampanyası için lansman/sürdürme planı ve **10 in
 - **Sunum:** `release/index.html` tek dosyadır. Splash Digital “Çalışmalar” şablonundaki gibi her çalışma tarayıcı penceresinde (970×250) ve telefon çerçevesinde (320×480) birlikte oynar. Ekrana gelince kendiliğinden başlar, “Tekrar oynat” ile baştan oynar.
 - **Yükleme dosyaları:** `dist/<no>-<ad>/index.html` (iki boyut aynı dosyada) ve `dist/zip/*.zip`.
 - **Plan:** [`LANSMAN-PLANI.md`](LANSMAN-PLANI.md).
-- **Marka ve ürünler:** Logo coffy.com.tr’deki resmi vektör logodur (`assets/coffy-logo.svg`). Ürün görselleri coffy.com.tr/menu’deki orijinal fotoğraflardan arka planı yapay zekâ modeliyle (rembg / isnet) silinerek hazırlandı (`assets/products/`). Şube listesi coffy.com.tr/subeler’deki 174 gerçek şubedir (`assets/stores.json`). Video yer tutucusunda ana sayfadaki gerçek Coffy bardağı fotoğrafı kullanılır.
+- **Marka ve ürünler:** Logo coffy.com.tr’deki resmi vektör logodur (`assets/coffy-logo.svg`). Ürün görselleri coffy.com.tr/menu’deki orijinal fotoğraflardan arka planı yapay zekâ modeliyle (rembg / isnet) silinerek hazırlandı (`assets/products/`). Şube listesi coffy.com.tr/subeler’deki 174 gerçek şubedir (`assets/stores.json`). Cam kenarları koyu zeminde kaybolmasın diye kesimlerin yarı saydam cam bölgeleri güçlendirildi ve ince bir kenar ışığı eklendi.
+- **Açılış (first media):** Ana video gelene kadar her çalışma 5 sn’lik sinematik bir açılışla başlar: logo ışık süzmesiyle belirir → ana sayfadaki gerçek Coffy bardağı fotoğrafı üzerinde kinetik metin → ürün spot ışığı altında 3B dönerek yükselir, cam üzerinden ışık geçer, zeminde yansıması oluşur → slogan harf harf gelir. `video.src` doldurulunca yerini gerçek video alır.
 - **3B:** Kapanış kartında sürüklenebilir 3B ürün karuseli, 3B dönen kartlar (01, 04, 09), 3B eğimli şehir haritası ve ayakta duran pinler (06, 10), 3B ürün makarası (07), harekete göre dönen ürünler (05, 08).
 
 | # | Çalışma | Mekanik |
