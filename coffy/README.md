@@ -3,7 +3,8 @@
 Coffy “Çok da Coffy” kampanyası için lansman/sürdürme planı ve **10 interaktif HTML5 reklam**. Set mobil ağırlıklı: **7 × 320×480** (mobil interstitial, oyun içi end card, playable) ve **3 × 970×250** (billboard).
 
 - **Plan:** [`LANSMAN-PLANI.md`](LANSMAN-PLANI.md): hedefler, kitle, faz planı, genç kitle hedefleme alternatifleri, oyun içi kullanım, lokasyon/şube yönlendirme, bütçe dağılımı, ölçümleme ve takvim.
-- **Sunum:** `release/cok-da-coffy-sunum.html` tek dosyadır. Plan ve 10 banner birlikte açılır, bannerlar sayfa içinde oynar ve her biri ayrı indirilebilir.
+- **Sunum (tek dosya):** `release/index.html`: İlaçsız Yaşam sunumuyla aynı formatta (Stüdyo / Yayın simülasyonu, Koyu / Açık), 10 banner içine gömülü. Plan dahil uzun sürüm: `release/cok-da-coffy-sunum.html`.
+- **Eski sunum notu:** `release/cok-da-coffy-sunum.html` tek dosyadır. Plan ve 10 banner birlikte açılır, bannerlar sayfa içinde oynar ve her biri ayrı indirilebilir.
 - **Yükleme dosyaları:** `dist/<no>-<ad>-<boyut>/index.html` ve `dist/zip/*.zip`.
 
 | # | Çalışma | Boyut | Mekanik |
@@ -60,6 +61,7 @@ Coffy “Çok da Coffy” kampanyası için lansman/sürdürme planı ve **10 in
 
 ```bash
 node coffy/build.js           # dist/, zip'ler, preview/index.html, release/ (Node 18+, ek paket gerekmez)
+node coffy/tools/present.js   # release/index.html – tek dosyalık sunum
 node coffy/tools/capture.js   # (isteğe bağlı) preview/screens/ ekran görüntüleri (Playwright + Chromium)
 node coffy/tools/smoke.js     # (isteğe bağlı) 10 bannerın etkileşim duman testi
 ```

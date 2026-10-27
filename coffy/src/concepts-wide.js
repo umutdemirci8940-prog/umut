@@ -16,7 +16,7 @@ module.exports = [
   <div class="kicker">BUGÜN NE KADAR COFFY’SİN?</div>
   <div class="lh hd" id="lh">Az da Coffy.</div>
   <div class="sl" id="sl"><div class="tr"><i id="fb"></i></div><div class="kn" id="kn"><span></span></div><div class="lb"><span>AZ</span><span>ORTA</span><span>ÇOK</span></div></div>
-  <div class="ct8" id="ct8"><div class="st8" id="st8"></div><div class="bt8"><button class="btn" data-exit="directions">Yol tarifi al</button><button class="btn ghost" data-exit="app">Uygulamadan sipariş</button></div></div>
+  <div class="ct8" id="ct8"><div class="st8" id="st8"></div><div class="bt8"><button class="btn" data-exit="directions">Yol tarifi al</button><button class="btn ghost" data-exit="app">Sipariş ver</button></div></div>
 </div>
 <div class="c8" id="c8"></div>
 <div class="hint" id="hint" style="display:none"></div>`,
