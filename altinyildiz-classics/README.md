@@ -126,3 +126,16 @@ Mobil kullanıcının her gün yaptığı hareket üzerine kurulu: **kartı sağ
 - Test parametreleri: `...index.html?debug=1` canlı sensör değerlerini (sapma, tepe, izin durumu) gösterir; `?esik=9` daha hassas, `?esik=16` daha zor yapar. İkisi birlikte: `?debug=1&esik=10`.
 - Reklam ağına konduğunda iframe içinde çalışır; iframe başka bir alan adındaysa sayfanın iframe'e `allow="accelerometer; gyroscope"` vermesi gerekir (çoğu mobil rich media SDK'sı verir, vermezse SALLA düğmesi devreye girer).
 - Otomatik test: `NODE_PATH=$(npm root -g) node tools/test-shake.js` (hafif titreme tetiklememeli, 3 sallama 3 kombin değiştirmeli).
+
+---
+
+# Kombin Makinesi – marka ürünleriyle son sürüm (AC, 970×250)
+
+`dist/09-kombin-makinesi-ac/index.html` · zip `dist/altinyildiz-classics-09-kombin-makinesi-ac.zip` (~88 KB)
+
+Onaylanan sürüm (AC_V4_1 = `02-kombin-makinesi`) birebir korunarak ürünler markanın Word listesiyle ("Altınyıldız UTM Linkleri – Splash") değiştirildi:
+- **Üst makara (18):** kazak, gömlek, tişört, polar, sweatshirt, ceket, blazer, mont, kaban. **Alt makara (5):** jean, chino (2), jogger, örme pantolon. Toplam 90 kombin (sayaç buna göre).
+- Tüm yönlendirmeler listedeki **UTM'li adreslerdir** (`src/ac-urunler.json`, Word'den birebir). Listede 7. ve 8. satır aynı ürün (Siyah Şişme Mont) olduğu için bir kez kullanıldı.
+- "Satın Al" makarada görünen ürüne, sağdaki ürün satırları ilgili ürüne, banner zemini o an görünen üst parçaya gider (kombin sayfası olmadığı için).
+- Görseller ürün sayfalarındaki stüdyo fotoğraflarıdır (`tools/fetch-products.js`, GitHub Actions).
+- Bağlantı testi: `NODE_PATH=$(npm root -g) node tools/test-ac-links.js` (23/23 adres, eksik/fazla yok).

@@ -18,7 +18,8 @@ for cdir in sorted(glob.glob(os.path.join(ROOT, 'concepts', '*'))):
     total = 0
     for key, s in json.load(open(spec)).items():
         folder, num = s['src'].split('/')
-        src = glob.glob(os.path.join(ROOT, 'assets', folder, 'img', num + '-*'))[0]
+        hits = glob.glob(os.path.join(ROOT, 'assets', folder, 'img', num + '-*')) or glob.glob(os.path.join(ROOT, 'assets', folder, num + '.*'))
+        src = hits[0]
         im = Image.open(src).convert('RGB')
         W, H = im.size
         x0, y0, x1, y1 = s.get('crop', [0, 0, 1, 1])

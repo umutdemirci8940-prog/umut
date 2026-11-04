@@ -143,6 +143,8 @@ SCENARIOS['08-masthead-fermuar'] = async (p, shot) => {
   await p.click('#replay'); await shot('08-yeniden-kapandi', 1200);
 };
 
+SCENARIOS['09-kombin-makinesi-ac'] = SCENARIOS['02-kombin-makinesi'];
+
 (async () => {
   const b = await chromium.launch();
   let failed = false;
