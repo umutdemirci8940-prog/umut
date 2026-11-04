@@ -13,7 +13,7 @@ permissions:
 jobs:
   products:
     if: github.actor != 'github-actions[bot]'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04  # ubuntu-latest (26.04) Playwright tarafından desteklenmiyor
     steps:
       - uses: actions/checkout@v4
         with:
