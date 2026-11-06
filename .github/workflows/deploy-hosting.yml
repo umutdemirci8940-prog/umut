@@ -9,6 +9,7 @@ name: Siteyi hostinge yükle (TurkTicaret FTP)
 #   FTP_USERNAME  cPanel'de açılan FTP hesabı (dizini public_html olmalı)
 #   FTP_PASSWORD  o FTP hesabının şifresi
 # Secrets eklenmeden önce bu iş hiçbir şey yapmadan geçer.
+# İlk yükleme: 2026-11-06
 on:
   workflow_dispatch:
   push:
