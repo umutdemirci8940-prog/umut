@@ -22,10 +22,19 @@
   }
   function makeCanvas(cv) {
     var ctx = cv.getContext('2d'), dpr = Math.min(window.devicePixelRatio || 1, 2), o = { ctx: ctx, w: 0, h: 0 };
+    // Boyut CSS piksel olarak okunur (dönüşümlerden etkilenmez). iOS Safari açılışta
+    // boyutu yanlış verebildiği için fit() her karede kontrol eder ve gerekirse düzeltir.
+    function size() {
+      return { w: cv.clientWidth || window.innerWidth, h: cv.clientHeight || window.innerHeight };
+    }
     o.resize = function () {
-      var r = cv.getBoundingClientRect();
-      o.w = r.width; o.h = r.height; cv.width = o.w * dpr; cv.height = o.h * dpr;
+      var s = size();
+      o.w = s.w; o.h = s.h; cv.width = Math.round(o.w * dpr); cv.height = Math.round(o.h * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+    o.fit = function () {
+      var s = size();
+      if (Math.abs(s.w - o.w) > 1 || Math.abs(s.h - o.h) > 1) o.resize();
     };
     o.resize();
     return o;
@@ -82,6 +91,7 @@
     (function frame(now) {
       if (stopped) return;
       requestAnimationFrame(frame);
+      c.fit();
       var t = now - t0, cx = c.w / 2, cy = c.h / 2, k = scale();
       ctx.clearRect(0, 0, c.w, c.h);
 
@@ -201,6 +211,7 @@
   (function loop(now) {
     requestAnimationFrame(loop);
     if (!visible || d.hidden) return;
+    c2.fit();
     var t = now - tStart, w = c2.w, h = c2.h, cx = w / 2, cy = h / 2, k = Math.min(w, h) * .0028;
     ctx2.clearRect(0, 0, w, h);
     var toNet = smooth(.66, .86, prog);
