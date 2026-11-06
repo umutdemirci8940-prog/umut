@@ -5,7 +5,7 @@
 
 /* ---------- Giriş ---------- */
 html.intro-on, html.intro-on body { overflow: hidden; }
-.intro { position: fixed; inset: 0; z-index: 400; display: none; color: #fff;
+.intro { position: fixed; inset: 0; overflow: hidden; z-index: 400; display: none; color: #fff;
   background: radial-gradient(80% 70% at 50% 50%, #0d2442 0%, #061325 55%, #030a14 100%); }
 .js .intro { display: block; }
 .js.intro-seen .intro { display: none; }
@@ -22,19 +22,23 @@ html.intro-on, html.intro-on body { overflow: hidden; }
 .intro__count { font-size: 13px; color: #cfe6fa; min-width: 34px; }
 .intro__skip { position: absolute; right: 24px; bottom: 20px; z-index: 3; background: transparent; border: 1px solid rgba(255, 255, 255, .25); color: #cfe6fa; font: 600 12px/1 var(--font-body, sans-serif); letter-spacing: .12em; text-transform: uppercase; padding: 10px 16px; border-radius: 8px; cursor: pointer; transition: border-color .2s, background .2s; }
 .intro__skip:hover { border-color: #fff; background: rgba(255, 255, 255, .06); }
-.intro.is-impact { animation: introShake .45s ease-out; }
+.intro.is-impact .intro__cv { animation: introShake .45s ease-out; }
 @keyframes introShake { 20% { transform: translate(2px, -2px); } 40% { transform: translate(-2px, 1px); } 60% { transform: translate(1px, 2px); } 80% { transform: translate(-1px, -1px); } }
 /* Siteye geçiş: ortadan genişleyen delik */
 .intro.is-revealing { -webkit-mask-image: radial-gradient(circle at 50% 50%, transparent var(--hole), #000 calc(var(--hole) + 2px)); mask-image: radial-gradient(circle at 50% 50%, transparent var(--hole), #000 calc(var(--hole) + 2px)); animation: hole .85s cubic-bezier(.7, 0, .25, 1) forwards; }
 .intro.is-revealing .intro__brand, .intro.is-revealing .intro__meta, .intro.is-revealing .intro__skip { opacity: 0; transition: opacity .3s; }
 @keyframes hole { to { --hole: 150vmax; } }
 .intro.is-done { display: none !important; }
-@media (max-width: 600px) { .intro__meta span:last-child { display: none; } .intro__meta { left: 18px; } .intro__skip { right: 16px; } }
+/* Logonun arkasına koyu hale: noktalar logonun üstünde karışık görünmesin */
+.intro__brand::before { content: ''; position: absolute; left: 50%; top: 50%; z-index: -1; width: 150%; height: 260%; transform: translate(-50%, -50%);
+  background: radial-gradient(closest-side, rgba(4, 12, 24, .92), rgba(4, 12, 24, .6) 55%, transparent); opacity: 0; transition: opacity .8s; }
+.intro.is-brand .intro__brand::before { opacity: 1; }
+@media (max-width: 600px) { .intro__brand img { width: 48vw; margin-bottom: 0; } .intro__skip { right: 16px; bottom: max(20px, env(safe-area-inset-bottom)); } }
 
 /* ---------- Etki sahnesi (kaydırmalı) ---------- */
 .impact { position: relative; background: #050d1a; color: #fff; }
 .impact.is-pinned { height: 300vh; }
-.impact__sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; display: grid; place-items: center;
+.impact__sticky { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; display: grid; place-items: center;
   background: radial-gradient(70% 60% at 50% 50%, #0c2340 0%, #061325 60%, #040b16 100%); }
 .impact__cv { position: absolute; inset: 0; width: 100%; height: 100%; }
 .impact__sticky::after { content: ''; position: absolute; inset: 0; pointer-events: none;

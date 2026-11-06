@@ -53,7 +53,7 @@
     var c = makeCanvas(intro.querySelector('.intro__cv')), ctx = c.ctx;
     var count = intro.querySelector('.intro__count');
     var N = window.innerWidth < 700 ? 520 : 900;
-    var scale = function () { return Math.min(c.w, c.h) * .0029; };
+    var scale = function () { return Math.min(c.w, c.h) * (c.w < 700 ? .0041 : .0029); };
     var targets = ringTargets(N, [26, 52, 80, 110]);
     var P = [];
     for (var i = 0; i < N; i++) {

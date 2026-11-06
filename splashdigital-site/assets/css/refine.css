@@ -139,3 +139,9 @@ h3 { font-stretch: 106%; font-weight: 600; letter-spacing: -.02em; }
   .sv--code .win__code p { width: 100%; }
   .sv-trend { stroke-dashoffset: 0; }
 }
+
+/* Mobil: iki satıra bölünen etiketler sıkışmasın */
+@media (max-width: 600px) {
+  .eyebrow { line-height: 1.55; letter-spacing: .12em; align-items: flex-start; }
+  .eyebrow::before { margin-top: .75em; flex: none; }
+}

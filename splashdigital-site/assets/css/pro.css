@@ -199,7 +199,7 @@
 
 /* Sabitlenen anlatım (geniş ekran, JS ile .fmt-pin eklenir) */
 .fmt-pin .fmt-scroll { position: relative; }
-.fmt-pin .fmt-sticky { position: sticky; top: var(--header-h); height: calc(100vh - var(--header-h)); display: flex; align-items: center; }
+.fmt-pin .fmt-sticky { position: sticky; top: var(--header-h); height: calc(100vh - var(--header-h)); height: calc(100svh - var(--header-h)); display: flex; align-items: center; }
 .fmt-pin .fmt-sticky > .fmt { width: 100%; }
 .fmt-pin .fmt__tab .fmt__bar { animation: none !important; transform: scaleX(var(--tp, 0)); opacity: 1 !important; }
 .fmt-pin .fmt__tab:not(.is-active) .fmt__bar { transform: scaleX(0); }
@@ -275,6 +275,12 @@
 @media (max-width: 900px) {
   .js .reveal { transform: translateY(30px) rotateX(8deg); }
   .js .adstage.stage3d.is-in { transform: perspective(1200px) rotateX(4deg) rotateY(-6deg); }
+}
+@media (max-width: 600px) {
+  /* Yüzen kartlar ekran kenarından taşmasın */
+  .js .adstage.stage3d.is-in { transform: perspective(1200px) rotateX(3deg) rotateY(-3deg); }
+  .kpi--view { left: 3%; }
+  .stage3d .kpi--view, .stage3d .kpi--eng, .stage3d .kpi--imp { transform: translateZ(40px); }
 }
 @media (prefers-reduced-motion: reduce) {
   .js .reveal, .tilt, .js .adstage.stage3d.is-in { transform: none !important; }
