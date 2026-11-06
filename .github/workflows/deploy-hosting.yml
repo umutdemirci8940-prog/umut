@@ -1,0 +1,44 @@
+name: Siteyi hostinge yükle (TurkTicaret FTP)
+
+# splashdigital-site/ klasöründeki değişiklikler bu dala gönderildiğinde
+# dosyalar FTP ile public_html'e yüklenir. Yalnızca değişen dosyalar gönderilir;
+# sunucudaki başka dosyalara (e-posta, cPanel ayarları vb.) dokunulmaz.
+#
+# Gerekli GitHub secrets (Settings → Secrets and variables → Actions):
+#   FTP_SERVER    örn. ftp.splashdigital.com.tr veya 31.186.11.47
+#   FTP_USERNAME  cPanel'de açılan FTP hesabı (dizini public_html olmalı)
+#   FTP_PASSWORD  o FTP hesabının şifresi
+# Secrets eklenmeden önce bu iş hiçbir şey yapmadan geçer.
+on:
+  workflow_dispatch:
+  push:
+    branches: ['claude/vigilant-keller-9gs5av', 'main']
+    paths: ['splashdigital-site/**', '.github/workflows/deploy-hosting.yml']
+
+concurrency:
+  group: deploy-hosting
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      FTP_SERVER: ${{ secrets.FTP_SERVER }}
+    steps:
+      - name: Secrets kontrolü
+        if: env.FTP_SERVER == ''
+        run: echo "::notice::FTP bilgileri henüz eklenmedi; yükleme atlandı."
+      - uses: actions/checkout@v4
+        if: env.FTP_SERVER != ''
+      - name: FTP ile yükle
+        if: env.FTP_SERVER != ''
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          local-dir: ./splashdigital-site/
+          server-dir: ./
+          dangerous-clean-slate: false
