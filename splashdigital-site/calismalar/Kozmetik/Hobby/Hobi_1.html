@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hobby Kozmetik Banner</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- React & ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Framer Motion -->
+    <script src="https://unpkg.com/framer-motion@11.0.3/dist/framer-motion.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Inter:wght@400;500;600;700;800;900&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #e5e5e5;
+        }
+        
+        .font-script {
+            font-family: 'Caveat', cursive;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        const { motion, AnimatePresence } = window.Motion || window.FramerMotion || window;
+
+        // Icons
+        const ShoppingBag = ({ size = 24, className = "" }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+                <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/>
+                <path d="M3 6h18"/>
+                <path d="M16 10a4 4 0 0 1-8 0"/>
+            </svg>
+        );
+
+        const Droplets = ({ size = 24, color = "currentColor", className = "" }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+                <path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7 2.9 7 2.9s-2.15 5.25-3.29 6.16C2.57 10 2 11.09 2 12.25c0 2.22 1.8 4.05 4 4.05z"/>
+                <path d="M12.56 6.6A10.97 10.97 0 0 0 14 3.02c.53.1 1.08.23 1.65.4 2.06.6 4 1.6 5.5 2.9a11 11 0 0 0-3.2 3.2 8.56 8.56 0 0 1-5.39-2.92z"/>
+                <path d="M14.1 11.1c.36.3.73.6 1.1.9 1.4 1.1 2.8 2.2 3.8 3.5a6 6 0 0 1-10.6 5.6c-.3-.5-.6-1.1-.8-1.7"/>
+            </svg>
+        );
+
+        const Sparkles = ({ size = 24, className = "" }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+                <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+                <path d="M5 3v4"/>
+                <path d="M19 17v4"/>
+                <path d="M3 5h4"/>
+                <path d="M17 19h4"/>
+            </svg>
+        );
+
+        const CheckCircle2 = ({ size = 24, className = "", style, strokeWidth = 2 }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" className={className} style={style}>
+                <circle cx="12" cy="12" r="10"/>
+                <path d="m9 12 2 2 4-4"/>
+            </svg>
+        );
+
+        const ArrowRight = ({ size = 24, className = "" }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+                <path d="M5 12h14"/>
+                <path d="m12 5 7 7-7 7"/>
+            </svg>
+        );
+
+        const Volume2 = ({ size = 24, className = "" }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+            </svg>
+        );
+
+        const VolumeX = ({ size = 24, className = "" }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                <line x1="23" x2="17" y1="9" y2="15"/>
+                <line x1="17" x2="23" y1="9" y2="15"/>
+            </svg>
+        );
+
+        const products = [
+            { id: 0, name: 'Hobby Kolajen + Biotin Şampuan ile Güçlü ve Dolgun Saçlar!', color: '#b45309', lightColor: '#fef3c7', img: 'keratinkafein.png', url: 'https://www.hobikozmetik.com/urunlerimiz/hobby-kolajen-biotin-sampuan-zayif-ve-gucsuz-saclar-icin/', details: ['Dökülme Karşıtı', 'Keratin Desteği', 'Kafein ile Canlılık'] },
+            { id: 1, name: 'Hobby Kolajen + Biotin Şampuan ile Güçlü ve Dolgun Saçlar!', color: '#0284c7', lightColor: '#e0f2fe', img: 'mentol.png', url: 'https://www.hobikozmetik.com/urunlerimiz/hobby-kolajen-biotin-sampuan-kepekli-saclar-icin/', details: ['Kepeğe Karşı Etkili', 'Ferahlatıcı Mentol', 'Derinlemesine Arınma'] },
+            { id: 2, name: 'Hobby Kolajen + Biotin Şampuan ile Güçlü ve Dolgun Saçlar!', color: '#059669', lightColor: '#d1fae5', img: 'vitaminkompleks.png', url: 'https://www.hobikozmetik.com/urunlerimiz/hobby-kolajen-biotin-sampuan-kuru-ve-cansiz-saclar-icin/', details: ['Pro-Vitamin B5', 'Derinlemesine Nem', 'Parlaklık ve Yumuşaklık'] },
+        ];
+
+        function App() {
+            const [activeIndex, setActiveIndex] = useState(0);
+            const [isHovering, setIsHovering] = useState(false);
+            const [isMuted, setIsMuted] = useState(true);
+
+            useEffect(() => {
+                if (isHovering) return;
+                
+                const interval = setInterval(() => {
+                    setActiveIndex((current) => (current + 1) % products.length);
+                }, 3000);
+                
+                return () => clearInterval(interval);
+            }, [isHovering]);
+
+            const activeProduct = products[activeIndex];
+
+            return (
+                <div className="min-h-screen bg-neutral-200 flex flex-col items-center justify-center p-4 font-sans">
+                    <div 
+                        className="w-[970px] h-[250px] bg-white overflow-hidden shadow-2xl relative flex rounded-2xl border border-white/80"
+                        onMouseEnter={() => setIsHovering(true)}
+                        onMouseLeave={() => setIsHovering(false)}
+                    >
+                        {/* Banner Inner Background */}
+                        <motion.div 
+                            className="absolute inset-0 transition-colors duration-1000 ease-in-out opacity-60"
+                            animate={{ backgroundColor: activeProduct.lightColor }}
+                        />
+                        <motion.div
+                            className="absolute top-1/2 left-3/4 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full mix-blend-multiply filter blur-[90px] opacity-60 pointer-events-none"
+                            animate={{ 
+                                backgroundColor: activeProduct.color,
+                                scale: [1, 1.1, 1],
+                                x: ["-50%", "-45%", "-55%", "-50%"],
+                                y: ["-50%", "-55%", "-45%", "-50%"]
+                            }}
+                            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                        />
+                        
+                        <div className="w-[440px] h-full relative overflow-hidden shrink-0 z-30 shadow-[10px_0_20px_rgba(0,0,0,0.1)]">
+                            <video 
+                                src="hobi.mp4" 
+                                className="w-full h-full object-cover"
+                                autoPlay
+                                muted={isMuted}
+                                loop
+                                playsInline
+                            />
+                            <div className="absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-black/20 to-transparent pointer-events-none" />
+                            
+                            <button
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    setIsMuted(!isMuted);
+                                }}
+                                className="absolute top-4 left-4 z-40 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full backdrop-blur-sm transition-colors cursor-pointer"
+                            >
+                                {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+                            </button>
+                        </div>
+
+                        <div className="flex-1 relative overflow-hidden flex z-20">
+
+                            <div className="absolute inset-0 flex items-center justify-end pr-10 pointer-events-none overflow-hidden">
+                                <AnimatePresence mode="wait">
+                                    <motion.div
+                                        key={activeIndex}
+                                        initial={{ opacity: 0, x: 50, scale: 0.9 }}
+                                        animate={{ opacity: 0.04, x: 0, scale: 1 }}
+                                        exit={{ opacity: 0, x: -50, scale: 1.1 }}
+                                        transition={{ duration: 0.6, ease: "easeOut" }}
+                                        className="text-[140px] font-black tracking-tighter text-black whitespace-nowrap select-none"
+                                    >
+                                        HOBBY
+                                    </motion.div>
+                                </AnimatePresence>
+                            </div>
+
+                            <div className="w-[280px] h-full flex flex-col justify-between p-5 relative z-20">
+                                
+                                <div className="-translate-y-[6px]">
+                                    <img 
+                                        src="https://www.hobikozmetik.com/wp-content/uploads/2021/03/6-01.png.webp" 
+                                        className="h-12 object-contain mb-3 -mt-2" 
+                                        alt="Hobby Logo" 
+                                        referrerPolicy="no-referrer"
+                                    />
+                                    
+                                    <AnimatePresence mode="wait">
+                                        <motion.div
+                                            key={activeIndex}
+                                            initial={{ opacity: 0, y: 10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: -10 }}
+                                            transition={{ duration: 0.3 }}
+                                        >
+                                            <h2 className="text-[17px] font-extrabold text-neutral-800 leading-tight mb-3">
+                                                {activeProduct.name}
+                                            </h2>
+                                            
+                                            <ul className="space-y-1.5">
+                                                {activeProduct.details.map((detail, idx) => (
+                                                    <motion.li 
+                                                        key={idx}
+                                                        initial={{ opacity: 0, x: -10 }}
+                                                        animate={{ opacity: 1, x: 0 }}
+                                                        transition={{ delay: idx * 0.1 }}
+                                                        className="flex items-center gap-1.5 text-[11px] font-bold text-neutral-600"
+                                                    >
+                                                        <CheckCircle2 size={12} style={{ color: activeProduct.color }} strokeWidth={3} />
+                                                        {detail}
+                                                    </motion.li>
+                                                ))}
+                                            </ul>
+                                        </motion.div>
+                                    </AnimatePresence>
+                                </div>
+
+                                <div>
+                                    <motion.button 
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            window.open(activeProduct.url, '_blank');
+                                        }}
+                                        whileHover={{ scale: 1.05 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        className="text-white text-[12px] font-bold px-6 py-2.5 rounded-full shadow-xl flex items-center justify-center gap-2 z-40 cursor-pointer transition-colors w-max"
+                                        style={{ backgroundColor: activeProduct.color }}
+                                    >
+                                        Hemen Keşfet
+                                        <ArrowRight size={14} />
+                                    </motion.button>
+                                </div>
+                            </div>
+
+                            <div className="flex-1 h-full relative z-20 flex items-center justify-center pb-6">
+                                
+                                <AnimatePresence mode="wait">
+                                    <motion.div
+                                        key={activeIndex}
+                                        className="relative cursor-pointer group"
+                                        onClick={() => window.open(activeProduct.url, '_blank')}
+                                        initial={{ opacity: 0, scale: 0.8, rotate: -10, x: 50 }}
+                                        animate={{ opacity: 1, scale: 1, rotate: 0, x: 0 }}
+                                        exit={{ opacity: 0, scale: 0.9, rotate: 10, x: -50 }}
+                                        transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                                    >
+                                        <motion.div 
+                                            className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-32 h-4 bg-black/15 rounded-[100%] blur-[4px] z-0"
+                                            animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.3, 0.5] }}
+                                            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                                        />
+                                        
+                                        <img 
+                                            src={activeProduct.img} 
+                                            className="h-[180px] -translate-y-4 object-contain mix-blend-multiply relative z-10 group-hover:scale-105 transition-transform duration-300" 
+                                            alt="Hobby Şampuan"
+                                            referrerPolicy="no-referrer"
+                                        />
+
+                                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-30 pointer-events-none">
+                                            <div className="bg-white/90 backdrop-blur-sm text-neutral-900 text-[11px] font-bold px-4 py-2 rounded-full shadow-xl flex items-center gap-1.5 transform scale-90 group-hover:scale-100 transition-transform">
+                                                <ShoppingBag size={12} /> İncele
+                                            </div>
+                                        </div>
+                                    </motion.div>
+                                </AnimatePresence>
+
+                                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 items-center z-40">
+                                    {products.map((p, i) => (
+                                        <button
+                                            key={p.id}
+                                            onMouseEnter={() => setActiveIndex(i)}
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                window.open(p.url, '_blank');
+                                            }}
+                                            className={`relative w-10 h-10 rounded-full bg-white shadow-sm transition-all duration-300 flex items-center justify-center group cursor-pointer ${
+                                                activeIndex === i ? 'scale-110 ring-2 ring-offset-2 z-10' : 'hover:scale-105 opacity-70 hover:opacity-100'
+                                            }`}
+                                            style={{ ringColor: p.color }}
+                                        >
+                                            <img src={p.img} className="w-7 h-7 object-contain mix-blend-multiply" alt="Hobby" />
+                                        </button>
+                                    ))}
+                                </div>
+
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

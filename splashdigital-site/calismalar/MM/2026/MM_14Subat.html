@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MediaMarkt Sevgililer Günü</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+    
+    <!-- Babel for in-browser JSX transformation -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+      body { 
+        margin: 0; 
+        padding: 0; 
+        width: 970px; 
+        height: 250px; 
+        overflow: hidden; 
+        font-family: 'Inter', sans-serif; 
+        background-color: #0d0000; 
+      }
+      #root {
+        width: 100%;
+        height: 100%;
+      }
+      
+      /* --- PREMIUM TEXTURES & BACKGROUNDS --- */
+      
+      /* Deep Velvet Red Background with Mesh-like feel */
+      .bg-premium-red {
+        background: 
+          radial-gradient(circle at 20% 0%, #ff1f2d 0%, transparent 40%),
+          radial-gradient(circle at 80% 100%, #b30009 0%, transparent 40%),
+          linear-gradient(135deg, #8a0000 0%, #4a0000 100%);
+        background-size: 150% 150%;
+        animation: subtleShift 10s ease-in-out infinite alternate;
+      }
+
+      /* Film Grain Overlay for Texture */
+      .texture-grain {
+        position: absolute;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+        pointer-events: none;
+        z-index: 1;
+        mix-blend-mode: overlay;
+      }
+
+      @keyframes subtleShift {
+        0% { background-position: 0% 0%; }
+        100% { background-position: 100% 100%; }
+      }
+
+      /* --- GLASSMORPHISM --- */
+      
+      .glass-card {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      }
+      
+      .glass-card:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(252, 232, 131, 0.3); /* Gold tint border */
+        box-shadow: 0 0 15px rgba(252, 232, 131, 0.1);
+      }
+
+      /* --- ANIMATIONS --- */
+
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-8px); }
+      }
+      .animate-float {
+        animation: float 5s ease-in-out infinite;
+      }
+
+      @keyframes slideUpCinematic {
+        0% { 
+          opacity: 0; 
+          transform: translateY(30px); 
+          filter: blur(8px);
+        }
+        100% { 
+          opacity: 1; 
+          transform: translateY(0); 
+          filter: blur(0);
+        }
+      }
+      .animate-slide-up {
+        animation: slideUpCinematic 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      @keyframes scaleInCinematic {
+        0% { 
+          opacity: 0; 
+          transform: scale(0.8) translateY(10px); 
+          filter: blur(10px);
+        }
+        100% { 
+          opacity: 1; 
+          transform: scale(1) translateY(0); 
+          filter: blur(0);
+        }
+      }
+      .animate-scale-in {
+        animation: scaleInCinematic 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      @keyframes expandWidth {
+        from { transform: scaleX(0); }
+        to { transform: scaleX(1); }
+      }
+      .animate-underline {
+        animation: expandWidth 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        animation-delay: 0.4s;
+        transform: scaleX(0);
+      }
+
+      /* Shimmer for Button */
+      .btn-shimmer {
+        position: relative;
+        overflow: hidden;
+      }
+      .btn-shimmer::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(
+          to right, 
+          transparent 0%, 
+          rgba(255,255,255,0.4) 50%, 
+          transparent 100%
+        );
+        transform: skewX(-25deg);
+        transition: left 0.5s;
+      }
+      .btn-shimmer:hover::before {
+        animation: shimmerPass 0.7s forwards;
+      }
+      
+      @keyframes shimmerPass {
+        0% { left: -100%; }
+        100% { left: 200%; }
+      }
+      
+      /* --- UTILS --- */
+      .text-glow {
+        text-shadow: 0 0 20px rgba(255,255,255,0.3);
+      }
+      .gold-gradient-text {
+        background: linear-gradient(to bottom, #fff 0%, #fce883 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    </style>
+    
+    <script type="importmap">
+    {
+      "imports": {
+        "@google/genai": "https://esm.sh/@google/genai@^1.35.0",
+        "react": "https://esm.sh/react@^18.2.0",
+        "react-dom/client": "https://esm.sh/react-dom@^18.2.0/client",
+        "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+        "react/": "https://esm.sh/react@^19.2.3/"
+      }
+    }
+    </script>
+</head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel" data-type="module">
+      import React, { useState, useEffect } from 'react';
+      import ReactDOM from 'react-dom/client';
+      import { GoogleGenAI } from "@google/genai";
+
+      // --- POLYFILL PROCESS ---
+      if (typeof process === 'undefined') {
+        window.process = { env: { API_KEY: '' } };
+      }
+
+      // --- CONSTANTS & TYPES ---
+      
+      const GiftCategory = {
+        TECH_GURU: 'TECH_GURU',
+        AUDIOPHILE: 'AUDIOPHILE',
+        STYLE_ICON: 'STYLE_ICON',
+        HOME_BARISTA: 'HOME_BARISTA'
+      };
+
+      const LOGO_URL = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Media_Markt_logo.svg/2560px-Media_Markt_logo.svg.png";
+
+      const PRODUCTS = {
+        [GiftCategory.TECH_GURU]: {
+          id: 'p1',
+          name: 'iPhone 17 Pro Max',
+          category: GiftCategory.TECH_GURU,
+          price: '₺131.999',
+          image: 'https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MMS_161684683?x=536&y=402&format=jpg&quality=80&sp=yes&strip=yes&trim&ex=536&ey=402&align=center&resizesource&unsharp=1.5x1+0.7+0.02&cox=0&coy=0&cdx=536&cdy=402',
+          url: 'https://www.mediamarkt.com.tr/'
+        },
+        [GiftCategory.AUDIOPHILE]: {
+          id: 'p2',
+          name: 'Apple AirPods 4',
+          category: GiftCategory.AUDIOPHILE,
+          price: '₺7.499',
+          image: 'https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MMS_164888911?x=536&y=402&format=jpg&quality=80&sp=yes&strip=yes&trim&ex=536&ey=402&align=center&resizesource&unsharp=1.5x1+0.7+0.02&cox=0&coy=0&cdx=536&cdy=402',
+          url: 'https://www.mediamarkt.com.tr/tr/product/_apple-airpods-bluetooth-kulak-ici-kulaklik-mxp63tua-1239693.html'
+        },
+        [GiftCategory.STYLE_ICON]: {
+          id: 'p3',
+          name: 'Dyson Airwrap',
+          category: GiftCategory.STYLE_ICON,
+          price: '₺24.999',
+          image: 'https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MMS_160145313?x=536&y=402&format=jpg&quality=80&sp=yes&strip=yes&trim&ex=536&ey=402&align=center&resizesource&unsharp=1.5x1+0.7+0.02&cox=0&coy=0&cdx=536&cdy=402',
+          url: 'https://www.mediamarkt.com.tr/tr/product/_dyson-airwrap-idtm-sac-sekillendirme-ve-kurutma-seti-ceramic-pink-rose-gold-1248832.html'
+        },
+        [GiftCategory.HOME_BARISTA]: {
+          id: 'p4',
+          name: 'Philips LatteGo',
+          category: GiftCategory.HOME_BARISTA,
+          price: '₺26.699',
+          image: 'https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MMS_147380889?x=536&y=402&format=jpg&quality=80&sp=yes&strip=yes&trim&ex=536&ey=402&align=center&resizesource&unsharp=1.5x1+0.7+0.02&cox=0&coy=0&cdx=536&cdy=402',
+          url: 'https://www.mediamarkt.com.tr/tr/product/_philips-lattego-ep334790-tam-otomatik-espresso-makinesi-1235244.html'
+        }
+      };
+
+      const FALLBACK_NOTES = {
+        [GiftCategory.TECH_GURU]: "Aramızdaki çekim gücü 5G'den hızlı, mutluluğumuzun garantisi ise ömür boyu!",
+        [GiftCategory.AUDIOPHILE]: "Dünyanın gürültüsünü kıstım, sadece kalbimin senin için atışını dinliyorum.",
+        [GiftCategory.STYLE_ICON]: "Sen zaten ışıldıyorsun sevgilim, bu hediye sadece senin ışıltına eşlik edecek.",
+        [GiftCategory.HOME_BARISTA]: "Sabah kahvemden daha sıcak, günün ilk yudumu kadar vazgeçilmezsin."
+      };
+
+      // --- SERVICES ---
+
+      const getClient = () => {
+        const apiKey = process.env.API_KEY;
+        if (!apiKey) {
+          console.warn("API Key missing. AI features will use fallback.");
+          return null;
+        }
+        return new GoogleGenAI({ apiKey });
+      };
+
+      const generateRomanticNote = async (category, productName) => {
+        const client = getClient();
+        // Return specific fallback immediately if no client
+        if (!client) return FALLBACK_NOTES[category];
+
+        try {
+          const prompt = `
+            Sen tutkulu ve zeki bir aşıksın. 14 Şubat Sevgililer Günü için sevgiline bir kart notu yazıyorsun.
+            Kullanıcı sevgilisine şu hediyeyi aldı: ${productName} (Kategori: ${category}).
+            
+            Görev: Bu hediye ile verilecek, etkileyici, yaratıcı ve "vauv" dedirtecek bir cümle yaz.
+            
+            Kurallar:
+            1. SADECE tek bir cümle olsun.
+            2. Klişelerden uzak dur, özgün ve şık bir dil kullan.
+            3. Hediyeyi zekice bir metafor olarak kullan (Örn: Kahve makinesi için "Sıcaklığınla beni her gün yeniden uyandırıyorsun").
+            4. "Garanti" kelimesini aşk bağlamında, MediaMarkt konseptine göz kırparak kullan.
+            5. Türkçe olsun.
+            6. Çok uzun olmasın (Maksimum 12-14 kelime).
+          `;
+
+          // Timeout promise (1.25 seconds max)
+          const timeoutPromise = new Promise((_, reject) => 
+            setTimeout(() => reject(new Error("Timeout")), 1250)
+          );
+
+          const apiCall = client.models.generateContent({
+            model: 'gemini-3-flash-preview',
+            contents: prompt,
+          });
+
+          // Race API call against timeout
+          const response = await Promise.race([apiCall, timeoutPromise]);
+
+          return response.text?.trim() || FALLBACK_NOTES[category];
+        } catch (error) {
+          console.warn("Gemini API Error or Timeout:", error);
+          // Return the specific fallback note for the category
+          return FALLBACK_NOTES[category] || "Kalbimin garantisi sensin sevgilim!";
+        }
+      };
+
+      // --- COMPONENTS ---
+
+      const Sparkles = () => {
+        return (
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            {[...Array(8)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute animate-sparkle"
+                style={{
+                  top: `${Math.random() * 100}%`,
+                  left: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 3}s`,
+                  opacity: 0.6
+                }}
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#fce883">
+                   <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
+                </svg>
+              </div>
+            ))}
+          </div>
+        );
+      };
+
+      const RefreshIcon = () => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 21h5v-5"/></svg>
+      );
+
+      const Logo = ({ className = "h-8" }) => (
+        <img 
+          src={LOGO_URL} 
+          alt="MediaMarkt" 
+          className={`${className} object-contain filter brightness-0 invert drop-shadow-lg`}
+        />
+      );
+
+      const CheckSeal = () => (
+        <div className="w-12 h-12 rounded-full border border-[#fce883] bg-gradient-to-br from-[#e30613] to-black flex items-center justify-center shadow-[0_0_15px_rgba(252,232,131,0.3)] relative group">
+          <div className="absolute inset-0 border border-white opacity-20 rounded-full animate-ping"></div>
+          <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-[#fce883] drop-shadow-md" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+        </div>
+      );
+
+      // --- MAIN APP ---
+
+      const App = () => {
+        const [state, setState] = useState({
+          phase: 'INTRO',
+          selectedCategory: null,
+          selectedProduct: null,
+          aiNote: '',
+        });
+
+        // 0: Logo, 1: Risk, 2: Guarantee
+        const [introStep, setIntroStep] = useState(0);
+
+        // Intro Sequencing
+        useEffect(() => {
+          if (state.phase === 'INTRO') {
+            // Step 0: Logo (1.5s)
+            // Step 1: Risk (1.5s)
+            // Step 2: Guarantee (2s) -> Total 5s
+            const timer1 = setTimeout(() => setIntroStep(1), 1500);
+            const timer2 = setTimeout(() => setIntroStep(2), 3000);
+            const timer3 = setTimeout(() => setState(prev => ({ ...prev, phase: 'SELECTION' })), 5000);
+            
+            return () => { clearTimeout(timer1); clearTimeout(timer2); clearTimeout(timer3); };
+          }
+        }, [state.phase]);
+
+        const handleCategorySelect = async (category) => {
+          const product = PRODUCTS[category];
+          setState(prev => ({ 
+            ...prev, 
+            phase: 'GENERATING', 
+            selectedCategory: category, 
+            selectedProduct: product 
+          }));
+
+          // Call Gemini
+          const notePromise = generateRomanticNote(category, product.name);
+          
+          // Minimum waiting time 0.8s for premium feel
+          const delayPromise = new Promise(resolve => setTimeout(resolve, 800));
+
+          const [note] = await Promise.all([notePromise, delayPromise]);
+
+          setState(prev => ({
+            ...prev,
+            phase: 'RESULT',
+            aiNote: note
+          }));
+        };
+
+        // --- RENDERS ---
+
+        const renderIntro = () => (
+          <div className="w-full h-full bg-premium-red flex items-center justify-center relative overflow-hidden animate-fade-in">
+            <div className="texture-grain"></div>
+            
+            <div className="z-10 text-center px-8 flex flex-col items-center justify-center h-full">
+              {/* Step 0: Logo Intro */}
+              {introStep === 0 && (
+                <div className="animate-scale-in">
+                  <Logo className="h-32 drop-shadow-2xl" />
+                </div>
+              )}
+
+              {/* Step 1: Problem */}
+              {introStep === 1 && (
+                <div className="animate-slide-up flex flex-col items-center">
+                  <p className="text-[#fce883] font-serif italic text-2xl mb-1 tracking-widest opacity-90">Klasik Seçimlerle</p>
+                  <div className="relative">
+                    <h1 className="text-white font-black text-6xl uppercase tracking-widest drop-shadow-[0_4px_10px_rgba(0,0,0,0.5)] py-2 relative z-10">
+                      RİSK ALMA
+                    </h1>
+                    {/* Animated Underline */}
+                    <div className="absolute bottom-2 left-0 w-full h-1.5 bg-[#fce883] shadow-[0_0_10px_#fce883] origin-left animate-underline z-0"></div>
+                  </div>
+                </div>
+              )}
+
+              {/* Step 2: Solution */}
+              {introStep === 2 && (
+                <div className="animate-slide-up relative">
+                   <div className="absolute -top-16 left-1/2 transform -translate-x-1/2 opacity-30 blur-2xl w-40 h-40 bg-[#fce883] rounded-full"></div>
+                   <div className="flex justify-center mb-4 relative z-10">
+                      <CheckSeal />
+                   </div>
+                  <h1 className="text-white font-black text-5xl uppercase italic tracking-tighter drop-shadow-2xl leading-none">
+                    Mutluluğu<br/>
+                    <span className="gold-gradient-text">Garantiye Al</span>
+                  </h1>
+                  <p className="text-white/80 mt-3 font-serif italic tracking-wide text-sm border-t border-white/20 pt-2 inline-block">MediaMarkt Hediye Asistanı</p>
+                </div>
+              )}
+            </div>
+            <Sparkles />
+          </div>
+        );
+
+        const renderSelection = () => (
+          <div className="w-full h-full bg-premium-red flex flex-col items-center justify-center relative px-8 py-4 animate-fade-in">
+            <div className="texture-grain"></div>
+            <div className="absolute top-6 left-8 z-20">
+              <Logo className="h-8" />
+            </div>
+            
+            <div className="text-center mb-6 z-10 animate-slide-up">
+              <h2 className="text-white font-serif text-3xl italic tracking-wide text-glow">Bu Sevgililer Gününde...</h2>
+              <p className="text-[#fce883] text-xs uppercase tracking-[0.2em] font-bold mt-1 opacity-90">Kimi Mutlu Edeceğiz?</p>
+            </div>
+
+            <div className="flex gap-4 w-full justify-center z-10 perspective-[1000px]">
+              {[
+                { id: GiftCategory.TECH_GURU, label: 'Teknoloji Tutkunu', icon: '📱' },
+                { id: GiftCategory.AUDIOPHILE, label: 'Müzik Aşığı', icon: '🎧' },
+                { id: GiftCategory.STYLE_ICON, label: 'Stil İkonu', icon: '✨' },
+                { id: GiftCategory.HOME_BARISTA, label: 'Kahve Sever', icon: '☕' },
+              ].map((item, index) => (
+                <button
+                  key={item.id}
+                  onClick={() => handleCategorySelect(item.id)}
+                  style={{ animationDelay: `${index * 100}ms` }}
+                  className="group glass-card animate-slide-up relative p-4 rounded-xl transition-all duration-500 w-40 h-32 flex flex-col items-center justify-center gap-3 overflow-hidden transform hover:-translate-y-2"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#fce883]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  
+                  <span className="text-3xl drop-shadow-lg scale-100 group-hover:scale-110 transition-transform duration-500">{item.icon}</span>
+                  <span className="text-white font-semibold text-xs uppercase tracking-wider text-center relative z-10 group-hover:text-[#fce883] transition-colors">
+                    {item.label}
+                  </span>
+                  <div className="w-6 h-[1px] bg-white/20 group-hover:w-12 group-hover:bg-[#fce883] transition-all duration-500"></div>
+                </button>
+              ))}
+            </div>
+          </div>
+        );
+
+        const renderGenerating = () => (
+          <div className="w-full h-full bg-black flex flex-col items-center justify-center text-white relative animate-fade-in">
+            <div className="absolute inset-0 bg-premium-red opacity-50"></div>
+            <div className="texture-grain"></div>
+            <div className="z-10 flex flex-col items-center">
+              <div className="relative">
+                 <div className="absolute inset-0 bg-[#fce883] blur-xl opacity-20 rounded-full animate-pulse"></div>
+                 <div className="w-16 h-16 border-2 border-white/10 border-t-[#fce883] rounded-full animate-spin mb-6 relative z-10"></div>
+              </div>
+              <h3 className="text-3xl font-serif italic text-glow">Mükemmel Hediye Seçiliyor...</h3>
+              <p className="text-[#fce883] text-xs uppercase tracking-widest mt-3 opacity-90">Yapay zeka romantik notunuzu hazırlıyor</p>
+            </div>
+          </div>
+        );
+
+        const renderResult = () => {
+          if (!state.selectedProduct) return null;
+
+          return (
+            <div className="w-full h-full bg-premium-red flex relative overflow-hidden animate-fade-in">
+              <div className="texture-grain"></div>
+              
+              {/* Changed Logo to Top-Right and Increased Size to h-10 (40px) */}
+              <div className="absolute top-6 right-8 z-30 transform origin-top-right">
+                <Logo className="h-10" />
+              </div>
+
+              {/* Enhanced Background Elements */}
+              <div className="absolute -right-20 -top-20 w-[500px] h-[500px] bg-gradient-to-br from-[#fce883] to-[#e30613] rounded-full blur-[120px] opacity-10 pointer-events-none mix-blend-screen"></div>
+              <Sparkles />
+
+              {/* Left: Product Showcase */}
+              <div className="w-5/12 h-full flex items-center justify-center relative z-10 pl-8">
+                 <div className="relative group">
+                    <div className="absolute inset-0 bg-white/10 blur-3xl rounded-full transform scale-75 group-hover:scale-100 transition-transform duration-1000"></div>
+                    <img 
+                      src={state.selectedProduct.image} 
+                      alt={state.selectedProduct.name} 
+                      className="w-56 h-56 object-contain relative z-10 drop-shadow-[0_20px_40px_rgba(0,0,0,0.6)] animate-float"
+                    />
+                    <div className="absolute bottom-4 -right-4 z-20 transform rotate-12">
+                       <CheckSeal />
+                    </div>
+                 </div>
+              </div>
+
+              {/* Right: Info & Note */}
+              <div className="w-7/12 h-full flex flex-col justify-center pr-10 pl-4 relative z-10">
+                
+                {/* Header */}
+                <div className="border-l-2 border-[#fce883]/50 pl-5 mb-4 animate-slide-up backdrop-blur-sm">
+                  <h2 className="text-white font-black italic text-3xl uppercase leading-none tracking-tight drop-shadow-md">
+                    {state.selectedProduct.name}
+                  </h2>
+                  <p className="text-[#fce883] font-bold text-xl tracking-widest mt-1 text-glow">
+                    {state.selectedProduct.price}
+                  </p>
+                </div>
+
+                {/* AI Note Card */}
+                <div className="glass-card p-5 rounded-r-2xl rounded-bl-2xl mb-5 relative animate-slide-up" style={{ animationDelay: '200ms' }}>
+                  <div className="absolute -top-3 -left-2 text-[#fce883] text-3xl font-serif opacity-80">❝</div>
+                  <p className="font-playfair text-white text-[1.1rem] italic leading-snug pr-2 text-shadow-sm">
+                    {state.aiNote}
+                  </p>
+                  <div className="absolute -bottom-4 -right-2 text-[#fce883] text-3xl font-serif rotate-180 opacity-80">❝</div>
+                </div>
+
+                {/* CTA */}
+                <div className="flex gap-4 animate-slide-up items-center" style={{ animationDelay: '400ms' }}>
+                  <a 
+                    href={state.selectedProduct.url}
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex-1 btn-shimmer bg-white text-[#900000] hover:text-[#b30000] transition-all duration-300 font-extrabold uppercase tracking-[0.15em] py-3 px-6 rounded-md shadow-xl flex items-center justify-center gap-3 group no-underline border border-white hover:border-[#fce883] hover:scale-[1.02]"
+                  >
+                    <span>Hemen Al</span>
+                    <span className="group-hover:translate-x-1 transition-transform text-lg">→</span>
+                  </a>
+                  
+                  <button 
+                    onClick={() => setState({ phase: 'SELECTION', selectedCategory: null, selectedProduct: null, aiNote: '' })}
+                    className="p-3 border border-white/20 text-white/60 hover:text-white hover:border-[#fce883] hover:bg-white/5 rounded-full transition-all duration-300"
+                    title="Baştan Başla"
+                  >
+                    <RefreshIcon />
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          );
+        };
+
+        return (
+          <div className="w-full h-full relative shadow-2xl overflow-hidden select-none bg-black">
+            {state.phase === 'INTRO' && renderIntro()}
+            {state.phase === 'SELECTION' && renderSelection()}
+            {state.phase === 'GENERATING' && renderGenerating()}
+            {state.phase === 'RESULT' && renderResult()}
+          </div>
+        );
+      };
+
+      const rootElement = document.getElementById('root');
+      if (rootElement) {
+        const root = ReactDOM.createRoot(rootElement);
+        root.render(<App />);
+      }
+    </script>
+  </body>
+</html>

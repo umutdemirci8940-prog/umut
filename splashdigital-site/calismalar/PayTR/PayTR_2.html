@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Splash - PayTR </title>
+    
+    <!-- Google Fonts (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS ve Yapılandırması -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Import Map (React ve kütüphaneleri tarayıcıda doğrudan kullanmak için) -->
+    <script type="importmap">
+        {
+            "imports": {
+                "react": "https://esm.sh/react@18.2.0",
+                "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+                "framer-motion": "https://esm.sh/framer-motion@11.0.8?external=react,react-dom",
+                "lucide-react": "https://esm.sh/lucide-react@0.359.0?external=react"
+            }
+        }
+    </script>
+    
+    <!-- Babel (JSX kodunu tarayıcının anlayacağı dile çevirmek için) -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        body { 
+            margin: 0; 
+            padding: 0; 
+            background-color: #171717; /* Koyu arkaplan */
+        }
+        /* Oyun sırasında metinlerin yanlışlıkla seçilmesini engeller */
+        * {
+            user-select: none;
+            -webkit-user-select: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- React'in render edileceği ana div -->
+    <div id="root"></div>
+
+    <!-- Uygulama Kodu -->
+    <script type="text/babel" data-type="module" data-presets="react">
+        import React, { useState, useEffect } from 'react';
+        import { createRoot } from 'react-dom/client';
+        import { motion, AnimatePresence } from 'framer-motion';
+        import { 
+            XCircle, Building, Clock, AlertTriangle, CreditCard, 
+            Store, Link as LinkIcon, Smartphone, Wind, 
+            MousePointerClick, ArrowRight, RotateCcw 
+        } from 'lucide-react';
+
+        // --- SES EFEKTLERİ ---
+        const playPopSound = () => {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(400, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(600, ctx.currentTime + 0.1);
+                gain.gain.setValueAtTime(0.1, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.1);
+            } catch (e) {}
+        };
+
+        const playSuccessSound = () => {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(440, ctx.currentTime);
+                osc.frequency.setValueAtTime(554.37, ctx.currentTime + 0.1);
+                osc.frequency.setValueAtTime(659.25, ctx.currentTime + 0.2);
+                gain.gain.setValueAtTime(0.1, ctx.currentTime);
+                gain.gain.linearRampToValueAtTime(0, ctx.currentTime + 0.5);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.5);
+            } catch (e) {}
+        };
+
+        // --- VERİLER ---
+        const INITIAL_BURDENS = [
+            { id: 1, text: 'Taksit Yok', icon: XCircle, x: -280, y: -40, delay: 0 },
+            { id: 2, text: 'Tek Banka', icon: Building, x: -200, y: 70, delay: 0.2 },
+            { id: 3, text: 'Yavaş Ödeme', icon: Clock, x: 280, y: -40, delay: 0.4 },
+            { id: 4, text: 'Karmaşık Süreç', icon: AlertTriangle, x: 200, y: 70, delay: 0.6 },
+        ];
+
+        const PRODUCTS = [
+            { id: 'sanal', title: 'Sanal POS', desc: 'Tüm bankalar tek noktada', icon: CreditCard },
+            { id: 'fiziki', title: 'Fiziki POS', desc: 'Ertesi gün ödeme avantajı', icon: Store },
+            { id: 'link', title: 'Linkle Ödeme', desc: 'Web sitesiz anında tahsilat', icon: LinkIcon },
+            { id: 'neo', title: 'Neo POS', desc: 'Telefonun POS cihazın', icon: Smartphone },
+        ];
+
+        function App() {
+            const [gameState, setGameState] = useState('intro');
+            const [burdens, setBurdens] = useState(INITIAL_BURDENS.map(b => ({ ...b, cleared: false })));
+            const [zeroGravity, setZeroGravity] = useState(false);
+            const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+            const clearedCount = burdens.filter(b => b.cleared).length;
+            const allCleared = clearedCount === burdens.length;
+
+            useEffect(() => {
+                if (allCleared && gameState === 'playing') {
+                    playSuccessSound();
+                    const timer = setTimeout(() => {
+                        setGameState('success');
+                    }, 800);
+                    return () => clearTimeout(timer);
+                }
+            }, [allCleared, gameState]);
+
+            const handleMouseMove = (e) => {
+                if (!zeroGravity) return;
+                const rect = e.currentTarget.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width - 0.5;
+                const y = (e.clientY - rect.top) / rect.height - 0.5;
+                setMousePos({ x, y });
+            };
+
+            const clearBurden = (id) => {
+                playPopSound();
+                setBurdens(prev => prev.map(b => b.id === id ? { ...b, cleared: true } : b));
+            };
+
+            const resetGame = () => {
+                setGameState('intro');
+                setBurdens(INITIAL_BURDENS.map(b => ({ ...b, cleared: false })));
+                setZeroGravity(false);
+            };
+
+            const getBackground = () => {
+                if (gameState === 'intro') return 'from-[#001B3A] via-[#003399] to-[#0055FF]';
+                if (gameState === 'playing') return 'from-[#001B3A] via-[#002255] to-[#0044AA]';
+                if (gameState === 'success') return 'from-[#f0f9ff] via-[#e6f7ef] to-[#f0f9ff]';
+                return 'from-[#001B3A] to-[#0055FF]';
+            };
+
+            return (
+                <div className="min-h-screen w-full flex items-center justify-center p-4 font-sans">
+                    {/* MASTHEAD CONTAINER - KESİN 970x250 ÖLÇÜLERİ */}
+                    <div 
+                        className={`relative rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br transition-colors duration-1000 shrink-0 ${getBackground()}`}
+                        style={{ width: '970px', height: '250px' }}
+                        onMouseMove={handleMouseMove}
+                        onMouseLeave={() => setMousePos({ x: 0, y: 0 })}
+                    >
+                        {/* PayTR Logosu */}
+                        <div className="absolute top-5 left-6 z-50">
+                            <img 
+                                src="https://www.paytr.com/wp-content/uploads/PayTR-2025-New-Logo-Color.png" 
+                                alt="PayTR Logo" 
+                                className={`h-6 object-contain drop-shadow-sm transition-all duration-500 ${gameState !== 'success' ? 'brightness-0 invert' : ''}`}
+                                referrerPolicy="no-referrer"
+                            />
+                        </div>
+
+                        {/* YERÇEKİMİ BUTONU */}
+                        <div className="absolute bottom-5 left-6 z-50">
+                            <button
+                                onClick={() => setZeroGravity(!zeroGravity)}
+                                className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold transition-all border whitespace-nowrap ${
+                                    zeroGravity 
+                                        ? 'bg-blue-500 text-white border-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.5)]' 
+                                        : gameState === 'success'
+                                            ? 'bg-white/50 text-slate-600 border-slate-300 hover:bg-white'
+                                            : 'bg-white/10 text-white border-white/30 hover:bg-white/20'
+                                }`}
+                            >
+                                <Wind size={14} className={zeroGravity ? 'animate-pulse' : ''} />
+                                {zeroGravity ? 'Yerçekimi: KAPALI' : 'Yerçekimi Modu'}
+                            </button>
+                        </div>
+
+                        {/* BULUTLAR (Başarı Ekranı) */}
+                        <AnimatePresence>
+                            {gameState === 'success' && (
+                                <motion.div 
+                                    initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2 }}
+                                    className="absolute inset-0 pointer-events-none"
+                                >
+                                    <motion.div 
+                                        animate={{ x: [0, -50, 0] }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                                        className="absolute top-10 left-10 w-32 h-12 bg-white/60 blur-xl rounded-full"
+                                    />
+                                    <motion.div 
+                                        animate={{ x: [0, 50, 0] }} transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                                        className="absolute bottom-10 right-20 w-48 h-16 bg-white/60 blur-xl rounded-full"
+                                    />
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+
+                        {/* GİRİŞ EKRANI */}
+                        <AnimatePresence>
+                            {gameState === 'intro' && (
+                                <motion.div 
+                                    initial={{ opacity: 1 }} exit={{ opacity: 0, scale: 1.1 }} transition={{ duration: 0.5 }}
+                                    className="absolute inset-0 z-40 flex flex-col items-center justify-center bg-black/10 backdrop-blur-sm"
+                                >
+                                    <motion.div 
+                                        animate={{ y: [-5, 5, -5] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                                        className="text-center px-4 flex flex-col items-center"
+                                    >
+                                        <h1 className="text-3xl font-black text-white mb-3 drop-shadow-lg whitespace-nowrap">
+                                            Kolaylığa Dokun, Yüklerinden Kurtul
+                                        </h1>
+                                        <p className="text-sm text-slate-200 font-medium mb-6 drop-shadow-md whitespace-nowrap">
+                                            Esnafın yüklerini temizle, işini nasıl hafiflettiğimizi gör.
+                                        </p>
+                                        <button
+                                            onClick={() => setGameState('playing')}
+                                            className="group relative flex items-center justify-center gap-2 px-8 py-3 text-base bg-[#00D166] text-[#001B3A] font-black rounded-full overflow-hidden shadow-[0_0_20px_rgba(0,209,102,0.4)] hover:shadow-[0_0_30px_rgba(0,209,102,0.6)] hover:scale-105 transition-all whitespace-nowrap"
+                                        >
+                                            <MousePointerClick size={18} className="animate-bounce" />
+                                            <span>Kolaylığı Keşfet</span>
+                                        </button>
+                                    </motion.div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+
+                        {/* ANA OYUN ALANI */}
+                        <div className="relative w-full h-full flex items-center justify-center">
+                            
+                            {/* TIKLAMA YÖNERGESİ (DÜZELTİLDİ: x: "-50%" eklendi) */}
+                            <AnimatePresence>
+                                {gameState === 'playing' && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: -20, x: "-50%" }}
+                                        animate={{ opacity: 1, y: 0, x: "-50%" }}
+                                        exit={{ opacity: 0, y: -20, x: "-50%" }}
+                                        className="absolute top-6 left-1/2 z-40 flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 px-5 py-2 rounded-full text-white shadow-lg whitespace-nowrap"
+                                    >
+                                        <MousePointerClick size={18} className="animate-pulse text-[#00D166]" />
+                                        <span className="text-sm font-medium tracking-wide">Yüklere tıklayarak esnafı rahatlat</span>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+
+                            {/* ESNAF KARAKTERİ */}
+                            <motion.div
+                                className="relative z-20 flex flex-col items-center justify-center"
+                                animate={{ 
+                                    y: gameState === 'success' ? 5 : (clearedCount * -10) + (gameState === 'intro' ? 10 : 0),
+                                    x: gameState === 'success' ? -180 : 0,
+                                    ...(zeroGravity && {
+                                        y: (gameState === 'success' ? 5 : clearedCount * -10) + mousePos.y * -30,
+                                        x: (gameState === 'success' ? -180 : 0) + mousePos.x * -30,
+                                        rotate: mousePos.x * 5
+                                    })
+                                }}
+                                transition={{ 
+                                    type: "spring", stiffness: 60, damping: 15,
+                                    ...(zeroGravity && { type: "tween", ease: "easeOut", duration: 0.5 })
+                                }}
+                            >
+                                <motion.div 
+                                    className="absolute inset-0 bg-white rounded-full blur-3xl -z-10"
+                                    animate={{ 
+                                        opacity: gameState === 'success' ? 1 : clearedCount * 0.2,
+                                        scale: gameState === 'success' ? 2 : 1 + (clearedCount * 0.2)
+                                    }}
+                                />
+                                <motion.img 
+                                    src="paytr1.png" 
+                                    alt="Meditating Esnaf" 
+                                    className="h-40 object-contain drop-shadow-2xl shrink-0"
+                                    animate={{ y: zeroGravity ? [-10, 10, -10] : [-5, 5, -5] }}
+                                    transition={{ duration: zeroGravity ? 6 : 4, repeat: Infinity, ease: "easeInOut" }}
+                                    referrerPolicy="no-referrer"
+                                />
+                                {/* BAŞARI YAZISI (DÜZELTİLDİ: x: "-50%" eklendi) */}
+                                <AnimatePresence>
+                                    {gameState === 'success' && (
+                                        <motion.div
+                                            initial={{ opacity: 0, y: 10, x: "-50%" }}
+                                            animate={{ opacity: 1, y: 0, x: "-50%" }}
+                                            transition={{ delay: 0.5 }}
+                                            className="absolute -bottom-10 left-1/2 flex flex-col items-center"
+                                        >
+                                            <h2 className="text-xl font-black text-[#001B3A] leading-tight whitespace-nowrap">İşini Hafiflet.</h2>
+                                            <p className="text-sm font-bold text-[#00D166] whitespace-nowrap">Büyük Kolaylık PayTR'de.</p>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </motion.div>
+
+                            {/* YÜKLER (Baloncuklar) */}
+                            <AnimatePresence>
+                                {gameState === 'playing' && burdens.map((burden) => {
+                                    const Icon = burden.icon;
+                                    return !burden.cleared && (
+                                        <motion.button
+                                            key={burden.id}
+                                            onClick={() => clearBurden(burden.id)}
+                                            initial={{ opacity: 0, scale: 0 }}
+                                            animate={{ 
+                                                opacity: 1, 
+                                                scale: 1,
+                                                x: burden.x + (zeroGravity ? mousePos.x * -80 : 0),
+                                                y: burden.y + (zeroGravity ? mousePos.y * -80 : 0),
+                                                rotate: zeroGravity ? mousePos.x * 20 : 0
+                                            }}
+                                            exit={{ opacity: 0, scale: 1.5, y: burden.y - 50, filter: "blur(10px)" }}
+                                            whileHover={{ scale: 1.1, rotate: 5 }}
+                                            whileTap={{ scale: 0.9 }}
+                                            transition={{ 
+                                                type: "spring", stiffness: 200, damping: 15, delay: burden.delay,
+                                                x: { type: "tween", ease: "easeOut", duration: 0.5 },
+                                                y: { type: "tween", ease: "easeOut", duration: 0.5 }
+                                            }}
+                                            className="absolute z-30 flex items-center gap-3 px-4 py-2 bg-white/10 backdrop-blur-md border border-white/30 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.2)] hover:bg-white/20 hover:border-white/50 cursor-pointer group"
+                                        >
+                                            <div className="w-8 h-8 bg-red-500/20 rounded-full flex items-center justify-center shrink-0 group-hover:bg-red-500/40 transition-colors">
+                                                <Icon size={16} className="text-red-400 group-hover:text-red-300" />
+                                            </div>
+                                            <span className="text-sm font-bold text-white drop-shadow-md whitespace-nowrap">
+                                                {burden.text}
+                                            </span>
+                                            <span className="absolute inset-0 rounded-full border border-white/40 animate-ping opacity-20 group-hover:opacity-0"></span>
+                                        </motion.button>
+                                    );
+                                })}
+                            </AnimatePresence>
+
+                            {/* ÜRÜNLER (Başarı Ekranı) */}
+                            <AnimatePresence>
+                                {gameState === 'success' && (
+                                    <motion.div 
+                                        initial={{ opacity: 0, x: 50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ duration: 0.8, delay: 0.3, staggerChildren: 0.1 }}
+                                        className="absolute right-8 top-0 bottom-0 flex flex-col justify-center gap-2 w-[420px] z-30"
+                                    >
+                                        <div className="grid grid-cols-2 gap-2 w-full">
+                                            {PRODUCTS.map((product, i) => {
+                                                const ProductIcon = product.icon;
+                                                return (
+                                                    <motion.a
+                                                        href="https://www.paytr.com/uye-isyeri-olun"
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        key={product.id}
+                                                        initial={{ opacity: 0, y: 20 }}
+                                                        animate={{ 
+                                                            opacity: 1, 
+                                                            y: 0,
+                                                            ...(zeroGravity && {
+                                                                x: mousePos.x * (i % 2 === 0 ? -10 : 10),
+                                                                y: mousePos.y * (i < 2 ? -10 : 10)
+                                                            })
+                                                        }}
+                                                        transition={{ delay: 0.5 + (i * 0.1) }}
+                                                        className="group relative bg-white/80 backdrop-blur-md border border-white/50 p-3 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all cursor-pointer overflow-hidden flex flex-col"
+                                                    >
+                                                        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-green-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
+                                                        <div className="flex items-center gap-2 mb-1.5">
+                                                            <div className="w-7 h-7 rounded-full bg-blue-100 flex items-center justify-center shrink-0 group-hover:bg-[#0055FF] transition-colors duration-300">
+                                                                <ProductIcon size={14} className="text-[#0055FF] group-hover:text-white transition-colors" />
+                                                            </div>
+                                                            <h3 className="font-bold text-[#001B3A] text-[13px] whitespace-nowrap">{product.title}</h3>
+                                                        </div>
+                                                        <p className="text-[11px] text-slate-500 font-medium leading-tight group-hover:text-slate-700 transition-colors">
+                                                            {product.desc}
+                                                        </p>
+                                                        <div className="absolute bottom-2 right-2 opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                                                            <ArrowRight size={12} className="text-[#00D166]" />
+                                                        </div>
+                                                    </motion.a>
+                                                );
+                                            })}
+                                        </div>
+                                        <motion.div
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ delay: 1 }}
+                                            className="mt-1 flex justify-end gap-2 w-full"
+                                        >
+                                            <button
+                                                onClick={resetGame}
+                                                className="inline-flex items-center justify-center w-10 h-10 bg-white text-slate-600 rounded-full hover:bg-slate-100 transition-colors shadow-md border border-slate-200 shrink-0"
+                                                title="Tekrar Oyna"
+                                            >
+                                                <RotateCcw size={16} />
+                                            </button>
+                                            <a
+                                                href="https://www.paytr.com/uye-isyeri-olun"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-[#001B3A] text-white font-bold text-sm rounded-full hover:bg-[#0055FF] transition-colors shadow-lg whitespace-nowrap"
+                                            >
+                                                Hemen Başvur <ArrowRight size={16} />
+                                            </a>
+                                        </motion.div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+
+                            {/* İLERLEME ÇUBUĞU (DÜZELTİLDİ: x: "-50%" eklendi) */}
+                            <AnimatePresence>
+                                {gameState === 'playing' && (
+                                    <motion.div 
+                                        initial={{ opacity: 0, y: 20, x: "-50%" }}
+                                        animate={{ opacity: 1, y: 0, x: "-50%" }}
+                                        exit={{ opacity: 0, y: 20, x: "-50%" }}
+                                        className="absolute bottom-6 left-1/2 w-64 h-2 bg-slate-200/50 rounded-full overflow-hidden z-40 shadow-inner"
+                                    >
+                                        <motion.div 
+                                            className="h-full bg-[#00D166]"
+                                            initial={{ width: 0 }}
+                                            animate={{ width: `${(clearedCount / burdens.length) * 100}%` }}
+                                            transition={{ duration: 0.5, ease: "easeOut" }}
+                                        />
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        const root = createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

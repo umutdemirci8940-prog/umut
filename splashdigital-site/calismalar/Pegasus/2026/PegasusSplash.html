@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pegasus Splash</title>
+    
+    <!-- Dependencies -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- Styles -->
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f3f4f6;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+      }
+      #root {
+        width: 970px;
+        height: 250px;
+        background-color: #1C2130; /* Corporate Navy */
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      }
+      
+      /* Corporate Colors */
+      .bg-pegasus { background-color: #FFD200; }
+      .text-pegasus { color: #FFD200; }
+      .bg-navy { background-color: #1C2130; }
+      .text-navy { color: #1C2130; }
+      
+      /* Animations */
+      /* Reduced zoom scale from 1.15 to 1.08 for better framing stability */
+      @keyframes zoomIn { from { transform: scale(1); } to { transform: scale(1.08); } }
+      .animate-zoom { animation: zoomIn 5s ease-out forwards; }
+      
+      @keyframes slideUpFade { 
+        from { opacity: 0; transform: translateY(20px); } 
+        to { opacity: 1; transform: translateY(0); } 
+      }
+      .animate-fade-up { animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+      
+      @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+      .animate-fade-in { animation: fadeIn 0.8s ease-out forwards; }
+
+      @keyframes float { 
+        0% { transform: translateY(0px) rotate(3deg); } 
+        50% { transform: translateY(-10px) rotate(0deg); } 
+        100% { transform: translateY(0px) rotate(3deg); } 
+      }
+      .animate-float { animation: float 4s ease-in-out infinite; }
+
+      @keyframes progress { from { width: 0%; } to { width: 100%; } }
+
+      /* Utilities */
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      
+      /* Make logo white on dark background */
+      .logo-white {
+        filter: brightness(0) invert(1);
+      }
+      
+      .logo-dark {
+        filter: brightness(0);
+      }
+    </style>
+
+    <!-- Import Map -->
+    <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@18.2.0",
+    "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+    "lucide-react": "https://esm.sh/lucide-react@0.263.1",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.34.0"
+  }
+}
+</script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- Main Application Script -->
+    <script type="text/babel" data-type="module">
+      import React, { useState, useEffect, useRef } from 'react';
+      import { createRoot } from 'react-dom/client';
+      import { Plane, Play, ArrowRight, X, ChevronRight, Pause, RefreshCw, Smartphone, QrCode } from 'lucide-react';
+
+      // --- Assets ---
+      // Using a smaller resolution version to ensure better loading stability
+      const LOGO_URL = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Pegasus_Airlines_logo.svg/500px-Pegasus_Airlines_logo.svg.png";
+      
+      const MONTAGE_IMAGES = [
+        'https://images.unsplash.com/photo-1548588627-f978862b85e1?q=80&w=1000&fit=crop', // Rize (Nature)
+        'https://images.unsplash.com/photo-1580834341580-8c17a3a630ca?q=80&w=1000&fit=crop', // Petra (History)
+        'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?q=80&w=1000&fit=crop', // Sevilla (Culture)
+        'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?q=80&w=1000&fit=crop'  // Gaziantep (Food)
+      ];
+
+      const CATEGORIES = [
+        {
+          id: 'gastronomy',
+          title: 'LEZZET',
+          subtitle: 'GAZİANTEP',
+          tagline: 'Yolculuk bir tatla başlar.',
+          duration: 11,
+          image: 'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?q=80&w=600&fit=crop'
+        },
+        {
+          id: 'holiday',
+          title: 'KAÇAMAK',
+          subtitle: 'EGE KIYILARI',
+          tagline: 'Kısa mesafe, büyük keyif.',
+          duration: 13,
+          image: 'https://images.unsplash.com/photo-1516483638261-f4dbaf036963?q=80&w=600&fit=crop'
+        },
+        {
+          id: 'overseas',
+          title: 'KEŞİF',
+          subtitle: 'AVRUPA',
+          tagline: 'Takvimi değil, ruhunu dinle.',
+          duration: 13,
+          image: 'https://images.unsplash.com/photo-1534351590666-13e3e96b5017?q=80&w=600&fit=crop'
+        }
+      ];
+
+      const App = () => {
+        const [phase, setPhase] = useState('logo'); // logo | montage | hook | menu | player | end
+        const [montageIndex, setMontageIndex] = useState(0);
+        const [activeCategory, setActiveCategory] = useState(null);
+        
+        // --- Logic ---
+
+        // Logo Intro Sequence
+        useEffect(() => {
+          if (phase === 'logo') {
+            const timer = setTimeout(() => setPhase('montage'), 2200);
+            return () => clearTimeout(timer);
+          }
+        }, [phase]);
+
+        // Montage Sequence
+        useEffect(() => {
+          if (phase === 'montage') {
+            const interval = setInterval(() => {
+              setMontageIndex(prev => {
+                if (prev >= MONTAGE_IMAGES.length - 1) {
+                  clearInterval(interval);
+                  setTimeout(() => setPhase('hook'), 800);
+                  return prev;
+                }
+                return prev + 1;
+              });
+            }, 800);
+            return () => clearInterval(interval);
+          }
+        }, [phase]);
+
+        // Hook Timeout
+        useEffect(() => {
+          if (phase === 'hook') {
+            const timer = setTimeout(() => setPhase('menu'), 2200);
+            return () => clearTimeout(timer);
+          }
+        }, [phase]);
+
+        // --- Views ---
+
+        const LogoView = () => (
+          <div className="absolute inset-0 bg-navy flex items-center justify-center z-50">
+             <div className="animate-fade-in flex flex-col items-center">
+                <img src={LOGO_URL} alt="Pegasus" className="h-12 w-auto object-contain logo-white opacity-0 animate-fade-in" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }} />
+             </div>
+          </div>
+        );
+
+        const IntroView = () => (
+          <div className="absolute inset-0 bg-navy">
+             {MONTAGE_IMAGES.map((img, idx) => (
+              <div 
+                key={idx}
+                className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${idx === montageIndex ? 'opacity-100' : 'opacity-0'}`}
+              >
+                {/* ADDED: object-center to perfectly center the images */}
+                <img src={img} className="w-full h-full object-cover object-center animate-zoom" alt="" />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent"></div>
+              </div>
+            ))}
+            
+            {/* Pegasus Logo Overlay */}
+            <div className="absolute top-6 left-6 z-20 flex items-center animate-fade-up">
+               <img src={LOGO_URL} alt="Pegasus" className="h-6 w-auto logo-white drop-shadow-lg" />
+            </div>
+          </div>
+        );
+
+        const HookView = () => (
+          <div className="absolute inset-0 bg-navy flex flex-col items-center justify-center z-20 overflow-hidden">
+             {/* Dynamic blurred bg */}
+             <img src={MONTAGE_IMAGES[3]} className="absolute inset-0 w-full h-full object-cover object-center opacity-20 blur-xl scale-110" />
+             
+             <div className="relative z-10 text-center animate-fade-up">
+                <h1 className="text-6xl font-black text-white leading-tight tracking-tight mb-2">
+                   PEKİ, ŞİMDİ <br/>
+                   <span className="text-pegasus">NEREYE?</span>
+                </h1>
+                <div className="h-1 w-24 bg-pegasus mx-auto rounded-full mt-4"></div>
+             </div>
+          </div>
+        );
+
+        const MenuView = () => {
+          const [hoveredId, setHoveredId] = useState(null);
+
+          return (
+            <div className="absolute inset-0 flex bg-navy overflow-hidden">
+               {/* Left Brand Panel */}
+               <div className="w-64 bg-navy text-white flex flex-col justify-center px-8 relative z-20 shadow-2xl shrink-0">
+                  {/* Logo Area */}
+                  <div className="absolute top-6 left-6">
+                     <img src={LOGO_URL} alt="Pegasus" className="h-6 w-auto logo-white" />
+                  </div>
+
+                  <div className="mb-4 mt-16">
+                    <span className="text-pegasus font-bold tracking-[0.2em] text-[10px] uppercase mb-2 block border-l-2 border-pegasus pl-2">Keşfetmeye Başla</span>
+                    <h2 className="text-4xl font-black leading-[0.9] text-white">
+                      HİKAYENİ <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFD200] to-white">SEÇ</span>
+                    </h2>
+                  </div>
+                  {/* Reduced mb-8 to mb-4 to move button up */}
+                  <p className="text-gray-400 text-xs leading-relaxed mb-4 font-medium">
+                    Sadece bir bilet değil, unutulmaz bir anı. Seni harekete geçiren tutkuyu seç, Pegasus’la yola çık.
+                  </p>
+                  <button onClick={() => setPhase('logo')} className="group flex items-center gap-3 text-xs font-bold text-gray-500 hover:text-white transition-colors">
+                     <div className="w-8 h-8 rounded-full border border-gray-700 group-hover:border-pegasus group-hover:text-pegasus flex items-center justify-center transition-all">
+                        <Play size={10} fill="currentColor" />
+                     </div>
+                     İntroyu İzle
+                  </button>
+               </div>
+
+               {/* Expandable Columns */}
+               <div className="flex-1 flex h-full">
+                 {CATEGORIES.map((cat) => {
+                   const isHovered = hoveredId === cat.id;
+                   
+                   return (
+                     <div 
+                        key={cat.id}
+                        className={`relative h-full transition-all duration-500 ease-out cursor-pointer overflow-hidden group border-l border-white/5
+                          ${isHovered ? 'flex-[2]' : 'flex-1'}
+                        `}
+                        onMouseEnter={() => setHoveredId(cat.id)}
+                        onMouseLeave={() => setHoveredId(null)}
+                        onClick={() => { setActiveCategory(cat); setPhase('player'); }}
+                     >
+                        {/* Background Image */}
+                        <img 
+                          src={cat.image} 
+                          className={`absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 
+                            ${isHovered ? 'scale-110' : 'scale-100 grayscale-[30%]'}
+                          `}
+                        />
+                        
+                        {/* Overlay Gradient */}
+                        <div className={`absolute inset-0 bg-gradient-to-t from-navy via-navy/40 to-transparent opacity-90 transition-opacity duration-300 ${isHovered ? 'opacity-70' : 'opacity-80'}`}></div>
+                        
+                        {/* Content */}
+                        <div className="absolute inset-0 p-6 flex flex-col justify-end items-start z-10">
+                           <span className={`text-pegasus text-[10px] font-black tracking-[0.2em] uppercase mb-1 transition-all duration-300 ${isHovered ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'}`}>
+                              {cat.subtitle}
+                           </span>
+                           <h3 className={`text-2xl font-black text-white leading-none mb-2 transition-transform duration-300 origin-left ${isHovered ? 'scale-110' : 'scale-100'}`}>
+                              {cat.title}
+                           </h3>
+                           
+                           {/* Button appears on hover */}
+                           <div className={`overflow-hidden transition-all duration-300 ${isHovered ? 'max-h-20 opacity-100 mt-2' : 'max-h-0 opacity-0'}`}>
+                              <div className="flex items-center gap-2 text-white text-xs font-bold">
+                                 <div className="w-8 h-8 rounded-full bg-pegasus text-navy flex items-center justify-center">
+                                    <Play size={14} fill="currentColor" />
+                                 </div>
+                                 <span>İZLE</span>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                   );
+                 })}
+               </div>
+            </div>
+          );
+        };
+
+        const PlayerView = () => {
+           if (!activeCategory) return null;
+           return (
+             <div className="absolute inset-0 bg-black flex animate-fade-up">
+                {/* Simulated Video Area */}
+                <div className="relative flex-1 bg-black overflow-hidden group">
+                   <img src={activeCategory.image} className="w-full h-full object-cover object-center opacity-90" />
+                   
+                   {/* Playback Controls (Simulated) */}
+                   <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-16 h-16 rounded-full glass-panel flex items-center justify-center text-white cursor-pointer hover:scale-105 transition-transform">
+                         <Pause size={24} fill="currentColor" />
+                      </div>
+                   </div>
+
+                   {/* Progress */}
+                   <div className="absolute bottom-0 left-0 w-full h-1 bg-white/20">
+                      <div className="h-full bg-pegasus shadow-[0_0_10px_#FFD200]" style={{ animation: `progress ${activeCategory.duration}s linear forwards` }} onAnimationEnd={() => setPhase('end')}></div>
+                   </div>
+                </div>
+
+                {/* Info Panel */}
+                <div className="w-[340px] bg-white relative p-8 flex flex-col justify-center z-20">
+                    <button 
+                      onClick={() => setPhase('menu')}
+                      className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 text-gray-400 hover:text-navy transition-colors"
+                    >
+                       <X size={20} />
+                    </button>
+
+                    <div className="mb-6">
+                       <span className="inline-block px-2 py-1 bg-pegasus/20 text-yellow-700 text-[10px] font-bold uppercase tracking-wider rounded mb-3">
+                          {activeCategory.subtitle}
+                       </span>
+                       <h2 className="text-3xl font-black text-navy leading-tight mb-2">{activeCategory.title}</h2>
+                       <p className="text-gray-500 text-sm font-medium">"{activeCategory.tagline}"</p>
+                    </div>
+
+                    <div className="space-y-3">
+                       <button className="w-full bg-pegasus hover:bg-[#ffc000] text-navy py-3.5 rounded font-bold text-sm shadow-lg shadow-yellow-500/20 transition-all flex items-center justify-center gap-2 group">
+                          BİLET ARA <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                       </button>
+                       <button onClick={() => setPhase('menu')} className="w-full py-3 rounded text-xs font-bold text-gray-500 hover:text-navy hover:bg-gray-50 transition-colors">
+                          BAŞKA ROTA SEÇ
+                       </button>
+                    </div>
+                </div>
+             </div>
+           );
+        };
+
+        const EndView = () => (
+          <div className="absolute inset-0 bg-navy flex overflow-hidden">
+             {/* Full Background with Gradient */}
+             <div className="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=1000&fit=crop" className="w-full h-full object-cover object-center opacity-60" alt="" />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-navy/80 to-navy"></div>
+             </div>
+             
+             {/* NEW: Logo at Top Right */}
+             <div className="absolute top-6 right-6 z-20">
+                <img src={LOGO_URL} className="h-5 w-auto logo-white opacity-80" alt="Pegasus" />
+             </div>
+
+             {/* Content Container */}
+             <div className="relative z-10 w-full h-full flex items-center justify-between px-12">
+                
+                {/* Left/Center Text */}
+                <div className="flex flex-col justify-center max-w-md">
+                   <div className="flex items-center gap-2 mb-4 animate-fade-up" style={{animationDelay: '0.1s'}}>
+                      <div className="bg-pegasus text-navy p-1 rounded font-bold text-[10px] tracking-widest uppercase px-2">Kampanya</div>
+                      <div className="text-gray-400 text-[10px] tracking-widest uppercase">Pegasus Airlines</div>
+                   </div>
+                   
+                   <h2 className="text-5xl font-black text-white leading-[0.9] mb-6 animate-fade-up" style={{animationDelay: '0.2s'}}>
+                      HADİ <br/> 
+                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFD200] to-yellow-100 filter drop-shadow-lg">UÇALIM</span>
+                   </h2>
+                   
+                   <p className="text-gray-300 text-sm mb-8 max-w-xs font-light animate-fade-up" style={{animationDelay: '0.3s'}}>
+                      Hayallerindeki rota bir bilet uzağında. <br/>
+                      <span className="text-white font-medium">Pegasus BolBol</span> ile uçuşunu hemen planla.
+                   </p>
+
+                   <div className="flex gap-3 animate-fade-up" style={{animationDelay: '0.4s'}}>
+                       <button onClick={() => window.open('https://www.flypgs.com', '_blank')} className="bg-pegasus hover:bg-yellow-300 text-navy px-8 py-3 rounded-full font-black text-xs transition-all transform hover:scale-105 shadow-lg shadow-yellow-500/20 flex items-center gap-2">
+                          FLYPGS.COM <ChevronRight size={14} />
+                       </button>
+                       <button onClick={() => setPhase('menu')} className="border border-gray-600 hover:border-white text-gray-300 hover:text-white px-6 py-3 rounded-full font-bold text-xs transition-all flex items-center gap-2 group">
+                          <RefreshCw size={14} className="group-hover:rotate-180 transition-transform" /> TEKRAR
+                       </button>
+                   </div>
+                </div>
+
+                {/* Right Side Visuals (QR Code / App) */}
+                <div className="hidden md:flex flex-col items-center justify-center animate-fade-up mt-8" style={{animationDelay: '0.5s'}}>
+                    <div className="bg-white p-3 rounded-xl shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-300 animate-float">
+                       {/* Mock QR Code Card */}
+                       <div className="w-24 h-24 bg-gray-900 rounded-lg flex items-center justify-center relative overflow-hidden mb-2">
+                           <QrCode size={48} className="text-white opacity-80" />
+                           <div className="absolute inset-0 bg-gradient-to-br from-transparent to-white/10"></div>
+                       </div>
+                       <div className="text-center">
+                          <p className="text-[9px] font-black text-navy uppercase tracking-wider">Mobil Uygulama</p>
+                          <p className="text-[8px] text-gray-500 font-bold">HEMEN İNDİR</p>
+                       </div>
+                    </div>
+                    
+                    {/* Plane Decoration */}
+                    <div className="absolute top-0 right-0 text-white/5 pointer-events-none transform translate-x-1/4 -translate-y-1/4">
+                        <Plane size={240} strokeWidth={0.5} />
+                    </div>
+                </div>
+             </div>
+          </div>
+        );
+
+        return (
+          <main className="w-full h-full relative overflow-hidden bg-navy selection:bg-pegasus selection:text-navy">
+            {phase === 'logo' && <LogoView />}
+            {phase === 'montage' && <IntroView />}
+            {phase === 'hook' && <HookView />}
+            {phase === 'menu' && <MenuView />}
+            {phase === 'player' && <PlayerView />}
+            {phase === 'end' && <EndView />}
+          </main>
+        );
+      };
+
+      const root = createRoot(document.getElementById('root'));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

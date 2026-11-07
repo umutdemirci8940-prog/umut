@@ -1,0 +1,1016 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kocaeli Büyükşehir Belediyesi Widget</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Process polyfill for ESM packages -->
+    <script>
+      window.process = { env: { NODE_ENV: "production" } };
+      window.addEventListener("error", function (e) {
+        document.body.innerHTML +=
+          '<div style="color:red; padding:20px; z-index:9999; position:relative; background:white;">Error: ' +
+          e.message +
+          "<br>" +
+          e.filename +
+          ":" +
+          e.lineno +
+          "</div>";
+      });
+    </script>
+
+    <!-- Babel for in-browser JSX compilation -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+      body {
+        margin: 0;
+        background-color: #eef2f6;
+        font-family:
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          "Helvetica Neue",
+          Arial,
+          sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- React, Framer Motion ve Lucide Icons'u doğrudan tarayıcıda çalıştırıyoruz -->
+    <script type="text/babel" data-presets="react" data-type="module">
+      import React, {
+        useState,
+        useEffect,
+      } from "https://cdn.jsdelivr.net/npm/react@18.2.0/+esm";
+      import { createRoot } from "https://cdn.jsdelivr.net/npm/react-dom@18.2.0/client/+esm";
+      import {
+        motion,
+        AnimatePresence,
+      } from "https://cdn.jsdelivr.net/npm/framer-motion@11.0.8/+esm";
+      import {
+        Phone,
+        Bus,
+        CreditCard,
+        HeartPulse,
+        FileCheck,
+        AlertTriangle,
+        Users,
+        Leaf,
+        ChevronLeft,
+        ChevronRight,
+        ArrowRight,
+        Play,
+        Film,
+        Calendar,
+        Sparkles,
+        ArrowUpRight,
+        Palette,
+        Music,
+        Ticket,
+        BookOpen,
+        Trophy,
+        Dumbbell,
+        Medal,
+        Bike,
+      } from "https://cdn.jsdelivr.net/npm/lucide-react@0.359.0/+esm";
+
+      // --- MOCK DATA ---
+      const quickServices = [
+        {
+          icon: Phone,
+          title: "153 Çözüm Masası",
+          desc: "7/24 Hizmetinizde",
+          color: "bg-gradient-to-br from-blue-500 to-blue-600",
+          link: "https://cozummasasi.kocaeli.bel.tr/",
+        },
+        {
+          icon: CreditCard,
+          title: "E-Belediye",
+          desc: "Online İşlemler",
+          color: "bg-gradient-to-br from-teal-500 to-teal-600",
+          link: "https://ebelediye.kocaeli.bel.tr/",
+        },
+        {
+          icon: Bus,
+          title: "Ulaşım (e-komobil)",
+          desc: "Sefer Saatleri",
+          color: "bg-gradient-to-br from-indigo-500 to-indigo-600",
+          link: "https://e-komobil.com/",
+        },
+        {
+          icon: HeartPulse,
+          title: "Nöbetçi Eczaneler",
+          desc: "Güncel Liste",
+          color: "bg-gradient-to-br from-rose-500 to-rose-600",
+          link: "https://www.kocaeli.bel.tr/tr/main/nobetcieczaneler",
+        },
+        {
+          icon: FileCheck,
+          title: "E-İmar",
+          desc: "İmar Durumu",
+          color: "bg-gradient-to-br from-amber-500 to-amber-600",
+          link: "https://e-imar.kocaeli.bel.tr/",
+        },
+        {
+          icon: AlertTriangle,
+          title: "Afet Yönetimi",
+          desc: "Toplanma Alanları",
+          color: "bg-gradient-to-br from-red-500 to-red-600",
+          link: "https://www.kocaeli.bel.tr/tr/main/afet",
+        },
+        {
+          icon: Users,
+          title: "Sosyal Destek",
+          desc: "Başvuru ve Sorgulama",
+          color: "bg-gradient-to-br from-emerald-500 to-emerald-600",
+          link: "https://ebelediye.kocaeli.bel.tr/SosyalHizmetler/SosyalHizmetBasvuru",
+        },
+        {
+          icon: Leaf,
+          title: "Çevre Koruma",
+          desc: "Atık Yönetimi",
+          color: "bg-gradient-to-br from-green-500 to-green-600",
+          link: "https://www.kocaeli.bel.tr/tr/main/cevre",
+        },
+      ];
+
+      const projects = [
+        {
+          id: "proj_0",
+          title: "Mola Park",
+          status: "TAMAMLANDI",
+          image:
+            "http://www.tahirbuyukakin.com/files/uploads/news/default/20260112-mola-park-342520-b09edec807ea9d6199bc.jpg",
+          category: "Çevre",
+          link: "https://www.kocaeli.bel.tr/proje/mola-park-709.html",
+        },
+        {
+          id: "proj_1",
+          title: "Tabduk Emre Cami Çevre Düzenleme",
+          status: "TAMAMLANDI",
+          image:
+            "http://www.tahirbuyukakin.com/files/uploads/news/default/20260112-tabduk-emre-cami-cevre-duzenleme-yapim-isi-210735-ac3bda025c9e0377cf01.jpg",
+          category: "Çevre",
+          link: "https://www.kocaeli.bel.tr/proje/tabduk-emre-cami-cevre-duzenleme-yapim-isi-708.html",
+        },
+        {
+          id: "proj_7",
+          title: "Alikahya Stadyum Kavşağı Anıtı",
+          status: "TAMAMLANDI",
+          image:
+            "http://www.tahirbuyukakin.com/files/uploads/news/default/20260109-alikahya-stadyum-kavsagi-anit-yapim-isi-561897-5eaba2096b019dfc3df4.jpg",
+          category: "Kültür",
+          link: "https://www.kocaeli.bel.tr/proje/alikahya-stadyum-kavsagi-anit-yapim-isi-701.html",
+        },
+        {
+          id: "proj_8",
+          title: "Çayırova UÇAKPARK Bilim Merkezi",
+          status: "TAMAMLANDI",
+          image:
+            "http://www.tahirbuyukakin.com/files/uploads/news/default/20250916-cayirova-ucakpark-havacilik-bilim-merkezi-258451-60035c53cf28926756dd.jpg",
+          category: "Kültür",
+          link: "https://www.kocaeli.bel.tr/proje/cayirova-ucakpark-havacilik-bilim-merkezi-698.html",
+        },
+        {
+          id: "proj_9",
+          title: "Hoca Ahmet Yesevi Dönel Kavşak",
+          status: "TAMAMLANDI",
+          image:
+            "http://www.tahirbuyukakin.com/files/uploads/news/default/20250916-hoca-ahmet-yesevi-caddesi-pasinler-caddesi-kesisimi-kavsagi-donel-kavsak-projesi-646288-c1db490b6f981c4f9db9.jpg",
+          category: "Ulaşım",
+          link: "https://www.kocaeli.bel.tr/proje/hoca-ahmet-yesevi-caddesi-pasinler-caddesi-kesisimi-kavsagi-donel-kavsak-projesi-697.html",
+        },
+        {
+          id: "proj_11",
+          title: "Seymen Millet Bahçesi Otoparkı",
+          status: "TAMAMLANDI",
+          image:
+            "http://www.tahirbuyukakin.com/files/uploads/news/default/20250916-seymen-millet-bahcesi-otopark-yol-ve-kavsak-projesi-854380-3e810ad2f24b4045b479.jpg",
+          category: "Ulaşım",
+          link: "https://www.kocaeli.bel.tr/proje/seymen-millet-bahcesi-otopark-yol-ve-kavsak-projesi-693.html",
+        },
+      ];
+
+      const news = [
+        {
+          id: 1,
+          title:
+            "Kocaeli'de Tarıma Dev Destek: %50 Hibeli Gübre Dağıtımı Başladı",
+          date: "27 Mart 2026",
+          image:
+            "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80&w=600",
+          category: "Tarım",
+        },
+        {
+          id: 2,
+          title: "Darıca-Gebze OSB Metrosunda Tünel Kazıları Tamamlandı",
+          date: "26 Mart 2026",
+          image:
+            "https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?q=80&w=600",
+          category: "Ulaşım",
+        },
+        {
+          id: 3,
+          title: "Kocaeli Şehir Hastanesi Tramvay Hattı Hizmete Açıldı",
+          date: "25 Mart 2026",
+          image:
+            "https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?q=80&w=600",
+          category: "Altyapı",
+        },
+      ];
+
+      function App() {
+        const [activeTab, setActiveTab] = useState("Vizyonumuz");
+        const [startIndex, setStartIndex] = useState(0);
+        const [isHovered, setIsHovered] = useState(false);
+
+        const brandDark = "#0B426A";
+        const brandCyan = "#00D2FF";
+
+        const nextSlide = () => {
+          if (startIndex < projects.length - 2) {
+            setStartIndex(startIndex + 1);
+          }
+        };
+
+        const prevSlide = () => {
+          if (startIndex > 0) {
+            setStartIndex(startIndex - 1);
+          }
+        };
+
+        return (
+          <div className="min-h-screen bg-[#eef2f6] flex items-center justify-center p-4 font-sans">
+            {/* 970x250 WIDGET CONTAINER - Masterpiece Edition */}
+            <div
+              className="w-[970px] h-[250px] bg-white rounded-[24px] shadow-[0_30px_60px_rgba(11,66,106,0.15),0_0_0_1px_rgba(11,66,106,0.05)] overflow-hidden flex flex-col relative group/widget"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              {/* HEADER - Premium Glassmorphism */}
+              <div className="h-[64px] px-7 flex items-center justify-between bg-white/95 backdrop-blur-md shrink-0 z-30 relative border-b border-slate-100/80">
+                {/* Logo & 7. Yıl Branding */}
+                <div
+                  className="flex items-center gap-4 cursor-pointer group"
+                  onClick={() =>
+                    window.open("https://www.kocaeli.bel.tr/", "_blank")
+                  }
+                >
+                  <img
+                    src="https://i.pinimg.com/originals/85/74/8f/85748f9d44a2ad66531665f66f737283.png"
+                    alt="Kocaeli Büyükşehir Belediyesi"
+                    className="h-10 object-contain transition-transform duration-500 group-hover:scale-105"
+                    referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      e.currentTarget.src =
+                        "https://upload.wikimedia.org/wikipedia/tr/archive/6/6f/20200515152528%21Kocaeli_B%C3%BCy%C3%BCk%C5%9Fehir_Belediyesi_logosu.png";
+                    }}
+                  />
+                  <div className="h-8 w-px bg-gradient-to-b from-transparent via-slate-200 to-transparent"></div>
+
+                  {/* 7. Yıl Premium Badge */}
+                  <div className="flex items-center gap-2 bg-gradient-to-r from-[#0B426A] to-[#00A3B4] pl-3 pr-4 py-1.5 rounded-full shadow-[0_4px_12px_rgba(0,210,255,0.2)] transform transition-transform duration-300 hover:scale-105">
+                    <Sparkles
+                      size={14}
+                      className="text-[#00D2FF] animate-pulse"
+                    />
+                    <div className="flex flex-col leading-none">
+                      <span className="font-black text-[12px] tracking-widest text-white italic">
+                        7. YILINDA
+                      </span>
+                      <span className="font-semibold text-[8px] tracking-widest text-[#00D2FF] uppercase">
+                        Eser & Hizmet
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Tabs & Controls */}
+                <div className="flex items-center gap-5 h-full">
+                  {[
+                    "Vizyonumuz",
+                    "Yatırımlar",
+                    "Hizmetler",
+                    "Haberler",
+                    "Kültür Sanat",
+                    "Gençlik Spor",
+                  ].map((tab) => (
+                    <button
+                      key={tab}
+                      onClick={() => {
+                        setActiveTab(tab);
+                        setStartIndex(0);
+                      }}
+                      className={`text-[11px] font-bold uppercase tracking-wider transition-all duration-300 relative h-full flex items-center ${activeTab === tab ? "text-[#0B426A]" : "text-slate-400 hover:text-[#0B426A]"}`}
+                    >
+                      {tab}
+                      {activeTab === tab && (
+                        <motion.div
+                          layoutId="activeTab"
+                          className="absolute bottom-0 left-0 right-0 h-[3px] rounded-t-full shadow-[0_-2px_8px_rgba(0,210,255,0.5)]"
+                          style={{ backgroundColor: brandCyan }}
+                        />
+                      )}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* CONTENT AREA */}
+              <div className="flex-1 relative overflow-hidden bg-slate-50">
+                <AnimatePresence mode="wait">
+                  {/* TAB 0: VİZYONUMUZ (HERO / MASTERPIECE) */}
+                  {activeTab === "Vizyonumuz" && (
+                    <motion.div
+                      key="vizyonumuz"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.4 }}
+                      className="absolute inset-0 overflow-hidden bg-[#0B426A]"
+                    >
+                      {/* Cinematic Background */}
+                      <motion.img
+                        initial={{ scale: 1.1 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 10, ease: "easeOut" }}
+                        src="https://www.kocaeli.bel.tr/files/uploads/news/default/20240317-sehir-hastanesi-tramvay-hatti-acildi-1024x683.jpg"
+                        alt="Kocaeli"
+                        className="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-overlay"
+                      />
+
+                      {/* Elegant Gradients */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-[#0B426A] via-[#0B426A]/90 to-transparent"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0B426A] to-transparent opacity-50"></div>
+
+                      {/* Giant Decorative 7 */}
+                      <motion.div
+                        initial={{ opacity: 0, x: 50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        className="absolute -right-10 top-1/2 -translate-y-1/2 text-[280px] font-black italic text-white/[0.03] leading-none pointer-events-none select-none"
+                      >
+                        7
+                      </motion.div>
+
+                      {/* Content */}
+                      <div className="absolute inset-0 px-10 py-6 flex items-center justify-between z-10">
+                        <div className="max-w-[500px]">
+                          <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 0.1 }}
+                          >
+                            <h2 className="text-[#00D2FF] font-black text-2xl tracking-tight leading-none mb-1 drop-shadow-lg">
+                              7. YILINDA
+                            </h2>
+                            <h1 className="text-white font-bold text-xl tracking-tight leading-tight mb-2 drop-shadow-md">
+                              Eser ve Hizmet Belediyeciliği
+                            </h1>
+                            <p className="text-blue-100/90 text-[12px] leading-relaxed max-w-[400px] font-medium">
+                              Kocaeli'yi geleceğe taşıyan vizyon projeler,
+                              kesintisiz altyapı yatırımları ve vatandaş odaklı
+                              sosyal hizmetlerle şehrimize değer katmaya devam
+                              ediyoruz.
+                            </p>
+                          </motion.div>
+                        </div>
+
+                        {/* Mayor Photo & Signature */}
+                        <div className="absolute bottom-0 right-10 flex items-end gap-6 z-20 h-full">
+                          <motion.div
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.6, delay: 0.4 }}
+                            className="pb-6"
+                          >
+                            <img
+                              src="https://www.kocaeli.bel.tr/theme/kbb/images/baskan_title.png?ref=3"
+                              alt="Doç. Dr. Tahir Büyükakın"
+                              className="h-11 object-contain drop-shadow-lg"
+                              referrerPolicy="no-referrer"
+                            />
+                          </motion.div>
+
+                          <motion.img
+                            initial={{ opacity: 0, y: 50 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.2 }}
+                            src="https://www.kocaeli.bel.tr/theme/kbb/images/baskan_s.png"
+                            alt="Başkan"
+                            className="h-[186px] object-contain object-bottom"
+                            referrerPolicy="no-referrer"
+                          />
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+
+                  {/* TAB 1: HİZMETLER */}
+                  {activeTab === "Hizmetler" && (
+                    <motion.div
+                      key="hizmetler"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute inset-0 p-5 flex items-center justify-center bg-slate-50/80"
+                    >
+                      <div className="grid grid-cols-4 gap-x-5 gap-y-4 w-full px-1">
+                        {quickServices.map((service, idx) => (
+                          <motion.a
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.3, delay: idx * 0.05 }}
+                            key={idx}
+                            href={service.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-3.5 px-4 py-3 bg-white rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.03)] border border-slate-100 hover:shadow-[0_8px_20px_rgba(0,210,255,0.15)] hover:border-[#00D2FF]/50 hover:-translate-y-0.5 transition-all duration-300 group"
+                          >
+                            <div
+                              className={`w-11 h-11 rounded-xl ${service.color} text-white flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-md`}
+                            >
+                              <service.icon size={20} strokeWidth={2} />
+                            </div>
+                            <div className="flex flex-col justify-center">
+                              <h4 className="text-[13px] font-bold text-[#0B426A] leading-tight group-hover:text-[#00A3B4] transition-colors">
+                                {service.title}
+                              </h4>
+                              <p className="text-[11px] text-slate-500 mt-0.5 leading-tight">
+                                {service.desc}
+                              </p>
+                            </div>
+                          </motion.a>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+
+                  {/* TAB 2: YATIRIMLAR (Projects Slider) */}
+                  {activeTab === "Yatırımlar" && (
+                    <motion.div
+                      key="yatirimlar"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute inset-0 flex items-center px-5 gap-5 bg-slate-50/80"
+                    >
+                      {/* Promotional Video Area */}
+                      <div
+                        className="relative w-[240px] h-[150px] rounded-xl overflow-hidden group cursor-pointer shadow-[0_8px_20px_rgba(11,66,106,0.15)] border border-slate-200 shrink-0 bg-slate-900"
+                        onClick={() =>
+                          window.open(
+                            "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+                            "_blank",
+                          )
+                        }
+                      >
+                        <img
+                          src="https://picsum.photos/seed/kocaeli-city/400/300"
+                          alt="Tanıtım Filmi"
+                          className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700"
+                          referrerPolicy="no-referrer"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#0B426A]/90 via-[#0B426A]/30 to-transparent"></div>
+
+                        <div className="absolute top-2 left-2 bg-red-600 text-white text-[9px] font-black px-2 py-1 rounded flex items-center gap-1 shadow-sm">
+                          <Film size={10} /> TANITIM FİLMİ
+                        </div>
+
+                        <div className="absolute inset-0 flex items-center justify-center z-10">
+                          <div className="relative flex items-center justify-center w-12 h-12">
+                            <div className="absolute inset-0 bg-red-500 rounded-full animate-ping opacity-30"></div>
+                            <div className="relative w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/40 group-hover:bg-white/30 transition-colors shadow-lg">
+                              <Play
+                                className="text-white ml-1"
+                                fill="currentColor"
+                                size={20}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="w-px h-[130px] bg-slate-200 shrink-0"></div>
+
+                      {/* Cards Slider Container */}
+                      <div className="flex-1 h-full flex items-center overflow-hidden relative group/slider">
+                        <motion.div
+                          className="flex"
+                          style={{ gap: "20px" }}
+                          animate={{ x: -(startIndex * (260 + 20)) }}
+                          transition={{
+                            type: "spring",
+                            stiffness: 300,
+                            damping: 30,
+                          }}
+                        >
+                          {projects.map((project) => (
+                            <div
+                              key={project.id}
+                              onClick={() =>
+                                window.open(project.link, "_blank")
+                              }
+                              className="relative w-[260px] h-[150px] rounded-xl overflow-hidden group cursor-pointer shadow-[0_4px_15px_rgba(0,0,0,0.06)] border border-slate-200 shrink-0 bg-slate-100 hover:shadow-[0_12px_25px_rgba(11,66,106,0.15)] hover:border-[#00D2FF]/40 transition-all duration-300"
+                            >
+                              <img
+                                src={project.image}
+                                alt={project.title}
+                                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                referrerPolicy="no-referrer"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-[#0B426A] via-[#0B426A]/40 to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-95"></div>
+
+                              <div
+                                className="absolute top-0 right-0 text-[#0B426A] text-[9px] font-black px-2.5 py-1.5 rounded-bl-xl z-10 shadow-sm"
+                                style={{ backgroundColor: brandCyan }}
+                              >
+                                {project.status}
+                              </div>
+
+                              <div className="absolute bottom-0 left-0 right-0 p-4 z-10 transform transition-transform duration-300 group-hover:-translate-y-1">
+                                <h3 className="text-white font-bold text-[13px] leading-snug mb-1 line-clamp-2 drop-shadow-md">
+                                  {project.title}
+                                </h3>
+
+                                <div className="overflow-hidden h-0 group-hover:h-5 transition-all duration-300 opacity-0 group-hover:opacity-100 flex items-center mt-1">
+                                  <span className="text-[10px] font-bold tracking-wider text-[#00D2FF] flex items-center gap-1 uppercase">
+                                    Projeyi İncele <ArrowRight size={12} />
+                                  </span>
+                                </div>
+                              </div>
+
+                              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#0B426A]/50 backdrop-blur-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 scale-50 group-hover:scale-100 z-10 border border-[#00D2FF]/50 shadow-[0_0_20px_rgba(0,210,255,0.4)]">
+                                <ArrowUpRight
+                                  size={18}
+                                  className="text-[#00D2FF]"
+                                />
+                              </div>
+                            </div>
+                          ))}
+                        </motion.div>
+
+                        {/* Left Arrow */}
+                        <AnimatePresence>
+                          {startIndex > 0 && (
+                            <motion.button
+                              initial={{ opacity: 0, scale: 0.8 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              exit={{ opacity: 0, scale: 0.8 }}
+                              onClick={prevSlide}
+                              className="absolute left-2 w-8 h-8 rounded-full bg-white/90 backdrop-blur border border-slate-200 flex items-center justify-center text-[#0B426A] hover:bg-[#0B426A] hover:text-white transition-all shadow-md z-20"
+                            >
+                              <ChevronLeft size={18} />
+                            </motion.button>
+                          )}
+                        </AnimatePresence>
+
+                        {/* Right Arrow */}
+                        <AnimatePresence>
+                          {startIndex < projects.length - 2 && (
+                            <motion.button
+                              initial={{ opacity: 0, scale: 0.8 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              exit={{ opacity: 0, scale: 0.8 }}
+                              onClick={nextSlide}
+                              className="absolute right-2 w-8 h-8 rounded-full bg-white/90 backdrop-blur border border-slate-200 flex items-center justify-center text-[#0B426A] hover:bg-[#0B426A] hover:text-white transition-all shadow-md z-20"
+                            >
+                              <ChevronRight size={18} />
+                            </motion.button>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    </motion.div>
+                  )}
+
+                  {/* TAB 3: HABERLER */}
+                  {activeTab === "Haberler" && (
+                    <motion.div
+                      key="haberler"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute inset-0 p-5 flex items-center justify-center gap-5 bg-slate-50/80"
+                    >
+                      {news.map((item, idx) => (
+                        <motion.a
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.3, delay: idx * 0.1 }}
+                          key={item.id}
+                          href="https://www.kocaeli.bel.tr/tr/main/haberler"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="relative flex-1 h-[150px] rounded-xl overflow-hidden group shadow-[0_4px_15px_rgba(0,0,0,0.05)] border border-slate-200 block hover:shadow-[0_8px_25px_rgba(11,66,106,0.15)] hover:border-[#00D2FF]/40 transition-all duration-300 hover:-translate-y-1"
+                        >
+                          <img
+                            src={item.image}
+                            alt={item.title}
+                            className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                            referrerPolicy="no-referrer"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#0B426A] via-[#0B426A]/40 to-transparent opacity-90 group-hover:opacity-95 transition-opacity duration-300"></div>
+
+                          <div className="absolute top-3 left-3 bg-[#00D2FF] text-[#0B426A] text-[9px] font-black px-2.5 py-1 rounded-md shadow-sm">
+                            {item.category}
+                          </div>
+
+                          <div className="absolute bottom-0 left-0 right-0 p-4">
+                            <div className="flex items-center gap-1.5 text-[#00D2FF] text-[10px] font-bold mb-1.5 opacity-90">
+                              <Calendar size={12} /> {item.date}
+                            </div>
+                            <h4 className="text-white text-[13px] font-bold leading-snug line-clamp-2 group-hover:text-[#00D2FF] transition-colors drop-shadow-md">
+                              {item.title}
+                            </h4>
+                          </div>
+                        </motion.a>
+                      ))}
+                    </motion.div>
+                  )}
+
+                  {/* TAB 4: KÜLTÜR SANAT */}
+                  {activeTab === "Kültür Sanat" && (
+                    <motion.div
+                      key="kultur-sanat"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute inset-0 p-4 flex items-center justify-center bg-slate-50/80"
+                    >
+                      <div className="grid grid-cols-3 grid-rows-2 gap-3 w-full h-full">
+                        {/* Tiyatro */}
+                        <motion.a
+                          href="https://tiyatro.kocaeli.bel.tr/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.3 }}
+                          className="row-span-2 relative rounded-xl overflow-hidden group cursor-pointer shadow-sm hover:shadow-md transition-all"
+                        >
+                          <img
+                            src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=800&h=1000"
+                            alt="Tiyatro"
+                            className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+                          <div className="absolute bottom-4 left-4 right-4">
+                            <h3 className="text-white font-black text-4xl tracking-tight leading-none mb-2">
+                              TİYATRO
+                            </h3>
+                            <p className="text-white/90 text-[12px] leading-snug pr-8">
+                              Yaşamak Mı Yoksa Ölmek Mi, Masanın Altında,
+                              Radyo-Yu Hümayun ve daha birçoğu...
+                            </p>
+                          </div>
+                          <div className="absolute bottom-4 right-4 w-6 h-6 rounded-full border-2 border-white flex items-center justify-center group-hover:bg-white transition-colors">
+                            <ChevronRight
+                              size={14}
+                              className="text-white group-hover:text-black"
+                            />
+                          </div>
+                        </motion.a>
+
+                        {/* Müze */}
+                        <motion.a
+                          href="#"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.3, delay: 0.05 }}
+                          className="relative rounded-xl overflow-hidden group cursor-pointer shadow-sm hover:shadow-md transition-all"
+                        >
+                          <img
+                            src="https://images.unsplash.com/photo-1533158326339-7f3cf2404354?q=80&w=400"
+                            alt="Müze"
+                            className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-red-800/90 via-red-800/40 to-transparent"></div>
+                          <div className="absolute bottom-3 left-3 right-3">
+                            <h3 className="text-white font-black text-[15px] leading-tight mb-0.5">
+                              KOCAELİ YEREL
+                              <br />
+                              KÜLTÜR MÜZESİ
+                            </h3>
+                            <p className="text-white/90 text-[10px] leading-tight pr-6">
+                              Manav Kültürü Bu Müzede Yaşatılıyor...
+                            </p>
+                          </div>
+                          <div className="absolute bottom-3 right-3 w-5 h-5 rounded-full border-2 border-white flex items-center justify-center group-hover:bg-white transition-colors">
+                            <ChevronRight
+                              size={12}
+                              className="text-white group-hover:text-red-800"
+                            />
+                          </div>
+                        </motion.a>
+
+                        {/* Kütüphane */}
+                        <motion.a
+                          href="#"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.3, delay: 0.1 }}
+                          className="relative rounded-xl overflow-hidden group cursor-pointer shadow-sm hover:shadow-md transition-all"
+                        >
+                          <img
+                            src="https://images.unsplash.com/photo-1568667256549-094345857637?q=80&w=400"
+                            alt="Kütüphane"
+                            className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-green-800/90 via-green-800/40 to-transparent"></div>
+                          <div className="absolute bottom-3 left-3 right-3">
+                            <h3 className="text-white font-black text-[15px] leading-tight mb-0.5">
+                              KÜTÜPHANE
+                            </h3>
+                            <p className="text-white/90 text-[10px] leading-tight pr-6">
+                              Tüm kütüphane kaynaklarına kolay erişim
+                            </p>
+                          </div>
+                          <div className="absolute bottom-3 right-3 w-5 h-5 rounded-full border-2 border-white flex items-center justify-center group-hover:bg-white transition-colors">
+                            <ChevronRight
+                              size={12}
+                              className="text-white group-hover:text-green-800"
+                            />
+                          </div>
+                        </motion.a>
+
+                        {/* Konservatuar */}
+                        <motion.a
+                          href="#"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.3, delay: 0.15 }}
+                          className="relative rounded-xl overflow-hidden group cursor-pointer shadow-sm hover:shadow-md transition-all"
+                        >
+                          <img
+                            src="https://images.unsplash.com/photo-1511192336575-5a79af67a629?q=80&w=400"
+                            alt="Konservatuar"
+                            className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#8B4513]/90 via-[#8B4513]/40 to-transparent"></div>
+                          <div className="absolute bottom-3 left-3 right-3">
+                            <h3 className="text-white font-black text-[15px] leading-tight mb-0.5">
+                              KONSERVATUAR
+                            </h3>
+                            <p className="text-white/90 text-[10px] leading-tight pr-6">
+                              Müzik, Güzel Sanatlar, Geleneksel Sanatlar ve
+                              Bale...
+                            </p>
+                          </div>
+                          <div className="absolute bottom-3 right-3 w-5 h-5 rounded-full border-2 border-white flex items-center justify-center group-hover:bg-white transition-colors">
+                            <ChevronRight
+                              size={12}
+                              className="text-white group-hover:text-[#8B4513]"
+                            />
+                          </div>
+                        </motion.a>
+
+                        {/* Ansiklopedi */}
+                        <motion.a
+                          href="#"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.3, delay: 0.2 }}
+                          className="relative rounded-xl overflow-hidden group cursor-pointer shadow-sm hover:shadow-md transition-all"
+                        >
+                          <img
+                            src="https://images.unsplash.com/photo-1457369804613-52c61a468e7d?q=80&w=400"
+                            alt="Ansiklopedi"
+                            className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#FACC15]/95 via-[#FACC15]/60 to-transparent"></div>
+                          <div className="absolute bottom-3 left-3 right-3">
+                            <h3 className="text-[#0B426A] font-black text-[15px] leading-tight mb-0.5">
+                              KOCAELİ
+                              <br />
+                              ANSİKLOPEDİSİ
+                            </h3>
+                          </div>
+                          <div className="absolute bottom-3 right-3 w-5 h-5 rounded-full border-2 border-[#0B426A] flex items-center justify-center group-hover:bg-[#0B426A] transition-colors">
+                            <ChevronRight
+                              size={12}
+                              className="text-[#0B426A] group-hover:text-white"
+                            />
+                          </div>
+                        </motion.a>
+                      </div>
+                    </motion.div>
+                  )}
+
+                  {/* TAB 5: GENÇLİK SPOR */}
+                  {activeTab === "Gençlik Spor" && (
+                    <motion.div
+                      key="genclik-spor"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute inset-0 p-4 flex items-center justify-center bg-slate-50/80"
+                    >
+                      <div className="grid grid-cols-3 grid-rows-2 gap-3 w-full h-full">
+                        {/* Diriliş Gençlik Kampları */}
+                        <motion.a
+                          href="#"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.3 }}
+                          className="row-span-2 relative rounded-xl overflow-hidden group cursor-pointer shadow-sm hover:shadow-md transition-all"
+                        >
+                          <img
+                            src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?auto=format&fit=crop&q=80&w=800&h=1000"
+                            alt="Diriliş Gençlik Kampları"
+                            className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-green-900/90 via-green-900/40 to-transparent"></div>
+                          <div className="absolute bottom-4 left-4 right-4">
+                            <h3 className="text-white font-black text-4xl tracking-tight leading-none mb-2">
+                              DİRİLİŞ
+                              <br />
+                              GENÇLİK
+                              <br />
+                              KAMPLARI
+                            </h3>
+                            <p className="text-white/90 text-[12px] leading-snug pr-8">
+                              Şehrin kalabalığından uzak doğayla iç içe kamp
+                              imkanı
+                            </p>
+                          </div>
+                          <div className="absolute bottom-4 right-4 w-6 h-6 rounded-full border-2 border-white flex items-center justify-center group-hover:bg-white transition-colors">
+                            <ChevronRight
+                              size={14}
+                              className="text-white group-hover:text-green-900"
+                            />
+                          </div>
+                        </motion.a>
+
+                        {/* Gençlik Merkezleri */}
+                        <motion.a
+                          href="#"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.3, delay: 0.05 }}
+                          className="relative rounded-xl overflow-hidden group cursor-pointer shadow-sm hover:shadow-md transition-all"
+                        >
+                          <img
+                            src="https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&q=80&w=400"
+                            alt="Gençlik Merkezleri"
+                            className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-orange-600/90 via-orange-600/40 to-transparent"></div>
+                          <div className="absolute bottom-3 left-3 right-3">
+                            <h3 className="text-white font-black text-[15px] leading-tight mb-0.5">
+                              GENÇLİK
+                              <br />
+                              MERKEZLERİ
+                            </h3>
+                            <p className="text-white/90 text-[10px] leading-tight pr-6">
+                              Uzman kadro ile atölye ve etkinlikler Zengin
+                              faaliyet havuzu
+                            </p>
+                          </div>
+                          <div className="absolute bottom-3 right-3 w-5 h-5 rounded-full border-2 border-white flex items-center justify-center group-hover:bg-white transition-colors">
+                            <ChevronRight
+                              size={12}
+                              className="text-white group-hover:text-orange-600"
+                            />
+                          </div>
+                        </motion.a>
+
+                        {/* Anne Şehir */}
+                        <motion.a
+                          href="#"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.3, delay: 0.1 }}
+                          className="relative rounded-xl overflow-hidden group cursor-pointer shadow-sm hover:shadow-md transition-all"
+                        >
+                          <img
+                            src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&q=80&w=400"
+                            alt="Anne Şehir"
+                            className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-pink-600/90 via-pink-600/40 to-transparent"></div>
+                          <div className="absolute bottom-3 left-3 right-3">
+                            <h3 className="text-white font-black text-[15px] leading-tight mb-0.5">
+                              ANNE ŞEHİR SAĞLIKLI
+                              <br />
+                              YAŞAM PROGRAMI
+                            </h3>
+                            <p className="text-white/90 text-[10px] leading-tight pr-6">
+                              Anneler İçin Fiziksel Aktiviteler, Rekreatif
+                              Faaliyetler ve Pek Çok Hizmet...
+                            </p>
+                          </div>
+                          <div className="absolute bottom-3 right-3 w-5 h-5 rounded-full border-2 border-white flex items-center justify-center group-hover:bg-white transition-colors">
+                            <ChevronRight
+                              size={12}
+                              className="text-white group-hover:text-pink-600"
+                            />
+                          </div>
+                        </motion.a>
+
+                        {/* Spor Okulları */}
+                        <motion.a
+                          href="#"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.3, delay: 0.15 }}
+                          className="relative rounded-xl overflow-hidden group cursor-pointer shadow-sm hover:shadow-md transition-all"
+                        >
+                          <img
+                            src="https://images.unsplash.com/photo-1519861531473-9200262188bf?auto=format&fit=crop&q=80&w=400"
+                            alt="Spor Okulları"
+                            className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-purple-700/90 via-purple-700/40 to-transparent"></div>
+                          <div className="absolute bottom-3 left-3 right-3">
+                            <h3 className="text-white font-black text-[15px] leading-tight mb-0.5">
+                              SPOR
+                              <br />
+                              OKULLARI
+                            </h3>
+                            <p className="text-white/90 text-[10px] leading-tight pr-6">
+                              Haydi Çocuklar Spora! 6-14 yaş arası çocuklara
+                              yönelik spor eğitimleri
+                            </p>
+                          </div>
+                          <div className="absolute bottom-3 right-3 w-5 h-5 rounded-full border-2 border-white flex items-center justify-center group-hover:bg-white transition-colors">
+                            <ChevronRight
+                              size={12}
+                              className="text-white group-hover:text-purple-700"
+                            />
+                          </div>
+                        </motion.a>
+
+                        {/* Kağıtspor */}
+                        <motion.a
+                          href="#"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.3, delay: 0.2 }}
+                          className="relative rounded-xl overflow-hidden group cursor-pointer shadow-sm hover:shadow-md transition-all"
+                        >
+                          <img
+                            src="https://images.unsplash.com/photo-1565992441121-4367c2967103?auto=format&fit=crop&q=80&w=400"
+                            alt="Kağıtspor"
+                            className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-blue-600/90 via-blue-600/40 to-transparent"></div>
+                          <div className="absolute bottom-3 left-3 right-3">
+                            <h3 className="text-white font-black text-[15px] leading-tight mb-0.5">
+                              KAĞITSPOR
+                            </h3>
+                          </div>
+                          <div className="absolute bottom-3 right-3 w-5 h-5 rounded-full border-2 border-white flex items-center justify-center group-hover:bg-white transition-colors">
+                            <ChevronRight
+                              size={12}
+                              className="text-white group-hover:text-blue-600"
+                            />
+                          </div>
+                        </motion.a>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </div>
+          </div>
+        );
+      }
+
+      const root = createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

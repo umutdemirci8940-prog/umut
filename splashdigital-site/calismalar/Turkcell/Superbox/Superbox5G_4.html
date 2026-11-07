@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turkcell Superbox - Premium Hotspots Banner</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050505;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Özel Animasyonlar */
+        @keyframes float {
+            0%, 100% { transform: translateY(-6px); }
+            50% { transform: translateY(6px); }
+        }
+        .animate-float {
+            animation: float 5s ease-in-out infinite;
+        }
+
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow {
+            animation: spin-slow 8s linear infinite;
+        }
+
+        @keyframes pulse-active {
+            0% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 0.6; }
+        }
+        .animate-pulse-active {
+            animation: pulse-active 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse-inactive {
+            0% { transform: scale(1); opacity: 0.4; }
+            50% { transform: scale(2.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 0.4; }
+        }
+        .animate-pulse-inactive {
+            animation: pulse-inactive 2.5s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            100% { transform: translateX(100%); }
+        }
+        .shimmer-effect {
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes bounce-small {
+            0%, 100% { transform: translateY(-10%); }
+            50% { transform: translateY(10%); }
+        }
+        .animate-bounce-small {
+            animation: bounce-small 1s infinite;
+        }
+
+        /* Panel Geçiş Efektleri */
+        .panel-transition {
+            transition: opacity 0.4s ease-out, transform 0.4s ease-out, filter 0.4s ease-out;
+        }
+        .panel-hidden {
+            opacity: 0;
+            transform: translateX(15px);
+            filter: blur(8px);
+        }
+        .panel-visible {
+            opacity: 1;
+            transform: translateX(0);
+            filter: blur(0px);
+        }
+
+        /* Tooltip Geçiş Efekti */
+        .tooltip-transition {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .tooltip-hidden {
+            opacity: 0;
+            transform: translate(-50%, -10px);
+            pointer-events: none;
+        }
+        .tooltip-visible {
+            opacity: 1;
+            transform: translate(-50%, 0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ana Banner Konteyneri -->
+    <div class="relative w-[970px] h-[250px] bg-gradient-to-br from-[#000011] via-[#000022] to-[#000011] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.8)] border border-white/10 rounded-2xl flex group">
+        
+        <!-- Arka Plan: Devasa 5G Filigranı -->
+        <div class="absolute -right-10 -top-20 text-[250px] font-black text-white/[0.02] select-none pointer-events-none leading-none tracking-tighter">
+            5G
+        </div>
+
+        <!-- Dinamik Arka Plan Parlaması (Glow) -->
+        <div class="absolute inset-0 transition-colors duration-700 ease-in-out z-0 pointer-events-none">
+            <div id="bg-glow" class="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full blur-[120px] transition-all duration-1000 bg-[#FFC900]/20"></div>
+        </div>
+
+        <!-- Grid Deseni -->
+        <div class="absolute inset-0 z-0 opacity-30 pointer-events-none" style="background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 30px 30px;"></div>
+
+        <!-- Turkcell Logo -->
+        <div class="absolute top-5 left-6 z-50 pointer-events-none">
+            <img src="https://upload.wikimedia.org/wikipedia/tr/6/6f/Turkcell_logo.png" alt="Turkcell" class="h-7 object-contain drop-shadow-[0_2px_10px_rgba(255,255,255,0.2)]" referrerpolicy="no-referrer" />
+        </div>
+
+        <!-- SOL TARAF: İnteraktif Ürün Alanı -->
+        <div class="relative w-[55%] h-full flex items-center justify-center z-20">
+            
+            <!-- Ürün Görseli (Sürekli süzülme efekti) -->
+            <div class="relative w-full h-full flex items-center justify-center animate-float">
+                <!-- Cihazın arkasındaki ince ışık huzmesi -->
+                <div class="absolute w-[200px] h-[10px] bg-white/20 blur-xl rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-45"></div>
+
+                <img src="5gsuperbox.png" alt="Superbox 5G" class="h-[230px] object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.9)] relative z-10" referrerpolicy="no-referrer" />
+
+                <!-- Hotspot 1: Oyun -->
+                <div class="hotspot absolute z-30 cursor-pointer" style="left: 72%; top: 22%;" data-index="1">
+                    <div class="relative flex items-center justify-center">
+                        <div class="ring-element absolute w-10 h-10 rounded-full border border-dashed border-white/30 animate-spin-slow transition-colors duration-300"></div>
+                        <div class="pulse-element absolute rounded-full bg-white/40 animate-pulse-inactive transition-colors duration-300" style="width: 20px; height: 20px;"></div>
+                        <div class="dot-element relative w-3.5 h-3.5 rounded-full bg-white/80 transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.9)] flex items-center justify-center">
+                            <div class="inner-dot w-1.5 h-1.5 bg-[#000033] rounded-full hidden"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hotspot 2: Yayın -->
+                <div class="hotspot absolute z-30 cursor-pointer" style="left: 78%; top: 65%;" data-index="2">
+                    <div class="relative flex items-center justify-center">
+                        <div class="ring-element absolute w-10 h-10 rounded-full border border-dashed border-white/30 animate-spin-slow transition-colors duration-300"></div>
+                        <div class="pulse-element absolute rounded-full bg-white/40 animate-pulse-inactive transition-colors duration-300" style="width: 20px; height: 20px;"></div>
+                        <div class="dot-element relative w-3.5 h-3.5 rounded-full bg-white/80 transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.9)] flex items-center justify-center">
+                            <div class="inner-dot w-1.5 h-1.5 bg-[#000033] rounded-full hidden"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hotspot 3: Hız -->
+                <div class="hotspot absolute z-30 cursor-pointer" style="left: 22%; top: 55%;" data-index="3">
+                    <div class="relative flex items-center justify-center">
+                        <div class="ring-element absolute w-10 h-10 rounded-full border border-dashed border-white/30 animate-spin-slow transition-colors duration-300"></div>
+                        <div class="pulse-element absolute rounded-full bg-white/40 animate-pulse-inactive transition-colors duration-300" style="width: 20px; height: 20px;"></div>
+                        <div class="dot-element relative w-3.5 h-3.5 rounded-full bg-white/80 transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.9)] flex items-center justify-center">
+                            <div class="inner-dot w-1.5 h-1.5 bg-[#000033] rounded-full hidden"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- İpucu Metni -->
+            <div id="tooltip" class="tooltip-transition tooltip-visible absolute bottom-5 left-1/2 flex items-center gap-2 text-white/60 text-[10px] font-bold tracking-[0.15em] uppercase bg-white/5 px-4 py-2 rounded-full backdrop-blur-md border border-white/10 shadow-lg">
+                <i data-lucide="mouse-pointer-2" class="w-3.5 h-3.5 animate-bounce-small"></i>
+                Noktaları Keşfet
+            </div>
+        </div>
+
+        <!-- SAĞ TARAF: Dinamik Bilgi Paneli -->
+        <div class="relative w-[45%] h-full flex items-center justify-center pr-6 py-5 z-20">
+            <div class="w-full h-full bg-gradient-to-br from-white/[0.05] to-white/[0.01] backdrop-blur-2xl border border-white/10 rounded-2xl p-7 flex flex-col justify-center relative overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]">
+                
+                <!-- Panel içi ince ışık yansıması -->
+                <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+
+                <!-- Değişen İçerik Alanı -->
+                <div id="panel-content" class="flex flex-col h-full justify-center panel-transition panel-visible">
+                    
+                    <!-- Dinamik İkon -->
+                    <div class="mb-3 flex items-center gap-3">
+                        <div class="p-2 rounded-lg bg-white/5 border border-white/10 shadow-inner" id="icon-wrapper">
+                            <i id="feature-icon" data-lucide="sparkles" class="w-6 h-6 text-[#FFC900] drop-shadow-[0_0_10px_currentColor]"></i>
+                        </div>
+                        <span id="feature-badge" class="hidden text-[10px] font-bold tracking-widest uppercase opacity-80">
+                            Öne Çıkan Özellik
+                        </span>
+                    </div>
+
+                    <!-- Dinamik Başlık -->
+                    <h2 id="feature-title" class="text-[22px] font-black uppercase leading-[1.1] mb-2 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#FFC900] to-[#FFD700] drop-shadow-sm transition-all duration-300">
+                        5G DESTEKLİ SUPERBOX
+                    </h2>
+
+                    <!-- Dinamik Açıklama -->
+                    <p id="feature-desc" class="text-[13px] text-white/75 font-medium leading-relaxed mb-6">
+                        Yüksek hız ile hayallerinizdeki internet deneyimi çok yakında! Özellikleri keşfetmek için cihazın etrafındaki noktalara dokunun.
+                    </p>
+
+                    <!-- Sabit CTA Butonu -->
+                    <div class="mt-auto">
+                        <a href="https://www.turkcell.com.tr/ev-interneti/superbox-basvuru-ve-altyapi-sorgulama" target="_blank" rel="noopener noreferrer" class="relative overflow-hidden inline-flex items-center px-6 py-2.5 bg-[#FFC900] text-[#000066] text-[13px] font-extrabold rounded-full hover:scale-105 hover:shadow-[0_0_25px_rgba(255,201,0,0.5)] transition-all duration-300 group w-max">
+                            <div class="absolute inset-0 -translate-x-full group-hover:shimmer-effect bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12"></div>
+                            <span class="relative z-10">Hemen İncele</span>
+                            <i data-lucide="chevron-right" class="w-4 h-4 ml-1 relative z-10 group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // İkonları Başlat
+        lucide.createIcons();
+
+        // Veriler
+        const features = [
+            {
+                id: 'default',
+                title: "5G DESTEKLİ SUPERBOX",
+                desc: "Yüksek hız ile hayallerinizdeki internet deneyimi çok yakında! Özellikleri keşfetmek için cihazın etrafındaki noktalara dokunun.",
+                icon: "sparkles",
+                color: "text-[#FFC900]",
+                bgGlow: "bg-[#FFC900]/20",
+                gradient: "from-[#FFC900] to-[#FFD700]"
+            },
+            {
+                id: 'gaming',
+                title: "GECİKMESİZ OYUN",
+                desc: "Devasa oyunları saniyeler içinde indirin, online oyunlarda rakiplerinize hız farkı atın.",
+                icon: "gamepad-2",
+                color: "text-[#00FFCC]",
+                bgGlow: "bg-[#00FFCC]/20",
+                gradient: "from-[#00FFCC] to-[#00B3FF]"
+            },
+            {
+                id: 'streaming',
+                title: "4K KESİNTİSİZ YAYIN",
+                desc: "5G teknolojisinin gücüyle ultra yüksek çözünürlükte yayınları duraksamadan, akıcı bir şekilde izleyin.",
+                icon: "monitor-play",
+                color: "text-[#FF3366]",
+                bgGlow: "bg-[#FF3366]/20",
+                gradient: "from-[#FF3366] to-[#FF0099]"
+            },
+            {
+                id: 'speed',
+                title: "IŞIK HIZINDA BAĞLANTI",
+                desc: "Saniyeler içinde gigabaytlarca veriyi indirin, yükleme ekranlarına ve beklemeye son verin.",
+                icon: "zap",
+                color: "text-[#FFC900]",
+                bgGlow: "bg-[#FFC900]/20",
+                gradient: "from-[#FFC900] to-[#FF9900]"
+            }
+        ];
+
+        // DOM Elementleri
+        const hotspots = document.querySelectorAll('.hotspot');
+        const bgGlow = document.getElementById('bg-glow');
+        const panelContent = document.getElementById('panel-content');
+        const featureTitle = document.getElementById('feature-title');
+        const featureDesc = document.getElementById('feature-desc');
+        const iconWrapper = document.getElementById('icon-wrapper');
+        const featureBadge = document.getElementById('feature-badge');
+        const tooltip = document.getElementById('tooltip');
+
+        let activeIndex = 0;
+        let isTransitioning = false;
+
+        // Paneli Güncelleme Fonksiyonu
+        function updatePanel(index) {
+            if (activeIndex === index || isTransitioning) return;
+            isTransitioning = true;
+            activeIndex = index;
+            const data = features[index];
+
+            // Arka plan parlamasını güncelle
+            bgGlow.className = `absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full blur-[120px] transition-all duration-1000 ${data.bgGlow}`;
+
+            // Tooltip görünürlüğü
+            if (index === 0) {
+                tooltip.classList.remove('tooltip-hidden');
+                tooltip.classList.add('tooltip-visible');
+            } else {
+                tooltip.classList.remove('tooltip-visible');
+                tooltip.classList.add('tooltip-hidden');
+            }
+
+            // Paneli gizle (Animasyon başlangıcı)
+            panelContent.classList.remove('panel-visible');
+            panelContent.classList.add('panel-hidden');
+
+            // İçeriği değiştir ve paneli göster
+            setTimeout(() => {
+                // Başlık ve Açıklama
+                featureTitle.textContent = data.title;
+                featureTitle.className = `text-[22px] font-black uppercase leading-[1.1] mb-2 tracking-tight bg-clip-text text-transparent bg-gradient-to-r ${data.gradient} drop-shadow-sm transition-all duration-300`;
+                featureDesc.textContent = data.desc;
+
+                // İkon
+                iconWrapper.innerHTML = `<i data-lucide="${data.icon}" class="w-6 h-6 ${data.color} drop-shadow-[0_0_10px_currentColor]"></i>`;
+                lucide.createIcons(); // Yeni eklenen ikonu render et
+
+                // Etiket (Badge)
+                if (index === 0) {
+                    featureBadge.classList.add('hidden');
+                } else {
+                    featureBadge.classList.remove('hidden');
+                    featureBadge.className = `text-[10px] font-bold tracking-widest uppercase ${data.color} opacity-80`;
+                }
+
+                // Paneli göster
+                panelContent.classList.remove('panel-hidden');
+                panelContent.classList.add('panel-visible');
+                
+                setTimeout(() => { isTransitioning = false; }, 400);
+            }, 400); // CSS transition süresi ile eşleşmeli
+        }
+
+        // Hotspot Görsellerini Güncelleme Fonksiyonu
+        function updateHotspotsVisuals(hoveredIndex) {
+            hotspots.forEach(hotspot => {
+                const index = parseInt(hotspot.getAttribute('data-index'));
+                const isActive = index === hoveredIndex;
+                
+                const ring = hotspot.querySelector('.ring-element');
+                const pulse = hotspot.querySelector('.pulse-element');
+                const dot = hotspot.querySelector('.dot-element');
+                const innerDot = hotspot.querySelector('.inner-dot');
+
+                if (isActive) {
+                    ring.classList.replace('border-white/30', 'border-white/80');
+                    
+                    pulse.classList.replace('animate-pulse-inactive', 'animate-pulse-active');
+                    pulse.classList.replace('bg-white/40', 'bg-white');
+                    
+                    dot.classList.replace('bg-white/80', 'bg-white');
+                    dot.classList.replace('scale-100', 'scale-125');
+                    
+                    innerDot.classList.remove('hidden');
+                } else {
+                    ring.classList.replace('border-white/80', 'border-white/30');
+                    
+                    pulse.classList.replace('animate-pulse-active', 'animate-pulse-inactive');
+                    pulse.classList.replace('bg-white', 'bg-white/40');
+                    
+                    dot.classList.replace('bg-white', 'bg-white/80');
+                    dot.classList.replace('scale-125', 'scale-100');
+                    
+                    innerDot.classList.add('hidden');
+                }
+            });
+        }
+
+        // Event Listener'lar
+        hotspots.forEach(hotspot => {
+            hotspot.addEventListener('mouseenter', () => {
+                const index = parseInt(hotspot.getAttribute('data-index'));
+                updatePanel(index);
+                updateHotspotsVisuals(index);
+            });
+
+            hotspot.addEventListener('mouseleave', () => {
+                updatePanel(0);
+                updateHotspotsVisuals(0);
+            });
+        });
+
+    </script>
+</body>
+</html>

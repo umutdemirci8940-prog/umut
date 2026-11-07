@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Heinz Big & Bold - 2026</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              serif: ['"DM Serif Display"', 'serif'],
+              sans: ['"Inter"', 'sans-serif'],
+            },
+            colors: {
+              heinz: {
+                red: '#da291c', 
+                darkRed: '#8a0a1e',
+                black: '#0a0a0a',
+                gold: '#D4AF37',
+              }
+            },
+            backgroundImage: {
+              'noise': "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22 opacity=%220.07%22/%3E%3C/svg%3E')",
+            },
+            animation: {
+              'float': 'float 6s ease-in-out infinite',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-20px)' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+
+    <style>
+      body {
+        background-color: #111;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        overflow: hidden;
+      }
+      .particle {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.6;
+        pointer-events: none;
+      }
+    </style>
+
+    <!-- Import Map (Fixed for Stability) -->
+    <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@18.2.0?dev",
+    "react-dom/client": "https://esm.sh/react-dom@18.2.0/client?dev",
+    "framer-motion": "https://esm.sh/framer-motion@10.16.4?external=react,react-dom",
+    "lucide-react": "https://esm.sh/lucide-react@0.263.1?external=react",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/"
+  }
+}
+</script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel" data-type="module">
+      import React, { useState, useEffect, useRef, useMemo } from 'react';
+      import { createRoot } from 'react-dom/client';
+      import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from 'framer-motion';
+      import { ArrowRight, Sparkles, Flame, Leaf } from 'lucide-react';
+
+      // --- CONFIGURATION ---
+      
+      const PRODUCTS = [
+        {
+          id: 'KETCHUP',
+          navTitle: 'İKONİK İKİLİ',
+          mainTitle: ['EFSANE', 'LEZZET'],
+          subTitle: 'KETÇAP VE MAYONEZ',
+          description: 'Sofraların vazgeçilmez kralı. Gerçek domates tutkusu.',
+          colors: { bg: '#D00000', text: '#FFFFFF', accent: '#FFFFFF', particle: '#FF6B6B' },
+          imageKeyword: 'https://img.pikbest.com/origin/09/22/69/63cpIkbEsTaJX.jpg!w700wp',
+          particleType: 'bubble'
+        },
+        {
+          id: 'RANCH',
+          navTitle: 'RANCH SOS',
+          mainTitle: ['CESUR', '& FERAH'],
+          subTitle: 'YENİ FAVORİN',
+          description: 'Baharatların ferahlığı ve sarımsağın mükemmel dengesi.',
+          colors: { bg: '#F2EFE9', text: '#153e30', accent: '#153e30', particle: '#4CAF50' }, // Off-white & dark green
+          imageKeyword: 'https://pizzastation.com.tr/wp-content/uploads/2024/11/40835d70782bf5bc6a5aea595869922a-medium-1.png',
+          particleType: 'herb'
+        },
+        {
+          id: 'TRUFFLE',
+          navTitle: 'TRÜFLÜ MAYONEZ',
+          mainTitle: ['BLACK', 'LABEL'],
+          subTitle: 'GURME SERİSİ',
+          description: 'Siyah trüf mantarının büyüleyici aromasıyla sınırları zorla.',
+          colors: { bg: '#080808', text: '#E5C100', accent: '#D4AF37', particle: '#FFD700' }, // Gold & Black
+          // Updated Truffle Image
+          imageKeyword: 'tr.jpg',
+          particleType: 'gold'
+        }
+      ];
+
+      // --- COMPONENTS ---
+
+      // Intro Component
+      const Intro = () => {
+        return (
+          <motion.div
+            className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-[#da291c]"
+            initial={{ clipPath: "inset(0% 0% 0% 0%)" }}
+            exit={{ 
+              clipPath: "inset(0% 0% 100% 0%)", // Elegant wipe up
+              transition: { duration: 1.0, ease: [0.83, 0, 0.17, 1] } 
+            }}
+          >
+            {/* Subtle Vignette for Depth */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle,_rgba(0,0,0,0)_20%,_rgba(0,0,0,0.3)_100%)] pointer-events-none" />
+            <div className="absolute inset-0 bg-noise mix-blend-overlay opacity-20"></div>
+
+            <motion.div 
+              className="relative z-10 flex flex-col items-center"
+              initial={{ opacity: 0, scale: 0.92, filter: 'blur(10px)' }}
+              animate={{ 
+                opacity: 1, 
+                scale: 1, 
+                filter: 'blur(0px)',
+                transition: { duration: 1.4, ease: [0.16, 1, 0.3, 1] } 
+              }}
+              exit={{ 
+                opacity: 0,
+                y: -40,
+                filter: 'blur(5px)',
+                transition: { duration: 0.5, ease: "easeIn" } 
+              }}
+            >
+                <div className="relative overflow-hidden px-4 py-2">
+                    <img 
+                      src="https://logodownload.org/wp-content/uploads/2023/04/heinz-logo-0.png"
+                      alt="Heinz"
+                      className="w-64 relative z-10 drop-shadow-2xl"
+                      style={{ filter: 'brightness(0) invert(1)' }}
+                    />
+                    {/* Premium Shimmer Effect */}
+                    <motion.div
+                        className="absolute inset-0 z-20 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12"
+                        initial={{ x: '-150%' }}
+                        animate={{ x: '150%' }}
+                        transition={{ delay: 0.8, duration: 1.4, ease: "easeInOut" }}
+                    />
+                </div>
+
+                <motion.div 
+                    className="mt-6 h-[1px] w-12 bg-white/40"
+                    initial={{ width: 0, opacity: 0 }}
+                    animate={{ width: 48, opacity: 1, transition: { delay: 0.6, duration: 0.8 } }}
+                />
+
+                <motion.span 
+                    className="mt-3 text-white/60 text-[10px] tracking-[0.6em] font-serif italic"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0, transition: { delay: 0.7, duration: 0.8 } }}
+                >
+                    Est. 1869
+                </motion.span>
+            </motion.div>
+          </motion.div>
+        );
+      };
+
+      // Particle System
+      const ParticleSystem = ({ type, color }) => {
+        const particles = useMemo(() => {
+          return [...Array(12)].map((_, i) => ({
+            id: i,
+            x: Math.random() * 100, // %
+            y: Math.random() * 100, // %
+            size: Math.random() * (type === 'gold' ? 3 : 8) + 2,
+            duration: Math.random() * 10 + 10,
+            delay: Math.random() * 5
+          }));
+        }, [type]);
+
+        return (
+          <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+            {particles.map((p) => (
+              <motion.div
+                key={p.id}
+                className="absolute rounded-full"
+                style={{
+                  left: `${p.x}%`,
+                  top: `${p.y}%`,
+                  width: p.size,
+                  height: p.size,
+                  backgroundColor: color,
+                  filter: type === 'gold' ? 'blur(1px) drop-shadow(0 0 2px gold)' : 'blur(2px)',
+                }}
+                animate={{
+                  y: [0, -100, 0],
+                  x: [0, Math.random() * 30 - 15, 0],
+                  opacity: [0, 0.4, 0],
+                  scale: [0.5, 1.2, 0.5]
+                }}
+                transition={{
+                  duration: p.duration,
+                  repeat: Infinity,
+                  ease: "linear",
+                  delay: p.delay
+                }}
+              />
+            ))}
+          </div>
+        );
+      };
+
+      const AnimatedText = ({ text, color, isGold }) => {
+        const container = {
+          hidden: { opacity: 0 },
+          visible: (i = 1) => ({
+            opacity: 1,
+            transition: { staggerChildren: 0.05, delayChildren: 0.1 * i }
+          })
+        };
+
+        const child = {
+          visible: {
+            opacity: 1,
+            y: 0,
+            rotateX: 0,
+            transition: { type: "spring", damping: 12, stiffness: 100 }
+          },
+          hidden: {
+            opacity: 0,
+            y: 50,
+            rotateX: -45,
+            transition: { type: "spring", damping: 12, stiffness: 100 }
+          }
+        };
+
+        return (
+          <motion.div 
+            style={{ display: 'flex', overflow: 'hidden' }}
+            variants={container}
+            initial="hidden"
+            animate="visible"
+          >
+            {text.split("").map((letter, index) => (
+              <motion.span 
+                key={index} 
+                variants={child} 
+                className={`block font-serif tracking-tighter text-[3.8rem] leading-[0.85] uppercase ${isGold ? 'text-transparent bg-clip-text' : ''}`}
+                style={{ 
+                  color: isGold ? 'transparent' : color,
+                  backgroundImage: isGold ? 'linear-gradient(135deg, #FFF7CC 0%, #D4AF37 50%, #B48811 100%)' : 'none'
+                }}
+              >
+                {letter === " " ? "\u00A0" : letter}
+              </motion.span>
+            ))}
+          </motion.div>
+        );
+      };
+
+      const Spotlight = ({ mouseX, mouseY, color }) => {
+        const bg = useTransform(
+            [mouseX, mouseY],
+            ([x, y]) => {
+                const cx = (x + 0.5) * 100;
+                const cy = (y + 0.5) * 100;
+                return `radial-gradient(circle at ${cx}% ${cy}%, ${color}00 0%, ${color}CC 120%)`; 
+            }
+        );
+        
+        return (
+            <motion.div 
+                className="absolute inset-0 z-[1] pointer-events-none mix-blend-multiply opacity-60"
+                style={{ background: bg }}
+            />
+        );
+      }
+
+
+      const Keystone = ({ imageKeyword, mouseX, mouseY, isActive }) => {
+        const x = useTransform(mouseX, [-0.5, 0.5], [-20, 20]);
+        const y = useTransform(mouseY, [-0.5, 0.5], [-10, 10]);
+        const rotateY = useTransform(mouseX, [-0.5, 0.5], [-15, 15]);
+        const rotateX = useTransform(mouseY, [-0.5, 0.5], [15, -15]);
+
+        const smoothX = useSpring(x, { stiffness: 100, damping: 20 });
+        const smoothY = useSpring(y, { stiffness: 100, damping: 20 });
+        const smoothRotateX = useSpring(rotateX, { stiffness: 100, damping: 20 });
+        const smoothRotateY = useSpring(rotateY, { stiffness: 100, damping: 20 });
+
+        const imgSrc = imageKeyword.startsWith('http') 
+            ? imageKeyword 
+            : `https://loremflickr.com/600/800/${imageKeyword}?lock=${imageKeyword.length}`;
+
+        return (
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 perspective-1000">
+                <motion.div 
+                    className="w-[320px] h-[350px] relative drop-shadow-2xl"
+                    style={{ 
+                        rotateX: smoothRotateX, 
+                        rotateY: smoothRotateY,
+                        transformStyle: "preserve-3d"
+                    }}
+                >
+                    <div className="absolute inset-0 overflow-hidden bg-black" style={{ clipPath: 'polygon(0% 0%, 100% 0%, 85% 100%, 15% 100%)' }}>
+                        <AnimatePresence mode="wait">
+                            <motion.div
+                                key={imageKeyword}
+                                className="absolute inset-[-40px]"
+                                initial={{ opacity: 0, scale: 1.2 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.6 }}
+                                style={{ x: smoothX, y: smoothY }}
+                            >
+                                <img 
+                                    src={imgSrc}
+                                    className="w-full h-full object-cover"
+                                    alt="Product"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/60"></div>
+                            </motion.div>
+                        </AnimatePresence>
+                        <div className="absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent opacity-30 pointer-events-none"></div>
+                        <div className="absolute inset-0 border-2 border-white/20 pointer-events-none" style={{ clipPath: 'polygon(0% 0%, 100% 0%, 85% 100%, 15% 100%)' }}></div>
+                    </div>
+                </motion.div>
+            </div>
+        )
+      }
+
+      // --- MAIN APP ---
+
+      const App = () => {
+        const [activeIdx, setActiveIdx] = useState(0);
+        const [showIntro, setShowIntro] = useState(true);
+        const product = PRODUCTS[activeIdx];
+        
+        const mouseX = useMotionValue(0);
+        const mouseY = useMotionValue(0);
+
+        useEffect(() => {
+          const timer = setTimeout(() => {
+            setShowIntro(false);
+          }, 3200); // 3.2s Intro for more premium feel
+          return () => clearTimeout(timer);
+        }, []);
+
+        const handleMouseMove = (e) => {
+            const rect = e.currentTarget.getBoundingClientRect();
+            mouseX.set((e.clientX - rect.left) / rect.width - 0.5);
+            mouseY.set((e.clientY - rect.top) / rect.height - 0.5);
+        };
+
+        const handleMouseLeave = () => {
+            mouseX.set(0);
+            mouseY.set(0);
+        };
+
+        const isGold = product.id === 'TRUFFLE';
+
+        return (
+          <div className="flex flex-col items-center justify-center min-h-screen bg-neutral-900 p-8">
+            
+            {/* AD UNIT */}
+            <div 
+                className="relative w-[970px] h-[250px] overflow-hidden shadow-2xl group rounded-sm select-none"
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
+            >
+                {/* INTRO ANIMATION */}
+                <AnimatePresence>
+                  {showIntro && <Intro key="intro" />}
+                </AnimatePresence>
+
+                {/* 1. Dynamic Background */}
+                <motion.div 
+                    className="absolute inset-0 z-0"
+                    animate={{ backgroundColor: product.colors.bg }}
+                    transition={{ duration: 0.7 }}
+                >
+                    <div className="absolute inset-0 bg-noise z-0 mix-blend-overlay"></div>
+                    <Spotlight mouseX={mouseX} mouseY={mouseY} color={isGold ? '#000000' : '#000000'} />
+                </motion.div>
+
+                {/* 2. Particle System */}
+                <ParticleSystem type={product.particleType} color={product.colors.particle} />
+
+                {/* 3. Content Layout */}
+                <div className="relative z-10 w-full h-full flex justify-between px-14 py-6">
+                    
+                    {/* LEFT: Text Content */}
+                    <div className="flex flex-col justify-center w-[400px] z-30">
+                        <motion.div 
+                            className="text-[10px] font-bold tracking-[0.4em] mb-2 uppercase opacity-80"
+                            style={{ color: product.colors.text }}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 0.8 }}
+                        >
+                            Est. 1869
+                        </motion.div>
+
+                        <div className="mb-3 relative">
+                           <AnimatePresence mode='wait'>
+                             <motion.div key={product.id}>
+                                {product.mainTitle.map((line, i) => (
+                                    <AnimatedText key={i} text={line} color={product.colors.text} isGold={isGold} />
+                                ))}
+                             </motion.div>
+                           </AnimatePresence>
+                        </div>
+
+                        <motion.p 
+                            key={`desc-${product.id}`}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 0.8, x: 0 }}
+                            transition={{ delay: 0.4 }}
+                            className="text-xs font-medium leading-relaxed max-w-[260px] mb-4"
+                            style={{ color: isGold ? '#e5e5e5' : product.colors.text }}
+                        >
+                            {product.description}
+                        </motion.p>
+
+                        <motion.a
+                            href="https://www.heinz.com/tr-TR"
+                            target="_blank"
+                            className="flex items-center gap-3 text-xs font-bold uppercase tracking-widest group/btn w-max"
+                            style={{ color: isGold ? '#D4AF37' : product.colors.text }}
+                            whileHover={{ x: 5 }}
+                        >
+                            <span className="border-b border-current pb-1">Lezzeti Keşfet</span>
+                            <div className={`p-1 rounded-full transition-transform group-hover/btn:translate-x-1 ${isGold ? 'bg-[#D4AF37] text-black' : 'bg-white text-black'}`}>
+                                <ArrowRight size={12} />
+                            </div>
+                        </motion.a>
+                    </div>
+
+                    {/* CENTER: 3D Keystone Window */}
+                    <Keystone 
+                        imageKeyword={product.imageKeyword} 
+                        mouseX={mouseX} 
+                        mouseY={mouseY}
+                        isActive={!showIntro}
+                    />
+
+                    {/* RIGHT: Navigation */}
+                    <div className="flex flex-col justify-center items-end gap-6 z-30 w-[300px]">
+                        {PRODUCTS.map((p, idx) => {
+                            const isActive = idx === activeIdx;
+                            return (
+                                <button 
+                                    key={p.id}
+                                    onClick={() => setActiveIdx(idx)}
+                                    className="group/nav flex items-center gap-4 text-right outline-none"
+                                >
+                                    <div className="flex flex-col items-end">
+                                        <span 
+                                            className={`text-[9px] font-bold tracking-[0.25em] uppercase transition-all duration-300 ${isActive ? 'opacity-100' : 'opacity-40 group-hover/nav:opacity-70'}`}
+                                            style={{ color: isGold ? '#D4AF37' : (product.id === 'RANCH' ? '#153e30' : 'white') }}
+                                        >
+                                            {p.navTitle}
+                                        </span>
+                                        {isActive && (
+                                            <motion.span 
+                                                layoutId="activeTitle"
+                                                className="text-[10px] font-medium opacity-80"
+                                                style={{ color: isGold ? '#D4AF37' : (product.id === 'RANCH' ? '#153e30' : 'white') }}
+                                            >
+                                                {p.subTitle}
+                                            </motion.span>
+                                        )}
+                                    </div>
+                                    
+                                    <div className="relative flex items-center justify-center w-4 h-4">
+                                        {isActive && (
+                                            <motion.div 
+                                                layoutId="glow"
+                                                className="absolute inset-0 rounded-full opacity-30"
+                                                style={{ backgroundColor: isGold ? '#D4AF37' : (product.id === 'RANCH' ? '#153e30' : 'white') }}
+                                                initial={{ scale: 0 }}
+                                                animate={{ scale: 1.8 }}
+                                                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                                            />
+                                        )}
+                                        <div 
+                                            className={`w-1.5 h-1.5 rounded-full transition-colors duration-300 ${isActive ? 'opacity-100' : 'opacity-40'}`}
+                                            style={{ backgroundColor: isGold ? '#D4AF37' : (product.id === 'RANCH' ? '#153e30' : 'white') }}
+                                        />
+                                    </div>
+                                </button>
+                            )
+                        })}
+                    </div>
+                </div>
+
+            </div>
+            
+          </div>
+        );
+      };
+
+      const root = createRoot(document.getElementById('root'));
+      root.render(<App />);
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Pegasus Yılbaşı Banner </title>
+<style>
+    /* Reset & Temel Ayarlar */
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+    body { display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #222; }
+
+    /* Banner Kapsayıcı - HAREKETLİ ARKA PLAN */
+    .banner-container {
+        width: 970px;
+        height: 250px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 50px;
+        border: 1px solid #fff;
+        /* Cafcaflı Hareketli Gradyan */
+        background: linear-gradient(-45deg, #003F7F, #4a0072, #002855, #b8860b);
+        background-size: 400% 400%;
+        animation: gradientBG 10s ease infinite;
+        box-shadow: 0 0 40px rgba(255, 196, 0, 0.3);
+    }
+
+    @keyframes gradientBG {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    /* --- ARKA PLAN EFEKTLERİ --- */
+    
+    /* Uçak Silüeti */
+    .plane-silhouette {
+        position: absolute; bottom: 30px; left: -250px; width: 450px;
+        opacity: 0.2; z-index: 1;
+        animation: flyAcrossPlane 35s linear infinite;
+        fill: #fff;
+        filter: drop-shadow(0 0 15px rgba(255,255,255,0.5));
+    }
+    @keyframes flyAcrossPlane {
+        0% { transform: translateX(0) rotate(-2deg); }
+        100% { transform: translateX(1500px) rotate(0deg); }
+    }
+
+    /* Kar Yağışı */
+    .snow-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 4; }
+    .snowflake { 
+        position: absolute; top: -10px; background: #fff; border-radius: 50%; 
+        opacity: 0.9; 
+        box-shadow: 0 0 8px #fff;
+    }
+    @keyframes fall { to { transform: translateY(270px); } }
+
+
+    /* --- LOGO (GÜNCELLENDİ: Konum Revize) --- */
+    .logo-img {
+        position: absolute;
+        top: -35px;   /* 25px - 20px = 5px (Daha yukarı) */
+        right: -10px; /* 35px - 10px = 25px (Daha sağa) */
+        height: 130px; 
+        width: auto;
+        z-index: 30;
+        filter: drop-shadow(0 0 15px rgba(255,255,255,0.6));
+    }
+
+    /* --- SOL BÖLÜM: METİN (NEON) --- */
+    .text-area { 
+        width: 280px; 
+        z-index: 10; 
+        text-align: left;
+    }
+    .text-area h1 { 
+        font-size: 32px; font-weight: 900; line-height: 1.1; margin-bottom: 10px; 
+        color: #fff;
+        text-shadow: 0 0 10px #FFC400, 0 0 20px #FFC400, 0 0 30px #FFC400; 
+    }
+    .text-area p { 
+        font-size: 15px; font-weight: 500; color: #fff; 
+        text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    }
+    .instruction { font-size: 12px; margin-top: 15px; color: #FFC400; display: flex; align-items: center; font-weight: bold; text-shadow: 0 0 5px rgba(0,0,0,0.5); }
+    .instruction span { font-size: 16px; margin-right: 5px; animation: bounce 1s infinite; }
+    @keyframes bounce { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(5px); } }
+
+    /* --- ORTA BÖLÜM: PENCERELER (SHINE) --- */
+    .windows-wrapper { display: flex; gap: 20px; z-index: 10; }
+    .window-frame { 
+        width: 130px; height: 180px; 
+        background: #e6e6e6; border-radius: 65px; padding: 8px; 
+        box-shadow: 0 10px 25px rgba(0,0,0,0.5); 
+        background: linear-gradient(145deg, #ffffff 0%, #b0b0b0 100%); 
+        position: relative; cursor: pointer; overflow: hidden; 
+        transition: transform 0.3s ease; 
+    }
+    
+    .window-frame::after {
+        content: '';
+        position: absolute;
+        top: 0; left: -150%; width: 100%; height: 100%;
+        background: linear-gradient(to right, transparent 0%, rgba(255,255,255,0.8) 50%, transparent 100%);
+        transform: skewX(-25deg);
+        animation: shineWindow 3s infinite; 
+    }
+    
+    @keyframes shineWindow {
+        0% { left: -150%; } 20% { left: 150%; } 100% { left: 150%; } 
+    }
+
+    .window-frame:hover { transform: scale(1.05) translateY(-5px); box-shadow: 0 0 20px #FFC400; }
+    
+    .window-glass { width: 100%; height: 100%; border-radius: 57px; overflow: hidden; position: relative; background-color: #000; box-shadow: inset 0 0 10px rgba(0,0,0,0.5); }
+    .bg-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
+    .window-frame:hover .bg-img { transform: scale(1.1); }
+    .paris .bg-img { background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Tour_Eiffel_Wikimedia_Commons.jpg/600px-Tour_Eiffel_Wikimedia_Commons.jpg') center/cover no-repeat; }
+    .prag .bg-img { background: url('https://live.staticflickr.com/36/108992467_6aa5ba46f9_o.jpg') center/cover no-repeat; }
+    .misir .bg-img { background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/All_Gizah_Pyramids.jpg/640px-All_Gizah_Pyramids.jpg') center/cover no-repeat; }
+    
+    .frost-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); display: flex; justify-content: center; align-items: center; transition: opacity 0.5s ease; }
+    .frost-icon { font-size: 24px; opacity: 0.7; text-shadow: 0 0 10px #fff; }
+    .window-frame:hover .frost-layer { opacity: 0; }
+    .destination-label { position: absolute; bottom: 15px; width: 100%; text-align: center; color: #fff; font-weight: 800; text-shadow: 0 2px 4px #000; letter-spacing: 1px; font-size: 14px; opacity: 0; transform: translateY(20px); transition: all 0.5s ease 0.1s; }
+    .window-frame:hover .destination-label { opacity: 1; transform: translateY(0); }
+
+    /* --- SAĞ BÖLÜM: BUTON ALANI --- */
+    .cta-area {
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: flex-end;
+        height: 180px;
+        margin-bottom: -10px; 
+    }
+
+    /* Buton - Nabız Gibi Atan Animasyon */
+    .btn-main {
+        background: #FFC400; 
+        color: #003F7F; 
+        padding: 8px 20px; 
+        font-size: 12px;   
+        margin-right: -5px;
+        border: 2px solid #fff; 
+        border-radius: 50px; 
+        font-weight: 900; cursor: pointer; text-decoration: none;
+        box-shadow: 0 0 20px rgba(255, 196, 0, 0.6);
+        transition: all 0.3s ease;
+        text-transform: uppercase; letter-spacing: 1px;
+        animation: pulseBtn 2s infinite; 
+    }
+    
+    @keyframes pulseBtn {
+        0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 196, 0, 0.7); }
+        70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(255, 196, 0, 0); }
+        100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 196, 0, 0); }
+    }
+
+    .btn-main:hover { 
+        animation: none; 
+        transform: scale(1.1); 
+        background: #fff; 
+        color: #003F7F;
+        border-color: #FFC400;
+    }
+
+</style>
+</head>
+<body>
+
+    <div class="banner-container">
+        <img src="pegasus.png" alt="Pegasus Airlines" class="logo-img">
+
+        <svg class="plane-silhouette" viewBox="0 0 1280 640" xmlns="http://www.w3.org/2000/svg">
+            <path d="M891.6,339.5c-11.6-4.8-39.1-15.5-62.3-25.1c-3.1,6.3-7.3,15.6-12.8,24c-12.4,18.4-26.5,35.8-36,44.7l-17.5,16.4H704l19.7-36.7c4.3-8,11.3-21.1,19.1-35.8c2.4-4.5,4.8-9,7.1-13.3h-125c-24.9,0-48.4-3.1-64.9-12.3c-4.2-2.3-7.6-5.3-10-8l0,0l0,0L506,251l-61.2,10c-16.3,2.7-32.4,8-48.2,16.4l-32.2,17.1c-6.3,3.3-13.3,5.1-20.4,5.1H294c-23.5,0-42.6,19.1-42.6,42.6c0,23.5,19.1,42.6,42.6,42.6h10.9c8.4,0,16.6,2.7,23.5,7.5l26.3,18.8c9.5,6.8,20.9,10.4,32.7,10.4h853c18.5,0,36-8.6,47.2-23.2l48.9-63.1c6.8-8.8,11.4-19.3,13.3-30.3c0.2-1.1,0.4-2.1,0.6-3.2c0.5-4.3,0.9-8.6,1.2-12.9c0.3-8.1-1.7-16.1-5.8-23.2C1138.7,359,1119.5,351,891.6,339.5z M906.6,327.5l-0.1-0.1V203.9c0-9.8-3.6-19.3-10-26.7L810,77.6c-9.5-10.8-23.1-17.1-37.6-17.1H683.8c-19.5,0-37.6,11.3-45.6,29.1L568.1,249.9c-4.3,10-14.3,16.4-25.2,16.4h-61.9c-21.9,0-43,8.7-58.6,24.3l-17.7,17.7c-10,10-15.7,23.4-15.7,37.5v12.9c36.4-6.9,74.3,11.8,91.5,45.1c3.8,7.4,6.3,15.5,7.1,24h665.4c2.1-32.7-11.6-65.1-36.9-85.1C1048.8,320.8,985,341.3,906.6,327.5z"/>
+        </svg>
+
+        <div class="snow-container" id="snowContainer"></div>
+
+        <div class="text-area">
+            <h1>2025'te<br>Rotanı Çevir</h1>
+            <p>Pencerelerdeki buğuyu sil,<br>sana özel fırsatı yakala.</p>
+            <div class="instruction"><span>👉</span> Keşfetmek için üzerine gel</div>
+        </div>
+
+        <div class="windows-wrapper">
+            <a href="#" class="window-frame paris">
+                <div class="window-glass"><div class="bg-img"></div><div class="destination-label">PARİS</div><div class="frost-layer"><span class="frost-icon">❄️</span></div></div>
+            </a>
+            <a href="#" class="window-frame prag">
+                <div class="window-glass"><div class="bg-img"></div><div class="destination-label">PRAG</div><div class="frost-layer"><span class="frost-icon">❄️</span></div></div>
+            </a>
+            <a href="#" class="window-frame misir">
+                <div class="window-glass"><div class="bg-img"></div><div class="destination-label">MISIR</div><div class="frost-layer"><span class="frost-icon">❄️</span></div></div>
+            </a>
+        </div>
+
+        <div class="cta-area">
+            <a href="https://www.flypgs.com" target="_blank" class="btn-main">ŞİMDİ KEŞFET ></a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const snowContainer = document.getElementById('snowContainer');
+            const flakeCount = 100; 
+            for (let i = 0; i < flakeCount; i++) {
+                const flake = document.createElement('div');
+                flake.classList.add('snowflake');
+                const left = Math.random() * 100 + '%';
+                const size = Math.random() * 4 + 2 + 'px'; 
+                const animDuration = Math.random() * 4 + 2 + 's'; 
+                const animDelay = Math.random() * 5 + 's'; 
+                flake.style.left = left;
+                flake.style.width = size;
+                flake.style.height = size;
+                flake.style.animation = `fall ${animDuration} linear infinite`;
+                flake.style.animationDelay = `-${animDelay}`;
+                snowContainer.appendChild(flake);
+            }
+        });
+    </script>
+</body>
+</html>

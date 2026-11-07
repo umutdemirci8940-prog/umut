@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TV+ From - Premium Interactive Banner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --font-serif: "Playfair Display", serif;
+            --font-sans: "Inter", sans-serif;
+            --tvplus-yellow: #FFC400;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            font-family: var(--font-sans);
+            overflow: hidden;
+        }
+        .banner-container {
+            width: 970px;
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+            background: #000;
+            margin: 0 auto;
+        }
+        
+        /* Comparison Slider Styles */
+        .comparison-container {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .image-before, .image-after {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+        .image-after {
+            width: 50%; /* Initial state */
+            border-right: 2px solid var(--tvplus-yellow);
+            z-index: 10;
+            overflow: hidden;
+            box-shadow: 10px 0 30px rgba(0,0,0,0.5);
+        }
+        
+        .slider-handle {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 40px;
+            margin-left: -20px;
+            z-index: 20;
+            cursor: ew-resize;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: auto;
+        }
+        .handle-circle {
+            width: 40px;
+            height: 40px;
+            background: var(--tvplus-yellow);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(255, 196, 0, 0.4);
+            transition: transform 0.2s;
+        }
+        .slider-handle:hover .handle-circle {
+            transform: scale(1.1);
+        }
+
+        /* Typography & UI */
+        .content-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 30;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 24px 40px;
+        }
+        
+        .badge {
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 8px 16px;
+            border-radius: 4px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        .float-anim {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .text-reveal {
+            overflow: hidden;
+        }
+        .text-reveal span {
+            display: inline-block;
+            transform: translateY(100%);
+            animation: reveal 0.8s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+        }
+        @keyframes reveal {
+            to { transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="banner-container" id="banner">
+    <!-- Comparison Slider -->
+    <div class="comparison-container" id="comparison">
+        <!-- Day Scene (Base) -->
+        <div class="image-before" style="background-image: url('kasaba.jpg'); filter: brightness(0.8);"></div>
+        
+        <!-- Night Scene (Overlay) -->
+        <div class="image-after" id="night-layer">
+            <div class="absolute inset-0 w-[970px] h-[250px] bg-cover bg-center" style="background-image: url('frombg.jpg'); filter: saturate(1.2) contrast(1.1) brightness(0.7);"></div>
+            <div class="absolute inset-0 w-[970px] h-[250px] bg-red-900/20 mix-blend-multiply"></div>
+        </div>
+
+        <!-- Slider Handle -->
+        <div class="slider-handle" id="handle">
+            <div class="handle-circle">
+                <i data-lucide="move-horizontal" class="w-5 h-5 text-black"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- UI Content -->
+    <div class="content-overlay">
+        <!-- Top Row -->
+        <div class="flex justify-between items-start">
+            <div class="flex flex-col gap-2">
+                <img src="https://tvplus.com.tr/images/iconsVisual/logo.svg" alt="TV+" class="h-6 w-fit object-contain">
+                <div class="text-reveal">
+                    <span class="text-white/60 text-[10px] uppercase tracking-[0.3em] font-semibold">TÜRKİYE'DE İLK KEZ</span>
+                </div>
+            </div>
+            
+            <div class="badge flex items-center gap-3">
+                <div class="flex flex-col items-end">
+                    <span class="text-[10px] text-white/50 uppercase tracking-widest">YENİ SEZON</span>
+                    <span class="text-white font-bold text-lg leading-none">20 NİSAN</span>
+                </div>
+                <div class="w-px h-8 bg-white/20"></div>
+                <div class="text-white/80 text-[10px] font-medium leading-tight">
+                    SADECE<br/><span class="text-[#FFC400]">TV+'TA</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Row -->
+        <div class="flex justify-between items-end">
+            <div class="flex flex-col gap-0">
+                <h2 class="text-white font-serif text-4xl leading-none tracking-tight" style="font-family: var(--font-serif);">
+                    GÜNDÜZ <span class="italic font-light text-white/40">SESSİZLİK</span><br/>
+                    GECE <span class="text-red-600 font-black">KABUS</span>
+                </h2>
+                <p class="text-white/40 text-[10px] mt-2 uppercase tracking-widest">KAYDIR VE GERÇEĞİ GÖR</p>
+            </div>
+
+            <button onclick="handleClickTag()" class="pointer-events-auto px-10 py-4 bg-[#FFC400] hover:bg-[#FFD54F] text-black font-black uppercase tracking-widest text-xs rounded-sm transition-all shadow-2xl flex items-center gap-2 group">
+                <span>HEMEN İZLE</span>
+                <i data-lucide="chevron-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    lucide.createIcons();
+
+    const banner = document.getElementById('banner');
+    const handle = document.getElementById('handle');
+    const nightLayer = document.getElementById('night-layer');
+    
+    let isDragging = false;
+
+    function updateSlider(x) {
+        const rect = banner.getBoundingClientRect();
+        let position = ((x - rect.left) / rect.width) * 100;
+        
+        // Constraints
+        if (position < 0) position = 0;
+        if (position > 100) position = 100;
+        
+        handle.style.left = position + '%';
+        nightLayer.style.width = position + '%';
+    }
+
+    // Mouse Events
+    handle.addEventListener('mousedown', () => isDragging = true);
+    window.addEventListener('mouseup', () => isDragging = false);
+    window.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        updateSlider(e.clientX);
+    });
+
+    // Touch Events
+    handle.addEventListener('touchstart', () => isDragging = true);
+    window.addEventListener('touchend', () => isDragging = false);
+    window.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        updateSlider(e.touches[0].clientX);
+    });
+
+    // Initial Animation Hint
+    setTimeout(() => {
+        if (!isDragging) {
+            handle.style.transition = 'left 1s ease-in-out';
+            nightLayer.style.transition = 'width 1s ease-in-out';
+            updateSlider(banner.getBoundingClientRect().left + (banner.offsetWidth * 0.6));
+            
+            setTimeout(() => {
+                handle.style.transition = 'none';
+                nightLayer.style.transition = 'none';
+            }, 1000);
+        }
+    }, 1500);
+
+    var clickTag = "https://tvplus.com.tr/dizi-izle/from--175748391";
+    function handleClickTag() {
+        window.open(clickTag, "_blank");
+    }
+</script>
+
+</body>
+</html>

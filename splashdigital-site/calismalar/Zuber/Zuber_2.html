@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Züber İnteraktif Banner</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- React & ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- Framer Motion -->
+    <script src="https://unpkg.com/framer-motion@11/dist/framer-motion.js"></script>
+    
+    <!-- Babel (Tarayıcıda JSX derlemek için) -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        body { margin: 0; font-family: sans-serif; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState } = React;
+        const { motion, AnimatePresence } = window.Motion;
+
+        // İkon (Lucide-react yerine bağımsız SVG kullanıldı)
+        const RefreshCw = ({ size = 24, className = "" }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                <path d="M3 3v5h5"/>
+            </svg>
+        );
+
+        // Özel Fıstık İkonu
+        const PistachioIcon = () => (
+            <svg width="1em" height="1em" viewBox="0 0 100 100" className="drop-shadow-md">
+                <path d="M 20 50 C 20 20, 80 20, 80 50 C 80 80, 20 80, 20 50 Z" fill="#E3D3B6" />
+                <path d="M 30 50 C 30 30, 70 30, 70 50 C 70 70, 30 70, 30 50 Z" fill="#95C15A" />
+                <path d="M 35 50 C 35 35, 65 35, 65 50 C 65 65, 35 65, 35 50 Z" fill="#A8D568" />
+                <path d="M 20 50 C 20 20, 50 20, 50 50 C 50 80, 20 80, 20 50 Z" fill="#F4E4C7" />
+                <path d="M 80 50 C 80 25, 65 25, 65 50 C 65 75, 80 75, 80 50 Z" fill="#F4E4C7" />
+            </svg>
+        );
+
+        // Ürün Verileri
+        const products = [
+            {
+                id: 'orman',
+                name: 'Orman Meyveli',
+                color: '#e11d48', // rose-600
+                bg: '#ffe4e6', // rose-100
+                image: 'https://www.zuber.com/cdn/shop/files/ormanmeyveli_menu.png',
+                ingredients: [
+                { icon: '🍓', x: -150, y: -80, delay: 0 },
+                { icon: '🫐', x: 180, y: -60, delay: 0.1 },
+                { icon: '🍒', x: -120, y: 80, delay: 0.2 },
+                { icon: '✨', x: 150, y: 70, delay: 0.3 },
+                { icon: '🍓', x: 0, y: -100, delay: 0.4 },
+                ],
+            },
+            {
+                id: 'fistik',
+                name: 'Antep Fıstıklı',
+                color: '#059669', // emerald-600
+                bg: '#d1fae5', // emerald-100
+                image: 'https://www.zuber.com/cdn/shop/files/antepfistikli-menu.png',
+                ingredients: [
+                { icon: <PistachioIcon key="p1" />, x: -160, y: -70, delay: 0 },
+                { icon: '🌿', x: 160, y: -80, delay: 0.1 },
+                { icon: <PistachioIcon key="p2" />, x: -140, y: 70, delay: 0.2 },
+                { icon: '💪', x: 140, y: 80, delay: 0.3 },
+                { icon: '💚', x: 0, y: 90, delay: 0.4 },
+                ],
+            },
+            {
+                id: 'fistirik',
+                name: 'Fıstırık',
+                color: '#d97706', // amber-600
+                bg: '#fef3c7', // amber-100
+                image: 'https://www.zuber.com/cdn/shop/files/ZUBER_FISTRIK-0_6d0596f0-dba8-4d4d-a76f-50f741cdb1aa-removebg-preview.png',
+                ingredients: [
+                { icon: '🥜', x: -150, y: -80, delay: 0 },
+                { icon: '🍫', x: 170, y: -70, delay: 0.1 },
+                { icon: '🍯', x: -130, y: 80, delay: 0.2 },
+                { icon: '🔥', x: 150, y: 70, delay: 0.3 },
+                { icon: '🥜', x: 0, y: -100, delay: 0.4 },
+                ],
+            }
+        ];
+
+        // Süzülen Malzemeler
+        const FloatingIngredient = ({ icon, initialX, initialY, delay }) => {
+            return (
+                <motion.div
+                initial={{ x: 0, y: 0, scale: 0, opacity: 0 }}
+                animate={{ x: initialX, y: initialY, scale: 1, opacity: 1 }}
+                exit={{ x: 0, y: 0, scale: 0, opacity: 0 }}
+                transition={{ type: 'spring', bounce: 0.5, duration: 0.8 }}
+                className="absolute z-30 select-none pointer-events-none"
+                >
+                <motion.div
+                    animate={{ y: [-10, 10, -10], rotate: [-10, 10, -10] }}
+                    transition={{ 
+                    repeat: Infinity, 
+                    duration: 3 + delay * 5,
+                    ease: "easeInOut",
+                    delay: delay
+                    }}
+                    className="text-5xl drop-shadow-xl"
+                >
+                    {icon}
+                </motion.div>
+                </motion.div>
+            );
+        };
+
+        // Konfeti Patlaması
+        const ParticleBurst = ({ color }) => {
+            return (
+                <div className="absolute inset-0 pointer-events-none z-10 flex items-center justify-center">
+                {[...Array(12)].map((_, i) => {
+                    const angle = (i / 12) * Math.PI * 2;
+                    const radius = 150;
+                    return (
+                    <motion.div
+                        key={i}
+                        className="absolute w-3 h-3 rounded-full"
+                        style={{ backgroundColor: color }}
+                        initial={{ x: 0, y: 0, scale: 1, opacity: 1 }}
+                        animate={{ 
+                        x: Math.cos(angle) * radius, 
+                        y: Math.sin(angle) * radius,
+                        scale: 0,
+                        opacity: 0
+                        }}
+                        transition={{ duration: 0.6, ease: "easeOut" }}
+                    />
+                    );
+                })}
+                </div>
+            );
+        };
+
+        // Ana Uygulama
+        function App() {
+            const [currentIndex, setCurrentIndex] = useState(0);
+            const [isSpinning, setIsSpinning] = useState(false);
+
+            const activeProduct = products[currentIndex];
+
+            const handleProductClick = () => {
+                if (isSpinning) return;
+                setIsSpinning(true);
+                
+                setTimeout(() => {
+                setCurrentIndex((prev) => (prev + 1) % products.length);
+                }, 300);
+
+                setTimeout(() => {
+                setIsSpinning(false);
+                }, 800);
+            };
+
+            return (
+                <div className="min-h-screen bg-[#e5e5e5] flex flex-col items-center justify-center p-4 font-sans">
+                
+                <div 
+                    className="w-[970px] h-[250px] rounded-[40px] shadow-[0_20px_60px_rgba(0,0,0,0.15)] overflow-hidden relative flex border-4 border-white"
+                    style={{ backgroundColor: activeProduct.bg, transition: 'background-color 0.5s ease' }}
+                >
+                    
+                    {/* Puantiyeli Arka Plan */}
+                    <div 
+                    className="absolute inset-0 opacity-10 pointer-events-none"
+                    style={{
+                        backgroundImage: `radial-gradient(${activeProduct.color} 3px, transparent 3px)`,
+                        backgroundSize: '30px 30px',
+                        backgroundPosition: '0 0',
+                    }}
+                    >
+                    <motion.div 
+                        className="w-full h-full"
+                        animate={{ backgroundPosition: ['0px 0px', '30px 30px'] }}
+                        transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
+                        style={{
+                        backgroundImage: `radial-gradient(${activeProduct.color} 3px, transparent 3px)`,
+                        backgroundSize: '30px 30px',
+                        }}
+                    />
+                    </div>
+
+                    {/* Logo */}
+                    <div className="absolute top-6 left-8 z-50 pointer-events-none bg-white/80 backdrop-blur-sm px-4 py-2 rounded-2xl shadow-sm border border-white/50">
+                    <img 
+                        src="https://www.zuber.com/cdn/shop/files/ZUBER_Logo_refined_RGB__Artboard_1_copy.jpg?v=1766737695" 
+                        alt="Züber" 
+                        className="h-6 object-contain"
+                        referrerPolicy="no-referrer"
+                    />
+                    </div>
+
+                    {/* Sol Kısım: Yazılar ve Buton */}
+                    <div className="w-[35%] h-full pt-20 pl-8 relative z-20 pointer-events-none">
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                        key={activeProduct.id + '-text'}
+                        initial={{ opacity: 0, x: -20, rotate: -5 }}
+                        animate={{ opacity: 1, x: 0, rotate: 0 }}
+                        exit={{ opacity: 0, x: 20, rotate: 5 }}
+                        transition={{ type: "spring", bounce: 0.5 }}
+                        >
+                        <h2 
+                            className="text-5xl font-black leading-none tracking-tighter mb-2 drop-shadow-sm"
+                            style={{ color: activeProduct.color }}
+                        >
+                            {activeProduct.name.split(' ').map((word, i) => (
+                            <span key={i} className="block">{word}</span>
+                            ))}
+                        </h2>
+                        </motion.div>
+                    </AnimatePresence>
+
+                    <div className="mt-4 flex flex-col gap-2 pointer-events-auto">
+                        <motion.button 
+                        onClick={handleProductClick}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="flex items-center gap-2 text-zinc-700 font-bold text-sm bg-white/80 hover:bg-white backdrop-blur-sm w-max px-4 py-2 rounded-xl shadow-md cursor-pointer transition-colors"
+                        >
+                        <RefreshCw size={16} className="text-rose-500 animate-[spin_3s_linear_infinite]" />
+                        <span>Lezzeti Döndür!</span>
+                        </motion.button>
+                    </div>
+                    </div>
+
+                    {/* Sağ Kısım: Ürün ve Malzemeler */}
+                    <div className="flex-1 h-full relative flex items-center justify-center z-20">
+                    
+                    <div className="relative z-40 flex items-center justify-center">
+                        
+                        {isSpinning && <ParticleBurst color={activeProduct.color} />}
+
+                        <motion.div
+                        onClick={handleProductClick}
+                        className="relative cursor-pointer"
+                        whileHover={{ scaleX: 1.05, scaleY: 0.95 }}
+                        whileTap={{ scale: 0.85 }}
+                        animate={isSpinning ? { rotate: 360, scale: [1, 0.8, 1.2, 1] } : { rotate: -10, y: [-5, 5, -5] }}
+                        transition={
+                            isSpinning 
+                            ? { duration: 0.6, ease: "easeInOut" } 
+                            : { y: { repeat: Infinity, duration: 3, ease: "easeInOut" } }
+                        }
+                        >
+                        <div 
+                            className="absolute inset-0 blur-2xl opacity-40 rounded-full scale-110"
+                            style={{ backgroundColor: activeProduct.color }}
+                        />
+                        
+                        <img 
+                            src={activeProduct.image} 
+                            alt={activeProduct.name}
+                            className="w-[380px] h-auto object-contain relative z-10 drop-shadow-[0_30px_40px_rgba(0,0,0,0.4)]"
+                            referrerPolicy="no-referrer"
+                        />
+
+                        {!isSpinning && (
+                            <motion.div 
+                            className="absolute -right-4 -top-4 bg-yellow-400 text-black font-black text-xs px-3 py-2 rounded-full shadow-lg border-2 border-white flex items-center gap-1 z-50 pointer-events-none"
+                            animate={{ scale: [1, 1.1, 1], rotate: [0, 5, -5, 0] }}
+                            transition={{ repeat: Infinity, duration: 2 }}
+                            >
+                            <RefreshCw size={12} />
+                            DÖNDÜR!
+                            </motion.div>
+                        )}
+                        </motion.div>
+                    </div>
+
+                    <AnimatePresence mode="wait">
+                        <motion.div key={activeProduct.id + '-floating'} className="absolute inset-0 z-30 pointer-events-none">
+                        {activeProduct.ingredients.map((ing, idx) => (
+                            <FloatingIngredient 
+                            key={idx} 
+                            icon={ing.icon} 
+                            initialX={ing.x} 
+                            initialY={ing.y} 
+                            delay={ing.delay}
+                            />
+                        ))}
+                        </motion.div>
+                    </AnimatePresence>
+
+                    </div>
+
+                    {/* Hemen Al Butonu */}
+                    <div className="absolute bottom-6 right-8 z-50">
+                    <button 
+                        onClick={() => window.open('https://www.zuber.com/', '_blank', 'noopener,noreferrer')}
+                        className="bg-zinc-900 text-white px-6 py-3 rounded-2xl font-black text-sm flex items-center gap-2 hover:scale-105 hover:bg-black transition-all shadow-xl"
+                    >
+                        HEMEN AL
+                    </button>
+                    </div>
+
+                </div>
+                
+                </div>
+            );
+        }
+
+        // React uygulamasını başlat
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

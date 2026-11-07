@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=970, initial-scale=1.0" />
+  <meta name="ad.size" content="width=970,height=250" />
+  <title>NIVEA Q10 Vücut Bakımı - 970x250 Masthead Banner</title>
+  
+  <!-- Google Fonts: Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    body {
+      background-color: #030712;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: 'Montserrat', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    img {
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: auto;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      transform: translateZ(0);
+    }
+
+    /* 970x250 Masthead Container */
+    #nivea-masthead-970x250 {
+      position: relative;
+      width: 970px;
+      height: 250px;
+      overflow: hidden;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background-color: #001f5c;
+    }
+
+    /* Dynamic Smooth Background Gradient Layer */
+    .bg-gradient-layer {
+      position: absolute;
+      inset: 0;
+      transition: background 0.4s ease-out;
+      z-index: 0;
+      background: linear-gradient(to right, #00227B, #003399, #001748);
+    }
+
+    /* Ambience Blurred Lighting */
+    .ambience-left {
+      position: absolute;
+      left: -40px;
+      top: -40px;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: rgba(59, 130, 246, 0.12);
+      filter: blur(50px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .ambience-right {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: rgba(245, 158, 11, 0.1);
+      filter: blur(55px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Canvas Particles */
+    #particle-canvas {
+      position: absolute;
+      inset: 0;
+      width: 970px;
+      height: 250px;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* Top Accent Line */
+    .top-accent-line {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(to right, #F59E0B, #BAE6FD, #F59E0B);
+      z-index: 30;
+    }
+
+    /* Views: Showcase & Detail Views with smooth transitions */
+    .view-panel {
+      position: absolute;
+      inset: 0;
+      z-index: 20;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .view-panel.hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.98);
+    }
+
+    /* SHOWCASE VIEW (3 Columns) */
+    .showcase-content {
+      width: 100%;
+      height: 100%;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    /* LEFT COLUMN */
+    .col-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      width: 260px;
+      flex-shrink: 0;
+      padding: 2px 0;
+      z-index: 20;
+    }
+
+    .nivea-logo-wrap {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      overflow: hidden;
+      filter: drop-shadow(0 4px 14px rgba(0, 34, 123, 0.7));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nivea-logo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .headline-wrap {
+      margin: auto 0;
+      padding-right: 4px;
+    }
+
+    .main-headline {
+      font-size: 20px;
+      font-weight: 900;
+      color: #FFFFFF;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+    }
+
+    .formula-text {
+      font-size: 12px;
+      font-weight: 700;
+      color: #FCD34D;
+      margin-top: 4px;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+      transition: opacity 0.2s ease;
+    }
+
+    /* Tabs */
+    .tab-bar {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 3px;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      width: fit-content;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .tab-btn {
+      padding: 3px 12px;
+      border-radius: 9999px;
+      font-size: 10px;
+      font-weight: 700;
+      font-family: inherit;
+      color: rgba(255, 255, 255, 0.8);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .tab-btn:hover {
+      color: #FFFFFF;
+    }
+
+    .tab-btn.active {
+      background: #FBBF24;
+      color: #001859;
+      box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);
+      font-weight: 900;
+    }
+
+    /* CENTER COLUMN - PRODUCT STAGE */
+    .col-center {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      position: relative;
+      z-index: 10;
+    }
+
+    .product-stage {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+      max-width: 450px;
+      padding: 0 4px;
+    }
+
+    /* Central Radiant Glow */
+    .stage-glow {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      filter: blur(25px);
+      pointer-events: none;
+      transition: background 0.35s ease;
+      opacity: 0.85;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.4) 0%, rgba(0, 34, 123, 0.1) 60%, transparent 80%);
+    }
+
+    /* 3 Bottles Container */
+    .bottles-lineup {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      height: 100%;
+      width: 100%;
+    }
+
+    .bottle-item {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      font-family: inherit;
+      flex: 1;
+      max-width: 125px;
+      transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease;
+      opacity: 0.55;
+      transform: translateY(3px) scale(0.88);
+      z-index: 10;
+      text-decoration: none;
+    }
+
+    .bottle-item:hover {
+      opacity: 0.94;
+      transform: translateY(0px) scale(0.96);
+    }
+
+    .bottle-item.active {
+      opacity: 1;
+      transform: translateY(-4px) scale(1.08);
+      z-index: 30;
+    }
+
+    .bottle-img-wrap {
+      position: relative;
+      height: 175px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .bottle-img-wrap img {
+      max-height: 165px;
+      max-width: 95px;
+      width: auto;
+      object-fit: contain;
+      pointer-events: none;
+      filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.5));
+      transition: transform 0.3s ease, filter 0.3s ease;
+      image-rendering: auto;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      transform: translateZ(0);
+    }
+
+    .bottle-item.active .bottle-img-wrap img {
+      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.65));
+    }
+
+    /* Floating Hover Inspect Pill */
+    .hover-inspect-badge {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, calc(-50% + 8px));
+      background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%);
+      color: #001859;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.22s ease, transform 0.22s ease;
+      z-index: 25;
+      white-space: nowrap;
+    }
+
+    .hover-inspect-badge svg {
+      stroke-width: 2.5;
+    }
+
+    .bottle-item:hover .hover-inspect-badge,
+    .bottle-item.active .hover-inspect-badge {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Sub-Label */
+    .bottle-label {
+      margin-top: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 2px 10px;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.08);
+      color: #CBD5E1;
+      white-space: nowrap;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+
+    .bottle-item.active .bottle-label {
+      background: #FBBF24;
+      color: #001859;
+      box-shadow: 0 3px 8px rgba(245, 158, 11, 0.35);
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    /* RIGHT COLUMN - CTA */
+    .col-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: space-between;
+      height: 100%;
+      width: 170px;
+      flex-shrink: 0;
+      padding: 2px 0;
+      text-align: right;
+      z-index: 20;
+    }
+
+    .benefit-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #FFFFFF;
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .benefit-badge svg {
+      width: 11px;
+      height: 11px;
+      fill: #FBBF24;
+    }
+
+    .cta-actions-wrap {
+      margin: auto 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 14px;
+      border-radius: 9999px;
+      background: linear-gradient(to right, #FBBF24, #F59E0B);
+      color: #001859;
+      font-size: 11.5px;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .cta-btn:hover {
+      background: linear-gradient(to right, #FDE68A, #FBBF24);
+      transform: scale(1.05);
+    }
+
+    .cta-btn:active {
+      transform: scale(0.96);
+    }
+
+    .cta-btn svg {
+      width: 14px;
+      height: 14px;
+      transition: transform 0.15s ease;
+    }
+
+    .cta-btn:hover svg {
+      transform: translateX(2px);
+    }
+
+    /* Detail Trigger Button */
+    .info-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #BAE6FD;
+      font-size: 10px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .info-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: #FFFFFF;
+    }
+
+    .info-btn svg {
+      width: 11px;
+      height: 11px;
+      fill: #FBBF24;
+    }
+
+    /* Autoplay Toggle */
+    .autoplay-ctrl {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 9.5px;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .toggle-play-btn {
+      background: transparent;
+      border: none;
+      color: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+    }
+
+    .toggle-play-btn:hover {
+      color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* ===================================================
+       IN-BANNER DETAIL VIEW (Bilgilendirme Görünümü)
+       =================================================== */
+    .detail-content {
+      width: 100%;
+      height: 100%;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    /* Detail Left (Bottle + Back) */
+    .detail-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 200px;
+      height: 100%;
+      flex-shrink: 0;
+    }
+
+    .detail-nav-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      padding: 2px 0;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 9px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #FFFFFF;
+      font-size: 9.5px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .back-btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: scale(1.04);
+    }
+
+    .back-btn svg {
+      width: 11px;
+      height: 11px;
+      stroke: #FBBF24;
+    }
+
+    .detail-bottle-wrap {
+      position: relative;
+      flex: 1;
+      height: 190px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .detail-bottle-wrap img {
+      max-height: 160px;
+      max-width: 80px;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.7)) drop-shadow(0 0 12px rgba(245,158,11,0.3));
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .detail-volume-pill {
+      margin-top: 4px;
+      font-size: 9px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      background: #FBBF24;
+      color: #001859;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      z-index: 10;
+    }
+
+    /* Detail Right (Rich Info) */
+    .detail-right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      padding: 2px 0;
+      overflow: hidden;
+    }
+
+    .detail-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 4px;
+    }
+
+    .detail-title-row {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-top: 2px;
+    }
+
+    .detail-product-name {
+      font-size: 15px;
+      font-weight: 900;
+      color: #FFFFFF;
+      line-height: 1.1;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+    }
+
+    /* Clean 2-Column Info Cards (Zero text overflow) */
+    .detail-cards-grid {
+      display: grid;
+      grid-template-columns: 7fr 5fr;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .detail-card {
+      background: #001238;
+      padding: 8px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    }
+
+    .card-heading {
+      font-size: 10px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .card-heading.gold {
+      color: #FBBF24;
+    }
+
+    .card-heading.cyan {
+      color: #38BDF8;
+    }
+
+    .bullet-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .bullet-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      font-size: 10.5px;
+      font-weight: 600;
+      color: #FFFFFF;
+      line-height: 1.3;
+    }
+
+    .bullet-item svg {
+      width: 12px;
+      height: 12px;
+      flex-shrink: 0;
+      margin-top: 1px;
+      stroke: #FBBF24;
+    }
+
+    .bullet-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #38BDF8;
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+
+    .detail-bottom-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      padding-top: 4px;
+    }
+
+    .brand-foot-note {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 970x250 HTML5 MASTHEAD BANNER -->
+  <div id="nivea-masthead-970x250">
+    
+    <!-- Background Gradient Layer -->
+    <div id="bg-layer" class="bg-gradient-layer"></div>
+
+    <!-- Ambience Glowing Spheres -->
+    <div class="ambience-left"></div>
+    <div class="ambience-right"></div>
+
+    <!-- Particle Sparkle Canvas -->
+    <canvas id="particle-canvas" width="970" height="250"></canvas>
+
+    <!-- Top Gold Accent Line -->
+    <div class="top-accent-line"></div>
+
+    <!-- ==================== 1. SHOWCASE VIEW ==================== -->
+    <div id="showcase-view" class="view-panel">
+      <div class="showcase-content">
+        
+        <!-- LEFT COLUMN -->
+        <div class="col-left">
+          <!-- NIVEA Logo -->
+          <div class="nivea-logo-wrap" title="NIVEA">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/NIVEA_logo_2021.svg" alt="NIVEA" />
+          </div>
+
+          <!-- Headline & Formula -->
+          <div class="headline-wrap">
+            <div id="main-headline" class="main-headline">10 Günde Daha Sıkı Bir Cilt</div>
+            <div id="formula-text" class="formula-text">Saf Q10 &amp; C Vitamini | 48 Saat Yoğun Nem</div>
+          </div>
+
+          <!-- Tab Selector -->
+          <div class="tab-bar">
+            <button type="button" class="tab-btn active" data-index="0">Vücut Losyonu</button>
+            <button type="button" class="tab-btn" data-index="1">Bronzluk</button>
+            <button type="button" class="tab-btn" data-index="2">Vücut Sütü</button>
+          </div>
+        </div>
+
+        <!-- CENTER COLUMN: Product Stage (Click opens Detail) -->
+        <div class="col-center">
+          <div class="product-stage">
+            <div id="stage-glow" class="stage-glow"></div>
+
+            <div class="bottles-lineup">
+              <!-- Bottle 0: Lotion -->
+              <button type="button" class="bottle-item active" data-index="0" title="NIVEA Q10 Sıkılaştırıcı Vücut Losyonu - Detaylar için tıklayın">
+                <div class="bottle-img-wrap">
+                  <img src="S2.png" alt="NIVEA Q10 Losyon" />
+                  <div class="hover-inspect-badge">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="11" cy="11" r="8"></circle>
+                      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <span>İncele</span>
+                  </div>
+                </div>
+                <span class="bottle-label">Losyon</span>
+              </button>
+
+              <!-- Bottle 1: Bronzer -->
+              <button type="button" class="bottle-item" data-index="1" title="NIVEA Q10 Sıkılaştırıcı ve Bronzluk - Detaylar için tıklayın">
+                <div class="bottle-img-wrap">
+                  <img src="S1.png" alt="NIVEA Q10 Bronzluk" />
+                  <div class="hover-inspect-badge">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="11" cy="11" r="8"></circle>
+                      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <span>İncele</span>
+                  </div>
+                </div>
+                <span class="bottle-label">Bronzluk</span>
+              </button>
+
+              <!-- Bottle 2: Milk -->
+              <button type="button" class="bottle-item" data-index="2" title="NIVEA Q10 Sıkılaştırıcı Vücut Bakım Sütü - Detaylar için tıklayın">
+                <div class="bottle-img-wrap">
+                  <img src="S3.png" alt="NIVEA Q10 Vücut Sütü" />
+                  <div class="hover-inspect-badge">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="11" cy="11" r="8"></circle>
+                      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <span>İncele</span>
+                  </div>
+                </div>
+                <span class="bottle-label">Vücut Sütü</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: CTA & Detail View Trigger -->
+        <div class="col-right">
+          <!-- Benefit Pill -->
+          <div class="benefit-badge">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+            </svg>
+            <span id="badge-text">10 Günde Sıkılaşma</span>
+          </div>
+
+          <!-- CTA & Info Buttons -->
+          <div class="cta-actions-wrap">
+            <a
+              id="cta-discover-btn"
+              class="cta-btn"
+              href="https://ad.doubleclick.net/ddm/trackclk/N5844.5327234SPLASH/B36056878.454175020;dc_trk_aid=648450760;dc_trk_cid=262768560;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;gdpr=${GDPR};gdpr_consent=${GDPR_CONSENT_755};ltd=;dc_tdv=1"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>HEMEN KEŞFET</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </a>
+
+            <!-- In-Banner Detail View Button -->
+            <button type="button" id="open-detail-btn" class="info-btn">
+              <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"></circle>
+                <line x1="12" y1="16" x2="12" y2="12" stroke="currentColor" stroke-width="2"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8" stroke="currentColor" stroke-width="2"></line>
+              </svg>
+              <span>Ürün Bilgileri</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- ==================== 2. IN-BANNER DETAIL VIEW ==================== -->
+    <div id="detail-view" class="view-panel hidden">
+      <div class="detail-content">
+        
+        <!-- Left Section (Back + Bottle + Volume) -->
+        <div class="detail-left">
+          <div class="detail-nav-col">
+            <div class="nivea-logo-wrap" style="width: 36px; height: 36px;">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/NIVEA_logo_2021.svg" alt="NIVEA" />
+            </div>
+            
+            <button type="button" id="back-to-showcase-btn" class="back-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+              </svg>
+              <span>Tüm Ürünler</span>
+            </button>
+          </div>
+
+          <div class="detail-bottle-wrap">
+            <img id="detail-bottle-img" src="S2.png" alt="NIVEA Q10" />
+            <span id="detail-volume" class="detail-volume-pill">400ml</span>
+          </div>
+        </div>
+
+        <!-- Right Section (Rich Product Info & CTA) -->
+        <div class="detail-right">
+          
+          <!-- Top Row: Switch Tabs & Benefit Badge -->
+          <div class="detail-top-bar">
+            <div class="tab-bar">
+              <button type="button" class="tab-btn detail-tab-btn active" data-index="0">Vücut Losyonu</button>
+              <button type="button" class="tab-btn detail-tab-btn" data-index="1">Bronzluk</button>
+              <button type="button" class="tab-btn detail-tab-btn" data-index="2">Vücut Sütü</button>
+            </div>
+
+            <div class="benefit-badge">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+              </svg>
+              <span id="detail-badge-text">10 Günde Sıkılaşma</span>
+            </div>
+          </div>
+
+          <!-- Product Name -->
+          <div>
+            <div class="detail-title-row">
+              <h2 id="detail-product-name" class="detail-product-name">NIVEA Q10 Sıkılaştırıcı Vücut Losyonu</h2>
+            </div>
+
+            <!-- Clean 2-Column Info Cards Grid -->
+            <div class="detail-cards-grid">
+              <!-- Left Card: Öne Çıkan Özellikler & Formül -->
+              <div class="detail-card">
+                <div class="card-heading gold">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                  </svg>
+                  <span>Öne Çıkan Özellikler &amp; Formül</span>
+                </div>
+                <div id="detail-highlights-list" class="bullet-list">
+                  <!-- Injected Highlights -->
+                </div>
+              </div>
+
+              <!-- Right Card: Nasıl Kullanılır & İpucu -->
+              <div class="detail-card">
+                <div class="card-heading cyan">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                  </svg>
+                  <span>Nasıl Kullanılır &amp; İpucu</span>
+                </div>
+                <div id="detail-usage-list" class="bullet-list">
+                  <!-- Injected Usage Tips -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Row: Subline & CTA -->
+          <div class="detail-bottom-bar">
+            <span class="brand-foot-note">Türkiye'nin 1 Numaralı El ve Vücut Bakım Markası NIVEA</span>
+
+            <a
+              id="detail-cta-btn"
+              class="cta-btn"
+              href="https://ad.doubleclick.net/ddm/trackclk/N5844.5327234SPLASH/B36056878.454175020;dc_trk_aid=648450760;dc_trk_cid=262768560;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;gdpr=${GDPR};gdpr_consent=${GDPR_CONSENT_755};ltd=;dc_tdv=1"
+              target="_blank"
+              rel="noopener noreferrer"
+              style="padding: 6px 14px; font-size: 10.5px;"
+            >
+              <span>HEMEN KEŞFET</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Product Data with Official NIVEA Information & Rich Structured Details
+    const PRODUCTS = [
+      {
+        id: 'lotion',
+        name: 'NIVEA Q10 Sıkılaştırıcı Vücut Losyonu',
+        volume: '400ml',
+        headline: '10 Günde Daha Sıkı Bir Cilt',
+        formula: 'Saf Q10 & C Vitamini | 48 Saat Yoğun Nem',
+        badge: '10 Günde Sıkılaşma',
+        highlights: [
+          'Saf Q10 ve C Vitamini ile 10 günde kanıtlanmış sıkılaşma ve esneklik.',
+          'Hızlı emilen hafif dokusuyla 48 saat boyunca derinlemesine nemlendirme.',
+          'Normal ve hassas ciltler dahil tüm cilt tipleri için uygundur.'
+        ],
+        usage: [
+          'Temiz ve kuru cildinize dairesel hareketlerle masaj yaparak uygulayın.',
+          'Gündüz Losyon, gece yoğun Vücut Sütü ile 24 saat bakım elde edin.'
+        ],
+        imageUrl: 'S2.png',
+        glowColor: 'rgba(245, 158, 11, 0.45)',
+        accentColor: '#F59E0B',
+        bgGradient: 'linear-gradient(to right, #00227B, #003399, #001748)'
+      },
+      {
+        id: 'bronzer',
+        name: 'NIVEA Q10 Sıkılaştırıcı ve Bronzluk Losyonu',
+        volume: '250ml',
+        headline: '7 Günde Daha Sıkı Bir Cilt',
+        formula: 'Saf Q10 + Doğal Bronzluk & Çiçeksi Koku',
+        badge: 'Tüm Yıl Yaz Işıltısı',
+        highlights: [
+          'Q10 içeren özel formül ile 7 günde gözle görülür daha sıkı bir cilt.',
+          'Güneşe çıkmaya gerek kalmadan kademeli ve doğal bir yaz ışıltısı.',
+          'Ferah çiçeksi kokusu ve derinlemesine nemlendirme etkisi.'
+        ],
+        usage: [
+          'Tüm cildinize eşit yayın; tamamen emilene kadar giysilerle temas etmeyin.',
+          'Uygulama sonrası ellerinizi yıkayın. Güneş koruması içermez.'
+        ],
+        imageUrl: 'S1.png',
+        glowColor: 'rgba(230, 161, 0, 0.5)',
+        accentColor: '#E6A100',
+        bgGradient: 'linear-gradient(to right, #2c1705, #001f5c, #120800)'
+      },
+      {
+        id: 'milk',
+        name: 'NIVEA Q10 Sıkılaştırıcı Vücut Bakım Sütü',
+        volume: '400ml',
+        headline: '7 Günde Daha Sıkı Bir Cilt',
+        formula: 'Q10 & C Vitamini | Kolajen Güçlendirici Kompleks',
+        badge: '7 Günde Sıkılaşma',
+        highlights: [
+          '110 Yıllık Uzmanlık: Q10 & C Vitamini ile 7 günde kanıtlanmış sıkılaşma.',
+          '72 saat kesintisiz yoğun nemlendirme; yağlı ve yapışkan his bırakmaz.',
+          'Kolajen güçlendirici kompleks ile daha canlı, pürüzsüz ve sıkı görünüm.'
+        ],
+        usage: [
+          'Temiz ve kuru vücudunuza dairesel masaj hareketleriyle uygulayın.',
+          'Yalnızca vücut için uygundur (Yüz için kullanıma uygun değildir).'
+        ],
+        imageUrl: 'S3.png',
+        glowColor: 'rgba(56, 189, 248, 0.45)',
+        accentColor: '#38BDF8',
+        bgGradient: 'linear-gradient(to right, #001844, #002672, #001030)'
+      }
+    ];
+
+    let currentIndex = 0;
+    let isAutoPlay = true;
+    let autoPlayTimer = null;
+    let isDetailMode = false;
+
+    // DOM Elements
+    const bgLayer = document.getElementById('bg-layer');
+    const showcaseView = document.getElementById('showcase-view');
+    const detailView = document.getElementById('detail-view');
+    const mainHeadline = document.getElementById('main-headline');
+    const formulaText = document.getElementById('formula-text');
+    const badgeText = document.getElementById('badge-text');
+    const stageGlow = document.getElementById('stage-glow');
+    const tabButtons = document.querySelectorAll('.showcase-content .tab-btn');
+    const detailTabButtons = document.querySelectorAll('.detail-tab-btn');
+    const bottleItems = document.querySelectorAll('.bottle-item');
+    const openDetailBtn = document.getElementById('open-detail-btn');
+    const backToShowcaseBtn = document.getElementById('back-to-showcase-btn');
+
+    // Detail DOM Elements
+    const detailBottleImg = document.getElementById('detail-bottle-img');
+    const detailVolume = document.getElementById('detail-volume');
+    const detailProductName = document.getElementById('detail-product-name');
+    const detailBadgeText = document.getElementById('detail-badge-text');
+    const detailHighlightsList = document.getElementById('detail-highlights-list');
+    const detailUsageList = document.getElementById('detail-usage-list');
+
+    function updateProduct(index) {
+      currentIndex = index;
+      const p = PRODUCTS[index];
+
+      // Update background
+      bgLayer.style.background = p.bgGradient;
+
+      // Update Showcase Text
+      mainHeadline.textContent = p.headline;
+      formulaText.textContent = p.formula;
+      badgeText.textContent = p.badge;
+
+      // Update stage glow
+      stageGlow.style.background = `radial-gradient(circle, ${p.glowColor} 0%, rgba(0, 34, 123, 0.1) 60%, transparent 80%)`;
+
+      // Update Showcase Tabs & Bottles
+      tabButtons.forEach((btn, i) => {
+        btn.classList.toggle('active', i === index);
+      });
+      bottleItems.forEach((item, i) => {
+        item.classList.toggle('active', i === index);
+      });
+
+      // Update Detail View Elements
+      detailBottleImg.src = p.imageUrl;
+      detailBottleImg.alt = p.name;
+      detailVolume.textContent = p.volume;
+      detailProductName.textContent = p.name;
+      detailBadgeText.textContent = p.badge;
+
+      // Inject Highlights
+      detailHighlightsList.innerHTML = p.highlights
+        .map(h => `
+          <div class="bullet-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+            <span>${h}</span>
+          </div>
+        `)
+        .join('');
+
+      // Inject Usage Tips
+      detailUsageList.innerHTML = p.usage
+        .map(u => `
+          <div class="bullet-item">
+            <div class="bullet-dot"></div>
+            <span>${u}</span>
+          </div>
+        `)
+        .join('');
+
+      // Update Detail Tabs
+      detailTabButtons.forEach((btn, i) => {
+        btn.classList.toggle('active', i === index);
+      });
+
+      currentParticleColor = p.accentColor;
+    }
+
+    function showDetailView(index) {
+      stopAutoPlay();
+      updateProduct(index);
+      isDetailMode = true;
+      showcaseView.classList.add('hidden');
+      detailView.classList.remove('hidden');
+    }
+
+    function showShowcaseView() {
+      isDetailMode = false;
+      detailView.classList.add('hidden');
+      showcaseView.classList.remove('hidden');
+    }
+
+    // Showcase Tab & Bottle Interactions
+    tabButtons.forEach((btn) => {
+      const idx = parseInt(btn.getAttribute('data-index'), 10);
+      btn.addEventListener('mouseenter', () => updateProduct(idx));
+      btn.addEventListener('click', () => updateProduct(idx));
+    });
+
+    bottleItems.forEach((bottle) => {
+      const idx = parseInt(bottle.getAttribute('data-index'), 10);
+      bottle.addEventListener('mouseenter', () => updateProduct(idx));
+      // Clicking bottle opens the detail view!
+      bottle.addEventListener('click', () => showDetailView(idx));
+    });
+
+    // Detail Button
+    openDetailBtn.addEventListener('click', () => {
+      showDetailView(currentIndex);
+    });
+
+    // Back to Showcase Button
+    backToShowcaseBtn.addEventListener('click', () => {
+      showShowcaseView();
+    });
+
+    // Detail Tabs Interaction
+    detailTabButtons.forEach((btn) => {
+      const idx = parseInt(btn.getAttribute('data-index'), 10);
+      btn.addEventListener('click', () => updateProduct(idx));
+    });
+
+    // Autoplay logic
+    function startAutoPlay() {
+      if (autoPlayTimer) clearInterval(autoPlayTimer);
+      isAutoPlay = true;
+      autoPlayTimer = setInterval(() => {
+        if (!isDetailMode) {
+          const nextIndex = (currentIndex + 1) % PRODUCTS.length;
+          updateProduct(nextIndex);
+        }
+      }, 5000);
+    }
+
+    function stopAutoPlay() {
+      if (autoPlayTimer) clearInterval(autoPlayTimer);
+      isAutoPlay = false;
+    }
+
+    // Canvas Particle System with Retina DPI Support
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    let currentParticleColor = PRODUCTS[0].accentColor;
+
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = 970 * dpr;
+    canvas.height = 250 * dpr;
+    canvas.style.width = '970px';
+    canvas.style.height = '250px';
+    ctx.scale(dpr, dpr);
+
+    const particles = [];
+    for (let i = 0; i < 18; i++) {
+      particles.push({
+        x: Math.random() * 970,
+        y: Math.random() * 250,
+        size: Math.random() * 2 + 0.8,
+        speedX: (Math.random() - 0.5) * 0.4,
+        speedY: (Math.random() - 0.5) * 0.4,
+        alpha: Math.random() * 0.6 + 0.2,
+        pulseSpeed: Math.random() * 0.02 + 0.01
+      });
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach((pt) => {
+        pt.x += pt.speedX;
+        pt.y += pt.speedY;
+
+        if (pt.x < 0) pt.x = 970;
+        if (pt.x > 970) pt.x = 0;
+        if (pt.y < 0) pt.y = 250;
+        if (pt.y > 250) pt.y = 0;
+
+        pt.alpha += Math.sin(Date.now() * pt.pulseSpeed) * 0.005;
+        const clampedAlpha = Math.max(0.1, Math.min(0.8, pt.alpha));
+
+        ctx.beginPath();
+        ctx.arc(pt.x, pt.y, pt.size, 0, Math.PI * 2);
+        ctx.fillStyle = currentParticleColor;
+        ctx.globalAlpha = clampedAlpha;
+        ctx.fill();
+      });
+
+      requestAnimationFrame(animateParticles);
+    }
+
+    // Init
+    updateProduct(0);
+    startAutoPlay();
+    animateParticles();
+  </script>
+</body>
+</html>

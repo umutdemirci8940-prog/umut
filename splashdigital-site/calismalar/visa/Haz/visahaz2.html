@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Visa World Cup 2026 - Rich Media Banner 970x250</title>
+    <!-- Tailwind CSS Play CDN for lightweight and incredibly fast styled renders -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Ensure pristine subpixel text rendering on all screens */
+      .subpixel-antialiased {
+        -webkit-font-smoothing: subpixel-antialiased;
+        -moz-osx-font-smoothing: auto;
+      }
+      
+      @keyframes cloud-drift-left {
+        0% { transform: translateX(100px) translateY(0); }
+        50% { transform: translateX(0px) translateY(-2px); }
+        100% { transform: translateX(-100px) translateY(0); }
+      }
+
+      @keyframes cloud-drift-right {
+        0% { transform: translateX(-100px) translateY(0); }
+        50% { transform: translateX(0px) translateY(2px); }
+        100% { transform: translateX(100px) translateY(0); }
+      }
+
+      .cloud-anim-1 {
+        animation: cloud-drift-left 22s linear infinite;
+      }
+
+      .cloud-anim-2 {
+        animation: cloud-drift-right 32s linear infinite;
+      }
+
+      .cloud-anim-3 {
+        animation: cloud-drift-left 15s linear infinite;
+      }
+
+      .cloud-anim-4 {
+        animation: cloud-drift-right 40s linear infinite;
+      }
+
+      .cloud-anim-5 {
+        animation: cloud-drift-left 28s linear infinite;
+      }
+
+      /* Glass Hourglass Animations */
+      @keyframes hourglass-flip {
+        0%, 80% { transform: rotate(0deg); }
+        90%, 100% { transform: rotate(180deg); }
+      }
+
+      @keyframes sand-top-shrink {
+        0%, 15% { transform: scaleY(1); }
+        75%, 100% { transform: scaleY(0); }
+      }
+
+      @keyframes sand-bottom-grow {
+        0%, 15% { transform: scaleY(0); }
+        75%, 100% { transform: scaleY(1); }
+      }
+
+      @keyframes sand-trickle {
+        0% { stroke-dashoffset: 0; opacity: 0; }
+        15% { opacity: 1; }
+        75% { stroke-dashoffset: -15; opacity: 1; }
+        78%, 100% { stroke-dashoffset: -15; opacity: 0; }
+      }
+
+      .anim-hourglass-flip {
+        animation: hourglass-flip 7s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        transform-origin: 12px 16px;
+      }
+
+      .anim-sand-top {
+        animation: sand-top-shrink 7s linear infinite;
+        transform-origin: 12px 10px;
+      }
+
+      .anim-sand-bottom {
+        animation: sand-bottom-grow 7s linear infinite;
+        transform-origin: 12px 28.5px;
+      }
+
+      .anim-sand-trickle {
+        animation: sand-trickle 7s linear infinite;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-[#050B14] flex flex-col justify-center items-center select-none antialiased p-4">
+    
+    <!-- Central preview frame enclosing the exact 970x250 advertisement banner -->
+    <div class="relative w-[970px] h-[250px] shadow-[0_20px_50px_rgba(0,0,0,0.9)] rounded-xl overflow-visible">
+      
+      <div
+        id="rich-media-split-banner-970"
+        class="relative w-[970px] h-[250px] overflow-hidden rounded-xl bg-white flex flex-row shadow-2xl select-none"
+      >
+        <!-- LEFT COLUMN: CAMPAIGN VIDEO (444px) - Perfect 16:9 ratio matches 250px height -->
+        <div 
+          id="video-container"
+          class="relative w-[444px] h-full overflow-hidden bg-white cursor-pointer group flex items-center justify-start"
+        >
+          <video
+            id="campaign-video"
+            src="visahaz.mp4"
+            class="w-full h-full object-fill object-left pointer-events-none"
+            muted
+            loop
+            playsinline
+            autoplay
+          ></video>
+        </div>
+
+        <!-- MIDDLE COLUMN: COUNTDOWN CONTAINER (82px) - Integrates the live timer beautifully -->
+        <div class="relative w-[82px] h-full overflow-hidden bg-gradient-to-b from-[#008ce3] via-[#006bbd] to-[#004f9e] border-l border-r border-sky-400/20 text-white pointer-events-none select-none z-10 flex flex-col justify-center items-center py-4 px-1 gap-2 shadow-lg">
+          <!-- Soft Dynamic Stadium Lights Sky Glow -->
+          <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-cyan-400/30 via-transparent to-transparent opacity-75 animate-pulse pointer-events-none z-0"></div>
+
+          <!-- 5 Layered Parallax Vector SVG Clouds -->
+          <!-- Cloud 1 - Back layer (slow, subtle) -->
+          <svg class="absolute w-[55px] h-[35px] text-white/10 cloud-anim-2 pointer-events-none z-0" style="top: 4%;" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.5 11h-1.3a5 5 0 0 0-9.4-1.5H6.5a4.5 4.5 0 0 0 0 9h11a4 4 0 0 0 0-8z" />
+          </svg>
+          
+          <!-- Cloud 2 - Mid layer (medium-large) -->
+          <svg class="absolute w-[68px] h-[40px] text-white/20 cloud-anim-1 pointer-events-none z-0" style="top: 22%; animation-delay: -3s;" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.5 11h-1.3a5 5 0 0 0-9.4-1.5H6.5a4.5 4.5 0 0 0 0 9h11a4 4 0 0 0 0-8z" />
+          </svg>
+
+          <!-- Cloud 3 - Floating mid-front cloud -->
+          <svg class="absolute w-[45px] h-[28px] text-white/25 cloud-anim-5 pointer-events-none z-0" style="top: 46%; animation-delay: -7s;" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.5 11h-1.3a5 5 0 0 0-9.4-1.5H6.5a4.5 4.5 0 0 0 0 9h11a4 4 0 0 0 0-8z" />
+          </svg>
+
+          <!-- Cloud 4 - Large fluffy background lower cloud -->
+          <svg class="absolute w-[72px] h-[45px] text-white/15 cloud-anim-4 pointer-events-none z-0" style="top: 68%; animation-delay: -12s;" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.5 11h-1.3a5 5 0 0 0-9.4-1.5H6.5a4.5 4.5 0 0 0 0 9h11a4 4 0 0 0 0-8z" />
+          </svg>
+
+          <!-- Cloud 5 - Bottom fast cloud -->
+          <svg class="absolute w-[38px] h-[24px] text-white/30 cloud-anim-3 pointer-events-none z-0" style="top: 84%; animation-delay: -5s;" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.5 11h-1.3a5 5 0 0 0-9.4-1.5H6.5a4.5 4.5 0 0 0 0 9h11a4 4 0 0 0 0-8z" />
+          </svg>
+
+          <!-- Sleek Animated 3D-like Hourglass Ornament -->
+          <div class="relative w-6 h-8 flex justify-center items-center z-20 mb-0.5 filter drop-shadow-[0_2px_8px_rgba(34,211,238,0.4)]">
+            <svg class="w-full h-full text-cyan-300" viewBox="0 0 24 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g class="anim-hourglass-flip">
+                <!-- Top & Bottom Plates -->
+                <path d="M4 2h16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M4 30h16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                
+                <!-- Outer Glass Bulbs -->
+                <path d="M5 2C5 11.5 9.5 14 12 16C14.5 14 19 11.5 19 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.85"/>
+                <path d="M5 30C5 20.5 9.5 18 12 16C14.5 18 19 20.5 19 30" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.85"/>
+                
+                <!-- Inner Glass Reflection Highlight -->
+                <path d="M7 4C7 6.5 8.5 8.5 10.5 9.5" stroke="currentColor" stroke-width="0.75" stroke-linecap="round" opacity="0.4"/>
+                
+                <!-- Upper Sand (Shrinking) -->
+                <path class="anim-sand-top" d="M6 3.5C6 6 8.5 7.5 12 10C15.5 7.5 18 6 18 3.5H6Z" fill="currentColor"/>
+                
+                <!-- Lower Sand (Growing) -->
+                <path class="anim-sand-bottom" d="M12 22C8.5 24.5 6 26 6 28.5H18C18 26 15.5 24.5 12 22Z" fill="currentColor"/>
+                
+                <!-- Glowing Trickle Line -->
+                <line class="anim-sand-trickle" x1="12" y1="10" x2="12" y2="22" stroke="currentColor" stroke-width="1.5" stroke-dasharray="1.5 3"/>
+              </g>
+            </svg>
+          </div>
+
+          <div class="font-extrabold tracking-wider text-[7.5px] text-white select-none subpixel-antialiased text-center leading-[1.25] uppercase font-black relative z-20">
+            FİNALE<br />KALAN<br />SÜRE
+          </div>
+          
+          <div class="w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-100/30 to-transparent my-0.5 relative z-20"></div>
+
+          <div class="flex flex-col gap-2.5 items-center font-mono select-none subpixel-antialiased w-full relative z-20">
+            <div class="flex items-baseline justify-center gap-1 w-full">
+              <span id="days-val" class="text-[13px] font-black text-white leading-none font-mono tracking-tight">00</span>
+              <span class="text-[7.5px] text-cyan-100 font-sans font-bold uppercase tracking-wider">GÜN</span>
+            </div>
+            <div class="flex items-baseline justify-center gap-1 w-full border-t border-white/20 pt-2">
+              <span id="hours-val" class="text-[13px] font-black text-white leading-none font-mono tracking-tight">00</span>
+              <span class="text-[7.5px] text-cyan-100 font-sans font-bold uppercase tracking-wider">SAAT</span>
+            </div>
+            <div class="flex items-baseline justify-center gap-1 w-full border-t border-white/20 pt-2">
+              <span id="minutes-val" class="text-[13px] font-black text-white leading-none font-mono tracking-tight">00</span>
+              <span class="text-[7.5px] text-cyan-100 font-sans font-bold uppercase tracking-wider">DK</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: CAMPAIGN IMAGE (444px) - Perfect 16:9 aspect ratio matches 250px height perfectly to prevent distortion or crop -->
+        <div 
+          class="relative w-[444px] h-full overflow-hidden bg-center bg-[#151515] bg-no-repeat transition-all duration-350"
+          style="background-image: url('visa12.jpg'); background-size: 100% 100%;"
+        >
+          <!-- Compact Sky Blue Campaign Detail CTA Button -->
+          <button
+            id="info-action-trigger"
+            class="absolute bottom-[47px] left-1/2 -translate-x-1/2 px-2 py-0.5 bg-sky-400 hover:bg-sky-300 text-slate-950 font-extrabold text-[6.5px] tracking-wider rounded-sm shadow-md shadow-black/55 hover:scale-105 active:scale-95 transition-all duration-200 border border-sky-300/40 cursor-pointer block text-center whitespace-nowrap z-50"
+          >
+            AYRINTILI BİLGİ İÇİN
+          </button>
+        </div>
+
+        <!-- Border overlay -->
+        <div class="absolute inset-0 rounded-xl border border-white/10 pointer-events-none z-55"></div>
+      </div>
+
+    </div>
+
+    <!-- Standalone interactive code -->
+    <script>
+      // 1. Countdown timer logic (Triggers actual countdown calculations to World Cup 2026 Final)
+      const targetDate = new Date("2026-07-19T20:00:00").getTime();
+      const daysVal = document.getElementById("days-val");
+      const hoursVal = document.getElementById("hours-val");
+      const minutesVal = document.getElementById("minutes-val");
+
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const difference = targetDate - now;
+
+        if (difference > 0) {
+          const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+
+          daysVal.textContent = String(days).padStart(2, '0');
+          hoursVal.textContent = String(hours).padStart(2, '0');
+          minutesVal.textContent = String(minutes).padStart(2, '0');
+        } else {
+          daysVal.textContent = "00";
+          hoursVal.textContent = "00";
+          minutesVal.textContent = "00";
+        }
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+
+      // 2. Video sound toggle logic
+      const videoContainer = document.getElementById("video-container");
+      const campaignVideo = document.getElementById("campaign-video");
+
+      videoContainer.addEventListener("click", () => {
+        campaignVideo.muted = !campaignVideo.muted;
+        console.log(campaignVideo.muted ? "Video Muted" : "Video Unmuted");
+      });
+
+      // 3. Campaign Redirect button logic (Ayrıntılı Bilgi İçin Doubleclick Tracker)
+      const ctaBtn = document.getElementById("info-action-trigger");
+      ctaBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        console.log("Details Button Clicked");
+        const urlParts = [
+          "https://ad.",
+          "doubleclick.net",
+          "/ddm/trackclk/",
+          "N6024.5327234SPLASH/B36145374.450020049;dc_trk_aid=643379544;dc_trk_cid=258703323;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;gdpr=${GDPR};gdpr_consent=${GDPR_CONSENT_755};ltd=;dc_tdv=1"
+        ];
+        window.open(urlParts.join(""), "_blank", "noopener,noreferrer");
+      });
+    </script>
+  </body>
+</html>

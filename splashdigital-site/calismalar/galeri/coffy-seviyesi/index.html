@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coffy – Çok da Coffy · Coffy Seviyesi | Splash Digital</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../../../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..800&family=Instrument+Sans:wght@400..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #060b1d; --ink: #eef4fc; --soft: #b8c6da; --mute: #7487a3; --line: rgba(160,190,230,.18); --blue: #1e8fe0; --blue2: #57b4ff; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { min-height: 100%; }
+  body { background: radial-gradient(70% 60% at 20% 0%, rgba(30,143,224,.22), transparent 70%), var(--bg); color: var(--ink); font: 400 15px/1.5 'Instrument Sans', system-ui, sans-serif; -webkit-font-smoothing: antialiased; display: flex; flex-direction: column; align-items: center; padding: 40px 16px 56px; }
+  a { color: inherit; text-decoration: none; }
+  .top { width: min(1010px, 100%); display: flex; align-items: center; gap: 16px; }
+  .top img { height: 46px; width: auto; }
+  .top .back { margin-left: auto; font: 500 13px/1 'JetBrains Mono', monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--soft); border: 1px solid var(--line); border-radius: 999px; padding: 11px 16px; }
+  .top .back:hover { border-color: var(--blue2); color: #fff; }
+  h1 { margin-top: 56px; text-align: center; font: 700 clamp(30px, 5vw, 52px)/1.05 Archivo, sans-serif; font-stretch: 112%; letter-spacing: -.02em; }
+  h1 em { display: block; margin-top: 6px; font: italic 400 clamp(26px, 4vw, 42px)/1.1 'Instrument Serif', serif; color: var(--blue2); letter-spacing: 0; }
+  .own { margin-top: 14px; font: 500 12px/1 'JetBrains Mono', monospace; letter-spacing: .14em; text-transform: uppercase; color: var(--mute); }
+  .seg { margin-top: 34px; display: inline-flex; padding: 4px; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.03); }
+  .seg button { appearance: none; border: 0; background: none; color: var(--soft); font: 600 14px/1 'Instrument Sans', sans-serif; padding: 11px 18px; border-radius: 999px; cursor: pointer; }
+  .seg button[aria-pressed="true"] { background: var(--blue); color: #fff; }
+  .stage { margin-top: 28px; width: 100%; display: flex; justify-content: center; }
+  .frame { flex: 0 0 auto; position: relative; border-radius: 14px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,.55), 0 0 0 1px var(--line); background: #000; transform-origin: top center; }
+  .frame iframe { display: block; border: 0; }
+  .hint { margin-top: 22px; color: var(--mute); font-size: 14px; text-align: center; }
+  .replay { margin-top: 14px; appearance: none; border: 1px solid var(--line); background: none; color: var(--soft); border-radius: 999px; padding: 10px 16px; font: 500 13px/1 'Instrument Sans', sans-serif; cursor: pointer; }
+  .replay:hover { border-color: var(--blue2); color: #fff; }
+</style>
+</head>
+<body>
+  <header class="top">
+    <a href="../../../"><img src="../../../assets/img/logo.png" alt="Splash Digital" width="117" height="54"></a>
+    <a class="back" href="../../../projeler.html">← Tüm projeler</a>
+  </header>
+  <h1>Coffy<em>Çok da Coffy · Coffy Seviyesi</em></h1>
+  <p class="own">Bu çalışma Splash Digital'e aittir</p>
+  <div class="seg" role="group" aria-label="Görünüm">
+    <button type="button" data-w="970" data-h="250" aria-pressed="true">Masaüstü · 970×250</button>
+    <button type="button" data-w="320" data-h="480" aria-pressed="false">Mobil · 320×480</button>
+  </div>
+  <div class="stage" id="stage"><div class="frame" id="frame"><iframe id="ad" src="reklam.html" width="970" height="250" title="Coffy – Çok da Coffy · Coffy Seviyesi" scrolling="no"></iframe></div></div>
+  <p class="hint">Reklamla etkileşime geçerek deneyimi keşfedebilirsiniz.</p>
+  <button class="replay" type="button" id="replay">↻ Baştan oynat</button>
+<script>
+(function () {
+  var ad = document.getElementById('ad'), frame = document.getElementById('frame'), stage = document.getElementById('stage');
+  var w = 970, h = 250;
+  function fit() {
+    var avail = stage.clientWidth, s = Math.min(1, avail / w);
+    ad.width = w; ad.height = h;
+    frame.style.width = w + 'px'; frame.style.height = h + 'px';
+    frame.style.transform = s < 1 ? 'scale(' + s + ')' : '';
+    stage.style.height = (h * s) + 'px';
+  }
+  document.querySelectorAll('.seg button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('.seg button').forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
+      w = +b.dataset.w; h = +b.dataset.h; fit(); ad.src = 'reklam.html';
+    });
+  });
+  document.getElementById('replay').addEventListener('click', function () { ad.src = 'reklam.html'; });
+  window.addEventListener('resize', fit); fit();
+})();
+</script>
+</body>
+</html>

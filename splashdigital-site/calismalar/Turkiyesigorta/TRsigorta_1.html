@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Türkiye Sigorta - İnteraktif Banner</title>
+    
+    <!-- DV360 (DoubleClick) Meta & ClickTags -->
+    <meta name="ad.size" content="width=970,height=250">
+    <script type="text/javascript">
+        var clickTag = "https://www.turkiyesigorta.com.tr/urunlerimiz/saglik-sigortalari";
+        var clickTag1 = "https://www.turkiyesigorta.com.tr/urunlerimiz/saglik-sigortalari/seyahat-saglik-sigortasi";
+        var clickTag2 = "https://www.turkiyesigorta.com.tr/urunlerimiz/saglik-sigortalari/ozel-saglik-sigortasi";
+        var clickTag3 = "https://www.turkiyesigorta.com.tr/urunlerimiz/saglik-sigortalari/tamamlayici-saglik-sigortasi";
+    </script>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        /* Kart Geçiş Animasyonları (Spring benzeri yumuşak geçiş) */
+        .ins-card {
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: absolute;
+        }
+        
+        /* Metin Geçiş Animasyonları */
+        .fade-transition { transition: opacity 0.3s ease, transform 0.3s ease; }
+        .hide-content { opacity: 0; transform: translateY(-10px); pointer-events: none; position: absolute; }
+        .show-content { opacity: 1; transform: translateY(0); pointer-events: auto; position: relative; }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen m-0 p-0">
+
+    <!-- Banner Ana Konteyner -->
+    <div class="w-[970px] h-[250px] bg-gradient-to-r from-[#001A3A] to-[#002B5E] relative overflow-hidden flex font-sans shadow-2xl rounded-xl" id="banner-container">
+        
+        <!-- Arka Plan Dekoratif Elementler -->
+        <div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_right,rgba(255,255,255,0.15)_0%,transparent_60%)] pointer-events-none"></div>
+        
+        <!-- Dinamik Arka Plan Parlaması -->
+        <div id="bg-glow" class="absolute right-0 top-0 bottom-0 w-[400px] opacity-40 blur-[80px] pointer-events-none transition-colors duration-500 bg-transparent z-10"></div>
+
+        <!-- Sol Metin Alanı -->
+        <div class="w-[400px] h-full bg-white px-8 pt-14 pb-4 flex flex-col relative z-20 shadow-[10px_0_20px_rgba(0,0,0,0.1)]">
+            
+            <!-- Logo -->
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/T%C3%BCrkiye_Sigorta_logo.svg/960px-T%C3%BCrkiye_Sigorta_logo.svg.png" alt="Türkiye Sigorta" class="absolute top-5 left-8 h-6 object-contain" referrerpolicy="no-referrer" />
+            
+            <div class="relative h-[135px] w-full">
+                <!-- Varsayılan Metin -->
+                <div id="text-default" class="fade-transition show-content w-full">
+                    <h2 class="text-[26px] font-bold text-[#002B5E] leading-tight mb-3">
+                        Sağlığınız İçin <br/> <span class="text-[#E30613]">En İyi Seçenekler</span>
+                    </h2>
+                    <p class="text-[13px] text-gray-500 leading-relaxed line-clamp-3">
+                        İhtiyacınıza en uygun sağlık sigortasını seçin, geleceğe güvenle bakın. <strong class="text-[#002B5E] font-semibold">Kartları incelemek için üzerine gelin.</strong>
+                    </p>
+                </div>
+
+                <!-- Dinamik Metin (Hover Durumunda) -->
+                <div id="text-dynamic" class="fade-transition hide-content w-full">
+                    <div class="flex items-center gap-2 mb-2">
+                        <div id="dyn-icon"></div>
+                        <span id="dyn-title" class="text-[11px] font-bold uppercase tracking-wider"></span>
+                    </div>
+                    <h2 id="dyn-short" class="text-[17px] font-bold text-[#002B5E] leading-tight mb-2"></h2>
+                    <p id="dyn-long" class="text-[12px] text-gray-500 leading-relaxed line-clamp-3"></p>
+                </div>
+            </div>
+            
+            <!-- CTA Butonu -->
+            <a id="cta-btn" href="javascript:void(0)" onclick="window.open(window.clickTag, '_blank');" class="bg-[#E30613] hover:bg-[#C80510] active:scale-95 text-white text-[13px] font-semibold py-2.5 px-6 rounded-lg w-max transition-all duration-150 flex items-center gap-2 group shadow-[0_4px_15px_rgba(227,6,19,0.4)] mt-auto relative z-30">
+                <span id="cta-text">Tümünü Gör</span>
+                <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
+            </a>
+        </div>
+
+        <!-- Sağ Kart Alanı -->
+        <div class="w-[570px] h-full relative flex items-center justify-center z-30" id="cards-area">
+            
+            <!-- Seyahat -->
+            <a href="javascript:void(0)" onclick="window.open(window.clickTag1, '_blank');" data-id="seyahat" class="ins-card w-[170px] h-[210px] bg-white rounded-2xl shadow-[0_15px_35px_rgba(0,0,0,0.25)] p-5 flex flex-col items-center text-center border-t-4 border-[#0082CA]">
+                <div class="w-12 h-12 rounded-full flex items-center justify-center mb-3 bg-[#0082CA]/10"><i data-lucide="plane" class="w-6 h-6 text-[#0082CA]"></i></div>
+                <h3 class="text-[14px] font-bold text-[#002B5E] mb-2">Seyahat Sağlık</h3>
+                <p class="text-[10px] text-gray-500 leading-tight">Yurt dışı seyahatlerinizde tam güvence.</p>
+                <div class="mt-auto text-[11px] font-bold flex items-center gap-1 text-[#0082CA] opacity-0 transition-opacity duration-300 card-link-text">İncele <i data-lucide="arrow-right" class="w-3 h-3"></i></div>
+            </a>
+
+            <!-- Özel Sağlık -->
+            <a href="javascript:void(0)" onclick="window.open(window.clickTag2, '_blank');" data-id="ozel" class="ins-card w-[170px] h-[210px] bg-white rounded-2xl shadow-[0_15px_35px_rgba(0,0,0,0.25)] p-5 flex flex-col items-center text-center border-t-4 border-[#002B5E]">
+                <div class="w-12 h-12 rounded-full flex items-center justify-center mb-3 bg-[#002B5E]/10"><i data-lucide="heart-pulse" class="w-6 h-6 text-[#002B5E]"></i></div>
+                <h3 class="text-[14px] font-bold text-[#002B5E] mb-2">Özel Sağlık</h3>
+                <p class="text-[10px] text-gray-500 leading-tight">En geniş ağ ile sağlığınız %100 güvence altında.</p>
+                <div class="mt-auto text-[11px] font-bold flex items-center gap-1 text-[#002B5E] opacity-0 transition-opacity duration-300 card-link-text">İncele <i data-lucide="arrow-right" class="w-3 h-3"></i></div>
+            </a>
+
+            <!-- Tamamlayıcı -->
+            <a href="javascript:void(0)" onclick="window.open(window.clickTag3, '_blank');" data-id="tamamlayici" class="ins-card w-[170px] h-[210px] bg-white rounded-2xl shadow-[0_15px_35px_rgba(0,0,0,0.25)] p-5 flex flex-col items-center text-center border-t-4 border-[#E30613]">
+                <div class="w-12 h-12 rounded-full flex items-center justify-center mb-3 bg-[#E30613]/10"><i data-lucide="shield-plus" class="w-6 h-6 text-[#E30613]"></i></div>
+                <h3 class="text-[14px] font-bold text-[#002B5E] mb-2">Tamamlayıcı</h3>
+                <p class="text-[10px] text-gray-500 leading-tight">Fark ücreti ödemeden özel hastane konforu.</p>
+                <div class="mt-auto text-[11px] font-bold flex items-center gap-1 text-[#E30613] opacity-0 transition-opacity duration-300 card-link-text">İncele <i data-lucide="arrow-right" class="w-3 h-3"></i></div>
+            </a>
+
+        </div>
+    </div>
+
+    <script>
+        // İkonları Yükle
+        lucide.createIcons();
+
+        // Kart Verileri
+        const cardData = {
+            seyahat: {
+                title: 'Seyahat Sağlık', color: '#0082CA', icon: 'plane',
+                shortDesc: 'Yurt dışı seyahatlerinizde tam güvence.',
+                longDesc: 'Vize başvurularında geçerli, yurt dışı seyahatlerinizde karşılaşabileceğiniz sağlık risklerine karşı sizi güvence altına alan geniş kapsamlı poliçe.',
+                clickTag: 'clickTag1'
+            },
+            ozel: {
+                title: 'Özel Sağlık', color: '#002B5E', icon: 'heart-pulse',
+                shortDesc: 'En geniş ağ ile sağlığınız %100 güvence altında.',
+                longDesc: 'Anlaşmalı seçkin sağlık kurumlarında, yatarak ve ayakta tedavi masraflarınızı en üst düzeyde karşılayan premium sağlık sigortası.',
+                clickTag: 'clickTag2'
+            },
+            tamamlayici: {
+                title: 'Tamamlayıcı', color: '#E30613', icon: 'shield-plus',
+                shortDesc: 'Fark ücreti ödemeden özel hastane konforu.',
+                longDesc: 'SGK anlaşmalı özel hastanelerde, ilave fark ücreti ödemeden muayene, tahlil ve tedavi olmanızı sağlayan bütçe dostu güvence.',
+                clickTag: 'clickTag3'
+            }
+        };
+
+        // Kartların Çakışmasını Önleyen Dinamik Pozisyon Algoritması
+        const getCardState = (cardId, hoveredId) => {
+            if (!hoveredId) {
+                if (cardId === 'seyahat') return { x: -70, y: 15, rotate: -10, scale: 1, zIndex: 10, opacity: 1 };
+                if (cardId === 'ozel') return { x: 0, y: 0, rotate: 0, scale: 1.05, zIndex: 20, opacity: 1 };
+                if (cardId === 'tamamlayici') return { x: 70, y: 15, rotate: 10, scale: 1, zIndex: 10, opacity: 1 };
+            }
+
+            if (hoveredId === cardId) {
+                if (cardId === 'seyahat') return { x: -110, y: -20, rotate: -5, scale: 1.15, zIndex: 40, opacity: 1 };
+                if (cardId === 'ozel') return { x: 0, y: -25, rotate: 0, scale: 1.2, zIndex: 40, opacity: 1 };
+                if (cardId === 'tamamlayici') return { x: 110, y: -20, rotate: 5, scale: 1.15, zIndex: 40, opacity: 1 };
+            }
+
+            if (hoveredId === 'seyahat') {
+                if (cardId === 'ozel') return { x: 50, y: 20, rotate: 5, scale: 0.95, zIndex: 5, opacity: 0.6 };
+                if (cardId === 'tamamlayici') return { x: 130, y: 35, rotate: 15, scale: 0.9, zIndex: 4, opacity: 0.4 };
+            }
+
+            if (hoveredId === 'ozel') {
+                if (cardId === 'seyahat') return { x: -100, y: 25, rotate: -15, scale: 0.95, zIndex: 5, opacity: 0.6 };
+                if (cardId === 'tamamlayici') return { x: 100, y: 25, rotate: 15, scale: 0.95, zIndex: 5, opacity: 0.6 };
+            }
+
+            if (hoveredId === 'tamamlayici') {
+                if (cardId === 'seyahat') return { x: -130, y: 35, rotate: -15, scale: 0.9, zIndex: 4, opacity: 0.4 };
+                if (cardId === 'ozel') return { x: -50, y: 20, rotate: -5, scale: 0.95, zIndex: 5, opacity: 0.6 };
+            }
+
+            return { x: 0, y: 0, rotate: 0, scale: 1, zIndex: 1, opacity: 1 };
+        };
+
+        const cards = document.querySelectorAll('.ins-card');
+        const textDefault = document.getElementById('text-default');
+        const textDynamic = document.getElementById('text-dynamic');
+        const bgGlow = document.getElementById('bg-glow');
+        const ctaBtn = document.getElementById('cta-btn');
+        const ctaText = document.getElementById('cta-text');
+        let currentHoveredId = null;
+
+        // Kartların Pozisyonlarını Uygulayan Fonksiyon
+        const updateCards = (hoveredId) => {
+            cards.forEach(card => {
+                const id = card.getAttribute('data-id');
+                const state = getCardState(id, hoveredId);
+                
+                card.style.transform = `translate(${state.x}px, ${state.y}px) rotate(${state.rotate}deg) scale(${state.scale})`;
+                card.style.zIndex = state.zIndex;
+                card.style.opacity = state.opacity;
+
+                const linkText = card.querySelector('.card-link-text');
+                if (hoveredId === id) {
+                    linkText.style.opacity = '1';
+                    linkText.style.transform = 'translateY(0)';
+                } else {
+                    linkText.style.opacity = '0';
+                    linkText.style.transform = 'translateY(10px)';
+                }
+            });
+        };
+
+        // Başlangıç Durumunu Ayarla
+        updateCards(null);
+
+        // Hover Olayları
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transitionDuration = '0.6s';
+                const id = card.getAttribute('data-id');
+                currentHoveredId = id;
+                const data = cardData[id];
+
+                updateCards(id);
+
+                // Sol Metni Güncelle
+                document.getElementById('dyn-icon').innerHTML = `<i data-lucide="${data.icon}" class="w-4 h-4" style="color: ${data.color}"></i>`;
+                lucide.createIcons();
+                document.getElementById('dyn-title').textContent = data.title;
+                document.getElementById('dyn-title').style.color = data.color;
+                document.getElementById('dyn-short').textContent = data.shortDesc;
+                document.getElementById('dyn-long').textContent = data.longDesc;
+
+                textDefault.classList.replace('show-content', 'hide-content');
+                textDynamic.classList.replace('hide-content', 'show-content');
+
+                // Buton ve Arka Planı Güncelle
+                ctaBtn.setAttribute('onclick', `window.open(window.${data.clickTag}, '_blank');`);
+                ctaText.textContent = 'Hemen İncele';
+                bgGlow.style.backgroundColor = data.color;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transitionDuration = '0.6s';
+                currentHoveredId = null;
+                updateCards(null);
+
+                textDynamic.classList.replace('show-content', 'hide-content');
+                textDefault.classList.replace('hide-content', 'show-content');
+
+                ctaBtn.setAttribute('onclick', `window.open(window.clickTag, '_blank');`);
+                ctaText.textContent = 'Tümünü Gör';
+                bgGlow.style.backgroundColor = 'transparent';
+            });
+            
+            // Tıklama (Basma) Efekti
+            card.addEventListener('mousedown', () => {
+                card.style.transitionDuration = '0.1s'; // Anında tepki vermesi için süreyi kısalttık
+                const id = card.getAttribute('data-id');
+                const state = getCardState(id, id);
+                card.style.transform = `translate(${state.x}px, ${state.y}px) rotate(${state.rotate}deg) scale(${state.scale * 0.95})`;
+            });
+            card.addEventListener('mouseup', () => {
+                card.style.transitionDuration = '0.6s'; // Geri dönüşü normal hıza aldık
+                const id = card.getAttribute('data-id');
+                // Sadece hala üzerinde hover ise normal hover state'ine dön
+                if (currentHoveredId === id) {
+                    updateCards(id);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pegasus Boarding Pass Masthead</title>
+  
+  <!-- Tailwind CSS (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Pegasus Fontu (Nunito Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind Konfigürasyonu -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Nunito Sans"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Özel Animasyon Stilleri -->
+  <style>
+    /* Uçak İlerleme Çubuğu Animasyonu */
+    @keyframes flyProgress {
+      0% { width: 0%; }
+      100% { width: 100%; }
+    }
+    .animate-fly {
+      animation: flyProgress 2.5s linear infinite;
+    }
+
+    /* Rota Metni Animasyonu */
+    .dest-text {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Fiyat Metni Animasyonu */
+    .price-text {
+      transition: all 0.3s ease;
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Barkod Deseni */
+    .barcode-pattern {
+      background: repeating-linear-gradient(
+        to right,
+        #111827,
+        #111827 2px,
+        transparent 2px,
+        transparent 6px,
+        #111827 6px,
+        #111827 10px,
+        transparent 10px,
+        transparent 12px,
+        #111827 12px,
+        #111827 14px,
+        transparent 14px,
+        transparent 18px
+      );
+    }
+  </style>
+</head>
+<body class="bg-gray-200 flex items-center justify-center min-h-screen p-4 font-sans">
+
+  <!-- Masthead Container (970x250) -->
+  <div onclick="window.open('https://web.flypgs.com/trip-finder?currency=TL&language=tr', '_blank')"
+       class="w-[970px] h-[250px] bg-transparent flex cursor-pointer drop-shadow-2xl group">
+    
+    <!-- Sol Kısım: Ana Bilet -->
+    <div class="flex-1 bg-white rounded-l-2xl p-6 flex flex-col justify-between relative overflow-hidden">
+      
+      <!-- Dekoratif Uçak Filigranı (Watermark) -->
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute -right-12 -bottom-16 w-80 h-80 text-gray-50 opacity-60 -rotate-45 pointer-events-none">
+        <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.2-1.1.6L3 8l6 4-3 3-3.2-.8c-.4-.1-.8.2-1 .6L1 16l4 2 2 4c.4.2.9-.2.8-.6L7 18l3-3 4 6c.4.2.7-.2.6-.6z"/>
+      </svg>
+
+      <!-- Üst Bilgi (Header) -->
+      <div class="flex justify-between items-center border-b-2 border-gray-100 pb-4 relative z-10">
+        <div class="flex items-center">
+          <img src="https://cdnp.flypgs.com/files/pegasus-logo.svg" alt="Pegasus" class="h-7 object-contain" referrerpolicy="no-referrer" />
+          <span class="text-gray-300 font-black tracking-[0.2em] text-sm ml-6 border-l-2 border-gray-200 pl-6">
+            YAZ BİLETİ
+          </span>
+        </div>
+        <div class="text-right">
+          <p class="text-gray-400 text-[10px] font-bold uppercase tracking-wider">Uçuş / Flight</p>
+          <p class="text-gray-900 font-black text-lg tracking-tight">PC-YAZ24</p>
+        </div>
+      </div>
+
+      <!-- Rota Alanı -->
+      <div class="flex items-center justify-between mt-2 relative z-10">
+        <div class="flex-1">
+          <p class="text-gray-400 text-[10px] font-bold uppercase tracking-wider mb-1">Nereden / From</p>
+          <p class="text-4xl font-black text-gray-900 tracking-tight">İSTANBUL</p>
+        </div>
+        
+        <!-- Animasyonlu Uçak ve Çizgi -->
+        <div class="px-8 flex flex-col items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-[#E30A17] mb-2">
+            <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.2-1.1.6L3 8l6 4-3 3-3.2-.8c-.4-.1-.8.2-1 .6L1 16l4 2 2 4c.4.2.9-.2.8-.6L7 18l3-3 4 6c.4.2.7-.2.6-.6z"/>
+          </svg>
+          <div class="w-32 h-1 bg-gray-100 rounded-full relative overflow-hidden">
+            <div class="absolute top-0 left-0 h-full bg-[#E30A17] rounded-full animate-fly"></div>
+          </div>
+        </div>
+
+        <div class="flex-1 text-right">
+          <p class="text-gray-400 text-[10px] font-bold uppercase tracking-wider mb-1">Nereye / To</p>
+          <div class="h-10 overflow-hidden relative flex justify-end">
+            <!-- Dinamik Rota Metni -->
+            <p id="dest-name" class="dest-text text-4xl font-black text-[#E30A17] tracking-tight">ANTALYA</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Alt Bilgi (Footer) -->
+      <div class="flex justify-between items-end mt-2 pt-4 border-t-2 border-gray-100 relative z-10">
+        <div>
+          <p class="text-gray-400 text-[10px] font-bold uppercase tracking-wider">Yolcu / Passenger</p>
+          <p class="text-gray-900 font-extrabold text-base">SEYAHAT TUTKUNU</p>
+        </div>
+        <div>
+          <p class="text-gray-400 text-[10px] font-bold uppercase tracking-wider">Tarih / Date</p>
+          <p class="text-gray-900 font-extrabold text-base">BU YAZ</p>
+        </div>
+        <div>
+          <p class="text-gray-400 text-[10px] font-bold uppercase tracking-wider">Kapı / Gate</p>
+          <p class="text-gray-900 font-extrabold text-base text-right">AÇIK</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Koparma Çizgisi (Perforated Divider) -->
+    <div class="w-0 border-r-[4px] border-dashed border-gray-300 relative z-20 bg-white">
+      <div class="absolute -top-4 -left-4 w-8 h-8 bg-gray-200 rounded-full shadow-inner"></div>
+      <div class="absolute -bottom-4 -left-4 w-8 h-8 bg-gray-200 rounded-full shadow-inner"></div>
+    </div>
+
+    <!-- Sağ Kısım: Koparma Kuponu (Stub) -->
+    <div class="w-[280px] bg-[#FFC000] rounded-r-2xl p-6 flex flex-col justify-between items-center relative overflow-hidden">
+      
+      <div class="text-center w-full z-10">
+        <p class="text-gray-900 font-black text-3xl leading-[1.1] tracking-tight mb-2">
+          Senin yaz<br/>rotan neresi?
+        </p>
+      </div>
+
+      <div class="bg-white text-center py-3 px-4 rounded-xl shadow-md w-full my-2 z-10">
+        <p class="text-gray-500 text-[10px] font-bold uppercase tracking-wider mb-1">Başlayan Fiyatlarla</p>
+        <div class="h-9 overflow-hidden relative flex justify-center items-center">
+          <!-- Dinamik Fiyat Metni -->
+          <p id="dest-price" class="price-text text-[#E30A17] font-black text-3xl tracking-tight">799 TL</p>
+        </div>
+      </div>
+
+      <button class="w-full bg-[#E30A17] text-white font-bold py-3.5 rounded-full group-hover:bg-gray-900 transition-colors duration-300 shadow-lg flex items-center justify-center z-10 text-sm uppercase tracking-wider">
+        Biletini Al 
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+      
+      <!-- Alt Barkod Deseni -->
+      <div class="absolute bottom-0 left-0 w-full h-2 barcode-pattern opacity-20"></div>
+    </div>
+  </div>
+
+  <!-- Dinamik İçerik Scripti -->
+  <script>
+    const destinations = [
+      { name: 'ANTALYA', price: '799 TL' },
+      { name: 'ROMA', price: '49 €' },
+      { name: 'KIBRIS', price: '999 TL' },
+      { name: 'BODRUM', price: '899 TL' },
+      { name: 'PARİS', price: '59 €' }
+    ];
+
+    let currentIndex = 0;
+    const destNameEl = document.getElementById('dest-name');
+    const destPriceEl = document.getElementById('dest-price');
+
+    setInterval(() => {
+      // 1. Çıkış animasyonu (Yukarı kaybolma ve küçülme)
+      destNameEl.style.opacity = '0';
+      destNameEl.style.transform = 'translateY(-40px)';
+      
+      destPriceEl.style.opacity = '0';
+      destPriceEl.style.transform = 'scale(0.5)';
+      
+      // 2. Metinleri değiştir ve giriş animasyonuna hazırla
+      setTimeout(() => {
+        currentIndex = (currentIndex + 1) % destinations.length;
+        
+        // Yeni değerleri ata
+        destNameEl.innerText = destinations[currentIndex].name;
+        destPriceEl.innerText = destinations[currentIndex].price;
+        
+        // Rota metnini animasyonsuz olarak aşağıya al (giriş için)
+        destNameEl.style.transition = 'none';
+        destNameEl.style.transform = 'translateY(40px)';
+        
+        // Tarayıcıyı yeniden çizmeye zorla (Reflow)
+        void destNameEl.offsetWidth;
+        
+        // 3. Giriş animasyonu (Aşağıdan yukarı gelme ve büyüme)
+        destNameEl.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+        destNameEl.style.opacity = '1';
+        destNameEl.style.transform = 'translateY(0)';
+        
+        destPriceEl.style.opacity = '1';
+        destPriceEl.style.transform = 'scale(1)';
+      }, 400); // Çıkış animasyonunun bitmesini bekle
+      
+    }, 2500); // Her 2.5 saniyede bir tekrarla
+  </script>
+</body>
+</html>

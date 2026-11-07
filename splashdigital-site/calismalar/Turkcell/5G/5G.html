@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Turkcell 5G Masthead Banner </title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- React & ReactDOM -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  
+  <!-- Framer Motion -->
+  <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+  
+  <!-- Babel for JSX Compilation in Browser -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    body { margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; background-color: #171717; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+    const { motion, AnimatePresence, useAnimation } = window.Motion;
+
+    // SVG Icons
+    const MapPin = ({ size = 24, color = "currentColor", className = "" }) => (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+    );
+    const Zap = ({ size = 24, color = "currentColor", fill = "none", className = "" }) => (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill={fill} stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+    );
+    const Smartphone = ({ size = 24, color = "currentColor", strokeWidth = 2, className = "" }) => (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+    );
+    const Navigation = ({ size = 24, color = "currentColor", className = "" }) => (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+    );
+    const ChevronRight = ({ size = 24, color = "currentColor", className = "" }) => (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m9 18 6-6-6-6"/></svg>
+    );
+    const Store = ({ size = 24, color = "currentColor", className = "" }) => (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/><path d="M22 7v3a2 2 0 0 1-2 2v0a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12v0a2 2 0 0 1-2-2V7"/></svg>
+    );
+    const RefreshCw = ({ size = 24, color = "currentColor", className = "" }) => (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+    );
+    const Wifi = ({ size = 24, color = "currentColor", className = "" }) => (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M12 20h.01"/><path d="M2 8.82a15 15 0 0 1 20 0"/><path d="M5 12.859a10 10 0 0 1 14 0"/><path d="M8.5 16.429a5 5 0 0 1 7 0"/></svg>
+    );
+    const SignalHigh = ({ size = 24, color = "currentColor", className = "" }) => (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M2 20h.01"/><path d="M7 20v-4"/><path d="M12 20v-8"/><path d="M17 20V8"/></svg>
+    );
+
+    // Turkcell Brand Colors
+    const COLORS = {
+      yellow: '#FFC900',
+      blue: '#2855AC',
+      darkBlue: '#001A3B',
+      white: '#FFFFFF',
+      gray: '#F5F5F5',
+    };
+
+    function App() {
+      const [scene, setScene] = useState(0);
+      const containerRef = useRef(null);
+      const controls = useAnimation();
+
+      const handleDragEnd = (event, info) => {
+        if (info.offset.x > 150) {
+          setScene(1);
+        } else {
+          controls.start({ x: 0, transition: { type: 'spring', stiffness: 300, damping: 20 } });
+        }
+      };
+
+      const resetBanner = () => {
+        setScene(0);
+        controls.set({ x: 0 });
+      };
+
+      return (
+        <div className="min-h-screen bg-neutral-900 flex items-center justify-center p-4 overflow-hidden font-sans">
+          <div 
+            className="relative overflow-hidden rounded-xl shadow-2xl flex-shrink-0"
+            style={{ width: '970px', height: '250px', backgroundColor: COLORS.darkBlue }}
+          >
+            <AnimatePresence mode="wait">
+              
+              {/* SCENE 0: The Hook - 5G Speed Slider */}
+              {scene === 0 && (
+                <motion.div
+                  key="scene0"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0, x: -100 }}
+                  transition={{ duration: 0.5 }}
+                  className="absolute inset-0 flex items-center justify-between px-12"
+                  style={{
+                    background: `linear-gradient(135deg, ${COLORS.darkBlue} 0%, ${COLORS.blue} 100%)`,
+                  }}
+                >
+                  {/* Animated Background Speed Lines */}
+                  <div className="absolute inset-0 overflow-hidden opacity-30 pointer-events-none">
+                    {[...Array(35)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        className="absolute h-[2px] bg-white rounded-full"
+                        style={{
+                          top: `${Math.random() * 100}%`,
+                          left: '-10%',
+                          width: `${Math.random() * 30 + 10}%`,
+                        }}
+                        animate={{
+                          x: ['0vw', '120vw'],
+                        }}
+                        transition={{
+                          duration: Math.random() * 0.8 + 0.4,
+                          repeat: Infinity,
+                          ease: 'linear',
+                          delay: Math.random() * 2,
+                        }}
+                      />
+                    ))}
+                  </div>
+
+                  {/* Glowing 5G Visual on the Right */}
+                  <div className="absolute right-40 top-1/2 -translate-y-1/2 pointer-events-none flex items-center justify-center">
+                    <motion.div
+                      animate={{ scale: [1, 1.3, 1], opacity: [0.4, 0.8, 0.4], rotate: [0, 90, 180] }}
+                      transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                      className="absolute w-72 h-72 bg-[#FFC900] rounded-full blur-[80px]"
+                    />
+                    <motion.div
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                      className="absolute w-[320px] h-[320px] rounded-full border-2 border-dashed border-[#FFC900]/40"
+                    />
+                    <motion.div
+                      animate={{ rotate: -360 }}
+                      transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                      className="absolute w-[400px] h-[400px] rounded-full border border-[#FFC900]/20"
+                    />
+                    <motion.div
+                      animate={{ y: [-15, 15, -15], rotateZ: [-4, 4, -4] }}
+                      transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                      className="z-10 relative"
+                    >
+                      <Smartphone size={160} color="white" strokeWidth={1} />
+                      <motion.div
+                        animate={{ opacity: [0, 1, 0], scale: [0.8, 1.2, 0.8] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                      >
+                        <SignalHigh size={64} color="#FFC900" />
+                      </motion.div>
+                    </motion.div>
+                  </div>
+
+                  <div className="z-10 max-w-lg">
+                    <motion.div
+                      animate={{ y: [-4, 4, -4] }}
+                      transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                    >
+                      <motion.div
+                        initial={{ y: 20, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ delay: 0.1 }}
+                        className="mb-6 relative inline-block"
+                      >
+                        <div className="absolute inset-0 bg-white/30 blur-xl rounded-full scale-150"></div>
+                        <img 
+                          src="https://upload.wikimedia.org/wikipedia/tr/6/6f/Turkcell_logo.png" 
+                          alt="Turkcell" 
+                          className="h-10 object-contain relative z-10 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
+                          referrerPolicy="no-referrer"
+                        />
+                      </motion.div>
+                      <motion.div
+                        initial={{ y: 20, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ delay: 0.2 }}
+                        className="flex items-center gap-3 mb-2"
+                      >
+                        <motion.div 
+                          animate={{ scale: [1, 1.05, 1], boxShadow: ['0 0 15px rgba(255,201,0,0.5)', '0 0 25px rgba(255,201,0,0.9)', '0 0 15px rgba(255,201,0,0.5)'] }}
+                          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                          className="bg-[#FFC900] text-[#001A3B] font-bold px-3 py-1 rounded-full text-sm tracking-wider flex items-center gap-1"
+                        >
+                          <Zap size={16} fill="#001A3B" /> IŞIK HIZINDA 5G
+                        </motion.div>
+                      </motion.div>
+                      <h1 className="text-5xl font-extrabold text-white leading-tight tracking-tight flex flex-col">
+                        <div className="flex gap-3 overflow-hidden">
+                          <motion.span
+                            initial={{ y: 50, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ delay: 0.3, duration: 0.5, type: "spring", stiffness: 100 }}
+                            className="inline-block"
+                          >Hızı</motion.span>
+                          <motion.span
+                            initial={{ y: 50, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ delay: 0.4, duration: 0.5, type: "spring", stiffness: 100 }}
+                            className="inline-block"
+                          >Hissetmeye</motion.span>
+                        </div>
+                        <div className="overflow-hidden">
+                          <motion.span
+                            initial={{ y: 50, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ delay: 0.5, duration: 0.5, type: "spring", stiffness: 100 }}
+                            className="inline-block"
+                            style={{ color: COLORS.yellow }}
+                          >Hazır mısın?</motion.span>
+                        </div>
+                      </h1>
+                    </motion.div>
+                  </div>
+
+                  {/* Interactive Slider */}
+                  <motion.div 
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 0.6, type: 'spring' }}
+                    className="z-10 flex flex-col items-center gap-4"
+                  >
+                    <div className="relative w-[280px] h-[64px] bg-white/10 backdrop-blur-md rounded-full border border-white/20 flex items-center px-2 overflow-hidden shadow-[0_0_30px_rgba(40,85,172,0.5)]">
+                      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <span className="text-white/70 font-semibold tracking-wide ml-12 text-sm">5G'yi Başlatmak İçin Kaydır</span>
+                      </div>
+                      
+                      {/* Slider Track Fill */}
+                      <motion.div 
+                        className="absolute left-0 top-0 bottom-0 bg-gradient-to-r from-[#FFC900] to-[#FF9900] opacity-20"
+                        style={{ width: '100%', originX: 0 }}
+                        initial={{ scaleX: 0 }}
+                        animate={{ scaleX: 1 }}
+                        transition={{ duration: 2, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
+                      />
+                      
+                      {/* Shine Effect */}
+                      <motion.div
+                        className="absolute top-0 -inset-full h-full w-1/2 z-10 block transform -skew-x-12 bg-gradient-to-r from-transparent via-white to-transparent opacity-20 pointer-events-none"
+                        animate={{ left: ['-100%', '200%'] }}
+                        transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", repeatDelay: 1 }}
+                      />
+
+                      <motion.div
+                        drag="x"
+                        dragConstraints={{ left: 0, right: 216 }}
+                        dragElastic={0.1}
+                        onDragEnd={handleDragEnd}
+                        animate={controls}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95, cursor: 'grabbing' }}
+                        className="w-[50px] h-[50px] bg-[#FFC900] rounded-full flex items-center justify-center cursor-grab shadow-lg z-20"
+                      >
+                        <ChevronRight size={28} className="text-[#001A3B]" />
+                      </motion.div>
+                    </div>
+                    
+                    <motion.div 
+                      animate={{ x: [0, 5, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                      className="flex items-center gap-1 text-[#FFC900]/80 text-sm font-medium"
+                    >
+                      <ChevronRight size={16} />
+                      <ChevronRight size={16} className="-ml-2 opacity-70" />
+                      <ChevronRight size={16} className="-ml-2 opacity-40" />
+                    </motion.div>
+                  </motion.div>
+                </motion.div>
+              )}
+
+              {/* SCENE 1: The Product & Store */}
+              {scene === 1 && (
+                <motion.div
+                  key="scene1"
+                  initial={{ opacity: 0, x: 100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, y: -50 }}
+                  transition={{ duration: 0.6, type: 'spring', bounce: 0.2 }}
+                  className="absolute inset-0 flex"
+                >
+                  {/* Logo in Scene 1 */}
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                    className="absolute top-6 left-10 z-30"
+                  >
+                    <img 
+                      src="https://upload.wikimedia.org/wikipedia/tr/6/6f/Turkcell_logo.png" 
+                      alt="Turkcell" 
+                      className="h-8 object-contain drop-shadow-[0_0_4px_rgba(255,255,255,0.8)]"
+                      referrerPolicy="no-referrer"
+                    />
+                  </motion.div>
+
+                  {/* Left Side: Store Experience */}
+                  <div className="w-1/2 h-full relative overflow-hidden group">
+                    {/* Background Image */}
+                    <motion.div 
+                      className="absolute inset-0 bg-cover bg-center"
+                      style={{ backgroundImage: 'url(https://dmonte.com.tr/wp-content/uploads/2023/05/turkcell-pera-magaza-5.jpg)' }}
+                      animate={{ scale: [1, 1.15, 1], x: ['0%', '-3%', '0%'], y: ['0%', '2%', '0%'] }}
+                      transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+                    />
+                    {/* Floating Particles */}
+                    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+                      {[...Array(8)].map((_, i) => (
+                        <motion.div
+                          key={`particle-l-${i}`}
+                          className="absolute w-1.5 h-1.5 bg-white rounded-full blur-[1px]"
+                          animate={{ y: ['100vh', '-20vh'], opacity: [0, 0.8, 0], x: [0, Math.random() * 40 - 20] }}
+                          transition={{ duration: Math.random() * 4 + 3, repeat: Infinity, delay: Math.random() * 3, ease: "linear" }}
+                          style={{ left: `${Math.random() * 100}%` }}
+                        />
+                      ))}
+                    </div>
+                    {/* Premium Overlays */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#FFC900]/90 to-[#FFC900]/40 mix-blend-multiply" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#001A3B]/90 via-[#001A3B]/40 to-transparent" />
+                    
+                    <div className="relative h-full flex flex-col justify-end px-10 pb-6 pt-12">
+                      <motion.div 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3 }}
+                      >
+                        <motion.div 
+                          animate={{ y: [-4, 4, -4] }}
+                          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                          className="w-10 h-10 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center mb-3 border border-white/30 shadow-lg"
+                        >
+                          <Store size={20} color={COLORS.white} />
+                        </motion.div>
+                        <h2 className="text-2xl font-extrabold text-white leading-tight mb-1 drop-shadow-lg">
+                          Yenilenen <br />Mağazalarımızda
+                        </h2>
+                        <p className="text-white/90 font-medium text-base drop-shadow-md">
+                          Yeni nesil teknoloji deneyimi.
+                        </p>
+                      </motion.div>
+                    </div>
+                    
+                    {/* Diagonal cut effect */}
+                    <motion.div 
+                      initial={{ x: '100%' }}
+                      animate={{ x: '3rem' }}
+                      transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+                      className="absolute top-0 bottom-0 right-0 w-24 bg-gradient-to-l from-[#001A3B] to-transparent transform -skew-x-12 z-10 opacity-50" 
+                    />
+                  </div>
+
+                  {/* Right Side: 5G Devices */}
+                  <div className="w-1/2 h-full relative overflow-hidden group">
+                    {/* Background Image */}
+                    <motion.div 
+                      className="absolute inset-0 bg-cover bg-center"
+                      style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?auto=format&fit=crop&q=80&w=1000)' }}
+                      animate={{ scale: [1.15, 1, 1.15], x: ['-3%', '0%', '-3%'], y: ['-2%', '0%', '-2%'] }}
+                      transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+                    />
+                    {/* Floating Particles */}
+                    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+                      {[...Array(8)].map((_, i) => (
+                        <motion.div
+                          key={`particle-r-${i}`}
+                          className="absolute w-1.5 h-1.5 bg-[#FFC900] rounded-full blur-[1px]"
+                          animate={{ y: ['100vh', '-20vh'], opacity: [0, 0.8, 0], x: [0, Math.random() * -40 + 20] }}
+                          transition={{ duration: Math.random() * 4 + 3, repeat: Infinity, delay: Math.random() * 3, ease: "linear" }}
+                          style={{ left: `${Math.random() * 100}%` }}
+                        />
+                      ))}
+                    </div>
+                    {/* Premium Overlays */}
+                    <div className="absolute inset-0 bg-gradient-to-l from-[#2855AC]/90 to-[#001A3B]/60 mix-blend-multiply" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#001A3B]/90 via-[#001A3B]/40 to-transparent" />
+
+                    <div className="relative h-full flex flex-col justify-end items-end px-10 pb-6 pt-12 text-right">
+                      <motion.div 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.5 }}
+                        className="flex flex-col items-end"
+                      >
+                        <motion.div 
+                          animate={{ y: [-4, 4, -4] }}
+                          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                          className="w-10 h-10 bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center mb-3 border border-white/20 shadow-[0_0_15px_rgba(255,201,0,0.3)]"
+                        >
+                          <Wifi size={20} color={COLORS.yellow} />
+                        </motion.div>
+                        <h2 className="text-2xl font-extrabold text-white leading-tight mb-2 drop-shadow-lg">
+                          En Yeni 5G <br />Cihazlar Seni Bekliyor
+                        </h2>
+                        
+                        <motion.button
+                          whileHover={{ scale: 1.05, backgroundColor: '#fff', color: COLORS.blue }}
+                          whileTap={{ scale: 0.95 }}
+                          onClick={() => setScene(2)}
+                          className="mt-2 px-5 py-2.5 bg-[#FFC900] text-[#001A3B] font-bold rounded-full shadow-[0_10px_25px_rgba(255,201,0,0.4)] flex items-center gap-2 transition-colors text-sm relative overflow-hidden"
+                        >
+                          <motion.div
+                            className="absolute top-0 -inset-full h-full w-1/2 z-0 block transform -skew-x-12 bg-gradient-to-r from-transparent via-white to-transparent opacity-40 pointer-events-none"
+                            animate={{ left: ['-100%', '200%'] }}
+                            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", repeatDelay: 2 }}
+                          />
+                          <span className="relative z-10 flex items-center gap-2">Mağazaları Keşfet <ChevronRight size={16} /></span>
+                        </motion.button>
+                      </motion.div>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+
+              {/* SCENE 2: Location & CTA */}
+              {scene === 2 && (
+                <motion.div
+                  key="scene2"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5 }}
+                  className="absolute inset-0 flex items-center justify-between px-12"
+                  style={{ backgroundColor: COLORS.darkBlue }}
+                >
+                  {/* Map Background Pattern */}
+                  <div className="absolute inset-0 perspective-[1000px] overflow-hidden pointer-events-none">
+                    <motion.div 
+                      className="absolute inset-[-50%] opacity-20"
+                      style={{
+                        backgroundImage: `radial-gradient(${COLORS.white} 2px, transparent 2px)`,
+                        backgroundSize: '40px 40px',
+                        transformOrigin: 'center center',
+                      }}
+                      animate={{ 
+                        backgroundPosition: ['0px 0px', '80px 80px'],
+                        rotateX: 60,
+                        rotateZ: [0, 5, 0, -5, 0]
+                      }}
+                      transition={{ 
+                        backgroundPosition: { duration: 4, repeat: Infinity, ease: "linear" },
+                        rotateZ: { duration: 20, repeat: Infinity, ease: "easeInOut" }
+                      }}
+                    />
+                  </div>
+
+                  <div className="z-10 max-w-md">
+                    {/* Logo in Scene 2 */}
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.1 }}
+                      className="mb-6 inline-block"
+                    >
+                      <img 
+                        src="https://upload.wikimedia.org/wikipedia/tr/6/6f/Turkcell_logo.png" 
+                        alt="Turkcell" 
+                        className="h-8 object-contain"
+                        referrerPolicy="no-referrer"
+                      />
+                    </motion.div>
+
+                    <motion.div
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.2 }}
+                    >
+                      <motion.div
+                        animate={{ y: [-3, 3, -3] }}
+                        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                      >
+                        <h2 className="text-4xl font-extrabold text-white leading-tight mb-3">
+                          Sana En Yakın <br />
+                          <span style={{ color: COLORS.yellow }}>Turkcell Mağazası</span>
+                        </h2>
+                        <p className="text-white/80 font-medium mb-6 text-lg">
+                          5G hızını ve yenilenen mağaza konseptimizi yerinde deneyimle.
+                        </p>
+                      </motion.div>
+                    </motion.div>
+                  </div>
+
+                  <div className="z-10 flex flex-col items-center justify-center w-[350px] h-[180px] bg-white/10 backdrop-blur-md rounded-2xl shadow-[0_0_30px_rgba(0,0,0,0.3)] border border-white/20 p-6 relative overflow-hidden">
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="flex flex-col items-center gap-4 w-full"
+                    >
+                      <div className="relative w-16 h-16 rounded-full flex items-center justify-center mb-2">
+                        <div className="absolute inset-0 bg-white/10 rounded-full overflow-hidden">
+                          {/* Scanning line */}
+                          <motion.div
+                            className="absolute inset-0 bg-gradient-to-b from-transparent via-[#FFC900]/50 to-transparent h-[200%] w-full z-20 pointer-events-none"
+                            animate={{ y: ['-100%', '100%'] }}
+                            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                          />
+                        </div>
+                        <motion.div
+                          animate={{ scale: [1, 2.5], opacity: [0.6, 0] }}
+                          transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
+                          className="absolute inset-0 bg-[#FFC900] rounded-full"
+                        />
+                        <motion.div
+                          animate={{ scale: [1, 2.5], opacity: [0.6, 0] }}
+                          transition={{ duration: 2, repeat: Infinity, ease: "easeOut", delay: 1 }}
+                          className="absolute inset-0 bg-[#FFC900] rounded-full"
+                        />
+                        <motion.div
+                          initial={{ y: -50, opacity: 0 }}
+                          animate={{ y: [-3, 3, -3], opacity: 1 }}
+                          transition={{ 
+                            y: { duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.5 },
+                            opacity: { duration: 0.5 }
+                          }}
+                        >
+                          <MapPin size={32} color={COLORS.yellow} className="relative z-10 drop-shadow-[0_5px_10px_rgba(255,201,0,0.5)]" />
+                        </motion.div>
+                      </div>
+                      <motion.a
+                        href="https://www.turkcell.com.tr/trc/hakkimizda/iletisim-merkezi"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="w-full py-3 bg-[#FFC900] text-[#001A3B] font-bold rounded-xl shadow-md flex items-center justify-center gap-2 relative overflow-hidden"
+                      >
+                        <motion.div
+                          className="absolute top-0 -inset-full h-full w-1/2 z-0 block transform -skew-x-12 bg-gradient-to-r from-transparent via-white to-transparent opacity-40 pointer-events-none"
+                          animate={{ left: ['-100%', '200%'] }}
+                          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", repeatDelay: 1.5 }}
+                        />
+                        <span className="relative z-10 flex items-center gap-2"><Navigation size={18} /> En Yakın Mağazayı Bul</span>
+                      </motion.a>
+                    </motion.div>
+                  </div>
+
+                  {/* Replay Button */}
+                  <motion.button
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1 }}
+                    onClick={resetBanner}
+                    className="absolute top-4 right-4 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors"
+                    title="Tekrar Oynat"
+                  >
+                    <RefreshCw size={16} />
+                  </motion.button>
+                </motion.div>
+              )}
+
+            </AnimatePresence>
+          </div>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>

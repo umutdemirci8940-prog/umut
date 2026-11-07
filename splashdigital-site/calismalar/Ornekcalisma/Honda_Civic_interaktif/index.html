@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="ad.size" content="width=970,height=250">
+  <script type="text/javascript">
+    var clickTag = "https://ad.doubleclick.net/ddm/trackclk/N948874.2453503SPLASHMEDIA/B26766419.409187547;dc_trk_aid=600927328;dc_trk_cid=225888611;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;gdpr=${GDPR};gdpr_consent=${GDPR_CONSENT_755};ltd=;dc_tdv=1";
+  </script>
+  <title>Honda Civic</title>
+  <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+      display: flex;
+      width: 970px;
+      height: 250px;
+      overflow: hidden;
+      background-color: #f0f0f0;
+    }
+    .image {
+      height: 250px;
+      background-size: cover;
+      background-position: center;
+      transition: width 0.7s ease;
+      cursor: pointer;
+      position: relative;
+    }
+    .image1 { background-image: url('big-1.png'); }
+    .image2 { background-image: url('big-2.png'); }
+    .image3 { background-image: url('big-3.png'); }
+    .image4 { background-image: url('big-4.png'); }
+    .image1 { width: 610px; }
+    .image2, .image3, .image4 { width: 120px; }
+    .expanded {
+      width: 610px;
+    }
+    .shrinked {
+      width: 120px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="image image4" onclick="expandImage(4)"></div>
+    <div class="image image3" onclick="expandImage(3)"></div>
+    <div class="image image2" onclick="expandImage(2)"></div>
+    <div class="image image1" onclick="expandImage(1)"></div>
+  </div>
+
+  <script>
+    function expandImage(clickedIndex) {
+      const images = document.querySelectorAll('.image');
+
+      // Tüm görsellerin durumlarını sıfırla
+      images.forEach((image) => {
+        image.classList.add('shrinked');
+        image.classList.remove('expanded');
+
+        // Daha önce eklenmiş olan <a> etiketlerini temizle
+        const link = image.querySelector('a');
+        if (link) {
+          link.replaceWith(...link.childNodes);
+        }
+      });
+
+      // Tıklanan görseli genişlet
+      const clickedImage = images[images.length - clickedIndex];
+      clickedImage.classList.add('expanded');
+      clickedImage.classList.remove('shrinked');
+
+      // Tıklanabilirlik için <a> etiketi ekle
+      const link = document.createElement('a');
+      link.href = clickTag; // clickTag değişkeni ile URL'yi ayarla
+      link.target = '_blank';
+      link.style.display = 'block';
+      link.style.width = '100%';
+      link.style.height = '100%';
+      link.style.position = 'absolute';
+      link.style.top = '0';
+      link.style.left = '0';
+
+      // <a> etiketini genişletilen görselin içine ekle
+      clickedImage.appendChild(link);
+    }
+
+    // Sayfa yüklendiğinde .image1 öğesini tıklanabilir yap
+    window.onload = function () {
+      expandImage(1);
+    };
+  </script>
+</body>
+</html>

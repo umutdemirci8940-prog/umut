@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bankkart Premium 3D Cinematic Masthead</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- React & ReactDOM -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    
+    <!-- Framer Motion -->
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+    
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { 
+            font-family: 'Inter', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background-color: #ffffff; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        const { createRoot } = ReactDOM;
+        const { motion, AnimatePresence, useMotionValue, useSpring, useTransform } = window.Motion;
+
+        // Icons
+        const ArrowRight = ({ className }) => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>;
+        const Plane = ({ className }) => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.2-1.1.6L3 8l7 4-3 3-3.5-.5L2 16l4.5 1.5L8 22l1.5-1.5-.5-3.5 3-3 4 7c.4.2.7.1.6-.4Z"/></svg>;
+        const Utensils = ({ className }) => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>;
+        const ShoppingBag = ({ className }) => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>;
+        const Bed = ({ className }) => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></svg>;
+
+        const benefits = [
+            {
+                id: 'seyahat',
+                title: 'Sınırları Aşan Seyahat',
+                short: 'Seyahat',
+                desc: 'Yurt içi ve yurt dışı uçuşlarda ücretsiz lounge erişimi ve üst düzey konfor.',
+                icon: Plane,
+                image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80&w=1000'
+            },
+            {
+                id: 'gastronomi',
+                title: 'Gastronomi Deneyimi',
+                short: 'Gastronomi',
+                desc: 'Michelin yıldızlı restoranlarda ve fine dining mekanlarda öncelikli rezervasyon.',
+                icon: Utensils,
+                image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&q=80&w=1000'
+            },
+            {
+                id: 'alisveris',
+                title: 'Özel Alışveriş',
+                short: 'Alışveriş',
+                desc: 'Seçkin markalarda %50\'ye varan indirimler ve size özel benzersiz fırsatlar.',
+                icon: ShoppingBag,
+                image: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&q=80&w=1000'
+            },
+            {
+                id: 'konaklama',
+                title: 'Lüks Konaklama',
+                short: 'Konaklama',
+                desc: 'Anlaşmalı seçkin otellerde indirimli konaklama ve oda yükseltme ayrıcalıkları.',
+                icon: Bed,
+                image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=1000'
+            }
+        ];
+
+        function App() {
+            const [activeIdx, setActiveIdx] = useState(0);
+            const [isHovered, setIsHovered] = useState(false);
+
+            // 3D Mouse Tracking for the Card
+            const x = useMotionValue(0);
+            const y = useMotionValue(0);
+            const mouseXSpring = useSpring(x, { stiffness: 150, damping: 20 });
+            const mouseYSpring = useSpring(y, { stiffness: 150, damping: 20 });
+            
+            // Rotate card based on mouse position
+            const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["15deg", "-15deg"]);
+            const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-15deg", "15deg"]);
+            
+            // Move glare effect opposite to rotation
+            const glareX = useTransform(mouseXSpring, [-0.5, 0.5], ["100%", "-100%"]);
+            const glareY = useTransform(mouseYSpring, [-0.5, 0.5], ["100%", "-100%"]);
+
+            const handleMouseMove = (e) => {
+                const rect = e.currentTarget.getBoundingClientRect();
+                const width = rect.width;
+                const height = rect.height;
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
+                x.set(mouseX / width - 0.5);
+                y.set(mouseY / height - 0.5);
+            };
+
+            const handleMouseLeave = () => {
+                x.set(0);
+                y.set(0);
+                setIsHovered(false);
+            };
+
+            // Auto-rotate campaigns
+            useEffect(() => {
+                if (isHovered) return;
+                const timer = setInterval(() => {
+                    setActiveIdx((prev) => (prev + 1) % benefits.length);
+                }, 4000);
+                return () => clearInterval(timer);
+            }, [isHovered]);
+
+            const activeBenefit = benefits[activeIdx];
+
+            return (
+                <div className="bg-white flex flex-col items-center justify-center p-4 font-sans">
+                    {/* Banner Container - Exactly 970x250 */}
+                    <div 
+                        className="w-[970px] h-[250px] bg-[#050505] shadow-[0_20px_60px_rgba(0,0,0,0.8)] relative overflow-hidden rounded-xl border border-white/10"
+                        onMouseMove={handleMouseMove}
+                        onMouseEnter={() => setIsHovered(true)}
+                        onMouseLeave={handleMouseLeave}
+                    >
+                        
+                        {/* 1. Cinematic Background */}
+                        <AnimatePresence mode="wait">
+                            <motion.img
+                                key={activeBenefit.id}
+                                src={activeBenefit.image}
+                                initial={{ opacity: 0, scale: 1.05 }}
+                                animate={{ opacity: 0.5, scale: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.8, ease: "easeInOut" }}
+                                className="absolute inset-0 w-full h-full object-cover"
+                            />
+                        </AnimatePresence>
+                        
+                        {/* Dark Gradients for readability */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-transparent z-10" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10" />
+
+                        {/* 2. Top Left: Logos */}
+                        <div className="absolute top-5 left-6 z-30 flex items-center gap-3 bg-white/90 backdrop-blur-md rounded-full px-4 py-1.5 shadow-lg border border-white/20">
+                            <img 
+                                src="https://www.bankkart.com.tr/_assets/img/logo-v3.png" 
+                                alt="Bankkart" 
+                                className="h-[14px] object-contain" 
+                            />
+                            <div className="w-[1px] h-[12px] bg-gray-300" />
+                            <img 
+                                src="https://download.logo.wine/logo/Mastercard/Mastercard-Logo.wine.png" 
+                                alt="Mastercard" 
+                                className="h-[20px] object-contain -ml-2" 
+                            />
+                        </div>
+
+                        {/* 3. Left Content: Text & CTA */}
+                        <div className="absolute left-6 top-[70px] z-30 w-[380px]">
+                            <AnimatePresence mode="wait">
+                                <motion.div
+                                    key={activeBenefit.id}
+                                    initial={{ opacity: 0, y: 15 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -15 }}
+                                    transition={{ duration: 0.4, ease: "easeOut" }}
+                                >
+                                    <h2 className="text-white text-[26px] font-bold leading-tight tracking-tight mb-2 drop-shadow-lg">
+                                        {activeBenefit.title}
+                                    </h2>
+                                    <p className="text-gray-300 text-[13px] leading-relaxed mb-5 drop-shadow-md">
+                                        {activeBenefit.desc}
+                                    </p>
+                                </motion.div>
+                            </AnimatePresence>
+
+                            <a 
+                                href="https://www.bankkart.com.tr/kartlar/prestij-kart"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-max bg-[#E60000] hover:bg-[#cc0000] text-white px-6 py-2.5 rounded-lg text-[13px] font-bold transition-all flex items-center gap-2 shadow-[0_4px_15px_rgba(230,0,0,0.5)] hover:shadow-[0_4px_25px_rgba(230,0,0,0.7)] hover:-translate-y-0.5 group/btn border border-red-500/50"
+                            >
+                                Hemen Başvur
+                                <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
+                            </a>
+                        </div>
+
+                        {/* 4. Bottom Center: Floating Glassmorphism Nav */}
+                        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2 p-1.5 bg-black/40 backdrop-blur-xl rounded-full border border-white/10 shadow-2xl">
+                            {benefits.map((benefit, idx) => {
+                                const isActive = activeIdx === idx;
+                                const Icon = benefit.icon;
+                                return (
+                                    <button
+                                        key={benefit.id}
+                                        onClick={() => setActiveIdx(idx)}
+                                        className={`relative flex items-center gap-2 px-4 py-1.5 rounded-full transition-all duration-300 ${isActive ? 'text-white' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}
+                                    >
+                                        {isActive && (
+                                            <motion.div
+                                                layoutId="navIndicator"
+                                                className="absolute inset-0 bg-white/10 border border-white/20 rounded-full"
+                                                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                            />
+                                        )}
+                                        <Icon className={`w-3.5 h-3.5 relative z-10 ${isActive ? 'text-[#E60000]' : ''}`} />
+                                        <span className="text-[11px] font-semibold tracking-wide relative z-10">
+                                            {benefit.short}
+                                        </span>
+                                    </button>
+                                );
+                            })}
+                        </div>
+
+                        {/* 5. Right Side: 3D Interactive Card */}
+                        <div 
+                            className="absolute right-12 top-0 bottom-0 w-[350px] flex items-center justify-center z-20 pointer-events-none"
+                            style={{ perspective: 1200 }}
+                        >
+                            <motion.div
+                                style={{ 
+                                    rotateX, 
+                                    rotateY,
+                                    transformStyle: "preserve-3d"
+                                }}
+                                className="relative w-[260px] h-auto drop-shadow-[0_30px_40px_rgba(0,0,0,0.8)]"
+                            >
+                                <img
+                                    src="https://www.bankkart.com.tr/_assets/img/prestige-card/prestige-card-hero.png"
+                                    alt="Prestige Card"
+                                    className="w-full h-auto relative z-10"
+                                />
+                                
+                                {/* Dynamic Glare Effect */}
+                                <div className="absolute inset-0 z-20 rounded-xl overflow-hidden mix-blend-overlay">
+                                    <motion.div 
+                                        style={{ x: glareX, y: glareY }}
+                                        className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/40 to-white/0 w-[200%] h-[200%] -top-[50%] -left-[50%]"
+                                    />
+                                </div>
+
+                                {/* 3D Floating Elements behind the card */}
+                                <motion.div 
+                                    className="absolute -inset-4 bg-[#E60000]/20 blur-[40px] rounded-full z-0"
+                                    style={{ translateZ: -50 }}
+                                />
+                            </motion.div>
+                        </div>
+
+                    </div>
+                </div>
+            );
+        }
+
+        const root = createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

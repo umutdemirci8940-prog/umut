@@ -4,189 +4,1218 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>İnteraktif Proje Örnekleri | Splash Digital</title>
-  <meta name="description" content="Splash Digital interaktif masthead ve rich media proje örnekleri: kozmetik, otomotiv, finans, perakende ve daha birçok sektörden çalışmalar.">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Splash Digital interaktif masthead ve rich media proje örnekleri: kozmetik, otomotiv, finans, teknoloji, gıda, seyahat ve daha birçok sektörden 62 çalışma.">
+  <meta name="theme-color" content="#060b1d">
   <link rel="canonical" href="https://www.splashdigital.com.tr/projeler">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="tr_TR">
   <meta property="og:title" content="Splash Digital | İnteraktif Proje Örnekleri">
   <meta property="og:description" content="Markalar için hazırladığımız interaktif masthead ve rich media çalışmaları.">
   <meta property="og:url" content="https://www.splashdigital.com.tr/projeler">
-  <meta property="og:image" content="https://www.splashdigital.com.tr/assets/img/projeler/sayfa-01.jpg">
+  <meta property="og:image" content="https://www.splashdigital.com.tr/assets/img/projeler/kapak.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..800&family=Instrument+Sans:wght@400..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preload" href="assets/fonts/Archivo-X-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/InstrumentSans-400.woff2" as="font" type="font/woff2" crossorigin>
   <style>
-    :root { --text: #0c1b2e; --muted: #627389; --line: #e4eaf1; --brand: #127dc5; --brand-dark: #0b5f98; --bg: #f3f6fa; }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    html, body { margin: 0; }
-    body { background: var(--bg); color: var(--text); font: 400 15px/1.6 'Instrument Sans', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
-    a { color: inherit; text-decoration: none; }
-    .bar { position: sticky; top: 0; z-index: 10; background: rgba(255, 255, 255, .92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
-    .bar__in { width: min(1200px, 100% - 32px); margin: 0 auto; height: 72px; display: flex; align-items: center; gap: 16px; }
-    .bar__logo img { height: 54px; width: auto; margin-block: -4px; display: block; }
-    .bar__title { flex: 1; min-width: 0; font: 600 15px/1.2 Archivo, sans-serif; border-left: 1px solid var(--line); padding-left: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .bar__title small { display: block; font: 500 12px/1.3 'Instrument Sans', sans-serif; color: var(--muted); margin-top: 3px; }
-    .btn { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 18px; border-radius: 999px; font: 600 14px/1 'Instrument Sans', sans-serif; border: 1px solid var(--line); background: #fff; color: var(--text); white-space: nowrap; transition: border-color .2s, background .2s; }
-    .btn:hover { border-color: var(--text); }
-    .btn--primary { background: var(--brand); border-color: var(--brand); color: #fff; }
-    .btn--primary:hover { background: var(--brand-dark); border-color: var(--brand-dark); }
-    .btn svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-    main { width: min(1100px, 100% - 24px); margin: 24px auto 0; }
-    .pages { display: grid; gap: 18px; }
-    .pg { position: relative; margin: 0; background: #eef2f6; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 2px rgba(12, 27, 46, .05), 0 12px 30px -16px rgba(12, 27, 46, .25); }
-    .pg img { display: block; width: 100%; height: 100%; object-fit: cover; }
-    .pg a.lnk { position: absolute; display: block; border-radius: 6px; transition: background .2s, box-shadow .2s; }
-    .pg a.lnk:hover, .pg a.lnk:focus-visible { background: rgba(18, 125, 197, .1); box-shadow: 0 0 0 2px rgba(18, 125, 197, .55); outline: none; }
-    .foot { text-align: center; color: var(--muted); font-size: 14px; padding: 36px 16px 56px; }
-    .foot strong { display: block; font: 600 20px/1.3 Archivo, sans-serif; color: var(--text); margin-bottom: 14px; }
-    .foot .btn { margin: 0 4px 8px; }
-    .count { position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); background: rgba(12, 27, 46, .85); color: #fff; font: 600 13px/1 'Instrument Sans', sans-serif; padding: 9px 14px; border-radius: 999px; opacity: 0; transition: opacity .3s; pointer-events: none; }
-    .count.is-on { opacity: 1; }
-    .top { position: fixed; right: 18px; bottom: 18px; width: 44px; height: 44px; border-radius: 50%; background: #fff; border: 1px solid var(--line); display: grid; place-items: center; box-shadow: 0 8px 20px -10px rgba(12, 27, 46, .35); opacity: 0; pointer-events: none; transition: opacity .3s; }
-    .top.is-on { opacity: 1; pointer-events: auto; }
-    .top svg { width: 18px; height: 18px; fill: none; stroke: var(--text); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-    /* Animasyonlar */
-    .progress { position: fixed; inset: 0 0 auto; height: 2px; z-index: 20; pointer-events: none; }
-    .progress span { display: block; height: 100%; transform-origin: left; transform: scaleX(var(--sp, 0)); background: linear-gradient(90deg, var(--brand), #3fb3f0); box-shadow: 0 0 10px rgba(63, 179, 240, .7); }
-    .js .pg { opacity: 0; transform: perspective(1600px) translateY(60px) rotateX(16deg); transform-origin: 50% 0; transition: opacity .7s, transform .9s cubic-bezier(.2, .8, .2, 1), box-shadow .3s; }
-    .js .pg.is-in { opacity: 1; transform: none; }
-    .pg::after { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 2px; pointer-events: none; opacity: 0; background: linear-gradient(90deg, transparent, #3fb3f0, transparent); box-shadow: 0 0 14px 2px rgba(63, 179, 240, .7); }
-    .pg:hover::after { opacity: 1; animation: pscan 1.8s linear infinite; }
-    .pg:hover { box-shadow: 0 1px 2px rgba(12, 27, 46, .05), 0 24px 50px -20px rgba(18, 125, 197, .45); }
-    @keyframes pscan { from { top: 0; } to { top: 100%; } }
-    .pg a.lnk { animation: lnkPulse 2.4s ease-in-out infinite; }
-    @keyframes lnkPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(18, 125, 197, 0); } 50% { box-shadow: 0 0 0 3px rgba(18, 125, 197, .28); } }
-    .bar__title { position: relative; }
-    .bar__title small::before { content: '// '; color: #9fb3c8; }
-    @media (prefers-reduced-motion: reduce) { .js .pg { opacity: 1; transform: none; transition: none; } .pg a.lnk, .pg:hover::after { animation: none; } }
-    @media (max-width: 700px) {
-      .bar__title, .hide-sm { display: none; }
-      .bar__in { justify-content: space-between; height: 64px; }
-      .bar__logo img { height: 46px; }
-      main { width: calc(100% - 16px); margin-top: 10px; }
-      .pages { gap: 10px; }
-      .pg { border-radius: 6px; }
-    }
+:root {
+  --bg: #060b1d; --bg2: #0a1230; --ink: #eef4fc; --soft: #b8c6da; --mute: #7487a3;
+  --line: #1f2941; --blue: #1e8fe0; --blue2: #57b4ff; --brand: #127dc5;
+}
+@font-face { font-family: 'Archivo'; src: url(assets/fonts/Archivo-X-650.woff2) format('woff2'); font-display: swap; font-weight: 650; font-style: normal; }
+@font-face { font-family: 'Archivo'; src: url(assets/fonts/Archivo-X-700.woff2) format('woff2'); font-display: swap; font-weight: 700; font-style: normal; }
+@font-face { font-family: 'Archivo'; src: url(assets/fonts/Archivo-XX-800.woff2) format('woff2'); font-display: swap; font-weight: 800; font-style: normal; }
+@font-face { font-family: 'Instrument Sans'; src: url(assets/fonts/InstrumentSans-400.woff2) format('woff2'); font-display: swap; font-weight: 400; font-style: normal; }
+@font-face { font-family: 'Instrument Sans'; src: url(assets/fonts/InstrumentSans-500.woff2) format('woff2'); font-display: swap; font-weight: 500; font-style: normal; }
+@font-face { font-family: 'Instrument Sans'; src: url(assets/fonts/InstrumentSans-600.woff2) format('woff2'); font-display: swap; font-weight: 600; font-style: normal; }
+@font-face { font-family: 'JetBrains Mono'; src: url(assets/fonts/JetBrainsMono-400.woff2) format('woff2'); font-display: swap; font-weight: 400; font-style: normal; }
+@font-face { font-family: 'JetBrains Mono'; src: url(assets/fonts/JetBrainsMono-500.woff2) format('woff2'); font-display: swap; font-weight: 500; font-style: normal; }
+@font-face { font-family: 'Instrument Serif'; src: url(assets/fonts/InstrumentSerif-Italic.woff2) format('woff2'); font-display: swap; font-weight: 400; font-style: italic; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--bg); }
+body { font-family: 'Instrument Sans', system-ui, sans-serif; color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+a { color: inherit; text-decoration: none; }
+em { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: var(--blue2); letter-spacing: 0; }
+
+.slide { width: 1920px; height: 1080px; position: relative; overflow: hidden; page-break-after: always; break-after: page; background: var(--bg) url(assets/img/projeler/bg-a.jpg) 0 0 / 1920px 1080px no-repeat; }
+.slide.proj { background-image: url(assets/img/projeler/bg-b.jpg); }
+
+/* top bar + footer */
+.top { position: absolute !important; left: 88px; right: 88px; top: 56px; height: 56px; display: flex; align-items: center; gap: 28px; }
+.top .logo { height: 50px; width: auto; }
+.top .lbl { flex: 1; font: 500 17px/1 'JetBrains Mono', monospace; letter-spacing: .14em; text-transform: uppercase; color: var(--soft); padding-left: 28px; border-left: 1px solid var(--line); }
+.top .pn { font: 400 17px/1 'JetBrains Mono', monospace; color: var(--mute); letter-spacing: .08em; }
+.top .pn b { color: var(--ink); font-weight: 500; }
+.foot { position: absolute !important; left: 88px; right: 88px; bottom: 44px; display: flex; justify-content: space-between; font: 400 15px/1 'JetBrains Mono', monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--mute); padding-top: 18px; border-top: 1px solid var(--line); }
+
+/* ---------- project page */
+.proj .pl { position: absolute !important; left: 88px; top: 190px; width: 640px; bottom: 120px; display: flex; flex-direction: column; }
+.proj .new { align-self: flex-start; font: 500 15px/1 'JetBrains Mono', monospace; letter-spacing: .14em; text-transform: uppercase; color: #fff; background: var(--blue); padding: 10px 16px 9px; border-radius: 999px; margin-bottom: 28px; box-shadow: 0 0 0 4px #0d2e51; }
+.proj .brand { font: 700 104px/.94 'Archivo', sans-serif; font-stretch: 112%; letter-spacing: -.02em; }
+.proj .ttl { margin-top: 18px; font: italic 400 50px/1.08 'Instrument Serif', serif; color: var(--blue2); }
+.proj .rule { display: block; width: 72px; height: 3px; background: var(--blue); margin: 40px 0 34px; border-radius: 2px; }
+.proj .info { font: 400 27px/1.55 'Instrument Sans', sans-serif; color: var(--soft); }
+.proj .tags { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 34px; }
+.proj .tags li { font: 500 15px/1 'JetBrains Mono', monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--ink); border: 1px solid #384561; background: #0c1226; padding: 11px 16px 10px; border-radius: 999px; }
+.proj .cta { margin-top: auto; align-self: flex-start; display: inline-flex; align-items: center; gap: 14px; font: 600 23px/1 'Instrument Sans', sans-serif; color: #fff; background: #1a88d6; padding: 22px 30px; border-radius: 999px; box-shadow: 0 0 0 6px #0b2444; }
+.proj .cta i { font-style: normal; font-size: 26px; }
+.proj .cta.off { background: none; box-shadow: none; border: 1px dashed #3c4b69; color: var(--mute); font-weight: 500; }
+
+.proj .pr { position: absolute !important; left: 800px; right: 88px; top: 160px; bottom: 120px; display: flex; align-items: center; justify-content: center; }
+.frames { width: 100%; }
+.frames figure { position: relative; border-radius: 16px; overflow: hidden; background: #000; box-shadow: 0 0 0 1px #29344d; }
+.frames img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.frames.stack { display: flex; flex-direction: column; gap: 26px; }
+.frames.stack figure { width: 92%; aspect-ratio: 970 / 250; }
+.frames.stack figure:nth-child(2) { margin-left: 4%; }
+.frames.stack figure:nth-child(3) { margin-left: 8%; }
+.frames.stack.n1 figure { width: 100%; margin: 0; }
+.frames.stack.n2 figure { width: 94%; }
+.frames.stack.n2 figure:nth-child(2) { margin-left: 6%; }
+.frames .no { position: absolute; left: -64px; top: 50%; transform: translateY(-50%); font: 500 15px/1 'JetBrains Mono', monospace; color: var(--mute); }
+.frames.stack figure { overflow: visible; }
+.frames.stack figure img { border-radius: 16px; }
+.frames.stack .no { display: none; }
+.frames.single figure { max-height: 800px; width: fit-content; max-width: 100%; margin: 0 auto; }
+.frames.single img { width: auto; max-width: 100%; max-height: 800px; object-fit: contain; }
+.frames.tall { display: flex; gap: 24px; justify-content: center; align-items: center; }
+.frames.tall figure { flex: 1 1 0; min-width: 0; border-radius: 24px; }
+.frames.tall img { width: 100%; height: auto; }
+
+/* ---------- category page (bölüm kapağı) */
+.cat .num { position: absolute !important; right: 88px; bottom: 150px; font: 800 500px/.8 'Archivo', sans-serif; color: transparent; -webkit-text-stroke: 2px #1d3a63; letter-spacing: -.04em; z-index: 0 !important; }
+.cat .cl { position: absolute !important; left: 160px; top: 50%; transform: translateY(-50%); width: 1150px; }
+.cat .sec { font: 500 20px/1 'JetBrains Mono', monospace; letter-spacing: .28em; text-transform: uppercase; color: var(--blue2); }
+.cat h2 { margin-top: 34px; font: 700 128px/.96 'Archivo', sans-serif; letter-spacing: -.025em; }
+.cat .bar { display: block; width: 96px; height: 4px; border-radius: 2px; background: var(--blue); margin: 52px 0 40px; }
+.cat .lead { font: italic 400 44px/1.25 'Instrument Serif', serif; color: var(--soft); max-width: 760px; }
+
+/* ---------- cover */
+.cover .cv { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.biglogo { height: 120px; width: auto; }
+.cover .biglogo { height: 230px; }
+.cover h1 { margin-top: 56px; font: 500 34px/1 'Instrument Sans', sans-serif; letter-spacing: .32em; text-transform: uppercase; color: var(--soft); }
+
+/* ---------- index */
+.index .ih { position: absolute !important; left: 88px; top: 180px; width: 1744px; display: flex; justify-content: space-between; align-items: flex-end; gap: 80px; }
+.index h2 { white-space: nowrap; font: 700 68px/1 'Archivo', sans-serif; font-stretch: 112%; letter-spacing: -.02em; }
+.index h2 em { font-size: 80px; }
+.index .ih p { width: 520px; font: 400 20px/1.5 'Instrument Sans', sans-serif; color: var(--soft); }
+.index .igrid { position: absolute !important; left: 88px; right: 88px; top: 320px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.index .ic { display: flex; flex-direction: column; height: 196px; padding: 24px 26px; border-radius: 18px; background: #0b1630; border: 1px solid #252f47; }
+.index .ic .n { font: 500 16px/1 'JetBrains Mono', monospace; color: var(--blue2); letter-spacing: .1em; }
+.index .ic b { margin-top: 14px; font: 650 28px/1.08 'Archivo', sans-serif; font-stretch: 108%; }
+.index .ic .br { margin-top: 10px; font: 400 16px/1.4 'Instrument Sans', sans-serif; color: var(--mute); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.index .ic .ct { margin-top: auto; display: flex; justify-content: space-between; font: 500 14px/1 'JetBrains Mono', monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--soft); }
+.index .ic .ct i { font-style: normal; color: var(--mute); }
+
+/* ---------- end */
+.end .ev { position: absolute !important; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.end h2 { margin-top: 80px; font: 700 96px/1 'Archivo', sans-serif; font-stretch: 112%; letter-spacing: -.02em; }
+.end h2 em { font-size: 112px; }
+.end .contacts { margin-top: 90px; display: flex; gap: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.end .contacts a { padding: 34px 60px; font: 500 30px/1 'Instrument Sans', sans-serif; border-right: 1px solid var(--line); }
+.end .contacts a:last-child { border-right: 0; }
+.end .contacts span { display: block; margin-bottom: 14px; font: 500 15px/1 'JetBrains Mono', monospace; letter-spacing: .16em; text-transform: uppercase; color: var(--blue2); }
+.end .thx { margin-top: 80px; font: italic 400 44px/1 'Instrument Serif', serif; color: var(--mute); }
+
+/* ===== Web: PDF şablonunun ekran uyarlaması ===== */
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+body { -webkit-font-smoothing: antialiased; }
+img { max-width: none; }
+
+/* site başlık çubuğu */
+.bar { position: sticky; top: 0; z-index: 20; background: rgba(6, 11, 29, .86); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+.bar__in { width: min(1600px, 100% - 32px); margin: 0 auto; height: 72px; display: flex; align-items: center; gap: 16px; }
+.bar__logo img { height: 50px; width: auto; display: block; }
+.bar__title { flex: 1; min-width: 0; font: 500 13px/1.2 'JetBrains Mono', monospace; letter-spacing: .14em; text-transform: uppercase; color: var(--soft); border-left: 1px solid var(--line); padding-left: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.btn { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 18px; border-radius: 999px; font: 600 14px/1 'Instrument Sans', sans-serif; border: 1px solid #384561; color: var(--ink); white-space: nowrap; transition: border-color .2s, background .2s; }
+.btn:hover { border-color: var(--blue2); }
+.btn svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.btn--primary { background: #1a88d6; border-color: #1a88d6; color: #fff; }
+.btn--primary:hover { background: var(--brand); border-color: var(--brand); }
+:focus-visible { outline: 2px solid var(--blue2); outline-offset: 3px; }
+
+/* slayt akışı */
+.deck { width: min(1600px, 100% - 32px); margin: 24px auto 40px; display: flex; flex-direction: column; gap: 24px; }
+.slide { width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 18px; border: 1px solid var(--line); background-size: cover; background-position: center; page-break-after: auto; break-after: auto; }
+.stage { position: relative; width: 1920px; height: 1080px; transform-origin: 0 0; transform: scale(var(--s, .5)); }
+.proj .cta { transition: background .2s; }
+.proj a.cta:hover { background: var(--brand); }
+.end .contacts a:hover { color: var(--blue2); }
+
+.count { position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 30; font: 500 12px/1 'JetBrains Mono', monospace; letter-spacing: .12em; color: #fff; background: rgba(6, 11, 29, .82); border: 1px solid #29344d; padding: 9px 14px; border-radius: 999px; opacity: 0; transition: opacity .3s; pointer-events: none; }
+.count.is-on { opacity: 1; }
+.totop { position: fixed; right: 18px; bottom: 18px; z-index: 30; width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; background: #1a88d6; color: #fff; opacity: 0; pointer-events: none; transition: opacity .25s; }
+.totop.is-on { opacity: 1; pointer-events: auto; }
+.totop svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.js .slide { opacity: 0; transform: translateY(16px); transition: opacity .6s, transform .6s; }
+.js .slide.is-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .js .slide { opacity: 1; transform: none; transition: none; } }
+
+/* ===== Telefon / dar ekran: aynı tasarım, okunur boyutta dikey akış ===== */
+@media (max-width: 760px) {
+  .bar__in { height: 60px; gap: 10px; }
+  .bar__logo img { height: 38px; }
+  .bar__title, .hide-sm { display: none; }
+  .btn { height: 36px; padding: 0 14px; font-size: 13px; }
+  .deck { width: calc(100% - 24px); margin: 12px auto 28px; gap: 14px; }
+  .slide { aspect-ratio: auto; border-radius: 14px; }
+  .stage { width: auto; height: auto; transform: none !important; padding: 20px 18px 22px; }
+  .stage .top, .stage .foot, .stage .pl, .stage .pr, .cat .cl, .end .ev, .cover .cv { position: static !important; transform: none; width: auto; height: auto; }
+
+  .top { gap: 12px; margin-bottom: 20px; }
+  .top .logo { height: 26px; }
+  .top .lbl { font-size: 10px; padding-left: 12px; letter-spacing: .1em; }
+  .top .pn { font-size: 10px; }
+  .foot { display: none !important; }
+  .count { display: none; }
+
+  .proj .pl { display: block; }
+  .proj .new { display: inline-block; font-size: 10px; padding: 6px 10px 5px; margin-bottom: 12px; box-shadow: 0 0 0 3px #0d2e51; }
+  .proj .brand { font-size: 38px; }
+  .proj .ttl { margin-top: 6px; font-size: 23px; }
+  .proj .rule { width: 44px; height: 2px; margin: 16px 0 14px; }
+  .proj .info { font-size: 15.5px; line-height: 1.6; }
+  .proj .cta { display: inline-flex; margin-top: 18px; font-size: 15px; padding: 13px 18px; gap: 8px; box-shadow: 0 0 0 4px #0b2444; }
+  .proj .cta i { font-size: 16px; }
+  .proj .pr { display: block; margin-top: 20px; }
+  .frames.stack { gap: 10px; }
+  .frames.stack figure, .frames.stack.n2 figure { width: 100% !important; margin-left: 0 !important; }
+  .frames figure, .frames.stack figure img { border-radius: 10px; }
+  .frames.single figure { max-height: none; width: 100%; }
+  .frames.single img { width: 100%; max-height: none; }
+  .frames.tall { gap: 8px; }
+  .frames.tall figure { border-radius: 12px; }
+
+  .slide.cat .stage { min-height: 300px; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
+  .cat .num { right: 10px; bottom: 6px; font-size: 150px; -webkit-text-stroke-width: 1.5px; }
+  .cat .cl { position: relative !important; left: auto; top: auto; z-index: 1; }
+  .cat .sec { font-size: 11px; letter-spacing: .22em; }
+  .cat h2 { margin-top: 14px; font-size: 38px; }
+  .cat .bar { width: 44px; height: 3px; margin: 18px 0 14px; }
+  .cat .lead { font-size: 20px; max-width: none; }
+  .slide.cat .top { margin-bottom: 26px; }
+
+  .cover .stage { padding: 72px 18px; }
+  .cover .biglogo { height: 86px; }
+  .cover h1 { margin-top: 22px; font-size: 13px; letter-spacing: .24em; }
+
+  .end .stage { padding: 44px 18px; }
+  .end .biglogo { height: 56px; }
+  .end h2 { margin-top: 26px; font-size: 32px; }
+  .end h2 em { font-size: 38px; }
+  .end .contacts { margin-top: 30px; flex-direction: column; width: 100%; }
+  .end .contacts a { padding: 16px 8px; font-size: 16px; border-right: 0; border-bottom: 1px solid var(--line); }
+  .end .contacts a:last-child { border-bottom: 0; }
+  .end .contacts span { font-size: 10px; margin-bottom: 8px; }
+  .end .thx { margin-top: 26px; font-size: 24px; }
+}
+
   </style>
 </head>
 <body>
   <script>document.documentElement.classList.add("js")</script>
-  <div class="progress" aria-hidden="true"><span></span></div>
   <header class="bar">
     <div class="bar__in">
       <a class="bar__logo" href="./" aria-label="Splash Digital ana sayfa"><img src="assets/img/logo.png" alt="Splash Digital" width="117" height="54"></a>
-      <div class="bar__title">İnteraktif Proje Örnekleri<small>Projelerin altındaki bağlantılara tıklayarak canlı örnekleri açabilirsiniz</small></div>
+      <div class="bar__title">İnteraktif Proje Örnekleri</div>
+      <a class="btn hide-sm" href="assets/dosya/Splash-Digital-Interaktif-Proje-Ornekleri.pdf" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Sunumu indir</a>
       <a class="btn hide-sm" href="./"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>Ana sayfa</a>
       <a class="btn btn--primary" href="./#iletisim">İletişim</a>
     </div>
   </header>
 
-  <main>
-    <div class="pages" id="pages" data-total="61">
-<!--SAYFALAR-->
-      <figure class="pg" id="s1" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-01.jpg" alt="Proje örnekleri – sayfa 1" loading="eager" decoding="async" width="1600" height="900"></figure>
-      <figure class="pg" id="s2" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-02.jpg" alt="Proje örnekleri – sayfa 2" loading="eager" decoding="async" width="1600" height="900"></figure>
-      <figure class="pg" id="s3" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-03.jpg" alt="Proje örnekleri – sayfa 3" loading="lazy" decoding="async" width="1600" height="900"><a class="lnk" href="https://splashdigital.s3.eu-west-1.amazonaws.com/Nivea/index.html" target="_blank" rel="noopener" title="Çalışmayı aç" style="left:60.27%;top:85.71%;width:38.13%;height:5.84%"></a><a class="lnk" href="https://splashdigital.s3.eu-west-1.amazonaws.com/Nivea/index.html" target="_blank" rel="noopener" title="Çalışmayı aç" style="left:69.98%;top:87.16%;width:18.72%;height:3.34%"></a></figure>
-      <figure class="pg" id="s4" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-04.jpg" alt="Proje örnekleri – sayfa 4" loading="lazy" decoding="async" width="1600" height="900"><a class="lnk" href="https://drive.google.com/file/d/1yM2ehxoIA8PwyB_5QaX_m2noP3CmNiQE/view?usp=sharing" target="_blank" rel="noopener" title="Çalışmayı aç" style="left:36.48%;top:83.86%;width:23.30%;height:3.72%"></a></figure>
-      <figure class="pg" id="s5" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-05.jpg" alt="Proje örnekleri – sayfa 5" loading="lazy" decoding="async" width="1600" height="900"><a class="lnk" href="https://splashdigital.s3.eu-west-1.amazonaws.com/YvesRocherYilbasi.html" target="_blank" rel="noopener" title="Çalışmayı aç" style="left:38.34%;top:85.20%;width:20.45%;height:3.34%"></a></figure>
-      <figure class="pg" id="s6" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-06.jpg" alt="Proje örnekleri – sayfa 6" loading="lazy" decoding="async" width="1600" height="900"></figure>
-      <figure class="pg" id="s7" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-07.jpg" alt="Proje örnekleri – sayfa 7" loading="lazy" decoding="async" width="1600" height="900"><a class="lnk" href="https://splashdigital.s3.eu-west-1.amazonaws.com/Kozmetik/Hobby/Hobi_1.html" target="_blank" rel="noopener" title="Çalışmayı aç" style="left:64.66%;top:82.26%;width:20.45%;height:3.34%"></a></figure>
-      <figure class="pg" id="s8" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-08.jpg" alt="Proje örnekleri – sayfa 8" loading="lazy" decoding="async" width="1600" height="900"></figure>
-      <figure class="pg" id="s9" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-09.jpg" alt="Proje örnekleri – sayfa 9" loading="lazy" decoding="async" width="1600" height="900"><a class="lnk" href="https://splashdigital.s3.eu-west-1.amazonaws.com/Ornekcalisma/Ornekcalisma_2.mp4" target="_blank" rel="noopener" title="Çalışmayı aç" style="left:63.14%;top:76.93%;width:22.76%;height:3.72%"></a></figure>
-      <figure class="pg" id="s10" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-10.jpg" alt="Proje örnekleri – sayfa 10" loading="lazy" decoding="async" width="1600" height="900"></figure>
-      <figure class="pg" id="s11" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-11.jpg" alt="Proje örnekleri – sayfa 11" loading="lazy" decoding="async" width="1600" height="900"><a class="lnk" href="https://splashdigital.s3.eu-west-1.amazonaws.com/Ornekcalisma/Honda_Civic_interaktif/index.html" target="_blank" rel="noopener" title="Çalışmayı aç" style="left:42.73%;top:81.58%;width:22.76%;height:3.72%"></a></figure>
-      <figure class="pg" id="s12" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-12.jpg" alt="Proje örnekleri – sayfa 12" loading="lazy" decoding="async" width="1600" height="900"><a class="lnk" href="https://splashdigital.s3.eu-west-1.amazonaws.com/Ornekcalisma/Honda_NX500_interaktif/index.html" target="_blank" rel="noopener" title="Çalışmayı aç" style="left:63.75%;top:78.92%;width:22.76%;height:3.72%"></a></figure>
-      <figure class="pg" id="s13" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-13.jpg" alt="Proje örnekleri – sayfa 13" loading="lazy" decoding="async" width="1600" height="900"></figure>
-      <figure class="pg" id="s14" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-14.jpg" alt="Proje örnekleri – sayfa 14" loading="lazy" decoding="async" width="1600" height="900"><a class="lnk" href="https://splashdigital.s3.eu-west-1.amazonaws.com/Shell/shell_rev.html" target="_blank" rel="noopener" title="Çalışmayı aç" style="left:61.88%;top:80.37%;width:22.76%;height:3.72%"></a></figure>
-      <figure class="pg" id="s15" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-15.jpg" alt="Proje örnekleri – sayfa 15" loading="lazy" decoding="async" width="1600" height="900"></figure>
-      <figure class="pg" id="s16" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-16.jpg" alt="Proje örnekleri – sayfa 16" loading="lazy" decoding="async" width="1600" height="900"></figure>
-      <figure class="pg" id="s17" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-17.jpg" alt="Proje örnekleri – sayfa 17" loading="lazy" decoding="async" width="1600" height="900"></figure>
-      <figure class="pg" id="s18" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-18.jpg" alt="Proje örnekleri – sayfa 18" loading="lazy" decoding="async" width="1600" height="900"></figure>
-      <figure class="pg" id="s19" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-19.jpg" alt="Proje örnekleri – sayfa 19" loading="lazy" decoding="async" width="1600" height="900"></figure>
-      <figure class="pg" id="s20" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-20.jpg" alt="Proje örnekleri – sayfa 20" loading="lazy" decoding="async" width="1600" height="900"><a class="lnk" href="https://splashdigital.s3.eu-west-1.amazonaws.com/mc/Mc_rich.html" target="_blank" rel="noopener" title="Çalışmayı aç" style="left:40.64%;top:84.64%;width:22.76%;height:3.72%"></a></figure>
-      <figure class="pg" id="s21" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-21.jpg" alt="Proje örnekleri – sayfa 21" loading="lazy" decoding="async" width="1600" height="900"><a class="lnk" href="https://splashdigital.s3.eu-west-1.amazonaws.com/mc/Nisan/mc3.html" target="_blank" rel="noopener" title="Çalışmayı aç" style="left:57.32%;top:85.53%;width:22.76%;height:3.72%"></a></figure>
-      <figure class="pg" id="s22" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-22.jpg" alt="Proje örnekleri – sayfa 22" loading="lazy" decoding="async" width="1600" height="900"></figure>
-      <figure class="pg" id="s23" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-23.jpg" alt="Proje örnekleri – sayfa 23" loading="lazy" decoding="async" width="1600" height="900"><a class="lnk" href="https://splashdigital.s3.eu-west-1.amazonaws.com/PayTR/PayTR_2.html" target="_blank" rel="noopener" title="Çalışmayı aç" style="left:62.51%;top:76.43%;width:22.76%;height:3.72%"></a></figure>
-      <figure class="pg" id="s24" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-24.jpg" alt="Proje örnekleri – sayfa 24" loading="lazy" decoding="async" width="1600" height="900"></figure>
-      <figure class="pg" id="s25" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-25.jpg" alt="Proje örnekleri – sayfa 25" loading="lazy" decoding="async" width="1600" height="900"><a class="lnk" href="https://splashdigital.s3.eu-west-1.amazonaws.com/interaktif/ilacsiz/index.html" target="_blank" rel="noopener" title="Çalışmayı aç" style="left:40.18%;top:85.42%;width:22.76%;height:3.72%"></a></figure>
-      <figure class="pg" id="s26" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-26.jpg" alt="Proje örnekleri – sayfa 26" loading="lazy" decoding="async" width="1600" height="900"><a class="lnk" href="https://splashdigital.s3.eu-west-1.amazonaws.com/Turkiyesigorta/TRsigorta_1.html" target="_blank" rel="noopener" title="Çalışmayı aç" style="left:59.92%;top:79.44%;width:22.76%;height:3.72%"></a></figure>
-      <figure class="pg" id="s27" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-27.jpg" alt="Proje örnekleri – sayfa 27" loading="lazy" decoding="async" width="1600" height="900"></figure>
-      <figure class="pg" id="s28" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-28.jpg" alt="Proje örnekleri – sayfa 28" loading="lazy" decoding="async" width="1600" height="900"><a class="lnk" href="https://splashdigital.s3.eu-west-1.amazonaws.com/Tefal/ice/iceforce.html" target="_blank" rel="noopener" title="Çalışmayı aç" style="left:42.57%;top:78.88%;width:22.76%;height:3.72%"></a></figure>
-      <figure class="pg" id="s29" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-29.jpg" alt="Proje örnekleri – sayfa 29" loading="lazy" decoding="async" width="1600" height="900"><a class="lnk" href="https://splashdigital.s3.eu-west-1.amazonaws.com/Tefal/duduklutencere.html" target="_blank" rel="noopener" title="Çalışmayı aç" style="left:60.01%;top:80.49%;width:22.76%;height:3.72%"></a></figure>
-      <figure class="pg" id="s30" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-30.jpg" alt="Proje örnekleri – sayfa 30" loading="lazy" decoding="async" width="1600" height="900"><a class="lnk" href="https://splashdigital.s3.eu-west-1.amazonaws.com/Tefal/tava.html" target="_blank" rel="noopener" title="Çalışmayı aç" style="left:35.86%;top:87.01%;width:22.76%;height:3.72%"></a></figure>
-      <figure class="pg" id="s31" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-31.jpg" alt="Proje örnekleri – sayfa 31" loading="lazy" decoding="async" width="1600" height="900"><a class="lnk" href="https://splashdigital.s3.eu-west-1.amazonaws.com/Beko/Beko.html" target="_blank" rel="noopener" title="Çalışmayı aç" style="left:59.40%;top:77.63%;width:22.76%;height:3.72%"></a></figure>
-      <figure class="pg" id="s32" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-32.jpg" alt="Proje örnekleri – sayfa 32" loading="lazy" decoding="async" width="1600" height="900"></figure>
-      <figure class="pg" id="s33" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-33.jpg" alt="Proje örnekleri – sayfa 33" loading="lazy" decoding="async" width="1600" height="900"><a class="lnk" href="https://splashdigital.s3.eu-west-1.amazonaws.com/Ornekcalisma/Banvit-Ramazan_interaktif/index.html" target="_blank" rel="noopener" title="Çalışmayı aç" style="left:62.28%;top:75.95%;width:22.76%;height:3.72%"></a></figure>
-      <figure class="pg" id="s34" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-34.jpg" alt="Proje örnekleri – sayfa 34" loading="lazy" decoding="async" width="1600" height="900"><a class="lnk" href="https://splashdigital.s3.eu-west-1.amazonaws.com/Splashornek/Banvit_1.html" target="_blank" rel="noopener" title="Çalışmayı aç" style="left:65.81%;top:81.58%;width:22.76%;height:3.72%"></a></figure>
-      <figure class="pg" id="s35" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-35.jpg" alt="Proje örnekleri – sayfa 35" loading="lazy" decoding="async" width="1600" height="900"><a class="lnk" href="https://splashdigital.s3.eu-west-1.amazonaws.com/Splashornek/banvit2.html" target="_blank" rel="noopener" title="Çalışmayı aç" style="left:54.85%;top:74.98%;width:22.76%;height:3.72%"></a></figure>
-      <figure class="pg" id="s36" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-36.jpg" alt="Proje örnekleri – sayfa 36" loading="lazy" decoding="async" width="1600" height="900"><a class="lnk" href="https://splashdigital.s3.eu-west-1.amazonaws.com/Heinz/heinz.html" target="_blank" rel="noopener" title="Çalışmayı aç" style="left:55.97%;top:77.85%;width:22.76%;height:3.72%"></a></figure>
-      <figure class="pg" id="s37" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-37.jpg" alt="Proje örnekleri – sayfa 37" loading="lazy" decoding="async" width="1600" height="900"></figure>
-      <figure class="pg" id="s38" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-38.jpg" alt="Proje örnekleri – sayfa 38" loading="lazy" decoding="async" width="1600" height="900"><a class="lnk" href="https://splashdigital.s3.eu-west-1.amazonaws.com/Zuber/Zuber_2.html" target="_blank" rel="noopener" title="Çalışmayı aç" style="left:59.05%;top:79.43%;width:22.76%;height:3.72%"></a></figure>
-      <figure class="pg" id="s39" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-39.jpg" alt="Proje örnekleri – sayfa 39" loading="lazy" decoding="async" width="1600" height="900"></figure>
-      <figure class="pg" id="s40" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-40.jpg" alt="Proje örnekleri – sayfa 40" loading="lazy" decoding="async" width="1600" height="900"><a class="lnk" href="https://splashdigital.s3.eu-west-1.amazonaws.com/Baydoner/Baydoner.html" target="_blank" rel="noopener" title="Çalışmayı aç" style="left:58.37%;top:74.61%;width:22.76%;height:3.72%"></a></figure>
-      <figure class="pg" id="s41" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-41.jpg" alt="Proje örnekleri – sayfa 41" loading="lazy" decoding="async" width="1600" height="900"><a class="lnk" href="https://splashdigital.s3.eu-west-1.amazonaws.com/Komagene/Komagenedesktop.html" target="_blank" rel="noopener" title="Çalışmayı aç" style="left:59.61%;top:73.32%;width:22.76%;height:3.72%"></a></figure>
-      <figure class="pg" id="s42" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-42.jpg" alt="Proje örnekleri – sayfa 42" loading="lazy" decoding="async" width="1600" height="900"><a class="lnk" href="https://splashdigital.s3.eu-west-1.amazonaws.com/yemeksepeti/ys25yil_2.html" target="_blank" rel="noopener" title="Çalışmayı aç" style="left:59.40%;top:77.63%;width:22.76%;height:3.72%"></a></figure>
-      <figure class="pg" id="s43" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-43.jpg" alt="Proje örnekleri – sayfa 43" loading="lazy" decoding="async" width="1600" height="900"></figure>
-      <figure class="pg" id="s44" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-44.jpg" alt="Proje örnekleri – sayfa 44" loading="lazy" decoding="async" width="1600" height="900"><a class="lnk" href="https://splashdigital.s3.eu-west-1.amazonaws.com/Samsung/Ocak/SamsungSplashOrnek.html" target="_blank" rel="noopener" title="Çalışmayı aç" style="left:35.14%;top:89.12%;width:22.76%;height:3.72%"></a></figure>
-      <figure class="pg" id="s45" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-45.jpg" alt="Proje örnekleri – sayfa 45" loading="lazy" decoding="async" width="1600" height="900"><a class="lnk" href="https://splashdigital.s3.eu-west-1.amazonaws.com/MM/2026/MM_14Subat.html" target="_blank" rel="noopener" title="Çalışmayı aç" style="left:39.95%;top:86.72%;width:20.45%;height:3.34%"></a></figure>
-      <figure class="pg" id="s46" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-46.jpg" alt="Proje örnekleri – sayfa 46" loading="lazy" decoding="async" width="1600" height="900"></figure>
-      <figure class="pg" id="s47" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-47.jpg" alt="Proje örnekleri – sayfa 47" loading="lazy" decoding="async" width="1600" height="900"></figure>
-      <figure class="pg" id="s48" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-48.jpg" alt="Proje örnekleri – sayfa 48" loading="lazy" decoding="async" width="1600" height="900"><a class="lnk" href="https://splashdigital.s3.eu-west-1.amazonaws.com/Turkcell/Superbox/Superbox5G_4.html" target="_blank" rel="noopener" title="Çalışmayı aç" style="left:58.49%;top:81.58%;width:22.76%;height:3.72%"></a></figure>
-      <figure class="pg" id="s49" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-49.jpg" alt="Proje örnekleri – sayfa 49" loading="lazy" decoding="async" width="1600" height="900"><a class="lnk" href="https://splashdigital.s3.eu-west-1.amazonaws.com/Turkcell/5G/5G.html" target="_blank" rel="noopener" title="Çalışmayı aç" style="left:59.65%;top:78.10%;width:22.76%;height:3.72%"></a></figure>
-      <figure class="pg" id="s50" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-50.jpg" alt="Proje örnekleri – sayfa 50" loading="lazy" decoding="async" width="1600" height="900"><a class="lnk" href="https://splashdigital.s3.eu-west-1.amazonaws.com/Turkcell/From_tvplus2.html" target="_blank" rel="noopener" title="Çalışmayı aç" style="left:59.40%;top:76.94%;width:22.76%;height:3.72%"></a></figure>
-      <figure class="pg" id="s51" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-51.jpg" alt="Proje örnekleri – sayfa 51" loading="lazy" decoding="async" width="1600" height="900"><a class="lnk" href="https://splashdigital.s3.eu-west-1.amazonaws.com/JBL/Jbl_tune530_1.html" target="_blank" rel="noopener" title="Çalışmayı aç" style="left:59.40%;top:77.63%;width:22.76%;height:3.72%"></a></figure>
-      <figure class="pg" id="s52" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-52.jpg" alt="Proje örnekleri – sayfa 52" loading="lazy" decoding="async" width="1600" height="900"></figure>
-      <figure class="pg" id="s53" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-53.jpg" alt="Proje örnekleri – sayfa 53" loading="lazy" decoding="async" width="1600" height="900"></figure>
-      <figure class="pg" id="s54" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-54.jpg" alt="Proje örnekleri – sayfa 54" loading="lazy" decoding="async" width="1600" height="900"></figure>
-      <figure class="pg" id="s55" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-55.jpg" alt="Proje örnekleri – sayfa 55" loading="lazy" decoding="async" width="1600" height="900"><a class="lnk" href="https://splashdigital.s3.eu-west-1.amazonaws.com/Planb/2026/BB/brooksbrothers.html" target="_blank" rel="noopener" title="Çalışmayı aç" style="left:44.36%;top:83.20%;width:22.76%;height:3.72%"></a></figure>
-      <figure class="pg" id="s56" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-56.jpg" alt="Proje örnekleri – sayfa 56" loading="lazy" decoding="async" width="1600" height="900"></figure>
-      <figure class="pg" id="s57" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-57.jpg" alt="Proje örnekleri – sayfa 57" loading="lazy" decoding="async" width="1600" height="900"><a class="lnk" href="https://splashdigital.s3.eu-west-1.amazonaws.com/pegasus2.html" target="_blank" rel="noopener" title="Çalışmayı aç" style="left:40.18%;top:85.42%;width:22.76%;height:3.72%"></a></figure>
-      <figure class="pg" id="s58" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-58.jpg" alt="Proje örnekleri – sayfa 58" loading="lazy" decoding="async" width="1600" height="900"><a class="lnk" href="https://splashdigital.s3.eu-west-1.amazonaws.com/Pegasus/2026/Mart/Pegasus_2.html" target="_blank" rel="noopener" title="Çalışmayı aç" style="left:63.28%;top:81.58%;width:22.76%;height:3.72%"></a></figure>
-      <figure class="pg" id="s59" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-59.jpg" alt="Proje örnekleri – sayfa 59" loading="lazy" decoding="async" width="1600" height="900"></figure>
-      <figure class="pg" id="s60" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-60.jpg" alt="Proje örnekleri – sayfa 60" loading="lazy" decoding="async" width="1600" height="900"><a class="lnk" href="https://splashdigital.s3.eu-west-1.amazonaws.com/kocaeli/belediyeornek.html" target="_blank" rel="noopener" title="Çalışmayı aç" style="left:58.27%;top:75.53%;width:22.76%;height:3.72%"></a></figure>
-      <figure class="pg" id="s61" style="aspect-ratio:960/540"><img src="assets/img/projeler/sayfa-61.jpg" alt="Proje örnekleri – sayfa 61" loading="lazy" decoding="async" width="1600" height="900"></figure>
-      <!--/SAYFALAR-->
+  <main class="deck" id="deck">
+<section class="slide cover" id="s1"><div class="stage">
+  <div class="cv">
+    <img class="biglogo" src="assets/img/logo.png" alt="Splash Digital">
+    <h1>İnteraktif Proje Örnekleri</h1>
+  </div>
+</div></section>
+<section class="slide cat" id="s2"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"></header>
+  <span class="num" aria-hidden="true">01</span>
+  <div class="cl">
+    <p class="sec">Bölüm 01</p>
+    <h2>Kozmetik &amp; Kişisel Bakım</h2>
+    <span class="bar"></span>
+    <p class="lead">Ürün faydasını görünür kılan, keşfi alışverişe bağlayan deneyimler.</p>
+  </div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri</span></footer>
+</div></section>
+<section class="slide proj" id="s3"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">01 · Kozmetik &amp; Kişisel Bakım</span><span class="pn"><b>03</b> / 76</span></header>
+  <div class="pl">
+    
+    <h2 class="brand">Nivea</h2>
+    <p class="ttl">Serum Etkisi</p>
+    <span class="rule"></span>
+    <p class="info">Üç sekmeli kurguda kullanıcı ürün ailesini tanıyor, faydaları inceliyor ve öne çıkan özelliklerle satın alma kararına yaklaşıyor. Sade, hızlı okunan ve güven veren bir anlatım.</p>
+    <a class="cta" href="calismalar/Nivea/index.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/p03-013.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p03-015.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p03-017.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s4"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">01 · Kozmetik &amp; Kişisel Bakım</span><span class="pn"><b>04</b> / 76</span></header>
+  <div class="pl">
+    <span class="new">Yeni çalışma</span>
+    <h2 class="brand">Nivea</h2>
+    <p class="ttl">Q10 · 10 Günde Daha Sıkı Cilt</p>
+    <span class="rule"></span>
+    <p class="info">Losyon, bronzluk ve vücut sütü sekmeleri arasında geçiş yapan kullanıcı her ürünün faydasını ayrı görüyor; “Ürün Bilgileri” paneli formülü ve kullanım önerilerini açarak keşfi satın almaya bağlıyor.</p>
+    <a class="cta" href="calismalar/Nivea/August/Nivea2_.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/nivea2-1.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/nivea2-2.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/nivea2-3.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s5"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">01 · Kozmetik &amp; Kişisel Bakım</span><span class="pn"><b>05</b> / 76</span></header>
+  <div class="pl">
+    
+    <h2 class="brand">Yves Rocher</h2>
+    <p class="ttl">Gravity Giydirme</p>
+    <span class="rule"></span>
+    <p class="info">Tam sayfa giydirme kurgusunda merkezdeki ürün videosu gerçek kullanım anını gösterirken, çevresindeki alanlar ana faydaları ve doğallık oranlarını aktarıyor. Duygu ve bilgi aynı ekranda.</p>
+    <a class="cta" href="https://drive.google.com/file/d/1yM2ehxoIA8PwyB_5QaX_m2noP3CmNiQE/view?usp=sharing" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames single"><figure><img src="assets/img/projeler/kare/p04-023.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s6"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">01 · Kozmetik &amp; Kişisel Bakım</span><span class="pn"><b>06</b> / 76</span></header>
+  <div class="pl">
+    
+    <h2 class="brand">Yves Rocher</h2>
+    <p class="ttl">Yılbaşı Koleksiyonu</p>
+    <span class="rule"></span>
+    <p class="info">Masthead üzerinde imleci takip eden peri tozu ışıltısı, yılbaşı koleksiyonunu büyülü bir deneyime dönüştürüyor. Etkileşim, koleksiyon sayfasına yönlendiren keşif aksiyonuyla tamamlanıyor.</p>
+    <a class="cta" href="calismalar/YvesRocherYilbasi.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n1"><figure><img src="assets/img/projeler/kare/p05-028.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s7"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">01 · Kozmetik &amp; Kişisel Bakım</span><span class="pn"><b>07</b> / 76</span></header>
+  <div class="pl">
+    <span class="new">Yeni çalışma</span>
+    <h2 class="brand">Watsons</h2>
+    <p class="ttl">11.11 Küpü</p>
+    <span class="rule"></span>
+    <p class="info">Kullanıcı 3B küpü sürükleyerek çeviriyor; her yüzde başka bir kategori ve o kategoriye özel 11.11 fırsatları beliriyor. Keşif, tek bir oyunsu hareketle alışverişe dönüşüyor.</p>
+    <a class="cta" href="calismalar/galeri/watsons-1111-kup/" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/watsons-1.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/watsons-2.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/watsons-3.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s8"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">01 · Kozmetik &amp; Kişisel Bakım</span><span class="pn"><b>08</b> / 76</span></header>
+  <div class="pl">
+    
+    <h2 class="brand">Hobby</h2>
+    <p class="ttl">Şampuan Serisi</p>
+    <span class="rule"></span>
+    <p class="info">Üç farklı şampuan dinamik geçişlerle sunulurken her ürünün dökülme karşıtı, kepek karşıtı ve nemlendirici faydası ayrı ayrı vurgulanıyor. “Hemen Keşfet” ile doğrudan ürün sayfasına yönlendirme.</p>
+    <a class="cta" href="calismalar/Kozmetik/Hobby/Hobi_1.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/p07-042.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p07-044.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p07-046.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide cat" id="s9"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"></header>
+  <span class="num" aria-hidden="true">02</span>
+  <div class="cl">
+    <p class="sec">Bölüm 02</p>
+    <h2>Otomotiv</h2>
+    <span class="bar"></span>
+    <p class="lead">Modeli ekrana taşıyan, test sürüşüne kadar uzanan sürükleyici kurgular.</p>
+  </div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri</span></footer>
+</div></section>
+<section class="slide proj" id="s10"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">02 · Otomotiv</span><span class="pn"><b>10</b> / 76</span></header>
+  <div class="pl">
+    <span class="new">Yeni çalışma</span>
+    <h2 class="brand">Honda</h2>
+    <p class="ttl">Africa Twin · Kumdan Doğan</p>
+    <span class="rule"></span>
+    <p class="info">Binlerce kum tanesinden oluşan 3B parçacık efektiyle Africa Twin, kullanıcının imleciyle başlattığı fırtınanın içinden doğuyor. Deneyim keşif ve test sürüşü çağrılarıyla tamamlanıyor.</p>
+    <a class="cta" href="calismalar/galeri/honda-africa-twin/" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/africatwin-1.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/africatwin-2.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/africatwin-3.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s11"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">02 · Otomotiv</span><span class="pn"><b>11</b> / 76</span></header>
+  <div class="pl">
+    <span class="new">Yeni çalışma</span>
+    <h2 class="brand">Honda</h2>
+    <p class="ttl">Motosiklet Günleri 2026</p>
+    <span class="rule"></span>
+    <p class="info">“Gaz ver” butonunu basılı tutan kullanıcı motorun gücünü hissediyor; kilit açıldığında etkinlik kayıt ekranı beliriyor. Etkileşim, doğrudan kayıt aksiyonunun anahtarı oluyor.</p>
+    <a class="cta" href="calismalar/Honda/Motorsiklet/Nisan/Honda_Motgun.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/hondamotgun-1.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/hondamotgun-2.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/hondamotgun-3.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s12"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">02 · Otomotiv</span><span class="pn"><b>12</b> / 76</span></header>
+  <div class="pl">
+    
+    <h2 class="brand">Honda</h2>
+    <p class="ttl">Civic</p>
+    <span class="rule"></span>
+    <p class="info">Bölünmüş ekran yapısında Civic’in iç mekânı, ön konsol teknolojisi ve dış görünümü tek kreatifte keşfediliyor. “Keşfedin” butonu deneyimi ürün sayfasına bağlıyor.</p>
+    <a class="cta" href="calismalar/Ornekcalisma/Honda_Civic_interaktif/index.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n1"><figure><img src="assets/img/projeler/kare/p11-080.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s13"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">02 · Otomotiv</span><span class="pn"><b>13</b> / 76</span></header>
+  <div class="pl">
+    
+    <h2 class="brand">Honda</h2>
+    <p class="ttl">CBR500R · CB500 · NX500</p>
+    <span class="rule"></span>
+    <p class="info">Üç model aynı kreatifte yan yana: kullanıcı modelleri karşılaştırıyor, kendine en uygun olanı keşfediyor ve ilgili modelin detay sayfasına geçiyor.</p>
+    <a class="cta" href="calismalar/Ornekcalisma/Honda_NX500_interaktif/index.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/p12-086.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p12-088.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p12-090.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide cat" id="s14"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"></header>
+  <span class="num" aria-hidden="true">03</span>
+  <div class="cl">
+    <p class="sec">Bölüm 03</p>
+    <h2>Akaryakıt &amp; Enerji</h2>
+    <span class="bar"></span>
+    <p class="lead">Hizmeti sürücünün gündelik ihtiyacıyla buluşturan etkileşimler.</p>
+  </div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri</span></footer>
+</div></section>
+<section class="slide proj" id="s15"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">03 · Akaryakıt &amp; Enerji</span><span class="pn"><b>15</b> / 76</span></header>
+  <div class="pl">
+    <span class="new">Yeni çalışma</span>
+    <h2 class="brand">Aygaz</h2>
+    <p class="ttl">100+ Oktan</p>
+    <span class="rule"></span>
+    <p class="info">Aile, beyaz yaka, taksici ve filo yöneticisi profilleri için ayrı videolu senaryolar; tasarruf hesaplayıcı ve istasyon bulucu tek mastheadde. Her sürücü kendi hikâyesini buluyor.</p>
+    <a class="cta" href="calismalar/Aygaz/v2/index.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/aygaz-1.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/aygaz-2.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/aygaz-3.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s16"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">03 · Akaryakıt &amp; Enerji</span><span class="pn"><b>16</b> / 76</span></header>
+  <div class="pl">
+    
+    <h2 class="brand">Shell</h2>
+    <p class="ttl">Shell WC</p>
+    <span class="rule"></span>
+    <p class="info">Sarı Shell açılışının ardından temizlik, havalandırma ve el kurutma teknolojisi kısa sekmelerle anlatılıyor. “Rotayı Oluştur” ile kullanıcı en yakın istasyona yönlendiriliyor.</p>
+    <a class="cta" href="calismalar/Shell/shell_rev.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n2"><figure><img src="assets/img/projeler/kare/p14-100.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p14-102.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide cat" id="s17"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"></header>
+  <span class="num" aria-hidden="true">04</span>
+  <div class="cl">
+    <p class="sec">Bölüm 04</p>
+    <h2>Finans &amp; Fintek</h2>
+    <span class="bar"></span>
+    <p class="lead">Karmaşık teklifleri birkaç dokunuşta anlaşılır kılan finans deneyimleri.</p>
+  </div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri</span></footer>
+</div></section>
+<section class="slide proj" id="s18"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">04 · Finans &amp; Fintek</span><span class="pn"><b>18</b> / 76</span></header>
+  <div class="pl">
+    <span class="new">Yeni çalışma</span>
+    <h2 class="brand">Paribu</h2>
+    <p class="ttl">Kripto Dünyasına İlk Adım</p>
+    <span class="rule"></span>
+    <p class="info">Kullanıcı telefonu imleçle yönlendirip düşen coinleri yakalıyor; mini oyun portföyü dolduruyor ve yeni üyelere özel hediyeyle hesap açma çağrısına bağlanıyor.</p>
+    <a class="cta" href="calismalar/Paribu/Paribu.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/paribu-1.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/paribu-2.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/paribu-3.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s19"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">04 · Finans &amp; Fintek</span><span class="pn"><b>19</b> / 76</span></header>
+  <div class="pl">
+    <span class="new">Yeni çalışma</span>
+    <h2 class="brand">Visa</h2>
+    <p class="ttl">Dünya Kupası 2026</p>
+    <span class="rule"></span>
+    <p class="info">Finale kalan süreyi canlı sayan geri sayım, kupa ve uçuş temalı görsel dünyayla “10 kat mil” kampanyasını öne çıkarıyor. Sesli video kontrolü ve detay yönlendirmesi içeriyor.</p>
+    <a class="cta" href="calismalar/visa/Haz/visahaz2.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n1"><figure><img src="assets/img/projeler/kare/visa-1.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s20"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">04 · Finans &amp; Fintek</span><span class="pn"><b>20</b> / 76</span></header>
+  <div class="pl">
+    
+    <h2 class="brand">VakıfBank</h2>
+    <p class="ttl">Restoran Kampanyası</p>
+    <span class="rule"></span>
+    <p class="info">Kart tipine göre değişen dinamik görseller ve kartlara özel avantaj alanları; sağdaki hesaplayıcı ile kullanıcı harcamasını girip kazanacağı indirimi anında görüyor.</p>
+    <span class="cta off">Canlı demo talep üzerine</span>
+  </div>
+  <div class="pr"><div class="frames single"><figure><img src="assets/img/projeler/kare/p19-132.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s21"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">04 · Finans &amp; Fintek</span><span class="pn"><b>21</b> / 76</span></header>
+  <div class="pl">
+    
+    <h2 class="brand">Mastercard</h2>
+    <p class="ttl">Ramazan &amp; Eğitim</p>
+    <span class="rule"></span>
+    <p class="info">Tek ana görsel üzerinde imleç gezdirildiğinde Ramazan ve Eğitim tekliflerini açan katmanlar beliriyor. “Hemen Başvur” ve “Fırsatı Yakala” ile tekliflere hızlı geçiş.</p>
+    <a class="cta" href="calismalar/mc/Mc1_rich.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n2"><figure><img src="assets/img/projeler/kare/p20-137.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p20-139.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s22"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">04 · Finans &amp; Fintek</span><span class="pn"><b>22</b> / 76</span></header>
+  <div class="pl">
+    
+    <h2 class="brand">Mastercard</h2>
+    <p class="ttl">Affluent Ayrıcalıklar</p>
+    <span class="rule"></span>
+    <p class="info">Seyahat, gastronomi, alışveriş ve konaklama ayrıcalıkları sekmelerle detaylanıyor; premium kart avantajları dönüşüm odaklı bir başvuru akışına bağlanıyor.</p>
+    <a class="cta" href="calismalar/mc/Nisan/mc3.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/p21-145.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p21-147.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p21-149.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s23"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">04 · Finans &amp; Fintek</span><span class="pn"><b>23</b> / 76</span></header>
+  <div class="pl">
+    
+    <h2 class="brand">PayTR</h2>
+    <p class="ttl">KOBİ Çözümleri</p>
+    <span class="rule"></span>
+    <p class="info">“Tek Banka”, “Taksit Yok” gibi seçeneklerle işletmenin ihtiyacını soran akış, kullanıcıyı uygun çözüme ve başvuru formuna taşıyor.</p>
+    <a class="cta" href="calismalar/PayTR/PayTR_2.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/p23-162.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p23-164.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p23-166.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide cat" id="s24"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"></header>
+  <span class="num" aria-hidden="true">05</span>
+  <div class="cl">
+    <p class="sec">Bölüm 05</p>
+    <h2>Sağlık &amp; Sigorta</h2>
+    <span class="bar"></span>
+    <p class="lead">Bilgilendirmeyi sade, güven veren bir akışla sunan çalışmalar.</p>
+  </div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri</span></footer>
+</div></section>
+<section class="slide proj" id="s25"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">05 · Sağlık &amp; Sigorta</span><span class="pn"><b>25</b> / 76</span></header>
+  <div class="pl">
+    
+    <h2 class="brand">İlaçsız Yaşam</h2>
+    <p class="ttl">Babalar Günü</p>
+    <span class="rule"></span>
+    <p class="info">Babalar Günü teklifi ilk anda net biçimde sunulurken sağdaki sekmeler ürün açıklaması, kullanım şekli ve faydaları sade bir akışla anlatıyor.</p>
+    <a class="cta" href="calismalar/interaktif/ilacsiz/index.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n1"><figure><img src="assets/img/projeler/kare/p25-178.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s26"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">05 · Sağlık &amp; Sigorta</span><span class="pn"><b>26</b> / 76</span></header>
+  <div class="pl">
+    
+    <h2 class="brand">Türkiye Sigorta</h2>
+    <p class="ttl">Sağlık Ürünleri</p>
+    <span class="rule"></span>
+    <p class="info">Özel, Tamamlayıcı ve Seyahat Sağlık kartlarının üzerine gelindiğinde ilgili ürünün kısa bilgisi dinamik olarak açılıyor; kullanıcı doğru ürüne yönlendiriliyor.</p>
+    <a class="cta" href="calismalar/Turkiyesigorta/TRsigorta_1.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/p26-184.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p26-186.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p26-188.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide cat" id="s27"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"></header>
+  <span class="num" aria-hidden="true">06</span>
+  <div class="cl">
+    <p class="sec">Bölüm 06</p>
+    <h2>Ev Yaşam &amp; Mutfak</h2>
+    <span class="bar"></span>
+    <p class="lead">Ürün teknolojisini kullanıcının elinde deneyime dönüştüren kurgular.</p>
+  </div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri</span></footer>
+</div></section>
+<section class="slide proj" id="s28"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">06 · Ev Yaşam &amp; Mutfak</span><span class="pn"><b>28</b> / 76</span></header>
+  <div class="pl">
+    <span class="new">Yeni çalışma</span>
+    <h2 class="brand">Dyson</h2>
+    <p class="ttl">Supersonic r™ Renk Seçici</p>
+    <span class="rule"></span>
+    <p class="info">Kullanıcı renk seçtikçe ürün, arka plan atmosferi ve fiyat bilgisi birlikte değişiyor; kupon kodu kopyalama ve satın alma çağrısıyla 11.11 fırsatı tamamlanıyor.</p>
+    <a class="cta" href="calismalar/galeri/dyson-supersonic-r/" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/dyson-1.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/dyson-2.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/dyson-3.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s29"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">06 · Ev Yaşam &amp; Mutfak</span><span class="pn"><b>29</b> / 76</span></header>
+  <div class="pl">
+    <span class="new">Yeni çalışma</span>
+    <h2 class="brand">Daikin</h2>
+    <p class="ttl">Emura III · Serinliği Yüzünde Hisset</p>
+    <span class="rule"></span>
+    <p class="info">32°’lik sıcak bir açılışın ardından kullanıcı imleci gezdirdikçe klimadan çıkan hava akışı ekrana yayılıyor ve sıcaklık düşüyor. Sessizlik ve A+++ verimlilik mesajları serinlik hissiyle birlikte aktarılıyor.</p>
+    <a class="cta" href="calismalar/Daikin/daikin1.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/daikin1-1.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/daikin1-2.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/daikin1-3.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s30"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">06 · Ev Yaşam &amp; Mutfak</span><span class="pn"><b>30</b> / 76</span></header>
+  <div class="pl">
+    <span class="new">Yeni çalışma</span>
+    <h2 class="brand">Daikin</h2>
+    <p class="ttl">Kombi · Sıcaklığı Evinde Hisset</p>
+    <span class="rule"></span>
+    <p class="info">3°’lik soğuk bir sahneyle açılan kurguda kullanıcı imleci gezdirdikçe kombiden yayılan sıcak hava ekranı ısıtıyor. Yoğuşmalı kombinin verimliliği ve sessizliği bu sıcaklık hissiyle anlatılıyor.</p>
+    <a class="cta" href="calismalar/Daikin/daikin2.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/daikin2-1.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/daikin2-2.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/daikin2-3.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s31"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">06 · Ev Yaşam &amp; Mutfak</span><span class="pn"><b>31</b> / 76</span></header>
+  <div class="pl">
+    <span class="new">Yeni çalışma</span>
+    <h2 class="brand">Tefal</h2>
+    <p class="ttl">Kahve mi, Çay mı?</p>
+    <span class="rule"></span>
+    <p class="info">Bölünmüş ekranda kullanıcı tarafını seçiyor: kahveyi seçen Köpüklüm makinelerine, çayı seçen çay makinelerine ulaşıyor. Her iki taraf da 11.11 fiyatları ve kopyalanabilir indirim koduyla tamamlanıyor.</p>
+    <a class="cta" href="calismalar/galeri/tefal-kahve-cay/" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/tefal-1.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/tefal-2.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/tefal-3.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s32"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">06 · Ev Yaşam &amp; Mutfak</span><span class="pn"><b>32</b> / 76</span></header>
+  <div class="pl">
+    <span class="new">Yeni çalışma</span>
+    <h2 class="brand">Beko</h2>
+    <p class="ttl">SuperWash · Kirlet Bakalım</p>
+    <span class="rule"></span>
+    <p class="info">Kullanıcı ipteki kıyafetlere tıklayıp leke atıyor, ardından makine 40 dakikalık programla hepsini temizliyor. Ürün vaadi, oyunun sonucunda kendini kanıtlıyor.</p>
+    <a class="cta" href="calismalar/Beko/deneme/index2.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/beko2-1.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/beko2-2.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/beko2-3.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s33"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">06 · Ev Yaşam &amp; Mutfak</span><span class="pn"><b>33</b> / 76</span></header>
+  <div class="pl">
+    
+    <h2 class="brand">Beko</h2>
+    <p class="ttl">Direct Cool</p>
+    <span class="rule"></span>
+    <p class="info">90°C’deki yemeği kullanıcı kendisi buzdolabına sürüklüyor; “2 kat daha hızlı soğutma” mesajı ürünün tazeliği koruma gücünü deneyimle anlatıyor.</p>
+    <a class="cta" href="calismalar/Beko/Beko.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/p31-228.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p31-230.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p31-232.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s34"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">06 · Ev Yaşam &amp; Mutfak</span><span class="pn"><b>34</b> / 76</span></header>
+  <div class="pl">
+    
+    <h2 class="brand">Tefal</h2>
+    <p class="ttl">Ice Force</p>
+    <span class="rule"></span>
+    <p class="info">Kullanıcı ürünü imleçle sağa kaydırıyor; hareketle birlikte bıçağın keskinliği ve 10 yıl garanti mesajı öne çıkıyor.</p>
+    <a class="cta" href="calismalar/Tefal/ice/iceforce.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n2"><figure><img src="assets/img/projeler/kare/p28-202.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p28-204.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s35"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">06 · Ev Yaşam &amp; Mutfak</span><span class="pn"><b>35</b> / 76</span></header>
+  <div class="pl">
+    
+    <h2 class="brand">Tefal</h2>
+    <p class="ttl">Clipso Chef</p>
+    <span class="rule"></span>
+    <p class="info">“Misafirler Kapıda”, “Pilim Bitti”, “Şef Gibi Hisset” senaryolarıyla düdüklü tencerenin hızı ve pratikliği gerçek mutfak anları üzerinden anlatılıyor.</p>
+    <a class="cta" href="calismalar/Tefal/duduklutencere.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/p29-210.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p29-212.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p29-214.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s36"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">06 · Ev Yaşam &amp; Mutfak</span><span class="pn"><b>36</b> / 76</span></header>
+  <div class="pl">
+    
+    <h2 class="brand">Tefal</h2>
+    <p class="ttl">Excellence</p>
+    <span class="rule"></span>
+    <p class="info">Isınan tava görseli ve “6 kat daha dayanıklı” mesajıyla açılan deneyim, pişirme sahnesinde güvenli kaplama ve indüksiyon uyumunu gösteriyor.</p>
+    <a class="cta" href="calismalar/Tefal/tava.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n1"><figure><img src="assets/img/projeler/kare/p30-222.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide cat" id="s37"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"></header>
+  <span class="num" aria-hidden="true">07</span>
+  <div class="cl">
+    <p class="sec">Bölüm 07</p>
+    <h2>Gıda &amp; Restoran</h2>
+    <span class="bar"></span>
+    <p class="lead">İştah açan anlatımı oyun ve sipariş aksiyonuyla birleştiren işler.</p>
+  </div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri</span></footer>
+</div></section>
+<section class="slide proj" id="s38"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">07 · Gıda &amp; Restoran</span><span class="pn"><b>38</b> / 76</span></header>
+  <div class="pl">
+    <span class="new">Yeni çalışma</span>
+    <h2 class="brand">KFC</h2>
+    <p class="ttl">KFSOOO · Çifte Cruncher</p>
+    <span class="rule"></span>
+    <p class="info">Sinematik açılış, kişi başı ve toplam fiyatı sayan dinamik sayaçlarla yeni menüyü sahneye taşıyor; kullanıcı menüyü keşfetmeye ve filmi tekrar izlemeye davet ediliyor.</p>
+    <a class="cta" href="calismalar/KFC/kfc2.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/kfc-1.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/kfc-2.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/kfc-3.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s39"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">07 · Gıda &amp; Restoran</span><span class="pn"><b>39</b> / 76</span></header>
+  <div class="pl">
+    <span class="new">Yeni çalışma</span>
+    <h2 class="brand">Coffy</h2>
+    <p class="ttl">Çok da Coffy</p>
+    <span class="rule"></span>
+    <p class="info">Kısa senaryo videosunun ardından kullanıcı kaydırıcıyla “bugün ne kadar Coffy’sin?” sorusunu yanıtlıyor; bardak doluyor ve en yakın şubeye yol tarifi beliriyor.</p>
+    <a class="cta" href="calismalar/galeri/coffy-seviyesi/" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/coffy-1.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/coffy-2.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/coffy-3.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s40"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">07 · Gıda &amp; Restoran</span><span class="pn"><b>40</b> / 76</span></header>
+  <div class="pl">
+    
+    <h2 class="brand">Banvit</h2>
+    <p class="ttl">Ramazan Sofrası</p>
+    <span class="rule"></span>
+    <p class="info">Pişirme kâğıdı fırsatı Ramazan temalı video ile sofra deneyimine dönüştü; iki ayrı çağrı kullanıcıyı tarife ya da doğrudan siparişe yönlendiriyor.</p>
+    <a class="cta" href="calismalar/Ornekcalisma/Banvit-Ramazan_interaktif/index.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/p33-242.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p33-244.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p33-246.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s41"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">07 · Gıda &amp; Restoran</span><span class="pn"><b>41</b> / 76</span></header>
+  <div class="pl">
+    
+    <h2 class="brand">Banvit</h2>
+    <p class="ttl">Lezzeti Yakala</p>
+    <span class="rule"></span>
+    <p class="info">Sosis ya da nugget seçen kullanıcı 10 saniye boyunca düşen ürünleri yakalayıp puan topluyor; oyun sonunda tekrar oynama ya da ürün sayfasına geçiş sunuluyor.</p>
+    <a class="cta" href="calismalar/Splashornek/banvit2.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/p35-262.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p35-264.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p35-266.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s42"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">07 · Gıda &amp; Restoran</span><span class="pn"><b>42</b> / 76</span></header>
+  <div class="pl">
+    
+    <h2 class="brand">Kraft Heinz</h2>
+    <p class="ttl">Efsane Lezzet</p>
+    <span class="rule"></span>
+    <p class="info">Ketçap-mayonez, ranch ve trüflü mayonez yemek eşleşmeleriyle sunuluyor; her ürün etkileşiminde “Lezzeti Keşfet” ile ürün sayfasına geçiş.</p>
+    <a class="cta" href="calismalar/Heinz/heinz.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/p36-274.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p36-276.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p36-278.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s43"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">07 · Gıda &amp; Restoran</span><span class="pn"><b>43</b> / 76</span></header>
+  <div class="pl">
+    
+    <h2 class="brand">Fellas</h2>
+    <p class="ttl">Granola Bar</p>
+    <span class="rule"></span>
+    <p class="info">Üç çeşit aynı karede; ürüne dokunan kullanıcı katkısız, glutensiz ve yüksek lifli içeriği anlatan kişisel bilgi ekranına geçiyor.</p>
+    <span class="cta off">Canlı demo talep üzerine</span>
+  </div>
+  <div class="pr"><div class="frames stack n1"><figure><img src="assets/img/projeler/kare/p37-286.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s44"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">07 · Gıda &amp; Restoran</span><span class="pn"><b>44</b> / 76</span></header>
+  <div class="pl">
+    
+    <h2 class="brand">Züber</h2>
+    <p class="ttl">Lezzeti Döndür</p>
+    <span class="rule"></span>
+    <p class="info">“Lezzeti Döndür” butonu Orman Meyveli, Antep Fıstıklı ve Fıstırık varyantları arasında geçiş yaptırıyor; her ekranda “Hemen Al” çağrısı.</p>
+    <a class="cta" href="calismalar/Zuber/Zuber_2.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/p38-291.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p38-293.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p38-295.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s45"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">07 · Gıda &amp; Restoran</span><span class="pn"><b>45</b> / 76</span></header>
+  <div class="pl">
+    
+    <h2 class="brand">Komagene</h2>
+    <p class="ttl">Ramazan</p>
+    <span class="rule"></span>
+    <p class="info">Üç ürün görseli şehir bazlı iftar sayaçlarıyla aciliyet yaratıyor; QR kod ile uygulamada özel indirim ve “Menüyü Keşfet” ile satış sayfasına yönlendirme.</p>
+    <a class="cta" href="calismalar/Komagene/Komagenedesktop.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/p41-315.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p41-317.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p41-319.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s46"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">07 · Gıda &amp; Restoran</span><span class="pn"><b>46</b> / 76</span></header>
+  <div class="pl">
+    
+    <h2 class="brand">Yemeksepeti</h2>
+    <p class="ttl">25. Yıl</p>
+    <span class="rule"></span>
+    <p class="info">“Aklındaysa Kapında” mesajıyla Yemek, Market, Mahalle ve Gel Al sekmeleri markanın tüm hizmetlerini tek mastheadde anlatıyor.</p>
+    <a class="cta" href="calismalar/yemeksepeti/ys25yil_2.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/p42-325.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p42-327.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p42-329.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide cat" id="s47"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"></header>
+  <span class="num" aria-hidden="true">08</span>
+  <div class="cl">
+    <p class="sec">Bölüm 08</p>
+    <h2>Teknoloji &amp; Telekomünikasyon</h2>
+    <span class="bar"></span>
+    <p class="lead">Yeni nesil hizmetleri oyunlaştırma ve kişiselleştirmeyle anlatan işler.</p>
+  </div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri</span></footer>
+</div></section>
+<section class="slide proj" id="s48"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">08 · Teknoloji &amp; Telekomünikasyon</span><span class="pn"><b>48</b> / 76</span></header>
+  <div class="pl">
+    <span class="new">Yeni çalışma</span>
+    <h2 class="brand">MediaMarkt</h2>
+    <p class="ttl">11.11 Çarkı</p>
+    <span class="rule"></span>
+    <p class="info">Kullanıcı çarkı butonla çeviriyor ya da tutup fırlatıyor; denk gelen ürün, kopyalanabilir indirim koduyla birlikte fırsat kartında açılıyor.</p>
+    <a class="cta" href="calismalar/galeri/mediamarkt-1111-cark/" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/mediamarkt-1.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/mediamarkt-2.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/mediamarkt-3.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s49"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">08 · Teknoloji &amp; Telekomünikasyon</span><span class="pn"><b>49</b> / 76</span></header>
+  <div class="pl">
+    
+    <h2 class="brand">MediaMarkt</h2>
+    <p class="ttl">Sevgililer Günü</p>
+    <span class="rule"></span>
+    <p class="info">“Mutluluğu Garantiye Al” mesajıyla dört kitle tanımı ve yapay zekâ destekli ürün seçimi, kişiye özel hediye önerisini satın almaya bağlıyor.</p>
+    <a class="cta" href="calismalar/MM/2026/MM_14Subat.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/p45-355.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p45-357.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p45-359.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s50"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">08 · Teknoloji &amp; Telekomünikasyon</span><span class="pn"><b>50</b> / 76</span></header>
+  <div class="pl">
+    <span class="new">Yeni çalışma</span>
+    <h2 class="brand">Turkcell</h2>
+    <p class="ttl">Turkcell One</p>
+    <span class="rule"></span>
+    <p class="info">Ayrıcalıklar, paketler, popüler içerikler ve avantajlar sekmeleri; kullanıcı paketleri karşılaştırıyor ve tek faturada toplanan platformları keşfediyor.</p>
+    <a class="cta" href="calismalar/Turkcell/One/OneTurkcell.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/turkcellone-1.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/turkcellone-2.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/turkcellone-3.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s51"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">08 · Teknoloji &amp; Telekomünikasyon</span><span class="pn"><b>51</b> / 76</span></header>
+  <div class="pl">
+    
+    <h2 class="brand">Turkcell</h2>
+    <p class="ttl">Superbox 5G</p>
+    <span class="rule"></span>
+    <p class="info">Cihaz çevresindeki etkileşimli kutucuklar ışık hızında bağlantı, gecikmesiz oyun ve kesintisiz 4K yayın avantajlarını gizemli bir keşifle açıyor.</p>
+    <a class="cta" href="calismalar/Turkcell/Superbox/Superbox5G_4.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/p48-381.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p48-383.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p48-385.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s52"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">08 · Teknoloji &amp; Telekomünikasyon</span><span class="pn"><b>52</b> / 76</span></header>
+  <div class="pl">
+    
+    <h2 class="brand">Turkcell</h2>
+    <p class="ttl">5G Mağaza</p>
+    <span class="rule"></span>
+    <p class="info">Kaydırma butonuyla başlayan 5G deneyimi, kullanıcıyı lokasyonuna en yakın mağazayı bulduğu sayfaya taşıyor.</p>
+    <a class="cta" href="calismalar/Turkcell/5G/5G.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/p49-393.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p49-395.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p49-397.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s53"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">08 · Teknoloji &amp; Telekomünikasyon</span><span class="pn"><b>53</b> / 76</span></header>
+  <div class="pl">
+    
+    <h2 class="brand">Turkcell</h2>
+    <p class="ttl">TV+ Yeni Sezon</p>
+    <span class="rule"></span>
+    <p class="info">Ortadaki ok ile gece ve gündüz görselleri arasında geçiş yapılan kurgu, yeni sezonun başlangıç tarihini dizi oyuncularıyla duyuruyor.</p>
+    <a class="cta" href="calismalar/Turkcell/From_tvplus2.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/p50-403.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p50-405.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p50-407.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s54"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">08 · Teknoloji &amp; Telekomünikasyon</span><span class="pn"><b>54</b> / 76</span></header>
+  <div class="pl">
+    
+    <h2 class="brand">Samsung</h2>
+    <p class="ttl">S Wallet</p>
+    <span class="rule"></span>
+    <p class="info">Uygulamanın faydası kısa bir mesajla aktarılıyor; ikinci ekranda örnek ödeme akışı gösterilip kullanıcı uygulama indirme sayfasına yönlendiriliyor.</p>
+    <a class="cta" href="calismalar/Samsung/Ocak/SamsungSplashOrnek.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames tall"><figure><img src="assets/img/projeler/kare/p44-343.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p44-345.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p44-347.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s55"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">08 · Teknoloji &amp; Telekomünikasyon</span><span class="pn"><b>55</b> / 76</span></header>
+  <div class="pl">
+    
+    <h2 class="brand">Yandex</h2>
+    <p class="ttl">Yapay Zekâ mı, Doğal Zekâ mı?</p>
+    <span class="rule"></span>
+    <p class="info">“Hallederiz Abi” kültürünü anlayan bir yapay zekâ esprili bir kontrastla anlatılıyor; bekleme listesi kurgusu erken erişim talebini topluyor.</p>
+    <span class="cta off">Canlı demo talep üzerine</span>
+  </div>
+  <div class="pr"><div class="frames single"><figure><img src="assets/img/projeler/kare/p46-371.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s56"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">08 · Teknoloji &amp; Telekomünikasyon</span><span class="pn"><b>56</b> / 76</span></header>
+  <div class="pl">
+    
+    <h2 class="brand">Yandex</h2>
+    <p class="ttl">Kapadokya</p>
+    <span class="rule"></span>
+    <p class="info">Çay-simit muhabbetinden kahve falına yerel kodlarla konuşan bir yapay zekâ; “Erken Erişim Protokolü” ile kullanıcı deneyime davet ediliyor.</p>
+    <span class="cta off">Canlı demo talep üzerine</span>
+  </div>
+  <div class="pr"><div class="frames tall"><figure><img src="assets/img/projeler/kare/p47-376.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s57"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">08 · Teknoloji &amp; Telekomünikasyon</span><span class="pn"><b>57</b> / 76</span></header>
+  <div class="pl">
+    
+    <h2 class="brand">JBL</h2>
+    <p class="ttl">Tune Flex</p>
+    <span class="rule"></span>
+    <p class="info">Siyah, beyaz, mor ve altın renk seçenekleri dört ayrı ekranda; 76 saat pil ömrü ve gürültü engelleme vurgusu “Satın Al” çağrısına bağlanıyor.</p>
+    <a class="cta" href="calismalar/JBL/Jbl_tune530_1.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/p51-413.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p51-415.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p51-417.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide cat" id="s58"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"></header>
+  <span class="num" aria-hidden="true">09</span>
+  <div class="cl">
+    <p class="sec">Bölüm 09</p>
+    <h2>Mücevher &amp; Aksesuar</h2>
+    <span class="bar"></span>
+    <p class="lead">Ürünü kişisel bir hikâyeye dönüştüren premium deneyimler.</p>
+  </div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri</span></footer>
+</div></section>
+<section class="slide proj" id="s59"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">09 · Mücevher &amp; Aksesuar</span><span class="pn"><b>59</b> / 76</span></header>
+  <div class="pl">
+    <span class="new">Yeni çalışma</span>
+    <h2 class="brand">Pandora</h2>
+    <p class="ttl">Moments · Kendi Hikâyeni Tasarla</p>
+    <span class="rule"></span>
+    <p class="info">Kullanıcı bilekliğinin metalini seçiyor, charm’ları tek tek ekliyor ve toplam fiyat anlık güncelleniyor. Tasarlanan bileklik doğrudan satın alma çağrısına dönüşüyor.</p>
+    <a class="cta" href="calismalar/Pandora/Pandora2027_v2.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/pandora-1.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/pandora-2.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/pandora-3.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s60"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">09 · Mücevher &amp; Aksesuar</span><span class="pn"><b>60</b> / 76</span></header>
+  <div class="pl">
+    <span class="new">Yeni çalışma</span>
+    <h2 class="brand">DeFacto Pırlanta</h2>
+    <p class="ttl">Yakından Bak, Gerçeği Gör</p>
+    <span class="rule"></span>
+    <p class="info">Kullanıcı büyüteci pırlantanın üzerinde gezdirdikçe karat, renk ve berraklık bilgileri tek tek onaylanıyor; inceleme tamamlandığında ürünün sertifikası ekrana geliyor. Güven, deneyimle kanıtlanıyor.</p>
+    <a class="cta" href="calismalar/galeri/defacto-pirlanta-buyutec/" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/defacto-1.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/defacto-2.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/defacto-3.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s61"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">09 · Mücevher &amp; Aksesuar</span><span class="pn"><b>61</b> / 76</span></header>
+  <div class="pl">
+    
+    <h2 class="brand">Zen Pırlanta</h2>
+    <p class="ttl">Jennifer Lopez</p>
+    <span class="rule"></span>
+    <p class="info">Jennifer Lopez iş birliğinin yıldız gücü açılış videosuyla öne çıkarken bölünmüş kare yapısı farklı modelleri tek bannerda keşfettiriyor.</p>
+    <span class="cta off">Canlı demo talep üzerine</span>
+  </div>
+  <div class="pr"><div class="frames stack n2"><figure><img src="assets/img/projeler/kare/p53-431.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p53-432.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide cat" id="s62"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"></header>
+  <span class="num" aria-hidden="true">10</span>
+  <div class="cl">
+    <p class="sec">Bölüm 10</p>
+    <h2>Moda &amp; Tekstil</h2>
+    <span class="bar"></span>
+    <p class="lead">Koleksiyonları ilgi alanına göre keşfettiren vitrin kurguları.</p>
+  </div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri</span></footer>
+</div></section>
+<section class="slide proj" id="s63"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">10 · Moda &amp; Tekstil</span><span class="pn"><b>63</b> / 76</span></header>
+  <div class="pl">
+    <span class="new">Yeni çalışma</span>
+    <h2 class="brand">Adidas</h2>
+    <p class="ttl">Hotel Superstar</p>
+    <span class="rule"></span>
+    <p class="info">Sokak, Arcade ve Sahne odaları; kullanıcı ilgi alanına göre bir odaya giriyor ve Superstar’ın o dünyadaki hikâyesini keşfedip ürünlere geçiyor.</p>
+    <a class="cta" href="calismalar/Adidas/Adidas.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/adidas-1.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/adidas-2.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/adidas-3.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s64"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">10 · Moda &amp; Tekstil</span><span class="pn"><b>64</b> / 76</span></header>
+  <div class="pl">
+    <span class="new">Yeni çalışma</span>
+    <h2 class="brand">Altınyıldız Classics</h2>
+    <p class="ttl">Kasım Kombin Makinesi</p>
+    <span class="rule"></span>
+    <p class="info">Kullanıcı slot makinesinin kolunu çekiyor ya da makaraları kaydırıyor; üst ve alt parçalar dönerek 25 farklı kombinden birini oluşturuyor. Her parça kendi “Satın Al” çağrısıyla ürün sayfasına bağlanıyor.</p>
+    <a class="cta" href="AC_V4_1.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/altinyildiz-1.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/altinyildiz-2.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/altinyildiz-3.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s65"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">10 · Moda &amp; Tekstil</span><span class="pn"><b>65</b> / 76</span></header>
+  <div class="pl">
+    <span class="new">Yeni çalışma</span>
+    <h2 class="brand">Civil</h2>
+    <p class="ttl">30. Yıl Fırsat Kataloğu</p>
+    <span class="rule"></span>
+    <p class="info">Kapağa dokunan kullanıcı dijital bir katalog açıyor; sayfaları çevirdikçe bebek giyimden çocuk montlarına kadar kategoriler, başlangıç fiyatları ve ürün kartlarıyla birlikte sırayla beliriyor.</p>
+    <a class="cta" href="calismalar/Civil/Civil6_30yil_final_v4.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/civil-1.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/civil-2.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/civil-3.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s66"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">10 · Moda &amp; Tekstil</span><span class="pn"><b>66</b> / 76</span></header>
+  <div class="pl">
+    
+    <h2 class="brand">Brooks Brothers</h2>
+    <p class="ttl">Sonbahar</p>
+    <span class="rule"></span>
+    <p class="info">Klasik modeller, ütü gerektirmeyen teknoloji ve ikonik parfümler üç ayrı bölümde; her bölüm kendi “Keşfet” çağrısıyla ilgili ürün grubuna açılıyor.</p>
+    <a class="cta" href="calismalar/Planb/2026/BB/brooksbrothers.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/p55-443.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p55-445.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p55-447.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide cat" id="s67"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"></header>
+  <span class="num" aria-hidden="true">11</span>
+  <div class="cl">
+    <p class="sec">Bölüm 11</p>
+    <h2>Seyahat &amp; Turizm</h2>
+    <span class="bar"></span>
+    <p class="lead">Rotayı, destinasyonu ve markanın hikâyesini yaşatan çalışmalar.</p>
+  </div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri</span></footer>
+</div></section>
+<section class="slide proj" id="s68"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">11 · Seyahat &amp; Turizm</span><span class="pn"><b>68</b> / 76</span></header>
+  <div class="pl">
+    <span class="new">Yeni çalışma</span>
+    <h2 class="brand">Turkish Airlines</h2>
+    <p class="ttl">Official Store</p>
+    <span class="rule"></span>
+    <p class="info">Biniş kartı temalı vitrinde model uçaklar, çocuk pilot tulumları ve sallanabilen Göbeklitepe kar küresi; kullanıcı kaydırarak ürünleri keşfedip mağazaya geçiyor.</p>
+    <a class="cta" href="THY_Store.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/thy-1.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/thy-2.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/thy-3.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s69"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">11 · Seyahat &amp; Turizm</span><span class="pn"><b>69</b> / 76</span></header>
+  <div class="pl">
+    <span class="new">Yeni çalışma</span>
+    <h2 class="brand">Pegasus</h2>
+    <p class="ttl">Senin Yaz Rotan Neresi?</p>
+    <span class="rule"></span>
+    <p class="info">Yurt içi, Avrupa ve Kıbrıs kartları üzerine gelindiğinde genişleyip başlangıç fiyatını ve bilet çağrısını gösteriyor. Rota seçimi tek harekette.</p>
+    <a class="cta" href="calismalar/Pegasus/2026/Mart/Pegasus1.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/pegasus1-1.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/pegasus1-2.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/pegasus1-3.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s70"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">11 · Seyahat &amp; Turizm</span><span class="pn"><b>70</b> / 76</span></header>
+  <div class="pl">
+    <span class="new">Yeni çalışma</span>
+    <h2 class="brand">Pegasus</h2>
+    <p class="ttl">Yolculuk Bir Tatla Başlar</p>
+    <span class="rule"></span>
+    <p class="info">Lezzet, doğa, tarih ve kültür temalı destinasyonlar hikâye akışında birbirine bağlanıyor; final ekranı “Peki şimdi nereye?” sorusuyla rotayı kullanıcıya bırakıyor.</p>
+    <a class="cta" href="calismalar/Pegasus/2026/PegasusSplash.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n2"><figure><img src="assets/img/projeler/kare/pegasussplash-1.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/pegasussplash-2.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s71"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">11 · Seyahat &amp; Turizm</span><span class="pn"><b>71</b> / 76</span></header>
+  <div class="pl">
+    
+    <h2 class="brand">Pegasus</h2>
+    <p class="ttl">Rotanı Çevir</p>
+    <span class="rule"></span>
+    <p class="info">Uçak penceresindeki buğuyu silen kullanıcı kampanyalı rotaları keşfediyor; akan yıldızlarla uçuş deneyimi simüle ediliyor.</p>
+    <a class="cta" href="calismalar/pegasus2.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n1"><figure><img src="assets/img/projeler/kare/p57-461.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s72"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">11 · Seyahat &amp; Turizm</span><span class="pn"><b>72</b> / 76</span></header>
+  <div class="pl">
+    
+    <h2 class="brand">Pegasus</h2>
+    <p class="ttl">Yaz Kampanyası</p>
+    <span class="rule"></span>
+    <p class="info">İstanbul çıkışlı yaz destinasyonları dinamik görsellerle akarken her rota için güncel fiyat ve “Biletini Al” çağrısı sunuluyor.</p>
+    <a class="cta" href="calismalar/Pegasus/2026/Mart/Pegasus_2.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/p58-467.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p58-469.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p58-471.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide cat" id="s73"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"></header>
+  <span class="num" aria-hidden="true">12</span>
+  <div class="cl">
+    <p class="sec">Bölüm 12</p>
+    <h2>Gayrimenkul, Kurumsal &amp; Kamu</h2>
+    <span class="bar"></span>
+    <p class="lead">Projeyi, hizmeti ve kurum vizyonunu etkileşimli şekilde anlatan işler.</p>
+  </div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri</span></footer>
+</div></section>
+<section class="slide proj" id="s74"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">12 · Gayrimenkul, Kurumsal &amp; Kamu</span><span class="pn"><b>74</b> / 76</span></header>
+  <div class="pl">
+    <span class="new">Yeni çalışma</span>
+    <h2 class="brand">Nurol GYO</h2>
+    <p class="ttl">Urla 77</p>
+    <span class="rule"></span>
+    <p class="info">Ege’nin kalbindeki müstakil yaşam projesi, sesli kontrol edilebilen tanıtım videosuyla havadan görünümden havuzlu villalara ve iç mekânlara uzanan bir hikâyeyle anlatılıyor; detaylı bilgi çağrısı ve iletişim numarası her an görünür.</p>
+    <a class="cta" href="calismalar/Plad/Nurol_int.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/nurol-1.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/nurol-2.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/nurol-3.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide proj" id="s75"><div class="stage">
+  <header class="top"><img class="logo" src="assets/img/logo.png" alt="Splash Digital"><span class="lbl">12 · Gayrimenkul, Kurumsal &amp; Kamu</span><span class="pn"><b>75</b> / 76</span></header>
+  <div class="pl">
+    
+    <h2 class="brand">Kocaeli Belediyesi</h2>
+    <p class="ttl">7. Yıl</p>
+    <span class="rule"></span>
+    <p class="info">Lokasyon hedeflemeli kurguda vizyon mesajının ardından Yatırımlar, Hizmetler, Haberler, Kültür-Sanat ve Gençlik-Spor sekmeleri etkileşimli bilgi sunuyor.</p>
+    <a class="cta" href="calismalar/kocaeli/belediyeornek.html" target="_blank" rel="noopener">Çalışmayı canlı incele <i>↗</i></a>
+  </div>
+  <div class="pr"><div class="frames stack n3"><figure><img src="assets/img/projeler/kare/p60-483.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p60-485.jpg" alt="" loading="lazy" decoding="async"></figure><figure><img src="assets/img/projeler/kare/p60-487.jpg" alt="" loading="lazy" decoding="async"></figure></div></div>
+  <footer class="foot"><span>splashdigital.com.tr</span><span>İnteraktif Proje Örnekleri · 2026</span></footer>
+</div></section>
+<section class="slide end" id="s76"><div class="stage">
+  <div class="ev">
+    <img class="biglogo" src="assets/img/logo.png" alt="Splash Digital">
+    <h2>Bir sonraki kampanyanızı<br><em>birlikte planlayalım.</em></h2>
+    <div class="contacts">
+      <a href="mailto:sales@splashdigital.com.tr"><span>E-posta</span>sales@splashdigital.com.tr</a>
+      <a href="tel:+905356055392"><span>Telefon</span>+90 535 605 53 92</a>
+      <a href="./"><span>Web</span>splashdigital.com.tr</a>
     </div>
-    <div class="foot">
-      <strong>Markanız için interaktif bir proje mi planlıyorsunuz?</strong>
-      <a class="btn btn--primary" href="./#iletisim">Bizimle İletişime Geçin</a>
-      <a class="btn" href="https://wa.me/905356055392" target="_blank" rel="noopener">WhatsApp</a>
-      <p>+90 535 605 53 92 · sales@splashdigital.com.tr</p>
-    </div>
+    <p class="thx">Teşekkürler</p>
+  </div>
+</div></section>
   </main>
 
   <div class="count" id="count" aria-hidden="true"></div>
-  <a class="top" id="top" href="#" aria-label="Başa dön"><svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg></a>
+  <a class="totop" id="totop" href="#" aria-label="Başa dön"><svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg></a>
 
   <script>
   (function () {
-    var pages = document.querySelectorAll('.pg');
-    var total = pages.length, counter = document.getElementById('count'), top = document.getElementById('top'), t;
+    var deck = document.getElementById('deck'), slides = deck.querySelectorAll('.slide');
+    // Sahneyi (1920x1080) kap genişliğine ölçekle
+    function fit() { var w = slides[0].clientWidth; deck.style.setProperty('--s', (w / 1920).toFixed(5)); }
+    fit();
+    if ('ResizeObserver' in window) new ResizeObserver(fit).observe(deck); else window.addEventListener('resize', fit);
+
+    var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var total = slides.length, counter = document.getElementById('count'), t;
     if ('IntersectionObserver' in window) {
       var io = new IntersectionObserver(function (es) {
         es.forEach(function (e) {
           if (!e.isIntersecting) return;
           counter.textContent = e.target.id.slice(1) + ' / ' + total;
-          counter.classList.add('is-on');
-          clearTimeout(t); t = setTimeout(function () { counter.classList.remove('is-on'); }, 1200);
+          counter.classList.add('is-on'); clearTimeout(t);
+          t = setTimeout(function () { counter.classList.remove('is-on'); }, 1200);
         });
       }, { rootMargin: '-50% 0px -50% 0px' });
-      pages.forEach(function (p) { io.observe(p); });
-    }
-    window.addEventListener('scroll', function () { top.classList.toggle('is-on', window.scrollY > 1200); }, { passive: true });
-    // Sayfalar ekrana girince belirir + ilerleme çizgisi
-    var bar = document.querySelector('.progress');
-    function prog() { var m = document.documentElement.scrollHeight - innerHeight; bar.style.setProperty('--sp', m > 0 ? (scrollY / m).toFixed(4) : 0); }
-    window.addEventListener('scroll', prog, { passive: true }); prog();
-    if ('IntersectionObserver' in window) {
-      var rio = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); rio.unobserve(e.target); } }); }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
-      pages.forEach(function (p) { rio.observe(p); });
-    } else { pages.forEach(function (p) { p.classList.add('is-in'); }); }
+      slides.forEach(function (s) { io.observe(s); });
+      if (!reduce) {
+        var rio = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); rio.unobserve(e.target); } }); }, { rootMargin: '0px 0px -6% 0px', threshold: .04 });
+        slides.forEach(function (s) { rio.observe(s); });
+      } else { slides.forEach(function (s) { s.classList.add('is-in'); }); }
+    } else { slides.forEach(function (s) { s.classList.add('is-in'); }); }
 
+    var top = document.getElementById('totop');
+    window.addEventListener('scroll', function () { top.classList.toggle('is-on', scrollY > 1200); }, { passive: true });
   })();
   </script>
 </body>

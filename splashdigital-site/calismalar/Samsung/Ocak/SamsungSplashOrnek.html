@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samsung Swallet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #121212;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        overflow: hidden;
+      }
+      /* Custom animations */
+      @keyframes bounce-slow {
+          0%, 100% { transform: translateY(-20px); }
+          50% { transform: translateY(-30px); }
+      }
+      .animate-bounce-slow {
+          animation: bounce-slow 2.5s infinite ease-in-out;
+      }
+      @keyframes pulse-ring {
+          0% { transform: scale(0.8); opacity: 0.5; }
+          100% { transform: scale(1.3); opacity: 0; }
+      }
+      .animate-pulse-ring {
+          animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+      }
+      @keyframes fade-in-up {
+          from { opacity: 0; transform: translateY(15px); }
+          to { opacity: 1; transform: translateY(0); }
+      }
+      .animate-fade-in {
+          animation: fade-in-up 0.6s ease-out forwards;
+      }
+      @keyframes scale-up {
+          from { opacity: 0; transform: scale(0.9); }
+          to { opacity: 1; transform: scale(1); }
+      }
+      .animate-scale-in {
+          animation: scale-up 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0"
+  }
+}
+</script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        const SWALLET_LOGO = "https://play-lh.googleusercontent.com/ltiU51gBod_HjkvchuM8o8u8HYgilJ_YozYczIYftD-9_H9Ehmp8dxTlqi9OxXd4PxnuaeGhMmRU-rhdFNytvw=w480-h960-rw";
+        const SAMSUNG_LOGO_URL = "https://upload.wikimedia.org/wikipedia/commons/0/00/Samsung_Orig_Wordmark_BLACK_RGB.png";
+
+        // --- ICONS ---
+        const HandIcon = ({ size = 24, className = "" }) => (
+          <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+            <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0" />
+            <path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2" />
+            <path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8" />
+            <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15" />
+          </svg>
+        );
+
+        const NfcIcon = ({ size = 24, className = "" }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+                <path d="M6 8a6 6 0 0 1 12 0" />
+                <path d="M9 12a3 3 0 0 1 6 0" />
+                <path d="M11 16a1 1 0 0 1 2 0" />
+            </svg>
+        );
+
+        const ChevronRight = ({ size = 24, className = "" }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+                <path d="m9 18 6-6-6-6" />
+            </svg>
+        );
+
+        const CheckCircle2 = ({ size = 24, className = "" }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+                <circle cx="12" cy="12" r="10" />
+                <path d="m9 12 2 2 4-4" />
+            </svg>
+        );
+        
+        const Wallet = ({ size = 24, className = "" }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+                <path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4" />
+                <path d="M4 6v12c0 1.1.9 2 2 2h14v-4" />
+                <path d="M18 12a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v-8Z" />
+            </svg>
+        );
+        
+        const Smartphone = ({ size = 24, className = "" }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+                <rect width="14" height="20" x="5" y="2" rx="2" ry="2" />
+                <path d="M12 18h.01" />
+            </svg>
+        );
+
+        // --- APP LOGIC ---
+        const AdStep = {
+            INTRO: 0,
+            INTERACTION: 1,
+            REWARD: 2,
+            END_CARD: 3,
+        };
+
+        const SwalletInterstitial = () => {
+            const [step, setStep] = useState(AdStep.INTRO);
+            const [isAnimating, setIsAnimating] = useState(false);
+
+            useEffect(() => {
+                if (step === AdStep.REWARD) {
+                    const timer = setTimeout(() => {
+                        setStep(AdStep.END_CARD);
+                    }, 2500);
+                    return () => clearTimeout(timer);
+                }
+            }, [step]);
+
+            const handleInteraction = () => {
+                if (isAnimating) return;
+                setIsAnimating(true);
+                setTimeout(() => {
+                    setStep(AdStep.REWARD);
+                    setIsAnimating(false);
+                }, 1500);
+            };
+
+            const handleReplay = () => {
+                setStep(AdStep.INTRO);
+            };
+
+            return (
+                <div className="relative w-[320px] h-[480px] bg-black text-white overflow-hidden flex flex-col font-sans select-none shadow-2xl">
+                    
+                    {/* Background Gradient - Darker and cleaner */}
+                    <div className="absolute inset-0 bg-[#050505] z-0"></div>
+                    <div className="absolute top-[-80px] right-[-80px] w-64 h-64 bg-[#1428a0] rounded-full blur-[90px] opacity-40 z-0"></div>
+                    <div className="absolute bottom-[-40px] left-[-40px] w-56 h-56 bg-[#5b1da3] rounded-full blur-[70px] opacity-30 z-0"></div>
+                    
+                    {/* Header Logos - Compacted */}
+                    <div className="absolute top-4 left-0 right-0 px-5 flex justify-between items-center z-20">
+                        <div className="flex items-center backdrop-blur-md bg-white/5 pr-3 pl-1 py-1 rounded-full border border-white/10 scale-90 origin-left">
+                             <img src={SWALLET_LOGO} alt="Swallet" className="h-7 w-7 object-contain rounded-full shadow-sm" />
+                             <span className="ml-2 font-bold text-xs tracking-wide text-white">S-Wallet</span>
+                        </div>
+                        <img src={SAMSUNG_LOGO_URL} alt="Samsung" className="h-6 w-auto object-contain brightness-0 invert opacity-90" />
+                    </div>
+
+                    {/* CONTENT AREA */}
+                    <div className="relative z-10 flex-1 flex flex-col items-center p-5 w-full h-full pt-16 pb-6">
+                        
+                        {/* STEP 0: INTRO */}
+                        {step === AdStep.INTRO && (
+                            <div className="flex flex-col items-center text-center animate-fade-in w-full h-full justify-evenly">
+                                
+                                {/* Visual Area */}
+                                <div className="relative flex-shrink-0 mt-2">
+                                    <div className="absolute inset-0 bg-blue-500 blur-2xl opacity-15 animate-pulse"></div>
+                                    {/* Scaled down mockup */}
+                                    <div className="relative w-32 h-52 bg-gray-900 rounded-[1.5rem] border-[3px] border-gray-700 shadow-xl flex flex-col items-center pt-5 overflow-hidden transform rotate-[-4deg] hover:rotate-0 transition-all duration-500">
+                                        <div className="w-10 h-3 bg-black rounded-full mb-3 top-2 absolute"></div>
+                                        <div className="w-full h-full bg-gradient-to-b from-gray-800 to-black p-2.5">
+                                            <div className="w-full aspect-[1.58] bg-gradient-to-br from-[#0052D4] to-[#4364F7] rounded-lg p-2 shadow-inner flex flex-col justify-between mb-2">
+                                                 <div className="flex justify-between items-start">
+                                                    <img src={SWALLET_LOGO} alt="logo" className="w-3.5 h-3.5 rounded-full"/>
+                                                    <NfcIcon size={10} className="text-white/70"/>
+                                                 </div>
+                                                 <div className="text-[6px] font-mono text-white/80 tracking-widest">**** 9021</div>
+                                            </div>
+                                            <div className="w-full h-1.5 bg-gray-700 rounded-full mb-1.5 opacity-50"></div>
+                                            <div className="w-3/4 h-1.5 bg-gray-700 rounded-full opacity-30"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Text Area */}
+                                <div className="space-y-2 mt-2">
+                                    <h1 className="text-xl font-bold leading-tight tracking-tight">
+                                        Cüzdanını <br/><span className="text-[#5b9aff]">Özgürleştir</span>
+                                    </h1>
+                                    <p className="text-gray-400 text-[11px] px-2 leading-relaxed">
+                                        Tüm kartların tek bir yerde.<br/>Harcadıkça kazandıran dünya.
+                                    </p>
+                                </div>
+
+                                {/* CTA */}
+                                <button 
+                                    onClick={() => setStep(AdStep.INTERACTION)}
+                                    className="mt-2 group bg-white text-black font-bold py-3 px-8 rounded-full shadow-lg shadow-white/10 transition-all duration-300 flex items-center space-x-2 transform active:scale-95"
+                                >
+                                    <span className="text-sm">Şimdi Keşfet</span>
+                                    <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                                </button>
+                            </div>
+                        )}
+
+                        {/* STEP 1: INTERACTION */}
+                        {step === AdStep.INTERACTION && (
+                            <div className="flex flex-col items-center w-full animate-fade-in h-full justify-center relative">
+                                <h2 className="text-lg font-bold text-center mt-2 mb-4 text-blue-100">Ödemek İçin Telefona Dokun</h2>
+                                
+                                <div className="flex-1 w-full flex flex-col justify-center items-center relative pb-10">
+                                    
+                                    {/* TARGET ZONE: PAYMENT TERMINAL */}
+                                    <div className="absolute bottom-4 w-40 h-40 flex items-center justify-center">
+                                        <div className="absolute w-full h-full border-2 border-blue-500/20 rounded-full animate-pulse-ring"></div>
+                                        <div className="absolute w-28 h-28 border-2 border-blue-500/40 rounded-full animate-pulse-ring" style={{animationDelay: '0.5s'}}></div>
+                                        <div className="w-20 h-20 bg-white/5 backdrop-blur-md rounded-full border border-white/20 flex items-center justify-center shadow-[0_0_20px_rgba(59,130,246,0.4)]">
+                                            <NfcIcon size={32} className="text-blue-400" />
+                                        </div>
+                                         <div className="absolute -bottom-6 text-[10px] text-blue-400/70 font-mono tracking-widest uppercase">
+                                            Yaklaştır
+                                         </div>
+                                    </div>
+
+                                    {/* Phone */}
+                                    <div 
+                                        onClick={handleInteraction}
+                                        className={`cursor-pointer absolute z-20 w-36 h-64 bg-[#121212] rounded-[2.5rem] border-[4px] border-gray-700 shadow-2xl p-3 flex flex-col
+                                            transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)]
+                                            ${isAnimating ? 'translate-y-[60px] scale-95 opacity-0' : 'translate-y-[-50px] animate-bounce-slow hover:border-blue-500/50'}
+                                        `}
+                                    >
+                                        <div className="h-full w-full bg-gradient-to-b from-gray-900 to-black rounded-[2rem] relative overflow-hidden flex flex-col p-3 border border-gray-800">
+                                            <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-[#1428a0]/30 to-transparent z-0"></div>
+                                            
+                                            <div className="relative z-10 mt-6 space-y-3">
+                                                <div className="w-full aspect-[1.58] bg-gradient-to-br from-[#0a1f75] to-[#254bdb] rounded-xl p-3 shadow-lg border border-white/10 flex flex-col justify-between">
+                                                    <div className="flex justify-between items-start">
+                                                        <img src={SWALLET_LOGO} alt="Swallet" className="h-5 w-5 rounded-full" />
+                                                        <NfcIcon size={14} className="text-white/80" />
+                                                    </div>
+                                                    <div className="text-[10px] font-bold tracking-widest text-white mt-1">•••• 4291</div>
+                                                </div>
+                                                
+                                                <div className="text-center">
+                                                    <div className="text-[10px] text-gray-400">Tutar</div>
+                                                    <div className="text-lg font-bold text-white">₺150,00</div>
+                                                </div>
+                                            </div>
+
+                                            {/* Tap Hint */}
+                                            {!isAnimating && (
+                                                <div className="absolute bottom-6 left-0 right-0 flex flex-col items-center justify-center animate-pulse z-20 pointer-events-none">
+                                                    <div className="bg-blue-600/90 text-white text-[10px] font-bold px-3 py-1.5 rounded-full shadow-lg flex items-center space-x-1">
+                                                        <HandIcon size={12} />
+                                                        <span>DOKUN</span>
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className={`absolute bottom-6 text-sm text-blue-300 transition-opacity font-medium ${isAnimating ? 'opacity-100' : 'opacity-0'}`}>
+                                    Ödeme Onaylanıyor...
+                                </div>
+                            </div>
+                        )}
+
+                        {/* STEP 2: REWARD */}
+                        {step === AdStep.REWARD && (
+                            <div className="flex flex-col items-center justify-center h-full text-center animate-scale-in space-y-6">
+                                <div className="relative">
+                                    <div className="absolute inset-0 bg-green-500 blur-3xl opacity-20"></div>
+                                    <div className="relative bg-gradient-to-tr from-green-500 to-emerald-400 rounded-full p-4 shadow-2xl shadow-green-900/50">
+                                        <CheckCircle2 size={48} className="text-white" />
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h2 className="text-2xl font-bold text-white mb-1 tracking-tight">İşlem Tamam!</h2>
+                                    <p className="text-gray-400 text-xs">Ödemeniz başarıyla gerçekleşti.</p>
+                                </div>
+                                
+                                <div className="w-full max-w-[220px] bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-4 relative overflow-hidden">
+                                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-400 to-blue-500"></div>
+                                    <div className="text-gray-400 text-[10px] font-medium uppercase tracking-wider mb-1">Swallet Kazanımı</div>
+                                    <div className="flex items-center justify-center space-x-2">
+                                        <span className="text-xl font-bold text-white">₺50,00</span>
+                                        <span className="text-[10px] bg-green-500/20 text-green-400 px-1.5 py-0.5 rounded-full font-bold">NAKİT İADE</span>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* STEP 3: END CARD */}
+                        {step === AdStep.END_CARD && (
+                            <div className="flex flex-col items-center text-center animate-fade-in w-full h-full justify-between py-2">
+                                
+                                <div className="flex flex-col items-center justify-center flex-1 space-y-4">
+                                    <div className="relative mt-2">
+                                        <div className="absolute inset-0 bg-blue-600 blur-[30px] opacity-25"></div>
+                                        <img src={SWALLET_LOGO} alt="App Icon" className="relative w-20 h-20 rounded-[18px] shadow-2xl border border-white/10" />
+                                    </div>
+
+                                    <div>
+                                        <h2 className="text-xl font-bold mb-1">S-Wallet'ı İndir</h2>
+                                        <p className="text-xs text-gray-400 px-4 leading-relaxed max-w-[260px] mx-auto">
+                                            Dijital kartını oluştur, Samsung ayrıcalıklarını yaşa.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="w-full space-y-2.5 px-6 mb-4">
+                                    <a 
+                                      href="https://apps.apple.com/tr/app/s-wallet/id6743120875" 
+                                      target="_blank" 
+                                      rel="noopener noreferrer"
+                                      className="w-full bg-white text-black font-bold py-3 px-4 rounded-xl flex items-center justify-center space-x-3 hover:bg-gray-100 transition-all active:scale-95 no-underline shadow-lg"
+                                    >
+                                        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 10.7C17.7 7.7 20.2 6.5 20.3 6.4C18.9 4.4 16.8 4.1 16 4.1C14.2 3.9 12.5 5.1 11.6 5.1C10.7 5.1 9.4 4.1 7.9 4.1C5.9 4.1 4 5.3 3 7.1C0.9 10.1 2.5 14.6 4.5 17.6C5.5 19 6.7 20.6 8.3 20.6C9.8 20.5 10.4 19.6 12.2 19.6C14 19.6 14.5 20.6 16.1 20.5C17.7 20.4 18.7 19 19.7 17.5C20.8 15.9 21.3 14.4 21.3 14.3C21.2 14.3 17.6 12.9 17.6 10.7Z"/></svg>
+                                        <span className="text-sm tracking-tight">App Store'dan İndir</span>
+                                    </a>
+
+                                    <a 
+                                      href="https://play.google.com/store/apps/details?id=com.pazarama.spay.prod&hl=tr"
+                                      target="_blank" 
+                                      rel="noopener noreferrer"
+                                      className="w-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center space-x-3 transition-all active:scale-95 no-underline"
+                                    >
+                                        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.3,12.56L10,18.5L15.46,13.03L20.3,12.56M16.81,8.88L14.54,11.15L6.05,2.66L16.81,8.88M10,5.5L20.3,11.44L15.46,10.97L10,5.5Z" /></svg>
+                                        <span className="text-sm tracking-tight">Google Play'de Keşfet</span>
+                                    </a>
+                                </div>
+
+                                <button onClick={handleReplay} className="text-[10px] text-gray-500 hover:text-white uppercase tracking-widest transition-colors mb-2">
+                                    Tekrar Oynat
+                                </button>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Footer */}
+                    <div className="relative z-10 w-full p-2 bg-black/60 backdrop-blur-sm text-center border-t border-white/5">
+                        <p className="text-[7px] text-gray-500 leading-tight">
+                            Kampanya koşulları Swallet uygulamasında geçerlidir.
+                        </p>
+                    </div>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<SwalletInterstitial />);
+    </script>
+</body>
+</html>

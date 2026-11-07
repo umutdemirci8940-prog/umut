@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Komagene Masthead</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              komagene: {
+                red: '#C20412', // Deeper, richer red
+                darkRed: '#5A0005', // Almost black red for depth
+                green: '#007A33',
+                goldLight: '#FCEEA7',
+                gold: '#D4AF37', // Metallic Gold
+                goldDark: '#8A6E18',
+              },
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              heading: ['Montserrat', 'sans-serif'],
+              serif: ['Playfair Display', 'serif'],
+            },
+            backgroundImage: {
+              'gold-gradient': 'linear-gradient(135deg, #FCEEA7 0%, #D4AF37 50%, #8A6E18 100%)',
+              'red-radial': 'radial-gradient(circle at center, #D90416 0%, #800000 60%, #300000 100%)',
+            },
+            boxShadow: {
+              'gold': '0 4px 20px -2px rgba(212, 175, 55, 0.5)',
+              'inner-light': 'inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+            }
+          }
+        }
+      }
+    </script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Montserrat:wght@600;800&family=Playfair+Display:ital,wght@1,500;1,700&display=swap" rel="stylesheet">
+
+    <!-- React & ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+      body {
+        background-color: #ffffff;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      /* Gold Text Gradient */
+      .text-gold-gradient {
+        background: linear-gradient(to bottom, #FFF8D5, #D4AF37, #996515);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0px 2px 4px rgba(0,0,0,0.3);
+      }
+
+      /* Glass Effect */
+      .glass-panel {
+        background: rgba(20, 0, 0, 0.4);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+      }
+
+      /* --- PREMIUM ANIMATIONS --- */
+      
+      /* Smooth Rotation for background rings */
+      .spin-slow {
+        animation: spin 40s linear infinite;
+      }
+      @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+
+      /* Floating Animation */
+      .float {
+        animation: float 6s ease-in-out infinite;
+      }
+      @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0px); }
+      }
+
+      /* Shine Effect */
+      .shine {
+        position: relative;
+        overflow: hidden;
+      }
+      .shine::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent);
+        transform: skewX(-25deg);
+        animation: shine 3s infinite;
+      }
+      @keyframes shine {
+        0% { left: -100%; }
+        20% { left: 200%; }
+        100% { left: 200%; }
+      }
+
+      /* --- NEW: CINEMATIC ENTRANCE ANIMATIONS --- */
+      
+      /* Text Staggered Reveal */
+      @keyframes revealUp {
+        0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
+      
+      .stagger-1 { animation: revealUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards; opacity: 0; }
+      .stagger-2 { animation: revealUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) 0.1s forwards; opacity: 0; }
+      .stagger-3 { animation: revealUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) 0.2s forwards; opacity: 0; }
+
+      /* Image Cinematic Entry (Blur + Scale + Rotate) */
+      @keyframes cinematicEnter {
+        0% { 
+          opacity: 0; 
+          transform: scale(0.9) rotate(-5deg); 
+          filter: blur(8px);
+        }
+        100% { 
+          opacity: 1; 
+          transform: scale(1.05) rotate(0deg); 
+          filter: blur(0);
+        }
+      }
+      .cinematic-image {
+        animation: cinematicEnter 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+      }
+
+      /* Price Tag Pop */
+      @keyframes popIn {
+        0% { transform: scale(0); opacity: 0; }
+        60% { transform: scale(1.1); opacity: 1; }
+        100% { transform: scale(1); opacity: 1; }
+      }
+      .pop-in {
+        animation: popIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s forwards;
+        opacity: 0;
+      }
+      
+      /* Subtle pattern overlay */
+      .bg-pattern {
+        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.4",
+    "qrcode.react": "https://esm.sh/qrcode.react@^4.2.0",
+    "react/": "https://esm.sh/react@^19.2.4/"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const { useState, useEffect } = React;
+
+      // Premium Mock Data
+      const slides = [
+        {
+          id: 1,
+          title: "İftar Sofralarının",
+          subtitle: "Efsane Lezzeti",
+          productName: "Fenomen Dürüm",
+          description: "Doritos, turşu ve özel sos ile hazırlanmış başyapıt.",
+          image: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&q=80&w=500&h=500", 
+          cta: "Hemen Söyle"
+        },
+        {
+          id: 2,
+          title: "Ramazan'a Özel",
+          subtitle: "Çıtır Lezzet Şöleni",
+          productName: "Taco Çiğ Köfte",
+          description: "Geleneksel lezzetin modern ve çıtır yorumu.",
+          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQa-4Q3Q-havQnm-CLV28TwYD1Z6Q9fAQvKaw&s", 
+          cta: "%20 İndirimi Kap"
+        },
+        {
+          id: 3,
+          title: "Sahurda Hafif",
+          subtitle: "İftarda Doyurucu",
+          productName: "Mega Dürüm",
+          description: "Ekstra malzemeli, ekstra doyurucu lezzet.",
+          image: "https://www.diyetkolik.com/site_media/media/nutrition_images/komagene-cig-kofte.webp", 
+          cta: "Menüyü Keşfet"
+        }
+      ];
+
+      const Masthead = () => {
+        const [currentSlide, setCurrentSlide] = useState(0);
+        const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 0, seconds: 0 });
+
+        // Slide Rotation
+        useEffect(() => {
+          const timer = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % slides.length);
+          }, 5000);
+          return () => clearInterval(timer);
+        }, []);
+
+        // Countdown
+        useEffect(() => {
+          const calculateTimeLeft = () => {
+            const now = new Date();
+            const iftar = new Date();
+            iftar.setHours(19, 30, 0, 0); 
+            if (now > iftar) iftar.setDate(iftar.getDate() + 1);
+
+            const diff = iftar.getTime() - now.getTime();
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / 1000 / 60) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            setTimeLeft({ hours, minutes, seconds });
+          };
+          const timer = setInterval(calculateTimeLeft, 1000);
+          calculateTimeLeft();
+          return () => clearInterval(timer);
+        }, []);
+
+        const slide = slides[currentSlide];
+
+        return (
+          <div className="w-[970px] h-[250px] relative overflow-hidden rounded-md shadow-2xl select-none group font-sans border border-komagene-red/30">
+            
+            {/* === CINEMATIC BACKGROUND === */}
+            <div className="absolute inset-0 bg-red-radial"></div>
+            <div className="absolute inset-0 bg-pattern opacity-30 mix-blend-overlay"></div>
+            
+            {/* Spotlights */}
+            <div className="absolute top-0 left-1/4 w-[400px] h-[400px] bg-komagene-red opacity-60 blur-[100px] mix-blend-screen animate-pulse" style={{animationDuration: '4s'}}></div>
+            <div className="absolute bottom-0 right-1/4 w-[300px] h-[300px] bg-komagene-gold opacity-10 blur-[80px] mix-blend-screen animate-pulse" style={{animationDuration: '6s'}}></div>
+
+
+            {/* === MAIN LAYOUT === */}
+            <div className="relative z-10 h-full w-full flex items-center justify-between px-12">
+
+              {/* --- LEFT: INFO & COUNTDOWN --- */}
+              <div className="flex-1 z-20 h-full flex flex-col justify-center items-start pt-2">
+                
+                {/* Logo Area */}
+                <div className="mb-4">
+                  <img 
+                      src="https://gateway.komagene.com.tr/site/StaticFiles/YuklenenLogolar/32/Logo-Kmgn.png" 
+                      alt="Komagene" 
+                      className="h-10 object-contain brightness-0 invert opacity-90 drop-shadow-md" 
+                  />
+                </div>
+
+                {/* Animated Text Block - Key change triggers re-render animation */}
+                <div key={slide.id} className="relative">
+                   <h2 className="stagger-1 font-heading font-bold text-white/90 text-sm tracking-widest uppercase mb-1 drop-shadow-md">
+                     {slide.title}
+                   </h2>
+                   <h3 className="stagger-2 font-serif italic text-4xl leading-tight text-gold-gradient mb-3 pr-4">
+                     {slide.subtitle}
+                   </h3>
+                   <p className="stagger-3 text-white/70 text-xs font-light max-w-[240px] leading-relaxed border-l border-white/20 pl-3">
+                     {slide.description}
+                   </p>
+                </div>
+
+                {/* Elegant Countdown - Static Container, dynamic numbers */}
+                <div className="mt-5 flex items-center gap-3">
+                   <div className="text-[10px] text-komagene-gold uppercase tracking-widest font-bold">İftara<br/>Kalan</div>
+                   <div className="flex gap-2">
+                      {['saat', 'dk', 'sn'].map((label, idx) => {
+                        const val = idx === 0 ? timeLeft.hours : idx === 1 ? timeLeft.minutes : timeLeft.seconds;
+                        return (
+                          <div key={label} className="flex flex-col items-center">
+                            <div className="w-10 h-10 rounded border border-white/10 bg-black/20 backdrop-blur-sm flex items-center justify-center text-white font-serif text-lg relative overflow-hidden transition-all duration-300 hover:border-komagene-gold/40">
+                              <div className="absolute top-0 w-full h-1/2 bg-white/5"></div>
+                              {String(val).padStart(2,'0')}
+                            </div>
+                            <span className="text-[8px] text-white/40 mt-1 uppercase">{label}</span>
+                          </div>
+                        )
+                      })}
+                   </div>
+                </div>
+
+              </div>
+
+
+              {/* --- CENTER: HERO PRODUCT --- */}
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] flex items-center justify-center z-10 pointer-events-none">
+                 
+                 {/* Gold Rings - Always spinning slowly */}
+                 <div className="absolute w-[320px] h-[320px] rounded-full border border-komagene-gold/20 border-dashed spin-slow"></div>
+                 <div className="absolute w-[280px] h-[280px] rounded-full border border-komagene-gold/10 scale-110"></div>
+                 
+                 {/* Glow behind product */}
+                 <div className="absolute w-[240px] h-[240px] bg-komagene-gold/20 rounded-full blur-[50px] animate-pulse"></div>
+
+                 {/* Product Image - CINEMATIC ENTRY */}
+                 <div key={slide.id+'img'} className="relative w-[260px] h-[260px] float">
+                     <div className="w-full h-full rounded-full overflow-hidden border-4 border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] cinematic-image">
+                        <img 
+                          src={slide.image} 
+                          alt={slide.productName} 
+                          className="w-full h-full object-cover"
+                        />
+                        {/* Reflection overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-white/20 pointer-events-none"></div>
+                     </div>
+                 </div>
+
+                 {/* Price Tag / Badge - POP IN */}
+                 <div key={slide.id+'tag'} className="absolute bottom-[70px] right-[40px] bg-komagene-green text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wide shadow-lg border border-white/20 pop-in">
+                   {slide.productName}
+                 </div>
+              </div>
+
+
+              {/* --- RIGHT: CTA CARD --- */}
+              <div className="flex-1 flex flex-col items-end justify-center z-20 h-full pl-10">
+                
+                <div className="glass-panel p-5 rounded-lg w-[280px] relative overflow-hidden group/card transition-all duration-300 hover:border-komagene-gold/30 hover:scale-[1.02]">
+                  
+                  {/* Decorative gold line */}
+                  <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-komagene-gold to-transparent opacity-50"></div>
+
+                  <div className="flex justify-between items-start mb-4">
+                    <div className="text-left">
+                       <p className="text-komagene-gold text-[10px] font-bold uppercase tracking-widest mb-1">Mobil'e Özel</p>
+                       <p className="text-white text-xs leading-tight opacity-80">Ramazan boyunca geçerli<br/>fırsatları kaçırma.</p>
+                    </div>
+                    {/* QR Code */}
+                    <div className="bg-white p-1.5 rounded-sm shadow-lg w-20 h-20 shrink-0 transition-transform duration-500 hover:scale-110">
+                       <img 
+                         src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://apps.apple.com/us/app/komagene-gene-gelsin/id1620339548&color=2e0000&bgcolor=ffffff" 
+                         className="w-full h-full object-contain"
+                         alt="QR"
+                       />
+                    </div>
+                  </div>
+
+                  {/* Buttons */}
+                  <div className="space-y-2">
+                    {/* App Stores */}
+                    <div className="flex gap-2 justify-between opacity-80 hover:opacity-100 transition-all duration-300">
+                      <a href="https://apps.apple.com/us/app/komagene-gene-gelsin/id1620339548" target="_blank" className="flex-1 bg-black/40 border border-white/10 rounded py-1.5 flex items-center justify-center gap-1 hover:bg-black/60 transition text-decoration-none">
+                        <span className="text-[14px] text-white"></span>
+                        <span className="text-[8px] text-white uppercase tracking-wider">App Store</span>
+                      </a>
+                      <a href="https://play.google.com/store/apps/details?id=com.grows.komagene&hl=tr" target="_blank" className="flex-1 bg-black/40 border border-white/10 rounded py-1.5 flex items-center justify-center gap-1 hover:bg-black/60 transition text-decoration-none">
+                        <span className="text-[10px] text-white">▶</span>
+                        <span className="text-[8px] text-white uppercase tracking-wider">Google Play</span>
+                      </a>
+                    </div>
+
+                    {/* Main CTA */}
+                    <a href="https://www.komagene.com.tr" target="_blank" className="block w-full bg-komagene-green hover:bg-[#006028] text-white text-center py-2.5 rounded font-bold text-xs uppercase tracking-widest shadow-lg shine transition-all duration-300 border-t border-white/10 relative overflow-hidden group/btn">
+                       <span className="relative z-10 transition-transform duration-300 group-hover/btn:scale-105 inline-block">{slide.cta}</span>
+                    </a>
+                  </div>
+
+                </div>
+
+                {/* Pagination Dots */}
+                <div className="mt-4 flex gap-2">
+                  {slides.map((_, i) => (
+                    <button 
+                      key={i}
+                      onClick={() => setCurrentSlide(i)}
+                      className={`h-1 transition-all duration-700 ease-out rounded-full ${currentSlide === i ? 'w-8 bg-komagene-gold shadow-[0_0_10px_#D4AF37]' : 'w-2 bg-white/20'}`}
+                    ></button>
+                  ))}
+                </div>
+
+              </div>
+            </div>
+
+            {/* Bottom Border Accent */}
+            <div className="absolute bottom-0 w-full h-[3px] bg-gradient-to-r from-komagene-darkRed via-komagene-gold to-komagene-darkRed"></div>
+
+          </div>
+        );
+      };
+
+      const App = () => {
+        return (
+          <div className="flex flex-col items-center gap-4">
+             <div className="flex items-center gap-3 select-none">
+                <span className="text-base text-gray-800 font-semibold tracking-wide">Bu çalışma</span>
+                <img 
+                  src="https://ci3.googleusercontent.com/mail-sig/AIorK4ytim2yfGqtrmGis2N9sHj-LyEC_p2wVIS_4T9V1FzGln0oo-p5BlvIwVBXDDDwkaICxfEd10hq_a6X" 
+                  alt="Agency Logo" 
+                  className="h-16 w-auto object-contain drop-shadow-sm" 
+                />
+                <span className="text-base text-gray-800 font-semibold tracking-wide">'e aittir.</span>
+             </div>
+             <Masthead />
+          </div>
+        )
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

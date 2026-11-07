@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="ad.size" content="width=970,height=250">
+  <script type="text/javascript">
+    var clickTag = "https://ad.doubleclick.net/ddm/trackclk/N948874.2453503SPLASHMEDIA/B31414959.413047986;dc_trk_aid=604820528;dc_trk_cid=228628222;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;gdpr=${GDPR};gdpr_consent=${GDPR_CONSENT_755};ltd=;dc_tdv=1";
+  </script>
+  <title>Honda NX500</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      display: flex;
+      width: 970px;
+      height: 250px;
+      overflow: hidden;
+      background-color: #fff;
+      position: relative;
+    }
+    .image {
+      height: 250px;
+      background-size: cover;
+      background-position: center;
+      transition: width 0.7s ease, transform 0.7s ease, background-position 0.7s ease;
+      cursor: pointer;
+      position: relative;
+    }
+    .arka_1 { background-image: url('arka-1.png'); width: 610px; }
+    .image1 { background-image: url('big-1.png'); display: none; }
+    .image2 { background-image: url('big-2.png'); }
+    .image3 { background-image: url('big-3.png'); }
+    .image1 { width: 610px; }
+    .image2, .image3 { width: 180px; background-position: calc(100% + 57px) center; }
+    .expanded {
+      width: 610px;
+      background-position: calc(100% + 0px) center;
+    }
+    .shrinked {
+      width: 180px;
+      background-position: calc(100% + 57px) center;
+    }
+    .overlay {
+      position: absolute;
+      bottom: 34px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 94px;
+      height: 25px;
+      background-image: url('incele.png');
+      background-size: cover;
+      display: none;
+    }
+    .overlay.visible {
+      display: block;
+    }
+    .buyume {
+      transform: scale(1.1);
+    }
+    .text {
+      position: absolute;
+      width: 970px;
+      height: 250px;
+      opacity: 0;
+      left: 20px;
+      transition: all 0.5s ease;
+    }
+    .text.animated {
+      opacity: 1;
+      left: 0;
+    }
+    .text2 {
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+  <a href="javascript:window.open(window.clickTag)">
+    <div class="container">
+      <div class="image image3" onmouseover="expandImage(3)" onmouseleave="resetImage()">
+        <div class="overlay"></div>
+      </div>
+      <div class="image image2" onmouseover="expandImage(2)" onmouseleave="resetImage()">
+        <div class="overlay"></div>
+      </div>
+      <div class="arka_1"></div>
+        <div class="text text1" style="background-image: url('text1.png');"></div>
+        <div class="text text2" style="background-image: url('text2.png');"></div>
+        <div class="text text3" style="background-image: url('text3.png');"></div>
+        <div class="text text4" style="background-image: url('text4.png');"></div>
+      <div class="image image1 expanded" onmouseover="expandImage(1)" onmouseleave="resetImage()">
+        <div class="overlay"></div>
+      </div>
+    </div>
+  </a>
+  <script>
+    let lastHoveredImage = null;
+
+function expandImage(hoveredIndex) {
+  const images = document.querySelectorAll('.image');
+  images.forEach((image) => {
+    image.classList.add('shrinked');
+    image.classList.remove('expanded');
+  });
+
+  const hoveredImage = images[images.length - hoveredIndex];
+  hoveredImage.classList.add('expanded');
+  hoveredImage.classList.remove('shrinked');
+
+  lastHoveredImage = hoveredImage; // Güncel hover'ı kaydet
+}
+
+function resetImage(hoveredIndex) {
+  const images = document.querySelectorAll('.image');
+  const hoveredImage = images[images.length - hoveredIndex];
+
+  // Sadece görüntünün dışına çıkıldığında tüm görüntüleri küçültme
+  document.addEventListener("mousemove", (event) => {
+    const container = document.querySelector('.container');
+    const isInsideContainer = container.contains(event.target);
+
+    if (!isInsideContainer && lastHoveredImage) {
+      images.forEach((image) => {
+        image.classList.add('shrinked');
+        image.classList.remove('expanded');
+      });
+      lastHoveredImage.classList.add('expanded');
+      lastHoveredImage.classList.remove('shrinked');
+    }
+  });
+}
+
+    window.onload = function () {
+      const images = [
+        document.querySelector('.image3'),
+        document.querySelector('.image2'),
+      ];
+      const overlays = images.map((image) => image.querySelector('.overlay'));
+      const texts = [
+        document.querySelector('.text1'),
+        document.querySelector('.text2'),
+        document.querySelector('.text3'),
+        document.querySelector('.text4'),
+      ];
+
+      let delay = 0;
+
+      texts.forEach((text) => {
+        setTimeout(() => {
+          text.classList.add('animated');
+        }, delay);
+        delay += 500;
+      });
+
+      setTimeout(() => {
+        let imageDelay = 0;
+        images.forEach((image, index) => {
+          setTimeout(() => {
+            image.classList.add('animated');
+            overlays[index].classList.add('visible');
+            image.classList.add('buyume');
+            const image1 = document.querySelector('.image1');
+            image1.style.display = 'block';
+            document.querySelectorAll('.text').forEach((element) => {
+              element.classList.remove('text');
+            });
+            document.querySelectorAll('.arka_1').forEach((element2) => {
+              element2.classList.remove('arka_1');
+            });
+            setTimeout(() => {
+              image.classList.remove('animated');
+              overlays[index].classList.remove('visible');
+              image.classList.remove('buyume');
+            }, 800);
+          }, imageDelay);
+
+          imageDelay += 800;
+        });
+      }, delay);
+    };
+  </script>
+</body>
+</html>
