@@ -6,9 +6,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Garanti BBVA 2. El Araç Masthead</title>
 <script>
-  /* Ad server tıklama hedefleri */
-  var clickTag  = "https://www.garantibbva.com.tr/";   /* Sahne 1 – Detaylı Bilgi */
-  var clickTag2 = "https://www.garantibbva.com.tr/";   /* Sahne 2 – Değerle */
+  /* Adform tıklama takibi (bn=90843320). ${GDPR} / ${GDPR_CONSENT_50} makrolarını reklam sunucusu doldurur. */
+  var ADFORM_CLICK = "https://track.adform.net/C/?bn=90843320;gdpr=${GDPR};gdpr_consent=${GDPR_CONSENT_50}";
+  var clickTag  = ADFORM_CLICK;   /* Sahne 1 – Detaylı Bilgi */
+  var clickTag2 = ADFORM_CLICK;   /* Sahne 2 – Detaylı Bilgi */
+
+  /* Adform gösterim sayacı (1x1), [timestamp] yerine önbellek kırıcı */
+  var ADFORM_IMPRESSION = "https://track.adform.net/adfserve/?bn=90843320;1x1inv=1;srctype=3;gdpr=${GDPR};gdpr_consent=${GDPR_CONSENT_50};ord=[timestamp]";
 </script>
 <style>
 /*FONTS*/
@@ -55,7 +59,7 @@ img{position:absolute;display:block;pointer-events:none;-webkit-user-drag:none}
 @keyframes shine{0%,70%{background-position:120% 0}100%{background-position:-120% 0}}
 .cta1{left:44px;top:184px;height:36px;padding:0 24px;font-size:15px;font-weight:700;background:var(--green);box-shadow:0 4px 10px rgba(0,146,66,.3)}
 
-/* ---------- SAHNE 2 · Değerle (yeşil) ---------- */
+/* ---------- SAHNE 2 · Detaylı Bilgi (yeşil) ---------- */
 .s2{background:
     linear-gradient(135deg,var(--green) 0%,var(--green) 55%,var(--green-dk) 100%);
   clip-path:inset(0 0 0 100%);-webkit-clip-path:inset(0 0 0 100%)}
@@ -66,7 +70,7 @@ img{position:absolute;display:block;pointer-events:none;-webkit-user-drag:none}
 .s2 .copy{position:absolute;left:512px;width:450px;top:40px;text-align:center;color:#fff}
 .s2 .copy h2{font-weight:700;font-size:21px;line-height:26px;letter-spacing:-.1px}
 .s2 .copy p{margin-top:12px;font-weight:400;font-size:14px;line-height:19px}
-.cta2{left:682px;top:160px;width:112px;height:42px;font-size:16px;background:var(--navy);box-shadow:0 5px 12px rgba(7,33,70,.35)}
+.cta2{left:667px;top:160px;width:140px;height:42px;font-size:16px;background:var(--navy);box-shadow:0 5px 12px rgba(7,33,70,.35)}
 
 .cards{position:absolute;left:24px;top:20px;width:240px}
 .card{display:flex;align-items:center;gap:11px;height:56px;margin-bottom:8px;padding:0 12px;border-radius:11px;
@@ -164,7 +168,7 @@ img{position:absolute;display:block;pointer-events:none;-webkit-user-drag:none}
       <h2 class="c">2. El araç için tüm ihtiyaçlarınızda<br>Garanti BBVA yanınızda</h2>
       <p class="c" style="transition-delay:.15s">2. El aracını bul, dilersen aracının güncel piyasa değerini öğren</p>
     </div>
-    <button class="cta cta2 c" data-click="2" style="transition-delay:.3s">Değerle</button>
+    <button class="cta cta2 c" data-click="2" style="transition-delay:.3s">Detaylı Bilgi</button>
   </div>
 
   <!-- AYIRICI -->
@@ -303,6 +307,16 @@ img{position:absolute;display:block;pointer-events:none;-webkit-user-drag:none}
   copyShown = true; setPos(485);
   if(document.fonts && document.fonts.ready){ document.fonts.ready.then(start); } else { window.addEventListener('load', start); }
 })();
+</script>
+
+<script>
+  (function(){
+    var px = new Image(1,1);
+    px.src = ADFORM_IMPRESSION.replace('[timestamp]', Date.now() + '' + Math.floor(Math.random()*1e6));
+    px.width = px.height = 1; px.border = 0; px.alt = '';
+    px.style.cssText = 'position:absolute;left:-9999px;width:1px;height:1px;border:0';
+    document.body.appendChild(px);
+  })();
 </script>
 </body>
 </html>
